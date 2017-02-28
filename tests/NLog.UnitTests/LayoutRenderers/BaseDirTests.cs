@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.UnitTests.Internal;
 using System.Collections.Generic;
 using System.Linq;
 using NLog.Internal.Fakeables;
@@ -80,7 +81,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void BaseDirDirFileCombineTest()
         {
-            AssertLayoutRendererOutput("${basedir:dir=aaa:file=bbb.txt}", Path.Combine(baseDir, "aaa", "bbb.txt"));
+            AssertLayoutRendererOutput("${basedir:dir=aaa:file=bbb.txt}", PathHelpers.Combine(baseDir, "aaa", "bbb.txt"));
         }
 
         [Fact]
@@ -103,12 +104,12 @@ namespace NLog.UnitTests.LayoutRenderers
 
                 Assert.True(count > 0, string.Format("At least one path should start with '{0}'", fakeBaseDir));
 
-            }
+    }
             finally
             {
                 //restore
                 LogFactory.CurrentAppDomain = old;
-            }
+}
 
         }
 

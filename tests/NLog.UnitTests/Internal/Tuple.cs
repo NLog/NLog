@@ -31,48 +31,49 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
-using NLog.Internal;
-using Xunit;
-using Xunit.Extensions;
-
 namespace NLog.UnitTests.Internal
 {
-    public class StringBuilderExtTests : NLogTestBase
-    {
-        [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        [InlineData(4)]
-        [InlineData(5)]
-        [InlineData(6)]
-        [InlineData(7)]
-        [InlineData(8)]
-        [InlineData(9)]
-        [InlineData(10)]
-        [InlineData(12)]
-        [InlineData(123)]
-        [InlineData(1234)]
-        [InlineData(12345)]
-        [InlineData(123456)]
-        [InlineData(1234567)]
-        [InlineData(12345678)]
-        [InlineData(123456789)]
-        [InlineData(1234567890)]
-        [InlineData(int.MaxValue)]
-        [InlineData(int.MinValue)]
-        void TestAppendInvariant(int input)
-        {
-            StringBuilder sb = new StringBuilder();
-            StringBuilderExt.AppendInvariant(sb, input);
-            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
 
-            input = 0 - input;
-            sb = new StringBuilder(); 
-            StringBuilderExt.AppendInvariant(sb, input);
-            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
+#if NET3_5
+
+    public class Tuple<T1, T2>
+    {
+        public T1 Item1 { get; private set; }
+        public T2 Item2 { get; private set; }
+        internal Tuple(T1 item1, T2 item2)
+        {
+            Item1 = item1;
+            Item2 = item2;
         }
     }
+
+    public class Tuple<T1, T2, T3>
+    {
+        public T1 Item1 { get; private set; }
+        public T2 Item2 { get; private set; }
+        public T3 Item3 { get; private set; }
+        internal Tuple(T1 item1, T2 item2, T3 item3)
+        {
+            Item1 = item1;
+            Item2 = item2;
+            Item3 = item3;
+        }
+    }
+
+    public static class Tuple
+    {
+        public static Tuple<T1, T2> Create<T1, T2>(T1 first, T2 second)
+        {
+            var tuple = new Tuple<T1, T2>(first, second);
+            return tuple;
+        }
+
+        public static Tuple<T1, T2, T3> Create<T1, T2, T3>(T1 first, T2 second, T3 third)
+        {
+            var tuple = new Tuple<T1, T2, T3>(first, second, third);
+            return tuple;
+        }
+    }
+
+#endif
 }

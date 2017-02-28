@@ -12,14 +12,14 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <NoWarn>0419</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>MONO;WCF_SUPPORTED;MONO_2_0;DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;MONO;WCF_SUPPORTED;MONO_2_0;NET3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
@@ -31,7 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>MONO;WCF_SUPPORTED;MONO_2_0;TRACE</DefineConstants>
+    <DefineConstants>TRACE;MONO;WCF_SUPPORTED;MONO_2_0;NET3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Release</OutputPath>
@@ -56,7 +56,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="Mono.Posix" />
+    <Reference Include="Mono.Posix">
+      <HintPath>..\..\binaries\Mono.Posix\2.0.0\Mono.Posix.dll</HintPath>
+    </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />

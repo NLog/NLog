@@ -71,6 +71,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
 
+#if !MONO_2_0
         // this is just to force reference to NLog.Extended.dll
         public Type ForceExtendedReference = typeof(MessageQueueTarget).DeclaringType;
 
@@ -96,4 +97,6 @@ namespace NLog.UnitTests.Config
             Assert.Equal(expectedTypeName, targets.CreateInstance(itemName).GetType().Name);
         }
     }
+
+#endif
 }

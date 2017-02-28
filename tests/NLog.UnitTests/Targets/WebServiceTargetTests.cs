@@ -32,13 +32,16 @@
 // 
 
 using System;
-using System.Collections.Concurrent;
+
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
+#if !MONO_2_0
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
+#endif
 using JetBrains.Annotations;
 using NLog.Internal;
 using NLog.Targets;
@@ -89,6 +92,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
         }
+
+        #if !MONO_2_0
 
         [Fact]
         public void WebserviceTest_httppost_utf8_default_no_bom()
@@ -179,8 +184,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             Assert.Equal(bytes.Length, includeBom ? 126 : 123);
         }
+#endif
 
-        #region helpers
+#region helpers
 
 
         private Stream GenerateStreamFromString(string s)
@@ -217,7 +223,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public byte[] bytes;
             public string stringed;
 
-            #region Overrides of MemoryStream
+#region Overrides of MemoryStream
 
             /// <summary>
             /// Releases the unmanaged resources used by the <see cref="T:System.IO.MemoryStream"/> class and optionally releases the managed resources.
@@ -239,11 +245,11 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 return sr.ReadToEnd();
             }
 
-            #endregion
+#endregion
         }
 
 
-        #endregion
+#endregion
 
 #if NET4_5
 
