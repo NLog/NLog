@@ -1846,7 +1846,7 @@ namespace NLog.Targets
                 {
                     case FileArchivePeriod.Year: formatString = "yyyy"; break;
                     case FileArchivePeriod.Month: formatString = "yyyyMM"; break;
-                    default: formatString = "yyyyMMdd"; break;
+                    default: formatString = "yyyyMMdd"; break;      // Also for Weekdays
                     case FileArchivePeriod.Hour: formatString = "yyyyMMddHH"; break;
                     case FileArchivePeriod.Minute: formatString = "yyyyMMddHHmm"; break;
                 }
@@ -1900,11 +1900,36 @@ namespace NLog.Targets
                 case FileArchivePeriod.Day: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddDays(1); break;
                 case FileArchivePeriod.Hour: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddHours(1); break;
                 case FileArchivePeriod.Minute: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddMinutes(1); break;
+                case FileArchivePeriod.Sunday: periodAfterPreviousLogEventTime = CalculateNextWeekday(previousLogEventTimestamp, DayOfWeek.Sunday); break;
+                case FileArchivePeriod.Monday: periodAfterPreviousLogEventTime = CalculateNextWeekday(previousLogEventTimestamp, DayOfWeek.Monday); break;
+                case FileArchivePeriod.Tuesday: periodAfterPreviousLogEventTime = CalculateNextWeekday(previousLogEventTimestamp, DayOfWeek.Tuesday); break;
+                case FileArchivePeriod.Wednesday: periodAfterPreviousLogEventTime = CalculateNextWeekday(previousLogEventTimestamp, DayOfWeek.Wednesday); break;
+                case FileArchivePeriod.Thursday: periodAfterPreviousLogEventTime = CalculateNextWeekday(previousLogEventTimestamp, DayOfWeek.Thursday); break;
+                case FileArchivePeriod.Friday: periodAfterPreviousLogEventTime = CalculateNextWeekday(previousLogEventTimestamp, DayOfWeek.Friday); break;
+                case FileArchivePeriod.Saturday: periodAfterPreviousLogEventTime = CalculateNextWeekday(previousLogEventTimestamp, DayOfWeek.Saturday); break;
                 default: return false;
             }
 
             string periodAfterPreviousLogEventTimeString = periodAfterPreviousLogEventTime.ToString(formatString, CultureInfo.InvariantCulture);
             return lastWriteTimeString == periodAfterPreviousLogEventTimeString;
+        }
+
+        /// <summary>
+        /// Calculate the DateTime of the requested day of the week.
+        /// </summary>
+        /// <param name="previousLogEventTimestamp">The DateTime of the previous log event.</param>
+        /// <param name="dayOfWeek">The next occuring day of the week to return a DateTime for.</param>
+        /// <returns>The DateTime of the next occuring dayOfWeek.</returns>
+        /// <remarks>For example: if previousLogEventTimestamp is Thursday 2017-03-02 and dayOfWeek is Sunday, this will return
+        ///  Sunday 2017-03-05. If dayOfWeek is Thursday, this will return *next* Thursday 2017-03-09.</remarks>
+        private DateTime CalculateNextWeekday(DateTime? previousLogEventTimestamp, DayOfWeek dayOfWeek)
+        {
+            // Shamelessly taken from http://stackoverflow.com/a/7611480/1354930
+            int start = (int)previousLogEventTimestamp.Value.DayOfWeek;
+            int target = (int)dayOfWeek;
+            if(target <= start)
+                target += 7;
+            return previousLogEventTimestamp.Value.AddDays(target - start);
         }
 
         /// <summary>
@@ -2243,6 +2268,14 @@ namespace NLog.Targets
                     return input.AddTicks(-(input.Ticks % TimeSpan.TicksPerHour));
                 case FileArchivePeriod.Minute:
                     return input.AddTicks(-(input.Ticks % TimeSpan.TicksPerMinute));
+                case FileArchivePeriod.Sunday:
+                case FileArchivePeriod.Monday:
+                case FileArchivePeriod.Tuesday:
+                case FileArchivePeriod.Wednesday:
+                case FileArchivePeriod.Thursday:
+                case FileArchivePeriod.Friday:
+                case FileArchivePeriod.Saturday:
+                    return input.Date;
                 default:
                     return input;   // Unknown time-resolution-truncate, leave unchanged
             }
