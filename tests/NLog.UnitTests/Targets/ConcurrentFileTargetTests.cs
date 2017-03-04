@@ -182,7 +182,8 @@ namespace NLog.UnitTests.Targets
                 for (int i = 0; i < numProcesses; ++i)
                 {
                     processes[i].WaitForExit();
-                    Assert.Equal(0, processes[i].ExitCode);
+                    var exitCode = processes[i].ExitCode;
+                    Assert.True(0 == exitCode, "process exit code is not 0 but " + exitCode);
                     processes[i].Dispose();
                     processes[i] = null;
                 }
@@ -208,9 +209,10 @@ namespace NLog.UnitTests.Targets
                             {
                                 int thread = Convert.ToInt32(tokens[0]);
                                 int number = Convert.ToInt32(tokens[1]);
-                                Assert.True(thread >= 0);
-                                Assert.True(thread < numProcesses);
-                                Assert.Equal(maxNumber[thread], number);
+                                Assert.True(thread >= 0, "thread >= 0");
+                                Assert.True(thread < numProcesses, "thread < numProcesses");
+                                var maxNumberThread = maxNumber[thread];
+                                Assert.True(maxNumberThread == number, "maxNumberThread ==  number. " + maxNumberThread + "=" + number);
                                 maxNumber[thread]++;
                             }
                             catch (Exception ex)
