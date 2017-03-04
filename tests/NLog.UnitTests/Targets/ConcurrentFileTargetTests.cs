@@ -183,7 +183,9 @@ namespace NLog.UnitTests.Targets
                 {
                     processes[i].WaitForExit();
                     var exitCode = processes[i].ExitCode;
+#if !MONO_2_0
                     Assert.True(0 == exitCode, "process exit code is not 0 but " + exitCode);
+#endif
                     processes[i].Dispose();
                     processes[i] = null;
                 }
