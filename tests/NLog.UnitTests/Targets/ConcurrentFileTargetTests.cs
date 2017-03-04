@@ -36,6 +36,8 @@
 #define SupportsMutex
 #endif
 
+//#define Activate_debug_code //enable to debug on Travis
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -98,6 +100,8 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+
+
         public void Process(string processIndex, string fileName, string numLogsString, string mode)
         {
             Thread.CurrentThread.Name = processIndex;
@@ -107,13 +111,16 @@ namespace NLog.UnitTests.Targets
 
             ConfigureSharedFile(mode, fileName);
 
+#if Activate_debug_code
+
             // Having the internal logger enabled would just slow things down, reducing the 
             // likelyhood for uncovering racing conditions.
-            //var logWriter = new StringWriter { NewLine = Environment.NewLine };
-            //NLog.Common.InternalLogger.LogLevel = LogLevel.Trace;
-            //NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
-            //NLog.Common.InternalLogger.LogWriter = logWriter;
-            //NLog.Common.InternalLogger.LogToConsole = true;
+            var logWriter = new StringWriter { NewLine = Environment.NewLine };
+            NLog.Common.InternalLogger.LogLevel = LogLevel.Trace;
+            NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
+            NLog.Common.InternalLogger.LogWriter = logWriter;
+            NLog.Common.InternalLogger.LogToConsole = true;
+#endif
 
             string format = processIndex + " {0}";
 
@@ -130,18 +137,21 @@ namespace NLog.UnitTests.Targets
             }
             catch (Exception ex)
             {
-                //using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
-                //{
-                //    textWriter.WriteLine(ex.ToString());
-                //    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
-                //}
+#if Activate_debug_code
+                using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
+                {
+                    textWriter.WriteLine(ex.ToString());
+                    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
+                }
+#endif
                 throw;
             }
-
-            //using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
-            //{
-            //    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
-            //}
+#if Activate_debug_code
+            using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
+            {
+                textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
+            }
+#endif
         }
 
         private string MakeFileName(int numProcesses, int numLogs, string mode)
