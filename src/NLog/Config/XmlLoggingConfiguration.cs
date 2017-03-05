@@ -64,7 +64,10 @@ namespace NLog.Config
     /// 
     /// Parsing of the XML file is also implemented in this class.
     /// </summary>
-    ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
+    ///<remarks>
+    /// - This class is thread-safe.<c>.ToList()</c> is used for that purpose.
+    /// - Update TemplateXSD.xml for changes outside targets
+    /// </remarks>
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
 #if __ANDROID__
