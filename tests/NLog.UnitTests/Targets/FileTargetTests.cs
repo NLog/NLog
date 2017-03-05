@@ -423,7 +423,7 @@ namespace NLog.UnitTests.Targets
             logger.Trace("running test");
         }
 
-#if NET3_5 || NET4_0 || NET4_5
+#if (NET3_5 || NET4_0 || NET4_5) && !MONO_2_0
         public static IEnumerable<object[]> ArchiveFileOnStartTests_TestParameters
         {
             get
