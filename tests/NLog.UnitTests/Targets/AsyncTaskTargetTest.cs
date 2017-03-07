@@ -31,16 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace NLog.UnitTests.Targets
 {
+#if !NET3_5 && !NET4_0
     public class AsyncTaskTargetTest : NLogTestBase
     {
         class AsyncTaskTestTarget : AsyncTaskTarget
@@ -56,7 +58,12 @@ namespace NLog.UnitTests.Targets
 
             private async Task WriteLogQueue(LogEventInfo logEvent, CancellationToken token)
             {
-                await Task.Delay(10, token).ContinueWith((t) => Logs.Enqueue(RenderLogEvent(Layout, logEvent)), token).ContinueWith(async (t) => await Task.Delay(10));
+                if (logEvent.Message == "EXCEPTION")
+                    await Task.Delay(10, token).ContinueWith((t) => { throw new InvalidOperationException("AsyncTaskTargetTest Failed"); }).ConfigureAwait(false);
+                else if (logEvent.Message == "TIMEOUT")
+                    await Task.Delay(15000, token).ConfigureAwait(false);
+                else
+                    await Task.Delay(10, token).ContinueWith((t) => Logs.Enqueue(RenderLogEvent(Layout, logEvent)), token).ContinueWith(async (t) => await Task.Delay(10).ConfigureAwait(false)).ConfigureAwait(false);
             }
         }
 
@@ -81,10 +88,74 @@ namespace NLog.UnitTests.Targets
             LogManager.Flush();
             Assert.True(asyncTarget.Logs.Count == 6);
             while (asyncTarget.Logs.Count > 0)
-                Assert.Equal(0, asyncTarget.Logs.Dequeue().IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+            {
+                string logEventMessage = asyncTarget.Logs.Dequeue();
+                Assert.Equal(0, logEventMessage.IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+            }
+
+            LogManager.Configuration = null;
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_TestException()
+        {
+            ILogger logger = LogManager.GetCurrentClassLogger();
+
+            var asyncTarget = new AsyncTaskTestTarget();
+            asyncTarget.Layout = "${threadid}|${level}|${message}";
+
+            SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
+            Assert.True(asyncTarget.Logs.Count == 0);
+            logger.Trace("TTT");
+            logger.Debug("EXCEPTION");
+            logger.Info("III");
+            logger.Warn("WWW");
+            logger.Error("EEE");
+            logger.Fatal("FFF");
+            System.Threading.Thread.Sleep(50);
+            Assert.True(asyncTarget.Logs.Count != 0);
+            LogManager.Flush();
+            Assert.True(asyncTarget.Logs.Count == 5);
+            while (asyncTarget.Logs.Count > 0)
+            {
+                string logEventMessage = asyncTarget.Logs.Dequeue();
+                Assert.Equal(-1, logEventMessage.IndexOf("|Debug|"));
+                Assert.Equal(0, logEventMessage.IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+            }
+
+            LogManager.Configuration = null;
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_TestTimeout()
+        {
+            ILogger logger = LogManager.GetCurrentClassLogger();
+
+            var asyncTarget = new AsyncTaskTestTarget();
+            asyncTarget.Layout = "${threadid}|${level}|${message}";
+            asyncTarget.TaskTimeoutSeconds = 1;
+
+            SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
+            Assert.True(asyncTarget.Logs.Count == 0);
+            logger.Trace("TTT");
+            logger.Debug("TIMEOUT");
+            logger.Info("III");
+            logger.Warn("WWW");
+            logger.Error("EEE");
+            logger.Fatal("FFF");
+            System.Threading.Thread.Sleep(50);
+            Assert.True(asyncTarget.Logs.Count != 0);
+            LogManager.Flush();
+            Assert.True(asyncTarget.Logs.Count == 5);
+            while (asyncTarget.Logs.Count > 0)
+            {
+                string logEventMessage = asyncTarget.Logs.Dequeue();
+                Assert.Equal(-1, logEventMessage.IndexOf("|Debug|"));
+                Assert.Equal(0, logEventMessage.IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+            }
 
             LogManager.Configuration = null;
         }
     }
+#endif
 }
-

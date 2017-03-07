@@ -40,26 +40,45 @@ namespace NLog.Targets
 #if !NET3_5 && !SILVERLIGHT4
     using System.Threading.Tasks;
     using NLog.Common;
+    using System.ComponentModel;
 
     /// <summary>
     /// Abstract Target with async Task support
     /// </summary>
     public abstract class AsyncTaskTarget : Target
     {
-        private readonly CancellationTokenSource _cancelTokenSource;
+        private readonly Timer _taskTimeoutTimer;
+        private CancellationTokenSource _cancelTokenSource;
         private readonly Queue<AsyncLogEventInfo> _requestQueue;
         private readonly Action _taskStartNext;
+        private readonly Action _taskCancelledToken;
         private readonly Action<Task, object> _taskCompletion;
         private Task _previousTask;
+
+        /// <summary>
+        /// How many seconds a Task is allowed to run before it is cancelled.
+        /// </summary>
+        [DefaultValue(150)]
+        public int TaskTimeoutSeconds { get; set; }
+
+        /// <summary>
+        /// Task Scheduler used for processing async Tasks
+        /// </summary>
+        protected virtual TaskScheduler TaskScheduler { get { return TaskScheduler.Default; } }
 
         /// <summary>
         /// Constructor
         /// </summary>
         protected AsyncTaskTarget()
         {
-            _taskStartNext = TaskStartNext;
+            TaskTimeoutSeconds = 150;
+
+            _taskStartNext = () => TaskStartNext(null);
             _taskCompletion = TaskCompletion;
+            _taskCancelledToken = TaskCancelledToken;
+            _taskTimeoutTimer = new Timer(TaskTimeout);
             _cancelTokenSource = new CancellationTokenSource();
+            _cancelTokenSource.Token.Register(_taskCancelledToken);
             _requestQueue = new Queue<AsyncLogEventInfo>(10000);
         }
 
@@ -75,7 +94,7 @@ namespace NLog.Targets
         /// 
         /// private async Task CustomWriteAsync(LogEventInfo logEvent, CancellationToken token)
         /// {
-        ///     await MyLogMethodAsync(logEvent, token);
+        ///     await MyLogMethodAsync(logEvent, token).ConfigureAwait(false);
         /// }
         /// </code></example>
         /// </summary>
@@ -102,7 +121,7 @@ namespace NLog.Targets
             _requestQueue.Enqueue(logEvent);
             if (_previousTask == null)
             {
-                _previousTask = Task.Factory.StartNew(_taskStartNext, _cancelTokenSource.Token, TaskCreationOptions.None, TaskScheduler.Default);
+                _previousTask = Task.Factory.StartNew(_taskStartNext, _cancelTokenSource.Token, TaskCreationOptions.None, TaskScheduler);
             }
         }
 
@@ -129,6 +148,7 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
+            _taskTimeoutTimer.Change(Timeout.Infinite, Timeout.Infinite);
             _cancelTokenSource.Cancel();
             _requestQueue.Clear();
             _previousTask = null;
@@ -143,16 +163,29 @@ namespace NLog.Targets
         {
             base.Dispose(disposing);
             if (disposing)
+            {
                 _cancelTokenSource.Dispose();
+                _taskTimeoutTimer.Dispose();
+            }
         }
 
-        private void TaskStartNext()
+        /// <summary>
+        /// Checks the internal queue for the next <see cref="LogEventInfo"/> to create a new task for
+        /// </summary>
+        /// <param name="previousTask">Used for race-condition validation betweewn task-completion and timeout</param>
+        private void TaskStartNext(Task previousTask)
         {
             AsyncLogEventInfo logEvent;
             do
             {
                 lock (this.SyncRoot)
                 {
+                    if (!IsInitialized)
+                        break;
+
+                    if (previousTask != null && !ReferenceEquals(previousTask, _previousTask))
+                        break;
+
                     if (_requestQueue.Count == 0)
                     {
                         _previousTask = null;
@@ -164,6 +197,11 @@ namespace NLog.Targets
             } while (!TaskCreation(logEvent));
         }
 
+        /// <summary>
+        /// Creates new task to handle the writing of the input <see cref="LogEventInfo"/>
+        /// </summary>
+        /// <param name="logEvent">LogEvent to write</param>
+        /// <returns>New Task created [true / false]</returns>
         private bool TaskCreation(AsyncLogEventInfo logEvent)
         {
             try
@@ -184,21 +222,26 @@ namespace NLog.Targets
                 var newTask = WriteAsyncTask(logEvent.LogEvent, _cancelTokenSource.Token);
                 if (newTask == null)
                 {
-                    InternalLogger.Debug("{0} WriteAsync returned null", this.Name);
+                    InternalLogger.Debug("{0} WriteAsyncTask returned null", this.Name);
                 }
                 else
                 {
                     lock (this.SyncRoot)
                     {
                         _previousTask = newTask;
+
+                        if (TaskTimeoutSeconds > 0)
+                            _taskTimeoutTimer.Change(TaskTimeoutSeconds * 1000, Timeout.Infinite);
+
+                        // NOTE - Not using _cancelTokenSource for ContinueWith, or else they will also be cancelled on timeout
 #if (SILVERLIGHT && !WINDOWS_PHONE) || NET4_0
                         var continuation = logEvent.Continuation;
-                        _previousTask.ContinueWith(completedTask => TaskCompletion(completedTask, continuation), _cancelTokenSource.Token);
+                        _previousTask.ContinueWith(completedTask => TaskCompletion(completedTask, continuation));
 #else
-                        _previousTask.ContinueWith(_taskCompletion, logEvent.Continuation, _cancelTokenSource.Token);
+                        _previousTask.ContinueWith(_taskCompletion, logEvent.Continuation);
 #endif
                         if (_previousTask.Status == TaskStatus.Created)
-                            _previousTask.Start(TaskScheduler.Default);
+                            _previousTask.Start(TaskScheduler);
                     }
                     return true;
                 }
@@ -207,7 +250,7 @@ namespace NLog.Targets
             {
                 try
                 {
-                    InternalLogger.Error(ex, "{0} WriteAsync failed on creation", this.Name);
+                    InternalLogger.Error(ex, "{0} WriteAsyncTask failed on creation", this.Name);
                     logEvent.Continuation(ex);
                 }
                 catch
@@ -218,28 +261,118 @@ namespace NLog.Targets
             return false;
         }
 
+        /// <summary>
+        /// Handles that scheduled task has completed (succesfully or failed), and starts the next pending task
+        /// </summary>
+        /// <param name="completedTask">Task just completed</param>
+        /// <param name="continuation">AsyncContinuation to notify of success or failure</param>
         private void TaskCompletion(Task completedTask, object continuation)
         {
             try
             {
+                if (ReferenceEquals(completedTask, _previousTask))
+                { 
+                    if (TaskTimeoutSeconds > 0)
+                    {
+                        _taskTimeoutTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                    }
+                }
+                else
+                {
+                    if (!IsInitialized)
+                        return;
+                }
+
                 if (completedTask.IsCanceled)
                 {
                     if (completedTask.Exception != null)
-                        InternalLogger.Warn(completedTask.Exception, "{0} WriteAsync was cancelled", this.Name);
+                        InternalLogger.Warn(completedTask.Exception, "{0} WriteAsyncTask was cancelled", this.Name);
                     else
-                        InternalLogger.Info("{0} WriteAsync was cancelled", this.Name);
+                        InternalLogger.Info("{0} WriteAsyncTask was cancelled", this.Name);
                 }
                 else if (completedTask.Exception != null)
                 {
-                    InternalLogger.Warn(completedTask.Exception, "{0} WriteAsync failed on completion", this.Name);
+                    InternalLogger.Warn(completedTask.Exception, "{0} WriteAsyncTask failed on completion", this.Name);
                 }
-                ((AsyncContinuation)continuation)(completedTask.Exception);
+
+                var asyncContinuation = (AsyncContinuation)continuation;
+                asyncContinuation(completedTask.Exception);
             }
             finally
             {
-                TaskStartNext();
+                TaskStartNext(completedTask);
+            }
+        }
+
+        /// <summary>
+        /// Timer method, that is fired when pending task fails to complete within timeout
+        /// </summary>
+        /// <param name="state"></param>
+        private void TaskTimeout(object state)
+        {
+            try
+            {
+                if (!IsInitialized)
+                    return;
+
+                InternalLogger.Warn("{0} WriteAsyncTask had timeout. Task will be cancelled.", this.Name);
+
+                var previousTask = _previousTask;
+                try
+                {
+                    lock (this.SyncRoot)
+                    {
+                        if (previousTask != null && ReferenceEquals(previousTask, _previousTask))
+                        {
+                            _previousTask = null;
+                            _cancelTokenSource.Cancel();    // Notice how TaskCancelledToken auto recreates token
+                        }
+                        else
+                        {
+                            previousTask = null;
+                        }
+                    }
+
+                    if (previousTask != null)
+                    {
+                        if (previousTask.Status != TaskStatus.Canceled &&
+                            previousTask.Status != TaskStatus.Faulted &&
+                            previousTask.Status != TaskStatus.RanToCompletion)
+                        {
+                            if (!previousTask.Wait(100))
+                            {
+                                InternalLogger.Debug("{0} WriteAsyncTask had timeout. Task did not cancel properly: {1}.", this.Name, previousTask.Status);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Debug(ex, "{0} WriteAsyncTask had timeout. Task failed to cancel properly.", this.Name);
+                }
+
+                if (previousTask != null)
+                {
+                    TaskStartNext(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "{0} WriteAsyncTask failed on timeout", this.Name);
+            }
+        }
+
+        private void TaskCancelledToken()
+        {
+            lock (this.SyncRoot)
+            {
+                if (!IsInitialized)
+                    return;
+
+                _cancelTokenSource = new CancellationTokenSource();
+                _cancelTokenSource.Token.Register(_taskCancelledToken);
             }
         }
     }
 #endif
-                    }
+}
