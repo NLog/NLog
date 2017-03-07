@@ -191,7 +191,12 @@ namespace NLog.Targets
                     lock (this.SyncRoot)
                     {
                         _previousTask = newTask;
+#if (SILVERLIGHT && !WINDOWS_PHONE) || NET4_0
+                        var continuation = logEvent.Continuation;
+                        _previousTask.ContinueWith(completedTask => TaskCompletion(completedTask, continuation), _cancelTokenSource.Token);
+#else
                         _previousTask.ContinueWith(_taskCompletion, logEvent.Continuation, _cancelTokenSource.Token);
+#endif
                         if (_previousTask.Status == TaskStatus.Created)
                             _previousTask.Start(TaskScheduler.Default);
                     }
@@ -237,4 +242,4 @@ namespace NLog.Targets
         }
     }
 #endif
-}
+                    }
