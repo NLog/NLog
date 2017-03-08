@@ -34,6 +34,11 @@
 namespace NLog.Internal
 {
     using System;
+    using System.Collections.Generic;
+#if NETSTANDARD_1plus
+    using System.Runtime.InteropServices;
+#endif
+    using NLog.Config;
 
     /// <summary>
     /// Detects the platform the NLog is running on.
@@ -41,7 +46,7 @@ namespace NLog.Internal
     internal static class PlatformDetector
     {
         private static RuntimeOS currentOS = GetCurrentRuntimeOS();
-        
+
         /// <summary>
         /// Gets the current runtime OS.
         /// </summary>
@@ -49,7 +54,7 @@ namespace NLog.Internal
         {
             get { return currentOS; }
         }
-        
+
         /// <summary>
         /// Gets a value indicating whether current OS is a desktop version of Windows.
         /// </summary>
@@ -57,7 +62,7 @@ namespace NLog.Internal
         {
             get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT; }
         }
-        
+
         /// <summary>
         /// Gets a value indicating whether current OS is Win32-based (desktop or mobile).
         /// </summary>
@@ -65,7 +70,7 @@ namespace NLog.Internal
         {
             get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT || currentOS == RuntimeOS.WindowsCE; }
         }
-        
+
         /// <summary>
         /// Gets a value indicating whether current OS is Unix-based.
         /// </summary>
@@ -81,7 +86,7 @@ namespace NLog.Internal
         {
             get { return Type.GetType("Mono.Runtime") != null; }
         }
-
+        
         /// <summary>
         /// Gets a value indicating whether current runtime supports use of mutex
         /// </summary>
@@ -90,7 +95,7 @@ namespace NLog.Internal
             get
             {
                 // Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD
                 if (IsMono && System.Environment.Version.Major < 4)
                     return false;   // MONO ver. 4 is needed for named Mutex to work
                 else
@@ -103,6 +108,18 @@ namespace NLog.Internal
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {
+#if NETSTANDARD_1plus
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return RuntimeOS.Windows;
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                return RuntimeOS.Unix;
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                return RuntimeOS.Unix;
+
+            return RuntimeOS.Unknown;
+#elif NETSTANDARD
+            return RuntimeOS.Unknown;
+#else
             PlatformID platformID = Environment.OSVersion.Platform;
             if ((int)platformID == 4 || (int)platformID == 128)
             {
@@ -125,6 +142,7 @@ namespace NLog.Internal
             }
 
             return RuntimeOS.Unknown;
+#endif
         }
     }
 }

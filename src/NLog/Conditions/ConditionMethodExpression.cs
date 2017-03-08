@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.Conditions
 {
     using System;
@@ -119,7 +121,7 @@ namespace NLog.Conditions
                 {
                     ParameterInfo param = formalParameters[i];
                     this.lateBoundMethodDefaultParameters[i - MethodParameters.Count] = param.DefaultValue;
-                }
+        }
             }
             else
             {

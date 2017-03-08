@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if SILVERLIGHT
+#if SILVERLIGHT || NETSTANDARD || NETSTANDARD1_0
 
 namespace System.ComponentModel
 {

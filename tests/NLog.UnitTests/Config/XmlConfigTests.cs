@@ -64,6 +64,7 @@ namespace NLog.UnitTests.Config
             var xml = "<nlog autoreload='true' logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
             var config = CreateConfigurationFromString(xml);
 
+            
             Assert.Equal(true, config.AutoReload);
             Assert.Equal(true, config.InitializeSucceeded);
             Assert.Equal("", InternalLogger.LogFile);
@@ -89,8 +90,9 @@ namespace NLog.UnitTests.Config
         [InlineData("1:0:0:0", 86400)] //1 day
         public void SetTimeSpanFromXmlTest(string interval, int seconds)
         {
+            
             var config = CreateConfigurationFromString(string.Format(@"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{0}'>
                         <target name='debug' type='Debug' layout='${{message}}' />

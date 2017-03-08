@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -69,6 +70,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(200, targetWrapper.BatchSize);
         }
 
+#if !NETSTANDARD
         /// <summary>
         /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>
@@ -124,7 +126,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     prevSequenceID = itemWrittenList[i];
                 }
 
-#if MONO || NET3_5 
+#if MONO || NET3_5
                 Assert.True(elapsedMilliseconds < 750);    // Skip timing test when running within OpenCover.Console.exe
 #endif
 
@@ -187,6 +189,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 targetWrapper.Close();
             }
         }
+#endif
 
         [Fact]
         public void AsyncTargetWrapperAsyncTest1()
@@ -467,22 +470,22 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Assert.True(this.FlushCount <= this.WriteCount);
 
                 pendingWriteCounter.BeginOperation();
-                ThreadPool.QueueUserWorkItem(
+                RunAsync2(
                     s =>
                         {
                             try
                             {
                                 Interlocked.Increment(ref this.WriteCount);
-                                if (this.ThrowExceptions)
-                                {
-                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
-                                    logEvent.Continuation(new InvalidOperationException("Some problem!"));
-                                }
-                                else
-                                {
-                                    logEvent.Continuation(null);
-                                    logEvent.Continuation(null);
-                                }
+                            if (this.ThrowExceptions)
+                            {
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                                logEvent.Continuation(new InvalidOperationException("Some problem!"));
+                            }
+                            else
+                            {
+                                logEvent.Continuation(null);
+                                logEvent.Continuation(null);
+                            }
                             }
                             finally
                             {
@@ -491,14 +494,15 @@ namespace NLog.UnitTests.Targets.Wrappers
                         });
             }
 
+            
+
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
                 Interlocked.Increment(ref this.FlushCount);
-                var wrappedContinuation = pendingWriteCounter.RegisterCompletionNotification(asyncContinuation);
-                ThreadPool.QueueUserWorkItem(
+                RunAsync2(
                     s =>
                     {
-                        wrappedContinuation(null);
+                        asyncContinuation(null);
                     });
             }
 

@@ -40,6 +40,7 @@ namespace NLog.UnitTests
 
     public class RegressionTests : NLogTestBase
     {
+#if !NETSTANDARD
         [Fact]
         public void Bug3990StackOverflowWhenUsingNLogViewerTarget()
         {
@@ -58,6 +59,7 @@ namespace NLog.UnitTests
             var target = config.LoggingRules[0].Targets[0] as NLogViewerTarget;
             Assert.NotNull(target);
         }
+#endif
 
         [Fact]
         public void Bug4655UnableToReconfigureExistingLoggers()

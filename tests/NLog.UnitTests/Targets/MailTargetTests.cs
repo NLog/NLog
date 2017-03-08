@@ -31,17 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NETSTANDARD
+
 namespace NLog.UnitTests.Targets
 {
     using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Mail;
+    using System.Threading;
     using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-    using System.IO;
+	  using System.IO;
 #if !__ANDROID__ && !__IOS__
     using System.Configuration;
     using System.Net.Configuration;
@@ -445,7 +448,7 @@ namespace NLog.UnitTests.Targets
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.True(messageSent.IsBodyHtml);
-            var lines = messageSent.Body.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            var lines = messageSent.Body.Split(new[] {Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             Assert.True(lines.Length == 3);
         }
 
@@ -650,6 +653,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MailTargetInitialize_WithoutSpecifiedSmtpServer_ThrowsConfigException_if_UseSystemNetMailSettings()
         {
+            LogManager.ThrowConfigExceptions = true;
             var mmt = new MockMailTarget
             {
                 From = "foo@bar.com",
@@ -723,7 +727,7 @@ namespace NLog.UnitTests.Targets
 
             Assert.Equal(mmt.SmtpClientPickUpDirectory, inConfigVal);
         }
-
+    
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True_WithVirtualPath()
         {
@@ -739,7 +743,7 @@ namespace NLog.UnitTests.Targets
                 DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory
             };
             mmt.ConfigureMailClient();
-
+            
             Assert.NotEqual(inConfigVal, mmt.SmtpClientPickUpDirectory);
             var separator = Path.DirectorySeparatorChar;
             Assert.Contains(string.Format("{0}App_Data{0}Mail", separator), mmt.SmtpClientPickUpDirectory);
@@ -910,17 +914,17 @@ namespace NLog.UnitTests.Targets
                 if (this.SmtpServer == null && string.IsNullOrEmpty(this.PickupDirectoryLocation))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
-                }
+        }
 
                 if (this.DeliveryMethod == SmtpDeliveryMethod.Network && this.SmtpServer == null)
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
-                }
+    }
 
                 if (this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(this.PickupDirectoryLocation))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
-                }
+}
 
                 if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
                 {
@@ -936,3 +940,5 @@ namespace NLog.UnitTests.Targets
 
     }
 }
+
+#endif

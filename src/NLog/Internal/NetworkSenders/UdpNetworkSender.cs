@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
 
 namespace NLog.Internal.NetworkSenders
 {
@@ -76,7 +76,7 @@ namespace NLog.Internal.NetworkSenders
 
             Uri uri;
             if (Uri.TryCreate(this.Address, UriKind.Absolute, out uri)
-                && uri.Host.Equals(IPAddress.Broadcast.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                && uri.Host.Equals(IPAddress.Broadcast.ToString(), StringComparison.OrdinalIgnoreCase))
             {
                 proxy.UnderlyingSocket.EnableBroadcast = true;
             }

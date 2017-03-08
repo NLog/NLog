@@ -67,6 +67,7 @@ namespace NLog.UnitTests.Layouts
             new SimpleLayout("${message");
         }
 
+#if !NETSTANDARD
         [Fact]
         public void SingleParamTest()
         {
@@ -140,6 +141,9 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("", mdc.Item);
         }
 
+        
+#endif
+
         [Fact]
         public void NestedLayoutTest()
         {
@@ -151,10 +155,13 @@ namespace NLog.UnitTests.Layouts
             Assert.NotNull(nestedLayout);
             Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
             Assert.Equal(1, nestedLayout.Renderers.Count);
+
+
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
             Assert.NotNull(ndcLayoutRenderer);
             Assert.Equal(3, ndcLayoutRenderer.TopFrames);
             Assert.Equal("x", ndcLayoutRenderer.Separator);
+
         }
 
         [Fact]
@@ -172,10 +179,12 @@ namespace NLog.UnitTests.Layouts
             Assert.NotNull(nestedLayout);
             Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
             Assert.Equal(1, nestedLayout.Renderers.Count);
+#if !NETSTANDARD
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
             Assert.NotNull(ndcLayoutRenderer);
             Assert.Equal(3, ndcLayoutRenderer.TopFrames);
             Assert.Equal("x", ndcLayoutRenderer.Separator);
+#endif
         }
 
         [Fact]
@@ -193,10 +202,12 @@ namespace NLog.UnitTests.Layouts
             Assert.NotNull(nestedLayout);
             Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
             Assert.Equal(1, nestedLayout.Renderers.Count);
+#if !NETSTANDARD
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
             Assert.NotNull(ndcLayoutRenderer);
             Assert.Equal(3, ndcLayoutRenderer.TopFrames);
             Assert.Equal("x", ndcLayoutRenderer.Separator);
+#endif
         }
 
         [Fact]
@@ -286,7 +297,9 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void LayoutParserEscapeCodesForRegExTestV1()
         {
+#if !NETSTANDARD
             MappedDiagnosticsContext.Clear();
+#endif
 
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
@@ -325,7 +338,9 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void LayoutParserEscapeCodesForRegExTestV2()
         {
+#if !NETSTANDARD
             MappedDiagnosticsContext.Clear();
+#endif
 
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>

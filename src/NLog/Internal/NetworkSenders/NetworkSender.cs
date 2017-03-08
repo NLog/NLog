@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.Internal.NetworkSenders
 {
     using System;
@@ -170,7 +172,13 @@ namespace NLog.Internal.NetworkSenders
 
                 default:
                     {
+#if NETSTANDARD_1plus
+                        var addresses = Dns.GetHostAddressesAsync(uri.Host).Result;
+#else
                         var addresses = Dns.GetHostEntry(uri.Host).AddressList;
+#endif
+                        
+
                         foreach (var addr in addresses)
                         {
                             if (addr.AddressFamily == addressFamily || addressFamily == AddressFamily.Unspecified)
@@ -183,7 +191,7 @@ namespace NLog.Internal.NetworkSenders
                     }
             }
 #endif
-        }
+                    }
 
         public virtual void CheckSocket()
         {
@@ -198,3 +206,4 @@ namespace NLog.Internal.NetworkSenders
         }
     }
 }
+#endif

@@ -44,7 +44,7 @@ namespace NLog.UnitTests
     using NLog.Config;
     using NLog.Targets;
 
-#if NET4_5
+#if NET4_5 && !NETSTANDARD_1plus
     using System.Threading.Tasks;
     using Microsoft.Practices.Unity;
 #endif
@@ -261,6 +261,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
         }
 
+#if !NETSTANDARD
         private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)
@@ -378,13 +379,17 @@ namespace NLog.UnitTests
                 }
             }
         }
+#endif
 
         [Fact]
         public void GivenCurrentClass_WhenGetCurrentClassLogger_ThenLoggerShouldBeCurrentClass()
         {
             var logger = LogManager.GetCurrentClassLogger();
-
+#if NETSTANDARD
+            Assert.Equal(this.GetType().Name, logger.Name);
+#else
             Assert.Equal(this.GetType().FullName, logger.Name);
+#endif
         }
 
         private static class ImAStaticClass
@@ -462,7 +467,7 @@ namespace NLog.UnitTests
         }
 
 
-#if NET4_0 || NET4_5
+#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
         [Fact]
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
@@ -471,7 +476,7 @@ namespace NLog.UnitTests
             Assert.Equal(this.GetType().FullName, logger.Value.Name);
         }
 #endif
-#if NET4_5
+#if NET4_5 && !NETSTANDARD_1plus
 
         [Fact]
         public void ThreadSafe_Shutdown()

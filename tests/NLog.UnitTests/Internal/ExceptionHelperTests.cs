@@ -32,6 +32,7 @@
 // 
 
 
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -50,12 +51,15 @@ namespace NLog.UnitTests.Internal
     public class ExceptionHelperTests : NLogTestBase
     {
         [Theory]
+#if !NETSTANDARD_1plus
         [InlineData(typeof(StackOverflowException), true)]
+        [InlineData(typeof(ThreadAbortException), true)]
+#endif
         [InlineData(typeof(NLogConfigurationException), false)]
         [InlineData(typeof(Exception), false)]
         [InlineData(typeof(ArgumentException), false)]
         [InlineData(typeof(NullReferenceException), false)]
-        [InlineData(typeof(ThreadAbortException), true)]
+
         [InlineData(typeof(OutOfMemoryException), true)]
         public void TestMustBeRethrowImmediately(Type t, bool result)
         {
@@ -65,8 +69,10 @@ namespace NLog.UnitTests.Internal
         }
 
         [Theory]
+#if !NETSTANDARD_1plus
         [InlineData(typeof(StackOverflowException), true, false, false)]
         [InlineData(typeof(StackOverflowException), true, true, false)]
+#endif
         [InlineData(typeof(NLogConfigurationException), true, true, true)]
         [InlineData(typeof(NLogConfigurationException), false, true, false)]
         [InlineData(typeof(NLogConfigurationException), true, true, null)]
@@ -87,8 +93,10 @@ namespace NLog.UnitTests.Internal
         [InlineData(typeof(ArgumentException), true, true, null)]
         [InlineData(typeof(NullReferenceException), false, false, false)]
         [InlineData(typeof(NullReferenceException), true, true, false)]
+#if !NETSTANDARD_1plus
         [InlineData(typeof(ThreadAbortException), true, false, false)]
         [InlineData(typeof(ThreadAbortException), true, true, false)]
+#endif
         [InlineData(typeof(OutOfMemoryException), true, false, false)]
         [InlineData(typeof(OutOfMemoryException), true, true, false)]
         public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions, bool? throwConfigException)
@@ -117,7 +125,11 @@ namespace NLog.UnitTests.Internal
 
                 var level = LogLevel.FromString(levelText);
                 InternalLogger.LogLevel = LogLevel.Trace;
-                InternalLogger.LogToConsole = true;
+
+
+                var stringWriter = new StringWriter();
+                InternalLogger.LogWriter = stringWriter;
+
                 InternalLogger.IncludeTimestamp = false;
 
                 var ex1 = CreateException(exceptionType);
@@ -128,13 +140,7 @@ namespace NLog.UnitTests.Internal
                 string expected =
                     levelText + " " + text + prefix + ex1 + Environment.NewLine;
 
-                StringWriter consoleOutWriter = new StringWriter()
-                {
-                    NewLine = Environment.NewLine
-                };
-
-                // Redirect the console output to a StringWriter.
-                Console.SetOut(consoleOutWriter);
+            
 
                 // Named (based on LogLevel) public methods.
 
@@ -143,8 +149,8 @@ namespace NLog.UnitTests.Internal
 
                 ex1.MustBeRethrown();
 
-                consoleOutWriter.Flush();
-                var actual = consoleOutWriter.ToString();
+                stringWriter.Flush();
+                var actual = stringWriter.ToString();
                 Assert.Equal(expected, actual);
             }
 
@@ -153,7 +159,12 @@ namespace NLog.UnitTests.Internal
 
         private static Exception CreateException(Type exceptionType)
         {
+#if NETSTANDARD_1plus
+            return exceptionType.GetConstructor(Type.EmptyTypes).Invoke(null) as Exception;
+#else
+
             return exceptionType.GetConstructor(BindingFlags.NonPublic | BindingFlags.Default | BindingFlags.Instance | BindingFlags.Public, null, Type.EmptyTypes, null).Invoke(null) as Exception;
+#endif
         }
     }
 }

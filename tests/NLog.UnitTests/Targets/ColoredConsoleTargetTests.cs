@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -223,3 +225,5 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+
+#endif

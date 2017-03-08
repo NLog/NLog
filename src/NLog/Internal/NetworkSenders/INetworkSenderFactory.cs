@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.Internal.NetworkSenders
 {
     /// <summary>
@@ -53,3 +55,4 @@ namespace NLog.Internal.NetworkSenders
         NetworkSender Create(string url, int maxQueueSize);
     }
 }
+#endif

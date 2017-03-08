@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || NETSTANDARD_1plus
 namespace NLog.LayoutRenderers
 {
     using System.Text;
@@ -54,3 +55,4 @@ namespace NLog.LayoutRenderers
         }
     }
 }
+#endif

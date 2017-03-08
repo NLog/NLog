@@ -99,7 +99,7 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterType(Type type, string itemNamePrefix)
         {
-            if (type.IsDefined(typeof(TClassAttributeType), false))
+            if (type.IsDefined< TClassAttributeType>(false))
             {
                 foreach (MethodInfo mi in type.GetMethods())
                 {

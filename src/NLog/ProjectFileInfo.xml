@@ -229,6 +229,18 @@
     </ItemGroup>
   </Project>
 
+
+
+  <Project File="NLog.uwp10.csproj">
+    <ItemGroup Name="Compile">
+      <FileSet Include="AllFilesToCompile" />
+    </ItemGroup>
+    <ItemGroup Name="None" KeepOldFiles="true">
+      <FileSet Include="Logger.tt" />
+    </ItemGroup>
+
+  </Project>
+
   <Project File="NLog.doc.csproj">
     <ItemGroup Name="Compile">
       <FileSet Include="AllFilesToCompile" />

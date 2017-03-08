@@ -31,14 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal.Fakeables;
+
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.IO;
     using System.Text;
-    using Internal.Fakeables;
     using NLog.Config;
     using NLog.Internal;
+
+#if !NETSTANDARD_1plus
+    using Internal.Fakeables;
+#endif
 
     /// <summary>
     /// The current application domain's base directory.
@@ -49,7 +54,7 @@ namespace NLog.LayoutRenderers
     {
         private string baseDir;
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD_1plus
 
         /// <summary>
         /// cached
@@ -66,16 +71,16 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
-        public BaseDirLayoutRenderer() : this(LogFactory.CurrentAppDomain)
+        public BaseDirLayoutRenderer(IAppDomain appDomain)
         {
+            this.baseDir = appDomain.BaseDirectory;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
         /// </summary>
-        public BaseDirLayoutRenderer(IAppDomain appDomain)
+        public BaseDirLayoutRenderer() : this(LogFactory.CurrentAppDomain)
         {
-            this.baseDir = appDomain.BaseDirectory;
         }
 
         /// <summary>
@@ -99,7 +104,7 @@ namespace NLog.LayoutRenderers
         {
 
             var dir = baseDir;
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD_1plus
             if (ProcessDir)
             {
                 dir = processDir ?? (processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
@@ -109,9 +114,9 @@ namespace NLog.LayoutRenderers
             if (dir != null)
             {
                 var path = PathHelpers.CombinePaths(dir, this.Dir, this.File);
-                builder.Append(path);
-            }
+            builder.Append(path);
         }
     }
+}
 }
 

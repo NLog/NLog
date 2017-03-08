@@ -33,7 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
-#if NET4_0 || NET4_5
+#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
     using System.Text;
     using Config;
     using Internal;

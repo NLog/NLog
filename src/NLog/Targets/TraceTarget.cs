@@ -33,7 +33,7 @@
 
 #define TRACE
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
 
 namespace NLog.Targets
 {

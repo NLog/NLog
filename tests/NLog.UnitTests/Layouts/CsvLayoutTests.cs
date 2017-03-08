@@ -42,6 +42,7 @@ namespace NLog.UnitTests.Layouts
 
     public class CsvLayoutTests : NLogTestBase
     {
+#if !NETSTANDARD
         [Fact]
         public void EndToEndTest()
         {
@@ -179,6 +180,7 @@ namespace NLog.UnitTests.Layouts
                 }
             }
         }
+#endif
 
         [Fact]
         public void CsvLayoutRenderingNoQuoting()

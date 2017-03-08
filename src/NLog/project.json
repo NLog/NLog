@@ -1,0 +1,231 @@
+{
+  "version": "5.0.0-beta06",
+  "description": "NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity. This package installs NLog.dll with includes core logging functionality. For your main project also need to install 'NLog Configuration' package.",
+  "authors": [ "Julian Verdurmen" ],
+  "packOptions": {
+    "summary": "NLog - Flexible & free open-source logging for .NET",
+    "tags": [ "logging", "log", "tracing", "logfiles", "NLog", "database", "eventlog", "email", "wcf", "netcore", "dynamic" ],
+    "projectUrl": "http://nlog-project.org/",
+    "licenseUrl": "http://raw.github.com/NLog/NLog/master/LICENSE.txt",
+    "requireLicenseAcceptance": false,
+    "iconUrl": "http://nlog-project.org/N.png",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/NLog/NLog"
+    },
+    "releaseNotes": "Up-to-date with NLog 4.4.3. \nFix archive issue on Linux."
+
+  },
+
+  "frameworks": {
+    ".NETFramework,Version=v3.5": {
+      "frameworkAssemblies": {
+        "System": "",
+        "System.Configuration": "",
+        "System.Core": "",
+        "System.Data": "",
+        "System.Runtime.Serialization": "",
+        "System.ServiceModel": "",
+        "System.Transactions": "",
+        "System.Xml": ""
+      },
+      "buildOptions": {
+        "define": [ "NET3_5", "WCF_SUPPORTED", "SupportsMutex" ]
+      }
+    },
+
+    ".NETFramework,Version=v4.0": {
+      "frameworkAssemblies": {
+        "System": "",
+        "System.Configuration": "",
+        "System.Core": "",
+        "System.Data": "",
+        "System.Runtime.Serialization": "",
+        "System.ServiceModel": "",
+        "System.Transactions": "",
+        "System.Xml": ""
+      },
+      "buildOptions": {
+        "define": [ "NET4_0", "WCF_SUPPORTED", "SupportsMutex" ]
+      }
+    },
+    ".NETFramework,Version=v4.5": {
+      "frameworkAssemblies": {
+        "System": "",
+        "System.Configuration": "",
+        "System.Core": "",
+        "System.Data": "",
+        "System.IO.Compression": "",
+        "System.Runtime.Serialization": "",
+        "System.ServiceModel": "",
+        "System.Transactions": "",
+        "System.Xml": ""
+
+      },
+      "buildOptions": {
+        "define": [ "NET4_5", "WCF_SUPPORTED", "ASYNC_SUPPORTED", "SupportsMutex" ]
+      }
+    },
+    //"netstandard1.0": {
+    //  "dependencies": {
+    //    "System.Threading": "4.0.11",
+    //    "System.Security.Principal": "4.0.1",
+    //    "System.Net.Primitives": "4.0.11",
+    //    "System.Xml.XmlSerializer": "4.0.11",
+    //    "System.Runtime.Serialization.Primitives": "4.1.1"
+    //  },
+    //  "buildOptions": {
+    //    "define": [ "NET4_0", "WCF_SUPPORTED", "NETSTANDARD1_0" ]
+    //  }
+    //},
+    "netstandard1.3": {
+      "dependencies": {
+        "NETStandard.Library": "1.6.0",
+        "Microsoft.Extensions.PlatformAbstractions": "1.0.0",
+        "System.Collections.NonGeneric": "4.0.1",
+        "System.ComponentModel.TypeConverter": "4.1.0",
+        "System.Data.Common": "4.1.0",
+        "System.Diagnostics.Contracts": "4.0.1",
+        "System.Diagnostics.StackTrace": "4.0.1",
+        "System.Diagnostics.TraceSource": "4.0.0",
+        "System.IO.FileSystem.Watcher": "4.0.0",
+        "System.IO.FileSystem.AccessControl": "4.0.0",
+        "System.Net.Requests": "4.0.11",
+        "System.Reflection.TypeExtensions": "4.1.0",
+        "System.Runtime.Serialization.Primitives": "4.1.1",
+        "System.Threading": "4.0.11",
+        "System.Threading.Thread": "4.0.0",
+        "System.Threading.ThreadPool": "4.0.10",
+        "System.Xml.ReaderWriter": "4.3.0",
+        "System.Xml.XmlDocument": "4.0.1",
+        "System.Net.NameResolution": "4.0.0",
+        "System.Security.AccessControl": "4.0.0",
+        "System.Security.Principal": "4.0.1",
+        "System.Threading.AccessControl": "4.0.0"
+      },
+      "buildOptions": {
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "ASYNC_SUPPORTED", "NETSTANDARD", "SupportsMutex" ],
+        "nowarn": [ "CS0436" ]
+      }
+    },
+    "netstandard1.5": {
+      "dependencies": {
+        "NETStandard.Library": "1.6.0",
+        "Microsoft.Extensions.PlatformAbstractions": "1.0.0",
+        "System.Collections.NonGeneric": "4.0.1",
+        "System.ComponentModel.TypeConverter": "4.1.0",
+        "System.Data.Common": "4.1.0",
+        "System.Diagnostics.Contracts": "4.0.1",
+        "System.Diagnostics.StackTrace": "4.0.1",
+        "System.Diagnostics.TraceSource": "4.0.0",
+        "System.IO.FileSystem.Watcher": "4.0.0",
+        "System.IO.FileSystem.AccessControl": "4.0.0",
+        "System.Net.Requests": "4.0.11",
+        "System.Reflection.TypeExtensions": "4.1.0",
+        "System.Runtime.Serialization.Primitives": "4.1.1",
+        "System.Threading": "4.0.11",
+        "System.Threading.Thread": "4.0.0",
+        "System.Threading.ThreadPool": "4.0.10",
+        "System.Xml.ReaderWriter": "4.3.0",
+        "System.Xml.XmlDocument": "4.0.1",
+        "System.Net.NameResolution": "4.0.0",
+        "System.Security.AccessControl": "4.0.0",
+        "System.Security.Principal": "4.0.1",
+        "System.Threading.AccessControl": "4.0.0"
+      },
+      "buildOptions": {
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "NETSTANDARD", "SupportsMutex" ],
+        "nowarn": [ "CS0436" ]
+      }
+    },
+    "Silverlight,Version=v4.0": {
+      "frameworkAssemblies": {
+        "mscorlib": "",
+        "System": "",
+        "System.Core": "",
+        "System.Xml": "",
+        "System.Net": "",
+        "System.Windows": "",
+        "System.Windows.Browser": "",
+        "System.Runtime.Serialization": "",
+        "System.ServiceModel": ""
+      },
+      "dependencies": {
+      },
+      "buildOptions": {
+        "define": [ "SILVERLIGHT", "SILVERLIGHT4", "WCF_SUPPORTED" ]
+
+      }
+    },
+    "Silverlight,Version=v5.0": {
+      "frameworkAssemblies": {
+        "mscorlib": "",
+        "System": "",
+        "System.Core": "",
+        "System.Xml": "",
+        "System.Net": "",
+        "System.Windows": "",
+        "System.Windows.Browser": "",
+        "System.Runtime.Serialization": "",
+        "System.ServiceModel": ""
+      },
+      "dependencies": {
+      },
+      "buildOptions": {
+        "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED" ]
+
+      }
+    },
+
+    "wp8": {
+      "frameworkAssemblies": {
+        "mscorlib": "",
+        "System": "",
+        "System.Core": "",
+        "System.Xml": "",
+        "System.Net": "",
+        "System.Windows": ""
+      },
+      "dependencies": {
+      },
+      "buildOptions": {
+        "define": [ "SILVERLIGHT", "WINDOWS_PHONE" ]
+      }
+    },
+    "monoandroid2.3": {
+      "frameworkAssemblies": {
+        "mscorlib": "",
+        "Mono.Android": "",
+        "System": "",
+        "System.Core": "",
+        "System.Xml": ""
+      },
+      "buildOptions": {
+        // Unfortunately, Xamarin Android and Xamarin iOS throws runtime exceptions when using mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167)
+
+        "define": [ "__ANDROID__" ]
+      }
+    },
+    "xamarin.ios10": {
+      "frameworkAssemblies": {
+        "mscorlib": "",
+        "Xamarin.iOS": "",
+        "System": "",
+        "System.Core": "",
+        "System.Xml": ""
+      },
+      "buildOptions": {
+        // Unfortunately, Xamarin Android and Xamarin iOS throws runtime exceptions when using mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167)
+
+        "define": [ "__IOS__" ]
+      }
+    }
+
+
+  },
+  "buildOptions": {
+    "keyFile": "NLog.snk",
+    "xmlDoc": true
+
+  }
+}

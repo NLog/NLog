@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || NETSTANDARD1_3
 namespace NLog.UnitTests.Internal.NetworkSenders
 {
     using System;
@@ -172,11 +173,19 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                     });
             }
 
+#if NETSTANDARD1_3
+            Assert.True(allSent.WaitOne(3000));
+#else
             Assert.True(allSent.WaitOne(3000, false));
+#endif
 
             var mre = new ManualResetEvent(false);
             sender.FlushAsync(ex => mre.Set());
+#if  NETSTANDARD1_3
+            mre.WaitOne(3000);
+#else
             mre.WaitOne(3000, false);
+#endif
 
             var actual = sender.Log.ToString();
 
@@ -402,3 +411,4 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         }
     }
 }
+#endif

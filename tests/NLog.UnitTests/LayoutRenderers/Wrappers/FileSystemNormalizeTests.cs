@@ -31,11 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
     using NLog.Layouts;
     using Xunit;
+
 
     public class FileSystemNormalizeTests : NLogTestBase
     {
@@ -80,3 +83,4 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
     }
 }
+#endif

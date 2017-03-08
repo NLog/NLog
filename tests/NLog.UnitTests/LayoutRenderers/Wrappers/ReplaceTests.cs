@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
@@ -152,7 +154,11 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
             var regex = new System.Text.RegularExpressions.Regex(
                 pattern,
+#if !!NETSTANDARD
                 System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+#else
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+#endif
 
             var testCases = new List<Tuple<string, string, string>>
             {
@@ -179,3 +185,5 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
     }
 }
+
+#endif

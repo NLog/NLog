@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
 namespace NLog.LogReceiverService
 {
     using System.Collections.Generic;
@@ -55,3 +56,4 @@ namespace NLog.LogReceiverService
         }
     }
 }
+#endif

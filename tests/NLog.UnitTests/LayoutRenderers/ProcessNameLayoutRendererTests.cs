@@ -43,7 +43,11 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     public class ProcessNameLayoutRendererTests : NLogTestBase
     {
+#if NETSTANDARD 
+        [Fact(Skip = "${processname} not supported in NETSTANDARD yet")]
+#else
         [Fact]
+#endif
         public void RenderProcessNameLayoutRenderer()
         {
             Layout layout = "${processname}";
@@ -62,8 +66,11 @@ namespace NLog.UnitTests.LayoutRenderers
             
             Assert.True(allowedProcessNames.Any(p => lower.Contains(p)), string.Format("validating processname failed. Please add (if correct) '{0}' to 'allowedProcessNames'", actual));
         }
-
+#if NETSTANDARD 
+        [Fact(Skip = "${processname} not supported in NETSTANDARD yet")]
+#else
         [Fact]
+#endif
         public void RenderProcessNameLayoutRenderer_fullname()
         {
             Layout layout = "${processname:fullname=true}";

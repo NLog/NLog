@@ -30,7 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
-
+#if !NET3_5
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -45,7 +45,7 @@ using NLog.Targets;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-#if NET4_5
+#if NET4_5 && !NETSTANDARD_1plus
 using System.Web.Http;
 using Owin;
 using Microsoft.Owin.Hosting;
@@ -245,7 +245,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         #endregion
 
-#if NET4_5
+#if NET4_5 && !NETSTANDARD_1plus
 
 
         const string WsAddress = "http://localhost:9000/";
@@ -896,3 +896,4 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
     }
 
 }
+#endif

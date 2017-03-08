@@ -94,7 +94,6 @@ namespace NLog.Config
         #endregion
 
         #region contructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
@@ -138,10 +137,9 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Create XML reader for (xml config) file.
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
-        /// <param name="fileName">filepath</param>
-        /// <returns>reader or <c>null</c> if filename is empty.</returns>
+        /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
         private static XmlReader CreateFileReader(string fileName)
         {
             if (!string.IsNullOrEmpty(fileName))
@@ -177,6 +175,7 @@ namespace NLog.Config
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+
         public XmlLoggingConfiguration(XmlReader reader, string fileName, LogFactory logFactory)
             : this(reader, fileName, false, logFactory)
         { }
@@ -210,7 +209,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-        internal XmlLoggingConfiguration(XmlElement element, string fileName)
+		internal XmlLoggingConfiguration(XmlElement element, string fileName)
         {
             logFactory = LogManager.LogFactory;
 
@@ -244,7 +243,7 @@ namespace NLog.Config
 
         #region public properties
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !NETSTANDARD
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -263,7 +262,7 @@ namespace NLog.Config
         /// Did the <see cref="Initialize"/> Succeeded? <c>true</c>= success, <c>false</c>= error, <c>null</c> = initialize not started yet.
         /// </summary>
         public bool? InitializeSucceeded { get; private set; }
-
+        
         /// <summary>
         /// Gets or sets a value indicating whether all of the configuration files
         /// should be watched for changes and reloaded automatically when changed.
@@ -272,7 +271,7 @@ namespace NLog.Config
         {
             get
             {
-                return this.fileMustAutoReloadLookup.Values.All(mustAutoReload => mustAutoReload);
+                return this.fileMustAutoReloadLookup.Values.DefaultIfEmpty(true).All(mustAutoReload => mustAutoReload);
             }
             set
             {
@@ -445,10 +444,10 @@ namespace NLog.Config
                     {
                         throw configurationException;
                     }
+                    }
+              
                 }
-
-            }
-        }
+                }
 
         /// <summary>
         /// Checks whether any error during XML configuration parsing has occured.
@@ -591,14 +590,14 @@ namespace NLog.Config
             bool autoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", autoReloadDefault);
             if (filePath != null)
                 this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
-
+            
             logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", logFactory.ThrowExceptions);
             logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", logFactory.ThrowConfigExceptions);
             logFactory.KeepVariablesOnReload = nlogElement.GetOptionalBooleanAttribute("keepVariablesOnReload", logFactory.KeepVariablesOnReload);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
-
+            
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             InternalLogger.LogToTrace = nlogElement.GetOptionalBooleanAttribute("internalLogToTrace", InternalLogger.LogToTrace);
 #endif
@@ -607,8 +606,14 @@ namespace NLog.Config
 
             var children = nlogElement.Children.ToList();
 
+#if !NETSTANDARD
+            var stringComparison = StringComparison.InvariantCultureIgnoreCase;
+#else
+            var stringComparison = StringComparison.OrdinalIgnoreCase;
+#endif
+
             //first load the extensions, as the can be used in other elements (targets etc)
-            var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase)).ToList();
+            var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", stringComparison)).ToList();
             foreach (var extensionsChild in extensionsChilds)
             {
                 this.ParseExtensionsElement(extensionsChild, Path.GetDirectoryName(filePath));
@@ -979,8 +984,8 @@ namespace NLog.Config
                 {
                     try
                     {
-                        this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
-                    }
+                    this.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
+                }
                     catch (Exception exception)
                     {
                         if (exception.MustBeRethrownImmediately())
@@ -999,21 +1004,13 @@ namespace NLog.Config
                     }
                 }
 
+#if !NETSTANDARD
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
                     try
                     {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                    var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-                    var assemblyPart = new AssemblyPart();
-                    Assembly asm = assemblyPart.Load(si.Stream);
-#else
-                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                        InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-                        Assembly asm = Assembly.LoadFrom(fullFileName);
-#endif
+                        var asm = AssemblyHelpers.LoadFromPath(assemblyFile);
                         this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
 
                     }
@@ -1036,20 +1033,14 @@ namespace NLog.Config
 
                     continue;
                 }
+#endif
 
                 string assemblyName = addElement.GetOptionalAttribute("assembly", null);
                 if (assemblyName != null)
                 {
                     try
                     {
-                        InternalLogger.Info("Loading assembly name: {0}", assemblyName);
-#if SILVERLIGHT && !WINDOWS_PHONE
-                    var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
-                    var assemblyPart = new AssemblyPart();
-                    Assembly asm = assemblyPart.Load(si.Stream);
-#else
-                        Assembly asm = Assembly.Load(assemblyName);
-#endif
+                        var asm = AssemblyHelpers.LoadFromName(assemblyName);
 
                         this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
                     }
@@ -1296,13 +1287,13 @@ namespace NLog.Config
 
                 // and is a Layout and 'type' attribute has been specified
                 if (layout != null)
-                {
-                    this.ConfigureObjectFromAttributes(layout, layoutElement, true);
-                    this.ConfigureObjectFromElement(layout, layoutElement);
-                    targetPropertyInfo.SetValue(o, layout, null);
-                    return true;
+                    {
+                        this.ConfigureObjectFromAttributes(layout, layoutElement, true);
+                        this.ConfigureObjectFromElement(layout, layoutElement);
+                        targetPropertyInfo.SetValue(o, layout, null);
+                        return true;
+                    }
                 }
-            }
 
             return false;
         }

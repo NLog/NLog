@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || NETSTANDARD_1plus
+
 using System.Collections.Generic;
 using System.Linq;
 using NLog.Internal.Fakeables;
@@ -42,11 +44,20 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.IO;
     using Xunit;
 
+#if XUNIT2
+    [Trait("Category", "basedir")]
+#endif
     public class BaseDirTests : NLogTestBase
     {
+#if !NETSTANDARD_1plus
         private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+#else
+        private string baseDir = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
+#endif
+
 
         [Fact]
+
         public void BaseDirTest()
         {
             AssertLayoutRendererOutput("${basedir}", baseDir);
@@ -64,7 +75,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
         [Fact]
         public void BaseDirCurrentProcessTest()
         {
@@ -114,8 +125,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         class MyAppDomain : IAppDomain
         {
-            private AppDomainWrapper _appDomain
-                ;
+            private IAppDomain _appDomain;
 
             /// <summary>
             /// Injectable
@@ -169,8 +179,15 @@ namespace NLog.UnitTests.LayoutRenderers
             /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
             public MyAppDomain()
             {
+#if NETSTANDARD
+                _appDomain = new FakeAppDomain();
+#else
                 _appDomain = AppDomainWrapper.CurrentDomain;
+#endif
+
             }
         }
     }
 }
+
+#endif

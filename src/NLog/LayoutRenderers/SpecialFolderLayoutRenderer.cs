@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
 using NLog.Internal;
 
 namespace NLog.LayoutRenderers
@@ -89,8 +90,10 @@ namespace NLog.LayoutRenderers
             string basePath = Environment.GetFolderPath(this.Folder);
 
             var path = PathHelpers.CombinePaths(basePath, this.Dir, this.File);
-   
+
             builder.Append(path);
         }
     }
 }
+
+#endif

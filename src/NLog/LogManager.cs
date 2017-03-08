@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+
 namespace NLog
 {
     using System;
@@ -45,7 +47,10 @@ namespace NLog
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+
+#if !NETSTANDARD
     using NLog.Internal.Fakeables;
+#endif
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -73,7 +78,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the default <see cref="NLog.LogFactory" /> instance.
+        /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
         internal static LogFactory LogFactory
         {
@@ -134,7 +139,6 @@ namespace NLog
             set { factory.KeepVariablesOnReload = value; }
         }
 
-
         /// <summary>
         /// Gets or sets the current logging configuration.
         /// <see cref="NLog.LogFactory.Configuration" />
@@ -165,6 +169,22 @@ namespace NLog
             set { throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo."); }
         }
 
+#if NETSTANDARD
+        /// <summary>
+        /// Gets the logger with the name of the current class.  
+        /// </summary>
+        /// <returns>The logger.</returns>
+        /// <remarks>This is a slow-running method. 
+        /// Make sure you're not doing this in a loop.</remarks>
+        [CLSCompliant(false)]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static Logger GetCurrentClassLogger([CallerFilePath] string path = "")
+        {
+            var filename = Path.GetFileNameWithoutExtension(path);
+
+            return factory.GetLogger(filename);
+        }
+#else
         /// <summary>
         /// Gets the logger with the name of the current class.  
         /// </summary>
@@ -177,7 +197,7 @@ namespace NLog
         {
             return factory.GetLogger(GetClassFullName());
         }
-
+#endif
         internal static bool IsHiddenAssembly(Assembly assembly)
         {
             return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
@@ -203,20 +223,37 @@ namespace NLog
             }
         }
 
+#if NETSTANDARD
+        /// <summary>
+        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// </summary>
+        /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
+        /// <param name="path">CallerFilePath</param>
+        /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
+        /// <remarks>This is a slow-running method. Make sure you're not doing this in a loop.</remarks>
+        [CLSCompliant(false)]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static Logger GetCurrentClassLogger(Type loggerType, [CallerFilePath] string path = "")
+        {
+            var filename = Path.GetFileNameWithoutExtension(path);
+
+            return factory.GetLogger(filename, loggerType);
+        }
+#else
+
         /// <summary>
         /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
-        /// <remarks>This is a slow-running method. 
-        /// Make sure you're not doing this in a loop.</remarks>
+        /// <remarks>This is a slow-running method. Make sure you're not doing this in a loop.</remarks>
         [CLSCompliant(false)]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(Type loggerType)
         {
             return factory.GetLogger(GetClassFullName(), loggerType);
         }
-
+#endif
         /// <summary>
         /// Creates a logger that discards all log messages.
         /// </summary>
@@ -239,12 +276,13 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named custom logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
-        /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
-        /// <remarks>The generic way for this method is <see cref="NLog.LogFactory{loggerType}.GetLogger(string)"/></remarks>
+        /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the 
+        /// same argument aren't guaranteed to return the same logger reference.</returns>
+        /// <remarks>The generic way for this method is <see cref="LogFactory{loggerType}.GetLogger(string)"/></remarks>
         [CLSCompliant(false)]
         public static Logger GetLogger(string name, Type loggerType)
         {
@@ -261,7 +299,7 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -358,11 +396,13 @@ namespace NLog
         public static void Shutdown()
         {
             factory.Shutdown();
-        }
+                }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 #endif
+
+#if !NETSTANDARD
 
         /// <summary>
         /// Gets the fully qualified name of the class invoking the LogManager, including the 
@@ -391,12 +431,13 @@ namespace NLog
 
                 framesToSkip++;
                 className = declaringType.FullName;
-            } while (declaringType.Module.Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
+            } while (declaringType.GetModule().Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
 
             return className;
         }
+#endif
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 #endif
-    }
+            }
 }

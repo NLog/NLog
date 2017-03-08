@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
         private string format;
         private string innerFormat = string.Empty;
         private readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _renderingfunctions;
-
+        
         private static readonly Dictionary<String, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
                                                                                                     {
                                                                                                         {"MESSAGE",ExceptionRenderingFormat.Message},
@@ -273,7 +273,7 @@ namespace NLog.LayoutRenderers
         /// Appends the Message of an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The exception containing the Message to append.</param>        
+        /// <param name="ex">The exception containing the Message to append.</param>
         protected virtual void AppendMessage(StringBuilder sb, Exception ex)
         {
             try
@@ -293,10 +293,10 @@ namespace NLog.LayoutRenderers
         /// Appends the method name from Exception's stack trace to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose method name should be appended.</param>        
+        /// <param name="ex">The Exception whose method name should be appended.</param>
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || NETSTANDARD
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
 #else
             if (ex.TargetSite != null)
@@ -310,7 +310,7 @@ namespace NLog.LayoutRenderers
         /// Appends the stack trace from an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose stack trace should be appended.</param>        
+        /// <param name="ex">The Exception whose stack trace should be appended.</param>
         protected virtual void AppendStackTrace(StringBuilder sb, Exception ex)
         {
             if (!string.IsNullOrEmpty(ex.StackTrace))
@@ -321,7 +321,7 @@ namespace NLog.LayoutRenderers
         /// Appends the result of calling ToString() on an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose call to ToString() should be appended.</param>       
+        /// <param name="ex">The Exception whose call to ToString() should be appended.</param>
         protected virtual void AppendToString(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.ToString());
@@ -331,7 +331,7 @@ namespace NLog.LayoutRenderers
         /// Appends the type of an Exception to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="ex">The Exception whose type should be appended.</param>        
+        /// <param name="ex">The Exception whose type should be appended.</param>
         protected virtual void AppendType(StringBuilder sb, Exception ex)
         {
             sb.Append(ex.GetType().FullName);
@@ -386,12 +386,13 @@ namespace NLog.LayoutRenderers
                 }
                 else
                 {
-                    InternalLogger.Warn("Unknown exception data target: {0}", s);
+                        InternalLogger.Warn("Unknown exception data target: {0}", s);
                 }
             }
             return formats;
         }
-#if SILVERLIGHT
+
+#if SILVERLIGHT || NETSTANDARD
         /// <summary>
         /// Find name of method on stracktrace.
         /// </summary>

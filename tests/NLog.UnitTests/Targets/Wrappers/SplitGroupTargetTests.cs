@@ -44,7 +44,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class SplitGroupTargetTests : NLogTestBase
-    {
+	{
         [Fact]
         public void SplitGroupSyncTest1()
         {
@@ -88,16 +88,16 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             AsyncContinuation asyncContinuation = ex =>
             {
-                lock (exceptions)
-                {
-                    exceptions.Add(ex);
-                    if (Interlocked.Decrement(ref remaining) == 0)
-                    {
-                        allDone.Set();
-                    }
+                        lock (exceptions)
+                        {
+                            exceptions.Add(ex);
+                            if (Interlocked.Decrement(ref remaining) == 0)
+                            {
+                                allDone.Set();
+                            }
                 }
                       ;
-            };
+                        };
 
             if (allEventsAtOnce)
             {
@@ -221,7 +221,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 Assert.True(this.FlushCount <= this.WriteCount);
                 this.WriteCount++;
-                ThreadPool.QueueUserWorkItem(
+                RunAsync2(
                     s =>
                         {
                             if (this.ThrowExceptions)
@@ -240,7 +240,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
                 this.FlushCount++;
-                ThreadPool.QueueUserWorkItem(
+                RunAsync2(
                     s => asyncContinuation(null));
             }
 

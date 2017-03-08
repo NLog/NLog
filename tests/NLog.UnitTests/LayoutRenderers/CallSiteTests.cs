@@ -49,6 +49,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
+#if !NETSTANDARD && !NETSTANDARD_1plus
         [Fact]
         public void HiddenAssemblyTest()
         {
@@ -115,7 +116,9 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
+#endif
 
+#if !NETSTANDARD
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -145,6 +148,9 @@ namespace NLog.UnitTests.LayoutRenderers
 #line default
 #endif
         }
+#endif
+
+#if !NETSTANDARD
 
         [Fact]
         public void MethodNameTest()
@@ -285,6 +291,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
         }
 
+#endif
+
         [Fact]
         public void MethodNameWithPaddingTestPadLeftAlignLeftTest()
         {
@@ -382,6 +390,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
         }
 
+#if !NETSTANDARD
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -531,7 +540,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 Assert.True(lastMessage.Contains("+<>"));
             }
         }
-
+#endif
 
         [Fact]
         public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()
@@ -755,6 +764,7 @@ namespace NLog.UnitTests.LayoutRenderers
             return await Task.FromResult(new string[] { "value1", "value2" });
         }
 
+#if !NETSTANDARD1_3
         [Fact]
         public void Show_correct_method_with_async4()
         {
@@ -798,6 +808,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #endif
+#endif
 
         [Fact]
         public void Show_correct_method_for_moveNext()
@@ -830,13 +841,15 @@ namespace NLog.UnitTests.LayoutRenderers
         public class CompositeWrapper
         {
             private readonly MyWrapper wrappedLogger;
+
             public CompositeWrapper()
             {
                 wrappedLogger = new MyWrapper();
             }
+
             public void Log(string what)
             {
-                wrappedLogger.Log(typeof(CompositeWrapper), what);
+                wrappedLogger.Log(typeof (CompositeWrapper), what);
             }
         }
 
@@ -844,7 +857,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             public void Log(string what)
             {
-                InternalLog(typeof(BaseWrapper), what);
+                InternalLog(typeof (BaseWrapper), what);
             }
 
             public void Log(Type type, string what) //overloaded with type for composition
@@ -893,7 +906,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger));
+            ILogger logger = LogManager.GetLogger("mylogger", typeof (MyLogger));
 
             Assert.True(logger is MyLogger, "logger isn't MyLogger");
             logger.Debug("msg");
@@ -912,7 +925,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            MyLogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as MyLogger;
+            MyLogger logger = LogManager.GetLogger("mylogger", typeof (MyLogger)) as MyLogger;
 
             Assert.NotNull(logger);
             logger.Debug("msg");
@@ -932,7 +945,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as Logger;
+            Logger logger = LogManager.GetLogger("mylogger", typeof (MyLogger)) as Logger;
 
             Assert.NotNull(logger);
             logger.Debug("msg");
@@ -1000,6 +1013,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
+#if !NETSTANDARD1_3
         /// <summary>
         /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
         /// 
@@ -1021,53 +1035,53 @@ namespace NLog.UnitTests.LayoutRenderers
             var callSite = l.Render(logEvent);
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
+    
+#endif
 
+        /// <summary>
+        ///   Implementation of <see cref="ILogger" /> for NLog.
+        /// </summary>
+        public class NLogLogger
+        {
+            /// <summary>
+            ///   Initializes a new instance of the <see cref="NLogLogger" /> class.
+            /// </summary>
+            /// <param name="logger"> The logger. </param>
+            public NLogLogger(Logger logger)
+            {
+                Logger = logger;
+            }
+
+            /// <summary>
+            ///   Gets or sets the logger.
+            /// </summary>
+            /// <value> The logger. </value>
+            protected internal Logger Logger { get; set; }
+
+            /// <summary>
+            ///   Returns a <see cref="string" /> that represents this instance.
+            /// </summary>
+            /// <returns> A <see cref="string" /> that represents this instance. </returns>
+            public override string ToString()
+            {
+                return Logger.ToString();
+            }
+
+            /// <summary>
+            ///   Logs a debug message.
+            /// </summary>
+            /// <param name="message"> The message to log </param>
+            public void Debug(string message)
+            {
+                Log(LogLevel.Debug, message);
+            }
+
+            public void Log(LogLevel logLevel, string message)
+            {
+                Logger.Log(typeof (NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
+            }
+
+        }
     }
-
-    /// <summary>
-    ///   Implementation of <see cref="ILogger" /> for NLog.
-    /// </summary>
-    public class NLogLogger
-    {
-        /// <summary>
-        ///   Initializes a new instance of the <see cref="NLogLogger" /> class.
-        /// </summary>
-        /// <param name="logger"> The logger. </param>
-        public NLogLogger(Logger logger)
-        {
-            Logger = logger;
-        }
-
-        /// <summary>
-        ///   Gets or sets the logger.
-        /// </summary>
-        /// <value> The logger. </value>
-        protected internal Logger Logger { get; set; }
-
-        /// <summary>
-        ///   Returns a <see cref="string" /> that represents this instance.
-        /// </summary>
-        /// <returns> A <see cref="string" /> that represents this instance. </returns>
-        public override string ToString()
-        {
-            return Logger.ToString();
-        }
-
-        /// <summary>
-        ///   Logs a debug message.
-        /// </summary>
-        /// <param name="message"> The message to log </param>
-        public void Debug(string message)
-        {
-            Log(LogLevel.Debug, message);
-        }
-
-        public void Log(LogLevel logLevel, string message)
-        {
-            Logger.Log(typeof(NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
-        }
-
-    }
-
 }
 

@@ -30,12 +30,14 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+    
+using System.Collections;
 
 namespace NLog.Conditions
 {
     using System;
-    using System.Globalization;
     using System.Collections.Generic;
+    using System.Globalization;
     using Common;
 
     /// <summary>
@@ -108,8 +110,14 @@ namespace NLog.Conditions
         /// <returns>Result of the given relational operator.</returns>
         private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
+#if !NETSTANDARD 
             StringComparer comparer = StringComparer.InvariantCulture;
+#else
+            var comparer = new Comparer(CultureInfo.InvariantCulture);
+#endif
             PromoteTypes(ref leftValue, ref rightValue);
+
+
             switch (relationalOperator)
             {
                 case ConditionRelationalOperator.Equal:

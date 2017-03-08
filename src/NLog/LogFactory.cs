@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+using NLog.Internal.Fakeables;
+
 namespace NLog
 {
     using System;
@@ -50,7 +53,10 @@ namespace NLog
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
+#if !NETSTANDARD
     using NLog.Internal.Fakeables;
+#endif
+    using System.Reflection;
 
 #if SILVERLIGHT && !__IOS__ && !__ANDROID__
     using System.Windows;
@@ -61,15 +67,13 @@ namespace NLog
     /// </summary>
     public class LogFactory : IDisposable
     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         private const int ReconfigAfterFileChangedTimeout = 1000;
         private Timer reloadTimer;
         private readonly MultiFileWatcher watcher;
 #endif
-
-        private readonly static TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
-
         private static IAppDomain currentAppDomain;
+        private readonly static TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
         private readonly object syncRoot = new object();
 
         private LoggingConfiguration config;
@@ -95,9 +99,7 @@ namespace NLog
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
-#endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -113,10 +115,12 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
             this.watcher = new MultiFileWatcher();
             this.watcher.FileChanged += this.ConfigFileChanged;
+#if ! NETSTANDARD1_3
             CurrentAppDomain.DomainUnload += DomainUnload;
+#endif            
 #endif
         }
 
@@ -135,7 +139,11 @@ namespace NLog
         /// </summary>
         public static IAppDomain CurrentAppDomain
         {
+#if NETSTANDARD
+            get { return currentAppDomain ?? (currentAppDomain =new FakeAppDomain()); }
+#else
             get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
+#endif
             set
             {
                 UnregisterEvents(currentAppDomain);
@@ -189,16 +197,16 @@ namespace NLog
                     if (this.configLoaded)
                         return this.config;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
                     //load
 
                     if (this.config == null)
                     {
                         try
                         {
-                            // Try to load default configuration.
-                            this.config = XmlLoggingConfiguration.AppConfig;
-                        }
+                        // Try to load default configuration.
+                        this.config = XmlLoggingConfiguration.AppConfig;
+                    }
                         catch (Exception ex)
                         {
                             //loading could fail due to an invalid XML file (app.config) etc.
@@ -206,7 +214,7 @@ namespace NLog
                             {
                                 throw;
                             }
-
+                           
                         }
                     }
 #endif
@@ -260,8 +268,9 @@ namespace NLog
                     {
                         try
                         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                             config.Dump();
+
                             try
                             {
                                 this.watcher.Watch(this.config.FileNamesToWatch);
@@ -293,7 +302,7 @@ namespace NLog
 
             set
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                 try
                 {
                     this.watcher.StopWatching();
@@ -315,7 +324,7 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
                         this.Flush();
 #endif
                         oldConfig.Close();
@@ -333,7 +342,7 @@ namespace NLog
 
                             this.config.InitializeAll();
                             this.ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                             try
                             {
                                 this.watcher.Watch(this.config.FileNamesToWatch);
@@ -402,7 +411,7 @@ namespace NLog
             InternalLogger.Info("Configuration initialized.");
             try
             {
-                InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
+                InternalLogger.LogAssemblyVersion(typeof(ILogger).GetAssembly());
             }
             catch (SecurityException ex)
             {
@@ -437,19 +446,32 @@ namespace NLog
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
+#if NETSTANDARD
+        public Logger GetCurrentClassLogger([CallerFilePath] string path = "")
+#else
         public Logger GetCurrentClassLogger()
+#endif
         {
+#if !NETSTANDARD
 #if SILVERLIGHT
             var frame = new StackFrame(1);
 #else
             var frame = new StackFrame(1, false);
 #endif
-
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
+#else
+
+            var filename = Path.GetFileNameWithoutExtension(path);
+
+            return this.GetLogger(filename);
+#endif
+
         }
 
+
+#if !NETSTANDARD
         /// <summary>
-        /// Gets the logger with the name of the current class. 
+        /// Gets a custom logger with the name of the current class. Use <typeparamref name="T"/> to pass the type of the needed Logger.
         /// </summary>
         /// <returns>The logger with type <typeparamref name="T"/>.</returns>
         /// <typeparam name="T">Type of the logger</typeparam>
@@ -470,13 +492,15 @@ namespace NLog
         /// <summary>
         /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
-        /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/></param>
+        /// <param name="loggerType">The type of the logger to create. The type must inherit from 
+        /// NLog.Logger.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
-        /// <remarks>This is a slow-running method. Make sure you are not calling this method in a 
-        /// loop.</remarks>
+        /// <remarks>This is a slow-running method.
+        /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
+
 #if !SILVERLIGHT
             var frame = new StackFrame(1, false);
 #else
@@ -485,7 +509,7 @@ namespace NLog
 
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
         }
-
+#endif
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>
@@ -498,10 +522,10 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named logger.
+        /// Gets the custom named logger. Use <typeparamref name="T"/>  to pass the type of the needed Logger.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
-        /// <typeparam name="T">Type of the logger</typeparam>
+        /// <typeparam name="T">The type of the logger to create. The type must inherit from <see cref="Logger"/>.	</typeparam>       
         /// <returns>The logger reference with type <typeparamref name="T"/>. Multiple calls to <c>GetLogger</c> with the same argument 
         /// are not guaranteed to return the same logger reference.</returns>
         public T GetLogger<T>(string name) where T : Logger
@@ -541,7 +565,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -589,7 +613,7 @@ namespace NLog
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Flush(AsyncContinuation asyncContinuation)
         {
-            this.Flush(asyncContinuation, TimeSpan.MaxValue);
+            this.Flush(asyncContinuation, DefaultFlushTimeout);
         }
 
         /// <summary>
@@ -732,7 +756,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
         /// Raises the event when the configuration is reloaded. 
         /// </summary>
@@ -761,16 +785,15 @@ namespace NLog
                     var currentTimer = this.reloadTimer;
                     if (currentTimer != null)
                     {
-                        this.reloadTimer = null;
+                    this.reloadTimer = null;
                         currentTimer.Dispose();
-                    }
+                }
+                if (this.IsDisposing)
+                {
+                    return; //timer was disposed already. 
+                }
 
-                    if (this.IsDisposing)
-                    {
-                        return; //timer was disposed already. 
-                    }
-
-                    this.watcher.StopWatching();
+                this.watcher.StopWatching();
 
                     if (this.Configuration != configurationToReload)
                     {
@@ -800,7 +823,7 @@ namespace NLog
                         }
                         this.Configuration = newConfig;
                         OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
-                    }
+                        }
                     else
                     {
                         throw new NLogConfigurationException("Configuration.Reload() returned null. Not reloading.");
@@ -808,7 +831,7 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Warn(exception, "NLog configuration while reloading");
+                        InternalLogger.Warn(exception, "NLog configuration while reloading");
 
                     if (exception.MustBeRethrownImmediately())
                     {
@@ -817,9 +840,9 @@ namespace NLog
 
                     this.watcher.Watch(configurationToReload.FileNamesToWatch);
                     OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
+                    }
                 }
             }
-        }
 #endif
         private void GetTargetsByLevelForLogger(string name, IEnumerable<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
@@ -885,6 +908,7 @@ namespace NLog
             }
 
             InternalLogger.Debug("Targets for {0} by level:", name);
+
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 StringBuilder sb = new StringBuilder();
@@ -907,12 +931,13 @@ namespace NLog
         }
 
         /// <summary>
-        /// Currently this logfactory is disposing?
+        /// Is this in disposing state?
         /// </summary>
         private bool IsDisposing;
 
-        private  void Close(TimeSpan flushTimeout)
+        private void Close(TimeSpan flushTimeout)
         {
+
             if (this.IsDisposing)
             {
                 return;
@@ -920,11 +945,11 @@ namespace NLog
 
             this.IsDisposing = true;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
             this.ConfigurationReloaded = null;   // Release event listeners
 
             if (this.watcher != null)
-            {
+                {
                 // Disable startup of new reload-timers
                 this.watcher.FileChanged -= this.ConfigFileChanged;
             }
@@ -940,13 +965,13 @@ namespace NLog
                     {
                         this.reloadTimer = null;
                         currentTimer.Dispose();
-                    }
+                        }
 
-                    if (this.watcher != null)
-                    {
-                        // Dispose file-watcher after having dispose timer to avoid race
-                        this.watcher.Dispose();
-                    }
+                if (this.watcher != null)
+                {
+                    // Dispose file-watcher after having dispose timer to avoid race
+                    this.watcher.Dispose();
+                }
 #endif
 
                     var oldConfig = this.config;
@@ -1022,6 +1047,7 @@ namespace NLog
             InternalLogger.Info("Logger has been closed down.");
         }
 
+
         /// <summary>
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
@@ -1062,6 +1088,7 @@ namespace NLog
         /// </summary>
         private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {
+
             // NLog.config from application directory
             if (CurrentAppDomain != null && CurrentAppDomain.BaseDirectory != null)
             {
@@ -1101,9 +1128,9 @@ namespace NLog
                 }
             }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
-            var nlogAssembly = typeof(LogFactory).Assembly;
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
             if (!nlogAssembly.GlobalAssemblyCache)
             {
                 if (!String.IsNullOrEmpty(nlogAssembly.Location))
@@ -1215,7 +1242,7 @@ namespace NLog
         }
 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", LogFactory.ReconfigAfterFileChangedTimeout);
@@ -1263,7 +1290,7 @@ namespace NLog
                 if (ex.MustBeRethrownImmediately())
                     throw;
                 InternalLogger.Error(ex, "LogFactory failed to shut down properly.");
-            }
+        }
         }
 #endif
         /// <summary>

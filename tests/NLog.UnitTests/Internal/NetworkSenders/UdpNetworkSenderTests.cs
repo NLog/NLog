@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.UnitTests.Internal.NetworkSenders
 {
     using System.Net.Sockets;
@@ -59,3 +61,4 @@ namespace NLog.UnitTests.Internal.NetworkSenders
     }
 }
 
+#endif

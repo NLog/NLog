@@ -34,6 +34,9 @@
 using NLog.LayoutRenderers;
 using NLog.Targets;
 using Xunit.Extensions;
+#if !NETCOREAPP1_0
+using System.Globalization;
+#endif
 
 namespace NLog.UnitTests.Config
 {
@@ -54,6 +57,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(CultureInfo.InvariantCulture, configuration.DefaultCultureInfo);
         }
 
+#if !NETSTANDARD
         [Fact]
         public void DifferentConfigurations_UseDifferentDefaultCulture()
         {
@@ -72,7 +76,6 @@ namespace NLog.UnitTests.Config
 </rules>
 </nlog>";
 
-
                 // configuration with current culture
                 var configuration1 = CreateConfigurationFromString(string.Format(configurationTemplate, false));
                 Assert.Equal(null, configuration1.DefaultCultureInfo);
@@ -89,7 +92,6 @@ namespace NLog.UnitTests.Config
 
                 AssertMessageFormattedWithCulture(configuration1, CultureInfo.CurrentCulture, formatString, testNumber, testDate);
                 AssertMessageFormattedWithCulture(configuration2, CultureInfo.InvariantCulture, formatString, testNumber, testDate);
-
             }
             finally
             {
@@ -97,6 +99,7 @@ namespace NLog.UnitTests.Config
                 Thread.CurrentThread.CurrentCulture = currentCulture;
             }
         }
+#endif
 
         private void AssertMessageFormattedWithCulture(LoggingConfiguration configuration, CultureInfo culture, string formatString, params object[] parameters)
         {
@@ -143,8 +146,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(expected, output);
         }
 
-
-#if !MONO
+#if !MONO && !NETSTANDARD
         [Fact]
         public void ProcessInfoLayoutRendererCultureTest()
         {
@@ -209,7 +211,7 @@ namespace NLog.UnitTests.Config
             var logEventInfo = new LogEventInfo(
                 LogLevel.Info,
                 "SomeName",
-                CultureInfo.GetCultureInfo(cultureName),
+                new CultureInfo(cultureName),
                 "SomeMessage",
                 null);
             return logEventInfo;
@@ -231,12 +233,22 @@ namespace NLog.UnitTests.Config
             }
             catch (Exception ex)
             {
+#if !NETCOREAPP1_0
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US", false);
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US", false);
+#else
+                CultureInfo.DefaultThreadCurrentCulture = GetCultureInfo("en-US");
+                CultureInfo.DefaultThreadCurrentUICulture = GetCultureInfo("en-US");
+#endif
                 logger.Error(ex, "");
 
+#if !NETCOREAPP1_0
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE", false);
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE", false);
+#else
+                CultureInfo.DefaultThreadCurrentCulture = GetCultureInfo("en-US");
+                CultureInfo.DefaultThreadCurrentUICulture = GetCultureInfo("en-US");
+#endif
                 logger.Error(ex, "");
 
                 Assert.Equal(2, target.Logs.Count);

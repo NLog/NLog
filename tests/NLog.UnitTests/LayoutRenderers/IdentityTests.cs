@@ -39,6 +39,8 @@ using NLog.Targets.Wrappers;
 using NLog.UnitTests.Common;
 using NLog.UnitTests.Targets.Wrappers;
 
+#if !NETSTANDARD
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Security.Principal;
@@ -198,3 +200,5 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+
+#endif

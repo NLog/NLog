@@ -31,12 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.UnitTests.Targets
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
+#if !NETSTANDARD1_3
     using System.Configuration;
+#endif
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
@@ -51,7 +55,7 @@ namespace NLog.UnitTests.Targets
 
     public class DatabaseTargetTests : NLogTestBase
     {
-#if !MONO
+#if !MONO &&  !NETSTANDARD1_3
         static DatabaseTargetTests()
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
@@ -118,11 +122,11 @@ Dispose()
 
             List<Exception> exceptions = new List<Exception>();
             var events = new[]
-            {
-                new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "MyLogger", "msg2").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "MyLogger", "msg3").WithContinuation(exceptions.Add),
-            };
+                {
+                    new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "MyLogger", "msg2").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "MyLogger", "msg3").WithContinuation(exceptions.Add),
+                };
 
             dt.WriteAsyncLogEvents(events);
             foreach (var ex in exceptions)
@@ -432,22 +436,22 @@ Dispose()
                 DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 KeepConnection = true,
                 Parameters =
-                {
-                    new DatabaseParameterInfo("msg", "${message}")
                     {
-                        Precision = 3,
-                        Scale = 7,
-                        Size = 9,
-                    },
-                    new DatabaseParameterInfo("lvl", "${level}")
-                    {
-                        Scale = 7
-                    },
-                    new DatabaseParameterInfo("lg", "${logger}")
-                    {
-                        Precision = 0
-                    },
-                }
+                        new DatabaseParameterInfo("msg", "${message}")
+                        {
+                            Precision = 3,
+                            Scale = 7,
+                            Size = 9,
+                        },
+                        new DatabaseParameterInfo("lvl", "${level}")
+                        {
+                            Scale = 7
+                        },
+                        new DatabaseParameterInfo("lg", "${logger}")
+                        {
+                            Precision = 0
+                        },
+                    }
             };
 
             dt.Initialize(null);
@@ -656,7 +660,7 @@ Dispose()
 ";
             AssertLog(expectedLog);
         }
-
+#if !NETSTANDARD1_3
         [Fact]
         public void ConnectionStringNameInitTest()
         {
@@ -701,6 +705,7 @@ Dispose()
             }
         }
 
+
         [Fact]
         public void ProviderFactoryInitTest()
         {
@@ -713,6 +718,7 @@ Dispose()
             Assert.Equal(1, MockDbConnection2.OpenCount);
             Assert.Equal("myConnectionString", MockDbConnection2.LastOpenConnectionString);
         }
+#endif
 
         [Fact]
         public void SqlServerShorthandNotationTest()
@@ -732,6 +738,12 @@ Dispose()
             }
         }
 
+
+#if !NETSTANDARD1_3
+
+        /// <summary>
+        /// no OleDB in .NET Core
+        /// </summary>
         [Fact]
         public void OleDbShorthandNotationTest()
         {
@@ -747,6 +759,9 @@ Dispose()
             Assert.Equal(typeof(System.Data.OleDb.OleDbConnection), dt.ConnectionType);
         }
 
+        /// <summary>
+        /// no ODBC in .NET Core
+        /// </summary>
         [Fact]
         public void OdbcShorthandNotationTest()
         {
@@ -844,7 +859,7 @@ Dispose()
             };
             databaseTarget.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
             {
-                new ConnectionStringSettings("test_connectionstring_without_providerName", "some connectionstring"),
+                new ConnectionStringSettings("test_connectionstring_without_providerName","some connectionstring"),
                 new ConnectionStringSettings("test_connectionstring_with_providerName", "some connectionstring",
                     "System.Data.SqlClient"),
             };
@@ -868,7 +883,7 @@ Dispose()
 
             databaseTarget.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
             {
-                new ConnectionStringSettings("test_connectionstring_without_providerName", "some connectionstring"),
+                new ConnectionStringSettings("test_connectionstring_without_providerName","some connectionstring"),
                 new ConnectionStringSettings("test_connectionstring_with_providerName", "some connectionstring",
                     "System.Data.SqlClient"),
             };
@@ -877,6 +892,7 @@ Dispose()
             Assert.NotNull(databaseTarget.ProviderFactory);
             Assert.Equal(typeof(System.Data.SqlClient.SqlClientFactory), databaseTarget.ProviderFactory.GetType());
         }
+
 
         [Theory]
         [InlineData("usetransactions='false'", true)]
@@ -907,18 +923,19 @@ Dispose()
 
             if (printWarning)
             {
-                Assert.Contains("obsolete", internalLog, StringComparison.InvariantCultureIgnoreCase);
-                Assert.Contains("usetransactions", internalLog, StringComparison.InvariantCultureIgnoreCase);
+                Assert.Contains("obsolete", internalLog, StringComparison.OrdinalIgnoreCase);
+                Assert.Contains("usetransactions", internalLog, StringComparison.OrdinalIgnoreCase);
             }
             else
             {
-                Assert.DoesNotContain("obsolete", internalLog, StringComparison.InvariantCultureIgnoreCase);
-                Assert.DoesNotContain("usetransactions", internalLog, StringComparison.InvariantCultureIgnoreCase);
+                Assert.DoesNotContain("obsolete", internalLog, StringComparison.OrdinalIgnoreCase);
+                Assert.DoesNotContain("usetransactions", internalLog, StringComparison.OrdinalIgnoreCase);
             }
 
 
 
         }
+#endif
 
         private static void AssertLog(string expectedLog)
         {
@@ -1389,11 +1406,8 @@ Dispose()
 
             public static string GetConnectionString()
             {
-                var connectionString = ConfigurationManager.AppSettings["SqlServerTestConnectionString"];
-                if (String.IsNullOrWhiteSpace(connectionString))
-                {
-                    connectionString = IsAppVeyor() ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
-                }
+
+                var connectionString = IsAppVeyor() ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
                 return connectionString;
             }
 
@@ -1510,3 +1524,5 @@ Dispose()
     }
 
 }
+
+#endif

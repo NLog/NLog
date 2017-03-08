@@ -1314,7 +1314,11 @@ namespace NLog.UnitTests
                 var logger = LogManager.GetLogger("A");
 
                 //set current UI culture as invariant to receive exception messages in EN
+#if NETSTANDARD
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+#else
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+#endif
                 var argException = new ArgumentException("arg1 is obvious wrong", "arg1");
 
                 LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
@@ -1488,7 +1492,11 @@ namespace NLog.UnitTests
                 var logger = LogManager.GetLogger("A");
 
                 //set current UI culture as invariant to receive exception messages in EN
+#if NETSTANDARD
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+#else
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+#endif
                 var argException = new ArgumentException("arg1 is obvious wrong", "arg1");
                 LogManager.Configuration.DefaultCultureInfo = CultureInfo.InvariantCulture;
 
@@ -1631,7 +1639,7 @@ namespace NLog.UnitTests
         }
 
 #endif
-        #endregion
+#endregion
 
         [Fact]
         public void SwallowTest()

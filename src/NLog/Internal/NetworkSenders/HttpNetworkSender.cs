@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.Internal.NetworkSenders
 {
     using System;
@@ -114,3 +116,4 @@ namespace NLog.Internal.NetworkSenders
         }
     }
 }
+#endif

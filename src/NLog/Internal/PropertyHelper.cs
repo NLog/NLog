@@ -164,7 +164,7 @@ namespace NLog.Internal
 
         internal static Type GetArrayItemType(PropertyInfo propInfo)
         {
-            var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
+            var arrayParameterAttribute =  ReflectionHelpers.GetCustomAttribute<ArrayParameterAttribute>(propInfo);
             if (arrayParameterAttribute != null)
             {
                 return arrayParameterAttribute.ItemType;
@@ -196,7 +196,10 @@ namespace NLog.Internal
 
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
-            MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
+
+#if !NETSTANDARD   
+            MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, 
+                null, new Type[] { typeof(string) }, null);
             if (operatorImplicitMethod == null)
             {
                 result = null;
@@ -204,6 +207,22 @@ namespace NLog.Internal
             }
 
             result = operatorImplicitMethod.Invoke(null, new object[] { value });
+#else
+            try
+            {
+                //We used in Nlog4 already (unattended?) CultureInfo.InvariantCulture with op_Implicit
+                result = Convert.ChangeType(value, resultType, CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+
+
+#endif
+
+
             return true;
         }
 
@@ -227,13 +246,13 @@ namespace NLog.Internal
 
         private static bool TryGetEnumValue(Type resultType, string value, out object result, bool flagsEnumAllowed)
         {
-            if (!resultType.IsEnum)
+            if (!resultType.IsEnum())
             {
                 result = null;
                 return false;
             }
 
-            if (flagsEnumAllowed && resultType.IsDefined(typeof(FlagsAttribute), false))
+            if (flagsEnumAllowed && resultType.IsDefined<FlagsAttribute>(false))
             {
                 ulong union = 0;
 
@@ -305,7 +324,7 @@ namespace NLog.Internal
         /// <returns></returns>
         private static bool TryFlatListConversion(Type type, string valueRaw, out object newValue)
         {
-            if (type.IsGenericType)
+            if (type.IsGenericType())
             {
                 var typeDefinition = type.GetGenericTypeDefinition();
 #if NET3_5
@@ -364,7 +383,9 @@ namespace NLog.Internal
 
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
+            //Needed netstandard2.0 in .NET Core -  TypeDescriptor.
+            //this is needed for parsing timespan from string
             var converter = TypeDescriptor.GetConverter(type);
             if (converter.CanConvertFrom(typeof(string)))
             {
@@ -380,6 +401,11 @@ namespace NLog.Internal
             else if (type == typeof(Uri))
             {
                 newValue = new Uri(value);
+                return true;
+            }
+            else if (type == typeof(TimeSpan))
+            {
+                newValue = TimeSpan.Parse(value);
                 return true;
             }
 #endif
@@ -420,7 +446,7 @@ namespace NLog.Internal
             var retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
             foreach (PropertyInfo propInfo in GetAllReadableProperties(t))
             {
-                var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
+                var arrayParameterAttribute = ReflectionHelpers.GetCustomAttribute<ArrayParameterAttribute>(propInfo);
 
                 if (arrayParameterAttribute != null)
                 {

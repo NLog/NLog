@@ -39,6 +39,7 @@ namespace NLog.UnitTests
     using System.Reflection;
     using NLog.Config;
     using Xunit;
+    using NLog.Internal;
 
     /// <summary>
     /// Test the characteristics of the API. Config of the API is testged in <see cref="NLog.UnitTests.Config.ConfigApiTests"/>
@@ -46,25 +47,26 @@ namespace NLog.UnitTests
     public class ApiTests : NLogTestBase
     {
         private Type[] allTypes;
-        private Assembly nlogAssembly = typeof(LogManager).Assembly;
+        private Assembly nlogAssembly = typeof(LogManager).GetAssembly();
         private readonly Dictionary<Type, int> typeUsageCount = new Dictionary<Type, int>();
 
         public ApiTests()
         {
-            allTypes = typeof(LogManager).Assembly.GetTypes();
+            allTypes = typeof(LogManager).GetAssembly().GetTypes();
         }
 
+#if !NETSTANDARD && !NETSTANDARD_1plus
         [Fact]
         public void PublicEnumsTest()
         {
             foreach (Type type in allTypes)
             {
-                if (!type.IsPublic)
+                if (!type.IsPublic())
                 {
                     continue;
                 }
 
-                if (type.IsEnum || type.IsInterface)
+                if (type.IsEnum() || type.IsInterface())
                 {
                     this.typeUsageCount[type] = 0;
                 }
@@ -74,14 +76,14 @@ namespace NLog.UnitTests
 
             foreach (Type type in allTypes)
             {
-                if (type.IsGenericTypeDefinition)
+                if (type.IsGenericTypeDefinition())
                 {
                     continue;
                 }
 
-                if (type.BaseType != null)
+                if (type.GetBaseType() != null)
                 {
-                    this.IncrementUsageCount(type.BaseType);
+                    this.IncrementUsageCount(type.GetBaseType());
                 }
 
                 foreach (var iface in type.GetInterfaces())
@@ -109,6 +111,7 @@ namespace NLog.UnitTests
                     catch (Exception ex)
                     {
                         // this sometimes throws on .NET Compact Framework, but is not fatal
+
                         Console.WriteLine("EXCEPTION {0}", ex);
                     }
                 }
@@ -121,6 +124,7 @@ namespace NLog.UnitTests
             {
                 if (kvp.Value == 0)
                 {
+
                     Console.WriteLine("Type '{0}' is not used.", kvp.Key);
                     unusedTypes.Add(kvp.Key);
                     sb.Append(kvp.Key.FullName).Append("\n");
@@ -129,6 +133,7 @@ namespace NLog.UnitTests
 
             Assert.Equal(0, unusedTypes.Count);
         }
+#endif
 
         private void IncrementUsageCount(Type type)
         {
@@ -137,7 +142,7 @@ namespace NLog.UnitTests
                 type = type.GetElementType();
             }
 
-            if (type.IsGenericType && !type.IsGenericTypeDefinition)
+            if (type.IsGenericType() && !type.IsGenericTypeDefinition())
             {
                 this.IncrementUsageCount(type.GetGenericTypeDefinition());
                 foreach (var parm in type.GetGenericArguments())
@@ -147,7 +152,7 @@ namespace NLog.UnitTests
                 return;
             }
 
-            if (type.Assembly != nlogAssembly)
+            if (type.GetAssembly() != nlogAssembly)
             {
                 return;
             }

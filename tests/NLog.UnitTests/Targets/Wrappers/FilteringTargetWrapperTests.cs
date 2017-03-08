@@ -279,7 +279,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void Write(AsyncLogEventInfo logEvent)
             {
                 this.WriteCount++;
-                ThreadPool.QueueUserWorkItem(
+                RunAsync2(
                     s =>
                         {
                             if (this.ThrowExceptions)

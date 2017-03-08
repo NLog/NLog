@@ -34,7 +34,7 @@
 namespace NLog.Internal
 {
     internal static class ArrayHelper
-    {
+	{
         private static class EmptyArray<T>
         {
             public static readonly T[] Instance = new T[0];
@@ -45,5 +45,5 @@ namespace NLog.Internal
             // TODO Use Array.Empty<T> in NET 4.6 when we are ready
             return EmptyArray<T>.Instance;
         }
-    }
-}
+        }
+        }

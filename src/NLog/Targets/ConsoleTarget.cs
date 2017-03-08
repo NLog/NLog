@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+#if !NETSTANDARD || NETSTANDARD1_3
 using System.IO;
 using NLog.Common;
 
@@ -86,7 +88,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool Error { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
@@ -154,7 +156,7 @@ namespace NLog.Targets
                     InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
             }
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             if (_encoding != null && !_pauseLogging)
                 Console.OutputEncoding = _encoding;
 #endif
@@ -229,3 +231,5 @@ namespace NLog.Targets
         }
     }
 }
+
+#endif

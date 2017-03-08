@@ -31,15 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.UnitTests.Conditions
 {
     using System;
     using System.Globalization;
     using System.IO;
+#if  !NETSTANDARD
     using System.Runtime.Serialization.Formatters.Binary;
+#endif
     using NLog.Conditions;
     using NLog.Config;
     using Xunit;
+    using System.Reflection;
 
     public class ConditionEvaluatorTests : NLogTestBase
     {
@@ -261,6 +266,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
+#if !NETSTANDARD
         [Fact]
         public void ExceptionTest4()
         {
@@ -275,6 +281,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Equal("msg", ex2.Message);
             Assert.Equal("f", ex2.InnerException.Message);
         }
+#endif
 
         [Fact]
         public void ExceptionTest11()
@@ -299,6 +306,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
+#if !NETSTANDARD
         [Fact]
         public void ExceptionTest14()
         {
@@ -313,6 +321,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Equal("msg", ex2.Message);
             Assert.Equal("f", ex2.InnerException.Message);
         }
+#endif
 
         private static ConfigurationItemFactory SetupConditionMethods()
         {

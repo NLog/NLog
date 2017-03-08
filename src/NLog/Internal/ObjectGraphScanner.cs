@@ -79,7 +79,7 @@ namespace NLog.Internal
             }
 
             var type = o.GetType();
-            if (!type.IsDefined(typeof(NLogConfigurationItemAttribute), true))
+            if (!type.IsDefined< NLogConfigurationItemAttribute>(true))
             {
                 return;
             }
@@ -104,7 +104,7 @@ namespace NLog.Internal
 
             foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(type))
             {
-                if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string) || prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
+                if (prop.PropertyType.IsPrimitive() || prop.PropertyType.IsEnum() || prop.PropertyType == typeof(string) || prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
                 {
                     continue;
                 }
@@ -134,21 +134,21 @@ namespace NLog.Internal
                 }
                 else
                 {
-                    var enumerable = value as IEnumerable;
-                    if (enumerable != null)
-                    {
-                        //cast to list otherwhise possible:  Collection was modified after the enumerator was instantiated.
+                        var enumerable = value as IEnumerable;
+                        if (enumerable != null)
+                        {
+                            //new list to prevent: Collection was modified after the enumerator was instantiated.
                         var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
-
-                        ScanPropertiesList(result, elements, level + 1, visitedObjects);
-                    }
-                    else
-                    {
-                        ScanProperties(result, value, level + 1, visitedObjects);
+                            //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
+                            ScanPropertiesList(result, elements, level + 1, visitedObjects);
+                        }
+                        else
+                        {
+                            ScanProperties(result, value, level + 1, visitedObjects);
+                        }
                     }
                 }
             }
-        }
 
         private static void ScanPropertiesList<T>(List<T> result, IEnumerable<object> elements, int level, HashSet<object> visitedObjects) where T : class
         {

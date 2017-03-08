@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NETSTANDARD
+
 #define DEBUG
 
 namespace NLog.UnitTests
@@ -309,3 +311,4 @@ namespace NLog.UnitTests
     }
 }
 
+#endif

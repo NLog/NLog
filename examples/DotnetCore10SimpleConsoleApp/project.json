@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0-*",
+  "description": "DnxCore50SimpleConsoleApp Console Application",
+  "authors": [ "Vincent" ],
+  "packOptions": {
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+  },
+
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+        "dependencies": {
+            "Microsoft.NETCore.App": {
+              "type": "platform",
+              "version": "1.0.0"
+            },
+            "NLog": {
+              "target": "project"
+            }
+        }
+    }
+  }
+}

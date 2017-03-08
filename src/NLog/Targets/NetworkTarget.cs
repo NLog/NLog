@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || NETSTANDARD_1plus
+
 namespace NLog.Targets
 {
     using System;
@@ -529,3 +531,4 @@ namespace NLog.Targets
         }
     }
 }
+#endif

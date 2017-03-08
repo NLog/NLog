@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__&& !__ANDROID__
+#if !SILVERLIGHT && !__IOS__&& !__ANDROID__ && !NETSTANDARD
 
 namespace NLog
 {

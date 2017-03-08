@@ -32,8 +32,8 @@
 // 
 
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Security;
+
 
 namespace NLog.UnitTests
 {
@@ -41,19 +41,35 @@ namespace NLog.UnitTests
     using NLog.Common;
     using System.IO;
     using System.Text;
+    using System.Threading;
+
     using System.Globalization;
+#if MONO || NET4_5
+    using System.Runtime.CompilerServices;
+#endif
+
     using NLog.Layouts;
     using NLog.Config;
     using NLog.Targets;
     using Xunit;
+#if SILVERLIGHT || NETSTANDARD
     using System.Xml.Linq;
+#else
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
-#if NET3_5 || NET4_0 || NET4_5
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD_1plus
     using Ionic.Zip;
 #endif
+#endif
 
+#if NETSTANDARD_1plus
+    using System.IO.Compression;
+#endif
+
+#if XUNIT2 && !SILVERLIGHT
+    [Collection("dont run in parallel")]
+#endif
     public abstract class NLogTestBase
     {
         protected NLogTestBase()
@@ -76,7 +92,9 @@ namespace NLog.UnitTests
             LogManager.ThrowConfigExceptions = null;
 #if !SILVERLIGHT
             System.Diagnostics.Trace.Listeners.Clear();
+#if !NETSTANDARD
             System.Diagnostics.Debug.Listeners.Clear();
+#endif
 #endif
         }
 
@@ -147,12 +165,13 @@ namespace NLog.UnitTests
             Assert.Equal(contents, fileText.Substring(fileText.Length - contents.Length));
         }
 
+
         protected class CustomFileCompressor : IFileCompressor
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if NET3_5 || NET4_0 || NET4_5
-                using (ZipFile zip = new ZipFile())
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD_1plus
+                using (ZipFile zip = new Ionic.Zip.ZipFile())
                 {
                     zip.AddFile(fileName);
                     zip.Save(archiveFileName);
@@ -264,7 +283,8 @@ namespace NLog.UnitTests
             if (!fi.Exists)
                 Assert.True(false, "File '" + fileName + "' doesn't exist.");
 
-            using (TextReader fs = new StreamReader(fileName, encoding))
+            using (FileStream fileStream = new FileStream(fileName, FileMode.Open))
+            using (TextReader fs = new StreamReader(fileStream, encoding))
             {
                 string line;
                 while ((line = fs.ReadLine()) != null)
@@ -320,7 +340,7 @@ namespace NLog.UnitTests
         /// </summary>
         protected int GetPrevLineNumber()
         {
-            //fixed value set with #line 100000
+        //fixed value set with #line 100000
             return 100001;
         }
 
@@ -328,6 +348,10 @@ namespace NLog.UnitTests
 
         public static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
+#if SILVERLIGHT || NETSTANDARD
+            XElement element = XElement.Parse(configXml);
+            return new XmlLoggingConfiguration(element.CreateReader(), "nlog.config");
+#else
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(configXml);
 
@@ -341,9 +365,9 @@ namespace NLog.UnitTests
                 //ignore   
             }
 
-
-
             return new XmlLoggingConfiguration(doc.DocumentElement, currentDirectory);
+#endif
+
         }
 
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
@@ -400,6 +424,22 @@ namespace NLog.UnitTests
                     return this.writer.ToString();
                 }
             }
+
+#if NETSTANDARD
+
+            /// <summary>Writes a character to the text string or stream.</summary>
+            /// <param name="value">The character to write to the text stream. </param>
+            /// <exception cref="T:System.ObjectDisposedException">The <see cref="T:System.IO.TextWriter" /> is closed. </exception>
+            /// <exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            public override void Write(char value)
+            {
+                lock (this.writer)
+                {
+                    this.writer.Write(value);
+                }
+            }
+#endif
+
         }
 
         /// <summary>
@@ -413,7 +453,11 @@ namespace NLog.UnitTests
         /// </remarks>
         protected static CultureInfo GetCultureInfo(string cultureName)
         {
+#if SILVERLIGHT || NETSTANDARD
+            return new CultureInfo(cultureName);
+#else
             return new CultureInfo(cultureName, false);
+#endif
         }
 
         public delegate void SyncAction();
@@ -443,6 +487,12 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = this.throwExceptions;
                 LogManager.ThrowConfigExceptions = this.throwConfigExceptions;
             }
+        }
+
+
+        protected static void RunAsync2(Action<object> func)
+        {
+            ThreadPool.QueueUserWorkItem(state => func(state));
         }
     }
 }

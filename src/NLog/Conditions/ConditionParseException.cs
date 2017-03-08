@@ -38,7 +38,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Exception during parsing of condition expression.
     /// </summary>
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
     [Serializable]
 #endif
     public class ConditionParseException : Exception 
@@ -69,7 +69,7 @@ namespace NLog.Conditions
         {
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionParseException" /> class.
         /// </summary>

@@ -47,5 +47,12 @@ namespace NLog.UnitTests.Internal
             Assert.False(PlatformDetector.IsMono);
 #endif
         }
+
+        [Fact]
+        public void GetCurrentOSTest()
+        {
+            var actual = PlatformDetector.CurrentOS;
+            Assert.NotEqual(RuntimeOS.Unknown, actual);
+        }
     }
 }

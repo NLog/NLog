@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+using System.Diagnostics;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -60,13 +63,14 @@ namespace NLog.LayoutRenderers
         private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
         private static readonly string dummyNLogNamespaceRemover = " xmlns:nlog=\"" + dummyNLogNamespace + "\"";
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
         public Log4JXmlEventLayoutRenderer() : this(LogFactory.CurrentAppDomain)
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
@@ -75,17 +79,7 @@ namespace NLog.LayoutRenderers
             this.IncludeNLogData = true;
             this.NdcItemSeparator = " ";
 
-#if SILVERLIGHT
-            this.AppInfo = "Silverlight Application";
-#elif __IOS__
-			this.AppInfo = "MonoTouch Application";
-#else
-            this.AppInfo = string.Format(
-                CultureInfo.InvariantCulture,
-                "{0}({1})", 
-                appDomain.FriendlyName, 
-                ThreadIDHelper.Instance.CurrentProcessID);
-#endif
+            SetAppInfo(appDomain);
 
             this.Parameters = new List<NLogViewerParameterInfo>();
 
@@ -93,7 +87,11 @@ namespace NLog.LayoutRenderers
             {
 #if SILVERLIGHT
                 this.machineName = "silverlight";
+#elif NETSTANDARD && !NETSTANDARD1_5
+                // Environment.MachineName is NETSTANDARD1.5+
+                this.machineName = "Net Standard";
 #else
+
                 this.machineName = Environment.MachineName;
 #endif
             }
@@ -108,6 +106,27 @@ namespace NLog.LayoutRenderers
                 ConformanceLevel = ConformanceLevel.Fragment,
                 IndentChars = "  ",
             };
+        }
+
+        private void SetAppInfo(IAppDomain appDomain)
+        {
+#if SILVERLIGHT
+            this.AppInfo = "Silverlight Application";
+#elif __IOS__
+			this.AppInfo = "MonoTouch Application";
+#elif NETSTANDARD
+            this.AppInfo = ".NET Standard Application";
+#else
+            this.AppInfo = string.Format(
+                CultureInfo.InvariantCulture,
+                "{0}({1})",
+                appDomain.FriendlyName,
+                ThreadIDHelper.Instance.CurrentProcessID);
+#endif
+
+
+
+
         }
 
         /// <summary>
@@ -257,7 +276,7 @@ namespace NLog.LayoutRenderers
                             xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
                             if (type != null)
                             {
-                                xtw.WriteAttributeSafeString("assembly", type.Assembly.FullName);
+                                xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
                             }
 
                             xtw.WriteEndElement();
@@ -326,3 +345,4 @@ namespace NLog.LayoutRenderers
         }
     }
 }
+

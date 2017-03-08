@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Collections.Specialized;
@@ -118,3 +120,5 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+
+#endif

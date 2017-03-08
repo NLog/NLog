@@ -297,12 +297,23 @@ namespace NLog.Targets.Wrappers
                 {
                     this.lazyWriterTimer = null;
                     currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                    ManualResetEvent waitHandle = new ManualResetEvent(false);
-                    if (currentTimer.Dispose(waitHandle))
+
+#if NETSTANDARD
+                    currentTimer.Dispose();
+#else
+                 ManualResetEvent waitHandle = new ManualResetEvent(false);
+                if (currentTimer.Dispose(waitHandle))
+                {
+                    if (waitHandle.WaitOne(1000))
                     {
-                        if (waitHandle.WaitOne(1000))
-                            waitHandle.Close();
+                        waitHandle.Close();
+                      
                     }
+                }
+#endif
+
+
+
                 }
             }
         }

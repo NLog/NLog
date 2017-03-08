@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
 namespace NLog.LogReceiverService
 {
     using System;
@@ -50,7 +51,7 @@ namespace NLog.LogReceiverService
     [DataContract(Name = "e", Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
 #endif
     [XmlType(Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
-    [DebuggerDisplay("Event ID = {Id} Level={LevelName} Values={Values.Count}")]
+    [DebuggerDisplay("Event ID = {Id} Level={LevelOrdinal} Values={Values}")]
     public class NLogEvent
     {
         /// <summary>
@@ -188,3 +189,4 @@ namespace NLog.LogReceiverService
         }
     }
 }
+#endif

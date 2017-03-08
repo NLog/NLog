@@ -64,7 +64,7 @@ namespace NLog.LayoutRenderers
         /// </returns>
         public override string ToString()
         {
-            var lra = (LayoutRendererAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(LayoutRendererAttribute));
+            var lra = ReflectionHelpers.GetCustomAttribute<LayoutRendererAttribute>(this.GetType());
             if (lra != null)
             {
                 return "Layout Renderer: ${" + lra.Name + "}";

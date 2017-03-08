@@ -160,7 +160,16 @@ namespace NLog.Targets.Wrappers
             {
                 this.flushTimer = null;
                 currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                ManualResetEvent waitHandle = new ManualResetEvent(false);
+               
+
+#if NETSTANDARD
+                currentTimer.Dispose();
+                lock (this.lockObject)
+                {
+                    WriteEventsInBuffer("Closing Target");
+                }
+#else
+                 ManualResetEvent waitHandle = new ManualResetEvent(false);
                 if (currentTimer.Dispose(waitHandle))
                 {
                     if (waitHandle.WaitOne(1000))
@@ -172,6 +181,7 @@ namespace NLog.Targets.Wrappers
                         }
                     }
                 }
+#endif
             }
 
             base.CloseTarget();

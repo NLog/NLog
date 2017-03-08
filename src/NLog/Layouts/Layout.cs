@@ -284,7 +284,7 @@ namespace NLog.Layouts
                 this.threadAgnostic = true;
                 foreach (object item in ObjectGraphScanner.FindReachableObjects<object>(this))
                 {
-                    if (!item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true))
+                    if (!item.GetType().IsDefined< ThreadAgnosticAttribute>(true))
                     {
                         this.threadAgnostic = false;
                         break;

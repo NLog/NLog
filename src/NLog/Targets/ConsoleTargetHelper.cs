@@ -43,7 +43,7 @@ namespace NLog.Targets
         public static bool IsConsoleAvailable(out string reason)
         {
             reason = string.Empty;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD
             try
             {
                 if (!Environment.UserInteractive)
@@ -70,6 +70,7 @@ namespace NLog.Targets
             return true;
         }
 
+#if !NETSTANDARD
         public static Encoding GetConsoleOutputEncoding(Encoding currentEncoding, bool isInitialized, bool pauseLogging)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
@@ -100,5 +101,6 @@ namespace NLog.Targets
 #endif
             return false;       // No console available
         }
+#endif
     }
 }

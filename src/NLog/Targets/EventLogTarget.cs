@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
 namespace NLog.Targets
 {
@@ -271,7 +271,6 @@ namespace NLog.Targets
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
                 {
-                    //message will not be written
                     return;
                 }
             }
@@ -280,7 +279,6 @@ namespace NLog.Targets
                 eventLog.WriteEntry(message, entryType, eventId, category);
             }
         }
-
         /// <summary>
         /// Get the entry type for logging the message.
         /// </summary>

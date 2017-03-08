@@ -35,6 +35,8 @@ using System;
 using System.Linq;
 using Xunit;
 
+#if !NETSTANDARD
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -75,3 +77,5 @@ namespace NLog.UnitTests.LayoutRenderers
 
     }
 }
+
+#endif

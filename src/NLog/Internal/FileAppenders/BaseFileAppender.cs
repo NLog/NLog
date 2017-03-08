@@ -35,8 +35,8 @@ namespace NLog.Internal.FileAppenders
 {
     using System;
     using System.IO;
-    using System.Runtime.InteropServices;
     using System.Security;
+    using System.Runtime.InteropServices;
 
     using NLog.Common;
     using NLog.Internal;
@@ -66,7 +66,7 @@ namespace NLog.Internal.FileAppenders
         protected bool CaptureLastWriteTime { get; private set; }
 
         /// <summary>
-        /// Gets the path of the file, including file extension.
+        /// Gets the name of the file.
         /// </summary>
         /// <value>The name of the file.</value>
         public string FileName { get; private set; }
@@ -196,10 +196,10 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
-        /// Creates the file stream.
-        /// </summary>
-        /// <param name="allowFileSharedWriting">If set to <c>true</c> sets the file stream to allow shared writing.</param>
-        /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
+            /// Creates the file stream.
+            /// </summary>
+            /// <param name="allowFileSharedWriting">If set to <c>true</c> sets the file stream to allow shared writing.</param>
+            /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
         protected FileStream CreateFileStream(bool allowFileSharedWriting)
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
@@ -240,18 +240,20 @@ namespace NLog.Internal.FileAppenders
                     {
                         throw; // rethrow
                     }
-
+#if !NETSTANDARD
                     int actualDelay = this.random.Next(currentDelay);
                     InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
+                   
                     System.Threading.Thread.Sleep(actualDelay);
+#endif
                 }
             }
 
             throw new InvalidOperationException("Should not be reached.");
         }
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
         private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
         {
@@ -307,7 +309,7 @@ namespace NLog.Internal.FileAppenders
         {
             UpdateCreationTime();
 
-#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             try
             {
                 if (!this.CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)

@@ -35,7 +35,7 @@ using NLog.Internal;
 
 namespace NLog
 {
-#if NET4_0 || NET4_5
+#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
     using Config;
     using System;
     using System.Collections.Generic;
@@ -63,18 +63,18 @@ namespace NLog
         private static IDictionary<string, object> GetLogicalThreadDictionary(bool clone = false)
         {
             var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as Dictionary<string, object>;
-            if (dictionary == null)
-            {
+                if (dictionary == null)
+                {
                 dictionary = new Dictionary<string, object>();
-                CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
-            }
+                    CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+                }
             else if (clone)
             {
                 dictionary = new Dictionary<string, object>(dictionary);
                 CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
             }
-            return dictionary;
-        }
+                return dictionary;
+            }
 
         /// <summary>
         /// Gets the current logical context named item, as <see cref="string"/>.
@@ -180,8 +180,8 @@ namespace NLog
             else
             {
                 GetLogicalThreadDictionary(true).Clear();
-            }
         }
+    }
     }
 #endif
 }

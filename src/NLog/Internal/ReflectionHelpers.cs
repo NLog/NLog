@@ -31,6 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections;
+using System.Linq;
+#if SILVERLIGHT
+using System.Windows;
+#endif
+using NLog.Config;
+
 namespace NLog.Internal
 {
     using System;
@@ -57,7 +64,11 @@ namespace NLog.Internal
 #else
             try
             {
+#if NETSTANDARD_1plus
+                return assembly.DefinedTypes.Select(typeinfo => typeinfo.AsType()).ToArray();
+#else
                 return assembly.GetTypes();
+#endif
             }
             catch (ReflectionTypeLoadException typeLoadException)
             {
@@ -80,6 +91,19 @@ namespace NLog.Internal
 #endif
         }
 
+
+        public static TAttr GetCustomAttribute<TAttr>(this Type type)
+            where TAttr : Attribute
+        {
+#if !NETSTANDARD
+            return (TAttr)Attribute.GetCustomAttribute(type, typeof(TAttr));
+#else
+
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.GetCustomAttribute<TAttr>();
+#endif
+        }
+
         /// <summary>
         /// Is this a static class?
         /// </summary>
@@ -90,8 +114,15 @@ namespace NLog.Internal
         /// </remarks>
         public static bool IsStaticClass(this Type type)
         {
-            return type.IsClass && type.IsAbstract && type.IsSealed;
+            return type.IsClass() && type.IsAbstract() && type.IsSealed();
         }
+
+        public static TAttr GetCustomAttribute<TAttr>(PropertyInfo info)
+             where TAttr : Attribute
+        {
+            return info.GetCustomAttributes(typeof(TAttr), false).FirstOrDefault() as TAttr;
+        }
+
 
         /// <summary>
         /// Optimized delegate for calling MethodInfo
@@ -149,6 +180,7 @@ namespace NLog.Internal
                     return null;    // There is no return-type, so we return null-object
                 };
             }
+
             else
             {
                 var castMethodCall = Expression.Convert(methodCall, typeof(object));
@@ -158,6 +190,225 @@ namespace NLog.Internal
                 return lambda.Compile();
             }
         }
-    }
 
+        public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(Type type, bool inherit)
+        where TAttr : Attribute
+        {
+#if !NETSTANDARD
+            return (TAttr[])Attribute.GetCustomAttributes(type, typeof(TAttr));
+#else
+
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.GetCustomAttributes<TAttr>(inherit);
+#endif
+        }
+
+        public static bool IsDefined<TAttr>(this Type type, bool inherit)
+        {
+#if !NETSTANDARD
+            return type.IsDefined(typeof(TAttr), inherit);
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsDefined(typeof(TAttr), inherit);
+#endif
+        }
+
+        public static bool IsEnum(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsEnum;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsEnum;
+#endif
+        }
+
+        public static bool IsNestedPrivate(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsNestedPrivate;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsNestedPrivate;
+#endif
+        }
+        public static bool IsGenericTypeDefinition(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsGenericTypeDefinition;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsGenericTypeDefinition;
+#endif
+        }
+
+        public static bool IsGenericType(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsGenericType;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsGenericType;
+#endif
+        }
+        public static Type GetBaseType(this Type type)
+        {
+#if !NETSTANDARD
+            return type.BaseType;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.BaseType;
+#endif
+        }
+
+        public static bool IsPublic(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsPublic;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsPublic;
+#endif
+        }
+
+
+        public static bool IsInterface(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsInterface;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsInterface;
+#endif
+        }
+
+        public static bool IsAbstract(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsAbstract;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsAbstract;
+#endif
+        }
+
+        public static bool IsPrimitive(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsPrimitive;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsPrimitive;
+#endif
+        }
+        public static bool IsClass(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsClass;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsClass;
+#endif
+        }
+        public static bool IsSealed(this Type type)
+        {
+#if !NETSTANDARD
+            return type.IsSealed;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsSealed;
+#endif
+        }
+
+
+
+        public static Assembly GetAssembly(this Type type)
+        {
+#if !NETSTANDARD
+            return type.Assembly;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.Assembly;
+#endif
+        }
+
+
+        public static Module GetModule(this Type type)
+        {
+#if !NETSTANDARD
+            return type.Module;
+#else
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.Module;
+#endif
+        }
+
+
+
+        public static object InvokeMethod(this MethodInfo methodInfo, string methodName, object[] callParameters)
+        {
+#if !NETSTANDARD
+            return methodInfo.DeclaringType.InvokeMember(
+                 methodName,
+                 BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding,
+                 null,
+                 null,
+                 callParameters);
+#elif !SILVERLIGHT && !NETSTANDARD
+                , CultureInfo.InvariantCulture
+#else
+
+
+            var neededParameters = methodInfo.GetParameters();
+
+            var missingParametersCount = neededParameters.Length - callParameters.Length;
+            if (missingParametersCount > 0)
+            {
+                //optional parmeters needs to passed here with Type.Missing;
+                var paramList = callParameters.ToList();
+                paramList.AddRange(Enumerable.Repeat(Type.Missing, missingParametersCount));
+                callParameters = paramList.ToArray();
+            }
+            //TODO test
+            return methodInfo.Invoke(methodName, callParameters);
+#endif
+        }
+
+        public static Assembly GetAssembly(this Module module)
+        {
+#if !NETSTANDARD
+            return module.Assembly;
+#else
+            //TODO check this
+            var typeInfo = module.GetType().GetTypeInfo();
+            return typeInfo.Assembly;
+#endif
+        }
+#if !NETSTANDARD && !WINDOWS_PHONE
+
+        public static string GetCodeBase(this Assembly assembly)
+        {
+
+            return assembly.CodeBase;
+        }
+
+#endif
+
+#if !NETSTANDARD && !WINDOWS_PHONE
+        public static string GetLocation(this Assembly assembly)
+        {
+            return assembly.Location;
+
+        }
+#endif
+
+#if NETSTANDARD
+        public static bool IsSubclassOf(this Type type, Type subtype)
+        {
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.IsSubclassOf(subtype);
+
+        }
+#endif
+    }
 }

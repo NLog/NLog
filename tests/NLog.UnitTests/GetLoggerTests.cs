@@ -42,7 +42,12 @@ namespace NLog.UnitTests
         public void GetCurrentClassLoggerTest()
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
+#if NETSTANDARD
+
+            Assert.Equal("GetLoggerTests", logger.Name);
+#else
             Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
+#endif
         }
 
         [Fact]
@@ -68,6 +73,7 @@ namespace NLog.UnitTests
             Assert.Equal("AAA", l3.Name);
         }
 
+#if !NETSTANDARD
         [Fact]
         public void TypedGetCurrentClassLoggerTest()
         {
@@ -91,6 +97,7 @@ namespace NLog.UnitTests
             Assert.Equal("NLog.UnitTests.GetLoggerTests", l3.Name);
         }
 
+#endif
         [Fact]
         public void GenericGetLoggerTest()
         {
@@ -116,7 +123,13 @@ namespace NLog.UnitTests
             MyLogger l2 = lf.GetCurrentClassLogger();
 
             Assert.Same(l1, l2);
+
+#if NETSTANDARD
+
+            Assert.Equal("GetLoggerTests", l1.Name);
+#else
             Assert.Equal("NLog.UnitTests.GetLoggerTests", l1.Name);
+#endif
         }
 
         public class InvalidLogger

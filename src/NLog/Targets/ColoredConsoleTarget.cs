@@ -31,9 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
 using NLog.Common;
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
@@ -159,7 +158,7 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
@@ -169,7 +168,7 @@ namespace NLog.Targets
             get
             {
                 return ConsoleTargetHelper.GetConsoleOutputEncoding(this.encoding, this.IsInitialized, this.pauseLogging);
-            }
+        }
             set
             {
                 if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, this.IsInitialized, this.pauseLogging))
@@ -178,6 +177,8 @@ namespace NLog.Targets
         }
         private Encoding encoding;
 #endif
+
+
 
         /// <summary>
         /// Gets or sets a value indicating whether to auto-check if the console is available.
@@ -216,7 +217,7 @@ namespace NLog.Targets
                     InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
             }
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !NETSTANDARD1_3
             if (this.encoding != null && !this.pauseLogging)
                 Console.OutputEncoding = this.encoding;
 #endif
@@ -242,7 +243,7 @@ namespace NLog.Targets
             base.CloseTarget();
         }
 
-        /// <summary>
+            /// <summary>
         /// Writes the specified log event to the console highlighting entries
         /// and words based on a set of defined rules.
         /// </summary>
@@ -253,7 +254,7 @@ namespace NLog.Targets
             {
                 //check early for performance
                 return;
-            }
+        }
             this.WriteToOutput(logEvent, this.Layout.Render(logEvent));
         }
 
@@ -278,25 +279,25 @@ namespace NLog.Targets
 
                 try
                 {
-                    var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
-                    if (this.WordHighlightingRules.Count == 0)
-                    {
-                        consoleStream.WriteLine(message);
-                    }
-                    else
-                    {
-                        message = message.Replace("\a", "\a\a");
-                        foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
-                        {
-                            message = hl.ReplaceWithEscapeSequences(message);
-                        }
-
-                        ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
-                        consoleStream.WriteLine();
-
-                        didChangeForegroundColor = didChangeBackgroundColor = true;
-                    }
+                var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
+                if (this.WordHighlightingRules.Count == 0)
+                {
+                    consoleStream.WriteLine(message);
                 }
+                else
+                {
+                    message = message.Replace("\a", "\a\a");
+                    foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
+                    {
+                        message = hl.ReplaceWithEscapeSequences(message);
+                    }
+
+                    ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
+                    consoleStream.WriteLine();
+
+                    didChangeForegroundColor = didChangeBackgroundColor = true;
+                }
+            }
                 catch (IndexOutOfRangeException ex)
                 {
                     //this is a bug and therefor stopping logging. For docs, see PauseLogging property

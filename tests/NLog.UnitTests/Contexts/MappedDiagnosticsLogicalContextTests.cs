@@ -37,7 +37,7 @@ using System.Threading;
 namespace NLog.UnitTests.Contexts
 {
     using System;
-#if NET4_0 || NET4_5
+#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
     using System.Threading.Tasks;
     using Xunit;
 
@@ -112,8 +112,11 @@ namespace NLog.UnitTests.Contexts
             const string key = "Key";
             const string item = "Item";
             MappedDiagnosticsLogicalContext.Set(key, item);
-
+#if !XUNIT2
             Assert.DoesNotThrow(() => MappedDiagnosticsLogicalContext.Set(key, item));
+#else
+            MappedDiagnosticsLogicalContext.Set(key, item);
+#endif
         }
 
         [Fact]
@@ -195,13 +198,21 @@ namespace NLog.UnitTests.Contexts
         public void given_item_does_not_exist_when_removing_item_should_not_throw()
         {
             const string keyForItemThatShouldExist = "Key";
+#if !XUNIT2
             Assert.DoesNotThrow(() => MappedDiagnosticsLogicalContext.Remove(keyForItemThatShouldExist));
+#else
+            MappedDiagnosticsLogicalContext.Remove(keyForItemThatShouldExist);
+#endif
         }
 
         [Fact]
         public void given_item_does_not_exist_when_clearing_should_not_throw()
         {
+#if !XUNIT2
             Assert.DoesNotThrow(MappedDiagnosticsLogicalContext.Clear);
+#else
+            MappedDiagnosticsLogicalContext.Clear();
+#endif
         }
 
         [Fact]
@@ -288,4 +299,4 @@ namespace NLog.UnitTests.Contexts
        }
     }
 #endif
-}
+        }

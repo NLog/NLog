@@ -111,6 +111,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Same(logEventInfos[3].Continuation, ev4.Continuation);
         }
 
+#if !NETSTANDARD
+
         [Fact]
         public void AsyncRequestQueueWithBlockBehavior()
         {
@@ -175,6 +177,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             // producer should now finish
             producerFinished.WaitOne();
         }
+
+#endif
 
         [Fact]
         public void AsyncRequestQueueClearTest()

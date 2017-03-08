@@ -65,7 +65,7 @@ namespace NLog.Config
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
 
         private IJsonSerializer jsonSerializer = DefaultJsonSerializer.Instance;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
@@ -100,9 +100,9 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets default singleton instance of <see cref="ConfigurationItemFactory"/>.
         /// </summary>
-        /// <remarks>
-        /// This property implements lazy instantiation so that the <see cref="ConfigurationItemFactory"/> is not built before 
-        /// the internal logger is configured.
+        /// <remarks>		
+        /// This property implements lazy instantiation so that the <see cref="ConfigurationItemFactory"/> is not built before 		
+        /// the internal logger is configured.		
         /// </remarks>
         public static ConfigurationItemFactory Default
         {
@@ -259,15 +259,15 @@ namespace NLog.Config
         /// <returns>Default factory.</returns>
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
-            var nlogAssembly = typeof(ILogger).Assembly;
+            var nlogAssembly = typeof(ILogger).GetAssembly();
             var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
 
             try
             {
                 Uri assemblyCodeBase;
-                if (!Uri.TryCreate(nlogAssembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
+                if (!Uri.TryCreate(nlogAssembly.GetCodeBase(), UriKind.RelativeOrAbsolute, out assemblyCodeBase))
                 {
                     InternalLogger.Warn("No auto loading because assembly code base is unknown");
                     return factory;
@@ -299,7 +299,7 @@ namespace NLog.Config
                     var success = false;
                     try
                     {
-                        var extensionAssembly = Assembly.LoadFrom(extensionDll);
+                        var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
                         InternalLogger.LogAssemblyVersion(extensionAssembly);
                         factory.RegisterItemsFromAssembly(extensionAssembly);
                         success = true;

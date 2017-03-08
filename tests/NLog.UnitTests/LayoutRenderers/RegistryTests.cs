@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -306,3 +308,5 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+
+#endif

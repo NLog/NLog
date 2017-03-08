@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Reflection;
+using NLog.Internal;
+
 namespace NLog.Layouts
 {
     using Config;
@@ -153,8 +157,7 @@ namespace NLog.Layouts
                     else
                     {
                         System.Type objType = prop.Value.GetType();
-                        System.TypeCode objTypeCode = System.Type.GetTypeCode(objType);
-                        if (objTypeCode == System.TypeCode.Boolean || IsNumeric(objType, objTypeCode))
+                        if (objType == typeof(bool) || IsNumeric(objType))
                         {
                             dynAttrib.Name = propName;
                             dynAttrib.Encode = false;    //Don't put quotes around numbers or boolean values
@@ -218,13 +221,13 @@ namespace NLog.Layouts
             }
         }
 
-        private bool IsNumeric(System.Type objType, System.TypeCode typeCode)
+        private bool IsNumeric(System.Type objType)
         {
-            if (objType.IsPrimitive && typeCode != System.TypeCode.Object)
+            if (objType.IsPrimitive() && objType != typeof(object))
             {
-                return typeCode != System.TypeCode.Char && typeCode != System.TypeCode.Boolean;
+                return objType != typeof(char) && objType != typeof(bool);
             }
-            else if (typeCode == System.TypeCode.Decimal)
+            else if (objType == typeof(decimal))
             {
                 return true;
             }

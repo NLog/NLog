@@ -39,6 +39,7 @@ using System.Xml;
 using NLog.Config;
 using NLog.UnitTests.LayoutRenderers;
 
+#if !NETSTANDARD && !NETSTANDARD_1plus
 
 namespace NLog.UnitTests
 {
@@ -293,7 +294,7 @@ namespace NLog.UnitTests
         [Fact]
         public void ResetCandidateConfigTest()
         {
-
+            
             var countBefore = XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count();
             var list = new List<string> { "c:\\global\\temp.config" };
             XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
@@ -377,3 +378,4 @@ class C1
     }
 }
 
+#endif

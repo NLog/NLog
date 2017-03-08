@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -457,6 +459,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 "System.InvalidOperationException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
+
         [Fact]
         public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception()
         {
@@ -470,12 +473,17 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
+
             var ex = new ExceptionWithBrokenMessagePropertyException();
 #pragma warning disable 0618
             // Obsolete method requires testing until completely removed.
+#if !XUNIT2
             Assert.ThrowsDelegate action = () => logger.ErrorException("msg", ex);
-#pragma warning restore 0618
             Assert.DoesNotThrow(action);
+#else
+            logger.ErrorException("msg", ex);
+#endif
+#pragma warning restore 0618
         }
 
 #if !NET3_5
@@ -497,20 +505,28 @@ namespace NLog.UnitTests.LayoutRenderers
             var task2 = System.Threading.Tasks.Task.Factory.StartNew(() => { throw new Exception("Test exception 2", new Exception("Test Inner 2")); },
                 System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
 
+            var aggregateExceptionMessage = "nothing thrown!";
             try
             {
                 System.Threading.Tasks.Task.WaitAll(new[] { task1, task2 });
             }
-            catch(Exception ex)
+            catch(AggregateException ex)
             {
+                aggregateExceptionMessage = ex.ToString();
                 logger.Error(ex, "msg");
             }
 
-            AssertDebugLastMessage("debug1", "AggregateException One or more errors occurred." + EnvironmentHelper.NewLine +
-                "Exception Test exception 1" + EnvironmentHelper.NewLine +
-                "Exception Test Inner 1" + EnvironmentHelper.NewLine +
-                "Exception Test exception 2" + EnvironmentHelper.NewLine +
-                "Exception Test Inner 2");
+            Assert.Contains("Test exception 1", aggregateExceptionMessage);
+            Assert.Contains("Test exception 2", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 1", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 2", aggregateExceptionMessage);
+
+            AssertDebugLastMessageContains("debug1", "AggregateException");
+            AssertDebugLastMessageContains("debug1", "One or more errors occurred");
+            AssertDebugLastMessageContains("debug1", "Test exception 1");
+            AssertDebugLastMessageContains("debug1", "Test exception 2");
+            AssertDebugLastMessageContains("debug1", "Test Inner 1");
+            AssertDebugLastMessageContains("debug1", "Test Inner 2");
         }
 #endif
 

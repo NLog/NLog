@@ -1,3 +1,4 @@
+.vs/
 obj/
 bin/
 Bin/
@@ -30,8 +31,17 @@ examples/NLogDemo/gmail*.txt
 *.user
 tools/FAKE/
 packages/
-build/
 *.sublime-*
 *.DotSettings
 *.vshost.*
 /.vs
+src/NLog/project.lock.json*.vshost.*
+**/project.lock.json
+artifacts/
+nuget/
+artifacts/
+samples/
+tools/packages.config
+#ignore results of unit tests
+/**/testresults.xml
+tests/NLog.UnitTests/*.txt

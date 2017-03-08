@@ -34,7 +34,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+#if !NETSTANDARD
 using NLog.Internal.Fakeables;
+#endif
+
 using NLog.Layouts;
 using NLog.Targets;
 
@@ -57,7 +61,7 @@ namespace NLog.Internal
         /// </summary>
         private readonly static HashSet<char> InvalidFileNameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
 
-#endif 
+#endif
 
         private Layout _layout;
 
@@ -142,7 +146,7 @@ namespace NLog.Internal
             return _layout;
         }
 
-        #region Implementation of IRenderable
+#region Implementation of IRenderable
 
         /// <summary>
         /// Render the raw filename from Layout
@@ -194,7 +198,7 @@ namespace NLog.Internal
             }
             else
             {
-                return _layout.Render(logEvent);
+            return _layout.Render(logEvent);
             }
         }
 
@@ -238,7 +242,7 @@ namespace NLog.Internal
             if (string.IsNullOrEmpty(rawFileName))
             {
                 return rawFileName;
-            }
+        }
 
             if ((!_cleanupInvalidChars || cleanedFixedResult != null) && _filePathKind == FilePathKind.Absolute)
                 return rawFileName; // Skip clean filename string-allocation
@@ -252,7 +256,7 @@ namespace NLog.Internal
             return cleanFileName;
         }
 
-        #endregion
+#endregion
 
         /// <summary>
         /// Is this (templated/invalid) path an absolute, relative or unknown?

@@ -31,10 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+#if !NETSTANDARD
 using System.Linq;
 using System.Text;
 
 #pragma warning disable 0618
+
 
 namespace NLog.UnitTests.Contexts
 {
@@ -289,3 +292,4 @@ namespace NLog.UnitTests.Contexts
         }
     }
 }
+#endif

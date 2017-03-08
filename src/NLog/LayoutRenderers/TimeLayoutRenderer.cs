@@ -75,7 +75,7 @@ namespace NLog.LayoutRenderers
             string ticksSeparator;
             if (culture != null)
             {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_3
                 timeSeparator = culture.DateTimeFormat.TimeSeparator;
 #else
                 timeSeparator = ":";

@@ -51,9 +51,9 @@ namespace NLog
     internal static class LoggerImpl
     {
         private const int StackTraceSkipMethods = 0;
-        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).Assembly;
-        private static readonly Assembly mscorlibAssembly = typeof(string).Assembly;
-        private static readonly Assembly systemAssembly = typeof(Debug).Assembly;
+        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).GetAssembly();
+        private static readonly Assembly mscorlibAssembly = typeof(string).GetAssembly();
+        private static readonly Assembly systemAssembly = typeof(Debug).GetAssembly();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
         internal static void Write([NotNull] Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
@@ -68,7 +68,9 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if !SILVERLIGHT
+#if NETSTANDARD || NETSTANDARD_1plus
+                stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
+#elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 #else
                 stackTrace = new StackTrace();
@@ -181,7 +183,7 @@ namespace NLog
         private static bool SkipAssembly(StackFrame frame)
         {
             var method = frame.GetMethod();
-            var assembly = method.DeclaringType != null ? method.DeclaringType.Assembly : method.Module.Assembly;
+            var assembly = method.DeclaringType != null ? method.DeclaringType.GetAssembly() : method.Module.GetAssembly();
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             var skipAssembly = SkipAssembly(assembly);
             return skipAssembly;
@@ -298,6 +300,7 @@ namespace NLog
         /// <summary>
         /// Stackframe with correspending index on the stracktrace
         /// </summary>
+       [DebuggerDisplay("{StackFrameIndex} => {StackFrame}")]
         private class StackFrameWithIndex
         {
             /// <summary>

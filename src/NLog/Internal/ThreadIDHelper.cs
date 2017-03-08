@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD
 
 namespace NLog.Internal
 {
@@ -67,7 +67,7 @@ namespace NLog.Internal
         public static ThreadIDHelper Instance { get; private set; }
 
         /// <summary>
-        /// Gets current process ID.
+        /// Gets current thread ID.
         /// </summary>
         public abstract int CurrentProcessID { get; }
 

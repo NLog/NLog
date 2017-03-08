@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -588,6 +590,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("4: close") != -1);
         }
 
+#if !SILVERLIGHT && !NETSTANDARD
         [Fact]
         public void NetworkTargetTcpTest()
         {
@@ -650,7 +653,7 @@ namespace NLog.UnitTests.Targets
                     {
                         lock (exceptions)
                         {
-                            Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
+                            // Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
                             exceptions.Add(ex);
                             pendingWrites--;
                             if (pendingWrites == 0)
@@ -818,6 +821,7 @@ namespace NLog.UnitTests.Targets
                 Assert.NotNull(ex);
             }
         }
+#endif
 
         [Fact]
         public void NetworkTargetSendFailureWithoutKeepAliveTests()
@@ -953,3 +957,4 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+#endif

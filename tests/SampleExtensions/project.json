@@ -1,0 +1,60 @@
+{
+  "version": "5.0.0-beta01",
+  "description": "NLog Library",
+  "authors": [ "NLog" ],
+  "packOptions": {
+    "tags": [ "NLog" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/NLog/NLog"
+    }
+  },
+
+  "dependencies": {
+    "NLog": {
+      "target": "project"
+    }
+  },
+
+  "frameworks": {
+    ".NETFramework,Version=v3.5": {
+      "frameworkAssemblies": {
+        "System": "",
+        "System.Configuration": "",
+        "System.Core": "",
+        "System.Data": "",
+        "System.Xml": ""
+      },
+    },
+
+    "netstandard1.5": {
+      "dependencies": {
+        "System.Console": "4.0.0",
+        "System.Diagnostics.Contracts": "4.0.1",
+        "System.Diagnostics.StackTrace": "4.0.1",
+        "System.Diagnostics.Tools": "4.0.1",
+        "System.Diagnostics.TraceSource": "4.0.0",
+        "System.Linq": "4.1.0",
+        "System.Runtime.Serialization.Primitives": "4.1.1",
+        "System.Xml.XmlDocument": "4.0.1",
+        "System.ServiceModel.Primitives": "4.1.0",
+        "System.ComponentModel.TypeConverter": "4.1.0",
+        "System.Data.Common": "4.1.0",
+        "System.Net.Requests": "4.0.11",
+        "System.Threading.ThreadPool": "4.0.10",
+        "System.IO.Compression": "4.1.0"
+      },
+      "buildOptions": {
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD" ]
+      }
+    },
+
+    "Silverlight,Version=v5.0": { }
+  },
+
+  "buildOptions": {
+    "keyFile": "../NLog.UnitTests/NLogTests.snk"
+  }
+}

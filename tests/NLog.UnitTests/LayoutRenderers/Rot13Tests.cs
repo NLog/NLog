@@ -76,6 +76,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("URYYB", l.Render(lei));
         }
 
+#if !NETSTANDARD
         [Fact]
         public void Test5()
         {
@@ -99,5 +100,6 @@ namespace NLog.UnitTests.LayoutRenderers
             // double rot-13 should be identity
             AssertDebugLastMessage("debug2", "Foo.Bar!");
         }
+#endif
     }
 }

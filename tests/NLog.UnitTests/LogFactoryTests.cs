@@ -31,16 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
+
 namespace NLog.UnitTests
 {
     using System;
     using System.IO;
     using System.Threading;
     using System.Reflection;
-
+    using NLog.Config;
     using Xunit;
 
-    using NLog.Config;
 
     public class LogFactoryTests : NLogTestBase
     {
@@ -143,7 +144,11 @@ namespace NLog.UnitTests
             var logFactory = new LogFactory(loggingConfiguration);
             var differentConfiguration = new LoggingConfiguration();
 
+#if !XUNIT2
             Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
+#else
+            logFactory.ReloadConfigOnTimer(differentConfiguration);
+#endif
         }
 
         private class ReloadNullConfiguration : LoggingConfiguration
@@ -161,7 +166,11 @@ namespace NLog.UnitTests
             LogManager.Configuration = loggingConfiguration;
             var logFactory = new LogFactory(loggingConfiguration);
 
+#if !XUNIT2
             Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
+#else
+            logFactory.ReloadConfigOnTimer(loggingConfiguration);
+#endif
         }
 
         [Fact]
@@ -262,7 +271,7 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.EnableLogging();
             Assert.True(factory.IsLoggingEnabled());
-#pragma warning restore 618           
+#pragma warning restore 618
         }
 
         [Fact]
@@ -306,3 +315,4 @@ namespace NLog.UnitTests
         }
     }
 }
+#endif

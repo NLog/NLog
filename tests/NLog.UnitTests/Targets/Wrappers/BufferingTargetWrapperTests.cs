@@ -45,6 +45,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
     public class BufferingTargetWrapperTests : NLogTestBase
     {
+
+#if !NETSTANDARD
         [Fact]
         public void BufferingTargetWrapperSyncTest1()
         {
@@ -482,6 +484,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(2, myTarget.WriteCount);
         }
 
+#endif
         [Fact]
         public void WhenWrappedTargetThrowsExceptionThisIsHandled()
         {
@@ -528,7 +531,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
                     var @event = logEvents[i];
-                    ThreadPool.QueueUserWorkItem(
+                    RunAsync2(
                         s =>
                         {
                             if (this.ThrowExceptions)
@@ -547,7 +550,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                ThreadPool.QueueUserWorkItem(
+                RunAsync2(
                     s => asyncContinuation(null));
             }
 

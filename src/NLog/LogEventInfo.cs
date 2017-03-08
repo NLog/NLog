@@ -501,7 +501,7 @@ namespace NLog
                 return true;
             }
 
-            return value.GetType().IsPrimitive || (value is string);
+            return value.GetType().IsPrimitive() || (value is string);
         }
 
         private void CalcFormattedMessage()

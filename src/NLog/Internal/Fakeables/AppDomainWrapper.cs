@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+#if !NETSTANDARD 
 namespace NLog.Internal.Fakeables
 {
     using System;
@@ -175,3 +177,4 @@ namespace NLog.Internal.Fakeables
         }
     }
 }
+#endif

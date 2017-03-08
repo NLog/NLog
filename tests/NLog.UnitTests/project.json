@@ -1,0 +1,106 @@
+{
+  "version": "4.4.0-beta1",
+  "description": "NLog Library",
+  "authors": [ "NLog" ],
+  "packOptions": {
+    "tags": [ "NLog" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/NLog/NLog"
+    }
+  },
+  "dependencies": {
+    "NLog": {
+      "target": "project"
+    },
+    "SampleExtensions": "4.4.0-beta*",
+    "xunit": "2.2.0-beta2-build3300",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029"
+  },
+
+  "testRunner": "xunit",
+
+  "frameworks": {
+
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        },
+        // "NLog.Extended": "4.4.0-beta*",
+        //  "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.0",
+        //  "Microsoft.AspNet.WebApi.Owin": "5.2.3",
+        "System.Threading.Tasks.Parallel": "4.0.1",
+        "System.Xml.XDocument": "4.0.11",
+        "System.Data.SqlClient": "4.1.0"
+      },
+      "buildOptions": {
+        "define": [ "XUNIT2", "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "NETSTANDARD" ]
+      }
+    },
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Runtime": "",
+        "System.Xml": "",
+        "System.ServiceModel": "",
+        "System.Runtime.Serialization": "",
+        "System.Drawing": "",
+        "System.Data": "",
+        "System.Configuration": "",
+        "System.Transactions": "",
+        "System.IO.Compression": "",
+        "System.Threading.Tasks": "",
+        "System.Xml.Linq": "",
+        "System.DirectoryServices.AccountManagement": ""  ,
+
+
+
+      },
+      "dependencies": {
+        "NLog.Extended": "4.4.0-beta*",
+        "Microsoft.Owin.Hosting": "3.0.1",
+        "Unity": "4.0.1",
+        "Microsoft.AspNet.WebApi.OwinSelfHost": "5.2.3",
+        "DotNetZip.Reduced": "1.9.1.8",
+        "Microsoft.NETCore.Platforms": "1.0.1"
+
+      },
+      "buildOptions": {
+        "define": [ "WCF_SUPPORTED", "XUNIT2", "NET4_5" ]
+
+      }
+    }
+    //,
+    //"Silverlight,Version=v5.0": {
+    //    "frameworkAssemblies": {
+    //        "System.Windows": "",
+    //        "mscorlib": "",
+    //        "System": "",
+    //        "System.Core": "",
+    //        "System.Net": "",
+    //        "System.Xml": "",
+    //        "System.Windows.Browser": ""
+    //    },
+    //    "dependencies": {
+    //        "Microsoft.Silverlight.Testing": "1.0.0-*",
+    //        "Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight": "1.0.0-*",
+    //        "xunit-silverlight4": "1.0.0-*",
+    //        "xunit.extensions-silverlight4": "1.0.0-*",
+    //        "xunitcontrib.runner.silverlight.toolkit-sl4": "1.0.0-*",
+    //        "System.Xml.Linq": "1.0.0-*"
+    //    },
+    //    "buildOptions": {
+    //        "define": [ "SILVERLIGHT", "SILVERLIGHT5", "WCF_SUPPORTED", "XUNIT2" ]
+    //    }
+    //}
+  },
+  "buildOptions": {
+    "keyFile": "NLogTests.snk",
+    "nowarn": []
+  }
+
+
+}

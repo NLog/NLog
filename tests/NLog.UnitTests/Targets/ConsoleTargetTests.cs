@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -125,7 +127,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expectedResult, consoleErrorWriter.ToString());
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD1_3
 
         [Fact]
         public void ConsoleEncodingTest()
@@ -235,3 +237,5 @@ namespace NLog.UnitTests.Targets
 #endif
     }
 }
+
+#endif

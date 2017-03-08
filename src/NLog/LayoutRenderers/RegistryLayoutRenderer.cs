@@ -31,7 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -145,7 +146,7 @@ namespace NLog.LayoutRenderers
                         using (RegistryKey registryKey = rootKey.OpenSubKey(parseResult.SubKey))
                         {
                             if (registryKey != null) registryValue = registryKey.GetValue(renderedValue);
-                        }
+            }
                     }
                     else
                     {
@@ -181,7 +182,7 @@ namespace NLog.LayoutRenderers
         }
 
         private class ParseResult
-        {
+                    {
             public string SubKey { get; set; }
 
             public RegistryHive Hive { get; set; }
@@ -193,7 +194,7 @@ namespace NLog.LayoutRenderers
             {
                 get { return !string.IsNullOrEmpty(SubKey); }
             }
-        }
+                    }
 
         /// <summary>
         /// Parse key to <see cref="RegistryHive"/> and subkey.
@@ -219,9 +220,9 @@ namespace NLog.LayoutRenderers
                 //replace double slashes from pre-layout times
                 subkey = subkey.Replace("\\\\", "\\");
 
-            }
-            else
-            {
+                }
+                else
+                {
                 hiveName = key;
             }
 
@@ -251,22 +252,22 @@ namespace NLog.LayoutRenderers
         };
 
         private static RegistryHive ParseHiveName(string hiveName)
-        {
+            {
             RegistryHive hive;
             if (HiveAliases.TryGetValue(hiveName, out hive))
-            {
+                {
                 return hive;
-            }
+                }
 
             //ArgumentException is consistent
             throw new ArgumentException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
-        }
+            }
 
 #if NET3_5
         private static RegistryKey MapHiveToKey(RegistryHive hive)
-        {
-            switch (hive)
             {
+            switch (hive)
+                {
                 case RegistryHive.LocalMachine:
                     return Registry.LocalMachine;
                 case RegistryHive.CurrentUser:

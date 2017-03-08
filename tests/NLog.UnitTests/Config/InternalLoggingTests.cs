@@ -66,8 +66,10 @@ namespace NLog.UnitTests.Config
             using (new InternalLoggerScope())
             {
                 InternalLogger.LogLevel = LogLevel.Error;
+#if !NETSTANDARD || NETSTANDARD1_3
                 InternalLogger.LogToConsole = true;
                 InternalLogger.LogToConsoleError = true;
+#endif
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
                 LogManager.ThrowConfigExceptions = null;
@@ -80,8 +82,10 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
                 Assert.Same(LogLevel.Error, InternalLogger.LogLevel);
+#if !NETSTANDARD || NETSTANDARD1_3
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
+#endif
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
                 Assert.Null(LogManager.ThrowConfigExceptions);
@@ -138,9 +142,11 @@ namespace NLog.UnitTests.Config
 
                 Assert.Equal(file, InternalLogger.LogFile);
 
+#if !NETSTANDARD || NETSTANDARD1_3
                 Assert.Equal(logToConsole, InternalLogger.LogToConsole);
 
                 Assert.Equal(logToConsoleError, InternalLogger.LogToConsoleError);
+#endif
 
                 Assert.Same(globalThreshold, LogManager.GlobalThreshold);
 

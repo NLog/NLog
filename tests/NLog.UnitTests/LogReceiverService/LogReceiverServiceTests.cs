@@ -31,17 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-
+#if !NETSTANDARD && !SILVERLIGHT && !NET3_5
 
 namespace NLog.UnitTests.LogReceiverService
 {
 
+#if !SILVERLIGHT
     using System.Collections.Generic;
 
     using System.Linq;
 
     using System.Threading;
+#endif
 
     using System;
     using System.IO;
@@ -60,7 +61,7 @@ namespace NLog.UnitTests.LogReceiverService
 
     public class LogReceiverServiceTests : NLogTestBase
     {
-        private const string logRecieverUrl = "http://localhost:8080/logrecievertest";
+        private const string logRecieverUrl = "http://localhost:80/Temporary_Listen_Addresses/";
 
         [Fact]
         public void ToLogEventInfoTest()
@@ -173,6 +174,7 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.Equal(LogLevel.Warn, converted[1].Level);
         }
 
+#if !NETSTANDARD
         /// <summary>
         /// Ensures that serialization formats of DataContractSerializer and XmlSerializer are the same
         /// on the same <see cref="NLogEvents"/> object.
@@ -230,6 +232,7 @@ namespace NLog.UnitTests.LogReceiverService
 
             Assert.Equal(xml1, xml2);
         }
+#endif
 
 
 #if WCF_SUPPORTED
@@ -291,7 +294,7 @@ namespace NLog.UnitTests.LogReceiverService
             </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower(), binaryEncode.ToString().ToLower()));
 
 
-
+     
             ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
 
         }
@@ -313,7 +316,7 @@ namespace NLog.UnitTests.LogReceiverService
                 // Enable metadata publishing.
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
-#if !MONO
+#if !MONO && !NETSTANDARD_1plus
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
 #endif
                 host.Description.Behaviors.Add(smb);
@@ -359,8 +362,8 @@ namespace NLog.UnitTests.LogReceiverService
 
             var logmessages = new HashSet<string> {recieved[0].ToEventInfo().First().Message, recieved[1].ToEventInfo().First().Message};
 
-            Assert.True(logmessages.Contains("test 1"), "message 1 is missing");
-            Assert.True(logmessages.Contains("test 2"), "message 2 is missing");
+            Assert.True(logmessages.Contains("test 1"), "message 1 is corrupt");
+            Assert.True(logmessages.Contains("test 2"), "message 2 is corrupt");
         }
 
         private static void ExecLogging1(Logger logger)
@@ -401,3 +404,5 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
     }
 }
+
+#endif
