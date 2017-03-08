@@ -407,7 +407,9 @@ namespace NLog.Targets
                         if (this.initializeException == null)
                         {
                             // if Init succeeded, call Close()
+                            InternalLogger.Debug("Closing target '{0}'.", this);
                             this.CloseTarget();
+                            InternalLogger.Debug("Closed target '{0}'.", this);
                         }
                     }
                     catch (Exception exception)
