@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Text.RegularExpressions;
+using NLog.Common;
+using NLog.Config;
+
 namespace NLog.UnitTests.Config
 {
     using System.IO;
@@ -44,7 +48,7 @@ namespace NLog.UnitTests.Config
     {
         private string extensionAssemblyName1 = "SampleExtensions";
         private string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
-        
+
         [Fact]
         public void ExtensionTest1()
         {
@@ -76,7 +80,7 @@ namespace NLog.UnitTests.Config
 
             Target myTarget = configuration.FindTargetByName("t");
             Assert.Equal("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
-            
+
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
@@ -285,7 +289,7 @@ namespace NLog.UnitTests.Config
                 <add type='some_type_that_doesnt_exist'/>
 </extensions>
 </nlog>";
-            Assert.Throws<NLogConfigurationException>(()=>CreateConfigurationFromString(configXml));
+            Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
         }
 
         [Fact]
@@ -381,6 +385,42 @@ namespace NLog.UnitTests.Config
 
             var autoLoadedTarget = configuration.FindTargetByName("t");
             Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+        }
+
+        [Fact]
+        public void Extensions_NLogPackageLoader_should_beCalled()
+        {
+            try
+            {
+
+                var writer = new StringWriter();
+                InternalLogger.LogWriter = writer;
+                InternalLogger.LogLevel = LogLevel.Debug;
+                //reload ConfigurationItemFactory 
+                ConfigurationItemFactory.Default = null;
+                var fact = ConfigurationItemFactory.Default;
+
+                //also throw exceptions 
+               LogManager.Configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+
+</nlog>");
+
+
+                var logs = writer.ToString();
+                Assert.Contains("Preload succesfully invoked for 'LoaderTestInternal.NLogPackageLoader'", logs);
+                Assert.Contains("Preload succesfully invoked for 'LoaderTestPublic.NLogPackageLoader'", logs);
+                Assert.Contains("Preload succesfully invoked for 'LoaderTestPrivateNestedStatic.SomeType+NLogPackageLoader'", logs);
+                Assert.Contains("Preload succesfully invoked for 'LoaderTestPrivateNested.SomeType+NLogPackageLoader'", logs);
+
+                //4 times succesful
+                Assert.Equal(4, Regex.Matches(logs, Regex.Escape("Preload succesfully invoked for '")).Count);
+
+            }
+            finally
+            {
+                InternalLogger.LogWriter = null;
+            }
         }
     }
 }

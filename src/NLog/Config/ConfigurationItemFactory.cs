@@ -65,7 +65,7 @@ namespace NLog.Config
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
 
         private IJsonSerializer jsonSerializer = DefaultJsonSerializer.Instance;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
@@ -223,9 +223,65 @@ namespace NLog.Config
         {
             InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
             var typesToScan = assembly.SafeGetTypes();
+            PreloadAssembly(typesToScan);
             foreach (IFactory f in this.allFactories)
             {
                 f.ScanTypes(typesToScan, itemNamePrefix);
+            }
+        }
+
+        /// <summary>
+        /// Call Preload for NLogPackageLoader
+        /// </summary>
+        /// <param name="typesToScan"></param>
+        public void PreloadAssembly(Type[] typesToScan)
+        {
+            var types = typesToScan.Where(t => t.Name.Equals("NLogPackageLoader", StringComparison.OrdinalIgnoreCase));
+
+            foreach (var type in types)
+            {
+                CallPreload(type);
+            }
+        }
+
+        /// <summary>
+        /// Call Preload method for <paramref name="type"/>. The Preload method must be static.
+        /// </summary>
+        /// <param name="type"></param>
+        private static void CallPreload(Type type)
+        {
+            if (type != null)
+            {
+                InternalLogger.Debug("Found for preload'{0}'", type.FullName);
+                var preloadMethod = type.GetMethod("Preload");
+                if (preloadMethod != null)
+                {
+                    if (preloadMethod.IsStatic)
+                    {
+
+                        InternalLogger.Debug("NLogPackageLoader contains Preload method");
+                        //only static, so first param null
+                        try
+                        {
+                            preloadMethod.Invoke(null, null);
+                            InternalLogger.Debug("Preload succesfully invoked for '{0}'", type.FullName);
+                        }
+                        catch (Exception e)
+                        {
+                            InternalLogger.Warn(e,"Invoking Preload for '{0}' failed", type.FullName);
+                        }
+                    }
+                    else
+                    {
+                        InternalLogger.Debug("NLogPackageLoader contains a preload method, but isn't static");
+                    }
+
+
+                }
+                else
+                {
+                    InternalLogger.Debug("{0} doesn't contain Preload method", type.FullName);
+                }
             }
         }
 
