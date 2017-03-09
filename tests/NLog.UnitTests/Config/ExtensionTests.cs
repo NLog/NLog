@@ -31,9 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using System.Text.RegularExpressions;
 using NLog.Common;
 using NLog.Config;
+using Xunit.Extensions;
 
 namespace NLog.UnitTests.Config
 {
@@ -371,7 +373,11 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
         {
-            var configuration = CreateConfigurationFromString(@"
+            try
+            {
+
+
+                var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <targets>
         <target name='t' type='AutoLoadTarget' />
@@ -383,8 +389,68 @@ namespace NLog.UnitTests.Config
     </rules>
 </nlog>");
 
-            var autoLoadedTarget = configuration.FindTargetByName("t");
-            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+                var autoLoadedTarget = configuration.FindTargetByName("t");
+                Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default.Clear();
+                ConfigurationItemFactory.Default = null; //build new factory next time
+            }
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void Extension_loading_could_be_canceled(bool cancel)
+        {
+
+            EventHandler<AssemblyLoadingEventArgs> onAssemblyLoading = (sender, e) =>
+            {
+                if (e.Assembly.FullName.Contains("NLogAutloadExtension"))
+                {
+                    e.Cancel = cancel;
+                }
+            };
+
+            try
+            {
+                ConfigurationItemFactory.Default = null; //build new factory next time
+                ConfigurationItemFactory.AssemblyLoading += onAssemblyLoading;
+
+                var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='false'>
+    <targets>
+        <target name='t' type='AutoLoadTarget' />
+    </targets>
+
+    <rules>
+      <logger name='*' writeTo='t'>
+      </logger>
+    </rules>
+</nlog>");
+
+
+
+                var autoLoadedTarget = configuration.FindTargetByName("t");
+
+                if (cancel)
+                {
+                    Assert.Null(autoLoadedTarget);
+                }
+                else
+                {
+                    Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+                }
+            }
+            finally
+            {
+                //cleanup
+                ConfigurationItemFactory.AssemblyLoading -= onAssemblyLoading;
+                ConfigurationItemFactory.Default.Clear();
+                ConfigurationItemFactory.Default = null; //build new factory next time
+
+            }
         }
 
         [Fact]
@@ -401,7 +467,7 @@ namespace NLog.UnitTests.Config
                 var fact = ConfigurationItemFactory.Default;
 
                 //also throw exceptions 
-               LogManager.Configuration = CreateConfigurationFromString(@"
+                LogManager.Configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
 
 </nlog>");
