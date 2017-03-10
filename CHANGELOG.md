@@ -1,6 +1,24 @@
 See also [releases](https://github.com/NLog/NLog/releases) and [milestones](https://github.com/NLog/NLog/milestones).
 
+### 4.4.4 (2017/03/10)
 
+#### Features
+
+- [#2000](https://github.com/nlog/nlog/pull/2000) Add weekly archival option to FileTarget (@dougthor42)
+- [#2009](https://github.com/nlog/nlog/pull/2009) Load assembly event (@304NotModified)
+- [#1917](https://github.com/nlog/nlog/pull/1917) Call NLogPackageLoader.Preload (static) for NLog packages on load (@304NotModified)
+
+#### Improvements
+
+- [#2007](https://github.com/nlog/nlog/pull/2007) Target.Close() - Extra logging to investigate shutdown order (@snakefoot)
+- [#2003](https://github.com/nlog/nlog/pull/2003) Update XSD for <NLog> options (@304NotModified)
+- [#1977](https://github.com/nlog/nlog/pull/1977) update xsd template (internallogger) for 4.4.3 version (@AuthorProxy)
+- [#1956](https://github.com/nlog/nlog/pull/1956) Improve docs ThreadAgnosticAttribute (#1956) (@304NotModified)
+- [#1992](https://github.com/nlog/nlog/pull/1992) Fixed merge error of XML documentation for Target Write-methods (@snakefoot)
+
+#### Fixes
+
+- [#1995](https://github.com/nlog/nlog/pull/1995) Proper apply default-target-parameters to nested targets in WrappedTargets (@nazim9214)
 
 ### 4.4.3
 
@@ -11,7 +29,7 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 ### 4.4.2
  
-#### Features:
+#### Features
 
 - [#1799](https://github.com/nlog/nlog/pull/1799) FileTarget: performance improvement: 10-70% faster, less garbage collecting (3-4 times less) by reusing buffers  (@snakefoot, @AndreGleichner)
 - [#1919](https://github.com/nlog/nlog/pull/1919) Func overloads for InternalLogger (@304NotModified)
