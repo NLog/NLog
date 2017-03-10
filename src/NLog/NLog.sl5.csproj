@@ -96,6 +96,7 @@
     <Compile Include="Config\AdvancedAttribute.cs" />
     <Compile Include="Config\AppDomainFixedOutputAttribute.cs" />
     <Compile Include="Config\ArrayParameterAttribute.cs" />
+    <Compile Include="Config\AssemblyLoadingEventArgs.cs" />
     <Compile Include="Config\ConfigSectionHandler.cs" />
     <Compile Include="Config\ConfigurationItemCreator.cs" />
     <Compile Include="Config\ConfigurationItemFactory.cs" />

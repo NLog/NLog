@@ -50,6 +50,8 @@ namespace NLog.Config
 
     /// <summary>
     /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
+    /// 
+    /// Everything of an assembly could be loaded by <see cref="RegisterItemsFromAssembly(System.Reflection.Assembly)"/>
     /// </summary>
     public class ConfigurationItemFactory
     {
@@ -65,6 +67,11 @@ namespace NLog.Config
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
 
         private IJsonSerializer jsonSerializer = DefaultJsonSerializer.Instance;
+
+        /// <summary>
+        /// Called before the assembly will be loaded.
+        /// </summary>
+        public static event EventHandler<AssemblyLoadingEventArgs> AssemblyLoading;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
@@ -205,6 +212,8 @@ namespace NLog.Config
             get { return this.conditionMethods; }
         }
 
+
+
         /// <summary>
         /// Registers named items from the assembly.
         /// </summary>
@@ -221,6 +230,17 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">Item name prefix.</param>
         public void RegisterItemsFromAssembly(Assembly assembly, string itemNamePrefix)
         {
+            if (AssemblyLoading != null)
+            {
+                var args = new AssemblyLoadingEventArgs(assembly);
+                AssemblyLoading.Invoke(this,args);
+                if (args.Cancel)
+                {
+                    InternalLogger.Info("Loading assembly '{0}' is canceled", assembly.FullName);
+                    return;
+                }
+            }
+
             InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
             var typesToScan = assembly.SafeGetTypes();
             PreloadAssembly(typesToScan);
@@ -233,6 +253,10 @@ namespace NLog.Config
         /// <summary>
         /// Call Preload for NLogPackageLoader
         /// </summary>
+        /// <remarks>
+        /// Every package could implement a class "NLogPackageLoader" (namespace not important) with the public static method "Preload" (no arguments)
+        /// This method will be called just before registering all items in the assembly.
+        /// </remarks>
         /// <param name="typesToScan"></param>
         public void PreloadAssembly(Type[] typesToScan)
         {
@@ -245,7 +269,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Call Preload method for <paramref name="type"/>. The Preload method must be static.
+        /// Call the Preload method for <paramref name="type"/>. The Preload method must be static.
         /// </summary>
         /// <param name="type"></param>
         private static void CallPreload(Type type)
