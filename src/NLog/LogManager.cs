@@ -360,10 +360,6 @@ namespace NLog
             factory.Shutdown();
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-
-#endif
-
         /// <summary>
         /// Gets the fully qualified name of the class invoking the LogManager, including the 
         /// namespace but not the assembly.    
@@ -395,8 +391,5 @@ namespace NLog
 
             return className;
         }
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-#endif
     }
 }
