@@ -97,6 +97,8 @@ namespace NLog
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
 
+        private static event EventHandler<EventArgs> LoggerShutdown;
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Initializes static members of the LogManager class.
@@ -116,7 +118,7 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.watcher = new MultiFileWatcher();
             this.watcher.FileChanged += this.ConfigFileChanged;
-            CurrentAppDomain.DomainUnload += DomainUnload;
+            LoggerShutdown += OnStopLogging;
 #endif
         }
 
@@ -921,6 +923,7 @@ namespace NLog
             this.IsDisposing = true;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            LoggerShutdown -= OnStopLogging;
             this.ConfigurationReloaded = null;   // Release event listeners
 
             if (this.watcher != null)
@@ -1409,8 +1412,8 @@ namespace NLog
 
             try
             {
-                appDomain.ProcessExit += OnStopLogging;
-                appDomain.DomainUnload += OnStopLogging;
+                appDomain.ProcessExit += OnLoggerShutdown;
+                appDomain.DomainUnload += OnLoggerShutdown;
             }
             catch (Exception exception)
             {
@@ -1427,22 +1430,28 @@ namespace NLog
         {
             if (appDomain == null) return;
 
-            appDomain.DomainUnload -= OnStopLogging;
-            appDomain.ProcessExit -= OnStopLogging;
+            appDomain.DomainUnload -= OnLoggerShutdown;
+            appDomain.ProcessExit -= OnLoggerShutdown;
         }
 
-        private static void OnStopLogging(object sender, EventArgs args)
+        private static void OnLoggerShutdown(object sender, EventArgs args)
+        {
+            var loggerShutdown = LoggerShutdown;
+            if (loggerShutdown != null)
+                loggerShutdown.Invoke(sender, args);
+            if (currentAppDomain != null)
+            {
+                CurrentAppDomain = null;    // Unregister and disconnect from AppDomain
+            }
+        }
+
+        private void OnStopLogging(object sender, EventArgs args)
         {
             try
             {
-                var logFactory = sender as LogFactory;
                 InternalLogger.Info("Shutting down logging...");
-                if (logFactory != null)
-                {
-                    // Finalizer thread has about 2 secs, before being terminated
-                    logFactory.Close(TimeSpan.FromMilliseconds(1500));
-                }
-                currentAppDomain = null;    // No longer part of AppDomains
+                // Finalizer thread has about 2 secs, before being terminated
+                this.Close(TimeSpan.FromMilliseconds(1500));
                 InternalLogger.Info("Logger has been shut down.");
             }
             catch (Exception ex)
