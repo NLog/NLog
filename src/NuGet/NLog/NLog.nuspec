@@ -14,7 +14,7 @@
 This package installs NLog.dll with includes core logging functionality.
 For your main project also need to install "NLog Configuration" package.</description>
         <summary>NLog - Advanced .NET and Silverlight Logging</summary>
-        <releaseNotes>Changelog, see https://github.com/NLog/NLog/releases/tag/v$BuildVersion$</releaseNotes>
+        <releaseNotes>Changelog: https://github.com/NLog/NLog/releases/tag/v$BuildVersion$</releaseNotes>
         <language>en-US</language>
         <tags>NLog logging log tracing logfiles archiving database eventlog email</tags>
     </metadata>
