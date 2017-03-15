@@ -886,21 +886,24 @@ namespace NLog
                 this.GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             }
 
-            InternalLogger.Debug("Targets for {0} by level:", name);
-            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            if (InternalLogger.IsDebugEnabled)
             {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
-                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
+                InternalLogger.Debug("Targets for {0} by level:", name);
+                for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
                 {
-                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
-                    if (afc.FilterChain.Count > 0)
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                    for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
                     {
-                        sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                        sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
+                        if (afc.FilterChain.Count > 0)
+                        {
+                            sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                        }
                     }
-                }
 
-                InternalLogger.Debug(sb.ToString());
+                    InternalLogger.Debug(sb.ToString());
+                }
             }
 
 #pragma warning disable 618
@@ -988,16 +991,6 @@ namespace NLog
             }
 
             this.ConfigurationChanged = null;    // Release event listeners
-
-            var activeAppDomain = currentAppDomain;
-            if (activeAppDomain != null)
-            {
-                // No longer belongs to the AppDomain
-                CurrentAppDomain = null;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                activeAppDomain.DomainUnload -= this.DomainUnload;
-#endif
-            }
         }
 
         /// <summary>
@@ -1020,7 +1013,12 @@ namespace NLog
             {
                 var loadedConfig = Configuration;
                 if (loadedConfig != null)
+                {
+                    ManualResetEvent flushCompleted = new ManualResetEvent(false);
+                    loadedConfig.FlushAllTargets((ex) => flushCompleted.Set());
+                    flushCompleted.WaitOne(DefaultFlushTimeout);
                     loadedConfig.Close();
+                }
             }
             InternalLogger.Info("Logger has been closed down.");
         }
@@ -1251,23 +1249,6 @@ namespace NLog
                 }
             }
         }
-
-        private void DomainUnload(object sender, EventArgs e)
-        {
-            //stop timer on domain unload, otherwise: 
-            //Exception: System.AppDomainUnloadedException
-            //Message: Attempted to access an unloaded AppDomain.
-            try
-            {
-                Dispose();
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-                InternalLogger.Error(ex, "LogFactory failed to shut down properly.");
-            }
-        }
 #endif
         /// <summary>
         /// Logger cache key.
@@ -1436,12 +1417,25 @@ namespace NLog
 
         private static void OnLoggerShutdown(object sender, EventArgs args)
         {
-            var loggerShutdown = LoggerShutdown;
-            if (loggerShutdown != null)
-                loggerShutdown.Invoke(sender, args);
-            if (currentAppDomain != null)
+            try
             {
-                CurrentAppDomain = null;    // Unregister and disconnect from AppDomain
+                var loggerShutdown = LoggerShutdown;
+                if (loggerShutdown != null)
+                    loggerShutdown.Invoke(sender, args);
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+                InternalLogger.Error(ex, "LogFactory failed to shut down properly.");
+            }
+            finally
+            {
+                LoggerShutdown = null;
+                if (currentAppDomain != null)
+                {
+                    CurrentAppDomain = null;    // Unregister and disconnect from AppDomain
+                }
             }
         }
 
@@ -1449,6 +1443,9 @@ namespace NLog
         {
             try
             {
+                //stop timer on domain unload, otherwise: 
+                //Exception: System.AppDomainUnloadedException
+                //Message: Attempted to access an unloaded AppDomain.
                 InternalLogger.Info("Shutting down logging...");
                 // Finalizer thread has about 2 secs, before being terminated
                 this.Close(TimeSpan.FromMilliseconds(1500));
