@@ -183,6 +183,30 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void JsonAttributeThreadAgnosticTest()
+        {
+            var jsonLayout = new JsonLayout
+            {
+                Attributes =
+                {
+                    new JsonAttribute("type", "${exception:format=Type}"),
+                    new JsonAttribute("message", "${exception:format=Message}"),
+                    new JsonAttribute("threadid", "${threadid}"),
+                }
+            };
+
+            var logEventInfo = CreateLogEventWithExcluded();
+            var result = jsonLayout.Render(logEventInfo);
+            string cachedLookup;
+            logEventInfo.TryGetCachedLayoutValue(jsonLayout, out cachedLookup);
+            Assert.NotNull(cachedLookup);
+            Assert.Equal(result, cachedLookup);
+
+            string cacheVerification = jsonLayout.Render(logEventInfo);
+            Assert.Equal(true, ReferenceEquals(cachedLookup, cacheVerification));
+        }
+
+        [Fact]
         public void NestedJsonAttrTest()
         {
             var jsonLayout = new JsonLayout
@@ -350,9 +374,7 @@ namespace NLog.UnitTests.Layouts
 
             var logEventInfo = CreateLogEventWithExcluded();
 
-
             Assert.Equal(ExpectedIncludeAllPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
-
         }
 
         /// <summary>

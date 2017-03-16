@@ -50,7 +50,7 @@ namespace NLog.Internal
         /// </summary>
         private readonly static char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT || WINDOWS_PHONE
 
         /// <summary>
         /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
@@ -63,12 +63,10 @@ namespace NLog.Internal
 
         private FilePathKind _filePathKind;
 
-#if !SILVERLIGHT
         /// <summary>
         /// not null when <see cref="_filePathKind"/> == <c>false</c>
         /// </summary>
         private string _baseDir;
-#endif
 
         /// <summary>
         /// non null is fixed,
@@ -131,13 +129,11 @@ namespace NLog.Internal
                     _filePathKind = FilePathKind.Unknown;
                 }
             }
-#if !SILVERLIGHT
 
             if (_filePathKind == FilePathKind.Relative)
             {
-                _baseDir = AppDomainWrapper.CurrentDomain.BaseDirectory;
+                _baseDir = LogFactory.CurrentAppDomain.BaseDirectory;
             }
-#endif
 
         }
 
@@ -152,8 +148,9 @@ namespace NLog.Internal
         /// Render the raw filename from Layout
         /// </summary>
         /// <param name="logEvent">The log event.</param>
+        /// <param name="reusableBuilder">StringBuilder to minimize allocations [optional].</param>
         /// <returns>String representation of a layout.</returns>
-        private string GetRenderedFileName(LogEventInfo logEvent)
+        private string GetRenderedFileName(LogEventInfo logEvent, System.Text.StringBuilder reusableBuilder = null)
         {
             if (cleanedFixedResult != null)
             {
@@ -165,7 +162,40 @@ namespace NLog.Internal
                 return null;
             }
 
-            return _layout.Render(logEvent);
+            if (reusableBuilder != null)
+            {
+                if (!_layout.IsThreadAgnostic)
+                {
+                    string cachedResult;
+                    if (logEvent.TryGetCachedLayoutValue(_layout, out cachedResult))
+                        return cachedResult;
+                }
+
+                _layout.RenderAppendBuilder(logEvent, reusableBuilder);
+
+                if (_cachedPrevRawFileName != null && _cachedPrevRawFileName.Length == reusableBuilder.Length)
+                {
+                    // If old filename matches the newly rendered, then no need to call StringBuilder.ToString()
+                    for (int i = 0; i < _cachedPrevRawFileName.Length; ++i)
+                    {
+                        if (_cachedPrevRawFileName[i] != reusableBuilder[i])
+                        {
+                            _cachedPrevRawFileName = null;
+                            break;
+                        }
+                    }
+                    if (_cachedPrevRawFileName != null)
+                        return _cachedPrevRawFileName;
+                }
+
+                _cachedPrevRawFileName = reusableBuilder.ToString();
+                _cachedPrevCleanFileName = null;
+                return _cachedPrevRawFileName;
+            }
+            else
+            {
+                return _layout.Render(logEvent);
+            }
         }
 
         /// <summary>
@@ -186,14 +216,12 @@ namespace NLog.Internal
                 return cleanFileName;
             }
 
-#if !SILVERLIGHT
-            if (_filePathKind == FilePathKind.Relative)
+            if (_filePathKind == FilePathKind.Relative && _baseDir != null)
             {
                 //use basedir, faster than Path.GetFullPath
                 cleanFileName = Path.Combine(_baseDir, cleanFileName);
                 return cleanFileName;
             }
-#endif
             //unknown, use slow method
             cleanFileName = Path.GetFullPath(cleanFileName);
             return cleanFileName;
@@ -201,7 +229,12 @@ namespace NLog.Internal
 
         public string Render(LogEventInfo logEvent)
         {
-            var rawFileName = GetRenderedFileName(logEvent);
+            return RenderWithBuilder(logEvent);
+        }
+
+        internal string RenderWithBuilder(LogEventInfo logEvent, System.Text.StringBuilder reusableBuilder = null)
+        { 
+            var rawFileName = GetRenderedFileName(logEvent, reusableBuilder);
             if (string.IsNullOrEmpty(rawFileName))
             {
                 return rawFileName;
@@ -210,7 +243,7 @@ namespace NLog.Internal
             if ((!_cleanupInvalidChars || cleanedFixedResult != null) && _filePathKind == FilePathKind.Absolute)
                 return rawFileName; // Skip clean filename string-allocation
 
-            if (string.CompareOrdinal(_cachedPrevRawFileName, rawFileName) == 0 && _cachedPrevCleanFileName != null)
+            if (string.Equals(_cachedPrevRawFileName, rawFileName, StringComparison.Ordinal) && _cachedPrevCleanFileName != null)
                 return _cachedPrevCleanFileName;    // Cache Hit, reuse clean filename string-allocation
 
             var cleanFileName = GetCleanFileName(rawFileName);
@@ -285,7 +318,7 @@ namespace NLog.Internal
 
         private static string CleanupInvalidFilePath(string filePath)
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT || WINDOWS_PHONE
             if (StringHelpers.IsNullOrWhiteSpace(filePath))
             {
                 return filePath;

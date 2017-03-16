@@ -90,12 +90,29 @@ namespace NLog.Layouts
         /// <summary>
         /// Formats the log event as a JSON document for writing.
         /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        {
+            RenderJsonFormattedMessage(logEvent, target);
+            if (target.Length == 0 && RenderEmptyObject)
+            {
+                target.Append(SuppressSpaces ? "{}" : "{  }");
+            }
+        }
+
+        /// <summary>
+        /// Formats the log event as a JSON document for writing.
+        /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
         /// <returns>A JSON string representation of the log event.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            StringBuilder sb = null;
+            return RenderAllocateBuilder(logEvent);
+        }
 
+        private void RenderJsonFormattedMessage(LogEventInfo logEvent, StringBuilder sb)
+        {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.Attributes.Count; i++)
@@ -104,10 +121,9 @@ namespace NLog.Layouts
                 string text = attrib.LayoutWrapper.Render(logEvent);
                 if (!string.IsNullOrEmpty(text))
                 {
-                    bool first = sb == null;
+                    bool first = sb.Length == 0;
                     if (first)
                     {
-                        sb = new StringBuilder(attrib.Name.Length + text.Length + 10);
                         sb.Append(SuppressSpaces ? "{" : "{ ");
                     }
                     AppendJsonAttributeValue(attrib, text, sb, first);
@@ -131,7 +147,7 @@ namespace NLog.Layouts
                     if (prop.Value == null)
                     {
                         dynAttrib.Name = propName;
-                        dynAttrib.Encode = false;    // Don't put quotes around null values;
+                        dynAttrib.Encode = false;    // Don't put quotes around null values
                         dynAttrib.Layout = "null";
                     }
                     else
@@ -155,10 +171,9 @@ namespace NLog.Layouts
                     string text = dynAttrib.LayoutWrapper.Render(logEvent);
                     if (!string.IsNullOrEmpty(text))
                     {
-                        bool first = sb == null;
+                        bool first = sb.Length == 0;
                         if (first)
                         {
-                            sb = new StringBuilder(dynAttrib.Name.Length + text.Length + 10);
                             sb.Append(SuppressSpaces ? "{" : "{ ");
                         }
                         AppendJsonAttributeValue(dynAttrib, text, sb, first);
@@ -166,15 +181,8 @@ namespace NLog.Layouts
                 }
             }
 
-            if (sb == null)
-            {
-                if (!RenderEmptyObject)
-                    return string.Empty;
-                else
-                    return SuppressSpaces ? "{}" : "{  }";
-            }
-            sb.Append(SuppressSpaces ? "}" : " }");
-            return sb.ToString();
+            if (sb.Length > 0)
+                sb.Append(SuppressSpaces ? "}" : " }");
         }
 
         private void AppendJsonAttributeValue(JsonAttribute attrib, string text, StringBuilder sb, bool first)
@@ -205,7 +213,7 @@ namespace NLog.Layouts
             {
                 //If encoding is disabled for current attribute, do not escape the value of the attribute.
                 //This enables user to write arbitrary string value (including JSON).
-                // "\"{0}\":{1}{2}";
+                // "\"{0}\":{1}{2}"
                 sb.Append(text);
             }
         }

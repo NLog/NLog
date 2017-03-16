@@ -79,7 +79,7 @@ namespace NLog.UnitTests.LayoutRenderers
             else
             {
                 //-01:00, etc
-                Assert.Contains(string.Format("-{0:D2}:{1:D2}", offset2.Hours, offset2.Minutes), result);
+                Assert.Contains(string.Format("{0:D2}:{1:D2}", offset2.Hours, offset2.Minutes), result);
             }
 
         }

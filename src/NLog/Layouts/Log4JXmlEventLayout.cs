@@ -64,14 +64,17 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            string cachedValue;
+            return RenderAllocateBuilder(logEvent);
+        }
 
-            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-            {
-                return cachedValue;
-            }
-
-            return logEvent.AddCachedLayoutValue(this, this.Renderer.Render(logEvent));
+        /// <summary>
+        /// Renders the layout for the specified logging event by invoking layout renderers.
+        /// </summary>
+        /// <param name="logEvent">The logging event.</param>
+        /// <param name="target">Initially empty <see cref="System.Text.StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
+        {
+            this.Renderer.RenderAppendBuilder(logEvent, target);
         }
     }
 }

@@ -66,6 +66,43 @@ namespace NLog.Targets
         /// <summary>
         /// AddToArchive every minute.
         /// </summary>
-        Minute
+        Minute,
+
+        #region Weekdays
+        /// <summary>
+        /// AddToArchive every Sunday.
+        /// </summary>
+        Sunday,
+
+        /// <summary>
+        /// AddToArchive every Monday.
+        /// </summary>
+        Monday,
+
+        /// <summary>
+        /// AddToArchive every Tuesday.
+        /// </summary>
+        Tuesday,
+
+        /// <summary>
+        /// AddToArchive every Wednesday.
+        /// </summary>
+        Wednesday,
+
+        /// <summary>
+        /// AddToArchive every Thursday.
+        /// </summary>
+        Thursday,
+
+        /// <summary>
+        /// AddToArchive every Friday.
+        /// </summary>
+        Friday,
+
+        /// <summary>
+        /// AddToArchive every Saturday.
+        /// </summary>
+        Saturday
+        #endregion 
     }
 }
