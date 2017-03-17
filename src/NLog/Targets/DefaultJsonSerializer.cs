@@ -46,33 +46,6 @@ namespace NLog.Targets
     {
         private const int MaxRecursionDepth = 10;
 
-        private static HashSet<Type> NumericTypes = new HashSet<Type>
-            {
-                    typeof(int),
-                    typeof(uint),
-                    typeof(long),
-                    typeof(ulong),
-                    typeof(short),
-                    typeof(ushort),
-                    typeof(byte),
-                    typeof(sbyte),
-                    typeof(float),
-                    typeof(double),
-                    typeof(decimal),
-            };
-
-        private static Dictionary<char, string> CharacterMap = new Dictionary<char, string>()
-        {
-            { '"', "\\\"" },
-            { '\\', "\\\\" },
-            { '/', "\\/" },
-            { '\b', "\\b" },
-            { '\f', "\\f" },
-            { '\n', "\\n" },
-            { '\r', "\\r" },
-            { '\t', "\\t" },
-        };
-
         private static readonly DefaultJsonSerializer instance;
 
         /// <summary>
@@ -99,7 +72,7 @@ namespace NLog.Targets
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value)
         {
-            return SerializeObject(value, new HashSet<object>(), 0);
+            return SerializeObject(value, null, 0);
         }
 
 
@@ -115,7 +88,7 @@ namespace NLog.Targets
         /// </returns>
         private string SerializeObject(object value, HashSet<object> objectsInPath, int depth)
         {
-            if(objectsInPath.Contains(value))
+            if (objectsInPath != null && objectsInPath.Contains(value))
             {
                 return null;        // detected reference loop, skip serialization
             }
@@ -129,14 +102,14 @@ namespace NLog.Targets
             }
             else if ((str = value as string) != null)
             {
-                return string.Format("\"{0}\"", EscapeString(str));
+                return string.Concat("\"", JsonStringEscape(str), "\"");
             }
             else if ((dict = value as IDictionary) != null)
             {
                 if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
 
                 var list = new List<string>();
-                var set = new HashSet<object>(objectsInPath) {value};
+                var set = new HashSet<object>(objectsInPath ?? (IEnumerable<object>)Internal.ArrayHelper.Empty<object>()) { value };
                 foreach (DictionaryEntry de in dict)
                 {
                     var keyJson = SerializeObject(de.Key, set, depth + 1);
@@ -144,19 +117,18 @@ namespace NLog.Targets
                     if (!string.IsNullOrEmpty(keyJson) && valueJson != null)
                     {
                         //only serialize, if key and value are serialized without error (e.g. due to reference loop)
-                        list.Add(string.Format("{0}:{1}", keyJson, valueJson));
+                        list.Add(string.Concat(keyJson, ":", valueJson));
                     }
                 }
 
-                return string.Format("{{{0}}}", string.Join(",", list.ToArray()));
+                return string.Concat("{", string.Join(",", list.ToArray()), "}");
             }
-            else if((enumerable = value as IEnumerable) != null)
+            else if ((enumerable = value as IEnumerable) != null)
             {
                 if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
 
                 var list = new List<string>();
-                var set = new HashSet<object>(objectsInPath);
-                set.Add(value);
+                var set = new HashSet<object>(objectsInPath ?? (IEnumerable<object>)Internal.ArrayHelper.Empty<object>()) { value };
                 foreach (var val in enumerable)
                 {
                     var valueJson = SerializeObject(val, set, depth + 1);
@@ -166,59 +138,158 @@ namespace NLog.Targets
                     }
                 }
 
-                return string.Format("[{0}]", string.Join(",", list.ToArray()));
-            }
-            else if (NumericTypes.Contains(value.GetType()))
-            {
-#if SILVERLIGHT
-                var culture = new CultureInfo("en-US").NumberFormat;
-#else
-                var culture = new CultureInfo("en-US", false).NumberFormat;
-#endif
-                culture.NumberGroupSeparator = string.Empty;
-                culture.NumberDecimalSeparator = ".";
-                culture.NumberGroupSizes = new int[] { 0 };
-                return string.Format(culture, "{0}", value);
+                return string.Concat("[", string.Join(",", list.ToArray()), "]");
             }
             else
             {
-                try
-                {
-                    return value.ToString();
-                }
-                catch 
-                {
-                    return null;
-                }
-             }
+                bool encodeStringValue;
+                string escapeXmlString = JsonStringEncode(value, out encodeStringValue);
+                if (escapeXmlString != null && encodeStringValue)
+                    return string.Concat("\"", escapeXmlString, "\"");
+                else
+                    return escapeXmlString;
+            }
         }
 
-        private static string EscapeString(string str)
+        /// <summary>
+        /// Converts object value into JSON escaped string
+        /// </summary>
+        /// <param name="value">Object value</param>
+        /// <param name="encodeString">Should string be JSON encoded with quotes</param>
+        /// <returns>Object value converted to JSON escaped string</returns>
+        internal static string JsonStringEncode(object value, out bool encodeString)
         {
-            var sb = new StringBuilder(str.Length);
-            foreach(var c in str)
+            TypeCode objTypeCode;
+            string stringValue = Internal.XmlHelper.XmlConvertToString(value, out objTypeCode);
+            if (objTypeCode != TypeCode.String || stringValue == null)
             {
-                sb.Append(EscapeChar(c));
+                encodeString = false;
+                if (stringValue == null)
+                    return stringValue;
+                else if (objTypeCode == TypeCode.Empty)
+                    return stringValue; // Don't put quotes around null values
+                else if (objTypeCode == TypeCode.Boolean)
+                    return stringValue; // Don't put quotes around boolean values
+                else if (IsNumericTypeCode(objTypeCode))
+                    return stringValue; // Don't put quotes around numeric values
             }
 
-            return sb.ToString();
+            encodeString = true;
+            return JsonStringEscape(stringValue);
         }
 
-        private static string EscapeChar(char c)
+        private static bool IsNumericTypeCode(TypeCode objTypeCode)
         {
-            string mapped;
-            if(CharacterMap.TryGetValue(c, out mapped))
+            switch (objTypeCode)
             {
-                return mapped;
+                case TypeCode.Byte:
+                case TypeCode.SByte:
+                case TypeCode.Int16:
+                case TypeCode.Int32:
+                case TypeCode.Int64:
+                case TypeCode.UInt16:
+                case TypeCode.UInt32:
+                case TypeCode.UInt64:
+                case TypeCode.Single:
+                case TypeCode.Double:
+                case TypeCode.Decimal:
+                    return true;
             }
-            else if(c <= 0x1f)
+            return false;
+        }
+
+        /// <summary>
+        /// Checks input string if it needs JSON escaping, and makes necessary conversion
+        /// </summary>
+        /// <param name="text">Input string</param>
+        /// <returns>JSON escaped string</returns>
+        internal static string JsonStringEscape(string text)
+        {
+            if (text == null)
+                return null;
+
+            StringBuilder sb = null;
+            for (int i = 0; i < text.Length; ++i)
             {
-                return string.Format("\\u{0:x4}", (int)c);
+                char ch = text[i];
+                if (sb == null)
+                {
+                    // Check if we need to upgrade to StringBuilder
+                    if (!EscapeChar(ch))
+                    {
+                        switch (ch)
+                        {
+                            case '"':
+                            case '\\':
+                            case '/':
+                                break;
+
+                            default:
+                                continue;   // StringBuilder not needed, yet
+                        }
+                    }
+
+                    // StringBuilder needed
+                    sb = new StringBuilder(text.Length + 4);
+                    sb.Append(text, 0, i);
+                }
+
+                switch (ch)
+                {
+                    case '"':
+                        sb.Append("\\\"");
+                        break;
+
+                    case '\\':
+                        sb.Append("\\\\");
+                        break;
+
+                    case '/':
+                        sb.Append("\\/");
+                        break;
+
+                    case '\b':
+                        sb.Append("\\b");
+                        break;
+
+                    case '\r':
+                        sb.Append("\\r");
+                        break;
+
+                    case '\n':
+                        sb.Append("\\n");
+                        break;
+
+                    case '\f':
+                        sb.Append("\\f");
+                        break;
+
+                    case '\t':
+                        sb.Append("\\t");
+                        break;
+
+                    default:
+                        if (EscapeChar(ch))
+                        {
+                            sb.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)ch);
+                        }
+                        else
+                        {
+                            sb.Append(ch);
+                        }
+                        break;
+                }
             }
+
+            if (sb != null)
+                return sb.ToString();
             else
-            {
-                return c.ToString();
-            }
+                return text;
+        }
+
+        private static bool EscapeChar(char ch)
+        {
+            return ch < 32 || ch > 127;
         }
     }
 }

@@ -37,10 +37,10 @@ namespace NLog.UnitTests.Targets
     using Xunit;
     using Xunit.Extensions;
     using System;
-    using System.Linq;
     using System.Collections.Generic;
     using System.Collections;
     using System.Text.RegularExpressions;
+
     public class DefaultJsonSerializerTests : NLogTestBase
     {
         private DefaultJsonSerializer _serializer;
@@ -164,9 +164,26 @@ namespace NLog.UnitTests.Targets
         public void SerializeBool_Test()
         {
             var actual = _serializer.SerializeObject(true);
-            Assert.Equal("true", actual, StringComparer.OrdinalIgnoreCase);
+            Assert.Equal("true", actual);
             actual = _serializer.SerializeObject(false);
-            Assert.Equal("false", actual, StringComparer.OrdinalIgnoreCase);
+            Assert.Equal("false", actual);
+        }
+
+        [Fact]
+        public void SerializeDateTime_Test()
+        {
+            DateTime utcNow = DateTime.UtcNow;
+            utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
+            var actual = _serializer.SerializeObject(utcNow);
+            Assert.Equal("\"" + utcNow.ToString("yyyy-MM-ddTHH:mm:ssZ", System.Globalization.CultureInfo.InvariantCulture) + "\"", actual);
+        }
+
+        [Fact]
+        public void SerializeGuid_Test()
+        {
+            Guid newGuid = Guid.NewGuid();
+            var actual = _serializer.SerializeObject(newGuid);
+            Assert.Equal("\"" + newGuid.ToString() + "\"", actual);
         }
 
         private class TestList : IEnumerable<IEnumerable>
