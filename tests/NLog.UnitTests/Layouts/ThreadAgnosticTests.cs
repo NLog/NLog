@@ -65,7 +65,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = new SimpleLayout("${message}");
             l.Initialize(null);
-            Assert.True(l.IsThreadAgnostic);
+            Assert.True(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -73,7 +73,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = new SimpleLayout("${threadname}");
             l.Initialize(null);
-            Assert.False(l.IsThreadAgnostic);
+            Assert.False(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -81,7 +81,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = new SimpleLayout("${message}${threadname}");
             l.Initialize(null);
-            Assert.False(l.IsThreadAgnostic);
+            Assert.False(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -89,7 +89,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = new SimpleLayout("${message}${level}${logger}");
             l.Initialize(null);
-            Assert.True(l.IsThreadAgnostic);
+            Assert.True(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -97,7 +97,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = new SimpleLayout("${rot13:${message}}");
             l.Initialize(null);
-            Assert.True(l.IsThreadAgnostic);
+            Assert.True(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -105,7 +105,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = new SimpleLayout("${lowercase:${rot13:${message}}}");
             l.Initialize(null);
-            Assert.True(l.IsThreadAgnostic);
+            Assert.True(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -113,7 +113,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = new SimpleLayout("${uppercase:${lowercase:${rot13:${message}}}}");
             l.Initialize(null);
-            Assert.True(l.IsThreadAgnostic);
+            Assert.True(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -121,7 +121,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = new SimpleLayout("${uppercase:${lowercase:${rot13:${message}${threadname}}}}");
             l.Initialize(null);
-            Assert.False(l.IsThreadAgnostic);
+            Assert.False(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -129,7 +129,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${logger}:padding=10:padCharacter=X}'=='XXXXlogger'}";
             l.Initialize(null);
-            Assert.True(l.IsThreadAgnostic);
+            Assert.True(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -137,7 +137,7 @@ namespace NLog.UnitTests.Layouts
         {
             Layout l = @"${message:padding=-10:padCharacter=Y:when='${pad:${threadname}:padding=10:padCharacter=X}'=='XXXXlogger'}";
             l.Initialize(null);
-            Assert.False(l.IsThreadAgnostic);
+            Assert.False(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -154,7 +154,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             l.Initialize(null);
-            Assert.True(l.IsThreadAgnostic);
+            Assert.True(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -171,7 +171,7 @@ namespace NLog.UnitTests.Layouts
             };
 
             l.Initialize(null);
-            Assert.False(l.IsThreadAgnostic);
+            Assert.False(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -183,7 +183,7 @@ namespace NLog.UnitTests.Layouts
             Layout l = new SimpleLayout("${customNotAgnostic}", cif);
 
             l.Initialize(null);
-            Assert.False(l.IsThreadAgnostic);
+            Assert.False(l.ThreadAgnostic);
         }
 
         [Fact]
@@ -195,7 +195,7 @@ namespace NLog.UnitTests.Layouts
             Layout l = new SimpleLayout("${customAgnostic}", cif);
 
             l.Initialize(null);
-            Assert.True(l.IsThreadAgnostic);
+            Assert.True(l.ThreadAgnostic);
         }
 
         [LayoutRenderer("customNotAgnostic")]
