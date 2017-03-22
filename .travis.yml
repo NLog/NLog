@@ -1,5 +1,5 @@
 language: csharp
-dist: "trusty"
+
 matrix:
   include:
     - mono: 2.10.8
@@ -8,6 +8,10 @@ matrix:
     - mono: latest
       env: MONO_V=MONO4
       solution: src/NLog.mono4.sln
+    - mono: latest
+      env: MONO_V=MONO4
+      solution: src/NLog.mono4.sln
+      dist: "trusty"
 
 before_script: 
 - chmod ugo+x build-mono.sh
@@ -15,8 +19,3 @@ before_script:
 
 script: ./build-mono.sh
 
-addons:
-  sonarqube: true
-  branches:
-    - sonarqube
-    - master
