@@ -258,7 +258,14 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+      
+
+
+#if MONO_2_0
+        [Theory(Skip = "Skip SimpleConcurrentTest for mono2 - issues on Travis")]
+#else
         [Theory]
+#endif
 #if !MONO
         // MONO Doesn't work well with global mutex, and it is needed for succesful concurrent archive operations
         [InlineData(2, 500, "none|archive")]
@@ -275,7 +282,11 @@ namespace NLog.UnitTests.Targets
             DoConcurrentTest(numProcesses, numLogs, mode);
         }
 
+#if MONO_2_0
+        [Theory(Skip = "Skip AsyncConcurrentTest for mono2 - issues on Travis")]
+#else
         [Theory]
+#endif
         [InlineData("async")]
         [InlineData("async|mutex")]
         public void AsyncConcurrentTest(string mode)
@@ -289,7 +300,11 @@ namespace NLog.UnitTests.Targets
             DoConcurrentTest(5, 1000, mode);
         }
 
+#if MONO_2_0
+        [Theory(Skip = "Skip BufferedConcurrentTest for mono2 - issues on Travis")]
+#else
         [Theory]
+#endif
         [InlineData("buffered")]
         [InlineData("buffered|mutex")]
         public void BufferedConcurrentTest(string mode)
@@ -297,7 +312,11 @@ namespace NLog.UnitTests.Targets
             DoConcurrentTest(5, 1000, mode);
         }
 
+#if MONO_2_0
+        [Theory(Skip = "Skip BufferedTimedFlushConcurrentTest for mono2 - issues on Travis")]
+#else
         [Theory]
+#endif
         [InlineData("buffered_timed_flush")]
         [InlineData("buffered_timed_flush|mutex")]
         public void BufferedTimedFlushConcurrentTest(string mode)
