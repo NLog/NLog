@@ -29,7 +29,7 @@ and send them to one or more targets such as file or database.
 For more information, see the website [nlog-project.org](http://nlog-project.org)
 or just get started with the tutorials on [the NLog wiki](https://github.com/NLog/NLog/wiki).
 
-[Project news - including RSS feed](http://nlog-project.org/archives/)
+Major releases will be posted on [project news](http://nlog-project.org/archives/). For smaller updates, follow us on [Twitter](https://twitter.com/NLogOfficial)
 
 Packages & Status
 ---
@@ -97,34 +97,12 @@ See [LICENSE.txt](LICENSE.txt) for details.
 
 How to build
 ---
-Use Visual Studio 2012/2013/2015 and open solution file in the 'src' folder, like 'NLog.netfx45.sln'
-C# 6.0 support (Visual Studio 2015) is required to build UnitTest project, like 'NLog.UnitTests.netfx45'.
+Use Visual Studio 2015 and open solution file in the 'src' folder, like 'NLog.netfx45.sln' - C# 6.0 support is required.
 
 For building in the cloud we use:
 - AppVeyor for Windows builds, including Silverlight and Xamarin.
 - Travis for Mono builds.
 - CodeCov for code coverage
 
-How to build your fork in the cloud
----
-Steps to set up [AppVeyor](https://ci.appveyor.com)/[Travis](https://travis-ci.org/)/[CodeCov](https://codecov.io/) for your own fork.
+Trying to build your fork in the could? Check [this how-to](howto-build-your-fork.md)
 
-**AppVeyor**:
-
-1. Login with your Github account to https://ci.appveyor.com
-2. Choose "projects"
-3. Select your fork and press "+" button
-4. Done. All config is in appveyor.yml already
-
-**Travis**:
-
-1. Login with your Github account to https://travis-ci.org/
-2. Select your fork
-3. Push and wait
-
-**CodeCov**: (AppVeyor needed)
-
-1. Login with your Github account to https://codecov.io/
-2. Press "+  Add new repository to Codecov" button
-3. Select your fork
-4. Wait for a build on AppVeyor. All the config is already in appveyor.yml. The first report can take some minutes after the first build.
