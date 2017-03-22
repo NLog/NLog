@@ -259,24 +259,33 @@ namespace NLog.LayoutRenderers
                             {
                                 xtw.WriteAttributeSafeString("assembly", type.Assembly.FullName);
                             }
-
-                            xtw.WriteEndElement();
-
-                            xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                            if (logEvent.HasProperties)
-                            {
-                                foreach (var contextProperty in logEvent.Properties)
-                                {
-                                    xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
-                                    xtw.WriteAttributeSafeString("name", Convert.ToString(contextProperty.Key, CultureInfo.InvariantCulture));
-                                    xtw.WriteAttributeSafeString("value", Convert.ToString(contextProperty.Value, CultureInfo.InvariantCulture));
-                                    xtw.WriteEndElement();
-                                }
-                            }
                             xtw.WriteEndElement();
                         }
-
                     }
+                }
+
+                if (this.IncludeNLogData)
+                {
+                    xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
+                    if (logEvent.HasProperties)
+                    {
+                        foreach (var contextProperty in logEvent.Properties)
+                        {
+                            string propertyKey = XmlHelper.XmlConvertToString(contextProperty.Key);
+                            if (string.IsNullOrEmpty(propertyKey))
+                                continue;
+
+                            string propertyValue = XmlHelper.XmlConvertToString(contextProperty.Value);
+                            if (propertyValue == null)
+                                continue;
+
+                            xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
+                            xtw.WriteAttributeSafeString("name", propertyKey);
+                            xtw.WriteAttributeSafeString("value", propertyValue);
+                            xtw.WriteEndElement();
+                        }
+                    }
+                    xtw.WriteEndElement();
                 }
 
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
@@ -284,9 +293,13 @@ namespace NLog.LayoutRenderers
                 {
                     foreach (string key in MappedDiagnosticsContext.GetNames())
                     {
+                        string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsContext.GetObject(key));
+                        if (propertyValue == null)
+                            continue;
+
                         xtw.WriteStartElement("log4j", "data", dummyNamespace);
                         xtw.WriteAttributeSafeString("name", key);
-                        xtw.WriteAttributeSafeString("value", String.Format(logEvent.FormatProvider, "{0}", MappedDiagnosticsContext.GetObject(key)));
+                        xtw.WriteAttributeSafeString("value", propertyValue);
                         xtw.WriteEndElement();
                     }
                 }
@@ -309,10 +322,9 @@ namespace NLog.LayoutRenderers
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
                 xtw.WriteAttributeSafeString("name", "log4jmachinename");
-
                 xtw.WriteAttributeSafeString("value", this.machineName);
-
                 xtw.WriteEndElement();
+
                 xtw.WriteEndElement();
 
                 xtw.WriteEndElement();
