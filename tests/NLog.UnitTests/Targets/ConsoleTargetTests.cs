@@ -38,7 +38,10 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using System.Collections.Generic;
     using Xunit;
-    using System.Threading.Tasks;
+
+#if !NET3_5
+    using System.Threading.Tasks; //Parallel
+#endif
 
     public class ConsoleTargetTests : NLogTestBase
     {

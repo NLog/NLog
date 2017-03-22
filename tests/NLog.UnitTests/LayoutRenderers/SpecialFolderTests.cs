@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.UnitTests.Internal;
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -70,7 +71,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void SpecialFolderDirFileCombineTest()
         {
-            AssertLayoutRendererOutput(string.Format("${{specialfolder:folder={0}:dir=aaa:file=bbb.txt}}", sysDirString), Path.Combine(this.sysDir, "aaa", "bbb.txt"));
+            AssertLayoutRendererOutput(string.Format("${{specialfolder:folder={0}:dir=aaa:file=bbb.txt}}", sysDirString), PathHelpers.Combine(this.sysDir, "aaa", "bbb.txt"));
         }
     }
 }

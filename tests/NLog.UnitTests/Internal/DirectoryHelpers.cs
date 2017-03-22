@@ -31,48 +31,27 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
-using NLog.Internal;
-using Xunit;
-using Xunit.Extensions;
 
 namespace NLog.UnitTests.Internal
 {
-    public class StringBuilderExtTests : NLogTestBase
+    public static class DirectoryHelpers
     {
-        [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        [InlineData(4)]
-        [InlineData(5)]
-        [InlineData(6)]
-        [InlineData(7)]
-        [InlineData(8)]
-        [InlineData(9)]
-        [InlineData(10)]
-        [InlineData(12)]
-        [InlineData(123)]
-        [InlineData(1234)]
-        [InlineData(12345)]
-        [InlineData(123456)]
-        [InlineData(1234567)]
-        [InlineData(12345678)]
-        [InlineData(123456789)]
-        [InlineData(1234567890)]
-        [InlineData(int.MaxValue)]
-        [InlineData(int.MinValue)]
-        void TestAppendInvariant(int input)
+        public static IEnumerable<string> EnumerateFiles(string dir)
         {
-            StringBuilder sb = new StringBuilder();
-            StringBuilderExt.AppendInvariant(sb, input);
-            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
 
-            input = 0 - input;
-            sb = new StringBuilder(); 
-            StringBuilderExt.AppendInvariant(sb, input);
-            Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
+#if NET3_5
+            var dirInfo = new DirectoryInfo(dir);
+            return dirInfo.GetFiles().Select(f => f.FullName);
+#else
+            return Directory.EnumerateFiles(dir);
+#endif
         }
+
     }
 }

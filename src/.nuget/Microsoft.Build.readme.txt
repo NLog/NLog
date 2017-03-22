@@ -1,0 +1,1 @@
+This Microsoft.Build.dll comes v3.X of the Mono Project. Mit licensed Copyright (C) 2012 Xamarin Inc.

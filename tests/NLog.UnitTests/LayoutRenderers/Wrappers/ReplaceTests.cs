@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.UnitTests.Internal;
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;

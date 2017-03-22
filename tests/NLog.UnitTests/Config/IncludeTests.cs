@@ -78,12 +78,12 @@ namespace NLog.UnitTests.Config
             </nlog>");
 
 
-            CreateConfigFile(tempDir, "main.nlog", $@"<nlog>
-                <include file='{includeAttrValue}' />
+            CreateConfigFile(tempDir, "main.nlog", string.Format(@"<nlog>
+                <include file='{0}' />
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
-            </nlog>");
+            </nlog>", includeAttrValue));
 
 
             string fileToLoad = Path.Combine(tempDir, "main.nlog");

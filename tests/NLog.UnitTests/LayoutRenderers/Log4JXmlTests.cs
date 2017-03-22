@@ -228,7 +228,11 @@ namespace NLog.UnitTests.LayoutRenderers
                 IndentChars = "  ",
             };
 
+#if NET3_5 || MONO_2_0
+            sb.Length = 0;
+#else
             sb.Clear();
+#endif
             using (XmlWriter xtw = XmlWriter.Create(sb, settings))
             {
                 xtw.WriteStartElement("log4j", "event", "http:://hello/");

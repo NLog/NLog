@@ -175,7 +175,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
             FileAppenderCache_GetFileCharacteristics(appenderFactory, fileTarget);
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO_2_0
         [Fact]
         public void FileAppenderCache_GetFileCharacteristics_Multi()
         {

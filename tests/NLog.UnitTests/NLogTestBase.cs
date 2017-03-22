@@ -50,7 +50,7 @@ namespace NLog.UnitTests
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
-#if NET3_5 || NET4_0 || NET4_5
+#if (NET3_5 || NET4_0 || NET4_5) && !MONO_2_0
     using Ionic.Zip;
 #endif
 
@@ -151,7 +151,7 @@ namespace NLog.UnitTests
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if NET3_5 || NET4_0 || NET4_5
+#if (NET3_5 || NET4_0 || NET4_5) && !MONO_2_0
                 using (ZipFile zip = new ZipFile())
                 {
                     zip.AddFile(fileName);
@@ -161,7 +161,7 @@ namespace NLog.UnitTests
             }
         }
 
-#if NET3_5 || NET4_0
+#if (NET3_5 || NET4_0) && !MONO_2_0
         protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
         {
             if (!File.Exists(fileName))
@@ -306,7 +306,7 @@ namespace NLog.UnitTests
             Assert.Equal(expected, actual);
         }
 
-#if MONO || NET4_5
+#if MONO_4_0 || NET4_5
         /// <summary>
         /// Get line number of previous line.
         /// </summary>
