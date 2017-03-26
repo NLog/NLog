@@ -245,18 +245,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected CultureInfo GetCulture(LogEventInfo logEvent, CultureInfo layoutCulture = null)
         {
-            var culture = logEvent.FormatProvider as CultureInfo;
-
-            if (culture == null)
-            {
-                culture = layoutCulture;
-            }
-
-            if (culture == null && this.LoggingConfiguration != null)
-            {
-                culture =  this.LoggingConfiguration.DefaultCultureInfo;
-            }
-            return culture;
+            return GetFormatProvider(logEvent, layoutCulture) as CultureInfo;
         }
 
         /// <summary>
