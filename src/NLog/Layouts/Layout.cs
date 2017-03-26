@@ -261,19 +261,7 @@ namespace NLog.Layouts
             {
                 this.LoggingConfiguration = configuration;
                 this.isInitialized = true;
-
-                // determine whether the layout is thread-agnostic
-                // layout is thread agnostic if it is thread-agnostic and 
-                // all its nested objects are thread-agnostic.
-                this.ThreadAgnostic = true;
-                foreach (object item in ObjectGraphScanner.FindReachableObjects<object>(this))
-                {
-                    if (!item.GetType().IsDefined< ThreadAgnosticAttribute>(true))
-                    {
-                        this.ThreadAgnostic = false;
-                        break;
-                    }
-                }
+                this.ThreadAgnostic = IsThreadAgnostic();
 
                 this.InitializeLayout();
             }
@@ -343,6 +331,24 @@ namespace NLog.Layouts
             return (maxRenderedLength > MaxInitialRenderBufferLength) 
                     ? MaxInitialRenderBufferLength 
                     : maxRenderedLength;
+        }
+
+        /// <summary>
+        /// Determine whether the layout is thread-agnostic or not. The layout is thread-agnostic when itself  
+        /// and all the nested objects are thread-agnostic.
+        /// </summary>
+        /// <returns>True when thread-agnostic; false otherwise.</returns>
+        private bool IsThreadAgnostic() {
+            var result = true;
+
+            foreach (object item in ObjectGraphScanner.FindReachableObjects<object>(this)) {
+                if (!item.GetType().IsDefined<ThreadAgnosticAttribute>(true)) {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }
