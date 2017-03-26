@@ -178,11 +178,7 @@ namespace NLog.Layouts
                 }
             }
 
-            int initialLength = this.maxRenderedLength;
-            if (initialLength > MaxInitialRenderBufferLength)
-            {
-                initialLength = MaxInitialRenderBufferLength;
-            }
+            int initialLength = GetRenderBufferLength();
 
             using (var localTarget = new AppendBuilderCreator(target, initialLength))
             {
@@ -217,11 +213,7 @@ namespace NLog.Layouts
                 }
             }
 
-            int initialLength = this.maxRenderedLength;
-            if (initialLength > MaxInitialRenderBufferLength)
-            {
-                initialLength = MaxInitialRenderBufferLength;
-            }
+            int initialLength = GetRenderBufferLength();
 
             var sb = reusableBuilder ?? new StringBuilder(initialLength);
             RenderFormattedMessage(logEvent, sb);
@@ -352,6 +344,13 @@ namespace NLog.Layouts
         {
             ConfigurationItemFactory.Default.Layouts
                 .RegisterDefinition(name, layoutType);
+        }
+
+        private int GetRenderBufferLength()
+        {
+            return (maxRenderedLength > MaxInitialRenderBufferLength) 
+                    ? MaxInitialRenderBufferLength 
+                    : maxRenderedLength;
         }
     }
 }
