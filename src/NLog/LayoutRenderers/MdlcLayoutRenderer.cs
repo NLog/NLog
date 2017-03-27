@@ -31,9 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.LayoutRenderers
 {
-#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
     using System.Text;
     using Config;
     using Internal;
@@ -64,5 +65,6 @@ namespace NLog.LayoutRenderers
             builder.Append(o, logEvent, LoggingConfiguration);
         }
     }
-#endif
 }
+
+#endif
