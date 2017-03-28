@@ -453,7 +453,7 @@ namespace NLog.Targets
             bool foundNotThreadAgnostic = false;
             foreach (Layout layout in this.allLayouts)
             {
-                if (!layout.IsThreadAgnostic)
+                if (!layout.ThreadAgnostic)
                 {
                     foundNotThreadAgnostic = true;
                     break;
