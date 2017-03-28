@@ -6,7 +6,7 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 #### Fixes
 
 - [#2010](https://github.com/nlog/nlog/pull/2010) LogFactory - Ensure to flush and close on shutdown - fixes broken logging (@snakefoot)
-- [#2017](https://github.com/nlog/nlog/pull/2017) WebServiceTarget - Fix boolean parameter conversion for Xml and Json (lowercase) 
+- [#2017](https://github.com/nlog/nlog/pull/2017) WebServiceTarget - Fix boolean parameter conversion for Xml and Json (lowercase) (@snakefoot)
 
 
 #### Improvements
