@@ -41,7 +41,7 @@ namespace NLog.UnitTests.Layouts
 
     public class JsonLayoutTests : NLogTestBase
     {
-        private const string ExpectedIncludeAllPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": True, \"NullProp\": null }";
+        private const string ExpectedIncludeAllPropertiesWithExcludes = "{ \"StringProp\": \"ValueA\", \"IntProp\": 123, \"DoubleProp\": 123.123, \"DecimalProp\": 123.123, \"BoolProp\": true, \"NullProp\": null, \"DateTimeProp\": \"2345-01-23T12:34:56Z\" }";
 
         [Fact]
         public void JsonLayoutRendering()
@@ -423,6 +423,7 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties.Add("DecimalProp", 123.123m);
             logEventInfo.Properties.Add("BoolProp", true);
             logEventInfo.Properties.Add("NullProp", null);
+            logEventInfo.Properties.Add("DateTimeProp", new DateTime(2345, 1, 23, 12, 34, 56, DateTimeKind.Utc));
             logEventInfo.Properties.Add("Excluded1", "ExcludedValue");
             logEventInfo.Properties.Add("Excluded2", "Also excluded");
             return logEventInfo;

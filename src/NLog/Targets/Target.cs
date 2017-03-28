@@ -49,6 +49,8 @@ namespace NLog.Targets
     {
         private readonly object lockObject = new object();
         private List<Layout> allLayouts;
+        
+        /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool allLayoutsAreThreadAgnostic;
         private bool scannedForLayouts;
         private Exception initializeException;
@@ -186,6 +188,7 @@ namespace NLog.Targets
         /// <summary>
         /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
         /// used by this target.
+        /// This method won't prerender if all layouts in this target are thread-agnostic.
         /// </summary>
         /// <param name="logEvent">
         /// The log event.
@@ -404,7 +407,9 @@ namespace NLog.Targets
                         if (this.initializeException == null)
                         {
                             // if Init succeeded, call Close()
+                            InternalLogger.Debug("Closing target '{0}'.", this);
                             this.CloseTarget();
+                            InternalLogger.Debug("Closed target '{0}'.", this);
                         }
                     }
                     catch (Exception exception)
@@ -480,22 +485,19 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes logging event to the log target.
+        /// Writes logging event to the log target. Must be overridden in inheriting
         /// classes.
         /// </summary>
-        /// <param name="logEvent">
-        /// Logging event to be written out.
-        /// </param>
+        /// <param name="logEvent">Logging event to be written out.</param>
         protected virtual void Write(LogEventInfo logEvent)
         {
-            // do nothing
+            // Override to perform the actual write-operation
         }
 
         /// <summary>
-        /// Writes log event to the log target. Must be overridden in inheriting
-        /// classes.
+        /// Writes async log event to the log target.
         /// </summary>
-        /// <param name="logEvent">Log event to be written out.</param>
+        /// <param name="logEvent">Async Log event to be written out.</param>
         protected virtual void Write(AsyncLogEventInfo logEvent)
         {
             try

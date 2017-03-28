@@ -49,7 +49,7 @@ namespace NLog.Targets
         /// </summary>
         public MethodCallParameter()
         {
-            this.Type = typeof(string);
+            this.ParameterType = typeof(string);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace NLog.Targets
         /// <param name="layout">The layout to use for parameter value.</param>
         public MethodCallParameter(Layout layout)
         {
-            this.Type = typeof(string);
+            this.ParameterType = typeof(string);
             this.Layout = layout;
         }
 
@@ -69,7 +69,7 @@ namespace NLog.Targets
         /// <param name="layout">The layout.</param>
         public MethodCallParameter(string parameterName, Layout layout)
         {
-            this.Type = typeof(string);
+            this.ParameterType = typeof(string);
             this.Name = parameterName;
             this.Layout = layout;
         }
@@ -82,7 +82,7 @@ namespace NLog.Targets
         /// <param name="type">The type of the parameter.</param>
         public MethodCallParameter(string name, Layout layout, Type type)
         {
-            this.Type = type;
+            this.ParameterType = type;
             this.Name = name;
             this.Layout = layout;
         }
@@ -94,11 +94,17 @@ namespace NLog.Targets
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the type of the parameter.
+        /// Gets or sets the type of the parameter. Obsolete alias for <see cref="ParameterType"/>
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Backwards compatibility")]
-        public Type Type { get; set; }
+        public Type Type { get { return ParameterType; } set { ParameterType = value; } }
+
+        /// <summary>
+        /// Gets or sets the type of the parameter.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
+        public Type ParameterType { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that should be use to calculate the value for the parameter.
@@ -109,7 +115,7 @@ namespace NLog.Targets
 
         internal object GetValue(LogEventInfo logEvent)
         {
-            return Convert.ChangeType(this.Layout.Render(logEvent), this.Type, CultureInfo.InvariantCulture);
+            return Convert.ChangeType(this.Layout.Render(logEvent), this.ParameterType, CultureInfo.InvariantCulture);
         }
     }
 }

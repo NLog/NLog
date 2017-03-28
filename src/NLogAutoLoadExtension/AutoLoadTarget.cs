@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Diagnostics.CodeAnalysis;
 using NLog;
 using NLog.Targets;
 
@@ -53,4 +55,96 @@ namespace NLogAutloadExtension
             // do nothing
         }
     }
+}
+
+namespace LoaderTestPublic
+{
+    public class NLogPackageLoader
+    {
+        public static void Preload()
+        {
+
+        }
+    }
+}
+
+namespace LoaderTestInternal
+{
+    /// <summary>
+    /// private
+    /// </summary>
+    internal class NLogPackageLoader
+    {
+        public static void Preload()
+        {
+
+        }
+
+    }
+}
+
+namespace LoaderTestPrivateNested
+{
+    internal class SomeType
+    {
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
+        private class NLogPackageLoader
+        {
+            public static void Preload()
+            {
+
+            }
+        }
+    }
+
+}
+
+namespace LoaderTestPrivateNestedStatic
+{
+    internal class SomeType
+    {
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
+        private static class NLogPackageLoader
+        {
+            public static void Preload()
+            {
+
+            }
+        }
+    }
+
+}
+
+namespace LoaderTestWrong1
+{
+    public class NLogPackageLoader
+    {
+        public static void Preload()
+        {
+            throw new Exception("ow noos");
+        }
+    }
+
+}
+namespace LoaderTestWrong2
+{
+    public class NLogPackageLoader
+    {
+        public void Preload()
+        {
+            //im not static
+        }
+    }
+
+}
+namespace LoaderTestWrong3
+{
+    public class NLogPackageLoader
+    {
+        public static void Preload(int arg1, int arg2)
+        {
+            //I have args
+        }
+    }
+
 }

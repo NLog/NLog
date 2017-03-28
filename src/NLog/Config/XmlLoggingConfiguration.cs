@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Config
 {
     using System;
@@ -62,7 +64,10 @@ namespace NLog.Config
     /// 
     /// Parsing of the XML file is also implemented in this class.
     /// </summary>
-    ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
+    ///<remarks>
+    /// - This class is thread-safe.<c>.ToList()</c> is used for that purpose.
+    /// - Update TemplateXSD.xml for changes outside targets
+    /// </remarks>
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
 #if __ANDROID__
@@ -840,14 +845,7 @@ namespace NLog.Config
                         }
 
                         Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(typeAttributeVal);
-
-                        NLogXmlElement defaults;
-                        if (typeNameToDefaultTargetParameters.TryGetValue(typeAttributeVal, out defaults))
-                        {
-                            this.ParseTargetElement(newTarget, defaults);
-                        }
-
-                        this.ParseTargetElement(newTarget, targetElement);
+                        this.ParseTargetElement(newTarget, targetElement, typeNameToDefaultTargetParameters);
 
                         if (asyncWrap)
                         {
@@ -866,8 +864,15 @@ namespace NLog.Config
             }
         }
 
-        private void ParseTargetElement(Target target, NLogXmlElement targetElement)
+        private void ParseTargetElement(Target target, NLogXmlElement targetElement, Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters = null)
         {
+            string targetType = StripOptionalNamespacePrefix(targetElement.GetRequiredAttribute("type"));
+            NLogXmlElement defaults;
+            if (typeNameToDefaultTargetParameters != null && typeNameToDefaultTargetParameters.TryGetValue(targetType, out defaults))
+            {
+                this.ParseTargetElement(target, defaults, null);
+            }
+
             var compound = target as CompoundTargetBase;
             var wrapper = target as WrapperTargetBase;
 
@@ -900,7 +905,7 @@ namespace NLog.Config
                         Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
                         if (newTarget != null)
                         {
-                            this.ParseTargetElement(newTarget, childElement);
+                            this.ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
                             if (newTarget.Name != null)
                             {
                                 // if the new target has name, register it
@@ -936,7 +941,7 @@ namespace NLog.Config
                         Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
                         if (newTarget != null)
                         {
-                            this.ParseTargetElement(newTarget, childElement);
+                            this.ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
                             if (newTarget.Name != null)
                             {
                                 // if the new target has name, register it

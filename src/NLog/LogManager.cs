@@ -398,10 +398,6 @@ namespace NLog
             factory.Shutdown();
                 }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-
-#endif
-
 #if !NETSTANDARD
 
         /// <summary>
@@ -435,9 +431,5 @@ namespace NLog
 
             return className;
         }
-#endif
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-#endif
             }
 }

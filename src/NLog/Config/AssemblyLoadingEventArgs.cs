@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,44 +31,28 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
+using System;
+using System.ComponentModel;
+using System.Reflection;
+
+namespace NLog.Config
 {
-    using System;
-    using System.ComponentModel;
-    using System.Text;
-    using NLog.Config;
-
     /// <summary>
-    /// Escapes output of another layout using JSON rules.
+    /// An assembly is trying to load. 
     /// </summary>
-    [LayoutRenderer("json-encode")]
-    [AmbientProperty("JsonEncode")]
-    [ThreadAgnostic]
-    public sealed class JsonEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="JsonEncodeLayoutRendererWrapper" /> class.
-        /// </summary>
-        public JsonEncodeLayoutRendererWrapper()
+    public class AssemblyLoadingEventArgs : CancelEventArgs
+    {/// <summary>
+     /// New event args
+     /// </summary>
+     /// <param name="assembly"></param>
+        public AssemblyLoadingEventArgs(Assembly assembly)
         {
-            this.JsonEncode = true;
+            Assembly = assembly;
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to apply JSON encoding.
+        /// The assembly that is trying to load.
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
-        [DefaultValue(true)]
-        public bool JsonEncode { get; set; }
-
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>JSON-encoded string.</returns>
-        protected override string Transform(string text)
-        {
-            return this.JsonEncode ? Targets.DefaultJsonSerializer.JsonStringEscape(text) : text;
-        }
+        public Assembly Assembly { get; private set; }
     }
 }

@@ -36,7 +36,6 @@ namespace NLog.Targets
     using System;
     using System.ComponentModel;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.IO;
     using System.Net;
     using System.Text;
@@ -367,8 +366,11 @@ namespace NLog.Targets
                 queryParameters.Append(separator);
                 queryParameters.Append(this.Parameters[i].Name);
                 queryParameters.Append("=");
-                string parameterValue = Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture);
-                UrlHelper.EscapeDataEncode(parameterValue, queryParameters, encodingFlags);
+                string parameterValue = XmlHelper.XmlConvertToString(parameterValues[i]);
+                if (!string.IsNullOrEmpty(parameterValue))
+                {
+                    UrlHelper.EscapeDataEncode(parameterValue, queryParameters, encodingFlags);
+                }
                 separator = "&";
             }
 
@@ -481,7 +483,7 @@ namespace NLog.Targets
 
             protected override string GetFormattedParameter(MethodCallParameter parameter, object value)
             {
-                string parameterValue = Convert.ToString(value, CultureInfo.InvariantCulture);
+                string parameterValue = XmlHelper.XmlConvertToString(value);
                 if (string.IsNullOrEmpty(parameterValue))
                 {
                     return string.Concat(parameter.Name, "=");
@@ -521,7 +523,7 @@ namespace NLog.Targets
 
             private string GetJsonValueString(object value)
             {
-                return ConfigurationItemFactory.Default.JsonSerializer.SerializeObject(value);
+                return ConfigurationItemFactory.Default.JsonSerializer.SerializeObject(value) ?? string.Empty;
             }
         }
 
@@ -679,10 +681,10 @@ namespace NLog.Targets
             {
                 for (int i = 0; i < Target.Parameters.Count; i++)
                 {
-                    currentXmlWriter.WriteElementString(Target.Parameters[i].Name, Convert.ToString(parameterValues[i], CultureInfo.InvariantCulture));
+                    string parameterValue = XmlHelper.XmlConvertToStringSafe(parameterValues[i]);
+                    currentXmlWriter.WriteElementString(Target.Parameters[i].Name, parameterValue);
                 }
             }
         }
-
     }
 }

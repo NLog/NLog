@@ -1,20 +1,21 @@
-<?xml version="1.0"?>
-<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <id>NLog</id>
-    <title>NLog</title>
-    <version>$BuildVersion$</version>
-    <authors>Kim Christensen, Julian Verdurmen</authors>
-    <owners>Kim Christensen</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>NLog - Advanced .NET and Silverlight Logging</summary>
-    <description>NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity.
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>NLog</id>
+        <version>$BuildVersion$</version>
+        <title>NLog</title>
+        <authors>Kim Christensen,Julian Verdurmen</authors>
+        <owners>Julian Verdurmen</owners>
+        <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+        <projectUrl>http://nlog-project.org/</projectUrl>
+        <iconUrl>http://nlog-project.org/N.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity.
 This package installs NLog.dll with includes core logging functionality.
 For your main project also need to install "NLog Configuration" package.</description>
-    <language>en-US</language>
-    <iconUrl>http://nlog-project.org/N.png</iconUrl>
-    <projectUrl>http://nlog-project.org/</projectUrl>
-    <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
-    <tags>logging log tracing logfiles NLog database eventlog email wcf</tags>
-  </metadata>
+        <summary>NLog - Advanced .NET and Silverlight Logging</summary>
+        <releaseNotes>Changelog: https://github.com/NLog/NLog/releases/tag/v$BuildVersion$</releaseNotes>
+        <language>en-US</language>
+        <tags>NLog logging log tracing logfiles archiving database eventlog email</tags>
+    </metadata>
 </package>
