@@ -31,15 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
 
 namespace NLog
 {
-#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
-    using Config;
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Remoting.Messaging;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Async version of Mapped Diagnostics Context - a logical context structure that keeps a dictionary
@@ -52,8 +51,6 @@ namespace NLog
     /// </remarks>
     public static class MappedDiagnosticsLogicalContext
     {
-        private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
-
         /// <summary>
         /// Simulate ImmutableDictionary behavior (which is not yet part of all .NET frameworks).
         /// In future the real ImmutableDictionary could be used here to minimize memory usage and copying time.
@@ -62,19 +59,19 @@ namespace NLog
         /// <returns></returns>
         private static IDictionary<string, object> GetLogicalThreadDictionary(bool clone = false)
         {
-            var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as Dictionary<string, object>;
-                if (dictionary == null)
-                {
+            var dictionary = GetThreadLocal();
+            if (dictionary == null)
+            {
                 dictionary = new Dictionary<string, object>();
-                    CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
-                }
+                SetThreadLocal(dictionary);
+            }
             else if (clone)
             {
                 dictionary = new Dictionary<string, object>(dictionary);
-                CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+                SetThreadLocal(dictionary);
             }
-                return dictionary;
-            }
+            return dictionary;
+        }
 
         /// <summary>
         /// Gets the current logical context named item, as <see cref="string"/>.
@@ -175,13 +172,41 @@ namespace NLog
         {
             if (free)
             {
-                CallContext.FreeNamedDataSlot(LogicalThreadDictionaryKey);
+                SetThreadLocal(null);
             }
             else
             {
                 GetLogicalThreadDictionary(true).Clear();
+            }
         }
-    }
-    }
+
+        private static void SetThreadLocal(IDictionary<string, object> newValue)
+        {
+#if NET4_6 || NETSTANDARD1_3
+            AsyncLocalDictionary.Value = newValue;
+#else
+            if (newValue == null)
+                System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(LogicalThreadDictionaryKey);
+            else
+                System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(LogicalThreadDictionaryKey, newValue);
 #endif
+        }
+
+        private static IDictionary<string, object> GetThreadLocal()
+        {
+#if NET4_6 || NETSTANDARD1_3
+            return AsyncLocalDictionary.Value;
+#else
+            return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(LogicalThreadDictionaryKey) as Dictionary<string, object>;
+#endif
+        }
+
+#if NET4_6 || NETSTANDARD1_3
+        private static readonly System.Threading.AsyncLocal<IDictionary<string, object>> AsyncLocalDictionary = new System.Threading.AsyncLocal<IDictionary<string, object>>();
+#else
+        private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
+#endif
+    }
 }
+
+#endif

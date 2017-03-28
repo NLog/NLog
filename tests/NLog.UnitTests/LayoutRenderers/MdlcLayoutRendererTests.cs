@@ -31,9 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.UnitTests.LayoutRenderers
 {
-#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
     using System.Xml.Linq;
     using NLog.Config;
     using NLog.LayoutRenderers;
@@ -86,5 +87,6 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(item + message, _target.LastMessage);
         }
     }
-#endif
 }
+
+#endif

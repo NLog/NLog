@@ -31,14 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-using System.Threading;
+#if !NETSTANDARD || NETSTANDARD1_3
 
 namespace NLog.UnitTests.Contexts
 {
     using System;
-#if NET4_0 || NET4_5 && !NETSTANDARD_1plus
-    using System.Threading.Tasks;
+    using System.Threading;
     using Xunit;
 
     public class MappedDiagnosticsLogicalContextTests
@@ -226,6 +224,7 @@ namespace NLog.UnitTests.Contexts
             Assert.False(MappedDiagnosticsLogicalContext.Contains(key));
         }
 
+#if NET4_0 || NET4_5 || NETSTANDARD1_3
         [Fact]
         public void given_multiple_threads_running_asynchronously_when_setting_and_getting_values_should_return_thread_specific_values()
         {
@@ -237,22 +236,22 @@ namespace NLog.UnitTests.Contexts
 
             MappedDiagnosticsLogicalContext.Clear(true);
 
-            var task1 = Task.Factory.StartNew(() => {
+            var task1 = System.Threading.Tasks.Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread1);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var task2 = Task.Factory.StartNew(() => {
+            var task2 = System.Threading.Tasks.Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread2);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            var task3 = Task.Factory.StartNew(() => {
+            var task3 = System.Threading.Tasks.Task.Factory.StartNew(() => {
                 MappedDiagnosticsLogicalContext.Set(key, valueForLogicalThread3);
                 return MappedDiagnosticsLogicalContext.Get(key);
             });
 
-            Task.WaitAll();
+            System.Threading.Tasks.Task.WaitAll();
 
             Assert.Equal(task1.Result, valueForLogicalThread1);
             Assert.Equal(task2.Result, valueForLogicalThread2);
@@ -275,7 +274,7 @@ namespace NLog.UnitTests.Contexts
 
             MappedDiagnosticsLogicalContext.Set(parentKey, parentValueForLogicalThread1);
 
-            var task1 = Task.Factory.StartNew(() =>
+            var task1 = System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
                 MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread1);
                 exitAllTasks.WaitOne();
@@ -284,7 +283,7 @@ namespace NLog.UnitTests.Contexts
 
             MappedDiagnosticsLogicalContext.Set(parentKey, parentValueForLogicalThread2);
 
-            var task2 = Task.Factory.StartNew(() =>
+            var task2 = System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
                 MappedDiagnosticsLogicalContext.Set(childKey, valueForChildThread2);
                 exitAllTasks.WaitOne();
@@ -292,11 +291,13 @@ namespace NLog.UnitTests.Contexts
             });
 
             exitAllTasks.Set();
-            Task.WaitAll();
+            System.Threading.Tasks.Task.WaitAll();
 
             Assert.Equal(task1.Result, parentValueForLogicalThread1 + "," + valueForChildThread1);
             Assert.Equal(task2.Result, parentValueForLogicalThread2 + "," + valueForChildThread2);
        }
-    }
 #endif
-        }
+    }
+}
+
+#endif
