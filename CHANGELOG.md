@@ -1,5 +1,13 @@
 See also [releases](https://github.com/NLog/NLog/releases) and [milestones](https://github.com/NLog/NLog/milestones).
 
+
+### v4.4.5 (2017/03/28)
+
+#### Fixes
+
+- [#2010](https://github.com/nlog/nlog/pull/2010) LogFactory - Ensure to flush and close on shutdown (@snakefoot)
+- [#2017](https://github.com/nlog/nlog/pull/2017) WebServiceTarget - Fix boolean parameter conversion for Xml and Json (lowercase) & merged the JSON serializer code into DefaultJsonSerializer (@snakefoot)
+
 ### 4.4.4 (2017/03/10)
 
 #### Features
@@ -11,7 +19,7 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 #### Improvements
 
 - [#2007](https://github.com/nlog/nlog/pull/2007) Target.Close() - Extra logging to investigate shutdown order (@snakefoot)
-- [#2003](https://github.com/nlog/nlog/pull/2003) Update XSD for <NLog> options (@304NotModified)
+- [#2003](https://github.com/nlog/nlog/pull/2003) Update XSD for `<NLog>` options (@304NotModified)
 - [#1977](https://github.com/nlog/nlog/pull/1977) update xsd template (internallogger) for 4.4.3 version (@AuthorProxy)
 - [#1956](https://github.com/nlog/nlog/pull/1956) Improve docs ThreadAgnosticAttribute (#1956) (@304NotModified)
 - [#1992](https://github.com/nlog/nlog/pull/1992) Fixed merge error of XML documentation for Target Write-methods (@snakefoot)
@@ -20,25 +28,24 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 - [#1995](https://github.com/nlog/nlog/pull/1995) Proper apply default-target-parameters to nested targets in WrappedTargets (@nazim9214)
 
-### 4.4.3
+### 4.4.3 (2017/02/17)
 
 #### Fixes
 
 - [#1966](https://github.com/nlog/nlog/pull/1966) System.UriFormatException on load (Mono) (@JustArchi)
 - [#1960](https://github.com/nlog/nlog/pull/1960) EventLogTarget: Properly parse and set EventLog category (@marinsky)
 
-### 4.4.2
+### 4.4.2 (2017/02/06)
  
 #### Features
 
 - [#1799](https://github.com/nlog/nlog/pull/1799) FileTarget: performance improvement: 10-70% faster, less garbage collecting (3-4 times less) by reusing buffers  (@snakefoot, @AndreGleichner)
 - [#1919](https://github.com/nlog/nlog/pull/1919) Func overloads for InternalLogger (@304NotModified)
-- [#1915](https://github.com/nlog/nlog/pull/1915) allow wildcard (*) in <include> (@304NotModified)
+- [#1915](https://github.com/nlog/nlog/pull/1915) allow wildcard (*) in `<include>` (@304NotModified)
 - [#1914](https://github.com/nlog/nlog/pull/1914) basedir: added option processDir=true (@304NotModified)
 - [#1906](https://github.com/nlog/nlog/pull/1906) Allow Injecting basedir (@304NotModified)
 
 #### Improvements
-
 
 - [#1927](https://github.com/nlog/nlog/pull/1927) InternalLogger - Better support for multiple threads when using file (@snakefoot)
 - [#1871](https://github.com/nlog/nlog/pull/1871) Filetarget - Allocations optimization (#1871) (@nazim9214)
@@ -62,7 +69,7 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 - [#1893](https://github.com/nlog/nlog/pull/1893) FileTarget - MONO doesn't like using the native Win32 API (@snakefoot)
 - [#1883](https://github.com/nlog/nlog/pull/1883) LogFactory.Dispose - Should always close down created targets (@snakefoot)
 
-### V4.4.1
+### V4.4.1 (2016/12/24)
 
 Summary:
 
@@ -92,8 +99,6 @@ Detail:
 - [#1860](https://github.com/nlog/nlog/pull/1860) FileAppenderCache implements IDisposable (@ie-zero)
 - [#1848](https://github.com/nlog/nlog/pull/1848) Standarise implementation of events (@ie-zero)
 - [#1844](https://github.com/nlog/nlog/pull/1844) FileTarget - Mono2 runtime detection to skip using named archive-mutex (@snakefoot)
-
-
 
 
 ### V4.4  (2016/12/14)
