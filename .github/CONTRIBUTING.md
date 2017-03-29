@@ -1,6 +1,6 @@
 Support & contributing guidelines (December 10, 2016)
 ===
-Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](issue-labeling.md). 
+Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](/issue-labeling.md). 
 
 Feature requests
 ----
