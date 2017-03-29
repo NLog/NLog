@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD && !NETSTANDARD_1plus
+#if !NETSTANDARD
 namespace NLog.UnitTests.Config
 {
     using System.IO;
@@ -365,7 +365,6 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(d1Target);
         }
 
-#if !NETSTANDARD && !NETSTANDARD_1plus
         [Fact]
         public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
         {
@@ -384,7 +383,6 @@ namespace NLog.UnitTests.Config
             var autoLoadedTarget = configuration.FindTargetByName("t");
             Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
         }
-#endif
     }
 }
 #endif

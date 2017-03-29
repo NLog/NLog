@@ -58,12 +58,12 @@ namespace NLog.UnitTests
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
-#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD_1plus
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
     using Ionic.Zip;
 #endif
 #endif
 
-#if NETSTANDARD_1plus
+#if NETSTANDARD1_3
     using System.IO.Compression;
 #endif
 
@@ -170,8 +170,8 @@ namespace NLog.UnitTests
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD_1plus
-                using (ZipFile zip = new Ionic.Zip.ZipFile())
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+                using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
                 {
                     zip.AddFile(fileName);
                     zip.Save(archiveFileName);

@@ -158,7 +158,7 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool UseDefaultRowHighlightingRules { get; set; }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
@@ -168,7 +168,7 @@ namespace NLog.Targets
             get
             {
                 return ConsoleTargetHelper.GetConsoleOutputEncoding(this.encoding, this.IsInitialized, this.pauseLogging);
-        }
+            }
             set
             {
                 if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, this.IsInitialized, this.pauseLogging))
@@ -217,7 +217,7 @@ namespace NLog.Targets
                     InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
             }
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__  && !NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             if (this.encoding != null && !this.pauseLogging)
                 Console.OutputEncoding = this.encoding;
 #endif

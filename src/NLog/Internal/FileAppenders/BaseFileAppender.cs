@@ -240,11 +240,11 @@ namespace NLog.Internal.FileAppenders
                     {
                         throw; // rethrow
                     }
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
                     int actualDelay = this.random.Next(currentDelay);
                     InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
-                   
+
                     System.Threading.Thread.Sleep(actualDelay);
 #endif
                 }
@@ -324,7 +324,7 @@ namespace NLog.Internal.FileAppenders
 #endif
 
             FileShare fileShare = allowFileSharedWriting ? FileShare.ReadWrite : FileShare.Read;
-            if (this.CreateFileParameters.EnableFileDelete && PlatformDetector.CurrentOS != RuntimeOS.Windows)
+            if (this.CreateFileParameters.EnableFileDelete)
             {
                 fileShare |= FileShare.Delete;
             }

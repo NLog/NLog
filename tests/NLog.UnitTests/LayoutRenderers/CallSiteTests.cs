@@ -49,7 +49,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
-#if !NETSTANDARD && !NETSTANDARD_1plus
+#if !NETSTANDARD
         [Fact]
         public void HiddenAssemblyTest()
         {

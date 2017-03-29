@@ -39,7 +39,7 @@ using System.Xml;
 using NLog.Config;
 using NLog.UnitTests.LayoutRenderers;
 
-#if !NETSTANDARD && !NETSTANDARD_1plus
+#if !NETSTANDARD
 
 namespace NLog.UnitTests
 {

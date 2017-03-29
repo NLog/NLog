@@ -146,7 +146,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(expected, output);
         }
 
-#if !MONO && !NETSTANDARD
+#if !MONO && !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void ProcessInfoLayoutRendererCultureTest()
         {

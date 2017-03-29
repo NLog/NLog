@@ -42,16 +42,19 @@ namespace NLog.UnitTests.Layouts
 
     public class CsvLayoutTests : NLogTestBase
     {
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void EndToEndTest()
         {
+            string tempFile = string.Empty;
+
             try
             {
+                tempFile = Path.GetTempFileName();
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='CSVLayoutEndToEnd1.txt'>
+                  <target name='f' type='File' fileName='" + tempFile + @"'>
                     <layout type='CSVLayout'>
                       <column name='level' layout='${level}' />
                       <column name='message' layout='${message}' />
@@ -70,7 +73,7 @@ namespace NLog.UnitTests.Layouts
                 logger.Info("msg2");
                 logger.Warn("Message with, a comma");
 
-                using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd1.txt"))
+                using (StreamReader sr = File.OpenText(tempFile))
                 {
                     Assert.Equal("level,message,counter", sr.ReadLine());
                     Assert.Equal("Debug,msg,1", sr.ReadLine());
@@ -80,9 +83,9 @@ namespace NLog.UnitTests.Layouts
             }
             finally
             {
-                if (File.Exists("CSVLayoutEndToEnd1.txt"))
+                if (File.Exists(tempFile))
                 {
-                    File.Delete("CSVLayoutEndToEnd1.txt");
+                    File.Delete(tempFile);
                 }
             }
         }
@@ -95,12 +98,15 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void CustomHeaderTest()
         {
+            string tempFile = string.Empty;
+
             try
             {
+                tempFile = Path.GetTempFileName();
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='CSVLayoutEndToEnd1.txt'>
+                  <target name='f' type='File' fileName='" + tempFile + @"'>
                     <layout type='CSVLayout'>
                       <header>headertest</header>
                       <column name='level' layout='${level}' />
@@ -120,7 +126,7 @@ namespace NLog.UnitTests.Layouts
                 logger.Info("msg2");
                 logger.Warn("Message with, a comma");
 
-                using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd1.txt"))
+                using (StreamReader sr = File.OpenText(tempFile))
                 {
                     Assert.Equal("headertest", sr.ReadLine());
                     //   Assert.Equal("level,message,counter", sr.ReadLine());
@@ -131,9 +137,9 @@ namespace NLog.UnitTests.Layouts
             }
             finally
             {
-                if (File.Exists("CSVLayoutEndToEnd1.txt"))
+                if (File.Exists(tempFile))
                 {
-                    File.Delete("CSVLayoutEndToEnd1.txt");
+                    File.Delete(tempFile);
                 }
             }
         }
@@ -141,12 +147,15 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void NoHeadersTest()
         {
+            string tempFile = string.Empty;
+
             try
             {
+                tempFile = Path.GetTempFileName();
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                  <target name='f' type='File' fileName='CSVLayoutEndToEnd2.txt'>
+                  <target name='f' type='File' fileName='" + tempFile + @"'>
                     <layout type='CSVLayout' withHeader='false'>
                       <delimiter>Comma</delimiter>
                       <column name='level' layout='${level}' />
@@ -165,7 +174,7 @@ namespace NLog.UnitTests.Layouts
                 logger.Info("msg2");
                 logger.Warn("Message with, a comma");
 
-                using (StreamReader sr = File.OpenText("CSVLayoutEndToEnd2.txt"))
+                using (StreamReader sr = File.OpenText(tempFile))
                 {
                     Assert.Equal("Debug,msg,1", sr.ReadLine());
                     Assert.Equal("Info,msg2,2", sr.ReadLine());
@@ -174,9 +183,9 @@ namespace NLog.UnitTests.Layouts
             }
             finally
             {
-                if (File.Exists("CSVLayoutEndToEnd2.txt"))
+                if (File.Exists(tempFile))
                 {
-                    File.Delete("CSVLayoutEndToEnd2.txt");
+                    File.Delete(tempFile);
                 }
             }
         }

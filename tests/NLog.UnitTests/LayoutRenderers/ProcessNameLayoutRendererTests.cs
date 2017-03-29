@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD || NETSTANDARD1_3
 
 using System.Collections.Generic;
 using System.IO;
@@ -43,11 +43,7 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     public class ProcessNameLayoutRendererTests : NLogTestBase
     {
-#if NETSTANDARD 
-        [Fact(Skip = "${processname} not supported in NETSTANDARD yet")]
-#else
         [Fact]
-#endif
         public void RenderProcessNameLayoutRenderer()
         {
             Layout layout = "${processname}";
@@ -62,15 +58,12 @@ namespace NLog.UnitTests.LayoutRenderers
             var lower = actual.ToLower();
 
             //lowercase
-            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen"};
+            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen", "dotnet" };
             
             Assert.True(allowedProcessNames.Any(p => lower.Contains(p)), string.Format("validating processname failed. Please add (if correct) '{0}' to 'allowedProcessNames'", actual));
         }
-#if NETSTANDARD 
-        [Fact(Skip = "${processname} not supported in NETSTANDARD yet")]
-#else
+
         [Fact]
-#endif
         public void RenderProcessNameLayoutRenderer_fullname()
         {
             Layout layout = "${processname:fullname=true}";

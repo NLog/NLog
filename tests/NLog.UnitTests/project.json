@@ -69,7 +69,7 @@
 
       },
       "buildOptions": {
-        "define": [ "WCF_SUPPORTED", "XUNIT2", "NET4_5" ]
+        "define": [ "WCF_SUPPORTED", "XUNIT2", "NET4_5", "ASYNC_SUPPORTED" ]
 
       }
     }

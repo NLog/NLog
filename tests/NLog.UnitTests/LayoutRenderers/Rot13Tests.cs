@@ -76,7 +76,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("URYYB", l.Render(lei));
         }
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void Test5()
         {

@@ -55,7 +55,7 @@ namespace NLog.UnitTests
             allTypes = typeof(LogManager).GetAssembly().GetTypes();
         }
 
-#if !NETSTANDARD && !NETSTANDARD_1plus
+#if !NETSTANDARD
         [Fact]
         public void PublicEnumsTest()
         {

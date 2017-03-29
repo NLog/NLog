@@ -59,12 +59,9 @@ namespace NLog.Internal
         /// <remarks>Types which cannot be loaded are skipped.</remarks>
         public static Type[] SafeGetTypes(this Assembly assembly)
         {
-#if SILVERLIGHT && !WINDOWS_PHONE
-            return assembly.GetTypes();
-#else
             try
             {
-#if NETSTANDARD_1plus
+#if NETSTANDARD
                 return assembly.DefinedTypes.Select(typeinfo => typeinfo.AsType()).ToArray();
 #else
                 return assembly.GetTypes();
@@ -88,7 +85,11 @@ namespace NLog.Internal
 
                 return loadedTypes.ToArray();
             }
-#endif
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Type load exception.");
+                return ArrayHelper.Empty<Type>();
+            }
         }
 
 
@@ -384,21 +385,18 @@ namespace NLog.Internal
             return typeInfo.Assembly;
 #endif
         }
-#if !NETSTANDARD && !WINDOWS_PHONE
 
+#if !NETSTANDARD && !WINDOWS_PHONE
         public static string GetCodeBase(this Assembly assembly)
         {
-
             return assembly.CodeBase;
         }
-
 #endif
 
 #if !NETSTANDARD && !WINDOWS_PHONE
         public static string GetLocation(this Assembly assembly)
         {
             return assembly.Location;
-
         }
 #endif
 

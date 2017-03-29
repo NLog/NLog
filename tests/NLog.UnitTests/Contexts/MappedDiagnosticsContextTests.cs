@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
 
 using System.Linq;
 using System.Text;
@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Contexts
     using System.Threading;
     using Xunit;
 
-    public class MappedDiagnosticsContextTests
+    public class MappedDiagnosticsContextTests : NLogTestBase
     {
         /// <summary>
         /// Same as <see cref="MappedDiagnosticsContext" />, but there is one <see cref="MappedDiagnosticsContext"/> per each thread.

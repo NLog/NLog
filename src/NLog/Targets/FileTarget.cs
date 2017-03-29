@@ -681,13 +681,11 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
 
-#if SupportsMutex
         /// <summary>
         /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
         [DefaultValue(false)]
         public bool ForceMutexConcurrentWrites { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
@@ -748,7 +746,7 @@ namespace NLog.Targets
             {
                 this.fileAppenderCache.CheckCloseAppenders -= AutoClosingTimerCallback;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD_1plus && !NETSTANDARD
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                 if (KeepFileOpen)
                     this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 
@@ -2016,8 +2014,8 @@ namespace NLog.Targets
             try
             {
                 archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
-            if (!string.IsNullOrEmpty(archiveFile))
-            {
+                if (!string.IsNullOrEmpty(archiveFile))
+                {
 #if SupportsMutex
                     // Acquire the mutex from the file-appender, before closing the file-apppender (remember not to close the Mutex)
                     archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
@@ -2025,18 +2023,18 @@ namespace NLog.Targets
                         archiveMutex = this.fileAppenderCache.GetArchiveMutex(archiveFile);
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                     this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
 
-                // Close possible stale file handles, before doing extra check
-                if (archiveFile != fileName)
-                    this.fileAppenderCache.InvalidateAppender(fileName);
-                this.fileAppenderCache.InvalidateAppender(archiveFile);
+                    // Close possible stale file handles, before doing extra check
+                    if (archiveFile != fileName)
+                        this.fileAppenderCache.InvalidateAppender(fileName);
+                    this.fileAppenderCache.InvalidateAppender(archiveFile);
                 }
                 else
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                     this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
                 }
@@ -2055,17 +2053,17 @@ namespace NLog.Targets
                 try
                 {
 #if SupportsMutex
-                try
-                {
-                    if (archiveMutex != null)
-                        archiveMutex.WaitOne();
-                }
-                catch (AbandonedMutexException)
-                {
-                    // ignore the exception, another process was killed without properly releasing the mutex
-                    // the mutex has been acquired, so proceed to writing
-                    // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
-                }
+                    try
+                    {
+                        if (archiveMutex != null)
+                            archiveMutex.WaitOne();
+                    }
+                    catch (AbandonedMutexException)
+                    {
+                        // ignore the exception, another process was killed without properly releasing the mutex
+                        // the mutex has been acquired, so proceed to writing
+                        // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
+                    }
 #endif
 
                     // Check again if archive is needed. We could have been raced by another process
@@ -2253,27 +2251,27 @@ namespace NLog.Targets
         {
             try
             {
-            lock (this.SyncRoot)
-            {
-                if (!this.IsInitialized)
+                lock (this.SyncRoot)
                 {
-                    return;
-                }
+                    if (!this.IsInitialized)
+                    {
+                        return;
+                    }
 
                     DateTime expireTime = this.OpenFileCacheTimeout > 0 ? DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout) : DateTime.MinValue;
                     this.fileAppenderCache.CloseAppenders(expireTime);
                 }
             }
-                catch (Exception exception)
-                {
-                    InternalLogger.Warn(exception, "Exception in AutoClosingTimerCallback.");
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Exception in AutoClosingTimerCallback.");
 
                 if (exception.MustBeRethrownImmediately())
-                    {
+                {
                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                    }
                 }
             }
+        }
 
         /// <summary>
         /// Evaluates which parts of a file should be written (header, content, footer) based on various properties of

@@ -44,17 +44,17 @@ namespace NLog.Internal
     /// </summary>
     internal static class StackFrameExt
     {
-
-#if NETSTANDARD || NETSTANDARD_1plus
-    /// <summary>
-    /// Null
-    /// </summary>
-    /// <returns></returns>
+#if NETSTANDARD
+        /// <summary>
+        /// Null
+        /// </summary>
+        /// <returns></returns>
         public static StackFrame GetFrame(this StackTrace strackTrace, int number)
         {
             return strackTrace.GetFrames()[number];
         }
 #endif
+
         /// <summary>
         /// 0
         /// </summary>

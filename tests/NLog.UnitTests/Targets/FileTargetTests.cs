@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD_1plus
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
 
 namespace NLog.UnitTests.Targets
 {
@@ -126,11 +126,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if NETSTANDARD
-        [Theory(Skip = "no AutoClose-Timer-Thread in NETSTANDARD yet")]
-#else
         [Theory]
-#endif
         [MemberData("SimpleFileTest_TestParameters")]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
@@ -224,7 +220,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if !NETSTANDARD && !MONO
+#if !MONO && !NETSTANDARD
 
         /// <summary>
         /// If a drive doesn't existing, before repeatatly creating a dir was tried. This test was taking +60 seconds 
@@ -424,9 +420,9 @@ namespace NLog.UnitTests.Targets
             get
             {
                 var enableCompressionValues = new[] { true, false };
-#if NETSTANDARD_1plus
+#if NETSTANDARD
                 //dotnet-zip doesn't work on .NET Core
-                var customFileCompressorValues = new[] {  false };
+                var customFileCompressorValues = new[] { false };
 #else
                 var customFileCompressorValues = new[] { true, false };
 #endif
@@ -3204,11 +3200,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if NETSTANDARD
-        [Fact(Skip = "${basedir} is not working and so also relative paths not")]
-#else
         [Fact]
-#endif
         public void RelativeSequentialArchiveTest_MaxArchiveFiles_0()
         {
             var tempPath = Guid.NewGuid().ToString();

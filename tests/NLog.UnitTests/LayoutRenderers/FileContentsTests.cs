@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -47,12 +47,14 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             string content = "12345";
             string fileName = Guid.NewGuid().ToString("N") + ".txt";
-            using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.Unicode))
+            using (StreamWriter sw = new StreamWriter(new FileStream(fileName, FileMode.CreateNew), Encoding.Unicode))
             {
                 sw.Write(content);
             }
 
             AssertLayoutRendererOutput("${file-contents:" + fileName + ":encoding=utf-16}", content);
+
+            File.Delete(fileName);
         }
 
         [Fact]
@@ -60,12 +62,14 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             string content = "12345";
             string fileName = Guid.NewGuid().ToString("N") + ".txt";
-            using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
+            using (StreamWriter sw = new StreamWriter(new FileStream(fileName, FileMode.CreateNew), Encoding.UTF8))
             {
                 sw.Write(content);
             }
 
             AssertLayoutRendererOutput("${file-contents:" + fileName + ":encoding=utf-8}", content);
+
+            File.Delete(fileName);
         }
 
         [Fact]

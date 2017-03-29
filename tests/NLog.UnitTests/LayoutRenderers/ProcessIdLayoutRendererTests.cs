@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD || NETSTANDARD1_3
 
 using Xunit;
 using NLog.Layouts;
@@ -40,11 +40,7 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     public class ProcessIdLayoutRendererTests : NLogTestBase
     {
-#if NETSTANDARD 
-        [Fact(Skip = "${processid} not supported in NETSTANDARD yet")]
-#else
         [Fact]
-#endif
         public void RenderProcessIdLayoutRenderer()
         {
             Layout layout = "${processid}";
