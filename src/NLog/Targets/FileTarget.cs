@@ -957,15 +957,15 @@ namespace NLog.Targets
         /// <summary>
         /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
         /// </summary>
-        private readonly ReusableStreamCreator reusableFileWriteStream = new ReusableStreamCreator();
+        private readonly ReusableStreamCreator reusableFileWriteStream = new ReusableStreamCreator(1024);
         /// <summary>
         /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
         /// </summary>
-        private readonly ReusableStreamCreator reusableAsyncFileWriteStream = new ReusableStreamCreator();
+        private readonly ReusableStreamCreator reusableAsyncFileWriteStream = new ReusableStreamCreator(1024);
         /// <summary>
         /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
         /// </summary>
-        private readonly ReusableBufferCreator reusableEncodingBuffer = new ReusableBufferCreator(4096);
+        private readonly ReusableBufferCreator reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 

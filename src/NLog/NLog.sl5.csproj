@@ -206,6 +206,7 @@
     <Compile Include="Internal\ReusableAsyncLogEventList.cs" />
     <Compile Include="Internal\ReusableBufferCreator.cs" />
     <Compile Include="Internal\ReusableBuilderCreator.cs" />
+    <Compile Include="Internal\ReusableObjectCreator.cs" />
     <Compile Include="Internal\ReusableStreamCreator.cs" />
     <Compile Include="Internal\RuntimeOS.cs" />
     <Compile Include="Internal\SimpleStringReader.cs" />
