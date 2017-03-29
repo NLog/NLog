@@ -60,5 +60,53 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Fatal("a");
             AssertDebugLastMessage("debug", "Fatal a");
         }
+
+        [Fact]
+        public void LogLevelSingleCharacterTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${level:levelOutput=SingleCharacter} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "D a");
+            logger.Info("a");
+            AssertDebugLastMessage("debug", "I a");
+            logger.Warn("a");
+            AssertDebugLastMessage("debug", "W a");
+            logger.Error("a");
+            AssertDebugLastMessage("debug", "E a");
+            logger.Fatal("a");
+            AssertDebugLastMessage("debug", "F a");
+        }
+
+        [Fact]
+        public void LogLevelOrdinalTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${level:levelOutput=Ordinal} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "1 a");
+            logger.Info("a");
+            AssertDebugLastMessage("debug", "2 a");
+            logger.Warn("a");
+            AssertDebugLastMessage("debug", "3 a");
+            logger.Error("a");
+            AssertDebugLastMessage("debug", "4 a");
+            logger.Fatal("a");
+            AssertDebugLastMessage("debug", "5 a");
+        }
     }
 }
