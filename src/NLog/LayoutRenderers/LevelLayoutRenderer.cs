@@ -34,7 +34,9 @@
 namespace NLog.LayoutRenderers
 {
     using System.Diagnostics;
+    using System.ComponentModel;
     using System.Text;
+    using System;
 
     using NLog.Config;
 
@@ -46,13 +48,44 @@ namespace NLog.LayoutRenderers
     public class LevelLayoutRenderer : LayoutRenderer
     {
         /// <summary>
+        /// A value indicating when the cache is cleared.
+        /// </summary>
+        [Flags]
+        public enum LevelOutputOption
+        {
+            /// <summary>Ouput the name as the level.</summary>
+            Name = 0,
+            /// <summary>Output a single character as the level.</summary>
+            SingleCharacter = 1,
+            /// <summary>Output an ordinal (i.e. number) as the level.</summary>
+            Ordinal = 2
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating how the level is output.
+        /// </summary>
+        [DefaultValue(LevelOutputOption.Name)]
+        public LevelOutputOption LevelOutput { get; set; }
+
+        /// <summary>
         /// Renders the current log level and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(logEvent.Level.ToString());
+            switch (LevelOutput)
+            {
+                case LevelOutputOption.Name:
+                    builder.Append(logEvent.Level.ToString());
+                    break;
+                case LevelOutputOption.SingleCharacter:
+                    builder.Append(logEvent.Level.ToString()[0]);
+                    break;
+                case LevelOutputOption.Ordinal:
+                    builder.Append(logEvent.Level.Ordinal);
+                    break;
+            }
         }
     }
 }
