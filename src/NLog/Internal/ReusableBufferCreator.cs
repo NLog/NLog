@@ -38,49 +38,11 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated char[]-buffer for reuse (only one active user)
     /// </summary>
-    internal class ReusableBufferCreator
+    internal class ReusableBufferCreator : ReusableObjectCreator<char[]>
     {
-        private char[] _buffer;
-
-        /// <summary>Empty handle when <see cref="Targets.Target.OptimizeBufferReuse"/> is disabled</summary>
-        public readonly LockBuffer None = default(LockBuffer);
-
         public ReusableBufferCreator(int capacity)
+            :base(new char[capacity], (b) => { })
         {
-            _buffer = new char[capacity];
-        }
-
-        /// <summary>
-        /// Creates handle to the reusable char[]-buffer for active usage
-        /// </summary>
-        /// <returns>Handle to the reusable item, that can release it again</returns>
-        public LockBuffer Allocate()
-        {
-            return new LockBuffer(this);
-        }
-
-        public struct LockBuffer : IDisposable
-        {
-            /// <summary>
-            /// Access the char[]-buffer acquired
-            /// </summary>
-            public readonly char[] Result;
-            private readonly ReusableBufferCreator _owner;
-
-            public LockBuffer(ReusableBufferCreator owner)
-            {
-                Result = owner._buffer;
-                owner._buffer = null;
-                _owner = owner;
-            }
-
-            public void Dispose()
-            {
-                if (Result != null)
-                {
-                    _owner._buffer = Result;
-                }
-            }
         }
     }
 }

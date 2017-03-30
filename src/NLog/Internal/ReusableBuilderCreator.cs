@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Text;
 
 namespace NLog.Internal
@@ -39,45 +38,11 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated StringBuilder for reuse (only one active user)
     /// </summary>
-    internal class ReusableBuilderCreator
+    internal class ReusableBuilderCreator : ReusableObjectCreator<StringBuilder>
     {
-        private StringBuilder _builder = new StringBuilder();
-
-        /// <summary>Empty handle when <see cref="Targets.Target.OptimizeBufferReuse"/> is disabled</summary>
-        public readonly LockBuilder None = default(LockBuilder);
-
-        /// <summary>
-        /// Creates handle to the reusable StringBuilder for active usage
-        /// </summary>
-        /// <returns>Handle to the reusable item, that can release it again</returns>
-        public LockBuilder Allocate()
+        public ReusableBuilderCreator()
+            : base(new StringBuilder(), (sb) => { sb.ClearBuilder(); })
         {
-            return new LockBuilder(this);
-        }
-
-        public struct LockBuilder : IDisposable
-        {
-            /// <summary>
-            /// Access the StringBuilder acquired
-            /// </summary>
-            public readonly StringBuilder Result;
-            private readonly ReusableBuilderCreator _owner;
-
-            public LockBuilder(ReusableBuilderCreator owner)
-            {
-                Result = owner._builder;
-                owner._builder = null;
-                _owner = owner;
-            }
-
-            public void Dispose()
-            {
-                if (Result != null)
-                {
-                    Result.ClearBuilder();
-                    _owner._builder = Result;
-                }
-            }
         }
     }
 }
