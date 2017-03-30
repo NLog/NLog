@@ -13,7 +13,7 @@ test_script:
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "coverage.xml"
-deploy: off
+
 cache:
   - src\packages -> **\packages.config
 services:
@@ -21,3 +21,11 @@ services:
 
 artifacts:
   - path: 'build\bin\release\NuGetPackages\*.nupkg'
+
+deploy:
+- provider: NuGet
+  api_key:
+    secure: DtVDH1ZfIR8E2oDLeSPxfn0WFXw3MCv4WhLkkQQl9LfEHswb5sdxdCYodNKhrKik
+  artifact: build\bin\release\NuGetPackages\*.nupkg
+  on:
+    branch: master
