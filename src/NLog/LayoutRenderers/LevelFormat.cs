@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -33,45 +33,24 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.Diagnostics;
-    using System.ComponentModel;
-    using System.Text;
-    using System;
-
-    using NLog.Config;
-
     /// <summary>
-    /// The log level.
+    /// Format of the ${level} layout renderer output.
     /// </summary>
-    [LayoutRenderer("level")]
-    [ThreadAgnostic]
-    public class LevelLayoutRenderer : LayoutRenderer
+    public enum LevelFormat
     {
         /// <summary>
-        /// Gets or sets a value indicating the output format of the level.
+        /// Render the full level name.
         /// </summary>
-        [DefaultValue(LevelFormat.Name)]
-        public LevelFormat Format { get; set; }
+        Name,
 
         /// <summary>
-        /// Renders the current log level and appends it to the specified <see cref="StringBuilder" />.
+        /// Render the first character of the level.
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            switch (Format)
-            {
-                case LevelFormat.Name:
-                    builder.Append(logEvent.Level.ToString());
-                    break;
-                case LevelFormat.FirstCharacter:
-                    builder.Append(logEvent.Level.ToString()[0]);
-                    break;
-                case LevelFormat.Ordinal:
-                    builder.Append(logEvent.Level.Ordinal);
-                    break;
-            }
-        }
+        FirstCharacter,
+
+        /// <summary>
+        /// Render the ordinal (aka number) for the level.
+        /// </summary>
+        Ordinal
     }
 }
