@@ -250,6 +250,29 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(2, testTarget.FlushCount);
         }
 
+        [Fact]
+        public void BufferingAutoFlushWrapperTest()
+        {
+            var testTarget = new MyTarget();
+            var bufferingTargetWrapper = new BufferingTargetWrapper(testTarget, 100);
+            var autoFlushOnLevelWrapper = new AutoFlushTargetWrapper(bufferingTargetWrapper);
+            autoFlushOnLevelWrapper.Condition = "level > LogLevel.Info";
+            testTarget.Initialize(null);
+            bufferingTargetWrapper.Initialize(null);
+            autoFlushOnLevelWrapper.Initialize(null);
+
+            AsyncContinuation continuation = ex => { };
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "test").WithContinuation(continuation));
+            Assert.Equal(0, testTarget.WriteCount);
+            Assert.Equal(0, testTarget.FlushCount);
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Fatal, "*", "test").WithContinuation(continuation));
+            Assert.Equal(2, testTarget.WriteCount);
+            Assert.Equal(1, testTarget.FlushCount);
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "Please FlushThis").WithContinuation(continuation));
+            Assert.Equal(2, testTarget.WriteCount);
+            Assert.Equal(1, testTarget.FlushCount);
+        }
+
         class MyAsyncTarget : Target
         {
             public int FlushCount { get; private set; }
