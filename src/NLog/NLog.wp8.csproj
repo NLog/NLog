@@ -276,6 +276,7 @@
     <Compile Include="LayoutRenderers\InstallContextLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LayoutRendererAttribute.cs" />
+    <Compile Include="LayoutRenderers\LevelFormat.cs" />
     <Compile Include="LayoutRenderers\LevelLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LiteralLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Log4JXmlEventLayoutRenderer.cs" />
