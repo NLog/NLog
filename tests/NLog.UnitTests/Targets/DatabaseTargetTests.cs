@@ -433,7 +433,7 @@ Dispose()
                 KeepConnection = true,
                 Parameters =
                 {
-                    new DatabaseParameterInfo("lvl", "${level:levelOutput=Ordinal}"),
+                    new DatabaseParameterInfo("lvl", "${level:format=Ordinal}"),
                     new DatabaseParameterInfo("msg", "${message}")
                 }
             };

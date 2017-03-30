@@ -66,13 +66,15 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${level:levelOutput=SingleCharacter} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${level:format=FirstCharacter} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Trace' writeTo='debug' />
                 </rules>
             </nlog>");
 
             ILogger logger = LogManager.GetLogger("A");
+            logger.Trace("a");
+            AssertDebugLastMessage("debug", "T a");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "D a");
             logger.Info("a");
@@ -90,13 +92,15 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${level:levelOutput=Ordinal} ${message}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${level:format=Ordinal} ${message}' /></targets>
                 <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Trace' writeTo='debug' />
                 </rules>
             </nlog>");
 
             ILogger logger = LogManager.GetLogger("A");
+            logger.Trace("a");
+            AssertDebugLastMessage("debug", "0 a");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "1 a");
             logger.Info("a");
