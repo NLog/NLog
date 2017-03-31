@@ -99,6 +99,8 @@ namespace NLog.Targets
             this.Encoding = new UTF8Encoding(writeBOM);
             this.IncludeBOM = writeBOM;
             this.OptimizeBufferReuse = true;
+
+            this.Headers = new List<MethodCallParameter>();
         }
 
         /// <summary>
@@ -180,6 +182,21 @@ namespace NLog.Targets
         /// <docgen category='Web Service Options' order='10' />
         public string XmlRootNamespace { get; set; }
 
+        /// <summary>
+        /// Gets the array of parameters to be passed.
+        /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
+        [ArrayParameter(typeof(MethodCallParameter), "header")]
+        public IList<MethodCallParameter> Headers { get; private set; }
+
+#if !SILVERLIGHT
+        /// <summary>
+        /// Indicates whether to pre-authenticate the HttpWebRequest (Requires 'Authorization' in <see cref="Headers"/> parameters)
+        /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
+        public bool PreAuthenticate { get; set; }
+#endif
+
         private readonly AsyncOperationCounter pendingManualFlushList = new AsyncOperationCounter();
 
         /// <summary>
@@ -193,16 +210,51 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Invokes the web service method.
+        /// Calls the target DoInvoke method, and handles AsyncContinuation callback
         /// </summary>
-        /// <param name="parameters">Parameters to be passed.</param>
+        /// <param name="parameters">Method call parameters.</param>
         /// <param name="continuation">The continuation.</param>
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
             var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            DoInvoke(parameters, request, continuation);
+        }
+
+        /// <summary>
+        /// Invokes the web service method.
+        /// </summary>
+        /// <param name="parameters">Parameters to be passed.</param>
+        /// <param name="logEvent">The logging event.</param>
+        protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+
+            if (this.Headers != null && this.Headers.Count > 0)
+            {
+                for (int i = 0; i < this.Headers.Count; i++)
+                {
+                    string headerValue = base.RenderLogEvent(this.Headers[i].Layout, logEvent.LogEvent);
+                    if (headerValue == null)
+                        continue;
+
+                    request.Headers[this.Headers[i].Name] = headerValue;
+                }
+            }
+
+#if !SILVERLIGHT
+            if (this.PreAuthenticate)
+            {
+                request.PreAuthenticate = true;
+            }
+#endif
+
+            DoInvoke(parameters, request, logEvent.Continuation);
+        }
+
+        void DoInvoke(object[] parameters, HttpWebRequest request, AsyncContinuation continuation)
+        {
             Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
             Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
-
             DoInvoke(parameters, continuation, request, begin, getStream);
         }
 

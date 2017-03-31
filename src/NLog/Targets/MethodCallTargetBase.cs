@@ -64,9 +64,7 @@ namespace NLog.Targets
         /// <summary>
         /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke().
         /// </summary>
-        /// <param name="logEvent">
-        /// The logging event.
-        /// </param>
+        /// <param name="logEvent">The logging event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             object[] parameters = new object[this.Parameters.Count];
@@ -78,11 +76,21 @@ namespace NLog.Targets
                 parameters[i] = Convert.ChangeType(parameterValue, mcp.ParameterType, CultureInfo.InvariantCulture);
             }
 
-            this.DoInvoke(parameters, logEvent.Continuation);
+            this.DoInvoke(parameters, logEvent);
         }
 
         /// <summary>
-        /// Calls the target method. Must be implemented in concrete classes.
+        /// Calls the target DoInvoke method, and handles AsyncContinuation callback
+        /// </summary>
+        /// <param name="parameters">Method call parameters.</param>
+        /// <param name="logEvent">The logging event.</param>
+        protected virtual void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
+        {
+            DoInvoke(parameters, logEvent.Continuation);
+        }
+
+        /// <summary>
+        /// Calls the target DoInvoke method, and handles AsyncContinuation callback
         /// </summary>
         /// <param name="parameters">Method call parameters.</param>
         /// <param name="continuation">The continuation.</param>
