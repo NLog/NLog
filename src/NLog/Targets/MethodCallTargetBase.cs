@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -69,11 +70,12 @@ namespace NLog.Targets
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             object[] parameters = new object[this.Parameters.Count];
-            int i = 0;
 
-            foreach (MethodCallParameter mcp in this.Parameters)
+            for (int i = 0; i < parameters.Length; ++i)
             {
-                parameters[i++] = mcp.GetValue(logEvent.LogEvent);
+                var mcp = this.Parameters[i];
+                var parameterValue = base.RenderLogEvent(mcp.Layout, logEvent.LogEvent);
+                parameters[i] = Convert.ChangeType(parameterValue, mcp.ParameterType, CultureInfo.InvariantCulture);
             }
 
             this.DoInvoke(parameters, logEvent.Continuation);

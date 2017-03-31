@@ -34,7 +34,6 @@
 namespace NLog.Targets
 {
     using System;
-    using System.Globalization;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -112,10 +111,5 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
-
-        internal object GetValue(LogEventInfo logEvent)
-        {
-            return Convert.ChangeType(this.Layout.Render(logEvent), this.ParameterType, CultureInfo.InvariantCulture);
-        }
     }
 }
