@@ -323,12 +323,12 @@
     <Compile Include="LogFactory.cs" />
     <Compile Include="LogFactory-T.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Logger1.cs">
+    <Compile Include="Logger-Conditional.cs" />
+    <Compile Include="Logger-generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Logger.tt</DependentUpon>
     </Compile>
-    <Compile Include="Logger-Conditional.cs" />
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="Logger-V1Compat.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
@@ -456,7 +456,7 @@
   <ItemGroup>
     <None Include="Logger.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Logger1.cs</LastGenOutput>
+      <LastGenOutput>Logger-generated.cs</LastGenOutput>
     </None>
     <None Include="Common\InternalLogger.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
