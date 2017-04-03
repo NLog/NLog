@@ -3200,7 +3200,11 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#if NETSTANDARD
+        [Fact(Skip = "Basedir isn't working - fix in NLog 5")]
+#else
         [Fact]
+#endif
         public void RelativeSequentialArchiveTest_MaxArchiveFiles_0()
         {
             var tempPath = Guid.NewGuid().ToString();
