@@ -396,7 +396,7 @@ namespace NLog
         public static void Shutdown()
         {
             factory.Shutdown();
-                }
+        }
 
 #if !NETSTANDARD
 
@@ -431,5 +431,7 @@ namespace NLog
 
             return className;
         }
-            }
+#endif
+    }
+
 }

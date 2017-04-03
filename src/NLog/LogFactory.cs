@@ -100,7 +100,12 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 
+#endif
+
         private static event EventHandler<EventArgs> LoggerShutdown;
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
