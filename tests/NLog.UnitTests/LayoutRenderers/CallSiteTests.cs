@@ -38,6 +38,9 @@ using NLog.Layouts;
 using NLog.Targets;
 using System.Runtime.CompilerServices;
 
+
+#if !NETSTANDARD
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -1084,4 +1087,4 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-
+#endif
