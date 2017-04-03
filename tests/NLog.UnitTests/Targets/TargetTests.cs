@@ -51,7 +51,7 @@ namespace NLog.UnitTests.Targets
 
     public class TargetTests : NLogTestBase
     {
-#if !NETSTANDARD_1plus
+#if !NETSTANDARD
 
         /// <summary>
         /// Test the following things:
@@ -456,7 +456,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void LockingTest()
         {
@@ -535,21 +535,12 @@ namespace NLog.UnitTests.Targets
 
         public class MyTarget : Target
         {
-#if !NETSTANDARD
             private int inBlockingOperation;
 
             private int InBlockingOperation
             {
                 get { return inBlockingOperation; }
             }
-#else
-            //avoid warning
-            //todo test blocking in 
-            private int InBlockingOperation
-            {
-                get { return 0; }
-            }
-#endif
 
             public int InitializeCount { get; set; }
             public int CloseCount { get; set; }
@@ -614,9 +605,7 @@ namespace NLog.UnitTests.Targets
                 base.Write(logEvents);
             }
 
-
-
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
             public void BlockingOperation(int millisecondsTimeout)
             {
                 lock (this.SyncRoot)

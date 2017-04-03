@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
 
 namespace NLog.UnitTests
 {
@@ -121,7 +121,7 @@ namespace NLog.UnitTests
                         (new LogFactory()).GetCurrentClassLogger();
                     });
                     thread.Start();
-                    threadTerminated = thread.Join(TimeSpan.FromSeconds(1));
+                    threadTerminated = thread.Join((int)TimeSpan.FromSeconds(1).TotalMilliseconds);
                 }
 
                 Assert.True(threadTerminated);
@@ -235,6 +235,7 @@ namespace NLog.UnitTests
             </nlog>");
         }
 
+#if !NETSTANDARD
         [Fact]
         public void ValueWithVariableMustNotCauseInfiniteRecursion()
         {
@@ -259,6 +260,7 @@ namespace NLog.UnitTests
                 File.Delete("NLog.config");
             }
         }
+#endif
 
         [Fact]
         public void EnableAndDisableLogging()

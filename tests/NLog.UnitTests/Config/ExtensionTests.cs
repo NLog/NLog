@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD && !NETSTANDARD_1plus
+#if !NETSTANDARD
 using System;
 using System.Text.RegularExpressions;
 using NLog.Common;
@@ -371,7 +371,6 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(d1Target);
         }
 
-#if !NETSTANDARD && !NETSTANDARD_1plus
         [Fact]
         public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
         {
@@ -398,7 +397,7 @@ namespace NLog.UnitTests.Config
             {
                 ConfigurationItemFactory.Default.Clear();
                 ConfigurationItemFactory.Default = null; //build new factory next time
-#endif
+            }
     }
 }
 

@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(200, targetWrapper.BatchSize);
         }
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
         /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>

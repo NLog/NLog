@@ -49,7 +49,7 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
     using System.Configuration;
     using System.Transactions;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
@@ -99,7 +99,7 @@ namespace NLog.Targets
 
             this.CommandType = CommandType.Text;
 
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
             this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
 #endif
         }
@@ -145,7 +145,7 @@ namespace NLog.Targets
         [DefaultValue("sqlserver")]
         public string DBProvider { get; set; }
 
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
         /// <summary>
         /// Gets or sets the name of the connection string (as specified in <see href="http://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
         /// </summary>
@@ -269,7 +269,7 @@ namespace NLog.Targets
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; private set; }
 
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
         internal DbProviderFactory ProviderFactory { get; set; }
 
 
@@ -313,7 +313,7 @@ namespace NLog.Targets
         {
             IDbConnection connection;
 
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
             if (this.ProviderFactory != null)
             {
                 connection = this.ProviderFactory.CreateConnection();
@@ -352,7 +352,7 @@ namespace NLog.Targets
             }
 
             bool foundProvider = false;
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
             if (!string.IsNullOrEmpty(this.ConnectionStringName))
             {
                 // read connection string and provider factory from the configuration file
@@ -394,7 +394,7 @@ namespace NLog.Targets
                     case "MSSQL":
                     case "MICROSOFT":
                     case "MSDE":
-#if NETSTANDARD1_3
+#if NETSTANDARD
                         var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
 #else
                         var assembly = systemDataAssembly;
@@ -403,7 +403,7 @@ namespace NLog.Targets
 
                         this.ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
                         break;
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
                     case "OLEDB":
                         this.ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true, true);
                         break;
@@ -729,7 +729,7 @@ namespace NLog.Targets
             }
         }
 
-#if NETSTANDARD1_3
+#if NETSTANDARD
         /// <summary>
         /// Fake transaction
         /// 
@@ -746,7 +746,7 @@ namespace NLog.Targets
 
             public void Complete() { }
 
-            #region Implementation of IDisposable
+        #region Implementation of IDisposable
 
             /// <summary>
             ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -756,7 +756,7 @@ namespace NLog.Targets
 
             }
 
-            #endregion
+        #endregion
         }
 
         /// <summary>

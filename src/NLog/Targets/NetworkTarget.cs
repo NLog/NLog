@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD || NETSTANDARD_1plus
+#if !NETSTANDARD || NETSTANDARD1_3
 
 namespace NLog.Targets
 {

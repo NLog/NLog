@@ -41,14 +41,12 @@ namespace NLog.UnitTests.LayoutRenderers
     using NLog.Targets;
     using Xunit;
 
-    public class MdlcLayoutRendererTests
+    public class MdlcLayoutRendererTests : NLogTestBase
     {
-        private static DebugTarget _target;
+        private DebugTarget _target;
 
         public MdlcLayoutRendererTests()
         {
-            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("mdlc", typeof(MdlcLayoutRenderer));
-
             const string configXml = @"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${mdlc:Item=myitem}${message}' /></targets>

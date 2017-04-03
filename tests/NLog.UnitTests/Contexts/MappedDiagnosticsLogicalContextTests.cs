@@ -39,7 +39,7 @@ namespace NLog.UnitTests.Contexts
     using System.Threading;
     using Xunit;
 
-    public class MappedDiagnosticsLogicalContextTests
+    public class MappedDiagnosticsLogicalContextTests : NLogTestBase
     {
         public MappedDiagnosticsLogicalContextTests()
         {
@@ -224,7 +224,7 @@ namespace NLog.UnitTests.Contexts
             Assert.False(MappedDiagnosticsLogicalContext.Contains(key));
         }
 
-#if NET4_0 || NET4_5 || NETSTANDARD1_3
+#if NET4_0 || NET4_5
         [Fact]
         public void given_multiple_threads_running_asynchronously_when_setting_and_getting_values_should_return_thread_specific_values()
         {

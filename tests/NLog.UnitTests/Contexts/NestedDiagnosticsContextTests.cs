@@ -32,7 +32,7 @@
 // 
 
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
 using System.Linq;
 using System.Text;
 
@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Contexts
     using System.Threading;
     using Xunit;
 
-    public class NestedDiagnosticsContextTests
+    public class NestedDiagnosticsContextTests : NLogTestBase
     {
         [Fact]
         public void NDCTest1()

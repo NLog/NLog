@@ -58,7 +58,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.True(Math.Abs((dt - now).TotalSeconds) < 5);
         }
 
-#if !NETSTANDARD_1plus
+#if !NETSTANDARD
 
         [Fact]
         public void TimeZoneTest()

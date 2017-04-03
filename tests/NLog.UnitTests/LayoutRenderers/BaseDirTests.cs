@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD || NETSTANDARD_1plus
+#if !NETSTANDARD || NETSTANDARD1_3
 
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +49,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
     public class BaseDirTests : NLogTestBase
     {
-#if !NETSTANDARD_1plus
+#if !NETSTANDARD1_3
         private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 #else
         private string baseDir = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
@@ -75,7 +75,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !SILVERLIGHT
         [Fact]
         public void BaseDirCurrentProcessTest()
         {

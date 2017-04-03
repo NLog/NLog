@@ -67,7 +67,7 @@ namespace NLog.UnitTests.Layouts
             new SimpleLayout("${message");
         }
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void SingleParamTest()
         {
@@ -179,7 +179,7 @@ namespace NLog.UnitTests.Layouts
             Assert.NotNull(nestedLayout);
             Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
             Assert.Equal(1, nestedLayout.Renderers.Count);
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
             Assert.NotNull(ndcLayoutRenderer);
             Assert.Equal(3, ndcLayoutRenderer.TopFrames);
@@ -202,7 +202,7 @@ namespace NLog.UnitTests.Layouts
             Assert.NotNull(nestedLayout);
             Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
             Assert.Equal(1, nestedLayout.Renderers.Count);
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
             Assert.NotNull(ndcLayoutRenderer);
             Assert.Equal(3, ndcLayoutRenderer.TopFrames);
@@ -297,7 +297,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void LayoutParserEscapeCodesForRegExTestV1()
         {
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
             MappedDiagnosticsContext.Clear();
 #endif
 
@@ -338,7 +338,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void LayoutParserEscapeCodesForRegExTestV2()
         {
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
             MappedDiagnosticsContext.Clear();
 #endif
 
