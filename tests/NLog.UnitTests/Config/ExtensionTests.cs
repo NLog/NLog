@@ -51,7 +51,7 @@ namespace NLog.UnitTests.Config
     {
         private string extensionAssemblyName1 = "SampleExtensions";
         private string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
-        
+
         [Fact]
         public void ExtensionTest1()
         {
@@ -83,7 +83,7 @@ namespace NLog.UnitTests.Config
 
             Target myTarget = configuration.FindTargetByName("t");
             Assert.Equal("MyExtensionNamespace.MyTarget", myTarget.GetType().FullName);
-            
+
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
@@ -292,7 +292,7 @@ namespace NLog.UnitTests.Config
                 <add type='some_type_that_doesnt_exist'/>
 </extensions>
 </nlog>";
-            Assert.Throws<NLogConfigurationException>(()=>CreateConfigurationFromString(configXml));
+            Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
         }
 
         [Fact]
@@ -378,7 +378,7 @@ namespace NLog.UnitTests.Config
             {
 
 
-            var configuration = CreateConfigurationFromString(@"
+                var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <targets>
         <target name='t' type='AutoLoadTarget' />
@@ -390,16 +390,16 @@ namespace NLog.UnitTests.Config
     </rules>
 </nlog>");
 
-            var autoLoadedTarget = configuration.FindTargetByName("t");
-            Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
-        }
+                var autoLoadedTarget = configuration.FindTargetByName("t");
+                Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+            }
             finally
             {
                 ConfigurationItemFactory.Default.Clear();
                 ConfigurationItemFactory.Default = null; //build new factory next time
             }
-    }
-}
+        }
+
 
         [Theory]
         [InlineData(true)]
