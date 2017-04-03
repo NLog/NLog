@@ -615,8 +615,6 @@ namespace NLog.UnitTests.Targets
             SimpleConfigurator.ConfigureForTargetLogging(target);
             var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
             logger.Info("Testing");
-            var layouts = target.GetAllLayouts();
-            Assert.NotNull(layouts);
         }
 
 
