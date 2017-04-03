@@ -75,7 +75,7 @@
     //    "System.Runtime.Serialization.Primitives": "4.1.1"
     //  },
     //  "buildOptions": {
-    //    "define": [ "NET4_0", "WCF_SUPPORTED", "NETSTANDARD1_0" ]
+    //    "define": [ "NET4_0", "WCF_SUPPORTED", "NETSTANDARD1_0", "NETSTANDARD" ]
     //  }
     //},
     "netstandard1.3": {
@@ -86,6 +86,7 @@
         "System.ComponentModel.TypeConverter": "4.1.0",
         "System.Data.Common": "4.1.0",
         "System.Diagnostics.Contracts": "4.0.1",
+        "System.Diagnostics.Process": "4.1.0",
         "System.Diagnostics.StackTrace": "4.0.1",
         "System.Diagnostics.TraceSource": "4.0.0",
         "System.IO.FileSystem.Watcher": "4.0.0",
@@ -104,7 +105,7 @@
         "System.Threading.AccessControl": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD_1plus", "ASYNC_SUPPORTED", "NETSTANDARD", "SupportsMutex" ],
+        "define": [ "NET4_5", "NETSTANDARD_1plus", "NETSTANDARD1_3", "ASYNC_SUPPORTED", "NETSTANDARD", "SupportsMutex" ],
         "nowarn": [ "CS0436" ]
       }
     },
@@ -116,6 +117,7 @@
         "System.ComponentModel.TypeConverter": "4.1.0",
         "System.Data.Common": "4.1.0",
         "System.Diagnostics.Contracts": "4.0.1",
+        "System.Diagnostics.Process": "4.1.0",
         "System.Diagnostics.StackTrace": "4.0.1",
         "System.Diagnostics.TraceSource": "4.0.0",
         "System.IO.FileSystem.Watcher": "4.0.0",

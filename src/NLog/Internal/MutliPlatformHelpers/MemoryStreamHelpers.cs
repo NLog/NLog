@@ -6,10 +6,8 @@ using System.Linq;
 namespace NLog.Internal
 {
 #if NETSTANDARD
-
     internal static class MemoryStreamHelpers
     {
-
         public static byte[] GetBuffer(this MemoryStream stream)
         {
             ArraySegment<byte> bytes;
@@ -17,11 +15,8 @@ namespace NLog.Internal
             {
                 return bytes.Array;
             }
-            return new byte[0];
+            return stream.ToArray();
         }
-
-
     }
-
 #endif
 }

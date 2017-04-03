@@ -111,7 +111,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Same(logEventInfos[3].Continuation, ev4.Continuation);
         }
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
 
         [Fact]
         public void AsyncRequestQueueWithBlockBehavior()

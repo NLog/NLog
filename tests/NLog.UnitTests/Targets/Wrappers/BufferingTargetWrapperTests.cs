@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     public class BufferingTargetWrapperTests : NLogTestBase
     {
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void BufferingTargetWrapperSyncTest1()
         {

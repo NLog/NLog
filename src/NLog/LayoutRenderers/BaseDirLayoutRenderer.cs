@@ -41,10 +41,6 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
     using NLog.Internal;
 
-#if !NETSTANDARD_1plus
-    using Internal.Fakeables;
-#endif
-
     /// <summary>
     /// The current application domain's base directory.
     /// </summary>
@@ -54,7 +50,7 @@ namespace NLog.LayoutRenderers
     {
         private string baseDir;
 
-#if !SILVERLIGHT && !NETSTANDARD_1plus
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
 
         /// <summary>
         /// cached
@@ -104,7 +100,7 @@ namespace NLog.LayoutRenderers
         {
 
             var dir = baseDir;
-#if !SILVERLIGHT && !NETSTANDARD_1plus
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
             if (ProcessDir)
             {
                 dir = processDir ?? (processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
@@ -114,9 +110,9 @@ namespace NLog.LayoutRenderers
             if (dir != null)
             {
                 var path = PathHelpers.CombinePaths(dir, this.Dir, this.File);
-            builder.Append(path);
+                builder.Append(path);
+            }
         }
     }
-}
 }
 

@@ -45,7 +45,7 @@ using NLog.Targets;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-#if NET4_5 && !NETSTANDARD_1plus
+#if NET4_5 && !NETSTANDARD
 using System.Web.Http;
 using Owin;
 using Microsoft.Owin.Hosting;
@@ -245,7 +245,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         #endregion
 
-#if NET4_5 && !NETSTANDARD_1plus
+#if NET4_5 && !NETSTANDARD
 
 
         const string WsAddress = "http://localhost:9000/";

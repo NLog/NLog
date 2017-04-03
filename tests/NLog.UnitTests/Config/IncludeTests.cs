@@ -97,7 +97,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
                 if (Directory.Exists(tempDir))
                     Directory.Delete(tempDir, true);
 #endif
@@ -128,7 +128,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-#if  !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
 #endif
@@ -160,7 +160,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
 #endif
@@ -178,11 +178,11 @@ namespace NLog.UnitTests.Config
             using (var fs = File.CreateText(Path.Combine(tempPath, filename)))
             {
                 fs.Write(config);
-    }
+            }
         }
         private static string GetTempDir()
         {
             return Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-    }
+        }
     }
 }

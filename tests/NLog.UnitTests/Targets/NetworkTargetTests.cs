@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3
 
 namespace NLog.UnitTests.Targets
 {
@@ -45,6 +45,7 @@ namespace NLog.UnitTests.Targets
     using System.Threading;
     using NLog.Common;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Internal.NetworkSenders;
     using NLog.Targets;
     using Xunit;

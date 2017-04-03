@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
-#if NETSTANDARD_1plus
+#if NETSTANDARD1_3
     using System.Runtime.InteropServices;
 #endif
     using NLog.Config;
@@ -108,14 +108,13 @@ namespace NLog.Internal
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {
-#if NETSTANDARD_1plus
+#if NETSTANDARD1_3
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return RuntimeOS.Windows;
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 return RuntimeOS.Unix;
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 return RuntimeOS.Unix;
-
             return RuntimeOS.Unknown;
 #elif NETSTANDARD
             return RuntimeOS.Unknown;

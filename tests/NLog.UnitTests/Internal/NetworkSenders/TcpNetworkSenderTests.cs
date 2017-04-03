@@ -173,7 +173,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                     });
             }
 
-#if NETSTANDARD1_3
+#if NETSTANDARD
             Assert.True(allSent.WaitOne(3000));
 #else
             Assert.True(allSent.WaitOne(3000, false));
@@ -181,7 +181,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 
             var mre = new ManualResetEvent(false);
             sender.FlushAsync(ex => mre.Set());
-#if  NETSTANDARD1_3
+#if  NETSTANDARD
             mre.WaitOne(3000);
 #else
             mre.WaitOne(3000, false);
