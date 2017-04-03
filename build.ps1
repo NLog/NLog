@@ -1,3 +1,5 @@
+$ErrorActionPreference = “Stop”
+
 # restore and builds all projects as release.
 # creates NuGet package at \artifacts
 dotnet --version

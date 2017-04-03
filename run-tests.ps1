@@ -1,3 +1,5 @@
+$ErrorActionPreference = “Stop”
+
 dotnet restore .\tests\SampleExtensions\
 dotnet restore .\tests\NLog.UnitTests\
 dotnet build .\tests\SampleExtensions --configuration release 
