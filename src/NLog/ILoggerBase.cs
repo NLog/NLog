@@ -126,6 +126,14 @@ namespace NLog
         /// Writes the diagnostic message and exception at the specified level.
         /// </summary>
         /// <param name="level">The log level.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        void Log(LogLevel level, Exception exception, LogMessageGenerator messageFunc);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the specified level.
+        /// </summary>
+        /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="args">Arguments to format.</param>
         /// <param name="exception">An exception to be logged.</param>

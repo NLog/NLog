@@ -50,54 +50,54 @@ namespace NLog
         /// Gets a value indicating whether logging is enabled for the <c>Trace</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Trace</c> level, otherwise it returns <see langword="false" />.</returns>
-        bool IsTraceEnabled 
-        { 
-            get; 
+        bool IsTraceEnabled
+        {
+            get;
         }
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Debug</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Debug</c> level, otherwise it returns <see langword="false" />.</returns>
-        bool IsDebugEnabled 
-        { 
-            get; 
+        bool IsDebugEnabled
+        {
+            get;
         }
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Info</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Info</c> level, otherwise it returns <see langword="false" />.</returns>
-        bool IsInfoEnabled 
-        { 
-            get; 
+        bool IsInfoEnabled
+        {
+            get;
         }
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Warn</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
-        bool IsWarnEnabled 
-        { 
-            get; 
+        bool IsWarnEnabled
+        {
+            get;
         }
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Error</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Error</c> level, otherwise it returns <see langword="false" />.</returns>
-        bool IsErrorEnabled 
-        { 
-            get; 
+        bool IsErrorEnabled
+        {
+            get;
         }
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Fatal</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Fatal</c> level, otherwise it returns <see langword="false" />.</returns>
-        bool IsFatalEnabled 
-        { 
-            get; 
+        bool IsFatalEnabled
+        {
+            get;
         }
 
         #region Trace() overloads 
@@ -134,6 +134,13 @@ namespace NLog
         /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void TraceException([Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
+        /// </summary>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        void Trace(Exception exception, LogMessageGenerator messageFunc);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Trace</c> level.
@@ -302,6 +309,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Debug</c> level.
         /// </summary>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        void Debug(Exception exception, LogMessageGenerator messageFunc);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
+        /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         void Debug(Exception exception, [Localizable(false)] string message);
@@ -462,6 +476,13 @@ namespace NLog
         /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void InfoException([Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Info</c> level.
+        /// </summary>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        void Info(Exception exception, LogMessageGenerator messageFunc);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Info</c> level.
@@ -630,6 +651,13 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Warn</c> level.
         /// </summary>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        void Warn(Exception exception, LogMessageGenerator messageFunc);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
+        /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         void Warn(Exception exception, [Localizable(false)] string message);
@@ -790,6 +818,13 @@ namespace NLog
         /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void ErrorException([Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Error</c> level.
+        /// </summary>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        void Error(Exception exception, LogMessageGenerator messageFunc);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Error</c> level.
@@ -955,6 +990,13 @@ namespace NLog
         /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         void FatalException([Localizable(false)] string message, Exception exception);
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
+        /// </summary>
+        /// <param name="exception">An exception to be logged.</param>
+        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
+        void Fatal(Exception exception, LogMessageGenerator messageFunc);
 
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
