@@ -80,13 +80,20 @@ namespace NLog
 
                 logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
-
+#if WINDOWS_UWP // UWP doesn't support "Thread" (http://stackoverflow.com/a/37415433/1409101)
+            int originalSchedulerId = System.Threading.Tasks.TaskScheduler.Current.Id;
+#else
             int originalThreadId = Thread.CurrentThread.ManagedThreadId;
+#endif
             AsyncContinuation exceptionHandler = ex =>
             {
                 if (ex != null)
                 {
+#if WINDOWS_UWP
+                        if (factory.ThrowExceptions && System.Threading.Tasks.TaskScheduler.Current.Id == originalSchedulerId)
+#else
                     if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
+#endif
                     {
                         throw new NLogRuntimeException("Exception occurred in NLog", ex);
                     }

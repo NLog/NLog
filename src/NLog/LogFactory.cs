@@ -771,9 +771,7 @@ namespace NLog
         {
             if (ConfigurationReloaded != null) ConfigurationReloaded.Invoke(this, e);
         }
-#endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         internal void ReloadConfigOnTimer(object state)
         {
             if (this.reloadTimer == null && this.IsDisposing)
@@ -969,7 +967,7 @@ namespace NLog
             {
                 try
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                     var currentTimer = this.reloadTimer;
                     if (currentTimer != null)
                     {
