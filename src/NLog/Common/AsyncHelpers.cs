@@ -201,21 +201,26 @@ namespace NLog.Common
             foreach (T item in items)
             {
                 T itemCopy = item;
-                ThreadPool.QueueUserWorkItem(s =>
+                var work = new Action(() =>
                 {
                     try
                     {
                         action(itemCopy, PreventMultipleCalls(continuation));
-            }
+                    }
                     catch (Exception ex)
                     {
                         InternalLogger.Error(ex, "ForEachItemInParallel - Unhandled Exception");
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-        }
+                        }
                     }
                 });
+#if WINDOWS_UWP
+                System.Threading.Tasks.Task.Factory.StartNew(work);
+#else
+                ThreadPool.QueueUserWorkItem(_ => work());
+#endif
             }
         }
 

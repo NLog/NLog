@@ -1513,7 +1513,11 @@ namespace NLog.Targets
                 FileInfo currentFileInfo;
                     for (int i = 0; i < 120; ++i)
                 {
+#if WINDOWS_UWP
+                    System.Threading.Tasks.Task.Delay(100).Wait();
+#else
                     Thread.Sleep(100);
+#endif
                     currentFileInfo = new FileInfo(fileName);
                         if (!currentFileInfo.Exists || currentFileInfo.CreationTime != originalFileCreationTime)
                             return;

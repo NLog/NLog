@@ -94,7 +94,11 @@ namespace NLog.Internal.FileAppenders
                 {
                     // Swallow exception as the file-stream now is in final state (broken instead of closed)
                     InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
+#if WINDOWS_UWP
+                    System.Threading.Tasks.Task.Delay(1).Wait();
+#else
                     System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+#endif
                 }
                 finally
                 {

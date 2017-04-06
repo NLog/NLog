@@ -178,7 +178,11 @@ namespace NLog.Targets.Wrappers
                     for (int i = 0; i < this.RetryDelayMilliseconds;)
                     {
                         int retryDelay = Math.Min(100, this.RetryDelayMilliseconds - i);
+#if WINDOWS_UWP
+                        System.Threading.Tasks.Task.Delay(retryDelay).Wait();
+#else
                         Thread.Sleep(retryDelay);
+#endif
                         i += retryDelay;
                         if (!IsInitialized)
                         {

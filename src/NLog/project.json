@@ -221,9 +221,30 @@
 
         "define": [ "__IOS__" ]
       }
+    },
+
+    "uap10.0": {
+      "dependencies": {
+        "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+        "System.Collections.NonGeneric": "4.3.0",
+        "System.ComponentModel.TypeConverter": "4.3.0",
+        "System.Data.Common": "4.3.0",
+        "System.Diagnostics.Contracts": "4.3.0",
+        "System.Diagnostics.StackTrace": "4.3.0",
+        "System.Diagnostics.TraceSource": "4.3.0",
+        "System.Net.NameResolution": "4.3.0",
+        "System.Net.Requests": "4.3.0",
+        "System.Reflection.TypeExtensions": "4.3.0",
+        "System.Runtime.Serialization.Primitives": "4.3.0",
+        "System.Security.Principal": "4.3.0",
+        "System.Threading": "4.3.0",
+        "System.Xml.ReaderWriter": "4.3.0",
+        "System.Xml.XmlDocument": "4.3.0"
+      },
+      "buildOptions": {
+        "define": [ "NETSTANDARD", "NETSTANDARD1_4", "WINDOWS_UWP" ]
+      }
     }
-
-
   },
   "buildOptions": {
     "keyFile": "NLog.snk",

@@ -186,9 +186,13 @@ namespace NLog.Targets.Wrappers
         {
             if (flushEventsInQueueDelegate == null)
                 flushEventsInQueueDelegate = FlushEventsInQueue;
-            ThreadPool.QueueUserWorkItem(flushEventsInQueueDelegate, asyncContinuation);
+#if WINDOWS_UWP
+            System.Threading.Tasks.Task.Factory.StartNew(() => flushEventsInQueueDelegate(asyncContinuation));
+#else
+            ThreadPool.QueueUserWorkItem(new WaitCallback(flushEventsInQueueDelegate), asyncContinuation);
+#endif
         }
-        private WaitCallback flushEventsInQueueDelegate;
+        private Action<object> flushEventsInQueueDelegate;
 
         /// <summary>
         /// Initializes the target by starting the lazy writer timer.
