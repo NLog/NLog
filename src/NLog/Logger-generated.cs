@@ -217,24 +217,6 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Trace</c> level.
         /// </summary>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Trace(Exception exception, LogMessageGenerator messageFunc)
-        {
-            if (this.IsTraceEnabled)
-            {
-                if (messageFunc == null)
-                {
-                    throw new ArgumentNullException("messageFunc");
-                }
-                
-                this.WriteToTargets(LogLevel.Trace, exception, messageFunc(), null);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Trace</c> level.
-        /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         public void Trace(Exception exception, [Localizable(false)] string message)
@@ -515,24 +497,6 @@ namespace NLog
             if (this.IsDebugEnabled)
             {
                 this.WriteToTargets(LogLevel.Debug, message, exception);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Debug</c> level.
-        /// </summary>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Debug(Exception exception, LogMessageGenerator messageFunc)
-        {
-            if (this.IsDebugEnabled)
-            {
-                if (messageFunc == null)
-                {
-                    throw new ArgumentNullException("messageFunc");
-                }
-                
-                this.WriteToTargets(LogLevel.Debug, exception, messageFunc(), null);
             }
         }
 
@@ -825,24 +789,6 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Info</c> level.
         /// </summary>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Info(Exception exception, LogMessageGenerator messageFunc)
-        {
-            if (this.IsInfoEnabled)
-            {
-                if (messageFunc == null)
-                {
-                    throw new ArgumentNullException("messageFunc");
-                }
-                
-                this.WriteToTargets(LogLevel.Info, exception, messageFunc(), null);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Info</c> level.
-        /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         public void Info(Exception exception, [Localizable(false)] string message)
@@ -1123,24 +1069,6 @@ namespace NLog
             if (this.IsWarnEnabled)
             {
                 this.WriteToTargets(LogLevel.Warn, message, exception);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Warn</c> level.
-        /// </summary>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Warn(Exception exception, LogMessageGenerator messageFunc)
-        {
-            if (this.IsWarnEnabled)
-            {
-                if (messageFunc == null)
-                {
-                    throw new ArgumentNullException("messageFunc");
-                }
-                
-                this.WriteToTargets(LogLevel.Warn, exception, messageFunc(), null);
             }
         }
 
@@ -1433,24 +1361,6 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c>Error</c> level.
         /// </summary>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Error(Exception exception, LogMessageGenerator messageFunc)
-        {
-            if (this.IsErrorEnabled)
-            {
-                if (messageFunc == null)
-                {
-                    throw new ArgumentNullException("messageFunc");
-                }
-                
-                this.WriteToTargets(LogLevel.Error, exception, messageFunc(), null);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Error</c> level.
-        /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         public void Error(Exception exception, [Localizable(false)] string message)
@@ -1731,24 +1641,6 @@ namespace NLog
             if (this.IsFatalEnabled)
             {
                 this.WriteToTargets(LogLevel.Fatal, message, exception);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c>Fatal</c> level.
-        /// </summary>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void Fatal(Exception exception, LogMessageGenerator messageFunc)
-        {
-            if (this.IsFatalEnabled)
-            {
-                if (messageFunc == null)
-                {
-                    throw new ArgumentNullException("messageFunc");
-                }
-                
-                this.WriteToTargets(LogLevel.Fatal, exception, messageFunc(), null);
             }
         }
 

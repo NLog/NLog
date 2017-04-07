@@ -196,24 +196,6 @@ namespace NLog
         /// <summary>
         /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
         /// </summary>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
-        public void <#=level#>(Exception exception, LogMessageGenerator messageFunc)
-        {
-            if (this.Is<#=level#>Enabled)
-            {
-                if (messageFunc == null)
-                {
-                    throw new ArgumentNullException("messageFunc");
-                }
-                
-                this.WriteToTargets(LogLevel.<#=level#>, exception, messageFunc(), null);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
-        /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         public void <#=level#>(Exception exception, [Localizable(false)] string message)
