@@ -52,10 +52,11 @@ namespace NLog.UnitTests.Config
             Assert.Equal(true, config.InitializeSucceeded);
             Assert.Equal("", InternalLogger.LogFile);
             Assert.Equal(true, InternalLogger.IncludeTimestamp);
+#if !NETSTANDARD || NETSTANDARD1_3
             Assert.Equal(false, InternalLogger.LogToConsole);
             Assert.Equal(false, InternalLogger.LogToConsoleError);
+#endif
             Assert.Equal(null, InternalLogger.LogWriter);
-
         }
 
         [Fact]
@@ -69,8 +70,10 @@ namespace NLog.UnitTests.Config
             Assert.Equal(true, config.InitializeSucceeded);
             Assert.Equal("", InternalLogger.LogFile);
             Assert.Equal(false, InternalLogger.IncludeTimestamp);
+#if !NETSTANDARD || NETSTANDARD1_3
             Assert.Equal(true, InternalLogger.LogToConsole);
             Assert.Equal(true, InternalLogger.LogToConsoleError);
+#endif
             Assert.Equal(null, InternalLogger.LogWriter);
 
         }

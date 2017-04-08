@@ -73,7 +73,7 @@ namespace NLog.UnitTests.Config
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
                 LogManager.ThrowConfigExceptions = null;
-#if !__IOS__ && !__ANDROID__
+#if !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                 InternalLogger.LogToTrace = true;
 #endif
 
@@ -89,7 +89,7 @@ namespace NLog.UnitTests.Config
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
                 Assert.Null(LogManager.ThrowConfigExceptions);
-#if !__IOS__ && !__ANDROID__
+#if !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                 Assert.True(InternalLogger.LogToTrace);
 #endif
             }
@@ -154,7 +154,7 @@ namespace NLog.UnitTests.Config
 
                 Assert.Equal(throwConfigExceptions, LogManager.ThrowConfigExceptions);
 
-#if !__IOS__ && !__ANDROID__
+#if !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                 Assert.Equal(logToTrace, InternalLogger.LogToTrace);
 #endif
             }

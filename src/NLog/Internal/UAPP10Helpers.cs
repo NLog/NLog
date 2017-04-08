@@ -37,18 +37,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Win32.SafeHandles;
 
 namespace NLog.Internal
 {
     internal static class UAPP10Helpers
     {
-        public static void Close(this SafeFileHandle handle)
-        {
-            //todo
-            handle.Dispose();
-        }
-
         public static void Close(this IDisposable handle)
         {
             //todo

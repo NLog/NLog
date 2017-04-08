@@ -397,7 +397,7 @@ namespace NLog.UnitTests.Common
             }
         }
 
-
+#if !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void TimestampTests()
         {
@@ -582,8 +582,8 @@ namespace NLog.UnitTests.Common
 
                 InternalLogger.LogToConsole = false;
             }
-
         }
+#endif
 
         [Theory]
         [InlineData("trace", 6)]

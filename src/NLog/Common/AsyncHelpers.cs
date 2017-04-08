@@ -44,6 +44,46 @@ namespace NLog.Common
     /// </summary>
     public static class AsyncHelpers
     {
+        internal static void StartAsyncTask(Action<object> action, object state)
+        {
+#if NET4_0 || NET4_5 || NETSTANDARD
+            System.Threading.Tasks.Task.Factory.StartNew(action, state, CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+#else
+            ThreadPool.QueueUserWorkItem(new WaitCallback(action), state);
+#endif
+        }
+
+        internal static void WaitForDelay(TimeSpan delay)
+        {
+#if !NETSTANDARD || NETSTANDARD1_3
+            Thread.Sleep(delay);
+#else
+            System.Threading.Tasks.Task.Delay(delay).Wait();
+#endif
+        }
+
+        internal static bool WaitForDispose(Timer timer, TimeSpan timeout)
+        {
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
+
+#if NETSTANDARD
+            timer.Dispose();
+            WaitForDelay(TimeSpan.FromMilliseconds(50));    // Artificial delay
+            return true;
+#else
+            ManualResetEvent waitHandle = new ManualResetEvent(false);
+            if (timer.Dispose(waitHandle))
+            {
+                if (!waitHandle.WaitOne((int)timeout.TotalMilliseconds))
+                {
+                    return false;
+                }
+            }
+            waitHandle.Close();
+            return true;
+#endif
+        }
+
         /// <summary>
         /// Iterates over all items in the given collection and runs the specified action
         /// in sequence (each action executes only after the preceding one has completed without an error).
@@ -92,21 +132,21 @@ namespace NLog.Common
             int remaining = repeatCount;
 
             invokeNext = ex =>
+            {
+                if (ex != null)
                 {
-                    if (ex != null)
-                    {
-                        asyncContinuation(ex);
-                        return;
-                    }
+                    asyncContinuation(ex);
+                    return;
+                }
 
-                    if (remaining-- <= 0)
-                    {
-                        asyncContinuation(null);
-                        return;
-                    }
+                if (remaining-- <= 0)
+                {
+                    asyncContinuation(null);
+                    return;
+                }
 
-                    action(PreventMultipleCalls(invokeNext));
-                };
+                action(PreventMultipleCalls(invokeNext));
+            };
 
             invokeNext(null);
         }
@@ -178,44 +218,44 @@ namespace NLog.Common
 
             AsyncContinuation continuation =
                 ex =>
+                {
+                    InternalLogger.Trace("Continuation invoked: {0}", ex);
+                    int r;
+
+                    if (ex != null)
                     {
-                        InternalLogger.Trace("Continuation invoked: {0}", ex);
-                        int r;
-
-                        if (ex != null)
+                        lock (exceptions)
                         {
-                            lock (exceptions)
-                            {
-                                exceptions.Add(ex);
-                            }
+                            exceptions.Add(ex);
                         }
+                    }
 
-                        r = Interlocked.Decrement(ref remaining);
-                        InternalLogger.Trace("Parallel task completed. {0} items remaining", r);
-                        if (r == 0)
-                        {
-                            asyncContinuation(GetCombinedException(exceptions));
-                        }
-                    };
+                    r = Interlocked.Decrement(ref remaining);
+                    InternalLogger.Trace("Parallel task completed. {0} items remaining", r);
+                    if (r == 0)
+                    {
+                        asyncContinuation(GetCombinedException(exceptions));
+                    }
+                };
 
             foreach (T item in items)
             {
                 T itemCopy = item;
-                ThreadPool.QueueUserWorkItem(s =>
+                StartAsyncTask(s =>
                 {
                     try
                     {
                         action(itemCopy, PreventMultipleCalls(continuation));
-            }
+                    }
                     catch (Exception ex)
                     {
                         InternalLogger.Error(ex, "ForEachItemInParallel - Unhandled Exception");
                         if (ex.MustBeRethrownImmediately())
                         {
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-        }
+                        }
                     }
-                });
+                }, null);
             }
         }
 

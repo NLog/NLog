@@ -767,7 +767,7 @@ namespace NLog.UnitTests.LayoutRenderers
             return await Task.FromResult(new string[] { "value1", "value2" });
         }
 
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
         [Fact]
         public void Show_correct_method_with_async4()
         {
@@ -1016,7 +1016,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
         /// <summary>
         /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
         /// 

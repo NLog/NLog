@@ -186,9 +186,9 @@ namespace NLog.Targets.Wrappers
         {
             if (flushEventsInQueueDelegate == null)
                 flushEventsInQueueDelegate = FlushEventsInQueue;
-            ThreadPool.QueueUserWorkItem(flushEventsInQueueDelegate, asyncContinuation);
+            AsyncHelpers.StartAsyncTask(flushEventsInQueueDelegate, asyncContinuation);
         }
-        private WaitCallback flushEventsInQueueDelegate;
+        private Action<object> flushEventsInQueueDelegate;
 
         /// <summary>
         /// Initializes the target by starting the lazy writer timer.
@@ -296,24 +296,7 @@ namespace NLog.Targets.Wrappers
                 if (currentTimer != null)
                 {
                     this.lazyWriterTimer = null;
-                    currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
-
-#if NETSTANDARD
-                    currentTimer.Dispose();
-#else
-                 ManualResetEvent waitHandle = new ManualResetEvent(false);
-                if (currentTimer.Dispose(waitHandle))
-                {
-                    if (waitHandle.WaitOne(1000))
-                    {
-                        waitHandle.Close();
-                      
-                    }
-                }
-#endif
-
-
-
+                    AsyncHelpers.WaitForDispose(currentTimer, TimeSpan.FromSeconds(1));
                 }
             }
         }

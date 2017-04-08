@@ -126,7 +126,7 @@ namespace NLog.Internal.FileAppenders
             {
                 // Swallow exception as the file-stream now is in final state (broken instead of closed)
                 InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
-                System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));    // Artificial delay to avoid hammering a bad file location
             }
             finally
             {

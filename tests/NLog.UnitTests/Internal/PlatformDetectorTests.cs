@@ -48,11 +48,13 @@ namespace NLog.UnitTests.Internal
 #endif
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void GetCurrentOSTest()
         {
             var actual = PlatformDetector.CurrentOS;
             Assert.NotEqual(RuntimeOS.Unknown, actual);
         }
+#endif
     }
 }

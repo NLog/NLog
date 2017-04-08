@@ -90,7 +90,7 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
             System.Diagnostics.Trace.Listeners.Clear();
 #if !NETSTANDARD
             System.Diagnostics.Debug.Listeners.Clear();
@@ -205,7 +205,7 @@ namespace NLog.UnitTests
                 }
             }
         }
-#elif NET4_5
+#elif NET4_5 && !NETSTANDARD || NETSTANDARD1_3
         protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);

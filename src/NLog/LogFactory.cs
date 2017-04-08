@@ -94,18 +94,16 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
-
 #endif
 
         private static event EventHandler<EventArgs> LoggerShutdown;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -124,9 +122,7 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
             this.watcher = new MultiFileWatcher();
             this.watcher.FileChanged += this.ConfigFileChanged;
-#if ! NETSTANDARD1_3          
             LoggerShutdown += OnStopLogging;
-#endif            
 #endif
         }
 
@@ -210,9 +206,9 @@ namespace NLog
                     {
                         try
                         {
-                        // Try to load default configuration.
-                        this.config = XmlLoggingConfiguration.AppConfig;
-                    }
+                            // Try to load default configuration.
+                            this.config = XmlLoggingConfiguration.AppConfig;
+                        }
                         catch (Exception ex)
                         {
                             //loading could fail due to an invalid XML file (app.config) etc.
@@ -220,7 +216,7 @@ namespace NLog
                             {
                                 throw;
                             }
-                           
+
                         }
                     }
 #endif
@@ -571,7 +567,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -773,7 +769,7 @@ namespace NLog
         }
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         internal void ReloadConfigOnTimer(object state)
         {
             if (this.reloadTimer == null && this.IsDisposing)
@@ -791,15 +787,15 @@ namespace NLog
                     var currentTimer = this.reloadTimer;
                     if (currentTimer != null)
                     {
-                    this.reloadTimer = null;
+                        this.reloadTimer = null;
                         currentTimer.Dispose();
-                }
-                if (this.IsDisposing)
-                {
-                    return; //timer was disposed already. 
-                }
+                    }
+                    if (this.IsDisposing)
+                    {
+                        return; //timer was disposed already. 
+                    }
 
-                this.watcher.StopWatching();
+                    this.watcher.StopWatching();
 
                     if (this.Configuration != configurationToReload)
                     {
@@ -829,7 +825,7 @@ namespace NLog
                         }
                         this.Configuration = newConfig;
                         OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
-                        }
+                    }
                     else
                     {
                         throw new NLogConfigurationException("Configuration.Reload() returned null. Not reloading.");
@@ -837,7 +833,7 @@ namespace NLog
                 }
                 catch (Exception exception)
                 {
-                        InternalLogger.Warn(exception, "NLog configuration while reloading");
+                    InternalLogger.Warn(exception, "NLog configuration while reloading");
 
                     if (exception.MustBeRethrownImmediately())
                     {
@@ -846,9 +842,9 @@ namespace NLog
 
                     this.watcher.Watch(configurationToReload.FileNamesToWatch);
                     OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
-                    }
                 }
             }
+        }
 #endif
         private void GetTargetsByLevelForLogger(string name, IEnumerable<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
@@ -915,23 +911,23 @@ namespace NLog
 
             if (InternalLogger.IsDebugEnabled)
             {
-            InternalLogger.Debug("Targets for {0} by level:", name);
+                InternalLogger.Debug("Targets for {0} by level:", name);
 
-            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
-                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
+                for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
                 {
-                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
-                    if (afc.FilterChain.Count > 0)
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                    for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
                     {
-                        sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                        sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
+                        if (afc.FilterChain.Count > 0)
+                        {
+                            sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                        }
                     }
-                }
 
-                InternalLogger.Debug(sb.ToString());
-            }
+                    InternalLogger.Debug(sb.ToString());
+                }
             }
 
 #pragma warning disable 618
@@ -959,7 +955,7 @@ namespace NLog
             this.ConfigurationReloaded = null;   // Release event listeners
 
             if (this.watcher != null)
-                {
+            {
                 // Disable startup of new reload-timers
                 this.watcher.FileChanged -= this.ConfigFileChanged;
             }
@@ -969,19 +965,19 @@ namespace NLog
             {
                 try
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                     var currentTimer = this.reloadTimer;
                     if (currentTimer != null)
                     {
                         this.reloadTimer = null;
                         currentTimer.Dispose();
-                        }
+                    }
 
-                if (this.watcher != null)
-                {
-                    // Dispose file-watcher after having dispose timer to avoid race
-                    this.watcher.Dispose();
-                }
+                    if (this.watcher != null)
+                    {
+                        // Dispose file-watcher after having dispose timer to avoid race
+                        this.watcher.Dispose();
+                    }
 #endif
 
                     var oldConfig = this.config;
@@ -1020,7 +1016,7 @@ namespace NLog
             }
 
             this.ConfigurationChanged = null;    // Release event listeners
-            }
+        }
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
@@ -1047,7 +1043,7 @@ namespace NLog
                     loadedConfig.FlushAllTargets((ex) => flushCompleted.Set());
                     flushCompleted.WaitOne(DefaultFlushTimeout);
                     loadedConfig.Close();
-            }
+                }
             }
             InternalLogger.Info("Logger has been closed down.");
         }
@@ -1478,7 +1474,7 @@ namespace NLog
                 //Exception: System.AppDomainUnloadedException
                 //Message: Attempted to access an unloaded AppDomain.
                 InternalLogger.Info("Shutting down logging...");
-                    // Finalizer thread has about 2 secs, before being terminated
+                // Finalizer thread has about 2 secs, before being terminated
                 this.Close(TimeSpan.FromMilliseconds(1500));
                 InternalLogger.Info("Logger has been shut down.");
             }

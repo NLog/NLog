@@ -100,8 +100,9 @@ namespace NLog.UnitTests.LayoutRenderers
                                 var time = epochStart.AddMilliseconds(timestamp);
                                 var now = DateTime.UtcNow;
                                 Assert.True(now.Ticks - time.Ticks < TimeSpan.FromSeconds(3).Ticks);
-
+#if !NETSTANDARD || NETSTANDARD1_3
                                 Assert.Equal(Thread.CurrentThread.ManagedThreadId.ToString(), reader.GetAttribute("thread"));
+#endif
                                 break;
 
                             case "message":
@@ -138,7 +139,6 @@ namespace NLog.UnitTests.LayoutRenderers
                                 switch (name)
                                 {
                                     case "log4japp":
-
 #if NETSTANDARD
                                         Assert.Equal(".NET Standard Application", value);
 #else
@@ -147,7 +147,9 @@ namespace NLog.UnitTests.LayoutRenderers
                                         break;
 
                                     case "log4jmachinename":
+#if !NETSTANDARD || NETSTANDARD1_5
                                         Assert.Equal(Environment.MachineName, value);
+#endif
                                         break;
 
                                     case "foo1":

@@ -31,7 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !MONO
+#if !MONO && !NETSTANDARD || NETSTANDARD1_3
+
 namespace NLog.UnitTests.Config
 {
     using NLog.Config;

@@ -81,17 +81,23 @@ namespace NLog
                 logEvent.SetStackTrace(stackTrace, firstUserFrame);
             }
 
-            int originalThreadId = Thread.CurrentThread.ManagedThreadId;
-            AsyncContinuation exceptionHandler = ex =>
+            AsyncContinuation exceptionHandler = ex => { };
+#if !NETSTANDARD || NETSTANDARD1_3
+            if (factory.ThrowExceptions)
             {
-                if (ex != null)
+                int originalThreadId = Thread.CurrentThread.ManagedThreadId;
+                exceptionHandler = ex =>
                 {
-                    if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
+                    if (ex != null)
                     {
-                        throw new NLogRuntimeException("Exception occurred in NLog", ex);
+                        if (Thread.CurrentThread.ManagedThreadId == originalThreadId)
+                        {
+                            throw new NLogRuntimeException("Exception occurred in NLog", ex);
+                        }
                     }
-                }
+                };
             };
+#endif
 
             for (var t = targets; t != null; t = t.NextInChain)
             {

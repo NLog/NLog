@@ -115,15 +115,16 @@ namespace NLog.UnitTests.Targets
             {
                 Thread.Sleep(Math.Max((10 - idxProcess), 1) * 5);  // Delay to wait for the other processes
 
-            for (int i = 0; i < numLogs; ++i)
-            {
-                logger.Debug(format, i);
-            }
+                for (int i = 0; i < numLogs; ++i)
+                {
+                    logger.Debug(format, i);
+                }
 
                 LogManager.Configuration = null;     // Flush + Close
-        }
+            }
             catch (Exception ex)
             {
+                System.Console.WriteLine(ex.ToString());
                 //using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
                 //{
                 //    textWriter.WriteLine(ex.ToString());
@@ -155,63 +156,63 @@ namespace NLog.UnitTests.Targets
                 Directory.CreateDirectory(archivePath);
 
                 string logFile = Path.Combine(tempPath, MakeFileName(numProcesses, numLogs, mode));
-            if (File.Exists(logFile))
-                File.Delete(logFile);
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
 
-            Process[] processes = new Process[numProcesses];
+                Process[] processes = new Process[numProcesses];
 
-            for (int i = 0; i < numProcesses; ++i)
-            {
-                processes[i] = ProcessRunner.SpawnMethod(
-                    this.GetType(),
-                    "Process",
-                    i.ToString(),
-                        logFile,
-                    numLogs.ToString(),
-                    mode);
-            }
+                for (int i = 0; i < numProcesses; ++i)
+                {
+                    processes[i] = ProcessRunner.SpawnMethod(
+                        this.GetType(),
+                        "Process",
+                        i.ToString(),
+                            logFile,
+                        numLogs.ToString(),
+                        mode);
+                }
 
-            // In case we'd like to capture stdout, we would need to drain it continuously.
-            // StandardOutput.ReadToEnd() wont work, since the other processes console only has limited buffer.
-            for (int i = 0; i < numProcesses; ++i)
-            {
-                processes[i].WaitForExit();
-                Assert.Equal(0, processes[i].ExitCode);
-                processes[i].Dispose();
-                processes[i] = null;
-            }
+                // In case we'd like to capture stdout, we would need to drain it continuously.
+                // StandardOutput.ReadToEnd() wont work, since the other processes console only has limited buffer.
+                for (int i = 0; i < numProcesses; ++i)
+                {
+                    processes[i].WaitForExit();
+                    Assert.Equal(0, processes[i].ExitCode);
+                    processes[i].Dispose();
+                    processes[i] = null;
+                }
 
                 var files = new System.Collections.Generic.List<string>(Directory.GetFiles(archivePath));
                 files.Add(logFile);
 
                 bool verifyFileSize = files.Count > 1;
 
-            int[] maxNumber = new int[numProcesses];
-            //Console.WriteLine("Verifying output file {0}", logFile);
+                int[] maxNumber = new int[numProcesses];
+                //Console.WriteLine("Verifying output file {0}", logFile);
                 foreach (var file in files)
-            {
+                {
                     using (StreamReader sr = File.OpenText(file))
                     {
-                string line;
+                        string line;
 
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] tokens = line.Split(' ');
-                    Assert.Equal(2, tokens.Length);
-                    try
-                    {
-                        int thread = Convert.ToInt32(tokens[0]);
-                        int number = Convert.ToInt32(tokens[1]);
-                        Assert.True(thread >= 0);
-                        Assert.True(thread < numProcesses);
-                        Assert.Equal(maxNumber[thread], number);
-                        maxNumber[thread]++;
-                    }
-                    catch (Exception ex)
-                    {
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            string[] tokens = line.Split(' ');
+                            Assert.Equal(2, tokens.Length);
+                            try
+                            {
+                                int thread = Convert.ToInt32(tokens[0]);
+                                int number = Convert.ToInt32(tokens[1]);
+                                Assert.True(thread >= 0);
+                                Assert.True(thread < numProcesses);
+                                Assert.Equal(maxNumber[thread], number);
+                                maxNumber[thread]++;
+                            }
+                            catch (Exception ex)
+                            {
                                 throw new InvalidOperationException(string.Format("Error when parsing line '{0}' in file {1}", line, file), ex);
-                    }
-                }
+                            }
+                        }
 
                         if (verifyFileSize)
                         {
@@ -219,8 +220,8 @@ namespace NLog.UnitTests.Targets
                                 throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too large", file, sr.BaseStream.Length));
                             else if (sr.BaseStream.Length < 35 && files[files.Count - 1] != file)
                                 throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too small", file, sr.BaseStream.Length));
-            }
-        }
+                        }
+                    }
                 }
             }
             finally

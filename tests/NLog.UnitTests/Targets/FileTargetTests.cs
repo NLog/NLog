@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
 {
@@ -126,6 +126,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3
         [Theory]
         [MemberData("SimpleFileTest_TestParameters")]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
@@ -181,6 +182,7 @@ namespace NLog.UnitTests.Targets
                     File.Delete(logFile);
             }
         }
+#endif
 
         /// <summary>
         /// There was a bug when creating the file in the root.
@@ -414,17 +416,20 @@ namespace NLog.UnitTests.Targets
             logger.Trace("running test");
         }
 
-#if NET3_5 || NET4_0 || NET4_5
         public static IEnumerable<object[]> ArchiveFileOnStartTests_TestParameters
         {
             get
             {
+#if !NETSTANDARD || NETSTANDARD1_3
                 var enableCompressionValues = new[] { true, false };
-#if NETSTANDARD
+#else
+                var enableCompressionValues = new[] { false };
+#endif
+#if !NETSTANDARD
+                var customFileCompressorValues = new[] { true, false };
+#else
                 //dotnet-zip doesn't work on .NET Core
                 var customFileCompressorValues = new[] { false };
-#else
-                var customFileCompressorValues = new[] { true, false };
 #endif
                 return
                     from enableCompression in enableCompressionValues
@@ -432,18 +437,7 @@ namespace NLog.UnitTests.Targets
                     select new object[] { enableCompression, customFileCompressor };
             }
         }
-#else
-        public static IEnumerable<object[]> ArchiveFileOnStartTests_TestParameters
-        {
-            get
-            {
-                var booleanValues = new[] { true, false };
-                return
-                    from enableCompression in booleanValues
-                    select new object[] { enableCompression, false };
-            }
-        }
-#endif
+
         [Theory]
         [MemberData("ArchiveFileOnStartTests_TestParameters")]
         public void ArchiveFileOnStartTests(bool enableCompression, bool customFileCompressor)
@@ -1696,7 +1690,7 @@ namespace NLog.UnitTests.Targets
             RollingArchiveTests(enableCompression: false, specifyArchiveFileName: specifyArchiveFileName);
         }
 
-#if NET4_5
+#if NET4_5 && !NETSTANDARD || NETSTANDARD1_3
         [Theory]
         [InlineData(false)]
         [InlineData(true)]
@@ -1966,18 +1960,20 @@ namespace NLog.UnitTests.Targets
             try
             {
                 var fileTarget = WrapFileTarget(new FileTarget
-                                    {
-                                        FileName = Path.Combine(tempPath, "${level}.txt"),
-                                        LineEnding = LineEndingMode.LF,
-                                        Layout = "${message} ${threadid}"
+                {
+                    FileName = Path.Combine(tempPath, "${level}.txt"),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message} ${threadid}"
                 });
 
                 // this also checks that thread-volatile layouts
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
 
-                var threadID = Thread.CurrentThread.ManagedThreadId.ToString();
-
+                string threadID = string.Empty;
+#if !NETSTANDARD || NETSTANDARD1_3
+                threadID = Thread.CurrentThread.ManagedThreadId.ToString();
+#endif
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 10, AsyncTargetWrapperOverflowAction.Grow)
                 {
                     Name = "AsyncMultiFileWrite_wrapper",
@@ -2055,7 +2051,7 @@ namespace NLog.UnitTests.Targets
             FileTarget_ArchiveNumbering_DateAndSequenceTests(enableCompression: false, fileTxt: "file-${date:format=yyyy-MM-dd}.txt", archiveFileName: "file-{#}.txt");
         }
 
-#if NET4_5
+#if NET4_5 && !NETSTANDARD || NETSTANDARD1_3
         [Fact]
         public void FileTarget_ArchiveNumbering_DateAndSequence_WithCompression()
         {

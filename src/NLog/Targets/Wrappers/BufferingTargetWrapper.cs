@@ -159,29 +159,11 @@ namespace NLog.Targets.Wrappers
             if (currentTimer != null)
             {
                 this.flushTimer = null;
-                currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
-               
 
-#if NETSTANDARD
-                currentTimer.Dispose();
-                lock (this.lockObject)
+                if (AsyncHelpers.WaitForDispose(currentTimer, TimeSpan.FromSeconds(1)))
                 {
                     WriteEventsInBuffer("Closing Target");
                 }
-#else
-                 ManualResetEvent waitHandle = new ManualResetEvent(false);
-                if (currentTimer.Dispose(waitHandle))
-                {
-                    if (waitHandle.WaitOne(1000))
-                    {
-                        waitHandle.Close();
-                        lock (this.lockObject)
-                        {
-                            WriteEventsInBuffer("Closing Target");
-                        }
-                    }
-                }
-#endif
             }
 
             base.CloseTarget();

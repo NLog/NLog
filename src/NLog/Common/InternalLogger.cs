@@ -36,16 +36,14 @@ namespace NLog.Common
     using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
-#if !NETSTANDARD
-    using System.Configuration;
-#endif
     using System.Globalization;
     using System.IO;
     using System.Reflection;
     using System.Text;
     using Internal;
     using Time;
-#if !SILVERLIGHT && !NETSTANDARD && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+    using System.Configuration;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Diagnostics;
 #endif
@@ -83,7 +81,7 @@ namespace NLog.Common
 #endif
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
             LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
 #endif
             IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
@@ -113,7 +111,7 @@ namespace NLog.Common
         public static bool LogToConsoleError { get; set; }
 
 #endif
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
 
         /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics.Trace"/>.
         /// Gets or sets the file path of the internal log file.
@@ -290,11 +288,11 @@ namespace NLog.Common
                 {
                     lock (LockObject)
                     {
-                    using (var textWriter = File.AppendText(logFile))
-                    {
-                        textWriter.WriteLine(msg);
+                        using (var textWriter = File.AppendText(logFile))
+                        {
+                            textWriter.WriteLine(msg);
+                        }
                     }
-                }
                 }
 
                 // log to LogWriter
@@ -312,8 +310,8 @@ namespace NLog.Common
                 {
                     lock (LockObject)
                     {
-                    Console.WriteLine(msg);
-                }
+                        Console.WriteLine(msg);
+                    }
                 }
 
                 // log to console error
@@ -321,12 +319,12 @@ namespace NLog.Common
                 {
                     lock (LockObject)
                     {
-                    	Console.Error.WriteLine(msg);
-                	}
+                        Console.Error.WriteLine(msg);
+                    }
                 }
-
 #endif
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
                 WriteToTrace(msg);
 #endif
             }
@@ -368,13 +366,13 @@ namespace NLog.Common
 #if !NETSTANDARD || NETSTANDARD1_3
             LogToConsole || LogToConsoleError ||
 #endif
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
             LogToTrace ||
 #endif
             LogWriter != null;
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
         /// <summary>
         /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
         /// </summary>
@@ -387,7 +385,6 @@ namespace NLog.Common
         /// </remarks>
         private static void WriteToTrace(string message)
         {
-
             if (!LogToTrace)
             {
                 return;

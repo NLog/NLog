@@ -31,9 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#define DEBUG
+#if !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
 
-#if !__IOS__ && !__ANDROID__
+#define DEBUG
 
 namespace NLog.UnitTests.Common
 {
