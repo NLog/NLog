@@ -163,6 +163,7 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />
+    <Compile Include="ILoggerExtensions.cs" />
     <Compile Include="ILogger-V1.cs" />
     <Compile Include="Internal\AppendBuilderCreator.cs" />
     <Compile Include="Internal\ArrayHelper.cs" />
