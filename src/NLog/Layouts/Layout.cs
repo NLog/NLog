@@ -31,10 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Layouts
 {
+    using System;
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
@@ -53,22 +52,17 @@ namespace NLog.Layouts
         private bool isInitialized;
 
         /// <summary>
-        /// Does the layout contains threadAgnostic layout renders? If contains non-threadAgnostic-layoutrendender, then this layout is also not threadAgnostic. 
-        /// See <see cref="IsThreadAgnostic"/> and <see cref="Initialize"/>.
-        /// </summary>
-        private bool threadAgnostic;
-
-        /// <summary>
         /// Gets a value indicating whether this layout is thread-agnostic (can be rendered on any thread).
         /// </summary>
         /// <remarks>
         /// Layout is thread-agnostic if it has been marked with [ThreadAgnostic] attribute and all its children are
         /// like that as well.
+        /// 
         /// Thread-agnostic layouts only use contents of <see cref="LogEventInfo"/> for its output.
         /// </remarks>
-		internal bool IsThreadAgnostic
+		internal bool ThreadAgnostic
 		{
-            get { return this.threadAgnostic; }
+            get; private set;
         }
 
         private const int MaxInitialRenderBufferLength = 16384;
@@ -124,9 +118,9 @@ namespace NLog.Layouts
         /// </remarks>
         public virtual void Precalculate(LogEventInfo logEvent)
         {
-            if (!this.threadAgnostic)
+            if (!ThreadAgnostic)
             {
-                this.Render(logEvent);
+                Render(logEvent);
             }
         }
 
@@ -137,18 +131,18 @@ namespace NLog.Layouts
         /// <returns>String representing log event.</returns>
         public string Render(LogEventInfo logEvent)
         {
-            if (!this.isInitialized)
+            if (!isInitialized)
             {
-                this.isInitialized = true;
-                this.InitializeLayout();
+                isInitialized = true;
+                InitializeLayout();
             }
 
-            return this.GetFormattedMessage(logEvent);
+            return GetFormattedMessage(logEvent);
         }
 
         internal void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!this.threadAgnostic)
+            if (!ThreadAgnostic)
             {
                 RenderAppendBuilder(logEvent, target, true);
             }
@@ -162,13 +156,13 @@ namespace NLog.Layouts
         /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
         internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target, bool cacheLayoutResult = false)
         {
-            if (!this.isInitialized)
+            if (!isInitialized)
             {
-                this.isInitialized = true;
-                this.InitializeLayout();
+                isInitialized = true;
+                InitializeLayout();
             }
 
-            if (!this.threadAgnostic)
+            if (!ThreadAgnostic)
             {
                 string cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
@@ -178,20 +172,16 @@ namespace NLog.Layouts
                 }
             }
 
-            int initialLength = this.maxRenderedLength;
-            if (initialLength > MaxInitialRenderBufferLength)
-            {
-                initialLength = MaxInitialRenderBufferLength;
-            }
+            int initialLength = GetRenderBufferLength();
 
             using (var localTarget = new AppendBuilderCreator(target, initialLength))
             {
                 RenderFormattedMessage(logEvent, localTarget.Builder);
-                if (localTarget.Builder.Length > this.maxRenderedLength)
+                if (localTarget.Builder.Length > maxRenderedLength)
                 {
-                    this.maxRenderedLength = localTarget.Builder.Length;
+                    maxRenderedLength = localTarget.Builder.Length;
                 }
-                if (cacheLayoutResult && !this.threadAgnostic)
+                if (cacheLayoutResult && !ThreadAgnostic)
                 {
                     // when needed as it generates garbage
                     logEvent.AddCachedLayoutValue(this, localTarget.Builder.ToString());
@@ -208,7 +198,7 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         internal string RenderAllocateBuilder(LogEventInfo logEvent, StringBuilder reusableBuilder = null, bool cacheLayoutResult = true)
         {
-            if (!this.threadAgnostic)
+            if (!ThreadAgnostic)
             {
                 string cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
@@ -217,20 +207,16 @@ namespace NLog.Layouts
                 }
             }
 
-            int initialLength = this.maxRenderedLength;
-            if (initialLength > MaxInitialRenderBufferLength)
-            {
-                initialLength = MaxInitialRenderBufferLength;
-            }
+            int initialLength = GetRenderBufferLength();
 
             var sb = reusableBuilder ?? new StringBuilder(initialLength);
             RenderFormattedMessage(logEvent, sb);
-            if (sb.Length > this.maxRenderedLength)
+            if (sb.Length > maxRenderedLength)
             {
-                this.maxRenderedLength = sb.Length;
+                maxRenderedLength = sb.Length;
             }
 
-            if (cacheLayoutResult && !this.threadAgnostic)
+            if (cacheLayoutResult && !ThreadAgnostic)
             {
                 return logEvent.AddCachedLayoutValue(this, sb.ToString());
             }
@@ -256,7 +242,7 @@ namespace NLog.Layouts
         /// <param name="configuration">The configuration.</param>
         void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
         {
-            this.Initialize(configuration);
+            Initialize(configuration);
         }
 
         /// <summary>
@@ -264,7 +250,7 @@ namespace NLog.Layouts
         /// </summary>
         void ISupportsInitialize.Close()
         {
-            this.Close();
+            Close();
         }
 
         /// <summary>
@@ -273,25 +259,13 @@ namespace NLog.Layouts
         /// <param name="configuration">The configuration.</param>
 		internal void Initialize(LoggingConfiguration configuration)
 		{
-            if (!this.isInitialized)
+            if (!isInitialized)
             {
-                this.LoggingConfiguration = configuration;
-                this.isInitialized = true;
-
-                // determine whether the layout is thread-agnostic
-                // layout is thread agnostic if it is thread-agnostic and 
-                // all its nested objects are thread-agnostic.
-                this.threadAgnostic = true;
-                foreach (object item in ObjectGraphScanner.FindReachableObjects<object>(this))
-                {
-                    if (!item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true))
-                    {
-                        this.threadAgnostic = false;
-                        break;
-                    }
-                }
-
-                this.InitializeLayout();
+                LoggingConfiguration = configuration;
+                isInitialized = true;
+                ThreadAgnostic = IsThreadAgnostic();
+  
+                InitializeLayout();
             }
         }
 
@@ -300,11 +274,11 @@ namespace NLog.Layouts
         /// </summary>
 		internal void Close()
 		{
-            if (this.isInitialized)
+            if (isInitialized)
             {
-                this.LoggingConfiguration = null;
-                this.isInitialized = false;
-                this.CloseLayout();
+                LoggingConfiguration = null;
+                isInitialized = false;
+                CloseLayout();
             }
         }
 
@@ -352,6 +326,34 @@ namespace NLog.Layouts
         {
             ConfigurationItemFactory.Default.Layouts
                 .RegisterDefinition(name, layoutType);
+        }
+
+        private int GetRenderBufferLength() 
+        {
+            return (maxRenderedLength > MaxInitialRenderBufferLength) 
+                    ? MaxInitialRenderBufferLength 
+                    : maxRenderedLength;
+        }
+
+        /// <summary>
+        /// Determine whether the layout is thread-agnostic or not. The layout is thread-agnostic when itself  
+        /// and all the nested objects are thread-agnostic.
+        /// </summary>
+        /// <returns>True when thread-agnostic; false otherwise.</returns>
+        private bool IsThreadAgnostic() 
+        {
+            var result = true;
+
+            foreach (object item in ObjectGraphScanner.FindReachableObjects<object>(this)) 
+            {
+                if (!item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true)) 
+                {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }
