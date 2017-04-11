@@ -185,25 +185,59 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void JsonAttributeThreadAgnosticTest()
         {
-            var jsonLayout = new JsonLayout
-            {
-                Attributes =
-                {
-                    new JsonAttribute("type", "${exception:format=Type}"),
-                    new JsonAttribute("message", "${exception:format=Message}"),
-                    new JsonAttribute("threadid", "${threadid}"),
-                }
-            };
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                 <layout type='JsonLayout'>
+                    <attribute name='type' layout='${exception:format=Type}'/>
+                    <attribute name='message' layout='${exception:format=Message}'/>
+                    <attribute name='threadid' layout='${threadid}'/>
+                 </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("B");
 
             var logEventInfo = CreateLogEventWithExcluded();
-            var result = jsonLayout.Render(logEventInfo);
-            string cachedLookup;
-            logEventInfo.TryGetCachedLayoutValue(jsonLayout, out cachedLookup);
-            Assert.NotNull(cachedLookup);
-            Assert.Equal(result, cachedLookup);
 
-            string cacheVerification = jsonLayout.Render(logEventInfo);
-            Assert.Equal(true, ReferenceEquals(cachedLookup, cacheVerification));
+            logger.Debug(logEventInfo);
+
+            var message = GetDebugLastMessage("debug");
+            Assert.Equal(true, message.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString()));
+        }
+
+        [Fact]
+        public void JsonAttributeStackTraceUsageTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                 <layout type='JsonLayout'>
+                    <attribute name='type' layout='${exception:format=Type}'/>
+                    <attribute name='message' layout='${exception:format=Message}'/>
+                    <attribute name='className' layout='${callsite:className=true}'/>
+                 </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("C");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+
+            logger.Debug(logEventInfo);
+
+            var message = GetDebugLastMessage("debug");
+            Assert.Contains(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName, message);
         }
 
         [Fact]
@@ -386,12 +420,12 @@ namespace NLog.UnitTests.Layouts
 
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
-                <targets>
-            <target name='debug' type='Debug'  >
+            <targets>
+                <target name='debug' type='Debug'  >
                  <layout type=""JsonLayout"" IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2'>
             
                  </layout>
-            </target>
+                </target>
             </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />

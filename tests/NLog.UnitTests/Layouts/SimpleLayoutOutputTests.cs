@@ -69,7 +69,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void SimpleLayoutCachingTest()
         {
-            var l = new SimpleLayout("xx${level}yy");
+            var l = new SimpleLayout("xx${threadid}yy");
             var ev = LogEventInfo.CreateNullEvent();
             string output1 = l.Render(ev);
             string output2 = l.Render(ev);

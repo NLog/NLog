@@ -293,16 +293,13 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", "");
         }
 
-        [Fact(Skip = "SimpleLayout.GetFormattedMessage catches exception. Will be fixed in the future")]
-
+        [Fact]
         public void RegistryTestWrongKey_ex()
         {
             LogManager.ThrowExceptions = true;
 
             Assert.Throws<ArgumentException>(
                 () => { AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", ""); });
-
-
         }
     }
 }

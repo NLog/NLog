@@ -530,9 +530,12 @@ namespace NLog
         /// </summary>
         public void ReconfigExistingLoggers()
         {
-            if (this.config != null)
+            lock (this.syncRoot)
             {
-                this.config.InitializeAll();
+                if (this.config != null)
+                {
+                    this.config.InitializeAll();
+                }
             }
 
             //new list to avoid "Collection was modified; enumeration operation may not execute"
@@ -760,16 +763,16 @@ namespace NLog
             {
                 try
                 {
+                    if (this.IsDisposing)
+                    {
+                        return; //timer was disposed already. 
+                    }
+
                     var currentTimer = this.reloadTimer;
                     if (currentTimer != null)
                     {
                         this.reloadTimer = null;
                         currentTimer.Dispose();
-                    }
-
-                    if (this.IsDisposing)
-                    {
-                        return; //timer was disposed already. 
                     }
 
                     this.watcher.StopWatching();
@@ -796,9 +799,9 @@ namespace NLog
 
                     if (newConfig != null)
                     {
-                        if (this.KeepVariablesOnReload)
+                        if (this.KeepVariablesOnReload && this.config != null)
                         {
-                            newConfig.CopyVariables(this.Configuration.Variables);
+                            newConfig.CopyVariables(this.config.Variables);
                         }
                         this.Configuration = newConfig;
                         OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));

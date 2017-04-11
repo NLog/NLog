@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-
 namespace NLog.Internal
 {
     using System.Collections.Generic;
@@ -97,10 +95,9 @@ namespace NLog.Internal
 
             // find all objects which may need stack trace
             // and determine maximum
-            // only the target can have IUsesStackTrace
             if (Target != null)
             {
-                stackTraceUsage = Target.GetAllLayouts().OfType<IUsesStackTrace>().DefaultIfEmpty().Max(usage => usage == null ? StackTraceUsage.None : usage.StackTraceUsage);
+                stackTraceUsage = Target.StackTraceUsage;
             }
 
             //recurse into chain if not max
