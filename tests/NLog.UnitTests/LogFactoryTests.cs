@@ -136,6 +136,7 @@ namespace NLog.UnitTests
             }
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void ReloadConfigOnTimer_DoesNotThrowConfigException_IfConfigChangedInBetween()
         {
@@ -214,6 +215,7 @@ namespace NLog.UnitTests
 
             Assert.True(arguments.Succeeded);
         }
+#endif
 
         public static void Throws()
         {

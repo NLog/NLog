@@ -457,6 +457,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
+                NLog.Common.InternalLogger.Reset();
                 if (File.Exists(tempFileName))
                 {
                     File.Delete(tempFileName);

@@ -44,6 +44,15 @@ namespace NLog.Common
     /// </summary>
     public static class AsyncHelpers
     {
+        internal static int GetManagedThreadId()
+        {
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
+            return Thread.CurrentThread.ManagedThreadId;
+#else
+            return System.Environment.CurrentManagedThreadId;
+#endif
+        }
+
         internal static void StartAsyncTask(Action<object> action, object state)
         {
 #if NET4_0 || NET4_5 || NETSTANDARD
@@ -55,7 +64,7 @@ namespace NLog.Common
 
         internal static void WaitForDelay(TimeSpan delay)
         {
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
             Thread.Sleep(delay);
 #else
             System.Threading.Tasks.Task.Delay(delay).Wait();

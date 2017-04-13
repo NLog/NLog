@@ -100,9 +100,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 var time = epochStart.AddMilliseconds(timestamp);
                                 var now = DateTime.UtcNow;
                                 Assert.True(now.Ticks - time.Ticks < TimeSpan.FromSeconds(3).Ticks);
-#if !NETSTANDARD || NETSTANDARD1_3
-                                Assert.Equal(Thread.CurrentThread.ManagedThreadId.ToString(), reader.GetAttribute("thread"));
-#endif
+                                Assert.Equal(NLog.Common.AsyncHelpers.GetManagedThreadId().ToString(), reader.GetAttribute("thread"));
                                 break;
 
                             case "message":

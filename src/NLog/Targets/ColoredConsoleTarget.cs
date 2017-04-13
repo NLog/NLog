@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
 using NLog.Common;
 
 namespace NLog.Targets

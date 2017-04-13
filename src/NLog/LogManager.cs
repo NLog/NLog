@@ -94,7 +94,7 @@ namespace NLog
             remove { factory.ConfigurationChanged -= value; }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>

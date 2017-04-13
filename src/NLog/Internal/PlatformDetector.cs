@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
-#if NETSTANDARD1_3
+#if NETSTANDARD1_3PLUS
     using System.Runtime.InteropServices;
 #endif
     using NLog.Config;
@@ -94,12 +94,13 @@ namespace NLog.Internal
         {
             get
             {
-                // Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
 #if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD
                 if (IsMono && System.Environment.Version.Major < 4)
                     return false;   // MONO ver. 4 is needed for named Mutex to work
                 else
                     return true;
+#elif NETSTANDARD1_3
+                return true;
 #else
                 return false;
 #endif
@@ -108,7 +109,7 @@ namespace NLog.Internal
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {
-#if NETSTANDARD1_3
+#if NETSTANDARD1_3PLUS
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return RuntimeOS.Windows;
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))

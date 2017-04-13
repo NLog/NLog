@@ -38,7 +38,7 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections;
     using System.Collections.Generic;
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
     using System.Configuration;
 #endif
     using System.Data;
@@ -55,7 +55,7 @@ namespace NLog.UnitTests.Targets
 
     public class DatabaseTargetTests : NLogTestBase
     {
-#if !MONO &&  !NETSTANDARD1_3
+#if !MONO && !NETSTANDARD
         static DatabaseTargetTests()
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
@@ -660,7 +660,7 @@ Dispose()
 ";
             AssertLog(expectedLog);
         }
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
         [Fact]
         public void ConnectionStringNameInitTest()
         {
@@ -739,7 +739,7 @@ Dispose()
         }
 
 
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
 
         /// <summary>
         /// no OleDB in .NET Core

@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
     {
         private string baseDir;
 
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3PLUS
 
         /// <summary>
         /// cached
@@ -100,7 +100,7 @@ namespace NLog.LayoutRenderers
         {
 
             var dir = baseDir;
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3PLUS
             if (ProcessDir)
             {
                 dir = processDir ?? (processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));

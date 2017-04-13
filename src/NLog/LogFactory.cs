@@ -67,7 +67,7 @@ namespace NLog
     /// </summary>
     public class LogFactory : IDisposable
     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
         private const int ReconfigAfterFileChangedTimeout = 1000;
         private Timer reloadTimer;
         private readonly MultiFileWatcher watcher;
@@ -94,7 +94,7 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -119,7 +119,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
             this.watcher = new MultiFileWatcher();
             this.watcher.FileChanged += this.ConfigFileChanged;
             LoggerShutdown += OnStopLogging;
@@ -270,7 +270,7 @@ namespace NLog
                     {
                         try
                         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
                             config.Dump();
 
                             try
@@ -304,7 +304,7 @@ namespace NLog
 
             set
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
                 try
                 {
                     this.watcher.StopWatching();
@@ -326,7 +326,7 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT
                         this.Flush();
 #endif
                         oldConfig.Close();
@@ -344,7 +344,7 @@ namespace NLog
 
                             this.config.InitializeAll();
                             this.ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
                             try
                             {
                                 this.watcher.Watch(this.config.FileNamesToWatch);
@@ -758,7 +758,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
         /// <summary>
         /// Raises the event when the configuration is reloaded. 
         /// </summary>
@@ -769,7 +769,7 @@ namespace NLog
         }
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
         internal void ReloadConfigOnTimer(object state)
         {
             if (this.reloadTimer == null && this.IsDisposing)
@@ -784,15 +784,16 @@ namespace NLog
             {
                 try
                 {
+                    if (this.IsDisposing)
+                    {
+                        return; //timer was disposed already. 
+                    }
+
                     var currentTimer = this.reloadTimer;
                     if (currentTimer != null)
                     {
                         this.reloadTimer = null;
                         currentTimer.Dispose();
-                    }
-                    if (this.IsDisposing)
-                    {
-                        return; //timer was disposed already. 
                     }
 
                     this.watcher.StopWatching();
@@ -819,9 +820,9 @@ namespace NLog
 
                     if (newConfig != null)
                     {
-                        if (this.KeepVariablesOnReload)
+                        if (this.KeepVariablesOnReload && this.config != null)
                         {
-                            newConfig.CopyVariables(this.Configuration.Variables);
+                            newConfig.CopyVariables(this.config.Variables);
                         }
                         this.Configuration = newConfig;
                         OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
@@ -950,7 +951,7 @@ namespace NLog
 
             this.IsDisposing = true;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
             LoggerShutdown -= OnStopLogging;
             this.ConfigurationReloaded = null;   // Release event listeners
 
@@ -965,7 +966,7 @@ namespace NLog
             {
                 try
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
                     var currentTimer = this.reloadTimer;
                     if (currentTimer != null)
                     {
@@ -1243,7 +1244,7 @@ namespace NLog
         }
 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", LogFactory.ReconfigAfterFileChangedTimeout);

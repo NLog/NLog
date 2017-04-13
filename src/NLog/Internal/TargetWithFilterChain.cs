@@ -111,6 +111,21 @@ namespace NLog.Internal
                     stackTraceUsage = stackTraceUsageForChain;
             }
 
+#if NETSTANDARD
+            if (stackTraceUsage != StackTraceUsage.None)
+            {
+                try
+                {
+                    // Check if hack used by LoggerImpl.Write() is possible
+                    var stackTrace = (System.Diagnostics.StackTrace)System.Activator.CreateInstance(typeof(System.Diagnostics.StackTrace), new object[] { stackTraceUsage == StackTraceUsage.WithSource });
+                }
+                catch (System.Exception ex)
+                {
+                    stackTraceUsage = StackTraceUsage.None;
+                    Common.InternalLogger.Info(ex, "StackTrace constructor not available. Maybe because of .NET Native.");
+                }
+            }
+#endif
             _stackTraceUsage = stackTraceUsage;
             return stackTraceUsage;
         }

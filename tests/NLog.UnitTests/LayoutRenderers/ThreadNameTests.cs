@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
 
 namespace NLog.UnitTests.LayoutRenderers
 {

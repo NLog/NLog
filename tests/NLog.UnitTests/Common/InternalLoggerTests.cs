@@ -209,7 +209,7 @@ namespace NLog.UnitTests.Common
             Assert.Equal(expected, writerOutput);
         }
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void WriteToConsoleOutTests()
         {
@@ -397,7 +397,7 @@ namespace NLog.UnitTests.Common
             }
         }
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void TimestampTests()
         {
@@ -582,6 +582,7 @@ namespace NLog.UnitTests.Common
 
                 InternalLogger.LogToConsole = false;
             }
+
         }
 #endif
 

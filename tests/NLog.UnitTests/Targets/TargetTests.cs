@@ -456,7 +456,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void LockingTest()
         {
@@ -605,7 +605,7 @@ namespace NLog.UnitTests.Targets
                 base.Write(logEvents);
             }
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
             public void BlockingOperation(int millisecondsTimeout)
             {
                 lock (this.SyncRoot)

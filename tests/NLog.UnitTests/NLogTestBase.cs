@@ -63,7 +63,7 @@ namespace NLog.UnitTests
 #endif
 #endif
 
-#if NETSTANDARD1_3
+#if NETSTANDARD1_3PLUS
     using System.IO.Compression;
 #endif
 
@@ -72,7 +72,32 @@ namespace NLog.UnitTests
 #endif
     public abstract class NLogTestBase
     {
+        public class XunitTraceListener : System.Diagnostics.TraceListener
+        {
+            private readonly Xunit.Abstractions.ITestOutputHelper output;
+
+            public XunitTraceListener(Xunit.Abstractions.ITestOutputHelper output)
+            {
+                this.output = output;
+            }
+
+            public override void WriteLine(string str)
+            {
+                output.WriteLine(str);
+            }
+
+            public override void Write(string str)
+            {
+                output.WriteLine(str);
+            }
+        }
+
         protected NLogTestBase()
+            : this(null)
+        {
+        }
+
+        protected NLogTestBase(Xunit.Abstractions.ITestOutputHelper output)
         {
             //reset before every test
             if (LogManager.Configuration != null)
@@ -90,8 +115,10 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3PLUS
             System.Diagnostics.Trace.Listeners.Clear();
+            if (output != null)
+                System.Diagnostics.Trace.Listeners.Add(new XunitTraceListener(output));
 #if !NETSTANDARD
             System.Diagnostics.Debug.Listeners.Clear();
 #endif
@@ -205,7 +232,7 @@ namespace NLog.UnitTests
                 }
             }
         }
-#elif NET4_5 && !NETSTANDARD || NETSTANDARD1_3
+#elif NET4_5 && !NETSTANDARD || NETSTANDARD1_3PLUS
         protected void AssertZipFileContents(string fileName, string contents, Encoding encoding)
         {
             FileInfo fi = new FileInfo(fileName);

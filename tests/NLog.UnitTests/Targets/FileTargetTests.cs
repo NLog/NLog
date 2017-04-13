@@ -126,7 +126,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Theory]
         [MemberData("SimpleFileTest_TestParameters")]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
@@ -420,7 +420,7 @@ namespace NLog.UnitTests.Targets
         {
             get
             {
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
                 var enableCompressionValues = new[] { true, false };
 #else
                 var enableCompressionValues = new[] { false };
@@ -1690,7 +1690,7 @@ namespace NLog.UnitTests.Targets
             RollingArchiveTests(enableCompression: false, specifyArchiveFileName: specifyArchiveFileName);
         }
 
-#if NET4_5 && !NETSTANDARD || NETSTANDARD1_3
+#if NET4_5 && !NETSTANDARD || NETSTANDARD1_3PLUS
         [Theory]
         [InlineData(false)]
         [InlineData(true)]
@@ -1970,10 +1970,7 @@ namespace NLog.UnitTests.Targets
                 // such as ${threadid} are properly cached and not recalculated
                 // in logging threads.
 
-                string threadID = string.Empty;
-#if !NETSTANDARD || NETSTANDARD1_3
-                threadID = Thread.CurrentThread.ManagedThreadId.ToString();
-#endif
+                string threadID = NLog.Common.AsyncHelpers.GetManagedThreadId().ToString();
                 SimpleConfigurator.ConfigureForTargetLogging(new AsyncTargetWrapper(fileTarget, 10, AsyncTargetWrapperOverflowAction.Grow)
                 {
                     Name = "AsyncMultiFileWrite_wrapper",
@@ -2051,7 +2048,7 @@ namespace NLog.UnitTests.Targets
             FileTarget_ArchiveNumbering_DateAndSequenceTests(enableCompression: false, fileTxt: "file-${date:format=yyyy-MM-dd}.txt", archiveFileName: "file-{#}.txt");
         }
 
-#if NET4_5 && !NETSTANDARD || NETSTANDARD1_3
+#if NET4_5 && !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void FileTarget_ArchiveNumbering_DateAndSequence_WithCompression()
         {
@@ -2687,11 +2684,12 @@ namespace NLog.UnitTests.Targets
 </nlog>
 ");
 
-            NLog.LogManager.GetLogger("Test").Info("very important message");
-        }
+                NLog.LogManager.GetLogger("Test").Info("very important message");
+            }
             finally
             {
                 LogManager.Configuration = null;
+                NLog.Common.InternalLogger.Reset();
             }
         }
 
@@ -2718,11 +2716,12 @@ namespace NLog.UnitTests.Targets
 </nlog>
 ");
 
-            NLog.LogManager.GetLogger("Test").Info("very important message");
-        }
+                NLog.LogManager.GetLogger("Test").Info("very important message");
+            }
             finally
             {
                 LogManager.Configuration = null;
+                NLog.Common.InternalLogger.Reset();
             }
         }
 

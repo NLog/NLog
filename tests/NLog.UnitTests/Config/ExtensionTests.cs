@@ -487,7 +487,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                InternalLogger.LogWriter = null;
+                InternalLogger.Reset();
             }
         }
     }

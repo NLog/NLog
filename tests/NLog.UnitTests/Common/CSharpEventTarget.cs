@@ -70,13 +70,13 @@ namespace NLog.UnitTests.Common
         {
             if (BeforeWrite != null)
             {
-                BeforeWrite.Invoke(null, null, Thread.CurrentThread.ManagedThreadId);
+                BeforeWrite.Invoke(null, null, NLog.Common.AsyncHelpers.GetManagedThreadId());
             }
 
             if (EventWritten != null)
             {
                 var rendered = Layout == null ? null : Layout.Render(logEvent);
-                EventWritten.Invoke(logEvent, rendered, Thread.CurrentThread.ManagedThreadId);
+                EventWritten.Invoke(logEvent, rendered, NLog.Common.AsyncHelpers.GetManagedThreadId());
             }
         }
 

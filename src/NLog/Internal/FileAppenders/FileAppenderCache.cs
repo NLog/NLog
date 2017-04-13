@@ -46,7 +46,7 @@ namespace NLog.Internal.FileAppenders
         private readonly BaseFileAppender[] appenders;
         private Timer autoClosingTimer;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
         private string archiveFilePatternToWatch = null;
         private readonly MultiFileWatcher externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.DirectoryName | NotifyFilters.FileName);
         private bool logFileWasArchived = false;
@@ -83,12 +83,12 @@ namespace NLog.Internal.FileAppenders
 
             autoClosingTimer = new Timer(AutoClosingTimerCallback, null, Timeout.Infinite, Timeout.Infinite);
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
             externalFileArchivingWatcher.FileChanged += ExternalFileArchivingWatcher_OnFileChanged;
 #endif
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
         private void ExternalFileArchivingWatcher_OnFileChanged(object sender, FileSystemEventArgs e)
         {
             if (logFileWasArchived || CheckCloseAppenders == null || autoClosingTimer == null)
@@ -103,9 +103,9 @@ namespace NLog.Internal.FileAppenders
             }
             else
             {
-            if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
+                if ((e.ChangeType & WatcherChangeTypes.Created) == WatcherChangeTypes.Created)
                     logFileWasArchived = true;  // Something was created in the archive folder
-        }
+            }
 
             if (logFileWasArchived)
             {
@@ -245,14 +245,14 @@ namespace NLog.Internal.FileAppenders
                     BaseFileAppender app = appenders[i];
                     if (i > 0)
                     {
-                    // file open has a chance of failure
-                    // if it fails in the constructor, we won't modify any data structures
-                    for (int j = i; j > 0; --j)
-                    {
-                        appenders[j] = appenders[j - 1];
-                    }
+                        // file open has a chance of failure
+                        // if it fails in the constructor, we won't modify any data structures
+                        for (int j = i; j > 0; --j)
+                        {
+                            appenders[j] = appenders[j - 1];
+                        }
 
-                    appenders[0] = app;
+                        appenders[0] = app;
                     }
                     appenderToWrite = app;
                     break;
@@ -282,7 +282,7 @@ namespace NLog.Internal.FileAppenders
 
                     if (CheckCloseAppenders != null)
                     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
                         if (freeSpot == 0)
                             logFileWasArchived = false;
                         if (!string.IsNullOrEmpty(archiveFilePatternToWatch))
@@ -333,7 +333,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="expireTime">The time which prior the appenders considered expired</param>
         public void CloseAppenders(DateTime expireTime)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
             if (logFileWasArchived)
             {
                 logFileWasArchived = false;
@@ -344,30 +344,30 @@ namespace NLog.Internal.FileAppenders
             {
                 if (expireTime != DateTime.MinValue)
                 {
-            for (int i = 0; i < this.appenders.Length; ++i)
-            {
-                if (this.appenders[i] == null)
-                {
-                    break;
-                }
-
-                        if (this.appenders[i].OpenTimeUtc < expireTime)
-                {
-                    for (int j = i; j < this.appenders.Length; ++j)
+                    for (int i = 0; i < this.appenders.Length; ++i)
                     {
-                        if (this.appenders[j] == null)
+                        if (this.appenders[i] == null)
                         {
                             break;
                         }
 
-                                CloseAppender(this.appenders[j], "Expired", i == 0);
-                        this.appenders[j] = null;
-                    }
+                        if (this.appenders[i].OpenTimeUtc < expireTime)
+                        {
+                            for (int j = i; j < this.appenders.Length; ++j)
+                            {
+                                if (this.appenders[j] == null)
+                                {
+                                    break;
+                                }
 
-                    break;
+                                CloseAppender(this.appenders[j], "Expired", i == 0);
+                                this.appenders[j] = null;
+                            }
+
+                            break;
+                        }
+                    }
                 }
-            }
-        }
             }
         }
 
@@ -436,7 +436,7 @@ namespace NLog.Internal.FileAppenders
                     InvalidateAppender(appender.FileName);
                     throw;
                 }
-            }                
+            }
             if (result == null && fallback)
             {
                 var fileInfo = new FileInfo(filePath);
@@ -458,7 +458,7 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                result = appender.GetFileLastWriteTimeUtc();
+                    result = appender.GetFileLastWriteTimeUtc();
                 }
                 catch (Exception ex)
                 {
@@ -487,7 +487,7 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                result = appender.GetFileLength();
+                    result = appender.GetFileLength();
                 }
                 catch (Exception ex)
                 {
@@ -507,7 +507,7 @@ namespace NLog.Internal.FileAppenders
 
             return result;
         }
-        
+
         /// <summary>
         /// Closes the specified appender and removes it from the list. 
         /// </summary>
@@ -544,7 +544,7 @@ namespace NLog.Internal.FileAppenders
                 // No active appenders, deactivate background tasks
                 autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
                 externalFileArchivingWatcher.StopWatching();
                 logFileWasArchived = false;
             }
@@ -552,16 +552,16 @@ namespace NLog.Internal.FileAppenders
             {
                 externalFileArchivingWatcher.StopWatching(appender.FileName);
 #endif
-        }
+            }
 
             appender.Close();
-    }
+        }
 
         public void Dispose()
         {
             CheckCloseAppenders = null;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
             externalFileArchivingWatcher.Dispose();
             logFileWasArchived = false;
 #endif
@@ -572,7 +572,7 @@ namespace NLog.Internal.FileAppenders
                 autoClosingTimer = null;
                 currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
                 currentTimer.Dispose();
-}
+            }
         }
     }
 }

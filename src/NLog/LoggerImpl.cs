@@ -82,22 +82,20 @@ namespace NLog
             }
 
             AsyncContinuation exceptionHandler = ex => { };
-#if !NETSTANDARD || NETSTANDARD1_3
             if (factory.ThrowExceptions)
             {
-                int originalThreadId = Thread.CurrentThread.ManagedThreadId;
+                int originalThreadId = AsyncHelpers.GetManagedThreadId();
                 exceptionHandler = ex =>
                 {
                     if (ex != null)
                     {
-                        if (Thread.CurrentThread.ManagedThreadId == originalThreadId)
+                        if (AsyncHelpers.GetManagedThreadId() == originalThreadId)
                         {
                             throw new NLogRuntimeException("Exception occurred in NLog", ex);
                         }
                     }
                 };
             };
-#endif
 
             for (var t = targets; t != null; t = t.NextInChain)
             {

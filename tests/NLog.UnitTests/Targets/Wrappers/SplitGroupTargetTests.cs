@@ -149,7 +149,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(1, myTarget3.FlushCount);
         }
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void SplitGroupToStringTest()
         {

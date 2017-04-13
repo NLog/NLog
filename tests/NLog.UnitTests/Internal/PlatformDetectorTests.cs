@@ -48,7 +48,7 @@ namespace NLog.UnitTests.Internal
 #endif
         }
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void GetCurrentOSTest()
         {

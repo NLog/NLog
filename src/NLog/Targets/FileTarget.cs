@@ -746,7 +746,7 @@ namespace NLog.Targets
             {
                 this.fileAppenderCache.CheckCloseAppenders -= AutoClosingTimerCallback;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
                 if (KeepFileOpen)
                     this.fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 
@@ -2051,7 +2051,7 @@ namespace NLog.Targets
                         archiveMutex = this.fileAppenderCache.GetArchiveMutex(archiveFile);
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
                     this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
 
@@ -2062,7 +2062,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
                     this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
                 }

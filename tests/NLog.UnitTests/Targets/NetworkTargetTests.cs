@@ -772,7 +772,9 @@ namespace NLog.UnitTests.Targets
                 Assert.Null(receiveException);
             }
         }
+#endif
 
+#if !SILVERLIGHT
         [Fact]
         public void NetworkTargetNotConnectedTest()
         {

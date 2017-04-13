@@ -261,7 +261,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
         }
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         private int _reloadCounter = 0;
 
         private void WaitForConfigReload(int counter)
