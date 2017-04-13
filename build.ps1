@@ -8,3 +8,7 @@ dotnet restore .\src\NLogAutoLoadExtension\
 dotnet pack .\src\NLog\  --configuration release   -o artifacts
 dotnet build .\src\NLog.Extended\  --configuration release 
 dotnet build .\src\NLogAutoLoadExtension\  --configuration release 
+
+# remove this when we get clean builds
+Get-ChildItem artifacts\*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+
