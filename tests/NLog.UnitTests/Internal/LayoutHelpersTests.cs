@@ -43,7 +43,7 @@ using Xunit.Extensions;
 
 namespace NLog.UnitTests.Internal
 {
-    public class LayoutHelpersTests
+    public class LayoutHelpersTests : NLogTestBase
     {
         private string _eventPropertiesLayout;
 

@@ -41,7 +41,7 @@ namespace NLog.UnitTests.Internal
     using Xunit.Extensions;
     using NLog.Internal;
 
-    public class FilePathLayoutTests : NLogTestBase
+    public class FilePathLayoutTests
     {
         [Theory]
         [InlineData(@"", FilePathKind.Unknown)]

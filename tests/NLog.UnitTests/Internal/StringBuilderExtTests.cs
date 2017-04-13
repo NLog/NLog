@@ -38,7 +38,7 @@ using Xunit.Extensions;
 
 namespace NLog.UnitTests.Internal
 {
-    public class StringBuilderExtTests : NLogTestBase
+    public class StringBuilderExtTests
     {
         [Theory]
         [InlineData(0)]

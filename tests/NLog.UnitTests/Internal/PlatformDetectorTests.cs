@@ -36,7 +36,7 @@ using Xunit;
 
 namespace NLog.UnitTests.Internal
 {
-    public class PlatformDetectorTests : NLogTestBase
+    public class PlatformDetectorTests
     {
         [Fact]
         public void IsMonoTest()
