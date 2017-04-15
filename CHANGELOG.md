@@ -1,6 +1,22 @@
 See also [releases](https://github.com/NLog/NLog/releases) and [milestones](https://github.com/NLog/NLog/milestones).
 
 
+
+## v4.4.6 (2017/04/11)
+
+#### Features
+
+- [#2006](https://github.com/nlog/nlog/pull/2006) Added AsyncTaskTarget - Base class for using async methods (@snakefoot)
+- [#2051](https://github.com/nlog/nlog/pull/2051) Added LogMessageGenerator overloads for exceptions (#2051) (@c0shea)
+- [#2034](https://github.com/nlog/nlog/pull/2034) ${level} add format option (full, single char and ordinal) (#2034) (@c0shea)
+- [#2042](https://github.com/nlog/nlog/pull/2042) AutoFlushTargetWrapper - Added AsyncFlush property (@snakefoot)
+
+#### Improvements
+
+- [#2048](https://github.com/nlog/nlog/pull/2048) Layout - Ensure StackTraceUsage works for all types of Layout (@snakefoot)
+- [#2041](https://github.com/nlog/nlog/pull/2041) Reduce memory allocations (AsyncContinuation exceptionHandler) & refactor (@snakefoot)
+- [#2040](https://github.com/nlog/nlog/pull/2040) WebServiceTarget - Avoid re-throwing exceptions in async completion method (@snakefoot)
+
 ### v4.4.5 (2017/03/28)
 
 #### Fixes
