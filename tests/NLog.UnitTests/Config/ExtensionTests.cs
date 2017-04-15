@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
 using System;
 using System.Text.RegularExpressions;
 using NLog.Common;
@@ -52,7 +51,11 @@ namespace NLog.UnitTests.Config
         private string extensionAssemblyName1 = "SampleExtensions";
         private string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionTest1()
         {
             Assert.NotNull(typeof(FooLayout));
@@ -97,7 +100,11 @@ namespace NLog.UnitTests.Config
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionTest2()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -144,7 +151,11 @@ namespace NLog.UnitTests.Config
             Assert.Equal("(myrandom(10) == 3)", cbf.Condition.ToString());
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionWithPrefixTest()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -187,7 +198,11 @@ namespace NLog.UnitTests.Config
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionTest4()
         {
             Assert.NotNull(typeof(FooLayout));
@@ -236,7 +251,11 @@ namespace NLog.UnitTests.Config
         }
 
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionTest_extensions_not_top_and_used()
         {
             Assert.NotNull(typeof(FooLayout));
@@ -283,7 +302,11 @@ namespace NLog.UnitTests.Config
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionShouldThrowNLogConfiguratonExceptionWhenRegisteringInvalidType()
         {
             var configXml = @"
@@ -295,7 +318,11 @@ namespace NLog.UnitTests.Config
             Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionShouldThrowNLogConfiguratonExceptionWhenRegisteringInvalidAssembly()
         {
             var configXml = @"
@@ -307,7 +334,11 @@ namespace NLog.UnitTests.Config
             Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionShouldThrowNLogConfiguratonExceptionWhenRegisteringInvalidAssemblyFile()
         {
             var configXml = @"
@@ -319,7 +350,11 @@ namespace NLog.UnitTests.Config
             Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionShouldNotThrowWhenRegisteringInvalidTypeIfThrowConfigExceptionsFalse()
         {
             var configXml = @"
@@ -332,7 +367,11 @@ namespace NLog.UnitTests.Config
             CreateConfigurationFromString(configXml);
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionShouldNotThrowWhenRegisteringInvalidAssemblyIfThrowConfigExceptionsFalse()
         {
             var configXml = @"
@@ -344,7 +383,11 @@ namespace NLog.UnitTests.Config
             CreateConfigurationFromString(configXml);
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void ExtensionShouldNotThrowWhenRegisteringInvalidAssemblyFileIfThrowConfigExceptionsFalse()
         {
             var configXml = @"
@@ -356,8 +399,11 @@ namespace NLog.UnitTests.Config
             CreateConfigurationFromString(configXml);
         }
 
-
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void CustomXmlNamespaceTest()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -371,7 +417,11 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(d1Target);
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void Extension_should_be_auto_loaded_when_following_NLog_dll_format()
         {
             try
@@ -401,7 +451,11 @@ namespace NLog.UnitTests.Config
         }
 
 
+#if NETSTANDARD
+        [Theory(Skip="NETSTANDARD")]
+#else
         [Theory]
+#endif
         [InlineData(true)]
         [InlineData(false)]
         public void Extension_loading_could_be_canceled(bool cancel)
@@ -455,7 +509,11 @@ namespace NLog.UnitTests.Config
             }
         }
 
+#if NETSTANDARD
+        [Fact(Skip="NETSTANDARD")]
+#else
         [Fact]
+#endif
         public void Extensions_NLogPackageLoader_should_beCalled()
         {
             try
@@ -492,4 +550,3 @@ namespace NLog.UnitTests.Config
         }
     }
 }
-#endif

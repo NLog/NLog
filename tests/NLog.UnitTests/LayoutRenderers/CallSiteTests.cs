@@ -38,9 +38,6 @@ using NLog.Layouts;
 using NLog.Targets;
 using System.Runtime.CompilerServices;
 
-
-#if !NETSTANDARD
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -121,9 +118,8 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
-#if !NETSTANDARD
-#if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
 #else
         [Fact]
 #endif
@@ -151,10 +147,8 @@ namespace NLog.UnitTests.LayoutRenderers
 #line default
 #endif
         }
-#endif
 
 #if !NETSTANDARD
-
         [Fact]
         public void MethodNameTest()
         {
@@ -171,7 +165,9 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
+#endif
 
+#if !NETSTANDARD
         [Fact]
         public void MethodNameInChainTest()
         {
@@ -191,6 +187,7 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug2", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg2");
         }
+#endif
 
         [Fact]
         public void ClassNameTest()
@@ -224,6 +221,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "CallSiteTests msg");
         }
 
+#if !NETSTANDARD
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignLeftTest()
         {
@@ -240,7 +238,9 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
+#endif
 
+#if !NETSTANDARD
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignRightTest()
         {
@@ -258,7 +258,9 @@ namespace NLog.UnitTests.LayoutRenderers
             var typeName = currentMethod.DeclaringType.FullName;
             AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
         }
+#endif
 
+#if !NETSTANDARD
         [Fact]
         public void ClassNameWithPaddingTestPadRightAlignLeftTest()
         {
@@ -275,7 +277,9 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
+#endif
 
+#if !NETSTANDARD
         [Fact]
         public void ClassNameWithPaddingTestPadRightAlignRightTest()
         {
@@ -293,7 +297,6 @@ namespace NLog.UnitTests.LayoutRenderers
             var typeName = currentMethod.DeclaringType.FullName;
             AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
         }
-
 #endif
 
         [Fact]
@@ -376,7 +379,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
         }
 
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#else
         [Fact]
+#endif
         public void GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -393,7 +400,6 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
         }
 
-#if !NETSTANDARD
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -543,7 +549,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 Assert.True(lastMessage.Contains("+<>"));
             }
         }
-#endif
 
         [Fact]
         public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()
@@ -567,8 +572,6 @@ namespace NLog.UnitTests.LayoutRenderers
             LoggerTests.BaseWrapper wrappedLogger = new LoggerTests.MyWrapper();
             wrappedLogger.Log("wrapped");
             AssertDebugLastMessage("debug", string.Format("{0}|wrapped", currentMethodFullName));
-
-
         }
 
 
@@ -637,7 +640,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-        #region Compositio unit test
+#region Compositio unit test
 
         [Fact]
         public void When_WrappedInCompsition_Ignore_Wrapper_Methods_In_Callstack()
@@ -725,8 +728,11 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
         }
 
-
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#else
         [Fact]
+#endif
         public void Show_correct_method_with_async3()
         {
 
@@ -767,7 +773,6 @@ namespace NLog.UnitTests.LayoutRenderers
             return await Task.FromResult(new string[] { "value1", "value2" });
         }
 
-#if !NETSTANDARD
         [Fact]
         public void Show_correct_method_with_async4()
         {
@@ -788,6 +793,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
+#if !NETSTANDARD
         [Fact]
         public void CallSiteShouldWorkForAsyncMethodsWithReturnValue()
         {
@@ -809,11 +815,14 @@ namespace NLog.UnitTests.LayoutRenderers
             var callSite = l.Render(logEvent);
             return callSite;
         }
-
 #endif
-#endif
+#endif  // ASYNC_SUPPORTED
 
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#else
         [Fact]
+#endif
         public void Show_correct_method_for_moveNext()
         {
 
@@ -833,12 +842,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-
         private void MoveNext()
         {
             var logger = LogManager.GetCurrentClassLogger();
             logger.Warn("direct");
-
         }
 
         public class CompositeWrapper
@@ -891,7 +898,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        #endregion
+#endregion
 
         private class MyLogger : Logger
         {
@@ -1038,7 +1045,6 @@ namespace NLog.UnitTests.LayoutRenderers
             var callSite = l.Render(logEvent);
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
-    
 #endif
 
         /// <summary>
@@ -1087,4 +1093,3 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-#endif

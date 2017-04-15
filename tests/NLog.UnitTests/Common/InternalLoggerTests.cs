@@ -222,7 +222,6 @@ namespace NLog.UnitTests.Common
             Assert.Equal(expected, writerOutput);
         }
 
-#if !NETSTANDARD
         [Fact]
         public void WriteToConsoleOutTests()
         {
@@ -367,8 +366,6 @@ namespace NLog.UnitTests.Common
                 Console.SetError(oldConsoleErrorWriter);
             }
         }
-
-#endif
 
         [Fact]
         public void WriteToFileTests()
