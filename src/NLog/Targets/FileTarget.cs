@@ -1802,7 +1802,7 @@ namespace NLog.Targets
 #else
                 var files = directoryInfo.GetFiles(fileNameMask).OrderBy(n => n.CreationTime).Select(n => n.FullName);
 #endif
-                List<string> filesByDate = new List<string>();
+                List<DateAndSequenceArchive> filesByDate = new List<DateAndSequenceArchive>();
 
                 foreach (string nextFile in files)
                 {
@@ -1815,12 +1815,12 @@ namespace NLog.Targets
                         DateTime fileDate = DateTime.MinValue;
                         if (DateTime.TryParseExact(datePart, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
                         {
-                            filesByDate.Add(nextFile);
+                            filesByDate.Add(new DateAndSequenceArchive(nextFile, fileDate, dateFormat, 0));
                         }
                     }
                 }
 
-                EnsureArchiveCount(filesByDate);
+                EnsureArchiveCount(filesByDate.OrderBy(f => f.Date).Select(f => f.FileName).ToList());
             }
         }
 #endif
