@@ -1006,7 +1006,7 @@ namespace NLog.Config
                     }
                 }
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_5
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {

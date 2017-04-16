@@ -107,9 +107,9 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets default singleton instance of <see cref="ConfigurationItemFactory"/>.
         /// </summary>
-        /// <remarks>		
-        /// This property implements lazy instantiation so that the <see cref="ConfigurationItemFactory"/> is not built before 		
-        /// the internal logger is configured.		
+        /// <remarks>
+        /// This property implements lazy instantiation so that the <see cref="ConfigurationItemFactory"/> is not built before 
+        /// the internal logger is configured.
         /// </remarks>
         public static ConfigurationItemFactory Default
         {
@@ -233,7 +233,7 @@ namespace NLog.Config
             if (AssemblyLoading != null)
             {
                 var args = new AssemblyLoadingEventArgs(assembly);
-                AssemblyLoading.Invoke(this,args);
+                AssemblyLoading.Invoke(this, args);
                 if (args.Cancel)
                 {
                     InternalLogger.Info("Loading assembly '{0}' is canceled", assembly.FullName);
@@ -292,7 +292,7 @@ namespace NLog.Config
                         }
                         catch (Exception e)
                         {
-                            InternalLogger.Warn(e,"Invoking Preload for '{0}' failed", type.FullName);
+                            InternalLogger.Warn(e, "Invoking Preload for '{0}' failed", type.FullName);
                         }
                     }
                     else
@@ -342,8 +342,8 @@ namespace NLog.Config
             var nlogAssembly = typeof(ILogger).GetAssembly();
             var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
-#if !SILVERLIGHT && !NETSTANDARD
 
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_5
             try
             {
                 Uri assemblyCodeBase;
