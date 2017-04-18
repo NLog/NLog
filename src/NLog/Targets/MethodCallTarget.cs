@@ -110,10 +110,13 @@ namespace NLog.Targets
                 if (targetType != null)
                 {
                     this.Method = targetType.GetMethod(this.MethodName);
-                    this.NeededParameters = this.Method.GetParameters().Length;
                     if (this.Method == null)
                     {
-                        InternalLogger.Warn("Initialize MethodCallTarget, method '{0}' in class '{1}' not found - it should be static", Method, ClassName);
+                        InternalLogger.Warn("Initialize MethodCallTarget, method '{0}' in class '{1}' not found - it should be static", MethodName, ClassName);
+                    }
+                    else
+                    {
+                        this.NeededParameters = this.Method.GetParameters().Length;
                     }
                 }
                 else
@@ -127,8 +130,6 @@ namespace NLog.Targets
                 this.Method = null;
             }
         }
-
-
 
         /// <summary>
         /// Calls the specified Method.
