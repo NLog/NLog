@@ -72,7 +72,7 @@ namespace NLog.Targets
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value)
         {
-            return SerializeObject(value, null, 0);
+            return SerializeObject(value, false, null, 0);
         }
 
 
@@ -81,12 +81,13 @@ namespace NLog.Targets
         /// int JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
+        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <param name="objectsInPath">The objects in path.</param>
         /// <param name="depth">The current depth (level) of recursion.</param>
         /// <returns>
         /// Serialized value.
         /// </returns>
-        private string SerializeObject(object value, HashSet<object> objectsInPath, int depth)
+        private string SerializeObject(object value, bool escapeUnicode, HashSet<object> objectsInPath, int depth)
         {
             if (objectsInPath != null && objectsInPath.Contains(value))
             {
@@ -102,7 +103,7 @@ namespace NLog.Targets
             }
             else if ((str = value as string) != null)
             {
-                return string.Concat("\"", JsonStringEscape(str), "\"");
+                return string.Concat("\"", JsonStringEscape(str, escapeUnicode), "\"");
             }
             else if ((dict = value as IDictionary) != null)
             {
@@ -112,8 +113,8 @@ namespace NLog.Targets
                 var set = new HashSet<object>(objectsInPath ?? (IEnumerable<object>)Internal.ArrayHelper.Empty<object>()) { value };
                 foreach (DictionaryEntry de in dict)
                 {
-                    var keyJson = SerializeObject(de.Key, set, depth + 1);
-                    var valueJson = SerializeObject(de.Value, set, depth + 1);
+                    var keyJson = SerializeObject(de.Key, escapeUnicode, set, depth + 1);
+                    var valueJson = SerializeObject(de.Value, escapeUnicode, set, depth + 1);
                     if (!string.IsNullOrEmpty(keyJson) && valueJson != null)
                     {
                         //only serialize, if key and value are serialized without error (e.g. due to reference loop)
@@ -131,7 +132,7 @@ namespace NLog.Targets
                 var set = new HashSet<object>(objectsInPath ?? (IEnumerable<object>)Internal.ArrayHelper.Empty<object>()) { value };
                 foreach (var val in enumerable)
                 {
-                    var valueJson = SerializeObject(val, set, depth + 1);
+                    var valueJson = SerializeObject(val, escapeUnicode, set, depth + 1);
                     if (valueJson != null)
                     {
                         list.Add(valueJson);
@@ -143,7 +144,7 @@ namespace NLog.Targets
             else
             {
                 bool encodeStringValue;
-                string escapeXmlString = JsonStringEncode(value, out encodeStringValue);
+                string escapeXmlString = JsonStringEncode(value, escapeUnicode, out encodeStringValue);
                 if (escapeXmlString != null && encodeStringValue)
                     return string.Concat("\"", escapeXmlString, "\"");
                 else
@@ -155,9 +156,10 @@ namespace NLog.Targets
         /// Converts object value into JSON escaped string
         /// </summary>
         /// <param name="value">Object value</param>
+        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <param name="encodeString">Should string be JSON encoded with quotes</param>
         /// <returns>Object value converted to JSON escaped string</returns>
-        internal static string JsonStringEncode(object value, out bool encodeString)
+        internal static string JsonStringEncode(object value, bool escapeUnicode, out bool encodeString)
         {
             TypeCode objTypeCode;
             string stringValue = Internal.XmlHelper.XmlConvertToString(value, out objTypeCode);
@@ -175,7 +177,7 @@ namespace NLog.Targets
             }
 
             encodeString = true;
-            return JsonStringEscape(stringValue);
+            return JsonStringEscape(stringValue, escapeUnicode);
         }
 
         private static bool IsNumericTypeCode(TypeCode objTypeCode)
@@ -202,8 +204,9 @@ namespace NLog.Targets
         /// Checks input string if it needs JSON escaping, and makes necessary conversion
         /// </summary>
         /// <param name="text">Input string</param>
+        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <returns>JSON escaped string</returns>
-        internal static string JsonStringEscape(string text)
+        internal static string JsonStringEscape(string text, bool escapeUnicode)
         {
             if (text == null)
                 return null;
@@ -215,7 +218,7 @@ namespace NLog.Targets
                 if (sb == null)
                 {
                     // Check if we need to upgrade to StringBuilder
-                    if (!EscapeChar(ch))
+                    if (!EscapeChar(ch, escapeUnicode))
                     {
                         switch (ch)
                         {
@@ -269,7 +272,7 @@ namespace NLog.Targets
                         break;
 
                     default:
-                        if (EscapeChar(ch))
+                        if (EscapeChar(ch, escapeUnicode))
                         {
                             sb.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)ch);
                         }
@@ -287,9 +290,12 @@ namespace NLog.Targets
                 return text;
         }
 
-        private static bool EscapeChar(char ch)
+        private static bool EscapeChar(char ch, bool escapeUnicode)
         {
-            return ch < 32 || ch > 127;
+            if (ch < 32)
+                return true;
+            else
+                return escapeUnicode && ch > 127;
         }
     }
 }

@@ -52,6 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public JsonEncodeLayoutRendererWrapper()
         {
             this.JsonEncode = true;
+            this.EscapeUnicode = true;
         }
 
         /// <summary>
@@ -62,13 +63,20 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool JsonEncode { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to escape non-ascii characters
+        /// </summary>
+        /// <docgen category="Transformation Options" order="10"/>
+        [DefaultValue(true)]
+        public bool EscapeUnicode { get; set; }
+
+        /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
         /// <param name="text">The text to be post-processed.</param>
         /// <returns>JSON-encoded string.</returns>
         protected override string Transform(string text)
         {
-            return this.JsonEncode ? Targets.DefaultJsonSerializer.JsonStringEscape(text) : text;
+            return this.JsonEncode ? Targets.DefaultJsonSerializer.JsonStringEscape(text, this.EscapeUnicode) : text;
         }
     }
 }
