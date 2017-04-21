@@ -31,9 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
-#if !SILVERLIGHT && !NETSTANDARD
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_5
 
 namespace NLog.LayoutRenderers
 {
@@ -42,6 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
 
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The directory where NLog.dll is located.
@@ -56,10 +55,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         static NLogDirLayoutRenderer()
         {
-            var assembly = typeof(LogManager).GetAssembly();
-            var location = !String.IsNullOrEmpty(assembly.GetLocation())
-                ? assembly.GetLocation()
-                : new Uri(assembly.GetCodeBase()).LocalPath;
+            var assembly = ReflectionHelpers.GetAssembly(typeof(LogManager));
+            var location = ReflectionHelpers.GetLocation(assembly);
+            if (string.IsNullOrEmpty(location))
+                location = new Uri(ReflectionHelpers.GetCodeBase(assembly)).LocalPath;
             NLogDir = Path.GetDirectoryName(location);
         }
 
@@ -86,8 +85,8 @@ namespace NLog.LayoutRenderers
         {
             var path = PathHelpers.CombinePaths(NLogDir, this.Dir, this.File);
             builder.Append(path);
-            }
-            }
-            }
+        }
+    }
+}
 
 #endif
