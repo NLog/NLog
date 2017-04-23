@@ -39,8 +39,6 @@ using NLog.Targets.Wrappers;
 using NLog.UnitTests.Common;
 using NLog.UnitTests.Targets.Wrappers;
 
-#if !NETSTANDARD
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Security.Principal;
@@ -49,6 +47,19 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class IdentityTests : NLogTestBase
     {
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
+        [Fact]
+        public void WindowsIdentityTest()
+        {
+            var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
+            var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
+            if (!string.IsNullOrEmpty(userDomainName))
+                userName = userDomainName + "\\" + userName;
+            AssertLayoutRendererOutput("${windows-identity}", userName);
+        }
+#endif
+
+#if !NETSTANDARD
         [Fact]
         public void IdentityTest1()
         {
@@ -184,7 +195,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
             }
 
-            #region Overrides of GenericIdentity
+        #region Overrides of GenericIdentity
 
             /// <summary>
             /// Gets a value indicating whether the user has been authenticated.
@@ -197,9 +208,8 @@ namespace NLog.UnitTests.LayoutRenderers
                 get { return false; }
             }
 
-            #endregion
+        #endregion
         }
+#endif
     }
 }
-
-#endif
