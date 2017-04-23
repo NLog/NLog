@@ -456,7 +456,6 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
 
-#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void LockingTest()
         {
@@ -467,7 +466,11 @@ namespace NLog.UnitTests.Targets
 
             Exception backgroundThreadException = null;
 
-            Thread t = new Thread(() =>
+#if NETSTANDARD
+            var t = new System.Threading.Tasks.Task(() =>
+#else
+            var t = new Thread(() =>
+#endif
             {
                 try
                 {
@@ -483,10 +486,9 @@ namespace NLog.UnitTests.Targets
                 }
             });
 
-
             target.Initialize(null);
             t.Start();
-            Thread.Sleep(50);
+            AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(50));
             List<Exception> exceptions = new List<Exception>();
             target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             target.WriteAsyncLogEvents(new[]
@@ -505,7 +507,6 @@ namespace NLog.UnitTests.Targets
                 Assert.True(false, backgroundThreadException.ToString());
             }
         }
-#endif
 
         [Fact]
         public void GivenNullEvents_WhenWriteAsyncLogEvents_ThenNoExceptionAreThrown()

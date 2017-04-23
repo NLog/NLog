@@ -55,23 +55,17 @@
         "System.IO.Compression": "",
         "System.Threading.Tasks": "",
         "System.Xml.Linq": "",
-        "System.DirectoryServices.AccountManagement": ""  ,
-
-
-
+        "System.DirectoryServices.AccountManagement": ""
       },
       "dependencies": {
         "NLog.Extended": "4.4.0-beta*",
         "Microsoft.Owin.Hosting": "3.0.1",
-        "Unity": "4.0.1",
         "Microsoft.AspNet.WebApi.OwinSelfHost": "5.2.3",
         "DotNetZip.Reduced": "1.9.1.8",
         "Microsoft.NETCore.Platforms": "1.0.1"
-
       },
       "buildOptions": {
         "define": [ "WCF_SUPPORTED", "XUNIT2", "NET4_5", "ASYNC_SUPPORTED" ]
-
       }
     }
     //,

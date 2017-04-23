@@ -44,9 +44,8 @@ namespace NLog.UnitTests
     using NLog.Config;
     using NLog.Targets;
 
-#if NET4_5 && !NETSTANDARD
+#if NET4_5
     using System.Threading.Tasks;
-    using Microsoft.Practices.Unity;
 #endif
 
     public class LogManagerTests : NLogTestBase
@@ -442,8 +441,6 @@ namespace NLog.UnitTests
 
         }
 
-
-
         /// <summary>
         /// ImNotALogger inherits not from Logger , but should not throw an exception
         /// </summary>
@@ -452,7 +449,6 @@ namespace NLog.UnitTests
         {
             var instance = LogManager.GetLogger("a", typeof(ImNotALogger));
             Assert.NotNull(instance);
-
         }
 
         /// <summary>
@@ -463,22 +459,23 @@ namespace NLog.UnitTests
         {
             var instance = LogManager.GetLogger("a", typeof(ImAStaticClass));
             Assert.NotNull(instance);
-
         }
 
-
-#if NET4_0 || NET4_5 && !NETSTANDARD
+#if NET4_0 || NET4_5
+#if NETSTANDARD
+        [Fact(Skip = "NETSTANDARD cannot capture GetCurrentClassLogger")]
+#else
         [Fact]
+#endif
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
-            var logger = new Lazy<ILogger>(LogManager.GetCurrentClassLogger);
+            var logger = new Lazy<ILogger>(() => LogManager.GetCurrentClassLogger());
 
             Assert.Equal(this.GetType().FullName, logger.Value.Name);
         }
 #endif
 
-#if NET4_5 && !NETSTANDARD
-
+#if NET4_5
         [Fact]
         public void ThreadSafe_Shutdown()
         {
@@ -492,23 +489,14 @@ namespace NLog.UnitTests
             var exceptionThrown = false;
             Task.Run(() => { try { var logger = LogManager.GetLogger("Hello"); while (!stopFlag) { logger.Debug("Hello World"); System.Threading.Thread.Sleep(1); } } catch { exceptionThrown = true; } });
             Task.Run(() => { try { var logger = LogManager.GetLogger("Hello"); while (!stopFlag) { logger.Debug("Hello World"); System.Threading.Thread.Sleep(1); } } catch { exceptionThrown = true; } });
-            System.Threading.Thread.Sleep(20);
+            AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(20));
             LogManager.Shutdown();  // Shutdown active LoggingConfiguration
-            System.Threading.Thread.Sleep(20);
+            AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(20));
             stopFlag = true;
-            System.Threading.Thread.Sleep(20);
+            AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(20));
             Assert.Equal(false, exceptionThrown);
         }
-
-
-        /// <summary>
-        /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        private static MemoryQueueTarget mTarget = new MemoryQueueTarget(500);
-        /// <summary>
-        /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        private static MemoryQueueTarget mTarget2 = new MemoryQueueTarget(500);
+#endif
 
         /// <summary>
         /// Note: THe problem  can be reproduced when: debugging the unittest + "break when exception is thrown" checked in visual studio.
@@ -518,27 +506,43 @@ namespace NLog.UnitTests
         [Fact]
         public void ThreadSafe_getCurrentClassLogger_test()
         {
-            using (var c = new UnityContainer())
-            {
-                var r = Enumerable.Range(1, 100); //reported with 10.
-                Task.Run(() =>
-                {
-                    //need for init
-                    LogManager.Configuration = new LoggingConfiguration();
-                    LogManager.Configuration.AddTarget("memory", mTarget);
-                    LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget));
-                    LogManager.Configuration.AddTarget("memory2", mTarget2);
-                    LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget2));
-                    LogManager.ReconfigExistingLoggers();
-                });
+            MemoryQueueTarget mTarget = new MemoryQueueTarget(1000);
+            MemoryQueueTarget mTarget2 = new MemoryQueueTarget(1000);
 
-                Parallel.ForEach(r, a =>
+            Task.Run(() =>
+            {
+                //need for init
+                LogManager.Configuration = new LoggingConfiguration();
+                LogManager.ThrowExceptions = true;
+                LogManager.Configuration.AddTarget("memory", mTarget);
+                LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget));
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
+                LogManager.Configuration.AddTarget("memory2", mTarget2);
+                LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget2));
+                LogManager.ReconfigExistingLoggers();
+            });
+
+            Parallel.For(0, 8, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, (e) =>
+            {
+                for (int i = 0; i < 30; ++i)
                 {
-                    var res = c.Resolve<ClassA>();
-                });
-                mTarget.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
-                mTarget2.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
-            }
+                    // Multiple threads initializing new loggers while configuration is changing
+                    var loggerA = LogManager.GetLogger(e + "A" + i);
+                    loggerA.Info("Hi there {0}", e);
+                    var loggerB = LogManager.GetLogger(e + "B" + i);
+                    loggerB.Info("Hi there {0}", e);
+                    var loggerC = LogManager.GetLogger(e + "C" + i);
+                    loggerC.Info("Hi there {0}", e);
+                    var loggerD = LogManager.GetLogger(e + "D" + i);
+                    loggerD.Info("Hi there {0}", e);
+                };
+            });
+
+            mTarget.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
+            mTarget2.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
+
+            Assert.NotEqual(0, mTarget.Logs.Count);
+            Assert.NotEqual(0, mTarget2.Logs.Count);
         }
 
         /// <summary>
@@ -593,53 +597,5 @@ namespace NLog.UnitTests
                 }
             }
         }
-
-        /// <summary>
-        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        public class ClassA
-        {
-            private static Logger logger = LogManager.GetCurrentClassLogger();
-            public ClassA(ClassB dd)
-            {
-                logger.Info("Hi there A");
-
-            }
-        }
-        /// <summary>
-        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        public class ClassB
-        {
-            private static Logger logger = LogManager.GetCurrentClassLogger();
-            public ClassB(ClassC dd)
-            {
-                logger.Info("Hi there B");
-            }
-        }
-        /// <summary>
-        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        public class ClassC
-        {
-            private static Logger logger = LogManager.GetCurrentClassLogger();
-            public ClassC(ClassD dd)
-            {
-                logger.Info("Hi there C");
-
-            }
-        }
-        /// <summary>
-        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        public class ClassD
-        {
-            private static Logger logger = LogManager.GetCurrentClassLogger();
-            public ClassD()
-            {
-                logger.Info("Hi there D");
-            }
-        }
-#endif
     }
 }
