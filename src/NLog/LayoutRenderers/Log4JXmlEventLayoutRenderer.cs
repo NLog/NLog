@@ -40,11 +40,11 @@ namespace NLog.LayoutRenderers
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
-    using System.IO;
     using System.Reflection;
     using System.Text;
     using System.Xml;
     using Internal.Fakeables;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
@@ -87,16 +87,24 @@ namespace NLog.LayoutRenderers
             {
 #if SILVERLIGHT
                 this.machineName = "silverlight";
-#elif NETSTANDARD && !NETSTANDARD1_5
-                // Environment.MachineName is NETSTANDARD1.5+
-                this.machineName = "Net Standard";
+#elif !NETSTANDARD || NETSTANDARD1_5
+                this.machineName = Environment.MachineName; // Netbios-hostname
 #else
 
-                this.machineName = Environment.MachineName;
+                this.machineName = EnvironmentHelper.GetSafeEnvironmentVariable("COMPUTERNAME") ?? string.Empty;
+                if (string.IsNullOrEmpty(this.machineName))
+                    this.machineName = EnvironmentHelper.GetSafeEnvironmentVariable("HOSTNAME") ?? string.Empty;
 #endif
             }
-            catch (System.Security.SecurityException)
+            catch (Exception exception)
             {
+                InternalLogger.Error(exception, "Error getting machine name.");
+
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
                 this.machineName = string.Empty;
             }
 
@@ -123,10 +131,6 @@ namespace NLog.LayoutRenderers
                 appDomain.FriendlyName,
                 ThreadIDHelper.Instance.CurrentProcessID);
 #endif
-
-
-
-
         }
 
         /// <summary>

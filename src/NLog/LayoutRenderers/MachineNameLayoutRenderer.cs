@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_5
+#if !SILVERLIGHT
 
 namespace NLog.LayoutRenderers
 {
@@ -59,7 +59,13 @@ namespace NLog.LayoutRenderers
             base.InitializeLayoutRenderer();
             try
             {
+#if !NETSTANDARD || NETSTANDARD1_5
                 this.MachineName = Environment.MachineName;
+#else
+                this.MachineName = EnvironmentHelper.GetSafeEnvironmentVariable("COMPUTERNAME") ?? string.Empty;
+                if (string.IsNullOrEmpty(this.MachineName))
+                    this.MachineName = EnvironmentHelper.GetSafeEnvironmentVariable("HOSTNAME") ?? string.Empty;
+#endif
             }
             catch (Exception exception)
             {
