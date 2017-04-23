@@ -516,11 +516,13 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = true;
                 LogManager.Configuration.AddTarget("memory", mTarget);
                 LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget));
-                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(2));
                 LogManager.Configuration.AddTarget("memory2", mTarget2);
                 LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget2));
                 LogManager.ReconfigExistingLoggers();
             });
+
+            AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
 
             Parallel.For(0, 8, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, (e) =>
             {
@@ -541,8 +543,7 @@ namespace NLog.UnitTests
             mTarget.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
             mTarget2.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
 
-            Assert.NotEqual(0, mTarget.Logs.Count);
-            Assert.NotEqual(0, mTarget2.Logs.Count);
+            Assert.NotEqual(0, mTarget.Logs.Count + mTarget2.Logs.Count);
         }
 
         /// <summary>
