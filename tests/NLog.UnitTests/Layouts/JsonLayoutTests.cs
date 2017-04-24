@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -88,6 +88,30 @@ namespace NLog.UnitTests.Layouts
             };
 
             Assert.Equal("{\"date\":\"2010-01-01 12:34:56.0000\",\"level\":\"Info\",\"message\":\"hello, world\"}", jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
+        public void JsonLayoutRenderingEscapeUnicode()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                Attributes =
+                    {
+                        new JsonAttribute("logger", "${logger}") { EscapeUnicode = true },
+                        new JsonAttribute("level", "${level}"),
+                        new JsonAttribute("message", "${message}") { EscapeUnicode = false },
+                    },
+                SuppressSpaces = true
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                LoggerName = "\u00a9",
+                Level = LogLevel.Info,
+                Message = "\u00a9",
+            };
+
+            Assert.Equal("{\"logger\":\"\\u00a9\",\"level\":\"Info\",\"message\":\"\u00a9\"}", jsonLayout.Render(logEventInfo));
         }
 
         [Fact]

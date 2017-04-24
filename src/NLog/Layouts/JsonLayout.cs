@@ -135,10 +135,11 @@ namespace NLog.Layouts
                         continue;
 
                     //Skips properties in the ExcludeProperties list
-                    if (this.ExcludeProperties.Contains(propName)) continue;
+                    if (this.ExcludeProperties.Contains(propName))
+                        continue;
 
                     bool propStringEncode;
-                    string propStringValue = Targets.DefaultJsonSerializer.JsonStringEncode(prop.Value, out propStringEncode);
+                    string propStringValue = Targets.DefaultJsonSerializer.JsonStringEncode(prop.Value, true, out propStringEncode);
                     if (!string.IsNullOrEmpty(propStringValue))
                     {
                         AppendJsonAttributeValue(propName, propStringEncode, propStringValue, sb);
