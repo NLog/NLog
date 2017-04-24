@@ -55,10 +55,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         static NLogDirLayoutRenderer()
         {
-            var assembly = ReflectionHelpers.GetAssembly(typeof(LogManager));
-            var location = ReflectionHelpers.GetLocation(assembly);
+            var assembly = typeof(LogManager).GetAssembly();
+            var location = assembly.GetLocation();
             if (string.IsNullOrEmpty(location))
-                location = new Uri(ReflectionHelpers.GetCodeBase(assembly)).LocalPath;
+                location = new Uri(assembly.GetCodeBase()).LocalPath;
             NLogDir = Path.GetDirectoryName(location);
         }
 
