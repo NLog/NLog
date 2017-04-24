@@ -105,8 +105,7 @@
         "System.Threading.AccessControl": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "NETSTANDARD1_3PLUS", "ASYNC_SUPPORTED", "SupportsMutex" ],
-        "nowarn": [ "CS0436" ]
+        "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "NETSTANDARD1_3PLUS", "ASYNC_SUPPORTED", "SupportsMutex" ]
       }
     },
     "netstandard1.5": {
@@ -137,8 +136,7 @@
         "System.Threading.AccessControl": "4.0.0"
       },
       "buildOptions": {
-        "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "NETSTANDARD1_3PLUS", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "SupportsMutex" ],
-        "nowarn": [ "CS0436" ]
+        "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "NETSTANDARD1_3PLUS", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "SupportsMutex" ]
       }
     },
     "uap10.0": {
@@ -161,8 +159,7 @@
         },
         "imports": [ "netstandard1.3" ],
         "buildOptions": {
-            "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "ASYNC_SUPPORTED" ],
-            "nowarn": [ "CS0436" ]
+            "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "ASYNC_SUPPORTED" ]
         }
     },
     "Silverlight,Version=v4.0": {
