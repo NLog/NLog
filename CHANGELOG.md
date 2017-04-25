@@ -1,6 +1,16 @@
 See also [releases](https://github.com/NLog/NLog/releases) and [milestones](https://github.com/NLog/NLog/milestones).
 
+### v4.4.7 (2017/04/25)
 
+### Features
+
+- [#2063](https://github.com/nlog/nlog/pull/2063) JsonLayout - Added JsonAttribute property EscapeUnicode (@snakefoot)
+
+#### Improvements
+
+- [#2075](https://github.com/nlog/nlog/pull/2075) StackTraceLayoutRenderer with Raw format should display source FileName (@snakefoot)
+- [#2067](https://github.com/nlog/nlog/pull/2067) ${EventProperties}, ${newline}, ${basedir} & ${tempdir} as ThreadAgnostic (performance improvement) (@snakefoot)
+- [#2061](https://github.com/nlog/nlog/pull/2061) MethodCallTarget - Fixed possible null-reference-exception on initialize (@snakefoot)
 
 ## v4.4.6 (2017/04/11)
 
