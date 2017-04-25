@@ -2,7 +2,7 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 ### v4.4.7 (2017/04/25)
 
-### Features
+#### Features
 
 - [#2063](https://github.com/nlog/nlog/pull/2063) JsonLayout - Added JsonAttribute property EscapeUnicode (@snakefoot)
 
