@@ -38,7 +38,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class StackTraceRendererTests : NLogTestBase
     {
+#if !NETSTANDARD || NESTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact (Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void RenderStackTrace()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -53,7 +57,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug", " => StackTraceRendererTests.RenderStackTrace => StackTraceRendererTests.RenderMe");
         }
 
+#if !NETSTANDARD || NESTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void RenderStackTrace_topframes()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -68,7 +76,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "I am: StackTraceRendererTests.RenderStackTrace_topframes => StackTraceRendererTests.RenderMe");
         }
 
+#if !NETSTANDARD || NESTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void RenderStackTrace_skipframes()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -83,8 +95,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug", " => StackTraceRendererTests.RenderStackTrace_skipframes");
         }
 
-
+#if !NETSTANDARD || NESTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void RenderStackTrace_raw()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -103,7 +118,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
+#if !NETSTANDARD || NESTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void RenderStackTrace_DetailedFlat()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"

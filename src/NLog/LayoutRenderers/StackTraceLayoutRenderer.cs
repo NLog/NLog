@@ -101,6 +101,9 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            if (logEvent.StackTrace == null)
+                return;
+
             bool first = true;
             int startingFrame = logEvent.UserStackFrameNumber + this.TopFrames - 1;
             if (startingFrame >= logEvent.StackTrace.GetFrameCount())

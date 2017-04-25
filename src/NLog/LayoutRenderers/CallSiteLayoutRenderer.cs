@@ -180,21 +180,7 @@ namespace NLog.LayoutRenderers
                     {
                         string methodName = method.Name;
 
-                        if (this.CleanNamesOfAnonymousDelegates)
-                        {
-                            // Clean up the function name if it is an anonymous delegate
-                            // <.ctor>b__0
-                            // <Main>b__2
-                            if (methodName.Contains("__") == true && methodName.StartsWith("<") == true && methodName.Contains(">") == true)
-                            {
-                                int startIndex = methodName.IndexOf('<') + 1;
-                                int endIndex = methodName.IndexOf('>');
-
-                                methodName = methodName.Substring(startIndex, endIndex - startIndex);
-                            }
-                        }
-
-                        builder.Append(methodName);
+                        AppendMethodName(builder, methodName);
                     }
                     else
                     {
@@ -225,6 +211,65 @@ namespace NLog.LayoutRenderers
                 }
 #endif
             }
+            else
+            {
+                if (logEvent.HasProperties)
+                {
+                    object callerMemberName;
+                    if (this.MethodName && logEvent.Properties.TryGetValue("CallerMemberName", out callerMemberName))
+                    {
+                        AppendMethodName(builder, callerMemberName.ToString());
+                    }
+                    object callerFilePath;
+                    if (this.FileName && logEvent.Properties.TryGetValue("CallerFilePath", out callerFilePath))
+                    {
+                        int lineNumber = 0;
+                        object callerLineNumber;
+                        if (logEvent.Properties.TryGetValue("CallerLineNumber", out callerLineNumber) && callerLineNumber is int)
+                        {
+                            lineNumber = (int)callerLineNumber;
+                        }
+
+                        AppendFileName(builder, callerFilePath.ToString(), lineNumber);
+                    }
+                }
+            }
+        }
+
+        void AppendMethodName(StringBuilder builder, string methodName)
+        {
+            if (this.CleanNamesOfAnonymousDelegates)
+            {
+                // Clean up the function name if it is an anonymous delegate
+                // <.ctor>b__0
+                // <Main>b__2
+                if (methodName.Contains("__") == true && methodName.StartsWith("<") == true && methodName.Contains(">") == true)
+                {
+                    int startIndex = methodName.IndexOf('<') + 1;
+                    int endIndex = methodName.IndexOf('>');
+
+                    methodName = methodName.Substring(startIndex, endIndex - startIndex);
+                }
+            }
+
+            builder.Append(methodName);
+        }
+
+        void AppendFileName(StringBuilder builder, string fileName, int lineNumber)
+        {
+            builder.Append("(");
+            if (this.IncludeSourcePath)
+            {
+                builder.Append(fileName);
+            }
+            else
+            {
+                builder.Append(Path.GetFileName(fileName));
+            }
+
+            builder.Append(":");
+            builder.AppendInvariant(lineNumber);
+            builder.Append(")");
         }
     }
 }
