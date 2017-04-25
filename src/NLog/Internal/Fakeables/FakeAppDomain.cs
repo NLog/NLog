@@ -127,7 +127,9 @@ namespace NLog.Internal.Fakeables
             }
         }
 
+#pragma warning disable 67
         private event EventHandler<EventArgs> _contextUnloadingEvent;
+#pragma warning restore 67
 
 #if NETSTANDARD1_5
         private void OnContextUnloading(System.Runtime.Loader.AssemblyLoadContext context)
