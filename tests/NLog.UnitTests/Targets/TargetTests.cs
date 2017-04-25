@@ -606,17 +606,15 @@ namespace NLog.UnitTests.Targets
                 base.Write(logEvents);
             }
 
-#if !NETSTANDARD || NETSTANDARD1_3PLUS
             public void BlockingOperation(int millisecondsTimeout)
             {
                 lock (this.SyncRoot)
                 {
                     this.inBlockingOperation++;
-                    Thread.Sleep(millisecondsTimeout);
+                    AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(millisecondsTimeout));
                     this.inBlockingOperation--;
                 }
             }
-#endif
         }
 
         [Fact]

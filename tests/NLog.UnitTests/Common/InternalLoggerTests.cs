@@ -222,7 +222,11 @@ namespace NLog.UnitTests.Common
             Assert.Equal(expected, writerOutput);
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact (Skip = "NETSTANDARD has no console")]
+#endif
         public void WriteToConsoleOutTests()
         {
             TextWriter oldConsoleOutWriter = Console.Out;
@@ -234,7 +238,9 @@ namespace NLog.UnitTests.Common
 
                 InternalLogger.LogLevel = LogLevel.Trace;
                 InternalLogger.IncludeTimestamp = false;
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
                 InternalLogger.LogToConsole = true;
+#endif
 
                 {
                     StringWriter consoleOutWriter1 = new StringWriter()
@@ -295,8 +301,6 @@ namespace NLog.UnitTests.Common
                     InternalLogger.Info(() => "III");
 
                     TestWriter(expected, consoleOutWriter1);
-
-                    InternalLogger.LogToConsole = false;
                 }
             }
             finally
@@ -306,7 +310,11 @@ namespace NLog.UnitTests.Common
             }
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD has no console")]
+#endif
         public void WriteToConsoleErrorTests()
         {
             TextWriter oldConsoleErrorWriter = Console.Error;
@@ -318,7 +326,9 @@ namespace NLog.UnitTests.Common
 
                 InternalLogger.LogLevel = LogLevel.Trace;
                 InternalLogger.IncludeTimestamp = false;
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
                 InternalLogger.LogToConsoleError = true;
+#endif
 
                 {
                     StringWriter consoleWriter1 = new StringWriter()
