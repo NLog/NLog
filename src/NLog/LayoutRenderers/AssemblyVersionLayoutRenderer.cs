@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_5
 
 namespace NLog.LayoutRenderers
 {
@@ -82,11 +82,9 @@ namespace NLog.LayoutRenderers
 
 #if SILVERLIGHT
 			    var assembly = Application.Current.GetType().Assembly;
-                
                 name = assembly.FullName;
 #else
                 assembly = Assembly.GetEntryAssembly();
-
 #endif
             }
             var message = string.Format("Could not find {0}", nameNotEmpty ? "assembly " + Name : "entry assembly");
