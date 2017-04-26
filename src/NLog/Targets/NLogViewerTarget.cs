@@ -147,6 +147,16 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeMdlc
+        {
+            get { return this.Renderer.IncludeMdlc; }
+            set { this.Renderer.IncludeMdlc = value; }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="NestedDiagnosticsContext"/> stack contents.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
