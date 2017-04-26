@@ -59,12 +59,14 @@ namespace NLog.UnitTests.LayoutRenderers
 
             MappedDiagnosticsContext.Clear();
             NestedDiagnosticsContext.Clear();
-            MappedDiagnosticsLogicalContext.Clear();
 
             MappedDiagnosticsContext.Set("foo1", "bar1");
             MappedDiagnosticsContext.Set("foo2", "bar2");
-            MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
 
+#if NET4_0 || NET4_5
+            MappedDiagnosticsLogicalContext.Clear();
+            MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
+#endif
             NestedDiagnosticsContext.Push("baz1");
             NestedDiagnosticsContext.Push("baz2");
             NestedDiagnosticsContext.Push("baz3");
@@ -148,9 +150,11 @@ namespace NLog.UnitTests.LayoutRenderers
                                         Assert.Equal("bar2", value);
                                         break;
 
+#if NET4_0 || NET4_5
                                     case "foo3":
                                         Assert.Equal("bar3", value);
                                         break;
+#endif
 
                                     default:
                                         Assert.True(false, "Unknown <log4j:data>: " + name);

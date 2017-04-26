@@ -302,6 +302,7 @@ namespace NLog.LayoutRenderers
                         xtw.WriteAttributeSafeString("value", propertyValue);
                         xtw.WriteEndElement();
                     }
+#if NET4_0 || NET4_5
                     foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
                     {
                         string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsLogicalContext.GetObject(key));
@@ -313,6 +314,7 @@ namespace NLog.LayoutRenderers
                         xtw.WriteAttributeSafeString("value", propertyValue);
                         xtw.WriteEndElement();
                     }
+#endif
                 }
 
                 if (this.Parameters.Count > 0)
