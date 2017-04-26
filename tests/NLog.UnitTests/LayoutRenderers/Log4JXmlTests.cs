@@ -59,9 +59,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
             MappedDiagnosticsContext.Clear();
             NestedDiagnosticsContext.Clear();
+            MappedDiagnosticsLogicalContext.Clear();
 
             MappedDiagnosticsContext.Set("foo1", "bar1");
             MappedDiagnosticsContext.Set("foo2", "bar2");
+            MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
 
             NestedDiagnosticsContext.Push("baz1");
             NestedDiagnosticsContext.Push("baz2");
@@ -144,6 +146,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
                                     case "foo2":
                                         Assert.Equal("bar2", value);
+                                        break;
+
+                                    case "foo3":
+                                        Assert.Equal("bar3", value);
                                         break;
 
                                     default:

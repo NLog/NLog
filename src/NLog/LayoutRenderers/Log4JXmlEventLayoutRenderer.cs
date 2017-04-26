@@ -302,6 +302,17 @@ namespace NLog.LayoutRenderers
                         xtw.WriteAttributeSafeString("value", propertyValue);
                         xtw.WriteEndElement();
                     }
+                    foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
+                    {
+                        string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsLogicalContext.GetObject(key));
+                        if (propertyValue == null)
+                            continue;
+
+                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                        xtw.WriteAttributeSafeString("name", key);
+                        xtw.WriteAttributeSafeString("value", propertyValue);
+                        xtw.WriteEndElement();
+                    }
                 }
 
                 if (this.Parameters.Count > 0)
