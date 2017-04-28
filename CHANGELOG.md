@@ -1,5 +1,10 @@
 See also [releases](https://github.com/NLog/NLog/releases) and [milestones](https://github.com/NLog/NLog/milestones).
 
+### v4.4.8 (2017/04/28)
+
+#### Features
+- [#2078] Include MDLC in log4j renderer (option) (@thoemmi)
+
 ### v4.4.7 (2017/04/25)
 
 #### Features
