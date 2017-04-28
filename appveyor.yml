@@ -7,6 +7,8 @@ build_script:
 test_script:
   - ps: .\run-tests.ps1
 
+artifacts:
+  - path: '**\*.nupkg'
 deploy: off
 artifacts:
 - path: 'artifacts\*.nupkg'
