@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_5
 
 using System.Reflection;
 
@@ -53,7 +53,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void AssemblyNameVersionTest()
         {
-            AssertLayoutRendererOutput("${assembly-version:NLogAutloadExtension}", "2.0.0.0");
+            AssertLayoutRendererOutput("${assembly-version:SampleExtensions}", "5.0.0.0");
         }
     }
 }

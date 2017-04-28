@@ -32,7 +32,7 @@
 // 
 
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
 using System.Linq;
 using System.Text;
 

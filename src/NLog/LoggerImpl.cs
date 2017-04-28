@@ -68,29 +68,37 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if NETSTANDARD
-                stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
-#elif !SILVERLIGHT
-                stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
-#else
+#if SILVERLIGHT
                 stackTrace = new StackTrace();
+#elif !NETSTANDARD
+                stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
+#elif NETSTANDARD1_3PLUS
+                stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
+#else
+                stackTrace = null;
 #endif
+                if (stackTrace != null)
+                {
+                    int firstUserFrame = FindCallingMethodOnStackTrace(stackTrace, loggerType);
 
-                int firstUserFrame = FindCallingMethodOnStackTrace(stackTrace, loggerType);
-
-                logEvent.SetStackTrace(stackTrace, firstUserFrame);
+                    logEvent.SetStackTrace(stackTrace, firstUserFrame);
+                }
             }
 
-            int originalThreadId = Thread.CurrentThread.ManagedThreadId;
-            AsyncContinuation exceptionHandler = ex =>
+            AsyncContinuation exceptionHandler = ex => { };
+            if (factory.ThrowExceptions)
             {
-                if (ex != null)
+                int originalThreadId = AsyncHelpers.GetManagedThreadId();
+                exceptionHandler = ex =>
                 {
-                    if (factory.ThrowExceptions && Thread.CurrentThread.ManagedThreadId == originalThreadId)
+                    if (ex != null)
                     {
-                        throw new NLogRuntimeException("Exception occurred in NLog", ex);
+                        if (AsyncHelpers.GetManagedThreadId() == originalThreadId)
+                        {
+                            throw new NLogRuntimeException("Exception occurred in NLog", ex);
+                        }
                     }
-                }
+                };
             };
 
             for (var t = targets; t != null; t = t.NextInChain)

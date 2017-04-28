@@ -149,7 +149,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(1, myTarget3.FlushCount);
         }
 
-
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void SplitGroupToStringTest()
         {
@@ -164,6 +164,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             Assert.Equal("SplitGroup Target[(unnamed)](MyTarget, File Target[file1], Console Target[Console2])", wrapper.ToString());
         }
+#endif
 
         [Fact]
         public void SplitGroupSyncTest2()

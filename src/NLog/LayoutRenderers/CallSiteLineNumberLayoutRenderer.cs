@@ -76,8 +76,17 @@ namespace NLog.LayoutRenderers
             if (frame != null)
             {
                 var linenumber = frame.GetFileLineNumber();
-                builder.Append(linenumber);
-
+                builder.AppendInvariant(linenumber);
+            }
+            else if (logEvent.HasProperties)
+            {
+                int linenumber = 0;
+                object callerLineNumber;
+                if (logEvent.Properties.TryGetValue("CallerLineNumber", out callerLineNumber) && callerLineNumber is int)
+                {
+                    linenumber = (int)callerLineNumber;
+                }
+                builder.AppendInvariant(linenumber);
             }
         }
     }

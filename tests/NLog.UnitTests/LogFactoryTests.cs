@@ -63,18 +63,15 @@ namespace NLog.UnitTests
         [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {
-
             LogManager.ThrowExceptions = false;
 
             LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog internalLogToConsole='IamNotBooleanValue'>
+            <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
             </nlog>");
-
-
         }
 
         [Fact]
@@ -86,7 +83,7 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = true;
 
                 LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog internalLogToConsole='IamNotBooleanValue'>
+            <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
@@ -99,7 +96,6 @@ namespace NLog.UnitTests
             }
 
             Assert.True(ExceptionThrown);
-
         }
 
         [Fact]
@@ -136,6 +132,7 @@ namespace NLog.UnitTests
             }
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void ReloadConfigOnTimer_DoesNotThrowConfigException_IfConfigChangedInBetween()
         {
@@ -214,6 +211,7 @@ namespace NLog.UnitTests
 
             Assert.True(arguments.Succeeded);
         }
+#endif
 
         public static void Throws()
         {

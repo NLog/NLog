@@ -41,10 +41,17 @@ namespace NLog.Internal.Fakeables
 {
     internal class FakeAppDomain : IAppDomain
     {
+#if NETSTANDARD1_5
+        System.Runtime.Loader.AssemblyLoadContext _defaultContext;
+#endif
+
         /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
         public FakeAppDomain()
         {
             BaseDirectory = AppContext.BaseDirectory;
+#if NETSTANDARD1_5
+            _defaultContext = System.Runtime.Loader.AssemblyLoadContext.Default;
+#endif
         }
 
 #region Implementation of IAppDomain
@@ -52,7 +59,7 @@ namespace NLog.Internal.Fakeables
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
         /// </summary>
-        public string BaseDirectory { get;  }
+        public string BaseDirectory { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the configuration file for an application domain.
@@ -77,13 +84,60 @@ namespace NLog.Internal.Fakeables
         /// <summary>
         /// Process exit event.
         /// </summary>
-        public event EventHandler<EventArgs> ProcessExit;
+        public event EventHandler<EventArgs> ProcessExit
+        {
+            add
+            {
+#if NETSTANDARD1_5
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading += OnContextUnloading;
+#endif
+                _contextUnloadingEvent += value;
+            }
+            remove
+            {
+                _contextUnloadingEvent -= value;
+#if NETSTANDARD1_5
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading -= OnContextUnloading;
+#endif
+            }
+        }
 
         /// <summary>
         /// Domain unloaded event.
         /// </summary>
-        public event EventHandler<EventArgs> DomainUnload;
+        public event EventHandler<EventArgs> DomainUnload
+        {
+            add
+            {
+#if NETSTANDARD1_5
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading += OnContextUnloading;
+#endif
+                _contextUnloadingEvent += value;
+            }
+            remove
+            {
+                _contextUnloadingEvent -= value;
+#if NETSTANDARD1_5
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading -= OnContextUnloading;
+#endif
+            }
+        }
 
+#pragma warning disable 67
+        private event EventHandler<EventArgs> _contextUnloadingEvent;
+#pragma warning restore 67
+
+#if NETSTANDARD1_5
+        private void OnContextUnloading(System.Runtime.Loader.AssemblyLoadContext context)
+        {
+            var handler = _contextUnloadingEvent;
+            if (handler != null) handler.Invoke(context, EventArgs.Empty);
+        }
+#endif
 #endregion
     }
 }

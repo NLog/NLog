@@ -178,7 +178,7 @@ namespace NLog.Targets.Wrappers
                     for (int i = 0; i < this.RetryDelayMilliseconds;)
                     {
                         int retryDelay = Math.Min(100, this.RetryDelayMilliseconds - i);
-                        Thread.Sleep(retryDelay);
+                        AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(retryDelay));
                         i += retryDelay;
                         if (!IsInitialized)
                         {

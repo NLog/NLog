@@ -66,7 +66,7 @@ namespace NLog.UnitTests.Config
             using (new InternalLoggerScope())
             {
                 InternalLogger.LogLevel = LogLevel.Error;
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
                 InternalLogger.LogToConsole = true;
                 InternalLogger.LogToConsoleError = true;
 #endif
@@ -82,7 +82,7 @@ namespace NLog.UnitTests.Config
 </nlog>");
 
                 Assert.Same(LogLevel.Error, InternalLogger.LogLevel);
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
 #endif
@@ -120,7 +120,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("",sb.ToString());
             Assert.Equal(LogLevel.Off,InternalLogger.LogLevel);
             Assert.False(InternalLogger.ExceptionThrowWhenWriting);
-            }
+        }
 
         private void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool logToTrace)
         {
@@ -142,7 +142,7 @@ namespace NLog.UnitTests.Config
 
                 Assert.Equal(file, InternalLogger.LogFile);
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
                 Assert.Equal(logToConsole, InternalLogger.LogToConsole);
 
                 Assert.Equal(logToConsoleError, InternalLogger.LogToConsoleError);

@@ -41,26 +41,12 @@ namespace NLog.UnitTests.Internal
     using Xunit.Extensions;
     using NLog.Internal;
 
-    public class FilePathLayoutTests : NLogTestBase
+    public class FilePathLayoutTests // Not needed as not using NLog-Core -> : NLogTestBase
     {
         [Theory]
         [InlineData(@"", FilePathKind.Unknown)]
         [InlineData(@" ", FilePathKind.Unknown)]
         [InlineData(null, FilePathKind.Unknown)]
-#if !MONO 
-
-        //no forwardslash on mono
-        [InlineData(@"d:\test.log", FilePathKind.Absolute)]
-        [InlineData(@"d:\test", FilePathKind.Absolute)]
-        [InlineData(@" d:\test", FilePathKind.Absolute)]
-        [InlineData(@" d:\ test", FilePathKind.Absolute)]
-        [InlineData(@" d:\ test\a", FilePathKind.Absolute)]
-        [InlineData(@"\\test\a", FilePathKind.Absolute)]
-        [InlineData(@"\\test/a", FilePathKind.Absolute)]
-        [InlineData(@"\ test\a", FilePathKind.Absolute)]
-        [InlineData(@" a\test.log ", FilePathKind.Relative)]
-#endif
-
         [InlineData(@"/ test\a", FilePathKind.Absolute)]
 
         [InlineData(@"test.log", FilePathKind.Relative)]
@@ -96,5 +82,24 @@ ${level}/test ", FilePathKind.Relative)]
             Assert.Equal(expected, result);
         }
 
+        [Theory]
+        [InlineData(@"d:\test.log", FilePathKind.Absolute)]
+        [InlineData(@"d:\test", FilePathKind.Absolute)]
+        [InlineData(@" d:\test", FilePathKind.Absolute)]
+        [InlineData(@" d:\ test", FilePathKind.Absolute)]
+        [InlineData(@" d:\ test\a", FilePathKind.Absolute)]
+        [InlineData(@"\\test\a", FilePathKind.Absolute)]
+        [InlineData(@"\\test/a", FilePathKind.Absolute)]
+        [InlineData(@"\ test\a", FilePathKind.Absolute)]
+        [InlineData(@" a\test.log ", FilePathKind.Relative)]
+        public void DetectFilePathKindWindowsPath(string path, FilePathKind expected)
+        {
+            if (System.IO.Path.DirectorySeparatorChar != '\\')
+                return; //no backward-slash on linux
+
+            Layout layout = path;
+            var result = FilePathLayout.DetectFilePathKind(layout);
+            Assert.Equal(expected, result);
+        }
     }
 }

@@ -39,7 +39,7 @@ using Xunit;
 
 namespace NLog.UnitTests.Internal
 {
-    public class EnumHelpersTests : NLogTestBase
+    public class EnumHelpersTests // Not needed as not using NLog-Core -> : NLogTestBase
     {
 
         enum TestEnum

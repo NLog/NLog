@@ -31,9 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#define TRACE
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD || NETSTANDARD1_3PLUS
 
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+#define TRACE
 
 namespace NLog.Targets
 {

@@ -31,31 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#region
-
-using System;
-using System.Linq;
-using Xunit;
-
-#endregion
-
 namespace NLog.UnitTests.LayoutRenderers
 {
-    #region
-
     using System;
-
-    #endregion
+    using Xunit;
+    using NLog.Fluent;
 
     public class CallSiteLineNumberTests : NLogTestBase
     {
 
-#if !NETSTANDARD
-
-#if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#elif !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
 #endif
         public void LineNumberOnlyTest()
         {
@@ -81,6 +71,24 @@ namespace NLog.UnitTests.LayoutRenderers
 #if !NET4_5 && !MONO
 #line default
 #endif
+        }
+
+#if NET4_5
+        [Fact]
+        public void LineNumberOnlyFluentTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite-linenumber}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            Log.Info().LoggerName("A").Message("").Write();
+
+            var lastMessage = GetDebugLastMessage("debug");
+            Assert.NotEqual(0, int.Parse(lastMessage));
         }
 #endif
     }

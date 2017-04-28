@@ -386,14 +386,14 @@ namespace NLog.Internal
 #endif
         }
 
-#if !NETSTANDARD && !WINDOWS_PHONE
+#if !NETSTANDARD && !WINDOWS_PHONE || NETSTANDARD1_5
         public static string GetCodeBase(this Assembly assembly)
         {
             return assembly.CodeBase;
         }
 #endif
 
-#if !NETSTANDARD && !WINDOWS_PHONE
+#if !NETSTANDARD && !WINDOWS_PHONE || NETSTANDARD1_5
         public static string GetLocation(this Assembly assembly)
         {
             return assembly.Location;
@@ -405,7 +405,6 @@ namespace NLog.Internal
         {
             var typeInfo = type.GetTypeInfo();
             return typeInfo.IsSubclassOf(subtype);
-
         }
 #endif
     }

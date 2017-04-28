@@ -31,7 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__&& !NETSTANDARD
+#if NETSTANDARD
+#define DEBUG   // System.Diagnostics.Debug.WriteLine
+#endif
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
@@ -87,7 +91,11 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
+#if NETSTANDARD
+            System.Diagnostics.Debug.WriteLine(this.Layout.Render(logEvent));
+#else
             NativeMethods.OutputDebugString(this.Layout.Render(logEvent));
+#endif
         }
     }
 }

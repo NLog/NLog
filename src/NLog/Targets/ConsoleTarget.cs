@@ -32,7 +32,7 @@
 // 
 
 
-#if !NETSTANDARD || NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
 using System.IO;
 using NLog.Common;
 
@@ -215,6 +215,13 @@ namespace NLog.Targets
             try
             {
                 output.WriteLine(textLine);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                //this is a bug and therefor stopping logging. For docs, see PauseLogging property
+                _pauseLogging = true;
+                InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
             }
             catch (IndexOutOfRangeException ex)
             {

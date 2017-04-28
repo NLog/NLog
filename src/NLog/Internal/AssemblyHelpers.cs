@@ -51,9 +51,7 @@ namespace NLog.Internal
     /// </summary>
     internal class AssemblyHelpers
     {
-
-#if !NETSTANDARD
-
+#if !NETSTANDARD || NETSTANDARD1_5
         /// <summary>
         /// Load from url
         /// </summary>
@@ -62,25 +60,23 @@ namespace NLog.Internal
         /// <returns></returns>
         public static Assembly LoadFromPath(string assemblyFileName, string baseDirectory = null)
         {
+            string fullFileName = baseDirectory == null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
 
-#if SILVERLIGHT && !WINDOWS_PHONE
+            InternalLogger.Info("Loading assembly file: {0}", fullFileName);
+#if NETSTANDARD1_5
+            return System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyPath(fullFileName);
+#elif SILVERLIGHT && !WINDOWS_PHONE
             var stream = Application.GetResourceStream(new Uri(assemblyFileName, UriKind.Relative));
             var assemblyPart = new AssemblyPart();
             Assembly assembly = assemblyPart.Load(stream.Stream);
             return assembly;
-
 #else
-
-            string fullFileName = baseDirectory == null ? assemblyFileName : Path.Combine(baseDirectory, assemblyFileName);
-
-            InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
             Assembly asm = Assembly.LoadFrom(fullFileName);
             return asm;
 #endif
         }
-
 #endif
+
         /// <summary>
         /// Load from url
         /// </summary>
@@ -89,29 +85,20 @@ namespace NLog.Internal
         public static Assembly LoadFromName(string assemblyName)
         {
             InternalLogger.Info("Loading assembly: {0}", assemblyName);
+
 #if NETSTANDARD || WINDOWS_PHONE
-
             var name = new AssemblyName(assemblyName);
-
             return Assembly.Load(name);
-
-
 #elif SILVERLIGHT && !WINDOWS_PHONE
-
-    //as embedded resource
+            //as embedded resource
             var assemblyFile = assemblyName + ".dll";
             var stream = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
             var assemblyPart = new AssemblyPart();
             Assembly assembly = assemblyPart.Load(stream.Stream);
             return assembly;
-
 #else
-
-
-
             Assembly assembly = Assembly.Load(assemblyName);
             return assembly;
-
 #endif
         }
 

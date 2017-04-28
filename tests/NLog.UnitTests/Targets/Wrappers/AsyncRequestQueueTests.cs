@@ -122,7 +122,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             int pushingEvent = 0;
 
-            ThreadPool.QueueUserWorkItem(
+            AsyncHelpers.StartAsyncTask(
                 s =>
                 {
                     // producer thread
@@ -137,7 +137,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     }
 
                     producerFinished.Set();
-                });
+                }, null);
 
             // consumer thread
             AsyncLogEventInfo[] logEventInfos;
@@ -153,13 +153,13 @@ namespace NLog.UnitTests.Targets.Wrappers
                 total += got;
             }
 
-            Thread.Sleep(500);
+            AsyncHelpers.WaitForDelay(System.TimeSpan.FromMilliseconds(500));
 
             // producer is blocked on trying to push event #510
             Assert.Equal(510, pushingEvent);
             queue.DequeueBatch(1);
             total++;
-            Thread.Sleep(500);
+            AsyncHelpers.WaitForDelay(System.TimeSpan.FromMilliseconds(500));
 
             // producer is now blocked on trying to push event #511
 

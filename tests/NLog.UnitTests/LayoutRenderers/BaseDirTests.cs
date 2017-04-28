@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD || NETSTANDARD1_3
-
 using System.Collections.Generic;
 using System.Linq;
 using NLog.Internal.Fakeables;
@@ -49,15 +47,13 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
     public class BaseDirTests : NLogTestBase
     {
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
         private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 #else
-        private string baseDir = Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationBasePath;
+        private string baseDir = AppContext.BaseDirectory;
 #endif
 
-
         [Fact]
-
         public void BaseDirTest()
         {
             AssertLayoutRendererOutput("${basedir}", baseDir);
@@ -75,7 +71,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
         public void BaseDirCurrentProcessTest()
         {
@@ -120,7 +116,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 //restore
                 LogFactory.CurrentAppDomain = old;
             }
-
         }
 
         class MyAppDomain : IAppDomain
@@ -184,10 +179,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #else
                 _appDomain = AppDomainWrapper.CurrentDomain;
 #endif
-
             }
         }
     }
 }
-
-#endif

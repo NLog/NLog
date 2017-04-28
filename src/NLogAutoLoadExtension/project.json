@@ -18,6 +18,6 @@
 
   "frameworks": {
     ".NETFramework,Version=v3.5": { },
-    "netstandard1.3": { }    
+    "netstandard1.5": { }
   }
 }

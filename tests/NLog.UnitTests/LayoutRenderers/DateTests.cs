@@ -58,8 +58,6 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.True(Math.Abs((dt - now).TotalSeconds) < 5);
         }
 
-#if !NETSTANDARD
-
         [Fact]
         public void TimeZoneTest()
         {
@@ -70,7 +68,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
             var result = dateLayoutRenderer.Render(logEvent);
 
-            var offset = TimeZone.CurrentTimeZone;
+            var offset = TimeZoneInfo.Local;
             var offset2 = offset.GetUtcOffset(DateTime.Now);
 
             if (offset2 >= new TimeSpan(0))
@@ -83,10 +81,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 //-01:00, etc
                 Assert.Contains(string.Format("{0:D2}:{1:D2}", offset2.Hours, offset2.Minutes), result);
             }
-
         }
-
-#endif
 
         [Fact]
         public void UniversalTimeTest()

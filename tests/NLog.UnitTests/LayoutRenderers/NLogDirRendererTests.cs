@@ -40,7 +40,7 @@ namespace NLog.UnitTests.LayoutRenderers
     public class NLogDirRendererTests : NLogTestBase
     {
 
-#if NETSTANDARD 
+#if NETSTANDARD && !NETSTANDARD1_5
         [Fact(Skip = "${nlogdir} not supported in NETSTANDARD yet")]
 #else
         [Fact]
@@ -59,7 +59,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-#if NETSTANDARD 
+#if NETSTANDARD && !NETSTANDARD1_5
         [Fact(Skip = "${nlogdir} not supported in NETSTANDARD yet")]
 #else
         [Fact]

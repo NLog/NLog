@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD || NETSTANDARD1_3
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-    using System.Threading;
+    using NLog.Common;
 
     /// <summary>
     /// The identifier of the current thread.
@@ -51,8 +50,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture needed for ints
-            Internal.StringBuilderExt.AppendInvariant(builder, Thread.CurrentThread.ManagedThreadId);
+            Internal.StringBuilderExt.AppendInvariant(builder, AsyncHelpers.GetManagedThreadId());
         }
     }
 }
-#endif

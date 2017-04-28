@@ -114,7 +114,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 targetWrapper.Flush(flushHandler);
 
                 for (int i = 0; i < itemPrepareList.Count * 2 && itemWrittenList.Count != itemPrepareList.Count; ++i)
-                    System.Threading.Thread.Sleep(1);
+                    AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
 
                 long elapsedMilliseconds = Environment.TickCount - startTicks;
 
@@ -132,7 +132,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)
-                    System.Threading.Thread.Sleep(1);
+                    AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
                 Assert.Equal(2, flushCounter);
             }
             finally

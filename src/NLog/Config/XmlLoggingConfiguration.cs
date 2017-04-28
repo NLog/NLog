@@ -594,10 +594,12 @@ namespace NLog.Config
             logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", logFactory.ThrowExceptions);
             logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", logFactory.ThrowConfigExceptions);
             logFactory.KeepVariablesOnReload = nlogElement.GetOptionalBooleanAttribute("keepVariablesOnReload", logFactory.KeepVariablesOnReload);
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
+#endif
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
-            
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             InternalLogger.LogToTrace = nlogElement.GetOptionalBooleanAttribute("internalLogToTrace", InternalLogger.LogToTrace);
 #endif
@@ -1004,7 +1006,7 @@ namespace NLog.Config
                     }
                 }
 
-#if !NETSTANDARD
+#if !NETSTANDARD || NETSTANDARD1_5
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {

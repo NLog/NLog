@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
 #define DEBUG
 
@@ -53,7 +53,7 @@ namespace NLog.UnitTests
             // set the culture info with the decimal separator (comma) different from InvariantCulture separator (point)
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
         }
-        
+
         public void Dispose()
         {
             // restore previous culture info

@@ -162,7 +162,6 @@ namespace NLog.UnitTests
             Assert.Equal(1, exceptions.Count);
         }
 
-#if !NETSTANDARD
         [Fact]
         public void ContinuationTimeoutNotHitTest()
         {
@@ -175,7 +174,7 @@ namespace NLog.UnitTests
             cont(null);
 
             // sleep 2 seconds to make sure timer event comes
-            Thread.Sleep(1000);
+            AsyncHelpers.WaitForDelay(TimeSpan.FromSeconds(1));
 
             // make sure we got success, not a timer exception
             Assert.Equal(1, exceptions.Count);
@@ -205,7 +204,7 @@ namespace NLog.UnitTests
             cont(exception);
 
             // sleep 2 seconds to make sure timer event comes
-            Thread.Sleep(1000);
+            AsyncHelpers.WaitForDelay(TimeSpan.FromSeconds(1));
 
             // make sure we got success, not a timer exception
             Assert.Equal(1, exceptions.Count);
@@ -222,7 +221,6 @@ namespace NLog.UnitTests
             Assert.Equal(1, exceptions.Count);
             Assert.NotNull(exceptions[0]);
         }
-#endif
 
         [Fact]
         public void RepeatTest1()

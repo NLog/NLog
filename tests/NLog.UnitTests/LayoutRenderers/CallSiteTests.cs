@@ -33,13 +33,11 @@
 
 using System.Collections.Generic;
 using NLog.Config;
+using NLog.Fluent;
 using NLog.Internal;
 using NLog.Layouts;
 using NLog.Targets;
 using System.Runtime.CompilerServices;
-
-
-#if !NETSTANDARD
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -121,11 +119,12 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
-#if !NETSTANDARD
-#if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#elif !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
 #endif
         public void LineNumberTest()
         {
@@ -151,10 +150,27 @@ namespace NLog.UnitTests.LayoutRenderers
 #line default
 #endif
         }
+
+#if NET4_5
+        [Fact]
+        public void LineNumberTestFluent()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${callsite:filename=true} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            Log.Info().LoggerName("A").Message("").Write();
+
+            var lastMessage = GetDebugLastMessage("debug");
+            Assert.True(lastMessage.IndexOf("callsitetests.cs", StringComparison.OrdinalIgnoreCase) >= 0, "Invalid filename, got: " + lastMessage);
+        }
 #endif
 
 #if !NETSTANDARD
-
         [Fact]
         public void MethodNameTest()
         {
@@ -171,7 +187,9 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
+#endif
 
+#if !NETSTANDARD
         [Fact]
         public void MethodNameInChainTest()
         {
@@ -191,8 +209,13 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug2", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg2");
         }
+#endif
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void ClassNameTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -208,7 +231,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests msg");
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void ClassNameTestWithoutNamespace()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -224,6 +251,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "CallSiteTests msg");
         }
 
+#if !NETSTANDARD
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignLeftTest()
         {
@@ -240,7 +268,9 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
+#endif
 
+#if !NETSTANDARD
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignRightTest()
         {
@@ -258,7 +288,9 @@ namespace NLog.UnitTests.LayoutRenderers
             var typeName = currentMethod.DeclaringType.FullName;
             AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
         }
+#endif
 
+#if !NETSTANDARD
         [Fact]
         public void ClassNameWithPaddingTestPadRightAlignLeftTest()
         {
@@ -275,7 +307,9 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName.Substring(0, 3) + " msg");
         }
+#endif
 
+#if !NETSTANDARD
         [Fact]
         public void ClassNameWithPaddingTestPadRightAlignRightTest()
         {
@@ -293,10 +327,13 @@ namespace NLog.UnitTests.LayoutRenderers
             var typeName = currentMethod.DeclaringType.FullName;
             AssertDebugLastMessage("debug", typeName.Substring(typeName.Length - 3) + " msg");
         }
-
 #endif
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void MethodNameWithPaddingTestPadLeftAlignLeftTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -312,7 +349,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void MethodNameWithPaddingTestPadLeftAlignRightTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -328,7 +369,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "ftAlignRightTest msg");
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void MethodNameWithPaddingTestPadRightAlignLeftTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -344,7 +389,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "MethodNameWithPa msg");
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void MethodNameWithPaddingTestPadRightAlignRightTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -360,7 +409,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "htAlignRightTest msg");
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -376,7 +429,13 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
         }
 
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#elif !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -393,11 +452,12 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
         }
 
-#if !NETSTANDARD
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
+#elif !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
 #endif
         public void CleanMethodNamesOfAnonymousDelegatesTest()
         {
@@ -433,8 +493,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
+#elif !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
 #endif
         public void DontCleanMethodNamesOfAnonymousDelegatesTest()
         {
@@ -471,8 +533,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
+#elif !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
 #endif
         public void CleanClassNamesOfAnonymousDelegatesTest()
         {
@@ -508,8 +572,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
+#elif !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
 #endif
         public void DontCleanClassNamesOfAnonymousDelegatesTest()
         {
@@ -543,9 +609,12 @@ namespace NLog.UnitTests.LayoutRenderers
                 Assert.True(lastMessage.Contains("+<>"));
             }
         }
-#endif
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()
         {
 
@@ -567,12 +636,14 @@ namespace NLog.UnitTests.LayoutRenderers
             LoggerTests.BaseWrapper wrappedLogger = new LoggerTests.MyWrapper();
             wrappedLogger.Log("wrapped");
             AssertDebugLastMessage("debug", string.Format("{0}|wrapped", currentMethodFullName));
-
-
         }
 
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void CheckStackTraceUsageForTwoRules()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -593,7 +664,11 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void CheckStackTraceUsageForTwoRules_chained()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -614,7 +689,11 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void CheckStackTraceUsageForMultipleRules()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -637,9 +716,13 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-        #region Compositio unit test
+#region Compositio unit test
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void When_WrappedInCompsition_Ignore_Wrapper_Methods_In_Callstack()
         {
 
@@ -665,7 +748,11 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if ASYNC_SUPPORTED
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void Show_correct_method_with_async()
         {
 
@@ -693,7 +780,11 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void Show_correct_method_with_async2()
         {
 
@@ -725,8 +816,13 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
         }
 
-
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#elif !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void Show_correct_method_with_async3()
         {
 
@@ -767,8 +863,11 @@ namespace NLog.UnitTests.LayoutRenderers
             return await Task.FromResult(new string[] { "value1", "value2" });
         }
 
-#if !NETSTANDARD1_3
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void Show_correct_method_with_async4()
         {
 
@@ -788,6 +887,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
+#if !NETSTANDARD
         [Fact]
         public void CallSiteShouldWorkForAsyncMethodsWithReturnValue()
         {
@@ -809,11 +909,16 @@ namespace NLog.UnitTests.LayoutRenderers
             var callSite = l.Render(logEvent);
             return callSite;
         }
-
 #endif
-#endif
+#endif  // ASYNC_SUPPORTED
 
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#elif !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void Show_correct_method_for_moveNext()
         {
 
@@ -833,12 +938,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-
         private void MoveNext()
         {
             var logger = LogManager.GetCurrentClassLogger();
             logger.Warn("direct");
-
         }
 
         public class CompositeWrapper
@@ -891,14 +994,18 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        #endregion
+#endregion
 
         private class MyLogger : Logger
         {
 
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void CallsiteBySubclass_interface()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -917,7 +1024,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void CallsiteBySubclass_mylogger()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -936,8 +1047,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void CallsiteBySubclass_logger()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -955,7 +1069,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_logger msg");
         }
 
+#if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
+#else
+        [Fact(Skip = "NETSTANDARD cannot capture StackTrace")]
+#endif
         public void Should_preserve_correct_callsite_information()
         {
             // Step 1. Create configuration object 
@@ -979,6 +1097,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var logMessage = target.Logs[0];
             Assert.Contains("CallSiteTests.WriteLogMessage", logMessage);
         }
+
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         private void WriteLogMessage(NLogFactory factory)
@@ -1016,7 +1135,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if !NETSTANDARD1_3
+#if !NETSTANDARD
         /// <summary>
         /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
         /// 
@@ -1038,7 +1157,6 @@ namespace NLog.UnitTests.LayoutRenderers
             var callSite = l.Render(logEvent);
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
-    
 #endif
 
         /// <summary>
@@ -1087,4 +1205,3 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-#endif
