@@ -38,51 +38,16 @@ namespace NLog.Internal
     /// <summary>
     /// Controls a single allocated MemoryStream for reuse (only one active user)
     /// </summary>
-    internal class ReusableStreamCreator : IDisposable
+    internal class ReusableStreamCreator : ReusableObjectCreator<System.IO.MemoryStream>, IDisposable
     {
-        private System.IO.MemoryStream _memoryStream = new System.IO.MemoryStream();
-
-        /// <summary>Empty handle when <see cref="Targets.Target.OptimizeBufferReuse"/> is disabled</summary>
-        public readonly LockStream None = default(LockStream);
-
-        /// <summary>
-        /// Creates handle to the reusable MemoryStream for active usage
-        /// </summary>
-        /// <returns>Handle to the reusable item, that can release it again</returns>
-        public LockStream Allocate()
+        public ReusableStreamCreator(int capacity)
+            :base(new System.IO.MemoryStream(capacity), (m) => { m.Position = 0; m.SetLength(0); })
         {
-            return new LockStream(this);
-        }
-
-        public struct LockStream : IDisposable
-        {
-            /// <summary>
-            /// Access the MemoryStream acquired
-            /// </summary>
-            public readonly System.IO.MemoryStream Result;
-            private readonly ReusableStreamCreator _owner;
-
-            public LockStream(ReusableStreamCreator owner)
-            {
-                Result = owner._memoryStream;
-                owner._memoryStream = null;
-                _owner = owner;
-            }
-
-            public void Dispose()
-            {
-                if (Result != null)
-                {
-                    Result.Position = 0;
-                    Result.SetLength(0);
-                    _owner._memoryStream = Result;
-                }
-            }
         }
 
         void IDisposable.Dispose()
         {
-            _memoryStream.Dispose();
+            _reusableObject.Dispose();
         }
     }
 }

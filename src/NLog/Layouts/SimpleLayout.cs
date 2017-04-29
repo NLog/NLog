@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using System.Linq;
-
 namespace NLog.Layouts
 {
     using System;
@@ -87,6 +84,7 @@ namespace NLog.Layouts
             this.configurationItemFactory = configurationItemFactory;
             this.Text = txt;
         }
+
         internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
         {
             this.configurationItemFactory = configurationItemFactory;
@@ -153,12 +151,10 @@ namespace NLog.Layouts
         /// </summary>
         public ReadOnlyCollection<LayoutRenderer> Renderers { get; private set; }
 
-
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
         /// </summary>
-        /// <remarks>Calculated when setting <see cref="Renderers"/>.</remarks>
-        public StackTraceUsage StackTraceUsage { get; private set; }
+        public new StackTraceUsage StackTraceUsage { get { return base.StackTraceUsage; } }
 
         /// <summary>
         /// Converts a text to a simple layout.
@@ -229,24 +225,22 @@ namespace NLog.Layouts
         {
             this.Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
 
-            if (this.Renderers.Count == 0)
-            {
-                //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
-                this.fixedText = null;
-                this.StackTraceUsage = StackTraceUsage.None;
-            }
-            else if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
+            if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
             {
                 this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
-                this.StackTraceUsage = StackTraceUsage.None;
             }
             else
             {
+                //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
                 this.fixedText = null;
-                this.StackTraceUsage = this.Renderers.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(usage => usage == null ? StackTraceUsage.None : usage.StackTraceUsage);
             }
 
             this.layoutText = text;
+
+            if (this.LoggingConfiguration != null)
+            {
+                PerformObjectScanning();
+            }
         }
 
         /// <summary>

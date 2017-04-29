@@ -170,6 +170,14 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdc { get; set; }
 
+#if NET4_0 || NET4_5
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeMdlc { get; set; }
+#endif
+
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
@@ -326,6 +334,23 @@ namespace NLog.LayoutRenderers
                         xtw.WriteEndElement();
                     }
                 }
+
+#if NET4_0 || NET4_5
+                if (this.IncludeMdlc)
+                {
+                    foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
+                    {
+                        string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsLogicalContext.GetObject(key));
+                        if (propertyValue == null)
+                            continue;
+
+                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                        xtw.WriteAttributeSafeString("name", key);
+                        xtw.WriteAttributeSafeString("value", propertyValue);
+                        xtw.WriteEndElement();
+                    }
+                }
+#endif
 
                 if (this.Parameters.Count > 0)
                 {

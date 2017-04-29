@@ -205,7 +205,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
         /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead.")]
+        [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Trace([Localizable(false)] string message, Exception exception)
         {
             if (this.IsTraceEnabled)

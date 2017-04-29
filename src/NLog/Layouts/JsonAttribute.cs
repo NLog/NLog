@@ -84,6 +84,11 @@ namespace NLog.Layouts
         /// </summary>
         public bool Encode { get { return LayoutWrapper.JsonEncode; } set { LayoutWrapper.JsonEncode = value; } }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to escape non-ascii characters
+        /// </summary>
+        public bool EscapeUnicode { get { return LayoutWrapper.EscapeUnicode; } set { LayoutWrapper.EscapeUnicode = value; } }
+
         internal readonly LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper LayoutWrapper = new LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper();
     }
 }

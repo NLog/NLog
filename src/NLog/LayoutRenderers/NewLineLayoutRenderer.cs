@@ -34,14 +34,15 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Diagnostics;
     using System.Text;
     using NLog.Internal;
+    using NLog.Config;
 
     /// <summary>
     /// A newline literal.
     /// </summary>
     [LayoutRenderer("newline")]
+    [ThreadAgnostic]
     public class NewLineLayoutRenderer : LayoutRenderer
     {
         /// <summary>

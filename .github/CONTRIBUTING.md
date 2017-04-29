@@ -1,6 +1,6 @@
 Support & contributing guidelines (December 10, 2016)
 ===
-Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](issue-labeling.md). 
+Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](/issue-labeling.md). 
 
 Feature requests
 ----
@@ -43,7 +43,7 @@ Please document any public method and property. Document **why** and not how. At
 * Method: Summary, param and return.
 * Property: Summary
 
-Sync projects
+Sync projects  (csproj files)
 ===
 Adding or removing files to the project? Please keep all project files in sync, otherwise AppVeyor will complain.
 The following Msbuild command can be used:
@@ -76,7 +76,7 @@ Keep in mind that multiple versions of .NET are supported. Some methods are not 
 #if __ANDROID__
 ```
 
-Sync back
+Update your fork
 ===
 Is your fork not up-to-date with the NLog code? Most of the time that isn't a problem. But if you like to "sync back" the changes to your repository, execute the following command:
 
@@ -85,7 +85,8 @@ The first time:
 git remote add upstream https://github.com/NLog/NLog.git 
 ```
 
-After that:
+
+After that you repository will have two remotes. You could update your remote (the fork) in the following way:
 
 ```
 git fetch upstream

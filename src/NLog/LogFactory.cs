@@ -554,9 +554,12 @@ namespace NLog
         /// </summary>
         public void ReconfigExistingLoggers()
         {
-            if (this.config != null)
+            lock (this.syncRoot)
             {
-                this.config.InitializeAll();
+                if (this.config != null)
+                {
+                    this.config.InitializeAll();
+                }
             }
 
             //new list to avoid "Collection was modified; enumeration operation may not execute"
