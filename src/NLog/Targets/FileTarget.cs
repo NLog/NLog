@@ -85,7 +85,7 @@ namespace NLog.Targets
         /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
-        private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>();
+        private readonly Dictionary<string, DateTime> initializedFiles = new Dictionary<string, DateTime>(StringComparer.OrdinalIgnoreCase);
 
         private LineEndingMode lineEndingMode = LineEndingMode.Default;
 
@@ -1668,7 +1668,7 @@ namespace NLog.Targets
         /// <returns></returns>
         private string GetPotentialFileForArchiving(string fileName)
         {
-            if (fileName == previousLogFileName)
+            if (string.Equals(fileName, previousLogFileName, StringComparison.OrdinalIgnoreCase))
             {
                 //both the same, so don't care
                 return fileName;
