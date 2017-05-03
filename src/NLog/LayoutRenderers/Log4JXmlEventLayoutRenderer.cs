@@ -156,6 +156,12 @@ namespace NLog.LayoutRenderers
 #endif
 
         /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeAllProperties { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
@@ -268,32 +274,12 @@ namespace NLog.LayoutRenderers
                                 xtw.WriteAttributeSafeString("assembly", type.Assembly.FullName);
                             }
                             xtw.WriteEndElement();
-                        }
-                    }
-                }
 
-                if (this.IncludeNLogData)
-                {
-                    xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                    if (logEvent.HasProperties)
-                    {
-                        foreach (var contextProperty in logEvent.Properties)
-                        {
-                            string propertyKey = XmlHelper.XmlConvertToString(contextProperty.Key);
-                            if (string.IsNullOrEmpty(propertyKey))
-                                continue;
-
-                            string propertyValue = XmlHelper.XmlConvertToString(contextProperty.Value);
-                            if (propertyValue == null)
-                                continue;
-
-                            xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
-                            xtw.WriteAttributeSafeString("name", propertyKey);
-                            xtw.WriteAttributeSafeString("value", propertyValue);
+                            xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
+                            AppendProperties("nlog", xtw, logEvent);
                             xtw.WriteEndElement();
                         }
                     }
-                    xtw.WriteEndElement();
                 }
 
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
@@ -329,6 +315,11 @@ namespace NLog.LayoutRenderers
                 }
 #endif
 
+                if (this.IncludeAllProperties)
+                {
+                    AppendProperties("log4j", xtw, logEvent);
+                }
+
                 if (this.Parameters.Count > 0)
                 {
                     foreach (NLogViewerParameterInfo parameter in this.Parameters)
@@ -359,6 +350,28 @@ namespace NLog.LayoutRenderers
                 sb.Replace(dummyNamespaceRemover, string.Empty);
                 sb.Replace(dummyNLogNamespaceRemover, string.Empty);
                 builder.Append(sb.ToString());  // StringBuilder.Replace is not good when reusing the StringBuilder
+            }
+        }
+
+        private void AppendProperties(string prefix, XmlWriter xtw, LogEventInfo logEvent)
+        {
+            if (logEvent.HasProperties)
+            {
+                foreach (var contextProperty in logEvent.Properties)
+                {
+                    string propertyKey = XmlHelper.XmlConvertToString(contextProperty.Key);
+                    if (string.IsNullOrEmpty(propertyKey))
+                        continue;
+
+                    string propertyValue = XmlHelper.XmlConvertToString(contextProperty.Value);
+                    if (propertyValue == null)
+                        continue;
+
+                    xtw.WriteStartElement(prefix, "data", dummyNamespace);
+                    xtw.WriteAttributeSafeString("name", propertyKey);
+                    xtw.WriteAttributeSafeString("value", propertyValue);
+                    xtw.WriteEndElement();
+                }
             }
         }
     }
