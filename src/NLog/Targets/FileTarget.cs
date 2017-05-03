@@ -2693,69 +2693,76 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Class for converting between archive filename templates (like "file.{#}.txt")
+        /// and real filenames (like "log.7.txt").
+        /// </summary>
         private sealed class FileNameTemplate
         {
             /// <summary>
-            /// Characters determining the start of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// Characters determining the start of a pattern.
             /// </summary>
-            public const string PatternStartCharacters = "{#";
+            private const string PatternStartCharacters = "{#";
 
             /// <summary>
-            /// Characters determining the end of the <see cref="P:FileNameTemplate.Pattern"/>.
+            /// Characters determining the end of a pattern.
             /// </summary>
-            public const string PatternEndCharacters = "#}";
+            private const string PatternEndCharacters = "#}";
 
             /// <summary>
-            /// File name which is used as template for matching and replacements. 
-            /// It is expected to contain a pattern to match.
+            /// File name which is used as template for matching and replacements.
+            /// It is expected (but not required) to contain a pattern to match.
             /// </summary>
-            public string Template
+            public string Template { get; private set; }
+
+            /// <summary>
+            /// The pattern text without surrounding curly braces. (Example: "#" or "####")
+            /// Empty string if no pattern is present.
+            /// </summary>
+            public string Pattern { get; private set; }
+
+            /// <summary>
+            /// The beginning position of <c>PatternStartCharacters</c>
+            /// within <c>Template</c>. -1 is returned when no pattern is present.
+            /// </summary>
+            private int patternStart;
+
+            /// <summary>
+            /// The length of pattern characters plus surrounding curly braces.
+            /// </summary>
+            private int patternLength;
+
+            /// <summary>
+            /// Indicates whether a pattern is present in the <see cref="Template"/>.
+            /// </summary>
+            public bool HasPattern
             {
-                get { return this.template; }
+                get { return patternStart != -1; }
             }
 
             /// <summary>
-            /// The begging position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
-            /// when no pattern can be found.
+            /// Start index of pattern opening curly brace.
+            /// -1 if no pattern is present in <see cref="Template"/>.
             /// </summary>
-            public int BeginAt
-            {
-                get
-                {
-                    return startIndex;
-                }
-            }
+            private readonly int patternStartIndex;
 
             /// <summary>
-            /// The ending position of the <see cref="P:FileNameTemplate.Pattern"/> 
-            /// within the <see cref="P:FileNameTemplate.Template"/>. -1 is returned 
-            /// when no pattern can be found.
+            /// Creates an instance of this class to describe the given archive filename template.
             /// </summary>
-            public int EndAt
-            {
-                get
-                {
-                    return endIndex;
-                }
-            }
-
-            private bool FoundPattern
-            {
-                get { return startIndex != -1 && endIndex != -1; }
-            }
-
-            private readonly string template;
-
-            private readonly int startIndex;
-            private readonly int endIndex;
-
+            /// <param name="template">The archive filename template.</param>
             public FileNameTemplate(string template)
             {
-                this.template = template;
+                Template = template;
                 this.startIndex = template.IndexOf(PatternStartCharacters, StringComparison.Ordinal);
                 if (this.startIndex != -1)
+                {
                     this.endIndex = template.IndexOf(PatternEndCharacters, StringComparison.Ordinal) + PatternEndCharacters.Length;
+                }
+                else
+                {
+                    this.endIndex = -1;
+                    Pattern = string.Empty;
+                }
             }
 
             /// <summary>
