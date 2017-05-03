@@ -186,7 +186,7 @@ namespace NLog.Targets
 
         public override DateAndSequenceArchive GenerateArchiveFileName(string archiveFilePath, DateTime archiveDate, List<DateAndSequenceArchive> existingArchiveFiles)
         {
-            int nextSequenceNumber = _customArchiveFileName ? 0 : -1;
+            int nextSequenceNumber = GetStartSequenceNo() - 1;
             string initialFileName = Path.GetFileName(archiveFilePath);
 
             foreach (var existingFile in existingArchiveFiles)
@@ -194,7 +194,7 @@ namespace NLog.Targets
                 string existingFileName = Path.GetFileName(existingFile.FileName);
                 if (string.Equals(existingFileName, initialFileName, StringComparison.OrdinalIgnoreCase))
                 {
-                    nextSequenceNumber = Math.Max(nextSequenceNumber, existingFile.Sequence + (_customArchiveFileName ? 1 : 0));
+                    nextSequenceNumber = Math.Max(nextSequenceNumber, existingFile.Sequence + GetStartSequenceNo());
                 }
                 else
                 {
@@ -207,13 +207,19 @@ namespace NLog.Targets
                 }
             }
 
-            if (nextSequenceNumber >= (_customArchiveFileName ? 1 : 0))
+            archiveFilePath = Path.GetFullPath(archiveFilePath);    // Rebuild to fix non-standard path-format
+            if (nextSequenceNumber >= GetStartSequenceNo())
             {
-                // For historic reasons, then the sequence-number starts at 1, when having specified FileTarget.ArchiveFileName
-                archiveFilePath = Path.Combine(Path.GetDirectoryName(archiveFilePath), string.Concat(Path.GetFileNameWithoutExtension(archiveFilePath), ".", nextSequenceNumber.ToString(CultureInfo.InvariantCulture), Path.GetExtension(archiveFilePath)));
+                archiveFilePath = Path.Combine(Path.GetDirectoryName(archiveFilePath), string.Concat(Path.GetFileNameWithoutExtension(initialFileName), ".", nextSequenceNumber.ToString(CultureInfo.InvariantCulture), Path.GetExtension(initialFileName)));
             }
 
             return new DateAndSequenceArchive(archiveFilePath, archiveDate, _archiveDateFormat, nextSequenceNumber);
+        }
+
+        private int GetStartSequenceNo()
+        {
+            // For historic reasons, then the sequence-number starts at 1, when having specified FileTarget.ArchiveFileName
+            return _customArchiveFileName ? 1 : 0;
         }
     }
 }

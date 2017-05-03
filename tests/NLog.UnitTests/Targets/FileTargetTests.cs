@@ -278,10 +278,13 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void CsvHeaderTest()
         {
-            var logFile = Path.GetTempFileName();
+            var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempPath, "log.log");
+            if (Path.DirectorySeparatorChar == '\\')
+                logFile = logFile.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
             try
             {
-
                 for (var i = 0; i < 2; i++)
                 {
                     var layout = new CsvLayout
@@ -302,20 +305,39 @@ namespace NLog.UnitTests.Targets
                         LineEnding = LineEndingMode.LF,
                         Layout = layout,
                         OpenFileCacheTimeout = 0,
-                        ReplaceFileContentsOnEachWrite = false
+                        ReplaceFileContentsOnEachWrite = false,
+                        ArchiveAboveSize = 120, // Only 2 LogEvents per file
+                        MaxArchiveFiles = 1,
                     });
                     SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-                    logger.Debug("aaa");
+                    if (i == 0)
+                    {
+                        for (int j = 0; j < 3; j++)
+                            logger.Debug("aaa");
 
-                    LogManager.Configuration = null;    // Flush
+                        LogManager.Configuration = null;    // Flush
+
+                        // See that the 3rd LogEvent was placed in its own file
+                        AssertFileContents(logFile, "name;level;message\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\n", Encoding.UTF8);
+                    }
+                    else
+                    {
+                        logger.Debug("aaa");
+                    }
                 }
+
+                // See that opening closing 
                 AssertFileContents(logFile, "name;level;message\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\nNLog.UnitTests.Targets.FileTargetTests;Debug;aaa\n", Encoding.UTF8);
+
+                Assert.NotEqual(3, Directory.GetFiles(tempPath).Count());   // See that archive cleanup worked
             }
             finally
             {
                 if (File.Exists(logFile))
                     File.Delete(logFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
             }
         }
 

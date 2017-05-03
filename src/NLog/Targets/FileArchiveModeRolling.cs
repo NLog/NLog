@@ -60,10 +60,11 @@ namespace NLog.Targets
             for (int archiveNumber = 0; archiveNumber < int.MaxValue; archiveNumber++)
             {
                 string existingFileName = ReplaceNumberPattern(archiveFilePath, archiveNumber);
-                if (!File.Exists(existingFileName))
+                FileInfo existingFileInfo = new FileInfo(existingFileName);
+                if (!existingFileInfo.Exists)
                     break;
 
-                existingArchiveFiles.Add(new DateAndSequenceArchive(existingFileName, DateTime.MinValue, string.Empty, archiveNumber));
+                existingArchiveFiles.Add(new DateAndSequenceArchive(existingFileInfo.FullName, DateTime.MinValue, string.Empty, archiveNumber));
             }
 
             return existingArchiveFiles;
@@ -95,6 +96,7 @@ namespace NLog.Targets
                 existingArchiveFiles.Add(new DateAndSequenceArchive(rollFileName, DateTime.MinValue, string.Empty, int.MaxValue));
             }
             string newFileName = ReplaceNumberPattern(archiveFilePath, 0);
+            newFileName = Path.GetFullPath(newFileName);    // Rebuild to fix non-standard path-format
             return new DateAndSequenceArchive(newFileName, DateTime.MinValue, string.Empty, int.MinValue);
         }
 
