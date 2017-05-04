@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
                 <targets>
-        <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeMdc=true:includeMdlc=true:includendc=true:ndcItemSeparator=\:\::includenlogdata=true}' />
+        <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeMdc=true:includeMdlc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true}' />
        </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
@@ -155,6 +155,10 @@ namespace NLog.UnitTests.LayoutRenderers
                                         Assert.Equal("bar3", value);
                                         break;
 #endif
+
+                                    case "nlogPropertyKey":
+                                        Assert.Equal("nlogPropertyValue", value);
+                                        break;
 
                                     default:
                                         Assert.True(false, "Unknown <log4j:data>: " + name);

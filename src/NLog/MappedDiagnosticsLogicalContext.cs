@@ -54,6 +54,8 @@ namespace NLog
     {
         private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
 
+        private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
+
         /// <summary>
         /// Simulate ImmutableDictionary behavior (which is not yet part of all .NET frameworks).
         /// In future the real ImmutableDictionary could be used here to minimize memory usage and copying time.
@@ -65,6 +67,9 @@ namespace NLog
             var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as Dictionary<string, object>;
             if (dictionary == null)
             {
+                if (!clone)
+                    return EmptyDefaultDictionary;
+
                 dictionary = new Dictionary<string, object>();
                 CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
             }
