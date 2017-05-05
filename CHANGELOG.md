@@ -9,6 +9,8 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
  
 #### Fixes
  - [#2090](https://github.com/nlog/nlog/pull/2090) Log4JXmlEvent Layout - Fixed bug with empty nlog:properties (@snakefoot)
+ - [#2093](https://github.com/nlog/nlog/pull/2093) Fixed bug to logging by day of week (@RussianDragon)
+ - [#2095](https://github.com/nlog/nlog/pull/2095) Fix: include ignoreErrors attribute not working for non-existent file (@304NotModified, @ghills)
 
 ### v4.4.8 (2017/04/28)
 
