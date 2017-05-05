@@ -619,6 +619,13 @@ namespace NLog.Config
                 this.ParseExtensionsElement(extensionsChild, Path.GetDirectoryName(filePath));
             }
 
+            //target elements should be parsed before rule elements, as target elements are referenced by rule elements
+            var targetChilds = children.Where(child => child.LocalName.Equals("TARGETS", StringComparison.InvariantCultureIgnoreCase)).ToList();
+            foreach (var targetChild in targetChilds)
+            {
+                this.ParseTargetsElement(targetChild);
+            }
+
             //parse all other direct elements
             foreach (var child in children)
             {
@@ -634,7 +641,7 @@ namespace NLog.Config
 
                     case "APPENDERS":
                     case "TARGETS":
-                        this.ParseTargetsElement(child);
+                        //already parsed
                         break;
 
                     case "VARIABLE":
