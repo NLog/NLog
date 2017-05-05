@@ -607,6 +607,11 @@ namespace NLog.Config
 
             var children = nlogElement.Children.ToList();
 
+            //target elements should be parsed before rule elements, so move rule elements to the end of children list
+            var ruleElements = children.Where(t => t.LocalName.ToUpper(CultureInfo.InvariantCulture) == "RULES").ToList();
+            children.RemoveAll(t => t.LocalName.ToUpper(CultureInfo.InvariantCulture) == "RULES");
+            children.AddRange(ruleElements);
+
             //first load the extensions, as the can be used in other elements (targets etc)
             var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase)).ToList();
             foreach (var extensionsChild in extensionsChilds)
