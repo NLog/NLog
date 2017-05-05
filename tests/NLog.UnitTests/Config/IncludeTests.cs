@@ -161,6 +161,27 @@ namespace NLog.UnitTests.Config
             }
         }
 
+        [Fact]
+        public void IncludeNotExistingIgnoredTest_DoesNotThrow()
+        {
+            LogManager.ThrowExceptions = true;
+            var tempPath = GetTempDir();
+            Directory.CreateDirectory(tempPath);
+
+            var config = @"<nlog>
+                <include file='included-notpresent.nlog' ignoreErrors='true' />
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>";
+
+            CreateConfigFile(tempPath, "main.nlog", config);
+            string fileToLoad = Path.Combine(tempPath, "main.nlog");
+
+            Assert.DoesNotThrow(() => new XmlLoggingConfiguration(fileToLoad));
+        }
+
         /// <summary>
         /// Create config file in dir
         /// </summary>
