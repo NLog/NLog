@@ -1079,6 +1079,8 @@ namespace NLog.Config
 
             string newFileName = includeElement.GetRequiredAttribute("file");
 
+            var ignoreErrors = includeElement.GetOptionalBooleanAttribute("ignoreErrors", false);
+
             try
             {
                 newFileName = this.ExpandSimpleVariables(newFileName);
@@ -1109,6 +1111,14 @@ namespace NLog.Config
                     }
                     else
                     {
+                        if (ignoreErrors)
+                        {
+                            //quick stop for performances
+                            InternalLogger.Debug("Skipping included file '{0}' as it can't be found", fullNewFileName);
+
+                            return;
+                        }
+
                         throw new FileNotFoundException("Included file not found: " + fullNewFileName);
                     }
 
@@ -1118,15 +1128,18 @@ namespace NLog.Config
             {
                 InternalLogger.Error(exception, "Error when including '{0}'.", newFileName);
 
+              
+                if (ignoreErrors)
+                {
+                    return;
+                }
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
 
-                if (includeElement.GetOptionalBooleanAttribute("ignoreErrors", false))
-                {
-                    return;
-                }
+               
 
                 throw new NLogConfigurationException("Error when including: " + newFileName, exception);
             }
