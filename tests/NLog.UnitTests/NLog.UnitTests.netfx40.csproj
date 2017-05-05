@@ -101,6 +101,7 @@
     <Compile Include="Config\TargetConfigurationTests.cs" />
     <Compile Include="Config\TimeConfigurationTests.cs" />
     <Compile Include="Config\VariableTests.cs" />
+    <Compile Include="Config\XmlConfigNodesOrderTests.cs" />
     <Compile Include="Config\XmlConfigTests.cs" />
     <Compile Include="ConfigFileLocatorTests.cs" />
     <Compile Include="Contexts\GlobalDiagnosticsContextTests.cs" />
