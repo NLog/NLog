@@ -2272,13 +2272,19 @@ namespace NLog.Targets
                 case FileArchivePeriod.Minute:
                     return input.AddTicks(-(input.Ticks % TimeSpan.TicksPerMinute));
                 case FileArchivePeriod.Sunday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Sunday);
                 case FileArchivePeriod.Monday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Monday);
                 case FileArchivePeriod.Tuesday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Tuesday);
                 case FileArchivePeriod.Wednesday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Wednesday);
                 case FileArchivePeriod.Thursday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Thursday);
                 case FileArchivePeriod.Friday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Friday);
                 case FileArchivePeriod.Saturday:
-                    return input.Date;
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Saturday);
                 default:
                     return input;   // Unknown time-resolution-truncate, leave unchanged
             }
