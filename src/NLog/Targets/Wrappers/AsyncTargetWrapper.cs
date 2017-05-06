@@ -106,7 +106,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public AsyncTargetWrapper(Target wrappedTarget)
-            : this(wrappedTarget, 10000, AsyncTargetWrapperOverflowAction.Discard)
+            : this(wrappedTarget, 10000, AsyncTargetWrapperOverflowAction.Block)
         {
         }
 
@@ -118,8 +118,8 @@ namespace NLog.Targets.Wrappers
         /// <param name="overflowAction">The action to be taken when the queue overflows.</param>
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
-            this.RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
-            this.TimeToSleepBetweenBatches = 50;
+            this.RequestQueue = new AsyncRequestQueue(10000, overflowAction);
+            this.TimeToSleepBetweenBatches = 0;
             this.BatchSize = 200;
             this.FullBatchSizeWriteLimit = 5;
             this.WrappedTarget = wrappedTarget;
@@ -136,10 +136,10 @@ namespace NLog.Targets.Wrappers
         public int BatchSize { get; set; }
 
         /// <summary>
-        /// Gets or sets the time in milliseconds to sleep between batches.
+        /// Gets or sets the time in milliseconds to sleep between batches (Zero means trigger on new activity)
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(50)]
+        [DefaultValue(0)]
         public int TimeToSleepBetweenBatches { get; set; }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace NLog.Targets.Wrappers
         /// exceeds the set limit.
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue("Discard")]
+        [DefaultValue("Block")]
         public AsyncTargetWrapperOverflowAction OverflowAction
         {
             get { return this.RequestQueue.OnOverflow; }
