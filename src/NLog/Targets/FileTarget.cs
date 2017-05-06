@@ -182,7 +182,6 @@ namespace NLog.Targets
             this.ForceManaged = false;
             this.ArchiveDateFormat = string.Empty;
 
-            this.maxLogFilenames = 20;
             this.fileAppenderCache = FileAppenderCache.Empty;
             this.CleanupFileName = true;
 
@@ -345,11 +344,9 @@ namespace NLog.Targets
         /// <remarks>
         /// The bigger this number is the longer it will take to write each log record. The smaller the number is
         /// the higher the chance that the clean function will be run when no new files have been opened.
-        /// 
-        /// [Warning] This method will be renamed to correct text casing i.e. MaxLogFilenames in NLog 5.
         /// </remarks>
-        /// <docgen category='Performance Tuning Options' order='10' />
-        [DefaultValue(20)] // TODO NLog 5: Rename the property to correct for text case i.e. MaxLogFilenames
+        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
+        [DefaultValue(0)]
         public int maxLogFilenames { get; set; }
 
         /// <summary>
