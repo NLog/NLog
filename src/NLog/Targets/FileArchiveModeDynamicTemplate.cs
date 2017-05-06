@@ -56,9 +56,9 @@ namespace NLog.Targets
             _archiveHelper = archiveHelper;
         }
 
-        public bool AttemptCleanupOnInitializeFile(string archiveFilePath)
+        public bool AttemptCleanupOnInitializeFile(string initializeFile, int maxArchiveFiles)
         {
-            return _archiveHelper.AttemptCleanupOnInitializeFile(CreateDynamicTemplate(archiveFilePath));
+            return _archiveHelper.AttemptCleanupOnInitializeFile(initializeFile, maxArchiveFiles);
         }
 
         public IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles)

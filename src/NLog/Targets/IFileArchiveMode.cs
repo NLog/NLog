@@ -42,8 +42,9 @@ namespace NLog.Targets
         /// Check if cleanup should be performed on initialize new file
         /// </summary>
         /// <param name="archiveFilePath">Base archive file pattern</param>
+        /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept</param>
         /// <returns>True, when archive cleanup is needed</returns>
-        bool AttemptCleanupOnInitializeFile(string archiveFilePath);
+        bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles);
 
         /// <summary>
         /// Create a wildcard file-mask that allows one to find all files belonging to the same archive.

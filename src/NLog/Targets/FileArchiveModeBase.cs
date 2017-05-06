@@ -39,7 +39,7 @@ namespace NLog.Targets
 
     abstract class FileArchiveModeBase : IFileArchiveMode
     {
-        private string _lastArchiveFilePath;
+        private int _lastArchiveFileCount = short.MaxValue * 2;
 
         /// <summary>
         /// Check if cleanup should be performed on initialize new file
@@ -47,21 +47,28 @@ namespace NLog.Targets
         /// Skip cleanup when initializing new file, just after having performed archive operation
         /// </summary>
         /// <param name="archiveFilePath">Base archive file pattern</param>
+        /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept</param>
         /// <returns>True, when archive cleanup is needed</returns>
-        public virtual bool AttemptCleanupOnInitializeFile(string archiveFilePath)
+        public virtual bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
         {
-            string lastArchiveFilePath = _lastArchiveFilePath;
-            _lastArchiveFilePath = string.Empty;
-            return lastArchiveFilePath != archiveFilePath;  // Skip archive cleanup, when it has just been executed
+            if (_lastArchiveFileCount++ > maxArchiveFiles)
+                return true;
+            else
+                return false;
         }
 
         public string GenerateFileNameMask(string archiveFilePath)
         {
-            return GenerateFileNameMask(archiveFilePath, GenerateFileNameTemplate(archiveFilePath));
+            int lastArchiveFileCount = _lastArchiveFileCount;
+            var fileMask = GenerateFileNameMask(archiveFilePath, GenerateFileNameTemplate(archiveFilePath));
+            _lastArchiveFileCount = lastArchiveFileCount;   // Restore if modified by "mistake"
+            return fileMask;
         }
 
         public virtual List<DateAndSequenceArchive> GetExistingArchiveFiles(string archiveFilePath)
         {
+            _lastArchiveFileCount = short.MaxValue * 2;
+
             string archiveFolderPath = Path.GetDirectoryName(archiveFilePath);
             FileNameTemplate archiveFileNameTemplate = GenerateFileNameTemplate(archiveFilePath);
             string archiveFileMask = GenerateFileNameMask(archiveFilePath, archiveFileNameTemplate);
@@ -69,7 +76,7 @@ namespace NLog.Targets
             var existingArchiveFiles = new List<DateAndSequenceArchive>();
             if (string.IsNullOrEmpty(archiveFileMask))
                 return existingArchiveFiles;
-
+       
             DirectoryInfo directoryInfo = new DirectoryInfo(archiveFolderPath);
             if (!directoryInfo.Exists)
                 return existingArchiveFiles;
@@ -88,6 +95,7 @@ namespace NLog.Targets
 
             if (existingArchiveFiles.Count > 1)
                 existingArchiveFiles.Sort(FileSortOrderComparison);
+            _lastArchiveFileCount = existingArchiveFiles.Count;
             return existingArchiveFiles;
         }
 
@@ -104,6 +112,7 @@ namespace NLog.Targets
 
         protected virtual FileNameTemplate GenerateFileNameTemplate(string archiveFilePath)
         {
+            ++_lastArchiveFileCount;
             return new FileNameTemplate(Path.GetFileName(archiveFilePath));
         }
 
@@ -123,13 +132,17 @@ namespace NLog.Targets
             if (maxArchiveFiles <= 0)
                 yield break;
 
-            _lastArchiveFilePath = archiveFilePath; // Cache that we have just performed cleanup for this archive-path
+            _lastArchiveFileCount = existingArchiveFiles.Count;
 
             if (existingArchiveFiles.Count == 0 || existingArchiveFiles.Count < maxArchiveFiles)
                 yield break;
 
             for (int i = 0; i < existingArchiveFiles.Count - maxArchiveFiles; i++)
+            {
+                if (_lastArchiveFileCount > 0)
+                    --_lastArchiveFileCount;
                 yield return existingArchiveFiles[i];
+            }
         }
 
         internal sealed class FileNameTemplate

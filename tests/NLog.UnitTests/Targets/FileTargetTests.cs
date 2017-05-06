@@ -276,6 +276,63 @@ namespace NLog.UnitTests.Targets
 #endif
 
         [Fact]
+        public void RollingArchiveEveryMonth()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var defaultTimeSource = TimeSource.Current;
+
+            try
+            {
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                if (timeSource.Time.Minute == 59)
+                {
+                    // Avoid double-archive due to overflow of the hour.
+                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                    timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+                }
+                TimeSource.Current = timeSource;
+
+                var fileTarget = WrapFileTarget(new FileTarget
+                {
+                    FileName = Path.Combine(tempPath, "${date:format=dd}_AppName.log"),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    ArchiveNumbering = ArchiveNumberingMode.Rolling,
+                    ArchiveEvery = FileArchivePeriod.Month,
+                    MaxArchiveFiles = 1,
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                for (int i = 0; i < 12; ++i)
+                {
+                    for (int j = 0; j < 31; ++j)
+                    {
+                        logger.Debug("aaa");
+                        timeSource.AddToLocalTime(TimeSpan.FromDays(1));
+                        timeSource.AddToSystemTime(TimeSpan.FromDays(1));
+                    }
+                }
+
+                var files = Directory.GetFiles(tempPath);
+                // Cleanup doesn't work, as all filenames has the same timestamp
+                if (files.Length < 28 || files.Length > 31)
+                    Assert.Equal(30, files.Length);
+
+                foreach (var file in files)
+                {
+                    Assert.Equal(14, Path.GetFileName(file).Length);
+                }
+            }
+            finally
+            {
+                TimeSource.Current = defaultTimeSource;
+
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Fact]
         public void CsvHeaderTest()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
