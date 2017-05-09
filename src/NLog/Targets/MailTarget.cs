@@ -111,6 +111,8 @@ namespace NLog.Targets
             this.Timeout = 10000;
         }
 
+        private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
+
 #if !__ANDROID__ && !__IOS__
         private SmtpSection _currentailSettings;
 
@@ -380,14 +382,14 @@ namespace NLog.Targets
             base.InitializeTarget();
         }
 
-
-
         /// <summary>
         /// Create mail and send with SMTP
         /// </summary>
         /// <param name="events">event printed in the body of the event</param>
         private void ProcessSingleMailMessage([NotNull] IList<AsyncLogEventInfo> events)
         {
+            ISmtpClient client = null;
+
             try
             {
                 if (events.Count == 0)
@@ -401,44 +403,97 @@ namespace NLog.Targets
                 // unbuffered case, create a local buffer, append header, body and footer
                 var bodyBuffer = CreateBodyBuffer(events, firstEvent, lastEvent);
 
-                using (var msg = CreateMailMessage(lastEvent, bodyBuffer.ToString()))
+                var msg = CreateMailMessage(lastEvent, bodyBuffer.ToString());
+                client = this.CreateSmtpClient();
+                if (!UseSystemNetMailSettings)
                 {
-                    using (ISmtpClient client = this.CreateSmtpClient())
-                    {
-                        if (!UseSystemNetMailSettings)
-                        {
-                            ConfigureMailClient(lastEvent, client);
-                        }
+                    ConfigureMailClient(lastEvent, client);
+                }
 
-                        InternalLogger.Debug("Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl);
-                        InternalLogger.Trace("  Subject: '{0}'", msg.Subject);
-                        InternalLogger.Trace("  From: '{0}'", msg.From.ToString());
+                InternalLogger.Debug("Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl);
+                InternalLogger.Trace("  Subject: '{0}'", msg.Subject);
+                InternalLogger.Trace("  From: '{0}'", msg.From);
 
-                        client.Send(msg);
+                _pendingManualFlushList.BeginOperation();
+                client.SendCompleted += CompletedSingleMailMessage;
+                client.Send(msg);
 
-                        foreach (var ev in events)
-                        {
-                            ev.Continuation(null);
-                        }
-                    }
+                foreach (var ev in events)
+                {
+                    ev.Continuation(null);
                 }
             }
             catch (Exception exception)
             {
                 //always log
                 InternalLogger.Error(exception, "Error sending mail.");
+                if (client != null)
+                {
+                    _pendingManualFlushList.CompleteOperation(exception);
+                    client.SendCompleted -= CompletedSingleMailMessage;
+                    client.Dispose();
+                }
 
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
 
-
                 foreach (var ev in events)
                 {
                     ev.Continuation(exception);
                 }
             }
+        }
+
+        void CompletedSingleMailMessage(object sender, AsyncCompletedEventArgs e)
+        {
+            try
+            {
+                _pendingManualFlushList.CompleteOperation(e.Error);
+
+                if (e.Error != null)
+                {
+                    InternalLogger.Error(e.Error, "Error completing send mail.");
+                }
+                else if (e.Cancelled)
+                {
+                    InternalLogger.Warn("Cancelled send mail.");
+                }
+
+                ISmtpClient smtpClient = sender as ISmtpClient;
+                if (smtpClient != null)
+                {
+                    smtpClient.SendCompleted -= CompletedSingleMailMessage;
+                    smtpClient.Dispose();
+                }
+
+                MailMessage mailMessage = e.UserState as MailMessage;
+                if (mailMessage != null)
+                    mailMessage.Dispose();
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Error completing send mail.");
+            }
+        }
+
+        /// <summary>
+        /// Flush any pending log messages asynchronously (in case of asynchronous targets).
+        /// </summary>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
+        }
+
+        /// <summary>
+        /// Closes the target.
+        /// </summary>
+        protected override void CloseTarget()
+        {
+            _pendingManualFlushList.Clear();   // Maybe consider to wait a short while if pending requests?
+            base.CloseTarget();
         }
 
         /// <summary>
@@ -541,8 +596,6 @@ namespace NLog.Targets
             // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
             client.DeliveryMethod = this.DeliveryMethod;
             client.Timeout = this.Timeout;
-
-
         }
 
         /// <summary>
@@ -616,8 +669,6 @@ namespace NLog.Targets
             if (layout != null)
                 sb.Append(layout.Render(logEvent));
         }
-
-
 
         /// <summary>
         /// Create the mailmessage with the addresses, properties and body.

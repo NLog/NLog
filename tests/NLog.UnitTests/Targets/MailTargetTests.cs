@@ -77,6 +77,10 @@ namespace NLog.UnitTests.Targets
 
             Assert.Equal(1, mmt.CreatedMocks.Count);
 
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
             var mock = mmt.CreatedMocks[0];
             Assert.Equal(1, mock.MessagesSent.Count);
             Assert.Equal("server1", mock.Host);
@@ -120,6 +124,10 @@ namespace NLog.UnitTests.Targets
             Assert.Null(exceptions[0]);
 
             Assert.Equal(1, mmt.CreatedMocks.Count);
+
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
 
             var mock = mmt.CreatedMocks[0];
             Assert.Equal(1, mock.MessagesSent.Count);
@@ -224,6 +232,10 @@ namespace NLog.UnitTests.Targets
 
             Assert.Equal(1, mmt.CreatedMocks.Count);
 
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
             var mock = mmt.CreatedMocks[0];
             Assert.Equal(1, mock.MessagesSent.Count);
             var msg = mock.MessagesSent[0];
@@ -254,6 +266,10 @@ namespace NLog.UnitTests.Targets
 
             // 2 messages are sent, one using MyLogger1.mydomain.com, another using MyLogger2.mydomain.com
             Assert.Equal(2, mmt.CreatedMocks.Count);
+
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
 
             var mock1 = mmt.CreatedMocks[0];
             Assert.Equal("MyLogger1.mydomain.com", mock1.Host);
@@ -301,6 +317,10 @@ namespace NLog.UnitTests.Targets
             // 2 messages are sent, one using MyLogger1.mydomain.com, another using MyLogger2.mydomain.com
             Assert.Equal(2, mmt.CreatedMocks.Count);
 
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
             var mock1 = mmt.CreatedMocks[0];
             Assert.Equal("MyLogger1", mock1.Host);
             Assert.Equal(1, mock1.MessagesSent.Count);
@@ -310,10 +330,7 @@ namespace NLog.UnitTests.Targets
 
             var mock2 = mmt.CreatedMocks[1];
             Assert.Equal("ERROR", mock2.Host);
-            Assert.Equal(1, mock2.MessagesSent.Count);
-
-            var msg2 = mock2.MessagesSent[0];
-            Assert.Equal("log message 2\n", msg2.Body);
+            Assert.Equal(0, mock2.MessagesSent.Count);
         }
 
         /// <summary>
@@ -343,6 +360,10 @@ namespace NLog.UnitTests.Targets
 
             // 2 messages are sent, one using MyLogger1.mydomain.com, another using MyLogger2.mydomain.com
             Assert.Equal(2, mmt.CreatedMocks.Count);
+
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
 
             var mock1 = mmt.CreatedMocks[0];
             Assert.Equal(1, mock1.MessagesSent.Count);
@@ -384,6 +405,10 @@ namespace NLog.UnitTests.Targets
 
             Assert.Equal(1, mmt.CreatedMocks.Count);
 
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
             var mock = mmt.CreatedMocks[0];
             Assert.Equal(1, mock.MessagesSent.Count);
             var msg = mock.MessagesSent[0];
@@ -418,6 +443,10 @@ namespace NLog.UnitTests.Targets
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
 
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.True(messageSent.IsBodyHtml);
             var lines = messageSent.Body.Split(new[] { "<br/>" }, StringSplitOptions.RemoveEmptyEntries);
@@ -443,6 +472,10 @@ namespace NLog.UnitTests.Targets
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
 
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.True(messageSent.IsBodyHtml);
             var lines = messageSent.Body.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
@@ -464,6 +497,10 @@ namespace NLog.UnitTests.Targets
 
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
 
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.High, messageSent.Priority);
         }
@@ -481,6 +518,10 @@ namespace NLog.UnitTests.Targets
             mmt.Initialize(null);
 
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
+
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.Normal, messageSent.Priority);
@@ -500,6 +541,10 @@ namespace NLog.UnitTests.Targets
             mmt.Initialize(null);
 
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(_ => { }));
+
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.Equal(MailPriority.Normal, messageSent.Priority);
@@ -523,6 +568,10 @@ namespace NLog.UnitTests.Targets
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
 
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
             Assert.Null(exceptions[0]);
             Assert.Equal(1, mmt.CreatedMocks.Count);
             Assert.Equal(1, mmt.CreatedMocks[0].MessagesSent.Count);
@@ -545,6 +594,9 @@ namespace NLog.UnitTests.Targets
 
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
             Assert.Equal(1, mmt.CreatedMocks.Count);
             Assert.Equal(1, mmt.CreatedMocks[0].MessagesSent.Count);
         }
@@ -827,6 +879,38 @@ namespace NLog.UnitTests.Targets
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
 
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
+            Assert.Null(exceptions[0]);
+            Assert.Equal(1, mmt.CreatedMocks.Count);
+            var mock = mmt.CreatedMocks[0];
+            Assert.Equal(1, mock.MessagesSent.Count);
+
+            Assert.Equal(string.Format("Message from NLog on {0}", Environment.MachineName), mock.MessagesSent[0].Subject);
+        }
+
+
+        [Fact]
+        public void MailTarget_AsyncFlush()
+        {
+            var mmt = new MockMailTarget
+            {
+                From = "foo@bar.com",
+                To = "bar@bar.com",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}"
+            };
+            mmt.Initialize(null);
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+            System.Threading.ManualResetEvent mre = new System.Threading.ManualResetEvent(false);
+            mmt.Flush((ex) => mre.Set());
+            mre.WaitOne(1000);
+
             Assert.Null(exceptions[0]);
             Assert.Equal(1, mmt.CreatedMocks.Count);
             var mock = mmt.CreatedMocks[0];
@@ -859,15 +943,33 @@ namespace NLog.UnitTests.Targets
                 {
                     throw new InvalidOperationException("[Host/Pickup directory] is null or empty.");
                 }
-                this.MessagesSent.Add(msg);
                 if (Host == "ERROR")
                 {
                     throw new InvalidOperationException("Some SMTP error.");
                 }
+
+                var sendCompleted = SendCompleted;
+                if (sendCompleted != null)
+                {
+                    Action executeCompleted = () => { this.MessagesSent.Add(msg); sendCompleted.Invoke(this, new System.ComponentModel.AsyncCompletedEventArgs(null, false, msg)); };
+#if NET4_0 || NET4_5
+                    System.Threading.Tasks.Task.Factory.StartNew(executeCompleted, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+#else
+                    new System.Threading.Thread(new System.Threading.ThreadStart(executeCompleted)).Start();
+#endif
+                }
+                else
+                {
+                    this.MessagesSent.Add(msg);
+                }
             }
+
             public void Dispose()
             {
+                SendCompleted = null;
             }
+
+            public event SendCompletedEventHandler SendCompleted;
         }
 
         public class MockMailTarget : MailTarget
