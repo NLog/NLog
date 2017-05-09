@@ -832,6 +832,56 @@ Dispose()
         }
 
         [Fact]
+        public void SqlServer_NoTargetInstallException()
+        {
+            if (SqlServerTest.IsTravis())
+            {
+                Console.WriteLine("skipping test SqlServer_NoTargetInstallException because we are running in Travis");
+                return;
+            }
+
+            SqlServerTest.TryDropDatabase();
+
+            try
+            {
+                SqlServerTest.CreateDatabase();
+
+                var connectionString = SqlServerTest.GetConnectionString();
+
+                DatabaseTarget testTarget = new DatabaseTarget("TestDbTarget");
+                testTarget.ConnectionString = connectionString;
+
+                testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
+                {
+                    CommandType = System.Data.CommandType.Text,
+                    Text = $@"
+                    IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'NlogTestTable')
+                        RETURN
+
+                    CREATE TABLE [Dbo].[NlogTestTable] (
+				        [ID] [int] IDENTITY(1,1) NOT NULL,
+				        [MachineName] [nvarchar](200) NULL)"
+                });
+
+                using (var context = new InstallationContext())
+                {
+                    testTarget.Install(context);
+                }
+
+                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
+                 WHERE TABLE_SCHEMA = 'Dbo'
+                 AND  TABLE_NAME = 'NlogTestTable'");
+
+                //check if table exists
+                Assert.Equal("NlogTestTable", tableCatalog);
+            }
+            finally
+            {
+                SqlServerTest.TryDropDatabase();
+            }
+        }
+
+        [Fact]
         public void SqlServer_InstallAndLogMessage()
         {
 
