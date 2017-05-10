@@ -972,7 +972,11 @@ namespace NLog
                                 oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
                                 attemptClose = flushCompleted.WaitOne(flushTimeout);
                             }
-                            if (attemptClose)
+                            if (!attemptClose)
+                            {
+                                InternalLogger.Warn("Target flush timeout. One or more targets did not complete flush operation, skipping target close.");
+                            }
+                            else
 #endif
                             {
                                 // Flush completed within timeout, lets try and close down
