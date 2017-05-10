@@ -855,25 +855,26 @@ Dispose()
                 {
                     CommandType = System.Data.CommandType.Text,
                     Text = $@"
-                    IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'NlogTestTable')
+                    IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'NLogTestTable')
                         RETURN
 
-                    CREATE TABLE [Dbo].[NlogTestTable] (
+                    CREATE TABLE [Dbo].[NLogTestTable] (
 				        [ID] [int] IDENTITY(1,1) NOT NULL,
 				        [MachineName] [nvarchar](200) NULL)"
                 });
-
+                
                 using (var context = new InstallationContext())
                 {
                     testTarget.Install(context);
                 }
 
-                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
-                 WHERE TABLE_SCHEMA = 'Dbo'
-                 AND  TABLE_NAME = 'NlogTestTable'");
+                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES 
+                    WHERE TABLE_TYPE = 'BASE TABLE'
+                    AND  TABLE_NAME = 'NLogTestTable'
+                ");
 
                 //check if table exists
-                Assert.Equal("NlogTestTable", tableCatalog);
+                Assert.Equal("NLogTestTable", tableCatalog);
             }
             finally
             {
