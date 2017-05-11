@@ -19,5 +19,8 @@
       <dependency id="NLog.Schema" version="$BuildVersion$" />
     </dependencies>
     <tags>nlog, xml, config</tags>
+    <contentFiles>
+      <files include="content\NLog.config" buildAction="None" copyToOutput="true" flatten="true" />
+    </contentFiles>
   </metadata>
 </package>
