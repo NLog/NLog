@@ -92,6 +92,7 @@
     <Compile Include="Config\AdvancedAttribute.cs" />
     <Compile Include="Config\AppDomainFixedOutputAttribute.cs" />
     <Compile Include="Config\ArrayParameterAttribute.cs" />
+    <Compile Include="Config\AssemblyLoadingEventArgs.cs" />
     <Compile Include="Config\ConfigSectionHandler.cs" />
     <Compile Include="Config\ConfigurationItemCreator.cs" />
     <Compile Include="Config\ConfigurationItemFactory.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />
+    <Compile Include="ILoggerExtensions.cs" />
     <Compile Include="ILogger-V1.cs" />
     <Compile Include="Internal\AppendBuilderCreator.cs" />
     <Compile Include="Internal\ArrayHelper.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="Internal\ReusableAsyncLogEventList.cs" />
     <Compile Include="Internal\ReusableBufferCreator.cs" />
     <Compile Include="Internal\ReusableBuilderCreator.cs" />
+    <Compile Include="Internal\ReusableObjectCreator.cs" />
     <Compile Include="Internal\ReusableStreamCreator.cs" />
     <Compile Include="Internal\RuntimeOS.cs" />
     <Compile Include="Internal\SimpleStringReader.cs" />
@@ -247,6 +250,7 @@
     <Compile Include="LayoutRenderers\InstallContextLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LayoutRendererAttribute.cs" />
+    <Compile Include="LayoutRenderers\LevelFormat.cs" />
     <Compile Include="LayoutRenderers\LevelLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\LiteralLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\Log4JXmlEventLayoutRenderer.cs" />
@@ -317,12 +321,12 @@
     <Compile Include="LogFactory.cs" />
     <Compile Include="LogFactory-T.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Logger1.cs">
+    <Compile Include="Logger-Conditional.cs" />
+    <Compile Include="Logger-generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Logger.tt</DependentUpon>
     </Compile>
-    <Compile Include="Logger-Conditional.cs" />
     <Compile Include="LoggerImpl.cs" />
     <Compile Include="Logger-V1Compat.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
@@ -361,6 +365,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Targets\ArchiveNumberingMode.cs" />
+    <Compile Include="Targets\AsyncTaskTarget.cs" />
     <Compile Include="Targets\ChainsawTarget.cs" />
     <Compile Include="Targets\ColoredConsoleTarget.cs" />
     <Compile Include="Targets\ConsoleOutputColor.cs" />
@@ -447,7 +452,7 @@
   <ItemGroup>
     <None Include="Logger.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Logger1.cs</LastGenOutput>
+      <LastGenOutput>Logger-generated.cs</LastGenOutput>
     </None>
     <None Include="Common\InternalLogger.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

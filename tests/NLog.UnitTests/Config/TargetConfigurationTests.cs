@@ -420,6 +420,28 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void DefaultTargetParametersOnWrappedTargetTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <default-target-parameters type='Debug' layout='x${message}x' />
+                    <target type='BufferingWrapper' name='buf1'>
+                        <target type='Debug' name='d1' />
+                    </target>
+                </targets>
+            </nlog>");
+
+            var wrap = c.FindTargetByName("buf1") as BufferingTargetWrapper;
+            Assert.NotNull(wrap);
+            Assert.NotNull(wrap.WrappedTarget);
+
+            var t = wrap.WrappedTarget as DebugTarget;
+            Assert.NotNull(t);
+            Assert.Equal("'x${message}x'", t.Layout.ToString());
+        }
+
+        [Fact]
         public void DefaultWrapperTest()
         {
             LoggingConfiguration c = CreateConfigurationFromString(@"

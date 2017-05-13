@@ -1,7 +1,7 @@
 version: 4.5.{build}
 clone_folder: c:\projects\nlog
 build_script:                                                                                                                
-  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true  /t:NuGetPackage /p:BuildVersion=4.5-alpha04  /p:AssemblyFileVersion=4.5.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
+  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildVersion=4.5-alpha05  /p:AssemblyFileVersion=4.5.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
   - msbuild  src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true 
  
 test_script:
@@ -13,7 +13,7 @@ test_script:
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "coverage.xml"
-deploy: off
+
 cache:
   - src\packages -> **\packages.config
 services:
@@ -21,3 +21,11 @@ services:
 
 artifacts:
   - path: 'build\bin\release\NuGetPackages\*.nupkg'
+
+deploy:
+- provider: NuGet
+  api_key:
+    secure: DtVDH1ZfIR8E2oDLeSPxfn0WFXw3MCv4WhLkkQQl9LfEHswb5sdxdCYodNKhrKik
+  artifact: /.*\.nupkg/
+  on:
+    branch: master

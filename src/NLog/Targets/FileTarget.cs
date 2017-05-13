@@ -957,15 +957,15 @@ namespace NLog.Targets
         /// <summary>
         /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
         /// </summary>
-        private readonly ReusableStreamCreator reusableFileWriteStream = new ReusableStreamCreator();
+        private readonly ReusableStreamCreator reusableFileWriteStream = new ReusableStreamCreator(1024);
         /// <summary>
         /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
         /// </summary>
-        private readonly ReusableStreamCreator reusableAsyncFileWriteStream = new ReusableStreamCreator();
+        private readonly ReusableStreamCreator reusableAsyncFileWriteStream = new ReusableStreamCreator(1024);
         /// <summary>
         /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
         /// </summary>
-        private readonly ReusableBufferCreator reusableEncodingBuffer = new ReusableBufferCreator(4096);
+        private readonly ReusableBufferCreator reusableEncodingBuffer = new ReusableBufferCreator(1024);
 
         /// <summary>
         /// Writes the specified logging event to a file specified in the FileName 
@@ -1846,7 +1846,7 @@ namespace NLog.Targets
                 {
                     case FileArchivePeriod.Year: formatString = "yyyy"; break;
                     case FileArchivePeriod.Month: formatString = "yyyyMM"; break;
-                    default: formatString = "yyyyMMdd"; break;
+                    default: formatString = "yyyyMMdd"; break;      // Also for Weekdays
                     case FileArchivePeriod.Hour: formatString = "yyyyMMddHH"; break;
                     case FileArchivePeriod.Minute: formatString = "yyyyMMddHHmm"; break;
                 }
@@ -1882,8 +1882,11 @@ namespace NLog.Targets
 
         private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime lastWrite)
         {
-            if (!previousLogEventTimestamp.HasValue)
+            DateTime timestamp;
+            if(!previousLogEventTimestamp.HasValue)
                 return false;
+            else
+                timestamp = previousLogEventTimestamp.Value;
 
             string formatString = GetArchiveDateFormatString(string.Empty);
             string lastWriteTimeString = lastWrite.ToString(formatString, CultureInfo.InvariantCulture);
@@ -1895,16 +1898,41 @@ namespace NLog.Targets
             DateTime periodAfterPreviousLogEventTime;
             switch (this.ArchiveEvery)
             {
-                case FileArchivePeriod.Year: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddYears(1); break;
-                case FileArchivePeriod.Month: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddMonths(1); break;
-                case FileArchivePeriod.Day: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddDays(1); break;
-                case FileArchivePeriod.Hour: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddHours(1); break;
-                case FileArchivePeriod.Minute: periodAfterPreviousLogEventTime = previousLogEventTimestamp.Value.AddMinutes(1); break;
+                case FileArchivePeriod.Year: periodAfterPreviousLogEventTime = timestamp.AddYears(1); break;
+                case FileArchivePeriod.Month: periodAfterPreviousLogEventTime = timestamp.AddMonths(1); break;
+                case FileArchivePeriod.Day: periodAfterPreviousLogEventTime = timestamp.AddDays(1); break;
+                case FileArchivePeriod.Hour: periodAfterPreviousLogEventTime = timestamp.AddHours(1); break;
+                case FileArchivePeriod.Minute: periodAfterPreviousLogEventTime = timestamp.AddMinutes(1); break;
+                case FileArchivePeriod.Sunday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Sunday); break;
+                case FileArchivePeriod.Monday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Monday); break;
+                case FileArchivePeriod.Tuesday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Tuesday); break;
+                case FileArchivePeriod.Wednesday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Wednesday); break;
+                case FileArchivePeriod.Thursday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Thursday); break;
+                case FileArchivePeriod.Friday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Friday); break;
+                case FileArchivePeriod.Saturday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Saturday); break;
                 default: return false;
             }
 
             string periodAfterPreviousLogEventTimeString = periodAfterPreviousLogEventTime.ToString(formatString, CultureInfo.InvariantCulture);
             return lastWriteTimeString == periodAfterPreviousLogEventTimeString;
+        }
+
+        /// <summary>
+        /// Calculate the DateTime of the requested day of the week.
+        /// </summary>
+        /// <param name="previousLogEventTimestamp">The DateTime of the previous log event.</param>
+        /// <param name="dayOfWeek">The next occuring day of the week to return a DateTime for.</param>
+        /// <returns>The DateTime of the next occuring dayOfWeek.</returns>
+        /// <remarks>For example: if previousLogEventTimestamp is Thursday 2017-03-02 and dayOfWeek is Sunday, this will return
+        ///  Sunday 2017-03-05. If dayOfWeek is Thursday, this will return *next* Thursday 2017-03-09.</remarks>
+        public static DateTime CalculateNextWeekday(DateTime previousLogEventTimestamp, DayOfWeek dayOfWeek)
+        {
+            // Shamelessly taken from http://stackoverflow.com/a/7611480/1354930
+            int start = (int)previousLogEventTimestamp.DayOfWeek;
+            int target = (int)dayOfWeek;
+            if(target <= start)
+                target += 7;
+            return previousLogEventTimestamp.AddDays(target - start);
         }
 
         /// <summary>
@@ -2243,6 +2271,20 @@ namespace NLog.Targets
                     return input.AddTicks(-(input.Ticks % TimeSpan.TicksPerHour));
                 case FileArchivePeriod.Minute:
                     return input.AddTicks(-(input.Ticks % TimeSpan.TicksPerMinute));
+                case FileArchivePeriod.Sunday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Sunday);
+                case FileArchivePeriod.Monday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Monday);
+                case FileArchivePeriod.Tuesday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Tuesday);
+                case FileArchivePeriod.Wednesday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Wednesday);
+                case FileArchivePeriod.Thursday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Thursday);
+                case FileArchivePeriod.Friday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Friday);
+                case FileArchivePeriod.Saturday:
+                    return CalculateNextWeekday(input.Date, DayOfWeek.Saturday);
                 default:
                     return input;   // Unknown time-resolution-truncate, leave unchanged
             }

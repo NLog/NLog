@@ -99,8 +99,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
             AssertDebugLastMessageContains("debug", "RenderStackTrace_raw at offset ");
             AssertDebugLastMessageContains("debug", "RenderMe at offset ");
-            AssertDebugLastMessageContains("debug", "<filename unknown>");
-
+#if !MONO
+            AssertDebugLastMessageContains("debug", "StackTraceRendererTests.cs");
+#endif
         }
 
         [Fact]
@@ -117,7 +118,6 @@ namespace NLog.UnitTests.LayoutRenderers
             RenderMe("I am:");
             AssertDebugLastMessageContains("debug", " => [Void RenderStackTrace_DetailedFlat()] => [Void RenderMe(System.String)]");
         }
-
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         private void RenderMe(string message)

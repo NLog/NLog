@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
                 <targets>
-        <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeMdc=true:includendc=true:ndcItemSeparator=\:\::includenlogdata=true}' />
+        <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeMdc=true:includeMdlc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true}' />
        </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
@@ -63,6 +63,10 @@ namespace NLog.UnitTests.LayoutRenderers
             MappedDiagnosticsContext.Set("foo1", "bar1");
             MappedDiagnosticsContext.Set("foo2", "bar2");
 
+#if NET4_0 || NET4_5
+            MappedDiagnosticsLogicalContext.Clear();
+            MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
+#endif
             NestedDiagnosticsContext.Push("baz1");
             NestedDiagnosticsContext.Push("baz2");
             NestedDiagnosticsContext.Push("baz3");
@@ -144,6 +148,16 @@ namespace NLog.UnitTests.LayoutRenderers
 
                                     case "foo2":
                                         Assert.Equal("bar2", value);
+                                        break;
+
+#if NET4_0 || NET4_5
+                                    case "foo3":
+                                        Assert.Equal("bar3", value);
+                                        break;
+#endif
+
+                                    case "nlogPropertyKey":
+                                        Assert.Equal("nlogPropertyValue", value);
                                         break;
 
                                     default:

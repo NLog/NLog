@@ -286,6 +286,31 @@ namespace NLog.UnitTests.Contexts
             Assert.Equal(task1.Result, parentValueForLogicalThread1 + "," + valueForChildThread1);
             Assert.Equal(task2.Result, parentValueForLogicalThread2 + "," + valueForChildThread2);
        }
+
+        [Fact]
+        public void timer_cannot_inherit_mappedcontext()
+        {
+            object getObject = null;
+            string getValue = null;
+
+            var mre = new ManualResetEvent(false);
+            Timer thread = new Timer((s) =>
+            {
+                try
+                {
+                    getObject = MappedDiagnosticsLogicalContext.GetObject("DoNotExist");
+                    getValue = MappedDiagnosticsLogicalContext.Get("DoNotExistEither");
+                }
+                finally
+                {
+                    mre.Set();
+                }
+            });
+            thread.Change(0, Timeout.Infinite);
+            mre.WaitOne();
+            Assert.Null(getObject);
+            Assert.Empty(getValue);
+        }
     }
 #endif
 }

@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("tempdir")]
     [AppDomainFixedOutput]
+    [ThreadAgnostic]
     public class TempDirLayoutRenderer : LayoutRenderer
     {
         private static string tempDir = Path.GetTempPath();

@@ -34,7 +34,9 @@
 namespace NLog.LayoutRenderers
 {
     using System.Diagnostics;
+    using System.ComponentModel;
     using System.Text;
+    using System;
 
     using NLog.Config;
 
@@ -46,13 +48,30 @@ namespace NLog.LayoutRenderers
     public class LevelLayoutRenderer : LayoutRenderer
     {
         /// <summary>
+        /// Gets or sets a value indicating the output format of the level.
+        /// </summary>
+        [DefaultValue(LevelFormat.Name)]
+        public LevelFormat Format { get; set; }
+
+        /// <summary>
         /// Renders the current log level and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(logEvent.Level.ToString());
+            switch (Format)
+            {
+                case LevelFormat.Name:
+                    builder.Append(logEvent.Level.ToString());
+                    break;
+                case LevelFormat.FirstCharacter:
+                    builder.Append(logEvent.Level.ToString()[0]);
+                    break;
+                case LevelFormat.Ordinal:
+                    builder.Append(logEvent.Level.Ordinal);
+                    break;
+            }
         }
     }
 }
