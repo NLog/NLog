@@ -37,7 +37,6 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Text;
     using NLog.Config;
-
     using NLog.Internal;
 
     /// <summary>
@@ -91,7 +90,7 @@ namespace NLog.LayoutRenderers
         /// <value></value>
         StackTraceUsage IUsesStackTrace.StackTraceUsage
         {
-            get { return StackTraceUsage.WithoutSource; }
+            get { return (Format == StackTraceFormat.Raw) ? StackTraceUsage.Max : StackTraceUsage.WithoutSource; }
         }
 
         /// <summary>
@@ -117,7 +116,6 @@ namespace NLog.LayoutRenderers
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         builder.Append(f.ToString());
                     }
-
                     break;
 
                 case StackTraceFormat.Flat:
@@ -144,7 +142,6 @@ namespace NLog.LayoutRenderers
                         builder.Append(f.GetMethod().Name);
                         first = false;
                     }
-
                     break;
 
                 case StackTraceFormat.DetailedFlat:
@@ -161,7 +158,6 @@ namespace NLog.LayoutRenderers
                         builder.Append("]");
                         first = false;
                     }
-
                     break;
             }
         }

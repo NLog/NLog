@@ -69,10 +69,11 @@ namespace NLog.Internal
         /// </summary>
         /// <typeparam name="T">Type of the data.</typeparam>
         /// <param name="slot">The slot to get data for.</param>
+        /// <param name="create">Automatically create the object if it doesn't exist.</param>
         /// <returns>
         /// Slot data (will create T if null).
         /// </returns>
-        public static T GetDataForSlot<T>(object slot)
+        public static T GetDataForSlot<T>(object slot, bool create = true)
             where T : class, new()
         {
 #if TLS_WORKAROUND
@@ -81,6 +82,9 @@ namespace NLog.Internal
             object v;
             if (!dict.TryGetValue(slotNumber, out v))
             {
+                if (!create)
+                    return null;
+
                 v = new T();
                 dict.Add(slotNumber, v);
             }
@@ -91,6 +95,9 @@ namespace NLog.Internal
             object v = Thread.GetData(localDataStoreSlot);
             if (v == null)
             {
+                if (!create)
+                    return null;
+
                 v = new T();
                 Thread.SetData(localDataStoreSlot, v);
             }

@@ -50,6 +50,8 @@ namespace NLog.Config
 
     /// <summary>
     /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
+    /// 
+    /// Everything of an assembly could be loaded by <see cref="RegisterItemsFromAssembly(System.Reflection.Assembly)"/>
     /// </summary>
     public class ConfigurationItemFactory
     {
@@ -65,7 +67,12 @@ namespace NLog.Config
         private readonly Factory<TimeSource, TimeSourceAttribute> timeSources;
 
         private IJsonSerializer jsonSerializer = DefaultJsonSerializer.Instance;
-        
+
+        /// <summary>
+        /// Called before the assembly will be loaded.
+        /// </summary>
+        public static event EventHandler<AssemblyLoadingEventArgs> AssemblyLoading;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigurationItemFactory"/> class.
         /// </summary>
@@ -205,6 +212,8 @@ namespace NLog.Config
             get { return this.conditionMethods; }
         }
 
+
+
         /// <summary>
         /// Registers named items from the assembly.
         /// </summary>
@@ -221,11 +230,82 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">Item name prefix.</param>
         public void RegisterItemsFromAssembly(Assembly assembly, string itemNamePrefix)
         {
+            if (AssemblyLoading != null)
+            {
+                var args = new AssemblyLoadingEventArgs(assembly);
+                AssemblyLoading.Invoke(this,args);
+                if (args.Cancel)
+                {
+                    InternalLogger.Info("Loading assembly '{0}' is canceled", assembly.FullName);
+                    return;
+                }
+            }
+
             InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
             var typesToScan = assembly.SafeGetTypes();
+            PreloadAssembly(typesToScan);
             foreach (IFactory f in this.allFactories)
             {
                 f.ScanTypes(typesToScan, itemNamePrefix);
+            }
+        }
+
+        /// <summary>
+        /// Call Preload for NLogPackageLoader
+        /// </summary>
+        /// <remarks>
+        /// Every package could implement a class "NLogPackageLoader" (namespace not important) with the public static method "Preload" (no arguments)
+        /// This method will be called just before registering all items in the assembly.
+        /// </remarks>
+        /// <param name="typesToScan"></param>
+        public void PreloadAssembly(Type[] typesToScan)
+        {
+            var types = typesToScan.Where(t => t.Name.Equals("NLogPackageLoader", StringComparison.OrdinalIgnoreCase));
+
+            foreach (var type in types)
+            {
+                CallPreload(type);
+            }
+        }
+
+        /// <summary>
+        /// Call the Preload method for <paramref name="type"/>. The Preload method must be static.
+        /// </summary>
+        /// <param name="type"></param>
+        private static void CallPreload(Type type)
+        {
+            if (type != null)
+            {
+                InternalLogger.Debug("Found for preload'{0}'", type.FullName);
+                var preloadMethod = type.GetMethod("Preload");
+                if (preloadMethod != null)
+                {
+                    if (preloadMethod.IsStatic)
+                    {
+
+                        InternalLogger.Debug("NLogPackageLoader contains Preload method");
+                        //only static, so first param null
+                        try
+                        {
+                            preloadMethod.Invoke(null, null);
+                            InternalLogger.Debug("Preload succesfully invoked for '{0}'", type.FullName);
+                        }
+                        catch (Exception e)
+                        {
+                            InternalLogger.Warn(e,"Invoking Preload for '{0}' failed", type.FullName);
+                        }
+                    }
+                    else
+                    {
+                        InternalLogger.Debug("NLogPackageLoader contains a preload method, but isn't static");
+                    }
+
+
+                }
+                else
+                {
+                    InternalLogger.Debug("{0} doesn't contain Preload method", type.FullName);
+                }
             }
         }
 
@@ -266,7 +346,14 @@ namespace NLog.Config
 
             try
             {
-                var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.CodeBase).LocalPath);
+                Uri assemblyCodeBase;
+                if (!Uri.TryCreate(nlogAssembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
+                {
+                    InternalLogger.Warn("No auto loading because assembly code base is unknown");
+                    return factory;
+                }
+
+                var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
                 if (assemblyLocation == null)
                 {
                     InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");

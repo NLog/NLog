@@ -31,19 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Log event context data. See <see cref="LogEventInfo.Properties"/>.
     /// </summary>
     [LayoutRenderer("event-properties")]
+    [ThreadAgnostic]
     public class EventPropertiesLayoutRenderer : LayoutRenderer
     {
         /// <summary>

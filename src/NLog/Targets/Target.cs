@@ -35,6 +35,7 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using NLog.Common;
     using NLog.Config;
@@ -49,9 +50,16 @@ namespace NLog.Targets
     {
         private readonly object lockObject = new object();
         private List<Layout> allLayouts;
+        
+        /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool allLayoutsAreThreadAgnostic;
         private bool scannedForLayouts;
         private Exception initializeException;
+
+        /// <summary>
+        /// The Max StackTraceUsage of all the <see cref="Layout"/> in this Target
+        /// </summary>
+        internal StackTraceUsage StackTraceUsage { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the target.
@@ -104,28 +112,20 @@ namespace NLog.Targets
         internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
 
         /// <summary>
-        /// Get all used layouts in this target.
-        /// </summary>
-        /// <returns></returns>
-        internal List<Layout> GetAllLayouts()
-        {
-            if (!scannedForLayouts)
-            {
-                lock (this.SyncRoot)
-                {
-                    FindAllLayouts();
-                }
-            }
-            return allLayouts;
-        }
-
-        /// <summary>
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
         void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
         {
-            this.Initialize(configuration);
+            lock (this.SyncRoot)
+            { 
+                bool wasInitialized = this.isInitialized;
+                this.Initialize(configuration);
+                if (wasInitialized && configuration != null)
+                {
+                    FindAllLayouts();
+                }
+            }
         }
 
         /// <summary>
@@ -186,6 +186,7 @@ namespace NLog.Targets
         /// <summary>
         /// Calls the <see cref="Layout.Precalculate"/> on each volatile layout
         /// used by this target.
+        /// This method won't prerender if all layouts in this target are thread-agnostic.
         /// </summary>
         /// <param name="logEvent">
         /// The log event.
@@ -404,7 +405,9 @@ namespace NLog.Targets
                         if (this.initializeException == null)
                         {
                             // if Init succeeded, call Close()
+                            InternalLogger.Debug("Closing target '{0}'.", this);
                             this.CloseTarget();
+                            InternalLogger.Debug("Closed target '{0}'.", this);
                         }
                     }
                     catch (Exception exception)
@@ -428,10 +431,13 @@ namespace NLog.Targets
         {
             if (disposing)
             {
-                if (this.isInitialized && this.initializeException == null)
+                if (this.isInitialized)
                 {
                     this.isInitialized = false;
-                    this.CloseTarget();
+                    if (this.initializeException == null)
+                    {
+                        this.CloseTarget();
+                    }
                 }
             }
         }
@@ -448,18 +454,10 @@ namespace NLog.Targets
 
         private void FindAllLayouts()
         {
-            this.allLayouts = new List<Layout>(ObjectGraphScanner.FindReachableObjects<Layout>(this));
+            this.allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(this);
             InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
-            bool foundNotThreadAgnostic = false;
-            foreach (Layout layout in this.allLayouts)
-            {
-                if (!layout.IsThreadAgnostic)
-                {
-                    foundNotThreadAgnostic = true;
-                    break;
-                }
-            }
-            this.allLayoutsAreThreadAgnostic = !foundNotThreadAgnostic;
+            this.allLayoutsAreThreadAgnostic = allLayouts.All(layout => layout.ThreadAgnostic);
+            this.StackTraceUsage = allLayouts.DefaultIfEmpty().Max(layout => layout == null ? StackTraceUsage.None : layout.StackTraceUsage);
             this.scannedForLayouts = true;
         }
 
@@ -480,22 +478,19 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes logging event to the log target.
+        /// Writes logging event to the log target. Must be overridden in inheriting
         /// classes.
         /// </summary>
-        /// <param name="logEvent">
-        /// Logging event to be written out.
-        /// </param>
+        /// <param name="logEvent">Logging event to be written out.</param>
         protected virtual void Write(LogEventInfo logEvent)
         {
-            // do nothing
+            // Override to perform the actual write-operation
         }
 
         /// <summary>
-        /// Writes log event to the log target. Must be overridden in inheriting
-        /// classes.
+        /// Writes async log event to the log target.
         /// </summary>
-        /// <param name="logEvent">Log event to be written out.</param>
+        /// <param name="logEvent">Async Log event to be written out.</param>
         protected virtual void Write(AsyncLogEventInfo logEvent)
         {
             try

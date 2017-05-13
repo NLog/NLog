@@ -423,6 +423,75 @@ Dispose()
         }
 
         [Fact]
+        public void LevelParameterTest()
+        {
+            MockDbConnection.ClearLog();
+            DatabaseTarget dt = new DatabaseTarget()
+            {
+                CommandText = "INSERT INTO FooBar VALUES(@lvl, @msg)",
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                KeepConnection = true,
+                Parameters =
+                {
+                    new DatabaseParameterInfo("lvl", "${level:format=Ordinal}"),
+                    new DatabaseParameterInfo("msg", "${message}")
+                }
+            };
+
+            dt.Initialize(null);
+
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
+
+            List<Exception> exceptions = new List<Exception>();
+            var events = new[]
+            {
+                new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Debug, "MyLogger2", "msg3").WithContinuation(exceptions.Add),
+            };
+
+            dt.WriteAsyncLogEvents(events);
+            foreach (var ex in exceptions)
+            {
+                Assert.Null(ex);
+            }
+
+            string expectedLog = @"Open('Server=.;Trusted_Connection=SSPI;').
+CreateParameter(0)
+Parameter #0 Direction=Input
+Parameter #0 Name=lvl
+Parameter #0 Value=2
+Add Parameter Parameter #0
+CreateParameter(1)
+Parameter #1 Direction=Input
+Parameter #1 Name=msg
+Parameter #1 Value=msg1
+Add Parameter Parameter #1
+ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
+CreateParameter(0)
+Parameter #0 Direction=Input
+Parameter #0 Name=lvl
+Parameter #0 Value=1
+Add Parameter Parameter #0
+CreateParameter(1)
+Parameter #1 Direction=Input
+Parameter #1 Name=msg
+Parameter #1 Value=msg3
+Add Parameter Parameter #1
+ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
+";
+
+            AssertLog(expectedLog);
+
+            MockDbConnection.ClearLog();
+            dt.Close();
+            expectedLog = @"Close()
+Dispose()
+";
+
+            AssertLog(expectedLog);
+        }
+
+        [Fact]
         public void ParameterFacetTest()
         {
             MockDbConnection.ClearLog();

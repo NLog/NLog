@@ -97,6 +97,8 @@ namespace NLog
         public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
 #endif
 
+        private static event EventHandler<EventArgs> LoggerShutdown;
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Initializes static members of the LogManager class.
@@ -118,7 +120,7 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             this.watcher = new MultiFileWatcher();
             this.watcher.FileChanged += this.ConfigFileChanged;
-            CurrentAppDomain.DomainUnload += DomainUnload;
+            LoggerShutdown += OnStopLogging;
 #endif
         }
 
@@ -530,9 +532,12 @@ namespace NLog
         /// </summary>
         public void ReconfigExistingLoggers()
         {
-            if (this.config != null)
+            lock (this.syncRoot)
             {
-                this.config.InitializeAll();
+                if (this.config != null)
+                {
+                    this.config.InitializeAll();
+                }
             }
 
             //new list to avoid "Collection was modified; enumeration operation may not execute"
@@ -760,16 +765,16 @@ namespace NLog
             {
                 try
                 {
+                    if (this.IsDisposing)
+                    {
+                        return; //timer was disposed already. 
+                    }
+
                     var currentTimer = this.reloadTimer;
                     if (currentTimer != null)
                     {
                         this.reloadTimer = null;
                         currentTimer.Dispose();
-                    }
-
-                    if (this.IsDisposing)
-                    {
-                        return; //timer was disposed already. 
                     }
 
                     this.watcher.StopWatching();
@@ -796,9 +801,9 @@ namespace NLog
 
                     if (newConfig != null)
                     {
-                        if (this.KeepVariablesOnReload)
+                        if (this.KeepVariablesOnReload && this.config != null)
                         {
-                            newConfig.CopyVariables(this.Configuration.Variables);
+                            newConfig.CopyVariables(this.config.Variables);
                         }
                         this.Configuration = newConfig;
                         OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
@@ -886,21 +891,24 @@ namespace NLog
                 this.GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             }
 
-            InternalLogger.Debug("Targets for {0} by level:", name);
-            for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            if (InternalLogger.IsDebugEnabled)
             {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
-                for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
+                InternalLogger.Debug("Targets for {0} by level:", name);
+                for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
                 {
-                    sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
-                    if (afc.FilterChain.Count > 0)
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                    for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
                     {
-                        sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                        sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
+                        if (afc.FilterChain.Count > 0)
+                        {
+                            sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                        }
                     }
-                }
 
-                InternalLogger.Debug(sb.ToString());
+                    InternalLogger.Debug(sb.ToString());
+                }
             }
 
 #pragma warning disable 618
@@ -923,6 +931,7 @@ namespace NLog
             this.IsDisposing = true;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            LoggerShutdown -= OnStopLogging;
             this.ConfigurationReloaded = null;   // Release event listeners
 
             if (this.watcher != null)
@@ -965,7 +974,11 @@ namespace NLog
                                 oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
                                 attemptClose = flushCompleted.WaitOne(flushTimeout);
                             }
-                            if (attemptClose)
+                            if (!attemptClose)
+                            {
+                                InternalLogger.Warn("Target flush timeout. One or more targets did not complete flush operation, skipping target close.");
+                            }
+                            else
 #endif
                             {
                                 // Flush completed within timeout, lets try and close down
@@ -987,16 +1000,6 @@ namespace NLog
             }
 
             this.ConfigurationChanged = null;    // Release event listeners
-
-            var activeAppDomain = currentAppDomain;
-            if (activeAppDomain != null)
-            {
-                // No longer belongs to the AppDomain
-                CurrentAppDomain = null;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                activeAppDomain.DomainUnload -= this.DomainUnload;
-#endif
-            }
         }
 
         /// <summary>
@@ -1019,7 +1022,12 @@ namespace NLog
             {
                 var loadedConfig = Configuration;
                 if (loadedConfig != null)
+                {
+                    ManualResetEvent flushCompleted = new ManualResetEvent(false);
+                    loadedConfig.FlushAllTargets((ex) => flushCompleted.Set());
+                    flushCompleted.WaitOne(DefaultFlushTimeout);
                     loadedConfig.Close();
+                }
             }
             InternalLogger.Info("Logger has been closed down.");
         }
@@ -1250,23 +1258,6 @@ namespace NLog
                 }
             }
         }
-
-        private void DomainUnload(object sender, EventArgs e)
-        {
-            //stop timer on domain unload, otherwise: 
-            //Exception: System.AppDomainUnloadedException
-            //Message: Attempted to access an unloaded AppDomain.
-            try
-            {
-                Dispose();
-            }
-            catch (Exception ex)
-            {
-                if (ex.MustBeRethrownImmediately())
-                    throw;
-                InternalLogger.Error(ex, "LogFactory failed to shut down properly.");
-            }
-        }
 #endif
         /// <summary>
         /// Logger cache key.
@@ -1411,8 +1402,8 @@ namespace NLog
 
             try
             {
-                appDomain.ProcessExit += OnStopLogging;
-                appDomain.DomainUnload += OnStopLogging;
+                appDomain.ProcessExit += OnLoggerShutdown;
+                appDomain.DomainUnload += OnLoggerShutdown;
             }
             catch (Exception exception)
             {
@@ -1429,22 +1420,44 @@ namespace NLog
         {
             if (appDomain == null) return;
 
-            appDomain.DomainUnload -= OnStopLogging;
-            appDomain.ProcessExit -= OnStopLogging;
+            appDomain.DomainUnload -= OnLoggerShutdown;
+            appDomain.ProcessExit -= OnLoggerShutdown;
         }
 
-        private static void OnStopLogging(object sender, EventArgs args)
+        private static void OnLoggerShutdown(object sender, EventArgs args)
         {
             try
             {
-                var logFactory = sender as LogFactory;
-                InternalLogger.Info("Shutting down logging...");
-                if (logFactory != null)
+                var loggerShutdown = LoggerShutdown;
+                if (loggerShutdown != null)
+                    loggerShutdown.Invoke(sender, args);
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+                InternalLogger.Error(ex, "LogFactory failed to shut down properly.");
+            }
+            finally
+            {
+                LoggerShutdown = null;
+                if (currentAppDomain != null)
                 {
-                    // Finalizer thread has about 2 secs, before being terminated
-                    logFactory.Close(TimeSpan.FromMilliseconds(1500));
+                    CurrentAppDomain = null;    // Unregister and disconnect from AppDomain
                 }
-                currentAppDomain = null;    // No longer part of AppDomains
+            }
+        }
+
+        private void OnStopLogging(object sender, EventArgs args)
+        {
+            try
+            {
+                //stop timer on domain unload, otherwise: 
+                //Exception: System.AppDomainUnloadedException
+                //Message: Attempted to access an unloaded AppDomain.
+                InternalLogger.Info("Shutting down logging...");
+                // Finalizer thread has about 2 secs, before being terminated
+                this.Close(TimeSpan.FromMilliseconds(1500));
                 InternalLogger.Info("Logger has been shut down.");
             }
             catch (Exception ex)

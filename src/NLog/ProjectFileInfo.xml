@@ -36,7 +36,7 @@
   </Customize>
 
   <FileSet Name="Logger.tt-result">
-    <Include File="Logger1.cs" />
+    <Include File="Logger-generated.cs" />
   </FileSet>
   <Customize FileSet="Logger.tt-result" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <AutoGen>True</AutoGen>
@@ -49,7 +49,7 @@
   </FileSet>
   <Customize FileSet="Logger.tt" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Generator>TextTemplatingFileGenerator</Generator>
-    <LastGenOutput>Logger1.cs</LastGenOutput>
+    <LastGenOutput>Logger-generated.cs</LastGenOutput>
   </Customize>
 
   <FileSet Name="InternalLogger.tt-result">

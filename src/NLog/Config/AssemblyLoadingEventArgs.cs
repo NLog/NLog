@@ -32,19 +32,27 @@
 // 
 
 using System;
-using System.Collections.Generic;
-using NLog.Common;
+using System.ComponentModel;
+using System.Reflection;
 
-namespace NLog.Internal
+namespace NLog.Config
 {
     /// <summary>
-    /// Controls a single allocated AsyncLogEventInfo-List for reuse (only one active user)
+    /// An assembly is trying to load. 
     /// </summary>
-    internal class ReusableAsyncLogEventList : ReusableObjectCreator<IList<AsyncLogEventInfo>>
-    {
-        public ReusableAsyncLogEventList(int capacity)
-            :base(new List<AsyncLogEventInfo>(capacity), (l) => l.Clear())
+    public class AssemblyLoadingEventArgs : CancelEventArgs
+    {/// <summary>
+     /// New event args
+     /// </summary>
+     /// <param name="assembly"></param>
+        public AssemblyLoadingEventArgs(Assembly assembly)
         {
+            Assembly = assembly;
         }
+
+        /// <summary>
+        /// The assembly that is trying to load.
+        /// </summary>
+        public Assembly Assembly { get; private set; }
     }
 }

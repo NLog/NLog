@@ -213,7 +213,7 @@ namespace NLog.UnitTests.Targets
 
                         if (verifyFileSize)
                         {
-                            if (sr.BaseStream.Length > 70)
+                            if (sr.BaseStream.Length > 100)
                                 throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too large", file, sr.BaseStream.Length));
                             else if (sr.BaseStream.Length < 35 && files[files.Count - 1] != file)
                                 throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too small", file, sr.BaseStream.Length));

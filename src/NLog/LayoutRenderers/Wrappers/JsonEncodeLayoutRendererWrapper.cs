@@ -52,6 +52,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public JsonEncodeLayoutRendererWrapper()
         {
             this.JsonEncode = true;
+            this.EscapeUnicode = true;
         }
 
         /// <summary>
@@ -62,101 +63,20 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool JsonEncode { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to escape non-ascii characters
+        /// </summary>
+        /// <docgen category="Transformation Options" order="10"/>
+        [DefaultValue(true)]
+        public bool EscapeUnicode { get; set; }
+
+        /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
         /// <param name="text">The text to be post-processed.</param>
         /// <returns>JSON-encoded string.</returns>
         protected override string Transform(string text)
         {
-            return this.JsonEncode ? DoJsonEscape(text) : text;
-        }
-
-        private static string DoJsonEscape(string text)
-        {
-            StringBuilder sb = null;
-            for (int i = 0; i < text.Length; ++i)
-            {
-                char ch = text[i];
-                if (sb == null)
-                {
-                    // Check if we need to upgrade to StringBuilder
-                    if (!NeedsEscaping(ch))
-                    {
-                        switch (ch)
-                        {
-                            case '"':
-                            case '\\':
-                            case '/':
-                                break;
-
-                            default:
-                                continue;   // StringBuilder not needed, yet
-                        }
-                    }
-
-                    // StringBuilder needed
-                    sb = new StringBuilder(text.Length + 4);
-                    sb.Append(text, 0, i);
-                }
-
-                switch (text[i])
-                {
-                    case '"':
-                        sb.Append("\\\"");
-                        break;
-
-                    case '\\':
-                        sb.Append("\\\\");
-                        break;
-
-                    case '/':
-                        sb.Append("\\/");
-                        break;
-
-                    case '\b':
-                        sb.Append("\\b");
-                        break;
-
-                    case '\r':
-                        sb.Append("\\r");
-                        break;
-
-                    case '\n':
-                        sb.Append("\\n");
-                        break;
-
-                    case '\f':
-                        sb.Append("\\f");
-                        break;
-
-                    case '\t':
-                        sb.Append("\\t");
-                        break;
-
-                    default:
-                        if (NeedsEscaping(text[i]))
-                        {
-                            sb.Append("\\u");
-                            sb.Append(Convert.ToString((int)text[i], 16).PadLeft(4, '0'));
-                        }
-                        else
-                        {
-                            sb.Append(text[i]);
-                        }
-
-                        break;
-                }
-            }
-
-            if (sb != null)
-                return sb.ToString();
-            else
-                return text;
-        }
-
-        private static bool NeedsEscaping(char ch)
-        {
-            return ch < 32 || ch > 127;
+            return this.JsonEncode ? Targets.DefaultJsonSerializer.JsonStringEscape(text, this.EscapeUnicode) : text;
         }
     }
 }

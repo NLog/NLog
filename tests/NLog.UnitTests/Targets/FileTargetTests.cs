@@ -3269,6 +3269,17 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expectedFileName, path);
         }
 
+        [Theory]
+        [InlineData(DayOfWeek.Sunday, "2017-03-02 15:27:34.651", "2017-03-05 15:27:34.651")]    // On a Thursday, finding next Sunday
+        [InlineData(DayOfWeek.Thursday, "2017-03-02 15:27:34.651", "2017-03-09 15:27:34.651")]  // On a Thursday, finding next Thursday
+        [InlineData(DayOfWeek.Monday, "2017-03-02 00:00:00.000", "2017-03-06 00:00:00.000")]    // On Thursday at Midnight, finding next Monday
+        public void TestCalculateNextWeekday(DayOfWeek day, string todayString, string expectedString)
+        {
+            DateTime today = DateTime.Parse(todayString);
+            DateTime expected = DateTime.Parse(expectedString);
+            DateTime actual = FileTarget.CalculateNextWeekday(today, day);
+            Assert.Equal(expected, actual);
+        }
 
         protected abstract Target WrapFileTarget(FileTarget target);
     }

@@ -947,27 +947,45 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // Step 2. Create targets and add them to the configuration 
             var target = new MemoryTarget();
-            config.AddTarget("target", target);
+            var wrapper = new NLog.Targets.Wrappers.AsyncTargetWrapper(target) { TimeToSleepBetweenBatches = 0 };
+            config.AddTarget("target", wrapper);
 
             // Step 3. Set target properties 
-            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${callsite} ${message}";
+            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
 
             // Step 4. Define rules
-            var rule = new LoggingRule("*", LogLevel.Debug, target);
+            var rule = new LoggingRule("*", LogLevel.Debug, wrapper);
             config.LoggingRules.Add(rule);
 
-
+            LogManager.Configuration = config;
             var factory = new NLogFactory(config);
+            var logger = factory.Create("MyLoggerName");
 
-            WriteLogMessage(factory);
+            WriteLogMessage(logger);
+            LogManager.Flush();
             var logMessage = target.Logs[0];
+            Assert.Contains("MyLoggerName", logMessage);
+
+            // See that LogManager.ReconfigExistingLoggers() is able to upgrade the Logger
+            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${callsite} ${message}";
+            LogManager.ReconfigExistingLoggers();
+            WriteLogMessage(logger);
+            LogManager.Flush();
+            logMessage = target.Logs[1];
             Assert.Contains("CallSiteTests.WriteLogMessage", logMessage);
+
+            // See that LogManager.ReconfigExistingLoggers() is able to upgrade the Logger
+            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${callsite} ${message} ThreadId=${threadid}";
+            LogManager.ReconfigExistingLoggers();
+            WriteLogMessage(logger);
+            LogManager.Flush();
+            logMessage = target.Logs[2];
+            Assert.Contains("ThreadId=" + Thread.CurrentThread.ManagedThreadId.ToString(), logMessage);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        private void WriteLogMessage(NLogFactory factory)
+        private void WriteLogMessage(NLogLogger logger)
         {
-            var logger = factory.Create("MyLoggerName");
             logger.Debug("something");
         }
 
@@ -1068,6 +1086,5 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
     }
-
 }
 
