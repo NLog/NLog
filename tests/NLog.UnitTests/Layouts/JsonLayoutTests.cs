@@ -435,6 +435,46 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(ExpectedIncludeAllPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
         }
 
+        [Fact]
+        public void IncludeMdcJsonProperties()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeMdc = true
+            };
+
+            var logEventInfo = CreateLogEventWithExcluded();
+
+            MappedDiagnosticsContext.Clear();
+            foreach (var prop in logEventInfo.Properties)
+                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
+                    MappedDiagnosticsContext.Set(prop.Key.ToString(), prop.Value);
+            logEventInfo.Properties.Clear();
+
+            Assert.Equal(ExpectedIncludeAllPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
+        }
+
+#if NET4_0 || NET4_5
+        [Fact]
+        public void IncludeMdlcJsonProperties()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeMdlc = true
+            };
+
+            var logEventInfo = CreateLogEventWithExcluded();
+
+            MappedDiagnosticsLogicalContext.Clear();
+            foreach (var prop in logEventInfo.Properties)
+                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
+                        MappedDiagnosticsLogicalContext.Set(prop.Key.ToString(), prop.Value);
+            logEventInfo.Properties.Clear();
+
+            Assert.Equal(ExpectedIncludeAllPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
+        }
+#endif
+
         /// <summary>
         /// Test from XML, needed for the list (ExcludeProperties)
         /// </summary>
