@@ -265,6 +265,7 @@
     <Compile Include="LayoutRenderers\MdlcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\MessageLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\NdcLayoutRenderer.cs" />
+    <Compile Include="LayoutRenderers\NdlcLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\NewLineLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\NLogDirLayoutRenderer.cs" />
     <Compile Include="LayoutRenderers\PerformanceCounterLayoutRenderer.cs" />
@@ -362,6 +363,7 @@
     <Compile Include="MDC.cs" />
     <Compile Include="NDC.cs" />
     <Compile Include="NestedDiagnosticsContext.cs" />
+    <Compile Include="NestedDiagnosticsLogicalContext.cs" />
     <Compile Include="NLogConfigurationException.cs" />
     <Compile Include="NLogRuntimeException.cs" />
     <Compile Include="NLogTraceListener.cs" />
