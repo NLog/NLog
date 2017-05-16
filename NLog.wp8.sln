@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.WinPhone", "NLog\NLog.wp8.csproj", "{C3D664C8-47FC-440E-8931-3C09C267CD60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Debug|ARM.Build.0 = Debug|ARM
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Debug|x86.ActiveCfg = Debug|x86
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Debug|x86.Build.0 = Debug|x86
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Release|ARM.ActiveCfg = Release|ARM
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Release|ARM.Build.0 = Release|ARM
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Release|x86.ActiveCfg = Release|x86
+		{C3D664C8-47FC-440E-8931-3C09C267CD60}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {C4811F53-E779-47F0-8C06-71551FBDB047}
+	EndGlobalSection
+EndGlobal
