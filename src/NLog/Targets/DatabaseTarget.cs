@@ -362,27 +362,35 @@ namespace NLog.Targets
 
             if (!foundProvider)
             {
-                switch (this.DBProvider.ToUpper(CultureInfo.InvariantCulture))
-                {
-                    case "SQLSERVER":
-                    case "MSSQL":
-                    case "MICROSOFT":
-                    case "MSDE":
-                        this.ConnectionType = systemDataAssembly.GetType("System.Data.SqlClient.SqlConnection", true);
-                        break;
+                this.SetConnectionType();
+            }
+        }
 
-                    case "OLEDB":
-                        this.ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
-                        break;
+        /// <summary>
+        /// Set the <see cref="ConnectionType"/> to use it for opening connections to the database.
+        /// </summary>
+        private void SetConnectionType()
+        {
+            switch (this.DBProvider.ToUpper(CultureInfo.InvariantCulture))
+            {
+                case "SQLSERVER":
+                case "MSSQL":
+                case "MICROSOFT":
+                case "MSDE":
+                    this.ConnectionType = systemDataAssembly.GetType("System.Data.SqlClient.SqlConnection", true);
+                    break;
 
-                    case "ODBC":
-                        this.ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
-                        break;
+                case "OLEDB":
+                    this.ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
+                    break;
 
-                    default:
-                        this.ConnectionType = Type.GetType(this.DBProvider, true);
-                        break;
-                }
+                case "ODBC":
+                    this.ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
+                    break;
+
+                default:
+                    this.ConnectionType = Type.GetType(this.DBProvider, true);
+                    break;
             }
         }
 
@@ -652,6 +660,12 @@ namespace NLog.Targets
                     {
                         // if it's not defined, fall back to regular connection string
                         cs = this.BuildConnectionString(logEvent);
+                    }
+
+                    // Set ConnectionType if it has not been initialized already
+                    if (this.ConnectionType == null)
+                    {
+                        this.SetConnectionType();
                     }
 
                     this.EnsureConnectionOpen(cs);
