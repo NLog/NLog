@@ -172,6 +172,7 @@
     <Compile Include="Internal\FilePathLayout.cs" />
     <Compile Include="Internal\FormatHelper.cs" />
     <Compile Include="Internal\IConfigurationManager.cs" />
+    <Compile Include="Internal\ILog4JXmlEvent.cs" />
     <Compile Include="Internal\IRenderable.cs" />
     <Compile Include="Internal\ISmtpClient.cs" />
     <Compile Include="Internal\ISupportsInitialize.cs" />
