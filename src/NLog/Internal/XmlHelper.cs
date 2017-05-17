@@ -116,8 +116,8 @@ namespace NLog.Internal
         /// <returns>Object value converted to string</returns>
         internal static string XmlConvertToString(object value)
         {
-            TypeCode objTypeCode;
-            return XmlConvertToString(value, out objTypeCode);
+            TypeCode objTypeCode = Convert.GetTypeCode(value);
+            return XmlConvertToString(value, objTypeCode);
         }
 
         /// <summary>
@@ -126,15 +126,13 @@ namespace NLog.Internal
         /// <param name="value">Object value</param>
         /// <param name="objTypeCode">Object TypeCode</param>
         /// <returns>Object value converted to string</returns>
-        internal static string XmlConvertToString(object value, out TypeCode objTypeCode)
+        internal static string XmlConvertToString(object value, TypeCode objTypeCode)
         {
             if (value == null)
             {
-                objTypeCode = TypeCode.Empty;
                 return "null";
             }
 
-            objTypeCode = Convert.GetTypeCode(value);
             switch (objTypeCode)
             {
                 case TypeCode.Boolean:

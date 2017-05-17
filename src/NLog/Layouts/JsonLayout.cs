@@ -33,9 +33,10 @@
 
 namespace NLog.Layouts
 {
-    using NLog.Config;
+    using System;
     using System.Collections.Generic;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// A specialized layout that renders JSON-formatted events.
@@ -72,6 +73,18 @@ namespace NLog.Layouts
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
         public bool RenderEmptyObject { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
+        /// </summary>
+        public bool IncludeMdc { get; set; }
+
+#if NET4_0 || NET4_5
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        public bool IncludeMdlc { get; set; }
+#endif
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
@@ -125,6 +138,30 @@ namespace NLog.Layouts
                 }
             }
 
+            if (this.IncludeMdc)
+            {
+                foreach (string key in MappedDiagnosticsContext.GetNames())
+                {
+                    if (string.IsNullOrEmpty(key))
+                        continue;
+                    object propertyValue = MappedDiagnosticsContext.GetObject(key);
+                    AppendJsonPropertyValue(key, propertyValue, sb);
+                }
+            }
+
+#if NET4_0 || NET4_5
+            if (this.IncludeMdlc)
+            {
+                foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
+                {
+                    if (string.IsNullOrEmpty(key))
+                        continue;
+                    object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
+                    AppendJsonPropertyValue(key, propertyValue, sb);
+                }
+            }
+#endif
+
             if (this.IncludeAllProperties && logEvent.HasProperties)
             {
                 foreach (var prop in logEvent.Properties)
@@ -138,12 +175,7 @@ namespace NLog.Layouts
                     if (this.ExcludeProperties.Contains(propName))
                         continue;
 
-                    bool propStringEncode;
-                    string propStringValue = Targets.DefaultJsonSerializer.JsonStringEncode(prop.Value, true, out propStringEncode);
-                    if (!string.IsNullOrEmpty(propStringValue))
-                    {
-                        AppendJsonAttributeValue(propName, propStringEncode, propStringValue, sb);
-                    }
+                    AppendJsonPropertyValue(propName, prop.Value, sb);
                 }
             }
 
@@ -154,6 +186,18 @@ namespace NLog.Layouts
         {
             if (sb.Length > 0)
                 sb.Append(SuppressSpaces ? "}" : " }");
+        }
+
+        private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb)
+        {
+            TypeCode objTypeCode = Convert.GetTypeCode(propertyValue);
+
+            bool propStringEncode;
+            string propStringValue = Targets.DefaultJsonSerializer.JsonStringEncode(propertyValue, objTypeCode, true, out propStringEncode);
+            if (!string.IsNullOrEmpty(propStringValue))
+            {
+                AppendJsonAttributeValue(propName, propStringEncode, propStringValue, sb);
+            }
         }
 
         private void AppendJsonAttributeValue(string attributeName, bool attributeEncode, string text, StringBuilder sb)

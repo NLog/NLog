@@ -143,8 +143,9 @@ namespace NLog.Targets
             }
             else
             {
+                TypeCode objTypeCode = Convert.GetTypeCode(value);
                 bool encodeStringValue;
-                string escapeXmlString = JsonStringEncode(value, escapeUnicode, out encodeStringValue);
+                string escapeXmlString = JsonStringEncode(value, objTypeCode, escapeUnicode, out encodeStringValue);
                 if (escapeXmlString != null && encodeStringValue)
                     return string.Concat("\"", escapeXmlString, "\"");
                 else
@@ -156,13 +157,13 @@ namespace NLog.Targets
         /// Converts object value into JSON escaped string
         /// </summary>
         /// <param name="value">Object value</param>
+        /// <param name="objTypeCode">Object TypeCode</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <param name="encodeString">Should string be JSON encoded with quotes</param>
         /// <returns>Object value converted to JSON escaped string</returns>
-        internal static string JsonStringEncode(object value, bool escapeUnicode, out bool encodeString)
+        internal static string JsonStringEncode(object value, TypeCode objTypeCode, bool escapeUnicode, out bool encodeString)
         {
-            TypeCode objTypeCode;
-            string stringValue = Internal.XmlHelper.XmlConvertToString(value, out objTypeCode);
+            string stringValue = Internal.XmlHelper.XmlConvertToString(value, objTypeCode);
             if (objTypeCode != TypeCode.String || stringValue == null)
             {
                 encodeString = false;
