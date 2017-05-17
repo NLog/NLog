@@ -141,6 +141,7 @@ namespace NLog.Targets
         public string Log { get; set; }
 
         private int maxMessageLength;
+        
         /// <summary>
         /// Gets or sets the message length limit to write to the Event Log.
         /// </summary>
@@ -155,6 +156,29 @@ namespace NLog.Targets
                     throw new ArgumentException("MaxMessageLength cannot be zero or negative.");
 
                 this.maxMessageLength = value;
+            }
+        }
+
+              
+        private long? maxKilobytes;
+
+        /// <summary>
+        /// Gets or sets the maximum Event log size in kilobytes.
+        /// 
+        /// If <c>null</c>, the value won't be set. 
+        /// 
+        /// Default is 512 Kilobytes as specified by Eventlog API
+        /// </summary>
+        /// <remarks><value>MaxKilobytes</value> cannot be less than 64 or greater than 4194240 or not a multiple of 64. If <c>null</c>, use the default value</remarks>
+        [DefaultValue(null)]
+        public long? MaxKilobytes
+        {
+            get { return this.maxKilobytes; }
+            set
+            {   //Event log API restriction
+                if (value != null && (value < 64 || value > 4194240 || (value % 64 != 0)))
+                    throw new ArgumentException("MaxKilobytes must be a multitude of 64, and between 64 and 4194240");
+                this.maxKilobytes = value;
             }
         }
 
@@ -347,6 +371,11 @@ namespace NLog.Targets
             if (!isCacheUpToDate)
             {
                 eventLogInstance = new EventLog(this.Log, this.MachineName, renderedSource);
+            }
+            if (this.MaxKilobytes.HasValue)
+            {
+                //you need more permissions to set, so don't set by default
+                eventLogInstance.MaximumKilobytes = this.MaxKilobytes.Value;
             }
             return eventLogInstance;
         }
