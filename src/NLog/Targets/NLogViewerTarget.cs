@@ -65,7 +65,7 @@ namespace NLog.Targets
     /// </p>
     /// </example>
     [Target("NLogViewer")]
-    public class NLogViewerTarget : NetworkTarget
+    public class NLogViewerTarget : NetworkTarget, IIncludeContext
     {
         private readonly Log4JXmlEventLayout layout = new Log4JXmlEventLayout();
 
@@ -146,7 +146,18 @@ namespace NLog.Targets
             set { this.Renderer.IncludeMdc = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to include <see cref="NestedDiagnosticsContext"/> stack contents.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeNdc
+        {
+            get { return this.Renderer.IncludeNdc; }
+            set { this.Renderer.IncludeNdc = value; }
+        }
+
 #if !SILVERLIGHT
+
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
         /// </summary>
@@ -156,16 +167,27 @@ namespace NLog.Targets
             get { return this.Renderer.IncludeMdlc; }
             set { this.Renderer.IncludeMdlc = value; }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeNdlc
+        {
+            get { return this.Renderer.IncludeNdlc; }
+            set { this.Renderer.IncludeNdlc = value; }
+        }
+
 #endif
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include <see cref="NestedDiagnosticsContext"/> stack contents.
+        /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdc
+        public bool IncludeAllProperties
         {
-            get { return this.Renderer.IncludeNdc; }
-            set { this.Renderer.IncludeNdc = value; }
+            get { return this.Renderer.IncludeAllProperties; }
+            set { this.Renderer.IncludeAllProperties = value; }
         }
 
         /// <summary>

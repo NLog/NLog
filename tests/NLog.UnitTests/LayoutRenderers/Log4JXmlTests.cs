@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System.Threading;
@@ -50,7 +52,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
                 <targets>
-        <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeMdc=true:includeMdlc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true}' />
+        <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true}' />
        </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
@@ -66,6 +68,9 @@ namespace NLog.UnitTests.LayoutRenderers
             MappedDiagnosticsLogicalContext.Clear();
             MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
 
+            NestedDiagnosticsLogicalContext.Push("boo1");
+            NestedDiagnosticsLogicalContext.Push("boo2");
+
             NestedDiagnosticsContext.Push("baz1");
             NestedDiagnosticsContext.Push("baz2");
             NestedDiagnosticsContext.Push("baz3");
@@ -80,10 +85,36 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.NotEqual("", result);
             // make sure the XML can be read back and verify some fields
             StringReader stringReader = new StringReader(wrappedResult);
+
+            var foundsChilds = new Dictionary<string, int>();
+
+            var requiredChilds = new List<string>
+            {
+                "log4j.event",
+                "log4j.message",
+                "log4j.NDC",
+                "log4j.locationInfo",
+                "nlog.locationInfo",
+                "log4j.properties",
+                "nlog.properties",
+                "log4j.throwable",
+                "log4j.data",
+                "nlog.data",
+            };
+
             using (XmlReader reader = XmlReader.Create(stringReader))
             {
+              
                 while (reader.Read())
                 {
+                    var key = reader.LocalName;
+                    var fullKey = reader.Prefix + "." + key;
+                    if (!foundsChilds.ContainsKey(fullKey))
+                    {
+                        foundsChilds[fullKey] = 0;
+                    }
+                    foundsChilds[fullKey]++;
+
                     if (reader.NodeType == XmlNodeType.Element && reader.Prefix == "log4j")
                     {
                         switch (reader.LocalName)
@@ -111,7 +142,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
                             case "NDC":
                                 reader.Read();
-                                Assert.Equal("baz3::baz2::baz1", reader.Value);
+                                Assert.Equal("baz3::baz2::baz1::boo2 boo1", reader.Value);
                                 break;
 
                             case "locationInfo":
@@ -164,14 +195,14 @@ namespace NLog.UnitTests.LayoutRenderers
                                 break;
 
                             default:
-                                throw new NotSupportedException("Unknown element: " + reader.LocalName);
+                                throw new NotSupportedException("Unknown element: " + key);
                         }
                         continue;
                     }
 
                     if (reader.NodeType == XmlNodeType.Element && reader.Prefix == "nlog")
                     {
-                        switch (reader.LocalName)
+                        switch (key)
                         {
                             case "eventSequenceNumber":
                                 break;
@@ -191,10 +222,15 @@ namespace NLog.UnitTests.LayoutRenderers
                                 break;
 
                             default:
-                                throw new NotSupportedException("Unknown element: " + reader.LocalName);
+                                throw new NotSupportedException("Unknown element: " + key);
                         }
                     }
                 }
+            }
+
+            foreach (var required in requiredChilds)
+            {
+                Assert.True(foundsChilds.ContainsKey(required), $"{required} not found!");
             }
         }
 
