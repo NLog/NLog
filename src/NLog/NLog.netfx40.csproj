@@ -126,6 +126,7 @@
     <Compile Include="Filters\WhenEqualFilter.cs" />
     <Compile Include="Filters\WhenNotContainsFilter.cs" />
     <Compile Include="Filters\WhenNotEqualFilter.cs" />
+    <Compile Include="Filters\WhenRepeatedFilter.cs" />
     <Compile Include="Fluent\Log.cs" />
     <Compile Include="Fluent\LogBuilder.cs" />
     <Compile Include="Fluent\LoggerExtensions.cs" />
