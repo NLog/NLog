@@ -35,7 +35,6 @@ namespace NLog
 {
 #if NET4_0 || NET4_5
     using System;
-    using System.Text;
     using NLog.Internal;
 
     /// <summary>
@@ -95,68 +94,6 @@ namespace NLog
                 currentContext = currentContext.Parent;
             }
             return messages;
-        }
-
-        /// <summary>
-        /// Writes the current stack to the provided StringBuilder
-        /// </summary>
-        internal static void AppendContext(IFormatProvider formatProvider, int topFrames, int bottomFrames, string seperator, StringBuilder builder)
-        {
-            var currentContext = GetThreadLocal();
-            if (currentContext == null)
-                return;
-
-            int startPos = 0;
-            int endPos = currentContext.FrameLevel;
-
-            if (topFrames != -1)
-            {
-                endPos = Math.Min(topFrames, currentContext.FrameLevel);
-            }
-            else if (bottomFrames != -1)
-            {
-                startPos = currentContext.FrameLevel - Math.Min(bottomFrames, currentContext.FrameLevel);
-            }
-
-            if (currentContext.FrameLevel <= 10)
-            {
-                // Use the stack to avoid allocations
-                AppendFrames(currentContext, 0, formatProvider, startPos, endPos, seperator, builder);
-            }
-            else
-            {
-                var messages = GetAllObjects();
-                string currentSeparator = string.Empty;
-                for (int i = endPos - 1; i >= startPos; --i)
-                {
-                    var stringValue = FormatHelper.ConvertToString(messages[i], formatProvider);
-                    builder.Append(currentSeparator);
-                    builder.Append(stringValue);
-                    currentSeparator = seperator;
-                }
-            }
-        }
-
-        private static bool AppendFrames(INestedContext currentContext, int currentPos, IFormatProvider formatProvider, int startPos, int endPos, string seperator, StringBuilder builder)
-        {
-            if (currentContext == null)
-                return false;
-
-            if (currentPos >= endPos)
-                return false;
-
-            bool startedAppend = false;
-            startedAppend = AppendFrames(currentContext.Parent, currentPos + 1, formatProvider, startPos, endPos, seperator, builder);
-            if (currentPos >= startPos)
-            {
-                var stringValue = FormatHelper.ConvertToString(currentContext.Value, formatProvider);
-                if (startedAppend)
-                    builder.Append(seperator);
-                else
-                    startedAppend = true;
-                builder.Append(stringValue);
-            }
-            return startedAppend;
         }
 
         interface INestedContext : IDisposable
