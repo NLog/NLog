@@ -78,7 +78,28 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            NestedDiagnosticsLogicalContext.AppendContext(logEvent.FormatProvider, this.TopFrames, this.BottomFrames, this.Separator, builder);
+            var messages = NestedDiagnosticsLogicalContext.GetAllObjects();
+
+            int startPos = 0;
+            int endPos = messages.Length;
+
+            if (this.TopFrames != -1)
+            {
+                endPos = Math.Min(this.TopFrames, messages.Length);
+            }
+            else if (this.BottomFrames != -1)
+            {
+                startPos = messages.Length - Math.Min(this.BottomFrames, messages.Length);
+            }
+
+            string currentSeparator = string.Empty;
+            for (int i = endPos - 1; i >= startPos; --i)
+            {
+                var stringValue = Internal.FormatHelper.ConvertToString(messages[i], logEvent.FormatProvider);
+                builder.Append(currentSeparator);
+                builder.Append(stringValue);
+                currentSeparator = this.Separator;
+            }
         }
     }
 #endif
