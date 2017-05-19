@@ -185,6 +185,57 @@ namespace NLog.UnitTests.Targets
             var actual = _serializer.SerializeObject(newGuid);
             Assert.Equal("\"" + newGuid.ToString() + "\"", actual);
         }
+        [Fact]
+        public void SerializeObject_Test()
+        {
+            var object1 = new TestObject("object1");
+            var object2 = new TestObject("object2");
+
+            object1.Linked = object2;
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}}", actual);
+        }
+
+
+
+        [Fact]
+        public void SerializeRecusiveObject_Test()
+        {
+            var object1 = new TestObject("object1");
+
+            object1.Linked = object1;
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("{\"Name\":\"object1\"}", actual);
+        }
+
+        [Fact]
+        public void SerializeListObject_Test()
+        {
+            var object1 = new TestObject("object1");
+            var object2 = new TestObject("object2");
+            object1.Linked = object2;
+
+            var list = new[] {object1, object2};
+
+            var actual = _serializer.SerializeObject(list);
+            Assert.Equal("[{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}},{\"Name\":\"object2\"}]", actual);
+        }
+
+
+        private class TestObject
+        {
+            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+            public TestObject(string name)
+            {
+                Name = name;
+            }
+
+            public string Name { get; set; }
+
+            public TestObject Linked { get; set; }
+        }
+
+
 
         private class TestList : IEnumerable<IEnumerable>
         {
