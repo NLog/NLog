@@ -261,6 +261,23 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("\"00:02:03.0040000\"", actual);
         }
 
+        [Fact]
+        public void SerializeEmptyDict_Test()
+        {
+            var actual = _serializer.SerializeObject(new Dictionary<string, int>());
+            Assert.Equal("{}", actual);
+        }
+
+        [Fact]
+        public void SerializeDict_Test()
+        {
+            var dictionary = new Dictionary<string, object>();
+            dictionary.Add("key1", 13);
+            dictionary.Add("key 2", 1.3m);
+            var actual = _serializer.SerializeObject(dictionary);
+            Assert.Equal("{\"key1\":13,\"key 2\":1.3}", actual);
+        }
+
 
         [Fact]
         public void SerializeNull_Test()
@@ -324,6 +341,21 @@ namespace NLog.UnitTests.Targets
         }
 
 
+        [Fact]
+        public void SerializeNoPropsObject_Test()
+        {
+            var object1 = new NoPropsObject();
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("\"something\"", actual);
+        }
+
+        [Fact]
+        public void SerializeObjectWithExceptionAndPrivateSetter_Test()
+        {
+            var object1 = new ObjectWithExceptionAndPrivateSetter("test name");
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("{\"Name\":\"test name\"}", actual);
+        }
         private class TestObject
         {
             /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
@@ -337,6 +369,43 @@ namespace NLog.UnitTests.Targets
             public TestObject Linked { get; set; }
         }
 
+
+        public class NoPropsObject
+        {
+            private string something = "something";
+
+            #region Overrides of Object
+
+            /// <summary>Returns a string that represents the current object.</summary>
+            /// <returns>A string that represents the current object.</returns>
+            public override string ToString()
+            {
+                return something;
+            }
+
+            #endregion
+        }
+
+        private class ObjectWithExceptionAndPrivateSetter
+        {
+            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+            public ObjectWithExceptionAndPrivateSetter(string name)
+            {
+                Name = name;
+            }
+
+            public string Name { get;  }
+
+            public string SetOnly { private get; set; }
+
+            public object Ex
+            {
+                get
+                {
+                    throw new Exception("oops");
+                }
+            }
+        }
 
 
         private class TestList : IEnumerable<IEnumerable>

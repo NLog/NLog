@@ -190,10 +190,6 @@ namespace NLog.Targets
 
             else
             {
-
-
-
-
                 IFormattable formattable;
                 var format = options.Format;
                 var hasFormat = !string.IsNullOrWhiteSpace(format);
@@ -210,7 +206,7 @@ namespace NLog.Targets
                             options.FormatProvider = culture;
                         }
                         returnValue = string.Format(options.FormatProvider, "{0:" + format + "}", value);
-                        
+
                     }
                     else
                     {
@@ -236,8 +232,6 @@ namespace NLog.Targets
                         try
                         {
                             var set = AddToSet(objectsInPath, value);
-
-
                             returnValue = SerializeProperties(value, options, set, depth);
 
                         }
@@ -460,34 +454,44 @@ namespace NLog.Targets
             for (var i = 0; i < props.Length; i++)
             {
                 var prop = props[i];
-                var propValue = prop.GetValue(value, null);
-                if (propValue != null)
+
+                try
                 {
-                    var serializedProperty = SerializeObject(propValue, options, objectsInPath, depth + 1);
-
-                    if (serializedProperty != null)
+                    var propValue = prop.GetValue(value, null);
+                    if (propValue != null)
                     {
-                        if (!isFirst)
-                        {
-                            sb.Append(", ");
-                        }
-                        isFirst = false;
-                        if (options.QuoteKeys)
-                        {
-                            sb.Append("\"");
-                            //no escape needed as properties don't have quotes
-                            sb.Append(prop.Name);
-                            sb.Append("\"");
-                        }
-                        else
-                        {
-                            sb.Append(prop.Name);
-                        }
 
-                        sb.Append(":");
-                        sb.Append(serializedProperty);
+                        var serializedProperty = SerializeObject(propValue, options, objectsInPath, depth + 1);
+
+                        if (serializedProperty != null)
+                        {
+                            if (!isFirst)
+                            {
+                                sb.Append(", ");
+                            }
+                            isFirst = false;
+                            if (options.QuoteKeys)
+                            {
+                                sb.Append("\"");
+                                //no escape needed as properties don't have quotes
+                                sb.Append(prop.Name);
+                                sb.Append("\"");
+                            }
+                            else
+                            {
+                                sb.Append(prop.Name);
+                            }
+
+                            sb.Append(":");
+                            sb.Append(serializedProperty);
+                        }
                     }
                 }
+                catch
+                {
+                    //skip this property
+                }
+
             }
             sb.Append('}');
             return sb.ToString();
