@@ -37,7 +37,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
-using NLog.Internal;
 
 namespace NLog.Targets
 {
@@ -190,7 +189,7 @@ namespace NLog.Targets
                     TypeCode objTypeCode = Convert.GetTypeCode(value);
                     if (objTypeCode == TypeCode.Object)
                     {
-                        if (value is Guid)
+                        if (value is Guid || value is TimeSpan)
                         {
                             //object without property, to string
                             return QuoteValue(value.ToString());

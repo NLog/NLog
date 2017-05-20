@@ -179,6 +179,28 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeTime_Test()
+        {
+            var actual = _serializer.SerializeObject(new TimeSpan(1,2,3,4));
+            Assert.Equal("\"1.02:03:04\"", actual);
+        }
+
+        [Fact]
+        public void SerializeTime2_Test()
+        {
+            var actual = _serializer.SerializeObject(new TimeSpan(0, 2, 3, 4));
+            Assert.Equal("\"02:03:04\"", actual);
+        }
+
+        [Fact]
+        public void SerializeTime3_Test()
+        {
+            var actual = _serializer.SerializeObject(new TimeSpan(0,0, 2, 3, 4));
+            Assert.Equal("\"00:02:03.0040000\"", actual);
+        }
+
+
+        [Fact]
         public void SerializeNull_Test()
         {
             var actual = _serializer.SerializeObject(null);
