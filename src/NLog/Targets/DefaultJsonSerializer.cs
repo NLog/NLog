@@ -243,13 +243,7 @@ namespace NLog.Targets
                     }
                     else
                     {
-
-                        bool encodeStringValue;
-                        string escapedJsonString = SerializePrimitive(value, objTypeCode, options.EscapeUnicode, out encodeStringValue);
-                        if (escapedJsonString != null && encodeStringValue)
-                            returnValue = QuoteValue(escapedJsonString);
-                        else
-                            returnValue = escapedJsonString;
+                        returnValue = SerializePrimitive(value, objTypeCode, options.EscapeUnicode);
                     }
                 }
             }
@@ -282,27 +276,22 @@ namespace NLog.Targets
         /// <param name="value">Object value</param>
         /// <param name="objTypeCode">Object TypeCode</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
-        /// <param name="encodeString">Should string be JSON encoded with quotes?</param>
         /// <returns>Object value converted to JSON escaped string</returns>
-        internal static string SerializePrimitive(object value, TypeCode objTypeCode, bool escapeUnicode, out bool encodeString)
+        internal static string SerializePrimitive(object value, TypeCode objTypeCode, bool escapeUnicode)
         {
             string stringValue = Internal.XmlHelper.XmlConvertToString(value, objTypeCode);
 
             if (stringValue == null)
             {
-                encodeString = false;
                 return null;
             }
 
-            if (objTypeCode != TypeCode.String)
+            if (SkipQuotes(objTypeCode))
             {
-                encodeString = false;
-                if (SkipQuotes(objTypeCode))
-                    return stringValue;
+                return stringValue;
             }
 
-            encodeString = true;
-            return JsonStringEscape(stringValue, escapeUnicode);
+            return QuoteValue(JsonStringEscape(stringValue, escapeUnicode));
         }
 
         /// <summary>
@@ -312,7 +301,7 @@ namespace NLog.Targets
         /// <returns></returns>
         private static bool SkipQuotes(TypeCode objTypeCode)
         {
-            return (objTypeCode == TypeCode.Empty  // Don't put quotes around null values
+            return objTypeCode != TypeCode.String && (objTypeCode == TypeCode.Empty  // Don't put quotes around null values
                 || objTypeCode == TypeCode.Boolean
                 || IsNumericTypeCode(objTypeCode));
         }
