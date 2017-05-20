@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
+using NLog.Internal;
 
 namespace NLog.Targets
 {
@@ -47,26 +48,30 @@ namespace NLog.Targets
     {
         private const int MaxRecursionDepth = 10;
 
-        private static readonly DefaultJsonSerializer instance;
+        private static readonly DefaultJsonSerializer _instance;
 
         /// <summary>
         /// Cache for property infos
         /// </summary>
-        private static Dictionary<Type, PropertyInfo[]> PropsCache = new Dictionary<Type, PropertyInfo[]>();
+        private static Dictionary<Type, PropertyInfo[]> _propsCache = new Dictionary<Type, PropertyInfo[]>();
 
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
         public static DefaultJsonSerializer Instance
         {
-            get { return instance; }
+            get { return _instance; }
         }
 
         static DefaultJsonSerializer()
         {
-            instance = new DefaultJsonSerializer();
+            _instance = new DefaultJsonSerializer();
         }
 
+
+        /// <summary>
+        /// Private ctor so we use <see cref="Instance"/>
+        /// </summary>
         private DefaultJsonSerializer()
         {
         }
@@ -94,59 +99,83 @@ namespace NLog.Targets
         /// <returns>
         /// Serialized value.
         /// </returns>
-        private string SerializeObject(object value, bool escapeUnicode, HashSet<object> objectsInPath, int depth, IFormatProvider format)
+        private string SerializeObject(object value, bool escapeUnicode,
+            HashSet<object> objectsInPath, int depth, IFormatProvider format)
         {
             if (objectsInPath != null && objectsInPath.Contains(value))
             {
                 return null; // detected reference loop, skip serialization
             }
+            if (depth > MaxRecursionDepth)
+            {
+                return null; // reached maximum recursion level, no further serialization
+            }
 
             IEnumerable enumerable;
             IDictionary dict;
             string str;
+            string returnValue;
+
             if (value == null)
             {
-                return "null";
+                returnValue = "null";
             }
             else if ((str = value as string) != null)
             {
-                return string.Concat("\"", JsonStringEscape(str, escapeUnicode), "\"");
+                returnValue = QuoteValue(JsonStringEscape(str, escapeUnicode));
             }
             else if ((dict = value as IDictionary) != null)
             {
-                if (depth == MaxRecursionDepth) return null; // reached maximum recursion level, no further serialization
+                List<string> list = null;
 
-                var list = new List<string>();
                 var set = AddToSet(objectsInPath, value);
                 foreach (DictionaryEntry de in dict)
                 {
                     var keyJson = SerializeObject(de.Key, escapeUnicode, set, depth + 1, format);
-                    var valueJson = SerializeObject(de.Value, escapeUnicode, set, depth + 1, format);
-                    if (!string.IsNullOrEmpty(keyJson) && valueJson != null)
+                    if (!string.IsNullOrEmpty(keyJson))
                     {
-                        //only serialize, if key and value are serialized without error (e.g. due to reference loop)
-                        list.Add(string.Concat(keyJson, ":", valueJson));
+
+                        var valueJson = SerializeObject(de.Value, escapeUnicode, set, depth + 1, format);
+                        if (valueJson != null)
+                        {
+                            list = list ?? new List<string>();
+                            //only serialize, if key and value are serialized without error (e.g. due to reference loop)
+                            list.Add(string.Concat(keyJson, ":", valueJson));
+                        }
                     }
                 }
 
-                return string.Concat("{", string.Join(",", list.ToArray()), "}");
+                if (list != null)
+                {
+                    returnValue = string.Concat("{", string.Join(",", list.ToArray()), "}");
+                }
+                else
+                {
+                    returnValue = "{}";
+                }
             }
             else if ((enumerable = value as IEnumerable) != null)
             {
-                if (depth == MaxRecursionDepth) return null; // reached maximum recursion level, no further serialization
-
-                var list = new List<string>();
+                List<string> list = null;
                 var set = AddToSet(objectsInPath, value);
                 foreach (var val in enumerable)
                 {
                     var valueJson = SerializeObject(val, escapeUnicode, set, depth + 1, format);
                     if (valueJson != null)
                     {
+                        list = list ?? new List<string>();
                         list.Add(valueJson);
                     }
                 }
 
-                return string.Concat("[", string.Join(",", list.ToArray()), "]");
+                if (list != null)
+                {
+                    returnValue = string.Concat("[", string.Join(",", list.ToArray()), "]");
+                }
+                else
+                {
+                    returnValue = "[]";
+                }
             }
 
             else
@@ -154,31 +183,51 @@ namespace NLog.Targets
                 IFormattable formattable;
                 if (format != null && (formattable = value as IFormattable) != null)
                 {
-                    if (depth == MaxRecursionDepth) return null; // reached maximum recursion level, no further serialization
-
-                    return formattable.ToString("{0}", format);
+                    returnValue = formattable.ToString("{0}", format);
                 }
-                TypeCode objTypeCode = Convert.GetTypeCode(value);
-                if (objTypeCode == TypeCode.Object)
-                {
-                    try
-                    {
-                        var set = AddToSet(objectsInPath, value);
-                        return SerializeObjectProperties(value, set, depth, format);
-                    }
-                    catch
-                    {
-                        return null;
-                    }
-                }
-
-                bool encodeStringValue;
-                string escapedJsonString = JsonStringEncode(value, objTypeCode, escapeUnicode, out encodeStringValue);
-                if (escapedJsonString != null && encodeStringValue)
-                    return string.Concat("\"", escapedJsonString, "\"");
                 else
-                    return escapedJsonString;
+                {
+                    TypeCode objTypeCode = Convert.GetTypeCode(value);
+                    if (objTypeCode == TypeCode.Object)
+                    {
+                        if (value is Guid)
+                        {
+                            //object without property, to string
+                            return QuoteValue(value.ToString());
+                        }
+                        try
+                        {
+                            var set = AddToSet(objectsInPath, value);
+                            var sb = new StringBuilder();
+
+                            SerializeObjectProperties(sb, value, format, set, depth);
+                            returnValue = sb.ToString();
+                        }
+                        catch
+                        {
+                            //nothing to add, so return is OK
+                            return null;
+                        }
+                    }
+                    else
+                    {
+
+                        bool encodeStringValue;
+                        string escapedJsonString = JsonStringEncode(value, objTypeCode, escapeUnicode, out encodeStringValue);
+                        if (escapedJsonString != null && encodeStringValue)
+                            returnValue = QuoteValue(escapedJsonString);
+                        else
+                            returnValue = escapedJsonString;
+                    }
+                }
             }
+
+            return returnValue;
+        }
+
+        private static string QuoteValue(string value)
+        {
+            return string.Concat("\"", value, "\"");
         }
 
         /// <summary>
@@ -187,7 +236,7 @@ namespace NLog.Targets
         /// <param name="value">Object value</param>
         /// <param name="objTypeCode">Object TypeCode</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
-        /// <param name="encodeString">Should string be JSON encoded with quotes</param>
+        /// <param name="encodeString">Should string be JSON encoded with quotes?</param>
         /// <returns>Object value converted to JSON escaped string</returns>
         internal static string JsonStringEncode(object value, TypeCode objTypeCode, bool escapeUnicode, out bool encodeString)
         {
@@ -332,21 +381,14 @@ namespace NLog.Targets
                 return escapeUnicode && ch > 127;
         }
 
-        internal string SerializeObjectProperties(object value, HashSet<object> objectsInPath, int depth, IFormatProvider format)
-        {
-            var stringBuilder = new StringBuilder();
-            SerializeObjectProperties(stringBuilder, value, format, objectsInPath, depth);
-            return stringBuilder.ToString();
-        }
-
         private void SerializeObjectProperties(StringBuilder sb, object value, IFormatProvider format, HashSet<object> objectsInPath, int depth)
         {
             var props = GetProps(value);
 
             if (props.Length == 0)
             {
-                //no props, e.g. Guid struct
-                sb.Append(string.Concat("\"", value.ToString(), "\""));
+                //no props
+                sb.Append(QuoteValue(value.ToString()));
                 return;
             }
 
@@ -369,8 +411,8 @@ namespace NLog.Targets
                             sb.Append(", ");
                         }
                         isFirst = false;
-                        //todo escape value? (e.g quotes)
                         sb.Append("\"");
+                        //no escape needed as properties don't have quotes
                         sb.Append(prop.Name);
                         sb.Append("\"");
                         sb.Append(":");
@@ -390,14 +432,14 @@ namespace NLog.Targets
         {
             var type = value.GetType();
             PropertyInfo[] props;
-            if (!PropsCache.TryGetValue(type, out props))
+            if (!_propsCache.TryGetValue(type, out props))
             {
 #if NETSTANDARD
                 props = type.GetRuntimeProperties().ToArray();
 #else
                 props = type.GetProperties();
 #endif
-                PropsCache[type] = props;
+                _propsCache[type] = props;
             }
 
             return props;
