@@ -179,6 +179,13 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeNull_Test()
+        {
+            var actual = _serializer.SerializeObject(null);
+            Assert.Equal("null", actual);
+        }
+
+        [Fact]
         public void SerializeGuid_Test()
         {
             Guid newGuid = Guid.NewGuid();
