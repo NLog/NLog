@@ -132,7 +132,7 @@ namespace NLog.Targets
             }
             else if ((str = value as string) != null)
             {
-                returnValue = QuoteValue(JsonStringEscape(str, options.EscapeUnicode));
+                returnValue = QuoteValue(EscapeString(str, options.EscapeUnicode));
             }
             else if ((dict = value as IDictionary) != null)
             {
@@ -291,7 +291,7 @@ namespace NLog.Targets
                 return stringValue;
             }
 
-            return QuoteValue(JsonStringEscape(stringValue, escapeUnicode));
+            return QuoteValue(EscapeString(stringValue, escapeUnicode));
         }
 
         /// <summary>
@@ -333,7 +333,7 @@ namespace NLog.Targets
         /// <param name="text">Input string</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <returns>JSON escaped string</returns>
-        internal static string JsonStringEscape(string text, bool escapeUnicode)
+        internal static string EscapeString(string text, bool escapeUnicode)
         {
             if (text == null)
                 return null;
