@@ -389,6 +389,7 @@
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\IFileCompressor.cs" />
     <Compile Include="Targets\IJsonSerializer.cs" />
+    <Compile Include="Targets\JsonSerializeOptions.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />

@@ -83,7 +83,7 @@ namespace NLog.Targets
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value)
         {
-            return SerializeObject(value, false, null, 0, null);
+            return SerializeObject(value, new JsonSerializeOptions());
         }
 
         /// <summary>
@@ -91,15 +91,26 @@ namespace NLog.Targets
         /// int JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
-        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
+        /// <param name="options">Options</param>
+        /// <returns>Serialized value.</returns>
+        public string SerializeObject(object value, JsonSerializeOptions options)
+        {
+            return SerializeObject(value, options, null, 0);
+        }
+
+        /// <summary>
+        /// Returns a serialization of an object
+        /// int JSON format.
+        /// </summary>
+        /// <param name="value">The object to serialize to JSON.</param>
+        /// <param name="options">serialisation options</param>
         /// <param name="objectsInPath">The objects in path.</param>
         /// <param name="depth">The current depth (level) of recursion.</param>
-        /// <param name="format">format</param>
         /// <returns>
         /// Serialized value.
         /// </returns>
-        private string SerializeObject(object value, bool escapeUnicode,
-            HashSet<object> objectsInPath, int depth, IFormatProvider format)
+        private string SerializeObject(object value, JsonSerializeOptions options,
+            HashSet<object> objectsInPath, int depth)
         {
             if (objectsInPath != null && objectsInPath.Contains(value))
             {
@@ -121,7 +132,7 @@ namespace NLog.Targets
             }
             else if ((str = value as string) != null)
             {
-                returnValue = QuoteValue(JsonStringEscape(str, escapeUnicode));
+                returnValue = QuoteValue(JsonStringEscape(str, options.EscapeUnicode));
             }
             else if ((dict = value as IDictionary) != null)
             {
@@ -130,11 +141,11 @@ namespace NLog.Targets
                 var set = AddToSet(objectsInPath, value);
                 foreach (DictionaryEntry de in dict)
                 {
-                    var keyJson = SerializeObject(de.Key, escapeUnicode, set, depth + 1, format);
+                    var keyJson = SerializeObject(de.Key, options, set, depth + 1);
                     if (!string.IsNullOrEmpty(keyJson))
                     {
 
-                        var valueJson = SerializeObject(de.Value, escapeUnicode, set, depth + 1, format);
+                        var valueJson = SerializeObject(de.Value, options, set, depth + 1);
                         if (valueJson != null)
                         {
                             list = list ?? new List<string>();
@@ -159,7 +170,7 @@ namespace NLog.Targets
                 var set = AddToSet(objectsInPath, value);
                 foreach (var val in enumerable)
                 {
-                    var valueJson = SerializeObject(val, escapeUnicode, set, depth + 1, format);
+                    var valueJson = SerializeObject(val, options, set, depth + 1);
                     if (valueJson != null)
                     {
                         list = list ?? new List<string>();
@@ -179,10 +190,38 @@ namespace NLog.Targets
 
             else
             {
+
+
+
+
                 IFormattable formattable;
-                if (format != null && (formattable = value as IFormattable) != null)
+                var format = options.Format;
+                var hasFormat = !string.IsNullOrWhiteSpace(format);
+                if ((options.FormatProvider != null || hasFormat) && (formattable = value as IFormattable) != null)
                 {
-                    returnValue = formattable.ToString("{0}", format);
+                    TypeCode objTypeCode = Convert.GetTypeCode(value);
+
+                    if (hasFormat)
+                    {
+                        if (options.FormatProvider == null)
+                        {
+                            var culture = CreateFormatProvider();
+
+                            options.FormatProvider = culture;
+                        }
+                        returnValue = string.Format(options.FormatProvider, "{0:" + format + "}", value);
+                        
+                    }
+                    else
+                    {
+                        //format provider passed without FormatProvider
+                        returnValue = formattable.ToString("", options.FormatProvider);
+                    }
+                    if (!SkipQuotes(objTypeCode))
+                    {
+                        returnValue = QuoteValue(returnValue);
+                    }
+
                 }
                 else
                 {
@@ -197,10 +236,10 @@ namespace NLog.Targets
                         try
                         {
                             var set = AddToSet(objectsInPath, value);
-                            var sb = new StringBuilder();
 
-                            SerializeObjectProperties(sb, value, format, set, depth);
-                            returnValue = sb.ToString();
+
+                            returnValue = SerializeProperties(value, options, set, depth);
+
                         }
                         catch
                         {
@@ -212,7 +251,7 @@ namespace NLog.Targets
                     {
 
                         bool encodeStringValue;
-                        string escapedJsonString = JsonStringEncode(value, objTypeCode, escapeUnicode, out encodeStringValue);
+                        string escapedJsonString = SerializePrimitive(value, objTypeCode, options.EscapeUnicode, out encodeStringValue);
                         if (escapedJsonString != null && encodeStringValue)
                             returnValue = QuoteValue(escapedJsonString);
                         else
@@ -222,6 +261,20 @@ namespace NLog.Targets
             }
 
             return returnValue;
+        }
+
+        private static CultureInfo CreateFormatProvider()
+        {
+#if SILVERLIGHT
+                            var culture = new CultureInfo("en-US");
+#else
+            var culture = new CultureInfo("en-US", false);
+#endif
+            var numberFormat = culture.NumberFormat;
+            numberFormat.NumberGroupSeparator = string.Empty;
+            numberFormat.NumberDecimalSeparator = ".";
+            numberFormat.NumberGroupSizes = new int[] { 0 };
+            return culture;
         }
 
         private static string QuoteValue(string value)
@@ -237,7 +290,7 @@ namespace NLog.Targets
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <param name="encodeString">Should string be JSON encoded with quotes?</param>
         /// <returns>Object value converted to JSON escaped string</returns>
-        internal static string JsonStringEncode(object value, TypeCode objTypeCode, bool escapeUnicode, out bool encodeString)
+        internal static string SerializePrimitive(object value, TypeCode objTypeCode, bool escapeUnicode, out bool encodeString)
         {
             string stringValue = Internal.XmlHelper.XmlConvertToString(value, objTypeCode);
 
@@ -250,18 +303,26 @@ namespace NLog.Targets
             if (objTypeCode != TypeCode.String)
             {
                 encodeString = false;
-
-                if (objTypeCode == TypeCode.Empty)
-                    return stringValue; // Don't put quotes around null values
-                if (objTypeCode == TypeCode.Boolean)
-                    return stringValue; // Don't put quotes around boolean values
-                if (IsNumericTypeCode(objTypeCode))
-                    return stringValue; // Don't put quotes around numeric values
+                if (SkipQuotes(objTypeCode))
+                    return stringValue;
             }
 
             encodeString = true;
             return JsonStringEscape(stringValue, escapeUnicode);
         }
+
+        /// <summary>
+        /// No quotes needed for this type?
+        /// </summary>
+        /// <param name="objTypeCode"></param>
+        /// <returns></returns>
+        private static bool SkipQuotes(TypeCode objTypeCode)
+        {
+            return (objTypeCode == TypeCode.Empty  // Don't put quotes around null values
+                || objTypeCode == TypeCode.Boolean
+                || IsNumericTypeCode(objTypeCode));
+        }
+
 
         private static bool IsNumericTypeCode(TypeCode objTypeCode)
         {
@@ -380,17 +441,18 @@ namespace NLog.Targets
                 return escapeUnicode && ch > 127;
         }
 
-        private void SerializeObjectProperties(StringBuilder sb, object value, IFormatProvider format, HashSet<object> objectsInPath, int depth)
+        private string SerializeProperties(object value, JsonSerializeOptions options,
+            HashSet<object> objectsInPath, int depth)
         {
+
             var props = GetProps(value);
 
             if (props.Length == 0)
             {
                 //no props
-                sb.Append(QuoteValue(value.ToString()));
-                return;
+                return QuoteValue(value.ToString());
             }
-
+            var sb = new StringBuilder();
             sb.Append('{');
 
             var isFirst = true;
@@ -401,7 +463,7 @@ namespace NLog.Targets
                 var propValue = prop.GetValue(value, null);
                 if (propValue != null)
                 {
-                    var serializedProperty = SerializeObject(propValue, false, objectsInPath, depth + 1, format);
+                    var serializedProperty = SerializeObject(propValue, options, objectsInPath, depth + 1);
 
                     if (serializedProperty != null)
                     {
@@ -410,16 +472,25 @@ namespace NLog.Targets
                             sb.Append(", ");
                         }
                         isFirst = false;
-                        sb.Append("\"");
-                        //no escape needed as properties don't have quotes
-                        sb.Append(prop.Name);
-                        sb.Append("\"");
+                        if (options.QuoteKeys)
+                        {
+                            sb.Append("\"");
+                            //no escape needed as properties don't have quotes
+                            sb.Append(prop.Name);
+                            sb.Append("\"");
+                        }
+                        else
+                        {
+                            sb.Append(prop.Name);
+                        }
+
                         sb.Append(":");
                         sb.Append(serializedProperty);
                     }
                 }
             }
             sb.Append('}');
+            return sb.ToString();
         }
 
         /// <summary>

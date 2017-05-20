@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -56,6 +57,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
@@ -394,6 +396,7 @@
     <Compile Include="Targets\FileTarget.cs" />
     <Compile Include="Targets\IFileCompressor.cs" />
     <Compile Include="Targets\IJsonSerializer.cs" />
+    <Compile Include="Targets\JsonSerializeOptions.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />
