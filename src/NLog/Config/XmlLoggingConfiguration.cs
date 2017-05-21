@@ -607,11 +607,23 @@ namespace NLog.Config
 
             var children = nlogElement.Children.ToList();
 
+            //target elements should be parsed before rule elements, so move rule elements to the end of children list
+            var ruleElements = children.Where(t => t.LocalName.ToUpper(CultureInfo.InvariantCulture) == "RULES").ToList();
+            children.RemoveAll(t => t.LocalName.ToUpper(CultureInfo.InvariantCulture) == "RULES");
+            children.AddRange(ruleElements);
+
             //first load the extensions, as the can be used in other elements (targets etc)
             var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase)).ToList();
             foreach (var extensionsChild in extensionsChilds)
             {
                 this.ParseExtensionsElement(extensionsChild, Path.GetDirectoryName(filePath));
+            }
+
+            //target elements should be parsed before rule elements, as target elements are referenced by rule elements
+            var targetChilds = children.Where(child => child.LocalName.Equals("TARGETS", StringComparison.InvariantCultureIgnoreCase)).ToList();
+            foreach (var targetChild in targetChilds)
+            {
+                this.ParseTargetsElement(targetChild);
             }
 
             //parse all other direct elements
@@ -629,7 +641,7 @@ namespace NLog.Config
 
                     case "APPENDERS":
                     case "TARGETS":
-                        this.ParseTargetsElement(child);
+                        //already parsed
                         break;
 
                     case "VARIABLE":
