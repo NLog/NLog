@@ -244,7 +244,7 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        returnValue = SerializePrimitive(value, objTypeCode, options.EscapeUnicode);
+                        returnValue = SerializePrimitive(value, objTypeCode, options.EscapeUnicode, options.EnumAsString);
                     }
                 }
             }
@@ -277,9 +277,17 @@ namespace NLog.Targets
         /// <param name="value">Object value</param>
         /// <param name="objTypeCode">Object TypeCode</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
+        /// <param name="enumAsString">Enum as string value?</param>
         /// <returns>Object value converted to JSON escaped string</returns>
-        internal static string SerializePrimitive(object value, TypeCode objTypeCode, bool escapeUnicode)
+        internal static string SerializePrimitive(object value, TypeCode objTypeCode, bool escapeUnicode, bool enumAsString)
         {
+
+            if (enumAsString && IsNumericTypeCode(objTypeCode) && value.GetType().IsEnum)
+            {
+                //enum as string
+                return QuoteValue(Convert.ToString(value, CultureInfo.InvariantCulture));
+            }
+
             string stringValue = Internal.XmlHelper.XmlConvertToString(value, objTypeCode);
 
             if (stringValue == null)

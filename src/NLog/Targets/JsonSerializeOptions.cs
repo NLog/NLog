@@ -60,13 +60,21 @@ namespace NLog.Targets
         /// <summary>
         /// Should non-ascii characters be encoded
         /// </summary>
+        [DefaultValue(false)]
         public bool EscapeUnicode { get; set; }
+
+        /// <summary>
+        /// Serialize enum as string value
+        /// </summary>
+        [DefaultValue(true)]
+        public bool EnumAsString { get; set; }
 
 
         /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
         public JsonSerializeOptions()
         {
             QuoteKeys = true;
+            EnumAsString = true;
         }
     }
 }

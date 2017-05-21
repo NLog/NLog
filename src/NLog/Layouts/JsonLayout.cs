@@ -210,7 +210,7 @@ namespace NLog.Layouts
         {
             TypeCode objTypeCode = Convert.GetTypeCode(propertyValue);
 
-            string propStringValue = Targets.DefaultJsonSerializer.SerializePrimitive(propertyValue, objTypeCode, true);
+            string propStringValue = Targets.DefaultJsonSerializer.SerializePrimitive(propertyValue, objTypeCode, true, true);
             if (!string.IsNullOrEmpty(propStringValue))
             {
                 AppendJsonAttributeValue(propName, false, propStringValue, sb);

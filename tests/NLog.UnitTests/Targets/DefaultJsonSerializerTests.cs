@@ -32,6 +32,9 @@
 // 
 
 using System.Globalization;
+using System.Web.Http.Routing;
+using NLog.Config;
+using UrlHelper = NLog.Internal.UrlHelper;
 
 namespace NLog.UnitTests.Targets
 {
@@ -293,6 +296,32 @@ namespace NLog.UnitTests.Targets
             var actual = _serializer.SerializeObject(newGuid);
             Assert.Equal("\"" + newGuid.ToString() + "\"", actual);
         }
+
+
+        [Fact]
+        public void SerializeEnum_Test()
+        {
+            var val = ExceptionRenderingFormat.Method;
+            var actual = _serializer.SerializeObject(val);
+            Assert.Equal("\"Method\"", actual);
+        }
+
+        [Fact]
+        public void SerializeEnumInt_Test()
+        {
+            var val = ExceptionRenderingFormat.Method;
+            var actual = _serializer.SerializeObject(val, new JsonSerializeOptions() {EnumAsString = false});
+            Assert.Equal("4", actual);
+        }
+
+        [Fact]
+        public void SerializeFlagEnum_Test()
+        {
+            var val = UrlHelper.EscapeEncodingFlag.LegacyRfc2396 | UrlHelper.EscapeEncodingFlag.LowerCaseHex;
+            var actual = _serializer.SerializeObject(val);
+            Assert.Equal("\"LegacyRfc2396, LowerCaseHex\"", actual);
+        }
+
         [Fact]
         public void SerializeObject_Test()
         {
