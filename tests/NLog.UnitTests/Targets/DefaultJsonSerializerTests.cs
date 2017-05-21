@@ -97,6 +97,25 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeUnicode_test()
+        {
+            var actual = _serializer.SerializeObject("©");
+            Assert.Equal("\"©\"", actual);
+        }
+
+        [Fact]
+        public void SerializeUnicodeInAnomObject_test()
+        {
+            var item = new
+            {
+                text = "©"
+            };
+
+            var actual = _serializer.SerializeObject(item);
+            Assert.Equal("{\"text\":\"©\"}", actual);
+        }
+
+        [Fact]
         public void ReferenceLoopInDictionary_Test()
         {
             var d = new Dictionary<string, object>();
