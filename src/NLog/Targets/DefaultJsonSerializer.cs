@@ -225,16 +225,19 @@ namespace NLog.Targets
                     TypeCode objTypeCode = Convert.GetTypeCode(value);
                     if (objTypeCode == TypeCode.Object)
                     {
-                        if (value is Guid || value is TimeSpan || value is DateTimeOffset)
+                        if (value is Guid || value is TimeSpan)
                         {
                             //object without property, to string
                             return QuoteValue(Convert.ToString(value, CultureInfo.InvariantCulture));
+                        }
+                        if (value is DateTimeOffset)
+                        {
+                            return QuoteValue(string.Format("{0:yyyy-MM-dd HH:mm:ss zzz}", value));
                         }
                         try
                         {
                             var set = AddToSet(objectsInPath, value);
                             returnValue = SerializeProperties(value, options, set, depth);
-
                         }
                         catch
                         {
