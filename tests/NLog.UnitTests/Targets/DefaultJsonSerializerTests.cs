@@ -32,7 +32,6 @@
 // 
 
 using System.Globalization;
-using System.Web.Http.Routing;
 using NLog.Config;
 using UrlHelper = NLog.Internal.UrlHelper;
 
