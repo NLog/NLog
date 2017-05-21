@@ -639,7 +639,7 @@ namespace NLog.Config
                         break;
 
                     case "RULES":
-                        //propone parsing rules to the end
+                        //postpone parsing <rules> to the end
                         rulesList.Add(child);
                         break;
 
