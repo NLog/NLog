@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
+using NLog.Internal;
 
 namespace NLog.Targets
 {
@@ -192,7 +193,7 @@ namespace NLog.Targets
             {
                 IFormattable formattable;
                 var format = options.Format;
-                var hasFormat = !string.IsNullOrWhiteSpace(format);
+                var hasFormat = !StringHelpers.IsNullOrWhiteSpace(format);
                 if ((options.FormatProvider != null || hasFormat) && (formattable = value as IFormattable) != null)
                 {
                     TypeCode objTypeCode = Convert.GetTypeCode(value);
@@ -224,10 +225,10 @@ namespace NLog.Targets
                     TypeCode objTypeCode = Convert.GetTypeCode(value);
                     if (objTypeCode == TypeCode.Object)
                     {
-                        if (value is Guid || value is TimeSpan)
+                        if (value is Guid || value is TimeSpan || value is DateTimeOffset)
                         {
                             //object without property, to string
-                            return QuoteValue(value.ToString());
+                            return QuoteValue(Convert.ToString(value, CultureInfo.InvariantCulture));
                         }
                         try
                         {
@@ -433,7 +434,7 @@ namespace NLog.Targets
             if (props.Length == 0)
             {
                 //no props
-                return QuoteValue(value.ToString());
+                return QuoteValue(Convert.ToString(value, CultureInfo.InvariantCulture));
             }
             var sb = new StringBuilder();
             sb.Append('{');
