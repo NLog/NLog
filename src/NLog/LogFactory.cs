@@ -1356,6 +1356,7 @@ namespace NLog
                 // TODO: Test if loggerCache.Values.ToList<Logger>() can be used for the conversion instead.
                 List<Logger> values = new List<Logger>(loggerCache.Count);
 
+                //new list for prevent InvalidOperationException on Travis/Mono.
                 List<WeakReference> loggerReferences = new List<WeakReference>(loggerCache.Values.ToList());
 
                 foreach (WeakReference loggerReference in loggerReferences)
