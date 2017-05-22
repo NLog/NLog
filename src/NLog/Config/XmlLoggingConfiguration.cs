@@ -614,6 +614,8 @@ namespace NLog.Config
                 this.ParseExtensionsElement(extensionsChild, Path.GetDirectoryName(filePath));
             }
 
+            var rulesList = new List<NLogXmlElement>();
+
             //parse all other direct elements
             foreach (var child in children)
             {
@@ -637,7 +639,8 @@ namespace NLog.Config
                         break;
 
                     case "RULES":
-                        this.ParseRulesElement(child, this.LoggingRules);
+                        //postpone parsing <rules> to the end
+                        rulesList.Add(child);
                         break;
 
                     case "TIME":
@@ -648,6 +651,12 @@ namespace NLog.Config
                         InternalLogger.Warn("Skipping unknown node: {0}", child.LocalName);
                         break;
                 }
+            }
+
+
+            foreach (var ruleChild in rulesList)
+            {
+                this.ParseRulesElement(ruleChild, this.LoggingRules);
             }
         }
 
@@ -1128,7 +1137,7 @@ namespace NLog.Config
             {
                 InternalLogger.Error(exception, "Error when including '{0}'.", newFileName);
 
-              
+
                 if (ignoreErrors)
                 {
                     return;
@@ -1139,7 +1148,7 @@ namespace NLog.Config
                     throw;
                 }
 
-               
+
 
                 throw new NLogConfigurationException("Error when including: " + newFileName, exception);
             }
@@ -1166,7 +1175,7 @@ namespace NLog.Config
                 }
 
                 var filename = Path.GetFileName(fileMask);
-                
+
                 if (filename == null)
                 {
                     InternalLogger.Warn("filename is empty for include of '{0}'", fileMask);
