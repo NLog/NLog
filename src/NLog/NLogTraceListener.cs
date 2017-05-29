@@ -39,12 +39,9 @@ namespace NLog
     using System.Collections;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Globalization;
     using System.Reflection;
     using System.Text;
     using System.Xml;
-    using NLog.Internal;
-    using NLog.Time;
 
     /// <summary>
     /// TraceListener which routes all messages through NLog.
@@ -371,19 +368,18 @@ namespace NLog
         /// </summary>
         protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
         {
-            var ev = new LogEventInfo();
+            loggerName = (loggerName ?? this.Name) ?? string.Empty;
 
-            ev.LoggerName = (loggerName ?? this.Name) ?? string.Empty;
-            
+            StackTrace stackTrace = null;
+            int userFrameIndex = -1;
             if (this.AutoLoggerName)
             {
-                var stack = new StackTrace();
-                int userFrameIndex = -1;
+                stackTrace = new StackTrace();
                 MethodBase userMethod = null;
 
-                for (int i = 0; i < stack.FrameCount; ++i)
+                for (int i = 0; i < stackTrace.FrameCount; ++i)
                 {
-                    var frame = stack.GetFrame(i);
+                    var frame = stackTrace.GetFrame(i);
                     var method = frame.GetMethod();
 
                     if (method.DeclaringType == this.GetType())
@@ -405,14 +401,32 @@ namespace NLog
 
                 if (userFrameIndex >= 0)
                 {
-                    ev.SetStackTrace(stack, userFrameIndex);
                     if (userMethod.DeclaringType != null)
                     {
-                        ev.LoggerName = userMethod.DeclaringType.FullName;
+                        loggerName = userMethod.DeclaringType.FullName;
                     }
                 }
             }
 
+            ILogger logger;
+            if (this.LogFactory != null)
+            {
+                logger = this.LogFactory.GetLogger(loggerName);
+            }
+            else
+            {
+                logger = LogManager.GetLogger(loggerName);
+            }
+
+            logLevel = this.forceLogLevel ?? logLevel;
+            if (!logger.IsEnabled(logLevel))
+            {
+                return; // We are done
+            }
+
+            var ev = new LogEventInfo();
+            ev.LoggerName = loggerName;
+            ev.Level = logLevel;
             if (eventType.HasValue)
             {
                 ev.Properties.Add("EventType", eventType.Value);
@@ -423,7 +437,6 @@ namespace NLog
                 ev.Properties.Add("RelatedActivityID", relatedActiviyId.Value);
             }
 
-            ev.TimeStamp = TimeSource.Current.Time;
             ev.Message = message;
             ev.Parameters = arguments;
             ev.Level = this.forceLogLevel ?? logLevel;
@@ -433,14 +446,9 @@ namespace NLog
                 ev.Properties.Add("EventID", eventId.Value);
             }
 
-            ILogger logger;
-            if (this.LogFactory != null)
+            if (stackTrace != null && userFrameIndex >= 0)
             {
-                logger = this.LogFactory.GetLogger(ev.LoggerName);
-            }
-            else
-            {
-                logger = LogManager.GetLogger(ev.LoggerName);
+                ev.SetStackTrace(stackTrace, userFrameIndex);
             }
 
             logger.Log(ev);
