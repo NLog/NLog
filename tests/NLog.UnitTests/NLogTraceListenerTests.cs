@@ -295,7 +295,28 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Warn Mary had a little lamb 0");
         }
 
-        
+        [Fact]
+        public void FilterTraceTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message} ${event-context:EventID}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Trace' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            TraceSource ts = CreateTraceSource();
+            ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace, ForceLogLevel = LogLevel.Warn, Filter = new EventTypeFilter(SourceLevels.Error) });
+
+            // force all logs to be Warn, DefaultLogLevel has no effect on TraceSource
+            ts.TraceEvent(TraceEventType.Error, 0, "Quick brown fox");
+            AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox 0");
+
+            ts.TraceInformation("Mary had {0} lamb", "a little");
+            AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox 0");
+        }
+
         private static TraceSource CreateTraceSource()
         {
             var ts = new TraceSource("MySource1", SourceLevels.All);

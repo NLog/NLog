@@ -235,6 +235,9 @@ namespace NLog
         /// <param name="data">The trace data to emit.</param>
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data)
         {
+            if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, string.Empty, null, data, null))
+                return;
+
             this.TraceData(eventCache, source, eventType, id, new object[] { data });
         }
 
@@ -248,6 +251,9 @@ namespace NLog
         /// <param name="data">An array of objects to emit as data.</param>
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, params object[] data)
         {
+            if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, string.Empty, null, null, data))
+                return;
+
             var sb = new StringBuilder();
             for (int i = 0; i < data.Length; ++i)
             {
@@ -273,6 +279,9 @@ namespace NLog
         /// <param name="id">A numeric identifier for the event.</param>
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id)
         {
+            if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, string.Empty, null, null, null))
+                return;
+
             this.ProcessLogEventInfo(TranslateLogLevel(eventType), source, string.Empty, null, id, eventType, null);
         }
 
@@ -287,6 +296,9 @@ namespace NLog
         /// <param name="args">An object array containing zero or more objects to format.</param>
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string format, params object[] args)
         {
+            if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, format, args, null, null))
+                return;
+
             this.ProcessLogEventInfo(TranslateLogLevel(eventType), source, format, args, id, eventType, null);
         }
 
@@ -300,6 +312,9 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
         {
+            if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, message, null, null, null))
+                return;
+
             this.ProcessLogEventInfo(TranslateLogLevel(eventType), source, message, null, id, eventType, null);
         }
 
@@ -313,6 +328,9 @@ namespace NLog
         /// <param name="relatedActivityId">A <see cref="T:System.Guid"/>  object identifying a related activity.</param>
         public override void TraceTransfer(TraceEventCache eventCache, string source, int id, string message, Guid relatedActivityId)
         {
+            if (Filter != null && !Filter.ShouldTrace(eventCache, source, TraceEventType.Transfer, id, message, null, null, null))
+                return;
+
             this.ProcessLogEventInfo(LogLevel.Debug, source, message, null, id, TraceEventType.Transfer, relatedActivityId);
         }
 
