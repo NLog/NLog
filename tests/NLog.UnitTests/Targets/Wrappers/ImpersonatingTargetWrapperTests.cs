@@ -49,7 +49,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     {
         private const string NLogTestUser = "NLogTestUser";
         private const string NLogTestUserPassword = "BC@57acasd123";
-        private const string Localhost = "127.0.0.1";
+        private string Localhost = Environment.MachineName;
 
         public ImpersonatingTargetWrapperTests()
         {
