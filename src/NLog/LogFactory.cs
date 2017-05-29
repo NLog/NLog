@@ -790,7 +790,6 @@ namespace NLog
                     var xmlConfig = newConfig as XmlLoggingConfiguration;
                     if (xmlConfig != null)
                     {
-
                         if (!xmlConfig.InitializeSucceeded.HasValue || !xmlConfig.InitializeSucceeded.Value)
                         {
                             throw new NLogConfigurationException("Configuration.Reload() failed. Invalid XML?");
@@ -1242,11 +1241,15 @@ namespace NLog
 
                 if (this.reloadTimer == null)
                 {
-                    this.reloadTimer = new Timer(
-                            this.ReloadConfigOnTimer,
-                            this.Configuration,
-                            LogFactory.ReconfigAfterFileChangedTimeout,
-                            Timeout.Infinite);
+                    var configuration = this.Configuration;
+                    if (configuration != null)
+                    {
+                        this.reloadTimer = new Timer(
+                                this.ReloadConfigOnTimer,
+                                configuration,
+                                LogFactory.ReconfigAfterFileChangedTimeout,
+                                Timeout.Infinite);
+                    }
                 }
                 else
                 {
