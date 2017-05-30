@@ -1263,11 +1263,10 @@ namespace NLog
         /// <summary>
         /// Logger cache key.
         /// </summary>
-        internal class LoggerCacheKey : IEquatable<LoggerCacheKey>
+        internal struct LoggerCacheKey : IEquatable<LoggerCacheKey>
         {
-            public string Name { get; private set; }
-
-            public Type ConcreteType { get; private set; }
+            public readonly string Name;
+            public readonly Type ConcreteType;
 
             public LoggerCacheKey(string name, Type concreteType)
             {
@@ -1293,13 +1292,7 @@ namespace NLog
             /// <returns>True if objects are equal, false otherwise.</returns>
             public override bool Equals(object obj)
             {
-                LoggerCacheKey key = obj as LoggerCacheKey;
-                if (ReferenceEquals(key, null))
-                {
-                    return false;
-                }
-
-                return (this.ConcreteType == key.ConcreteType) && (key.Name == this.Name);
+                return obj is LoggerCacheKey && Equals((LoggerCacheKey)obj);
             }
 
             /// <summary>
@@ -1309,12 +1302,7 @@ namespace NLog
             /// <returns>True if objects are equal, false otherwise.</returns>
             public bool Equals(LoggerCacheKey key)
             {
-                if (ReferenceEquals(key, null))
-                {
-                    return false;
-                }
-
-                return (this.ConcreteType == key.ConcreteType) && (key.Name == this.Name);
+                return (this.ConcreteType == key.ConcreteType) && string.Equals(key.Name, this.Name, StringComparison.Ordinal);
             }
         }
 
