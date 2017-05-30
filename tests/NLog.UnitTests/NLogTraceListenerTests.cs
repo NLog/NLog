@@ -295,6 +295,49 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Warn Mary had a little lamb 0");
         }
 
+        [Fact]
+        public void FilterTrace()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message} ${event-context:EventID}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Trace' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            TraceSource ts = CreateTraceSource();
+            Func<TraceEventCache, string, TraceEventType, int, string, object[], object, object[], bool> resultFunc =
+                (cache, source, eventType, id, formatOrMessage, args, data1, data) =>
+                {
+                    return formatOrMessage.Contains("fox");
+                };
+            ts.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace, ForceLogLevel = LogLevel.Warn, Filter = new TraceFilterMock(resultFunc) });
+
+            // force all logs to be Warn, DefaultLogLevel has no effect on TraceSource
+            ts.TraceInformation("Quick brown fox");
+            AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox 0");
+
+            ts.TraceInformation("Mary had {0} lamb", "a little");
+            AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox 0");
+        }
+
+        private class TraceFilterMock : TraceFilter
+        {
+
+            private readonly Func<TraceEventCache, string, TraceEventType, int, string, object[], object, object[], bool> resultFunc;
+
+            public TraceFilterMock(Func<TraceEventCache, string, TraceEventType, int, string, object[], object, object[], bool> resultFunc)
+            {
+                this.resultFunc = resultFunc;
+            }
+
+            public override bool ShouldTrace(TraceEventCache cache, string source, TraceEventType eventType, int id, string formatOrMessage, object[] args, object data1, object[] data)
+            {
+                return resultFunc(cache, source, eventType, id, formatOrMessage, args, data1, data);
+            }
+        }
+
         
         private static TraceSource CreateTraceSource()
         {
