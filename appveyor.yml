@@ -7,7 +7,7 @@ environment:
     secure: GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI
 
 build_script:     
-  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildVersion=4.4.9  /p:AssemblyFileVersion=4.4.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
+  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildVersion=4.4.10  /p:AssemblyFileVersion=4.4.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
   - msbuild  src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true
   - choco install "msbuild-sonarqube-runner" -y
   - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { MSBuild.SonarQube.Runner.exe begin /k:"nlog" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=$env:sonar_token" /d:"sonar.analysis.mode=preview" /d:"sonar.github.pullRequest=$env:APPVEYOR_PULL_REQUEST_NUMBER" /d:"sonar.github.repository=nlog/nlog" /d:"sonar.github.oauth=$env:github_auth_token" }
