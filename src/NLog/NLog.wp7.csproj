@@ -425,6 +425,7 @@
     <Compile Include="Targets\Wrappers\FallbackGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\FilteringRule.cs" />
     <Compile Include="Targets\Wrappers\FilteringTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\FlushTriggerWrapper.cs" />
     <Compile Include="Targets\Wrappers\ImpersonatingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\LimitingTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\LogOnProviderType.cs" />
