@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Threading.Tasks;
 using NLog.Common;
 using NLog.Config;
 using NLog.Targets;
@@ -150,6 +151,68 @@ namespace NLog.UnitTests.LayoutRenderers
             }
             finally
             {
+                Thread.CurrentPrincipal = oldPrincipal;
+            }
+        }
+
+
+        /// <summary>
+        /// Test writing ${identity} async
+        /// </summary>
+        [Fact]
+        public async Task MultiThreadedIdentityTestAsync() {
+            var oldPrincipal = Thread.CurrentPrincipal;
+            try {
+                ConfigurationItemFactory.Default.Targets
+                            .RegisterDefinition("CSharpEventTarget", typeof(CSharpEventTarget));
+
+                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+ 
+      internalLogLevel='Debug'
+      throwExceptions='true' >
+
+  <targets async='true'>
+    <target name='target1' xsi:type='CSharpEventTarget' layout='${identity}' />
+  </targets>
+
+  <rules>
+    <logger name='*' writeTo='target1' />
+  </rules>
+</nlog>
+");
+
+                try {
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("USER", "type"), null);
+                    var continuationHit = new ManualResetEvent(false);
+                    int threadId = Thread.CurrentThread.ManagedThreadId;
+                    int asyncThreadId = 0;
+                    IIdentity asyncThreadIdentity = null;
+
+                    var asyncTarget = LogManager.Configuration.FindTargetByName<AsyncTargetWrapper>("target1");
+                    var target = asyncTarget?.WrappedTarget as CSharpEventTarget;
+                    Assert.NotNull(target);
+
+                    target.EventWritten += (logevent, rendered1, asyncThreadId1) => {
+                        asyncThreadIdentity = Thread.CurrentPrincipal.Identity;
+                        asyncThreadId = Thread.CurrentThread.ManagedThreadId;
+                        continuationHit.Set();
+                    };
+
+                    var logger = LogManager.GetCurrentClassLogger();
+                    await Task.Delay(1);
+                    logger.Debug("test write");
+
+                    Assert.True(continuationHit.WaitOne());
+
+                    //should be written in another thread.
+                    Assert.Equal("USER", asyncThreadIdentity?.Name);
+                    Assert.NotEqual(threadId, asyncThreadId);
+                } finally {
+                    LogManager.Configuration.Close();
+                }
+            } finally {
                 Thread.CurrentPrincipal = oldPrincipal;
             }
         }
