@@ -1,6 +1,28 @@
 See also [releases](https://github.com/NLog/NLog/releases) and [milestones](https://github.com/NLog/NLog/milestones).
 
 
+
+### v4.4.10 (2017/05/31)
+
+#### Features
+
+- [#2110](https://github.com/nlog/nlog/pull/2110) NdlcLayoutRenderer - Nested Diagnostics Logical Context (@snakefoot)
+- [#2114](https://github.com/nlog/nlog/pull/2114) EventlogTarget: Support for MaximumKilobytes (@304NotModified, @ajitpeter)
+- [#2109](https://github.com/nlog/nlog/pull/2109) JsonLayout - IncludeMdc and IncludeMdlc (@snakefoot)
+
+#### Fixes
+
+- [#2138](https://github.com/nlog/nlog/pull/2138) ReloadConfigOnTimer - fix potential NullReferenceException (@snakefoot)
+- [#2113](https://github.com/nlog/nlog/pull/2113) BugFix: <targets> after <rules> won't work (@304NotModified, @Moafak)
+- [#2131](https://github.com/nlog/nlog/pull/2131) Fix : LogManager.ReconfigureExistingLoggers() could throw InvalidOperationException (@304NotModified, @jpdillingham)
+
+#### Improvements
+
+- [#2137](https://github.com/nlog/nlog/pull/2137) NLogTraceListener - Reduce overhead by checking LogLevel (@snakefoot)
+- [#2112](https://github.com/nlog/nlog/pull/2112) LogReceiverWebServiceTarget - Ensure PrecalculateVolatileLayouts (@snakefoot)
+- [#2103](https://github.com/nlog/nlog/pull/2103) Improve Install of targets / crash Install on Databasetarget. (@M4ttsson)
+- [#2101](https://github.com/nlog/nlog/pull/2101) LogFactory.Shutdown - Add warning on target flush timeout (@snakefoot)
+
 ### v4.4.9
  
 #### Features
