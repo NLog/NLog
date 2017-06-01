@@ -1,0 +1,30 @@
+{
+    "version": "1.0.0-*",
+    "description": "NlogDotNetCore Console Application",
+    "authors": [ "Lukasz Pyrzyk" ],
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+
+    "compilationOptions": {
+        "emitEntryPoint": true
+    },
+
+    "dependencies": {
+        "NLog": "4.4.0-alpha1"
+    },
+
+    "commands": {
+        "NlogDotNetCore": "NlogDotNetCore"
+    },
+
+    "frameworks": {
+        "dnx451": { },
+        "dnxcore50": {
+            "dependencies": {
+                "Microsoft.CSharp": "4.0.1-*",
+                "System.Console": "4.0.0-*"
+            }
+        }
+    }
+}
