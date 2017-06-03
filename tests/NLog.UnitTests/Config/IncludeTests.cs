@@ -179,7 +179,7 @@ namespace NLog.UnitTests.Config
             CreateConfigFile(tempPath, "main.nlog", config);
             string fileToLoad = Path.Combine(tempPath, "main.nlog");
 
-            Assert.DoesNotThrow(() => new XmlLoggingConfiguration(fileToLoad));
+            new XmlLoggingConfiguration(fileToLoad);
         }
 
         /// <summary>
