@@ -183,6 +183,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
             FileAppenderCache_GetFileCharacteristics(appenderFactory, fileTarget);
         }
 
+#if !MONO
         [Fact]
         public void FileAppenderCache_GetFileCharacteristics_Windows()
         {
@@ -193,7 +194,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
                 FileAppenderCache_GetFileCharacteristics(appenderFactory, fileTarget);
             }
         }
-
+#endif
         private void FileAppenderCache_GetFileCharacteristics(IFileAppenderFactory appenderFactory, ICreateFileParameters fileParameters)
         {
             // Invoke GetFileCharacteristics() on an Empty FileAppenderCache.
