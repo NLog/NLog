@@ -176,7 +176,7 @@
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
   </Target>
 
-  <Target Name="Build">
+  <Target Name="Build" DependsOnTargets="NuGetRestore">
     <PropertyGroup>
         <BuildInfoFileContent>
 // automatically generated
@@ -234,7 +234,7 @@
     <Exec Command='"$(BZip2)" -f static.tar' WorkingDirectory="$(WebsiteDir)" />
   </Target>
 
-  <Target Name="RunTests">
+  <Target Name="RunTests" >
     <!-- <CallTarget Targets="Mono2Test" Condition="'$(BuildMono2)'=='true'"/> -->
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
@@ -375,6 +375,10 @@
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
     <Exec Command='"$(NuGetTool)" pack NLog.Extended.nuspec -Symbols -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Extended" />
+  </Target>
+
+  <Target Name="NuGetRestore">
+   <Exec Command='"$(NuGetTool)" restore ..\..\src\NLog%(TargetFramework.ProjectFileSuffix).sln'  WorkingDirectory="NLog" />
   </Target>
 
   <Target Name="NuGetConfigPackage">
