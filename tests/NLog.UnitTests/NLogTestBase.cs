@@ -100,10 +100,10 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-#if !SILVERLIGHT
+
             System.Diagnostics.Trace.Listeners.Clear();
             System.Diagnostics.Debug.Listeners.Clear();
-#endif
+
             if (output != null)
                 System.Diagnostics.Trace.Listeners.Add(new XunitTraceListener(output));
         }

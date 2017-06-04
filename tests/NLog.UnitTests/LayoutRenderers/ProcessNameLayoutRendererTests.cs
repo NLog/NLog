@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
-
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -79,4 +77,3 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-#endif

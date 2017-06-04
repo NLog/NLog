@@ -125,8 +125,6 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expectedResult, consoleErrorWriter.ToString());
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
-
         [Fact]
         public void ConsoleEncodingTest()
         {
@@ -169,8 +167,6 @@ namespace NLog.UnitTests.Targets
             string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}-- footer --{0}", Environment.NewLine);
             Assert.Equal(expectedResult, consoleOutWriter.ToString());
         }
-
-#endif
 
 #if !NET3_5 && !MONO
 
