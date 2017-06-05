@@ -153,7 +153,7 @@ namespace NLog.Targets
             set
             {
                 if (value <= 0)
-                    throw new ArgumentException("MaxMessageLength cannot be zero or negative.");
+                    value = 16384;
 
                 this.maxMessageLength = value;
             }
@@ -383,7 +383,7 @@ namespace NLog.Targets
         /// <summary>
         /// (re-)create a event source, if it isn't there. Works only with fixed sourcenames.
         /// </summary>
-        /// <param name="fixedSource">sourcenaam. If source is not fixed (see <see cref="SimpleLayout.IsFixedText"/>, then pass <c>null</c> or emptystring.</param>
+        /// <param name="fixedSource">sourcename. If source is not fixed (see <see cref="SimpleLayout.IsFixedText"/>, then pass <c>null</c> or emptystring.</param>
         /// <param name="alwaysThrowError">always throw an Exception when there is an error</param>
         private void CreateEventSourceIfNeeded(string fixedSource, bool alwaysThrowError)
         {
