@@ -34,6 +34,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
+using Xunit.Abstractions;
 
 namespace NLog.UnitTests
 {
@@ -77,8 +78,7 @@ namespace NLog.UnitTests
             }
         }
 
-        protected NLogTestBase()
-            : this(null)
+        protected NLogTestBase() : this(null)
         {
         }
 

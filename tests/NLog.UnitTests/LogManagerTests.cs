@@ -32,6 +32,7 @@
 // 
 
 using JetBrains.Annotations;
+using Xunit.Abstractions;
 
 namespace NLog.UnitTests
 {
@@ -51,6 +52,13 @@ namespace NLog.UnitTests
 
     public class LogManagerTests : NLogTestBase
     {
+        private ITestOutputHelper Output { get; }
+
+        public LogManagerTests(ITestOutputHelper output) : base(output)
+        {
+            Output = output;
+        }
+
         [Fact]
         public void GetLoggerTest()
         {
@@ -273,7 +281,7 @@ namespace NLog.UnitTests
 
         private void OnConfigReloaded(object sender, LoggingConfigurationReloadedEventArgs e)
         {
-            Console.WriteLine("OnConfigReloaded success={0}", e.Succeeded);
+            Output.WriteLine("OnConfigReloaded success={0}", e.Succeeded);
             _reloadCounter++;
         }
 

@@ -128,8 +128,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                     {
                         AsyncLogEventInfo logEvent = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
                         logEvent.LogEvent.Message = "msg" + i;
-                        
-                        // Console.WriteLine("Pushing event {0}", i);
+
+                        // Output.WriteLine("Pushing event {0}", i);
                         pushingEvent = i;
                         queue.Enqueue(logEvent);
                     }

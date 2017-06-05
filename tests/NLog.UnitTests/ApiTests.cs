@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using Xunit.Abstractions;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -49,8 +51,11 @@ namespace NLog.UnitTests
         private Assembly nlogAssembly = typeof(LogManager).Assembly;
         private readonly Dictionary<Type, int> typeUsageCount = new Dictionary<Type, int>();
 
-        public ApiTests()
+        private ITestOutputHelper Output { get; }
+
+        public ApiTests(ITestOutputHelper output) : base(output)
         {
+            Output = output;
             allTypes = typeof(LogManager).Assembly.GetTypes();
         }
 
@@ -96,7 +101,7 @@ namespace NLog.UnitTests
                         continue;
                     }
 
-                    // Console.WriteLine("  {0}", method.Name);
+                    // Output.WriteLine("  {0}", method.Name);
                     try
                     {
                         this.IncrementUsageCount(method.ReturnType);
@@ -109,7 +114,8 @@ namespace NLog.UnitTests
                     catch (Exception ex)
                     {
                         // this sometimes throws on .NET Compact Framework, but is not fatal
-                        Console.WriteLine("EXCEPTION {0}", ex);
+
+                        Output.WriteLine("EXCEPTION {0}", ex);
                     }
                 }
             }
@@ -121,7 +127,7 @@ namespace NLog.UnitTests
             {
                 if (kvp.Value == 0)
                 {
-                    Console.WriteLine("Type '{0}' is not used.", kvp.Key);
+                    Output.WriteLine("Type '{0}' is not used.", kvp.Key);
                     unusedTypes.Add(kvp.Key);
                     sb.Append(kvp.Key.FullName).Append("\n");
                 }

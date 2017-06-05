@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using Xunit.Abstractions;
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -49,6 +51,13 @@ namespace NLog.UnitTests.Targets
 
     public class NetworkTargetTests : NLogTestBase
     {
+        private ITestOutputHelper Output { get; }
+
+        public NetworkTargetTests(ITestOutputHelper output) : base(output)
+        {
+            Output = output;
+        }
+
         [Fact]
         public void HappyPathDefaultsTest()
         {
@@ -615,22 +624,22 @@ namespace NLog.UnitTests.Targets
                     {
                         try
                         {
-                            // Console.WriteLine("Accepting...");
+                            // Output.WriteLine("Accepting...");
                             byte[] buffer = new byte[4096];
                             using (Socket connectedSocket = listener.EndAccept(result))
                             {
-                                // Console.WriteLine("Accepted...");
+                                // Output.WriteLine("Accepted...");
                                 int got;
                                 while ((got = connectedSocket.Receive(buffer, 0, buffer.Length, SocketFlags.None)) > 0)
                                 {
                                     resultStream.Write(buffer, 0, got);
                                 }
-                                // Console.WriteLine("Closing connection...");
+                                // Output.WriteLine("Closing connection...");
                             }
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine("Receive exception {0}", ex);
+                            Output.WriteLine("Receive exception {0}", ex);
                             receiveException = ex;
                         }
                         finally
@@ -650,7 +659,7 @@ namespace NLog.UnitTests.Targets
                     {
                         lock (exceptions)
                         {
-                            Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
+                            Output.WriteLine("{0} Write finished {1}", pendingWrites, ex);
                             exceptions.Add(ex);
                             pendingWrites--;
                             if (pendingWrites == 0)

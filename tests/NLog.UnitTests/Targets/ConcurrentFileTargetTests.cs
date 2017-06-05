@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using Xunit.Abstractions;
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -46,6 +48,11 @@ namespace NLog.UnitTests.Targets
     public class ConcurrentFileTargetTests : NLogTestBase
     {
         private ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.ConcurrentFileTargetTests");
+
+        //ITestOutputHelper won't work well - test crashes
+        //public ConcurrentFileTargetTests(ITestOutputHelper output) : base(output)
+        //{
+        //}
 
         private void ConfigureSharedFile(string mode, string fileName)
         {
@@ -167,6 +174,8 @@ namespace NLog.UnitTests.Targets
                         logFile,
                         numLogs.ToString(),
                         mode);
+
+                    
                 }
 
                 // In case we'd like to capture stdout, we would need to drain it continuously.
@@ -185,7 +194,6 @@ namespace NLog.UnitTests.Targets
                 bool verifyFileSize = files.Count > 1;
 
                 int[] maxNumber = new int[numProcesses];
-                Console.WriteLine("Verifying output file {0}", logFile);
                 foreach (var file in files)
                 {
                     using (StreamReader sr = File.OpenText(file))

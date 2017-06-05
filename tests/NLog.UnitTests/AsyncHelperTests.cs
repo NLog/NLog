@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using Xunit.Abstractions;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -41,6 +43,13 @@ namespace NLog.UnitTests
 
     public class AsyncHelperTests : NLogTestBase
     {
+        private ITestOutputHelper Output { get; }
+
+        public AsyncHelperTests(ITestOutputHelper output) : base(output)
+        {
+            Output = output;
+        }
+
         [Fact]
         public void OneTimeOnlyTest1()
         {
@@ -460,7 +469,7 @@ namespace NLog.UnitTests
                 AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
                     (i, cont) =>
                         {
-                            Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
+                            Output.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
                             lock (input)
                             {
                                 sum += i;
