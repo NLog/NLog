@@ -837,6 +837,7 @@ Dispose()
         {
             // delete database if it for some reason already exists 
             SQLiteTest.TryDropDatabase();
+            LogManager.ThrowExceptions = true;
 
             try
             {
@@ -862,6 +863,10 @@ Dispose()
                     testTarget.Install(context);
                 }
 
+                // check so table is created
+                var tableName = SQLiteTest.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogTestTable'");
+                Assert.Equal("NLogTestTable", tableName);
+
                 testTarget.CommandText = "INSERT INTO NLogTestTable (Message) VALUES (@message)";
                 testTarget.Parameters.Add(new DatabaseParameterInfo("@message", new NLog.Layouts.SimpleLayout("${message}")));
 
@@ -883,6 +888,66 @@ Dispose()
                 var logcount = SQLiteTest.IssueScalarQuery("SELECT count(1) FROM NLogTestTable");
 
                 Assert.Equal((long)2, logcount);
+            }
+            finally
+            {
+                SQLiteTest.TryDropDatabase();
+            }
+        }
+
+        [Fact]
+        public void SQLite_InstallAndLogMessage()
+        {
+            // delete database just in case
+            SQLiteTest.TryDropDatabase();
+
+            try
+            {
+                SQLiteTest.CreateDatabase();
+
+                var connectionString = SQLiteTest.ConnectionString;
+                
+                // TODO: also Mono
+                string dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
+
+                // Create log with xml config
+                LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
+                <targets>
+                    <target name='database' xsi:type='Database' dbProvider=""" + dbProvider + @""" connectionstring=""" + connectionString + @"""
+                        commandText='insert into NLogSqlLiteTest (Message) values (@message);'>
+                        <parameter name='@message' layout='${message}' />
+<install-command ignoreFailures=""false""
+                 text=""CREATE TABLE NLogSqlLiteTest (
+    Id int PRIMARY KEY,
+    Message varchar(100) NULL
+);""/>
+
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='database' />
+                </rules>
+            </nlog>");
+
+                //install 
+                InstallationContext context = new InstallationContext();
+                LogManager.Configuration.Install(context);
+
+                // check so table is created
+                var tableName = SQLiteTest.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogSqlLiteTest'");
+                Assert.Equal("NLogSqlLiteTest", tableName);
+
+                // start to log
+                var logger = LogManager.GetLogger("SQLite");
+                logger.Debug("Test");
+                logger.Error("Test2");
+                logger.Info("Final test row");
+
+                // returns long
+                var logcount = SQLiteTest.IssueScalarQuery("SELECT count(1) FROM NLogSqlLiteTest");
+                Assert.Equal((long)3, logcount);
             }
             finally
             {
