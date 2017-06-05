@@ -35,6 +35,7 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.ComponentModel;
+    using System.Diagnostics;
     using System.Threading;
     using Common;
     using Internal;
@@ -77,6 +78,7 @@ namespace NLog.Targets.Wrappers
     [Target("AsyncWrapper", IsWrapper = true)]
     public class AsyncTargetWrapper : WrapperTargetBase
     {
+        private const string ActivityIdPropertyKey = "System.Diagnostics.Trace.CorrelationManager.ActivityId";
         private readonly object writeLockObject = new object();
         private readonly object timerLockObject = new object();
         private Timer lazyWriterTimer;
@@ -318,6 +320,7 @@ namespace NLog.Targets.Wrappers
         /// </remarks>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
+            logEvent.LogEvent.Properties.Add(ActivityIdPropertyKey, Trace.CorrelationManager.ActivityId);
             this.MergeEventProperties(logEvent.LogEvent);
             this.PrecalculateVolatileLayouts(logEvent.LogEvent);
             bool queueWasEmpty = this.RequestQueue.Enqueue(logEvent);
@@ -333,6 +336,13 @@ namespace NLog.Targets.Wrappers
         {
             try
             {
+                var eventHasActivityId = logEvent.LogEvent.Properties.ContainsKey(ActivityIdPropertyKey);
+                if (eventHasActivityId && Guid.Empty.Equals(Trace.CorrelationManager.ActivityId))
+                {
+                    var activityId = (Guid) logEvent.LogEvent.Properties[ActivityIdPropertyKey];
+                    Trace.CorrelationManager.ActivityId = activityId;
+                    logEvent.LogEvent.Properties.Remove(ActivityIdPropertyKey);
+                }
                 this.Write(logEvent);
             }
             catch (Exception exception)
