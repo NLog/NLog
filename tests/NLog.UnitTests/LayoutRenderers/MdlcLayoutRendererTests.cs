@@ -40,7 +40,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using NLog.Targets;
     using Xunit;
 
-    public class MdlcLayoutRendererTests
+    public class MdlcLayoutRendererTests : NLogTestBase
     {
         private static DebugTarget _target;
 
