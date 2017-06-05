@@ -221,6 +221,7 @@ namespace NLog.UnitTests.Targets
         /// <summary>
         /// If a drive doesn't existing, before repeatatly creating a dir was tried. This test was taking +60 seconds 
         /// </summary>
+        [Theory]
         [MemberData("SimpleFileTest_TestParameters")]
         public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
@@ -234,7 +235,7 @@ namespace NLog.UnitTests.Targets
             try
             {
 
-                TryTimeOut(TimeSpan.FromSeconds(5), () =>
+                TryTimeOut(TimeSpan.FromSeconds(1), () =>
                 {
                     var fileTarget = WrapFileTarget(new FileTarget
                     {
@@ -246,6 +247,7 @@ namespace NLog.UnitTests.Targets
                         ForceManaged = forceManaged,
                         ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
                     });
+                    Thread.Sleep(5000);
 
                     SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
                     for (int i = 0; i < 300; i++)
@@ -271,9 +273,10 @@ namespace NLog.UnitTests.Targets
             var cancellationTokenSource = new CancellationTokenSource();
             cancellationTokenSource.CancelAfter(timeout);
             ManualResetEvent mre = new ManualResetEvent(false);
-            Task.Run(testAction, cancellationTokenSource.Token);
+            var t = Task.Run(testAction, cancellationTokenSource.Token);
 
-            mre.WaitOne(timeout);
+            var x = mre.WaitOne(timeout);
+            
         }
 
         /// <summary>

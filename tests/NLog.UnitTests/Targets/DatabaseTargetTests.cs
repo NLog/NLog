@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using Xunit.Abstractions;
-
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -53,13 +51,6 @@ namespace NLog.UnitTests.Targets
 
     public class DatabaseTargetTests : NLogTestBase
     {
-        private ITestOutputHelper Output { get; }
-
-        public DatabaseTargetTests(ITestOutputHelper output) : base(output)
-        {
-            Output = output;
-        }
-
 #if !MONO
         static DatabaseTargetTests()
         {
@@ -845,7 +836,7 @@ Dispose()
         {
             if (SqlServerTest.IsTravis())
             {
-                Output.WriteLine("skipping test SqlServer_NoTargetInstallException because we are running in Travis");
+                Console.WriteLine("skipping test SqlServer_NoTargetInstallException because we are running in Travis");
                 return;
             }
 
@@ -897,7 +888,7 @@ Dispose()
 
             if (SqlServerTest.IsTravis())
             {
-                Output.WriteLine("skipping test SqlServer_InstallAndLogMessage because we are running in Travis");
+                Console.WriteLine("skipping test SqlServer_InstallAndLogMessage because we are running in Travis");
                 return;
             }
 

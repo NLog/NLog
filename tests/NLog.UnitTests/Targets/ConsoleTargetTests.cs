@@ -160,16 +160,8 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-                try
-                {
-                    Console.OutputEncoding = consoleOutputEncoding;
-                    Console.SetOut(oldConsoleOutWriter);
-                }
-                catch
-                {
-                    //don't crash in finally
-                }
-              
+                Console.OutputEncoding = consoleOutputEncoding;
+                Console.SetOut(oldConsoleOutWriter);
             }
 
             string expectedResult = string.Format("-- header --{0}Logger1 message1{0}Logger1 message2{0}-- footer --{0}", Environment.NewLine);

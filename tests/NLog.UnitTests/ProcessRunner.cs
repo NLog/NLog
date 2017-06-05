@@ -127,17 +127,11 @@ class C1
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             proc.StartInfo.CreateNoWindow = true;
-            proc.ErrorDataReceived += Proc_ErrorDataReceived;
             // Hint:
             // In case we wanna redirect stdout we should drain the redirected pipe continously.
             // Otherwise Runner.exe's console buffer is full rather fast, leading to a lock within Console.Write(Line).
             proc.Start();
             return proc;
-        }
-
-        private static void Proc_ErrorDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            Console.WriteLine("error from process: " + e.Data);
         }
     }
 }
