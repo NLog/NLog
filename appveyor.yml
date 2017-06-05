@@ -29,7 +29,7 @@ test_script:
 
 cache:
   - src\packages -> **\packages.config
-  - appveyor.sonar\cache
+  - c:\projects\nlog\appveyor.sonar\cache
 services:
   - mssql2012sp1
 
