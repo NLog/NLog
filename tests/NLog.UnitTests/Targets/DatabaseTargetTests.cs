@@ -48,7 +48,13 @@ namespace NLog.UnitTests.Targets
     using Xunit;
     using Xunit.Extensions;
     using System.Data.SqlClient;
+
+
+#if MONO || MONO_2_0
+    using Mono.Data.Sqlite;
+#else
     using System.Data.SQLite;
+#endif
 
     public class DatabaseTargetTests : NLogTestBase
     {
@@ -847,7 +853,13 @@ Dispose()
 
                 DatabaseTarget testTarget = new DatabaseTarget("TestSqliteTarget");
                 testTarget.ConnectionString = connectionString;
-                testTarget.DBProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite"; // TODO: Mono? use it instead?
+                string dbProvider = "";
+#if MONO || MONO_2_0
+                dbProvider = "Mono.Data.SQLite.SQLiteConnection, Mono.Data.SQLite";
+#else
+                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
+#endif
+                testTarget.DBProvider = dbProvider;
 
                 testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
                 {
@@ -906,10 +918,12 @@ Dispose()
                 SQLiteTest.CreateDatabase();
 
                 var connectionString = SQLiteTest.ConnectionString;
-                
-                // TODO: also Mono
-                string dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
-
+                string dbProvider = "";
+#if MONO || MONO_2_0
+                dbProvider = "Mono.Data.SQLite.SQLiteConnection, Mono.Data.SQLite";
+#else
+                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
+#endif
                 // Create log with xml config
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
@@ -1634,8 +1648,6 @@ Dispose()
             {
             }
 
-          
-
             public static void CreateDatabase()
             {
                 if (DatabaseExists())
@@ -1643,7 +1655,7 @@ Dispose()
                     TryDropDatabase();
                 }
 
-                SQLiteConnection.CreateFile(DbName);
+                SQLiteHandler.CreateDatabase(DbName);
             }
 
             public static bool DatabaseExists()
@@ -1667,10 +1679,10 @@ Dispose()
 
             public static void IssueCommand(string commandString)
             {
-                using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+                using (DbConnection connection = SQLiteHandler.GetConnection(ConnectionString))
                 {
                     connection.Open();
-                    using (SQLiteCommand command = new SQLiteCommand(commandString, connection))
+                    using (DbCommand command = SQLiteHandler.CreateCommand(commandString, connection))
                     {
                         command.ExecuteNonQuery();
                     }
@@ -1679,15 +1691,46 @@ Dispose()
 
             public static object IssueScalarQuery(string commandString)
             {
-                using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+                using (DbConnection connection = SQLiteHandler.GetConnection(ConnectionString))
                 {
                     connection.Open();
-                    using (SQLiteCommand command = new SQLiteCommand(commandString, connection))
+                    using (DbCommand command = SQLiteHandler.CreateCommand(commandString, connection))
                     {
                         var scalar = command.ExecuteScalar();
                         return scalar;
                     }
                 }
+            }
+        }
+
+        private static class SQLiteHandler
+        {
+            public static void CreateDatabase(string dbName)
+            {
+
+#if MONO || MONO_2_0
+                SqliteConnection.CreateFile(dbName);
+#else
+                SQLiteConnection.CreateFile(dbName);
+#endif
+            }
+
+            public static DbConnection GetConnection(string connectionString)
+            {
+#if MONO || MONO_2_0
+                return new SqliteConnection(connectionString); 
+#else
+                return new SQLiteConnection(connectionString);
+#endif
+            }
+
+            public static DbCommand CreateCommand(string commandString, DbConnection connection)
+            {
+#if MONO || MONO_2_0
+                return new SqliteCommand(commandString, (SqliteConnection)connection);
+#else
+                return new SQLiteCommand(commandString, (SQLiteConnection)connection);
+#endif
             }
         }
 
