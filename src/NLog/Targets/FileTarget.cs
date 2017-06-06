@@ -1442,9 +1442,20 @@ namespace NLog.Targets
             }
             else if (EnableArchiveFileCompression)
             {
+                // Would be nice if the FileCompressor used a temporary-output-filename until completed,
+                // but that would require that the FileAppenderCache also reacted to renames in archive-folder
                 InternalLogger.Info("Archiving {0} to compressed {1}", fileName, archiveFileName);
+                // Would be nice if the FileCompressor supported a temporary-input-filename (ex. archiveFileName + ".tmp")
+                // but that would require that the FileCompressor supported 3 parameters (input-filepath, output-filepath and archive-filename)
+                DateTime orgCreationTime = File.GetCreationTime(fileName);
                 FileCompressor.CompressFile(fileName, archiveFileName);
-                DeleteAndWaitForFileDelete(fileName);
+                if (File.Exists(fileName) && File.GetCreationTime(fileName) == orgCreationTime)
+                {
+                    // Manual cleanup after the FileCompressor
+                    DeleteOldArchiveFile(fileName);
+                    if (File.Exists(fileName) && File.GetCreationTime(fileName) == orgCreationTime)
+                        System.Threading.Thread.Sleep(100);
+                }
             }
             else
             {
@@ -1501,35 +1512,6 @@ namespace NLog.Targets
                 }
 
                 return false;
-            }
-        }
-
-        private static void DeleteAndWaitForFileDelete(string fileName)
-        {
-            try
-            {
-                var originalFileCreationTime = (new FileInfo(fileName)).CreationTime;
-                if (DeleteOldArchiveFile(fileName) && File.Exists(fileName))
-                {
-                    FileInfo currentFileInfo;
-                    for (int i = 0; i < 120; ++i)
-                    { 
-                        Thread.Sleep(100);
-                        currentFileInfo = new FileInfo(fileName);
-                        if (!currentFileInfo.Exists || currentFileInfo.CreationTime != originalFileCreationTime)
-                            return;
-                    }
-
-                    InternalLogger.Warn("Timeout while deleting old archive file: '{0}'.", fileName);
-                }
-            }
-            catch (Exception exception)
-            {
-                InternalLogger.Warn(exception, "Failed to delete old archive file: '{0}'.", fileName);
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
             }
         }
 

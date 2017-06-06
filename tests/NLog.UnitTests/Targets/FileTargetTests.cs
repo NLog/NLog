@@ -518,7 +518,7 @@ namespace NLog.UnitTests.Targets
                 Assert.True(File.Exists(archiveTempName));
 
                 var assertFileContents = ft.EnableArchiveFileCompression ?
-                    new Action<string, string, Encoding>(AssertZipFileContents) :
+                    new Action<string, string, Encoding>((fileName,contents,encoding) => AssertZipFileContents(logFile, fileName, contents, encoding)) :
                     AssertFileContents;
 
                 assertFileContents(archiveTempName, "Debug aaa\nInfo bbb\nWarn ccc\nDebug aaa\nInfo bbb\nWarn ccc\n",
@@ -1716,9 +1716,10 @@ namespace NLog.UnitTests.Targets
 
                 var assertFileContents =
 #if NET4_5
- enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+    enableCompression ? new Action<string, string, Encoding>((fileName, contents, encoding) => AssertZipFileContents(logFile, fileName, contents, encoding))
+        : AssertFileContents;
 #else
- new Action<string, string, Encoding>(AssertFileContents);
+    new Action<string, string, Encoding>(AssertFileContents);
 #endif
 
                 var times = 25;
@@ -2078,7 +2079,9 @@ namespace NLog.UnitTests.Targets
 
 
 #if NET4_5
-                var assertFileContents = enableCompression ? new Action<string, string, Encoding>(AssertZipFileContents) : AssertFileContents;
+                var assertFileContents = enableCompression ?
+                    new Action<string, string, Encoding>((fileName, contents, encoding) => AssertZipFileContents(logFileName, fileName, contents, encoding))
+                    : AssertFileContents;
 #else
                 var assertFileContents = new Action<string, string, Encoding>(AssertFileContents);
 #endif
