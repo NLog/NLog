@@ -84,6 +84,11 @@ namespace NLog.Internal
         /// Gets or sets the folder where applications save mail messages to be processed by the local SMTP server.
         /// </summary>
         string PickupDirectoryLocation { get; set; }
+
+        /// <summary>
+        /// Occurs when an asynchronous e-mail send operation completes.
+        /// </summary>
+        event SendCompletedEventHandler SendCompleted;
     }
 }
 
