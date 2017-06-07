@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRunConfiguration xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006" id="cfed72dc-4a98-42f2-99de-9aeb23511ca4" name="Local SmartDevices Test Run">
+	<Description>This is a default test run configuration for a local SmartDevice test run.</Description>
+	<Timeouts testTimeout="1800000"/>
+	<Hosts type="Smart Device">
+		<DeviceHostRunConfigData name="Smart Device" deviceId="E282E6BE-C7C3-4ece-916A-88FB1CF8AF3C" deviceName="Pocket PC 2003 SE Emulator" platformId="3C41C503-53EF-4c2a-8DD4-A8217CAD115E" platformName="Pocket PC 2003" uiPlatformId="3C41C503-53EF-4c2a-8DD4-A8217CAD115E"/>
+	</Hosts>
+</TestRunConfiguration>

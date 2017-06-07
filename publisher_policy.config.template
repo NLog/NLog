@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<configuration>
+    <runtime>
+        <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+            <dependentAssembly>
+                <assemblyIdentity name="NLog" publicKeyToken="5120e14c03d0593c" culture="" />
+                <bindingRedirect oldVersion="1.0.0.0" newVersion="2.0.0.0"/>
+            </dependentAssembly>
+        </assemblyBinding>
+    </runtime>
+</configuration>
