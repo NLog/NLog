@@ -855,7 +855,7 @@ Dispose()
                 testTarget.ConnectionString = connectionString;
                 string dbProvider = "";
 #if MONO || MONO_2_0
-                dbProvider = "Mono.Data.SQLite.SQLiteConnection, Mono.Data.SQLite";
+                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
 #else
                 dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
 #endif
@@ -920,7 +920,7 @@ Dispose()
                 var connectionString = SQLiteTest.ConnectionString;
                 string dbProvider = "";
 #if MONO || MONO_2_0
-                dbProvider = "Mono.Data.SQLite.SQLiteConnection, Mono.Data.SQLite";
+                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
 #else
                 dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
 #endif
