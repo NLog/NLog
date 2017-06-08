@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Globalization;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
@@ -64,13 +63,13 @@ namespace NLog.LayoutRenderers
         /// </returns>
         public override string ToString()
         {
-            var lra = (LayoutRendererAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(LayoutRendererAttribute));
+            var lra = (LayoutRendererAttribute)Attribute.GetCustomAttribute(GetType(), typeof(LayoutRendererAttribute));
             if (lra != null)
             {
                 return "Layout Renderer: ${" + lra.Name + "}";
             }
 
-            return this.GetType().Name;
+            return GetType().Name;
         }
 
         /// <summary>
@@ -78,7 +77,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -89,17 +88,17 @@ namespace NLog.LayoutRenderers
         /// <returns>String representation of a layout renderer.</returns>
         public string Render(LogEventInfo logEvent)
         {
-            int initialLength = this.maxRenderedLength;
+            int initialLength = maxRenderedLength;
             if (initialLength > MaxInitialRenderBufferLength)
             {
                 initialLength = MaxInitialRenderBufferLength;
             }
 
             var builder = new StringBuilder(initialLength);
-            this.RenderAppendBuilder(logEvent, builder);
-            if (builder.Length > this.maxRenderedLength)
+            RenderAppendBuilder(logEvent, builder);
+            if (builder.Length > maxRenderedLength)
             {
-                this.maxRenderedLength = builder.Length;
+                maxRenderedLength = builder.Length;
             }
 
             return builder.ToString();
@@ -111,7 +110,7 @@ namespace NLog.LayoutRenderers
         /// <param name="configuration">The configuration.</param>
         void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
         {
-            this.Initialize(configuration);
+            Initialize(configuration);
         }
 
         /// <summary>
@@ -119,7 +118,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         void ISupportsInitialize.Close()
         {
-            this.Close();
+            Close();
         }
 
         /// <summary>
@@ -128,13 +127,15 @@ namespace NLog.LayoutRenderers
         /// <param name="configuration">The configuration.</param>
         internal void Initialize(LoggingConfiguration configuration)
         {
-            if (this.LoggingConfiguration == null)
-                this.LoggingConfiguration = configuration;
-
-            if (!this.isInitialized)
+            if (LoggingConfiguration == null)
             {
-                this.isInitialized = true;
-                this.InitializeLayoutRenderer();
+                LoggingConfiguration = configuration;
+            }
+
+            if (!isInitialized)
+            {
+                isInitialized = true;
+                InitializeLayoutRenderer();
             }
         }
 
@@ -143,11 +144,11 @@ namespace NLog.LayoutRenderers
         /// </summary>
         internal void Close()
         {
-            if (this.isInitialized)
+            if (isInitialized)
             {
-                this.LoggingConfiguration = null;
-                this.isInitialized = false;
-                this.CloseLayoutRenderer();
+                LoggingConfiguration = null;
+                isInitialized = false;
+                CloseLayoutRenderer();
             }
         }
 
@@ -158,15 +159,15 @@ namespace NLog.LayoutRenderers
         /// <param name="builder">The layout render output is appended to builder</param>
         internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder builder)
         {
-            if (!this.isInitialized)
+            if (!isInitialized)
             {
-                this.isInitialized = true;
-                this.InitializeLayoutRenderer();
+                isInitialized = true;
+                InitializeLayoutRenderer();
             }
 
             try
             {
-                this.Append(builder, logEvent);
+                Append(builder, logEvent);
             }
             catch (Exception exception)
             {
@@ -208,7 +209,7 @@ namespace NLog.LayoutRenderers
         {
             if (disposing)
             {
-                this.Close();
+                Close();
             }
         }
 
@@ -227,9 +228,9 @@ namespace NLog.LayoutRenderers
                 culture = layoutCulture;
             }
 
-            if (culture == null && this.LoggingConfiguration != null)
+            if (culture == null && LoggingConfiguration != null)
             {
-                culture = this.LoggingConfiguration.DefaultCultureInfo;
+                culture = LoggingConfiguration.DefaultCultureInfo;
             }
             return culture;
         }
@@ -245,18 +246,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         protected CultureInfo GetCulture(LogEventInfo logEvent, CultureInfo layoutCulture = null)
         {
-            var culture = logEvent.FormatProvider as CultureInfo;
-
-            if (culture == null)
-            {
-                culture = layoutCulture;
-            }
-
-            if (culture == null && this.LoggingConfiguration != null)
-            {
-                culture =  this.LoggingConfiguration.DefaultCultureInfo;
-            }
-            return culture;
+            return GetFormatProvider(logEvent, layoutCulture) as CultureInfo;
         }
 
         /// <summary>
