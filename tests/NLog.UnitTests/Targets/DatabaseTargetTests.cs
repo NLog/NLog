@@ -841,15 +841,17 @@ Dispose()
         [Fact]
         public void SQLite_InstallAndLogMessageProgrammatically()
         {
-            // delete database if it for some reason already exists 
-            SQLiteTest.TryDropDatabase();
+			SQLiteTest sqlLite = new SQLiteTest("TestLogProgram.sqlite");
+
+			// delete database if it for some reason already exists 
+			sqlLite.TryDropDatabase();
             LogManager.ThrowExceptions = true;
 
             try
             {
-                SQLiteTest.CreateDatabase();
+				sqlLite.CreateDatabase();
 
-                var connectionString = SQLiteTest.ConnectionString;
+                var connectionString = sqlLite.GetConnectionString();
 
                 DatabaseTarget testTarget = new DatabaseTarget("TestSqliteTarget");
                 testTarget.ConnectionString = connectionString;
@@ -876,7 +878,7 @@ Dispose()
                 }
 
                 // check so table is created
-                var tableName = SQLiteTest.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogTestTable'");
+                var tableName = sqlLite.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogTestTable'");
                 Assert.Equal("NLogTestTable", tableName);
 
                 testTarget.CommandText = "INSERT INTO NLogTestTable (Message) VALUES (@message)";
@@ -897,27 +899,29 @@ Dispose()
                 logger.Error("Test error message");
 
                 // will return long
-                var logcount = SQLiteTest.IssueScalarQuery("SELECT count(1) FROM NLogTestTable");
+                var logcount = sqlLite.IssueScalarQuery("SELECT count(1) FROM NLogTestTable");
 
                 Assert.Equal((long)2, logcount);
             }
             finally
             {
-                SQLiteTest.TryDropDatabase();
+				sqlLite.TryDropDatabase();
             }
         }
 
         [Fact]
         public void SQLite_InstallAndLogMessage()
         {
-            // delete database just in case
-            SQLiteTest.TryDropDatabase();
+			SQLiteTest sqlLite = new SQLiteTest("TestLogXml.sqlite");
+
+			// delete database just in case
+			sqlLite.TryDropDatabase();
 
             try
             {
-                SQLiteTest.CreateDatabase();
+				sqlLite.CreateDatabase();
 
-                var connectionString = SQLiteTest.ConnectionString;
+                var connectionString = sqlLite.GetConnectionString();
                 string dbProvider = "";
 #if MONO || MONO_2_0
                 dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
@@ -950,7 +954,7 @@ Dispose()
                 LogManager.Configuration.Install(context);
 
                 // check so table is created
-                var tableName = SQLiteTest.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogSqlLiteTest'");
+                var tableName = sqlLite.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogSqlLiteTest'");
                 Assert.Equal("NLogSqlLiteTest", tableName);
 
                 // start to log
@@ -960,12 +964,12 @@ Dispose()
                 logger.Info("Final test row");
 
                 // returns long
-                var logcount = SQLiteTest.IssueScalarQuery("SELECT count(1) FROM NLogSqlLiteTest");
+                var logcount = sqlLite.IssueScalarQuery("SELECT count(1) FROM NLogSqlLiteTest");
                 Assert.Equal((long)3, logcount);
             }
             finally
             {
-                SQLiteTest.TryDropDatabase();
+				sqlLite.TryDropDatabase();
             }
         }
 
@@ -1638,38 +1642,44 @@ Dispose()
             }
         }
 
-        private static class SQLiteTest
+        private class SQLiteTest
         {
-            private const string DbName = "NLogTest.sqlite";
+            private string dbName = "NLogTest.sqlite";
+			private string connectionString;
 
-            public const string ConnectionString = "Data Source=" + DbName + ";Version=3;";
-
-            static SQLiteTest()
+            public SQLiteTest(string dbName)
             {
-            }
+				this.dbName = dbName;
+				connectionString = "Data Source=" + this.dbName + ";Version=3;";
+			}
 
-            public static void CreateDatabase()
+			public string GetConnectionString()
+			{
+				return connectionString;
+			}
+
+            public void CreateDatabase()
             {
                 if (DatabaseExists())
                 {
                     TryDropDatabase();
                 }
 
-                SQLiteHandler.CreateDatabase(DbName);
+                SQLiteHandler.CreateDatabase(dbName);
             }
 
-            public static bool DatabaseExists()
+            public bool DatabaseExists()
             {
-                return File.Exists(DbName);
+                return File.Exists(dbName);
             }
 
-            public static void TryDropDatabase()
+            public void TryDropDatabase()
             {
                 try
                 {
                     if (DatabaseExists())
                     {
-                        File.Delete(DbName);
+                        File.Delete(dbName);
                     }
                 }
                 catch
@@ -1677,9 +1687,9 @@ Dispose()
                 }
             }
 
-            public static void IssueCommand(string commandString)
+            public void IssueCommand(string commandString)
             {
-                using (DbConnection connection = SQLiteHandler.GetConnection(ConnectionString))
+                using (DbConnection connection = SQLiteHandler.GetConnection(connectionString))
                 {
                     connection.Open();
                     using (DbCommand command = SQLiteHandler.CreateCommand(commandString, connection))
@@ -1689,9 +1699,9 @@ Dispose()
                 }
             }
 
-            public static object IssueScalarQuery(string commandString)
+            public object IssueScalarQuery(string commandString)
             {
-                using (DbConnection connection = SQLiteHandler.GetConnection(ConnectionString))
+                using (DbConnection connection = SQLiteHandler.GetConnection(connectionString))
                 {
                     connection.Open();
                     using (DbCommand command = SQLiteHandler.CreateCommand(commandString, connection))
