@@ -438,10 +438,22 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void IncludeMdcJsonProperties()
         {
-            var jsonLayout = new JsonLayout()
-            {
-                IncludeMdc = true
-            };
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeMdc='true' ExcludeProperties='Excluded1,Excluded2'>
+                 </layout>
+                </target>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -451,17 +463,33 @@ namespace NLog.UnitTests.Layouts
                     MappedDiagnosticsContext.Set(prop.Key.ToString(), prop.Value);
             logEventInfo.Properties.Clear();
 
-            Assert.Equal(ExpectedIncludeAllPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
+            logger.Debug(logEventInfo);
+
+            LogManager.Flush();
+
+            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
         }
 
 #if NET4_0 || NET4_5
         [Fact]
         public void IncludeMdlcJsonProperties()
         {
-            var jsonLayout = new JsonLayout()
-            {
-                IncludeMdlc = true
-            };
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeMdlc='true' ExcludeProperties='Excluded1,Excluded2'>
+                 </layout>
+                </target>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
 
             var logEventInfo = CreateLogEventWithExcluded();
 
@@ -471,7 +499,11 @@ namespace NLog.UnitTests.Layouts
                         MappedDiagnosticsLogicalContext.Set(prop.Key.ToString(), prop.Value);
             logEventInfo.Properties.Clear();
 
-            Assert.Equal(ExpectedIncludeAllPropertiesWithExcludes, jsonLayout.Render(logEventInfo));
+            logger.Debug(logEventInfo);
+
+            LogManager.Flush();
+
+            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
         }
 #endif
 

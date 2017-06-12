@@ -77,13 +77,17 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
-        public bool IncludeMdc { get; set; }
+        public bool IncludeMdc { get { return IncludeMdcRenderer != null; } set { IncludeMdcRenderer = value ? new LayoutRenderers.MdcLayoutRenderer() { Item = "NotThreadAgnostic" } : null; } }
+        /// <summary>Magic helper to ensure <see cref="Layout.ThreadAgnostic"/> is updated properly.</summary>
+        public LayoutRenderers.LayoutRenderer IncludeMdcRenderer { get; private set; }
 
 #if NET4_0 || NET4_5
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
-        public bool IncludeMdlc { get; set; }
+        public bool IncludeMdlc { get { return IncludeMdlcRenderer != null; } set { IncludeMdlcRenderer = value ? new LayoutRenderers.MdlcLayoutRenderer() { Item = "NotThreadAgnostic" } : null; } }
+        /// <summary>Magic helper to ensure <see cref="Layout.ThreadAgnostic"/> is updated properly.</summary>
+        public LayoutRenderers.LayoutRenderer IncludeMdlcRenderer { get; private set; }
 #endif
 
         /// <summary>
