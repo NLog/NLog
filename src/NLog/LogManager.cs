@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-
 namespace NLog
 {
     using System;
@@ -78,7 +76,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Occurs when logging <see cref="Configuration" /> changes.
+        /// Gets the default <see cref="NLog.LogFactory" /> instance.
         /// </summary>
         internal static LogFactory LogFactory
         {
@@ -169,22 +167,6 @@ namespace NLog
             set { throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo."); }
         }
 
-#if NETSTANDARD
-        /// <summary>
-        /// Gets the logger with the name of the current class.  
-        /// </summary>
-        /// <returns>The logger.</returns>
-        /// <remarks>This is a slow-running method. 
-        /// Make sure you're not doing this in a loop.</remarks>
-        [CLSCompliant(false)]
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static Logger GetCurrentClassLogger([CallerFilePath] string path = "")
-        {
-            var filename = Path.GetFileNameWithoutExtension(path);
-
-            return factory.GetLogger(filename);
-        }
-#else
         /// <summary>
         /// Gets the logger with the name of the current class.  
         /// </summary>
@@ -195,9 +177,9 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
-            return factory.GetLogger(GetClassFullName());
+            return factory.GetLogger(StackFrameExt.GetClassFullName());
         }
-#endif
+
         internal static bool IsHiddenAssembly(Assembly assembly)
         {
             return _hiddenAssemblies != null && _hiddenAssemblies.Contains(assembly);
@@ -223,24 +205,6 @@ namespace NLog
             }
         }
 
-#if NETSTANDARD
-        /// <summary>
-        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
-        /// </summary>
-        /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
-        /// <param name="path">CallerFilePath</param>
-        /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
-        /// <remarks>This is a slow-running method. Make sure you're not doing this in a loop.</remarks>
-        [CLSCompliant(false)]
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static Logger GetCurrentClassLogger(Type loggerType, [CallerFilePath] string path = "")
-        {
-            var filename = Path.GetFileNameWithoutExtension(path);
-
-            return factory.GetLogger(filename, loggerType);
-        }
-#else
-
         /// <summary>
         /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
         /// </summary>
@@ -251,9 +215,9 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(Type loggerType)
         {
-            return factory.GetLogger(GetClassFullName(), loggerType);
+            return factory.GetLogger(StackFrameExt.GetClassFullName(), loggerType);
         }
-#endif
+
         /// <summary>
         /// Creates a logger that discards all log messages.
         /// </summary>
@@ -397,41 +361,6 @@ namespace NLog
         {
             factory.Shutdown();
         }
-
-#if !NETSTANDARD
-
-        /// <summary>
-        /// Gets the fully qualified name of the class invoking the LogManager, including the 
-        /// namespace but not the assembly.    
-        /// </summary>
-        private static string GetClassFullName()
-        {
-            string className;
-            Type declaringType;
-            int framesToSkip = 2;
-
-            do
-            {
-#if SILVERLIGHT
-                StackFrame frame = new StackTrace().GetFrame(framesToSkip);
-#else
-                StackFrame frame = new StackFrame(framesToSkip, false);
-#endif
-                MethodBase method = frame.GetMethod();
-                declaringType = method.DeclaringType;
-                if (declaringType == null)
-                {
-                    className = method.Name;
-                    break;
-                }
-
-                framesToSkip++;
-                className = declaringType.FullName;
-            } while (declaringType.GetModule().Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
-
-            return className;
-        }
-#endif
     }
 
 }
