@@ -916,6 +916,7 @@ Dispose()
 
 			// delete database just in case
 			sqlLite.TryDropDatabase();
+            LogManager.ThrowExceptions = true;
 
             try
             {
