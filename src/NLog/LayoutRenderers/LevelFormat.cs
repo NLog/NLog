@@ -31,20 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using NLog.Common;
-
-namespace NLog.Internal
+namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// Controls a single allocated AsyncLogEventInfo-List for reuse (only one active user)
+    /// Format of the ${level} layout renderer output.
     /// </summary>
-    internal class ReusableAsyncLogEventList : ReusableObjectCreator<IList<AsyncLogEventInfo>>
+    public enum LevelFormat
     {
-        public ReusableAsyncLogEventList(int capacity)
-            :base(new List<AsyncLogEventInfo>(capacity), (l) => l.Clear())
-        {
-        }
+        /// <summary>
+        /// Render the full level name.
+        /// </summary>
+        Name,
+
+        /// <summary>
+        /// Render the first character of the level.
+        /// </summary>
+        FirstCharacter,
+
+        /// <summary>
+        /// Render the ordinal (aka number) for the level.
+        /// </summary>
+        Ordinal
     }
 }

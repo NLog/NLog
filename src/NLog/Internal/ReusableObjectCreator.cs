@@ -32,19 +32,58 @@
 // 
 
 using System;
-using System.Collections.Generic;
-using NLog.Common;
 
 namespace NLog.Internal
 {
     /// <summary>
-    /// Controls a single allocated AsyncLogEventInfo-List for reuse (only one active user)
+    /// Controls a single allocated object for reuse (only one active user)
     /// </summary>
-    internal class ReusableAsyncLogEventList : ReusableObjectCreator<IList<AsyncLogEventInfo>>
+    class ReusableObjectCreator<T> where T : class
     {
-        public ReusableAsyncLogEventList(int capacity)
-            :base(new List<AsyncLogEventInfo>(capacity), (l) => l.Clear())
+        protected T _reusableObject;
+        private readonly Action<T> _clearObject;
+
+        /// <summary>Empty handle when <see cref="Targets.Target.OptimizeBufferReuse"/> is disabled</summary>
+        public readonly LockOject None = default(LockOject);
+
+        protected ReusableObjectCreator(T reusableObject, Action<T> clearObject)
         {
+            _reusableObject = reusableObject;
+            _clearObject = clearObject;
+        }
+
+        /// <summary>
+        /// Creates handle to the reusable char[]-buffer for active usage
+        /// </summary>
+        /// <returns>Handle to the reusable item, that can release it again</returns>
+        public LockOject Allocate()
+        {
+            return new LockOject(this);
+        }
+
+        public struct LockOject : IDisposable
+        {
+            /// <summary>
+            /// Access the MemoryStream acquired
+            /// </summary>
+            public readonly T Result;
+            private readonly ReusableObjectCreator<T> _owner;
+
+            public LockOject(ReusableObjectCreator<T> owner)
+            {
+                Result = owner._reusableObject;
+                owner._reusableObject = null;
+                _owner = owner;
+            }
+
+            public void Dispose()
+            {
+                if (Result != null)
+                {
+                    _owner._clearObject(Result);
+                    _owner._reusableObject = Result;
+                }
+            }
         }
     }
 }

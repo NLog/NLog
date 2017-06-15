@@ -297,7 +297,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Log(LogLevel.Error, ex, "msg");
-            AssertDebugLastMessage("debug1", "ERROR*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "ERROR*msg*Test exception*" + typeof(InvalidOperationException).Name);
+
+            logger.Log(LogLevel.Error, ex, () => "msg func");
+            AssertDebugLastMessage("debug1", "ERROR*msg func*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
         [Fact]
@@ -307,7 +310,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Trace(ex, "msg");
-            AssertDebugLastMessage("debug1", "TRACE*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "TRACE*msg*Test exception*" + typeof(InvalidOperationException).Name);
+
+            logger.Trace(ex, () => "msg func");
+            AssertDebugLastMessage("debug1", "TRACE*msg func*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
         [Fact]
@@ -317,7 +323,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Debug(ex, "msg");
-            AssertDebugLastMessage("debug1", "DEBUG*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "DEBUG*msg*Test exception*" + typeof(InvalidOperationException).Name);
+
+            logger.Debug(ex, () => "msg func");
+            AssertDebugLastMessage("debug1", "DEBUG*msg func*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
         [Fact]
@@ -327,7 +336,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Info(ex, "msg");
-            AssertDebugLastMessage("debug1", "INFO*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "INFO*msg*Test exception*" + typeof(InvalidOperationException).Name);
+
+            logger.Info(ex, () => "msg func");
+            AssertDebugLastMessage("debug1", "INFO*msg func*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
         [Fact]
@@ -337,7 +349,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Warn(ex, "msg");
-            AssertDebugLastMessage("debug1", "WARN*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "WARN*msg*Test exception*" + typeof(InvalidOperationException).Name);
+
+            logger.Warn(ex, () => "msg func");
+            AssertDebugLastMessage("debug1", "WARN*msg func*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
         [Fact]
@@ -347,7 +362,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "ERROR*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "ERROR*msg*Test exception*" + typeof(InvalidOperationException).Name);
+
+            logger.Error(ex, () => "msg func");
+            AssertDebugLastMessage("debug1", "ERROR*msg func*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
         [Fact]
@@ -357,7 +375,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Fatal(ex, "msg");
-            AssertDebugLastMessage("debug1", "FATAL*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "FATAL*msg*Test exception*" + typeof(InvalidOperationException).Name);
+
+            logger.Fatal(ex, () => "msg func");
+            AssertDebugLastMessage("debug1", "FATAL*msg func*Test exception*" + typeof(InvalidOperationException).Name);
         }
 
         [Fact]
@@ -543,7 +564,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                    <target name='debug1' type='Debug' layout='${level:uppercase=true}*${exception:format=message,shorttype:separator=*}' />
+                    <target name='debug1' type='Debug' layout='${level:uppercase=true}*${message}*${exception:format=message,shorttype:separator=*}' />
                 </targets>
                 <rules>
                     <logger minlevel='Trace' writeTo='debug1' />
