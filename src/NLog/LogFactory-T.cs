@@ -63,28 +63,9 @@ namespace NLog
         /// Make sure you're not doing this in a loop.</remarks>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Backwards compatibility")]
         [MethodImpl(MethodImplOptions.NoInlining)]
-
-#if NETSTANDARD
-        public new T GetCurrentClassLogger([CallerFilePath] string path = "")
-#else
         public new T GetCurrentClassLogger()
-#endif
         {
-
-#if !NETSTANDARD
-#if SILVERLIGHT
-            StackFrame frame = new StackFrame(1);
-#else
-            StackFrame frame = new StackFrame(1, false);
-#endif
-
-            return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
-#else
-
-            var name = Path.GetFileNameWithoutExtension(path);
-
-            return this.GetLogger(name);
-#endif
+            return this.GetLogger(Internal.StackFrameExt.GetClassFullName());
         }
     }
 }

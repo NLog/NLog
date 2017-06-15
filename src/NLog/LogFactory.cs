@@ -448,11 +448,7 @@ namespace NLog
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
         [MethodImpl(MethodImplOptions.NoInlining)]
-#if NETSTANDARD
-        public Logger GetCurrentClassLogger([CallerFilePath] string path = "")
-#else
         public Logger GetCurrentClassLogger()
-#endif
         {
 #if !NETSTANDARD
 #if SILVERLIGHT
@@ -462,16 +458,10 @@ namespace NLog
 #endif
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
 #else
-
-            var filename = Path.GetFileNameWithoutExtension(path);
-
-            return this.GetLogger(filename);
+            return this.GetLogger(StackFrameExt.GetClassFullName());
 #endif
-
         }
 
-
-#if !NETSTANDARD
         /// <summary>
         /// Gets a custom logger with the name of the current class. Use <typeparamref name="T"/> to pass the type of the needed Logger.
         /// </summary>
@@ -482,13 +472,16 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public T GetCurrentClassLogger<T>() where T : Logger
         {
+#if !NETSTANDARD
 #if SILVERLIGHT
             var frame = new StackFrame(1);
 #else
             var frame = new StackFrame(1, false);
 #endif
-
             return (T)this.GetLogger(frame.GetMethod().DeclaringType.FullName, typeof(T));
+#else
+            return (T)this.GetLogger(StackFrameExt.GetClassFullName(), typeof(T));
+#endif
         }
 
         /// <summary>
@@ -502,16 +495,18 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
-
+#if !NETSTANDARD
 #if !SILVERLIGHT
             var frame = new StackFrame(1, false);
 #else
             var frame = new StackFrame(1);
 #endif
-
             return this.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
-        }
+#else
+            return this.GetLogger(StackFrameExt.GetClassFullName(), loggerType);
 #endif
+        }
+
         /// <summary>
         /// Gets the specified named logger.
         /// </summary>

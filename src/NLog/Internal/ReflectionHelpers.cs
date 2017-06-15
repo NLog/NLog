@@ -321,8 +321,6 @@ namespace NLog.Internal
 #endif
         }
 
-
-
         public static Assembly GetAssembly(this Type type)
         {
 #if !NETSTANDARD
@@ -341,37 +339,6 @@ namespace NLog.Internal
 #else
             var typeInfo = type.GetTypeInfo();
             return typeInfo.Module;
-#endif
-        }
-
-
-
-        public static object InvokeMethod(this MethodInfo methodInfo, string methodName, object[] callParameters)
-        {
-#if !NETSTANDARD
-            return methodInfo.DeclaringType.InvokeMember(
-                 methodName,
-                 BindingFlags.InvokeMethod | BindingFlags.Static | BindingFlags.Public | BindingFlags.OptionalParamBinding,
-                 null,
-                 null,
-                 callParameters);
-#elif !SILVERLIGHT && !NETSTANDARD
-                , CultureInfo.InvariantCulture
-#else
-
-
-            var neededParameters = methodInfo.GetParameters();
-
-            var missingParametersCount = neededParameters.Length - callParameters.Length;
-            if (missingParametersCount > 0)
-            {
-                //optional parmeters needs to passed here with Type.Missing;
-                var paramList = callParameters.ToList();
-                paramList.AddRange(Enumerable.Repeat(Type.Missing, missingParametersCount));
-                callParameters = paramList.ToArray();
-            }
-            //TODO test
-            return methodInfo.Invoke(methodName, callParameters);
 #endif
         }
 

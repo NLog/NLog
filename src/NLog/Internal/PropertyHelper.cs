@@ -196,7 +196,6 @@ namespace NLog.Internal
 
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
-
 #if !NETSTANDARD   
             MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, 
                 null, new Type[] { typeof(string) }, null);
@@ -207,23 +206,45 @@ namespace NLog.Internal
             }
 
             result = operatorImplicitMethod.Invoke(null, new object[] { value });
+            return true;
 #else
             try
             {
-                //We used in Nlog4 already (unattended?) CultureInfo.InvariantCulture with op_Implicit
-                result = Convert.ChangeType(value, resultType, CultureInfo.InvariantCulture);
+                if (string.Equals(resultType.Namespace, "System", StringComparison.Ordinal))
+                {
+                    result = null;
+                    return false;
+                }
+
+                var methods = resultType.GetMethods(BindingFlags.Public | BindingFlags.Static);
+                foreach (MethodInfo method in methods.Where(m => m.Name == "op_Implicit"))
+                {
+                    if (resultType.IsAssignableFrom(method.ReturnType))
+                    {
+                        var parameters = method.GetParameters();
+                        if (parameters.Count() == 1 && parameters[0].ParameterType == value.GetType())
+                        {
+                            try
+                            {
+                                result = method.Invoke(null, new[] { value });
+                                return true;
+                            }
+                            catch
+                            {
+                            }
+                        }
+                    }
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                result = null;
-                return false;
+                InternalLogger.Warn(ex, "Implicit Conversion Failed");
             }
 
+            result = null;
+            return false;
 
 #endif
-
-
-            return true;
         }
 
         private static bool TryNLogSpecificConversion(Type propertyType, string value, out object newValue, ConfigurationItemFactory configurationItemFactory)

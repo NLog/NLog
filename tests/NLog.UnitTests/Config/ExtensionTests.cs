@@ -410,7 +410,7 @@ namespace NLog.UnitTests.Config
             CreateConfigurationFromString(configXml);
         }
 
-#if NETSTANDARD && !NETSTANDARD1_5
+#if NETSTANDARD && !NETSTANDARD1_3
         [Fact(Skip = "NETSTANDARD")]
 #else
         [Fact]
@@ -555,6 +555,31 @@ namespace NLog.UnitTests.Config
             {
                 InternalLogger.Reset();
             }
+        }
+
+#if NETSTANDARD && !NETSTANDARD1_5
+        [Fact(Skip = "NETSTANDARD")]
+#else
+        [Fact]
+#endif
+        public void ImplicitConversionOperatorTest()
+        {
+            var config = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+    <extensions>
+        <add assemblyFile='" + this.GetExtensionAssemblyFullPath() + @"' />
+    </extensions>
+                <targets>
+                    <target name='myTarget' type='MyTarget' layout='123' />
+                </targets>
+                <rules>
+                    <logger name='*' level='Debug' writeTo='myTarget' />
+                </rules>
+            </nlog>");
+
+            var target = config.FindTargetByName<MyTarget>("myTarget");
+            Assert.NotNull(target);
+            Assert.Equal(123, target.Layout.X);
         }
     }
 }

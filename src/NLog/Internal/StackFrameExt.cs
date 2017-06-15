@@ -35,7 +35,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace NLog.Internal
 {
@@ -62,6 +63,54 @@ namespace NLog.Internal
         public static int GetFrameCount(this StackTrace strackTrace)
         {
             return strackTrace.GetFrames().Length;
+        }
+
+        /// <summary>
+        /// Gets the fully qualified name of the class invoking the calling method, including the 
+        /// namespace but not the assembly.    
+        /// </summary>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static string GetClassFullName()
+        {
+            int framesToSkip = 2;
+
+            string className = string.Empty;
+#if !NETSTANDARD
+            Type declaringType;
+
+            do
+            {
+#if SILVERLIGHT
+                StackFrame frame = new StackTrace().GetFrame(framesToSkip);
+#else
+                StackFrame frame = new StackFrame(framesToSkip, false);
+#endif
+                MethodBase method = frame.GetMethod();
+                declaringType = method.DeclaringType;
+                if (declaringType == null)
+                {
+                    className = method.Name;
+                    break;
+                }
+
+                framesToSkip++;
+                className = declaringType.FullName;
+            } while (declaringType.GetModule().Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
+#else
+            var stackTrace = Environment.StackTrace;
+            var stackTraceLines = stackTrace.Replace("\r", "").Split(new[] { "\n" }, StringSplitOptions.None);
+            for (int i = 2 + framesToSkip; i < stackTraceLines.Length; ++i)
+            {
+                var callingClassAndMethod = stackTraceLines[i].Split(new[] { " ", "<>" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                // Trim method name. 
+                var callingClass = callingClassAndMethod.Substring(0, callingClassAndMethod.LastIndexOf(".", StringComparison.Ordinal));
+                // Needed because of extra dot, for example if method was .ctor()
+                className = callingClass.TrimEnd('.');
+                if (!className.StartsWith("System."))
+                    break;
+            }
+#endif
+            return className;
         }
     }
 }
