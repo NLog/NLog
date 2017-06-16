@@ -63,7 +63,7 @@ namespace NLog.Layouts
         /// 
         /// Thread-agnostic layouts only use contents of <see cref="LogEventInfo"/> for its output.
         /// </remarks>
-        internal bool ThreadAgnostic { get; private set; }
+        internal bool ThreadAgnostic { get; set; }
 
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
