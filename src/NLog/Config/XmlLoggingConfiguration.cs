@@ -621,6 +621,8 @@ namespace NLog.Config
                 this.ParseExtensionsElement(extensionsChild, Path.GetDirectoryName(filePath));
             }
 
+            var rulesList = new List<NLogXmlElement>();
+
             //parse all other direct elements
             foreach (var child in children)
             {
@@ -644,7 +646,8 @@ namespace NLog.Config
                         break;
 
                     case "RULES":
-                        this.ParseRulesElement(child, this.LoggingRules);
+                        //postpone parsing <rules> to the end
+                        rulesList.Add(child);
                         break;
 
                     case "TIME":
@@ -655,6 +658,12 @@ namespace NLog.Config
                         InternalLogger.Warn("Skipping unknown node: {0}", child.LocalName);
                         break;
                 }
+            }
+
+
+            foreach (var ruleChild in rulesList)
+            {
+                this.ParseRulesElement(ruleChild, this.LoggingRules);
             }
         }
 
@@ -1072,6 +1081,8 @@ namespace NLog.Config
 
             string newFileName = includeElement.GetRequiredAttribute("file");
 
+            var ignoreErrors = includeElement.GetOptionalBooleanAttribute("ignoreErrors", false);
+
             try
             {
                 newFileName = this.ExpandSimpleVariables(newFileName);
@@ -1102,6 +1113,14 @@ namespace NLog.Config
                     }
                     else
                     {
+                        if (ignoreErrors)
+                        {
+                            //quick stop for performances
+                            InternalLogger.Debug("Skipping included file '{0}' as it can't be found", fullNewFileName);
+
+                            return;
+                        }
+
                         throw new FileNotFoundException("Included file not found: " + fullNewFileName);
                     }
 
@@ -1111,15 +1130,18 @@ namespace NLog.Config
             {
                 InternalLogger.Error(exception, "Error when including '{0}'.", newFileName);
 
+
+                if (ignoreErrors)
+                {
+                    return;
+                }
+
                 if (exception.MustBeRethrown())
                 {
                     throw;
                 }
 
-                if (includeElement.GetOptionalBooleanAttribute("ignoreErrors", false))
-                {
-                    return;
-                }
+
 
                 throw new NLogConfigurationException("Error when including: " + newFileName, exception);
             }
@@ -1146,7 +1168,7 @@ namespace NLog.Config
                 }
 
                 var filename = Path.GetFileName(fileMask);
-                
+
                 if (filename == null)
                 {
                     InternalLogger.Warn("filename is empty for include of '{0}'", fileMask);

@@ -716,7 +716,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
-#region Compositio unit test
+        #region Compositio unit test
 
 #if !NETSTANDARD || NETSTANDARD1_3PLUS
         [Fact]
@@ -909,6 +909,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var callSite = l.Render(logEvent);
             return callSite;
         }
+
 #endif
 #endif  // ASYNC_SUPPORTED
 
@@ -938,24 +939,24 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
+
         private void MoveNext()
         {
             var logger = LogManager.GetCurrentClassLogger();
             logger.Warn("direct");
+
         }
 
         public class CompositeWrapper
         {
             private readonly MyWrapper wrappedLogger;
-
             public CompositeWrapper()
             {
                 wrappedLogger = new MyWrapper();
             }
-
             public void Log(string what)
             {
-                wrappedLogger.Log(typeof (CompositeWrapper), what);
+                wrappedLogger.Log(typeof(CompositeWrapper), what);
             }
         }
 
@@ -963,7 +964,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             public void Log(string what)
             {
-                InternalLog(typeof (BaseWrapper), what);
+                InternalLog(typeof(BaseWrapper), what);
             }
 
             public void Log(Type type, string what) //overloaded with type for composition
@@ -994,7 +995,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#endregion
+        #endregion
 
         private class MyLogger : Logger
         {
@@ -1016,7 +1017,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            ILogger logger = LogManager.GetLogger("mylogger", typeof (MyLogger));
+            ILogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger));
 
             Assert.True(logger is MyLogger, "logger isn't MyLogger");
             logger.Debug("msg");
@@ -1039,7 +1040,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            MyLogger logger = LogManager.GetLogger("mylogger", typeof (MyLogger)) as MyLogger;
+            MyLogger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as MyLogger;
 
             Assert.NotNull(logger);
             logger.Debug("msg");
@@ -1062,7 +1063,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Logger logger = LogManager.GetLogger("mylogger", typeof (MyLogger)) as Logger;
+            Logger logger = LogManager.GetLogger("mylogger", typeof(MyLogger)) as Logger;
 
             Assert.NotNull(logger);
             logger.Debug("msg");
@@ -1081,28 +1082,45 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // Step 2. Create targets and add them to the configuration 
             var target = new MemoryTarget();
-            config.AddTarget("target", target);
+            var wrapper = new NLog.Targets.Wrappers.AsyncTargetWrapper(target) { TimeToSleepBetweenBatches = 0 };
+            config.AddTarget("target", wrapper);
 
             // Step 3. Set target properties 
-            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${callsite} ${message}";
+            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${message}";
 
             // Step 4. Define rules
-            var rule = new LoggingRule("*", LogLevel.Debug, target);
+            var rule = new LoggingRule("*", LogLevel.Debug, wrapper);
             config.LoggingRules.Add(rule);
 
-
+            LogManager.Configuration = config;
             var factory = new NLogFactory(config);
+            var logger = factory.Create("MyLoggerName");
 
-            WriteLogMessage(factory);
+            WriteLogMessage(logger);
+            LogManager.Flush();
             var logMessage = target.Logs[0];
+            Assert.Contains("MyLoggerName", logMessage);
+
+            // See that LogManager.ReconfigExistingLoggers() is able to upgrade the Logger
+            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${callsite} ${message}";
+            LogManager.ReconfigExistingLoggers();
+            WriteLogMessage(logger);
+            LogManager.Flush();
+            logMessage = target.Logs[1];
             Assert.Contains("CallSiteTests.WriteLogMessage", logMessage);
+
+            // See that LogManager.ReconfigExistingLoggers() is able to upgrade the Logger
+            target.Layout = "${date:format=HH\\:MM\\:ss} ${logger} ${callsite} ${message} ThreadId=${threadid}";
+            LogManager.ReconfigExistingLoggers();
+            WriteLogMessage(logger);
+            LogManager.Flush();
+            logMessage = target.Logs[2];
+            Assert.Contains("ThreadId=" + Thread.CurrentThread.ManagedThreadId.ToString(), logMessage);
         }
 
-
         [MethodImpl(MethodImplOptions.NoInlining)]
-        private void WriteLogMessage(NLogFactory factory)
+        private void WriteLogMessage(NLogLogger logger)
         {
-            var logger = factory.Create("MyLoggerName");
             logger.Debug("something");
         }
 
@@ -1199,7 +1217,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             public void Log(LogLevel logLevel, string message)
             {
-                Logger.Log(typeof (NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
+                Logger.Log(typeof(NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
             }
 
         }

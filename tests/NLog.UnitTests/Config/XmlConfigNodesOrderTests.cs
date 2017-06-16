@@ -31,20 +31,39 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using NLog.Common;
-
-namespace NLog.Internal
+namespace NLog.UnitTests.Config
 {
-    /// <summary>
-    /// Controls a single allocated AsyncLogEventInfo-List for reuse (only one active user)
-    /// </summary>
-    internal class ReusableAsyncLogEventList : ReusableObjectCreator<IList<AsyncLogEventInfo>>
+    using NLog.Config;
+    using Xunit;
+
+    public class XmlConfigNodesOrderTests : NLogTestBase
     {
-        public ReusableAsyncLogEventList(int capacity)
-            :base(new List<AsyncLogEventInfo>(capacity), (l) => l.Clear())
+        [Fact]
+        public void RulesBeforeTargetsTest()
         {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <rules>
+                    <logger name='*' minLevel='Info' writeTo='d1' />
+                </rules>
+
+                <targets>
+                    <target name='d1' type='Debug' />
+                </targets>
+            </nlog>");
+
+            Assert.Equal(1, c.LoggingRules.Count);
+            var rule = c.LoggingRules[0];
+            Assert.Equal("*", rule.LoggerNamePattern);
+            Assert.Equal(4, rule.Levels.Count);
+            Assert.True(rule.Levels.Contains(LogLevel.Info));
+            Assert.True(rule.Levels.Contains(LogLevel.Warn));
+            Assert.True(rule.Levels.Contains(LogLevel.Error));
+            Assert.True(rule.Levels.Contains(LogLevel.Fatal));
+            Assert.Equal(1, rule.Targets.Count);
+            Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
+            Assert.False(rule.Final);
+            Assert.Equal(0, rule.Filters.Count);
         }
     }
 }

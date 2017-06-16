@@ -31,15 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Reflection;
-using NLog.Internal;
-
 namespace NLog.Layouts
 {
-    using NLog.Config;
+    using System;
     using System.Collections.Generic;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// A specialized layout that renders JSON-formatted events.
@@ -78,6 +75,18 @@ namespace NLog.Layouts
         public bool RenderEmptyObject { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
+        /// </summary>
+        public bool IncludeMdc { get; set; }
+
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        public bool IncludeMdlc { get; set; }
+#endif
+
+        /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         public bool IncludeAllProperties { get; set; }
@@ -90,6 +99,24 @@ namespace NLog.Layouts
 #else
         public ISet<string> ExcludeProperties { get; set; }
 #endif
+
+        /// <summary>
+        /// Initializes the layout.
+        /// </summary>
+        protected override void InitializeLayout()
+        {
+            base.InitializeLayout();
+            if (IncludeMdc)
+            {
+                ThreadAgnostic = false;
+            }
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+            if (IncludeMdlc)
+            {
+                ThreadAgnostic = false;
+            }
+#endif
+        }
 
         /// <summary>
         /// Formats the log event as a JSON document for writing.
@@ -129,6 +156,30 @@ namespace NLog.Layouts
                     }
                 }
 
+            if (this.IncludeMdc)
+            {
+                foreach (string key in MappedDiagnosticsContext.GetNames())
+                {
+                    if (string.IsNullOrEmpty(key))
+                        continue;
+                    object propertyValue = MappedDiagnosticsContext.GetObject(key);
+                    AppendJsonPropertyValue(key, propertyValue, sb);
+                }
+            }
+
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+            if (this.IncludeMdlc)
+            {
+                foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
+                {
+                    if (string.IsNullOrEmpty(key))
+                        continue;
+                    object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
+                    AppendJsonPropertyValue(key, propertyValue, sb);
+                }
+            }
+#endif
+
             if (this.IncludeAllProperties && logEvent.HasProperties)
             {
                 foreach (var prop in logEvent.Properties)
@@ -139,33 +190,41 @@ namespace NLog.Layouts
                         continue;
 
                     //Skips properties in the ExcludeProperties list
-                    if (this.ExcludeProperties.Contains(propName)) continue;
+                    if (this.ExcludeProperties.Contains(propName))
+                        continue;
 
-                    bool propStringEncode;
-                    string propStringValue = Targets.DefaultJsonSerializer.JsonStringEncode(prop.Value, out propStringEncode);
-                    if (!string.IsNullOrEmpty(propStringValue))
-                    {
-                        AppendJsonAttributeValue(propName, propStringEncode, propStringValue, sb);
-                    }
-                        }
-                        }
+                    AppendJsonPropertyValue(propName, prop.Value, sb);
+                }
+            }
 
             CompleteJsonMessage(sb);
-                    }
+        }
 
         private void CompleteJsonMessage(StringBuilder sb)
-                    {
+        {
             if (sb.Length > 0)
                 sb.Append(SuppressSpaces ? "}" : " }");
         }
 
+        private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb)
+        {
+            TypeCode objTypeCode = Convert.GetTypeCode(propertyValue);
+
+            bool propStringEncode;
+            string propStringValue = Targets.DefaultJsonSerializer.JsonStringEncode(propertyValue, objTypeCode, true, out propStringEncode);
+            if (!string.IsNullOrEmpty(propStringValue))
+            {
+                AppendJsonAttributeValue(propName, propStringEncode, propStringValue, sb);
+            }
+        }
+
         private void AppendJsonAttributeValue(string attributeName, bool attributeEncode, string text, StringBuilder sb)
         {
-                        bool first = sb.Length == 0;
-                        if (first)
-                        {
-                            sb.Append(SuppressSpaces ? "{" : "{ ");
-                        }
+            bool first = sb.Length == 0;
+            if (first)
+            {
+                sb.Append(SuppressSpaces ? "{" : "{ ");
+            }
 
             if (!first)
             {

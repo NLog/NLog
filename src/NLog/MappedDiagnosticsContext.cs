@@ -30,6 +30,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
 using System.Linq;
 
 namespace NLog
@@ -49,9 +50,20 @@ namespace NLog
     {
         private static readonly object dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
 
-        private static IDictionary<string, object> ThreadDictionary
+        private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
+
+        /// <summary>
+        /// Gets the thread-local dictionary
+        /// </summary>
+        /// <param name="create">Must be true for any subsequent dictionary modification operation</param>
+        /// <returns></returns>
+        private static IDictionary<string, object> GetThreadDictionary(bool create = true)
         {
-            get { return ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot); }
+            var dictionary = ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot, create);
+            if (dictionary == null && !create)
+                return EmptyDefaultDictionary;
+
+            return dictionary;
         }
 
         /// <summary>
@@ -61,7 +73,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            ThreadDictionary[item] = value;
+            GetThreadDictionary(true)[item] = value;
         }
 
         /// <summary>
@@ -71,7 +83,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            ThreadDictionary[item] = value;
+            GetThreadDictionary(true)[item] = value;
         }
 
         /// <summary>
@@ -106,7 +118,7 @@ namespace NLog
         {
             object o;
 
-            if (!ThreadDictionary.TryGetValue(item, out o))
+            if (!GetThreadDictionary(false).TryGetValue(item, out o))
                 o = null;
 
             return o;
@@ -118,7 +130,7 @@ namespace NLog
         /// <returns>A set of the names of all items in current thread-MDC.</returns>
         public static ICollection<string> GetNames()
         {
-            return ThreadDictionary.Keys;
+            return GetThreadDictionary(false).Keys;
         }
 
         /// <summary>
@@ -128,7 +140,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current thread MDC.</returns>
         public static bool Contains(string item)
         {
-            return ThreadDictionary.ContainsKey(item);
+            return GetThreadDictionary(false).ContainsKey(item);
         }
 
         /// <summary>
@@ -137,7 +149,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            ThreadDictionary.Remove(item);
+            GetThreadDictionary(true).Remove(item);
         }
 
         /// <summary>
@@ -145,7 +157,7 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            ThreadDictionary.Clear();
+            GetThreadDictionary(true).Clear();
         }
     }
 }

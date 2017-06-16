@@ -549,9 +549,12 @@ namespace NLog
         /// </summary>
         public void ReconfigExistingLoggers()
         {
-            if (this.config != null)
+            lock (this.syncRoot)
             {
-                this.config.InitializeAll();
+                if (this.config != null)
+                {
+                    this.config.InitializeAll();
+                }
             }
 
             //new list to avoid "Collection was modified; enumeration operation may not execute"
@@ -806,7 +809,6 @@ namespace NLog
                     var xmlConfig = newConfig as XmlLoggingConfiguration;
                     if (xmlConfig != null)
                     {
-
                         if (!xmlConfig.InitializeSucceeded.HasValue || !xmlConfig.InitializeSucceeded.Value)
                         {
                             throw new NLogConfigurationException("Configuration.Reload() failed. Invalid XML?");
@@ -990,7 +992,11 @@ namespace NLog
                                 oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
                                 attemptClose = flushCompleted.WaitOne(flushTimeout);
                             }
-                            if (attemptClose)
+                            if (!attemptClose)
+                            {
+                                InternalLogger.Warn("Target flush timeout. One or more targets did not complete flush operation, skipping target close.");
+                            }
+                            else
 #endif
                             {
                                 // Flush completed within timeout, lets try and close down
@@ -1258,11 +1264,15 @@ namespace NLog
 
                 if (this.reloadTimer == null)
                 {
-                    this.reloadTimer = new Timer(
-                            this.ReloadConfigOnTimer,
-                            this.Configuration,
-                            LogFactory.ReconfigAfterFileChangedTimeout,
-                            Timeout.Infinite);
+                    var configuration = this.Configuration;
+                    if (configuration != null)
+                    {
+                        this.reloadTimer = new Timer(
+                                this.ReloadConfigOnTimer,
+                                configuration,
+                                LogFactory.ReconfigAfterFileChangedTimeout,
+                                Timeout.Infinite);
+                    }
                 }
                 else
                 {
@@ -1276,11 +1286,10 @@ namespace NLog
         /// <summary>
         /// Logger cache key.
         /// </summary>
-        internal class LoggerCacheKey : IEquatable<LoggerCacheKey>
+        internal struct LoggerCacheKey : IEquatable<LoggerCacheKey>
         {
-            public string Name { get; private set; }
-
-            public Type ConcreteType { get; private set; }
+            public readonly string Name;
+            public readonly Type ConcreteType;
 
             public LoggerCacheKey(string name, Type concreteType)
             {
@@ -1306,13 +1315,7 @@ namespace NLog
             /// <returns>True if objects are equal, false otherwise.</returns>
             public override bool Equals(object obj)
             {
-                LoggerCacheKey key = obj as LoggerCacheKey;
-                if (ReferenceEquals(key, null))
-                {
-                    return false;
-                }
-
-                return (this.ConcreteType == key.ConcreteType) && (key.Name == this.Name);
+                return obj is LoggerCacheKey && Equals((LoggerCacheKey)obj);
             }
 
             /// <summary>
@@ -1322,12 +1325,7 @@ namespace NLog
             /// <returns>True if objects are equal, false otherwise.</returns>
             public bool Equals(LoggerCacheKey key)
             {
-                if (ReferenceEquals(key, null))
-                {
-                    return false;
-                }
-
-                return (this.ConcreteType == key.ConcreteType) && (key.Name == this.Name);
+                return (this.ConcreteType == key.ConcreteType) && string.Equals(key.Name, this.Name, StringComparison.Ordinal);
             }
         }
 
@@ -1372,7 +1370,10 @@ namespace NLog
                 // TODO: Test if loggerCache.Values.ToList<Logger>() can be used for the conversion instead.
                 List<Logger> values = new List<Logger>(loggerCache.Count);
 
-                foreach (WeakReference loggerReference in loggerCache.Values)
+                //new list for prevent InvalidOperationException on Travis/Mono.
+                List<WeakReference> loggerReferences = new List<WeakReference>(loggerCache.Values.ToList());
+
+                foreach (WeakReference loggerReference in loggerReferences)
                 {
                     Logger logger = loggerReference.Target as Logger;
                     if (logger != null)

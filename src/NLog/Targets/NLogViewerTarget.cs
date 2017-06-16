@@ -148,6 +148,18 @@ namespace NLog.Targets
             set { this.Renderer.IncludeMdc = value; }
         }
 
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+        /// <summary>
+        /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeMdlc
+        {
+            get { return this.Renderer.IncludeMdlc; }
+            set { this.Renderer.IncludeMdlc = value; }
+        }
+#endif
+
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="NestedDiagnosticsContext"/> stack contents.
         /// </summary>

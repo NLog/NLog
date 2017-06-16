@@ -62,6 +62,9 @@ namespace NLog
             var dictionary = GetThreadLocal();
             if (dictionary == null)
             {
+                if (!clone)
+                    return EmptyDefaultDictionary;
+
                 dictionary = new Dictionary<string, object>();
                 SetThreadLocal(dictionary);
             }
@@ -206,6 +209,8 @@ namespace NLog
 #else
         private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
 #endif
+
+        private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
     }
 }
 

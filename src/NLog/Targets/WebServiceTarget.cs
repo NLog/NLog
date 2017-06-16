@@ -246,9 +246,9 @@ namespace NLog.Targets
                                 catch (Exception ex2)
                                 {
                                     InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", this.Name);
-                                    if (ex2.MustBeRethrown())
+                                    if (ex2.MustBeRethrownImmediately())
                                     {
-                                        throw;
+                                        throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                                     }
 
                                     DoInvokeCompleted(continuation, ex2);
@@ -292,9 +292,9 @@ namespace NLog.Targets
                             catch (Exception ex)
                             {
                                 InternalLogger.Error(ex, "Error when sending to Webservice: {0}", this.Name);
-                                if (ex.MustBeRethrown())
+                                if (ex.MustBeRethrownImmediately())
                                 {
-                                    throw;
+                                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                                 }
 
                                 postPayload.Dispose();

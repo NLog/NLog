@@ -60,7 +60,7 @@ NLog.Schema                                                         | [![AppVeyo
 
 Questions, bug reports or feature requests?
 ---
-Do you have feature request or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](CONTRIBUTING.md).
+Do you have feature request or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](.github/CONTRIBUTING.md).
 Please post questions on [StackOverflow](https://stackoverflow.com/).
 
 
@@ -85,7 +85,7 @@ A good way to get started (flow)
 1. Fork the NLog repos.
 1. Create a new branch in you current repos from the 'master' branch.
 1. 'Check out' the code with Git or [GitHub Desktop](https://desktop.github.com/)
-1. Check [contributing.md](https://github.com/NLog/NLog/blob/master/CONTRIBUTING.md#sync-projects)
+1. Check [contributing.md](.github/CONTRIBUTING.md#sync-projects)
 1. push commits and create a Pull Request (PR) to NLog
 
 

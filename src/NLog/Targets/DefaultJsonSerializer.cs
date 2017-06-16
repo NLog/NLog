@@ -72,7 +72,7 @@ namespace NLog.Targets
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value)
         {
-            return SerializeObject(value, null, 0);
+            return SerializeObject(value, false, null, 0);
         }
 
 
@@ -81,12 +81,13 @@ namespace NLog.Targets
         /// int JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
+        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <param name="objectsInPath">The objects in path.</param>
         /// <param name="depth">The current depth (level) of recursion.</param>
         /// <returns>
         /// Serialized value.
         /// </returns>
-        private string SerializeObject(object value, HashSet<object> objectsInPath, int depth)
+        private string SerializeObject(object value, bool escapeUnicode, HashSet<object> objectsInPath, int depth)
         {
             if (objectsInPath != null && objectsInPath.Contains(value))
             {
@@ -102,7 +103,7 @@ namespace NLog.Targets
             }
             else if ((str = value as string) != null)
             {
-                return string.Concat("\"", JsonStringEscape(str), "\"");
+                return string.Concat("\"", JsonStringEscape(str, escapeUnicode), "\"");
             }
             else if ((dict = value as IDictionary) != null)
             {
@@ -112,8 +113,8 @@ namespace NLog.Targets
                 var set = new HashSet<object>(objectsInPath ?? (IEnumerable<object>)Internal.ArrayHelper.Empty<object>()) { value };
                 foreach (DictionaryEntry de in dict)
                 {
-                    var keyJson = SerializeObject(de.Key, set, depth + 1);
-                    var valueJson = SerializeObject(de.Value, set, depth + 1);
+                    var keyJson = SerializeObject(de.Key, escapeUnicode, set, depth + 1);
+                    var valueJson = SerializeObject(de.Value, escapeUnicode, set, depth + 1);
                     if (!string.IsNullOrEmpty(keyJson) && valueJson != null)
                     {
                         //only serialize, if key and value are serialized without error (e.g. due to reference loop)
@@ -123,7 +124,7 @@ namespace NLog.Targets
 
                 return string.Concat("{", string.Join(",", list.ToArray()), "}");
             }
-            else if((enumerable = value as IEnumerable) != null)
+            else if ((enumerable = value as IEnumerable) != null)
             {
                 if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
 
@@ -131,7 +132,7 @@ namespace NLog.Targets
                 var set = new HashSet<object>(objectsInPath ?? (IEnumerable<object>)Internal.ArrayHelper.Empty<object>()) { value };
                 foreach (var val in enumerable)
                 {
-                    var valueJson = SerializeObject(val, set, depth + 1);
+                    var valueJson = SerializeObject(val, escapeUnicode, set, depth + 1);
                     if (valueJson != null)
                     {
                         list.Add(valueJson);
@@ -142,8 +143,9 @@ namespace NLog.Targets
             }
             else
             {
+                TypeCode objTypeCode = Convert.GetTypeCode(value);
                 bool encodeStringValue;
-                string escapeXmlString = JsonStringEncode(value, out encodeStringValue);
+                string escapeXmlString = JsonStringEncode(value, objTypeCode, escapeUnicode, out encodeStringValue);
                 if (escapeXmlString != null && encodeStringValue)
                     return string.Concat("\"", escapeXmlString, "\"");
                 else
@@ -155,14 +157,15 @@ namespace NLog.Targets
         /// Converts object value into JSON escaped string
         /// </summary>
         /// <param name="value">Object value</param>
+        /// <param name="objTypeCode">Object TypeCode</param>
+        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <param name="encodeString">Should string be JSON encoded with quotes</param>
         /// <returns>Object value converted to JSON escaped string</returns>
-        internal static string JsonStringEncode(object value, out bool encodeString)
-            {
-            TypeCode objTypeCode;
-            string stringValue = Internal.XmlHelper.XmlConvertToString(value, out objTypeCode);
+        internal static string JsonStringEncode(object value, TypeCode objTypeCode, bool escapeUnicode, out bool encodeString)
+        {
+            string stringValue = Internal.XmlHelper.XmlConvertToString(value, objTypeCode);
             if (objTypeCode != TypeCode.String || stringValue == null)
-                {
+            {
                 encodeString = false;
                 if (stringValue == null)
                     return stringValue;
@@ -172,14 +175,14 @@ namespace NLog.Targets
                     return stringValue; // Don't put quotes around boolean values
                 else if (IsNumericTypeCode(objTypeCode))
                     return stringValue; // Don't put quotes around numeric values
-                }
+            }
 
             encodeString = true;
-            return JsonStringEscape(stringValue);
+            return JsonStringEscape(stringValue, escapeUnicode);
         }
 
         private static bool IsNumericTypeCode(TypeCode objTypeCode)
-                {
+        {
             switch (objTypeCode)
             {
                 case TypeCode.Byte:
@@ -194,16 +197,17 @@ namespace NLog.Targets
                 case TypeCode.Double:
                 case TypeCode.Decimal:
                     return true;
-                }
+            }
             return false;
-             }
+        }
 
         /// <summary>
         /// Checks input string if it needs JSON escaping, and makes necessary conversion
         /// </summary>
         /// <param name="text">Input string</param>
+        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <returns>JSON escaped string</returns>
-        internal static string JsonStringEscape(string text)
+        internal static string JsonStringEscape(string text, bool escapeUnicode)
         {
             if (text == null)
                 return null;
@@ -215,7 +219,7 @@ namespace NLog.Targets
                 if (sb == null)
                 {
                     // Check if we need to upgrade to StringBuilder
-                    if (!EscapeChar(ch))
+                    if (!EscapeChar(ch, escapeUnicode))
                     {
                         switch (ch)
                         {
@@ -226,16 +230,16 @@ namespace NLog.Targets
 
                             default:
                                 continue;   // StringBuilder not needed, yet
-            }
+                        }
                     }
 
                     // StringBuilder needed
                     sb = new StringBuilder(text.Length + 4);
                     sb.Append(text, 0, i);
-        }
+                }
 
                 switch (ch)
-        {
+                {
                     case '"':
                         sb.Append("\\\"");
                         break;
@@ -269,14 +273,14 @@ namespace NLog.Targets
                         break;
 
                     default:
-                        if (EscapeChar(ch))
-            {
+                        if (EscapeChar(ch, escapeUnicode))
+                        {
                             sb.AppendFormat(CultureInfo.InvariantCulture, "\\u{0:x4}", (int)ch);
-            }
+                        }
                         else
-            {
+                        {
                             sb.Append(ch);
-            }
+                        }
                         break;
                 }
             }
@@ -287,9 +291,12 @@ namespace NLog.Targets
                 return text;
         }
 
-        private static bool EscapeChar(char ch)
-            {
-            return ch < 32 || ch > 127;
-            }
+        private static bool EscapeChar(char ch, bool escapeUnicode)
+        {
+            if (ch < 32)
+                return true;
+            else
+                return escapeUnicode && ch > 127;
         }
     }
+}

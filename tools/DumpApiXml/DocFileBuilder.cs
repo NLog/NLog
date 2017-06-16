@@ -226,7 +226,7 @@
             return p.Substring(0, 1).ToUpper() + p.Substring(1);
         }
 
-	    private void DumpApiDocs(XmlWriter writer, string kind, string attributeTypeName, string titlePrefix, string titleSuffix)
+        private void DumpApiDocs(XmlWriter writer, string kind, string attributeTypeName, string titlePrefix, string titleSuffix)
         {
             foreach (Type type in this.GetTypesWithAttribute(attributeTypeName).OrderBy(t => t.Name))
             {
@@ -608,7 +608,7 @@
         {
             foreach (Assembly assembly in this.assemblies)
             {
-                foreach (Type t in assembly.GetTypes())
+                foreach (Type t in assembly.SafeGetTypes())
                 {
                     if (HasAttribute(t, attributeTypeName))
                     {
@@ -618,14 +618,23 @@
             }
         }
 
+
+
         private bool HasAttribute(Type type, string attributeTypeName)
         {
-            foreach (CustomAttributeData cad in CustomAttributeData.GetCustomAttributes(type))
+            try
             {
-                if (cad.Constructor.DeclaringType.FullName == attributeTypeName)
+                foreach (CustomAttributeData cad in CustomAttributeData.GetCustomAttributes(type))
                 {
-                    return true;
+                    if (cad.Constructor.DeclaringType.FullName == attributeTypeName)
+                    {
+                        return true;
+                    }
                 }
+            }
+            catch
+            {
+
             }
 
             return false;
@@ -633,12 +642,19 @@
 
         private bool HasAttribute(PropertyInfo propertyInfo, string attributeTypeName)
         {
-            foreach (CustomAttributeData cad in CustomAttributeData.GetCustomAttributes(propertyInfo))
+            try
             {
-                if (cad.Constructor.DeclaringType.FullName == attributeTypeName)
+                foreach (CustomAttributeData cad in CustomAttributeData.GetCustomAttributes(propertyInfo))
                 {
-                    return true;
+                    if (cad.Constructor.DeclaringType.FullName == attributeTypeName)
+                    {
+                        return true;
+                    }
                 }
+            }
+            catch
+            {
+
             }
 
             return false;
@@ -727,6 +743,41 @@
 
             element = null;
             return false;
+        }
+    }
+
+    public static class AssemblyExt
+    {
+        /// <summary>
+        /// Gets all usable exported types from the given assembly.
+        /// </summary>
+        /// <param name="assembly">Assembly to scan.</param>
+        /// <returns>Usable types from the given assembly.</returns>
+        /// <remarks>Types which cannot be loaded are skipped.</remarks>
+        public static Type[] SafeGetTypes(this Assembly assembly)
+        {
+            try
+            {
+                return assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException typeLoadException)
+            {
+                foreach (var ex in typeLoadException.LoaderExceptions)
+                {
+                    //InternalLogger.Warn(ex, "Type load exception.");
+                }
+
+                var loadedTypes = new List<Type>();
+                foreach (var t in typeLoadException.Types)
+                {
+                    if (t != null)
+                    {
+                        loadedTypes.Add(t);
+                    }
+                }
+
+                return loadedTypes.ToArray();
+            }
         }
     }
 }
