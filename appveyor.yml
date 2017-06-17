@@ -13,8 +13,8 @@ build_script:
 
 test_script:
   - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
-  - xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
-  - xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
+  - '%xunit20%\xunit.console.x86.exe "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" -appveyor -noshadow -parallel none'
+  - '%xunit20%\xunit.console.x86.exe "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" -appveyor -noshadow -parallel none'
   - nuget.exe install OpenCover -ExcludeVersion
   - OpenCover\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"\"C:\projects\nlog\build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll\" -appveyor -noshadow"  -returntargetcode -filter:"+[NLog]* +[NLog.Extended]* -[NLog]JetBrains.Annotations.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
