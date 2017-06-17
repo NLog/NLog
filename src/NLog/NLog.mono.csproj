@@ -146,6 +146,7 @@
     <Compile Include="Internal\AppendBuilderCreator.cs" />
     <Compile Include="Internal\ArrayHelper.cs" />
     <Compile Include="Internal\AsyncOperationCounter.cs" />
+    <Compile Include="Internal\Cache.cs" />
     <Compile Include="Internal\ConfigurationManager.cs" />
     <Compile Include="Internal\DictionaryAdapter.cs" />
     <Compile Include="Internal\EncodingHelpers.cs" />

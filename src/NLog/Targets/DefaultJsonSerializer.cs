@@ -53,7 +53,7 @@ namespace NLog.Targets
         /// <summary>
         /// Cache for property infos
         /// </summary>
-        private static Dictionary<Type, PropertyInfo[]> _propsCache = new Dictionary<Type, PropertyInfo[]>();
+        private static Cache<PropertyInfo[]> _propsCache = new Cache<PropertyInfo[]>("PropsCache");
 
         /// <summary>
         /// Singleton instance of the serializer.
@@ -506,17 +506,17 @@ namespace NLog.Targets
         private static PropertyInfo[] GetProps(object value)
         {
             var type = value.GetType();
-            PropertyInfo[] props;
-            if (!_propsCache.TryGetValue(type, out props))
-            {
-#if NETSTANDARD
-                props = type.GetRuntimeProperties().ToArray();
-#else
-                props = type.GetProperties();
-#endif
-                _propsCache[type] = props;
-            }
+            var key = type.GetHashCode().ToString(CultureInfo.InvariantCulture);
+            return _propsCache.GetOrCreate(key, () => GetPropertyInfosNoCache(type));
+        }
 
+        private static PropertyInfo[] GetPropertyInfosNoCache(Type type)
+        {
+#if NETSTANDARD
+            var props = type.GetRuntimeProperties().ToArray();
+#else
+            var props = type.GetProperties();
+#endif
             return props;
         }
 
