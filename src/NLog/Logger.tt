@@ -130,7 +130,8 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use <#=level#>(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use <#=level#>(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void <#=level#>Exception([Localizable(false)] string message, Exception exception)
         {
             this.<#=level#>(message, exception); 
@@ -182,12 +183,26 @@ namespace NLog
         /// </summary>
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [Obsolete("Use <#=level#>(Exception exception, string message, params object[] args) method instead.")]
+        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
+        [Obsolete("Use <#=level#>(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void <#=level#>([Localizable(false)] string message, Exception exception)
         {
             if (this.Is<#=level#>Enabled)
             {
                 this.WriteToTargets(LogLevel.<#=level#>, message, exception);
+            }
+        }
+
+        /// <summary>
+        /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
+        /// </summary>
+        /// <param name="message">A <see langword="string" /> to be written.</param>
+        /// <param name="exception">An exception to be logged.</param>
+        public void <#=level#>(Exception exception, [Localizable(false)] string message)
+        {
+            if (this.Is<#=level#>Enabled)
+            {
+                this.WriteToTargets(LogLevel.<#=level#>, exception, message, null);
             }
         }
 

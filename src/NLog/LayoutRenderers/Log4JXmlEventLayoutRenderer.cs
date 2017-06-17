@@ -170,6 +170,20 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdc { get; set; }
 
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeMdlc { get; set; }
+#endif
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeAllProperties { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
@@ -283,32 +297,12 @@ namespace NLog.LayoutRenderers
                                 xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
                             }
                             xtw.WriteEndElement();
-                        }
-                    }
-                }
 
-                if (this.IncludeNLogData)
-                {
-                    xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                    if (logEvent.HasProperties)
-                    {
-                        foreach (var contextProperty in logEvent.Properties)
-                        {
-                            string propertyKey = XmlHelper.XmlConvertToString(contextProperty.Key);
-                            if (string.IsNullOrEmpty(propertyKey))
-                                continue;
-
-                            string propertyValue = XmlHelper.XmlConvertToString(contextProperty.Value);
-                            if (propertyValue == null)
-                                continue;
-
-                            xtw.WriteStartElement("nlog", "data", dummyNLogNamespace);
-                            xtw.WriteAttributeSafeString("name", propertyKey);
-                            xtw.WriteAttributeSafeString("value", propertyValue);
+                            xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
+                            AppendProperties("nlog", xtw, logEvent);
                             xtw.WriteEndElement();
                         }
                     }
-                    xtw.WriteEndElement();
                 }
 
                 xtw.WriteStartElement("log4j", "properties", dummyNamespace);
@@ -325,6 +319,28 @@ namespace NLog.LayoutRenderers
                         xtw.WriteAttributeSafeString("value", propertyValue);
                         xtw.WriteEndElement();
                     }
+                }
+
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
+                if (this.IncludeMdlc)
+                {
+                    foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
+                    {
+                        string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsLogicalContext.GetObject(key));
+                        if (propertyValue == null)
+                            continue;
+
+                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                        xtw.WriteAttributeSafeString("name", key);
+                        xtw.WriteAttributeSafeString("value", propertyValue);
+                        xtw.WriteEndElement();
+                    }
+                }
+#endif
+
+                if (this.IncludeAllProperties)
+                {
+                    AppendProperties("log4j", xtw, logEvent);
                 }
 
                 if (this.Parameters.Count > 0)
@@ -357,6 +373,28 @@ namespace NLog.LayoutRenderers
                 sb.Replace(dummyNamespaceRemover, string.Empty);
                 sb.Replace(dummyNLogNamespaceRemover, string.Empty);
                 builder.Append(sb.ToString());  // StringBuilder.Replace is not good when reusing the StringBuilder
+            }
+        }
+
+        private void AppendProperties(string prefix, XmlWriter xtw, LogEventInfo logEvent)
+        {
+            if (logEvent.HasProperties)
+            {
+                foreach (var contextProperty in logEvent.Properties)
+                {
+                    string propertyKey = XmlHelper.XmlConvertToString(contextProperty.Key);
+                    if (string.IsNullOrEmpty(propertyKey))
+                        continue;
+
+                    string propertyValue = XmlHelper.XmlConvertToString(contextProperty.Value);
+                    if (propertyValue == null)
+                        continue;
+
+                    xtw.WriteStartElement(prefix, "data", dummyNamespace);
+                    xtw.WriteAttributeSafeString("name", propertyKey);
+                    xtw.WriteAttributeSafeString("value", propertyValue);
+                    xtw.WriteEndElement();
+                }
             }
         }
     }

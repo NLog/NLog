@@ -31,14 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Layouts
 {
+    using System;
+    using System.Linq;
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Common;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
@@ -51,6 +52,7 @@ namespace NLog.Layouts
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
         /// </summary>
         private bool isInitialized;
+        private bool scannedForObjects;
 
         /// <summary>
         /// Gets a value indicating whether this layout is thread-agnostic (can be rendered on any thread).
@@ -61,7 +63,12 @@ namespace NLog.Layouts
         /// 
         /// Thread-agnostic layouts only use contents of <see cref="LogEventInfo"/> for its output.
         /// </remarks>
-        internal bool ThreadAgnostic { get; private set; }
+        internal bool ThreadAgnostic { get; set; }
+
+        /// <summary>
+        /// Gets the level of stack trace information required for rendering.
+        /// </summary>
+        internal StackTraceUsage StackTraceUsage { get; private set; }
 
         private const int MaxInitialRenderBufferLength = 16384;
         private int maxRenderedLength;
@@ -131,8 +138,7 @@ namespace NLog.Layouts
         {
             if (!this.isInitialized)
             {
-                this.isInitialized = true;
-                this.InitializeLayout();
+                this.Initialize(this.LoggingConfiguration);
             }
 
             return this.GetFormattedMessage(logEvent);
@@ -156,8 +162,7 @@ namespace NLog.Layouts
         {
             if (!this.isInitialized)
             {
-                this.isInitialized = true;
-                this.InitializeLayout();
+                this.Initialize(this.LoggingConfiguration);
             }
 
             if (!this.ThreadAgnostic)
@@ -255,23 +260,45 @@ namespace NLog.Layouts
         /// Initializes this instance.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-		internal void Initialize(LoggingConfiguration configuration)
-		{
+        internal void Initialize(LoggingConfiguration configuration)
+        {
             if (!this.isInitialized)
             {
                 this.LoggingConfiguration = configuration;
                 this.isInitialized = true;
-                this.ThreadAgnostic = IsThreadAgnostic();
+                this.scannedForObjects = false;
 
                 this.InitializeLayout();
+
+                if (!this.scannedForObjects)
+                {
+                    InternalLogger.Debug("Initialized Layout done but not scanned for objects");
+                    PerformObjectScanning();
+                }
             }
+        }
+
+        internal void PerformObjectScanning()
+        {
+            var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<object>(this);
+
+            // determine whether the layout is thread-agnostic
+            // layout is thread agnostic if it is thread-agnostic and 
+            // all its nested objects are thread-agnostic.
+            this.ThreadAgnostic = objectGraphScannerList.All(item => item.GetType().IsDefined<ThreadAgnosticAttribute>(true));
+
+            // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
+            this.StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IStackTraceUsage
+            this.StackTraceUsage = objectGraphScannerList.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(item => item == null ? StackTraceUsage.None : item.StackTraceUsage);
+
+            this.scannedForObjects = true;
         }
 
         /// <summary>
         /// Closes this instance.
         /// </summary>
-		internal void Close()
-		{
+        internal void Close()
+        {
             if (this.isInitialized)
             {
                 this.LoggingConfiguration = null;
@@ -285,6 +312,7 @@ namespace NLog.Layouts
         /// </summary>
         protected virtual void InitializeLayout()
         {
+            PerformObjectScanning();
         }
 
         /// <summary>
@@ -328,27 +356,9 @@ namespace NLog.Layouts
 
         private int GetRenderBufferLength()
         {
-            return (maxRenderedLength > MaxInitialRenderBufferLength) 
-                    ? MaxInitialRenderBufferLength 
+            return (maxRenderedLength > MaxInitialRenderBufferLength)
+                    ? MaxInitialRenderBufferLength
                     : maxRenderedLength;
-        }
-
-        /// <summary>
-        /// Determine whether the layout is thread-agnostic or not. The layout is thread-agnostic when itself  
-        /// and all the nested objects are thread-agnostic.
-        /// </summary>
-        /// <returns>True when thread-agnostic; false otherwise.</returns>
-        private bool IsThreadAgnostic() {
-            var result = true;
-
-            foreach (object item in ObjectGraphScanner.FindReachableObjects<object>(this)) {
-                if (!item.GetType().IsDefined<ThreadAgnosticAttribute>(true)) {
-                    result = false;
-                    break;
-                }
-            }
-
-            return result;
         }
     }
 }

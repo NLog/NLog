@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,89 +31,76 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal.Fakeables;
-
 namespace NLog.LayoutRenderers
 {
+#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
     using System;
-    using System.IO;
     using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
-    /// The current application domain's base directory.
+    /// <see cref="NestedDiagnosticsLogicalContext"/> Renderer (Async scope)
     /// </summary>
-    [LayoutRenderer("basedir")]
-    [AppDomainFixedOutput]
-    [ThreadAgnostic]
-    public class BaseDirLayoutRenderer : LayoutRenderer
+    [LayoutRenderer("ndlc")]
+    public class NdlcLayoutRenderer : LayoutRenderer
     {
-        private string baseDir;
-
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3PLUS
-
         /// <summary>
-        /// cached
+        /// Initializes a new instance of the <see cref="NdlcLayoutRenderer" /> class.
         /// </summary>
-        private string processDir;
-
-        /// <summary>
-        /// Use base dir of current process.
-        /// </summary>
-        public bool ProcessDir { get; set; }
-
-#endif
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
-        /// </summary>
-        public BaseDirLayoutRenderer(IAppDomain appDomain)
+        public NdlcLayoutRenderer()
         {
-            this.baseDir = appDomain.BaseDirectory;
+            this.Separator = " ";
+            this.BottomFrames = -1;
+            this.TopFrames = -1;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
+        /// Gets or sets the number of top stack frames to be rendered.
         /// </summary>
-        public BaseDirLayoutRenderer() : this(LogFactory.CurrentAppDomain)
-        {
-        }
+        /// <docgen category='Rendering Options' order='10' />
+        public int TopFrames { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the file to be Path.Combine()'d with with the base directory.
+        /// Gets or sets the number of bottom stack frames to be rendered.
         /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string File { get; set; }
+        /// <docgen category='Rendering Options' order='10' />
+        public int BottomFrames { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the directory to be Path.Combine()'d with with the base directory.
+        /// Gets or sets the separator to be used for concatenating nested logical context output.
         /// </summary>
-        /// <docgen category='Advanced Options' order='10' />
-        public string Dir { get; set; }
+        /// <docgen category='Rendering Options' order='10' />
+        public string Separator { get; set; }
 
         /// <summary>
-        /// Renders the application base directory and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the specified Nested Logical Context item and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            var messages = NestedDiagnosticsLogicalContext.GetAllObjects();
 
-            var dir = baseDir;
-#if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3PLUS
-            if (ProcessDir)
+            int startPos = 0;
+            int endPos = messages.Length;
+
+            if (this.TopFrames != -1)
             {
-                dir = processDir ?? (processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+                endPos = Math.Min(this.TopFrames, messages.Length);
             }
-#endif
-
-            if (dir != null)
+            else if (this.BottomFrames != -1)
             {
-                var path = PathHelpers.CombinePaths(dir, this.Dir, this.File);
-                builder.Append(path);
+                startPos = messages.Length - Math.Min(this.BottomFrames, messages.Length);
+            }
+
+            string currentSeparator = string.Empty;
+            for (int i = endPos - 1; i >= startPos; --i)
+            {
+                var stringValue = Internal.FormatHelper.ConvertToString(messages[i], logEvent.FormatProvider);
+                builder.Append(currentSeparator);
+                builder.Append(stringValue);
+                currentSeparator = this.Separator;
             }
         }
     }
+#endif
 }
-

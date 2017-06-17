@@ -427,6 +427,75 @@ Dispose()
         }
 
         [Fact]
+        public void LevelParameterTest()
+        {
+            MockDbConnection.ClearLog();
+            DatabaseTarget dt = new DatabaseTarget()
+            {
+                CommandText = "INSERT INTO FooBar VALUES(@lvl, @msg)",
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                KeepConnection = true,
+                Parameters =
+                {
+                    new DatabaseParameterInfo("lvl", "${level:format=Ordinal}"),
+                    new DatabaseParameterInfo("msg", "${message}")
+                }
+            };
+
+            dt.Initialize(null);
+
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
+
+            List<Exception> exceptions = new List<Exception>();
+            var events = new[]
+            {
+                new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Debug, "MyLogger2", "msg3").WithContinuation(exceptions.Add),
+            };
+
+            dt.WriteAsyncLogEvents(events);
+            foreach (var ex in exceptions)
+            {
+                Assert.Null(ex);
+            }
+
+            string expectedLog = @"Open('Server=.;Trusted_Connection=SSPI;').
+CreateParameter(0)
+Parameter #0 Direction=Input
+Parameter #0 Name=lvl
+Parameter #0 Value=2
+Add Parameter Parameter #0
+CreateParameter(1)
+Parameter #1 Direction=Input
+Parameter #1 Name=msg
+Parameter #1 Value=msg1
+Add Parameter Parameter #1
+ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
+CreateParameter(0)
+Parameter #0 Direction=Input
+Parameter #0 Name=lvl
+Parameter #0 Value=1
+Add Parameter Parameter #0
+CreateParameter(1)
+Parameter #1 Direction=Input
+Parameter #1 Name=msg
+Parameter #1 Value=msg3
+Add Parameter Parameter #1
+ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
+";
+
+            AssertLog(expectedLog);
+
+            MockDbConnection.ClearLog();
+            dt.Close();
+            expectedLog = @"Close()
+Dispose()
+";
+
+            AssertLog(expectedLog);
+        }
+
+        [Fact]
         public void ParameterFacetTest()
         {
             MockDbConnection.ClearLog();
@@ -775,6 +844,57 @@ Dispose()
 
             dt.Initialize(null);
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
+        }
+
+        [Fact]
+        public void SqlServer_NoTargetInstallException()
+        {
+            if (SqlServerTest.IsTravis())
+            {
+                Console.WriteLine("skipping test SqlServer_NoTargetInstallException because we are running in Travis");
+                return;
+            }
+
+            SqlServerTest.TryDropDatabase();
+
+            try
+            {
+                SqlServerTest.CreateDatabase();
+
+                var connectionString = SqlServerTest.GetConnectionString();
+
+                DatabaseTarget testTarget = new DatabaseTarget("TestDbTarget");
+                testTarget.ConnectionString = connectionString;
+
+                testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
+                {
+                    CommandType = System.Data.CommandType.Text,
+                    Text = $@"
+                    IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'NLogTestTable')
+                        RETURN
+
+                    CREATE TABLE [Dbo].[NLogTestTable] (
+				        [ID] [int] IDENTITY(1,1) NOT NULL,
+				        [MachineName] [nvarchar](200) NULL)"
+                });
+                
+                using (var context = new InstallationContext())
+                {
+                    testTarget.Install(context);
+                }
+
+                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES 
+                    WHERE TABLE_TYPE = 'BASE TABLE'
+                    AND  TABLE_NAME = 'NLogTestTable'
+                ");
+
+                //check if table exists
+                Assert.Equal("NLogTestTable", tableCatalog);
+            }
+            finally
+            {
+                SqlServerTest.TryDropDatabase();
+            }
         }
 
         [Fact]
