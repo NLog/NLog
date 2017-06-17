@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if NET3_5 || NET4_0 || SILVERLIGHT || __IOS__ || __ANDROID__ || WINDOWS_PHONE
+#if NET3_5 || NET4_0 || SILVERLIGHT || __IOS__ || __ANDROID__ || WINDOWS_PHONE || MONO
 #define NO_MEMORY_CACHE
 using System.Collections.Generic;
 #else
