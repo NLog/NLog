@@ -101,6 +101,24 @@ namespace NLog.Layouts
 #endif
 
         /// <summary>
+        /// Initializes the layout.
+        /// </summary>
+        protected override void InitializeLayout()
+        {
+            base.InitializeLayout();
+            if (IncludeMdc)
+            {
+                base.ThreadAgnostic = false;
+            }
+#if NET4_0 || NET4_5
+            if (IncludeMdlc)
+            {
+                base.ThreadAgnostic = false;
+            }
+#endif
+        }
+
+        /// <summary>
         /// Formats the log event as a JSON document for writing.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
