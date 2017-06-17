@@ -2,6 +2,12 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 
 
+### v4.4.11 (2017/06/17)
+
+#### Fixes
+
+- [#2164](https://github.com/nlog/nlog/pull/2164) JsonLayout - Don't mark ThreadAgnostic when IncludeMdc or IncludeMdlc is enabled (@snakefoot)
+
 ### v4.4.10 (2017/05/31)
 
 #### Features
