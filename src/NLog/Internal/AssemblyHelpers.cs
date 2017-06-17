@@ -64,7 +64,17 @@ namespace NLog.Internal
 
             InternalLogger.Info("Loading assembly file: {0}", fullFileName);
 #if NETSTANDARD1_5
-            return System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyPath(fullFileName);
+            try
+            {
+                var assemblyName = System.Runtime.Loader.AssemblyLoadContext.GetAssemblyName(fullFileName);
+                return Assembly.Load(assemblyName);
+            }
+            catch (Exception ex)
+            {
+                // this doesn't usually work
+                InternalLogger.Warn(ex, "Fallback to AssemblyLoadContext.Default.LoadFromAssemblyPath for file: {0}", fullFileName);
+                return System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyPath(fullFileName);
+            }
 #elif SILVERLIGHT && !WINDOWS_PHONE
             var stream = Application.GetResourceStream(new Uri(assemblyFileName, UriKind.Relative));
             var assemblyPart = new AssemblyPart();
