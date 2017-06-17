@@ -159,7 +159,20 @@ namespace NLog.Internal
         {
             // ReSharper disable InconsistentlySynchronizedField
 #if NO_MEMORY_CACHE
-            return _cache[key] as T;
+            try
+            {
+                T value;
+                if (_cache.TryGetValue(key, out value))
+                {
+                    return value;
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Debug(ex, "Exception when getting value with key '{0}'", key);
+            }
+            return null;
+
 #else
             return _cache.Get(key) as T;
             // ReSharper restore InconsistentlySynchronizedField
