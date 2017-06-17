@@ -108,12 +108,12 @@ namespace NLog.Layouts
             base.InitializeLayout();
             if (IncludeMdc)
             {
-                ThreadAgnostic = false;
+                base.ThreadAgnostic = false;
             }
 #if !SILVERLIGHT && !NETSTANDARD || NETSTANDARD1_3
             if (IncludeMdlc)
             {
-                ThreadAgnostic = false;
+                base.ThreadAgnostic = false;
             }
 #endif
         }
