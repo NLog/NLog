@@ -6,5 +6,5 @@ install:
   - nuget install xunit.runner.console -Version 2.2.0 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release src/NLog.mono.sln
-  - mono ./testrunner/xunit.runner.console.2.2.0/tools/xunit.console.x86.exe "./build/bin/Release/Mono 2.x/NLog.UnitTests.dll"
+  - mono ./testrunner/xunit.runner.console.2.2.0/tools/xunit.console.x86.exe "./build/bin/Release/Mono 2.x/NLog.UnitTests.dll"  -parallel none
   
