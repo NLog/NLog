@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>JSON-encoded string.</returns>
         protected override string Transform(string text)
         {
-            return this.JsonEncode ? Targets.DefaultJsonSerializer.JsonStringEscape(text, this.EscapeUnicode) : text;
+            return this.JsonEncode ? Targets.DefaultJsonSerializer.EscapeString(text, this.EscapeUnicode) : text;
         }
     }
 }

@@ -32,32 +32,47 @@
 // 
 
 using System;
+using System.ComponentModel;
 
 namespace NLog.Targets
 {
     /// <summary>
-    /// Interface for serialization of values, maybe even objects to JSON format. 
-    /// Useful for wrappers for existing serializers.
+    /// Options for JSON serialisation
     /// </summary>
-    public interface IJsonSerializer
+    public class JsonSerializeOptions
     {
         /// <summary>
-        /// Returns a serialization of an object
-        /// into JSON format.
+        /// Add quotes arround object keys?
         /// </summary>
-        /// <param name="value">The object to serialize to JSON.</param>
-        /// <returns>Serialized value.</returns>
-        string SerializeObject(object value);
-    }
+        [DefaultValue(true)]
+        public bool QuoteKeys { get; set; }
 
-    internal interface IJsonSerializerV2
-    {
         /// <summary>
-        /// Returns a serialization of an object
-        /// into JSON format.
+        /// Formatprovider for value
         /// </summary>
-        /// <param name="value">The object to serialize to JSON.</param>
-        /// <param name="builder">Output destination.</param>
-        bool SerializeObject(object value, System.Text.StringBuilder builder);
+        public IFormatProvider FormatProvider { get; set; }
+
+        /// <summary>
+        /// Format string for value
+        /// </summary>
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Should non-ascii characters be encoded
+        /// </summary>
+        [DefaultValue(false)]
+        public bool EscapeUnicode { get; set; }
+
+        /// <summary>
+        /// Serialize enum as string value
+        /// </summary>
+        [DefaultValue(false)]
+        public bool EnumAsInteger { get; set; }
+
+        /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+        public JsonSerializeOptions()
+        {
+            QuoteKeys = true;
+        }
     }
 }

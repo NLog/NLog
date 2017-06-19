@@ -46,6 +46,44 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class JsonLayout : Layout
     {
+        private NLog.Targets.IJsonSerializerV2 JsonSerializer
+        {
+            get
+            {
+                if (_jsonSerializer == null)
+                {
+                    var jsonSerializer = ConfigurationItemFactory.Default.JsonSerializer;
+                    _jsonSerializer = jsonSerializer as NLog.Targets.IJsonSerializerV2;
+                    if (_jsonSerializer == null && jsonSerializer != null)
+                    {
+                        _jsonSerializer = new JsonSerializerV2(jsonSerializer);
+                    }
+                }
+                return _jsonSerializer;
+            }
+            set { _jsonSerializer = value; }
+        }
+        private NLog.Targets.IJsonSerializerV2 _jsonSerializer = null;
+        class JsonSerializerV2 : NLog.Targets.IJsonSerializerV2
+        {
+            private readonly NLog.Targets.IJsonSerializer _jsonSerializer;
+            public JsonSerializerV2(NLog.Targets.IJsonSerializer jsonSerializer)
+            {
+                _jsonSerializer = jsonSerializer;
+            }
+
+            public bool SerializeObject(object value, StringBuilder builder)
+            {
+                var text = _jsonSerializer.SerializeObject(value);
+                if (text == null)
+                {
+                    return false;
+                }
+                builder.Append(text);
+                return true;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLayout"/> class.
         /// </summary>
@@ -116,6 +154,15 @@ namespace NLog.Layouts
                 base.ThreadAgnostic = false;
             }
 #endif
+        }
+
+        /// <summary>
+        /// Closes the layout.
+        /// </summary>
+        protected override void CloseLayout()
+        {
+            JsonSerializer = null;
+            base.CloseLayout();
         }
 
         /// <summary>
@@ -200,6 +247,28 @@ namespace NLog.Layouts
             CompleteJsonMessage(sb);
         }
 
+        private void BeginJsonProperty(StringBuilder sb, string propName)
+        {
+            bool first = sb.Length == 0;
+            if (first)
+            {
+                sb.Append(SuppressSpaces ? "{" : "{ ");
+            }
+            else
+            {
+                sb.Append(',');
+                if (!this.SuppressSpaces)
+                    sb.Append(' ');
+            }
+
+            sb.Append('"');
+            sb.Append(propName);
+            sb.Append('"');
+            sb.Append(':');
+            if (!this.SuppressSpaces)
+                sb.Append(' ');
+        }
+
         private void CompleteJsonMessage(StringBuilder sb)
         {
             if (sb.Length > 0)
@@ -208,40 +277,29 @@ namespace NLog.Layouts
 
         private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb)
         {
-            TypeCode objTypeCode = Convert.GetTypeCode(propertyValue);
+            int originalLength = sb.Length;
 
-            bool propStringEncode;
-            string propStringValue = Targets.DefaultJsonSerializer.JsonStringEncode(propertyValue, objTypeCode, true, out propStringEncode);
-            if (!string.IsNullOrEmpty(propStringValue))
+            try
             {
-                AppendJsonAttributeValue(propName, propStringEncode, propStringValue, sb);
+                BeginJsonProperty(sb, propName);
+
+                if (!JsonSerializer.SerializeObject(propertyValue, sb))
+                {
+                    sb.Length = originalLength;
+                }
+            }
+            catch (Exception)
+            {
+                sb.Length = originalLength;
+                throw;
             }
         }
 
-        private void AppendJsonAttributeValue(string attributeName, bool attributeEncode, string text, StringBuilder sb)
+        private void AppendJsonAttributeValue(string attributeName, bool attributeQuote, string text, StringBuilder sb)
         {
-            bool first = sb.Length == 0;
-            if (first)
-            {
-                sb.Append(SuppressSpaces ? "{" : "{ ");
-            }
+            BeginJsonProperty(sb, attributeName);
 
-            if (!first)
-            {
-                sb.EnsureCapacity(sb.Length + attributeName.Length + text.Length + 12);
-                sb.Append(',');
-                if (!this.SuppressSpaces)
-                    sb.Append(' ');
-            }
-
-            sb.Append('"');
-            sb.Append(attributeName);
-            sb.Append('"');
-            sb.Append(':');
-            if (!this.SuppressSpaces)
-                sb.Append(' ');
-
-            if (attributeEncode)
+            if (attributeQuote)
             {
                 // "\"{0}\":{1}\"{2}\""
                 sb.Append('"');

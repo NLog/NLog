@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -30,6 +30,10 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
+using System.Globalization;
+using NLog.Config;
+using UrlHelper = NLog.Internal.UrlHelper;
 
 namespace NLog.UnitTests.Targets
 {
@@ -93,6 +97,25 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeUnicode_test()
+        {
+            var actual = _serializer.SerializeObject("©");
+            Assert.Equal("\"©\"", actual);
+        }
+
+        [Fact]
+        public void SerializeUnicodeInAnomObject_test()
+        {
+            var item = new
+            {
+                text = "©"
+            };
+
+            var actual = _serializer.SerializeObject(item);
+            Assert.Equal("{\"text\":\"©\"}", actual);
+        }
+
+        [Fact]
         public void ReferenceLoopInDictionary_Test()
         {
             var d = new Dictionary<string, object>();
@@ -142,7 +165,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void StringWithMixedControlCharacters_Test()
         {
-            var text = "First\\Second\tand" +(char)3+ "for" + (char)0x1f + "with" + (char)0x10 + "but" + (char)0x0d + "and no" + (char)0x20;
+            var text = "First\\Second\tand" + (char)3 + "for" + (char)0x1f + "with" + (char)0x10 + "but" + (char)0x0d + "and no" + (char)0x20;
             var expected = "\"First\\\\Second\\tand\\u0003for\\u001fwith\\u0010but\\rand no \"";
 
             var actual = _serializer.SerializeObject(text);
@@ -157,6 +180,39 @@ namespace NLog.UnitTests.Targets
         public void SerializeNumber_Test(object o, string expected)
         {
             var actual = _serializer.SerializeObject(o);
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData((int)177, "177.00")]
+        [InlineData((long)32711520331, "32711520331.00")]
+        [InlineData(3.14159265, "3.14")]
+        [InlineData(2776145.7743, "2776145.77")]
+        public void SerializeNumber_format_Test(object o, string expected)
+        {
+            var actual = _serializer.SerializeObject(o, new JsonSerializeOptions() { Format = "N2" });
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData((int)177, "177")]
+        [InlineData((long)32711520331, "32711520331")]
+        [InlineData(3.14159265, "3,14159265")]
+        [InlineData(2776145.7743, "2776145,7743")]
+        public void SerializeNumber_nl_Test(object o, string expected)
+        {
+            var actual = _serializer.SerializeObject(o, new JsonSerializeOptions() { FormatProvider = new CultureInfo("nl-nl") });
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData((int)177, "177,00")]
+        [InlineData((long)32711520331, "32.711.520.331,00")]
+        [InlineData(3.14159265, "3,14")]
+        [InlineData(2776145.7743, "2.776.145,77")]
+        public void SerializeNumber_formatNL_Test(object o, string expected)
+        {
+            var actual = _serializer.SerializeObject(o, new JsonSerializeOptions() { Format = "N2", FormatProvider = new CultureInfo("nl-nl") });
             Assert.Equal(expected, actual);
         }
 
@@ -179,12 +235,240 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeDateTime_Test2()
+        {
+            var val = new DateTime(2016, 12, 31);
+            var actual = _serializer.SerializeObject(val);
+            Assert.Equal("\"" + "2016-12-31T00:00:00Z" + "\"", actual);
+        }
+
+        [Fact]
+        public void SerializeDateTime_isoformat_Test()
+        {
+            var val = new DateTime(2016, 12, 31);
+            var actual = _serializer.SerializeObject(val, new JsonSerializeOptions { Format = "O" });
+            Assert.Equal("\"2016-12-31T00:00:00.0000000\"", actual);
+        }
+
+        [Fact]
+        public void SerializeDateTime_format_Test()
+        {
+            DateTime utcNow = DateTime.UtcNow;
+            utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
+            var actual = _serializer.SerializeObject(utcNow, new JsonSerializeOptions { Format = "dddd d M" });
+            Assert.Equal("\"" + utcNow.ToString("dddd d M", System.Globalization.CultureInfo.InvariantCulture) + "\"", actual);
+        }
+
+        [Fact]
+        public void SerializeDateTime_formatNl_Test()
+        {
+            DateTime utcNow = DateTime.UtcNow;
+            utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
+            var actual = _serializer.SerializeObject(utcNow, new JsonSerializeOptions { Format = "dddd d M", FormatProvider = new CultureInfo("nl-nl") });
+            Assert.Equal("\"" + utcNow.ToString("dddd d M", new CultureInfo("nl-nl")) + "\"", actual);
+        }
+
+        [Fact]
+        public void SerializeDateTimeOffset_Test()
+        {
+            var val = new DateTimeOffset(new DateTime(2016, 12, 31, 2, 30, 59), new TimeSpan(4, 30, 0));
+            var actual = _serializer.SerializeObject(val);
+            Assert.Equal("\"" + "2016-12-31 02:30:59 +04:30" + "\"", actual);
+        }
+
+        [Fact]
+        public void SerializeTime_Test()
+        {
+            var actual = _serializer.SerializeObject(new TimeSpan(1, 2, 3, 4));
+            Assert.Equal("\"1.02:03:04\"", actual);
+        }
+
+        [Fact]
+        public void SerializeTime2_Test()
+        {
+            var actual = _serializer.SerializeObject(new TimeSpan(0, 2, 3, 4));
+            Assert.Equal("\"02:03:04\"", actual);
+        }
+
+        [Fact]
+        public void SerializeTime3_Test()
+        {
+            var actual = _serializer.SerializeObject(new TimeSpan(0, 0, 2, 3, 4));
+            Assert.Equal("\"00:02:03.0040000\"", actual);
+        }
+
+        [Fact]
+        public void SerializeEmptyDict_Test()
+        {
+            var actual = _serializer.SerializeObject(new Dictionary<string, int>());
+            Assert.Equal("{}", actual);
+        }
+
+        [Fact]
+        public void SerializeDict_Test()
+        {
+            var dictionary = new Dictionary<string, object>();
+            dictionary.Add("key1", 13);
+            dictionary.Add("key 2", 1.3m);
+            var actual = _serializer.SerializeObject(dictionary);
+            Assert.Equal("{\"key1\":13,\"key 2\":1.3}", actual);
+        }
+
+
+        [Fact]
+        public void SerializeNull_Test()
+        {
+            var actual = _serializer.SerializeObject(null);
+            Assert.Equal("null", actual);
+        }
+
+        [Fact]
         public void SerializeGuid_Test()
         {
             Guid newGuid = Guid.NewGuid();
             var actual = _serializer.SerializeObject(newGuid);
             Assert.Equal("\"" + newGuid.ToString() + "\"", actual);
         }
+
+
+        [Fact]
+        public void SerializeEnum_Test()
+        {
+            var val = ExceptionRenderingFormat.Method;
+            var actual = _serializer.SerializeObject(val);
+            Assert.Equal("\"Method\"", actual);
+        }
+
+        [Fact]
+        public void SerializeEnumInt_Test()
+        {
+            var val = ExceptionRenderingFormat.Method;
+            var actual = _serializer.SerializeObject(val, new JsonSerializeOptions() { EnumAsInteger = true });
+            Assert.Equal("4", actual);
+        }
+
+        [Fact]
+        public void SerializeFlagEnum_Test()
+        {
+            var val = UrlHelper.EscapeEncodingFlag.LegacyRfc2396 | UrlHelper.EscapeEncodingFlag.LowerCaseHex;
+            var actual = _serializer.SerializeObject(val);
+            Assert.Equal("\"LegacyRfc2396, LowerCaseHex\"", actual);
+        }
+
+        [Fact]
+        public void SerializeObject_Test()
+        {
+            var object1 = new TestObject("object1");
+            var object2 = new TestObject("object2");
+
+            object1.Linked = object2;
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}}", actual);
+        }
+
+
+        [Fact]
+        public void SerializeObject_noQuote_Test()
+        {
+            var object1 = new TestObject("object1");
+            var object2 = new TestObject("object2");
+
+            object1.Linked = object2;
+            var actual = _serializer.SerializeObject(object1, new JsonSerializeOptions { QuoteKeys = false });
+            Assert.Equal("{Name:\"object1\", Linked:{Name:\"object2\"}}", actual);
+        }
+
+
+        [Fact]
+        public void SerializeRecusiveObject_Test()
+        {
+            var object1 = new TestObject("object1");
+
+            object1.Linked = object1;
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("{\"Name\":\"object1\"}", actual);
+        }
+
+        [Fact]
+        public void SerializeListObject_Test()
+        {
+            var object1 = new TestObject("object1");
+            var object2 = new TestObject("object2");
+            object1.Linked = object2;
+
+            var list = new[] { object1, object2 };
+
+            var actual = _serializer.SerializeObject(list);
+            Assert.Equal("[{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}},{\"Name\":\"object2\"}]", actual);
+        }
+
+
+        [Fact]
+        public void SerializeNoPropsObject_Test()
+        {
+            var object1 = new NoPropsObject();
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("\"something\"", actual);
+        }
+
+        [Fact]
+        public void SerializeObjectWithExceptionAndPrivateSetter_Test()
+        {
+            var object1 = new ObjectWithExceptionAndPrivateSetter("test name");
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("{\"Name\":\"test name\"}", actual);
+        }
+        private class TestObject
+        {
+            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+            public TestObject(string name)
+            {
+                Name = name;
+            }
+
+            public string Name { get; set; }
+
+            public TestObject Linked { get; set; }
+        }
+
+
+        public class NoPropsObject
+        {
+            private string something = "something";
+
+            #region Overrides of Object
+
+            /// <summary>Returns a string that represents the current object.</summary>
+            /// <returns>A string that represents the current object.</returns>
+            public override string ToString()
+            {
+                return something;
+            }
+
+            #endregion
+        }
+
+        private class ObjectWithExceptionAndPrivateSetter
+        {
+            /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+            public ObjectWithExceptionAndPrivateSetter(string name)
+            {
+                Name = name;
+            }
+
+            public string Name { get; }
+
+            public string SetOnly { private get; set; }
+
+            public object Ex
+            {
+                get
+                {
+                    throw new Exception("oops");
+                }
+            }
+        }
+
 
         private class TestList : IEnumerable<IEnumerable>
         {
