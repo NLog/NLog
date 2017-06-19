@@ -841,15 +841,15 @@ Dispose()
         [Fact]
         public void SQLite_InstallAndLogMessageProgrammatically()
         {
-			SQLiteTest sqlLite = new SQLiteTest("TestLogProgram.sqlite");
+            SQLiteTest sqlLite = new SQLiteTest("TestLogProgram.sqlite");
 
-			// delete database if it for some reason already exists 
-			sqlLite.TryDropDatabase();
+            // delete database if it for some reason already exists 
+            sqlLite.TryDropDatabase();
             LogManager.ThrowExceptions = true;
 
             try
             {
-				sqlLite.CreateDatabase();
+                sqlLite.CreateDatabase();
 
                 var connectionString = sqlLite.GetConnectionString();
 
@@ -868,7 +868,7 @@ Dispose()
                     CommandType = System.Data.CommandType.Text,
                     Text = $@"
                     CREATE TABLE NLogTestTable (
-				        Id int PRIMARY KEY,
+                        Id int PRIMARY KEY,
                         Message varchar(100) NULL)"
                 });
 
@@ -905,22 +905,22 @@ Dispose()
             }
             finally
             {
-				sqlLite.TryDropDatabase();
+                sqlLite.TryDropDatabase();
             }
         }
 
         [Fact]
         public void SQLite_InstallAndLogMessage()
         {
-			SQLiteTest sqlLite = new SQLiteTest("TestLogXml.sqlite");
+            SQLiteTest sqlLite = new SQLiteTest("TestLogXml.sqlite");
 
-			// delete database just in case
-			sqlLite.TryDropDatabase();
+            // delete database just in case
+            sqlLite.TryDropDatabase();
             LogManager.ThrowExceptions = true;
 
             try
             {
-				sqlLite.CreateDatabase();
+                sqlLite.CreateDatabase();
 
                 var connectionString = sqlLite.GetConnectionString();
                 string dbProvider = "";
@@ -970,7 +970,7 @@ Dispose()
             }
             finally
             {
-				sqlLite.TryDropDatabase();
+                sqlLite.TryDropDatabase();
             }
         }
 
@@ -1002,8 +1002,8 @@ Dispose()
                         RETURN
 
                     CREATE TABLE [Dbo].[NLogTestTable] (
-				        [ID] [int] IDENTITY(1,1) NOT NULL,
-				        [MachineName] [nvarchar](200) NULL)"
+                        [ID] [int] IDENTITY(1,1) NOT NULL,
+                        [MachineName] [nvarchar](200) NULL)"
                 });
                 
                 using (var context = new InstallationContext())
@@ -1646,18 +1646,18 @@ Dispose()
         private class SQLiteTest
         {
             private string dbName = "NLogTest.sqlite";
-			private string connectionString;
+            private string connectionString;
 
             public SQLiteTest(string dbName)
             {
-				this.dbName = dbName;
-				connectionString = "Data Source=" + this.dbName + ";Version=3;";
-			}
+                this.dbName = dbName;
+                connectionString = "Data Source=" + this.dbName + ";Version=3;";
+            }
 
-			public string GetConnectionString()
-			{
-				return connectionString;
-			}
+            public string GetConnectionString()
+            {
+                return connectionString;
+            }
 
             public void CreateDatabase()
             {
