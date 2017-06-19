@@ -6,6 +6,12 @@ coverage:
     patch:
       default:
         target: 50
+    project:                  
+      default:
+        enabled: yes
+        threshold: 1
+
 comment:
   layout: "header, diff, changes, sunburst, uncovered"
   branches: null
+
