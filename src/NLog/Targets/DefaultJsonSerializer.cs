@@ -46,7 +46,8 @@ namespace NLog.Targets
     /// </summary>
     public class DefaultJsonSerializer : IJsonSerializer, IJsonSerializerV2
     {
-        private readonly MruCache<Type, PropertyInfo[]> _propsCache = new MruCache<Type, PropertyInfo[]>(1000);
+        private readonly MruCache<Type, PropertyInfo[]> _propsCache = new MruCache<Type, PropertyInfo[]>(10000);
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(10000);
         private readonly JsonSerializeOptions _serializeOptions = new JsonSerializeOptions();
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
@@ -104,7 +105,23 @@ namespace NLog.Targets
                 TypeCode objTypeCode = Convert.GetTypeCode(value);
                 if (objTypeCode != TypeCode.Object && StringHelpers.IsNullOrWhiteSpace(options.Format) && options.FormatProvider == null)
                 {
-                    return SerializePrimitive(value, objTypeCode, options.EscapeUnicode, options.EnumAsInteger);
+                    Enum enumValue;
+                    if (!options.EnumAsInteger && IsNumericTypeCode(objTypeCode, false) && (enumValue = value as Enum) != null)
+                    {
+                        return QuoteValue(EnumAsString(enumValue));
+                    }
+                    else
+                    {
+                        str = XmlHelper.XmlConvertToString(value, objTypeCode);
+                        if (SkipQuotes(objTypeCode))
+                        {
+                            return str;
+                        }
+                        else
+                        {
+                            return QuoteValue(str);
+                        }
+                    }
                 }
                 else
                 {
@@ -262,7 +279,7 @@ namespace NLog.Targets
                     else
                     {
                         //format provider passed without FormatProvider
-                        destination.Append(formattable.ToString("", options.FormatProvider));
+                        destination.Append(EscapeString(formattable.ToString("", options.FormatProvider), options.EscapeUnicode));
                     }
 
                     if (includeQuotes)
@@ -305,7 +322,34 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        destination.Append(SerializePrimitive(value, objTypeCode, options.EscapeUnicode, options.EnumAsInteger));
+                        if (IsNumericTypeCode(objTypeCode, false))
+                        {
+                            Enum enumValue;
+                            if (!options.EnumAsInteger && (enumValue = value as Enum) != null)
+                            {
+                                QuoteValue(destination, EnumAsString(enumValue));
+                            }
+                            else
+                            {
+                                AppendIntegerAsString(destination, value, objTypeCode);
+                            }
+                        }
+                        else
+                        {
+                            str = XmlHelper.XmlConvertToString(value, objTypeCode);
+                            if (str == null)
+                            {
+                                return false;
+                            }
+                            if (SkipQuotes(objTypeCode))
+                            {
+                                destination.Append(str);
+                            }
+                            else
+                            {
+                                QuoteValue(destination, str);
+                            }
+                        }
                     }
                 }
             }
@@ -339,35 +383,47 @@ namespace NLog.Targets
             destination.Append('"');
         }
 
-        /// <summary>
-        /// Converts object value into JSON escaped string
-        /// </summary>
-        /// <param name="value">Object value</param>
-        /// <param name="objTypeCode">Object TypeCode</param>
-        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
-        /// <param name="enumAsInteger">Enum as integer value?</param>
-        /// <returns>Object value converted to JSON escaped string</returns>
-        internal static string SerializePrimitive(object value, TypeCode objTypeCode, bool escapeUnicode, bool enumAsInteger)
+        private static void AppendIntegerAsString(StringBuilder sb, object value, TypeCode objTypeCode)
         {
-            if (!enumAsInteger && IsNumericTypeCode(objTypeCode) && value.GetType().IsEnum)
+            switch (objTypeCode)
             {
-                //enum as string
-                return QuoteValue(Convert.ToString(value, CultureInfo.InvariantCulture));
+                case TypeCode.Byte: sb.AppendInvariant((Byte)value); break;
+                case TypeCode.SByte: sb.AppendInvariant((SByte)value); break;
+                case TypeCode.Int16: sb.AppendInvariant((Int16)value); break;
+                case TypeCode.Int32: sb.AppendInvariant((Int32)value); break;
+                case TypeCode.Int64:
+                    {
+                        Int64 int64 = (Int64)value;
+                        if (int64 < Int32.MaxValue && int64 > Int32.MinValue)
+                            sb.AppendInvariant((Int32)int64);
+                        else
+                            sb.Append(int64);
+                    } break;
+                case TypeCode.UInt16: sb.AppendInvariant((UInt16)value); break;
+                case TypeCode.UInt32: sb.AppendInvariant((UInt32)value); break;
+                case TypeCode.UInt64:
+                    {
+                        UInt64 uint64 = (UInt64)value;
+                        if (uint64 < UInt32.MaxValue)
+                            sb.AppendInvariant((UInt32)uint64);
+                        else
+                            sb.Append(uint64);
+                    } break;
+                default:
+                    sb.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
+                    break;
             }
+        }
 
-            string stringValue = XmlHelper.XmlConvertToString(value, objTypeCode);
-
-            if (stringValue == null)
+        private string EnumAsString(Enum value)
+        {
+            string textValue;
+            if (!_enumCache.TryGetValue(value, out textValue))
             {
-                return null;
+                textValue = Convert.ToString(value, CultureInfo.InvariantCulture);
+                _enumCache.TryAddValue(value, textValue);
             }
-
-            if (SkipQuotes(objTypeCode))
-            {
-                return stringValue;
-            }
-
-            return QuoteValue(EscapeString(stringValue, escapeUnicode));
+            return textValue;
         }
 
         /// <summary>
@@ -379,10 +435,10 @@ namespace NLog.Targets
         {
             return objTypeCode != TypeCode.String && (objTypeCode == TypeCode.Empty  // Don't put quotes around null values
                 || objTypeCode == TypeCode.Boolean
-                || IsNumericTypeCode(objTypeCode));
+                || IsNumericTypeCode(objTypeCode, true));
         }
 
-        private static bool IsNumericTypeCode(TypeCode objTypeCode)
+        private static bool IsNumericTypeCode(TypeCode objTypeCode, bool includeDecimals)
         {
             switch (objTypeCode)
             {
@@ -394,10 +450,11 @@ namespace NLog.Targets
                 case TypeCode.UInt16:
                 case TypeCode.UInt32:
                 case TypeCode.UInt64:
+                    return true;
                 case TypeCode.Single:
                 case TypeCode.Double:
                 case TypeCode.Decimal:
-                    return true;
+                    return includeDecimals;
             }
             return false;
         }
