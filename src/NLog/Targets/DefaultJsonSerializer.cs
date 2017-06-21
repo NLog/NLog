@@ -155,7 +155,7 @@ namespace NLog.Targets
         /// <returns></returns>
         public bool SerializeObject(object value, StringBuilder destination, JsonSerializeOptions options)
         {
-            return SerializeObject(value, destination, options, null, 0);
+            return SerializeObject(value, destination, options, default(SingleItemOptimizedHashSet<object>), 0);
         }
 
         /// <summary>
@@ -171,9 +171,9 @@ namespace NLog.Targets
         /// Serialized value.
         /// </returns>
         private bool SerializeObject(object value, StringBuilder destination, JsonSerializeOptions options,
-                HashSet<object> objectsInPath, int depth)
+                SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
-            if (objectsInPath != null && objectsInPath.Contains(value))
+            if (objectsInPath.Contains(value))
             {
                 return false; // detected reference loop, skip serialization
             }
@@ -196,11 +196,17 @@ namespace NLog.Targets
             }
             else if ((dict = value as IDictionary) != null)
             {
-                SerializeDictionaryObject(dict, destination, options, objectsInPath, depth);
+                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dict, ref objectsInPath, true))
+                {
+                    SerializeDictionaryObject(dict, destination, options, objectsInPath, depth);
+                }
             }
             else if ((enumerable = value as IEnumerable) != null)
             {
-                SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
+                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true))
+                {
+                    SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
+                }
             }
             else
             {
@@ -244,10 +250,8 @@ namespace NLog.Targets
             return true;
         }
 
-        private void SerializeDictionaryObject(IDictionary value, StringBuilder destination, JsonSerializeOptions options, HashSet<object> objectsInPath, int depth)
+        private void SerializeDictionaryObject(IDictionary value, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
-            var set = AddToSet(objectsInPath, value);
-
             bool first = true;
 
             int originalLength = 0;
@@ -261,14 +265,14 @@ namespace NLog.Targets
                 }
 
                 //only serialize, if key and value are serialized without error (e.g. due to reference loop)
-                if (!SerializeObject(de.Key, destination, options, set, depth + 1))
+                if (!SerializeObject(de.Key, destination, options, objectsInPath, depth + 1))
                 {
                     destination.Length = originalLength;
                 }
                 else
                 {
                     destination.Append(':');
-                    if (!SerializeObject(de.Value, destination, options, set, depth + 1))
+                    if (!SerializeObject(de.Value, destination, options, objectsInPath, depth + 1))
                     {
                         destination.Length = originalLength;
                     }
@@ -281,10 +285,8 @@ namespace NLog.Targets
             destination.Append('}');
         }
 
-        private void SerializeCollectionObject(IEnumerable value, StringBuilder destination, JsonSerializeOptions options, HashSet<object> objectsInPath, int depth)
+        private void SerializeCollectionObject(IEnumerable value, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
-            var set = AddToSet(objectsInPath, value);
-
             bool first = true;
 
             int originalLength = 0;
@@ -297,7 +299,7 @@ namespace NLog.Targets
                     destination.Append(',');
                 }
 
-                if (!SerializeObject(val, destination, options, set, depth + 1))
+                if (!SerializeObject(val, destination, options, objectsInPath, depth + 1))
                 {
                     destination.Length = originalLength;
                 }
@@ -309,7 +311,7 @@ namespace NLog.Targets
             destination.Append(']');
         }
 
-        private bool SerializeTypeCodeValue(object value, StringBuilder destination, JsonSerializeOptions options, HashSet<object> objectsInPath, int depth)
+        private bool SerializeTypeCodeValue(object value, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             TypeCode objTypeCode = Convert.GetTypeCode(value);
             if (objTypeCode == TypeCode.Object)
@@ -328,10 +330,12 @@ namespace NLog.Targets
                     int originalLength = destination.Length;
                     try
                     {
-                        var set = AddToSet(objectsInPath, value);
-                        if (!SerializeProperties(value, destination, options, set, depth))
+                        using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
                         {
-                            destination.Length = originalLength;
+                            if (!SerializeProperties(value, destination, options, objectsInPath, depth))
+                            {
+                                destination.Length = originalLength;
+                            }
                         }
                     }
                     catch
@@ -430,7 +434,7 @@ namespace NLog.Targets
                             sb.Append(uint64);
                     } break;
                 default:
-                    sb.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
+                    sb.Append(XmlHelper.XmlConvertToString(value, objTypeCode));
                     break;
             }
         }
@@ -458,6 +462,12 @@ namespace NLog.Targets
                 || IsNumericTypeCode(objTypeCode, true));
         }
 
+        /// <summary>
+        /// Checks the object <see cref="TypeCode" /> if it is numeric
+        /// </summary>
+        /// <param name="objTypeCode">TypeCode for the object</param>
+        /// <param name="includeDecimals">Accept fractional types as numeric type.</param>
+        /// <returns></returns>
         private static bool IsNumericTypeCode(TypeCode objTypeCode, bool includeDecimals)
         {
             switch (objTypeCode)
@@ -578,7 +588,7 @@ namespace NLog.Targets
         }
 
         private bool SerializeProperties(object value, StringBuilder destination, JsonSerializeOptions options,
-            HashSet<object> objectsInPath, int depth)
+            SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             var props = GetProps(value);
             if (props.Key.Length == 0)
@@ -695,9 +705,6 @@ namespace NLog.Targets
             return props;
         }
 
-        private static HashSet<object> AddToSet(HashSet<object> objectsInPath, object value)
-        {
-            return new HashSet<object>(objectsInPath ?? (IEnumerable<object>)ArrayHelper.Empty<object>()) { value };
-        }
+
     }
 }

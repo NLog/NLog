@@ -81,7 +81,7 @@ namespace NLog.Internal
                     if (_dictionary.Count >= _maxCapacity)
                     {
                         // Make 3 sweeps:
-                        //  1) Versions below _currentVerison - _maxCapacity / 2
+                        //  1) Versions below _currentVerison - _maxCapacity / 1.5
                         //  2) Versions below _currentVerison - _maxCapacity / 10
                         //  3) Versions below _currentVerison - 2
                         var pruneKeys = new List<TKey>(_dictionary.Count);
@@ -114,7 +114,7 @@ namespace NLog.Internal
 
                         if (_dictionary.Count >= _maxCapacity)
                         {
-                            _dictionary.Clear();
+                            _dictionary.Clear(); // Failed to perform sweep, fallback to fail safe
                         }
                     }
 
@@ -148,6 +148,7 @@ namespace NLog.Internal
 
             if (item.Version != _currentVersion)
             {
+                // Update item version to mark as recently used
                 lock (_dictionary)
                 {
                     var version = _currentVersion;

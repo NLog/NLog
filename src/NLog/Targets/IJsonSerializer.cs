@@ -46,7 +46,7 @@ namespace NLog.Targets
         /// into JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
-        /// <returns>Serialized value.</returns>
+        /// <returns>Serialized value (null = Serialize failed).</returns>
         string SerializeObject(object value);
     }
 
@@ -58,6 +58,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
         /// <param name="builder">Output destination.</param>
+        /// <returns>Serialize succeeded (true/false)</returns>
         bool SerializeObject(object value, System.Text.StringBuilder builder);
     }
 }

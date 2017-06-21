@@ -181,10 +181,16 @@ namespace NLog.UnitTests.Targets
         [InlineData((ulong)32711520331, "32711520331")]
         [InlineData(3.14159265, "3.14159265")]
         [InlineData(2776145.7743, "2776145.7743")]
+        [InlineData(double.NaN, "NaN")]
+        [InlineData(double.PositiveInfinity, "Infinity")]
         public void SerializeNumber_Test(object o, string expected)
         {
             var actual = _serializer.SerializeObject(o);
             Assert.Equal(expected, actual);
+
+            var sb = new System.Text.StringBuilder();
+            _serializer.SerializeObject(o, sb);
+            Assert.Equal(expected, sb.ToString());
         }
 
         [Theory]
@@ -318,7 +324,6 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"key1\":13,\"key 2\":1.3}", actual);
         }
 
-
         [Fact]
         public void SerializeNull_Test()
         {
@@ -341,6 +346,10 @@ namespace NLog.UnitTests.Targets
             var val = ExceptionRenderingFormat.Method;
             var actual = _serializer.SerializeObject(val);
             Assert.Equal("\"Method\"", actual);
+
+            var sb = new System.Text.StringBuilder();
+            _serializer.SerializeObject(val, sb);
+            Assert.Equal("\"Method\"", sb.ToString());
         }
 
         [Fact]
@@ -349,6 +358,10 @@ namespace NLog.UnitTests.Targets
             var val = ExceptionRenderingFormat.Method;
             var actual = _serializer.SerializeObject(val, new JsonSerializeOptions() { EnumAsInteger = true });
             Assert.Equal("4", actual);
+
+            var sb = new System.Text.StringBuilder();
+            _serializer.SerializeObject(val, sb, new JsonSerializeOptions() { EnumAsInteger = true });
+            Assert.Equal("4", sb.ToString());
         }
 
         [Fact]
@@ -357,6 +370,10 @@ namespace NLog.UnitTests.Targets
             var val = UrlHelper.EscapeEncodingFlag.LegacyRfc2396 | UrlHelper.EscapeEncodingFlag.LowerCaseHex;
             var actual = _serializer.SerializeObject(val);
             Assert.Equal("\"LegacyRfc2396, LowerCaseHex\"", actual);
+
+            var sb = new System.Text.StringBuilder();
+            _serializer.SerializeObject(val, sb);
+            Assert.Equal("\"LegacyRfc2396, LowerCaseHex\"", sb.ToString());
         }
 
         [Fact]
@@ -370,7 +387,6 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}}", actual);
         }
 
-
         [Fact]
         public void SerializeObject_noQuote_Test()
         {
@@ -381,7 +397,6 @@ namespace NLog.UnitTests.Targets
             var actual = _serializer.SerializeObject(object1, new JsonSerializeOptions { QuoteKeys = false });
             Assert.Equal("{Name:\"object1\", Linked:{Name:\"object2\"}}", actual);
         }
-
 
         [Fact]
         public void SerializeRecusiveObject_Test()
@@ -406,7 +421,6 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("[{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}},{\"Name\":\"object2\"}]", actual);
         }
 
-
         [Fact]
         public void SerializeNoPropsObject_Test()
         {
@@ -422,6 +436,35 @@ namespace NLog.UnitTests.Targets
             var actual = _serializer.SerializeObject(object1);
             Assert.Equal("{\"Name\":\"test name\"}", actual);
         }
+
+        [Fact]
+        public void SingleItemOptimizedHashSetTest()
+        {
+            var hashSet = default(NLog.Internal.SingleItemOptimizedHashSet<object>);
+            Assert.Equal(0, hashSet.Count);
+            Assert.Equal(false, hashSet.Contains(new object()));
+            foreach (var obj in hashSet)
+                throw new Exception("Wrong");
+            hashSet.Clear();
+            Assert.Equal(0, hashSet.Count);
+            hashSet.Add(new object());
+            Assert.Equal(1, hashSet.Count);
+            hashSet.Add(new object());
+            Assert.Equal(2, hashSet.Count);
+            foreach (var obj in hashSet)
+                Assert.Equal(true, hashSet.Contains(obj));
+            object[] objArray = new object[2];
+            hashSet.CopyTo(objArray, 0);
+            foreach (var obj in objArray)
+            {
+                Assert.NotNull(obj);
+                hashSet.Remove(obj);
+            }
+            Assert.Equal(0, hashSet.Count);
+            hashSet.Clear();
+            Assert.Equal(0, hashSet.Count);
+        }
+
         private class TestObject
         {
             /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
@@ -434,7 +477,6 @@ namespace NLog.UnitTests.Targets
 
             public TestObject Linked { get; set; }
         }
-
 
         public class NoPropsObject
         {

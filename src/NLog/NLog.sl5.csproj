@@ -213,6 +213,7 @@
     <Compile Include="Internal\RuntimeOS.cs" />
     <Compile Include="Internal\SimpleStringReader.cs" />
     <Compile Include="Internal\SingleCallContinuation.cs" />
+    <Compile Include="Internal\SingleItemOptimizedHashSet.cs" />
     <Compile Include="Internal\SortHelpers.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
     <Compile Include="Internal\StreamHelpers.cs" />
