@@ -46,6 +46,7 @@ namespace NLog.UnitTests
 
 #if NET4_5
     using System.Threading.Tasks;
+    using System.Runtime.CompilerServices;
 #endif
 
     public class LogManagerTests : NLogTestBase
@@ -384,13 +385,13 @@ namespace NLog.UnitTests
         public void GivenCurrentClass_WhenGetCurrentClassLogger_ThenLoggerShouldBeCurrentClass()
         {
             var logger = LogManager.GetCurrentClassLogger();
-            Assert.Equal(this.GetType().FullName, logger.Name);
+            Assert.Equal(this.GetType().FullName.Replace("+", "."), logger.Name);
         }
 
         private static class ImAStaticClass
         {
             [UsedImplicitly]
-            private static readonly Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+            public static readonly Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
             static ImAStaticClass() { }
 
@@ -402,31 +403,72 @@ namespace NLog.UnitTests
         public void GetCurrentClassLogger_static_class()
         {
             ImAStaticClass.DummyToInvokeInitializers();
+            Assert.Equal(typeof(ImAStaticClass).FullName.Replace("+", "."), ImAStaticClass.Logger.Name);
         }
 
         private abstract class ImAAbstractClass
         {
+            public Logger Logger { get; private set; }
+            public Logger LoggerType { get; private set; }
+
+            public string BaseName { get { return typeof(ImAAbstractClass).FullName.Replace("+", "."); } }
+
             /// <summary>
             /// Initializes a new instance of the <see cref="T:System.Object"/> class.
             /// </summary>
             protected ImAAbstractClass()
             {
-                Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+                Logger = NLog.LogManager.GetCurrentClassLogger();
+                LoggerType = NLog.LogManager.GetCurrentClassLogger(typeof(Logger));
+            }
+
+            protected ImAAbstractClass(string param1, Func<string> param2)
+            {
+                Logger = NLog.LogManager.GetCurrentClassLogger();
+                LoggerType = NLog.LogManager.GetCurrentClassLogger(typeof(Logger));
             }
         }
 
         private class InheritedFromAbstractClass : ImAAbstractClass
         {
+            public Logger LoggerInherited = NLog.LogManager.GetCurrentClassLogger();
+            public Logger LoggerTypeInherited = NLog.LogManager.GetCurrentClassLogger(typeof(Logger));
 
+            public string InheritedName { get { return GetType().FullName.Replace("+", "."); } }
+
+            public InheritedFromAbstractClass()
+                :base()
+            {
+            }
+
+            public InheritedFromAbstractClass(string param1, Func<string> param2)
+                : base(param1, param2)
+            {
+            }
         }
 
         /// <summary>
-        /// Creating instance in a static ctor should not be a problm
+        /// Creating instance in a abstract ctor should not be a problem
         /// </summary>
         [Fact]
         public void GetCurrentClassLogger_abstract_class()
         {
             var instance = new InheritedFromAbstractClass();
+            Assert.Equal(instance.BaseName, instance.Logger.Name);
+            Assert.Equal(instance.BaseName, instance.LoggerType.Name);
+            Assert.Equal(instance.InheritedName, instance.LoggerInherited.Name);
+            Assert.Equal(instance.InheritedName, instance.LoggerTypeInherited.Name);
+        }
+
+        /// <summary>
+        /// Creating instance in a abstract ctor should not be a problem
+        /// </summary>
+        [Fact]
+        public void GetCurrentClassLogger_abstract_class_with_parameter()
+        {
+            var instance = new InheritedFromAbstractClass("Hello", null);
+            Assert.Equal(instance.BaseName, instance.Logger.Name);
+            Assert.Equal(instance.BaseName, instance.LoggerType.Name);
         }
 
         /// <summary>

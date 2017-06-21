@@ -456,7 +456,7 @@ namespace NLog
 #else
             var frame = new StackFrame(1, false);
 #endif
-            return this.GetLogger(frame.GetMethod().DeclaringType.FullName);
+            return this.GetLogger(frame.GetMethod().DeclaringType.FullName.Replace("+", "."));
 #else
             return this.GetLogger(StackFrameExt.GetClassFullName());
 #endif
@@ -478,7 +478,7 @@ namespace NLog
 #else
             var frame = new StackFrame(1, false);
 #endif
-            return (T)this.GetLogger(frame.GetMethod().DeclaringType.FullName, typeof(T));
+            return (T)this.GetLogger(frame.GetMethod().DeclaringType.FullName.Replace("+", "."), typeof(T));
 #else
             return (T)this.GetLogger(StackFrameExt.GetClassFullName(), typeof(T));
 #endif
@@ -501,7 +501,7 @@ namespace NLog
 #else
             var frame = new StackFrame(1);
 #endif
-            return this.GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
+            return this.GetLogger(frame.GetMethod().DeclaringType.FullName.Replace("+", "."), loggerType);
 #else
             return this.GetLogger(StackFrameExt.GetClassFullName(), loggerType);
 #endif

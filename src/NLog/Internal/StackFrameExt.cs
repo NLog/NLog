@@ -94,20 +94,30 @@ namespace NLog.Internal
                 }
 
                 framesToSkip++;
-                className = declaringType.FullName;
+                className = declaringType.FullName.Replace('+', '.');
             } while (declaringType.GetModule().Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
 #else
             var stackTrace = Environment.StackTrace;
-            var stackTraceLines = stackTrace.Replace("\r", "").Split(new[] { "\n" }, StringSplitOptions.None);
-            for (int i = 2 + framesToSkip; i < stackTraceLines.Length; ++i)
+            var stackTraceLines = stackTrace.Replace("\r", "").Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < stackTraceLines.Length; ++i)
             {
-                var callingClassAndMethod = stackTraceLines[i].Split(new[] { " ", "<>" }, StringSplitOptions.RemoveEmptyEntries)[1];
-                // Trim method name. 
-                var callingClass = callingClassAndMethod.Substring(0, callingClassAndMethod.LastIndexOf(".", StringComparison.Ordinal));
-                // Needed because of extra dot, for example if method was .ctor()
-                className = callingClass.TrimEnd('.');
-                if (!className.StartsWith("System."))
-                    break;
+                var callingClassAndMethod = stackTraceLines[i].Split(new[] { " ", "<>", "(", ")" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                int methodStartIndex = callingClassAndMethod.LastIndexOf(".", StringComparison.Ordinal);
+                if (methodStartIndex > 0)
+                {
+                    // Trim method name. 
+                    var callingClass = callingClassAndMethod.Substring(0, methodStartIndex);
+                    // Needed because of extra dot, for example if method was .ctor()
+                    className = callingClass.TrimEnd('.');
+                    if (!className.StartsWith("System.Environment") && framesToSkip != 0)
+                    {
+                        i += framesToSkip - 1;
+                        framesToSkip = 0;
+                        continue;
+                    }
+                    if (!className.StartsWith("System."))
+                        break;
+                }
             }
 #endif
             return className;
