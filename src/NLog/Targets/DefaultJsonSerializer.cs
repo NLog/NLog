@@ -46,7 +46,7 @@ namespace NLog.Targets
     /// </summary>
     public class DefaultJsonSerializer : IJsonSerializer, IJsonSerializerV2
     {
-        private readonly MruCache<Type, PropertyInfo[]> _propsCache = new MruCache<Type, PropertyInfo[]>(10000);
+        private readonly MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>> _propsCache = new MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>>(10000);
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(10000);
         private readonly JsonSerializeOptions _serializeOptions = new JsonSerializeOptions();
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
@@ -581,7 +581,7 @@ namespace NLog.Targets
             HashSet<object> objectsInPath, int depth)
         {
             var props = GetProps(value);
-            if (props.Length == 0)
+            if (props.Key.Length == 0)
             {
                 //no props
                 QuoteValue(destination, Convert.ToString(value, CultureInfo.InvariantCulture));
@@ -592,16 +592,16 @@ namespace NLog.Targets
 
             bool first = true;
             int originalLength = 0;
+            bool useLateBoundMethods = props.Key.Length == props.Value.Length;
 
-            for (var i = 0; i < props.Length; i++)
+            for (var i = 0; i < props.Key.Length; i++)
             {
-                var prop = props[i];
-
                 originalLength = destination.Length;
 
                 try
                 {
-                    var propValue = prop.GetValue(value, null);
+                    var prop = props.Key[i];
+                    var propValue = useLateBoundMethods ? props.Value[i](value, null) : prop.GetValue(value, null);
                     if (propValue != null)
                     {
                         if (!first)
@@ -617,7 +617,7 @@ namespace NLog.Targets
                         {
                             destination.Append(prop.Name);
                         }
-                        destination.Append(":");
+                        destination.Append(':');
 
                         if (!SerializeObject(propValue, destination, options, objectsInPath, depth + 1))
                         {
@@ -645,29 +645,42 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        private PropertyInfo[] GetProps(object value)
+        private KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]> GetProps(object value)
         {
             var type = value.GetType();
-            PropertyInfo[] props;
+            KeyValuePair<PropertyInfo[],ReflectionHelpers.LateBoundMethod[]> props;
             if (_propsCache.TryGetValue(type, out props))
             {
+                if (props.Key.Length != 0 && props.Value.Length == 0)
+                {
+                    var lateBoundMethods = new ReflectionHelpers.LateBoundMethod[props.Key.Length];
+                    for(int i = 0; i < props.Key.Length; i++)
+                    {
+                        lateBoundMethods[i] = ReflectionHelpers.CreateLateBoundMethod(props.Key[i].GetGetMethod());
+                    }
+                    props = new KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>(props.Key, lateBoundMethods);
+                    _propsCache.TryAddValue(type, props);
+                }
                 return props;
             }
 
+            PropertyInfo[] properties = null;
+
             try
             {
-                props = GetPropertyInfosNoCache(type);
-                if (props == null)
+                properties = GetPropertyInfosNoCache(type);
+                if (properties == null)
                 {
-                    props = ArrayHelper.Empty<PropertyInfo>();
+                    properties = ArrayHelper.Empty<PropertyInfo>();
                 }
             }
             catch (Exception ex)
             {
-                props = ArrayHelper.Empty<PropertyInfo>();
+                properties = ArrayHelper.Empty<PropertyInfo>();
                 NLog.Common.InternalLogger.Warn(ex, "Failed to get JSON properties for type: {0}", type);
             }
 
+            props = new KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>(properties, ArrayHelper.Empty<ReflectionHelpers.LateBoundMethod>());
             _propsCache.TryAddValue(type, props);
             return props;
         }

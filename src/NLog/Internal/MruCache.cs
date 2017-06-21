@@ -35,19 +35,32 @@ using System.Collections.Generic;
 
 namespace NLog.Internal
 {
+    /// <summary>
+    /// Most-Recently-Used-Cache, that discards less frequently used items on overflow
+    /// </summary>
     internal class MruCache<TKey, TValue>
     {
         private readonly Dictionary<TKey, MruItem> _dictionary;
         private readonly int _maxCapacity;
         private long _currentVersion;
 
-        public MruCache(int cap)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="maxCapacity">Max number of items to hold before discarding</param>
+        public MruCache(int maxCapacity)
         {
-            _maxCapacity = cap;
+            _maxCapacity = maxCapacity;
             _dictionary = new Dictionary<TKey, MruItem>(_maxCapacity);
             _currentVersion = 1;
         }
 
+        /// <summary>
+        /// Insert item into caceh
+        /// </summary>
+        /// <param name="key">Dictionary Key</param>
+        /// <param name="value">Dictionary Value</param>
+        /// <returns>Key did not exist already</returns>
         public bool TryAddValue(TKey key, TValue value)
         {
             lock (_dictionary)
@@ -56,9 +69,9 @@ namespace NLog.Internal
                 if (_dictionary.TryGetValue(key, out item))
                 {
                     var version = _currentVersion;
-                    if (item.Version != version)
+                    if (item.Version != version || !EqualityComparer<TValue>.Default.Equals(value, item.Value))
                     {
-                        _dictionary[key] = new MruItem(item.Value, version);
+                        _dictionary[key] = new MruItem(value, version);
                     }
                     return false;   // Already exists
                 }
@@ -111,6 +124,12 @@ namespace NLog.Internal
             }
         }
 
+        /// <summary>
+        /// Lookup existing item in cache
+        /// </summary>
+        /// <param name="key">Dictionary Key</param>
+        /// <param name="value">Dictionary Value [out]</param>
+        /// <returns>Key found</returns>
         public bool TryGetValue(TKey key, out TValue value)
         {
             MruItem item;
