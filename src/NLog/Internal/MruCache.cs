@@ -77,7 +77,7 @@ namespace NLog.Internal
                             long oldVersion = version - 2;
                             switch (i)
                             {
-                                case 1: oldVersion = version - _maxCapacity / 2; break;
+                                case 1: oldVersion = version - (int)(_maxCapacity / 1.5); break;
                                 case 2: oldVersion = version - _maxCapacity / 10; break;
                             }
                             foreach (var element in _dictionary)

@@ -196,66 +196,11 @@ namespace NLog.Targets
             }
             else if ((dict = value as IDictionary) != null)
             {
-                var set = AddToSet(objectsInPath, value);
-
-                bool first = true;
-
-                int originalLength = 0;
-                destination.Append('{');
-                foreach (DictionaryEntry de in dict)
-                {
-                    originalLength = destination.Length;
-                    if (!first)
-                    {
-                        destination.Append(',');
-                    }
-
-                    //only serialize, if key and value are serialized without error (e.g. due to reference loop)
-                    if (!SerializeObject(de.Key, destination, options, set, depth + 1))
-                    {
-                        destination.Length = originalLength;
-                    }
-                    else
-                    {
-                        destination.Append(':');
-                        if (!SerializeObject(de.Value, destination, options, set, depth + 1))
-                        {
-                            destination.Length = originalLength;
-                        }
-                        else
-                        {
-                            first = false;
-                        }
-                    }
-                }
-                destination.Append('}');
+                SerializeDictionaryObject(dict, destination, options, objectsInPath, depth);
             }
             else if ((enumerable = value as IEnumerable) != null)
             {
-                var set = AddToSet(objectsInPath, value);
-
-                bool first = true;
-
-                int originalLength = 0;
-                destination.Append('[');
-                foreach (var val in enumerable)
-                {
-                    originalLength = destination.Length;
-                    if (!first)
-                    {
-                        destination.Append(',');
-                    }
-
-                    if (!SerializeObject(val, destination, options, set, depth + 1))
-                    {
-                        destination.Length = originalLength;
-                    }
-                    else
-                    {
-                        first = false;
-                    }
-                }
-                destination.Append(']');
+                SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
             }
             else
             {
@@ -289,67 +234,142 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    TypeCode objTypeCode = Convert.GetTypeCode(value);
-                    if (objTypeCode == TypeCode.Object)
+                    if (!SerializeTypeCodeValue(value, destination, options, objectsInPath, depth))
                     {
-                        if (value is Guid || value is TimeSpan)
-                        {
-                            //object without property, to string
-                            QuoteValue(destination, Convert.ToString(value, CultureInfo.InvariantCulture));
-                        }
-                        else if (value is DateTimeOffset)
-                        {
-                            QuoteValue(destination, string.Format("{0:yyyy-MM-dd HH:mm:ss zzz}", value));
-                        }
-                        else
-                        {
-                            int originalLength = destination.Length;
-                            try
-                            {
-                                var set = AddToSet(objectsInPath, value);
-                                if (!SerializeProperties(value, destination, options, set, depth))
-                                {
-                                    destination.Length = originalLength;
-                                }
-                            }
-                            catch
-                            {
-                                //nothing to add, so return is OK
-                                destination.Length = originalLength;
-                                return false;
-                            }
-                        }
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private void SerializeDictionaryObject(IDictionary value, StringBuilder destination, JsonSerializeOptions options, HashSet<object> objectsInPath, int depth)
+        {
+            var set = AddToSet(objectsInPath, value);
+
+            bool first = true;
+
+            int originalLength = 0;
+            destination.Append('{');
+            foreach (DictionaryEntry de in value)
+            {
+                originalLength = destination.Length;
+                if (!first)
+                {
+                    destination.Append(',');
+                }
+
+                //only serialize, if key and value are serialized without error (e.g. due to reference loop)
+                if (!SerializeObject(de.Key, destination, options, set, depth + 1))
+                {
+                    destination.Length = originalLength;
+                }
+                else
+                {
+                    destination.Append(':');
+                    if (!SerializeObject(de.Value, destination, options, set, depth + 1))
+                    {
+                        destination.Length = originalLength;
                     }
                     else
                     {
-                        if (IsNumericTypeCode(objTypeCode, false))
+                        first = false;
+                    }
+                }
+            }
+            destination.Append('}');
+        }
+
+        private void SerializeCollectionObject(IEnumerable value, StringBuilder destination, JsonSerializeOptions options, HashSet<object> objectsInPath, int depth)
+        {
+            var set = AddToSet(objectsInPath, value);
+
+            bool first = true;
+
+            int originalLength = 0;
+            destination.Append('[');
+            foreach (var val in value)
+            {
+                originalLength = destination.Length;
+                if (!first)
+                {
+                    destination.Append(',');
+                }
+
+                if (!SerializeObject(val, destination, options, set, depth + 1))
+                {
+                    destination.Length = originalLength;
+                }
+                else
+                {
+                    first = false;
+                }
+            }
+            destination.Append(']');
+        }
+
+        private bool SerializeTypeCodeValue(object value, StringBuilder destination, JsonSerializeOptions options, HashSet<object> objectsInPath, int depth)
+        {
+            TypeCode objTypeCode = Convert.GetTypeCode(value);
+            if (objTypeCode == TypeCode.Object)
+            {
+                if (value is Guid || value is TimeSpan)
+                {
+                    //object without property, to string
+                    QuoteValue(destination, Convert.ToString(value, CultureInfo.InvariantCulture));
+                }
+                else if (value is DateTimeOffset)
+                {
+                    QuoteValue(destination, string.Format("{0:yyyy-MM-dd HH:mm:ss zzz}", value));
+                }
+                else
+                {
+                    int originalLength = destination.Length;
+                    try
+                    {
+                        var set = AddToSet(objectsInPath, value);
+                        if (!SerializeProperties(value, destination, options, set, depth))
                         {
-                            Enum enumValue;
-                            if (!options.EnumAsInteger && (enumValue = value as Enum) != null)
-                            {
-                                QuoteValue(destination, EnumAsString(enumValue));
-                            }
-                            else
-                            {
-                                AppendIntegerAsString(destination, value, objTypeCode);
-                            }
+                            destination.Length = originalLength;
                         }
-                        else
-                        {
-                            str = XmlHelper.XmlConvertToString(value, objTypeCode);
-                            if (str == null)
-                            {
-                                return false;
-                            }
-                            if (SkipQuotes(objTypeCode))
-                            {
-                                destination.Append(str);
-                            }
-                            else
-                            {
-                                QuoteValue(destination, str);
-                            }
-                        }
+                    }
+                    catch
+                    {
+                        //nothing to add, so return is OK
+                        destination.Length = originalLength;
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                if (IsNumericTypeCode(objTypeCode, false))
+                {
+                    Enum enumValue;
+                    if (!options.EnumAsInteger && (enumValue = value as Enum) != null)
+                    {
+                        QuoteValue(destination, EnumAsString(enumValue));
+                    }
+                    else
+                    {
+                        AppendIntegerAsString(destination, value, objTypeCode);
+                    }
+                }
+                else
+                {
+                    string str = XmlHelper.XmlConvertToString(value, objTypeCode);
+                    if (str == null)
+                    {
+                        return false;
+                    }
+                    if (SkipQuotes(objTypeCode))
+                    {
+                        destination.Append(str);
+                    }
+                    else
+                    {
+                        QuoteValue(destination, str);
                     }
                 }
             }
