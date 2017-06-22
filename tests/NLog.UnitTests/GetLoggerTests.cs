@@ -91,6 +91,32 @@ namespace NLog.UnitTests
             Assert.Equal("NLog.UnitTests.GetLoggerTests", l3.Name);
         }
 
+        private class ImANormalClass
+        {
+            public Logger Logger { get; private set; }
+            public Logger LoggerType { get; private set; }
+            public Logger LoggerGeneric { get; private set; }
+
+            public string FullName { get { return GetType().FullName.Replace("+", "."); } }
+
+            public ImANormalClass()
+            {
+                LogFactory lf = new LogFactory();
+                Logger = lf.GetCurrentClassLogger();
+                LoggerType = lf.GetCurrentClassLogger(typeof(Logger));
+                LoggerGeneric = lf.GetCurrentClassLogger<Logger>();
+            }
+        }
+
+        [Fact]
+        public void GetCurrentClassLoggerInnerClassTest()
+        {
+            var instance = new ImANormalClass();
+            Assert.Equal(instance.FullName, instance.Logger.Name);
+            Assert.Equal(instance.FullName, instance.LoggerType.Name);
+            Assert.Equal(instance.FullName, instance.LoggerGeneric.Name);
+        }
+
         [Fact]
         public void GenericGetLoggerTest()
         {
@@ -126,7 +152,6 @@ namespace NLog.UnitTests
             {
             }
         }
-
 
         [Fact]
         public void InvalidLoggerConfiguration_ThrowsConfigurationException_isFalse()
