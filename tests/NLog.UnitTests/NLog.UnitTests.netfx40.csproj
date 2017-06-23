@@ -116,6 +116,7 @@
     <Compile Include="Filters\WhenEqualTests.cs" />
     <Compile Include="Filters\WhenNotContainsTests.cs" />
     <Compile Include="Filters\WhenNotEqualTests.cs" />
+    <Compile Include="Filters\WhenRepeatedTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\AppDomainPartialTrustTests.cs" />
