@@ -123,7 +123,8 @@ namespace NLog.Targets
         public ConsoleTarget() : base()
         {
             _pauseLogging = false;
-            DetectConsoleAvailable = false;
+            this.DetectConsoleAvailable = false;
+            this.OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -159,9 +160,9 @@ namespace NLog.Targets
                 Console.OutputEncoding = _encoding;
 #endif
             base.InitializeTarget();
-            if (Header != null)
+            if (this.Header != null)
             {
-                this.WriteToOutput(Header.Render(LogEventInfo.CreateNullEvent()));
+                this.WriteToOutput(base.RenderLogEvent(this.Header, LogEventInfo.CreateNullEvent()));
             }
         }
 
@@ -170,9 +171,9 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            if (Footer != null)
+            if (this.Footer != null)
             {
-                this.WriteToOutput(Footer.Render(LogEventInfo.CreateNullEvent()));
+                this.WriteToOutput(base.RenderLogEvent(this.Footer, LogEventInfo.CreateNullEvent()));
             }
 
             base.CloseTarget();
@@ -194,7 +195,7 @@ namespace NLog.Targets
                 return;
             }
 
-            this.WriteToOutput(this.Layout.Render(logEvent));
+            this.WriteToOutput(base.RenderLogEvent(this.Layout, logEvent));
         }
 
         /// <summary>
