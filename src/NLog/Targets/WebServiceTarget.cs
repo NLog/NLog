@@ -98,6 +98,9 @@ namespace NLog.Targets
             const bool writeBOM = false;
             this.Encoding = new UTF8Encoding(writeBOM);
             this.IncludeBOM = writeBOM;
+            this.OptimizeBufferReuse = true;
+
+            this.Headers = new List<MethodCallParameter>();
         }
 
         /// <summary>
@@ -179,6 +182,21 @@ namespace NLog.Targets
         /// <docgen category='Web Service Options' order='10' />
         public string XmlRootNamespace { get; set; }
 
+        /// <summary>
+        /// Gets the array of parameters to be passed.
+        /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
+        [ArrayParameter(typeof(MethodCallParameter), "header")]
+        public IList<MethodCallParameter> Headers { get; private set; }
+
+#if !SILVERLIGHT
+        /// <summary>
+        /// Indicates whether to pre-authenticate the HttpWebRequest (Requires 'Authorization' in <see cref="Headers"/> parameters)
+        /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
+        public bool PreAuthenticate { get; set; }
+#endif
+
         private readonly AsyncOperationCounter pendingManualFlushList = new AsyncOperationCounter();
 
         /// <summary>
@@ -192,16 +210,51 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Invokes the web service method.
+        /// Calls the target DoInvoke method, and handles AsyncContinuation callback
         /// </summary>
-        /// <param name="parameters">Parameters to be passed.</param>
+        /// <param name="parameters">Method call parameters.</param>
         /// <param name="continuation">The continuation.</param>
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
             var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            DoInvoke(parameters, request, continuation);
+        }
+
+        /// <summary>
+        /// Invokes the web service method.
+        /// </summary>
+        /// <param name="parameters">Parameters to be passed.</param>
+        /// <param name="logEvent">The logging event.</param>
+        protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+
+            if (this.Headers != null && this.Headers.Count > 0)
+            {
+                for (int i = 0; i < this.Headers.Count; i++)
+                {
+                    string headerValue = base.RenderLogEvent(this.Headers[i].Layout, logEvent.LogEvent);
+                    if (headerValue == null)
+                        continue;
+
+                    request.Headers[this.Headers[i].Name] = headerValue;
+                }
+            }
+
+#if !SILVERLIGHT
+            if (this.PreAuthenticate)
+            {
+                request.PreAuthenticate = true;
+            }
+#endif
+
+            DoInvoke(parameters, request, logEvent.Continuation);
+        }
+
+        void DoInvoke(object[] parameters, HttpWebRequest request, AsyncContinuation continuation)
+        {
             Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
             Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
-
             DoInvoke(parameters, continuation, request, begin, getStream);
         }
 
@@ -356,22 +409,21 @@ namespace NLog.Targets
                 return this.Url;
             }
 
-            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
-            
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
-            var queryParameters = new StringBuilder();
-            string separator = string.Empty;
-            for (int i = 0; i < this.Parameters.Count; i++)
+            string queryParameters = string.Empty;
+            if (this.OptimizeBufferReuse)
             {
-                queryParameters.Append(separator);
-                queryParameters.Append(this.Parameters[i].Name);
-                queryParameters.Append("=");
-                string parameterValue = XmlHelper.XmlConvertToString(parameterValues[i]);
-                if (!string.IsNullOrEmpty(parameterValue))
+                using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
                 {
-                    UrlHelper.EscapeDataEncode(parameterValue, queryParameters, encodingFlags);
+                    BuildWebServiceQueryParameters(parameterValues, targetBuilder.Result);
+                    queryParameters = targetBuilder.Result.ToString();
                 }
-                separator = "&";
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                BuildWebServiceQueryParameters(parameterValues, sb);
+                queryParameters = sb.ToString();
             }
 
             var builder = new UriBuilder(this.Url);
@@ -379,14 +431,33 @@ namespace NLog.Targets
             //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
             if (builder.Query != null && builder.Query.Length > 1)
             {
-                builder.Query = string.Concat(builder.Query.Substring(1), "&", queryParameters.ToString());
+                builder.Query = string.Concat(builder.Query.Substring(1), "&", queryParameters);
             }
             else
             {
-                builder.Query = queryParameters.ToString();
+                builder.Query = queryParameters;
             }
 
             return builder.Uri;
+        }
+
+        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb)
+        {
+            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
+
+            string separator = string.Empty;
+            for (int i = 0; i < this.Parameters.Count; i++)
+            {
+                sb.Append(separator);
+                sb.Append(this.Parameters[i].Name);
+                sb.Append("=");
+                string parameterValue = XmlHelper.XmlConvertToString(parameterValues[i]);
+                if (!string.IsNullOrEmpty(parameterValue))
+                {
+                    UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
+                }
+                separator = "&";
+            }
         }
 
         private void PrepareGetRequest(HttpWebRequest request)

@@ -506,6 +506,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                                 protocol='JsonPost'
                                 encoding='UTF-8'
                                >
+                            <header name='Authorization' layout='OpenBackDoor' />
                             <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                             <parameter name='param3' ParameterType='System.Boolean' layout='True'/>
@@ -525,7 +526,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             var txt = "message 1 with a JSON POST<hello><again\\>\"\b";   // Lets tease the JSON serializer and see it can handle valid and invalid xml chars
             var count = 101;
-            var context = new LogDocController.TestContext(1, count, false, txt, "info", true, DateTime.UtcNow);
+            var context = new LogDocController.TestContext(1, count, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" } }, txt, "info", true, DateTime.UtcNow);
 
             StartOwinDocTest(context, () =>
             {
@@ -572,7 +573,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             var txt = "message 1 with a XML POST<hello><again\\>\"";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
             var count = 101;
-            var context = new LogDocController.TestContext(1, count, true, txt, "info", true, DateTime.UtcNow);
+            var context = new LogDocController.TestContext(1, count, true, null, txt, "info", true, DateTime.UtcNow);
 
             StartOwinDocTest(context, () =>
             {
@@ -864,6 +865,14 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                         && Context.ExpectedParam3 == complexType.Param3
                         && Context.ExpectedParam4.Date == complexType.Param4.Date)
                     {
+                        if (Context.ExpectedHeaders != null && Context.ExpectedHeaders.Count > 0)
+                        {
+                            foreach (var expectedHeader in Context.ExpectedHeaders)
+                            {
+                                if (base.Request.Headers.GetValues(expectedHeader.Key).First() != expectedHeader.Value)
+                                    return;
+                            }
+                        }
                         Context.CountdownEvent.Signal();
                     }
                 }
@@ -888,6 +897,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
                 public bool XmlInsteadOfJson { get; } = false;
 
+                public Dictionary<string, string> ExpectedHeaders { get; }
+
                 public string ExpectedParam1 { get; }
 
                 public string ExpectedParam2 { get; }
@@ -896,11 +907,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
                 public DateTime ExpectedParam4 { get; }
 
-                public TestContext(int portOffset, int expectedMessages, bool xmlInsteadOfJson, string expected1, string expected2, bool expected3, DateTime expected4)
+                public TestContext(int portOffset, int expectedMessages, bool xmlInsteadOfJson, Dictionary<string,string> expectedHeaders, string expected1, string expected2, bool expected3, DateTime expected4)
                 {
                     CountdownEvent = new CountdownEvent(expectedMessages);
                     PortOffset = portOffset;
                     XmlInsteadOfJson = xmlInsteadOfJson;
+                    ExpectedHeaders = expectedHeaders;
                     ExpectedParam1 = expected1;
                     ExpectedParam2 = expected2;
                     ExpectedParam3 = expected3;
