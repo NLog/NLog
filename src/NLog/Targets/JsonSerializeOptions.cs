@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,52 +31,50 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
-{
-    using System;
-    using System.ComponentModel;
-    using System.Text;
-    using NLog.Config;
+using System;
+using System.ComponentModel;
 
+namespace NLog.Targets
+{
     /// <summary>
-    /// Escapes output of another layout using JSON rules.
+    /// Options for JSON serialisation
     /// </summary>
-    [LayoutRenderer("json-encode")]
-    [AmbientProperty("JsonEncode")]
-    [ThreadAgnostic]
-    public sealed class JsonEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
+    public class JsonSerializeOptions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonEncodeLayoutRendererWrapper" /> class.
+        /// Add quotes arround object keys?
         /// </summary>
-        public JsonEncodeLayoutRendererWrapper()
-        {
-            this.JsonEncode = true;
-            this.EscapeUnicode = true;
-        }
+        [DefaultValue(true)]
+        public bool QuoteKeys { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to apply JSON encoding.
+        /// Formatprovider for value
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
-        [DefaultValue(true)]
-        public bool JsonEncode { get; set; }
+        public IFormatProvider FormatProvider { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to escape non-ascii characters
+        /// Format string for value
         /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
-        [DefaultValue(true)]
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Should non-ascii characters be encoded
+        /// </summary>
+        [DefaultValue(false)]
         public bool EscapeUnicode { get; set; }
 
         /// <summary>
-        /// Post-processes the rendered message. 
+        /// Serialize enum as string value
         /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>JSON-encoded string.</returns>
-        protected override string Transform(string text)
+        [DefaultValue(true)]
+        public bool EnumAsString { get; set; }
+
+
+        /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+        public JsonSerializeOptions()
         {
-            return this.JsonEncode ? Targets.DefaultJsonSerializer.EscapeString(text, this.EscapeUnicode) : text;
+            QuoteKeys = true;
+            EnumAsString = true;
         }
     }
 }

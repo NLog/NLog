@@ -210,15 +210,14 @@ namespace NLog.Layouts
         {
             TypeCode objTypeCode = Convert.GetTypeCode(propertyValue);
 
-            bool propStringEncode;
-            string propStringValue = Targets.DefaultJsonSerializer.JsonStringEncode(propertyValue, objTypeCode, true, out propStringEncode);
+            string propStringValue = Targets.DefaultJsonSerializer.SerializePrimitive(propertyValue, objTypeCode, true, true);
             if (!string.IsNullOrEmpty(propStringValue))
             {
-                AppendJsonAttributeValue(propName, propStringEncode, propStringValue, sb);
+                AppendJsonAttributeValue(propName, false, propStringValue, sb);
             }
         }
 
-        private void AppendJsonAttributeValue(string attributeName, bool attributeEncode, string text, StringBuilder sb)
+        private void AppendJsonAttributeValue(string attributeName, bool attributeQuote, string text, StringBuilder sb)
         {
             bool first = sb.Length == 0;
             if (first)
@@ -241,7 +240,7 @@ namespace NLog.Layouts
             if (!this.SuppressSpaces)
                 sb.Append(' ');
 
-            if (attributeEncode)
+            if (attributeQuote)
             {
                 // "\"{0}\":{1}\"{2}\""
                 sb.Append('"');

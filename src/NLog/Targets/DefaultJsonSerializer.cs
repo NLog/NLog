@@ -35,7 +35,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 using System.Text;
+using NLog.Internal;
 
 namespace NLog.Targets
 {
@@ -46,23 +48,33 @@ namespace NLog.Targets
     {
         private const int MaxRecursionDepth = 10;
 
-        private static readonly DefaultJsonSerializer instance;
+        private static readonly DefaultJsonSerializer _instance;
+
+        /// <summary>
+        /// Cache for property infos
+        /// </summary>
+        private static Cache<PropertyInfo[]> _propsCache = new Cache<PropertyInfo[]>("PropsCache");
 
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
         public static DefaultJsonSerializer Instance
         {
-            get { return instance; }
+            get { return _instance; }
         }
 
         static DefaultJsonSerializer()
         {
-            instance = new DefaultJsonSerializer();
+            _instance = new DefaultJsonSerializer();
         }
 
+
+        /// <summary>
+        /// Private ctor so we use <see cref="Instance"/>
+        /// </summary>
         private DefaultJsonSerializer()
-        { }
+        {
+        }
 
         /// <summary>
         /// Returns a serialization of an object
@@ -72,85 +84,194 @@ namespace NLog.Targets
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value)
         {
-            return SerializeObject(value, false, null, 0);
+            return SerializeObject(value, new JsonSerializeOptions());
         }
-
 
         /// <summary>
         /// Returns a serialization of an object
         /// int JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
-        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
+        /// <param name="options">Options</param>
+        /// <returns>Serialized value.</returns>
+        public string SerializeObject(object value, JsonSerializeOptions options)
+        {
+            return SerializeObject(value, options, null, 0);
+        }
+
+        /// <summary>
+        /// Returns a serialization of an object
+        /// int JSON format.
+        /// </summary>
+        /// <param name="value">The object to serialize to JSON.</param>
+        /// <param name="options">serialisation options</param>
         /// <param name="objectsInPath">The objects in path.</param>
         /// <param name="depth">The current depth (level) of recursion.</param>
         /// <returns>
         /// Serialized value.
         /// </returns>
-        private string SerializeObject(object value, bool escapeUnicode, HashSet<object> objectsInPath, int depth)
+        private string SerializeObject(object value, JsonSerializeOptions options,
+            HashSet<object> objectsInPath, int depth)
         {
             if (objectsInPath != null && objectsInPath.Contains(value))
             {
-                return null;        // detected reference loop, skip serialization
+                return null; // detected reference loop, skip serialization
+            }
+            if (depth > MaxRecursionDepth)
+            {
+                return null; // reached maximum recursion level, no further serialization
             }
 
-            IEnumerable enumerable = null;
-            IDictionary dict = null;
-            string str = null;
+            IEnumerable enumerable;
+            IDictionary dict;
+            string str;
+            string returnValue;
+
             if (value == null)
             {
-                return "null";
+                returnValue = "null";
             }
             else if ((str = value as string) != null)
             {
-                return string.Concat("\"", JsonStringEscape(str, escapeUnicode), "\"");
+                returnValue = QuoteValue(EscapeString(str, options.EscapeUnicode));
             }
             else if ((dict = value as IDictionary) != null)
             {
-                if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
+                List<string> list = null;
 
-                var list = new List<string>();
-                var set = new HashSet<object>(objectsInPath ?? (IEnumerable<object>)Internal.ArrayHelper.Empty<object>()) { value };
+                var set = AddToSet(objectsInPath, value);
                 foreach (DictionaryEntry de in dict)
                 {
-                    var keyJson = SerializeObject(de.Key, escapeUnicode, set, depth + 1);
-                    var valueJson = SerializeObject(de.Value, escapeUnicode, set, depth + 1);
-                    if (!string.IsNullOrEmpty(keyJson) && valueJson != null)
+                    var keyJson = SerializeObject(de.Key, options, set, depth + 1);
+                    if (!string.IsNullOrEmpty(keyJson))
                     {
-                        //only serialize, if key and value are serialized without error (e.g. due to reference loop)
-                        list.Add(string.Concat(keyJson, ":", valueJson));
+
+                        var valueJson = SerializeObject(de.Value, options, set, depth + 1);
+                        if (valueJson != null)
+                        {
+                            list = list ?? new List<string>();
+                            //only serialize, if key and value are serialized without error (e.g. due to reference loop)
+                            list.Add(string.Concat(keyJson, ":", valueJson));
+                        }
                     }
                 }
 
-                return string.Concat("{", string.Join(",", list.ToArray()), "}");
+                if (list != null)
+                {
+                    returnValue = string.Concat("{", string.Join(",", list.ToArray()), "}");
+                }
+                else
+                {
+                    returnValue = "{}";
+                }
             }
             else if ((enumerable = value as IEnumerable) != null)
             {
-                if (depth == MaxRecursionDepth) return null;        // reached maximum recursion level, no further serialization
-
-                var list = new List<string>();
-                var set = new HashSet<object>(objectsInPath ?? (IEnumerable<object>)Internal.ArrayHelper.Empty<object>()) { value };
+                List<string> list = null;
+                var set = AddToSet(objectsInPath, value);
                 foreach (var val in enumerable)
                 {
-                    var valueJson = SerializeObject(val, escapeUnicode, set, depth + 1);
+                    var valueJson = SerializeObject(val, options, set, depth + 1);
                     if (valueJson != null)
                     {
+                        list = list ?? new List<string>();
                         list.Add(valueJson);
                     }
                 }
 
-                return string.Concat("[", string.Join(",", list.ToArray()), "]");
+                if (list != null)
+                {
+                    returnValue = string.Concat("[", string.Join(",", list.ToArray()), "]");
+                }
+                else
+                {
+                    returnValue = "[]";
+                }
             }
+
             else
             {
-                TypeCode objTypeCode = Convert.GetTypeCode(value);
-                bool encodeStringValue;
-                string escapeXmlString = JsonStringEncode(value, objTypeCode, escapeUnicode, out encodeStringValue);
-                if (escapeXmlString != null && encodeStringValue)
-                    return string.Concat("\"", escapeXmlString, "\"");
+                IFormattable formattable;
+                var format = options.Format;
+                var hasFormat = !StringHelpers.IsNullOrWhiteSpace(format);
+                if ((options.FormatProvider != null || hasFormat) && (formattable = value as IFormattable) != null)
+                {
+                    TypeCode objTypeCode = Convert.GetTypeCode(value);
+
+                    if (hasFormat)
+                    {
+                        if (options.FormatProvider == null)
+                        {
+                            var culture = CreateFormatProvider();
+
+                            options.FormatProvider = culture;
+                        }
+                        returnValue = string.Format(options.FormatProvider, "{0:" + format + "}", value);
+
+                    }
+                    else
+                    {
+                        //format provider passed without FormatProvider
+                        returnValue = formattable.ToString("", options.FormatProvider);
+                    }
+                    if (!SkipQuotes(objTypeCode))
+                    {
+                        returnValue = QuoteValue(returnValue);
+                    }
+
+                }
                 else
-                    return escapeXmlString;
+                {
+                    TypeCode objTypeCode = Convert.GetTypeCode(value);
+                    if (objTypeCode == TypeCode.Object)
+                    {
+                        if (value is Guid || value is TimeSpan)
+                        {
+                            //object without property, to string
+                            return QuoteValue(Convert.ToString(value, CultureInfo.InvariantCulture));
+                        }
+                        if (value is DateTimeOffset)
+                        {
+                            return QuoteValue(string.Format("{0:yyyy-MM-dd HH:mm:ss zzz}", value));
+                        }
+                        try
+                        {
+                            var set = AddToSet(objectsInPath, value);
+                            returnValue = SerializeProperties(value, options, set, depth);
+                        }
+                        catch
+                        {
+                            //nothing to add, so return is OK
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        returnValue = SerializePrimitive(value, objTypeCode, options.EscapeUnicode, options.EnumAsString);
+                    }
+                }
             }
+
+            return returnValue;
+        }
+
+        private static CultureInfo CreateFormatProvider()
+        {
+#if SILVERLIGHT
+                            var culture = new CultureInfo("en-US");
+#else
+            var culture = new CultureInfo("en-US", false);
+#endif
+            var numberFormat = culture.NumberFormat;
+            numberFormat.NumberGroupSeparator = string.Empty;
+            numberFormat.NumberDecimalSeparator = ".";
+            numberFormat.NumberGroupSizes = new int[] { 0 };
+            return culture;
+        }
+
+        private static string QuoteValue(string value)
+        {
+            return string.Concat("\"", value, "\"");
         }
 
         /// <summary>
@@ -159,27 +280,44 @@ namespace NLog.Targets
         /// <param name="value">Object value</param>
         /// <param name="objTypeCode">Object TypeCode</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
-        /// <param name="encodeString">Should string be JSON encoded with quotes</param>
+        /// <param name="enumAsString">Enum as string value?</param>
         /// <returns>Object value converted to JSON escaped string</returns>
-        internal static string JsonStringEncode(object value, TypeCode objTypeCode, bool escapeUnicode, out bool encodeString)
+        internal static string SerializePrimitive(object value, TypeCode objTypeCode, bool escapeUnicode, bool enumAsString)
         {
-            string stringValue = Internal.XmlHelper.XmlConvertToString(value, objTypeCode);
-            if (objTypeCode != TypeCode.String || stringValue == null)
+
+            if (enumAsString && IsNumericTypeCode(objTypeCode) && value.GetType().IsEnum)
             {
-                encodeString = false;
-                if (stringValue == null)
-                    return stringValue;
-                else if (objTypeCode == TypeCode.Empty)
-                    return stringValue; // Don't put quotes around null values
-                else if (objTypeCode == TypeCode.Boolean)
-                    return stringValue; // Don't put quotes around boolean values
-                else if (IsNumericTypeCode(objTypeCode))
-                    return stringValue; // Don't put quotes around numeric values
+                //enum as string
+                return QuoteValue(Convert.ToString(value, CultureInfo.InvariantCulture));
             }
 
-            encodeString = true;
-            return JsonStringEscape(stringValue, escapeUnicode);
+            string stringValue = Internal.XmlHelper.XmlConvertToString(value, objTypeCode);
+
+            if (stringValue == null)
+            {
+                return null;
+            }
+
+            if (SkipQuotes(objTypeCode))
+            {
+                return stringValue;
+            }
+
+            return QuoteValue(EscapeString(stringValue, escapeUnicode));
         }
+
+        /// <summary>
+        /// No quotes needed for this type?
+        /// </summary>
+        /// <param name="objTypeCode"></param>
+        /// <returns></returns>
+        private static bool SkipQuotes(TypeCode objTypeCode)
+        {
+            return objTypeCode != TypeCode.String && (objTypeCode == TypeCode.Empty  // Don't put quotes around null values
+                || objTypeCode == TypeCode.Boolean
+                || IsNumericTypeCode(objTypeCode));
+        }
+
 
         private static bool IsNumericTypeCode(TypeCode objTypeCode)
         {
@@ -207,7 +345,7 @@ namespace NLog.Targets
         /// <param name="text">Input string</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <returns>JSON escaped string</returns>
-        internal static string JsonStringEscape(string text, bool escapeUnicode)
+        internal static string EscapeString(string text, bool escapeUnicode)
         {
             if (text == null)
                 return null;
@@ -229,7 +367,7 @@ namespace NLog.Targets
                                 break;
 
                             default:
-                                continue;   // StringBuilder not needed, yet
+                                continue; // StringBuilder not needed, yet
                         }
                     }
 
@@ -290,7 +428,6 @@ namespace NLog.Targets
             else
                 return text;
         }
-
         private static bool EscapeChar(char ch, bool escapeUnicode)
         {
             if (ch < 32)
@@ -298,5 +435,96 @@ namespace NLog.Targets
             else
                 return escapeUnicode && ch > 127;
         }
+
+        private string SerializeProperties(object value, JsonSerializeOptions options,
+            HashSet<object> objectsInPath, int depth)
+        {
+
+            var props = GetProps(value);
+
+            if (props.Length == 0)
+            {
+                //no props
+                return QuoteValue(Convert.ToString(value, CultureInfo.InvariantCulture));
+            }
+            var sb = new StringBuilder();
+            sb.Append('{');
+
+            var isFirst = true;
+
+            for (var i = 0; i < props.Length; i++)
+            {
+                var prop = props[i];
+
+                try
+                {
+                    var propValue = prop.GetValue(value, null);
+                    if (propValue != null)
+                    {
+
+                        var serializedProperty = SerializeObject(propValue, options, objectsInPath, depth + 1);
+
+                        if (serializedProperty != null)
+                        {
+                            if (!isFirst)
+                            {
+                                sb.Append(", ");
+                            }
+                            isFirst = false;
+                            if (options.QuoteKeys)
+                            {
+                                sb.Append("\"");
+                                //no escape needed as properties don't have quotes
+                                sb.Append(prop.Name);
+                                sb.Append("\"");
+                            }
+                            else
+                            {
+                                sb.Append(prop.Name);
+                            }
+
+                            sb.Append(":");
+                            sb.Append(serializedProperty);
+                        }
+                    }
+                }
+                catch
+                {
+                    //skip this property
+                }
+
+            }
+            sb.Append('}');
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Get properties, cached for a type
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static PropertyInfo[] GetProps(object value)
+        {
+            var type = value.GetType();
+            var key = type.GetHashCode().ToString(CultureInfo.InvariantCulture);
+            return _propsCache.GetOrCreate(key, () => GetPropertyInfosNoCache(type));
+        }
+
+        private static PropertyInfo[] GetPropertyInfosNoCache(Type type)
+        {
+#if NETSTANDARD
+            var props = type.GetRuntimeProperties().ToArray();
+#else
+            var props = type.GetProperties();
+#endif
+            return props;
+        }
+
+        private static HashSet<object> AddToSet(HashSet<object> objectsInPath, object value)
+        {
+            return new HashSet<object>(objectsInPath ?? (IEnumerable<object>)Internal.ArrayHelper.Empty<object>()) { value };
+        }
+
     }
+
 }
