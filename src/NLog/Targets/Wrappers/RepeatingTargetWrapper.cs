@@ -88,6 +88,7 @@ namespace NLog.Targets.Wrappers
         {
             WrappedTarget = wrappedTarget;
             this.RepeatCount = repeatCount;
+            this.OptimizeBufferReuse = GetType() == typeof(RepeatingTargetWrapper);
         }
 
         /// <summary>

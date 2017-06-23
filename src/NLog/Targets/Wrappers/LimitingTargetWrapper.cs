@@ -86,6 +86,7 @@ namespace NLog.Targets.Wrappers
             this.MessageLimit = messageLimit;
             this.Interval = interval;
             this.WrappedTarget = wrappedTarget;
+            this.OptimizeBufferReuse = GetType() == typeof(LimitingTargetWrapper);
         }
 
         /// <summary>

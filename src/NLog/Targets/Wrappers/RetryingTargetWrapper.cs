@@ -93,6 +93,7 @@ namespace NLog.Targets.Wrappers
             this.WrappedTarget = wrappedTarget;
             this.RetryCount = retryCount;
             this.RetryDelayMilliseconds = retryDelayMilliseconds;
+            this.OptimizeBufferReuse = GetType() == typeof(RetryingTargetWrapper);
         }
 
         /// <summary>
