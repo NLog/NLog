@@ -116,13 +116,14 @@ namespace NLog.Targets.Wrappers
         public IList<FilteringRule> Rules { get; private set; }
 
         /// <summary>
-        /// NOTE! Will soon be marked obsolete. Instead override Write(IList{AsyncLogEventInfo} logEvents)
+        /// NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
         /// 
         /// Writes an array of logging events to the log target. By default it iterates on all
         /// events and passes them to "Write" method. Inheriting classes can use this method to
         /// optimize batch writes.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
+        [Obsolete("Instead override Write(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
             Write((IList<AsyncLogEventInfo>)logEvents);
@@ -197,7 +198,7 @@ namespace NLog.Targets.Wrappers
                 if (resultBuffer.Count > 0)
                 {
                     InternalLogger.Trace("Sending to {0}", this.WrappedTarget);
-                    this.WrappedTarget.WriteAsyncLogEvents(resultBuffer.ToArray());
+                    this.WrappedTarget.WriteAsyncLogEvents(resultBuffer);
                 }
             }
         }
