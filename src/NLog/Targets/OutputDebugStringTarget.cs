@@ -67,6 +67,7 @@ namespace NLog.Targets
         /// </remarks>
         public OutputDebugStringTarget() : base()
         {
+            this.OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            NativeMethods.OutputDebugString(this.Layout.Render(logEvent));
+            NativeMethods.OutputDebugString(base.RenderLogEvent(this.Layout, logEvent));
         }
     }
 }
