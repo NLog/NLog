@@ -243,7 +243,7 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                if (string.Equals(appenders[i].FileName, fileName, StringComparison.Ordinal))
+                if (string.Equals(appenders[i].FileName, fileName, StringComparison.OrdinalIgnoreCase))
                 {
                     // found it, move it to the first place on the list
                     // (MRU)
@@ -400,7 +400,7 @@ namespace NLog.Internal.FileAppenders
                 if (appender == null)
                     break;
 
-                if (string.Equals(appender.FileName, fileName, StringComparison.Ordinal))
+                if (string.Equals(appender.FileName, fileName, StringComparison.OrdinalIgnoreCase))
                     return appender;
             }
 
@@ -526,7 +526,7 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                if (string.Equals(appenders[i].FileName, filePath, StringComparison.Ordinal))
+                if (string.Equals(appenders[i].FileName, filePath, StringComparison.OrdinalIgnoreCase))
                 {
                     var oldAppender = appenders[i];
                     for (int j = i; j < appenders.Length - 1; ++j)
