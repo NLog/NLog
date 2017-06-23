@@ -66,6 +66,7 @@ namespace NLog.Targets
         public MemoryTarget()
         {
             this.Logs = new List<string>();
+            this.OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -91,9 +92,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string msg = this.Layout.Render(logEvent);
-
-            this.Logs.Add(msg);
+            this.Logs.Add(base.RenderLogEvent(this.Layout, logEvent));
         }
     }
 }
