@@ -69,14 +69,7 @@ namespace NLog.Internal.FileAppenders
             : base(fileName, createParameters)
         {
 #if SupportsMutex
-            try
-            {
-                ArchiveMutex = CreateArchiveMutex();
-            }
-            catch (SecurityException ex)
-            {
-                InternalLogger.Warn(ex, "Failed to create archive mutex");
-            }
+            ArchiveMutex = CreateArchiveMutex();
 #endif
         }
 
@@ -87,22 +80,31 @@ namespace NLog.Internal.FileAppenders
         /// <value>The mutex for archiving.</value>
         public Mutex ArchiveMutex { get; private set; }
 
-        /// <summary>
-        /// Creates a mutually-exclusive lock for archiving files.
-        /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected virtual Mutex CreateArchiveMutex()
+        private Mutex CreateArchiveMutex()
         {
-            return new Mutex();
+            try
+            {
+                return CreateSharableMutex("FileArchiveLock");
+            }
+            catch (SecurityException ex)
+            {
+                InternalLogger.Warn(ex, "Failed to create global archive mutex: {0}", FileName);
+                return new Mutex();
+            }
         }
 
         /// <summary>
-        /// Creates a mutex for archiving that is sharable by more than one process.
+        /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected Mutex CreateSharableArchiveMutex()
+        /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected override void Dispose(bool disposing)
         {
-            return CreateSharableMutex("FileArchiveLock");
+            base.Dispose(disposing);
+            if (disposing)
+            {
+                if (ArchiveMutex != null)
+                    ArchiveMutex.Close();    // Only closed on dispose, Mutex must survieve, when closing FileAppender before archive
+            }
         }
 
         /// <summary>

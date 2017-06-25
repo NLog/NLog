@@ -155,17 +155,6 @@ namespace NLog.Internal.FileAppenders
             }
         }
 
-#if SupportsMutex
-        /// <summary>
-        /// Creates a mutually-exclusive lock for archiving files.
-        /// </summary>
-        /// <returns>A <see cref="Mutex"/> object which can be used for controlling the archiving of files.</returns>
-        protected override Mutex CreateArchiveMutex()
-        {
-            return CreateSharableArchiveMutex();
-        }
-#endif
-
         /// <summary>
         /// Writes the specified bytes.
         /// </summary>

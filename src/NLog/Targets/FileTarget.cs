@@ -1308,7 +1308,36 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    File.Move(fileName, archiveFileName);
+                    try
+                    {
+                        File.Move(fileName, archiveFileName);
+                    }
+                    catch (System.IO.IOException ex)
+                    {
+                        if (KeepFileOpen && !ConcurrentWrites)
+                            throw;  // No need to retry, when only single process access
+
+                        if (!EnableFileDelete && KeepFileOpen)
+                            throw;  // No need to retry when file delete has been disabled
+
+                        if (!PlatformDetector.SupportsSharableMutex)
+                            throw;  // No need to retry when not having a real archive mutex to protect us
+
+                        // It is possible to move a file while other processes has open file-handles.
+                        // Unless the other process is actively writing, then the file move might fail.
+                        // We are already holding the archive-mutex, so lets retry if things are stable
+                        InternalLogger.Warn(ex, "Archiving failed. Checking for retry move of {0} to {1}.", fileName, archiveFileName);
+                        if (!File.Exists(fileName) || File.Exists(archiveFileName))
+                            throw;
+
+                        Thread.Sleep(50);
+
+                        if (!File.Exists(fileName) || File.Exists(archiveFileName))
+                            throw;
+
+                        InternalLogger.Info("Archiving retrying move of {0} to {1}.", fileName, archiveFileName);
+                        File.Move(fileName, archiveFileName);
+                    }
                 }
             }
         }
@@ -1425,7 +1454,7 @@ namespace NLog.Targets
         private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime lastWrite)
         {
             DateTime timestamp;
-            if(!previousLogEventTimestamp.HasValue)
+            if (!previousLogEventTimestamp.HasValue)
                 return false;
             else
                 timestamp = previousLogEventTimestamp.Value;
@@ -1472,7 +1501,7 @@ namespace NLog.Targets
             // Shamelessly taken from http://stackoverflow.com/a/7611480/1354930
             int start = (int)previousLogEventTimestamp.DayOfWeek;
             int target = (int)dayOfWeek;
-            if(target <= start)
+            if (target <= start)
                 target += 7;
             return previousLogEventTimestamp.AddDays(target - start);
         }
@@ -1622,10 +1651,11 @@ namespace NLog.Targets
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                     this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
-
                     // Close possible stale file handles, before doing extra check
-                    if (archiveFile != fileName)
+                    if (!string.IsNullOrEmpty(fileName) && fileName != archiveFile)
                         this.fileAppenderCache.InvalidateAppender(fileName);
+                    if (!string.IsNullOrEmpty(previousLogFileName) && previousLogFileName != archiveFile && previousLogFileName != fileName)
+                        this.fileAppenderCache.InvalidateAppender(previousLogFileName);
                     this.fileAppenderCache.InvalidateAppender(archiveFile);
                 }
                 else
@@ -1653,6 +1683,8 @@ namespace NLog.Targets
                     {
                         if (archiveMutex != null)
                             archiveMutex.WaitOne();
+                        else if (!KeepFileOpen || ConcurrentWrites)
+                            InternalLogger.Info("Archive mutex not available: {0}", archiveFile);
                     }
                     catch (AbandonedMutexException)
                     {
@@ -1688,7 +1720,9 @@ namespace NLog.Targets
                 {
 #if SupportsMutex
                     if (archiveMutex != null)
+                    {
                         archiveMutex.ReleaseMutex();
+                    }
 #endif
                 }
             }
