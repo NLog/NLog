@@ -87,6 +87,7 @@ namespace NLog.Targets
             this.Log = "Application";
             this.MachineName = ".";
             this.MaxMessageLength = 16384;
+            this.OptimizeBufferReuse = GetType() == typeof(EventLogTarget);
         }
 
         /// <summary>
@@ -267,7 +268,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string message = this.Layout.Render(logEvent);
+            string message = base.RenderLogEvent(this.Layout, logEvent);
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
@@ -316,7 +317,7 @@ namespace NLog.Targets
             {
                 //try parse, if fail,  determine auto
 
-                var value = this.EntryType.Render(logEvent);
+                var value = base.RenderLogEvent(this.EntryType, logEvent);
 
                 EventLogEntryType eventLogEntryType;
                 if (EnumHelpers.TryParse(value, true, out eventLogEntryType))
@@ -364,7 +365,7 @@ namespace NLog.Targets
         /// <returns></returns>
         private EventLog GetEventLog(LogEventInfo logEvent)
         {
-            var renderedSource = this.Source != null ? this.Source.Render(logEvent) : null;
+            var renderedSource = this.Source != null ? base.RenderLogEvent(this.Source, logEvent) : null;
             var isCacheUpToDate = eventLogInstance != null && renderedSource == eventLogInstance.Source &&
                                    eventLogInstance.Log == this.Log && eventLogInstance.MachineName == this.MachineName;
 
