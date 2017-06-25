@@ -46,43 +46,12 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class JsonLayout : Layout
     {
-        private NLog.Targets.IJsonSerializerV2 JsonSerializer
+        private IJsonConverter JsonConverter
         {
-            get
-            {
-                if (_jsonSerializer == null)
-                {
-                    var jsonSerializer = ConfigurationItemFactory.Default.JsonSerializer;
-                    _jsonSerializer = jsonSerializer as NLog.Targets.IJsonSerializerV2;
-                    if (_jsonSerializer == null && jsonSerializer != null)
-                    {
-                        _jsonSerializer = new JsonSerializerV2(jsonSerializer);
-                    }
-                }
-                return _jsonSerializer;
-            }
-            set { _jsonSerializer = value; }
+            get { return _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter); }
+            set { _jsonConverter = value; }
         }
-        private NLog.Targets.IJsonSerializerV2 _jsonSerializer = null;
-        class JsonSerializerV2 : NLog.Targets.IJsonSerializerV2
-        {
-            private readonly NLog.Targets.IJsonSerializer _jsonSerializer;
-            public JsonSerializerV2(NLog.Targets.IJsonSerializer jsonSerializer)
-            {
-                _jsonSerializer = jsonSerializer;
-            }
-
-            public bool SerializeObject(object value, StringBuilder builder)
-            {
-                var text = _jsonSerializer.SerializeObject(value);
-                if (text == null)
-                {
-                    return false;
-                }
-                builder.Append(text);
-                return true;
-            }
-        }
+        private IJsonConverter _jsonConverter = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLayout"/> class.
@@ -161,7 +130,7 @@ namespace NLog.Layouts
         /// </summary>
         protected override void CloseLayout()
         {
-            JsonSerializer = null;
+            JsonConverter = null;
             base.CloseLayout();
         }
 
@@ -277,22 +246,8 @@ namespace NLog.Layouts
 
         private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb)
         {
-            int originalLength = sb.Length;
-
-            try
-            {
-                BeginJsonProperty(sb, propName);
-
-                if (!JsonSerializer.SerializeObject(propertyValue, sb))
-                {
-                    sb.Length = originalLength;
-                }
-            }
-            catch (Exception)
-            {
-                sb.Length = originalLength;
-                throw;
-            }
+            BeginJsonProperty(sb, propName);
+            JsonConverter.SerializeObject(propertyValue, sb);
         }
 
         private void AppendJsonAttributeValue(string attributeName, bool attributeQuote, string text, StringBuilder sb)

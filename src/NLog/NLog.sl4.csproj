@@ -139,6 +139,7 @@
     <Compile Include="GDC.cs" />
     <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IJsonConverter.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />

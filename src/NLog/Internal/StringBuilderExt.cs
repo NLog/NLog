@@ -93,7 +93,7 @@ namespace NLog.Internal
                 builder.Append('0');
                 return;
             }
-            
+
             // Calculate length of integer when written out
             int length = 0;
             uint length_calc = value;
@@ -135,6 +135,38 @@ namespace NLog.Internal
 #else
             builder.Length = 0;
 #endif
+        }
+
+        /// <summary>
+        /// Copies the contents of the StringBuilder to the MemoryStream using the specified encoding (Without BOM/Preamble)
+        /// </summary>
+        /// <param name="builder">StringBuilder source</param>
+        /// <param name="ms">MemoryStream destination</param>
+        /// <param name="encoding">Encoding used for converter string into byte-stream</param>
+        /// <param name="transformBuffer">Helper char-buffer to minimize memory allocations</param>
+        public static void CopyToStream(this StringBuilder builder, System.IO.MemoryStream ms, Encoding encoding, char[] transformBuffer)
+        {
+#if !SILVERLIGHT
+            if (transformBuffer != null)
+            {
+                for (int i = 0; i < builder.Length; i += transformBuffer.Length)
+                {
+                    int charCount = Math.Min(builder.Length - i, transformBuffer.Length);
+                    builder.CopyTo(i, transformBuffer, 0, charCount);
+                    int byteCount = encoding.GetByteCount(transformBuffer, 0, charCount);
+                    ms.SetLength(ms.Length + byteCount);
+                    encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
+                    ms.Position = ms.Length;
+                }
+            }
+            else
+#endif
+            {
+                // Faster than MemoryStream, but generates garbage
+                var str = builder.ToString();
+                byte[] bytes = encoding.GetBytes(str);
+                ms.Write(bytes, 0, bytes.Length);
+            }
         }
     }
 }

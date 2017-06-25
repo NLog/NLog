@@ -44,7 +44,9 @@ namespace NLog.Targets
     /// <summary>
     /// Default class for serialization of values to JSON format.
     /// </summary>
-    public class DefaultJsonSerializer : IJsonSerializer, IJsonSerializerV2
+#pragma warning disable 618
+    public class DefaultJsonSerializer : IJsonConverter, NLog.Targets.IJsonSerializer
+#pragma warning restore 618
     {
         private readonly MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>> _propsCache = new MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>>(10000);
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(10000);
@@ -215,27 +217,9 @@ namespace NLog.Targets
                 var hasFormat = !StringHelpers.IsNullOrWhiteSpace(format);
                 if ((options.FormatProvider != null || hasFormat) && (formattable = value as IFormattable) != null)
                 {
-                    TypeCode objTypeCode = Convert.GetTypeCode(value);
-                    bool includeQuotes = !SkipQuotes(objTypeCode);
-                    if (includeQuotes)
+                    if (!SerializeWithFormatProvider(value, destination, options, formattable, format, hasFormat))
                     {
-                        destination.Append('"');
-                    }
-
-                    if (hasFormat)
-                    {
-                        var formatProvider = options.FormatProvider ?? _defaultFormatProvider;
-                        destination.AppendFormat(formatProvider, string.Concat("{0:", format, "}"), value);
-                    }
-                    else
-                    {
-                        //format provider passed without FormatProvider
-                        destination.Append(EscapeString(formattable.ToString("", options.FormatProvider), options.EscapeUnicode));
-                    }
-
-                    if (includeQuotes)
-                    {
-                        destination.Append('"');
+                        return false;
                     }
                 }
                 else
@@ -250,11 +234,49 @@ namespace NLog.Targets
             return true;
         }
 
+        private bool SerializeWithFormatProvider(object value, StringBuilder destination, JsonSerializeOptions options, IFormattable formattable, string format, bool hasFormat)
+        {
+            int originalLength = destination.Length;
+
+            try
+            {
+                TypeCode objTypeCode = Convert.GetTypeCode(value);
+                bool includeQuotes = !SkipQuotes(objTypeCode);
+                if (includeQuotes)
+                {
+                    destination.Append('"');
+                }
+
+                if (hasFormat)
+                {
+                    var formatProvider = options.FormatProvider ?? _defaultFormatProvider;
+                    destination.AppendFormat(formatProvider, string.Concat("{0:", format, "}"), value);
+                }
+                else
+                {
+                    //format provider passed without FormatProvider
+                    destination.Append(EscapeString(formattable.ToString("", options.FormatProvider), options.EscapeUnicode));
+                }
+
+                if (includeQuotes)
+                {
+                    destination.Append('"');
+                }
+
+                return true;
+            }
+            catch
+            {
+                destination.Length = originalLength;
+                return false;
+            }
+        }
+
         private void SerializeDictionaryObject(IDictionary value, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             bool first = true;
 
-            int originalLength = 0;
+            int originalLength;
             destination.Append('{');
             foreach (DictionaryEntry de in value)
             {
@@ -289,7 +311,7 @@ namespace NLog.Targets
         {
             bool first = true;
 
-            int originalLength = 0;
+            int originalLength;
             destination.Append('[');
             foreach (var val in value)
             {
@@ -332,10 +354,7 @@ namespace NLog.Targets
                     {
                         using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
                         {
-                            if (!SerializeProperties(value, destination, options, objectsInPath, depth))
-                            {
-                                destination.Length = originalLength;
-                            }
+                            return SerializeProperties(value, destination, options, objectsInPath, depth);
                         }
                     }
                     catch
@@ -593,9 +612,16 @@ namespace NLog.Targets
             var props = GetProps(value);
             if (props.Key.Length == 0)
             {
-                //no props
-                QuoteValue(destination, Convert.ToString(value, CultureInfo.InvariantCulture));
-                return true;
+                try
+                {
+                    //no props
+                    QuoteValue(destination, EscapeString(Convert.ToString(value, CultureInfo.InvariantCulture), options.EscapeUnicode));
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
 
             destination.Append('{');

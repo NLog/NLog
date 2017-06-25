@@ -31,51 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
-namespace NLog.Targets
+namespace NLog
 {
     /// <summary>
-    /// Interface for serialization of values, maybe even objects to JSON format. 
-    /// Useful for wrappers for existing serializers.
+    /// Interface for serialization of object values into JSON format
     /// </summary>
-    [Obsolete("Use NLog.IJsonConverter class instead. Marked obsolete on NLog 4.5")]
-    public interface IJsonSerializer
+    public interface IJsonConverter
     {
         /// <summary>
-        /// Returns a serialization of an object
-        /// into JSON format.
+        /// Serialization of an object into JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
-        /// <returns>Serialized value (null = Serialize failed).</returns>
-        string SerializeObject(object value);
+        /// <param name="builder">Output destination.</param>
+        /// <returns>Serialize succeeded (true/false)</returns>
+        bool SerializeObject(object value, System.Text.StringBuilder builder);
     }
-
-#pragma warning disable 618
-    internal class JsonConverterLegacy : IJsonConverter, NLog.Targets.IJsonSerializer
-    {
-        private readonly NLog.Targets.IJsonSerializer _jsonSerializer;
-
-        public JsonConverterLegacy(NLog.Targets.IJsonSerializer jsonSerializer)
-        {
-            _jsonSerializer = jsonSerializer;
-        }
-
-        public bool SerializeObject(object value, System.Text.StringBuilder builder)
-        {
-            var text = _jsonSerializer.SerializeObject(value);
-            if (text == null)
-            {
-                return false;
-            }
-            builder.Append(text);
-            return true;
-        }
-
-        string NLog.Targets.IJsonSerializer.SerializeObject(object value)
-        {
-            return _jsonSerializer.SerializeObject(value);
-        }
-    }
-#pragma warning restore 618 // Type or member is obsolete
 }
