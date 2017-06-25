@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
 
-  <UsingTask AssemblyFile="packages\xunit.1.9.1\lib\net20\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit"/>
+  <UsingTask AssemblyFile="packages\xunit.runner.msbuild.2.2.0\build\net452\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit"/>
 
   <PropertyGroup>
     <MajorMinorVersion>2.0</MajorMinorVersion>
@@ -124,33 +124,33 @@
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
-        <ToolsVersion>4.0</ToolsVersion>
+        <ToolsVersion>14.0</ToolsVersion>
         <NuGetDir>net35</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
         <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
-        <ToolsVersion>4.0</ToolsVersion>
+        <ToolsVersion>14.0</ToolsVersion>
         <NuGetDir>net40</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.5" Condition="'$(BuildNetFX45)'=='true'">
         <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
-        <ToolsVersion>4.0</ToolsVersion>
+        <ToolsVersion>14.0</ToolsVersion>
         <NuGetDir>net45</NuGetDir>
     </TargetFramework>
     <!--the include attribute is the folder name-->
     <TargetFramework Include="WindowsPhone8" Condition="'$(BuildWP8)'=='true'">
         <ProjectFileSuffix>.wp8</ProjectFileSuffix>
-        <ToolsVersion>4.0</ToolsVersion>
+        <ToolsVersion>14.0</ToolsVersion>
         <NuGetDir>wp8</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Xamarin.Android" Condition="'$(BuildXamarinAndroid)'=='true'">
       <ProjectFileSuffix>.Xamarin.Android</ProjectFileSuffix>
-      <ToolsVersion>4.0</ToolsVersion>
+      <ToolsVersion>14.0</ToolsVersion>
       <NuGetDir>MonoAndroid10</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Xamarin.iOS" Condition="'$(BuildXamarinIOS)'=='true'">
       <ProjectFileSuffix>.Xamarin.iOs</ProjectFileSuffix>
-      <ToolsVersion>4.0</ToolsVersion>
+      <ToolsVersion>14.0</ToolsVersion>
       <NuGetDir>Xamarin.iOS10</NuGetDir>
     </TargetFramework>
   </ItemGroup>
@@ -176,7 +176,7 @@
   <Target Name="Rebuild" DependsOnTargets="Clean;Build">
   </Target>
 
-  <Target Name="Build">
+  <Target Name="Build" DependsOnTargets="NuGetRestore">
     <PropertyGroup>
         <BuildInfoFileContent>
 // automatically generated
@@ -234,7 +234,7 @@
     <Exec Command='"$(BZip2)" -f static.tar' WorkingDirectory="$(WebsiteDir)" />
   </Target>
 
-  <Target Name="RunTests">
+  <Target Name="RunTests" >
     <!-- <CallTarget Targets="Mono2Test" Condition="'$(BuildMono2)'=='true'"/> -->
     <CallTarget Targets="NetFx35Test" Condition="'$(BuildNetFX35)'=='true'"/>
     <CallTarget Targets="NetFx40Test" Condition="'$(BuildNetFX40)'=='true'"/>
@@ -249,15 +249,15 @@
   </Target>
 
   <Target Name="NetFx35Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
+    <xunit Assemblies="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 3.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
   <Target Name="NetFx40Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
+    <xunit Assemblies="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.0\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
   <Target Name="NetFx45Test">
-    <xunit Assembly="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
+    <xunit Assemblies="$(BaseOutputDirectory)\bin\$(Configuration)\.NET Framework 4.5\NLog.UnitTests.dll" ContinueOnError="true" ShadowCopy="false" />
   </Target>
 
 
@@ -375,6 +375,10 @@
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
     <Exec Command='"$(NuGetTool)" pack NLog.Extended.nuspec -Symbols -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Extended" />
+  </Target>
+
+  <Target Name="NuGetRestore">
+   <Exec Command='"$(NuGetTool)" restore ..\..\src\NLog%(TargetFramework.ProjectFileSuffix).sln'  WorkingDirectory="NLog" />
   </Target>
 
   <Target Name="NuGetConfigPackage">

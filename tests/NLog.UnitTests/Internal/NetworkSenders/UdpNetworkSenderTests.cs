@@ -40,7 +40,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
     using Xunit;
     using Xunit.Extensions;
 
-    public class UdpNetworkSenderTests
+    public class UdpNetworkSenderTests : NLogTestBase
     {
         [Theory]
         [InlineData("udp://randomurl:8080", false)]

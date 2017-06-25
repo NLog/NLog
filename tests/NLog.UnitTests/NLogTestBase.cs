@@ -54,9 +54,35 @@ namespace NLog.UnitTests
     using Ionic.Zip;
 #endif
 
+    [Collection("dont run in parallel")]
     public abstract class NLogTestBase
     {
+        public class XunitTraceListener : System.Diagnostics.TraceListener
+        {
+            private readonly Xunit.Abstractions.ITestOutputHelper output;
+
+            public XunitTraceListener(Xunit.Abstractions.ITestOutputHelper output)
+            {
+                this.output = output;
+            }
+
+            public override void WriteLine(string str)
+            {
+                output.WriteLine(str);
+            }
+
+            public override void Write(string str)
+            {
+                output.WriteLine(str);
+            }
+        }
+
         protected NLogTestBase()
+            : this(null)
+        {
+        }
+
+        protected NLogTestBase(Xunit.Abstractions.ITestOutputHelper output)
         {
             //reset before every test
             if (LogManager.Configuration != null)
@@ -74,10 +100,12 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-#if !SILVERLIGHT
+
             System.Diagnostics.Trace.Listeners.Clear();
             System.Diagnostics.Debug.Listeners.Clear();
-#endif
+
+            if (output != null)
+                System.Diagnostics.Trace.Listeners.Add(new XunitTraceListener(output));
         }
 
         protected void AssertDebugCounter(string targetName, int val)

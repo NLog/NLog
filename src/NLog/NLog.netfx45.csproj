@@ -20,7 +20,6 @@
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -488,5 +487,4 @@
       <Compile Include="$(BuildInfoFile)" />
     </ItemGroup>
   </Target>
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
 </Project>

@@ -18,13 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallNLogConfig.netfx45",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog.Extended.netfx45", "NLog.Extended\NLog.Extended.netfx45.csproj", "{A961A1F9-1024-4446-BF9E-A923137340B8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A2DA2123-68E5-4D58-AB61-CDB660CEA4C5}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogAutoLoadExtension.netfx45", "NLogAutoLoadExtension\NLogAutoLoadExtension.netfx45.csproj", "{0AA8FB16-A377-4541-BEF6-81D437D7B5E9}"
 EndProject
 Global

@@ -37,7 +37,7 @@ namespace NLog.UnitTests.Contexts
 {
     using Xunit;
 
-    public class GlobalDiagnosticsContextTests
+    public class GlobalDiagnosticsContextTests : NLogTestBase
     {
         [Fact]
         public void GDCTest1()

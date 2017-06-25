@@ -33,8 +33,6 @@
 
 #define DEBUG
 
-#if !__IOS__ && !__ANDROID__
-
 namespace NLog.UnitTests.Common
 {
 
@@ -350,4 +348,3 @@ namespace NLog.UnitTests.Common
 
 }
 
-#endif

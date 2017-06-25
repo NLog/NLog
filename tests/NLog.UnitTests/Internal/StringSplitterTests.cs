@@ -42,7 +42,7 @@ using Xunit.Extensions;
 
 namespace NLog.UnitTests.Internal
 {
-    public class StringSplitterTests
+    public class StringSplitterTests//no need for extending NLogTestBase, could run in parallel
     {
         private const char SingleQuote = '\'';
         private const char Backslash = '\\';

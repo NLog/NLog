@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
-
 using Xunit;
 using NLog.Layouts;
 
@@ -58,4 +56,3 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-#endif

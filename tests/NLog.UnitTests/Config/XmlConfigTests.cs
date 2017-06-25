@@ -55,7 +55,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(false, InternalLogger.LogToConsole);
             Assert.Equal(false, InternalLogger.LogToConsoleError);
             Assert.Equal(null, InternalLogger.LogWriter);
-
+            InternalLogger.Reset();
         }
 
         [Fact]
@@ -71,7 +71,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(true, InternalLogger.LogToConsole);
             Assert.Equal(true, InternalLogger.LogToConsoleError);
             Assert.Equal(null, InternalLogger.LogWriter);
-
+            InternalLogger.Reset();
         }
 
 
@@ -90,7 +90,7 @@ namespace NLog.UnitTests.Config
         public void SetTimeSpanFromXmlTest(string interval, int seconds)
         {
             var config = CreateConfigurationFromString(string.Format(@"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{0}'>
                         <target name='debug' type='Debug' layout='${{message}}' />

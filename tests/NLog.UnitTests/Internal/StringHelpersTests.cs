@@ -41,7 +41,7 @@ using Xunit.Extensions;
 
 namespace NLog.UnitTests.Internal
 {
-    public class StringHelpersTests
+    public class StringHelpersTests//no need for extending NLogTestBase, could run in parallel
     {
         [Theory]
         [InlineData("", true)]

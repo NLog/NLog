@@ -39,7 +39,7 @@ using Xunit;
 
 namespace NLog.UnitTests.Internal
 {
-    public class SortHelpersTests
+    public class SortHelpersTests //no need for extending NLogTestBase, could run in parallel
     {
         [Fact]
         public void SingleBucketDictionary_NoBucketTest()

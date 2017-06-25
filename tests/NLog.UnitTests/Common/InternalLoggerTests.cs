@@ -85,6 +85,8 @@ namespace NLog.UnitTests.Common
         [Fact]
         public void WriteToStringWriterTests()
         {
+            try
+            {
             // Expected result is the same for both types of method invocation.
             const string expected = "Warn WWW\nError EEE\nFatal FFF\nTrace TTT\nDebug DDD\nInfo III\n";
 
@@ -148,11 +150,18 @@ namespace NLog.UnitTests.Common
                 TestWriter(expected, writer2);
             }
         }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
 
 
         [Fact]
         public void WriteToStringWriterWithArgsTests()
         {
+            try
+            {
             // Expected result is the same for both types of method invocation.
             const string expected = "Warn WWW 0\nError EEE 0, 1\nFatal FFF 0, 1, 2\nTrace TTT 0, 1, 2\nDebug DDD 0, 1\nInfo III 0\n";
 
@@ -194,7 +203,11 @@ namespace NLog.UnitTests.Common
                 InternalLogger.Log(LogLevel.Info, "III {0}", 0);
                 TestWriter(expected, writer2);
             }
-
+        }
+            finally
+            {
+                InternalLogger.Reset();
+            }
         }
 
         /// <summary>
@@ -212,6 +225,10 @@ namespace NLog.UnitTests.Common
         [Fact]
         public void WriteToConsoleOutTests()
         {
+            TextWriter oldConsoleOutWriter = Console.Out;
+
+            try
+            {
             // Expected result is the same for both types of method invocation.
             const string expected = "Warn WWW\nError EEE\nFatal FFF\nTrace TTT\nDebug DDD\nInfo III\n";
 
@@ -280,11 +297,20 @@ namespace NLog.UnitTests.Common
                 TestWriter(expected, consoleOutWriter1);
             }
         }
+            finally
+            {
+                Console.SetOut(oldConsoleOutWriter);
+                InternalLogger.Reset();
+            }
+        }
 
         [Fact]
         public void WriteToConsoleErrorTests()
         {
+            TextWriter oldConsoleErrorWriter = Console.Error;
 
+            try
+            {
             // Expected result is the same for both types of method invocation.
             const string expected = "Warn WWW\nError EEE\nFatal FFF\nTrace TTT\nDebug DDD\nInfo III\n";
 
@@ -332,6 +358,12 @@ namespace NLog.UnitTests.Common
                 TestWriter(expected, consoleWriter2);
             }
         }
+            finally
+            {
+                InternalLogger.Reset();
+                Console.SetError(oldConsoleErrorWriter);
+            }
+        }
 
         [Fact]
         public void WriteToFileTests()
@@ -346,12 +378,12 @@ namespace NLog.UnitTests.Common
 
             var tempFile = Path.GetTempFileName();
 
+            try
+            {
             InternalLogger.LogLevel = LogLevel.Trace;
             InternalLogger.IncludeTimestamp = false;
             InternalLogger.LogFile = tempFile;
 
-            try
-            {
                 // Invoke Log(LogLevel, string) for every log level.
                 InternalLogger.Log(LogLevel.Warn, "WWW");
                 InternalLogger.Log(LogLevel.Error, "EEE");
@@ -364,6 +396,7 @@ namespace NLog.UnitTests.Common
             }
             finally
             {
+                InternalLogger.Reset();
                 if (File.Exists(tempFile))
                 {
                     File.Delete(tempFile);
@@ -396,6 +429,8 @@ namespace NLog.UnitTests.Common
         [Fact]
         public void TimestampTests()
         {
+            using (new InternalLoggerScope())
+            {
             InternalLogger.LogLevel = LogLevel.Trace;
             InternalLogger.IncludeTimestamp = true;
             InternalLogger.LogToConsole = true;
@@ -426,6 +461,7 @@ namespace NLog.UnitTests.Common
             {
                 Assert.Contains(expectedDateTime + ".", str);
             }
+        }
         }
 
         /// <summary>
@@ -621,6 +657,8 @@ namespace NLog.UnitTests.Common
 
         private static void TestMinLevelSwitch_inner(string rawLogLevel, int count, Action log)
         {
+            try
+            {
             //set minimal
             InternalLogger.LogLevel = LogLevel.FromString(rawLogLevel);
             InternalLogger.IncludeTimestamp = false;
@@ -648,6 +686,11 @@ namespace NLog.UnitTests.Common
             var strings = consoleOutWriter.ToString();
             Assert.Equal(expected, strings);
         }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
 
         [Theory]
         [InlineData("trace", true)]
@@ -664,22 +707,22 @@ namespace NLog.UnitTests.Common
             var randomSubDirectory = Path.Combine(tempPath, Path.GetRandomFileName());
             string tempFile = Path.Combine(randomSubDirectory, tempFileName);
 
-            InternalLogger.LogLevel = LogLevel.FromString(rawLogLevel);
-            InternalLogger.IncludeTimestamp = false;
-
-            if (Directory.Exists(randomSubDirectory))
-            {
-                Directory.Delete(randomSubDirectory);
-            }
-            Assert.False(Directory.Exists(randomSubDirectory));
-
-            // Set the log file, which will only create the needed directories
-            InternalLogger.LogFile = tempFile;
-
-            Assert.Equal(Directory.Exists(randomSubDirectory), shouldCreateDirectory);
-
             try
             {
+	            InternalLogger.LogLevel = LogLevel.FromString(rawLogLevel);
+	            InternalLogger.IncludeTimestamp = false;
+
+	            if (Directory.Exists(randomSubDirectory))
+	            {
+	                Directory.Delete(randomSubDirectory);
+	            }
+	            Assert.False(Directory.Exists(randomSubDirectory));
+
+	            // Set the log file, which will only create the needed directories
+	            InternalLogger.LogFile = tempFile;
+
+	            Assert.Equal(Directory.Exists(randomSubDirectory), shouldCreateDirectory);
+
                 Assert.False(File.Exists(tempFile));
 
                 InternalLogger.Log(LogLevel.FromString(rawLogLevel), "File and Directory created.");
@@ -688,6 +731,8 @@ namespace NLog.UnitTests.Common
             }
             finally
             {
+                InternalLogger.Reset();
+
                 if (File.Exists(tempFile))
                 {
                     File.Delete(tempFile);
@@ -716,16 +761,16 @@ namespace NLog.UnitTests.Common
 
             var tempFileName = Path.GetRandomFileName();
 
-            InternalLogger.LogLevel = LogLevel.Trace;
-            InternalLogger.IncludeTimestamp = false;
-
-            Assert.False(File.Exists(tempFileName));
-
-            // Set the log file, which only has a filename
-            InternalLogger.LogFile = tempFileName;
-
             try
             {
+	            InternalLogger.LogLevel = LogLevel.Trace;
+	            InternalLogger.IncludeTimestamp = false;
+
+	            Assert.False(File.Exists(tempFileName));
+
+	            // Set the log file, which only has a filename
+	            InternalLogger.LogFile = tempFileName;
+
                 Assert.False(File.Exists(tempFileName));
 
                 // Invoke Log(LogLevel, string) for every log level.
@@ -741,6 +786,7 @@ namespace NLog.UnitTests.Common
             }
             finally
             {
+                InternalLogger.Reset();
                 if (File.Exists(tempFileName))
                 {
                     File.Delete(tempFileName);

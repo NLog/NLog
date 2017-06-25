@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Threading.Tasks;
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -74,16 +76,16 @@ namespace NLog.UnitTests.Targets
         private static bool UniqueBaseAppender(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceMutexConcurrentWrites)
         {
             if (!concurrentWrites && !networkWrites && !forceMutexConcurrentWrites)
-                return true;    // Allow keepFileOpen = true / false, Allow forceManaged = true / false
+                return true; // Allow keepFileOpen = true / false, Allow forceManaged = true / false
             if (concurrentWrites && !networkWrites && keepFileOpen)
-                return true;    // Allow forceManaged = true / false, forceMutexConcurrentWrites = true / false
+                return true; // Allow forceManaged = true / false, forceMutexConcurrentWrites = true / false
             if (networkWrites && keepFileOpen && !concurrentWrites && !forceMutexConcurrentWrites)
-                return true;    // Allow forceManaged = true / false
+                return true; // Allow forceManaged = true / false
             return false;
         }
 
         [Theory]
-        [PropertyData("SimpleFileTest_TestParameters")]
+        [MemberData("SimpleFileTest_TestParameters")]
         public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
             var logFile = Path.GetTempFileName();
@@ -109,7 +111,7 @@ namespace NLog.UnitTests.Targets
                 logger.Info("bbb");
                 logger.Warn("ccc");
 
-                LogManager.Configuration = null;    // Flush
+                LogManager.Configuration = null; // Flush
 
                 AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
             }
@@ -121,7 +123,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("SimpleFileTest_TestParameters")]
+        [MemberData("SimpleFileTest_TestParameters")]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
             var logFile = Path.GetTempFileName();
@@ -156,7 +158,7 @@ namespace NLog.UnitTests.Targets
 #if MONO
                     Thread.Sleep(500);  // Allow AutoClose-Timer-Thread to react (Runs every 50 msec)
 #else
-                    Thread.Sleep(150);  // Allow AutoClose-Timer-Thread to react (Runs every 50 msec)
+                    Thread.Sleep(150); // Allow AutoClose-Timer-Thread to react (Runs every 50 msec)
 #endif
                 logger.Info("bbb");
 
@@ -202,7 +204,7 @@ namespace NLog.UnitTests.Targets
                     logger.Info("bbb");
                     logger.Warn("ccc");
 
-                    LogManager.Configuration = null;    // Flush
+                    LogManager.Configuration = null; // Flush
 
                     AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
                 }
@@ -215,13 +217,12 @@ namespace NLog.UnitTests.Targets
         }
 
 #if !MONO
-        const int FIVE_SECONDS = 5000;
 
         /// <summary>
         /// If a drive doesn't existing, before repeatatly creating a dir was tried. This test was taking +60 seconds 
         /// </summary>
-        [Theory(Timeout = FIVE_SECONDS)]
-        [PropertyData("SimpleFileTest_TestParameters")]
+        [Theory]
+        [MemberData("SimpleFileTest_TestParameters")]
         public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
             if (optimizeBufferReuse)
@@ -233,31 +234,49 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var fileTarget = WrapFileTarget(new FileTarget
+
+                TryTimeOut(TimeSpan.FromSeconds(1), () =>
                 {
-                    FileName = logFile,
-                    Layout = "${level} ${message}",
-                    ConcurrentWrites = concurrentWrites,
-                    KeepFileOpen = keepFileOpen,
-                    NetworkWrites = networkWrites,
-                    ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                    var fileTarget = WrapFileTarget(new FileTarget
+                    {
+                        FileName = logFile,
+                        Layout = "${level} ${message}",
+                        ConcurrentWrites = concurrentWrites,
+                        KeepFileOpen = keepFileOpen,
+                        NetworkWrites = networkWrites,
+                        ForceManaged = forceManaged,
+                        ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                    });
+                    Thread.Sleep(5000);
+
+                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                    for (int i = 0; i < 300; i++)
+                    {
+                        logger.Debug("aaa");
+                    }
+
+                    LogManager.Configuration = null; // Flush
                 });
-
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
-                for (int i = 0; i < 300; i++)
-                {
-                    logger.Debug("aaa");
-                }
-
-                LogManager.Configuration = null;    // Flush
             }
             finally
+
             {
                 //should not be necessary
                 if (File.Exists(logFile))
                     File.Delete(logFile);
             }
+        }
+
+
+        private static void TryTimeOut(TimeSpan timeout, Action testAction)
+        {
+            var cancellationTokenSource = new CancellationTokenSource();
+            cancellationTokenSource.CancelAfter(timeout);
+            ManualResetEvent mre = new ManualResetEvent(false);
+            var t = Task.Run(testAction, cancellationTokenSource.Token);
+
+            var x = mre.WaitOne(timeout);
+            
         }
 
         /// <summary>
@@ -513,7 +532,7 @@ namespace NLog.UnitTests.Targets
         }
 #endif
         [Theory]
-        [PropertyData("ArchiveFileOnStartTests_TestParameters")]
+        [MemberData("ArchiveFileOnStartTests_TestParameters")]
         public void ArchiveFileOnStartTests(bool enableCompression, bool customFileCompressor)
         {
             var logFile = Path.GetTempFileName();
@@ -627,7 +646,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("ReplaceFileContentsOnEachWriteTest_TestParameters")]
+        [MemberData("ReplaceFileContentsOnEachWriteTest_TestParameters")]
         public void ReplaceFileContentsOnEachWriteTest(bool useHeader, bool useFooter)
         {
             const string header = "Headerline", footer = "Footerline";
@@ -1100,7 +1119,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
+        [MemberData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             const string archiveDateFormat = "yyyyMMdd";
@@ -1229,7 +1248,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
+        [MemberData("DateArchive_ArchiveOnceOnly_TestParameters")]
         public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool dateInLogFilePath, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -1315,7 +1334,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("DateArchive_SkipPeriod_TestParameters")]
+        [MemberData("DateArchive_SkipPeriod_TestParameters")]
         public void DateArchive_SkipPeriod(DateTimeKind timeKind, FileArchivePeriod archivePeriod, bool includeDateInLogFilePath, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -1396,7 +1415,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
+        [MemberData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
         public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression, bool forceManaged, bool forceMutexConcurrentWrites)
         {
 #if !NET4_5
@@ -3077,7 +3096,7 @@ namespace NLog.UnitTests.Targets
                 var app1DebugNm = "App1_Debug";
                 var app2Nm = "App2";
 
-#region Create Mock Archive Files
+                #region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1_trace archives (matches app1 config for trace target)
@@ -3217,7 +3236,7 @@ namespace NLog.UnitTests.Targets
                 var app1Nm = "App1";
                 var app2Nm = "App2";
 
-#region Create Mock Archive Files
+                #region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1 archives (matches app1 config for target)
@@ -3245,7 +3264,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-#endregion
+                #endregion
 
                 // Create same app1 file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(Path.Combine(logdir, app1Nm + fileExt), new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);

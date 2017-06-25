@@ -44,7 +44,7 @@ using Xunit;
 
 namespace NLog.UnitTests.Config
 {
-    public class ConfigApiTests
+    public class ConfigApiTests : NLogTestBase
     {
         [Fact]
         public void AddTarget_testname()
