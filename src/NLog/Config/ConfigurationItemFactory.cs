@@ -184,6 +184,16 @@ namespace NLog.Config
         {
             get { return this.ambientProperties; }
         }
+        
+        /// <summary>
+        /// Legacy interface, no longer used by the NLog engine
+        /// </summary>
+        [Obsolete("Use JsonConverter property instead. Marked obsolete on NLog 4.5")]
+        public NLog.Targets.IJsonSerializer JsonSerializer
+        {
+            get { return jsonSerializer as NLog.Targets.IJsonSerializer; }
+            set { jsonSerializer = value != null ? (IJsonConverter)new JsonConverterLegacy(value) : DefaultJsonSerializer.Instance; }
+        }
 
         /// <summary>
         /// Gets or sets the JSON serializer to use with <see cref="WebServiceTarget"/> or <see cref="JsonLayout"/>
@@ -192,16 +202,6 @@ namespace NLog.Config
         {
             get { return jsonSerializer; }
             set { jsonSerializer = value ?? DefaultJsonSerializer.Instance; }
-        }
-
-        /// <summary>
-        /// Legacy interface, no longer used by the NLog engine
-        /// </summary>
-        [Obsolete("Use NLog.IJsonConverter class instead. Marked obsolete on NLog 4.5")]
-        public NLog.Targets.IJsonSerializer JsonSerializer
-        {
-            get { return jsonSerializer as NLog.Targets.IJsonSerializer; }
-            set { jsonSerializer = value != null ? (IJsonConverter)new JsonConverterLegacy(value) : DefaultJsonSerializer.Instance; }
         }
 
         /// <summary>
