@@ -38,7 +38,6 @@ namespace NLog.Targets.Wrappers
     using System.Threading;
     using Common;
     using Internal;
-    using static AsyncRequestQueue;
 
     /// <summary>
     /// Provides asynchronous, buffered execution of target writes.
