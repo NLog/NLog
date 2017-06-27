@@ -131,7 +131,8 @@ namespace NLog.Targets.Wrappers
 
         private void RequestQueue_BufferOverflowed(AsyncTargetWrapperOverflowAction action, int limit, int count, AsyncLogEventInfo e)
         {
-            BufferOverflowed?.Invoke(action, limit, count, e);
+            if (BufferOverflowed != null)
+                BufferOverflowed.Invoke(action, limit, count, e);
         }
 
         /// <summary>

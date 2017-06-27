@@ -103,19 +103,22 @@ namespace NLog.Targets.Wrappers
                         case AsyncTargetWrapperOverflowAction.Discard:
                             InternalLogger.Debug("Discarding one element from queue");
                             var dequeued = this.logEventInfoQueue.Dequeue();
-                            BufferOverflowed?.Invoke(this.OnOverflow, this.RequestLimit, this.logEventInfoQueue.Count, dequeued);
+                            if (BufferOverflowed != null)
+                                BufferOverflowed.Invoke(this.OnOverflow, this.RequestLimit, this.logEventInfoQueue.Count, dequeued);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
                             InternalLogger.Debug("The overflow action is Grow, adding element anyway");
-                            BufferOverflowed?.Invoke(this.OnOverflow, this.RequestLimit, this.logEventInfoQueue.Count, logEventInfo);
+                            if (BufferOverflowed != null)
+                                BufferOverflowed.Invoke(this.OnOverflow, this.RequestLimit, this.logEventInfoQueue.Count, logEventInfo);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Block:
                             while (this.logEventInfoQueue.Count >= this.RequestLimit)
                             {
                                 InternalLogger.Debug("Blocking because the overflow action is Block...");
-                                BufferOverflowed?.Invoke(this.OnOverflow, this.RequestLimit, this.logEventInfoQueue.Count, logEventInfo);
+                                if (BufferOverflowed != null)
+                                    BufferOverflowed.Invoke(this.OnOverflow, this.RequestLimit, this.logEventInfoQueue.Count, logEventInfo);
                                 System.Threading.Monitor.Wait(this);
                                 InternalLogger.Trace("Entered critical section.");
                             }
