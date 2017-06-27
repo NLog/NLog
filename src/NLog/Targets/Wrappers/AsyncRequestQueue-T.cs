@@ -45,6 +45,11 @@ namespace NLog.Targets.Wrappers
         private readonly Queue<AsyncLogEventInfo> logEventInfoQueue = new Queue<AsyncLogEventInfo>();
 
         /// <summary>
+        /// Subscribe or unsubscribe to enqueuing buffer overflow events.
+        /// </summary>
+        public event BufferOverflowEventHandler BufferOverflowed;
+
+        /// <summary>
         /// Initializes a new instance of the AsyncRequestQueue class.
         /// </summary>
         /// <param name="requestLimit">Request limit.</param>
@@ -97,17 +102,20 @@ namespace NLog.Targets.Wrappers
                     {
                         case AsyncTargetWrapperOverflowAction.Discard:
                             InternalLogger.Debug("Discarding one element from queue");
-                            this.logEventInfoQueue.Dequeue();
+                            var dequeued = this.logEventInfoQueue.Dequeue();
+                            BufferOverflowed?.Invoke(this.OnOverflow, this.RequestLimit, this.logEventInfoQueue.Count, dequeued);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
                             InternalLogger.Debug("The overflow action is Grow, adding element anyway");
+                            BufferOverflowed?.Invoke(this.OnOverflow, this.RequestLimit, this.logEventInfoQueue.Count, logEventInfo);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Block:
                             while (this.logEventInfoQueue.Count >= this.RequestLimit)
                             {
                                 InternalLogger.Debug("Blocking because the overflow action is Block...");
+                                BufferOverflowed?.Invoke(this.OnOverflow, this.RequestLimit, this.logEventInfoQueue.Count, logEventInfo);
                                 System.Threading.Monitor.Wait(this);
                                 InternalLogger.Trace("Entered critical section.");
                             }
