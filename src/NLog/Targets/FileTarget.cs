@@ -1203,29 +1203,8 @@ namespace NLog.Targets
 
         private void TransformBuilderToStream(LogEventInfo logEvent, StringBuilder builder, char[] transformBuffer, MemoryStream workStream)
         {
-#if !SILVERLIGHT
-            if (transformBuffer != null)
-            {
-                for (int i = 0; i < builder.Length; i += transformBuffer.Length)
-                {
-                    int charCount = Math.Min(builder.Length - i, transformBuffer.Length);
-                    builder.CopyTo(i, transformBuffer, 0, charCount);
-                    int byteCount = this.Encoding.GetByteCount(transformBuffer, 0, charCount);
-                    workStream.SetLength(workStream.Length + byteCount);
-                    this.Encoding.GetBytes(transformBuffer, 0, charCount, workStream.GetBuffer(), (int)workStream.Position);
-                    workStream.Position = workStream.Length;
-                }
-                TransformStream(logEvent, workStream);
-            }
-            else
-#endif
-            {
-                // Faster than MemoryStream, but generates garbage
-                var str = builder.ToString();
-                byte[] bytes = this.Encoding.GetBytes(str);
-                workStream.Write(bytes, 0, bytes.Length);
-                TransformStream(logEvent, workStream);
-            }
+            builder.CopyToStream(workStream, this.Encoding, transformBuffer);
+            TransformStream(logEvent, workStream);
         }
 
         /// <summary>

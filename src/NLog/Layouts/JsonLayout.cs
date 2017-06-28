@@ -46,6 +46,13 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class JsonLayout : Layout
     {
+        private IJsonConverter JsonConverter
+        {
+            get { return _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter); }
+            set { _jsonConverter = value; }
+        }
+        private IJsonConverter _jsonConverter = null;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLayout"/> class.
         /// </summary>
@@ -116,6 +123,15 @@ namespace NLog.Layouts
                 base.ThreadAgnostic = false;
             }
 #endif
+        }
+
+        /// <summary>
+        /// Closes the layout.
+        /// </summary>
+        protected override void CloseLayout()
+        {
+            JsonConverter = null;
+            base.CloseLayout();
         }
 
         /// <summary>
@@ -200,6 +216,28 @@ namespace NLog.Layouts
             CompleteJsonMessage(sb);
         }
 
+        private void BeginJsonProperty(StringBuilder sb, string propName)
+        {
+            bool first = sb.Length == 0;
+            if (first)
+            {
+                sb.Append(SuppressSpaces ? "{" : "{ ");
+            }
+            else
+            {
+                sb.Append(',');
+                if (!this.SuppressSpaces)
+                    sb.Append(' ');
+            }
+
+            sb.Append('"');
+            sb.Append(propName);
+            sb.Append('"');
+            sb.Append(':');
+            if (!this.SuppressSpaces)
+                sb.Append(' ');
+        }
+
         private void CompleteJsonMessage(StringBuilder sb)
         {
             if (sb.Length > 0)
@@ -208,40 +246,15 @@ namespace NLog.Layouts
 
         private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb)
         {
-            TypeCode objTypeCode = Convert.GetTypeCode(propertyValue);
-
-            bool propStringEncode;
-            string propStringValue = Targets.DefaultJsonSerializer.JsonStringEncode(propertyValue, objTypeCode, true, out propStringEncode);
-            if (!string.IsNullOrEmpty(propStringValue))
-            {
-                AppendJsonAttributeValue(propName, propStringEncode, propStringValue, sb);
-            }
+            BeginJsonProperty(sb, propName);
+            JsonConverter.SerializeObject(propertyValue, sb);
         }
 
-        private void AppendJsonAttributeValue(string attributeName, bool attributeEncode, string text, StringBuilder sb)
+        private void AppendJsonAttributeValue(string attributeName, bool attributeQuote, string text, StringBuilder sb)
         {
-            bool first = sb.Length == 0;
-            if (first)
-            {
-                sb.Append(SuppressSpaces ? "{" : "{ ");
-            }
+            BeginJsonProperty(sb, attributeName);
 
-            if (!first)
-            {
-                sb.EnsureCapacity(sb.Length + attributeName.Length + text.Length + 12);
-                sb.Append(',');
-                if (!this.SuppressSpaces)
-                    sb.Append(' ');
-            }
-
-            sb.Append('"');
-            sb.Append(attributeName);
-            sb.Append('"');
-            sb.Append(':');
-            if (!this.SuppressSpaces)
-                sb.Append(' ');
-
-            if (attributeEncode)
+            if (attributeQuote)
             {
                 // "\"{0}\":{1}\"{2}\""
                 sb.Append('"');

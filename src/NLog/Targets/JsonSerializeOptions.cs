@@ -32,50 +32,47 @@
 // 
 
 using System;
+using System.ComponentModel;
 
 namespace NLog.Targets
 {
     /// <summary>
-    /// Interface for serialization of values, maybe even objects to JSON format. 
-    /// Useful for wrappers for existing serializers.
+    /// Options for JSON serialisation
     /// </summary>
-    [Obsolete("Use NLog.IJsonConverter class instead. Marked obsolete on NLog 4.5")]
-    public interface IJsonSerializer
+    public class JsonSerializeOptions
     {
         /// <summary>
-        /// Returns a serialization of an object
-        /// into JSON format.
+        /// Add quotes arround object keys?
         /// </summary>
-        /// <param name="value">The object to serialize to JSON.</param>
-        /// <returns>Serialized value (null = Serialize failed).</returns>
-        string SerializeObject(object value);
+        [DefaultValue(true)]
+        public bool QuoteKeys { get; set; }
+
+        /// <summary>
+        /// Formatprovider for value
+        /// </summary>
+        public IFormatProvider FormatProvider { get; set; }
+
+        /// <summary>
+        /// Format string for value
+        /// </summary>
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Should non-ascii characters be encoded
+        /// </summary>
+        [DefaultValue(false)]
+        public bool EscapeUnicode { get; set; }
+
+        /// <summary>
+        /// Serialize enum as string value
+        /// </summary>
+        [DefaultValue(false)]
+        public bool EnumAsInteger { get; set; }
+
+        /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+        public JsonSerializeOptions()
+        {
+            QuoteKeys = true;
+        }
     }
-
-#pragma warning disable 618
-    internal class JsonConverterLegacy : IJsonConverter, NLog.Targets.IJsonSerializer
-    {
-        private readonly NLog.Targets.IJsonSerializer _jsonSerializer;
-
-        public JsonConverterLegacy(NLog.Targets.IJsonSerializer jsonSerializer)
-        {
-            _jsonSerializer = jsonSerializer;
-        }
-
-        public bool SerializeObject(object value, System.Text.StringBuilder builder)
-        {
-            var text = _jsonSerializer.SerializeObject(value);
-            if (text == null)
-            {
-                return false;
-            }
-            builder.Append(text);
-            return true;
-        }
-
-        string NLog.Targets.IJsonSerializer.SerializeObject(object value)
-        {
-            return _jsonSerializer.SerializeObject(value);
-        }
-    }
-#pragma warning restore 618 // Type or member is obsolete
 }

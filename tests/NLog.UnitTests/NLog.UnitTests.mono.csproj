@@ -115,6 +115,7 @@
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
     <Compile Include="Internal\FilePathLayoutTests.cs" />
     <Compile Include="Internal\LayoutHelpersTests.cs" />
+    <Compile Include="Internal\MruCacheTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
     <Compile Include="Internal\PlatformDetectorTests.cs" />

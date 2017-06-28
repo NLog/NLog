@@ -161,6 +161,7 @@
     <Compile Include="GDC.cs" />
     <Compile Include="GlobalDiagnosticsContext.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IJsonConverter.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="ILoggerBase.cs" />
     <Compile Include="ILoggerBase-V1.cs" />
@@ -207,6 +208,7 @@
     </Compile>
     <Compile Include="Internal\LocalizableAttribute.cs" />
     <Compile Include="Internal\LoggerConfiguration.cs" />
+    <Compile Include="Internal\MruCache.cs" />
     <Compile Include="Internal\MultiFileWatcher.cs" />
     <Compile Include="Internal\MySmtpClient.cs" />
     <Compile Include="Internal\NativeMethods.cs">
@@ -237,6 +239,7 @@
     <Compile Include="Internal\RuntimeOS.cs" />
     <Compile Include="Internal\SimpleStringReader.cs" />
     <Compile Include="Internal\SingleCallContinuation.cs" />
+    <Compile Include="Internal\SingleItemOptimizedHashSet.cs" />
     <Compile Include="Internal\SortHelpers.cs" />
     <Compile Include="Internal\StackTraceUsageUtils.cs" />
     <Compile Include="Internal\StreamHelpers.cs" />
@@ -427,6 +430,7 @@
     <Compile Include="Targets\IFileArchiveMode.cs" />
     <Compile Include="Targets\IFileCompressor.cs" />
     <Compile Include="Targets\IJsonSerializer.cs" />
+    <Compile Include="Targets\JsonSerializeOptions.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />

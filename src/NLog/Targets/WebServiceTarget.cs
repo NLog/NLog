@@ -530,11 +530,11 @@ namespace NLog.Targets
 
         private class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
         {
-            readonly UrlHelper.EscapeEncodingFlag encodingFlags;
+            readonly UrlHelper.EscapeEncodingFlag _encodingFlags;
 
             public HttpPostFormEncodedFormatter(WebServiceTarget target) : base(target)
             {
-                encodingFlags = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
+                _encodingFlags = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
             }
 
             protected override string ContentType
@@ -547,30 +547,31 @@ namespace NLog.Targets
                 get { return "&"; }
             }
 
-            protected override string GetFormattedContent(string parametersContent)
+            protected override void AppendFormattedParameter(StringBuilder builder, MethodCallParameter parameter, object value)
             {
-                return parametersContent;
-            }
+                builder.Append(parameter.Name);
+                builder.Append('=');
 
-            protected override string GetFormattedParameter(MethodCallParameter parameter, object value)
-            {
                 string parameterValue = XmlHelper.XmlConvertToString(value);
-                if (string.IsNullOrEmpty(parameterValue))
+                if (!string.IsNullOrEmpty(parameterValue))
                 {
-                    return string.Concat(parameter.Name, "=");
+                    UrlHelper.EscapeDataEncode(parameterValue, builder, _encodingFlags);
                 }
-
-                var sb = new StringBuilder(parameter.Name.Length + parameterValue.Length + 20);
-                sb.Append(parameter.Name).Append("=");
-                UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
-                return sb.ToString();
             }
         }
 
         private class HttpPostJsonFormatter : HttpPostTextFormatterBase
         {
+            private IJsonConverter JsonConverter
+            {
+                get { return _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter); }
+                set { _jsonConverter = value; }
+            }
+            private IJsonConverter _jsonConverter = null;
+
             public HttpPostJsonFormatter(WebServiceTarget target) : base(target)
-            { }
+            {
+            }
 
             protected override string ContentType
             {
@@ -582,19 +583,22 @@ namespace NLog.Targets
                 get { return ","; }
             }
 
-            protected override string GetFormattedContent(string parametersContent)
+            protected override void BeginFormattedMessage(StringBuilder builder)
             {
-                return string.Concat("{", parametersContent, "}");
+                builder.Append('{');
             }
 
-            protected override string GetFormattedParameter(MethodCallParameter parameter, object value)
+            protected override void EndFormattedMessage(StringBuilder builder)
             {
-                return string.Concat("\"", parameter.Name, "\":", GetJsonValueString(value));
+                builder.Append('}');
             }
 
-            private string GetJsonValueString(object value)
+            protected override void AppendFormattedParameter(StringBuilder builder, MethodCallParameter parameter, object value)
             {
-                return ConfigurationItemFactory.Default.JsonSerializer.SerializeObject(value) ?? string.Empty;
+                builder.Append('"');
+                builder.Append(parameter.Name);
+                builder.Append("\":");
+                JsonConverter.SerializeObject(value, builder);
             }
         }
 
@@ -680,30 +684,53 @@ namespace NLog.Targets
 
         private abstract class HttpPostTextFormatterBase : HttpPostFormatterBase
         {
+            readonly ReusableBuilderCreator _reusableStringBuilder = new ReusableBuilderCreator();
+            readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(1024);
+            readonly byte[] _encodingPreamble;
+
             protected HttpPostTextFormatterBase(WebServiceTarget target) : base(target)
             {
+                _encodingPreamble = target.Encoding.GetPreamble();
             }
 
             protected abstract string Separator { get; }
 
-            protected abstract string GetFormattedContent(string parametersContent);
+            protected virtual void BeginFormattedMessage(StringBuilder builder)
+            {
+            }
 
-            protected abstract string GetFormattedParameter(MethodCallParameter parameter, object value);
+            protected abstract void AppendFormattedParameter(StringBuilder builder, MethodCallParameter parameter, object value);
+
+            protected virtual void EndFormattedMessage(StringBuilder builder)
+            {
+            }
 
             protected override void WriteContent(MemoryStream ms, object[] parameterValues)
             {
-                var sw = new StreamWriter(ms, Target.Encoding);
-                sw.Write(string.Empty);
-
-                var sb = new StringBuilder();
-                for (int i = 0; i < Target.Parameters.Count; i++)
+                lock (_reusableStringBuilder)
                 {
-                    if (sb.Length > 0) sb.Append(Separator);
-                    sb.Append(GetFormattedParameter(Target.Parameters[i], parameterValues[i]));
+                    using (var targetBuilder = _reusableStringBuilder.Allocate())
+                    {
+                        bool first = true;
+                        BeginFormattedMessage(targetBuilder.Result);
+                        for (int i = 0; i < Target.Parameters.Count; i++)
+                        {
+                            if (!first)
+                                targetBuilder.Result.Append(Separator);
+                            else
+                                first = false;
+                            AppendFormattedParameter(targetBuilder.Result, Target.Parameters[i], parameterValues[i]);
+                        }
+                        EndFormattedMessage(targetBuilder.Result);
+
+                        using (var transformBuffer = _reusableEncodingBuffer.Allocate())
+                        {
+                            if (_encodingPreamble.Length > 0)
+                                ms.Write(_encodingPreamble, 0, _encodingPreamble.Length);
+                            targetBuilder.Result.CopyToStream(ms, Target.Encoding, transformBuffer.Result);
+                        }
+                    }
                 }
-                string content = GetFormattedContent(sb.ToString());
-                sw.Write(content);
-                sw.Flush();
             }
         }
 
