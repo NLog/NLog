@@ -320,42 +320,28 @@ namespace NLog.Layouts
             return (char)code;
         }
 
-        private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr)
+        private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, SimpleStringReader stringReader)
         {
-            int ch = sr.Read();
+            int ch = stringReader.Read();
             Debug.Assert(ch == '{', "'{' expected in layout specification");
 
-            string name = ParseLayoutRendererName(sr);
-            LayoutRenderer lr;
-            try
-            {
-                lr = configurationItemFactory.LayoutRenderers.CreateInstance(name);
-            }
-            catch (Exception ex)
-            {
-                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
-                {
-                    throw;
-                }
-                InternalLogger.Error(ex, "Error parsing layout {0} will be ignored.", name);
-                //replace with emptys
-                lr = new LiteralLayoutRenderer(string.Empty);
-            }
+            string name = ParseLayoutRendererName(stringReader);
+            var layoutRenderer = GetLayoutRenderer(configurationItemFactory, name);
 
             var wrappers = new Dictionary<Type, LayoutRenderer>();
             var orderedWrappers = new List<LayoutRenderer>();
 
-            ch = sr.Read();
+            ch = stringReader.Read();
             while (ch != -1 && ch != '}')
             {
-                string parameterName = ParseParameterName(sr).Trim();
-                if (sr.Peek() == '=')
+                string parameterName = ParseParameterName(stringReader).Trim();
+                if (stringReader.Peek() == '=')
                 {
-                    sr.Read(); // skip the '='
-                    PropertyInfo pi;
-                    LayoutRenderer parameterTarget = lr;
+                    stringReader.Read(); // skip the '='
+                    PropertyInfo propertyInfo;
+                    LayoutRenderer parameterTarget = layoutRenderer;
 
-                    if (!PropertyHelper.TryGetPropertyInfo(lr, parameterName, out pi))
+                    if (!PropertyHelper.TryGetPropertyInfo(layoutRenderer, parameterName, out propertyInfo))
                     {
                         Type wrapperType;
 
@@ -370,9 +356,9 @@ namespace NLog.Layouts
                                 orderedWrappers.Add(wrapperRenderer);
                             }
 
-                            if (!PropertyHelper.TryGetPropertyInfo(wrapperRenderer, parameterName, out pi))
+                            if (!PropertyHelper.TryGetPropertyInfo(wrapperRenderer, parameterName, out propertyInfo))
                             {
-                                pi = null;
+                                propertyInfo = null;
                             }
                             else
                             {
@@ -381,63 +367,88 @@ namespace NLog.Layouts
                         }
                     }
 
-                    if (pi == null)
+                    if (propertyInfo == null)
                     {
-                        ParseParameterValue(sr);
+                        ParseParameterValue(stringReader);
                     }
                     else
                     {
-                        if (typeof(Layout).IsAssignableFrom(pi.PropertyType))
+                        if (typeof(Layout).IsAssignableFrom(propertyInfo.PropertyType))
                         {
                             var nestedLayout = new SimpleLayout();
                             string txt;
-                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, sr, true, out txt);
+                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, true, out txt);
 
                             nestedLayout.SetRenderers(renderers, txt);
-                            pi.SetValue(parameterTarget, nestedLayout, null);
+                            propertyInfo.SetValue(parameterTarget, nestedLayout, null);
                         }
-                        else if (typeof(ConditionExpression).IsAssignableFrom(pi.PropertyType))
+                        else if (typeof(ConditionExpression).IsAssignableFrom(propertyInfo.PropertyType))
                         {
-                            var conditionExpression = ConditionParser.ParseExpression(sr, configurationItemFactory);
-                            pi.SetValue(parameterTarget, conditionExpression, null);
+                            var conditionExpression = ConditionParser.ParseExpression(stringReader, configurationItemFactory);
+                            propertyInfo.SetValue(parameterTarget, conditionExpression, null);
                         }
                         else
                         {
-                            string value = ParseParameterValue(sr);
+                            string value = ParseParameterValue(stringReader);
                             PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, configurationItemFactory);
                         }
                     }
                 }
                 else
                 {
-                    // what we've just read is not a parameterName, but a value
-                    // assign it to a default property (denoted by empty string)
-                    PropertyInfo pi;
-
-                    if (PropertyHelper.TryGetPropertyInfo(lr, string.Empty, out pi))
-                    {
-                        if (typeof(SimpleLayout) == pi.PropertyType)
-                        {
-                            pi.SetValue(lr, new SimpleLayout(parameterName), null);
-                        }
-                        else
-                        {
-                            string value = parameterName;
-                            PropertyHelper.SetPropertyFromString(lr, pi.Name, value, configurationItemFactory);
-                        }
-                    }
-                    else
-                    {
-                        InternalLogger.Warn("{0} has no default property", lr.GetType().FullName);
-                    }
+                    SetDefaultPropertyValue(configurationItemFactory, layoutRenderer, parameterName);
                 }
 
-                ch = sr.Read();
+                ch = stringReader.Read();
             }
 
-            lr = ApplyWrappers(configurationItemFactory, lr, orderedWrappers);
+            layoutRenderer = ApplyWrappers(configurationItemFactory, layoutRenderer, orderedWrappers);
 
-            return lr;
+            return layoutRenderer;
+        }
+
+        private static LayoutRenderer GetLayoutRenderer(ConfigurationItemFactory configurationItemFactory, string name)
+        {
+            LayoutRenderer layoutRenderer;
+            try
+            {
+                layoutRenderer = configurationItemFactory.LayoutRenderers.CreateInstance(name);
+            }
+            catch (Exception ex)
+            {
+                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                {
+                    throw;
+                }
+                InternalLogger.Error(ex, "Error parsing layout {0} will be ignored.", name);
+                //replace with emptys
+                layoutRenderer = new LiteralLayoutRenderer(string.Empty);
+            }
+            return layoutRenderer;
+        }
+
+        private static void SetDefaultPropertyValue(ConfigurationItemFactory configurationItemFactory, LayoutRenderer layoutRenderer, string parameterName)
+        {
+            // what we've just read is not a parameterName, but a value
+            // assign it to a default property (denoted by empty string)
+            PropertyInfo propertyInfo;
+
+            if (PropertyHelper.TryGetPropertyInfo(layoutRenderer, string.Empty, out propertyInfo))
+            {
+                if (typeof(SimpleLayout) == propertyInfo.PropertyType)
+                {
+                    propertyInfo.SetValue(layoutRenderer, new SimpleLayout(parameterName), null);
+                }
+                else
+                {
+                    string value = parameterName;
+                    PropertyHelper.SetPropertyFromString(layoutRenderer, propertyInfo.Name, value, configurationItemFactory);
+                }
+            }
+            else
+            {
+                InternalLogger.Warn("{0} has no default property", layoutRenderer.GetType().FullName);
+            }
         }
 
         private static LayoutRenderer ApplyWrappers(ConfigurationItemFactory configurationItemFactory, LayoutRenderer lr, List<LayoutRenderer> orderedWrappers)
