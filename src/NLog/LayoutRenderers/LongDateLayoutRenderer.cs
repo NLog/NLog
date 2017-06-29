@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -69,33 +71,19 @@ namespace NLog.LayoutRenderers
             
             //no culture according to specs
 
-            Append4DigitsZeroPadded(builder, dt.Year);
+            builder.Append4DigitsZeroPadded(dt.Year);
             builder.Append('-');
-            Append2DigitsZeroPadded(builder, dt.Month);
+            builder.Append2DigitsZeroPadded(dt.Month);
             builder.Append('-');
-            Append2DigitsZeroPadded(builder, dt.Day);
+            builder.Append2DigitsZeroPadded(dt.Day);
             builder.Append(' ');
-            Append2DigitsZeroPadded(builder, dt.Hour);
+            builder.Append2DigitsZeroPadded(dt.Hour);
             builder.Append(':');
-            Append2DigitsZeroPadded(builder, dt.Minute);
+            builder.Append2DigitsZeroPadded(dt.Minute);
             builder.Append(':');
-            Append2DigitsZeroPadded(builder, dt.Second);
+            builder.Append2DigitsZeroPadded(dt.Second);
             builder.Append('.');
-            Append4DigitsZeroPadded(builder, (int)(dt.Ticks % 10000000) / 1000);
-        }
-
-        private static void Append2DigitsZeroPadded(StringBuilder builder, int number)
-        {
-            builder.Append((char)((number / 10) + '0'));
-            builder.Append((char)((number % 10) + '0'));
-        }
-
-        private static void Append4DigitsZeroPadded(StringBuilder builder, int number)
-        {
-            builder.Append((char)(((number / 1000) % 10) + '0'));
-            builder.Append((char)(((number / 100) % 10) + '0'));
-            builder.Append((char)(((number / 10) % 10) + '0'));
-            builder.Append((char)(((number / 1) % 10) + '0'));
+            builder.Append4DigitsZeroPadded((int)(dt.Ticks % 10000000) / 1000);
         }
     }
 }
