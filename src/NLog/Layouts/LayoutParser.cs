@@ -70,7 +70,7 @@ namespace NLog.Layouts
                         var nextChar = sr.Peek();
 
                         //escape chars
-                        if (nextChar == '}' || nextChar == ':')
+                        if (EndOfLayout(nextChar))
                         {
                             //read next char and append
                             sr.Read();
@@ -84,7 +84,7 @@ namespace NLog.Layouts
                         continue;
                     }
 
-                    if (ch == '}' || ch == ':')
+                    if (EndOfLayout(ch))
                     {
                         //end of innerlayout. 
                         // `}` is when double nested inner layout. 
@@ -99,11 +99,7 @@ namespace NLog.Layouts
                 if (ch == '$' && sr.Peek() == '{')
                 {
                     //stach already found layout-renderer.
-                    if (literalBuf.Length > 0)
-                    {
-                        result.Add(new LiteralLayoutRenderer(literalBuf.ToString()));
-                        literalBuf.Length = 0;
-                    }
+                    AddLiteral(literalBuf, result);
 
                     LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(configurationItemFactory, sr);
                     if (CanBeConvertedToLiteral(newLayoutRenderer))
@@ -120,11 +116,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if (literalBuf.Length > 0)
-            {
-                result.Add(new LiteralLayoutRenderer(literalBuf.ToString()));
-                literalBuf.Length = 0;
-            }
+            AddLiteral(literalBuf, result);
 
             int p1 = sr.Position;
 
@@ -132,6 +124,25 @@ namespace NLog.Layouts
             text = sr.Substring(p0, p1);
 
             return result.ToArray();
+        }
+
+        /// <summary>
+        /// Add <see cref="LiteralLayoutRenderer"/> to <paramref name="result"/>
+        /// </summary>
+        /// <param name="literalBuf"></param>
+        /// <param name="result"></param>
+        private static void AddLiteral(StringBuilder literalBuf, List<LayoutRenderer> result)
+        {
+            if (literalBuf.Length > 0)
+            {
+                result.Add(new LiteralLayoutRenderer(literalBuf.ToString()));
+                literalBuf.Length = 0;
+            }
+        }
+
+        private static bool EndOfLayout(int ch)
+        {
+            return ch == '}' || ch == ':';
         }
 
         private static string ParseLayoutRendererName(SimpleStringReader sr)
