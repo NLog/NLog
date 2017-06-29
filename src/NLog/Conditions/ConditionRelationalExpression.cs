@@ -138,38 +138,38 @@ namespace NLog.Conditions
         /// <summary>
         /// Promote values to the type needed for the comparision, e.g. parse a string to int.
         /// </summary>
-        /// <param name="val1"></param>
-        /// <param name="val2"></param>
-        private static void PromoteTypes(ref object val1, ref object val2)
+        /// <param name="leftValue"></param>
+        /// <param name="rightValue"></param>
+        private static void PromoteTypes(ref object leftValue, ref object rightValue)
         {
-            if (val1 == null || val2 == null)
+            if (leftValue == null || rightValue == null)
             {
                 return;
             }
 
-            var type1 = val1.GetType();
-            var type2 = val2.GetType();
-            if (type1 == type2)
+            var leftType = leftValue.GetType();
+            var rightType = rightValue.GetType();
+            if (leftType == rightType)
             {
                 return;
             }
 
             //types are not equal
-            var type1Order = GetOrder(type1);
-            var type2Order = GetOrder(type2);
+            var leftTypeOrder = GetOrder(leftType);
+            var rightTypeOrder = GetOrder(rightType);
 
-            if (type1Order < type2Order)
+            if (leftTypeOrder < rightTypeOrder)
             {
-                // first try promote val 2 with type 1
-                if (TryPromoteTypes(ref val2, type1, ref val1, type2)) return;
+                // first try promote right value with left type
+                if (TryPromoteTypes(ref rightValue, leftType, ref leftValue, rightType)) return;
             }
             else
             {
-                // first try promote val 1 with type 2
-                if (TryPromoteTypes(ref val1, type2, ref val2, type1)) return;
+                // otherwise try promote leftValue with right type
+                if (TryPromoteTypes(ref leftValue, rightType, ref rightValue, leftType)) return;
             }
 
-            throw new ConditionEvaluationException("Cannot find common type for '" + type1.Name + "' and '" + type2.Name + "'.");
+            throw new ConditionEvaluationException("Cannot find common type for '" + leftType.Name + "' and '" + rightType.Name + "'.");
         }
         
         /// <summary>

@@ -406,7 +406,7 @@ namespace NLog
                         continue;
                     }
 
-                    if (method.DeclaringType.Assembly == systemAssembly)
+                    if (method.DeclaringType != null && method.DeclaringType.Assembly == systemAssembly)
                     {
                         // skip all methods from System.dll
                         continue;
@@ -419,7 +419,7 @@ namespace NLog
 
                 if (userFrameIndex >= 0)
                 {
-                    if (userMethod.DeclaringType != null)
+                    if (userMethod != null && userMethod.DeclaringType != null)
                     {
                         loggerName = userMethod.DeclaringType.FullName;
                     }

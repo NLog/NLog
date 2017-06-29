@@ -50,7 +50,7 @@ namespace NLog
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
-    public sealed class LogManager
+    public static class LogManager
     {
         private static readonly LogFactory factory = new LogFactory();
         private static ICollection<Assembly> _hiddenAssemblies;
@@ -64,13 +64,6 @@ namespace NLog
         /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
         [Obsolete("Marked obsolete before v4.3.11")]
         public delegate CultureInfo GetCultureInfo();
-
-        /// <summary>
-        /// Prevents a default instance of the LogManager class from being created.
-        /// </summary>
-        private LogManager()
-        {
-        }
 
         /// <summary>
         /// Gets the default <see cref="NLog.LogFactory" /> instance.
