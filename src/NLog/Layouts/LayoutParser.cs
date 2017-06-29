@@ -230,29 +230,13 @@ namespace NLog.Layouts
                     switch (nextChar)
                     {
                         case ':':
-                            sr.Read();
-                            nameBuf.Append(':');
-                            break;
                         case '{':
-                            sr.Read();
-                            nameBuf.Append('{');
-                            break;
                         case '}':
-                            sr.Read();
-                            nameBuf.Append('}');
-                            break;
-
                         case '\'':
-                            sr.Read();
-                            nameBuf.Append('\'');
-                            break;
                         case '"':
-                            sr.Read();
-                            nameBuf.Append('"');
-                            break;
                         case '\\':
                             sr.Read();
-                            nameBuf.Append('\\');
+                            nameBuf.Append(nextChar);
                             break;
                         case '0':
                             sr.Read();
