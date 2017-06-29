@@ -172,56 +172,9 @@ namespace NLog.Layouts
             for (int i = 0; i < this.Columns.Count; i++)
             {
                 CsvColumn col = this.Columns[i];
-                if (i != 0)
-                {
-                    sb.Append(this.actualColumnDelimiter);
-                }
-
-                bool useQuoting;
                 string text = col.Layout.Render(logEvent);
 
-                switch (this.Quoting)
-                {
-                    case CsvQuotingMode.Nothing:
-                        useQuoting = false;
-                        break;
-
-                    case CsvQuotingMode.All:
-                        useQuoting = true;
-                        break;
-
-                    default:
-                    case CsvQuotingMode.Auto:
-                        if (text.IndexOfAny(this.quotableCharacters) >= 0)
-                        {
-                            useQuoting = true;
-                        }
-                        else
-                        {
-                            useQuoting = false;
-                        }
-
-                        break;
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(this.QuoteChar);
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(text.Replace(this.QuoteChar, this.doubleQuoteChar));
-                }
-                else
-                {
-                    sb.Append(text);
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(this.QuoteChar);
-                }
+                RenderCol(sb, i, text);
             }
         }
 
@@ -246,56 +199,68 @@ namespace NLog.Layouts
             for (int i = 0; i < this.Columns.Count; i++)
             {
                 CsvColumn col = this.Columns[i];
-                if (i != 0)
-                {
-                    sb.Append(this.actualColumnDelimiter);
-                }
-
-                bool useQuoting;
                 string text = col.Name;
 
-                switch (this.Quoting)
-                {
-                    case CsvQuotingMode.Nothing:
-                        useQuoting = false;
-                        break;
+                RenderCol(sb, i, text);
+            }
+        }
 
-                    case CsvQuotingMode.All:
+        /// <summary>
+        /// Render 1 columnvalue (text or header) to <paramref name="sb"/>
+        /// </summary>
+        /// <param name="sb">write-to</param>
+        /// <param name="columnIndex">current col index</param>
+        /// <param name="columnValue">col text</param>
+        private void RenderCol(StringBuilder sb, int columnIndex, string columnValue)
+        {
+            if (columnIndex != 0)
+            {
+                sb.Append(this.actualColumnDelimiter);
+            }
+
+            bool useQuoting;
+
+            switch (this.Quoting)
+            {
+                case CsvQuotingMode.Nothing:
+                    useQuoting = false;
+                    break;
+
+                case CsvQuotingMode.All:
+                    useQuoting = true;
+                    break;
+
+                default:
+                case CsvQuotingMode.Auto:
+                    if (columnValue.IndexOfAny(this.quotableCharacters) >= 0)
+                    {
                         useQuoting = true;
-                        break;
+                    }
+                    else
+                    {
+                        useQuoting = false;
+                    }
 
-                    default:
-                    case CsvQuotingMode.Auto:
-                        if (text.IndexOfAny(this.quotableCharacters) >= 0)
-                        {
-                            useQuoting = true;
-                        }
-                        else
-                        {
-                            useQuoting = false;
-                        }
+                    break;
+            }
 
-                        break;
-                }
+            if (useQuoting)
+            {
+                sb.Append(this.QuoteChar);
+            }
 
-                if (useQuoting)
-                {
-                    sb.Append(this.QuoteChar);
-                }
+            if (useQuoting)
+            {
+                sb.Append(columnValue.Replace(this.QuoteChar, this.doubleQuoteChar));
+            }
+            else
+            {
+                sb.Append(columnValue);
+            }
 
-                if (useQuoting)
-                {
-                    sb.Append(text.Replace(this.QuoteChar, this.doubleQuoteChar));
-                }
-                else
-                {
-                    sb.Append(text);
-                }
-
-                if (useQuoting)
-                {
-                    sb.Append(this.QuoteChar);
-                }
+            if (useQuoting)
+            {
+                sb.Append(this.QuoteChar);
             }
         }
 
