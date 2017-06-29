@@ -48,7 +48,7 @@ namespace NLog.Layouts
     /// <summary>
     /// Parses layout strings.
     /// </summary>
-    internal sealed class LayoutParser
+    internal static class LayoutParser
     {
         internal static LayoutRenderer[] CompileLayout(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr, bool isNested, out string text)
         {
