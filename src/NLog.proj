@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
 
   <UsingTask AssemblyFile="packages\xunit.1.9.1\lib\net20\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit"/>
 
@@ -112,7 +112,7 @@
     
     <TargetFramework Include="Mono 2.x" Condition="'$(BuildMono2)' == 'true'">
         <ProjectFileSuffix>.mono2</ProjectFileSuffix>
-        <ToolsVersion>3.5</ToolsVersion>
+        <ToolsVersion>14.0</ToolsVersion>
     </TargetFramework>
     <TargetFramework Include="Silverlight 4.0" Condition="'$(BuildSL4)'=='true'">
         <ProjectFileSuffix>.sl4</ProjectFileSuffix>
@@ -124,33 +124,33 @@
     </TargetFramework>
     <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
         <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
-        <ToolsVersion>4.0</ToolsVersion>
+        <ToolsVersion>14.0</ToolsVersion>
         <NuGetDir>net35</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
         <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
-        <ToolsVersion>4.0</ToolsVersion>
+        <ToolsVersion>14.0</ToolsVersion>
         <NuGetDir>net40</NuGetDir>
     </TargetFramework>
     <TargetFramework Include=".NET Framework 4.5" Condition="'$(BuildNetFX45)'=='true'">
         <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
-        <ToolsVersion>4.0</ToolsVersion>
+        <ToolsVersion>14.0</ToolsVersion>
         <NuGetDir>net45</NuGetDir>
     </TargetFramework>
     <!--the include attribute is the folder name-->
     <TargetFramework Include="WindowsPhone8" Condition="'$(BuildWP8)'=='true'">
         <ProjectFileSuffix>.wp8</ProjectFileSuffix>
-        <ToolsVersion>4.0</ToolsVersion>
+        <ToolsVersion>14.0</ToolsVersion>
         <NuGetDir>wp8</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Xamarin.Android" Condition="'$(BuildXamarinAndroid)'=='true'">
       <ProjectFileSuffix>.Xamarin.Android</ProjectFileSuffix>
-      <ToolsVersion>4.0</ToolsVersion>
+      <ToolsVersion>14.0</ToolsVersion>
       <NuGetDir>MonoAndroid10</NuGetDir>
     </TargetFramework>
     <TargetFramework Include="Xamarin.iOS" Condition="'$(BuildXamarinIOS)'=='true'">
       <ProjectFileSuffix>.Xamarin.iOs</ProjectFileSuffix>
-      <ToolsVersion>4.0</ToolsVersion>
+      <ToolsVersion>14.0</ToolsVersion>
       <NuGetDir>Xamarin.iOS10</NuGetDir>
     </TargetFramework>
   </ItemGroup>
