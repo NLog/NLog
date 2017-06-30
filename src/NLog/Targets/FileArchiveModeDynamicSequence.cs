@@ -91,7 +91,7 @@ namespace NLog.Targets
                         digitsRemoved = 1;
                         sb.Append('*');
                     }
-                    else if (wildCardActive.Value == false)
+                    else if (!wildCardActive.Value)
                     {
                         sb.Append(nameChar);
                     }
@@ -102,7 +102,7 @@ namespace NLog.Targets
                 }
                 else if (!char.IsLetter(nameChar))
                 {
-                    if (!wildCardActive.HasValue || wildCardActive.Value == false)
+                    if (!wildCardActive.HasValue || !wildCardActive.Value)
                         sb.Append(nameChar);
                 }
                 else

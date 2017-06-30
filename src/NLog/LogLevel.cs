@@ -378,7 +378,7 @@ namespace NLog
         /// this instance; otherwise, <c>false</c>.</returns>
         public bool Equals(LogLevel other)
         {
-            return other == null ? false : this.Ordinal == other.Ordinal;
+            return other != null && this.Ordinal == other.Ordinal;
         }
 
         /// <summary>
