@@ -152,7 +152,10 @@ namespace NLog.Common
         /// </summary>
         public static bool IncludeTimestamp { get; set; }
 
-        internal static bool ExceptionThrowWhenWriting = false;
+        /// <summary>
+        /// Is there an <see cref="Exception"/> thrown when writing the message?
+        /// </summary>
+        internal static bool ExceptionThrowWhenWriting { get; private set; } = false;
 
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the specified level.
