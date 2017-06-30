@@ -50,7 +50,7 @@ namespace NLog.Internal
         /// <typeparam name="TKey">The type of the key.</typeparam>
         /// <param name="value">Value to extract key information from.</param>
         /// <returns>Key selected from log event.</returns>
-        internal delegate TKey KeySelector<TValue, TKey>(TValue value);
+        internal delegate TKey KeySelector<in TValue, out TKey>(TValue value);
 
         /// <summary>
         /// Performs bucket sort (group by) on an array of items and returns a dictionary for easy traversal of the result set.
