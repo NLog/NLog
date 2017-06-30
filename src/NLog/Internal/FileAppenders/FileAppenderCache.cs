@@ -112,10 +112,9 @@ namespace NLog.Internal.FileAppenders
                     logFileWasArchived = true;  // Something was created in the archive folder
             }
 
-            if (logFileWasArchived)
+            if (logFileWasArchived && autoClosingTimer != null)
             {
-                if (autoClosingTimer != null)
-                    autoClosingTimer.Change(50, Timeout.Infinite);
+                autoClosingTimer.Change(50, Timeout.Infinite);
             }
         }
 
