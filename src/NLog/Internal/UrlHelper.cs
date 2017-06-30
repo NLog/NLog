@@ -68,8 +68,7 @@ namespace NLog.Internal
             if (string.IsNullOrEmpty(source))
                 return;
 
-            bool isUriString = (flags & EscapeEncodingFlag.UriString) == EscapeEncodingFlag.UriString;
-            bool isLegacyRfc2396 = (flags & EscapeEncodingFlag.LegacyRfc2396) == EscapeEncodingFlag.LegacyRfc2396;
+          
             bool isLowerCaseHex = (flags & EscapeEncodingFlag.LowerCaseHex) == EscapeEncodingFlag.LowerCaseHex;
             bool isSpaceAsPlus = (flags & EscapeEncodingFlag.SpaceAsPlus) == EscapeEncodingFlag.SpaceAsPlus;
             bool isNLogLegacy = (flags & EscapeEncodingFlag.NLogLegacy) == EscapeEncodingFlag.NLogLegacy;
@@ -82,50 +81,23 @@ namespace NLog.Internal
             {
                 char ch = source[i];
                 target.Append(ch);
-                if (ch >= 'a' && ch <= 'z')
+                if (IsSimpleCharOrNumber(ch))
                     continue;
-                if (ch >= 'A' && ch <= 'Z')
-                    continue;
-                if (ch >= '0' && ch <= '9')
-                    continue;
+               
                 if (isSpaceAsPlus && ch == ' ')
                 {
                     target[target.Length - 1] = '+';
                     continue;
                 }
 
-                if (isUriString)
+                if (IsAllowedChar(flags, ch))
                 {
-                    if (!isLegacyRfc2396 && RFC3986UnreservedMarks.IndexOf(ch) >= 0)
-                        continue;
-                    if (isLegacyRfc2396 && RFC2396UnreservedMarks.IndexOf(ch) >= 0)
-                        continue;
-                }
-                else
-                {
-                    if (!isLegacyRfc2396 && RFC3986ReservedMarks.IndexOf(ch) >= 0)
-                        continue;
-                    if (isLegacyRfc2396 && RFC2396ReservedMarks.IndexOf(ch) >= 0)
-                        continue;
+                    continue;
                 }
 
                 if (isNLogLegacy)
                 {
-                    if (ch < 256)
-                    {
-                        target[target.Length - 1] = '%';
-                        target.Append(hexChars[(ch >> 4) & 0xF]);
-                        target.Append(hexChars[(ch >> 0) & 0xF]);
-                    }
-                    else
-                    {
-                        target[target.Length - 1] = '%';
-                        target.Append('u');
-                        target.Append(hexChars[(ch >> 12) & 0xF]);
-                        target.Append(hexChars[(ch >> 8) & 0xF]);
-                        target.Append(hexChars[(ch >> 4) & 0xF]);
-                        target.Append(hexChars[(ch >> 0) & 0xF]);
-                    }
+                    HandleLegacyEncoding(target, ch, hexChars);
                     continue;
                 }
 
@@ -136,19 +108,87 @@ namespace NLog.Internal
                 if (byteArray == null)
                     byteArray = new byte[8];
 
-                // Convert the wide-char into utf8-bytes, and then escape
-                int byteCount = Encoding.UTF8.GetBytes(charArray, 0, 1, byteArray, 0);
-                for (int j = 0; j < byteCount; ++j)
-                {
-                    byte byteCh = byteArray[j];
-                    if (j == 0)
-                        target[target.Length - 1] = '%';
-                    else
-                        target.Append('%');
-                    target.Append(hexChars[(byteCh & 0xf0) >> 4]);
-                    target.Append(hexChars[byteCh & 0xf]);
-                }
+                
+                WriteWideChars(target, charArray, byteArray, hexChars);
             }
+        }
+
+        /// <summary>
+        /// Convert the wide-char into utf8-bytes, and then escape
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="charArray"></param>
+        /// <param name="byteArray"></param>
+        /// <param name="hexChars"></param>
+        private static void WriteWideChars(StringBuilder target, char[] charArray, byte[] byteArray, char[] hexChars)
+        {
+            int byteCount = Encoding.UTF8.GetBytes(charArray, 0, 1, byteArray, 0);
+            for (int j = 0; j < byteCount; ++j)
+            {
+                byte byteCh = byteArray[j];
+                if (j == 0)
+                    target[target.Length - 1] = '%';
+                else
+                    target.Append('%');
+                target.Append(hexChars[(byteCh & 0xf0) >> 4]);
+                target.Append(hexChars[byteCh & 0xf]);
+            }
+        }
+
+        private static void HandleLegacyEncoding(StringBuilder target, char ch, char[] hexChars)
+        {
+            if (ch < 256)
+            {
+                target[target.Length - 1] = '%';
+                target.Append(hexChars[(ch >> 4) & 0xF]);
+                target.Append(hexChars[(ch >> 0) & 0xF]);
+            }
+            else
+            {
+                target[target.Length - 1] = '%';
+                target.Append('u');
+                target.Append(hexChars[(ch >> 12) & 0xF]);
+                target.Append(hexChars[(ch >> 8) & 0xF]);
+                target.Append(hexChars[(ch >> 4) & 0xF]);
+                target.Append(hexChars[(ch >> 0) & 0xF]);
+            }
+        }
+
+        /// <summary>
+        /// Is allowed?
+        /// </summary>
+        /// <param name="flags"></param>
+        /// <param name="ch"></param>
+        /// <returns></returns>
+        private static bool IsAllowedChar(EscapeEncodingFlag flags, char ch)
+        {
+            bool isUriString = (flags & EscapeEncodingFlag.UriString) == EscapeEncodingFlag.UriString;
+            bool isLegacyRfc2396 = (flags & EscapeEncodingFlag.LegacyRfc2396) == EscapeEncodingFlag.LegacyRfc2396;
+            if (isUriString)
+            {
+                if (!isLegacyRfc2396 && RFC3986UnreservedMarks.IndexOf(ch) >= 0)
+                    return true;
+                if (isLegacyRfc2396 && RFC2396UnreservedMarks.IndexOf(ch) >= 0)
+                    return true;
+            }
+            else
+            {
+                if (!isLegacyRfc2396 && RFC3986ReservedMarks.IndexOf(ch) >= 0)
+                    return true;
+                if (isLegacyRfc2396 && RFC2396ReservedMarks.IndexOf(ch) >= 0)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Is a-z / A-Z / 0-9
+        /// </summary>
+        /// <param name="ch"></param>
+        /// <returns></returns>
+        private static bool IsSimpleCharOrNumber(char ch)
+        {
+            return ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z' || ch >= '0' && ch <= '9';
         }
 
         private const string RFC2396ReservedMarks = @";/?:@&=+$,";
