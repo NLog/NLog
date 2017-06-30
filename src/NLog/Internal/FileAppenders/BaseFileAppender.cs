@@ -54,7 +54,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="createParameters">The create parameters.</param>
-        public BaseFileAppender(string fileName, ICreateFileParameters createParameters)
+        protected BaseFileAppender(string fileName, ICreateFileParameters createParameters)
         {
             this.CreateFileParameters = createParameters;
             this.FileName = fileName;
