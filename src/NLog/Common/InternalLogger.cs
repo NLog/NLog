@@ -155,7 +155,7 @@ namespace NLog.Common
         /// <summary>
         /// Is there an <see cref="Exception"/> thrown when writing the message?
         /// </summary>
-        internal static bool ExceptionThrowWhenWriting { get; private set; } = false;
+        internal static bool ExceptionThrowWhenWriting { get; private set; }
 
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the specified level.
