@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.IO;
 using System.Text;
 using NLog.Config;
 
@@ -70,7 +71,7 @@ namespace NLog.Internal
             if (value < 0)
             {
                 builder.Append('-');
-                uint uint_value = uint.MaxValue - ((uint)value) + 1; //< This is to deal with Int32.MinValue
+                uint uint_value = UInt32.MaxValue - ((uint)value) + 1; //< This is to deal with Int32.MinValue
                 AppendInvariant(builder, uint_value);
             }
             else
@@ -144,7 +145,7 @@ namespace NLog.Internal
         /// <param name="ms">MemoryStream destination</param>
         /// <param name="encoding">Encoding used for converter string into byte-stream</param>
         /// <param name="transformBuffer">Helper char-buffer to minimize memory allocations</param>
-        public static void CopyToStream(this StringBuilder builder, System.IO.MemoryStream ms, Encoding encoding, char[] transformBuffer)
+        public static void CopyToStream(this StringBuilder builder, MemoryStream ms, Encoding encoding, char[] transformBuffer)
         {
 #if !SILVERLIGHT
             if (transformBuffer != null)
@@ -167,6 +168,30 @@ namespace NLog.Internal
                 byte[] bytes = encoding.GetBytes(str);
                 ms.Write(bytes, 0, bytes.Length);
             }
+        }
+
+        /// <summary>
+        /// Append a number and pad with 0 to 2 digits
+        /// </summary>
+        /// <param name="builder">append to this</param>
+        /// <param name="number">the number</param>
+        internal static void Append2DigitsZeroPadded(this StringBuilder builder, int number)
+        {
+            builder.Append((char)((number / 10) + '0'));
+            builder.Append((char)((number % 10) + '0'));
+        }
+
+        /// <summary>
+        /// Append a number and pad with 0 to 4 digits
+        /// </summary>
+        /// <param name="builder">append to this</param>
+        /// <param name="number">the number</param>
+        internal static void Append4DigitsZeroPadded(this StringBuilder builder, int number)
+        {
+            builder.Append((char)(((number / 1000) % 10) + '0'));
+            builder.Append((char)(((number / 100) % 10) + '0'));
+            builder.Append((char)(((number / 10) % 10) + '0'));
+            builder.Append((char)(((number / 1) % 10) + '0'));
         }
     }
 }

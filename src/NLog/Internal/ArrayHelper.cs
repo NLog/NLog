@@ -37,10 +37,10 @@ namespace NLog.Internal
     {
         private static class EmptyArray<T>
         {
-            public static readonly T[] Instance = new T[0];
+            internal static readonly T[] Instance = new T[0];
         }
 
-        public static T[] Empty<T>()
+        internal static T[] Empty<T>()
         {
             // TODO Use Array.Empty<T> in NET 4.6 when we are ready
             return EmptyArray<T>.Instance;

@@ -32,6 +32,7 @@
 // 
 
 using System.Globalization;
+using NLog.Internal;
 
 namespace NLog.LayoutRenderers
 {
@@ -88,27 +89,13 @@ namespace NLog.LayoutRenderers
                 ticksSeparator = ".";
             }
 
-            Append2DigitsZeroPadded(builder, dt.Hour);
+            builder.Append2DigitsZeroPadded(dt.Hour);
             builder.Append(timeSeparator);
-            Append2DigitsZeroPadded(builder, dt.Minute);
+            builder.Append2DigitsZeroPadded(dt.Minute);
             builder.Append(timeSeparator);
-            Append2DigitsZeroPadded(builder, dt.Second);
+            builder.Append2DigitsZeroPadded(dt.Second);
             builder.Append(ticksSeparator);
-            Append4DigitsZeroPadded(builder, (int)(dt.Ticks % 10000000) / 1000);
-        }
-
-        private static void Append2DigitsZeroPadded(StringBuilder builder, int number)
-        {
-            builder.Append((char)((number / 10) + '0'));
-            builder.Append((char)((number % 10) + '0'));
-        }
-
-        private static void Append4DigitsZeroPadded(StringBuilder builder, int number)
-        {
-            builder.Append((char)(((number / 1000) % 10) + '0'));
-            builder.Append((char)(((number / 100) % 10) + '0'));
-            builder.Append((char)(((number / 10) % 10) + '0'));
-            builder.Append((char)(((number / 1) % 10) + '0'));
+            builder.Append4DigitsZeroPadded((int)(dt.Ticks % 10000000) / 1000);
         }
     }
 }
