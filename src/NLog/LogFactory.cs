@@ -1111,12 +1111,9 @@ namespace NLog
 #if !SILVERLIGHT
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssembly = typeof(LogFactory).Assembly;
-            if (!nlogAssembly.GlobalAssemblyCache)
+            if (!nlogAssembly.GlobalAssemblyCache && !String.IsNullOrEmpty(nlogAssembly.Location))
             {
-                if (!String.IsNullOrEmpty(nlogAssembly.Location))
-                {
-                    yield return nlogAssembly.Location + ".nlog";
-                }
+                yield return nlogAssembly.Location + ".nlog";
             }
 #endif
         }

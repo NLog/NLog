@@ -475,20 +475,14 @@ namespace NLog
                 return true;
             }
 
-            if (parameters.Length >= 2)
+            if (parameters.Length >= 2 && !IsSafeToDeferFormatting(parameters[1]))
             {
-                if (!IsSafeToDeferFormatting(parameters[1]))
-                {
-                    return true;
-                }
+                return true;
             }
 
-            if (parameters.Length >= 3)
+            if (parameters.Length >= 3 && !IsSafeToDeferFormatting(parameters[2]))
             {
-                if (!IsSafeToDeferFormatting(parameters[2]))
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;

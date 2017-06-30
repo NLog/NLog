@@ -133,13 +133,10 @@ namespace NLog.LayoutRenderers
         private void AppendDateLayout(StringBuilder builder, IFormatProvider formatProvider, DateTime timestamp, ref KeyValuePair<DateTime, string> cachedTime)
         {
             bool cachingEnabled = ReferenceEquals(formatProvider, CultureInfo.InvariantCulture) && cachedTime.Key != DateTime.MinValue;
-            if (cachingEnabled)
+            if (cachingEnabled && cachedTime.Key == timestamp.Date.AddHours(timestamp.Hour))
             {
-                if (cachedTime.Key == timestamp.Date.AddHours(timestamp.Hour))
-                {
-                    builder.Append(cachedTime.Value);
-                    return; // Cache hit
-                }
+                builder.Append(cachedTime.Value);
+                return; // Cache hit
             }
 
             string formatTime = timestamp.ToString(_format, formatProvider);
