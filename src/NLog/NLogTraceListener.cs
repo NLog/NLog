@@ -186,6 +186,7 @@ namespace NLog
         /// </summary>
         public override void Close()
         {
+            //nothing to do in this case, but maybe in derived.
         }
 
         /// <summary>

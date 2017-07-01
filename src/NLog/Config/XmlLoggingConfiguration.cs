@@ -439,14 +439,10 @@ namespace NLog.Config
                 var configurationException = new NLogConfigurationException(exception, "Exception when parsing {0}. ", fileName);
                 InternalLogger.Error(configurationException, "Parsing configuration from {0} failed.", fileName);
 
-                if (!ignoreErrors)
+                if (!ignoreErrors && configurationException.MustBeRethrown())
                 {
-                    if (configurationException.MustBeRethrown())
-                    {
-                        throw configurationException;
-                    }
+                    throw configurationException;
                 }
-
             }
         }
 

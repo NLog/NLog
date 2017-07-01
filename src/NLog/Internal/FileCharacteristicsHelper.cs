@@ -69,16 +69,13 @@ namespace NLog.Internal
         public static DateTime? ValidateFileCreationTime<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
         {
             DateTime? fileCreationTime = primary(fileInfo);
-            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980)
+            // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
+            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980 && !PlatformDetector.IsDesktopWin32)
             {
-                // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
-                if (!PlatformDetector.IsDesktopWin32)
+                fileCreationTime = fallback(fileInfo);
+                if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
                 {
-                    fileCreationTime = fallback(fileInfo);
-                    if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
-                    {
-                        fileCreationTime = finalFallback(fileInfo);
-                    }
+                    fileCreationTime = finalFallback(fileInfo);
                 }
             }
             return fileCreationTime;

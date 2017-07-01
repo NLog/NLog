@@ -147,7 +147,7 @@ namespace NLog.Filters
 
                     FilterInfoKey filterInfoKey = RenderFilterInfoKey(logEvent, OptimizeBufferReuse ? targetBuilder.Result : null);
 
-                    FilterInfo filterInfo = null;
+                    FilterInfo filterInfo;
                     if (_repeatFilter.TryGetValue(filterInfoKey, out filterInfo))
                     {
                         return RefreshFilterInfo(logEvent, filterInfo);
@@ -175,16 +175,13 @@ namespace NLog.Filters
         private FilterInfo CreateFilterInfo(LogEventInfo logEvent)
         {
             FilterInfo reusableObject;
-            if (_objectPool.Count == 0)
+            if (_objectPool.Count == 0 && _repeatFilter.Count > DefaultFilterCacheSize)
             {
-                if (_repeatFilter.Count > DefaultFilterCacheSize)
+                int aggressiveTimeoutSeconds = _repeatFilter.Count > MaxFilterCacheSize ? TimeoutSeconds * 2 / 3 : TimeoutSeconds;
+                PruneFilterCache(logEvent, Math.Max(1, aggressiveTimeoutSeconds));
+                if (_repeatFilter.Count > MaxFilterCacheSize)
                 {
-                    int aggressiveTimeoutSeconds = _repeatFilter.Count > MaxFilterCacheSize ? TimeoutSeconds * 2 / 3 : TimeoutSeconds;
-                    PruneFilterCache(logEvent, Math.Max(1, aggressiveTimeoutSeconds));
-                    if (_repeatFilter.Count > MaxFilterCacheSize)
-                    {
-                        PruneFilterCache(logEvent, Math.Max(1, TimeoutSeconds / 2));
-                    }
+                    PruneFilterCache(logEvent, Math.Max(1, TimeoutSeconds / 2));
                 }
             }
 
@@ -234,7 +231,7 @@ namespace NLog.Filters
         /// <summary>
         /// Renders the Log Event into a filter value, that is used for checking if just repeated
         /// </summary>
-        FilterInfoKey RenderFilterInfoKey(LogEventInfo logEvent, StringBuilder targetBuilder)
+        private FilterInfoKey RenderFilterInfoKey(LogEventInfo logEvent, StringBuilder targetBuilder)
         {
             if (targetBuilder != null)
             {
@@ -243,19 +240,16 @@ namespace NLog.Filters
                     targetBuilder.Length = MaxLength;
                 return new FilterInfoKey(targetBuilder, null);
             }
-            else
-            {
-                string value = Layout.Render(logEvent) ?? string.Empty;
-                if (value.Length > MaxLength)
-                    value = value.Substring(0, MaxLength);
-                return new FilterInfoKey(null, value);
-            }
+            string value = Layout.Render(logEvent) ?? string.Empty;
+            if (value.Length > MaxLength)
+                value = value.Substring(0, MaxLength);
+            return new FilterInfoKey(null, value);
         }
 
         /// <summary>
         /// Repeated LogEvent detected. Checks if it should activate filter-action
         /// </summary>
-        FilterResult RefreshFilterInfo(LogEventInfo logEvent, FilterInfo filterInfo)
+        private FilterResult RefreshFilterInfo(LogEventInfo logEvent, FilterInfo filterInfo)
         {
             if (filterInfo.HasExpired(logEvent.TimeStamp, TimeoutSeconds) || logEvent.Level.Ordinal > filterInfo.LogLevel.Ordinal)
             {
@@ -282,28 +276,22 @@ namespace NLog.Filters
                             logEvent.Properties[FilterCountPropertyName] = filterCount;
                         }
                     }
-                    if (!string.IsNullOrEmpty(FilterCountMessageAppendFormat))
+                    if (!string.IsNullOrEmpty(FilterCountMessageAppendFormat) && logEvent.Message != null)
                     {
-                        if (logEvent.Message != null)
-                        {
-                            logEvent.Message += string.Format(FilterCountMessageAppendFormat, filterCount.ToString(System.Globalization.CultureInfo.InvariantCulture));
-                        }
+                        logEvent.Message += string.Format(FilterCountMessageAppendFormat, filterCount.ToString(System.Globalization.CultureInfo.InvariantCulture));
                     }
                 }
 
                 return FilterResult.Neutral;
             }
-            else
-            {
-                filterInfo.Refresh(logEvent.Level, logEvent.TimeStamp, filterInfo.FilterCount + 1);
-                return Action;
-            }
+            filterInfo.Refresh(logEvent.Level, logEvent.TimeStamp, filterInfo.FilterCount + 1);
+            return Action;
         }
 
         /// <summary>
         /// Filter Value State (mutable)
         /// </summary>
-        class FilterInfo
+        private class FilterInfo
         {
             public FilterInfo(StringBuilder stringBuilder)
             {
@@ -331,10 +319,7 @@ namespace NLog.Filters
                 {
                     return HasExpired(logEventTime, timeoutSeconds);
                 }
-                else
-                {
-                    return (logEventTime - LastFilterTime).TotalSeconds > timeoutSeconds && HasExpired(logEventTime, timeoutSeconds * 2);
-                }
+                return (logEventTime - LastFilterTime).TotalSeconds > timeoutSeconds && HasExpired(logEventTime, timeoutSeconds * 2);
             }
 
             public bool HasExpired(DateTime logEventTime, int timeoutSeconds)
@@ -344,17 +329,17 @@ namespace NLog.Filters
 
             public StringBuilder StringBuffer { get; private set; }
             public LogLevel LogLevel { get; private set; }
-            public DateTime LastLogTime { get; private set; }
-            public DateTime LastFilterTime { get; private set; }
+            private DateTime LastLogTime { get; set; }
+            private DateTime LastFilterTime { get; set; }
             public int FilterCount { get; private set; }
         }
 
         /// <summary>
         /// Filter Lookup Key (immutable)
         /// </summary>
-        struct FilterInfoKey : IEquatable<FilterInfoKey>
+        private struct FilterInfoKey : IEquatable<FilterInfoKey>
         {
-            public readonly StringBuilder StringBuffer;
+            private readonly StringBuilder StringBuffer;
             public readonly string StringValue;
             public readonly int StringHashCode;
 
@@ -391,7 +376,7 @@ namespace NLog.Filters
                 {
                     return string.Equals(StringValue, other.StringValue, StringComparison.Ordinal);
                 }
-                else if (StringBuffer != null && other.StringBuffer != null)
+                if (StringBuffer != null && other.StringBuffer != null)
                 {
                     // StringBuilder.Equals only works when StringBuilder.Capacity is the same
                     if (StringBuffer.Capacity != other.StringBuffer.Capacity)
@@ -409,15 +394,9 @@ namespace NLog.Filters
 
                         return true;
                     }
-                    else
-                    {
-                        return StringBuffer.Equals(other.StringBuffer);
-                    }
+                    return StringBuffer.Equals(other.StringBuffer);
                 }
-                else
-                {
-                    return ReferenceEquals(StringBuffer, other.StringBuffer) && ReferenceEquals(StringValue, other.StringValue);
-                }
+                return ReferenceEquals(StringBuffer, other.StringBuffer) && ReferenceEquals(StringValue, other.StringValue);
             }
 
             public override bool Equals(object other)

@@ -45,5 +45,5 @@ namespace NLog.Common
     /// <typeparam name="T">Type of the argument.</typeparam>
     /// <param name="argument">Argument to the action.</param>
     /// <param name="asyncContinuation">Continuation to be invoked at the end of action.</param>
-    public delegate void AsynchronousAction<T>(T argument, AsyncContinuation asyncContinuation);
+    public delegate void AsynchronousAction<in T>(T argument, AsyncContinuation asyncContinuation);
 }

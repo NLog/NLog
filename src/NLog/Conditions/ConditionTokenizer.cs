@@ -114,7 +114,7 @@ namespace NLog.Conditions
                 throw new ConditionParseException("Identifier expected");
             }
 
-            string s = (string)this.TokenValue;
+            string s = this.TokenValue;
             this.GetNextToken();
             return s;
         }
@@ -455,7 +455,7 @@ namespace NLog.Conditions
 
             StringBuilder sb = new StringBuilder();
 
-            sb.Append((char)ch);
+            sb.Append(ch);
 
             this.ReadChar();
 

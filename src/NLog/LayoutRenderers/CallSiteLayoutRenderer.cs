@@ -179,19 +179,15 @@ namespace NLog.LayoutRenderers
                     if (method != null)
                     {
                         string methodName = method.Name;
-
-                        if (this.CleanNamesOfAnonymousDelegates)
+                        // Clean up the function name if it is an anonymous delegate
+                        // <.ctor>b__0
+                        // <Main>b__2
+                        if (this.CleanNamesOfAnonymousDelegates && (methodName.Contains("__") && methodName.StartsWith("<") && methodName.Contains(">")))
                         {
-                            // Clean up the function name if it is an anonymous delegate
-                            // <.ctor>b__0
-                            // <Main>b__2
-                            if (methodName.Contains("__") == true && methodName.StartsWith("<") == true && methodName.Contains(">") == true)
-                            {
-                                int startIndex = methodName.IndexOf('<') + 1;
-                                int endIndex = methodName.IndexOf('>');
+                            int startIndex = methodName.IndexOf('<') + 1;
+                            int endIndex = methodName.IndexOf('>');
 
-                                methodName = methodName.Substring(startIndex, endIndex - startIndex);
-                            }
+                            methodName = methodName.Substring(startIndex, endIndex - startIndex);
                         }
 
                         builder.Append(methodName);

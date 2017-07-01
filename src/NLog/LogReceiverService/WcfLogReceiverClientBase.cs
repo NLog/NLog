@@ -54,7 +54,7 @@ namespace NLog.LogReceiverService
         /// <summary>
         /// Initializes a new instance of the <see cref="WcfLogReceiverClientBase{TService}"/> class.
         /// </summary>
-        internal WcfLogReceiverClientBase()
+        protected WcfLogReceiverClientBase()
             : base()
         {
         }
@@ -63,7 +63,7 @@ namespace NLog.LogReceiverService
         /// Initializes a new instance of the <see cref="WcfLogReceiverClientBase{TService}"/> class.
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
-        internal WcfLogReceiverClientBase(string endpointConfigurationName)
+        protected WcfLogReceiverClientBase(string endpointConfigurationName)
             : base(endpointConfigurationName)
         {
         }
@@ -73,7 +73,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        internal WcfLogReceiverClientBase(string endpointConfigurationName, string remoteAddress)
+        protected WcfLogReceiverClientBase(string endpointConfigurationName, string remoteAddress)
             : base(endpointConfigurationName, remoteAddress)
         {
         }
@@ -83,7 +83,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        internal WcfLogReceiverClientBase(string endpointConfigurationName, EndpointAddress remoteAddress)
+        protected WcfLogReceiverClientBase(string endpointConfigurationName, EndpointAddress remoteAddress)
             : base(endpointConfigurationName, remoteAddress)
         {
         }
@@ -93,7 +93,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         /// <param name="binding">The binding.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        internal WcfLogReceiverClientBase(Binding binding, EndpointAddress remoteAddress)
+        protected WcfLogReceiverClientBase(Binding binding, EndpointAddress remoteAddress)
             : base(binding, remoteAddress)
         {
         }

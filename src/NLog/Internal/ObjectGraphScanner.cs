@@ -45,7 +45,7 @@ namespace NLog.Internal
     /// instances have <see cref="NLogConfigurationItemAttribute"/> attached and returns 
     /// all objects implementing a specified interfaces.
     /// </summary>
-    internal class ObjectGraphScanner
+    internal static class ObjectGraphScanner
     {
         /// <summary>
         /// Finds the objects which have attached <see cref="NLogConfigurationItemAttribute"/> which are reachable

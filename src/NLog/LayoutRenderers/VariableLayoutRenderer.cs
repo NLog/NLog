@@ -67,13 +67,10 @@ namespace NLog.LayoutRenderers
         {
 
             SimpleLayout layout;
-            if (TryGetLayout(out layout))
+            if (TryGetLayout(out layout) && layout != null)
             {
-                if (layout != null)
-                {
-                    //pass loggingConfiguration to layout
-                    layout.Initialize(LoggingConfiguration);
-                }
+                //pass loggingConfiguration to layout
+                layout.Initialize(LoggingConfiguration);
             }
 
             base.InitializeLayoutRenderer();

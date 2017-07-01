@@ -65,7 +65,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="createParameters">The create parameters.</param>
-        public BaseMutexFileAppender(string fileName, ICreateFileParameters createParameters) 
+        protected BaseMutexFileAppender(string fileName, ICreateFileParameters createParameters) 
             : base(fileName, createParameters)
         {
 #if SupportsMutex

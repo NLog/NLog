@@ -35,7 +35,7 @@ using System.IO;
 
 namespace NLog.Internal
 {
-    internal class PathHelpers
+    internal static class PathHelpers
     {
         /// <summary>
         /// Combine paths
