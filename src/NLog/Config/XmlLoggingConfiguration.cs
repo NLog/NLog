@@ -883,85 +883,99 @@ namespace NLog.Config
             {
                 string name = childElement.LocalName;
 
-                if (compound != null)
+                if (compound != null && ParseCompoundTarget(typeNameToDefaultTargetParameters, name, childElement, compound))
                 {
-                    if (IsTargetRefElement(name))
-                    {
-                        string targetName = childElement.GetRequiredAttribute("name");
-                        Target newTarget = this.FindTargetByName(targetName);
-                        if (newTarget == null)
-                        {
-                            throw new NLogConfigurationException("Referenced target '" + targetName + "' not found.");
-                        }
-
-                        compound.Targets.Add(newTarget);
-                        continue;
-                    }
-
-                    if (IsTargetElement(name))
-                    {
-                        string type = StripOptionalNamespacePrefix(childElement.GetRequiredAttribute("type"));
-
-                        Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
-                        if (newTarget != null)
-                        {
-                            this.ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
-                            if (newTarget.Name != null)
-                            {
-                                // if the new target has name, register it
-                                AddTarget(newTarget.Name, newTarget);
-                            }
-
-                            compound.Targets.Add(newTarget);
-                        }
-
-                        continue;
-                    }
+                    continue;
                 }
 
-                if (wrapper != null)
+                if (wrapper != null && ParseTargetWrapper(typeNameToDefaultTargetParameters, name, childElement, wrapper))
                 {
-                    if (IsTargetRefElement(name))
-                    {
-                        string targetName = childElement.GetRequiredAttribute("name");
-                        Target newTarget = this.FindTargetByName(targetName);
-                        if (newTarget == null)
-                        {
-                            throw new NLogConfigurationException("Referenced target '" + targetName + "' not found.");
-                        }
-
-                        wrapper.WrappedTarget = newTarget;
-                        continue;
-                    }
-
-                    if (IsTargetElement(name))
-                    {
-                        string type = StripOptionalNamespacePrefix(childElement.GetRequiredAttribute("type"));
-
-                        Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
-                        if (newTarget != null)
-                        {
-                            this.ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
-                            if (newTarget.Name != null)
-                            {
-                                // if the new target has name, register it
-                                AddTarget(newTarget.Name, newTarget);
-                            }
-
-                            if (wrapper.WrappedTarget != null)
-                            {
-                                throw new NLogConfigurationException("Wrapped target already defined.");
-                            }
-
-                            wrapper.WrappedTarget = newTarget;
-                        }
-
-                        continue;
-                    }
+                    continue;
                 }
 
                 this.SetPropertyFromElement(target, childElement);
             }
+        }
+
+        private bool ParseTargetWrapper(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement, 
+            WrapperTargetBase wrapper)
+        {
+            if (IsTargetRefElement(name))
+            {
+                string targetName = childElement.GetRequiredAttribute("name");
+                Target newTarget = this.FindTargetByName(targetName);
+                if (newTarget == null)
+                {
+                    throw new NLogConfigurationException("Referenced target '" + targetName + "' not found.");
+                }
+
+                wrapper.WrappedTarget = newTarget;
+                return true;
+            }
+
+            if (IsTargetElement(name))
+            {
+                string type = StripOptionalNamespacePrefix(childElement.GetRequiredAttribute("type"));
+
+                Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
+                if (newTarget != null)
+                {
+                    this.ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
+                    if (newTarget.Name != null)
+                    {
+                        // if the new target has name, register it
+                        AddTarget(newTarget.Name, newTarget);
+                    }
+
+                    if (wrapper.WrappedTarget != null)
+                    {
+                        throw new NLogConfigurationException("Wrapped target already defined.");
+                    }
+
+                    wrapper.WrappedTarget = newTarget;
+                }
+
+                return true;
+            }
+            return false;
+        }
+
+        private bool ParseCompoundTarget(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement, 
+            CompoundTargetBase compound)
+        {
+            if (IsTargetRefElement(name))
+            {
+                string targetName = childElement.GetRequiredAttribute("name");
+                Target newTarget = this.FindTargetByName(targetName);
+                if (newTarget == null)
+                {
+                    throw new NLogConfigurationException("Referenced target '" + targetName + "' not found.");
+                }
+
+                compound.Targets.Add(newTarget);
+                return true;
+            }
+
+            if (IsTargetElement(name))
+            {
+                string type = StripOptionalNamespacePrefix(childElement.GetRequiredAttribute("type"));
+
+                Target newTarget = this.ConfigurationItemFactory.Targets.CreateInstance(type);
+                if (newTarget != null)
+                {
+                    this.ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
+                    if (newTarget.Name != null)
+                    {
+                        // if the new target has name, register it
+                        AddTarget(newTarget.Name, newTarget);
+                    }
+
+                    compound.Targets.Add(newTarget);
+                }
+
+                return true;
+            }
+            return false;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Reflection.Assembly.LoadFrom", Justification = "Need to load external assembly.")]
@@ -1007,75 +1021,85 @@ namespace NLog.Config
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
-                    try
-                    {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                    var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-                    var assemblyPart = new AssemblyPart();
-                    Assembly asm = assemblyPart.Load(si.Stream);
-#else
-                        string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                        InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-                        Assembly asm = Assembly.LoadFrom(fullFileName);
-#endif
-                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
-
-                    }
-                    catch (Exception exception)
-                    {
-                        if (exception.MustBeRethrownImmediately())
-                        {
-                            throw;
-                        }
-
-                        InternalLogger.Error(exception, "Error loading extensions.");
-                        NLogConfigurationException configException =
-                            new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
-
-                        if (configException.MustBeRethrown())
-                        {
-                            throw configException;
-                        }
-                    }
-
+                    ParseExtensionWithAssemblyFle(baseDirectory, assemblyFile, prefix);
                     continue;
                 }
 
                 string assemblyName = addElement.GetOptionalAttribute("assembly", null);
                 if (assemblyName != null)
                 {
-                    try
-                    {
-                        InternalLogger.Info("Loading assembly name: {0}", assemblyName);
+                    ParseExtensionWithAssembly(assemblyName, prefix);
+                }
+            }
+        }
+
+        private void ParseExtensionWithAssembly(string assemblyName, string prefix)
+        {
+            try
+            {
+                InternalLogger.Info("Loading assembly name: {0}", assemblyName);
 #if SILVERLIGHT && !WINDOWS_PHONE
                     var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
                     var assemblyPart = new AssemblyPart();
                     Assembly asm = assemblyPart.Load(si.Stream);
 #else
-                        Assembly asm = Assembly.Load(assemblyName);
+                Assembly asm = Assembly.Load(assemblyName);
 #endif
 
-                        this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
-                    }
-                    catch (Exception exception)
-                    {
-                        if (exception.MustBeRethrownImmediately())
-                        {
-                            throw;
-                        }
+                this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
 
-                        InternalLogger.Error(exception, "Error loading extensions.");
-                        NLogConfigurationException configException =
-                            new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
+                InternalLogger.Error(exception, "Error loading extensions.");
+                NLogConfigurationException configException =
+                    new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
 
-                        if (configException.MustBeRethrown())
-                        {
-                            throw configException;
-                        }
-                    }
+                if (configException.MustBeRethrown())
+                {
+                    throw configException;
                 }
             }
+        }
+
+        private void ParseExtensionWithAssemblyFle(string baseDirectory, string assemblyFile, string prefix)
+        {
+            try
+            {
+#if SILVERLIGHT && !WINDOWS_PHONE
+                    var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
+                    var assemblyPart = new AssemblyPart();
+                    Assembly asm = assemblyPart.Load(si.Stream);
+#else
+                string fullFileName = Path.Combine(baseDirectory, assemblyFile);
+                InternalLogger.Info("Loading assembly file: {0}", fullFileName);
+
+                Assembly asm = Assembly.LoadFrom(fullFileName);
+#endif
+                this.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error(exception, "Error loading extensions.");
+                NLogConfigurationException configException =
+                    new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
+
+                if (configException.MustBeRethrown())
+                {
+                    throw configException;
+                }
+            }
+
+            return;
         }
 
         private void ParseIncludeElement(NLogXmlElement includeElement, string baseDirectory, bool autoReloadDefault)
