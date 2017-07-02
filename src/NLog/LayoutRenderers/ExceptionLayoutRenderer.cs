@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Conditions;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -216,41 +218,45 @@ namespace NLog.LayoutRenderers
                 AggregateException asyncException = primaryException as AggregateException;
                 if (asyncException != null)
                 {
-                    asyncException = asyncException.Flatten();
-                    if (asyncException.InnerExceptions != null)
-                    {
-                        for (int i = 0; i < asyncException.InnerExceptions.Count && currentLevel < this.MaxInnerExceptionLevel; i++, currentLevel++)
-                        {
-                            currentException = asyncException.InnerExceptions[i];
-                            if (ReferenceEquals(currentException, primaryException.InnerException))
-                                continue;   // Skip firstException when it is innerException
-
-                            if (currentException == null)
-                            {
-                                InternalLogger.Debug("Skipping rendering exception as exception is null");
-                                continue;
-                            }
-
-                            AppendInnerException(sb2, currentException);
-                            currentLevel++;
-
-                            currentException = currentException.InnerException;
-                            while (currentException != null && currentLevel < this.MaxInnerExceptionLevel)
-                            {
-                                AppendInnerException(sb2, currentException);
-
-                                currentException = currentException.InnerException;
-                                currentLevel++;
-                            }
-                        }
-                    }
+                    AppendAggregateException(primaryException, currentLevel, sb2, asyncException);
                 }
 #endif
-
                 builder.Append(sb2.ToString());
             }
         }
+#if !NET3_5 && !SILVERLIGHT4
+        private void AppendAggregateException(Exception primaryException, int currentLevel, StringBuilder builder, AggregateException asyncException)
+        {
+            asyncException = asyncException.Flatten();
+            if (asyncException.InnerExceptions != null)
+            {
+                for (int i = 0; i < asyncException.InnerExceptions.Count && currentLevel < this.MaxInnerExceptionLevel; i++, currentLevel++)
+                {
+                    var currentException = asyncException.InnerExceptions[i];
+                    if (ReferenceEquals(currentException, primaryException.InnerException))
+                        continue; // Skip firstException when it is innerException
 
+                    if (currentException == null)
+                    {
+                        InternalLogger.Debug("Skipping rendering exception as exception is null");
+                        continue;
+                    }
+
+                    AppendInnerException(builder, currentException);
+                    currentLevel++;
+
+                    currentException = currentException.InnerException;
+                    while (currentException != null && currentLevel < this.MaxInnerExceptionLevel)
+                    {
+                        AppendInnerException(builder, currentException);
+
+                        currentException = currentException.InnerException;
+                        currentLevel++;
+                    }
+                }
+            }
+        }
+#endif
         private void AppendInnerException(StringBuilder sb2, Exception currentException)
         {
             // separate inner exceptions
