@@ -43,7 +43,7 @@ namespace NLog.Targets
     /// Line ending mode.
     /// </summary>
     [TypeConverter(typeof(LineEndingModeConverter))]
-    public sealed class LineEndingMode 
+    public sealed class LineEndingMode : IEquatable<LineEndingMode>
     {
         /// <summary>
         /// Insert platform-dependent end-of-line sequence after each line.
@@ -178,7 +178,7 @@ namespace NLog.Targets
 
             return mode1.NewLineCharacters != mode2.NewLineCharacters;
         }
-                  
+
         /// <summary>
         /// Returns a string representation of the log level.
         /// </summary>
@@ -197,7 +197,7 @@ namespace NLog.Targets
         /// </returns>
         public override int GetHashCode()
         {
-            return this.NewLineCharacters.GetHashCode();
+            return (newLineCharacters != null ? newLineCharacters.GetHashCode() : 0);
         }
 
         /// <summary>
@@ -215,15 +215,20 @@ namespace NLog.Targets
         /// </exception>
         public override bool Equals(object obj)
         {
-            LineEndingMode other = obj as LineEndingMode;
-            if ((object)other == null)
-            {
-                return false;
-            }
-
-            return this.NewLineCharacters == other.NewLineCharacters;
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj is LineEndingMode && Equals((LineEndingMode) obj);
         }
 
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(LineEndingMode other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return string.Equals(newLineCharacters, other.newLineCharacters);
+        }
 
 
         /// <summary>
@@ -256,5 +261,6 @@ namespace NLog.Targets
                 return name != null ? LineEndingMode.FromString(name) : base.ConvertFrom(context, culture, value);
             }
         }
+
     }
 }

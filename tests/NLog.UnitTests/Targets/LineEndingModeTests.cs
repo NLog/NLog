@@ -37,7 +37,7 @@ namespace NLog.UnitTests.Targets
     using System;
     using Xunit;
 
-    
+
     public class LineEndingModeTests : NLogTestBase
     {
         [Fact]
@@ -46,23 +46,37 @@ namespace NLog.UnitTests.Targets
             LineEndingMode modeDefault = LineEndingMode.Default;
             LineEndingMode modeNone = LineEndingMode.None;
             LineEndingMode modeLF = LineEndingMode.LF;
-			LineEndingMode modeCRLF = LineEndingMode.CRLF;
+            LineEndingMode modeCRLF = LineEndingMode.CRLF;
 
             Assert.True(LineEndingMode.Default == modeDefault);
             Assert.True(LineEndingMode.None == modeNone);
             Assert.True(LineEndingMode.LF == modeLF);
             Assert.False(LineEndingMode.Default == modeNone);
             Assert.False(LineEndingMode.None == modeLF);
-			Assert.False(LineEndingMode.None == modeCRLF);
+            Assert.False(LineEndingMode.None == modeCRLF);
+            Assert.False(LineEndingMode.None == (object)new { });
+            Assert.False(LineEndingMode.None == null);
 
-			// Handle running tests on different operating systems
-			if (modeCRLF.NewLineCharacters == System.Environment.NewLine) {
-				Assert.False(LineEndingMode.LF == modeDefault);
-				Assert.True(LineEndingMode.CRLF == modeDefault);
-			} else {
-				Assert.True(LineEndingMode.LF == modeDefault);
-				Assert.False(LineEndingMode.CRLF == modeDefault);
-			}
+            Assert.True(LineEndingMode.Default.Equals(modeDefault));
+            Assert.True(LineEndingMode.None.Equals(modeNone));
+            Assert.True(LineEndingMode.LF.Equals(modeLF));
+            Assert.False(LineEndingMode.Default.Equals(modeNone));
+            Assert.False(LineEndingMode.None.Equals(modeLF));
+            Assert.False(LineEndingMode.None.Equals(modeCRLF));
+            Assert.False(LineEndingMode.None.Equals(new { }));
+            Assert.False(LineEndingMode.None.Equals(null));
+
+            // Handle running tests on different operating systems
+            if (modeCRLF.NewLineCharacters == System.Environment.NewLine)
+            {
+                Assert.False(LineEndingMode.LF == modeDefault);
+                Assert.True(LineEndingMode.CRLF == modeDefault);
+            }
+            else
+            {
+                Assert.True(LineEndingMode.LF == modeDefault);
+                Assert.False(LineEndingMode.CRLF == modeDefault);
+            }
         }
 
         [Fact]
@@ -71,31 +85,34 @@ namespace NLog.UnitTests.Targets
             LineEndingMode modeDefault = LineEndingMode.Default;
             LineEndingMode modeNone = LineEndingMode.None;
             LineEndingMode modeLF = LineEndingMode.LF;
-			LineEndingMode modeCRLF = LineEndingMode.CRLF;
+            LineEndingMode modeCRLF = LineEndingMode.CRLF;
 
             Assert.True(LineEndingMode.Default != modeNone);
             Assert.True(LineEndingMode.None != modeLF);
-			Assert.True(LineEndingMode.None != modeCRLF);
+            Assert.True(LineEndingMode.None != modeCRLF);
             Assert.False(LineEndingMode.Default != modeDefault);
             Assert.False(LineEndingMode.None != modeNone);
             Assert.False(LineEndingMode.LF != modeLF);
-			Assert.False(LineEndingMode.CRLF != modeCRLF);
+            Assert.False(LineEndingMode.CRLF != modeCRLF);
 
             Assert.True(null != LineEndingMode.LF);
             Assert.True(null != modeLF);
             Assert.True(LineEndingMode.LF != null);
             Assert.True(modeLF != null);
-			Assert.True(null != LineEndingMode.CRLF);
-			Assert.True(null != modeCRLF);
-			Assert.True(LineEndingMode.CRLF != null);
-			Assert.True(modeCRLF != null);
+            Assert.True(null != LineEndingMode.CRLF);
+            Assert.True(null != modeCRLF);
+            Assert.True(LineEndingMode.CRLF != null);
+            Assert.True(modeCRLF != null);
 
-			// Handle running tests on different operating systems
-			if (modeCRLF.NewLineCharacters == System.Environment.NewLine) {
-				Assert.True(LineEndingMode.LF != modeDefault);
-			} else {
-				Assert.True(LineEndingMode.CRLF != modeDefault);
-			}
+            // Handle running tests on different operating systems
+            if (modeCRLF.NewLineCharacters == System.Environment.NewLine)
+            {
+                Assert.True(LineEndingMode.LF != modeDefault);
+            }
+            else
+            {
+                Assert.True(LineEndingMode.CRLF != modeDefault);
+            }
         }
 
         [Fact]
@@ -118,7 +135,7 @@ namespace NLog.UnitTests.Targets
         public void LineEndingModeToStringTest()
         {
             Assert.Equal(LineEndingMode.None.ToString(), "None");
-            Assert.Equal(LineEndingMode.Default.ToString(), "Default");            
+            Assert.Equal(LineEndingMode.Default.ToString(), "Default");
             Assert.Equal(LineEndingMode.CRLF.ToString(), "CRLF");
             Assert.Equal(LineEndingMode.CR.ToString(), "CR");
             Assert.Equal(LineEndingMode.LF.ToString(), "LF");
