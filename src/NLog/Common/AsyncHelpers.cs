@@ -69,6 +69,7 @@ namespace NLog.Common
 
                 if (!enumerator.MoveNext())
                 {
+                    enumerator.Dispose();
                     asyncContinuation(null);
                     return;
                 }
