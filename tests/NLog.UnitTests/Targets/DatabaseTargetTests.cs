@@ -51,16 +51,14 @@ namespace NLog.UnitTests.Targets
 
     public class DatabaseTargetTests : NLogTestBase
     {
-#if !MONO
         static DatabaseTargetTests()
         {
-            var data = (DataSet)ConfigurationManager.GetSection("system.data");
+            var data = (DataSet) ConfigurationManager.GetSection("system.data");
             var providerFactories = data.Tables["DBProviderFactories"];
             providerFactories.Rows.Add("MockDb Provider", "MockDb Provider", "MockDb",
                 typeof(MockDbFactory).AssemblyQualifiedName);
             providerFactories.AcceptChanges();
         }
-#endif
 
         [Fact]
         public void SimpleDatabaseTest()
