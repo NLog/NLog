@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
+namespace NLog.Targets.FileArchiveModes
+{
     /// <summary>
     /// Archives the log-files using a rolling style numbering (the most recent is always #0 then
     /// #1, ..., #N. When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives
