@@ -59,18 +59,9 @@ namespace NLog
 
         private static int globalSequenceId;
 
-        private string formattedMessage;
-        private string message;
-        private object[] parameters;
-        private IFormatProvider formatProvider;
         private IDictionary<Layout, string> layoutCache;
         private IDictionary<object, object> properties;
         private IDictionary eventContextAdapter;
-
-        /// <summary>
-        /// Parse message as template;
-        /// </summary>
-        private Template messageTemplate;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
@@ -126,7 +117,6 @@ namespace NLog
 
             if (NeedToPreformatMessage(parameters))
             {
-                this.CalcFormattedMessage();
             }
         }
 
@@ -208,74 +198,36 @@ namespace NLog
         /// <summary>
         /// Gets or sets the log message including any parameter placeholders.
         /// </summary>
-        public string Message
-        {
-            get { return message; }
-            set
-            {
-                message = value;
-
-                ResetMessageTemplate();
-                ResetFormattedMessage();
-                ResetMessageTemplate();
-            }
-        }
+        public string Message { get; set; }
 
         /// <summary>
         /// Gets or sets the parameter values or null if no parameters have been specified.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
-        public object[] Parameters
-        {
-            get { return parameters; }
-            set
-            {
-                parameters = value;
-                ResetFormattedMessage();
-            }
-        }
+        public object[] Parameters { get; set; }
 
         /// <summary>
         /// Gets or sets the format provider that was provided while logging or <see langword="null" />
         /// when no formatProvider was specified.
         /// </summary>
-        public IFormatProvider FormatProvider
-        {
-            get { return formatProvider; }
-            set
-            {
-                if (formatProvider != value)
-                {
-                    formatProvider = value;
-                    ResetFormattedMessage();
-                }
-            }
-        }
+        public IFormatProvider FormatProvider { get; set; }
 
         /// <summary>
         /// Gets the formatted message.
         /// </summary>
-        public string FormattedMessage
-        {
-            get
-            {
-                if (this.formattedMessage == null)
-                {
-                    this.CalcFormattedMessage();
-                }
-
-                return this.formattedMessage;
-            }
-        }
+        public string FormattedMessage { get; internal set; }
 
         /// <summary>
         /// Checks if any per-event context properties (Without allocation)
         /// </summary>
-        public bool HasProperties { get
+        public bool HasProperties
         {
-            var props = this.Properties;
-            return props != null && props.Count > 0;
-        } }
+            get
+            {
+                var props = this.Properties;
+                return props != null && props.Count > 0;
+            }
+        }
 
         /// <summary>
         /// Gets the dictionary of per-event context properties.
@@ -287,12 +239,6 @@ namespace NLog
                 if (this.properties == null)
                 {
                     this.properties = new Dictionary<object, object>();
-                }
-
-                if (this.messageTemplate == null)
-                {
-                    //template could have properties.
-                    this.ParseTemplate();
                 }
 
                 return this.properties;
@@ -314,12 +260,6 @@ namespace NLog
                     this.eventContextAdapter = new DictionaryAdapter<object, object>(Properties);
                 }
 
-                if (this.messageTemplate == null)
-                {
-                    //template could have properties.
-                    this.ParseTemplate();
-                }
-
                 return this.eventContextAdapter;
             }
         }
@@ -332,12 +272,7 @@ namespace NLog
         [CLSCompliant(false)]
         public Template GetMessageTemplate()
         {
-            if (this.messageTemplate == null)
-            {
-                this.ParseTemplate();
-            }
-
-            return messageTemplate;
+            return TemplateParser.Parse(Message);
         }
 
         /// <summary>
@@ -538,83 +473,6 @@ namespace NLog
             }
 
             return value.GetType().IsPrimitive || (value is string);
-        }
-
-        /// <summary>
-        /// Parse <see cref="Message"/> as template and fill <see cref="Properties"/>
-        /// </summary>
-        private void ParseTemplate()
-        {
-            if (Message == null)
-            {
-                return;
-            }
-            this.messageTemplate = TemplateParser.Parse(Message);
-
-            //expand holes to properties. Don't override.
-            if (!messageTemplate.IsPositional && this.Parameters != null && this.Parameters.Length > 0)
-            {
-                for (int i = 0; i < messageTemplate.Holes.Length && i < this.Parameters.Length; i++)
-                {
-                    var hole = messageTemplate.Holes[i];
-
-                    //don't overwrite user properties
-                    if (!this.Properties.ContainsKey(hole.Name))
-                    {
-                        var parameter = this.Parameters[i];
-                        this.Properties[hole.Name] = parameter;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Format the message from <see cref="message"/> and <see cref="Properties"/>
-        /// </summary>
-        private void CalcFormattedMessage()
-        {
-            if (this.Parameters == null || this.Parameters.Length == 0)
-            {
-                this.formattedMessage = this.Message;
-            }
-            else
-            {
-                try
-                {
-                    if (messageTemplate == null)
-                    {
-                        ParseTemplate();
-                    }
-
-                    this.formattedMessage = messageTemplate.Render(this.FormatProvider ?? CultureInfo.CurrentCulture, this.parameters);
-                }
-                catch (Exception exception)
-                {
-                    this.formattedMessage = this.Message;
-                    InternalLogger.Warn(exception, "Error when formatting a message.");
-
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Reset the result of <see cref="CalcFormattedMessage"/>
-        /// </summary>
-        private void ResetFormattedMessage()
-        {
-            this.formattedMessage = null;
-        }
-
-        /// <summary>
-        /// Reset the result of the <see cref="ParseTemplate"/>
-        /// </summary>
-        private void ResetMessageTemplate()
-        {
-            this.messageTemplate = null;
         }
     }
 }
