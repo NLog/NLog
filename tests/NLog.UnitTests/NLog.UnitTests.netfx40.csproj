@@ -122,6 +122,7 @@
     <Compile Include="Filters\WhenEqualTests.cs" />
     <Compile Include="Filters\WhenNotContainsTests.cs" />
     <Compile Include="Filters\WhenNotEqualTests.cs" />
+    <Compile Include="Filters\WhenRepeatedTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
     <Compile Include="Internal\AppDomainPartialTrustTests.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
     <Compile Include="Internal\FilePathLayoutTests.cs" />
     <Compile Include="Internal\LayoutHelpersTests.cs" />
+    <Compile Include="Internal\MruCacheTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
     <Compile Include="Internal\PlatformDetectorTests.cs" />
