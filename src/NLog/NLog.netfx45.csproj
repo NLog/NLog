@@ -305,7 +305,9 @@
     <Compile Include="LayoutRenderers\Wrappers\ReplaceLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceNewLinesLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\Rot13LayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\LeftLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceLayoutRendererWrapper.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\SubstringLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\UppercaseLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\UrlEncodeLayoutRendererWrapper.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyLayoutRendererWrapper.cs" />
