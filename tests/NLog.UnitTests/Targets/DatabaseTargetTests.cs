@@ -49,6 +49,13 @@ namespace NLog.UnitTests.Targets
     using Xunit.Extensions;
     using System.Data.SqlClient;
 
+
+#if MONO 
+    using Mono.Data.Sqlite;
+#else
+    using System.Data.SQLite;
+#endif
+
     public class DatabaseTargetTests : NLogTestBase
     {
 #if !MONO
@@ -832,6 +839,142 @@ Dispose()
         }
 
         [Fact]
+        public void SQLite_InstallAndLogMessageProgrammatically()
+        {
+            SQLiteTest sqlLite = new SQLiteTest("TestLogProgram.sqlite");
+
+            // delete database if it for some reason already exists 
+            sqlLite.TryDropDatabase();
+            LogManager.ThrowExceptions = true;
+
+            try
+            {
+                sqlLite.CreateDatabase();
+
+                var connectionString = sqlLite.GetConnectionString();
+
+                DatabaseTarget testTarget = new DatabaseTarget("TestSqliteTarget");
+                testTarget.ConnectionString = connectionString;
+                string dbProvider = "";
+#if MONO 
+                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
+#else
+                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
+#endif
+                testTarget.DBProvider = dbProvider;
+
+                testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
+                {
+                    CommandType = System.Data.CommandType.Text,
+                    Text = $@"
+                    CREATE TABLE NLogTestTable (
+                        Id int PRIMARY KEY,
+                        Message varchar(100) NULL)"
+                });
+
+                using (var context = new InstallationContext())
+                {
+                    testTarget.Install(context);
+                }
+
+                // check so table is created
+                var tableName = sqlLite.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogTestTable'");
+                Assert.Equal("NLogTestTable", tableName);
+
+                testTarget.CommandText = "INSERT INTO NLogTestTable (Message) VALUES (@message)";
+                testTarget.Parameters.Add(new DatabaseParameterInfo("@message", new NLog.Layouts.SimpleLayout("${message}")));
+
+                // setup logging
+                var config = new LoggingConfiguration();
+                config.AddTarget("dbTarget", testTarget);
+
+                var rule = new LoggingRule("*", LogLevel.Debug, testTarget);
+                config.LoggingRules.Add(rule);
+
+                // try to log
+                LogManager.Configuration = config;
+
+                var logger = LogManager.GetLogger("testLog");
+                logger.Debug("Test debug message");
+                logger.Error("Test error message");
+
+                // will return long
+                var logcount = sqlLite.IssueScalarQuery("SELECT count(1) FROM NLogTestTable");
+
+                Assert.Equal((long)2, logcount);
+            }
+            finally
+            {
+                sqlLite.TryDropDatabase();
+            }
+        }
+
+        [Fact]
+        public void SQLite_InstallAndLogMessage()
+        {
+            SQLiteTest sqlLite = new SQLiteTest("TestLogXml.sqlite");
+
+            // delete database just in case
+            sqlLite.TryDropDatabase();
+            LogManager.ThrowExceptions = true;
+
+            try
+            {
+                sqlLite.CreateDatabase();
+
+                var connectionString = sqlLite.GetConnectionString();
+                string dbProvider = "";
+#if MONO 
+                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
+#else
+                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
+#endif
+                // Create log with xml config
+                LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
+                <targets>
+                    <target name='database' xsi:type='Database' dbProvider=""" + dbProvider + @""" connectionstring=""" + connectionString + @"""
+                        commandText='insert into NLogSqlLiteTest (Message) values (@message);'>
+                        <parameter name='@message' layout='${message}' />
+<install-command ignoreFailures=""false""
+                 text=""CREATE TABLE NLogSqlLiteTest (
+    Id int PRIMARY KEY,
+    Message varchar(100) NULL
+);""/>
+
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='database' />
+                </rules>
+            </nlog>");
+
+                //install 
+                InstallationContext context = new InstallationContext();
+                LogManager.Configuration.Install(context);
+
+                // check so table is created
+                var tableName = sqlLite.IssueScalarQuery("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'NLogSqlLiteTest'");
+                Assert.Equal("NLogSqlLiteTest", tableName);
+
+                // start to log
+                var logger = LogManager.GetLogger("SQLite");
+                logger.Debug("Test");
+                logger.Error("Test2");
+                logger.Info("Final test row");
+
+                // returns long
+                var logcount = sqlLite.IssueScalarQuery("SELECT count(1) FROM NLogSqlLiteTest");
+                Assert.Equal((long)3, logcount);
+            }
+            finally
+            {
+                sqlLite.TryDropDatabase();
+            }
+        }
+
+        [Fact]
         public void SqlServer_NoTargetInstallException()
         {
             if (SqlServerTest.IsTravis())
@@ -859,8 +1002,8 @@ Dispose()
                         RETURN
 
                     CREATE TABLE [Dbo].[NLogTestTable] (
-				        [ID] [int] IDENTITY(1,1) NOT NULL,
-				        [MachineName] [nvarchar](200) NULL)"
+                        [ID] [int] IDENTITY(1,1) NOT NULL,
+                        [MachineName] [nvarchar](200) NULL)"
                 });
                 
                 using (var context = new InstallationContext())
@@ -1497,6 +1640,108 @@ Dispose()
             public override ConnectionState State
             {
                 get { throw new NotImplementedException(); }
+            }
+        }
+
+        private class SQLiteTest
+        {
+            private string dbName = "NLogTest.sqlite";
+            private string connectionString;
+
+            public SQLiteTest(string dbName)
+            {
+                this.dbName = dbName;
+                connectionString = "Data Source=" + this.dbName + ";Version=3;";
+            }
+
+            public string GetConnectionString()
+            {
+                return connectionString;
+            }
+
+            public void CreateDatabase()
+            {
+                if (DatabaseExists())
+                {
+                    TryDropDatabase();
+                }
+
+                SQLiteHandler.CreateDatabase(dbName);
+            }
+
+            public bool DatabaseExists()
+            {
+                return File.Exists(dbName);
+            }
+
+            public void TryDropDatabase()
+            {
+                try
+                {
+                    if (DatabaseExists())
+                    {
+                        File.Delete(dbName);
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            public void IssueCommand(string commandString)
+            {
+                using (DbConnection connection = SQLiteHandler.GetConnection(connectionString))
+                {
+                    connection.Open();
+                    using (DbCommand command = SQLiteHandler.CreateCommand(commandString, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            public object IssueScalarQuery(string commandString)
+            {
+                using (DbConnection connection = SQLiteHandler.GetConnection(connectionString))
+                {
+                    connection.Open();
+                    using (DbCommand command = SQLiteHandler.CreateCommand(commandString, connection))
+                    {
+                        var scalar = command.ExecuteScalar();
+                        return scalar;
+                    }
+                }
+            }
+        }
+
+        private static class SQLiteHandler
+        {
+            public static void CreateDatabase(string dbName)
+            {
+
+#if MONO 
+                SqliteConnection.CreateFile(dbName);
+#else
+                SQLiteConnection.CreateFile(dbName);
+#endif
+            }
+
+            public static DbConnection GetConnection(string connectionString)
+            {
+#if MONO 
+                return new SqliteConnection(connectionString); 
+#else
+                return new SQLiteConnection(connectionString);
+#endif
+            }
+
+            public static DbCommand CreateCommand(string commandString, DbConnection connection)
+            {
+#if MONO 
+                return new SqliteCommand(commandString, (SqliteConnection)connection);
+#else
+                return new SQLiteCommand(commandString, (SQLiteConnection)connection);
+#endif
             }
         }
 
