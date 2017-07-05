@@ -269,7 +269,6 @@ namespace NLog
         /// 
         /// Will be null if <see cref="Message"/> is null.
         /// </summary>
-        [CLSCompliant(false)]
         public Template GetMessageTemplate()
         {
             return TemplateParser.Parse(Message);

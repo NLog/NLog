@@ -18,7 +18,7 @@ For your main project also need to install "NLog Configuration" package.</descri
     <language>en-US</language>
         <tags>NLog logging log tracing logfiles archiving database eventlog email</tags>
         <dependencies>
-            <dependency id="NLog.StructuredEvents" version="0.3.1" />
+            <dependency id="NLog.StructuredEvents" version="0.4.0" />
         </dependencies>
     </metadata>
 </package>
