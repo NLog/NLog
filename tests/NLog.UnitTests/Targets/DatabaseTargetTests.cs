@@ -47,6 +47,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using Xunit;
     using Xunit.Extensions;
+    using System.Linq;
     using System.Data.SqlClient;
 
     public class DatabaseTargetTests : NLogTestBase
@@ -118,11 +119,11 @@ Dispose()
 
             List<Exception> exceptions = new List<Exception>();
             var events = new[]
-            {
-                new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "MyLogger", "msg2").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "MyLogger", "msg3").WithContinuation(exceptions.Add),
-            };
+                {
+                    new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "MyLogger", "msg2").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "MyLogger", "msg3").WithContinuation(exceptions.Add),
+                };
 
             dt.WriteAsyncLogEvents(events);
             foreach (var ex in exceptions)
@@ -501,22 +502,22 @@ Dispose()
                 DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 KeepConnection = true,
                 Parameters =
-                {
-                    new DatabaseParameterInfo("msg", "${message}")
                     {
-                        Precision = 3,
-                        Scale = 7,
-                        Size = 9,
-                    },
-                    new DatabaseParameterInfo("lvl", "${level}")
-                    {
-                        Scale = 7
-                    },
-                    new DatabaseParameterInfo("lg", "${logger}")
-                    {
-                        Precision = 0
-                    },
-                }
+                        new DatabaseParameterInfo("msg", "${message}")
+                        {
+                            Precision = 3,
+                            Scale = 7,
+                            Size = 9,
+                        },
+                        new DatabaseParameterInfo("lvl", "${level}")
+                        {
+                            Scale = 7
+                        },
+                        new DatabaseParameterInfo("lg", "${logger}")
+                        {
+                            Precision = 0
+                        },
+                    }
             };
 
             dt.Initialize(null);
@@ -832,6 +833,98 @@ Dispose()
         }
 
         [Fact]
+        public void Oracle_SetParamTypeShouldSetCustomEnumValueTest()
+        {
+            var expected = OracleDbType.Clob;
+            var target = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo
+            {
+                // normally this would be your DB providers namespace
+                // You can figure this value out by doing something like this:
+                // typeof(OracleDbType).FullName + ".Clob"
+                DbType = "NLog.UnitTests.Targets.OracleDbType.Clob"
+            };
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
+
+            target.SetParamType(parameter, parameterInfo.DbType);
+
+            Assert.Equal(expected, parameter.OracleDbType);
+        }
+
+
+        [Theory]
+        [InlineData("SQLSERVER", "System.Data.SqlDbType.DateTime, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089", DbType.DateTime)]
+        //    [InlineData("SQLSERVER", "System.Data.SqlDbType.DateTime, System.Data", DbType.DateTime)]
+        [InlineData("SQLSERVER", "System.Data.SqlDbType.DateTime", DbType.DateTime)]
+        //       [InlineData("SQLSERVER", "SqlDbType.DateTime", DbType.DateTime)]
+        public void CreateCommandTests(string dbProvider, string dbTypeName, DbType dbType)
+        {
+            var logEvent = LogEventInfo.CreateNullEvent();
+
+            //todo dbprobider=System.Data.SqlClient wont work?
+
+            var configXml = string.Format(@"
+<nlog ThrowExceptions='true'>
+    <targets>
+        <target name='database' type='Database' 
+            dbProvider = '{1}'
+            connectionString = 'some-connectionstring'   
+            commandText='@boo'     >
+ 
+            <parameter name='@date' layout='${{date:format=yyyy\-MM\-dd HH\:mm\:ss.fff}}' DbType='{0}' />
+        </target>
+    </targets>
+</nlog>
+", dbTypeName, dbProvider);
+
+            var config = CreateConfigurationFromString(configXml);
+
+            //todo better crash if InitializeAll not called
+            config.InitializeAll();
+            var databaseTarget = config.FindTargetByName<DatabaseTarget>("database");
+            Assert.NotNull(databaseTarget);
+            Assert.Equal(1, databaseTarget.Parameters.Count);
+            var command = databaseTarget.CreateCommand(logEvent, databaseTarget.CreateConnection());
+            Assert.Equal(1, command.Parameters.Count);
+
+            Assert.Equal(dbType, ((IDataParameter)command.Parameters[0]).DbType);
+
+
+
+        }
+
+        [Theory]
+        //    [InlineData("System.Data.SqlDbType.DateTime, System.Data", DbType.DateTime)]
+        [InlineData("System.Data.SqlDbType.DateTime, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089", DbType.DateTime)]
+        [InlineData("System.Data.DbType.DateTime2", DbType.DateTime2)]
+        [InlineData("", DbType.AnsiString)]
+        public void DbType_SetParamTypeShouldSetEnumValueTest(string dbTypeString, DbType expected)
+        {
+            LogManager.ThrowExceptions = true;
+            var target = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo
+            {
+                DbType = dbTypeString
+            };
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
+
+            target.SetParamType(parameter, parameterInfo.DbType);
+            Assert.Equal(expected, parameter.DbType);
+        }
+
+        [Fact]
         public void SqlServer_NoTargetInstallException()
         {
             if (SqlServerTest.IsTravis())
@@ -862,7 +955,7 @@ Dispose()
 				        [ID] [int] IDENTITY(1,1) NOT NULL,
 				        [MachineName] [nvarchar](200) NULL)"
                 });
-                
+
                 using (var context = new InstallationContext())
                 {
                     testTarget.Install(context);
@@ -996,6 +1089,94 @@ Dispose()
             databaseTarget.Initialize(null);
             Assert.NotNull(databaseTarget.ProviderFactory);
             Assert.Equal(typeof(System.Data.SqlClient.SqlClientFactory), databaseTarget.ProviderFactory.GetType());
+        }
+
+        [Theory]
+        [InlineData("INVALID" + ".Clob")]
+        [InlineData("INVALID")]
+        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType.Clob")]
+        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType")]
+        public void SetParamTypeShouldThrowExceptionsTest(string dbType)
+        {
+            var target = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo
+            {
+                DbType = dbType
+            };
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
+
+            LogManager.ThrowExceptions = true;
+            Exception exception = Assert.Throws<NLogConfigurationException>(() =>
+                target.SetParamType(parameter, parameterInfo.DbType));
+
+            Assert.Contains(dbType, exception.Message);
+        }
+
+        [Fact]
+        public void Oracle_SetParamTypeShouldDoNothingIfNotSetTest()
+        {
+            var target = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo();
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
+            var expected = parameter.OracleDbType = OracleDbType.Blob;
+
+            target.SetParamType(parameter, parameterInfo.DbType);
+
+            Assert.Equal(expected, parameter.OracleDbType);
+        }
+
+        [Fact]
+        public void SetParamTypeShouldDoNothingIfNotSetTest()
+        {
+            var target = new DatabaseTarget
+            {
+                Name = "notimportant",
+                DBProvider = "notimportant",
+                ConnectionString = "notimportant",
+                CommandText = "notimportant",
+            };
+            var parameterInfo = new DatabaseParameterInfo { DbType = null };
+            var parameter = new MockDbParameter(new MockDbCommand(), 0);
+            var expected = parameter.DbType = DbType.String;
+            target.SetParamType(parameter, parameterInfo.DbType);
+            Assert.Equal(expected, parameter.DbType);
+        }
+
+        [Theory]
+        [InlineData("NLog.UnitTests.Targets.DatabaseTargetTests+MockDbParameter+CustomDbType")]
+        public void DbTypeParametersShouldBeSetByConfigurationTest(string dbType)
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
+                <targets>
+                    <target name='database' xsi:type='Database' commandText = 'Begin End;' >
+                      <parameter name='@message' layout='${message}'
+                                 DbType='" + dbType + @"'/>
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='database' />
+                </rules>
+            </nlog>");
+
+            var logger = LogManager.GetLogger("A");
+            var target = logger.Factory.Configuration.AllTargets.First() as DatabaseTarget;
+            var parameter = target.Parameters.First();
+            Assert.Equal(dbType, parameter.DbType);
+
         }
 
         [Theory]
@@ -1232,7 +1413,6 @@ Dispose()
             private readonly int paramId;
             private string parameterName;
             private object parameterValue;
-            private DbType parameterType;
 
             public MockDbParameter(MockDbCommand mockDbCommand, int paramId)
             {
@@ -1240,11 +1420,13 @@ Dispose()
                 this.paramId = paramId;
             }
 
-            public DbType DbType
-            {
-                get { return this.parameterType; }
-                set { this.parameterType = value; }
-            }
+            /// <summary>
+            /// Mocks Oracle data type property so that we won't have to add a 
+            /// direct reference to Oracle in order to test.
+            /// </summary>
+            public OracleDbType OracleDbType { get; set; }
+
+            public DbType DbType { get; set; }
 
             public ParameterDirection Direction
             {
@@ -1500,10 +1682,21 @@ Dispose()
             }
         }
 
+        /// <summary>
+        /// Since we don't really need to add a real life reference to oracle we just
+        /// make a fake enum that we can reference
+        /// </summary>
+        /// <remarks>This needs to not be embedded in the test class
+        /// so that the namespace will have a . in front of it.</remarks>
+        public enum OracleDbType
+        {
+            Default,
+            Clob,
+            Blob
+        }
+
         private static class SqlServerTest
         {
-
-
             static SqlServerTest()
             {
             }
