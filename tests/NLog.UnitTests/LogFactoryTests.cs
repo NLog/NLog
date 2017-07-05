@@ -231,7 +231,8 @@ namespace NLog.UnitTests
         {
             LogManager.Configuration = null;
 
-            File.WriteAllText("NLog.config", @"
+            var filename = "NLog.config";
+            File.WriteAllText(filename, @"
             <nlog>
                 <variable name='dir' value='c:\mylogs' />
                 <targets>
@@ -243,11 +244,13 @@ namespace NLog.UnitTests
             </nlog>");
             try
             {
-                LogManager.Configuration.ToString();
+                var x = LogManager.Configuration;
+                //2nd call
+                var config = new XmlLoggingConfiguration(filename);
             }
             finally
             {
-                File.Delete("NLog.config");
+                File.Delete(filename);
             }
         }
 
