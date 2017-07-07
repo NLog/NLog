@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 
+namespace NLog.Targets.FileArchiveModes
+{
     /// <summary>
     /// Archives the log-files using a date style numbering. Archives will be stamped with the
     /// prior period (Year, Month, Day, Hour, Minute) datetime. When the number of archive files exceed <see

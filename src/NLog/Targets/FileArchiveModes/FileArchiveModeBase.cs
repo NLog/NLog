@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
+namespace NLog.Targets.FileArchiveModes
+{
     abstract class FileArchiveModeBase : IFileArchiveMode
     {
         private int _lastArchiveFileCount = short.MaxValue * 2;
@@ -51,10 +51,7 @@ namespace NLog.Targets
         /// <returns>True, when archive cleanup is needed</returns>
         public virtual bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
         {
-            if (_lastArchiveFileCount++ > maxArchiveFiles)
-                return true;
-            else
-                return false;
+            return _lastArchiveFileCount++ > maxArchiveFiles;
         }
 
         public string GenerateFileNameMask(string archiveFilePath)

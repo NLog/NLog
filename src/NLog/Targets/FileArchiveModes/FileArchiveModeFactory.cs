@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets
-{
-    using System;
+using System;
 
+namespace NLog.Targets.FileArchiveModes
+{
     static class FileArchiveModeFactory
     {
         public static IFileArchiveMode CreateArchiveStyle(string archiveFilePath, ArchiveNumberingMode archiveNumbering, string dateFormat, bool customArchiveFileName, int maxArchiveFiles)

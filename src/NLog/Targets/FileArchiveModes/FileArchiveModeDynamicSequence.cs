@@ -31,15 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Text;
-    using NLog.Internal;
-    using System.Globalization;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using NLog.Internal;
 
+namespace NLog.Targets.FileArchiveModes
+{
     /// <summary>
     /// Archives the log-files using the provided base-archive-filename. If the base-archive-filename causes
     /// duplicate archive filenames, then sequence-style is automatically enforced.

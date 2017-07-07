@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
+namespace NLog.Targets.FileArchiveModes
+{
     /// <summary>
     /// Dynamically converts a non-template archiveFilePath into a correct archiveFilePattern.
     /// Before called the original IFileArchiveMode, that has been wrapped by this

@@ -36,6 +36,8 @@
 #define SupportsMutex
 #endif
 
+using NLog.Targets.FileArchiveModes;
+
 namespace NLog.Targets
 {
     using System;
@@ -1698,10 +1700,7 @@ namespace NLog.Targets
                 finally
                 {
 #if SupportsMutex
-                    if (archiveMutex != null)
-                    {
-                        archiveMutex.ReleaseMutex();
-                    }
+                    archiveMutex?.ReleaseMutex();
 #endif
                 }
             }
