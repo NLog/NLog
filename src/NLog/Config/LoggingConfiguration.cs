@@ -372,7 +372,7 @@ namespace NLog.Config
                 catch (Exception exception)
                 {
                     InternalLogger.Error(exception, "Install of '{0}' failed.", installable);
-                    if (exception.MustBeRethrownImmediately())
+                    if (exception.MustBeRethrownImmediately() || installationContext.ThrowExceptions)
                     {
                         throw;
                     }

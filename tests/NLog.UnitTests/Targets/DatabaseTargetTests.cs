@@ -837,7 +837,7 @@ Dispose()
             dt.Initialize(null);
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
-
+        
         [Fact]
         public void SQLite_InstallAndLogMessageProgrammatically()
         {
@@ -909,6 +909,15 @@ Dispose()
             }
         }
 
+        private string GetSQLiteDbProvider()
+        {
+#if MONO
+            return "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
+#else
+            return "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
+#endif
+        }
+
         [Fact]
         public void SQLite_InstallAndLogMessage()
         {
@@ -923,12 +932,8 @@ Dispose()
                 sqlLite.CreateDatabase();
 
                 var connectionString = sqlLite.GetConnectionString();
-                string dbProvider = "";
-#if MONO 
-                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
-#else
-                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
-#endif
+                string dbProvider = GetSQLiteDbProvider();
+
                 // Create log with xml config
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
@@ -972,6 +977,63 @@ Dispose()
             {
                 sqlLite.TryDropDatabase();
             }
+        }
+
+        private void SetupInvalidSQLiteDatabase(string databaseName)
+        {
+            var nlogXmlConfig = @"
+            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
+                <targets>
+                    <target name='database' xsi:type='Database' dbProvider='{0}' connectionstring='{1}' 
+                        commandText='insert into NLogSqlLiteTest (Message) values (@message);'>
+                        <parameter name='@message' layout='${{message}}' />
+                        <install-command ignoreFailures='false'
+                                         text='DROP TABLE NonExistingTable (
+                            Id int PRIMARY KEY,
+                            Message varchar(100) NULL
+                        );' />
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='database' />
+                </rules>
+            </nlog>";
+
+            // Use an in memory SQLite database
+            // See https://www.sqlite.org/inmemorydb.html
+            var connectionString = String.Format("FullUri=file::{0}:;Version=3", databaseName);
+
+            LogManager.Configuration = CreateConfigurationFromString(
+                String.Format(nlogXmlConfig, GetSQLiteDbProvider(), connectionString)
+            );
+        }
+
+        [Fact]
+        public void NotRethrowingInstallExceptions()
+        {
+            SetupInvalidSQLiteDatabase("rethrowing_install_exceptions");
+
+            // Default InstallationContext should not rethrow exceptions
+            InstallationContext context = new InstallationContext();
+            Assert.False(context.ThrowExceptions);
+            
+            Assert.DoesNotThrow(() => LogManager.Configuration.Install(context));
+        }
+        
+        [Fact]
+        public void RethrowingInstallExceptions()
+        {
+            SetupInvalidSQLiteDatabase("rethrowing_install_exceptions");
+
+            InstallationContext context = new InstallationContext()
+            {
+                ThrowExceptions = true
+            };
+
+            Assert.True(context.ThrowExceptions);  // Sanity check
+            
+            Assert.Throws<SQLiteException>(() => LogManager.Configuration.Install(context));
         }
 
         [Fact]

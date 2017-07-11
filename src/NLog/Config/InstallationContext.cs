@@ -77,6 +77,7 @@ namespace NLog.Config
             this.LogOutput = logOutput;
             this.Parameters = new Dictionary<string, string>();
             this.LogLevel = LogLevel.Info;
+            this.ThrowExceptions = false;
         }
 
         /// <summary>
@@ -98,6 +99,12 @@ namespace NLog.Config
         /// Gets or sets the log output.
         /// </summary>
         public TextWriter LogOutput { get; set; }
+
+        /// <summary>
+        /// Whether installation exceptions should be rethrown. By default,
+        /// installation exceptions are not rethrown.
+        /// </summary>
+        public bool ThrowExceptions { get; set; }
 
         /// <summary>
         /// Logs the specified trace message.
