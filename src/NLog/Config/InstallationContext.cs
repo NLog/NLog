@@ -91,6 +91,12 @@ namespace NLog.Config
         public bool IgnoreFailures { get; set; }
 
         /// <summary>
+        /// Whether installation exceptions should be rethrown. If IgnoreFailures is set to true,
+        /// this property has no effect (there are no exceptions to rethrow).
+        /// </summary>
+        public bool ThrowExceptions { get; set; }
+
+        /// <summary>
         /// Gets the installation parameters.
         /// </summary>
         public IDictionary<string, string> Parameters { get; private set; }
@@ -99,12 +105,6 @@ namespace NLog.Config
         /// Gets or sets the log output.
         /// </summary>
         public TextWriter LogOutput { get; set; }
-
-        /// <summary>
-        /// Whether installation exceptions should be rethrown. By default,
-        /// installation exceptions are not rethrown.
-        /// </summary>
-        public bool ThrowExceptions { get; set; }
 
         /// <summary>
         /// Logs the specified trace message.

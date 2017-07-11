@@ -855,13 +855,7 @@ Dispose()
 
                 DatabaseTarget testTarget = new DatabaseTarget("TestSqliteTarget");
                 testTarget.ConnectionString = connectionString;
-                string dbProvider = "";
-#if MONO 
-                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
-#else
-                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
-#endif
-                testTarget.DBProvider = dbProvider;
+                testTarget.DBProvider = GetSQLiteDbProvider();
 
                 testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
                 {
@@ -979,20 +973,16 @@ Dispose()
             }
         }
 
-        private void SetupInvalidSQLiteDatabase(string databaseName)
+        private void SetupSqliteConfigWithInvalidInstallCommand(string databaseName)
         {
             var nlogXmlConfig = @"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
-                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='false'>
                 <targets>
                     <target name='database' xsi:type='Database' dbProvider='{0}' connectionstring='{1}' 
-                        commandText='insert into NLogSqlLiteTest (Message) values (@message);'>
+                        commandText='insert into RethrowingInstallExceptionsTable (Message) values (@message);'>
                         <parameter name='@message' layout='${{message}}' />
-                        <install-command ignoreFailures='false'
-                                         text='DROP TABLE NonExistingTable (
-                            Id int PRIMARY KEY,
-                            Message varchar(100) NULL
-                        );' />
+                        <install-command ignoreFailures='false' text='THIS IS NOT VALID SQL;' />
                     </target>
                 </targets>
                 <rules>
@@ -1002,7 +992,7 @@ Dispose()
 
             // Use an in memory SQLite database
             // See https://www.sqlite.org/inmemorydb.html
-            var connectionString = String.Format("FullUri=file::{0}:;Version=3", databaseName);
+            var connectionString = String.Format("FullUri=file:{0}?mode=memory;Version=3", databaseName);
 
             LogManager.Configuration = CreateConfigurationFromString(
                 String.Format(nlogXmlConfig, GetSQLiteDbProvider(), connectionString)
@@ -1012,19 +1002,21 @@ Dispose()
         [Fact]
         public void NotRethrowingInstallExceptions()
         {
-            SetupInvalidSQLiteDatabase("rethrowing_install_exceptions");
+            SetupSqliteConfigWithInvalidInstallCommand("not_rethrowing_install_exceptions");
 
             // Default InstallationContext should not rethrow exceptions
             InstallationContext context = new InstallationContext();
-            Assert.False(context.ThrowExceptions);
-            
+
+            Assert.False(context.IgnoreFailures, "Failures should not be ignored by default");
+            Assert.False(context.ThrowExceptions, "Exceptions should not be thrown by default");
+
             Assert.DoesNotThrow(() => LogManager.Configuration.Install(context));
         }
         
         [Fact]
         public void RethrowingInstallExceptions()
         {
-            SetupInvalidSQLiteDatabase("rethrowing_install_exceptions");
+            SetupSqliteConfigWithInvalidInstallCommand("rethrowing_install_exceptions");
 
             InstallationContext context = new InstallationContext()
             {
