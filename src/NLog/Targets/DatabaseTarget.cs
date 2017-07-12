@@ -344,7 +344,7 @@ namespace NLog.Targets
                     this.ProviderFactory = DbProviderFactories.GetFactory(cs.ProviderName);
                     foundProvider = true;
                 }
-            
+
             }
 
             if (!foundProvider)
@@ -507,9 +507,11 @@ namespace NLog.Targets
                 }
             }
         }
-
+        /// <summary>
+        /// Write logEvent to database
+        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
-        private void WriteEventToDatabase(LogEventInfo logEvent)
+        protected virtual void WriteEventToDatabase(LogEventInfo logEvent)
         {
             //Always suppress transaction so that the caller does not rollback loggin if they are rolling back their transaction.
             using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
@@ -531,6 +533,7 @@ namespace NLog.Targets
                         {
                             p.ParameterName = par.Name;
                         }
+                        p.DbType = par.Type;
 
                         if (par.Size != 0)
                         {
@@ -548,8 +551,7 @@ namespace NLog.Targets
                         }
 
                         string stringValue = base.RenderLogEvent(par.Layout, logEvent);
-
-                        p.Value = stringValue;
+                        p.Value = ConvertTo(par, stringValue);
                         command.Parameters.Add(p);
 
                         InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
@@ -562,6 +564,32 @@ namespace NLog.Targets
                 //not really needed as there is no transaction at all.
                 transactionScope.Complete();
             }
+        }
+        /// <summary>
+        /// Convert valut to DbType value.
+        /// </summary>
+        protected virtual object ConvertTo(DatabaseParameterInfo par, string value)
+        {
+            switch (par.Type)
+            {
+                case DbType.String: return value;
+                case DbType.Decimal: return decimal.Parse(value);
+                case DbType.Double: return double.Parse(value);
+                case DbType.Single: return float.Parse(value);
+                case DbType.DateTime:
+                case DbType.DateTime2:
+                case DbType.Date:
+                case DbType.Time:
+                    return DateTime.ParseExact(value, GetDateFormat(par), null);
+            }
+            return value;
+        }
+        /// <summary>
+        /// Convert valut to DbType value.
+        /// </summary>
+        protected virtual string GetDateFormat(DatabaseParameterInfo par)
+        {
+            return string.IsNullOrEmpty(par.Format) ? "yyyy/MM/dd HH:mm:ss.fff" : par.Format;
         }
         /// <summary>
         /// Build the connectionstring from the properties. 
