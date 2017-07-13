@@ -31,49 +31,42 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Text;
+using NLog.Config;
+
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using System;
-    using System.ComponentModel;
-    using NLog.Config;
-    using System.Text;
-
     /// <summary>
-    /// Substring the result
+    /// Left part of a text
     /// </summary>
-    /// <example>
-    /// ${substring:${level}:start=2:length=2} 
-    /// ${substring:${level}:start=-2:length=2} 
-    /// ${substring:Inner=${level}:start=2:length=2} 
-    /// </example>
-    [LayoutRenderer("substring")]
+    [LayoutRenderer("left")]
     [ThreadAgnostic]
-    public class SubstringLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public class LeftLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
+        private SubstringLayoutRendererWrapper substringWrapper;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
+        /// New wrapper
         /// </summary>
-        public SubstringLayoutRendererWrapper()
+        public LeftLayoutRendererWrapper()
         {
-            Start = 0;
+            substringWrapper = new SubstringLayoutRendererWrapper();
         }
 
         /// <summary>
-        /// Gets or sets the start index. 
+        /// Gets or sets the length in characters. 
         /// </summary>
         /// <value>Index</value>
         /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(0)]
-        public int Start { get; set; }
-
-        /// <summary>
-        /// Gets or sets the length in characters. If <c>null</c>, then the whole string
-        /// </summary>
-        /// <value>Index</value>
-        /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(null)]
         [RequiredParameter]
-        public int? Length { get; set; }
+        public int Length
+        {
+            get { return substringWrapper.Length ?? 0; }
+            set { substringWrapper.Length = value; }
+        }
+
+
+        #region Overrides of WrapperLayoutRendererBuilderBase
 
         /// <summary>
         /// Transforms the output of another layout.
@@ -81,37 +74,9 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="target">Output to be transform.</param>
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            TransformMessage(target);
+            substringWrapper.TransformMessage(target);
         }
 
-        /// <summary>
-        /// Change the <paramref name="target"/> for the formatting
-        /// </summary>
-        /// <param name="target">change this one</param>
-        internal void TransformMessage(StringBuilder target)
-        {
-            if (Length <= 0 || Start >= target.Length)
-            {
-                //clear everything - no .Clear on .NET 3.5
-                target.Length = 0;
-                return;
-            }
-
-            //start <0, then from end
-            if (Start < 0)
-            {
-                Start = (target.Length + Start);
-            }
-
-            if (Start > 0)
-            {
-                target.Remove(0, Start);
-            }
-
-            if (Length.HasValue && target.Length > Length.Value)
-            {
-                target.Remove(Length.Value, target.Length - Length.Value);
-            }
-        }
+        #endregion
     }
 }

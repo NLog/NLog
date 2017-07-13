@@ -37,23 +37,17 @@ using Xunit.Extensions;
 
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
-    public class SubstringLayoutRendererWrapperTests
+    public class RightLayoutRendererWrapperTests
     {
 
         [Theory]
-        [InlineData(":length=2", "12")]
-        [InlineData(":length=2:start=1", "23")]
-        [InlineData(":length=2:start=100", "")]
-        [InlineData(":length=100", "1234567890")]
-        [InlineData("", "1234567890")]
-        [InlineData(":start=0", "1234567890")]
-        [InlineData(":start=-2:length=2", "90")]
-        [InlineData(":start=-2", "90")]
-        [InlineData(":start=-1:length=2", "0")] //won't take chars from start after starting at end.
+        [InlineData(":length=2", "90")]
         [InlineData(":length=-1", "")]
-        public void SubstringWrapperTest(string options, string expected)
+        [InlineData(":length=1000", "1234567890")]
+        [InlineData(":length=0", "")]
+        public void RightWrapperTest(string options, string expected)
         {
-            SimpleLayout l = $"${{substring:${{message}}{options}}}";
+            SimpleLayout l = $"${{right:${{message}}{options}}}";
             var result = l.Render(LogEventInfo.Create(LogLevel.Debug, "substringTest", "1234567890"));
             Assert.Equal(expected, result);
         }
