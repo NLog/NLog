@@ -1024,8 +1024,13 @@ Dispose()
             };
 
             Assert.True(context.ThrowExceptions);  // Sanity check
-            
+
+#if MONO
+            Assert.Throws<SqliteException>(() => LogManager.Configuration.Install(context));
+#else
             Assert.Throws<SQLiteException>(() => LogManager.Configuration.Install(context));
+#endif
+
         }
 
         [Fact]
