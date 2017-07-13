@@ -982,7 +982,7 @@ Dispose()
                     <target name='database' xsi:type='Database' dbProvider='{0}' connectionstring='{1}' 
                         commandText='insert into RethrowingInstallExceptionsTable (Message) values (@message);'>
                         <parameter name='@message' layout='${{message}}' />
-                        <install-command ignoreFailures='false' text='THIS IS NOT VALID SQL;' />
+                        <install-command text='THIS IS NOT VALID SQL;' />
                     </target>
                 </targets>
                 <rules>
