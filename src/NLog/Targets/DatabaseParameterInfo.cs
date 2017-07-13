@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Data;
+
 #if !SILVERLIGHT
 
 namespace NLog.Targets
@@ -77,6 +79,26 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the database parameter type.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue("String")]
+        public string DbType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the database parameter type.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
+        internal DbType DbTypeInternal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the layout value format.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue("")]
+        public string Format { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter size.
