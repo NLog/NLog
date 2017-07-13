@@ -837,7 +837,7 @@ Dispose()
             dt.Initialize(null);
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
-
+        
         [Fact]
         public void SQLite_InstallAndLogMessageProgrammatically()
         {
@@ -855,13 +855,7 @@ Dispose()
 
                 DatabaseTarget testTarget = new DatabaseTarget("TestSqliteTarget");
                 testTarget.ConnectionString = connectionString;
-                string dbProvider = "";
-#if MONO 
-                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
-#else
-                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
-#endif
-                testTarget.DBProvider = dbProvider;
+                testTarget.DBProvider = GetSQLiteDbProvider();
 
                 testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
                 {
@@ -909,6 +903,15 @@ Dispose()
             }
         }
 
+        private string GetSQLiteDbProvider()
+        {
+#if MONO
+            return "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
+#else
+            return "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
+#endif
+        }
+
         [Fact]
         public void SQLite_InstallAndLogMessage()
         {
@@ -923,12 +926,8 @@ Dispose()
                 sqlLite.CreateDatabase();
 
                 var connectionString = sqlLite.GetConnectionString();
-                string dbProvider = "";
-#if MONO 
-                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
-#else
-                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
-#endif
+                string dbProvider = GetSQLiteDbProvider();
+
                 // Create log with xml config
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
@@ -972,6 +971,66 @@ Dispose()
             {
                 sqlLite.TryDropDatabase();
             }
+        }
+
+        private void SetupSqliteConfigWithInvalidInstallCommand(string databaseName)
+        {
+            var nlogXmlConfig = @"
+            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='false'>
+                <targets>
+                    <target name='database' xsi:type='Database' dbProvider='{0}' connectionstring='{1}' 
+                        commandText='insert into RethrowingInstallExceptionsTable (Message) values (@message);'>
+                        <parameter name='@message' layout='${{message}}' />
+                        <install-command text='THIS IS NOT VALID SQL;' />
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='database' />
+                </rules>
+            </nlog>";
+
+            // Use an in memory SQLite database
+            // See https://www.sqlite.org/inmemorydb.html
+            var connectionString = "Uri=file::memory:;Version=3";
+
+            LogManager.Configuration = CreateConfigurationFromString(
+                String.Format(nlogXmlConfig, GetSQLiteDbProvider(), connectionString)
+            );
+        }
+
+        [Fact]
+        public void NotRethrowingInstallExceptions()
+        {
+            SetupSqliteConfigWithInvalidInstallCommand("not_rethrowing_install_exceptions");
+
+            // Default InstallationContext should not rethrow exceptions
+            InstallationContext context = new InstallationContext();
+
+            Assert.False(context.IgnoreFailures, "Failures should not be ignored by default");
+            Assert.False(context.ThrowExceptions, "Exceptions should not be thrown by default");
+
+            Assert.DoesNotThrow(() => LogManager.Configuration.Install(context));
+        }
+        
+        [Fact]
+        public void RethrowingInstallExceptions()
+        {
+            SetupSqliteConfigWithInvalidInstallCommand("rethrowing_install_exceptions");
+
+            InstallationContext context = new InstallationContext()
+            {
+                ThrowExceptions = true
+            };
+
+            Assert.True(context.ThrowExceptions);  // Sanity check
+
+#if MONO
+            Assert.Throws<SqliteException>(() => LogManager.Configuration.Install(context));
+#else
+            Assert.Throws<SQLiteException>(() => LogManager.Configuration.Install(context));
+#endif
+
         }
 
         [Fact]
