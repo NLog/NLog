@@ -992,7 +992,7 @@ Dispose()
 
             // Use an in memory SQLite database
             // See https://www.sqlite.org/inmemorydb.html
-            var connectionString = String.Format("FullUri=file:{0}?mode=memory;Version=3", databaseName);
+            var connectionString = String.Format("Uri=file::memory:;Version=3", databaseName);
 
             LogManager.Configuration = CreateConfigurationFromString(
                 String.Format(nlogXmlConfig, GetSQLiteDbProvider(), connectionString)
