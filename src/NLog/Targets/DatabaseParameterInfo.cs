@@ -84,8 +84,14 @@ namespace NLog.Targets
         /// Gets or sets the database parameter type.
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
-        [DefaultValue(DbType.String)]
-        public DbType Type { get; set; }
+        [DefaultValue("String")]
+        public string DbType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the database parameter type.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
+        internal DbType DbTypeInternal { get; set; }
 
         /// <summary>
         /// Gets or sets the layout value format.

@@ -365,6 +365,15 @@ namespace NLog.Targets
             {
                 this.SetConnectionType();
             }
+            foreach (var parameter in this.Parameters)
+            {
+                if (string.IsNullOrEmpty(parameter.DbType))
+                {
+                    parameter.DbTypeInternal = DbType.String;
+                    continue;
+                }
+                parameter.DbTypeInternal = (DbType)Enum.Parse(typeof(DbType), parameter.DbType);
+            }
         }
 
         /// <summary>
@@ -533,7 +542,7 @@ namespace NLog.Targets
                         {
                             p.ParameterName = par.Name;
                         }
-                        p.DbType = par.Type;
+                        p.DbType = par.DbTypeInternal;
 
                         if (par.Size != 0)
                         {
@@ -570,7 +579,7 @@ namespace NLog.Targets
         /// </summary>
         protected virtual object ConvertTo(DatabaseParameterInfo par, string value)
         {
-            switch (par.Type)
+            switch (par.DbTypeInternal)
             {
                 case DbType.String: return value;
                 case DbType.Decimal: return decimal.Parse(value);
