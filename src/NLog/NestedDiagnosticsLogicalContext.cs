@@ -103,6 +103,7 @@ namespace NLog
             object Value { get; }
         }
 
+        [Serializable]
         class NestedContext<T> : INestedContext
         {
             public INestedContext Parent { get; private set; }
