@@ -111,5 +111,25 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
+
+        /// <summary>
+        /// Parameter can combine multiple LogEvents into a single parameter value
+        /// </summary>
+        public bool EnableGroupLayout { get; set; }
+
+        /// <summary>
+        /// Group Header when combining multiple LogEvents into a single parameter value (<see cref="EnableGroupLayout"/>)
+        /// </summary>
+        public Layout GroupHeaderLayout { get; set; }
+
+        /// <summary>
+        /// Group Item Separator when combining multiple LogEvents into a single parameter value (<see cref="EnableGroupLayout"/>)
+        /// </summary>
+        public Layout GroupItemSeparatorLayout { get; set; }
+
+        /// <summary>
+        /// Group Footer when combining multiple LogEvents into a single parameter value (<see cref="EnableGroupLayout"/>)
+        /// </summary>
+        public Layout GroupFooterLayout { get; set; }
     }
 }

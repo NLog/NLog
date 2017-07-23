@@ -34,15 +34,16 @@
 namespace NLog.Targets
 {
     using System;
-    using System.ComponentModel;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
     using System.Net;
     using System.Text;
     using System.Xml;
     using NLog.Common;
-    using NLog.Internal;
     using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// Calls the specified web service on each log message.
     /// </summary>
@@ -199,6 +200,162 @@ namespace NLog.Targets
 
         private readonly AsyncOperationCounter pendingManualFlushList = new AsyncOperationCounter();
 
+        private bool foundEnableGroupLayout;
+        private bool onlyEnableGroupLayout;   // Attempt to minimize Parameter-Array-Key-allocations
+
+        /// <summary>
+        /// Initializes the target
+        /// </summary>
+        protected override void InitializeTarget()
+        {
+            this.foundEnableGroupLayout = false;
+            this.onlyEnableGroupLayout = true;
+            base.InitializeTarget();
+            for (int i = 0; i < this.Parameters.Count; ++i)
+            {
+                if (this.Parameters[i].EnableGroupLayout)
+                {
+                    foundEnableGroupLayout = true;
+                    if (!onlyEnableGroupLayout)
+                        break;
+                }
+                else
+                {
+                    onlyEnableGroupLayout = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target
+        /// </summary>
+        /// <param name="logEvents">Array of logging events to write</param>
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
+        {
+            if (!foundEnableGroupLayout)
+            {
+                base.Write(logEvents);
+            }
+            else if (logEvents.Count == 1)
+            {
+                base.Write(logEvents[0]);
+            }
+            else
+            {
+                if (this.Headers != null && this.Headers.Count > 0)
+                {
+                    if (convetToHeaderArrayDelegate == null)
+                        convetToHeaderArrayDelegate = (l) => ConvertToHeaderArray(l.LogEvent);
+                    var headerBuckets = logEvents.BucketSort(this.convetToHeaderArrayDelegate, ArrayDeepEqualityComparer<string>.Default);
+                    foreach (var headerBucket in headerBuckets)
+                    {
+                        DoGroupInvoke(headerBucket.Value, headerBucket.Key);
+                    }
+                }
+                else
+                {
+                    DoGroupInvoke(logEvents, ArrayHelper.Empty<string>());
+                }
+            }
+        }
+        private SortHelpers.KeySelector<AsyncLogEventInfo, string[]> convetToHeaderArrayDelegate;
+
+        string[] ConvertToHeaderArray(LogEventInfo logEvent)
+        {
+            string[] headers = new string[this.Headers.Count];
+            for (int i = 0; i < this.Headers.Count; i++)
+            {
+                headers[i] = base.RenderLogEvent(this.Headers[i].Layout, logEvent);
+            }
+            return headers;
+        }
+
+        /// <summary>
+        /// Writes a group of LogEvents in a single WebRequest
+        /// </summary>
+        /// <param name="logEvents">Array of logging events to write</param>
+        /// <param name="headerValues">WebRequest Header Values matching the LogEvents group</param>
+        private void DoGroupInvoke(IList<AsyncLogEventInfo> logEvents, string[] headerValues)
+        {
+            if (convetToParameterArrayDelegate == null)
+                convetToParameterArrayDelegate = (l) => ConvetToParameterArray(l.LogEvent, true);
+
+            var parameterBuckets = onlyEnableGroupLayout
+                ? new SortHelpers.ReadOnlySingleBucketDictionary<object[], IList<AsyncLogEventInfo>>(new KeyValuePair<object[], IList<AsyncLogEventInfo>>(new object[this.Parameters.Count], logEvents), ArrayDeepEqualityComparer<object>.Default)
+                : logEvents.BucketSort(convetToParameterArrayDelegate, ArrayDeepEqualityComparer<object>.Default);
+            foreach (var bucket in parameterBuckets)
+            {
+                for (int i = 0; i < this.Parameters.Count; ++i)
+                {
+                    var param = this.Parameters[i];
+                    if (param.EnableGroupLayout)
+                    {
+                        bucket.Key[i] = ConvertParameterGroupValue(bucket.Value, param);
+                    }
+                }
+
+                if (bucket.Value.Count > 1)
+                {
+                    AsyncContinuation[] groupContinuations = new AsyncContinuation[bucket.Value.Count];
+                    for (int i = 0; i < groupContinuations.Length; ++i)
+                    {
+                        groupContinuations[i] = bucket.Value[i].Continuation;
+                    }
+                    AsyncContinuation groupCompleted = (ex) =>
+                    {
+                        for (int i = 0; i < groupContinuations.Length; ++i)
+                            try { groupContinuations[i].Invoke(ex); } catch { /* Nothing to do about it */ };
+                    };
+                    DoGroupInvokeAsync(headerValues, bucket.Key, groupCompleted);
+                }
+                else
+                {
+                    DoGroupInvokeAsync(headerValues, bucket.Key, bucket.Value[0].Continuation);
+                }
+            }
+        }
+        private SortHelpers.KeySelector<AsyncLogEventInfo, object[]> convetToParameterArrayDelegate;
+
+        class ArrayDeepEqualityComparer<TValue> : IEqualityComparer<TValue[]>
+        {
+            public static readonly ArrayDeepEqualityComparer<TValue> Default = new ArrayDeepEqualityComparer<TValue>();
+
+            public bool Equals(TValue[] x, TValue[] y)
+            {
+                if (x.Length != y.Length)
+                    return false;
+
+                object xval, yval;
+                for (int i = 0; i < x.Length; ++i)
+                {
+                    xval = x[i];
+                    yval = y[i];
+                    if (xval != null && yval != null)
+                    {
+                        if (!xval.Equals(yval))
+                            return false;
+                    }
+                    else if (!ReferenceEquals(xval, yval))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            public int GetHashCode(TValue[] obj)
+            {
+                int hashCode = obj.Length.GetHashCode();
+                for (int i = 0; i < obj.Length; ++i)
+                {
+                    if (obj[i] != null)
+                        hashCode = hashCode ^ obj[i].GetHashCode();
+                }
+                return hashCode;
+            }
+        }
+
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
         /// </summary>
@@ -241,20 +398,36 @@ namespace NLog.Targets
                 }
             }
 
-#if !SILVERLIGHT
-            if (this.PreAuthenticate)
-            {
-                request.PreAuthenticate = true;
-            }
-#endif
-
             DoInvoke(parameters, request, logEvent.Continuation);
+        }
+
+        void DoGroupInvokeAsync(string[] headerValues, object[] parameters, AsyncContinuation continuation)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            if (this.Headers != null && this.Headers.Count > 0)
+            {
+                for (int i = 0; i < this.Headers.Count; i++)
+                {
+                    string headerValue = headerValues[i];
+                    if (headerValue == null)
+                        continue;
+                    request.Headers[this.Headers[i].Name] = headerValue;
+                }
+            }
+
+            DoInvoke(parameters, request, continuation);
         }
 
         void DoInvoke(object[] parameters, HttpWebRequest request, AsyncContinuation continuation)
         {
             Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
             Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
+#if !SILVERLIGHT
+            if (this.PreAuthenticate)
+            {
+                request.PreAuthenticate = true;
+            }
+#endif
             DoInvoke(parameters, continuation, request, begin, getStream);
         }
 
@@ -411,17 +584,9 @@ namespace NLog.Targets
 
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             string queryParameters = string.Empty;
-            if (this.OptimizeBufferReuse)
+            using (var targetBuilder = this.OptimizeBufferReuse ? this.ReusableLayoutBuilder.Allocate() : this.ReusableLayoutBuilder.None)
             {
-                using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
-                {
-                    BuildWebServiceQueryParameters(parameterValues, targetBuilder.Result);
-                    queryParameters = targetBuilder.Result.ToString();
-                }
-            }
-            else
-            {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
                 BuildWebServiceQueryParameters(parameterValues, sb);
                 queryParameters = sb.ToString();
             }
