@@ -37,6 +37,7 @@
 
 namespace NLog.Targets
 {
+    using System.ComponentModel;
     using System.Diagnostics;
 
     /// <summary>
@@ -62,6 +63,12 @@ namespace NLog.Targets
     public sealed class TraceTarget : TargetWithLayout
     {
         /// <summary>
+        /// Always use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
+        /// </summary>
+        [DefaultValue(false)]
+        public bool RawWrite { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TraceTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -86,15 +93,20 @@ namespace NLog.Targets
 
         /// <summary>
         /// Writes the specified logging event to the <see cref="System.Diagnostics.Trace"/> facility.
-        /// If the log level is greater than or equal to <see cref="LogLevel.Error"/> it uses the
-        /// <see cref="System.Diagnostics.Trace.Fail(string)"/> method, otherwise it uses
-        /// <see cref="System.Diagnostics.Trace.Write(string)" /> method.
+        /// 
+        /// Redirects the log message depending on <see cref="LogLevel"/>:
+        ///  - <see cref="LogLevel.Fatal"/> writes to <see cref="Trace.Fail(string)" />
+        ///  - <see cref="LogLevel.Error"/> writes to <see cref="Trace.TraceError(string)" />
+        ///  - <see cref="LogLevel.Warn"/> writes to <see cref="Trace.TraceWarning(string)" />
+        ///  - <see cref="LogLevel.Info"/> writes to <see cref="Trace.TraceInformation(string)" />
+        ///  - <see cref="LogLevel.Debug"/> writes to <see cref="Trace.WriteLine(string)" />
+        ///  - <see cref="LogLevel.Trace"/> writes to <see cref="Trace.WriteLine(string)" />
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
             string logMessage = base.RenderLogEvent(this.Layout, logEvent);
-            if (logEvent.Level <= LogLevel.Debug)
+            if (this.RawWrite || logEvent.Level <= LogLevel.Debug)
             {
                 Trace.WriteLine(logMessage);
             }
