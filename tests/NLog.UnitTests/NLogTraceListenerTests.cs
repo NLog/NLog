@@ -317,6 +317,37 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox 0");
         }
 
+        [Fact]
+        public void TraceTargetWriteLineTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets>
+                        <target name='trace' type='Trace' layout='${logger} ${level} ${message}' rawWrite='true' />
+                    </targets>
+                    <rules>
+                        <logger name='*' minlevel='Trace' writeTo='trace' />
+                    </rules>
+                </nlog>");
+
+            var logger = LogManager.GetLogger("MySource1");
+            var sw = new System.IO.StringWriter();
+
+            try
+            {
+                Trace.Listeners.Clear();
+                Trace.Listeners.Add(new TextWriterTraceListener(sw));
+                logger.Error("Quick brown fox");
+                Trace.Flush();
+            }
+            finally
+            {
+                Trace.Listeners.Clear();
+            }
+
+            Assert.Equal("MySource1 Error Quick brown fox" + Environment.NewLine, sw.GetStringBuilder().ToString());
+        }
+
         private static TraceSource CreateTraceSource()
         {
             var ts = new TraceSource("MySource1", SourceLevels.All);
