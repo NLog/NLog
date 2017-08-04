@@ -1349,9 +1349,7 @@ namespace NLog
                 // TODO: Test if loggerCache.Values.ToList<Logger>() can be used for the conversion instead.
                 List<Logger> values = new List<Logger>(loggerCache.Count);
 
-                List<WeakReference> loggerReferences = loggerCache.Values.ToList();
-
-                foreach (WeakReference loggerReference in loggerReferences)
+                foreach (WeakReference loggerReference in loggerCache.Values)
                 {
                     Logger logger = loggerReference.Target as Logger;
                     if (logger != null)
