@@ -530,16 +530,18 @@ namespace NLog
         /// </summary>
         public void ReconfigExistingLoggers()
         {
+            IEnumerable<Logger> loggers;
+
             lock (this.syncRoot)
             {
                 if (this.config != null)
                 {
                     this.config.InitializeAll();
                 }
+
+                loggers = loggerCache.Loggers;
             }
 
-            //new list to avoid "Collection was modified; enumeration operation may not execute"
-            var loggers = new List<Logger>(loggerCache.Loggers);
             foreach (var logger in loggers)
             {
                 logger.SetConfiguration(this.GetConfigurationForLogger(logger.Name, this.config));
