@@ -118,7 +118,7 @@ namespace NLog.LayoutRenderers
             {
                 var formatProvider = GetFormatProvider(logEvent);
                 var value = this.lateBoundPropertyGet(this.process, null);
-                builder.Append(value.ToStringWithOptionalFormat(this.Format, formatProvider));
+                builder.AppendFormattedValue(value, this.Format, formatProvider);
             }
         }
     }

@@ -60,8 +60,9 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //don't use MappedDiagnosticsLogicalContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
-            var o = MappedDiagnosticsLogicalContext.GetObject(this.Item);
-            builder.Append(o, logEvent, LoggingConfiguration);
+            var value = MappedDiagnosticsLogicalContext.GetObject(this.Item);
+            var formatProvider = GetFormatProvider(logEvent, null);
+            builder.AppendFormattedValue(value, null, formatProvider);
         }
     }
 #endif
