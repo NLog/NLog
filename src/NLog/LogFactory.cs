@@ -1348,7 +1348,7 @@ namespace NLog
                 List<Logger> values = new List<Logger>(loggerCache.Count);
 
                 //new list for prevent InvalidOperationException on Travis/Mono.
-                List<WeakReference> loggerReferences = new List<WeakReference>(loggerCache.Values.ToList());
+                List<WeakReference> loggerReferences = loggerCache.Values.ToList();
 
                 foreach (WeakReference loggerReference in loggerReferences)
                 {
