@@ -103,6 +103,9 @@ namespace NLog
             object Value { get; }
         }
 
+#if !NETSTANDARD && !NET4_6
+        [Serializable]
+#endif
         class NestedContext<T> : INestedContext
         {
             public INestedContext Parent { get; private set; }
