@@ -344,6 +344,7 @@
     </Compile>
     <Compile Include="LogLevel.cs" />
     <Compile Include="LogManager.cs" />
+    <Compile Include="LogMessageFormatter.cs" />
     <Compile Include="LogMessageGenerator.cs" />
     <Compile Include="LogReceiverService\BaseLogReceiverForwardingService.cs" />
     <Compile Include="LogReceiverService\ILogReceiverClient.cs" />
