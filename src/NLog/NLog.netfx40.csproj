@@ -46,6 +46,10 @@
     <DocumentationFile>$(OutputPath)\NLog.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog.StructuredEvents, Version=0.4.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.StructuredEvents.0.4.0\lib\net35\NLog.StructuredEvents.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -460,7 +464,6 @@
     <EmbeddedResource Include="Resources\NLog.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Logger.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Logger-generated.cs</LastGenOutput>
@@ -469,6 +472,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InternalLogger-generated.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StyleCopTargetsFile)" Condition="Exists('$(StyleCopTargetsFile)')" />
