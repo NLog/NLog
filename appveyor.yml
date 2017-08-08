@@ -7,7 +7,7 @@ environment:
     secure: GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI
 
 build_script:     
-  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildVersion=4.4.11  /p:AssemblyFileVersion=4.4.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
+  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildVersion=4.4.12  /p:AssemblyFileVersion=4.4.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
   - msbuild  src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true
   - ps: .\run-sonar.ps1
 
