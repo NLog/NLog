@@ -54,6 +54,7 @@ namespace NLog
         /// Gets the date of the first log event created.
         /// </summary>
         public static readonly DateTime ZeroDate = DateTime.UtcNow;
+        private static readonly LogMessageFormatter defaultMessageFormatter = DefaultMessageFormatter;
 
         private static int globalSequenceId;
 
@@ -61,6 +62,7 @@ namespace NLog
         private string message;
         private object[] parameters;
         private IFormatProvider formatProvider;
+        private LogMessageFormatter messageFormatter = defaultMessageFormatter;
         private IDictionary<Layout, string> layoutCache;
         private IDictionary<object, object> properties;
         private IDictionary eventContextAdapter;
@@ -109,7 +111,6 @@ namespace NLog
         /// <param name="exception">Exception information.</param>
         public LogEventInfo(LogLevel level, string loggerName, IFormatProvider formatProvider, [Localizable(false)] string message, object[] parameters, Exception exception): this()
         {
-            
             this.Level = level;
             this.LoggerName = loggerName;
             this.Message = message;
@@ -203,10 +204,10 @@ namespace NLog
         /// </summary>
         public string Message
         {
-            get { return message; }
+            get { return this.message; }
             set
             {
-                message = value; 
+                this.message = value; 
                 ResetFormattedMessage();
             }
         }
@@ -217,10 +218,10 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
         public object[] Parameters
         {
-            get { return parameters; }
+            get { return this.parameters; }
             set
             {
-                parameters = value;
+                this.parameters = value;
                 ResetFormattedMessage();
             }
         }
@@ -239,6 +240,20 @@ namespace NLog
                     formatProvider = value;
                     ResetFormattedMessage();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the message formatter for generating <see cref="LogEventInfo.FormattedMessage"/>
+        /// Uses string.Format(...) when nothing else has been configured.
+        /// </summary>
+        public LogMessageFormatter MessageFormatter
+        {
+            get { return this.messageFormatter; }
+            set
+            {
+                this.messageFormatter = value ?? defaultMessageFormatter;
+                ResetFormattedMessage();
             }
         }
 
@@ -498,27 +513,32 @@ namespace NLog
             return value.GetType().IsPrimitive || (value is string);
         }
 
-        private void CalcFormattedMessage()
+        private static string DefaultMessageFormatter(LogEventInfo logEvent)
         {
-            if (this.Parameters == null || this.Parameters.Length == 0)
+            if (logEvent.Parameters == null || logEvent.Parameters.Length == 0)
             {
-                this.formattedMessage = this.Message;
+                return logEvent.Message;
             }
             else
             {
-                try
-                {
-                    this.formattedMessage = string.Format(this.FormatProvider ?? CultureInfo.CurrentCulture, this.Message, this.Parameters);
-                }
-                catch (Exception exception)
-                {
-                    this.formattedMessage = this.Message;
-                    InternalLogger.Warn(exception, "Error when formatting a message.");
+                return string.Format(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Message, logEvent.Parameters);
+            }
+        }
 
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+        private void CalcFormattedMessage()
+        {
+            try
+            {
+                this.formattedMessage = this.messageFormatter(this);
+            }
+            catch (Exception exception)
+            {
+                this.formattedMessage = this.Message;
+                InternalLogger.Warn(exception, "Error when formatting a message.");
+
+                if (exception.MustBeRethrown())
+                {
+                    throw;
                 }
             }
         }
