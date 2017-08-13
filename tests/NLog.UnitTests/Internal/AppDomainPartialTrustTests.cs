@@ -65,7 +65,12 @@ namespace NLog.UnitTests.Internal
                     // ClassUnderTest must extend MarshalByRefObject
                     AppDomain partialTrusted;
                     var classUnderTest = MediumTrustContext.Create<ClassUnderTest>(fileWritePath, out partialTrusted);
-                    classUnderTest.PartialTrustSuccess(times, fileWritePath);
+#if NET4_0 || NET4_5
+                    using (NLog.NestedDiagnosticsLogicalContext.Push("PartialTrust"))
+#endif
+                    {
+                        classUnderTest.PartialTrustSuccess(times, fileWritePath);
+                    }
                     AppDomain.Unload(partialTrusted);
                 }
 
