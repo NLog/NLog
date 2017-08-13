@@ -44,20 +44,39 @@ namespace NLog.Internal
     internal static class StringBuilderExt
     {
         /// <summary>
-        /// Append a value and use formatProvider of <paramref name="logEvent"/> or <paramref name="configuration"/> to convert to string.
+        /// Renders the specified log event context item and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="o">value to append.</param>
-        /// <param name="logEvent">current logEvent for FormatProvider.</param>
-        /// <param name="configuration">Configuration for DefaultCultureInfo</param>
-        public static void Append(this StringBuilder builder, object o, LogEventInfo logEvent, LoggingConfiguration configuration)
+        /// <param name="builder">append to this</param>
+        /// <param name="value">value to be appended</param>
+        /// <param name="format">formatstring. If @, then serialize the value with the Default JsonConverter.</param>
+        /// <param name="formatProvider">provider, for example culture</param>
+        public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider)
         {
-            var formatProvider = logEvent.FormatProvider;
-            if (formatProvider == null && configuration != null)
+            if (format == "@")
             {
-                formatProvider = configuration.DefaultCultureInfo;
+                Config.ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
+                return;
             }
-            builder.Append(Convert.ToString(o, formatProvider));
+
+            if (value == null)
+            {
+                return;
+            }
+
+            if (format == null)
+            {
+                builder.Append(Convert.ToString(value, formatProvider));
+                return;
+            }
+
+            var formattable = value as IFormattable;
+            if (formattable != null)
+            {
+                builder.Append(formattable.ToString(format, formatProvider));
+                return;
+            }
+
+            builder.Append(Convert.ToString(value, formatProvider));
         }
 
         /// <summary>

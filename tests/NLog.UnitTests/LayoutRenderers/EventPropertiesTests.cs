@@ -102,6 +102,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Assert.Equal("2020-2-21", layout.Render(logEvent));
         }
+
         [Fact]
         public void DateTimeCulture()
         {
@@ -110,6 +111,15 @@ namespace NLog.UnitTests.LayoutRenderers
             logEvent.Properties["prop1"] = new DateTime(2020, 2, 21, 23, 1, 0);
 
             Assert.Equal("21-2-2020 23:01:00", layout.Render(logEvent));
+        }
+
+        [Fact]
+        public void JsonFormat()
+        {
+            Layout layout = "${event-properties:prop1:format=@}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = new string[] { "Hello", "World" };
+            Assert.Equal("[\"Hello\",\"World\"]", layout.Render(logEvent));
         }
     }
 }
