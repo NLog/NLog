@@ -46,9 +46,9 @@ namespace NLog.Internal
         /// <summary>
         /// Renders the specified log event context item and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="value">value to be converted</param>
-        /// <param name="format">format value</param>
+        /// <param name="builder">append to this</param>
+        /// <param name="value">value to be appended</param>
+        /// <param name="format">formatstring. If @, then serialize the value with the Default JsonConverter.</param>
         /// <param name="formatProvider">provider, for example culture</param>
         public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider)
         {
