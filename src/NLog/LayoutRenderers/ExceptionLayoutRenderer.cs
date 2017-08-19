@@ -197,10 +197,14 @@ namespace NLog.LayoutRenderers
 
                 foreach (ExceptionRenderingFormat renderingFormat in this.Formats)
                 {
-                    sb2.Append(separator);
-
+                    var sbCurrentRender = new StringBuilder();
                     var currentRenderFunction = _renderingfunctions[renderingFormat];
-                    currentRenderFunction(sb2, primaryException);
+                    currentRenderFunction(sbCurrentRender, primaryException);
+                    if (sbCurrentRender.Length > 0)
+                    {
+                        sb2.Append(separator);
+                        sb2.Append(sbCurrentRender);
+                    }
                     separator = this.Separator;
                 }
 
