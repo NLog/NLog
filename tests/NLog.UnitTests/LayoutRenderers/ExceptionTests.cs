@@ -737,7 +737,8 @@ namespace NLog.UnitTests.LayoutRenderers
                                              "System.InvalidOperationException Wrapper1" + "\r\ncustom-exception-renderer");
             AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" + "\r\ncustom-exception-renderer" +
                                                            "\r\n----INNER----\r\n" +
-                                                           "System.InvalidOperationException Wrapper1" + "\r\ncustom-exception-renderer " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue + "\r\ncustom-exception-renderer-data"));
+                                                           "System.InvalidOperationException Wrapper1" + "\r\ncustom-exception-renderer " + ExceptionDataFormat, exceptionDataKey,
+                exceptionDataValue + "\r\ncustom-exception-renderer-data"));
         }
 
         [Fact]
@@ -773,9 +774,13 @@ namespace NLog.UnitTests.LayoutRenderers
 
             logger.Error(ex);
 
-            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + defaultExceptionDataSeparator + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "*" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "## **" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug1",
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + defaultExceptionDataSeparator +
+                string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug2",
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "*" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug3",
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "## **" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
         }
 
         [Fact]
@@ -805,9 +810,12 @@ namespace NLog.UnitTests.LayoutRenderers
 
             logger.Error(ex);
 
-            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug1",
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug2",
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug3",
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
         }
 
 
@@ -833,7 +841,47 @@ namespace NLog.UnitTests.LayoutRenderers
 
             logger.Error(ex);
 
-            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) + "\r\nXXX" + string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1));
+            AssertDebugLastMessage("debug1",
+                string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) + "\r\nXXX" + string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1));
+        }
+
+        [Fact]
+
+        public void ExceptionDataWithLayoutMacroSeparators()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>                                        
+                    <target name='debug1' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=${newline}}' />
+                    <target name='debug2' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=${newline}${newline}}' />
+                    <target name='debug3' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=${newline}--***--${newline}}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1, debug2, debug3' />
+                </rules>
+            </nlog>");
+
+            const string exceptionMessage = "message for exception";
+            const string exceptionDataKey1 = "testkey1";
+            const string exceptionDataValue1 = "testvalue1";
+            const string exceptionDataKey2 = "testkey2";
+            const string exceptionDataValue2 = "testvalue2";
+
+            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
+            ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
+            ex.Data.Add(exceptionDataKey2, exceptionDataValue2);
+
+            logger.Error(ex);
+
+            AssertDebugLastMessage("debug1",
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + EnvironmentHelper.NewLine +
+                string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug2",
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + EnvironmentHelper.NewLine + EnvironmentHelper.NewLine +
+                string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug3",
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + EnvironmentHelper.NewLine + "--***--" + EnvironmentHelper.NewLine +
+                string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
         }
 
         [Fact]
@@ -857,22 +905,25 @@ namespace NLog.UnitTests.LayoutRenderers
 
             AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage));
         }
-    }
 
-    [LayoutRenderer("exception-custom")]
-    [ThreadAgnostic]
-    public class CustomExceptionLayoutRendrer : ExceptionLayoutRenderer
-    {
-        protected override void AppendMessage(System.Text.StringBuilder sb, Exception ex)
-        {
-            base.AppendMessage(sb, ex);
-            sb.Append("\r\ncustom-exception-renderer");
-        }
 
-        protected override void AppendData(System.Text.StringBuilder sb, Exception ex)
+
+
+        [LayoutRenderer("exception-custom")]
+        [ThreadAgnostic]
+        public class CustomExceptionLayoutRendrer : ExceptionLayoutRenderer
         {
-            base.AppendData(sb, ex);
-            sb.Append("\r\ncustom-exception-renderer-data");
+            protected override void AppendMessage(System.Text.StringBuilder sb, Exception ex)
+            {
+                base.AppendMessage(sb, ex);
+                sb.Append("\r\ncustom-exception-renderer");
+            }
+
+            protected override void AppendData(System.Text.StringBuilder sb, Exception ex)
+            {
+                base.AppendData(sb, ex);
+                sb.Append("\r\ncustom-exception-renderer-data");
+            }
         }
     }
 }
