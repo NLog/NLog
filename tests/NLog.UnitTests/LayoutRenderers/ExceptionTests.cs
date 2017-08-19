@@ -809,13 +809,12 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>                                        
-                    <target name='debug1' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=\r\n}' />
-                    <target name='debug2' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=${newline}}' />
-                    <target name='debug3' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=${newline}${newline}}' />
-                    <target name='debug4' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=${newline}--***--${newline}}' />
+                    <target name='debug1' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=${newline}}' />
+                    <target name='debug2' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=${newline}${newline}}' />
+                    <target name='debug3' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=${newline}--***--${newline}}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1, debug2, debug3, debug4' />
+                    <logger minlevel='Info' writeTo='debug1, debug2, debug3' />
                 </rules>
             </nlog>");
 
@@ -831,10 +830,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
             logger.Error(ex);
 
-            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
-            AssertDebugLastMessage("debug4", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n--***--\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + EnvironmentHelper.NewLine + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + EnvironmentHelper.NewLine + EnvironmentHelper.NewLine + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+            AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + EnvironmentHelper.NewLine + "--***--" + EnvironmentHelper.NewLine + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
         }
     }
 
