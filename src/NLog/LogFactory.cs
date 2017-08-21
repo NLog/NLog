@@ -850,6 +850,9 @@ namespace NLog
 
                     foreach (Target target in rule.Targets.ToList())
                     {
+                        if (!Configuration.AllTargets.Any(t => t.Name == target.Name))
+                            break;
+
                         var awf = new TargetWithFilterChain(target, rule.Filters);
                         if (lastTargetsByLevel[i] != null)
                         {
