@@ -33,18 +33,16 @@
 
 namespace NLog.Config
 {
+    using JetBrains.Annotations;
+    using NLog.Common;
+    using NLog.Internal;
+    using NLog.Layouts;
+    using NLog.Targets;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Linq;
-
-    using JetBrains.Annotations;
-
-    using NLog.Common;
-    using NLog.Internal;
-    using NLog.Layouts;
-    using NLog.Targets;
 
     /// <summary>
     /// Keeps logging configuration and provides simple API
@@ -342,6 +340,10 @@ namespace NLog.Config
         public void RemoveTarget(string name)
         {
             this.targets.Remove(name);
+
+            var target = configItems.OfType<Target>().Single(t => t.Name == name);
+            if (target != null)
+                configItems.Remove(target);
         }
 
         /// <summary>
