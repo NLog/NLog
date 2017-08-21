@@ -341,7 +341,7 @@ namespace NLog.Config
         {
             this.targets.Remove(name);
 
-            var target = configItems.OfType<Target>().Single(t => t.Name == name);
+            var target = configItems.OfType<Target>().FirstOrDefault(t => t.Name == name);
             if (target != null)
                 configItems.Remove(target);
         }
