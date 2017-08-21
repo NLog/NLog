@@ -681,10 +681,10 @@ namespace NLog.UnitTests
                 var output = writer.ToString();
 
                 Assert.Contains("B | Hello", output);           // Success
-                Assert.DoesNotContain("A | Hello", output);     // FAILURE
+                Assert.DoesNotContain("A | Hello", output);     // Success
             }
 
-            // FAILURE: contains { "ConsoleA", "ConsoleB" }
+            // Success
             Assert.Equal(
                 new[] { "ConsoleB" },
                 LogManager.Configuration.AllTargets.Select(target => target.Name)
