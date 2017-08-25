@@ -341,9 +341,11 @@ namespace NLog.Config
         {
             this.targets.Remove(name);
 
-            var target = configItems.OfType<Target>().FirstOrDefault(t => t.Name == name);
-            if (target != null)
-                configItems.Remove(target);
+            configItems.RemoveAll(c => c is Target && ((Target) c).Name == name);
+            foreach (var rule in LoggingRules)
+            {
+                ((List<Target>)rule.Targets).RemoveAll(t => t.Name == name);
+            }
         }
 
         /// <summary>
