@@ -345,7 +345,7 @@ namespace NLog.Config
             var loggingRules = LoggingRules.ToList();
             foreach (var rule in loggingRules)
             {
-                ((List<Target>)rule.Targets).RemoveAll(t => t.Name == name);
+                ((List<Target>)rule.Targets)?.RemoveAll(t => t.Name == name);
             }
         }
 
