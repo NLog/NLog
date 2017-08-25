@@ -33,6 +33,12 @@
 
 namespace NLog
 {
+    using JetBrains.Annotations;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Internal.Fakeables;
+    using NLog.Targets;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -43,14 +49,6 @@ namespace NLog
     using System.Security;
     using System.Text;
     using System.Threading;
-
-    using JetBrains.Annotations;
-
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Targets;
-    using NLog.Internal.Fakeables;
 
 #if SILVERLIGHT && !__IOS__ && !__ANDROID__
     using System.Windows;
@@ -850,9 +848,6 @@ namespace NLog
 
                     foreach (Target target in rule.Targets.ToList())
                     {
-                        if (!Configuration.AllTargets.Any(t => t.Name == target.Name))
-                            break;
-
                         var awf = new TargetWithFilterChain(target, rule.Filters);
                         if (lastTargetsByLevel[i] != null)
                         {
