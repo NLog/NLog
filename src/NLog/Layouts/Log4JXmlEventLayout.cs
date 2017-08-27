@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
 namespace NLog.Layouts
 {
     using NLog.LayoutRenderers;
+    using NLog.Internal;
 
     /// <summary>
     /// A specialized layout that renders Log4j-compatible XML events.
