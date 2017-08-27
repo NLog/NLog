@@ -31,9 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog
 {
-    internal interface ILog4JXmlEventLayout
+    /// <summary>
+    /// Provides a common interface for Log4JXmlEventLayouts.
+    /// </summary>
+    public interface ILog4JXmlEventLayout
     {
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
