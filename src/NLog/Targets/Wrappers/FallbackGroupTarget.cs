@@ -111,7 +111,7 @@ namespace NLog.Targets.Wrappers
         {
             AsyncContinuation continuation = null;
             int tryCounter = 0;
-            int targetToInvoke;
+            int targetToInvoke = 0;
 
             continuation = ex =>
                 {
@@ -124,7 +124,7 @@ namespace NLog.Targets.Wrappers
                             {
                                 if (this.ReturnToFirstOnSuccess)
                                 {
-                                    InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[this.currentTarget]);
+                                    InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[targetToInvoke]);
                                     this.currentTarget = 0;
                                 }
                             }
@@ -137,10 +137,10 @@ namespace NLog.Targets.Wrappers
                     // failure
                     lock (this.lockObject)
                     {
-                        InternalLogger.Warn(ex, "Fallback: target '{0}' failed. Proceeding to the next one.", this.Targets[this.currentTarget]);
+                        InternalLogger.Warn(ex, "Fallback: target '{0}' failed. Proceeding to the next one.", this.Targets[targetToInvoke]);
 
                         // error while writing, go to the next one
-                        this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;
+                        this.currentTarget = (targetToInvoke + 1) % this.Targets.Count;
 
                         tryCounter++;
                         targetToInvoke = this.currentTarget;
