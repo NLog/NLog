@@ -25,6 +25,7 @@
 
 <!--[NLog is Looking for Developers!](http://nlog-project.org/2015/08/05/NLog-is-looking-for-developers.html)-->
 
+[Docs are on the wiki](https://github.com/NLog/NLog/wiki)
 
 NLog is a free logging platform for .NET with rich log routing and management
 capabilities. It makes it easy to produce and manage high-quality logs for
