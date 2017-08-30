@@ -90,7 +90,6 @@
         "System.Diagnostics.StackTrace": "4.0.1",
         "System.Diagnostics.TraceSource": "4.0.0",
         "System.IO.FileSystem.Watcher": "4.0.0",
-        "System.IO.FileSystem.AccessControl": "4.0.0",
         "System.Net.Requests": "4.0.11",
         "System.Reflection.TypeExtensions": "4.1.0",
         "System.Runtime.Serialization.Primitives": "4.1.1",
@@ -100,9 +99,8 @@
         "System.Xml.ReaderWriter": "4.0.11",
         "System.Xml.XmlDocument": "4.0.1",
         "System.Net.NameResolution": "4.0.0",
-        "System.Security.AccessControl": "4.0.0",
         "System.Security.Principal": "4.0.1",
-        "System.Threading.AccessControl": "4.0.0"
+        "System.Security.Principal.Windows": "4.0.0"
       },
       "buildOptions": {
         "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "NETSTANDARD1_3PLUS", "ASYNC_SUPPORTED", "SupportsMutex" ]
@@ -120,7 +118,6 @@
         "System.Diagnostics.StackTrace": "4.0.1",
         "System.Diagnostics.TraceSource": "4.0.0",
         "System.IO.FileSystem.Watcher": "4.0.0",
-        "System.IO.FileSystem.AccessControl": "4.0.0",
         "System.Net.Requests": "4.0.11",
         "System.Reflection.TypeExtensions": "4.1.0",
         "System.Runtime.Loader": "4.0.0",
@@ -131,9 +128,8 @@
         "System.Xml.ReaderWriter": "4.0.11",
         "System.Xml.XmlDocument": "4.0.1",
         "System.Net.NameResolution": "4.0.0",
-        "System.Security.AccessControl": "4.0.0",
         "System.Security.Principal": "4.0.1",
-        "System.Threading.AccessControl": "4.0.0"
+        "System.Security.Principal.Windows": "4.0.0"
       },
       "buildOptions": {
         "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "NETSTANDARD1_3PLUS", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "SupportsMutex" ]

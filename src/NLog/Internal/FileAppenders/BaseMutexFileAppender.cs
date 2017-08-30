@@ -40,8 +40,10 @@ namespace NLog.Internal.FileAppenders
     using System.Text;
 
 #if SupportsMutex
+#if !NETSTANDARD
     using System.Security.AccessControl;
     using System.Security.Principal;
+#endif
     using System.Security.Cryptography;
     using NLog.Common;
 #endif
