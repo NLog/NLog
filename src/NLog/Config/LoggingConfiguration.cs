@@ -340,13 +340,12 @@ namespace NLog.Config
         public void RemoveTarget(string name)
         {
             this.targets.Remove(name);
-
-            configItems.RemoveAll(c => c is Target && ((Target) c).Name == name);
             var loggingRules = LoggingRules.ToList();
             foreach (var rule in loggingRules)
             {
                 ((List<Target>)rule.Targets)?.RemoveAll(t => t.Name == name);
             }
+            ValidateConfig();
         }
 
         /// <summary>
