@@ -32,6 +32,7 @@
 // 
 
 using System.Diagnostics;
+using NLog.Config;
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -502,6 +503,31 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(1, myTarget.FlushCount);
         }
 
+
+        [Fact]
+        public void WhenRemovingATargetThenItSholdAlsoBeClosed()
+        {
+            // Arrange
+            var myTarget = new MyTarget { Name="MyTarget", ThrowException = true };
+            var bufferingTargetWrapper = new BufferingTargetWrapper
+            {
+                WrappedTarget = myTarget,
+                FlushTimeout = -1
+            };
+            InitializeTargets(myTarget, bufferingTargetWrapper);
+
+            var config = new LoggingConfiguration();
+            config.AddTarget(myTarget);
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, "MyTarget");
+            LogManager.Configuration = config;
+
+            // Act
+            LogManager.Configuration.RemoveTarget("MyTarget");
+
+            // Assert
+            Assert.True(myTarget.IsClose);
+        }
+
         private static void InitializeTargets(params Target[] targets)
         {
             foreach (var target in targets)
@@ -562,6 +588,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             public int BufferedTotalEvents { get; private set; }
             public bool ThrowException { get; set; }
             public int FailCounter { get; set; }
+            public bool IsClose { get; private set; }
 
             protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
@@ -590,6 +617,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 this.FlushCount++;
                 asyncContinuation(null);
+            }
+
+            protected override void CloseTarget()
+            {
+                IsClose = true;
+                base.CloseTarget();
             }
         }
 
