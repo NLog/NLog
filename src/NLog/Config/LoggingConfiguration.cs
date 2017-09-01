@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 namespace NLog.Config
 {
     using JetBrains.Annotations;
@@ -340,12 +341,26 @@ namespace NLog.Config
         public void RemoveTarget(string name)
         {
             this.targets.Remove(name);
+            CloseAndRemoveTarget(name);
+            ValidateConfig();
+        }
+
+        /// <summary>
+        /// Removes a target from the logging rules and flush it.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        private void CloseAndRemoveTarget(string name)
+        {
             var loggingRules = LoggingRules.ToList();
             foreach (var rule in loggingRules)
             {
-                ((List<Target>)rule.Targets)?.RemoveAll(t => t.Name == name);
+                var targets = rule.Targets.Where(t => t.Name == name).ToList();
+                foreach (var target in targets)
+                {
+                    target.Close();
+                    rule.Targets.Remove(target);
+                }
             }
-            ValidateConfig();
         }
 
         /// <summary>
