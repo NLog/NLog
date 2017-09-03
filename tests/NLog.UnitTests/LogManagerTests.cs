@@ -543,25 +543,48 @@ namespace NLog.UnitTests
             MemoryQueueTarget mTarget = new MemoryQueueTarget(1000);
             MemoryQueueTarget mTarget2 = new MemoryQueueTarget(1000);
 
-            Task.Run(() =>
+            var task1 = Task.Run(() =>
             {
                 //need for init
                 LogManager.Configuration = new LoggingConfiguration();
                 LogManager.ThrowExceptions = true;
+
                 LogManager.Configuration.AddTarget("memory", mTarget);
                 LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget));
-                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(2));
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
+                LogManager.ReconfigExistingLoggers();
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
+                mTarget.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
+            });
+
+            var task2 = task1.ContinueWith((t) =>
+            {
                 LogManager.Configuration.AddTarget("memory2", mTarget2);
                 LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget2));
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
                 LogManager.ReconfigExistingLoggers();
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
+                mTarget2.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
             });
 
             AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(1));
 
             Parallel.For(0, 8, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, (e) =>
             {
-                for (int i = 0; i < 30; ++i)
+                bool task1Complete = false, task2Complete = false;
+                for (int i = 0; i < 100; ++i)
                 {
+                    if (i > 25 && !task1Complete)
+                    {
+                        task1.Wait(5000);
+                        task1Complete = true;
+                    }
+                    if (i > 75 && !task2Complete)
+                    {
+                        task2.Wait(5000);
+                        task2Complete = true;
+                    }
+
                     // Multiple threads initializing new loggers while configuration is changing
                     var loggerA = LogManager.GetLogger(e + "A" + i);
                     loggerA.Info("Hi there {0}", e);
@@ -573,9 +596,6 @@ namespace NLog.UnitTests
                     loggerD.Info("Hi there {0}", e);
                 };
             });
-
-            mTarget.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
-            mTarget2.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
 
             Assert.NotEqual(0, mTarget.Logs.Count + mTarget2.Logs.Count);
         }
@@ -614,7 +634,7 @@ namespace NLog.UnitTests
                 this.Logs = null;
             }
 
-            public Queue<string> Logs { get; private set; }
+            internal Queue<string> Logs { get; private set; }
 
             protected override void Write(LogEventInfo logEvent)
             {
