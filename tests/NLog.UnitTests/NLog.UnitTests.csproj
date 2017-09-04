@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net452;netcoreapp2.0</TargetFrameworks>
 
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -17,13 +17,27 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+
+    <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net452' ">Full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <DefineConstants>$(DefineConstants);NET4_5;ASYNC_SUPPORTED;WCF_SUPPORTED</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+    <DefineConstants>$(DefineConstants);NETSTANDARD;NET4_5;ASYNC_SUPPORTED;WCF_SUPPORTED</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(monobuild)' != '' ">
+    <DefineConstants>$(DefineConstants);MONO</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0-preview-20170810-02" />
-    <PackageReference Include="xunit" Version="2.3.0-beta4-build3742" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta4-build3742" />
-    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta4-build3742" />
+    <PackageReference Include="xunit" Version="2.3.0-beta5-build3769" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta5-build3769" />
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta5-build3769" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
@@ -31,7 +45,7 @@
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.0' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.csproj" />
     
     <Reference Include="System" />
@@ -39,13 +53,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite" />
-    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.AccountManagement" Condition=" '$(monobuild)' == '' " />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Messaging" />
+    <Reference Include="System.Messaging" Condition=" '$(monobuild)' == '' " />
     <Reference Include="Microsoft.CSharp" />
 
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.105.2" />
@@ -54,22 +68,21 @@
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
   </ItemGroup>
 
+  <ItemGroup Condition=" '$(monobuild)' != '' ">
+    <Reference Include="Mono.Posix" />
+    <PackageReference Include="Mono.Data.Sqlite.Portable" Version="1.0.3.5" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj">
       <Private>true</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\NLog\NLog.csproj" />
+    <ProjectReference Include="..\..\src\NLog\NLog.csproj">
+      <Private>true</Private>
+    </ProjectReference>
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.csproj">
       <Private>true</Private>
     </ProjectReference>
   </ItemGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <DefineConstants>$(DefineConstants);NET4_5;ASYNC_SUPPORTED;WCF_SUPPORTED</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-    <DefineConstants>$(DefineConstants);NETSTANDARD;NET4_5;ASYNC_SUPPORTED;WCF_SUPPORTED</DefineConstants>
-  </PropertyGroup>
 
 </Project>
