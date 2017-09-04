@@ -1,8 +1,7 @@
 language: csharp
 mono: none
-dotnet: 1.0.0-preview2-003121
+dotnet: 1.0.0-preview3-004056
 dist: trusty
-sudo: required
 
 install:
   # Display dotnet version info
