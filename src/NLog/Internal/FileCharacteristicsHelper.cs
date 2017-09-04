@@ -46,7 +46,7 @@ namespace NLog.Internal
         /// </summary>
         public static FileCharacteristicsHelper CreateHelper(bool forcedManaged)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             if (!forcedManaged && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
             {
                 return new Win32FileCharacteristicsHelper();
@@ -69,13 +69,16 @@ namespace NLog.Internal
         public static DateTime? ValidateFileCreationTime<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
         {
             DateTime? fileCreationTime = primary(fileInfo);
-            // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
-            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980 && !PlatformDetector.IsDesktopWin32)
+            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980)
             {
-                fileCreationTime = fallback(fileInfo);
-                if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
+                // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
+                if (!PlatformDetector.IsDesktopWin32)
                 {
-                    fileCreationTime = finalFallback(fileInfo);
+                    fileCreationTime = fallback(fileInfo);
+                    if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
+                    {
+                        fileCreationTime = finalFallback(fileInfo);
+                    }
                 }
             }
             return fileCreationTime;

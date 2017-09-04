@@ -59,6 +59,8 @@ namespace NLog.Internal
         {
 #if TLS_WORKAROUND
             return Interlocked.Increment(ref nextSlotNumber);
+#elif NETSTANDARD
+            return new System.Threading.ThreadLocal<object>();
 #else
             return System.Threading.Thread.AllocateDataSlot();
 #endif
@@ -90,6 +92,13 @@ namespace NLog.Internal
             }
 
             return (T)v;
+#elif NETSTANDARD
+            var thread = slot as ThreadLocal<object>;
+            if (thread == null)
+                throw new InvalidOperationException($"Expected ThreadLocal object. Received {slot.GetType()}.");
+            if (!thread.IsValueCreated)
+                thread.Value = new T();
+            return (T)thread.Value;
 #else
             LocalDataStoreSlot localDataStoreSlot = (LocalDataStoreSlot)slot;
             object v = Thread.GetData(localDataStoreSlot);

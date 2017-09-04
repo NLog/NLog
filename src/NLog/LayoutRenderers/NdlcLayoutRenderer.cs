@@ -33,7 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
     using System;
     using System.Text;
 

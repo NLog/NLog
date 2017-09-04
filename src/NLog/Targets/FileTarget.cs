@@ -860,7 +860,8 @@ namespace NLog.Targets
             {
 #if !SupportsMutex
                 return RetryingMultiProcessFileAppender.TheFactory;
-#elif MONO
+#else
+#if MONO
                 if (PlatformDetector.IsUnix)
                 {
                     return UnixMultiProcessFileAppender.TheFactory;
@@ -871,7 +872,6 @@ namespace NLog.Targets
                     return WindowsMultiProcessFileAppender.TheFactory;
                 }
 #endif
-
                 if (PlatformDetector.SupportsSharableMutex)
                 {
                     return MutexMultiProcessFileAppender.TheFactory;
@@ -880,6 +880,7 @@ namespace NLog.Targets
                 {
                     return RetryingMultiProcessFileAppender.TheFactory;
                 }
+#endif  // SupportsMutex
             }
             else if (IsArchivingEnabled())
                 return CountingSingleProcessFileAppender.TheFactory;
@@ -929,11 +930,11 @@ namespace NLog.Targets
 
             this.fileArchiveHelper = null;
 
-            if (this.autoClosingTimer != null)
+            var currentTimer = this.autoClosingTimer;
+            if (currentTimer != null)
             {
-                this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                this.autoClosingTimer.Dispose();
                 this.autoClosingTimer = null;
+                currentTimer.WaitForDispose(TimeSpan.Zero);
             }
 
             this.fileAppenderCache.CloseAppenders("Dispose");

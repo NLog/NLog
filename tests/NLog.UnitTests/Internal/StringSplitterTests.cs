@@ -48,7 +48,6 @@ namespace NLog.UnitTests.Internal
         private const char Backslash = '\\';
 
         [Theory]
-
         [InlineData("abc", ';', "abc")]
         [InlineData("  abc", ';', "  abc")]
         [InlineData(null, ';', "")]
@@ -60,22 +59,17 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"a;b;;c", ';', @"a,b;c")]
         [InlineData(@"a;b;;;;c", ';', @"a,b;;c")]
         [InlineData(@"a;;b", ';', @"a;b")]
-        [InlineData(@"abc", ';', @"abc")]
         [InlineData(@"a'b'c''d", SingleQuote, @"a,b,c'd")]
         [InlineData(@"'a", SingleQuote, @",a")]
-
         void SplitStringWithSelfEscape(string input, char splitCharAndEscapeChar, string output)
         {
-
             //also test SplitWithSelfEscape
             var strings = StringSplitter.SplitWithSelfEscape(input, splitCharAndEscapeChar).ToArray();
             var result = string.Join(",", strings);
             Assert.Equal(output, result);
 
-
             SplitStringWithEscape2(input, splitCharAndEscapeChar, splitCharAndEscapeChar, output);
         }
-
 
         [Theory]
         [InlineData("abc", "abc")]
@@ -87,7 +81,6 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"a;b;c;", "a,b,c,")]
         [InlineData(@"a;", "a,")]
         [InlineData(@";", ",")]
-        [InlineData(@"a;b;c;", "a,b,c,")]
         [InlineData(@";a;b;c", ",a,b,c")]
         [InlineData(@"a;;b;c;", "a,,b,c,")]
         [InlineData(@"a\b;c", @"a\b,c")]
@@ -96,7 +89,6 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"a;b;c\;;", @"a,b,c;,")]
         [InlineData(@"a\;b;c", @"a;b,c")]
         [InlineData(@"a\;b\;c", @"a;b;c")]
-        [InlineData(@"a\;b\;c;d", @"a;b;c,d")]
         [InlineData(@"a\;b\;c;d", @"a;b;c,d")]
         [InlineData(@"a\;b;c\;d", @"a;b,c;d")]
         [InlineData(@"abc\;", @"abc;")]
@@ -134,8 +126,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"\", @"\")]
         [InlineData(@"a\", @"a\")]
         [InlineData(@"\b", @"\b")]
-
-        private void SplitStringWithQuotes_selfQuoted(string input, string output)
+        void SplitStringWithQuotes_selfQuoted(string input, string output)
         {
             SplitStringWithQuotes(input, ';', SingleQuote, SingleQuote, output);
         }
@@ -168,8 +159,7 @@ namespace NLog.UnitTests.Internal
         [InlineData(@"'\'", @"''")]
         [InlineData(@"'\''", @"''")]   //todo check case
         [InlineData(@"'\\'", @"'\'")]  //todo check case
-
-        private void SplitStringWithQuotes_escaped(string input, string output)
+        void SplitStringWithQuotes_escaped(string input, string output)
         {
             SplitStringWithQuotes(input, ';', SingleQuote, Backslash, output);
         }

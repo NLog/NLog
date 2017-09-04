@@ -187,7 +187,7 @@ namespace NLog.UnitTests.Targets
                 bool verifyFileSize = files.Count > 1;
 
                 int[] maxNumber = new int[numProcesses];
-                Console.WriteLine("Verifying output file {0}", logFile);
+                //Console.WriteLine("Verifying output file {0}", logFile);
                 foreach (var file in files)
                 {
                     using (StreamReader sr = File.OpenText(file))

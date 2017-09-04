@@ -844,6 +844,8 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 wrappedLogger = new MyWrapper();
             }
+
+            [MethodImpl(MethodImplOptions.NoInlining)]
             public void Log(string what)
             {
                 wrappedLogger.Log(typeof(CompositeWrapper), what);

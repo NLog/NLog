@@ -190,6 +190,7 @@ namespace NLog.UnitTests
             Assert.Null(exceptions[0]);
         }
 
+
         [Fact]
         public void ContinuationErrorTimeoutNotHitTest()
         {
@@ -443,7 +444,6 @@ namespace NLog.UnitTests
             using (new InternalLoggerScope())
             {
                 InternalLogger.LogLevel = LogLevel.Trace;
-                InternalLogger.LogToConsole = true;
 
                 var finalContinuationInvoked = new ManualResetEvent(false);
                 Exception lastException = null;
@@ -460,7 +460,7 @@ namespace NLog.UnitTests
                 AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
                     (i, cont) =>
                         {
-                            Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
+
                             lock (input)
                             {
                                 sum += i;

@@ -44,14 +44,15 @@ namespace NLog.Targets
     using System.Globalization;
     using System.Reflection;
     using System.Text;
+    using System.Transactions;
 
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
+
 #if !NETSTANDARD
     using System.Configuration;
-    using System.Transactions;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
 #endif
 
@@ -59,8 +60,7 @@ namespace NLog.Targets
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
     /// <remarks>
-    /// - Transactions aren't in .NET Core: https://github.com/dotnet/corefx/issues/2949
-    /// - No connectionstrings from .config
+    /// - NETSTANDARD cannot load connectionstrings from .config
     /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Database-target">Documentation on NLog Wiki</seealso>
     /// <example>
@@ -738,47 +738,6 @@ namespace NLog.Targets
                 this.CloseConnection();
             }
         }
-
-#if NETSTANDARD
-        /// <summary>
-        /// Fake transaction
-        /// 
-        /// Transactions aren't in .NET Core: https://github.com/dotnet/corefx/issues/2949
-        /// </summary>
-        private class TransactionScope : IDisposable
-        {
-            private TransactionScopeOption suppress;
-
-            public TransactionScope(TransactionScopeOption suppress)
-            {
-                this.suppress = suppress;
-            }
-
-            public void Complete() { }
-
-#region Implementation of IDisposable
-
-            /// <summary>
-            ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            /// </summary>
-            public void Dispose()
-            {
-
-            }
-
-#endregion
-        }
-
-        /// <summary>
-        /// Fake option
-        /// </summary>
-        private enum TransactionScopeOption
-        {
-            Required,
-            RequiresNew,
-            Suppress,
-        }
-#endif
     }
 }
 

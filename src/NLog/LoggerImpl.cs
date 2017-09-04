@@ -201,7 +201,7 @@ namespace NLog
         {
             var method = frame.GetMethod();
             Type declaringType = method.DeclaringType;
-            var isLoggerType = declaringType != null && loggerType == declaringType;
+            var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || declaringType.IsSubclassOf(typeof(ILogger)));
             return isLoggerType;
         }
 

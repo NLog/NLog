@@ -2881,6 +2881,7 @@ namespace NLog.UnitTests.Targets
             finally
             {
                 LogManager.Configuration = null;
+                NLog.Common.InternalLogger.Reset();
             }
         }
 
