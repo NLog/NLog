@@ -45,7 +45,7 @@ using NLog.Targets.Wrappers;
 using NLog.UnitTests;
 using Xunit;
 
-#if !MONO
+#if !MONO && !NETSTANDARD
 
 namespace NLog.UnitTests.Internal
 {

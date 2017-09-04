@@ -31,8 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-
+#if !NETSTANDARD && !SILVERLIGHT && !NET3_5
 
 namespace NLog.UnitTests.LogReceiverService
 {
@@ -291,7 +290,7 @@ namespace NLog.UnitTests.LogReceiverService
             </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower(), binaryEncode.ToString().ToLower()));
 
 
-
+     
             ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
 
         }
@@ -313,7 +312,7 @@ namespace NLog.UnitTests.LogReceiverService
                 // Enable metadata publishing.
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
-#if !MONO
+#if !MONO && !NETSTANDARD
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
 #endif
                 host.Description.Behaviors.Add(smb);
@@ -401,3 +400,5 @@ namespace NLog.UnitTests.LogReceiverService
 #endif
     }
 }
+
+#endif

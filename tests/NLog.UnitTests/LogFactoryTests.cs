@@ -143,7 +143,8 @@ namespace NLog.UnitTests
             var logFactory = new LogFactory(loggingConfiguration);
             var differentConfiguration = new LoggingConfiguration();
 
-            Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
+            var exRecorded = Record.Exception(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
+            Assert.Null(exRecorded);
         }
 
         private class ReloadNullConfiguration : LoggingConfiguration
@@ -161,7 +162,8 @@ namespace NLog.UnitTests
             LogManager.Configuration = loggingConfiguration;
             var logFactory = new LogFactory(loggingConfiguration);
 
-            Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
+            var exRecorded = Record.Exception(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
+            Assert.Null(exRecorded);
         }
 
         [Fact]

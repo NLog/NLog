@@ -32,6 +32,7 @@
 // 
 
 #if !MONO
+
 namespace NLog.UnitTests.Config
 {
     using NLog.Config;
@@ -555,7 +556,7 @@ namespace NLog.UnitTests.Config
                 reloadWaiter.WaitForReload();
 
                 if (assertDidReload)
-                    Assert.True(reloadWaiter.DidReload, "Config did not reload.");
+                    Assert.True(reloadWaiter.DidReload, string.Format("Config '{0}' did not reload.", configFilePath));
             }
         }
 
@@ -578,7 +579,7 @@ namespace NLog.UnitTests.Config
 
             public void WaitForReload()
             {
-                counterEvent.Wait(2000);
+                counterEvent.Wait(3000);
             }
 
             private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent(CountdownEvent counterEvent)

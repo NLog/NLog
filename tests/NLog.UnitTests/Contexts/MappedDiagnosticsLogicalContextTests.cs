@@ -113,7 +113,8 @@ namespace NLog.UnitTests.Contexts
             const string item = "Item";
             MappedDiagnosticsLogicalContext.Set(key, item);
 
-            Assert.DoesNotThrow(() => MappedDiagnosticsLogicalContext.Set(key, item));
+            var exRecorded = Record.Exception(() => MappedDiagnosticsLogicalContext.Set(key, item));
+            Assert.Null(exRecorded);
         }
 
         [Fact]
@@ -195,13 +196,16 @@ namespace NLog.UnitTests.Contexts
         public void given_item_does_not_exist_when_removing_item_should_not_throw()
         {
             const string keyForItemThatShouldExist = "Key";
-            Assert.DoesNotThrow(() => MappedDiagnosticsLogicalContext.Remove(keyForItemThatShouldExist));
+
+            var exRecorded = Record.Exception(() => MappedDiagnosticsLogicalContext.Remove(keyForItemThatShouldExist));
+            Assert.Null(exRecorded);
         }
 
         [Fact]
         public void given_item_does_not_exist_when_clearing_should_not_throw()
         {
-            Assert.DoesNotThrow(MappedDiagnosticsLogicalContext.Clear);
+            var exRecorded = Record.Exception(() => MappedDiagnosticsLogicalContext.Clear());
+            Assert.Null(exRecorded);
         }
 
         [Fact]

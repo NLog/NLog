@@ -861,29 +861,25 @@ namespace NLog.Targets
 #if !SupportsMutex
                 return RetryingMultiProcessFileAppender.TheFactory;
 #elif MONO
-//
-// mono on Windows uses mutexes, on Unix - special appender
-//
                 if (PlatformDetector.IsUnix)
                 {
                     return UnixMultiProcessFileAppender.TheFactory;
                 }
-                else if (PlatformDetector.SupportsSharableMutex)
+#elif !NETSTANDARD
+                if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
                 {
-                    return MutexMultiProcessFileAppender.TheFactory;
-                }
-                else
-                {
-                    return RetryingMultiProcessFileAppender.TheFactory;
-                }
-#else
-                if (!PlatformDetector.SupportsSharableMutex)
-                    return RetryingMultiProcessFileAppender.TheFactory;
-                else if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
                     return WindowsMultiProcessFileAppender.TheFactory;
-                else
-                    return MutexMultiProcessFileAppender.TheFactory;
+                }
 #endif
+
+                if (PlatformDetector.SupportsSharableMutex)
+                {
+                    return MutexMultiProcessFileAppender.TheFactory;
+                }
+                else
+                {
+                    return RetryingMultiProcessFileAppender.TheFactory;
+                }
             }
             else if (IsArchivingEnabled())
                 return CountingSingleProcessFileAppender.TheFactory;

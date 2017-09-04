@@ -1,39 +1,13 @@
-version: 4.4.{build}
+version: 4.5.0-beta{build}
+image: Visual Studio 2017
+configuration: Release
 clone_folder: c:\projects\nlog
-environment:
-  github_auth_token:
-    secure: +vzVo4DsD93fPeSkrIL12KQsq2VJrge4ZSt3KanSxtnifHsBXYmGko4Ck00sVOqD
-  sonar_token:
-    secure: GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI
-
-build_script:     
-  - msbuild  src/NLog.proj /verbosity:minimal /t:rebuild /t:xsd /t:NuGetPackage /p:BuildVersion=4.4.12  /p:AssemblyFileVersion=4.4.%APPVEYOR_BUILD_NUMBER% /p:BuildLastMajorVersion=4.0.0 /p:configuration=release /p:BuildLabelOverride=NONE 
-  - msbuild  src/NLog.proj /verbosity:minimal /t:BuildTests /p:BuildNetFX35=true /p:BuildNetFX40=true /p:BuildNetFX45=true
-  - ps: .\run-sonar.ps1
-
+build_script:
+- ps: .\build.ps1
 test_script:
-  - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
-  - xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
-  - xunit.console.clr4 "build\bin\Debug\.NET Framework 4.0\NLog.UnitTests.dll" /appveyor /noshadow
-  - nuget.exe install OpenCover -ExcludeVersion
-  - OpenCover\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"\"C:\projects\nlog\build\bin\Debug\.NET Framework 4.5\NLog.UnitTests.dll\" -appveyor -noshadow"  -returntargetcode -filter:"+[NLog]* +[NLog.Extended]* -[NLog]JetBrains.Annotations.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
-  - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
-  - pip install codecov
-  - codecov -f "coverage.xml"
-
-cache:
-  - src\packages -> **\packages.config
-  - c:\projects\nlog\appveyor.sonar\cache
-services:
-  - mssql2012sp1
-
+- ps: .\run-tests.ps1
+deploy: off
 artifacts:
-  - path: 'build\bin\release\NuGetPackages\*.nupkg'
-
-deploy:
-- provider: NuGet
-  api_key:
-    secure: DtVDH1ZfIR8E2oDLeSPxfn0WFXw3MCv4WhLkkQQl9LfEHswb5sdxdCYodNKhrKik
-  artifact: /.*\.nupkg/
-  on:
-    branch: master
+- path: 'artifacts\*.nupkg'
+services:
+- mssql2016

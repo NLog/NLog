@@ -36,7 +36,7 @@
 #define SupportsMutex
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD
 
 namespace NLog.Internal.FileAppenders
 {

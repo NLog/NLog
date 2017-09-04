@@ -50,7 +50,7 @@ namespace NLog.UnitTests
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
-#if NET3_5 || NET4_0 || NET4_5
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
     using Ionic.Zip;
 #endif
 
@@ -76,7 +76,9 @@ namespace NLog.UnitTests
             LogManager.ThrowConfigExceptions = null;
 #if !SILVERLIGHT
             System.Diagnostics.Trace.Listeners.Clear();
+#if !NETSTANDARD
             System.Diagnostics.Debug.Listeners.Clear();
+#endif
 #endif
         }
 
@@ -151,8 +153,8 @@ namespace NLog.UnitTests
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if NET3_5 || NET4_0 || NET4_5
-                using (ZipFile zip = new ZipFile())
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+                using (var zip = new Ionic.Zip.ZipFile())
                 {
                     zip.AddFile(fileName);
                     zip.Save(archiveFileName);
@@ -169,7 +171,7 @@ namespace NLog.UnitTests
 
             byte[] encodedBuf = encoding.GetBytes(contents);
             
-            using (var zip = new ZipFile(fileName))
+            using (var zip = new Ionic.Zip.ZipFile(fileName))
             {
                 Assert.Equal(1, zip.Count);
                 Assert.Equal(encodedBuf.Length, zip[0].UncompressedSize);
@@ -323,7 +325,6 @@ namespace NLog.UnitTests
             //fixed value set with #line 100000
             return 100001;
         }
-
 #endif
 
         public static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)

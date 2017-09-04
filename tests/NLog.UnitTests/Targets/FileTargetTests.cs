@@ -83,7 +83,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("SimpleFileTest_TestParameters")]
+        [MemberData("SimpleFileTest_TestParameters")]
         public void SimpleFileTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
             var logFile = Path.GetTempFileName();
@@ -121,7 +121,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("SimpleFileTest_TestParameters")]
+        [MemberData("SimpleFileTest_TestParameters")]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
             var logFile = Path.GetTempFileName();
@@ -215,13 +215,11 @@ namespace NLog.UnitTests.Targets
         }
 
 #if !MONO
-        const int FIVE_SECONDS = 5000;
-
         /// <summary>
         /// If a drive doesn't existing, before repeatatly creating a dir was tried. This test was taking +60 seconds 
         /// </summary>
-        [Theory(Timeout = FIVE_SECONDS)]
-        [PropertyData("SimpleFileTest_TestParameters")]
+        [Theory]
+        [MemberData("SimpleFileTest_TestParameters")]
         public void NonExistingDriveShouldNotDelayMuch(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
             if (optimizeBufferReuse)
@@ -230,6 +228,8 @@ namespace NLog.UnitTests.Targets
             var nonExistingDrive = GetFirstNonExistingDriveWindows();
 
             var logFile = nonExistingDrive + "://dont-extist/no-timeout.log";
+
+            DateTime start = DateTime.UtcNow;
 
             try
             {
@@ -245,12 +245,15 @@ namespace NLog.UnitTests.Targets
                 });
 
                 SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
                 for (int i = 0; i < 300; i++)
                 {
                     logger.Debug("aaa");
                 }
 
                 LogManager.Configuration = null;    // Flush
+
+                Assert.True(DateTime.UtcNow - start < TimeSpan.FromSeconds(5));
             }
             finally
             {
@@ -488,7 +491,7 @@ namespace NLog.UnitTests.Targets
             logger.Trace("running test");
         }
 
-#if NET3_5 || NET4_0 || NET4_5
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
         public static IEnumerable<object[]> ArchiveFileOnStartTests_TestParameters
         {
             get
@@ -513,7 +516,7 @@ namespace NLog.UnitTests.Targets
         }
 #endif
         [Theory]
-        [PropertyData("ArchiveFileOnStartTests_TestParameters")]
+        [MemberData("ArchiveFileOnStartTests_TestParameters")]
         public void ArchiveFileOnStartTests(bool enableCompression, bool customFileCompressor)
         {
             var logFile = Path.GetTempFileName();
@@ -627,7 +630,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("ReplaceFileContentsOnEachWriteTest_TestParameters")]
+        [MemberData("ReplaceFileContentsOnEachWriteTest_TestParameters")]
         public void ReplaceFileContentsOnEachWriteTest(bool useHeader, bool useFooter)
         {
             const string header = "Headerline", footer = "Footerline";
@@ -1100,7 +1103,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
+        [MemberData("DateArchive_UsesDateFromCurrentTimeSource_TestParameters")]
         public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             const string archiveDateFormat = "yyyyMMdd";
@@ -1229,7 +1232,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("DateArchive_ArchiveOnceOnly_TestParameters")]
+        [MemberData("DateArchive_ArchiveOnceOnly_TestParameters")]
         public void DateArchive_ArchiveOnceOnly(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool dateInLogFilePath, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -1315,7 +1318,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("DateArchive_SkipPeriod_TestParameters")]
+        [MemberData("DateArchive_SkipPeriod_TestParameters")]
         public void DateArchive_SkipPeriod(DateTimeKind timeKind, FileArchivePeriod archivePeriod, bool includeDateInLogFilePath, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -1396,7 +1399,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [PropertyData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
+        [MemberData("DateArchive_AllLoggersTransferToCurrentLogFile_TestParameters")]
         public void DateArchive_AllLoggersTransferToCurrentLogFile(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeDateInLogFilePath, bool includeSequenceInArchive, bool enableArchiveCompression, bool forceManaged, bool forceMutexConcurrentWrites)
         {
 #if !NET4_5

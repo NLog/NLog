@@ -45,7 +45,7 @@ using NLog.Targets;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-#if NET4_5
+#if NET4_5 && !NETSTANDARD
 using System.Web.Http;
 using Owin;
 using Microsoft.Owin.Hosting;
@@ -245,7 +245,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         #endregion
 
-#if NET4_5
+#if NET4_5 && !NETSTANDARD
 
 
         const string WsAddress = "http://localhost:9000/";
@@ -534,7 +534,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
         }
 
-        /// <summary>
+                /// <summary>
         /// Test the Webservice with REST api - <see cref="WebServiceProtocol.JsonPost"/>
         /// </summary>
         [Fact]

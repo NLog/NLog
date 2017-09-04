@@ -191,7 +191,7 @@ namespace NLog
                     if (this.configLoaded)
                         return this.config;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
                     //load
 
                     if (this.config == null)

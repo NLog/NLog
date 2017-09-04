@@ -69,19 +69,19 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
 
-            Debug.Write("Hello");
+            Trace.Write("Hello");
             AssertDebugLastMessage("debug", "Logger1 Debug Hello");
 
-            Debug.Write("Hello", "Cat1");
+            Trace.Write("Hello", "Cat1");
             AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello");
 
-            Debug.Write(3.1415);
+            Trace.Write(3.1415);
             AssertDebugLastMessage("debug", string.Format("Logger1 Debug {0}", 3.1415));
 
-            Debug.Write(3.1415, "Cat2");
+            Trace.Write(3.1415, "Cat2");
             AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
         }
 
@@ -96,19 +96,19 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
 
-            Debug.WriteLine("Hello");
+            Trace.WriteLine("Hello");
             AssertDebugLastMessage("debug", "Logger1 Debug Hello");
 
-            Debug.WriteLine("Hello", "Cat1");
+            Trace.WriteLine("Hello", "Cat1");
             AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello");
 
-            Debug.WriteLine(3.1415);
+            Trace.WriteLine(3.1415);
             AssertDebugLastMessage("debug", string.Format("Logger1 Debug {0}", 3.1415));
 
-            Debug.WriteLine(3.1415, "Cat2");
+            Trace.WriteLine(3.1415, "Cat2");
             AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
         }
 
@@ -123,10 +123,10 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
 
-            Debug.Write("Hello");
+            Trace.Write("Hello");
             AssertDebugLastMessage("debug", "Logger1 Trace Hello");
         }
 
@@ -156,13 +156,13 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
 
-            Debug.Fail("Message");
+            Trace.Fail("Message");
             AssertDebugLastMessage("debug", "Logger1 Error Message");
 
-            Debug.Fail("Message", "Detailed Message");
+            Trace.Fail("Message", "Detailed Message");
             AssertDebugLastMessage("debug", "Logger1 Error Message Detailed Message");
         }
 
@@ -177,10 +177,10 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1", AutoLoggerName = true });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1", AutoLoggerName = true });
 
-            Debug.Write("Hello");
+            Trace.Write("Hello");
             AssertDebugLastMessage("debug", this.GetType().FullName + " Debug Hello");
         }
 

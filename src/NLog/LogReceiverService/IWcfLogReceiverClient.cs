@@ -135,14 +135,14 @@ namespace NLog.LogReceiverService
         /// <param name="result">The result.</param>
         void EndProcessLogMessages(IAsyncResult result);
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD
         /// <summary>
         /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
         /// </summary>
         void DisplayInitializationUI();
 #endif
-      
-#if !NET4_0 && !NET3_5
+
+#if !NET4_0 && !NET3_5 && !NETSTANDARD
 
         /// <summary>
         /// Gets or sets the cookie container.

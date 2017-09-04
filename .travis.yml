@@ -1,10 +1,26 @@
 language: csharp
-solution: src/NLog.mono.sln
+mono: none
+dotnet: 2.0.0
 dist: trusty
+sudo: required
+
 install:
-  - nuget restore src/NLog.mono.sln
-  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+  # Display dotnet version info
+  - which dotnet;
+    if [ $? -eq 0 ]; then
+      echo "Using dotnet:";
+      dotnet --info;
+    else
+      echo "dotnet.exe not found"
+      exit 1;
+    fi
+
+  # Restore dependencies
+  - dotnet restore src/NLog
+  - dotnet restore src/NLogAutoLoadExtension
+  - dotnet restore tests/SampleExtensions
+  - dotnet restore tests/NLog.UnitTests
+
 script:
-  - xbuild /p:Configuration=Release src/NLog.mono.sln
-  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe "./build/bin/Release/Mono 2.x/NLog.UnitTests.dll"
-  
+  # Run tests
+  - dotnet test tests/NLog.UnitTests --configuration Release --framework netcoreapp2.0

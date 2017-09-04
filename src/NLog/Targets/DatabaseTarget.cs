@@ -38,22 +38,30 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Configuration;
+
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
     using System.Reflection;
     using System.Text;
-    using System.Transactions;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
+#if !NETSTANDARD
+    using System.Configuration;
+    using System.Transactions;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
+#endif
 
     /// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
+    /// <remarks>
+    /// - Transactions aren't in .NET Core: https://github.com/dotnet/corefx/issues/2949
+    /// - No connectionstrings from .config
+    /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Database-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <para>
@@ -88,7 +96,9 @@ namespace NLog.Targets
             this.UninstallDdlCommands = new List<DatabaseCommandInfo>();
             this.DBProvider = "sqlserver";
             this.DBHost = ".";
+#if !NETSTANDARD
             this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
+#endif
             this.CommandType = CommandType.Text;
             this.OptimizeBufferReuse = GetType() == typeof(DatabaseTarget);
         }
@@ -134,11 +144,13 @@ namespace NLog.Targets
         [DefaultValue("sqlserver")]
         public string DBProvider { get; set; }
 
+#if !NETSTANDARD
         /// <summary>
         /// Gets or sets the name of the connection string (as specified in <see href="http://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public string ConnectionStringName { get; set; }
+#endif
 
         /// <summary>
         /// Gets or sets the connection string. When provided, it overrides the values
@@ -256,10 +268,12 @@ namespace NLog.Targets
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; private set; }
 
+#if !NETSTANDARD
         internal DbProviderFactory ProviderFactory { get; set; }
 
         // this is so we can mock the connection string without creating sub-processes
         internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set; }
+#endif
 
         internal Type ConnectionType { get; set; }
 
@@ -297,13 +311,20 @@ namespace NLog.Targets
         {
             IDbConnection connection;
 
+#if !NETSTANDARD
             if (this.ProviderFactory != null)
             {
                 connection = this.ProviderFactory.CreateConnection();
             }
             else
+#endif
             {
                 connection = (IDbConnection)Activator.CreateInstance(this.ConnectionType);
+            }
+
+            if (connection == null)
+            {
+                throw new NLogRuntimeException("Creation of connection failed");
             }
 
             connection.ConnectionString = connectionString;
@@ -328,7 +349,7 @@ namespace NLog.Targets
             }
 
             bool foundProvider = false;
-
+#if !NETSTANDARD
             if (!string.IsNullOrEmpty(this.ConnectionStringName))
             {
                 // read connection string and provider factory from the configuration file
@@ -360,6 +381,7 @@ namespace NLog.Targets
                     }
                 }
             }
+#endif
 
             if (!foundProvider)
             {
@@ -378,9 +400,14 @@ namespace NLog.Targets
                 case "MSSQL":
                 case "MICROSOFT":
                 case "MSDE":
-                    this.ConnectionType = systemDataAssembly.GetType("System.Data.SqlClient.SqlConnection", true);
+#if NETSTANDARD
+                    var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
+#else
+                    var assembly = systemDataAssembly;
+#endif
+                    this.ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
                     break;
-
+#if !NETSTANDARD
                 case "OLEDB":
                     this.ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
                     break;
@@ -388,7 +415,7 @@ namespace NLog.Targets
                 case "ODBC":
                     this.ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
                     break;
-
+#endif
                 default:
                     this.ConnectionType = Type.GetType(this.DBProvider, true);
                     break;
@@ -711,6 +738,47 @@ namespace NLog.Targets
                 this.CloseConnection();
             }
         }
+
+#if NETSTANDARD
+        /// <summary>
+        /// Fake transaction
+        /// 
+        /// Transactions aren't in .NET Core: https://github.com/dotnet/corefx/issues/2949
+        /// </summary>
+        private class TransactionScope : IDisposable
+        {
+            private TransactionScopeOption suppress;
+
+            public TransactionScope(TransactionScopeOption suppress)
+            {
+                this.suppress = suppress;
+            }
+
+            public void Complete() { }
+
+#region Implementation of IDisposable
+
+            /// <summary>
+            ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            /// </summary>
+            public void Dispose()
+            {
+
+            }
+
+#endregion
+        }
+
+        /// <summary>
+        /// Fake option
+        /// </summary>
+        private enum TransactionScopeOption
+        {
+            Required,
+            RequiresNew,
+            Suppress,
+        }
+#endif
     }
 }
 
