@@ -71,6 +71,9 @@
   <ItemGroup Condition=" '$(monobuild)' != '' ">
     <Reference Include="Mono.Posix" />
     <PackageReference Include="Mono.Data.Sqlite.Portable" Version="1.0.3.5" />
+    <None Update="NLog.UnitTests.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

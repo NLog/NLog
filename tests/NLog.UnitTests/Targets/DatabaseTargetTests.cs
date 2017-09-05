@@ -736,7 +736,7 @@ Dispose()
             AssertLog(expectedLog);
         }
 
-#if !NETSTANDARD
+#if !MONO && !NETSTANDARD
         [Fact]
         public void ConnectionStringNameInitTest()
         {
@@ -1062,19 +1062,20 @@ Dispose()
         [Fact]
         public void SqlServer_NoTargetInstallException()
         {
-            if (SqlServerTest.IsTravis())
+            if (IsTravis())
             {
                 Console.WriteLine("skipping test SqlServer_NoTargetInstallException because we are running in Travis");
                 return;
             }
 
-            SqlServerTest.TryDropDatabase();
+            bool isAppVeyor = IsAppVeyor();
+            SqlServerTest.TryDropDatabase(isAppVeyor);
 
             try
             {
-                SqlServerTest.CreateDatabase();
+                SqlServerTest.CreateDatabase(isAppVeyor);
 
-                var connectionString = SqlServerTest.GetConnectionString();
+                var connectionString = SqlServerTest.GetConnectionString(isAppVeyor);
 
                 DatabaseTarget testTarget = new DatabaseTarget("TestDbTarget");
                 testTarget.ConnectionString = connectionString;
@@ -1096,7 +1097,7 @@ Dispose()
                     testTarget.Install(context);
                 }
 
-                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES 
+                var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES 
                     WHERE TABLE_TYPE = 'BASE TABLE'
                     AND  TABLE_NAME = 'NLogTestTable'
                 ");
@@ -1106,27 +1107,27 @@ Dispose()
             }
             finally
             {
-                SqlServerTest.TryDropDatabase();
+                SqlServerTest.TryDropDatabase(isAppVeyor);
             }
         }
 
         [Fact]
         public void SqlServer_InstallAndLogMessage()
         {
-
-            if (SqlServerTest.IsTravis())
+            if (IsTravis())
             {
                 Console.WriteLine("skipping test SqlServer_InstallAndLogMessage because we are running in Travis");
                 return;
             }
 
-            SqlServerTest.TryDropDatabase();
+            bool isAppVeyor = IsAppVeyor();
+            SqlServerTest.TryDropDatabase(isAppVeyor);
 
             try
             {
-                SqlServerTest.CreateDatabase();
+                SqlServerTest.CreateDatabase(isAppVeyor);
 
-                var connectionString = SqlServerTest.GetConnectionString();
+                var connectionString = SqlServerTest.GetConnectionString(IsAppVeyor());
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
@@ -1151,7 +1152,7 @@ Dispose()
                 InstallationContext context = new InstallationContext();
                 LogManager.Configuration.Install(context);
 
-                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
+                var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
                  WHERE TABLE_SCHEMA = 'Dbo'
                  AND  TABLE_NAME = 'NLogSqlServerTest'");
 
@@ -1166,17 +1167,17 @@ Dispose()
                 logEvent.Properties["uid"] = uid;
                 logger.Log(logEvent);
 
-                var count = SqlServerTest.IssueScalarQuery("SELECT count(1) FROM dbo.NLogSqlServerTest");
+                var count = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT count(1) FROM dbo.NLogSqlServerTest");
 
                 Assert.Equal(1, count);
 
-                var result = SqlServerTest.IssueScalarQuery("SELECT Uid FROM dbo.NLogSqlServerTest");
+                var result = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT Uid FROM dbo.NLogSqlServerTest");
 
                 Assert.Equal(uid, result);
             }
             finally
             {
-                SqlServerTest.TryDropDatabase();
+                SqlServerTest.TryDropDatabase(isAppVeyor);
             }
 
         }
@@ -1834,13 +1835,11 @@ Dispose()
 
         private static class SqlServerTest
         {
-
-
             static SqlServerTest()
             {
             }
 
-            public static string GetConnectionString()
+            public static string GetConnectionString(bool isAppVeyor)
             {
                 string connectionString = string.Empty;
 #if !NETSTANDARD
@@ -1848,7 +1847,7 @@ Dispose()
 #endif
                 if (String.IsNullOrWhiteSpace(connectionString))
                 {
-                    connectionString = IsAppVeyor() ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
+                    connectionString = isAppVeyor ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
                 }
                 return connectionString;
             }
@@ -1868,48 +1867,28 @@ Dispose()
             private const string LocalConnectionStringNLogTest =
                 @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Integrated Security=True;";
 
-            public static void CreateDatabase()
+            public static void CreateDatabase(bool isAppVeyor)
             {
-                var connectionString = GetMasterConnectionString();
-                IssueCommand("CREATE DATABASE NLogTest", connectionString);
+                var connectionString = GetMasterConnectionString(isAppVeyor);
+                IssueCommand(IsAppVeyor(), "CREATE DATABASE NLogTest", connectionString);
             }
 
-            public static bool NLogTestDatabaseExists()
+            public static bool NLogTestDatabaseExists(bool isAppVeyor)
             {
-                var connectionString = GetMasterConnectionString();
-                var dbId = IssueScalarQuery("select db_id('NLogTest')", connectionString);
+                var connectionString = GetMasterConnectionString(isAppVeyor);
+                var dbId = IssueScalarQuery(IsAppVeyor(), "select db_id('NLogTest')", connectionString);
                 return dbId != null && dbId != DBNull.Value;
 
             }
 
-            private static string GetMasterConnectionString()
+            private static string GetMasterConnectionString(bool isAppVeyor)
             {
-                return IsAppVeyor() ? AppVeyorConnectionStringMaster : LocalConnectionStringMaster;
+                return isAppVeyor ? AppVeyorConnectionStringMaster : LocalConnectionStringMaster;
             }
 
-            /// <summary>
-            /// Are we running on AppVeyor?
-            /// </summary>
-            /// <returns></returns>
-            private static bool IsAppVeyor()
+            public static void IssueCommand(bool isAppVeyor, string commandString, string connectionString = null)
             {
-                var val = Environment.GetEnvironmentVariable("APPVEYOR");
-                return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
-            }
-
-            /// <summary>
-            /// Are we running on Travis?
-            /// </summary>
-            /// <returns></returns>
-            public static bool IsTravis()
-            {
-                var val = Environment.GetEnvironmentVariable("TRAVIS");
-                return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
-            }
-
-            public static void IssueCommand(string commandString, string connectionString = null)
-            {
-                using (var connection = new SqlConnection(connectionString ?? GetConnectionString()))
+                using (var connection = new SqlConnection(connectionString ?? GetConnectionString(isAppVeyor)))
                 {
                     connection.Open();
                     if (connectionString == null)
@@ -1921,9 +1900,9 @@ Dispose()
                 }
             }
 
-            public static object IssueScalarQuery(string commandString, string connectionString = null)
+            public static object IssueScalarQuery(bool isAppVeyor, string commandString, string connectionString = null)
             {
-                using (var connection = new SqlConnection(connectionString ?? GetConnectionString()))
+                using (var connection = new SqlConnection(connectionString ?? GetConnectionString(isAppVeyor)))
                 {
                     connection.Open();
                     if (connectionString == null)
@@ -1939,14 +1918,14 @@ Dispose()
             /// <summary>
             /// Try dropping. IF fail, not exception
             /// </summary>
-            public static bool TryDropDatabase()
+            public static bool TryDropDatabase(bool isAppVeyor)
             {
                 try
                 {
-                    if (NLogTestDatabaseExists())
+                    if (NLogTestDatabaseExists(isAppVeyor))
                     {
-                        var connectionString = GetMasterConnectionString();
-                        IssueCommand(
+                        var connectionString = GetMasterConnectionString(isAppVeyor);
+                        IssueCommand(isAppVeyor,
                             "ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;",
                             connectionString);
                         return true;

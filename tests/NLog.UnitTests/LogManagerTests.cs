@@ -277,27 +277,16 @@ namespace NLog.UnitTests
             _reloadCounter++;
         }
 
-        private bool IsMacOsX()
-        {
-#if MONO
-            if (Directory.Exists("/Library/Frameworks/Mono.framework/"))
-            {
-                return true;
-            }
-
-#endif
-            return false;
-        }
-
         [Fact]
         public void AutoReloadTest()
         {
-            if (IsMacOsX())
+#if NETSTANDARD
+            if (IsTravis())
             {
-                // skip this on Mac OS, since it requires root permissions for
-                // filesystem watcher
+                Console.WriteLine("[SKIP] LogManagerTests.AutoReloadTest because we are running in Travis");
                 return;
             }
+#endif
 
             using (new InternalLoggerScope())
             {

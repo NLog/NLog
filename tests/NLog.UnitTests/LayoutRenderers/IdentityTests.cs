@@ -47,7 +47,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class IdentityTests : NLogTestBase
     {
+#if MONO
+        [Fact(Skip = "MONO on Travis not supporting WindowsIdentity")]
+#else
         [Fact]
+#endif
         public void WindowsIdentityTest()
         {
             var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
@@ -192,7 +196,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
             }
 
-            #region Overrides of GenericIdentity
+#region Overrides of GenericIdentity
 
             /// <summary>
             /// Gets a value indicating whether the user has been authenticated.
@@ -205,7 +209,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 get { return false; }
             }
 
-            #endregion
+#endregion
         }
     }
 }

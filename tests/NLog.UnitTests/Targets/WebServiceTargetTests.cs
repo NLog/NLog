@@ -559,7 +559,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                                 </parameter>
                                 <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
                                 <parameter name='param3' ParameterType='System.Boolean' layout='True'/>
-                                <parameter name='param4' ParameterType='System.DateTime' layout='${{date:format=yyyy-MM-dd HH\:mm}}'/>
+                                <parameter name='param4' ParameterType='System.DateTime' layout='${{longdate:universalTime=true}}'/>
                             </target>
                         </target>
                     </targets>
@@ -584,7 +584,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             }
             expected.Append(" }");
             var count = 2;
-            var context = new LogDocController.TestContext(1, count, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" } }, expected.ToString(), "info", true, DateTime.UtcNow.Date);
+            var context = new LogDocController.TestContext(1, count, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" } }, expected.ToString(), "info", true, DateTime.UtcNow);
 
             StartOwinDocTest(context, () =>
             {

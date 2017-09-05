@@ -475,6 +475,11 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void LogBuilder_message_cultureTest()
         {
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] LogBuilderTests.LogBuilder_message_cultureTest because we are running in Travis");
+                return;
+            }
 
             LogManager.Configuration.DefaultCultureInfo = GetCultureInfo("en-US");
 

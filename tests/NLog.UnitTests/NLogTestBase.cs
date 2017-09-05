@@ -417,6 +417,26 @@ namespace NLog.UnitTests
             return new CultureInfo(cultureName, false);
         }
 
+        /// <summary>
+        /// Are we running on Travis?
+        /// </summary>
+        /// <returns></returns>
+        protected static bool IsTravis()
+        {
+            var val = Environment.GetEnvironmentVariable("TRAVIS");
+            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Are we running on AppVeyor?
+        /// </summary>
+        /// <returns></returns>
+        protected static bool IsAppVeyor()
+        {
+            var val = Environment.GetEnvironmentVariable("APPVEYOR");
+            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+        }
+
         public delegate void SyncAction();
 
         public class InternalLoggerScope : IDisposable
