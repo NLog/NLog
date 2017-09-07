@@ -433,6 +433,7 @@
     <Compile Include="Targets\Wrappers\AsyncTargetWrapperOverflowAction.cs" />
     <Compile Include="Targets\Wrappers\AutoFlushTargetWrapper.cs" />
     <Compile Include="Targets\Wrappers\BufferingTargetWrapper.cs" />
+    <Compile Include="Targets\Wrappers\BufferingTargetWrapperOverflowAction.cs" />
     <Compile Include="Targets\Wrappers\CompoundTargetBase.cs" />
     <Compile Include="Targets\Wrappers\FallbackGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\FilteringRule.cs" />
