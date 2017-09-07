@@ -21,12 +21,20 @@
     <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net452' ">Full</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <DefineConstants>$(DefineConstants);NET4_5;ASYNC_SUPPORTED;WCF_SUPPORTED</DefineConstants>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == '' ">
+    <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == 'net35' ">
+    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == 'net40-client' ">
+    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-    <DefineConstants>$(DefineConstants);NETSTANDARD;NET4_5;ASYNC_SUPPORTED;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD;NET4_5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
@@ -46,8 +54,6 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.csproj" />
-    
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -66,6 +72,29 @@
     <PackageReference Include="Microsoft.Owin.Hosting" Version="3.0.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.3" />
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == '' ">
+    <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' != '' ">
+    <Reference Include="NLog">
+      <HintPath>..\..\src\NLog\bin\$(Configuration)\$(TestTargetFramework)\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog.Extended">
+      <HintPath>..\..\src\NLog.Extended\bin\$(Configuration)\$(TestTargetFramework)\NLog.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLogAutoLoadExtension">
+      <HintPath>..\..\tests\NLogAutoLoadExtension\bin\$(Configuration)\$(TestTargetFramework)\NLogAutoLoadExtension.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SampleExtensions">
+      <HintPath>..\..\tests\SampleExtensions\bin\$(Configuration)\$(TestTargetFramework)\SampleExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(monobuild)' != '' ">

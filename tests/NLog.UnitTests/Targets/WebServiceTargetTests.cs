@@ -32,20 +32,19 @@
 // 
 
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using NLog.Internal;
 using NLog.Targets;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-#if NET4_5 && !NETSTANDARD
+#if !NETSTANDARD
+using System.Collections.Concurrent;
 using System.Web.Http;
 using Owin;
 using Microsoft.Owin.Hosting;
@@ -95,7 +94,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         {
             WebserviceTest_httppost_utf8("", false);
         }
-
 
         [Fact]
         public void WebserviceTest_httppost_utf8_with_bom()
@@ -179,9 +177,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             Assert.Equal(bytes.Length, includeBom ? 126 : 123);
         }
-
-        #region helpers
-
+#region helpers
 
         private Stream GenerateStreamFromString(string s)
         {
@@ -217,7 +213,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public byte[] bytes;
             public string stringed;
 
-            #region Overrides of MemoryStream
+#region Overrides of MemoryStream
 
             /// <summary>
             /// Releases the unmanaged resources used by the <see cref="T:System.IO.MemoryStream"/> class and optionally releases the managed resources.
@@ -239,15 +235,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 return sr.ReadToEnd();
             }
 
-            #endregion
+#endregion
         }
 
 
-        #endregion
+#endregion
 
-#if NET4_5 && !NETSTANDARD
-
-
+#if !NETSTANDARD
         const string WsAddress = "http://localhost:9000/";
 
         private static string getWsAddress(int portOffset)
@@ -301,12 +295,10 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 logger.Info(message2);
             });
 
-
             Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
             Assert.Equal(2, LogMeController.RecievedLogsPostParam1.Count);
             CheckQueueMessage(message1, LogMeController.RecievedLogsPostParam1);
             CheckQueueMessage(message2, LogMeController.RecievedLogsPostParam1);
-
         }
 
         /// <summary>

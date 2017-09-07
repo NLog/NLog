@@ -37,17 +37,12 @@ namespace NLog.UnitTests
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.IO;
     using Xunit;
     using NLog.Common;
     using NLog.Config;
     using NLog.Targets;
-
-#if NET4_5
     using System.Threading.Tasks;
-    using System.Runtime.CompilerServices;
-#endif
 
     public class LogManagerTests : NLogTestBase
     {
@@ -487,7 +482,6 @@ namespace NLog.UnitTests
             Assert.NotNull(instance);
         }
 
-#if NET4_0 || NET4_5
         [Fact]
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
@@ -495,9 +489,7 @@ namespace NLog.UnitTests
 
             Assert.Equal(this.GetType().FullName, logger.Value.Name);
         }
-#endif
 
-#if NET4_5
         [Fact]
         public void ThreadSafe_Shutdown()
         {
@@ -518,7 +510,6 @@ namespace NLog.UnitTests
             System.Threading.Thread.Sleep(20);
             Assert.Equal(false, exceptionThrown);
         }
-#endif
 
         /// <summary>
         /// Note: THe problem  can be reproduced when: debugging the unittest + "break when exception is thrown" checked in visual studio.

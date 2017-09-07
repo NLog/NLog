@@ -63,8 +63,6 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(expected, result);
         }
 
-#if !NET3_5
-
         [Fact]
         public void RenderProcessTimeLayoutRenderer()
         {
@@ -75,6 +73,5 @@ namespace NLog.UnitTests.LayoutRenderers
             var expected = time.ToString("hh\\:mm\\:ss\\.fff");
             AssertLayoutRendererOutput(layout, logEvent, expected);
         }
-#endif
     }
 }

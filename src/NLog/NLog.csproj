@@ -43,7 +43,7 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5</Title>
-    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;ASYNC_SUPPORTED</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
@@ -61,7 +61,7 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog for NetStandard 2.0</Title>
-    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;ASYNC_SUPPORTED;NETSTANDARD</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;NETSTANDARD</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(monobuild)' != '' ">

@@ -616,14 +616,14 @@ namespace NLog.UnitTests.Config
 
         private class ConfigurationReloadWaiter : IDisposable
         {
-            private CountdownEvent counterEvent = new CountdownEvent(1);
+            private ManualResetEvent counterEvent = new ManualResetEvent(false);
 
             public ConfigurationReloadWaiter()
             {
                 LogManager.ConfigurationReloaded += SignalCounterEvent(counterEvent);
             }
 
-            public bool DidReload { get { return counterEvent.CurrentCount == 0; } }
+            public bool DidReload { get { return counterEvent.WaitOne(0); } }
 
             public void Dispose()
             {
@@ -632,15 +632,14 @@ namespace NLog.UnitTests.Config
 
             public void WaitForReload()
             {
-                counterEvent.Wait(3000);
+                counterEvent.WaitOne(3000);
             }
 
-            private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent(CountdownEvent counterEvent)
+            private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent(ManualResetEvent counterEvent)
             {
                 return (sender, e) =>
                 {
-                    if (counterEvent.CurrentCount > 0)
-                        counterEvent.Signal();
+                    counterEvent.Set();
                 };
             }
         }

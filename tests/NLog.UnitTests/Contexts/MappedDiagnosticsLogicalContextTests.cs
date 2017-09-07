@@ -37,7 +37,6 @@ using System.Threading;
 namespace NLog.UnitTests.Contexts
 {
     using System;
-#if NET4_0 || NET4_5
     using System.Threading.Tasks;
     using Xunit;
 
@@ -316,5 +315,4 @@ namespace NLog.UnitTests.Contexts
             Assert.Empty(getValue);
         }
     }
-#endif
 }

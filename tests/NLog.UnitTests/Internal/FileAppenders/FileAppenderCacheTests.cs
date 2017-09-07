@@ -175,7 +175,6 @@ namespace NLog.UnitTests.Internal.FileAppenders
             FileAppenderCache_GetFileCharacteristics(appenderFactory, fileTarget);
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         [Fact]
         public void FileAppenderCache_GetFileCharacteristics_Multi()
         {
@@ -183,9 +182,8 @@ namespace NLog.UnitTests.Internal.FileAppenders
             ICreateFileParameters fileTarget = new FileTarget() { ArchiveNumbering = ArchiveNumberingMode.Date, ForceManaged = true };
             FileAppenderCache_GetFileCharacteristics(appenderFactory, fileTarget);
         }
-#endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD
+#if !MONO && !NETSTANDARD
         [Fact]
         public void FileAppenderCache_GetFileCharacteristics_Windows()
         {

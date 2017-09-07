@@ -31,27 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD && !SILVERLIGHT && !NET3_5
-
 namespace NLog.UnitTests.LogReceiverService
 {
-
     using System.Collections.Generic;
-
     using System.Linq;
-
     using System.Threading;
-
     using System;
     using System.IO;
     using Xunit;
-#if WCF_SUPPORTED
-        using System.Data;
+    using System.Data;
     using System.Runtime.Serialization;
-
-        using System.ServiceModel;
+    using System.ServiceModel;
     using System.ServiceModel.Description;
-#endif
     using System.Xml;
     using System.Xml.Serialization;
     using NLog.Layouts;
@@ -230,9 +221,7 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.Equal(xml1, xml2);
         }
 
-
-#if WCF_SUPPORTED
-
+#if !NETSTANDARD
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -312,7 +301,7 @@ namespace NLog.UnitTests.LogReceiverService
                 // Enable metadata publishing.
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
-#if !MONO && !NETSTANDARD
+#if !MONO
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
 #endif
                 host.Description.Behaviors.Add(smb);
@@ -396,9 +385,6 @@ namespace NLog.UnitTests.LogReceiverService
                 CountdownEvent.Signal();
             }
         }
-
-#endif
+#endif // !NETSTANDARD
     }
 }
-
-#endif

@@ -76,7 +76,6 @@ namespace NLog.UnitTests.Fluent
         }
 #endif
 
-
         ///<remarks>
         /// func because 1 logbuilder creates 1 message
         /// 

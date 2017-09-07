@@ -74,11 +74,9 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-#if !SILVERLIGHT
             System.Diagnostics.Trace.Listeners.Clear();
 #if !NETSTANDARD
             System.Diagnostics.Debug.Listeners.Clear();
-#endif
 #endif
         }
 
@@ -308,7 +306,7 @@ namespace NLog.UnitTests
             Assert.Equal(expected, actual);
         }
 
-#if MONO || NET4_5
+#if NET4_5
         /// <summary>
         /// Get line number of previous line.
         /// </summary>

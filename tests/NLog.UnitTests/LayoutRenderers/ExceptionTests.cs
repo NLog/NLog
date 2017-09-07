@@ -496,8 +496,11 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Null(exRecorded);
         }
 
-#if !NET3_5
+#if NET3_5
+        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#else
         [Fact]
+#endif
         public void AggregateExceptionTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -538,7 +541,6 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug1", "Test Inner 1");
             AssertDebugLastMessageContains("debug1", "Test Inner 2");
         }
-#endif
 
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
         {

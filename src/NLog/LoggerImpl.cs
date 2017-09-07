@@ -151,8 +151,7 @@ namespace NLog
 
             if (last != null)
             {
-#if ASYNC_SUPPORTED
-
+#if NET4_5
                 //movenext and then AsyncTaskMethodBuilder (method start)? this is a generated MoveNext by async.
                 if (last.StackFrame.GetMethod().Name == "MoveNext")
                 {

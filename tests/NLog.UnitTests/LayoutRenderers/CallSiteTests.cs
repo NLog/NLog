@@ -655,8 +655,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-#if ASYNC_SUPPORTED
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#else
         [Fact]
+#endif
         public void Show_correct_method_with_async()
         {
 
@@ -684,7 +687,11 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
         }
 
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#else
         [Fact]
+#endif
         public void Show_correct_method_with_async2()
         {
 
@@ -716,14 +723,15 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
         }
 
-#if !DEBUG
+#if NET3_5 
+        [Fact(Skip="NET3_5 not supporting async callstack")]
+#elif !DEBUG
         [Fact(Skip = "RELEASE not working, only DEBUG")]
 #else
         [Fact]
 #endif
         public void Show_correct_method_with_async3()
         {
-
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod3b";
 
@@ -737,7 +745,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
             AsyncMethod3a().Wait();
             AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
-
         }
 
         private async Task AsyncMethod3a()
@@ -761,7 +768,9 @@ namespace NLog.UnitTests.LayoutRenderers
             return await Task.FromResult(new string[] { "value1", "value2" });
         }
 
-#if MONO
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
@@ -785,7 +794,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-#if MONO
+#if NET3_5 || NET4_0
+        [Fact(Skip= "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
@@ -810,8 +821,6 @@ namespace NLog.UnitTests.LayoutRenderers
             var callSite = l.Render(logEvent);
             return callSite;
         }
-
-#endif  // ASYNC_SUPPORTED
 
 #if !DEBUG
         [Fact(Skip = "RELEASE not working, only DEBUG")]

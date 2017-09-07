@@ -31,15 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using NLog.Common;
 using NLog.Internal;
 using Xunit;

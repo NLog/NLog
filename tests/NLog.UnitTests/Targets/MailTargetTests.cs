@@ -43,11 +43,8 @@ namespace NLog.UnitTests.Targets
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-	  using System.IO;
-#if !__ANDROID__ && !__IOS__
-    using System.Configuration;
+	using System.IO;
     using System.Net.Configuration;
-#endif
 
     public class MailTargetTests : NLogTestBase
     {
@@ -748,8 +745,6 @@ namespace NLog.UnitTests.Targets
             Assert.Contains(string.Format("{0}App_Data{0}Mail", separator), mmt.SmtpClientPickUpDirectory);
         }
 
-#if !__ANDROID__ && !__IOS__
-
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True_ReadFromFromConfigFile_dontoverride()
         {
@@ -809,10 +804,7 @@ namespace NLog.UnitTests.Targets
             Assert.Null(mmt.From);
 
             Assert.Throws <NLogConfigurationException>(() => mmt.Initialize(null));
-
         }
-  
-#endif
 
         [Fact]
         public void MailTarget_WithoutSubject_SendsMessageWithDefaultSubject()
