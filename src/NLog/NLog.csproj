@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40;net35;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35;netstandard2.0</TargetFrameworks>
 
     <VersionPrefix>4.5.0</VersionPrefix>
     <VersionSuffix>beta01</VersionSuffix>
@@ -46,11 +46,14 @@
     <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;ASYNC_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
     <Title>NLog for .NET Framework 4</Title>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DefineConstants>$(DefineConstants);NET4_0;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
-
+  
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5</Title>
     <DefineConstants>$(DefineConstants);NET3_5;WCF_SUPPORTED</DefineConstants>
@@ -116,7 +119,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -129,7 +132,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -141,7 +144,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net35' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -152,7 +155,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'sl4' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'sl4' ">
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -164,7 +167,7 @@
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'sl5' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'sl5' ">
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -176,7 +179,7 @@
     <Reference Include="System.ServiceModel" />
   </ItemGroup> 
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'wp8' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'wp8' ">
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -185,7 +188,7 @@
     <Reference Include="System.Windows" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'monoandroid44' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'monoandroid44' ">
     <Reference Include="mscorlib" />
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
@@ -202,7 +205,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="System.Private.ServiceModel" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />

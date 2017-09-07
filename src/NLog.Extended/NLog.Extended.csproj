@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks>net45;net40;net35</TargetFrameworks>
+    <TargetFrameworks>net45;net40-client;net35</TargetFrameworks>
 
     <VersionPrefix>4.5.0</VersionPrefix>
     <VersionSuffix>beta01</VersionSuffix>
@@ -37,8 +37,11 @@
     <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
     <Title>NLog for .NET Framework 4 Extended Profile</Title>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
   </PropertyGroup>
 
