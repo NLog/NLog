@@ -37,38 +37,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
 
-#if NETSTANDARD2_0
-    [assembly: AssemblyTitle("NLog for NetStandard 2.0")]
-#elif NET3_5
-    [assembly: AssemblyTitle("NLog for .NET Framework 3.5")]
-#elif NET4_0
-    [assembly: AssemblyTitle("NLog for .NET Framework 4")]
-#elif NET4_5
-    [assembly: AssemblyTitle("NLog for .NET Framework 4.5")]
-#elif MONO_2_0
-    [assembly: AssemblyTitle("NLog for Mono 2.0")]
-#elif SILVERLIGHT4
-    [assembly: AssemblyTitle("NLog for Silverlight 4.0")]
-#elif SILVERLIGHT5
-    [assembly: AssemblyTitle("NLog for Silverlight 5.0")]
-#elif DOCUMENTATION
-    [assembly: AssemblyTitle("NLog Documentation")]
-#elif __IOS__
-	[assembly: AssemblyTitle("NLog for Xamarin iOS")]
-#elif WINDOWS_PHONE
-	[assembly: AssemblyTitle("NLog for Windows Phone 8")]
-#elif __ANDROID__
-	[assembly: AssemblyTitle("NLog for Xamarin Android")]
-#else
-#error Unrecognized build target - please update AssemblyInfo.cs
-#endif
-
-[assembly: AssemblyDescription("NLog")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyCopyright("Copyright (c) 2004-2016 Jaroslaw Kowalski, Kim Christensen, Julian Verdurmen")]
 [assembly: AssemblyCulture("")]
-
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 #if __IOS__ || __ANDROID__

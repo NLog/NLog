@@ -3,24 +3,53 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks>net45</TargetFrameworks>
+    <TargetFrameworks>net45;net40;net35</TargetFrameworks>
 
+    <VersionPrefix>4.5.0</VersionPrefix>
+    <VersionSuffix>beta01</VersionSuffix>
+    <AssemblyVersion Condition=" '$(AssemblyVersion)' == '' AND '$(APPVEYOR_BUILD_NUMBER)' != '' ">4.0.0.0</AssemblyVersion>
+    <AssemblyVersion Condition=" '$(AssemblyVersion)' == '' ">0.0.0.0</AssemblyVersion>
+    <APPVEYOR_BUILD_NUMBER Condition="'$(APPVEYOR_BUILD_NUMBER)' == ''">1</APPVEYOR_BUILD_NUMBER>
+    <FileVersion>$(VersionPrefix).$(APPVEYOR_BUILD_NUMBER)</FileVersion>
+    <InformationalVersion>$(VersionPrefix)</InformationalVersion>
+    <InformationalVersion Condition="'$(VersionSuffix)' != ''">$(InformationalVersion)-$(VersionSuffix)</InformationalVersion>
+
+    <Title>NLog for unknown platform Extended Profile</Title>
+    <Company>NLog</Company>
+    <Description>NLog</Description>
+    <Product>NLog Extended Profile v$(VersionPrefix)</Product>
+    <Product Condition="'$(VersionSuffix)' != ''">$(Product)-$(VersionSuffix)</Product>
+    <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+    
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net45' ">Full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Title>NLog for .NET Framework 4.5 Extended Profile</Title>
     <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40' ">
+    <Title>NLog for .NET Framework 4 Extended Profile</Title>
+    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Title>NLog for .NET Framework 3.5 Extended Profile</Title>
+    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(monobuild)' != '' ">
+    <Title>$(Title) - Mono</Title>
+    <DefineConstants>$(DefineConstants)MONO</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,5 +59,9 @@
   <ItemGroup>
     <Reference Include="System.Messaging" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+  </PropertyGroup>
 
 </Project>
