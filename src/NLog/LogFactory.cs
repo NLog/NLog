@@ -33,6 +33,12 @@
 
 namespace NLog
 {
+    using JetBrains.Annotations;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Internal.Fakeables;
+    using NLog.Targets;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -43,14 +49,6 @@ namespace NLog
     using System.Security;
     using System.Text;
     using System.Threading;
-
-    using JetBrains.Annotations;
-
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Targets;
-    using NLog.Internal.Fakeables;
 
 #if SILVERLIGHT && !__IOS__ && !__ANDROID__
     using System.Windows;

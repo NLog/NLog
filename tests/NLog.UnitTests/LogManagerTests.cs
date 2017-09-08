@@ -635,5 +635,60 @@ namespace NLog.UnitTests
             }
         }
 #endif
+
+        [Fact]
+        public void RemovedTargetShouldNotLog()
+        {
+            // Setup a configuration with 2 console targets
+            var config = new LoggingConfiguration();
+
+            config.AddTarget(new ConsoleTarget("ConsoleA") { Layout = "A | ${message}" });
+            config.AddTarget(new ConsoleTarget("ConsoleB") { Layout = "B | ${message}" });
+
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, "ConsoleA");
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, "ConsoleB");
+
+            LogManager.ThrowConfigExceptions = true;
+            LogManager.ThrowExceptions = true;
+
+            InternalLogger.LogLevel = LogLevel.Debug;
+            InternalLogger.LogFile = "nlog_internal.log";
+
+            // Apply the configuration
+            LogManager.Configuration = config;
+
+            // Success
+            Assert.Equal(
+                new[] { "ConsoleA", "ConsoleB" },
+                LogManager.Configuration.ConfiguredNamedTargets.Select(target => target.Name)
+            );
+
+            // Remove the first target from the configuration
+            LogManager.Configuration.RemoveTarget("ConsoleA");
+
+            // Success
+            Assert.Equal(
+                new[] { "ConsoleB" },
+                LogManager.Configuration.ConfiguredNamedTargets.Select(target => target.Name)
+            );
+
+            using (var writer = new StringWriter())
+            {
+                Console.SetOut(writer);
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Debug("Hello");
+
+                var output = writer.ToString();
+
+                Assert.Contains("B | Hello", output);           // Success
+                Assert.DoesNotContain("A | Hello", output);     // Success
+            }
+
+            // Success
+            Assert.Equal(
+                new[] { "ConsoleB" },
+                LogManager.Configuration.AllTargets.Select(target => target.Name)
+            );
+        }
     }
 }

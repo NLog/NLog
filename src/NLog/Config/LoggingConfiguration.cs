@@ -31,20 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 namespace NLog.Config
 {
+    using JetBrains.Annotations;
+    using NLog.Common;
+    using NLog.Internal;
+    using NLog.Layouts;
+    using NLog.Targets;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Linq;
-
-    using JetBrains.Annotations;
-
-    using NLog.Common;
-    using NLog.Internal;
-    using NLog.Layouts;
-    using NLog.Targets;
 
     /// <summary>
     /// Keeps logging configuration and provides simple API
@@ -342,6 +341,26 @@ namespace NLog.Config
         public void RemoveTarget(string name)
         {
             this.targets.Remove(name);
+            CloseAndRemoveTarget(name);
+            ValidateConfig();
+        }
+
+        /// <summary>
+        /// Removes a target from the logging rules and flush it.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        private void CloseAndRemoveTarget(string name)
+        {
+            var loggingRules = LoggingRules.ToList();
+            foreach (var rule in loggingRules)
+            {
+                var targets = rule.Targets.Where(t => t.Name == name).ToList();
+                foreach (var target in targets)
+                {
+                    target.Close();
+                    rule.Targets.Remove(target);
+                }
+            }
         }
 
         /// <summary>
