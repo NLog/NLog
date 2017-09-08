@@ -42,7 +42,7 @@ namespace NLog.Layouts
     /// This layout is not meant to be used explicitly. Instead you can use ${log4jxmlevent} layout renderer.
     /// </remarks>
     [Layout("Log4JXmlEventLayout")]
-    public class Log4JXmlEventLayout : Layout
+    public class Log4JXmlEventLayout : Layout, ILog4JXmlEvent
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayout" /> class.
