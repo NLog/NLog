@@ -40,6 +40,26 @@ or just get started with the tutorials on [the NLog wiki](https://github.com/NLo
 
 Major releases will be posted on [project news](http://nlog-project.org/archives/). For smaller updates, follow us on [Twitter](https://twitter.com/NLogOfficial)
 
+
+Getting started
+---
+
+- For ASP.NET Core users, see [installation instructions](https://github.com/NLog/NLog.Web/wiki/Getting-started-with-ASP.NET-Core-(csproj---vs2017))
+- ASP.NET (classic) users: 
+  1. Install [NLog.Config NuGet package](https://www.nuget.org/packages/NLog.config)
+  2. recommended, install also install [NLog.Web NuGet package](https://www.nuget.org/packages/NLog.Web)
+
+- Others:
+  1. Install [NLog.Config NuGet package](https://www.nuget.org/packages/NLog.config)
+
+
+More detailed tutorial can be found [here](https://github.com/NLog/NLog/wiki/Tutorial).
+
+For the possible options in the config, check the [Target list](https://github.com/NLog/NLog/wiki/Targets) and the [layout renderer list](https://github.com/NLog/NLog/wiki/Layout-Renderers)
+
+Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)
+
+
 Packages & Status
 ---
 NLog consists of multiple packages. Most of the functionality is inside the NLog (core) package. What's inside the packages? See [targets](https://github.com/NLog/NLog/wiki/Targets) and [layout renderers](https://github.com/NLog/NLog/wiki/Layout-Renderers) overview!
