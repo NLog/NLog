@@ -5,20 +5,11 @@
 
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35;netstandard2.0</TargetFrameworks>
 
-    <VersionPrefix>4.5.0</VersionPrefix>
-    <VersionSuffix>beta01</VersionSuffix>
-    <AssemblyVersion Condition=" '$(AssemblyVersion)' == '' AND '$(APPVEYOR_BUILD_NUMBER)' != '' ">4.0.0.0</AssemblyVersion>
-    <AssemblyVersion Condition=" '$(AssemblyVersion)' == '' ">0.0.0.0</AssemblyVersion>
-    <APPVEYOR_BUILD_NUMBER Condition="'$(APPVEYOR_BUILD_NUMBER)' == ''">1</APPVEYOR_BUILD_NUMBER>
-    <FileVersion>$(VersionPrefix).$(APPVEYOR_BUILD_NUMBER)</FileVersion>
-    <InformationalVersion>$(VersionPrefix)</InformationalVersion>
-    <InformationalVersion Condition="'$(VersionSuffix)' != ''">$(InformationalVersion)-$(VersionSuffix)</InformationalVersion>
-
     <Title>NLog for unknown platform</Title>
     <Company>NLog</Company>
     <Description>NLog is a logging platform for .NET with rich log routing and management capabilities.</Description>
-    <Product>NLog v$(VersionPrefix)</Product>
-    <Product Condition="'$(VersionSuffix)' != ''">$(Product)-$(VersionSuffix)</Product>
+    <Product>NLog v$(ProductVersion)</Product>
+    <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <PackageTags>logging;log;tracing;logfiles;NLog;database;eventlog;email;wcf;netcore;dynamic</PackageTags>
     <PackageReleaseNotes>
@@ -33,6 +24,7 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
 
     <SignAssembly>true</SignAssembly>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 

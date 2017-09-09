@@ -23,7 +23,7 @@
 
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
-    <BaseOutputDirectory>$(MSBuildProjectDirectory)\..\build\</BaseOutputDirectory>
+    <BaseOutputDirectory>$(MSBuildProjectDirectory)\nlog\</BaseOutputDirectory>
     <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
     <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
     <BuildAllFrameworks>true</BuildAllFrameworks>
@@ -40,7 +40,7 @@
     <IgnoreBuildFailures>false</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
     <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
-    <ToolsDir>$(BaseOutputDirectory)\bin\Tools</ToolsDir>
+    <ToolsDir>$(MSBuildProjectDirectory)\..\build\bin\tools</ToolsDir>
     <DumpApiXml>$(ToolsDir)\DumpApiXml.exe</DumpApiXml>
     <MergeApiXml>$(ToolsDir)\MergeApiXml.exe</MergeApiXml>
     <MakeNLogXSD>$(ToolsDir)\MakeNLogXSD.exe</MakeNLogXSD>
@@ -52,11 +52,11 @@
     <BZip2>$(MSBuildProjectDirectory)\..\tools\bzip2.exe</BZip2>
     <Git Condition=" '$(Git)' == '' ">git</Git>
     <ArchiveOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Packages</ArchiveOutputPath>
-    <NuGetOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\NuGetPackages</NuGetOutputPath>
+    <NuGetOutputPath>$(MSBuildProjectDirectory)\..\artifacts</NuGetOutputPath>
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
     <WebsiteDir Condition="'$(WebsiteDir)' == ''">$(BaseOutputDirectory)\bin\$(Configuration)\Website</WebsiteDir>
     <BuildInfoFile>$(BaseOutputDirectory)\bin\BuildInfo.cs</BuildInfoFile>
-    <NuGetTool>$(BaseOutputDirectory)\..\tools\NuGet.exe</NuGetTool>
+    <NuGetTool>$(MSBuildProjectDirectory)\..\tools\NuGet.exe</NuGetTool>
     <NuGetBuildPath>$(BaseOutputDirectory)\obj\$(Configuration)\NuGet</NuGetBuildPath>
     <NuGetProperties>BuildVersion=$(NuGetVersion)</NuGetProperties>
   </PropertyGroup>
@@ -132,9 +132,9 @@
         <ToolsVersion>14.0</ToolsVersion>
         <NuGetDir>net40</NuGetDir>
     </TargetFramework>
-    <TargetFramework Include=".NET Framework 4.5" Condition="'$(BuildNetFX45)'=='true'">
+    <TargetFramework Include="net45" Condition="'$(BuildNetFX45)'=='true'">
         <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
-        <ToolsVersion>14.0</ToolsVersion>
+        <ToolsVersion>15.0</ToolsVersion>
         <NuGetDir>net45</NuGetDir>
     </TargetFramework>
     <!--the include attribute is the folder name-->
