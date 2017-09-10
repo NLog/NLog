@@ -6,6 +6,8 @@
          sources -->
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SHFBROOT Condition=" '$(SHFBROOT)' == '' ">$(MSBuildThisFileDirectory)..\..\tools\EWSoftware.SHFB\Tools\</SHFBROOT>
+    <ComponentPath>$(MSBuildThisFileDirectory)..\..\tools\EWSoftware.SHFB.NETFramework\Tools\</ComponentPath>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
     <Framework>.NET Framework 4.5</Framework>
@@ -43,7 +45,7 @@
       <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Owin.Logging.dll" xmlns="" />
       <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Owin.Logging.xml" xmlns="" /> -->
     </DocumentationSources>
-    <HelpTitle>NLog 4.4</HelpTitle>
+    <HelpTitle>NLog $(BuildVersion)</HelpTitle>
     <CopyrightText>Copyright %28c%29 2004-2016 NLog</CopyrightText>
     <FeedbackEMailAddress>
     </FeedbackEMailAddress>
@@ -82,7 +84,7 @@
       <NamespaceSummaryItem name="NLog.Common" isDocumented="True">Common components used when implementing NLog extensions.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.ComInterop" isDocumented="False">COM Interop classes.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True">WCF proxy classes for implementing clients and servers of log receiver service.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Web" isDocumented="False">Integration with ASP.NET.</NamespaceSummaryItem>
+	  <NamespaceSummaryItem name="NLog.Web" isDocumented="False">Integration with ASP.NET.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Fluent" isDocumented="True">Fluent logging API</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
       <NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem>
@@ -130,5 +132,5 @@
   </PropertyGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
-  <Import Project="Frameworks\$(Framework).shfbproj" Condition="Exists('Frameworks\$(Framework).shfbproj')" />
+
 </Project>

@@ -120,7 +120,7 @@ namespace NLog.Targets
         public Layout Category { get; set; }
 
         /// <summary>
-        /// Optional entrytype. When not set, or when not convertable to <see cref="LogLevel"/> then determined by <see cref="NLog.LogLevel"/>
+        /// Optional entrytype. When not set, or when not convertable to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
         public Layout EntryType { get; set; }
 
