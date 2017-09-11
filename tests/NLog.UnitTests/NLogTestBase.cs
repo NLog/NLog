@@ -439,23 +439,62 @@ namespace NLog.UnitTests
 
         public class InternalLoggerScope : IDisposable
         {
+            private readonly TextWriter oldConsoleOutputWriter;
+            public StringWriter ConsoleOutputWriter { get; private set; }
+            private readonly TextWriter oldConsoleErrorWriter;
+            public StringWriter ConsoleErrorWriter { get; private set; }
             private readonly LogLevel globalThreshold;
             private readonly bool throwExceptions;
             private readonly bool? throwConfigExceptions;
 
-            public InternalLoggerScope()
+            public InternalLoggerScope(bool redirectConsole = false)
             {
+                if (redirectConsole)
+                {
+                    ConsoleOutputWriter = new StringWriter() { NewLine = "\n" };
+                    ConsoleErrorWriter = new StringWriter() { NewLine = "\n" };
+
+                    this.oldConsoleOutputWriter = Console.Out;
+                    this.oldConsoleErrorWriter = Console.Error;
+
+                    Console.SetOut(ConsoleOutputWriter);
+                    Console.SetError(ConsoleErrorWriter);
+                }
+
                 this.globalThreshold = LogManager.GlobalThreshold;
                 this.throwExceptions = LogManager.ThrowExceptions;
                 this.throwConfigExceptions = LogManager.ThrowConfigExceptions;
             }
 
+            public void SetConsoleError(StringWriter consoleErrorWriter)
+            {
+                if (ConsoleOutputWriter == null || consoleErrorWriter == null)
+                    throw new InvalidOperationException("Initialize with redirectConsole=true");
+
+                ConsoleErrorWriter = consoleErrorWriter;
+                Console.SetError(consoleErrorWriter);
+            }
+
+            public void SetConsoleOutput(StringWriter consoleOutputWriter)
+            {
+                if (ConsoleOutputWriter == null || consoleOutputWriter == null)
+                    throw new InvalidOperationException("Initialize with redirectConsole=true");
+
+                ConsoleOutputWriter = consoleOutputWriter;
+                Console.SetOut(consoleOutputWriter);
+            }
+
             public void Dispose()
             {
+                InternalLogger.Reset();
+
+                if (ConsoleOutputWriter != null)
+                    Console.SetOut(oldConsoleOutputWriter);
+                if (ConsoleErrorWriter != null)
+                    Console.SetError(oldConsoleErrorWriter);
+
                 if (File.Exists(InternalLogger.LogFile))
                     File.Delete(InternalLogger.LogFile);
-
-                InternalLogger.Reset();
 
                 //restore logmanager
                 LogManager.GlobalThreshold = this.globalThreshold;
