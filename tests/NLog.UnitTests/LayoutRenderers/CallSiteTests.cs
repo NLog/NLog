@@ -1040,6 +1040,68 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
 
+        [Fact]
+        public async Task LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=false:cleannamesofasynccontinuations=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+            var logger = LogManager.GetCurrentClassLogger();
+
+            await AMinimalAsyncMethod();
+            logger.Debug("dude");
+
+            AssertDebugLastMessage("debug", nameof(LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName));
+        }
+
+        [Fact]
+        public async Task LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=true:includenamespace=true:cleannamesofasynccontinuations=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+            var logger = LogManager.GetCurrentClassLogger();
+
+            await AMinimalAsyncMethod();
+            logger.Debug("dude");
+
+            AssertDebugLastMessage("debug", typeof(CallSiteTests).FullName + "." + nameof(LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName));
+        }
+
+        [Fact]
+        public async Task LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+            var logger = LogManager.GetCurrentClassLogger();
+
+            await AMinimalAsyncMethod();
+            logger.Debug("dude");
+
+            var loggedCallsite = GetDebugLastMessage("debug");
+            Assert.Contains("<", loggedCallsite);
+            Assert.Contains(">", loggedCallsite);
+            Assert.Contains("+", loggedCallsite);
+            Assert.Contains("MoveNext", loggedCallsite);
+        }
+
+        private async Task AMinimalAsyncMethod()
+        {
+            await Task.Run(() => { });
+        }
     }
 
     /// <summary>
@@ -1087,4 +1149,3 @@ namespace NLog.UnitTests.LayoutRenderers
 
     }
 }
-

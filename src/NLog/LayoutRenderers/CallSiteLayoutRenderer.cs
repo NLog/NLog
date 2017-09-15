@@ -93,6 +93,16 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool CleanNamesOfAnonymousDelegates { get; set; }
 
+#if ASYNC_SUPPORTED
+        /// <summary>
+        /// Gets or sets a value indicating whether the method and class names will be cleaned up if it is detected as an async continuation
+        /// (everything after an await-statement inside of an async method).
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(false)]
+        public bool CleanNamesOfAsyncContinuations { get; set; }
+#endif
+
         /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
@@ -168,6 +178,17 @@ namespace NLog.LayoutRenderers
             var type = method.DeclaringType;
             if (type != null)
             {
+#if ASYNC_SUPPORTED
+                if (this.CleanNamesOfAsyncContinuations && method.Name == "MoveNext" && type.DeclaringType != null && type.Name.StartsWith("<"))
+                {
+                    // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1
+                    int endIndex = type.Name.IndexOf('>', 1);
+                    if (endIndex > 1)
+                    {
+                        type = type.DeclaringType;
+                    }
+                }
+#endif
                 string className = IncludeNamespace ? type.FullName : type.Name;
 
                 if (this.CleanNamesOfAnonymousDelegates)
@@ -198,6 +219,20 @@ namespace NLog.LayoutRenderers
             if (method != null)
             {
                 string methodName = method.Name;
+
+#if ASYNC_SUPPORTED
+                var type = method.DeclaringType;
+                if (this.CleanNamesOfAsyncContinuations && method.Name == "MoveNext" && type.DeclaringType != null && type.Name.StartsWith("<"))
+                {
+                    // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1.MoveNext
+                    int endIndex = type.Name.IndexOf('>', 1);
+                    if (endIndex > 1)
+                    {
+                        methodName = type.Name.Substring(1, endIndex - 1);
+                    }
+                }
+#endif
+
                 // Clean up the function name if it is an anonymous delegate
                 // <.ctor>b__0
                 // <Main>b__2
