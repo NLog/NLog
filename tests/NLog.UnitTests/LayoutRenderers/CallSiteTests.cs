@@ -1040,8 +1040,12 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
 
+#if MONO
+        [Fact(Skip="Not working under MONO - probably, async is implemented differently")]
+#else
         [Fact]
-        public async Task LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
+#endif
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
@@ -1050,16 +1054,18 @@ namespace NLog.UnitTests.LayoutRenderers
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
-            var logger = LogManager.GetCurrentClassLogger();
 
-            await AMinimalAsyncMethod();
-            logger.Debug("dude");
+            AsyncMethod5().GetAwaiter().GetResult();
 
-            AssertDebugLastMessage("debug", nameof(LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName));
+            AssertDebugLastMessage("debug", nameof(AsyncMethod5));
         }
 
+#if MONO
+        [Fact(Skip="Not working under MONO - probably, async is implemented differently")]
+#else
         [Fact]
-        public async Task LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
+#endif
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
@@ -1068,16 +1074,18 @@ namespace NLog.UnitTests.LayoutRenderers
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
-            var logger = LogManager.GetCurrentClassLogger();
 
-            await AMinimalAsyncMethod();
-            logger.Debug("dude");
+            AsyncMethod5().GetAwaiter().GetResult();
 
-            AssertDebugLastMessage("debug", typeof(CallSiteTests).FullName + "." + nameof(LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName));
+            AssertDebugLastMessage("debug", typeof(CallSiteTests).FullName + "." + nameof(AsyncMethod5));
         }
 
+#if MONO
+        [Fact(Skip="Not working under MONO - probably, async is implemented differently")]
+#else
         [Fact]
-        public async Task LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
+#endif
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
                 <nlog>
@@ -1086,16 +1094,22 @@ namespace NLog.UnitTests.LayoutRenderers
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
                 </nlog>");
-            var logger = LogManager.GetCurrentClassLogger();
 
-            await AMinimalAsyncMethod();
-            logger.Debug("dude");
+            AsyncMethod5().GetAwaiter().GetResult();
 
             var loggedCallsite = GetDebugLastMessage("debug");
             Assert.Contains("<", loggedCallsite);
             Assert.Contains(">", loggedCallsite);
             Assert.Contains("+", loggedCallsite);
             Assert.Contains("MoveNext", loggedCallsite);
+        }
+
+        private async Task AsyncMethod5()
+        {
+            await AMinimalAsyncMethod();
+
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("dude");
         }
 
         private async Task AMinimalAsyncMethod()
