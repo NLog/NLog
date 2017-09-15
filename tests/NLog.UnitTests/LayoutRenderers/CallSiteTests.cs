@@ -1040,11 +1040,8 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
 
-#if MONO
-        [Fact(Skip="Not working under MONO - probably, async is implemented differently")]
-#else
+#if ASYNC_SUPPORTED
         [Fact]
-#endif
         public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -1060,11 +1057,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", nameof(AsyncMethod5));
         }
 
-#if MONO
-        [Fact(Skip="Not working under MONO - probably, async is implemented differently")]
-#else
         [Fact]
-#endif
         public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -1080,11 +1073,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", typeof(CallSiteTests).FullName + "." + nameof(AsyncMethod5));
         }
 
-#if MONO
-        [Fact(Skip="Not working under MONO - probably, async is implemented differently")]
-#else
         [Fact]
-#endif
         public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -1116,6 +1105,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             await Task.Run(() => { });
         }
+#endif
     }
 
     /// <summary>
