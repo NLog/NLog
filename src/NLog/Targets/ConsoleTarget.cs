@@ -222,6 +222,13 @@ namespace NLog.Targets
                 InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
                                         "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
             }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                //this is a bug and therefor stopping logging. For docs, see PauseLogging property
+                _pauseLogging = true;
+                InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+            }
         }
 
         private TextWriter GetOutput()

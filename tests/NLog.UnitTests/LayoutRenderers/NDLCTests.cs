@@ -33,7 +33,6 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-#if NET4_0 || NET4_5
     using Xunit;
 
     public class NDLCTests : NLogTestBase
@@ -292,5 +291,4 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", " 2");
         }
     }
-#endif
 }

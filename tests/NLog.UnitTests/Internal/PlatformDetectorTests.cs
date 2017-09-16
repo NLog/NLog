@@ -36,7 +36,7 @@ using Xunit;
 
 namespace NLog.UnitTests.Internal
 {
-    public class PlatformDetectorTests : NLogTestBase
+    public class PlatformDetectorTests
     {
         [Fact]
         public void IsMonoTest()
@@ -46,6 +46,13 @@ namespace NLog.UnitTests.Internal
 #elif NET3_5 || NET4_0 || NET4_5
             Assert.False(PlatformDetector.IsMono);
 #endif
+        }
+
+        [Fact]
+        public void GetCurrentOSTest()
+        {
+            var actual = PlatformDetector.CurrentOS;
+            Assert.NotEqual(RuntimeOS.Unknown, actual);
         }
     }
 }

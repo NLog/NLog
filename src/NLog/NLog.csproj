@@ -1,0 +1,255 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35;netstandard2.0</TargetFrameworks>
+
+    <Title>NLog for unknown platform</Title>
+    <Company>NLog</Company>
+    <Description>NLog is a logging platform for .NET with rich log routing and management capabilities.</Description>
+    <Product>NLog v$(ProductVersion)</Product>
+    <InformationalVersion>$(ProductVersion)</InformationalVersion>
+    <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
+    <PackageTags>logging;log;tracing;logfiles;NLog;database;eventlog;email;wcf;netcore;dynamic</PackageTags>
+    <PackageReleaseNotes>
+      NetStandard 2.0
+    </PackageReleaseNotes>
+    <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
+    <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
+    <PackageLicenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net45' ">Full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Title>NLog for .NET Framework 4.5</Title>
+    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
+    <Title>NLog for .NET Framework 4</Title>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <DefineConstants>$(DefineConstants);NET4_0;WCF_SUPPORTED</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Title>NLog for .NET Framework 3.5</Title>
+    <DefineConstants>$(DefineConstants);NET3_5;WCF_SUPPORTED</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <Title>NLog for NetStandard 2.0</Title>
+    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;NETSTANDARD</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(monobuild)' != '' ">
+    <Title>$(Title) - Mono</Title>
+    <DefineConstants>$(DefineConstants);MONO</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'sl4' ">
+    <Title>NLog for Silverlight 4.0</Title>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT4;WCF_SUPPORTED</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'sl5' ">
+    <Title>NLog for Silverlight 5.0</Title>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT5;WCF_SUPPORTED</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'wp8' ">
+    <Title>NLog for Windows Phone 8</Title>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <DefineConstants>$(DefineConstants);SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'monoandroid44' ">
+    <Title>NLog for Xamarin Android 4.4</Title>
+    <TargetFrameworkIdentifier>MonoAndroid</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <LanguageTargets Condition="Exists('$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets')">$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets</LanguageTargets>
+    <DefineConstants>$(DefineConstants);__ANDROID__</DefineConstants>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'xamarinios10' ">
+    <Title>NLog for Xamarin iOS 1.0</Title>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <LanguageTargets Condition="Exists('$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets')">$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets</LanguageTargets>
+    <DefineConstants>$(DefineConstants);__IOS__</DefineConstants>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'sl4' ">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'sl5' ">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup> 
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'wp8' ">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'monoandroid44' ">
+    <Reference Include="mscorlib" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'xamarinios10' ">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="System.Private.ServiceModel" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(monobuild)' != '' ">
+    <Reference Include="Mono.Posix" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\NLog.ico" />
+
+    <None Update="Common\InternalLogger-generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>InternalLogger-generated.cs</LastGenOutput>
+    </None>
+    <None Update="Internal\LayoutHelpers-generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LayoutHelpers-generated.cs</LastGenOutput>
+    </None>
+    <None Update="Logger-generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Logger-generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Common\InternalLogger-generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>InternalLogger-generated.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Internal\LayoutHelpers-generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LayoutHelpers-generated.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Logger-generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Logger-generated.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+  </PropertyGroup>
+
+</Project>

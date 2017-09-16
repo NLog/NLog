@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__
+#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__ && !NETSTANDARD
 namespace NLog.Targets
 {
     using System;

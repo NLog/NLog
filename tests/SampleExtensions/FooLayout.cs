@@ -51,5 +51,14 @@ namespace MyExtensionNamespace
         {
             return "FooFoo" + this.X;
         }
+
+        public static implicit operator FooLayout(string text)
+        {
+            int value = 0;
+            if (!int.TryParse(text, out value))
+                return null;
+
+            return new FooLayout() { X = value };
+        }
     }
 }

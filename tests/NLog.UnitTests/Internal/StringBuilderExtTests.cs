@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
 
             input = 0 - input;
-            sb.Clear();
+            sb.Length = 0;
             StringBuilderExt.AppendInvariant(sb, input);
             Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
         }

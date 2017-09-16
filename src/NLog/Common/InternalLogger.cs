@@ -42,7 +42,7 @@ namespace NLog.Common
     using System.Text;
     using Internal;
     using Time;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Diagnostics;
 #endif
@@ -74,7 +74,7 @@ namespace NLog.Common
         /// </summary>
         public static void Reset()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
@@ -133,7 +133,7 @@ namespace NLog.Common
             {
                 _logFile = value;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT
                 if (!string.IsNullOrEmpty(_logFile))
                 {
                     CreateDirectoriesIfNeeded(_logFile);
@@ -399,7 +399,7 @@ namespace NLog.Common
         {
             try
             {
-#if SILVERLIGHT || __IOS__ || __ANDROID__
+#if SILVERLIGHT || __IOS__ || __ANDROID__ || NETSTANDARD
                 Info(assembly.FullName);
 #else
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -415,7 +415,7 @@ namespace NLog.Common
             }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         private static string GetSettingString(string configName, string envName)
         {
             string settingValue = ConfigurationManager.AppSettings[configName];
@@ -482,7 +482,9 @@ namespace NLog.Common
                 return defaultValue;
             }
         }
+#endif
 
+#if !SILVERLIGHT
         private static void CreateDirectoriesIfNeeded(string filename)
         {
             try

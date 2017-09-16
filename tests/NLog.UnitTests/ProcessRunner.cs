@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD
+
 namespace NLog.UnitTests
 {
 
@@ -135,3 +137,5 @@ class C1
         }
     }
 }
+
+#endif

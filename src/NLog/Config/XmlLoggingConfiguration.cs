@@ -244,7 +244,7 @@ namespace NLog.Config
 
         #region public properties
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).

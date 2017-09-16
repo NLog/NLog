@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || WCF_SUPPORTED
+
 namespace NLog.LogReceiverService
 {
     using System;
@@ -66,3 +68,5 @@ namespace NLog.LogReceiverService
          void EndProcessLogMessages(IAsyncResult result);
     }
 }
+
+#endif

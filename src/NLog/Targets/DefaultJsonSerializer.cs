@@ -724,7 +724,7 @@ namespace NLog.Targets
         private static PropertyInfo[] GetPropertyInfosNoCache(Type type)
         {
 #if NETSTANDARD
-            var props = type.GetRuntimeProperties().ToArray();
+            var props = System.Linq.Enumerable.ToArray(type.GetRuntimeProperties());
 #else
             var props = type.GetProperties();
 #endif

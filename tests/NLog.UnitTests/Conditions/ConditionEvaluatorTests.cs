@@ -261,7 +261,11 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
+#if NETSTANDARD
+        [Fact(Skip = "NetStandard does not mark InvalidOperationException as Serializable")]
+#else
         [Fact]
+#endif
         public void ExceptionTest4()
         {
             var inner = new InvalidOperationException("f");
@@ -299,7 +303,11 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
+#if NETSTANDARD
+        [Fact(Skip = "NetStandard does not mark InvalidOperationException as Serializable")]
+#else
         [Fact]
+#endif
         public void ExceptionTest14()
         {
             var inner = new InvalidOperationException("f");

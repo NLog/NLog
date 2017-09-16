@@ -95,10 +95,11 @@ namespace NLog.Internal
         {
             lock (this)
             {
-                if (this.timeoutTimer != null)
+                var currentTimer = this.timeoutTimer;
+                if (currentTimer != null)
                 {
-                    this.timeoutTimer.Dispose();
                     this.timeoutTimer = null;
+                    currentTimer.WaitForDispose(TimeSpan.Zero);
                 }
             }
         }

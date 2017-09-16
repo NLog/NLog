@@ -46,7 +46,6 @@ namespace NLog.UnitTests
             logEventInfo.Parameters = new object[] { "Login request from John for BestApplicationEver" };   // Must have parameter to activate MessageFormatter
             logEventInfo.MessageFormatter = (logEvent) =>
             {
-                object formattedMessage;
                 if (logEvent.Parameters != null && logEvent.Parameters.Length == 1)
                 {
                     return logEvent.Parameters[0] as string ?? logEvent.Message;

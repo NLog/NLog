@@ -380,7 +380,7 @@ namespace NLog
 
                 framesToSkip++;
                 className = declaringType.FullName;
-            } while (declaringType.Module.Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
+            } while (className.StartsWith("System.", StringComparison.Ordinal));
 
             return className;
         }
