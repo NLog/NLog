@@ -213,13 +213,40 @@ namespace NLog.Layouts
             return nameBuf.ToString();
         }
 
-        private static string ParseParameterValue(SimpleStringReader sr)
+        private static string ParseParameterValue(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr)
         {
             int ch;
 
             var nameBuf = new StringBuilder();
+            bool parsingLayoutMacro = false;
+            StringBuilder layoutMacroName = new StringBuilder();
+
             while ((ch = sr.Peek()) != -1)
             {
+                if (ch == '$')
+                {
+                    parsingLayoutMacro = true;
+                }
+
+                if (parsingLayoutMacro)
+                {
+                    if (ch == '}')
+                    {
+                        var renderedMacro = ParseLayoutRenderer(configurationItemFactory, new SimpleStringReader(layoutMacroName.ToString().Substring(1))).Render(LogEventInfo.CreateNullEvent());
+                        if (string.IsNullOrEmpty(renderedMacro))
+                            break;
+                        nameBuf.Append(renderedMacro);
+                        layoutMacroName = new StringBuilder();
+                        parsingLayoutMacro = false;
+                    }
+                    else
+                    {
+                        layoutMacroName.Append((char)ch);
+                    }
+                    sr.Read();
+                    continue;
+                }
+
                 if (ch == ':' || ch == '}')
                 {
                     break;
@@ -305,6 +332,8 @@ namespace NLog.Layouts
                 sr.Read();
             }
 
+            if (parsingLayoutMacro)
+                nameBuf.Append(layoutMacroName);
             return nameBuf.ToString();
         }
 
@@ -380,7 +409,7 @@ namespace NLog.Layouts
 
                     if (propertyInfo == null)
                     {
-                        ParseParameterValue(stringReader);
+                        ParseParameterValue(configurationItemFactory, stringReader);
                     }
                     else
                     {
@@ -400,7 +429,7 @@ namespace NLog.Layouts
                         }
                         else
                         {
-                            string value = ParseParameterValue(stringReader);
+                            string value = ParseParameterValue(configurationItemFactory, stringReader);
                             PropertyHelper.SetPropertyFromString(parameterTarget, parameterName, value, configurationItemFactory);
                         }
                     }
