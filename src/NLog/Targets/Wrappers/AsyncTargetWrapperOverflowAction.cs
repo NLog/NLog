@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Common;
+
 namespace NLog.Targets.Wrappers
 {
     /// <summary>
@@ -53,4 +55,10 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         Block,
     }
+
+    /// <summary>
+    /// Enqueue overflow event handler delegate for EnqueueOverflow event
+    /// </summary>
+    public delegate void BufferOverflowEventHandler(AsyncTargetWrapperOverflowAction action, int limit, int count, AsyncLogEventInfo e);
+
 }

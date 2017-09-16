@@ -125,6 +125,13 @@ namespace NLog.Targets.Wrappers
             this.WrappedTarget = wrappedTarget;
             this.QueueLimit = queueLimit;
             this.OverflowAction = overflowAction;
+            this.RequestQueue.BufferOverflowed += RequestQueue_BufferOverflowed;
+        }
+
+        private void RequestQueue_BufferOverflowed(AsyncTargetWrapperOverflowAction action, int limit, int count, AsyncLogEventInfo e)
+        {
+            if (BufferOverflowed != null)
+                BufferOverflowed.Invoke(action, limit, count, e);
         }
 
         /// <summary>
@@ -177,6 +184,11 @@ namespace NLog.Targets.Wrappers
         /// Gets the queue of lazy writer thread requests.
         /// </summary>
         internal AsyncRequestQueue RequestQueue { get; private set; }
+
+        /// <summary>
+        /// Subscribe or unsubscribe to enqueuing buffer overflow events.
+        /// </summary>
+        public event BufferOverflowEventHandler BufferOverflowed;
 
         /// <summary>
         /// Schedules a flush of pending events in the queue (if any), followed by flushing the WrappedTarget.

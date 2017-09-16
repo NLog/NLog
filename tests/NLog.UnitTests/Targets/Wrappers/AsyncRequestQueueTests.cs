@@ -74,6 +74,32 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
 
         [Fact]
+        public void AsyncRequestQueueEventDiscardedEventTest()
+        {
+            var ev1 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev2 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+
+            var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Discard);
+            var raised = false;
+            var eh = new BufferOverflowEventHandler(
+                (a, b, c, d) =>
+                {
+                    Assert.Same(a, AsyncTargetWrapperOverflowAction.Discard);
+                    Assert.Same(ev1, d);
+                    raised = true;
+                });
+            queue.Enqueue(ev1);
+            queue.Enqueue(ev2);
+            queue.Enqueue(ev3);
+            Assert.False(raised);
+            queue.Enqueue(ev4);
+            Assert.True(raised);
+        }
+
+
+        [Fact]
         public void AsyncRequestQueueWithGrowBehaviorTest()
         {
             var ev1 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
@@ -110,6 +136,32 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Same(logEventInfos[2].Continuation, ev3.Continuation);
             Assert.Same(logEventInfos[3].Continuation, ev4.Continuation);
         }
+
+        [Fact]
+        public void AsyncRequestQueueBufferGrowthEventTest()
+        {
+            var ev1 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev2 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+            var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
+
+            var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Grow);
+            var raised = false;
+            var eh = new BufferOverflowEventHandler(
+                (a, b, c, d) =>
+                {
+                    Assert.Same(a, AsyncTargetWrapperOverflowAction.Grow);
+                    Assert.Same(ev4, d);
+                    raised = true;
+                });
+            queue.Enqueue(ev1);
+            queue.Enqueue(ev2);
+            queue.Enqueue(ev3);
+            Assert.False(raised);
+            queue.Enqueue(ev4);
+            Assert.True(raised);
+        }
+
 
         [Fact]
         public void AsyncRequestQueueWithBlockBehavior()
