@@ -100,7 +100,6 @@
         "System.Xml.XmlDocument": "4.0.1",
         "System.Net.NameResolution": "4.0.0",
         "System.Security.Principal": "4.0.1",
-        "System.Security.Principal.Windows": "4.0.0"
       },
       "buildOptions": {
         "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "NETSTANDARD1_3PLUS", "ASYNC_SUPPORTED", "SupportsMutex" ]
@@ -129,7 +128,6 @@
         "System.Xml.XmlDocument": "4.0.1",
         "System.Net.NameResolution": "4.0.0",
         "System.Security.Principal": "4.0.1",
-        "System.Security.Principal.Windows": "4.0.0"
       },
       "buildOptions": {
         "define": [ "NET4_5", "NETSTANDARD", "NETSTANDARD1_3", "NETSTANDARD1_3PLUS", "NETSTANDARD1_5", "ASYNC_SUPPORTED", "SupportsMutex" ]

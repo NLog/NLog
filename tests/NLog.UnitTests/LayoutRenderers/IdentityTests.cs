@@ -47,7 +47,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class IdentityTests : NLogTestBase
     {
-#if !NETSTANDARD || NETSTANDARD1_3PLUS
+#if !NETSTANDARD
         [Fact]
         public void WindowsIdentityTest()
         {
