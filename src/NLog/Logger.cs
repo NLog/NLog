@@ -40,7 +40,7 @@ namespace NLog
 
     using NLog.Internal;
 
-#if ASYNC_SUPPORTED
+#if NET4_5
     using System.Threading.Tasks;
 #endif
 
@@ -459,7 +459,7 @@ namespace NLog
             }
         }
 
-#if ASYNC_SUPPORTED
+#if NET4_5
         /// <summary>
         /// Logs an exception is logged at <c>Error</c> level if the provided task does not run to completion.
         /// </summary>

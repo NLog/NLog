@@ -860,30 +860,27 @@ namespace NLog.Targets
             {
 #if !SupportsMutex
                 return RetryingMultiProcessFileAppender.TheFactory;
-#elif MONO
-//
-// mono on Windows uses mutexes, on Unix - special appender
-//
+#else
+#if MONO
                 if (PlatformDetector.IsUnix)
                 {
                     return UnixMultiProcessFileAppender.TheFactory;
                 }
-                else if (PlatformDetector.SupportsSharableMutex)
+#elif !NETSTANDARD
+                if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
                 {
-                    return MutexMultiProcessFileAppender.TheFactory;
-                }
-                else
-                {
-                    return RetryingMultiProcessFileAppender.TheFactory;
-                }
-#else
-                if (!PlatformDetector.SupportsSharableMutex)
-                    return RetryingMultiProcessFileAppender.TheFactory;
-                else if (!this.ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
                     return WindowsMultiProcessFileAppender.TheFactory;
-                else
-                    return MutexMultiProcessFileAppender.TheFactory;
+                }
 #endif
+                if (PlatformDetector.SupportsSharableMutex)
+                {
+                    return MutexMultiProcessFileAppender.TheFactory;
+                }
+                else
+                {
+                    return RetryingMultiProcessFileAppender.TheFactory;
+                }
+#endif  // SupportsMutex
             }
             else if (IsArchivingEnabled())
                 return CountingSingleProcessFileAppender.TheFactory;
@@ -933,11 +930,11 @@ namespace NLog.Targets
 
             this.fileArchiveHelper = null;
 
-            if (this.autoClosingTimer != null)
+            var currentTimer = this.autoClosingTimer;
+            if (currentTimer != null)
             {
-                this.autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                this.autoClosingTimer.Dispose();
                 this.autoClosingTimer = null;
+                currentTimer.WaitForDispose(TimeSpan.Zero);
             }
 
             this.fileAppenderCache.CloseAppenders("Dispose");

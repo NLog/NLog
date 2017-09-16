@@ -328,5 +328,35 @@ namespace NLog.Common
                 }
             };
         }
+
+        /// <summary>
+        /// Disposes the Timer, and waits for it to leave the Timer-callback-method
+        /// </summary>
+        /// <param name="timer">The Timer object to dispose</param>
+        /// <param name="timeout">Timeout to wait (TimeSpan.Zero means dispose without wating)</param>
+        /// <returns>Timer disposed within timeout (true/false)</returns>
+        internal static bool WaitForDispose(this Timer timer, TimeSpan timeout)
+        {
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
+
+            if (timeout != TimeSpan.Zero)
+            {
+                ManualResetEvent waitHandle = new ManualResetEvent(false);
+                if (timer.Dispose(waitHandle))
+                {
+                    if (!waitHandle.WaitOne((int)timeout.TotalMilliseconds))
+                    {
+                        return false;   // Return without waiting for timer, and without closing waitHandle (Avoid ObjectDisposedException)
+                    }
+                }
+
+                waitHandle.Close();
+            }
+            else
+            {
+                timer.Dispose();
+            }
+            return true;
+        }
     }
 }

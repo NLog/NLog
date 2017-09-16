@@ -1,4 +1,4 @@
-$projectFile = "src\NLog\NLog.netfx45.csproj"
+$projectFile = "src\NLog\NLog.csproj"
 $sonarQubeId = "nlog"
 $github = "nlog/nlog"
 $baseBranch = "master"

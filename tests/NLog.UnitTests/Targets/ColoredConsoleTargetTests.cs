@@ -160,7 +160,6 @@ namespace NLog.UnitTests.Targets
         }
 
 #if !NET3_5 && !MONO
-
         [Fact]
         public void ColoredConsoleRaceCondtionIgnoreTest()
         {

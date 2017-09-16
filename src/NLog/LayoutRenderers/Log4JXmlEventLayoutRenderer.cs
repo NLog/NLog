@@ -147,7 +147,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdc { get; set; }
 
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
@@ -298,7 +298,7 @@ namespace NLog.LayoutRenderers
                     }
                 }
 
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
                 if (this.IncludeMdlc)
                 {
                     foreach (string key in MappedDiagnosticsLogicalContext.GetNames())

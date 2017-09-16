@@ -32,6 +32,7 @@
 // 
 
 #if !MONO
+
 namespace NLog.UnitTests.Config
 {
     using NLog.Config;
@@ -86,6 +87,13 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void TestAutoReloadOnFileChange()
         {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileChange because we are running in Travis");
+                return;
+            }
+#endif
             string config1 = @"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
@@ -193,6 +201,13 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void TestAutoReloadOnFileCopy()
         {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileCopy because we are running in Travis");
+                return;
+            }
+#endif
             string config1 = @"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                     <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
@@ -251,6 +266,14 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void TestIncludedConfigNoReload()
         {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestIncludedConfigNoReload because we are running in Travis");
+                return;
+            }
+#endif
+
             string mainConfig1 = @"<nlog>
                   <include file='included.nlog' />
                   <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
@@ -306,6 +329,14 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void TestIncludedConfigReload()
         {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestIncludedConfigNoReload because we are running in Travis");
+                return;
+            }
+#endif
+
             string mainConfig1 = @"<nlog>
                   <include file='included.nlog' />
                   <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
@@ -361,6 +392,14 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void TestMainConfigReload()
         {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestMainConfigReload because we are running in Travis");
+                return;
+            }
+#endif
+
             string mainConfig1 = @"<nlog autoReload='true'>
                   <include file='included.nlog' />
                   <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
@@ -421,6 +460,14 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void TestMainConfigReloadIncludedConfigNoReload()
         {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestMainConfigReload because we are running in Travis");
+                return;
+            }
+#endif
+
             string mainConfig1 = @"<nlog autoReload='true'>
                   <include file='included.nlog' />
                   <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
@@ -513,6 +560,13 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void TestResetVariablesOnReload()
         {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestResetVariablesOnReload because we are running in Travis");
+                return;
+            }
+#endif
             string config = @"<nlog autoReload='true' keepVariablesOnReload='false'>
                                 <variable name='var1' value='' />
                                 <variable name='var2' value='keep_value' />
@@ -555,21 +609,21 @@ namespace NLog.UnitTests.Config
                 reloadWaiter.WaitForReload();
 
                 if (assertDidReload)
-                    Assert.True(reloadWaiter.DidReload, "Config did not reload.");
+                    Assert.True(reloadWaiter.DidReload, string.Format("Config '{0}' did not reload.", configFilePath));
             }
         }
 
 
         private class ConfigurationReloadWaiter : IDisposable
         {
-            private CountdownEvent counterEvent = new CountdownEvent(1);
+            private ManualResetEvent counterEvent = new ManualResetEvent(false);
 
             public ConfigurationReloadWaiter()
             {
                 LogManager.ConfigurationReloaded += SignalCounterEvent(counterEvent);
             }
 
-            public bool DidReload { get { return counterEvent.CurrentCount == 0; } }
+            public bool DidReload { get { return counterEvent.WaitOne(0); } }
 
             public void Dispose()
             {
@@ -578,15 +632,14 @@ namespace NLog.UnitTests.Config
 
             public void WaitForReload()
             {
-                counterEvent.Wait(2000);
+                counterEvent.WaitOne(3000);
             }
 
-            private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent(CountdownEvent counterEvent)
+            private static EventHandler<LoggingConfigurationReloadedEventArgs> SignalCounterEvent(ManualResetEvent counterEvent)
             {
                 return (sender, e) =>
                 {
-                    if (counterEvent.CurrentCount > 0)
-                        counterEvent.Signal();
+                    counterEvent.Set();
                 };
             }
         }

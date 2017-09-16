@@ -63,6 +63,7 @@ namespace NLog.Internal.Fakeables
                 InternalLogger.Warn(ex, "AppDomain.BaseDirectory Failed");
                 BaseDirectory = string.Empty;
             }
+#if !NETSTANDARD
             try
             {
                 ConfigurationFile = appDomain.SetupInformation.ConfigurationFile;
@@ -78,6 +79,10 @@ namespace NLog.Internal.Fakeables
                                  ? ArrayHelper.Empty<string>()
                                  : appDomain.SetupInformation.PrivateBinPath.Split(new[] {';'},
                                                                                    StringSplitOptions.RemoveEmptyEntries);
+#else
+            PrivateBinPath = ArrayHelper.Empty<string>();
+            ConfigurationFile = string.Empty;
+#endif
             FriendlyName = appDomain.FriendlyName;
             Id = appDomain.Id;
 #endif

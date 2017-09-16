@@ -361,9 +361,6 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(@"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![ -]\d))", l1.SearchFor);
         }
 
-
-
-
         [Fact]
         public void InnerLayoutWithColonTest_with_workaround()
         {
@@ -547,7 +544,6 @@ namespace NLog.UnitTests.Layouts
         /// <param name="expected"></param>
         [Theory]
         [InlineData("2,3,4", "numbers", "2-3-4")]
-
         [InlineData("a,b,c", "Strings", "a-b-c")]
         [InlineData("a,b,c", "Objects", "a-b-c")]
         [InlineData("a,,b,c", "Strings", "a--b-c")]
@@ -557,26 +553,21 @@ namespace NLog.UnitTests.Layouts
         [InlineData("2.0,3.0,4.0", "doubles", "2-3-4")]
         [InlineData("2.1,3.2,4.3", "doubles", "2.1-3.2-4.3")]
         [InlineData("Ignore,Neutral,Ignore", "enums", "Ignore-Neutral-Ignore")]
-        [InlineData("ASCII,ISO-8859-1, UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
-        [InlineData("ASCII,ISO-8859-1,UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
+        [InlineData("ASCII,ISO-8859-1, UTF-8", "encodings", "us-ascii-iso-8859-1-utf-8")]
+        [InlineData("ASCII,ISO-8859-1,UTF-8", "encodings", "us-ascii-iso-8859-1-utf-8")]
         [InlineData("Value1,Value3,Value2", "FlagEnums", "Value1-Value3-Value2")]
         [InlineData("2,3,4", "IEnumerableNumber", "2-3-4")]
         [InlineData("2,3,4", "IListNumber", "2-3-4")]
         [InlineData("2,3,4", "HashsetNumber", "2-3-4")]
 #if !NET3_5
         [InlineData("2,3,4", "ISetNumber", "2-3-4")]
-        
 #endif
         [InlineData("a,b,c", "IEnumerableString", "a-b-c")]
         [InlineData("a,b,c", "IListString", "a-b-c")]
         [InlineData("a,b,c", "HashSetString", "a-b-c")]
 #if !NET3_5
         [InlineData("a,b,c", "ISetString", "a-b-c")]
-        
 #endif
-
-
-
         public void LayoutWithListParamTest(string input, string propname, string expected)
         {
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
@@ -601,11 +592,7 @@ namespace NLog.UnitTests.Layouts
             {
                 SimpleLayout l = @"${layoutrenderer-with-list:numbers=2,,3,4}";
             });
-
-
         }
-
-
 
         private class LayoutRendererWithListParam : LayoutRenderer
         {
@@ -654,7 +641,7 @@ namespace NLog.UnitTests.Layouts
                 AppendFormattable(builder, Enums);
                 AppendFormattable(builder, FlagEnums);
                 AppendFormattable(builder, Doubles);
-                Append(builder, Encodings);
+                Append(builder, Encodings?.Select(e => e.BodyName).ToList());
                 Append(builder, Objects);
                 Append(builder, IEnumerableString);
                 AppendFormattable(builder, IEnumerableNumber);
@@ -667,9 +654,6 @@ namespace NLog.UnitTests.Layouts
 #endif
                 Append(builder, HashSetString);
                 AppendFormattable(builder, HashSetNumber);
-
-
-
             }
 
             private void Append<T>(StringBuilder builder, IEnumerable<T> items)
@@ -682,10 +666,6 @@ namespace NLog.UnitTests.Layouts
             {
                 if (items != null) builder.Append(string.Join("-", items.Select(it => it.ToString(null, CultureInfo.InvariantCulture)).ToArray()));
             }
-
         }
-
     }
-
-
 }

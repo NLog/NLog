@@ -135,14 +135,13 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Writes the specified log event to the wrapped target in a thread-safe manner.
-        /// Uses <see cref="RetrySyncObject"/> instead of <see cref="Target.SyncRoot" />
-        /// to allow closing target while doing sleep and retry.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
             lock (this.RetrySyncObject)
             {
+                // Uses RetrySyncObject instead of Target.SyncRoot to allow closing target while doing sleep and retry.
                 Write(logEvent);
             }
         }
