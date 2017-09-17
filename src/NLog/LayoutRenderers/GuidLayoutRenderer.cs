@@ -59,13 +59,38 @@ namespace NLog.LayoutRenderers
         public string Format { get; set; }
 
         /// <summary>
+        /// Generate the Guid from the NLog LogEvent (Will be the same for all targets)
+        /// </summary>
+        [DefaultValue(false)]
+        public bool GeneratedFromLogEvent { get; set; }
+
+        /// <summary>
         /// Renders a newly generated GUID string and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(Guid.NewGuid().ToString(this.Format));
+            if (this.GeneratedFromLogEvent)
+            {
+                int hashCode = logEvent.GetHashCode();
+                short b = (short)((hashCode >> 16) & 0XFFFF);
+                short c = (short)(hashCode & 0XFFFF);
+                long zeroDateTicks = LogEventInfo.ZeroDate.Ticks;
+                byte d = (byte)((zeroDateTicks >> 56) & 0xFF);
+                byte e = (byte)((zeroDateTicks >> 48) & 0xFF);
+                byte f = (byte)((zeroDateTicks >> 40) & 0xFF);
+                byte g = (byte)((zeroDateTicks >> 32) & 0xFF);
+                byte h = (byte)((zeroDateTicks >> 24) & 0xFF);
+                byte i = (byte)((zeroDateTicks >> 16) & 0xFF);
+                byte j = (byte)((zeroDateTicks >> 8) & 0xFF);
+                byte k = (byte)(zeroDateTicks & 0XFF);
+                builder.Append(new Guid(logEvent.SequenceID, b, c, d, e, f, g, h, i, j, k).ToString(this.Format));
+            }
+            else
+            {
+                builder.Append(Guid.NewGuid().ToString(this.Format));
+            }
         }
     }
 }
