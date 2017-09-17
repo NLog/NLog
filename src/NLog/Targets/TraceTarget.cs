@@ -94,7 +94,8 @@ namespace NLog.Targets
         /// <summary>
         /// Writes the specified logging event to the <see cref="System.Diagnostics.Trace"/> facility.
         /// 
-        /// Redirects the log message depending on <see cref="LogLevel"/>:
+        /// Redirects the log message depending on <see cref="LogLevel"/> and  <see cref="RawWrite"/>. 
+        /// When <see cref="RawWrite"/> is <c>false</c>:
         ///  - <see cref="LogLevel.Fatal"/> writes to <see cref="Trace.Fail(string)" />
         ///  - <see cref="LogLevel.Error"/> writes to <see cref="Trace.TraceError(string)" />
         ///  - <see cref="LogLevel.Warn"/> writes to <see cref="Trace.TraceWarning(string)" />
