@@ -165,7 +165,7 @@ namespace NLog.Targets
             if (disposing)
             {
                 _cancelTokenSource.Dispose();
-                _taskTimeoutTimer.Dispose();
+                _taskTimeoutTimer.WaitForDispose(TimeSpan.Zero);
             }
         }
 

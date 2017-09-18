@@ -39,6 +39,7 @@ using System.Xml;
 using NLog.Config;
 using NLog.UnitTests.LayoutRenderers;
 
+#if !NETSTANDARD
 
 namespace NLog.UnitTests
 {
@@ -238,7 +239,7 @@ namespace NLog.UnitTests
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-            
+
             var logger = LogManager.GetCurrentClassLogger();
             logger.Debug("test1");
             AssertDebugLastMessage("debug", "42");
@@ -377,3 +378,4 @@ class C1
     }
 }
 
+#endif

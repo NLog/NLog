@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if  !MONO
+#if  !MONO && !NETSTANDARD
 
 namespace NLog.UnitTests.Targets
 {

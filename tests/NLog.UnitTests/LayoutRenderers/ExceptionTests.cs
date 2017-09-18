@@ -492,15 +492,15 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             var ex = new ExceptionWithBrokenMessagePropertyException();
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            Assert.ThrowsDelegate action = () => logger.ErrorException("msg", ex);
-#pragma warning restore 0618
-            Assert.DoesNotThrow(action);
+            var exRecorded = Record.Exception(() => logger.Error(ex, "msg"));
+            Assert.Null(exRecorded);
         }
 
-#if !NET3_5
+#if NET3_5
+        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#else
         [Fact]
+#endif
         public void AggregateExceptionTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -518,22 +518,29 @@ namespace NLog.UnitTests.LayoutRenderers
             var task2 = System.Threading.Tasks.Task.Factory.StartNew(() => { throw new Exception("Test exception 2", new Exception("Test Inner 2")); },
                 System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
 
+            var aggregateExceptionMessage = "nothing thrown!";
             try
             {
                 System.Threading.Tasks.Task.WaitAll(new[] { task1, task2 });
             }
-            catch (Exception ex)
+            catch (AggregateException ex)
             {
+                aggregateExceptionMessage = ex.ToString();
                 logger.Error(ex, "msg");
             }
 
-            AssertDebugLastMessage("debug1", "AggregateException One or more errors occurred." + EnvironmentHelper.NewLine +
-                                             "Exception Test exception 1" + EnvironmentHelper.NewLine +
-                                             "Exception Test Inner 1" + EnvironmentHelper.NewLine +
-                                             "Exception Test exception 2" + EnvironmentHelper.NewLine +
-                                             "Exception Test Inner 2");
+            Assert.Contains("Test exception 1", aggregateExceptionMessage);
+            Assert.Contains("Test exception 2", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 1", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 2", aggregateExceptionMessage);
+
+            AssertDebugLastMessageContains("debug1", "AggregateException");
+            AssertDebugLastMessageContains("debug1", "One or more errors occurred");
+            AssertDebugLastMessageContains("debug1", "Test exception 1");
+            AssertDebugLastMessageContains("debug1", "Test exception 2");
+            AssertDebugLastMessageContains("debug1", "Test Inner 1");
+            AssertDebugLastMessageContains("debug1", "Test Inner 2");
         }
-#endif
 
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
         {
@@ -801,6 +808,54 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
             AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
             AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+        }
+
+
+        [Fact]
+        public void ExceptionWithSeparatorForExistingRender()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>                                        
+                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            const string exceptionMessage = "message for exception";
+            const string exceptionDataKey1 = "testkey1";
+            const string exceptionDataValue1 = "testvalue1";
+
+            Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
+            ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
+
+            logger.Error(ex);
+
+            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) + "\r\nXXX" + string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1));
+        }
+
+        [Fact]
+        public void ExceptionWithoutSeparatorForNoRender()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>                                        
+                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            const string exceptionMessage = "message for exception";
+
+            Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
+
+            logger.Error(ex);
+
+            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage));
         }
     }
 

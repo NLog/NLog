@@ -39,7 +39,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class AssemblyVersionTests : NLogTestBase
     {
-
         [Fact]
         public void EntryAssemblyVersionTest()
         {
@@ -51,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void AssemblyNameVersionTest()
         {
-            AssertLayoutRendererOutput("${assembly-version:NLogAutloadExtension}", "2.0.0.0");
+            AssertLayoutRendererOutput("${assembly-version:NLogAutoLoadExtension}", "2.0.0.0");
         }
     }
 }

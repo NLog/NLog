@@ -191,7 +191,7 @@ namespace NLog
                     if (this.configLoaded)
                         return this.config;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
                     //load
 
                     if (this.config == null)
@@ -774,7 +774,7 @@ namespace NLog
                     if (currentTimer != null)
                     {
                         this.reloadTimer = null;
-                        currentTimer.Dispose();
+                        currentTimer.WaitForDispose(TimeSpan.Zero);
                     }
 
                     this.watcher.StopWatching();
@@ -949,7 +949,7 @@ namespace NLog
                     if (currentTimer != null)
                     {
                         this.reloadTimer = null;
-                        currentTimer.Dispose();
+                        currentTimer.WaitForDispose(TimeSpan.Zero);
                     }
 
                     if (this.watcher != null)

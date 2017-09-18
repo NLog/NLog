@@ -184,17 +184,11 @@ namespace NLog.Targets.Wrappers
             if (currentTimer != null)
             {
                 this.flushTimer = null;
-                currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                ManualResetEvent waitHandle = new ManualResetEvent(false);
-                if (currentTimer.Dispose(waitHandle))
+                if (currentTimer.WaitForDispose(TimeSpan.FromSeconds(1)))
                 {
-                    if (waitHandle.WaitOne(1000))
+                    lock (this.lockObject)
                     {
-                        waitHandle.Close();
-                        lock (this.lockObject)
-                        {
-                            WriteEventsInBuffer("Closing Target");
-                        }
+                        WriteEventsInBuffer("Closing Target");
                     }
                 }
             }

@@ -35,3 +35,4 @@ build/
 *.DotSettings
 *.vshost.*
 /.vs
+/src/.vs

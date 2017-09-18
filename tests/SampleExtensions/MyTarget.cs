@@ -39,6 +39,8 @@ namespace MyExtensionNamespace
     [Target("MyTarget")]
     public class MyTarget : Target
     {
+        public FooLayout Layout { get; set; }
+
         protected override void Write(LogEventInfo logEvent)
         {
             // do nothing

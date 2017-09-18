@@ -51,6 +51,8 @@ namespace NLog.UnitTests.LayoutRenderers
             }
 
             AssertLayoutRendererOutput("${file-contents:" + fileName + ":encoding=utf-16}", content);
+
+            File.Delete(fileName);
         }
 
         [Fact]
@@ -64,6 +66,8 @@ namespace NLog.UnitTests.LayoutRenderers
             }
 
             AssertLayoutRendererOutput("${file-contents:" + fileName + ":encoding=utf-8}", content);
+
+            File.Delete(fileName);
         }
 
         [Fact]

@@ -574,8 +574,7 @@ namespace NLog.Internal.FileAppenders
             if (currentTimer != null)
             {
                 autoClosingTimer = null;
-                currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                currentTimer.Dispose();
+                currentTimer.WaitForDispose(TimeSpan.Zero);
             }
         }
     }

@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
-using NLog.Config;
-using NLog.Layouts;
-using NLog.Targets;
-
 namespace NLog.UnitTests.Targets
 {
-#if !NET3_5 && !NET4_0
+#if !NET3_5
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Xunit;
+    using NLog.Config;
+    using NLog.Layouts;
+    using NLog.Targets;
+
     public class AsyncTaskTargetTest : NLogTestBase
     {
         class AsyncTaskTestTarget : AsyncTaskTarget

@@ -106,6 +106,12 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DateTimeCulture()
         {
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] EventPropertiesTests.DateTimeCulture because we are running in Travis");
+                return;
+            }
+
             Layout layout = "${event-properties:prop1:culture=nl-NL}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
             logEvent.Properties["prop1"] = new DateTime(2020, 2, 21, 23, 1, 0);

@@ -45,33 +45,37 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ParseNLogOptionsDefaultTest()
         {
-            var xml = "<nlog></nlog>";
-            var config = CreateConfigurationFromString(xml);
+            using (new InternalLoggerScope())
+            {
+                var xml = "<nlog></nlog>";
+                var config = CreateConfigurationFromString(xml);
 
-            Assert.Equal(false, config.AutoReload);
-            Assert.Equal(true, config.InitializeSucceeded);
-            Assert.Equal("", InternalLogger.LogFile);
-            Assert.Equal(true, InternalLogger.IncludeTimestamp);
-            Assert.Equal(false, InternalLogger.LogToConsole);
-            Assert.Equal(false, InternalLogger.LogToConsoleError);
-            Assert.Equal(null, InternalLogger.LogWriter);
-
+                Assert.Equal(false, config.AutoReload);
+                Assert.Equal(true, config.InitializeSucceeded);
+                Assert.Equal("", InternalLogger.LogFile);
+                Assert.Equal(true, InternalLogger.IncludeTimestamp);
+                Assert.Equal(false, InternalLogger.LogToConsole);
+                Assert.Equal(false, InternalLogger.LogToConsoleError);
+                Assert.Equal(null, InternalLogger.LogWriter);
+            }
         }
 
         [Fact]
         public void ParseNLogOptionsTest()
         {
-            var xml = "<nlog autoreload='true' logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
-            var config = CreateConfigurationFromString(xml);
+            using (new InternalLoggerScope(true))
+            {
+                var xml = "<nlog autoreload='true' logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
+                var config = CreateConfigurationFromString(xml);
 
-            Assert.Equal(true, config.AutoReload);
-            Assert.Equal(true, config.InitializeSucceeded);
-            Assert.Equal("", InternalLogger.LogFile);
-            Assert.Equal(false, InternalLogger.IncludeTimestamp);
-            Assert.Equal(true, InternalLogger.LogToConsole);
-            Assert.Equal(true, InternalLogger.LogToConsoleError);
-            Assert.Equal(null, InternalLogger.LogWriter);
-
+                Assert.Equal(true, config.AutoReload);
+                Assert.Equal(true, config.InitializeSucceeded);
+                Assert.Equal("", InternalLogger.LogFile);
+                Assert.Equal(false, InternalLogger.IncludeTimestamp);
+                Assert.Equal(true, InternalLogger.LogToConsole);
+                Assert.Equal(true, InternalLogger.LogToConsoleError);
+                Assert.Equal(null, InternalLogger.LogWriter);
+            }
         }
 
 
@@ -90,7 +94,7 @@ namespace NLog.UnitTests.Config
         public void SetTimeSpanFromXmlTest(string interval, int seconds)
         {
             var config = CreateConfigurationFromString(string.Format(@"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{0}'>
                         <target name='debug' type='Debug' layout='${{message}}' />

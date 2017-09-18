@@ -64,7 +64,6 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
 
-#if !SILVERLIGHT
         [Fact]
         public void BaseDirCurrentProcessTest()
         {
@@ -75,7 +74,6 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.True(Directory.Exists(dir), string.Format("dir '{0}' doesn't exists", dir));
             Assert.Equal(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), dir);
         }
-#endif
 
         [Fact]
         public void BaseDirDirFileCombineTest()
