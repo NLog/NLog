@@ -169,7 +169,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             continuationHit.WaitOne();
             Assert.NotNull(lastException);
-            Assert.IsType(typeof(InvalidOperationException), lastException);
+            Assert.IsType<InvalidOperationException>(lastException);
 
             // no flush on exception
             Assert.Equal(0, myTarget.FlushCount);
@@ -180,7 +180,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
             Assert.NotNull(lastException);
-            Assert.IsType(typeof(InvalidOperationException), lastException);
+            Assert.IsType<InvalidOperationException>(lastException);
             Assert.Equal(0, myTarget.FlushCount);
             Assert.Equal(2, myTarget.WriteCount);
         }

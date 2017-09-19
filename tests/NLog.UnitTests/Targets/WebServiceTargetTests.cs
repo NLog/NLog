@@ -132,9 +132,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var target = configuration.FindTargetByName("webservice") as WebServiceTarget;
             Assert.NotNull(target);
 
-            Assert.Equal(target.Parameters.Count, 6);
+            Assert.Equal(6, target.Parameters.Count);
 
-            Assert.Equal(target.Encoding.WebName, "utf-8");
+            Assert.Equal("utf-8", target.Encoding.WebName);
 
             //async call with mockup stream
             WebRequest webRequest = WebRequest.Create("http://www.test.com");
@@ -295,7 +295,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 logger.Info(message2);
             });
 
-            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
             Assert.Equal(2, LogMeController.RecievedLogsPostParam1.Count);
             CheckQueueMessage(message1, LogMeController.RecievedLogsPostParam1);
             CheckQueueMessage(message2, LogMeController.RecievedLogsPostParam1);
@@ -321,7 +321,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             });
 
 
-            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
             Assert.Equal(2, LogMeController.RecievedLogsGetParam1.Count);
             CheckQueueMessage(message1, LogMeController.RecievedLogsGetParam1);
             CheckQueueMessage(message2, LogMeController.RecievedLogsGetParam1);
@@ -371,8 +371,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             });
 
 
-            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
-            Assert.Equal(1, LogMeController.RecievedLogsGetParam1.Count);
+            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
+            Assert.Single(LogMeController.RecievedLogsGetParam1);
             CheckQueueMessage("another message", LogMeController.RecievedLogsGetParam1);
         }
 
@@ -475,7 +475,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
             });
 
-            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
             Assert.Equal(createdMessages.Count, LogMeController.RecievedLogsPostParam1.Count);
             //Assert.Equal(createdMessages, ValuesController.RecievedLogsPostParam1);
         }
@@ -765,7 +765,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 //this is working. 
                 if (complexType == null)
                 {
-                    throw new ArgumentNullException("complexType");
+                    throw new ArgumentNullException(nameof(complexType));
                 }
                 RecievedLogsPostParam1.Add(complexType.Param1);
 
@@ -925,7 +925,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 if (complexType == null)
                 {
-                    throw new ArgumentNullException("complexType");
+                    throw new ArgumentNullException(nameof(complexType));
                 }
 
                 processRequest(complexType);
@@ -958,7 +958,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 if (complexType == null)
                 {
-                    throw new ArgumentNullException("complexType");
+                    throw new ArgumentNullException(nameof(complexType));
                 }
 
                 processRequest(complexType);

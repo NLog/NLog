@@ -64,7 +64,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("message", payload.LayoutNames[0]);
             Assert.Equal("lvl", payload.LayoutNames[1]);
             Assert.Equal(3, payload.Strings.Count);
-            Assert.Equal(1, payload.Events.Length);
+            Assert.Single(payload.Events);
             Assert.Equal("message text", payload.Strings[payload.Events[0].ValueIndexes[0]]);
             Assert.Equal("Info", payload.Strings[payload.Events[0].ValueIndexes[1]]);
             Assert.Equal("loggerName", payload.Strings[payload.Events[0].LoggerOrdinal]);

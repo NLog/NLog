@@ -107,7 +107,7 @@ namespace NLog.UnitTests.Targets
                 }
             }
 
-            Assert.Equal(1, senderFactory.Senders.Count);
+            Assert.Single(senderFactory.Senders);
 
             var sender = senderFactory.Senders[0];
             target.Close();

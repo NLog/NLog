@@ -290,7 +290,7 @@ namespace NLog.UnitTests.LogReceiverService
         /// <param name="logFunc">function for logging the messages</param>
         /// <param name="logCheckFunc">function for checking the received messsages</param>
         /// <param name="messageCount">message count for wait for listen and checking</param>
-        public void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount)
+        private void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount)
         {
 
             Uri baseAddress = new Uri(logRecieverUrl);

@@ -138,7 +138,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         {
             var sender = new TcpNetworkSender("tcp://foo:1234", AddressFamily.Unspecified);
             var socket = sender.CreateSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Assert.IsType(typeof(SocketProxy), socket);
+            Assert.IsType<SocketProxy>(socket);
         }
 
         [Fact]

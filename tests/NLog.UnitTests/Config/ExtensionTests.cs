@@ -97,7 +97,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
@@ -141,7 +141,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
@@ -187,7 +187,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
@@ -235,7 +235,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
@@ -282,7 +282,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");

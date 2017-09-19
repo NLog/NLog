@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Config
 
                 // configuration with current culture
                 var configuration1 = CreateConfigurationFromString(string.Format(configurationTemplate, false));
-                Assert.Equal(null, configuration1.DefaultCultureInfo);
+                Assert.Null(configuration1.DefaultCultureInfo);
 
                 // configuration with invariant culture
                 var configuration2 = CreateConfigurationFromString(string.Format(configurationTemplate, true));

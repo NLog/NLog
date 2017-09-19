@@ -50,13 +50,13 @@ namespace NLog.UnitTests.Config
                 var xml = "<nlog></nlog>";
                 var config = CreateConfigurationFromString(xml);
 
-                Assert.Equal(false, config.AutoReload);
-                Assert.Equal(true, config.InitializeSucceeded);
+                Assert.False(config.AutoReload);
+                Assert.True(config.InitializeSucceeded);
                 Assert.Equal("", InternalLogger.LogFile);
-                Assert.Equal(true, InternalLogger.IncludeTimestamp);
-                Assert.Equal(false, InternalLogger.LogToConsole);
-                Assert.Equal(false, InternalLogger.LogToConsoleError);
-                Assert.Equal(null, InternalLogger.LogWriter);
+                Assert.True(InternalLogger.IncludeTimestamp);
+                Assert.False(InternalLogger.LogToConsole);
+                Assert.False(InternalLogger.LogToConsoleError);
+                Assert.Null(InternalLogger.LogWriter);
             }
         }
 
@@ -68,13 +68,13 @@ namespace NLog.UnitTests.Config
                 var xml = "<nlog autoreload='true' logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
                 var config = CreateConfigurationFromString(xml);
 
-                Assert.Equal(true, config.AutoReload);
-                Assert.Equal(true, config.InitializeSucceeded);
+                Assert.True(config.AutoReload);
+                Assert.True(config.InitializeSucceeded);
                 Assert.Equal("", InternalLogger.LogFile);
-                Assert.Equal(false, InternalLogger.IncludeTimestamp);
-                Assert.Equal(true, InternalLogger.LogToConsole);
-                Assert.Equal(true, InternalLogger.LogToConsoleError);
-                Assert.Equal(null, InternalLogger.LogWriter);
+                Assert.False(InternalLogger.IncludeTimestamp);
+                Assert.True(InternalLogger.LogToConsole);
+                Assert.True(InternalLogger.LogToConsoleError);
+                Assert.Null(InternalLogger.LogWriter);
             }
         }
 

@@ -112,7 +112,7 @@ namespace NLog.UnitTests
             LogManager.ThrowExceptions = false;
         }
 
-        //[Fact(Skip="Side effects to other unit tests.")]
+        [Fact(Skip="Side effects to other unit tests.")]
         public void GlobalThresholdTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -508,7 +508,7 @@ namespace NLog.UnitTests
             System.Threading.Thread.Sleep(20);
             stopFlag = true;
             System.Threading.Thread.Sleep(20);
-            Assert.Equal(false, exceptionThrown);
+            Assert.False(exceptionThrown);
         }
 
         /// <summary>

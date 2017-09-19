@@ -45,20 +45,20 @@ namespace NLog.UnitTests.Internal
         public void SingleBucketDictionary_NoBucketTest()
         {
             SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>> dict = new SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>>();
-            Assert.Equal(0, dict.Count);
+            Assert.Empty(dict);
 
-            Assert.Equal(0, dict.Count());
+            Assert.Empty(dict);
             Assert.Equal(0, dict.Count(val => val.Key == "Bucket1"));
 
-            foreach (var item in dict)
+            foreach (var _ in dict)
                 Assert.False(true);
 
             Assert.Equal(0, dict.Keys.Count);
-            foreach (var key in dict.Keys)
+            foreach (var _ in dict.Keys)
                 Assert.False(true);
 
             Assert.Equal(0, dict.Values.Count);
-            foreach (var val in dict.Values)
+            foreach (var _ in dict.Values)
                 Assert.False(true);
 
             IList<string> bucket;
@@ -74,11 +74,11 @@ namespace NLog.UnitTests.Internal
         {
             IList<string> bucket = new string[0];
             SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>> dict = new SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>>(new KeyValuePair<string, IList<string>>("Bucket1", bucket));
-            Assert.Equal(1, dict.Count);
+            Assert.Single(dict);
 
-            Assert.True(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", null)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>(string.Empty, bucket)));
+            Assert.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>("Bucket1", null), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>(string.Empty, bucket), dict);
 
             Assert.True(dict.ContainsKey("Bucket1"));
             Assert.False(dict.ContainsKey(string.Empty));
@@ -88,7 +88,7 @@ namespace NLog.UnitTests.Internal
             Assert.Equal("Bucket1", copyToResult[0].Key);
             Assert.Equal(0, copyToResult[0].Value.Count);
 
-            Assert.Equal(1, dict.Count());
+            Assert.Single(dict);
             Assert.Equal(1, dict.Count(val => val.Key == "Bucket1"));
 
             foreach (var item in dict)
@@ -122,11 +122,11 @@ namespace NLog.UnitTests.Internal
         {
             IList<string> bucket = new string[] { "Bucket1Item1" };
             SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>> dict = new SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>>(new KeyValuePair<string, IList<string>>("Bucket1", bucket));
-            Assert.Equal(1, dict.Count);
+            Assert.Single(dict);
 
-            Assert.True(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", null)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>(string.Empty, bucket)));
+            Assert.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>("Bucket1", null), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>(string.Empty, bucket), dict);
 
             Assert.True(dict.ContainsKey("Bucket1"));
             Assert.False(dict.ContainsKey(string.Empty));
@@ -137,7 +137,7 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(1, copyToResult[0].Value.Count);
             Assert.Equal("Bucket1Item1", copyToResult[0].Value[0]);
 
-            Assert.Equal(1, dict.Count());
+            Assert.Single(dict);
             Assert.Equal(1, dict.Count(val => val.Key == "Bucket1"));
 
             foreach (var item in dict)
@@ -172,11 +172,11 @@ namespace NLog.UnitTests.Internal
         {
             IList<string> bucket = new string[] { "Bucket1Item1", "Bucket1Item2" };
             SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>> dict = new SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>>(new KeyValuePair<string, IList<string>>("Bucket1", bucket));
-            Assert.Equal(1, dict.Count);
+            Assert.Single(dict);
 
-            Assert.True(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", null)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>(string.Empty, bucket)));
+            Assert.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>("Bucket1", null), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>(string.Empty, bucket), dict);
 
             Assert.True(dict.ContainsKey("Bucket1"));
             Assert.False(dict.ContainsKey(string.Empty));
@@ -188,7 +188,7 @@ namespace NLog.UnitTests.Internal
             Assert.Equal("Bucket1Item1", copyToResult[0].Value[0]);
             Assert.Equal("Bucket1Item2", copyToResult[0].Value[1]);
 
-            Assert.Equal(1, dict.Count());
+            Assert.Single(dict);
             Assert.Equal(1, dict.Count(val => val.Key == "Bucket1"));
 
             foreach (var item in dict)
@@ -232,13 +232,13 @@ namespace NLog.UnitTests.Internal
             SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>> dict = new SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>>(buckets);
             Assert.Equal(2, dict.Count);
 
-            Assert.True(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket1)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", null)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>(string.Empty, bucket1)));
+            Assert.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket1), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>("Bucket1", null), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>(string.Empty, bucket1), dict);
 
-            Assert.True(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket2", bucket2)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket2", null)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>(string.Empty, bucket2)));
+            Assert.Contains(new KeyValuePair<string, IList<string>>("Bucket2", bucket2), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>("Bucket2", null), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>(string.Empty, bucket2), dict);
 
             Assert.True(dict.ContainsKey("Bucket1"));
             Assert.True(dict.ContainsKey("Bucket2"));
@@ -292,13 +292,13 @@ namespace NLog.UnitTests.Internal
             SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>> dict = new SortHelpers.ReadOnlySingleBucketDictionary<string, IList<string>>(buckets);
             Assert.Equal(2, dict.Count);
 
-            Assert.True(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket1)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket1", null)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>(string.Empty, bucket1)));
+            Assert.Contains(new KeyValuePair<string, IList<string>>("Bucket1", bucket1), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>("Bucket1", null), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>(string.Empty, bucket1), dict);
 
-            Assert.True(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket2", bucket2)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>("Bucket2", null)));
-            Assert.False(dict.Contains(new KeyValuePair<string, IList<string>>(string.Empty, bucket2)));
+            Assert.Contains(new KeyValuePair<string, IList<string>>("Bucket2", bucket2), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>("Bucket2", null), dict);
+            Assert.DoesNotContain(new KeyValuePair<string, IList<string>>(string.Empty, bucket2), dict);
 
             Assert.True(dict.ContainsKey("Bucket1"));
             Assert.True(dict.ContainsKey("Bucket2"));

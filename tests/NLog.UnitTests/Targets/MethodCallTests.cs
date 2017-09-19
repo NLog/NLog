@@ -45,6 +45,8 @@ namespace NLog.UnitTests.Targets
 
         #region ToBeCalled Methods
 
+#pragma warning disable xUnit1013 //we need public methods here
+
         private static MethodCallRecord LastCallTest = null;
         public static void StaticAndPublic(string param1, int param2)
         {
@@ -81,6 +83,9 @@ namespace NLog.UnitTests.Targets
         {
             LastCallTest = new MethodCallRecord("StaticAndPrivate");
         }
+
+#pragma warning restore xUnit1013
+
 
         #endregion
 

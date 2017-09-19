@@ -75,10 +75,10 @@ namespace NLog.UnitTests.Config
             var rule = c.LoggingRules[0];
             Assert.Equal("*", rule.LoggerNamePattern);
             Assert.Equal(4, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Info));
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
-            Assert.True(rule.Levels.Contains(LogLevel.Error));
-            Assert.True(rule.Levels.Contains(LogLevel.Fatal));
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
+            Assert.Contains(LogLevel.Error, rule.Levels);
+            Assert.Contains(LogLevel.Fatal, rule.Levels);
             Assert.Equal(1, rule.Targets.Count);
             Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
             Assert.False(rule.Final);
@@ -101,8 +101,8 @@ namespace NLog.UnitTests.Config
 
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.Equal(1, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
+            Assert.Single(rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
         }
 
         [Fact]
@@ -122,8 +122,8 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
             Assert.Equal(2, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Info));
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
         }
 
         [Fact]
@@ -143,12 +143,12 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
             Assert.Equal(6, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Trace));
-            Assert.True(rule.Levels.Contains(LogLevel.Debug));
-            Assert.True(rule.Levels.Contains(LogLevel.Info));
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
-            Assert.True(rule.Levels.Contains(LogLevel.Error));
-            Assert.True(rule.Levels.Contains(LogLevel.Fatal));
+            Assert.Contains(LogLevel.Trace, rule.Levels);
+            Assert.Contains(LogLevel.Debug, rule.Levels);
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
+            Assert.Contains(LogLevel.Error, rule.Levels);
+            Assert.Contains(LogLevel.Fatal, rule.Levels);
         }
 
         [Fact]
@@ -168,9 +168,9 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
             Assert.Equal(3, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Trace));
-            Assert.True(rule.Levels.Contains(LogLevel.Info));
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
+            Assert.Contains(LogLevel.Trace, rule.Levels);
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
         }
 
         [Fact]

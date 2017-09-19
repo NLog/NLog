@@ -83,7 +83,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Initialize(null);
             wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => lastException = ex));
             Assert.NotNull(lastException);
-            Assert.IsType(typeof(NotSupportedException), lastException);
+            Assert.IsType<NotSupportedException>(lastException);
         }
 
         public class MyWrapper : WrapperTargetBase

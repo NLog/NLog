@@ -320,7 +320,7 @@ namespace NLog.UnitTests.Targets
             var exceptions = new List<Exception>();
             target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             Assert.Equal(0, target.WriteCount);
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.NotNull(exceptions[0]);
             Assert.Equal("Target " + target + " failed to initialize.", exceptions[0].Message);
             Assert.Equal("Init error.", exceptions[0].InnerException.Message);
@@ -417,7 +417,7 @@ namespace NLog.UnitTests.Targets
             // flush was called
             Assert.Equal(1, target.FlushCount);
             Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             exceptions.ForEach(Assert.Null);
         }
 
@@ -428,7 +428,7 @@ namespace NLog.UnitTests.Targets
             List<Exception> exceptions = new List<Exception>();
             target.Flush(exceptions.Add);
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             exceptions.ForEach(Assert.Null);
 
             // flush was not called
@@ -447,7 +447,7 @@ namespace NLog.UnitTests.Targets
             List<Exception> exceptions = new List<Exception>();
             target.Flush(exceptions.Add);
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             exceptions.ForEach(Assert.Null);
 
             // flush was not called

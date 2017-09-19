@@ -33,6 +33,8 @@
 
 #if !NETSTANDARD
 
+#define DISABLE_FILE_INTERNAL_LOGGING
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -92,7 +94,9 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#pragma warning disable xUnit1013 // Needed for test
         public void Process(string processIndex, string fileName, string numLogsString, string mode)
+#pragma warning restore xUnit1013 
         {
             Thread.CurrentThread.Name = processIndex;
 
@@ -101,18 +105,23 @@ namespace NLog.UnitTests.Targets
 
             ConfigureSharedFile(mode, fileName);
 
-            // Having the internal logger enabled would just slow things down, reducing the 
-            // likelyhood for uncovering racing conditions.
-            //var logWriter = new StringWriter { NewLine = Environment.NewLine };
-            //NLog.Common.InternalLogger.LogLevel = LogLevel.Trace;
-            //NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
-            //NLog.Common.InternalLogger.LogWriter = logWriter;
-            //NLog.Common.InternalLogger.LogToConsole = true;
-
             string format = processIndex + " {0}";
 
+            // Having the internal logger enabled would just slow things down, reducing the 
+            // likelyhood for uncovering racing conditions. Uncomment #define DISABLE_FILE_INTERNAL_LOGGING
+
+#if !DISABLE_FILE_INTERNAL_LOGGING
+            var logWriter = new StringWriter { NewLine = Environment.NewLine };
+            NLog.Common.InternalLogger.LogLevel = LogLevel.Trace;
+            NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
+            NLog.Common.InternalLogger.LogWriter = logWriter;
+            NLog.Common.InternalLogger.LogToConsole = true;
+
             try
+#endif
             {
+
+
                 Thread.Sleep(Math.Max((10 - idxProcess), 1) * 5);  // Delay to wait for the other processes
 
                 for (int i = 0; i < numLogs; ++i)
@@ -121,21 +130,24 @@ namespace NLog.UnitTests.Targets
                 }
 
                 LogManager.Configuration = null;     // Flush + Close
+
             }
+#if !DISABLE_FILE_INTERNAL_LOGGING
             catch (Exception ex)
             {
-                //using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
-                //{
-                //    textWriter.WriteLine(ex.ToString());
-                //    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
-                //}
+                using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
+                {
+                    textWriter.WriteLine(ex.ToString());
+                    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
+                }
                 throw;
             }
 
-            //using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
-            //{
-            //    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
-            //}
+            using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
+            {
+                textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
+            }
+#endif
         }
 
         private string MakeFileName(int numProcesses, int numLogs, string mode)

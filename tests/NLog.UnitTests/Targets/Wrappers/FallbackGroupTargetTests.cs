@@ -178,7 +178,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     // for the first 3 rounds, no target is available
                     Assert.NotNull(exceptions[i]);
-                    Assert.IsType(typeof(InvalidOperationException), exceptions[i]);
+                    Assert.IsType<InvalidOperationException>(exceptions[i]);
                     Assert.Equal("Some failure.", exceptions[i].Message);
                 }
                 else
