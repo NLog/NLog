@@ -94,6 +94,7 @@ namespace NLog.UnitTests.Internal
             SplitStringWithEscape2(input, ';', Backslash, output);
         }
 
+        [Theory]
         [InlineData(@"abc", ';', ',', "abc")]
         void SplitStringWithEscape2(string input, char splitChar, char escapeChar, string output)
         {

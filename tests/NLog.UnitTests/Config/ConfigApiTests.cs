@@ -53,7 +53,7 @@ namespace NLog.UnitTests.Config
             config.AddTarget("name1", new FileTarget {Name = "File"});
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
-            Assert.Equal(1, allTargets.Count);
+            Assert.Single(allTargets);
 
             //maybe confusing, but the name of the target is not changed, only the one of the key.
             Assert.Equal("File", allTargets.First().Name);
@@ -61,7 +61,7 @@ namespace NLog.UnitTests.Config
 
             config.RemoveTarget("name1");
             allTargets = config.AllTargets;
-            Assert.Equal(0, allTargets.Count);
+            Assert.Empty(allTargets);
         }
 
         [Fact]
@@ -92,7 +92,7 @@ namespace NLog.UnitTests.Config
             config.AddTarget("name1", new FileTarget {Name = "name2"});
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
-            Assert.Equal(1, allTargets.Count);
+            Assert.Single(allTargets);
 
             //maybe confusing, but the name of the target is not changed, only the one of the key.
             Assert.Equal("name2", allTargets.First().Name);
@@ -106,7 +106,7 @@ namespace NLog.UnitTests.Config
             config.AddTarget(new FileTarget {Name = "name2"});
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
-            Assert.Equal(1, allTargets.Count);
+            Assert.Single(allTargets);
             Assert.Equal("name2", allTargets.First().Name);
             Assert.NotNull(config.FindTargetByName<FileTarget>("name2"));
         }
@@ -121,15 +121,15 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, config.LoggingRules.Count);
             var rule1 = config.LoggingRules.FirstOrDefault();
             Assert.NotNull(rule1);
-            Assert.Equal(false, rule1.Final);
+            Assert.False(rule1.Final);
             Assert.Equal("*a", rule1.LoggerNamePattern);
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Fatal));
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Error));
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Warn));
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Info));
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Debug));
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Trace));
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Off));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Fatal));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Warn));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Info));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Trace));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Off));
         }
 
         [Fact]
@@ -142,15 +142,15 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, config.LoggingRules.Count);
             var rule1 = config.LoggingRules.FirstOrDefault();
             Assert.NotNull(rule1);
-            Assert.Equal(false, rule1.Final);
+            Assert.False(rule1.Final);
             Assert.Equal("*a", rule1.LoggerNamePattern);
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Fatal));
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Error));
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Warn));
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Info));
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Debug));
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Trace));
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Off));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Fatal));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Warn));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Info));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Trace));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Off));
         }
 
         [Fact]
@@ -163,15 +163,15 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, config.LoggingRules.Count);
             var rule1 = config.LoggingRules.FirstOrDefault();
             Assert.NotNull(rule1);
-            Assert.Equal(false, rule1.Final);
+            Assert.False(rule1.Final);
             Assert.Equal("*a", rule1.LoggerNamePattern);
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Fatal));
-            Assert.Equal(true, rule1.IsLoggingEnabledForLevel(LogLevel.Error));
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Warn));
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Info));
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Debug));
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Trace));
-            Assert.Equal(false, rule1.IsLoggingEnabledForLevel(LogLevel.Off));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Fatal));
+            Assert.True(rule1.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Warn));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Info));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Trace));
+            Assert.False(rule1.IsLoggingEnabledForLevel(LogLevel.Off));
         }
 
         [Fact]
@@ -185,7 +185,7 @@ namespace NLog.UnitTests.Config
             config.AddTarget(new FileTarget {Name = "File"});
             var allTargets = config.AllTargets;
             Assert.NotNull(allTargets);
-            Assert.Equal(1, allTargets.Count);
+            Assert.Single(allTargets);
             Assert.Equal("File", allTargets.First().Name);
             Assert.NotNull(config.FindTargetByName<FileTarget>("File"));
         }
@@ -207,12 +207,12 @@ namespace NLog.UnitTests.Config
 
             config.AddTarget(fileTarget);
 
-            Assert.Equal(1, config.AllTargets.Count);
+            Assert.Single(config.AllTargets);
             Assert.Equal(fileTarget, config.AllTargets[0]);
 
             config.InitializeAll();
 
-            Assert.Equal(1, config.AllTargets.Count);
+            Assert.Single(config.AllTargets);
             Assert.Equal(fileTarget, config.AllTargets[0]);
         }
 

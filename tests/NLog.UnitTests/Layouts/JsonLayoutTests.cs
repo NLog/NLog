@@ -232,7 +232,7 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo);
 
             var message = GetDebugLastMessage("debug");
-            Assert.Equal(true, message.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString()));
+            Assert.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(), message);
         }
 
         [Fact]

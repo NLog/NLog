@@ -459,7 +459,7 @@ namespace NLog.UnitTests.LayoutRenderers
             if (done == true)
             {
                 string lastMessage = GetDebugLastMessage("debug");
-                Assert.True(lastMessage.StartsWith("<DontCleanMethodNamesOfAnonymousDelegatesTest>"));
+                Assert.StartsWith("<DontCleanMethodNamesOfAnonymousDelegatesTest>", lastMessage);
             }
         }
 
@@ -534,7 +534,7 @@ namespace NLog.UnitTests.LayoutRenderers
             if (done == true)
             {
                 string lastMessage = GetDebugLastMessage("debug");
-                Assert.True(lastMessage.Contains("+<>"));
+                Assert.Contains("+<>", lastMessage);
             }
         }
 

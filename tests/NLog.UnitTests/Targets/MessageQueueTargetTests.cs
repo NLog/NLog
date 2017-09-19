@@ -147,7 +147,7 @@ namespace NLog.UnitTests.Targets
             var messageQueueTarget = configuration.FindTargetByName("q") as MessageQueueTarget;
 
             Assert.NotNull(messageQueueTarget);
-            Assert.Equal(false, messageQueueTarget.CheckIfQueueExists);
+            Assert.False(messageQueueTarget.CheckIfQueueExists);
         }
 
         private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test", bool checkIfQueueExists = true)

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#pragma warning disable xUnit2004 //assert.True can't be used with Object parameter
+
 namespace NLog.UnitTests.Conditions
 {
     using System;

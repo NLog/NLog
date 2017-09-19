@@ -127,7 +127,7 @@ namespace NLog.UnitTests
                 }
             }
 
-            Assert.Equal(0, unusedTypes.Count);
+            Assert.Empty(unusedTypes);
         }
 
         private void IncrementUsageCount(Type type)

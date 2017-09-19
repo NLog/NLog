@@ -441,18 +441,18 @@ namespace NLog.UnitTests.Targets
         public void SingleItemOptimizedHashSetTest()
         {
             var hashSet = default(NLog.Internal.SingleItemOptimizedHashSet<object>);
-            Assert.Equal(0, hashSet.Count);
-            Assert.Equal(false, hashSet.Contains(new object()));
+            Assert.Empty(hashSet);
+            Assert.DoesNotContain(new object(), hashSet);
             foreach (var obj in hashSet)
                 throw new Exception("Wrong");
             hashSet.Clear();
-            Assert.Equal(0, hashSet.Count);
+            Assert.Empty(hashSet);
             hashSet.Add(new object());
-            Assert.Equal(1, hashSet.Count);
+            Assert.Single(hashSet);
             hashSet.Add(new object());
             Assert.Equal(2, hashSet.Count);
             foreach (var obj in hashSet)
-                Assert.Equal(true, hashSet.Contains(obj));
+                Assert.Contains(obj, hashSet);
             object[] objArray = new object[2];
             hashSet.CopyTo(objArray, 0);
             foreach (var obj in objArray)
@@ -460,9 +460,9 @@ namespace NLog.UnitTests.Targets
                 Assert.NotNull(obj);
                 hashSet.Remove(obj);
             }
-            Assert.Equal(0, hashSet.Count);
+            Assert.Empty(hashSet);
             hashSet.Clear();
-            Assert.Equal(0, hashSet.Count);
+            Assert.Empty(hashSet);
         }
 
         private class TestObject

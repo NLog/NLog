@@ -647,7 +647,7 @@ Dispose()
             db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             db.Close();
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.NotNull(exceptions[0]);
             Assert.Equal("Cannot open fake database.", exceptions[0].Message);
             Assert.Equal("Open('cannotconnect').\r\n", MockDbConnection.Log);
@@ -1183,6 +1183,7 @@ Dispose()
         }
 
 #if !NETSTANDARD
+        [Fact]
         public void GetProviderNameFromAppConfig()
         {
             LogManager.ThrowExceptions = true;

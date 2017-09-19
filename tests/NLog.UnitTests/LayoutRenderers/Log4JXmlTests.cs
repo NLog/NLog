@@ -124,8 +124,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
                             case "throwable":
                                 reader.Read();
-                                Assert.True(reader.Value.Contains("Hello Exception"));
-                                Assert.True(reader.Value.Contains("Goodbye Exception"));
+                                Assert.Contains("Hello Exception", reader.Value);
+                                Assert.Contains("Goodbye Exception", reader.Value);
                                 break;
                             case "data":
                                 string name = reader.GetAttribute("name");
@@ -263,8 +263,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Assert.NotNull(goodString);
             Assert.NotEqual(badString.Length, goodString.Length);
-            Assert.True(badString.Contains("abc"));
-            Assert.True(goodString.Contains("abc"));
+            Assert.Contains("abc", badString);
+            Assert.Contains("abc", goodString);
         }
     }
 }

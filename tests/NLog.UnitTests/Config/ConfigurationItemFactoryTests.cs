@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Config
         public void ConfigurationItemFactoryDefaultTest()
         {
             var cif = new ConfigurationItemFactory();
-            Assert.IsType(typeof(DebugTarget), cif.CreateInstance(typeof(DebugTarget)));
+            Assert.IsType<DebugTarget>(cif.CreateInstance(typeof(DebugTarget)));
         }
 
         [Fact]
@@ -67,7 +67,7 @@ namespace NLog.UnitTests.Config
             cif.CreateInstance = t => { resolvedTypes.Add(t); return FactoryHelper.CreateInstance(t); };
             Target target = cif.Targets.CreateInstance("Debug");
             Assert.NotNull(target);
-            Assert.Equal(1, resolvedTypes.Count);
+            Assert.Single(resolvedTypes);
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
 

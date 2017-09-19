@@ -150,7 +150,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }, LogLevel.Trace);
 
             Assert.Equal(5, wrappedTarget.WriteCount);
-            Assert.True(internalLog.Contains("MessageLimit"));
+            Assert.Contains("MessageLimit", internalLog);
             Assert.Null(lastException);
         }
 
@@ -177,7 +177,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             //We should have written 6 messages (1 in first interval and 5 in second interval).
             Assert.Equal(6, wrappedTarget.WriteCount);
-            Assert.True(internalLog.Contains("new interval"));
+            Assert.Contains("new interval", internalLog);
             Assert.Null(lastException);
         }
 

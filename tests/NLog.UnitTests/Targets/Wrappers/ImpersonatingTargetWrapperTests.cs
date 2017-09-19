@@ -77,7 +77,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             var exceptions = new List<Exception>();
             wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             wrapper.WriteAsyncLogEvents(
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
@@ -122,7 +122,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 var exceptions = new List<Exception>();
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-                Assert.Equal(1, exceptions.Count);
+                Assert.Single(exceptions);
                 wrapper.WriteAsyncLogEvents(
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
