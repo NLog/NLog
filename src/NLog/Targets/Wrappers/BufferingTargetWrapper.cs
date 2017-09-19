@@ -95,11 +95,24 @@ namespace NLog.Targets.Wrappers
         /// <param name="bufferSize">Size of the buffer.</param>
         /// <param name="flushTimeout">The flush timeout.</param>
         public BufferingTargetWrapper(Target wrappedTarget, int bufferSize, int flushTimeout)
+            : this(wrappedTarget, bufferSize, flushTimeout, BufferingTargetWrapperOverflowAction.Flush)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
+        /// </summary>
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="bufferSize">Size of the buffer.</param>
+        /// <param name="flushTimeout">The flush timeout.</param>
+        /// <param name="overflowAction">The aciton to take when the buffer overflows.</param>
+        public BufferingTargetWrapper(Target wrappedTarget, int bufferSize, int flushTimeout, BufferingTargetWrapperOverflowAction overflowAction)
         {
             this.WrappedTarget = wrappedTarget;
             this.BufferSize = bufferSize;
             this.FlushTimeout = flushTimeout;
             this.SlidingTimeout = true;
+            this.OverflowAction = overflowAction;
         }
 
         /// <summary>
@@ -128,6 +141,18 @@ namespace NLog.Targets.Wrappers
         /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(true)]
         public bool SlidingTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the action to take if the buffer overflows.
+        /// </summary>
+        /// <remarks>
+        /// Setting to <see cref="BufferingTargetWrapperOverflowAction.Discard"/> will replace the
+        /// oldest event with new events without sending events down to the wrapped target, and
+        /// setting to <see cref="BufferingTargetWrapperOverflowAction.Flush"/> will flush the
+        /// entire buffer to the wrapped target.
+        /// </remarks>
+        [DefaultValue("Flush")]
+        public BufferingTargetWrapperOverflowAction OverflowAction { get; set; }
 
         /// <summary>
         /// Flushes pending events in the buffer (if any), followed by flushing the WrappedTarget.
@@ -184,7 +209,12 @@ namespace NLog.Targets.Wrappers
             int count = this.buffer.Append(logEvent);
             if (count >= this.BufferSize)
             {
-                WriteEventsInBuffer("Exceeding BufferSize");
+                // If the OverflowAction action is set to "Discard", the buffer will automatically
+                // roll over the oldest item.
+                if (OverflowAction == BufferingTargetWrapperOverflowAction.Flush)
+                {
+                    WriteEventsInBuffer("Exceeding BufferSize");
+                }
             }
             else
             {

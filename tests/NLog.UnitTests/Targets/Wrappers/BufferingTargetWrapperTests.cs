@@ -502,6 +502,61 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(1, myTarget.FlushCount);
         }
 
+        [Fact]
+        public void BufferingTargetWrapperSyncWithOverflowDiscardTest()
+        {
+            const int totalEvents = 15;
+            const int bufferSize = 10;
+
+            var myTarget = new MyTarget();
+            var targetWrapper = new BufferingTargetWrapper
+            {
+                WrappedTarget = myTarget,
+                BufferSize = bufferSize,
+                OverflowAction = BufferingTargetWrapperOverflowAction.Discard
+            };
+
+            InitializeTargets(myTarget, targetWrapper);
+
+            var continuationHit = new bool[totalEvents];
+            var hitCount = 0;
+            CreateContinuationFunc createAsyncContinuation =
+                eventNumber =>
+                    ex =>
+                    {
+                        continuationHit[eventNumber] = true;
+                        Interlocked.Increment(ref hitCount);
+                    };
+
+            Assert.Equal(0, myTarget.WriteCount);
+
+            for (int i = 0; i < totalEvents; i++) {
+                targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(i)));
+            }
+
+            // No events should be written to the wrapped target unless flushing manually.
+            Assert.Equal(0, myTarget.WriteCount);
+            Assert.Equal(0, myTarget.BufferedWriteCount);
+            Assert.Equal(0, myTarget.BufferedTotalEvents);
+
+            targetWrapper.Flush(e => { });
+            Assert.Equal(bufferSize, hitCount);
+            Assert.Equal(bufferSize, myTarget.WriteCount);
+            Assert.Equal(1, myTarget.BufferedWriteCount);
+            Assert.Equal(bufferSize, myTarget.BufferedTotalEvents);
+
+            // Validate that we dropped the oldest events.
+            Assert.False(continuationHit[totalEvents-bufferSize-1]);
+            Assert.True(continuationHit[totalEvents - bufferSize]);
+
+            // Make sure the events do not stay in the buffer.
+            targetWrapper.Flush(e => { });
+            Assert.Equal(bufferSize, hitCount);
+            Assert.Equal(bufferSize, myTarget.WriteCount);
+            Assert.Equal(1, myTarget.BufferedWriteCount);
+            Assert.Equal(bufferSize, myTarget.BufferedTotalEvents);
+        }
+
         private static void InitializeTargets(params Target[] targets)
         {
             foreach (var target in targets)
