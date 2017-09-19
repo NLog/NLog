@@ -193,7 +193,7 @@ namespace NLog.UnitTests.Targets
                 target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "Logger", message).WithContinuation(exceptions.Add));
                 target.Close();
 
-                Assert.Equal(1, exceptions.Count);
+                Assert.Single(exceptions);
                 Assert.True(exceptions.TrueForAll(e => e == null));
             }
             finally

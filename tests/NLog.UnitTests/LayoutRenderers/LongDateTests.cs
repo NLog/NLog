@@ -53,13 +53,13 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
-            Assert.Equal(date.Length, 24);
-            Assert.Equal(date[4], '-');
-            Assert.Equal(date[7], '-');
-            Assert.Equal(date[10], ' ');
-            Assert.Equal(date[13], ':');
-            Assert.Equal(date[16], ':');
-            Assert.Equal(date[19], '.');
+            Assert.Equal(24, date.Length);
+            Assert.Equal('-', date[4]);
+            Assert.Equal('-', date[7]);
+            Assert.Equal(' ', date[10]);
+            Assert.Equal(':', date[13]);
+            Assert.Equal(':', date[16]);
+            Assert.Equal('.', date[19]);
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
-            Assert.Equal(date[4], '-');
+            Assert.Equal('-', date[4]);
         }
 
         [Fact]
@@ -113,7 +113,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
-            Assert.Equal(date[0], '.');
+            Assert.Equal('.', date[0]);
         }
 
         [Fact]
@@ -130,7 +130,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
-            Assert.Equal(date[4], '-');
+            Assert.Equal('-', date[4]);
         }
 
         [Fact]
@@ -147,7 +147,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
-            Assert.Equal(date[0], '.');
+            Assert.Equal('.', date[0]);
         }
     }
 }

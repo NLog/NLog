@@ -47,9 +47,9 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void DefaultTimeSourceTest()
         {
-            Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);
+            Assert.IsType<FastLocalTimeSource>(TimeSource.Current);
             CreateConfigurationFromString("<nlog />");
-            Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);
+            Assert.IsType<FastLocalTimeSource>(TimeSource.Current);
         }
 
         [Fact]
@@ -79,12 +79,12 @@ namespace NLog.UnitTests.Config
         void TestTimeSourceConfiguration<T>(string type)
             where T : TimeSource
         {
-            Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);
+            Assert.IsType<FastLocalTimeSource>(TimeSource.Current);
             CreateConfigurationFromString(@"
                 <nlog>
                     <time type='" + type + @"' />
                 </nlog>");
-            Assert.IsType(typeof(T), TimeSource.Current);
+            Assert.IsType<T>(TimeSource.Current);
         }
     }
 }

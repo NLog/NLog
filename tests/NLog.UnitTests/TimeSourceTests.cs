@@ -132,7 +132,7 @@ namespace NLog.UnitTests
 
         void TestTimeSource(TimeSource source, DateTime expected, DateTimeKind kind)
         {
-            Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);
+            Assert.IsType<FastLocalTimeSource>(TimeSource.Current);
             TimeSource.Current = source;
             Assert.Same(source, TimeSource.Current);
             var evt = new LogEventInfo(LogLevel.Info, "logger", "msg");

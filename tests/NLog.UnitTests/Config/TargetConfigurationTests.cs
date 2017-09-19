@@ -60,12 +60,12 @@ namespace NLog.UnitTests.Config
 
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal(t.Name, "d");
+            Assert.Equal("d", t.Name);
             SimpleLayout l = t.Layout as SimpleLayout;
             Assert.Equal("${message}", l.Text);
             Assert.NotNull(t.Layout);
-            Assert.Equal(1, l.Renderers.Count);
-            Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.Single(l.Renderers);
+            Assert.IsType<MessageLayoutRenderer>(l.Renderers[0]);
         }
 
         [Fact]
@@ -83,12 +83,12 @@ namespace NLog.UnitTests.Config
 
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal(t.Name, "d");
+            Assert.Equal("d", t.Name);
             SimpleLayout l = t.Layout as SimpleLayout;
             Assert.Equal("${message}", l.Text);
             Assert.NotNull(t.Layout);
-            Assert.Equal(1, l.Renderers.Count);
-            Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.Single(l.Renderers);
+            Assert.IsType<MessageLayoutRenderer>(l.Renderers[0]);
         }
 
         [Fact]
@@ -198,14 +198,14 @@ namespace NLog.UnitTests.Config
 
             DebugTarget t = c.FindTargetByName("d") as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal(t.Name, "d");
+            Assert.Equal("d", t.Name);
             SimpleLayout l = t.Layout as SimpleLayout;
             Assert.Equal("${message} ${level}", l.Text);
             Assert.NotNull(l);
             Assert.Equal(3, l.Renderers.Count);
-            Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
-            Assert.IsType(typeof(LiteralLayoutRenderer), l.Renderers[1]);
-            Assert.IsType(typeof(LevelLayoutRenderer), l.Renderers[2]);
+            Assert.IsType<MessageLayoutRenderer>(l.Renderers[0]);
+            Assert.IsType<LiteralLayoutRenderer>(l.Renderers[1]);
+            Assert.IsType<LevelLayoutRenderer>(l.Renderers[2]);
             Assert.Equal(" ", ((LiteralLayoutRenderer)l.Renderers[1]).Text);
         }
 
@@ -227,9 +227,9 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(c.FindTargetByName("b"));
             Assert.NotNull(c.FindTargetByName("c"));
 
-            Assert.IsType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
-            Assert.IsType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("c"));
+            Assert.IsType<BufferingTargetWrapper>(c.FindTargetByName("b"));
+            Assert.IsType<AsyncTargetWrapper>(c.FindTargetByName("a"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("c"));
 
             BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
             AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
@@ -262,9 +262,9 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(c.FindTargetByName("b"));
             Assert.NotNull(c.FindTargetByName("c"));
 
-            Assert.IsType(typeof(BufferingTargetWrapper), c.FindTargetByName("b"));
-            Assert.IsType(typeof(AsyncTargetWrapper), c.FindTargetByName("a"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("c"));
+            Assert.IsType<BufferingTargetWrapper>(c.FindTargetByName("b"));
+            Assert.IsType<AsyncTargetWrapper>(c.FindTargetByName("a"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("c"));
 
             BufferingTargetWrapper btw = c.FindTargetByName("b") as BufferingTargetWrapper;
             AsyncTargetWrapper atw = c.FindTargetByName("a") as AsyncTargetWrapper;
@@ -296,11 +296,11 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(c.FindTargetByName("d3"));
             Assert.NotNull(c.FindTargetByName("d4"));
 
-            Assert.IsType(typeof(RoundRobinGroupTarget), c.FindTargetByName("rr"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d1"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d2"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d3"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d4"));
+            Assert.IsType<RoundRobinGroupTarget>(c.FindTargetByName("rr"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("d1"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("d2"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("d3"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("d4"));
 
             RoundRobinGroupTarget rr = c.FindTargetByName("rr") as RoundRobinGroupTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;
@@ -314,10 +314,10 @@ namespace NLog.UnitTests.Config
             Assert.Same(d3, rr.Targets[2]);
             Assert.Same(d4, rr.Targets[3]);
 
-            Assert.Equal(((SimpleLayout)d1.Layout).Text, "${message}1");
-            Assert.Equal(((SimpleLayout)d2.Layout).Text, "${message}2");
-            Assert.Equal(((SimpleLayout)d3.Layout).Text, "${message}3");
-            Assert.Equal(((SimpleLayout)d4.Layout).Text, "${message}4");
+            Assert.Equal("${message}1", ((SimpleLayout)d1.Layout).Text);
+            Assert.Equal("${message}2", ((SimpleLayout)d2.Layout).Text);
+            Assert.Equal("${message}3", ((SimpleLayout)d3.Layout).Text);
+            Assert.Equal("${message}4", ((SimpleLayout)d4.Layout).Text);
         }
 
         [Fact]
@@ -346,11 +346,11 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(c.FindTargetByName("d3"));
             Assert.NotNull(c.FindTargetByName("d4"));
 
-            Assert.IsType(typeof(RoundRobinGroupTarget), c.FindTargetByName("rr"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d1"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d2"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d3"));
-            Assert.IsType(typeof(DebugTarget), c.FindTargetByName("d4"));
+            Assert.IsType<RoundRobinGroupTarget>(c.FindTargetByName("rr"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("d1"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("d2"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("d3"));
+            Assert.IsType<DebugTarget>(c.FindTargetByName("d4"));
 
             RoundRobinGroupTarget rr = c.FindTargetByName("rr") as RoundRobinGroupTarget;
             DebugTarget d1 = c.FindTargetByName("d1") as DebugTarget;
@@ -364,10 +364,10 @@ namespace NLog.UnitTests.Config
             Assert.Same(d3, rr.Targets[2]);
             Assert.Same(d4, rr.Targets[3]);
 
-            Assert.Equal(((SimpleLayout)d1.Layout).Text, "${message}1");
-            Assert.Equal(((SimpleLayout)d2.Layout).Text, "${message}2");
-            Assert.Equal(((SimpleLayout)d3.Layout).Text, "${message}3");
-            Assert.Equal(((SimpleLayout)d4.Layout).Text, "${message}4");
+            Assert.Equal("${message}1", ((SimpleLayout)d1.Layout).Text);
+            Assert.Equal("${message}2", ((SimpleLayout)d2.Layout).Text);
+            Assert.Equal("${message}3", ((SimpleLayout)d3.Layout).Text);
+            Assert.Equal("${message}4", ((SimpleLayout)d4.Layout).Text);
         }
 
         [Fact]
@@ -383,7 +383,7 @@ namespace NLog.UnitTests.Config
 
             var t = c.FindTargetByName("d") as AsyncTargetWrapper;
             Assert.NotNull(t);
-            Assert.Equal(t.Name, "d");
+            Assert.Equal("d", t.Name);
 
             var wrappedTarget = t.WrappedTarget as DebugTarget;
             Assert.NotNull(wrappedTarget);
@@ -391,7 +391,7 @@ namespace NLog.UnitTests.Config
 
             t = c.FindTargetByName("d2") as AsyncTargetWrapper;
             Assert.NotNull(t);
-            Assert.Equal(t.Name, "d2");
+            Assert.Equal("d2", t.Name);
 
             wrappedTarget = t.WrappedTarget as DebugTarget;
             Assert.NotNull(wrappedTarget);
@@ -538,7 +538,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(42, myTarget.Int32Property);
             Assert.Equal(42000000000L, myTarget.Int64Property);
             Assert.Equal("foobar", myTarget.StringProperty);
-            Assert.Equal(true, myTarget.BoolProperty);
+            Assert.True(myTarget.BoolProperty);
             Assert.Equal(3.14159, myTarget.DoubleProperty);
             Assert.Equal(3.14159f, myTarget.FloatProperty);
             Assert.Equal(MyEnum.Value3, myTarget.EnumProperty);
@@ -589,7 +589,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(42, myTarget.Int32Property);
             Assert.Equal(42000000000L, myTarget.Int64Property);
             Assert.Equal("foobar", myTarget.StringProperty);
-            Assert.Equal(true, myTarget.BoolProperty);
+            Assert.True(myTarget.BoolProperty);
             Assert.Equal(3.14159, myTarget.DoubleProperty);
             Assert.Equal(3.14159f, myTarget.FloatProperty);
             Assert.Equal(MyEnum.Value3, myTarget.EnumProperty);

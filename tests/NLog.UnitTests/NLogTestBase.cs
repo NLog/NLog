@@ -197,7 +197,7 @@ namespace NLog.UnitTests
             using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
             {
-                Assert.Equal(1, zip.Entries.Count);
+                Assert.Single(zip.Entries);
                 Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
 
                 byte[] buf = new byte[(int)zip.Entries[0].Length];

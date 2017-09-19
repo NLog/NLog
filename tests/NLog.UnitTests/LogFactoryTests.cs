@@ -203,11 +203,6 @@ namespace NLog.UnitTests
             Assert.True(arguments.Succeeded);
         }
 
-        public static void Throws()
-        {
-            throw new Exception();
-        }
-
         /// <summary>
         /// We should be forward compatible so that we can add easily attributes in the future.
         /// </summary>

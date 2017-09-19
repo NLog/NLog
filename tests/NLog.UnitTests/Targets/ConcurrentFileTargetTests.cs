@@ -92,7 +92,9 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#pragma warning disable xUnit1013 // Needed for test
         public void Process(string processIndex, string fileName, string numLogsString, string mode)
+#pragma warning restore xUnit1013 
         {
             Thread.CurrentThread.Name = processIndex;
 

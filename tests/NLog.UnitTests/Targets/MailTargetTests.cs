@@ -74,10 +74,10 @@ namespace NLog.UnitTests.Targets
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
             Assert.Null(exceptions[0]);
 
-            Assert.Equal(1, mmt.CreatedMocks.Count);
+            Assert.Single(mmt.CreatedMocks);
 
             var mock = mmt.CreatedMocks[0];
-            Assert.Equal(1, mock.MessagesSent.Count);
+            Assert.Single(mock.MessagesSent);
             Assert.Equal("server1", mock.Host);
             Assert.Equal(27, mock.Port);
             Assert.False(mock.EnableSsl);
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.Targets
             var msg = mock.MessagesSent[0];
             Assert.Equal("Hello from NLog", msg.Subject);
             Assert.Equal("foo@bar.com", msg.From.Address);
-            Assert.Equal(1, msg.To.Count);
+            Assert.Single(msg.To);
             Assert.Equal("bar@foo.com", msg.To[0].Address);
             Assert.Equal(2, msg.CC.Count);
             Assert.Equal("me@myserver.com", msg.CC[0].Address);
@@ -94,7 +94,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(2, msg.Bcc.Count);
             Assert.Equal("foo@myserver.com", msg.Bcc[0].Address);
             Assert.Equal("bar@yourserver.com", msg.Bcc[1].Address);
-            Assert.Equal(msg.Body, "Info MyLogger log message 1");
+            Assert.Equal("Info MyLogger log message 1", msg.Body);
         }
 
         [Fact]
@@ -118,10 +118,10 @@ namespace NLog.UnitTests.Targets
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
             Assert.Null(exceptions[0]);
 
-            Assert.Equal(1, mmt.CreatedMocks.Count);
+            Assert.Single(mmt.CreatedMocks);
 
             var mock = mmt.CreatedMocks[0];
-            Assert.Equal(1, mock.MessagesSent.Count);
+            Assert.Single(mock.MessagesSent);
             var msg = mock.MessagesSent[0];
         }
 
@@ -142,7 +142,7 @@ namespace NLog.UnitTests.Targets
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
             Assert.Null(exceptions[0]);
 
-            Assert.Equal(1, mmt.CreatedMocks.Count);
+            Assert.Single(mmt.CreatedMocks);
 
             var mock = mmt.CreatedMocks[0];
             Assert.Equal(CredentialCache.DefaultNetworkCredentials, mock.Credentials);
@@ -171,7 +171,7 @@ namespace NLog.UnitTests.Targets
                 mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
                 Assert.Null(exceptions[0]);
 
-                Assert.Equal(1, mmt.CreatedMocks.Count);
+                Assert.Single(mmt.CreatedMocks);
 
                 var mock = mmt.CreatedMocks[0];
                 var credential = mock.Credentials as NetworkCredential;
@@ -221,10 +221,10 @@ namespace NLog.UnitTests.Targets
                 new LogEventInfo(LogLevel.Error, "MyLogger3", "log message 3").WithContinuation(exceptions.Add));
             Assert.Null(exceptions[0]);
 
-            Assert.Equal(1, mmt.CreatedMocks.Count);
+            Assert.Single(mmt.CreatedMocks);
 
             var mock = mmt.CreatedMocks[0];
-            Assert.Equal(1, mock.MessagesSent.Count);
+            Assert.Single(mock.MessagesSent);
             var msg = mock.MessagesSent[0];
             string expectedBody = "name;level;message\nMyLogger1;Info;log message 1\nMyLogger2;Debug;log message 2\nMyLogger3;Error;log message 3\n";
             Assert.Equal(expectedBody, msg.Body);
@@ -256,14 +256,14 @@ namespace NLog.UnitTests.Targets
 
             var mock1 = mmt.CreatedMocks[0];
             Assert.Equal("MyLogger1.mydomain.com", mock1.Host);
-            Assert.Equal(1, mock1.MessagesSent.Count);
+            Assert.Single(mock1.MessagesSent);
 
             var msg1 = mock1.MessagesSent[0];
             Assert.Equal("log message 1\nlog message 3\n", msg1.Body);
 
             var mock2 = mmt.CreatedMocks[1];
             Assert.Equal("MyLogger2.mydomain.com", mock2.Host);
-            Assert.Equal(1, mock2.MessagesSent.Count);
+            Assert.Single(mock2.MessagesSent);
 
             var msg2 = mock2.MessagesSent[0];
             Assert.Equal("log message 2\n", msg2.Body);
@@ -302,14 +302,14 @@ namespace NLog.UnitTests.Targets
 
             var mock1 = mmt.CreatedMocks[0];
             Assert.Equal("MyLogger1", mock1.Host);
-            Assert.Equal(1, mock1.MessagesSent.Count);
+            Assert.Single(mock1.MessagesSent);
 
             var msg1 = mock1.MessagesSent[0];
             Assert.Equal("log message 1\nlog message 3\n", msg1.Body);
 
             var mock2 = mmt.CreatedMocks[1];
             Assert.Equal("ERROR", mock2.Host);
-            Assert.Equal(1, mock2.MessagesSent.Count);
+            Assert.Single(mock2.MessagesSent);
 
             var msg2 = mock2.MessagesSent[0];
             Assert.Equal("log message 2\n", msg2.Body);
@@ -344,14 +344,14 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(2, mmt.CreatedMocks.Count);
 
             var mock1 = mmt.CreatedMocks[0];
-            Assert.Equal(1, mock1.MessagesSent.Count);
+            Assert.Single(mock1.MessagesSent);
 
             var msg1 = mock1.MessagesSent[0];
             Assert.Equal("MyLogger1@foo.com", msg1.To[0].Address);
             Assert.Equal("log message 1\nlog message 3\n", msg1.Body);
 
             var mock2 = mmt.CreatedMocks[1];
-            Assert.Equal(1, mock2.MessagesSent.Count);
+            Assert.Single(mock2.MessagesSent);
 
             var msg2 = mock2.MessagesSent[0];
             Assert.Equal("MyLogger2@foo.com", msg2.To[0].Address);
@@ -381,10 +381,10 @@ namespace NLog.UnitTests.Targets
                 new LogEventInfo(LogLevel.Error, "MyLogger3", "log message 3").WithContinuation(exceptions.Add));
             Assert.Null(exceptions[0]);
 
-            Assert.Equal(1, mmt.CreatedMocks.Count);
+            Assert.Single(mmt.CreatedMocks);
 
             var mock = mmt.CreatedMocks[0];
-            Assert.Equal(1, mock.MessagesSent.Count);
+            Assert.Single(mock.MessagesSent);
             var msg = mock.MessagesSent[0];
             string expectedBody = "First event: MyLogger1\nlog message 1\nlog message 2\nlog message 3\nLast event: MyLogger3\n";
             Assert.Equal(expectedBody, msg.Body);
@@ -395,7 +395,7 @@ namespace NLog.UnitTests.Targets
         {
             var mailTarget = new MailTarget();
             var client = mailTarget.CreateSmtpClient();
-            Assert.IsType(typeof(MySmtpClient), client);
+            Assert.IsType<MySmtpClient>(client);
         }
 
         [Fact]
@@ -523,8 +523,8 @@ namespace NLog.UnitTests.Targets
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
 
             Assert.Null(exceptions[0]);
-            Assert.Equal(1, mmt.CreatedMocks.Count);
-            Assert.Equal(1, mmt.CreatedMocks[0].MessagesSent.Count);
+            Assert.Single(mmt.CreatedMocks);
+            Assert.Single(mmt.CreatedMocks[0].MessagesSent);
         }
 
         [Fact]
@@ -544,8 +544,8 @@ namespace NLog.UnitTests.Targets
 
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
-            Assert.Equal(1, mmt.CreatedMocks.Count);
-            Assert.Equal(1, mmt.CreatedMocks[0].MessagesSent.Count);
+            Assert.Single(mmt.CreatedMocks);
+            Assert.Single(mmt.CreatedMocks[0].MessagesSent);
         }
 
         [Fact]
@@ -823,9 +823,9 @@ namespace NLog.UnitTests.Targets
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
 
             Assert.Null(exceptions[0]);
-            Assert.Equal(1, mmt.CreatedMocks.Count);
+            Assert.Single(mmt.CreatedMocks);
             var mock = mmt.CreatedMocks[0];
-            Assert.Equal(1, mock.MessagesSent.Count);
+            Assert.Single(mock.MessagesSent);
 
             Assert.Equal(string.Format("Message from NLog on {0}", Environment.MachineName), mock.MessagesSent[0].Subject);
         }

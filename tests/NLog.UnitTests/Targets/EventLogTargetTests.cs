@@ -126,7 +126,7 @@ namespace NLog.UnitTests.Targets
             const int expectedEntryCount = 1;
             var eventRecords = Write(loglevel, expectedEventLogEntryType, expectedMessage, entryTypeLayout, EventLogTargetOverflowAction.Truncate).ToList();
 
-            Assert.Equal(expectedEntryCount, eventRecords.Count);
+            Assert.Single(eventRecords);
             AssertWrittenMessage(eventRecords, expectedMessage);
         }
 
@@ -283,7 +283,7 @@ namespace NLog.UnitTests.Targets
 
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Truncate, maxMessageLength).ToList();
 
-            Assert.Equal(expectedEntryCount, entries.Count);
+            Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
         }
 
@@ -295,7 +295,7 @@ namespace NLog.UnitTests.Targets
             string expectedMessage = string.Join("", Enumerable.Repeat("t", maxMessageLength));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Truncate, maxMessageLength).ToList();
 
-            Assert.Equal(expectedEntryCount, entries.Count);
+            Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
         }
 
@@ -348,7 +348,7 @@ namespace NLog.UnitTests.Targets
             string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Split, maxMessageLength).ToList();
 
-            Assert.Equal(expectedEntryCount, entries.Count);
+            Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
         }
 
@@ -360,7 +360,7 @@ namespace NLog.UnitTests.Targets
             string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Discard, maxMessageLength).ToList();
 
-            Assert.Equal(expectedEntryCount, entries.Count);
+            Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
         }
 
@@ -399,7 +399,7 @@ namespace NLog.UnitTests.Targets
             var entries = GetEventRecords(eventLog.Log).ToList();
 
             entries = entries.Where(a => a.ProviderName == sourceName).ToList();
-            Assert.Equal(1, entries.Count);
+            Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
 
             sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
@@ -410,7 +410,7 @@ namespace NLog.UnitTests.Targets
 
             entries = GetEventRecords(eventLog.Log).ToList();
             entries = entries.Where(a => a.ProviderName == sourceName).ToList();
-            Assert.Equal(1, entries.Count);
+            Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
         }
 
@@ -433,7 +433,7 @@ namespace NLog.UnitTests.Targets
                                          entry.ProviderName == expectedProviderName &&
                                          HasEntryType(entry, EventLogEntryType.Error)
                                         );
-            Assert.Equal(1, filtered.Count());
+            Assert.Single(filtered);
             var record = filtered.First();
             Assert.Equal(eventId, record.Id);
             Assert.Equal(category, record.Task);
@@ -461,7 +461,7 @@ namespace NLog.UnitTests.Targets
                                          entry.ProviderName == expectedProviderName &&
                                          HasEntryType(entry, EventLogEntryType.Error)
                                         );
-            Assert.Equal(1, filtered.Count());
+            Assert.Single(filtered);
             var record = filtered.First();
             Assert.Equal(eventId, record.Id);
             Assert.Equal(category, record.Task);

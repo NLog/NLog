@@ -58,9 +58,9 @@ namespace NLog.UnitTests.Filters
 
             Assert.True(LogManager.Configuration.LoggingRules[0].Filters[0] is WhenContainsFilter);
             var wcf = (WhenContainsFilter)LogManager.Configuration.LoggingRules[0].Filters[0];
-            Assert.IsType(typeof(SimpleLayout), wcf.Layout);
-            Assert.Equal(((SimpleLayout)wcf.Layout).Text, "${message}");
-            Assert.Equal(wcf.Substring, "zzz");
+            Assert.IsType<SimpleLayout>(wcf.Layout);
+            Assert.Equal("${message}", ((SimpleLayout)wcf.Layout).Text);
+            Assert.Equal("zzz", wcf.Substring);
             Assert.Equal(FilterResult.Ignore, wcf.Action);
         }
     }
