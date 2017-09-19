@@ -123,7 +123,6 @@ namespace NLog.UnitTests.Targets
 
         private void AssertMessageAndLogLevelForTruncatedMessages(LogLevel loglevel, EventLogEntryType expectedEventLogEntryType, string expectedMessage, Layout entryTypeLayout)
         {
-            const int expectedEntryCount = 1;
             var eventRecords = Write(loglevel, expectedEventLogEntryType, expectedMessage, entryTypeLayout, EventLogTargetOverflowAction.Truncate).ToList();
 
             Assert.Single(eventRecords);
@@ -276,7 +275,6 @@ namespace NLog.UnitTests.Targets
         public void WriteEventLogEntryLargerThanMaxMessageLengthWithOverflowTruncate_TruncatesTheMessage()
         {
             const int maxMessageLength = 16384;
-            const int expectedEntryCount = 1;
             string expectedMessage = string.Join("", Enumerable.Repeat("t", maxMessageLength));
             string expectedToTruncateMessage = " this part will be truncated";
             string testMessage = expectedMessage + expectedToTruncateMessage;
@@ -291,7 +289,6 @@ namespace NLog.UnitTests.Targets
         public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowTruncate_TheMessageIsNotTruncated()
         {
             const int maxMessageLength = 16384;
-            const int expectedEntryCount = 1;
             string expectedMessage = string.Join("", Enumerable.Repeat("t", maxMessageLength));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Truncate, maxMessageLength).ToList();
 
@@ -344,7 +341,6 @@ namespace NLog.UnitTests.Targets
         public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowSplitEntries_TheMessageIsNotSplit()
         {
             const int maxMessageLength = 16384;
-            const int expectedEntryCount = 1;
             string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Split, maxMessageLength).ToList();
 
@@ -356,7 +352,6 @@ namespace NLog.UnitTests.Targets
         public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowDiscard_TheMessageIsWritten()
         {
             const int maxMessageLength = 16384;
-            const int expectedEntryCount = 1;
             string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
             var entries = Write(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Discard, maxMessageLength).ToList();
 

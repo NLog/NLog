@@ -812,7 +812,7 @@ Dispose()
 #if !NETSTANDARD
                 Assert.Equal(typeof(System.Data.SqlClient.SqlConnection), dt.ConnectionType);
 #else
-                Assert.NotEqual(null, dt.ConnectionType);
+                Assert.NotNull(dt.ConnectionType);
 #endif
             }
         }
