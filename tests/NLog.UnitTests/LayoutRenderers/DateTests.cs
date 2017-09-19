@@ -68,7 +68,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
             var result = dateLayoutRenderer.Render(logEvent);
 
-            var offset = TimeZone.CurrentTimeZone;
+            var offset = TimeZoneInfo.Local;
             var offset2 = offset.GetUtcOffset(DateTime.Now);
 
             if (offset2 >= new TimeSpan(0))
