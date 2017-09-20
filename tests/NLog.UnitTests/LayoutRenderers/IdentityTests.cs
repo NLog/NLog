@@ -47,6 +47,20 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class IdentityTests : NLogTestBase
     {
+#if MONO
+        [Fact(Skip = "MONO on Travis not supporting WindowsIdentity")]
+#else
+        [Fact]
+#endif
+        public void WindowsIdentityTest()
+        {
+            var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
+            var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
+            if (!string.IsNullOrEmpty(userDomainName))
+                userName = userDomainName + "\\" + userName;
+            AssertLayoutRendererOutput("${windows-identity}", userName);
+        }
+
         [Fact]
         public void IdentityTest1()
         {
@@ -114,10 +128,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     target.BeforeWrite += (logevent, rendered1, asyncThreadId1) =>
                     {
                         //clear in current thread before write
-                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("ANOTHER user", "type"),null);
+                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("ANOTHER user", "type"), null);
                     };
 
-                     target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
+                    target.EventWritten += (logevent, rendered1, asyncThreadId1) =>
                     {
                         rendered = rendered1;
                         asyncThreadId = asyncThreadId1;
@@ -150,6 +164,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
             finally
             {
+                InternalLogger.Reset();
                 Thread.CurrentPrincipal = oldPrincipal;
             }
         }
@@ -181,7 +196,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
             }
 
-            #region Overrides of GenericIdentity
+#region Overrides of GenericIdentity
 
             /// <summary>
             /// Gets a value indicating whether the user has been authenticated.
@@ -194,7 +209,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 get { return false; }
             }
 
-            #endregion
+#endregion
         }
     }
 }

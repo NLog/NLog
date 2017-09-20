@@ -63,7 +63,7 @@ namespace NLog.Layouts
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdc { get { return Renderer.IncludeMdc; } set { Renderer.IncludeMdc = value; } }
 
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>

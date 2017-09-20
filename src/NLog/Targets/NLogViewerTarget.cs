@@ -146,7 +146,7 @@ namespace NLog.Targets
             set { this.Renderer.IncludeMdc = value; }
         }
 
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
         /// </summary>

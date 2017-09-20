@@ -50,7 +50,7 @@ namespace NLog.UnitTests
     using System.Xml;
     using System.IO.Compression;
     using System.Security.Permissions;
-#if NET3_5 || NET4_0 || NET4_5
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
     using Ionic.Zip;
 #endif
 
@@ -74,8 +74,8 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-#if !SILVERLIGHT
             System.Diagnostics.Trace.Listeners.Clear();
+#if !NETSTANDARD
             System.Diagnostics.Debug.Listeners.Clear();
 #endif
         }
@@ -151,8 +151,8 @@ namespace NLog.UnitTests
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if NET3_5 || NET4_0 || NET4_5
-                using (ZipFile zip = new ZipFile())
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+                using (var zip = new Ionic.Zip.ZipFile())
                 {
                     zip.AddFile(fileName);
                     zip.Save(archiveFileName);
@@ -169,7 +169,7 @@ namespace NLog.UnitTests
 
             byte[] encodedBuf = encoding.GetBytes(contents);
             
-            using (var zip = new ZipFile(fileName))
+            using (var zip = new Ionic.Zip.ZipFile(fileName))
             {
                 Assert.Equal(1, zip.Count);
                 Assert.Equal(encodedBuf.Length, zip[0].UncompressedSize);
@@ -306,7 +306,7 @@ namespace NLog.UnitTests
             Assert.Equal(expected, actual);
         }
 
-#if MONO || NET4_5
+#if NET4_5
         /// <summary>
         /// Get line number of previous line.
         /// </summary>
@@ -323,7 +323,6 @@ namespace NLog.UnitTests
             //fixed value set with #line 100000
             return 100001;
         }
-
 #endif
 
         public static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
@@ -416,27 +415,86 @@ namespace NLog.UnitTests
             return new CultureInfo(cultureName, false);
         }
 
+        /// <summary>
+        /// Are we running on Travis?
+        /// </summary>
+        /// <returns></returns>
+        protected static bool IsTravis()
+        {
+            var val = Environment.GetEnvironmentVariable("TRAVIS");
+            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Are we running on AppVeyor?
+        /// </summary>
+        /// <returns></returns>
+        protected static bool IsAppVeyor()
+        {
+            var val = Environment.GetEnvironmentVariable("APPVEYOR");
+            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+        }
+
         public delegate void SyncAction();
 
         public class InternalLoggerScope : IDisposable
         {
+            private readonly TextWriter oldConsoleOutputWriter;
+            public StringWriter ConsoleOutputWriter { get; private set; }
+            private readonly TextWriter oldConsoleErrorWriter;
+            public StringWriter ConsoleErrorWriter { get; private set; }
             private readonly LogLevel globalThreshold;
             private readonly bool throwExceptions;
             private readonly bool? throwConfigExceptions;
 
-            public InternalLoggerScope()
+            public InternalLoggerScope(bool redirectConsole = false)
             {
+                if (redirectConsole)
+                {
+                    ConsoleOutputWriter = new StringWriter() { NewLine = "\n" };
+                    ConsoleErrorWriter = new StringWriter() { NewLine = "\n" };
+
+                    this.oldConsoleOutputWriter = Console.Out;
+                    this.oldConsoleErrorWriter = Console.Error;
+
+                    Console.SetOut(ConsoleOutputWriter);
+                    Console.SetError(ConsoleErrorWriter);
+                }
+
                 this.globalThreshold = LogManager.GlobalThreshold;
                 this.throwExceptions = LogManager.ThrowExceptions;
                 this.throwConfigExceptions = LogManager.ThrowConfigExceptions;
             }
 
+            public void SetConsoleError(StringWriter consoleErrorWriter)
+            {
+                if (ConsoleOutputWriter == null || consoleErrorWriter == null)
+                    throw new InvalidOperationException("Initialize with redirectConsole=true");
+
+                ConsoleErrorWriter = consoleErrorWriter;
+                Console.SetError(consoleErrorWriter);
+            }
+
+            public void SetConsoleOutput(StringWriter consoleOutputWriter)
+            {
+                if (ConsoleOutputWriter == null || consoleOutputWriter == null)
+                    throw new InvalidOperationException("Initialize with redirectConsole=true");
+
+                ConsoleOutputWriter = consoleOutputWriter;
+                Console.SetOut(consoleOutputWriter);
+            }
+
             public void Dispose()
             {
+                InternalLogger.Reset();
+
+                if (ConsoleOutputWriter != null)
+                    Console.SetOut(oldConsoleOutputWriter);
+                if (ConsoleErrorWriter != null)
+                    Console.SetError(oldConsoleErrorWriter);
+
                 if (File.Exists(InternalLogger.LogFile))
                     File.Delete(InternalLogger.LogFile);
-
-                InternalLogger.Reset();
 
                 //restore logmanager
                 LogManager.GlobalThreshold = this.globalThreshold;

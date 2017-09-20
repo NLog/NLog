@@ -650,7 +650,7 @@ namespace NLog.UnitTests.Targets
                     {
                         lock (exceptions)
                         {
-                            Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
+                            // Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
                             exceptions.Add(ex);
                             pendingWrites--;
                             if (pendingWrites == 0)

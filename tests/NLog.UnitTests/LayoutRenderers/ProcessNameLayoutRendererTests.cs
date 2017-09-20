@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
-
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -58,8 +56,8 @@ namespace NLog.UnitTests.LayoutRenderers
             var lower = actual.ToLower();
 
             //lowercase
-            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen"};
-            
+            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen", "dotnet", "testhost.x86", "testhost.x64" };
+
             Assert.True(allowedProcessNames.Any(p => lower.Contains(p)), string.Format("validating processname failed. Please add (if correct) '{0}' to 'allowedProcessNames'", actual));
         }
 
@@ -79,4 +77,3 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-#endif

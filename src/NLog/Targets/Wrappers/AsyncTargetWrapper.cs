@@ -296,13 +296,7 @@ namespace NLog.Targets.Wrappers
                 if (currentTimer != null)
                 {
                     this.lazyWriterTimer = null;
-                    currentTimer.Change(Timeout.Infinite, Timeout.Infinite);
-                    ManualResetEvent waitHandle = new ManualResetEvent(false);
-                    if (currentTimer.Dispose(waitHandle))
-                    {
-                        if (waitHandle.WaitOne(1000))
-                            waitHandle.Close();
-                    }
+                    currentTimer.WaitForDispose(TimeSpan.FromSeconds(1));
                 }
             }
         }

@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35</TargetFrameworks>
+
+    <Title>NLog for unknown platform Extended Profile</Title>
+    <Company>NLog</Company>
+    <Description>NLog</Description>
+    <Product>NLog Extended Profile v$(ProductVersion)</Product>
+    <InformationalVersion>$(ProductVersion)</InformationalVersion>
+    <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net45' ">Full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Title>NLog for .NET Framework 4.5 Extended Profile</Title>
+    <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
+    <Title>NLog for .NET Framework 4 Extended Profile</Title>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Title>NLog for .NET Framework 3.5 Extended Profile</Title>
+    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(monobuild)' != '' ">
+    <Title>$(Title) - Mono</Title>
+    <DefineConstants>$(DefineConstants)MONO</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NLog\NLog.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Messaging" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+  </PropertyGroup>
+
+</Project>

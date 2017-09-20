@@ -38,11 +38,10 @@ namespace NLog.UnitTests
     using System;
     using System.Globalization;
     using NLog.Config;
-#if ASYNC_SUPPORTED
     using System.Threading.Tasks;
-#endif
     using Xunit;
     using System.Threading;
+
     public class LoggerTests : NLogTestBase
     {
         private CultureInfo NLCulture = GetCultureInfo("nl-nl");
@@ -1653,7 +1652,7 @@ namespace NLog.UnitTests
             Assert.Equal(1, logger.Swallow(() => 1));
             Assert.Equal(1, logger.Swallow(() => 1, 2));
 
-#if ASYNC_SUPPORTED
+#if NET4_5
             logger.SwallowAsync(Task.WhenAll()).Wait();
 
             int executions = 0;
@@ -1676,7 +1675,7 @@ namespace NLog.UnitTests
             Assert.Equal(2, logger.Swallow(() => { if (warningFix) throw new InvalidOperationException("Test message 3"); return 1; }, 2));
             AssertDebugLastMessageContains("debug", "Test message 3");
 
-#if ASYNC_SUPPORTED
+#if NET4_5
             var fireAndFogetCompletion = new TaskCompletionSource<bool>();
             fireAndFogetCompletion.SetException(new InvalidOperationException("Swallow fire and forget test message"));
             logger.Swallow(fireAndFogetCompletion.Task);

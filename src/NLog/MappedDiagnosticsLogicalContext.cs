@@ -31,15 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
+#if !SILVERLIGHT
 
 namespace NLog
 {
-#if NET4_0 || NET4_5
-    using Config;
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Remoting.Messaging;
+    using NLog.Internal;
 
     /// <summary>
     /// Async version of Mapped Diagnostics Context - a logical context structure that keeps a dictionary
@@ -52,10 +50,6 @@ namespace NLog
     /// </remarks>
     public static class MappedDiagnosticsLogicalContext
     {
-        private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
-
-        private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
-
         /// <summary>
         /// Simulate ImmutableDictionary behavior (which is not yet part of all .NET frameworks).
         /// In future the real ImmutableDictionary could be used here to minimize memory usage and copying time.
@@ -64,19 +58,19 @@ namespace NLog
         /// <returns></returns>
         private static IDictionary<string, object> GetLogicalThreadDictionary(bool clone = false)
         {
-            var dictionary = CallContext.LogicalGetData(LogicalThreadDictionaryKey) as Dictionary<string, object>;
+            var dictionary = GetThreadLocal();
             if (dictionary == null)
             {
                 if (!clone)
                     return EmptyDefaultDictionary;
 
                 dictionary = new Dictionary<string, object>();
-                CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+                SetThreadLocal(dictionary);
             }
             else if (clone)
             {
                 dictionary = new Dictionary<string, object>(dictionary);
-                CallContext.LogicalSetData(LogicalThreadDictionaryKey, dictionary);
+                SetThreadLocal(dictionary);
             }
             return dictionary;
         }
@@ -86,7 +80,7 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        /// <remarks>If the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
+        /// <remarks>If the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="Config.LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
         public static string Get(string item)
         {
             return Get(item, null);
@@ -98,7 +92,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="String.Empty"/>.</returns>
-        /// <remarks>If <paramref name="formatProvider"/> is <c>null</c> and the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
+        /// <remarks>If <paramref name="formatProvider"/> is <c>null</c> and the value isn't a <see cref="string"/> already, this call locks the <see cref="LogFactory"/> for reading the <see cref="Config.LoggingConfiguration.DefaultCultureInfo"/> needed for converting to <see cref="string"/>. </remarks>
         public static string Get(string item, IFormatProvider formatProvider)
         {
             return FormatHelper.ConvertToString(GetObject(item), formatProvider);
@@ -180,13 +174,43 @@ namespace NLog
         {
             if (free)
             {
-                CallContext.FreeNamedDataSlot(LogicalThreadDictionaryKey);
+                SetThreadLocal(null);
             }
             else
             {
                 GetLogicalThreadDictionary(true).Clear();
             }
         }
-    }
+
+        private static void SetThreadLocal(IDictionary<string, object> newValue)
+        {
+#if NET4_6 || NETSTANDARD
+            AsyncLocalDictionary.Value = newValue;
+#else
+            if (newValue == null)
+                System.Runtime.Remoting.Messaging.CallContext.FreeNamedDataSlot(LogicalThreadDictionaryKey);
+            else
+                System.Runtime.Remoting.Messaging.CallContext.LogicalSetData(LogicalThreadDictionaryKey, newValue);
 #endif
+        }
+
+        private static IDictionary<string, object> GetThreadLocal()
+        {
+#if NET4_6 || NETSTANDARD
+            return AsyncLocalDictionary.Value;
+#else
+            return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(LogicalThreadDictionaryKey) as Dictionary<string, object>;
+#endif
+        }
+
+#if NET4_6 || NETSTANDARD
+        private static readonly System.Threading.AsyncLocal<IDictionary<string, object>> AsyncLocalDictionary = new System.Threading.AsyncLocal<IDictionary<string, object>>();
+#else
+        private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
+#endif
+
+        private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
+    }
 }
+
+#endif

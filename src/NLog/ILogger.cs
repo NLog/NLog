@@ -36,10 +36,6 @@ namespace NLog
     using System;
     using System.ComponentModel;
     using JetBrains.Annotations;
-    using NLog.Internal;
-#if ASYNC_SUPPORTED
-    using System.Threading.Tasks;
-#endif
 
     /// <summary>
     /// Provides logging interface and utility functions.

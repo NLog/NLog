@@ -52,13 +52,11 @@ namespace NLog.Internal
         /// <remarks>Types which cannot be loaded are skipped.</remarks>
         public static Type[] SafeGetTypes(this Assembly assembly)
         {
-#if SILVERLIGHT && !WINDOWS_PHONE
-            return assembly.GetTypes();
-#else
             try
             {
                 return assembly.GetTypes();
             }
+#if !SILVERLIGHT || WINDOWS_PHONE
             catch (ReflectionTypeLoadException typeLoadException)
             {
                 foreach (var ex in typeLoadException.LoaderExceptions)
@@ -78,6 +76,11 @@ namespace NLog.Internal
                 return loadedTypes.ToArray();
             }
 #endif
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Type load exception.");
+                return ArrayHelper.Empty<Type>();
+            }
         }
 
         /// <summary>
@@ -159,5 +162,4 @@ namespace NLog.Internal
             }
         }
     }
-
 }

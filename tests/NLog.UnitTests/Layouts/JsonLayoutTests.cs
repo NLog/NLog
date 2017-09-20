@@ -470,7 +470,6 @@ namespace NLog.UnitTests.Layouts
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
         }
 
-#if NET4_0 || NET4_5
         [Fact]
         public void IncludeMdlcJsonProperties()
         {
@@ -505,7 +504,6 @@ namespace NLog.UnitTests.Layouts
 
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
         }
-#endif
 
         /// <summary>
         /// Test from XML, needed for the list (ExcludeProperties)

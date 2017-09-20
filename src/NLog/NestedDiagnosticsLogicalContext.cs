@@ -33,7 +33,7 @@
 
 namespace NLog
 {
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
     using System;
     using NLog.Internal;
 
@@ -103,7 +103,9 @@ namespace NLog
             object Value { get; }
         }
 
+#if !NETSTANDARD && !NET4_6
         [Serializable]
+#endif
         class NestedContext<T> : INestedContext
         {
             public INestedContext Parent { get; private set; }
@@ -132,7 +134,7 @@ namespace NLog
 
         private static void SetThreadLocal(INestedContext newValue)
         {
-#if NET4_6 || NETSTANDARD1_3
+#if NET4_6 || NETSTANDARD
             AsyncNestedDiagnosticsContext.Value = newValue;
 #else
             if (newValue == null)
@@ -144,15 +146,15 @@ namespace NLog
 
         private static INestedContext GetThreadLocal()
         {
-#if NET4_6 || NETSTANDARD1_3
+#if NET4_6 || NETSTANDARD
             return AsyncNestedDiagnosticsContext.Value;
 #else
             return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(NestedDiagnosticsContextKey) as INestedContext;
 #endif
         }
 
-#if NET4_6 || NETSTANDARD1_3
-        private static readonly System.Threading.AsyncLocal<INestedScope> AsyncNestedDiagnosticsContext = new System.Threading.AsyncLocal<INestedScope>();
+#if NET4_6 || NETSTANDARD
+        private static readonly System.Threading.AsyncLocal<INestedContext> AsyncNestedDiagnosticsContext = new System.Threading.AsyncLocal<INestedContext>();
 #else
         private const string NestedDiagnosticsContextKey = "NLog.AsyncableNestedDiagnosticsContext";
 #endif

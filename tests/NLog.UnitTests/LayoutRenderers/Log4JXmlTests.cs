@@ -63,10 +63,9 @@ namespace NLog.UnitTests.LayoutRenderers
             MappedDiagnosticsContext.Set("foo1", "bar1");
             MappedDiagnosticsContext.Set("foo2", "bar2");
 
-#if NET4_0 || NET4_5
             MappedDiagnosticsLogicalContext.Clear();
             MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
-#endif
+
             NestedDiagnosticsContext.Push("baz1");
             NestedDiagnosticsContext.Push("baz2");
             NestedDiagnosticsContext.Push("baz3");
@@ -150,11 +149,9 @@ namespace NLog.UnitTests.LayoutRenderers
                                         Assert.Equal("bar2", value);
                                         break;
 
-#if NET4_0 || NET4_5
                                     case "foo3":
                                         Assert.Equal("bar3", value);
                                         break;
-#endif
 
                                     case "nlogPropertyKey":
                                         Assert.Equal("nlogPropertyValue", value);
@@ -242,7 +239,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 IndentChars = "  ",
             };
 
-            sb.Clear();
+            sb.Length = 0;
             using (XmlWriter xtw = XmlWriter.Create(sb, settings))
             {
                 xtw.WriteStartElement("log4j", "event", "http:://hello/");
