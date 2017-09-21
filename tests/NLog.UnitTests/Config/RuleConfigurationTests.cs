@@ -464,7 +464,49 @@ namespace NLog.UnitTests.Config
                 }
             }
         }
-                
+
+        [Fact]
+        public void UnusedTargetsShouldBeLoggedToInternalLogger_PermitWrapped()
+        {
+            string tempFileName = Path.GetTempFileName();
+
+            try
+            {
+                CreateConfigurationFromString(
+                "<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
+                    <targets>
+                        <target name='d1' type='Debug' />
+                        <target name='d2' type='DebugWrapper'>
+                            <target name='d3' type='Debug' />
+                        </target>
+                        <target name='d4' type='Debug' />
+                        <target name='d5' type='Debug' />
+                    </targets>
+
+                    <rules>
+                           <logger name='*' level='Debug' writeTo='d1' />
+                           <logger name='*' level='Debug' writeTo='d1,d2,d4' />
+                    </rules>
+                </nlog>");
+
+
+                AssertFileNotContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d2", Encoding.UTF8);
+
+                AssertFileNotContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d4", Encoding.UTF8);
+
+                AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d5", Encoding.UTF8);
+            }
+
+            finally
+            {
+                NLog.Common.InternalLogger.Reset();
+                if (File.Exists(tempFileName))
+                {
+                    File.Delete(tempFileName);
+                }
+            }
+        }
+
         [Fact]
         public void LoggingRule_LevelOff_NotSetAsActualLogLevel()
         {
