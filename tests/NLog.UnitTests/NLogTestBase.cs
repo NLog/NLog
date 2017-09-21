@@ -277,6 +277,27 @@ namespace NLog.UnitTests
             Assert.True(false, "File doesn't contains '" + contentToCheck + "'");
         }
 
+        protected void AssertFileNotContains(string fileName, string contentToCheck, Encoding encoding)
+        {
+            if (contentToCheck.Contains(Environment.NewLine))
+                Assert.True(false, "Please use only single line string to check.");
+
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+
+            using (TextReader fs = new StreamReader(fileName, encoding))
+            {
+                string line;
+                while ((line = fs.ReadLine()) != null)
+                {
+                    if (line.Contains(contentToCheck))
+                        Assert.False(true, "File contains '" + contentToCheck + "'");
+                }
+            }
+
+            return;
+        }
         protected string StringRepeat(int times, string s)
         {
             StringBuilder sb = new StringBuilder(s.Length * times);
