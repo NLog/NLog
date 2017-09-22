@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Security;
+using System.Xml;
+
 #if !MONO
 
 namespace NLog.UnitTests.Config
@@ -54,7 +57,7 @@ namespace NLog.UnitTests.Config
                         <targets><target name='debug' type='Debug' layout='[${message}]' /></targets>
                         <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
                     </nlog>";
-            
+
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
@@ -105,7 +108,7 @@ namespace NLog.UnitTests.Config
             string badConfig = @"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='(${message})' /></targets>
                     <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>";
-            
+
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
@@ -129,7 +132,7 @@ namespace NLog.UnitTests.Config
                 AssertDebugLastMessage("debug", "bbb");
 
                 ChangeAndReloadConfigFile(configFilePath, config2);
-                
+
                 logger.Debug("ccc");
                 // Assert that config2 is loaded.
                 AssertDebugLastMessage("debug", "[ccc]");
@@ -167,13 +170,13 @@ namespace NLog.UnitTests.Config
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
                 AssertDebugLastMessage("debug", "aaa");
-                
+
                 using (var reloadWaiter = new ConfigurationReloadWaiter())
                 {
                     File.Move(configFilePath, otherFilePath);
                     reloadWaiter.WaitForReload();
                 }
-                
+
                 logger.Debug("bbb");
                 // Assert that config1 is still loaded.
                 AssertDebugLastMessage("debug", "bbb");
@@ -288,7 +291,7 @@ namespace NLog.UnitTests.Config
             string includedConfig2 = @"<nlog>
                     <targets><target name='debug' type='Debug' layout='[${message}]' /></targets>
                 </nlog>";
-            
+
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
@@ -351,7 +354,7 @@ namespace NLog.UnitTests.Config
             string includedConfig2 = @"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='[${message}]' /></targets>
                 </nlog>";
-            
+
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
@@ -370,14 +373,14 @@ namespace NLog.UnitTests.Config
                 AssertDebugLastMessage("debug", "aaa");
 
                 ChangeAndReloadConfigFile(mainConfigFilePath, mainConfig2, assertDidReload: false);
-                
+
                 logger.Debug("bbb");
                 // Assert that mainConfig1 is still loaded.
                 AssertDebugLastMessage("debug", "bbb");
 
                 WriteConfigFile(mainConfigFilePath, mainConfig1);
                 ChangeAndReloadConfigFile(includedConfigFilePath, includedConfig2);
-                
+
                 logger.Debug("ccc");
                 // Assert that includedConfig2 is loaded.
                 AssertDebugLastMessage("debug", "[ccc]");
@@ -417,7 +420,7 @@ namespace NLog.UnitTests.Config
             string included2Config2 = @"<nlog>
                     <targets><target name='debug' type='Debug' layout='(${message})' /></targets>
                 </nlog>";
-            
+
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
@@ -485,7 +488,7 @@ namespace NLog.UnitTests.Config
             string included2Config2 = @"<nlog autoReload='false'>
                     <targets><target name='debug' type='Debug' layout='(${message})' /></targets>
                 </nlog>";
-            
+
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
@@ -520,7 +523,7 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-               
+
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
@@ -534,64 +537,31 @@ namespace NLog.UnitTests.Config
                                 <variable name='var2' value='keep_value' />
                             </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
-
-            string configFilePath = Path.Combine(tempPath, "reload_var.nlog");
-            WriteConfigFile(configFilePath, config);
-
-            try
-            {
-                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
-                LogManager.Configuration.Variables["var1"] = "new_value";
-                LogManager.Configuration.Variables["var3"] = "new_value3";
-                ChangeAndReloadConfigFile(configFilePath, config);
-                Assert.Equal("new_value", LogManager.Configuration.Variables["var1"].OriginalText);
-                Assert.Equal("keep_value", LogManager.Configuration.Variables["var2"].OriginalText);
-                Assert.Equal("new_value3", LogManager.Configuration.Variables["var3"].OriginalText);
-            }
-            finally
-            {
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
-            }
+            LogManager.Configuration = XmlLoggingConfigurationMock.CreateFromXml(config);
+            LogManager.Configuration.Variables["var1"] = "new_value";
+            LogManager.Configuration.Variables["var3"] = "new_value3";
+            LogManager.Configuration = LogManager.Configuration.Reload();
+            Assert.Equal("new_value", LogManager.Configuration.Variables["var1"].OriginalText);
+            Assert.Equal("keep_value", LogManager.Configuration.Variables["var2"].OriginalText);
+            Assert.Equal("new_value3", LogManager.Configuration.Variables["var3"].OriginalText);
         }
 
         [Fact]
         public void TestResetVariablesOnReload()
         {
-#if NETSTANDARD
-            if (IsTravis())
-            {
-                Console.WriteLine("[SKIP] ReloadTests.TestResetVariablesOnReload because we are running in Travis");
-                return;
-            }
-#endif
             string config = @"<nlog autoReload='true' keepVariablesOnReload='false'>
                                 <variable name='var1' value='' />
                                 <variable name='var2' value='keep_value' />
                             </nlog>";
 
-            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempPath);
 
-            string configFilePath = Path.Combine(tempPath, "reload_var.nlog");
-            WriteConfigFile(configFilePath, config);
+            LogManager.Configuration = XmlLoggingConfigurationMock.CreateFromXml(config);
+            LogManager.Configuration.Variables["var1"] = "new_value";
+            LogManager.Configuration.Variables["var3"] = "new_value3";
+            LogManager.Configuration =  LogManager.Configuration.Reload();
+            Assert.Equal("", LogManager.Configuration.Variables["var1"].OriginalText);
+            Assert.Equal("keep_value", LogManager.Configuration.Variables["var2"].OriginalText);
 
-            try
-            {
-                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
-                LogManager.Configuration.Variables["var1"] = "new_value";
-                LogManager.Configuration.Variables["var3"] = "new_value3";
-                ChangeAndReloadConfigFile(configFilePath, config);
-                Assert.Equal("", LogManager.Configuration.Variables["var1"].OriginalText);
-                Assert.Equal("keep_value", LogManager.Configuration.Variables["var2"].OriginalText);
-            }
-            finally
-            {
-                if (Directory.Exists(tempPath))
-                    Directory.Delete(tempPath, true);
-            }
         }
 
 
@@ -643,6 +613,60 @@ namespace NLog.UnitTests.Config
                 };
             }
         }
+    }
+
+    /// <summary>
+    /// Xml config with reload without file-reads for performance
+    /// </summary>
+    public class XmlLoggingConfigurationMock : XmlLoggingConfiguration
+    {
+        private XmlElement _xmlElement;
+        private string _fileName;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="element">The XML element.</param>
+        /// <param name="fileName">Name of the XML file.</param>
+        internal XmlLoggingConfigurationMock(XmlElement element, string fileName) : base(element, fileName)
+        {
+            _xmlElement = element;
+            _fileName = fileName;
+        }
+
+        #region Overrides of XmlLoggingConfiguration
+
+        public override LoggingConfiguration Reload()
+        {
+            return new XmlLoggingConfigurationMock(_xmlElement, _fileName);
+        }
+
+        #endregion
+
+
+        public static XmlLoggingConfigurationMock CreateFromXml(string configXml)
+        {
+
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(configXml);
+
+            string currentDirectory = null;
+            try
+            {
+                currentDirectory = Environment.CurrentDirectory;
+            }
+            catch (SecurityException)
+            {
+                //ignore   
+            }
+
+            return new XmlLoggingConfigurationMock(doc.DocumentElement, currentDirectory);
+
+
+        }
+
+
+
     }
 }
 #endif
