@@ -76,7 +76,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                    <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5' interval='0:0:0:0.0100'>
+                    <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5' interval='0:0:0:0.100'>
                         <target name='debug' type='Debug' layout='${message}' />
                     </wrapper-target>
                 </targets>
@@ -85,6 +85,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 </rules>
             </nlog>");
 
+
             ILogger logger = LogManager.GetLogger("A");
             for (int i = 0; i < 10; i++)
             {
@@ -92,7 +93,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
 
             //Wait for the interval to expire.
-            Thread.Sleep(10);
+            Thread.Sleep(100);
 
             for (int i = 10; i < 20; i++)
             {

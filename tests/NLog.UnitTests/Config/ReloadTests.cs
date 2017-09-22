@@ -632,13 +632,30 @@ namespace NLog.UnitTests.Config
         {
             _xmlElement = element;
             _fileName = fileName;
+
+            
         }
+
+     
+        private bool _reloading;
+      
 
         #region Overrides of XmlLoggingConfiguration
 
         public override LoggingConfiguration Reload()
         {
-            return new XmlLoggingConfigurationMock(_xmlElement, _fileName);
+            if (_reloading)
+            {
+                return new XmlLoggingConfigurationMock(_xmlElement, _fileName);
+            }
+            _reloading = true;
+            var factory = LogManager.LogFactory;
+
+            //reloadTimer should be set for ReloadConfigOnTimer
+            factory.reloadTimer = new Timer((a) => { });
+            factory.ReloadConfigOnTimer(this);
+            _reloading = false;
+            return factory.Configuration;
         }
 
         #endregion
