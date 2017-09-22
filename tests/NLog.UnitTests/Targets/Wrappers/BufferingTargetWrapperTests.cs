@@ -211,7 +211,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 WrappedTarget = myTarget,
                 BufferSize = 10,
-                FlushTimeout = 500,
+                FlushTimeout = 50,
             };
 
             InitializeTargets(myTarget, targetWrapper);
@@ -243,8 +243,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(0, hitCount);
             Assert.Equal(0, myTarget.WriteCount);
 
-            // sleep 1 second, this will trigger the timer and flush all events
-            Thread.Sleep(1000);
+            // sleep 100 ms, this will trigger the timer and flush all events
+            Thread.Sleep(100);
             Assert.Equal(9, hitCount);
             Assert.Equal(1, myTarget.BufferedWriteCount);
             Assert.Equal(9, myTarget.BufferedTotalEvents);
@@ -267,8 +267,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(19, myTarget.BufferedTotalEvents);
             Assert.Equal(19, myTarget.WriteCount);
 
-            // sleep 2 seconds and the last remaining one will be flushed
-            Thread.Sleep(1000);
+            // sleep 100ms and the last remaining one will be flushed
+            Thread.Sleep(100);
             Assert.Equal(20, hitCount);
             Assert.Equal(3, myTarget.BufferedWriteCount);
             Assert.Equal(20, myTarget.BufferedTotalEvents);
