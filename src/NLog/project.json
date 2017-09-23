@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-beta10",
+  "version": "5.0.0-beta11",
   "description": "NLog is a logging platform for .NET with rich log routing and management capabilities. It can help you produce and manage high-quality logs for your application regardless of its size or complexity. This package installs NLog.dll with includes core logging functionality. For your main project also need to install 'NLog Configuration' package.",
   "authors": [ "Julian Verdurmen" ],
   "packOptions": {
@@ -13,7 +13,7 @@
       "type": "git",
       "url": "git://github.com/NLog/NLog"
     },
-    "releaseNotes": "Fix: ReconfigExistingLoggers sometimes throws an Exception (ported from 4.4.12)"
+    "releaseNotes": "Removed ${WindowsIdentity} and System.Security.Principal.Windows dependency"
 
   },
 
