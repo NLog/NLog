@@ -1140,13 +1140,6 @@ namespace NLog.UnitTests.LayoutRenderers
             await Task.Run(() => { });
         }
 #endif
-    }
-
-    /// <summary>
-    ///   Implementation of <see cref="ILogger" /> for NLog.
-    /// </summary>
-    public class NLogLogger
-    {
 
         /// <summary>
         ///   Implementation of <see cref="ILogger" /> for NLog.
