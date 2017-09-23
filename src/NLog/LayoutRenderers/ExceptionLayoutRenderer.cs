@@ -32,6 +32,7 @@
 // 
 
 using NLog.Conditions;
+using NLog.Layouts;
 
 namespace NLog.LayoutRenderers
 {
@@ -137,14 +138,14 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(" ")]
-        public string Separator { get; set; }
+        public Layout Separator { get; set; }
 
         /// <summary>
         /// Gets or sets the separator used to concatenate exception data specified in the Format.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(";")]
-        public string ExceptionDataSeparator { get; set; }
+        public Layout ExceptionDataSeparator { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum number of inner exceptions to include in the output.
@@ -158,7 +159,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the separator between inner exceptions.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public string InnerExceptionSeparator { get; set; }
+        public Layout InnerExceptionSeparator { get; set; }
 
         /// <summary>
         ///  Gets the formats of the output of inner exceptions to be rendered in target.
@@ -205,31 +206,31 @@ namespace NLog.LayoutRenderers
                         sb2.Append(separator);
                         sb2.Append(sbCurrentRender);
                     }
-                    separator = this.Separator;
+                    separator = this.Separator.Render(logEvent);
                 }
 
                 Exception currentException = primaryException.InnerException;
                 int currentLevel = 0;
                 while (currentException != null && currentLevel < this.MaxInnerExceptionLevel)
                 {
-                    AppendInnerException(sb2, currentException);
+                    AppendInnerException(sb2, currentException, logEvent);
 
                     currentException = currentException.InnerException;
                     currentLevel++;
                 }
 
-#if !NET3_5 && !SILVERLIGHT4
+#if !NET3_5 && !SILVERLIGHT4 
                 AggregateException asyncException = primaryException as AggregateException;
                 if (asyncException != null)
                 {
-                    AppendAggregateException(primaryException, currentLevel, sb2, asyncException);
+                    AppendAggregateException(primaryException, currentLevel, sb2, asyncException, logEvent);
                 }
 #endif
                 builder.Append(sb2.ToString());
             }
         }
-#if !NET3_5 && !SILVERLIGHT4
-        private void AppendAggregateException(Exception primaryException, int currentLevel, StringBuilder builder, AggregateException asyncException)
+#if !NET3_5 && !SILVERLIGHT4 
+        private void AppendAggregateException(Exception primaryException, int currentLevel, StringBuilder builder, AggregateException asyncException, LogEventInfo logEvent)
         {
             asyncException = asyncException.Flatten();
             if (asyncException.InnerExceptions != null)
@@ -246,13 +247,13 @@ namespace NLog.LayoutRenderers
                         continue;
                     }
 
-                    AppendInnerException(builder, currentException);
+                    AppendInnerException(builder, currentException, logEvent);
                     currentLevel++;
 
                     currentException = currentException.InnerException;
                     while (currentException != null && currentLevel < this.MaxInnerExceptionLevel)
                     {
-                        AppendInnerException(builder, currentException);
+                        AppendInnerException(builder, currentException, logEvent);
 
                         currentException = currentException.InnerException;
                         currentLevel++;
@@ -261,7 +262,7 @@ namespace NLog.LayoutRenderers
             }
         }
 #endif
-        private void AppendInnerException(StringBuilder sb2, Exception currentException)
+        private void AppendInnerException(StringBuilder sb2, Exception currentException, LogEventInfo logEvent)
         {
             // separate inner exceptions
             sb2.Append(this.InnerExceptionSeparator);
@@ -275,7 +276,7 @@ namespace NLog.LayoutRenderers
 
                 currentRenderFunction(sb2, currentException);
 
-                separator = this.Separator;
+                separator = this.Separator.Render(logEvent);
             }
         }
 
@@ -372,7 +373,7 @@ namespace NLog.LayoutRenderers
                     sb.Append(separator);
                     sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
 
-                    separator = ExceptionDataSeparator;
+                    separator = ExceptionDataSeparator.Render(LogEventInfo.CreateNullEvent());
                 }
             }
         }
