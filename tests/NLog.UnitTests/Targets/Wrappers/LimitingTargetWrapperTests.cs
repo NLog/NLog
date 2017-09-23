@@ -76,7 +76,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
                 <targets>
-                    <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5' interval='0:0:0:1'>
+                    <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5' interval='0:0:0:0.100'>
                         <target name='debug' type='Debug' layout='${message}' />
                     </wrapper-target>
                 </targets>
@@ -85,6 +85,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 </rules>
             </nlog>");
 
+
             ILogger logger = LogManager.GetLogger("A");
             for (int i = 0; i < 10; i++)
             {
@@ -92,7 +93,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
 
             //Wait for the interval to expire.
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
 
             for (int i = 10; i < 20; i++)
             {
@@ -109,20 +110,19 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void WriteMessagesLessThanMessageLimitWritesToWrappedTarget()
         {
             MyTarget wrappedTarget = new MyTarget();
-            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromSeconds(1));
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromMilliseconds(100));
             InitializeTargets(wrappedTarget, wrapper);
 
-            Exception lastException = null;
             // Write limit number of messages should just write them to the wrappedTarget.
-            lastException = WriteNumberAsyncLogEventsStartingAt(0, 5, wrapper);
+            WriteNumberAsyncLogEventsStartingAt(0, 5, wrapper);
 
             Assert.Equal(5, wrappedTarget.WriteCount);
 
             //Let the interval expire to start a new one.
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
 
             // Write limit number of messages should just write them to the wrappedTarget.
-            lastException = WriteNumberAsyncLogEventsStartingAt(5, 5, wrapper);
+            var lastException = WriteNumberAsyncLogEventsStartingAt(5, 5, wrapper);
 
             // We should have 10 messages (5 from first interval, 5 from second interval).
             Assert.Equal(10, wrappedTarget.WriteCount);
@@ -135,10 +135,9 @@ namespace NLog.UnitTests.Targets.Wrappers
             MyTarget wrappedTarget = new MyTarget();
             LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromHours(1));
             InitializeTargets(wrappedTarget, wrapper);
-            Exception lastException = null;
 
             // Write limit number of messages should just write them to the wrappedTarget.
-            lastException = WriteNumberAsyncLogEventsStartingAt(0, 5, wrapper);
+            var lastException = WriteNumberAsyncLogEventsStartingAt(0, 5, wrapper);
 
             Assert.Equal(5, wrappedTarget.WriteCount);
 
@@ -158,14 +157,14 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void WriteMessageAfterIntervalHasExpiredStartsNewInterval()
         {
             MyTarget wrappedTarget = new MyTarget();
-            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromSeconds(1));
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromMilliseconds(100));
             InitializeTargets(wrappedTarget, wrapper);
             Exception lastException = null;
             wrapper.WriteAsyncLogEvent(
                 new LogEventInfo(LogLevel.Debug, "test", "first interval").WithContinuation(ex => lastException = ex));
 
             //Let the interval expire.
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
 
             //Writing a logEvent should start a new Interval. This should be written to InternalLogger.Debug.
             string internalLog = RunAndCaptureInternalLog(() =>
@@ -185,14 +184,14 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void TestWritingMessagesOverMultipleIntervals()
         {
             MyTarget wrappedTarget = new MyTarget();
-            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromSeconds(1));
+            LimitingTargetWrapper wrapper = new LimitingTargetWrapper(wrappedTarget, 5, TimeSpan.FromMilliseconds(100));
             InitializeTargets(wrappedTarget, wrapper);
             Exception lastException = null;
 
             lastException = WriteNumberAsyncLogEventsStartingAt(0, 10, wrapper);
             
             //Let the interval expire.
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
 
             Assert.Equal(5, wrappedTarget.WriteCount);
             Assert.Equal("Hello 4", wrappedTarget.LastWrittenMessage);
@@ -206,7 +205,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Null(lastException);
 
             //Let the interval expire.
-            Thread.Sleep(2300);
+            Thread.Sleep(230);
 
             lastException = WriteNumberAsyncLogEventsStartingAt(20, 10, wrapper);
 
@@ -216,7 +215,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Null(lastException);
 
             //Let the interval expire.
-            Thread.Sleep(200);
+            Thread.Sleep(20);
             lastException = WriteNumberAsyncLogEventsStartingAt(30, 10, wrapper);
 
             //No more messages shouldve been written, since we are still in the third interval.

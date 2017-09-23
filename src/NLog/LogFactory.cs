@@ -63,7 +63,7 @@ namespace NLog
     {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         private const int ReconfigAfterFileChangedTimeout = 1000;
-        private Timer reloadTimer;
+        internal Timer reloadTimer;
         private readonly MultiFileWatcher watcher;
 #endif
 
