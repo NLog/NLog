@@ -1068,6 +1068,86 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
 
+
+#if ASYNC_SUPPORTED
+        [Fact]
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
+        {
+            // name of the logging method
+            const string callsiteMethodName = "AsyncMethod5";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=false:cleannamesofasynccontinuations=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            AsyncMethod5().GetAwaiter().GetResult();
+
+            AssertDebugLastMessage("debug", callsiteMethodName);
+        }
+
+        [Fact]
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
+        {
+            // full name of the logging method
+            const string callsiteMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=true:includenamespace=true:cleannamesofasynccontinuations=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            AsyncMethod5().GetAwaiter().GetResult();
+
+            AssertDebugLastMessage("debug", callsiteMethodFullName);
+        }
+
+        [Fact]
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
+        {
+            // full, uncleaned name of the logging method
+            const string uncleanedCallsiteMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests+<AsyncMethod5>d__53.MoveNext";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            AsyncMethod5().GetAwaiter().GetResult();
+
+            AssertDebugLastMessage("debug", uncleanedCallsiteMethodFullName);
+        }
+
+        private async Task AsyncMethod5()
+        {
+            await AMinimalAsyncMethod();
+
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("dude");
+        }
+
+        private async Task AMinimalAsyncMethod()
+        {
+            await Task.Run(() => { });
+        }
+#endif
+    }
+
+    /// <summary>
+    ///   Implementation of <see cref="ILogger" /> for NLog.
+    /// </summary>
+    public class NLogLogger
+    {
+
         /// <summary>
         ///   Implementation of <see cref="ILogger" /> for NLog.
         /// </summary>
@@ -1114,3 +1194,4 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
+
