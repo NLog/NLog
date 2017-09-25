@@ -474,9 +474,12 @@ namespace NLog.UnitTests.Config
             {
                 CreateConfigurationFromString(
                 "<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
+                    <extensions>
+                        <add assembly='NLog.UnitTests'/> 
+                    </extensions>
                     <targets>
                         <target name='d1' type='Debug' />
-                        <target name='d2' type='DebugWrapper'>
+                        <target name='d2' type='MockWrapper'>
                             <target name='d3' type='Debug' />
                         </target>
                         <target name='d4' type='Debug' />
