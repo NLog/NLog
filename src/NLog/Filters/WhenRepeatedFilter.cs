@@ -60,6 +60,13 @@ namespace NLog.Filters
         public int MaxLength { get; set; }
 
         /// <summary>
+        /// Applies the configured action to the initial logevent that starts the timeout period.
+        /// Used to configure that it should ignore all events until timeout.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool IncludeFirst { get; set; }
+
+        /// <summary>
         /// Max number of unique filter values to expect simultaneously
         /// </summary>
         [DefaultValue(50000)]
@@ -127,6 +134,9 @@ namespace NLog.Filters
         /// .</returns>
         protected override FilterResult Check(LogEventInfo logEvent)
         {
+            FilterResult filterResult = FilterResult.Neutral;
+            bool obsoleteFilter = false;
+
             lock (_repeatFilter)
             {
                 using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
@@ -148,25 +158,39 @@ namespace NLog.Filters
                     FilterInfoKey filterInfoKey = RenderFilterInfoKey(logEvent, OptimizeBufferReuse ? targetBuilder.Result : null);
 
                     FilterInfo filterInfo;
-                    if (_repeatFilter.TryGetValue(filterInfoKey, out filterInfo))
+                    if (!_repeatFilter.TryGetValue(filterInfoKey, out filterInfo))
                     {
-                        return RefreshFilterInfo(logEvent, filterInfo);
+                        filterInfo = CreateFilterInfo(logEvent);
+                        if (OptimizeBufferReuse && filterInfo.StringBuffer != null)
+                        {
+                            filterInfo.StringBuffer.ClearBuilder();
+                            int length = Math.Min(targetBuilder.Result.Length, MaxLength);
+                            for (int i = 0; i < length; ++i)
+                                filterInfo.StringBuffer.Append(targetBuilder.Result[i]);
+                        }
+                        filterInfo.Refresh(logEvent.Level, logEvent.TimeStamp, 0);
+                        _repeatFilter.Add(new FilterInfoKey(filterInfo.StringBuffer, filterInfoKey.StringValue, filterInfoKey.StringHashCode), filterInfo);
+                        obsoleteFilter = true;
                     }
+                    else
+                    {
+                        if (IncludeFirst)
+                        {
+                            obsoleteFilter = filterInfo.IsObsolete(logEvent.TimeStamp, TimeoutSeconds);
+                        }
 
-                    filterInfo = CreateFilterInfo(logEvent);
-                    if (OptimizeBufferReuse && filterInfo.StringBuffer != null)
-                    {
-                        filterInfo.StringBuffer.ClearBuilder();
-                        int length = Math.Min(targetBuilder.Result.Length, MaxLength);
-                        for (int i = 0; i < length; ++i)
-                            filterInfo.StringBuffer.Append(targetBuilder.Result[i]);
+                        filterResult = RefreshFilterInfo(logEvent, filterInfo);
                     }
-                    filterInfo.Refresh(logEvent.Level, logEvent.TimeStamp, 0);
-                    _repeatFilter.Add(new FilterInfoKey(filterInfo.StringBuffer, filterInfoKey.StringValue, filterInfoKey.StringHashCode), filterInfo);
                 }
             }
 
-            return FilterResult.Neutral;
+            // Ignore the first log-event, and wait until next timeout expiry
+            if (IncludeFirst && obsoleteFilter)
+            {
+                filterResult = Action;
+            }
+
+            return filterResult;
         }
 
         /// <summary>
