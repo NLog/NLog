@@ -1072,39 +1072,39 @@ namespace NLog
         private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {
             // NLog.config from application directory
-            if (CurrentAppDomain != null && CurrentAppDomain.BaseDirectory != null)
+            if (CurrentAppDomain?.BaseDirectory != null)
             {
                 yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
+                yield return Path.Combine(CurrentAppDomain.BaseDirectory, "nlog.config");
             }
             else
             {
                 yield return "NLog.config";
+                yield return "nlog.config";
             }
 
             // Current config file with .config renamed to .nlog
-            if (CurrentAppDomain != null)
+            string configurationFile = CurrentAppDomain?.ConfigurationFile;
+            if (configurationFile != null)
             {
-                string cf = CurrentAppDomain.ConfigurationFile;
-                if (cf != null)
+                yield return Path.ChangeExtension(configurationFile, ".nlog");
+
+                // .nlog file based on the non-vshost version of the current config file
+                const string vshostSubStr = ".vshost.";
+                if (configurationFile.Contains(vshostSubStr))
                 {
-                    yield return Path.ChangeExtension(cf, ".nlog");
+                    yield return Path.ChangeExtension(configurationFile.Replace(vshostSubStr, "."), ".nlog");
+                }
 
-                    // .nlog file based on the non-vshost version of the current config file
-                    const string vshostSubStr = ".vshost.";
-                    if (cf.Contains(vshostSubStr))
+                IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
+                if (privateBinPaths != null)
+                {
+                    foreach (var path in privateBinPaths)
                     {
-                        yield return Path.ChangeExtension(cf.Replace(vshostSubStr, "."), ".nlog");
-                    }
-
-                    IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
-                    if (privateBinPaths != null)
-                    {
-                        foreach (var path in privateBinPaths)
+                        if (path != null)
                         {
-                            if (path != null)
-                            {
-                                yield return Path.Combine(path, "NLog.config");
-                            }
+                            yield return Path.Combine(path, "NLog.config");
+                            yield return Path.Combine(path, "nlog.config");
                         }
                     }
                 }
