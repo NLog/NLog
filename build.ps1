@@ -6,7 +6,7 @@ dotnet --version
 # dotnet pack .\src\NLog\  --configuration release --include-symbols -o ..\..\artifacts
 
 $versionPrefix = "4.5.0"
-$versionSuffix = "beta02"
+$versionSuffix = "beta03"
 $versionFile = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
 $versionProduct = $versionPrefix;
 if (-Not $versionSuffix.Equals(""))
