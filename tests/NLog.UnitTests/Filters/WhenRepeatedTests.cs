@@ -39,7 +39,7 @@ namespace NLog.UnitTests.Filters
     public class WhenRepeatedTests : NLogTestBase
     {
         [Fact]
-        public void WhenRepeatedTest()
+        public void WhenRepeatedIgnoreTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -63,7 +63,31 @@ namespace NLog.UnitTests.Filters
         }
 
         [Fact]
-        public void WhenRepeatedTimeoutTest()
+        public void WhenRepeatedLogAfterTimeoutTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug'>
+                    <filters>
+                        <whenRepeated layout='${message}' action='Ignore' includeFirst='True' />
+                    </filters>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("a");
+            AssertDebugCounter("debug", 0);
+            logger.Debug("zzz");
+            AssertDebugCounter("debug", 0);
+            logger.Debug("zzz");
+            AssertDebugCounter("debug", 0);
+        }
+
+        [Fact]
+        public void WhenRepeatedTimeoutIgnoreTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -96,7 +120,6 @@ namespace NLog.UnitTests.Filters
                 timeSource.AddToLocalTime(TimeSpan.FromSeconds(5));
                 logger.Debug("zzz");
                 AssertDebugCounter("debug", 2);
-                AssertDebugCounter("debug", 2);
 
                 logger.Debug("b");
                 AssertDebugCounter("debug", 3);
@@ -112,7 +135,55 @@ namespace NLog.UnitTests.Filters
         }
 
         [Fact]
-        public void WhenRepeatedDefaultFilterCountTest()
+        public void WhenRepeatedTimeoutLogAfterTimeoutTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug'>
+                    <filters>
+                        <whenRepeated layout='${message}' action='Ignore' includeFirst='True' timeoutSeconds='10' />
+                    </filters>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            var defaultTimeSource = Time.TimeSource.Current;
+
+            try
+            {
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+
+                Time.TimeSource.Current = timeSource;
+
+                ILogger logger = LogManager.GetLogger("A");
+                logger.Debug("a");
+                AssertDebugCounter("debug", 0);
+                logger.Debug("zzz");
+                AssertDebugCounter("debug", 0);
+                logger.Debug("zzz");
+                AssertDebugCounter("debug", 0);
+
+                timeSource.AddToLocalTime(TimeSpan.FromSeconds(5));
+                logger.Debug("zzz");
+                AssertDebugCounter("debug", 0);
+
+                logger.Debug("b");
+                AssertDebugCounter("debug", 0);
+
+                timeSource.AddToLocalTime(TimeSpan.FromSeconds(10));
+                logger.Debug("zzz");
+                AssertDebugCounter("debug", 1);
+            }
+            finally
+            {
+                Time.TimeSource.Current = defaultTimeSource; // restore default time source
+            }
+        }
+
+        [Fact]
+        public void WhenRepeatedDefaultFilterCountIgnoreTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -176,7 +247,7 @@ namespace NLog.UnitTests.Filters
         }
 
         [Fact]
-        public void WhenRepeatedMaxCacheSizeTest()
+        public void WhenRepeatedMaxCacheSizeIgnoreTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -241,7 +312,7 @@ namespace NLog.UnitTests.Filters
 
 
         [Fact]
-        public void WhenRepeatedLevelTest()
+        public void WhenRepeatedLevelIgnoreTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -273,7 +344,7 @@ namespace NLog.UnitTests.Filters
         }
 
         [Fact]
-        public void WhenRepeatedMaxLengthTest()
+        public void WhenRepeatedMaxLengthIgnoreTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -301,7 +372,7 @@ namespace NLog.UnitTests.Filters
         }
 
         [Fact]
-        public void WhenRepeatedFilterCountPropertyNameTest()
+        public void WhenRepeatedFilterCountPropertyNameIgnoreTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -358,7 +429,7 @@ namespace NLog.UnitTests.Filters
         }
 
         [Fact]
-        public void WhenRepeatedFilterCountAppendFormatTest()
+        public void WhenRepeatedFilterCountAppendFormatIgnoreTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
