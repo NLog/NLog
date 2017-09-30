@@ -1123,6 +1123,21 @@ namespace NLog.UnitTests.LayoutRenderers
             AsyncMethod5().GetAwaiter().GetResult();
 
 #if MONO
+              Console.WriteLine("CleanNamesOfAsyncContinuations MONO");
+#else
+            Console.WriteLine("CleanNamesOfAsyncContinuations not-MONO");
+#endif
+
+            if (IsTravis())
+            {
+                Console.WriteLine("CleanNamesOfAsyncContinuations Travis");
+            }
+            else
+            {
+                Console.WriteLine("CleanNamesOfAsyncContinuations not-Travis");
+            }
+
+#if MONO
 
             if (IsTravis())
                 //for some reason Mono on non-Windows already returns the correct name. 
