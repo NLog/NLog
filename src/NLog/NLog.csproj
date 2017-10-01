@@ -14,6 +14,8 @@
     <PackageTags>logging;log;tracing;logfiles;NLog;database;eventlog;email;wcf;netcore;dynamic</PackageTags>
     <PackageReleaseNotes>
       NetStandard 2.0
+      
+      Note: structured logging has been removed in this beta and will be reintroduced in later betas
     </PackageReleaseNotes>
     <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
     <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
