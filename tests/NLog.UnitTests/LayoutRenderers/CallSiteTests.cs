@@ -1137,7 +1137,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 Console.WriteLine("CleanNamesOfAsyncContinuations not-Travis");
             }
 
-#if MONO
 
             if (IsTravis())
                 //for some reason Mono on non-Windows already returns the correct name. 
@@ -1145,7 +1144,6 @@ namespace NLog.UnitTests.LayoutRenderers
                 AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5");
                 return;
             }
-#endif
 
             AssertDebugLastMessageContains("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests");
             AssertDebugLastMessageContains("debug", "MoveNext");
