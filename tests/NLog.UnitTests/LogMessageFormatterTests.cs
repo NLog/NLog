@@ -33,22 +33,25 @@
 
 namespace NLog.UnitTests
 {
+    using System.Collections.Generic;
     using Xunit;
 
     public class LogMessageFormatterTests : NLogTestBase
     {
         [Fact]
-        public void StructuredLoggingTest()
+        public void StructuredLoggingNamedTest()
         {
-            LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, string.Empty, "Login request from {Username} for {Application}");
-            logEventInfo.Properties["Username"] = "John";
-            logEventInfo.Properties["Application"] = "BestApplicationEver";
-            logEventInfo.Parameters = new object[] { "Login request from John for BestApplicationEver" };   // Must have parameter to activate MessageFormatter
+            LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", "Login request from {Username} for {Application}", new[]
+            {
+                new MessageTemplateParameter("Username", "John", null),
+                new MessageTemplateParameter("Application", "BestApplicationEver", null)
+            });
+            logEventInfo.Parameters = new object[] { "Login request from John for BestApplicationEver" };
             logEventInfo.MessageFormatter = (logEvent) =>
             {
-                if (logEvent.Parameters != null && logEvent.Parameters.Length == 1)
+                if (logEvent.Parameters != null && logEvent.Parameters.Length > 0)
                 {
-                    return logEvent.Parameters[0] as string ?? logEvent.Message;
+                    return logEvent.Parameters[logEvent.Parameters.Length - 1] as string ?? logEvent.Message;
                 }
                 return logEvent.Message;
             };
@@ -73,6 +76,45 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {Username} for {Application}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
 
             Assert.Equal("Login request from John for BestApplicationEver", logEventInfo.FormattedMessage);
+
+            Assert.Contains(new KeyValuePair<object, object>("Username", "John"), logEventInfo.Properties);
+            Assert.Contains(new KeyValuePair<object, object>("Application", "BestApplicationEver"), logEventInfo.Properties);
+            Assert.Contains(new MessageTemplateParameter("Username", "John", null), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", null), logEventInfo.MessageTemplateParameters);
+        }
+
+        [Fact]
+        public void NormalLoggingPositionalTest()
+        {
+            LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", null, "Login request from {0} for {1}", new object[]
+            {
+                "John",
+                "BestApplicationEver"
+            });
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug'  >
+                                <layout type='JsonLayout' IncludeAllProperties='true'>
+                                    <attribute name='LogMessage' layout='${message:raw=true}' />
+                                </layout>
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Info' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logEventInfo.LoggerName = logger.Name;
+            logger.Log(logEventInfo);
+            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {0} for {1}\" }");
+
+            Assert.Equal("Login request from John for BestApplicationEver", logEventInfo.FormattedMessage);
+
+            Assert.Contains(new MessageTemplateParameter("0", "John", null), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("1", "BestApplicationEver", null), logEventInfo.MessageTemplateParameters);
         }
     }
 }
