@@ -46,19 +46,36 @@ namespace NLog.Internal
     /// </summary>
     internal sealed class PropertiesDictionary : IDictionary<object, object>
     {
-        struct PropertyValue
+        private struct PropertyValue
         {
+            /// <summary>
+            /// Value of the property 
+            /// </summary>
             public readonly object Value;
-            public readonly bool MessageProperty;
 
-            public PropertyValue(object value, bool messageProperty)
+            /// <summary>
+            /// Is this a property of the message?
+            /// </summary>
+            public readonly bool IsMessageProperty;
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="value">Value of the property</param>
+            /// <param name="isMessageProperty">Is this a property of the message?</param>
+            public PropertyValue(object value, bool isMessageProperty)
             {
                 Value = value;
-                MessageProperty = messageProperty;
+                IsMessageProperty = isMessageProperty;
             }
         }
-
+        /// <summary>
+        /// The properties of the logEvent
+        /// </summary>
         private Dictionary<object, PropertyValue> _eventProperties;
+        /// <summary>
+        /// The properties extracted from the message
+        /// </summary>
         private IList<MessageTemplateParameter> _messageProperties;
         private DictionaryCollection _keyCollection;
         private DictionaryCollection _valueCollection;
@@ -73,9 +90,9 @@ namespace NLog.Internal
             MessageProperties = parameterList;
         }
 
-        private bool IsEmpty { get { return (_eventProperties == null || _eventProperties.Count == 0) && (_messageProperties == null || _messageProperties.Count == 0); } }
+        private bool IsEmpty => (_eventProperties == null || _eventProperties.Count == 0) && (_messageProperties == null || _messageProperties.Count == 0);
 
-        public IDictionary EventContext { get { return _eventContextAdapter ?? (_eventContextAdapter = new DictionaryAdapter<object, object>(this)); } }
+        public IDictionary EventContext => _eventContextAdapter ?? (_eventContextAdapter = new DictionaryAdapter<object, object>(this));
 
         private Dictionary<object, PropertyValue> EventProperties
         {
@@ -102,10 +119,7 @@ namespace NLog.Internal
 
         public IList<MessageTemplateParameter> MessageProperties
         {
-            get
-            {
-                return _messageProperties ?? ArrayHelper.Empty<MessageTemplateParameter>();
-            }
+            get => _messageProperties ?? ArrayHelper.Empty<MessageTemplateParameter>();
             private set
             {
                 if (value != null && value.Count > 0)
@@ -136,8 +150,7 @@ namespace NLog.Internal
             {
                 if (!IsEmpty)
                 {
-                    PropertyValue valueItem;
-                    if (EventProperties.TryGetValue(key, out valueItem))
+                    if (EventProperties.TryGetValue(key, out var valueItem))
                     {
                         return valueItem.Value;
                     }
@@ -145,16 +158,14 @@ namespace NLog.Internal
 
                 throw new KeyNotFoundException();
             }
-            set
-            {
-                EventProperties[key] = new PropertyValue(value, false);
-            }
+            set => EventProperties[key] = new PropertyValue(value, false);
         }
 
         /// <inheritDoc/>
-        public ICollection<object> Keys { get { return KeyCollection; } }
+        public ICollection<object> Keys => KeyCollection;
+
         /// <inheritDoc/>
-        public ICollection<object> Values { get { return ValueCollection; } }
+        public ICollection<object> Values => ValueCollection;
 
         private DictionaryCollection KeyCollection
         {
@@ -162,10 +173,9 @@ namespace NLog.Internal
             {
                 if (_keyCollection != null)
                     return _keyCollection;
-                else if (IsEmpty)
+                if (IsEmpty)
                     return EmptyKeyCollection;
-                else
-                    return _keyCollection ?? (_keyCollection = new DictionaryCollection(this, true));
+                return _keyCollection ?? (_keyCollection = new DictionaryCollection(this, true));
             }
         }
 
@@ -175,10 +185,10 @@ namespace NLog.Internal
             {
                 if (_valueCollection != null)
                     return _valueCollection;
-                else if (IsEmpty)
+
+                if (IsEmpty)
                     return EmptyValueCollection;
-                else
-                    return _valueCollection ?? (_valueCollection = new DictionaryCollection(this, false));
+                return _valueCollection ?? (_valueCollection = new DictionaryCollection(this, false));
             }
         }
 
@@ -186,10 +196,10 @@ namespace NLog.Internal
         private static readonly DictionaryCollection EmptyValueCollection = new DictionaryCollection(new PropertiesDictionary(), false);
 
         /// <inheritDoc/>
-        public int Count { get { return (_eventProperties?.Count) ?? (_messageProperties?.Count) ?? 0; } }
+        public int Count => (_eventProperties?.Count) ?? (_messageProperties?.Count) ?? 0;
 
         /// <inheritDoc/>
-        public bool IsReadOnly { get { return false; } }
+        public bool IsReadOnly => false;
 
         /// <inheritDoc/>
         public void Add(object key, object value)
@@ -206,8 +216,7 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public void Clear()
         {
-            if (_eventProperties != null)
-                _eventProperties.Clear();
+            _eventProperties?.Clear();
             if (_messageProperties != null)
                 _messageProperties = ArrayHelper.Empty<MessageTemplateParameter>();
         }
@@ -240,9 +249,9 @@ namespace NLog.Internal
         public void CopyTo(KeyValuePair<object, object>[] array, int arrayIndex)
         {
             if (array == null)
-                throw new ArgumentNullException("array");
+                throw new ArgumentNullException(nameof(array));
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException("arrayIndex");
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex));
 
             if (!IsEmpty)
             {
@@ -258,8 +267,7 @@ namespace NLog.Internal
         {
             if (IsEmpty)
                 return System.Linq.Enumerable.Empty<KeyValuePair<object, object>>().GetEnumerator();
-            else
-                return new DictionaryEnumerator(this);
+            return new DictionaryEnumerator(this);
         }
 
         /// <inheritDoc/>
@@ -267,8 +275,7 @@ namespace NLog.Internal
         {
             if (IsEmpty)
                 return ArrayHelper.Empty<KeyValuePair<object, object>>().GetEnumerator();
-            else
-                return new DictionaryEnumerator(this);
+            return new DictionaryEnumerator(this);
         }
 
         /// <inheritDoc/>
@@ -301,8 +308,7 @@ namespace NLog.Internal
         {
             if (!IsEmpty)
             {
-                PropertyValue valueItem;
-                if (EventProperties.TryGetValue(key, out valueItem))
+                if (EventProperties.TryGetValue(key, out var valueItem))
                 {
                     value = valueItem.Value;
                     return true;
@@ -318,7 +324,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="parameterList">Message-template-parameters</param>
         /// <returns>List of message-template-parameters if succesful (else null)</returns>
-        static IList<MessageTemplateParameter> CreateUniqueMessagePropertiesListFast(IList<MessageTemplateParameter> parameterList)
+        private static IList<MessageTemplateParameter> CreateUniqueMessagePropertiesListFast(IList<MessageTemplateParameter> parameterList)
         {
             if (parameterList.Count <= 10)
             {
@@ -367,6 +373,7 @@ namespace NLog.Internal
                 // Duplicate keys found, lets try again
                 for (int i = 0; i < messageProperties.Count; ++i)
                 {
+                    //remove the duplicates
                     eventProperties.Remove(messageProperties[i].Name);
                 }
                 return false;
@@ -382,12 +389,11 @@ namespace NLog.Internal
         private static IList<MessageTemplateParameter> CreateUniqueMessagePropertiesListSlow(IList<MessageTemplateParameter> messageProperties, Dictionary<object, PropertyValue> eventProperties)
         {
             List<MessageTemplateParameter> messagePropertiesUnique = null;
-            PropertyValue valueItem;
             for (int i = 0; i < messageProperties.Count; ++i)
             {
-                if (eventProperties.TryGetValue(messageProperties[i].Name, out valueItem))
+                if (eventProperties.TryGetValue(messageProperties[i].Name, out var valueItem))
                 {
-                    if (valueItem.MessageProperty)
+                    if (valueItem.IsMessageProperty)
                     {
                         if (messagePropertiesUnique == null)
                         {
@@ -402,28 +408,25 @@ namespace NLog.Internal
                 }
 
                 eventProperties[messageProperties[i].Name] = new PropertyValue(messageProperties[i].Value, true);
-                if (messagePropertiesUnique != null)
-                {
-                    messagePropertiesUnique.Add(messageProperties[i]);
-                }
+                messagePropertiesUnique?.Add(messageProperties[i]);
             }
 
             return messagePropertiesUnique ?? messageProperties;
         }
 
-        class DictionaryEnumeratorBase
+        private class DictionaryEnumeratorBase
         {
-            readonly PropertiesDictionary _dictionary;
-            int? _messagePropertiesEnumerator;
-            bool _eventEnumeratorCreated;
-            Dictionary<object, PropertyValue>.Enumerator _eventEnumerator;
+            private readonly PropertiesDictionary _dictionary;
+            private int? _messagePropertiesEnumerator;
+            private bool _eventEnumeratorCreated;
+            private Dictionary<object, PropertyValue>.Enumerator _eventEnumerator;
 
             protected DictionaryEnumeratorBase(PropertiesDictionary dictionary)
             {
                 _dictionary = dictionary;
             }
 
-            public KeyValuePair<object, object> CurrentPair
+            protected KeyValuePair<object, object> CurrentPair
             {
                 get
                 {
@@ -432,10 +435,9 @@ namespace NLog.Internal
                         var property = _dictionary._messageProperties[_messagePropertiesEnumerator.Value];
                         return new KeyValuePair<object, object>(property.Name, property.Value);
                     }
-                    else if (_eventEnumeratorCreated)
+                    if (_eventEnumeratorCreated)
                         return new KeyValuePair<object, object>(_eventEnumerator.Current.Key, _eventEnumerator.Current.Value.Value);
-                    else
-                        throw new InvalidOperationException();
+                    throw new InvalidOperationException();
                 }
             }
 
@@ -443,7 +445,7 @@ namespace NLog.Internal
             {
                 if (_messagePropertiesEnumerator.HasValue)
                 {
-                    if ((_messagePropertiesEnumerator.Value + 1) < _dictionary._messageProperties.Count)
+                    if (_messagePropertiesEnumerator.Value + 1 < _dictionary._messageProperties.Count)
                     {
                         // Move forward to a key that is not overriden
                         _messagePropertiesEnumerator = FindNextValidMessagePropertyIndex(_messagePropertiesEnumerator.Value + 1);
@@ -463,41 +465,35 @@ namespace NLog.Internal
 
                     return false;
                 }
-                else
+                if (_eventEnumeratorCreated)
                 {
-                    if (_eventEnumeratorCreated)
+                    return MoveNextValidEventProperty();
+                }
+                if (_dictionary._messageProperties != null && _dictionary._messageProperties.Count > 0)
+                {
+                    // Move forward to a key that is not overriden
+                    _messagePropertiesEnumerator = FindNextValidMessagePropertyIndex(0);
+                    if (_messagePropertiesEnumerator.HasValue)
                     {
-                        return MoveNextValidEventProperty();
-                    }
-                    else
-                    {
-                        if (_dictionary._messageProperties != null && _dictionary._messageProperties.Count > 0)
-                        {
-                            // Move forward to a key that is not overriden
-                            _messagePropertiesEnumerator = FindNextValidMessagePropertyIndex(0);
-                            if (_messagePropertiesEnumerator.HasValue)
-                            {
-                                return true;
-                            }
-                        }
-
-                        if (_dictionary._eventProperties != null && _dictionary._eventProperties.Count > 0)
-                        {
-                            _eventEnumerator = _dictionary._eventProperties.GetEnumerator();
-                            _eventEnumeratorCreated = true;
-                            return MoveNextValidEventProperty();
-                        }
-
-                        return false;
+                        return true;
                     }
                 }
+
+                if (_dictionary._eventProperties != null && _dictionary._eventProperties.Count > 0)
+                {
+                    _eventEnumerator = _dictionary._eventProperties.GetEnumerator();
+                    _eventEnumeratorCreated = true;
+                    return MoveNextValidEventProperty();
+                }
+
+                return false;
             }
 
             private bool MoveNextValidEventProperty()
             {
                 while (_eventEnumerator.MoveNext())
                 {
-                    if (!_eventEnumerator.Current.Value.MessageProperty)
+                    if (!_eventEnumerator.Current.Value.IsMessageProperty)
                         return true;
                 }
                 return false;
@@ -508,10 +504,9 @@ namespace NLog.Internal
                 if (_dictionary._eventProperties == null)
                     return startIndex;
 
-                PropertyValue valueItem;
                 for (int i = startIndex; i < _dictionary._messageProperties.Count; ++i)
                 {
-                    if (_dictionary._eventProperties.TryGetValue(_dictionary._messageProperties[i].Name, out valueItem) && valueItem.MessageProperty)
+                    if (_dictionary._eventProperties.TryGetValue(_dictionary._messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
                     {
                         return i;
                     }
@@ -533,13 +528,13 @@ namespace NLog.Internal
             }
         }
 
-        class DictionaryEnumerator : DictionaryEnumeratorBase, IEnumerator<KeyValuePair<object, object>>
+        private class DictionaryEnumerator : DictionaryEnumeratorBase, IEnumerator<KeyValuePair<object, object>>
         {
             /// <inheritDoc/>
-            public KeyValuePair<object, object> Current { get { return CurrentPair; } }
+            public KeyValuePair<object, object> Current => CurrentPair;
 
             /// <inheritDoc/>
-            object IEnumerator.Current { get { return CurrentPair; } }
+            object IEnumerator.Current => CurrentPair;
 
             public DictionaryEnumerator(PropertiesDictionary dictionary)
                 : base(dictionary)
@@ -547,10 +542,10 @@ namespace NLog.Internal
             }
         }
 
-        class DictionaryCollection : ICollection<object>
+        private class DictionaryCollection : ICollection<object>
         {
-            readonly PropertiesDictionary _dictionary;
-            readonly bool _keyCollection;
+            private readonly PropertiesDictionary _dictionary;
+            private readonly bool _keyCollection;
 
             public DictionaryCollection(PropertiesDictionary dictionary, bool keyCollection)
             {
@@ -559,10 +554,10 @@ namespace NLog.Internal
             }
 
             /// <inheritDoc/>
-            public int Count { get { return _dictionary.Count; } }
+            public int Count => _dictionary.Count;
 
             /// <inheritDoc/>
-            public bool IsReadOnly { get { return true; } }
+            public bool IsReadOnly => true;
 
 
             /// <summary>Will always throw, as collection is readonly</summary>
@@ -581,27 +576,24 @@ namespace NLog.Internal
                 {
                     return _dictionary.ContainsKey(item);
                 }
-                else
+                if (!_dictionary.IsEmpty)
                 {
-                    if (!_dictionary.IsEmpty)
-                    {
-                        if (_dictionary.EventProperties.ContainsValue(new PropertyValue(item, false)))
-                            return true;
+                    if (_dictionary.EventProperties.ContainsValue(new PropertyValue(item, false)))
+                        return true;
 
-                        if (_dictionary.EventProperties.ContainsValue(new PropertyValue(item, true)))
-                            return true;
-                    }
-                    return false;
+                    if (_dictionary.EventProperties.ContainsValue(new PropertyValue(item, true)))
+                        return true;
                 }
+                return false;
             }
 
             /// <inheritDoc/>
             public void CopyTo(object[] array, int arrayIndex)
             {
                 if (array == null)
-                    throw new ArgumentNullException("array");
+                    throw new ArgumentNullException(nameof(array));
                 if (arrayIndex < 0)
-                    throw new ArgumentOutOfRangeException("arrayIndex");
+                    throw new ArgumentOutOfRangeException(nameof(arrayIndex));
 
                 if (!_dictionary.IsEmpty)
                 {
@@ -626,7 +618,7 @@ namespace NLog.Internal
 
             private class DictionaryCollectionEnumerator : DictionaryEnumeratorBase, IEnumerator<object>
             {
-                readonly bool _keyCollection;
+                private readonly bool _keyCollection;
 
                 public DictionaryCollectionEnumerator(PropertiesDictionary dictionary, bool keyCollection)
                     : base(dictionary)
@@ -635,7 +627,7 @@ namespace NLog.Internal
                 }
 
                 /// <inheritDoc/>
-                public object Current { get { return _keyCollection ? CurrentPair.Key : CurrentPair.Value; } }
+                public object Current => _keyCollection ? CurrentPair.Key : CurrentPair.Value;
             }
         }
     }
