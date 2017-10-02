@@ -64,8 +64,7 @@ namespace NLog
         private IFormatProvider formatProvider;
         private LogMessageFormatter messageFormatter = defaultMessageFormatter;
         private IDictionary<Layout, string> layoutCache;
-        private IDictionary<object, object> properties;
-        private IDictionary eventContextAdapter;
+        private PropertiesDictionary properties;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
@@ -85,6 +84,22 @@ namespace NLog
         public LogEventInfo(LogLevel level, string loggerName, [Localizable(false)] string message)
             : this(level, loggerName, null, message, null, null)
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
+        /// </summary>
+        /// <param name="level">Log level.</param>
+        /// <param name="loggerName">Logger name.</param>
+        /// <param name="message">Log message including parameter placeholders.</param>
+        /// <param name="messageTemplateParameters">Log message including parameter placeholders.</param>
+        public LogEventInfo(LogLevel level, string loggerName, [Localizable(false)] string message, IList<MessageTemplateParameter> messageTemplateParameters)
+            : this(level, loggerName, null, message, null, null)
+        {
+            if (messageTemplateParameters != null && messageTemplateParameters.Count > 0)
+            {
+                this.properties = new PropertiesDictionary(messageTemplateParameters);
+            }
         }
 
         /// <summary>
@@ -281,16 +296,23 @@ namespace NLog
         /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
-        public IDictionary<object, object> Properties
+        public IDictionary<object,object> Properties { get { return this.properties ?? (this.properties = new PropertiesDictionary()); } }
+
+        /// <summary>
+        /// Gets the named parameters extracted from parsing <see cref="Message"/> as MessageTemplate
+        /// </summary>
+        public IMessageTemplateParameters MessageTemplateParameters
         {
             get
             {
-                if (this.properties == null)
+                if (this.properties != null && this.properties.MessageProperties.Count > 0)
                 {
-                    this.properties = new Dictionary<object, object>();
+                    return new MessageTemplateParameters(this.properties.MessageProperties);
                 }
-
-                return this.properties;
+                else
+                {
+                    return new MessageTemplateParameters(this.parameters);
+                }
             }
         }
 
@@ -299,19 +321,7 @@ namespace NLog
         /// </summary>
         /// <remarks>This property was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
         [Obsolete("Use LogEventInfo.Properties instead.  Marked obsolete on NLog 2.0", true)]
-        public IDictionary Context
-        {
-            // NOTE: This propepery is not referenced in NLog code anymore. 
-            get
-            {
-                if (this.eventContextAdapter == null)
-                {
-                    this.eventContextAdapter = new DictionaryAdapter<object, object>(Properties);
-                }
-
-                return this.eventContextAdapter;
-            }
-        }
+        public IDictionary Context { get { return (this.properties ?? (this.properties = new PropertiesDictionary())).EventContext; } }
 
         /// <summary>
         /// Creates the null event.
