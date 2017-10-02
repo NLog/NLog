@@ -44,10 +44,10 @@ namespace NLog.Internal
         readonly IList<MessageTemplateParameter> _parameters;
 
         /// <inheritDoc/>
-        public MessageTemplateParameter this[int index] { get { return _parameters[index]; } }
+        public MessageTemplateParameter this[int index] => _parameters[index];
 
         /// <inheritDoc/>
-        public int Count { get { return _parameters.Count; } }
+        public int Count => _parameters.Count;
 
         /// <inheritDoc/>
         public IEnumerator<MessageTemplateParameter> GetEnumerator() { return _parameters.GetEnumerator(); }
@@ -68,6 +68,7 @@ namespace NLog.Internal
                     string parameterName;
                     switch (i)
                     {
+                        //prevent creating a string (int.ToString())
                         case 0: parameterName = "0"; break;
                         case 1: parameterName = "1"; break;
                         case 2: parameterName = "2"; break;
