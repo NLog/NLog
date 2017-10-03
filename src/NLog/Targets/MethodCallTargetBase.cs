@@ -119,13 +119,14 @@ namespace NLog.Targets
 
                     if (param.Layout != null)
                     {
+                        // If payload becomes too big, then use local StringBuilder to avoid json-maxlength-validation
                         if (sb.Length < MaxGroupRenderSingleBufferLength)
                         {
                             param.Layout.RenderAppendBuilder(logEvents[x].LogEvent, sb);
                         }
                         else
                         {
-                            using (var localTarget = new AppendBuilderCreator(sb, 16))
+                            using (var localTarget = new AppendBuilderCreator(sb, true))
                             {
                                 param.Layout.RenderAppendBuilder(logEvents[x].LogEvent, localTarget.Builder);
                             }

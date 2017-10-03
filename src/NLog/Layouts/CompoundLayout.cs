@@ -83,7 +83,7 @@ namespace NLog.Layouts
         /// Formats the log event relying on inner layouts.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             //Memory profiling pointed out that using a foreach-loop was allocating

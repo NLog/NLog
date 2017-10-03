@@ -64,11 +64,12 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Renders the inner layout contents.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
+            int orgLength = target.Length;
             base.RenderFormattedMessage(logEvent, target);
-            if (target.Length > 0)
+            if (target.Length > orgLength)
                 return;
 
             // render WhenEmpty when the inner layout was empty

@@ -41,31 +41,35 @@ namespace NLog.Internal
     /// </summary>
     internal struct AppendBuilderCreator : IDisposable
     {
+        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
+        private readonly StringBuilder _appendTarget;
+
         /// <summary>
         /// Access the new builder allocated
         /// </summary>
-        public readonly StringBuilder Builder;
-        private readonly StringBuilder _appendTarget;
+        public StringBuilder Builder { get { return _builder.Item; } }
+        private readonly StringBuilderPool.ItemHolder _builder;
 
-        public AppendBuilderCreator(StringBuilder appendTarget, int initialSize)
+        public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
         {
             _appendTarget = appendTarget;
-            if (_appendTarget.Length > 0)
+            if (_appendTarget.Length > 0 && mustBeEmpty)
             {
-                Builder = new StringBuilder(initialSize);
+                _builder = _builderPool.Acquire();
             }
             else
             {
-                Builder = _appendTarget;
+                _builder = new StringBuilderPool.ItemHolder(_appendTarget, null, 0);
             }
         }
 
         public void Dispose()
         {
-            if (!ReferenceEquals(Builder, _appendTarget))
+            if (!ReferenceEquals(_builder.Item, _appendTarget))
             {
-                _appendTarget.Append(Builder.ToString());
+                _appendTarget.Append(_builder.Item.ToString());
             }
+            _builder.Dispose();
         }
     }
 }

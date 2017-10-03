@@ -169,14 +169,19 @@ namespace NLog.Internal
 #if !SILVERLIGHT
             if (transformBuffer != null)
             {
+                int charCount = 0;
+                int byteCount = 0;
                 for (int i = 0; i < builder.Length; i += transformBuffer.Length)
                 {
-                    int charCount = Math.Min(builder.Length - i, transformBuffer.Length);
+                    charCount = Math.Min(builder.Length - i, transformBuffer.Length);
                     builder.CopyTo(i, transformBuffer, 0, charCount);
-                    int byteCount = encoding.GetByteCount(transformBuffer, 0, charCount);
-                    ms.SetLength(ms.Length + byteCount);
-                    encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
-                    ms.Position = ms.Length;
+                    byteCount = encoding.GetMaxByteCount(charCount);
+                    ms.SetLength(ms.Position + byteCount);
+                    byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
+                    if ((ms.Position += byteCount) != ms.Length)
+                    {
+                        ms.SetLength(ms.Position);
+                    }
                 }
             }
             else
