@@ -56,12 +56,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="EntityFrameworkTarget" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public EntityFrameworkTarget(string name) : this()
-        {
-            this.Name = name;
-        }
-
-
+        public EntityFrameworkTarget(string name) : this() => Name = name;
 
         /// <summary>
         /// Initializes the target. Can be used by inheriting classes
@@ -79,15 +74,15 @@ namespace NLog.Targets
                 InternalLogger.Warn("UseTransactions is obsolete and will not be used - will be removed in NLog 6");
             }
 
-            if (string.IsNullOrEmpty(this.ConnectionStringName))
+            if (string.IsNullOrEmpty(ConnectionStringName))
             {
                 throw new NLogConfigurationException("ConnectionStringName is required parameter.");
             }
             // read connection string and provider factory from entity framework connection string
-            var cs = this.ConnectionStringsSettings[this.ConnectionStringName];
+            var cs = this.ConnectionStringsSettings[ConnectionStringName];
             if (cs == null)
             {
-                throw new NLogConfigurationException("Connection string '" + this.ConnectionStringName + "' is not declared in <connectionStrings /> section.");
+                throw new NLogConfigurationException("Connection string '" + ConnectionStringName + "' is not declared in <connectionStrings /> section.");
             }
 
             const string providerConnectionStringParameterName = "provider connection string";
@@ -110,7 +105,7 @@ namespace NLog.Targets
                 throw new NLogConfigurationException("Provider not found");
             }
 
-            this.ProviderFactory = DbProviderFactories.GetFactory(provider);
+            ProviderFactory = DbProviderFactories.GetFactory(provider);
 
             string connectionString = (string)dbConnectionStringBuilder[providerConnectionStringParameterName];
 
@@ -123,7 +118,6 @@ namespace NLog.Targets
             {
                 throw new NLogConfigurationException("Connection string not found or empty.");
             }
-
 
 
             this.ConnectionString = SimpleLayout.Escape(connectionString);
