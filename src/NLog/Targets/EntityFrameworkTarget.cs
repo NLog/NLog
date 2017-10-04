@@ -61,13 +61,20 @@ namespace NLog.Targets
             this.Name = name;
         }
 
+
+
+        /// <summary>
+        /// Initializes the target. Can be used by inheriting classes
+        /// to initialize logging.
+        /// </summary>
         protected override void InitializeTarget()
         {
+#if !NETSTANDARD
             base.InitializeTarget();
 
-#pragma warning disable 618
+#pragma warning disable CS0618 // Type or member is obsolete
             if (UseTransactions.HasValue)
-#pragma warning restore 618
+#pragma warning restore CS0618 // Type or member is obsolete
             {
                 InternalLogger.Warn("UseTransactions is obsolete and will not be used - will be removed in NLog 6");
             }
@@ -86,25 +93,44 @@ namespace NLog.Targets
             const string providerConnectionStringParameterName = "provider connection string";
             const string providerParameterName = "provider";
 
-            var dbConnectionStringBuilder = new DbConnectionStringBuilder {ConnectionString = cs.ConnectionString};
+            var dbConnectionStringBuilder = new DbConnectionStringBuilder { ConnectionString = cs.ConnectionString };
 
             //CurrentValues Dictionary in DbConnectionStringBuilder is case insensitive (StringComparer.OrdinalIgnoreCase)
 
             //should we use SimpleLayout.Escape here?
             string provider = (string)dbConnectionStringBuilder[providerParameterName];
+
+#if NET3_5 || MONO
+            if (provider == null || string.IsNullOrEmpty(provider.Trim()))
+#else
             if (string.IsNullOrWhiteSpace(provider))
+
+#endif
             {
                 throw new NLogConfigurationException("Provider not found");
             }
+
             this.ProviderFactory = DbProviderFactories.GetFactory(provider);
 
             string connectionString = (string)dbConnectionStringBuilder[providerConnectionStringParameterName];
+
+#if NET3_5 || MONO
+            if (connectionString == null || string.IsNullOrEmpty(connectionString.Trim()))
+#else
             if (string.IsNullOrWhiteSpace(connectionString))
+
+#endif
             {
                 throw new NLogConfigurationException("Connection string not found or empty.");
             }
 
+
+
             this.ConnectionString = SimpleLayout.Escape(connectionString);
+#else
+            throw new NLogRuntimeException(">NET standard not supported yet");
+#endif
         }
+
     }
 }
