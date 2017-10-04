@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+
 namespace NLog.Targets
 {
 
@@ -128,3 +130,5 @@ namespace NLog.Targets
 
     }
 }
+
+#endif
