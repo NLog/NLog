@@ -35,6 +35,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using NLog.Internal;
+using NLog.MessageTemplates;
 using Xunit;
 
 namespace NLog.UnitTests.Internal

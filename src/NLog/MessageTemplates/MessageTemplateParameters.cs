@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.MessageTemplates
 {
     using System.Collections;
     using System.Collections.Generic;
@@ -55,47 +55,88 @@ namespace NLog.Internal
         /// <inheritDoc/>
         IEnumerator IEnumerable.GetEnumerator() { return _parameters.GetEnumerator(); }
 
+        /// <inheritDoc/>
+        public bool IsPositional { get; }
+
         /// <summary>
         /// Constructore for positional parameters
         /// </summary>
         public MessageTemplateParameters(object[] parameters)
         {
-            if (parameters != null && parameters.Length > 0)
+            var hasParameters = parameters != null && parameters.Length > 0;
+            if (hasParameters)
             {
-                _parameters = new MessageTemplateParameter[parameters.Length];
+                IsPositional = true;
+            }
+
+            _parameters = CreateParameters(parameters, hasParameters);
+        }
+
+        /// <summary>
+        /// Constructor for named parameters
+        /// </summary>
+        public MessageTemplateParameters(IList<MessageTemplateParameter> parameters)
+        {
+            _parameters = parameters ?? Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+        }
+
+        /// <summary>
+        /// Create MessageTemplateParameter from <paramref name="parameters"/>
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <param name="hasParameters">is <paramref name="parameters"/> filled? (parameter for performance)</param>
+        /// <returns></returns>
+        private MessageTemplateParameter[] CreateParameters(object[] parameters, bool hasParameters)
+        {
+            if (hasParameters)
+            {
+                var templateParameters = new MessageTemplateParameter[parameters.Length];
                 for (int i = 0; i < parameters.Length; ++i)
                 {
                     string parameterName;
                     switch (i)
                     {
                         //prevent creating a string (int.ToString())
-                        case 0: parameterName = "0"; break;
-                        case 1: parameterName = "1"; break;
-                        case 2: parameterName = "2"; break;
-                        case 3: parameterName = "3"; break;
-                        case 4: parameterName = "4"; break;
-                        case 5: parameterName = "5"; break;
-                        case 6: parameterName = "6"; break;
-                        case 7: parameterName = "7"; break;
-                        case 8: parameterName = "8"; break;
-                        case 9: parameterName = "9"; break;
-                        default: parameterName = i.ToString(); break;
+                        case 0:
+                            parameterName = "0";
+                            break;
+                        case 1:
+                            parameterName = "1";
+                            break;
+                        case 2:
+                            parameterName = "2";
+                            break;
+                        case 3:
+                            parameterName = "3";
+                            break;
+                        case 4:
+                            parameterName = "4";
+                            break;
+                        case 5:
+                            parameterName = "5";
+                            break;
+                        case 6:
+                            parameterName = "6";
+                            break;
+                        case 7:
+                            parameterName = "7";
+                            break;
+                        case 8:
+                            parameterName = "8";
+                            break;
+                        case 9:
+                            parameterName = "9";
+                            break;
+                        default:
+                            parameterName = i.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                            break;
                     }
-                    _parameters[i] = new MessageTemplateParameter(parameterName, parameters[i], null);
+                    templateParameters[i] = new MessageTemplateParameter(parameterName, parameters[i], null);
                 }
+                return templateParameters;
             }
-            else
-            {
-                _parameters = Internal.ArrayHelper.Empty<MessageTemplateParameter>();
-            }
-        }
 
-        /// <summary>
-        /// Constructore for named parameters
-        /// </summary>
-        public MessageTemplateParameters(IList<MessageTemplateParameter> parameters)
-        {
-            _parameters = parameters ?? Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            return Internal.ArrayHelper.Empty<MessageTemplateParameter>();
         }
     }
 }

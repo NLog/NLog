@@ -34,6 +34,7 @@
 namespace NLog.UnitTests
 {
     using System.Collections.Generic;
+    using NLog.MessageTemplates;
     using Xunit;
 
     public class LogMessageFormatterTests : NLogTestBase

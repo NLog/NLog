@@ -52,31 +52,15 @@ namespace NLog.Internal
         /// <param name="formatProvider">provider, for example culture</param>
         public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider)
         {
-            if (format == "@")
+            string stringValue = value as string;
+            if (stringValue != null && string.IsNullOrEmpty(format))
             {
-                Config.ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
-                return;
+                builder.Append(value);  // Avoid automatic quotes
             }
-
-            if (value == null)
+            else if (value != null || !string.IsNullOrEmpty(format))
             {
-                return;
+                MessageTemplates.ValueSerializer.Instance.SerializeObject(value, format, formatProvider, builder);
             }
-
-            if (format == null)
-            {
-                builder.Append(Convert.ToString(value, formatProvider));
-                return;
-            }
-
-            var formattable = value as IFormattable;
-            if (formattable != null)
-            {
-                builder.Append(formattable.ToString(format, formatProvider));
-                return;
-            }
-
-            builder.Append(Convert.ToString(value, formatProvider));
         }
 
         /// <summary>
