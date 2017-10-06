@@ -126,7 +126,7 @@ See [LICENSE.txt](LICENSE.txt) for details.
 
 How to build
 ---
-Use Visual Studio 2017 and open the solution 'NLog.sln' - C# 6.0 support is required.
+Use Visual Studio 2017 and open the solution 'NLog.sln' - C# 7.0 support is required.
 
 For building in the cloud we use:
 - AppVeyor for Windows builds, including Silverlight and Xamarin.
