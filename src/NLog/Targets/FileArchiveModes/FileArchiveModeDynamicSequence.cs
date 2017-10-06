@@ -36,6 +36,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using NLog.Common;
 using NLog.Internal;
 
 namespace NLog.Targets.FileArchiveModes
@@ -166,6 +167,7 @@ namespace NLog.Targets.FileArchiveModes
         protected override DateAndSequenceArchive GenerateArchiveFileInfo(FileInfo archiveFile, FileNameTemplate fileTemplate)
         {
             int sequenceNumber = ExtractArchiveNumberFromFileName(archiveFile.FullName);
+            InternalLogger.Trace("FileTarget: extracted sequenceNumber: {0} from file '{1}'", sequenceNumber, archiveFile.FullName);
             var creationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(archiveFile, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
             return new DateAndSequenceArchive(archiveFile.FullName, creationTimeUtc, string.Empty, sequenceNumber > 0 ? sequenceNumber : 0);
         }
