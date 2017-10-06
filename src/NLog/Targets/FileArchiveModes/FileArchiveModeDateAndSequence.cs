@@ -35,6 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using NLog.Common;
 
 namespace NLog.Targets.FileArchiveModes
 {
@@ -141,7 +142,7 @@ namespace NLog.Targets.FileArchiveModes
             {
                 return false;
             }
-
+            InternalLogger.Trace("FileTarget: parsed date '{0}' from file-template '{1}'", datePart, fileTemplate?.Template);
             return true;
         }
     }

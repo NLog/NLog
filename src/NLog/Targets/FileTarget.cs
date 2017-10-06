@@ -784,6 +784,12 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles(DateTime cleanupThreshold)
         {
+
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("FileTarget: Cleanup Initialized Files with cleanupThreshold {0}", cleanupThreshold);
+            }
+
             List<string> filesToFinalize = null;
 
             // Select the files require to be finalized.
@@ -807,6 +813,8 @@ namespace NLog.Targets
                     this.FinalizeFile(fileName);
                 }
             }
+
+            InternalLogger.Trace("FileTarget: CleanupInitializedFiles Done");
         }
 
         /// <summary>
@@ -821,11 +829,14 @@ namespace NLog.Targets
         {
             try
             {
+                InternalLogger.Trace("FileTarget: FlushAsync");
                 fileAppenderCache.FlushAppenders();
                 asyncContinuation(null);
+                InternalLogger.Trace("FileTarget: FlushAsync Done");
             }
             catch (Exception exception)
             {
+                InternalLogger.Warn(exception, "exception in FlushAsync");
                 if (exception.MustBeRethrown())
                 {
                     throw;
@@ -903,11 +914,16 @@ namespace NLog.Targets
             base.InitializeTarget();
 
             this.appenderFactory = GetFileAppenderFactory();
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("Using appenderFactory: {0}", appenderFactory.GetType());
+            }
 
             this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
 
             if ((this.OpenFileCacheSize > 0 || this.EnableFileDelete) && this.OpenFileCacheTimeout > 0)
             {
+                InternalLogger.Trace("FileTarget: Start autoClosingTimer");
                 this.autoClosingTimer = new Timer(
                     (state) => this.AutoClosingTimerCallback(this, EventArgs.Empty),
                     null,
@@ -933,6 +949,7 @@ namespace NLog.Targets
             var currentTimer = this.autoClosingTimer;
             if (currentTimer != null)
             {
+                InternalLogger.Trace("FileTarget: Stop autoClosingTimer");
                 this.autoClosingTimer = null;
                 currentTimer.WaitForDispose(TimeSpan.Zero);
             }
@@ -1288,6 +1305,7 @@ namespace NLog.Targets
                 {
                     try
                     {
+                        InternalLogger.Debug("Move file from '{0}' to '{1}'", fileName, archiveFileName);
                         File.Move(fileName, archiveFileName);
                     }
                     catch (System.IO.IOException ex)
@@ -1313,7 +1331,7 @@ namespace NLog.Targets
                         if (!File.Exists(fileName) || File.Exists(archiveFileName))
                             throw;
 
-                        InternalLogger.Info("Archiving retrying move of {0} to {1}.", fileName, archiveFileName);
+                        InternalLogger.Debug("Archiving retrying move of {0} to {1}.", fileName, archiveFileName);
                         File.Move(fileName, archiveFileName);
                     }
                 }
@@ -1350,6 +1368,7 @@ namespace NLog.Targets
         {
             try
             {
+                InternalLogger.Trace("FileTarget: waiting for file delete of '{0}' for 12 sec", fileName);
                 var originalFileCreationTime = (new FileInfo(fileName)).CreationTime;
                 if (DeleteOldArchiveFile(fileName) && File.Exists(fileName))
                 {
@@ -1465,7 +1484,7 @@ namespace NLog.Targets
             string periodAfterPreviousLogEventTimeString = periodAfterPreviousLogEventTime.ToString(formatString, CultureInfo.InvariantCulture);
             return lastWriteTimeString == periodAfterPreviousLogEventTimeString;
         }
-
+            
         /// <summary>
         /// Calculate the DateTime of the requested day of the week.
         /// </summary>
@@ -1492,6 +1511,7 @@ namespace NLog.Targets
         /// <param name="initializedNewFile">File has just been opened.</param>
         private void DoAutoArchive(string fileName, LogEventInfo eventInfo, bool initializedNewFile)
         {
+            InternalLogger.Debug("FileTarget: do archive file '{0}'", fileName);
             var fileInfo = new FileInfo(fileName);
             if (!fileInfo.Exists)
             {
@@ -1508,12 +1528,14 @@ namespace NLog.Targets
                 InternalLogger.Warn("Skip auto archive because archiveFilePattern is NULL");
                 return;
             }
+            InternalLogger.Trace("FileTarget: archive pattern '{0}'", archiveFilePattern);
 
             var fileArchiveStyle = GetFileArchiveHelper(archiveFilePattern);
             var existingArchiveFiles = fileArchiveStyle.GetExistingArchiveFiles(archiveFilePattern);
 
             if (this.MaxArchiveFiles == 1)
             {
+                InternalLogger.Trace("FileTarget: MaxArchiveFiles = 1");
                 // Perform archive cleanup before generating the next filename,
                 // as next archive-filename can be affected by existing files.
                 for (int i = existingArchiveFiles.Count - 1; i >= 0; i--)
@@ -1567,7 +1589,9 @@ namespace NLog.Targets
 
                 var cleanupArchiveFiles = fileArchiveStyle.CheckArchiveCleanup(archiveFilePattern, existingArchiveFiles, this.MaxArchiveFiles);
                 foreach (var oldArchiveFile in cleanupArchiveFiles)
+                {
                     DeleteOldArchiveFile(oldArchiveFile.FileName);
+                }
 
                 ArchiveFile(fileInfo.FullName, archiveFileName.FileName);
             }
@@ -1617,8 +1641,10 @@ namespace NLog.Targets
             try
             {
                 archiveFile = this.GetArchiveFileName(fileName, ev, upcomingWriteSize);
+                InternalLogger.Trace("FileTarget: init archiving file '{0}'", archiveFile);
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
+                    InternalLogger.Trace("FileTarget: invalidate for file '{0}'", archiveFile);
 #if SupportsMutex
                     // Acquire the mutex from the file-appender, before closing the file-apppender (remember not to close the Mutex)
                     archiveMutex = this.fileAppenderCache.GetArchiveMutex(fileName);
@@ -1639,6 +1665,7 @@ namespace NLog.Targets
                 else
                 {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    InternalLogger.Trace("FileTarget: invalidate invalid files");
                     this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
                 }
@@ -1881,6 +1908,7 @@ namespace NLog.Targets
                     }
 
                     DateTime expireTime = this.OpenFileCacheTimeout > 0 ? DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout) : DateTime.MinValue;
+                    InternalLogger.Trace("FileTarget: Stop CloseAppenders");
                     this.fileAppenderCache.CloseAppenders(expireTime);
                 }
             }
@@ -1977,6 +2005,7 @@ namespace NLog.Targets
         /// <param name="isArchiving">Indicates if the file is being finalized for archiving.</param>
         private void FinalizeFile(string fileName, bool isArchiving = false)
         {
+            InternalLogger.Trace("FileTarget: FinalizeFile '{0}, isArchiving: {1}'",fileName, isArchiving);
             if ((isArchiving) || (!this.WriteFooterOnArchivingOnly))
                 WriteFooter(fileName);
 
@@ -2009,6 +2038,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         private void ProcessOnStartup(string fileName, LogEventInfo logEvent)
         {
+            InternalLogger.Debug("FileTarget: process file '{0}' on startup", fileName);
             RefreshArchiveFilePatternToWatch(fileName, logEvent);
 
             if (this.ArchiveOldFileOnStartup)
@@ -2107,6 +2137,7 @@ namespace NLog.Targets
             //  Write header only on empty files or if file info cannot be obtained.
             if (length == null || length == 0)
             {
+                InternalLogger.Trace("FileTarget: Write header");
                 ArraySegment<byte> headerBytes = this.GetLayoutBytes(Header);
                 if (headerBytes.Count > 0)
                 {
