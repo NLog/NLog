@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
 namespace NLog.Targets
 {
@@ -39,6 +39,7 @@ namespace NLog.Targets
     using System.Data.Common;
     using NLog.Common;
     using NLog.Layouts;
+    using NLog.Internal;
 
     /// <summary>
     /// An NLog target that writes logging messages using an ADO.NET provider that is configurable via an Entity Framework connection string.
@@ -66,7 +67,6 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-#if !NETSTANDARD
             base.InitializeTarget();
 
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -81,54 +81,33 @@ namespace NLog.Targets
                 throw new NLogConfigurationException("ConnectionStringName is required parameter.");
             }
             // read connection string and provider factory from entity framework connection string
-            var cs = this.ConnectionStringsSettings[ConnectionStringName];
+            var cs = ConnectionStringsSettings[ConnectionStringName];
             if (cs == null)
             {
                 throw new NLogConfigurationException("Connection string '" + ConnectionStringName + "' is not declared in <connectionStrings /> section.");
             }
 
-            const string providerConnectionStringParameterName = "provider connection string";
-            const string providerParameterName = "provider";
-
             var dbConnectionStringBuilder = new DbConnectionStringBuilder { ConnectionString = cs.ConnectionString };
 
             //CurrentValues Dictionary in DbConnectionStringBuilder is case insensitive (StringComparer.OrdinalIgnoreCase)
+            string provider = (string)dbConnectionStringBuilder["provider"];
 
-            //should we use SimpleLayout.Escape here?
-            string provider = (string)dbConnectionStringBuilder[providerParameterName];
-
-#if NET3_5 || MONO
-            if (provider == null || string.IsNullOrEmpty(provider.Trim()))
-#else
-            if (string.IsNullOrWhiteSpace(provider))
-
-#endif
+            if (StringHelpers.IsNullOrWhiteSpace(provider))
             {
                 throw new NLogConfigurationException("Provider not found");
             }
 
             ProviderFactory = DbProviderFactories.GetFactory(provider);
 
-            string connectionString = (string)dbConnectionStringBuilder[providerConnectionStringParameterName];
+            string connectionString = (string)dbConnectionStringBuilder["provider connection string"];
 
-#if NET3_5 || MONO
-            if (connectionString == null || string.IsNullOrEmpty(connectionString.Trim()))
-#else
-            if (string.IsNullOrWhiteSpace(connectionString))
-
-#endif
+            if (StringHelpers.IsNullOrWhiteSpace(connectionString))
             {
                 throw new NLogConfigurationException("Connection string not found or empty.");
             }
 
-
-            this.ConnectionString = SimpleLayout.Escape(connectionString);
-#else
-            throw new NLogRuntimeException(">NET standard not supported yet");
-#endif
+            ConnectionString = SimpleLayout.Escape(connectionString);
         }
-
     }
 }
-
 #endif
