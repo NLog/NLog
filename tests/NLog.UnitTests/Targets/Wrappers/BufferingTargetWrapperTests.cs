@@ -591,11 +591,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                             if (this.ThrowExceptions)
                             {
                                 @event.Continuation(new InvalidOperationException("Some problem!"));
-                                @event.Continuation(new InvalidOperationException("Some problem!"));
                             }
                             else
                             {
-                                @event.Continuation(null);
                                 @event.Continuation(null);
                             }
                         });
