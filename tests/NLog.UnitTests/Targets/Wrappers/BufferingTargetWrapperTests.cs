@@ -349,6 +349,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     flushException = ex;
                     flushHit.Set();
+                    Thread.Sleep(10);
                 });
 
             flushHit.WaitOne();
@@ -374,6 +375,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     flushException = ex;
                     flushHit.Set();
+                    Thread.Sleep(10);
                 });
 
             flushHit.WaitOne();
@@ -589,11 +591,9 @@ namespace NLog.UnitTests.Targets.Wrappers
                             if (this.ThrowExceptions)
                             {
                                 @event.Continuation(new InvalidOperationException("Some problem!"));
-                                @event.Continuation(new InvalidOperationException("Some problem!"));
                             }
                             else
                             {
-                                @event.Continuation(null);
                                 @event.Continuation(null);
                             }
                         });
