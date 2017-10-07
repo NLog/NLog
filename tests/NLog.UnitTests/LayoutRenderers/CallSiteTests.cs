@@ -389,7 +389,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -426,7 +426,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -464,7 +464,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -501,7 +501,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -715,6 +715,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             await AsyncMethod2b();
         }
+
         private async Task AsyncMethod2b()
         {
             var logger = LogManager.GetCurrentClassLogger();
@@ -724,7 +725,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if NET3_5 
-        [Fact(Skip="NET3_5 not supporting async callstack")]
+        [Fact(Skip = "NET3_5 not supporting async callstack")]
 #elif !DEBUG
         [Fact(Skip = "RELEASE not working, only DEBUG")]
 #else
@@ -753,6 +754,7 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
             AsyncMethod3b();
         }
+
         private void AsyncMethod3b()
         {
             var logger = LogManager.GetCurrentClassLogger();
@@ -771,7 +773,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #if NET3_5 || NET4_0
         [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
 #elif MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -795,9 +797,9 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if NET3_5 || NET4_0
-        [Fact(Skip= "NET3_5 + NET4_0 not supporting async callstack")]
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
 #elif MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -857,6 +859,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public class CompositeWrapper
         {
             private readonly MyWrapper wrappedLogger;
+
             public CompositeWrapper()
             {
                 wrappedLogger = new MyWrapper();
@@ -1066,6 +1069,84 @@ namespace NLog.UnitTests.LayoutRenderers
             Layout l = "${callsite}";
             var callSite = l.Render(logEvent);
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
+        }
+
+        [Fact]
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
+        {
+            // name of the logging method
+            const string callsiteMethodName = "AsyncMethod5";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=false:cleannamesofasynccontinuations=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            AsyncMethod5().GetAwaiter().GetResult();
+
+            AssertDebugLastMessage("debug", callsiteMethodName);
+        }
+
+        [Fact]
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
+        {
+            // full name of the logging method
+            const string callsiteMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=true:includenamespace=true:cleannamesofasynccontinuations=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            AsyncMethod5().GetAwaiter().GetResult();
+
+            AssertDebugLastMessage("debug", callsiteMethodFullName);
+        }
+
+        [Fact]
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            AsyncMethod5().GetAwaiter().GetResult();
+
+
+
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames - test is unstable on Travis");
+                return;
+            }
+
+            AssertDebugLastMessageContains("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests");
+            AssertDebugLastMessageContains("debug", "MoveNext");
+            AssertDebugLastMessageContains("debug", "d__");
+
+        }
+
+        private async Task AsyncMethod5()
+        {
+            await AMinimalAsyncMethod();
+
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("dude");
+        }
+
+        private async Task AMinimalAsyncMethod()
+        {
+            await Task.Run(() => { });
         }
 
         /// <summary>

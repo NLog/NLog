@@ -94,6 +94,14 @@ namespace NLog.LayoutRenderers
         public bool CleanNamesOfAnonymousDelegates { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the method and class names will be cleaned up if it is detected as an async continuation
+        /// (everything after an await-statement inside of an async method).
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(false)]
+        public bool CleanNamesOfAsyncContinuations { get; set; }
+
+        /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
         [DefaultValue(0)]
@@ -140,7 +148,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            StackFrame frame = logEvent.StackTrace != null ? logEvent.StackTrace.GetFrame(logEvent.UserStackFrameNumber + SkipFrames) : null;
+            StackFrame frame = logEvent.StackTrace?.GetFrame(logEvent.UserStackFrameNumber + SkipFrames);
             if (frame != null)
             {
                 MethodBase method = frame.GetMethod();
@@ -168,9 +176,19 @@ namespace NLog.LayoutRenderers
             var type = method.DeclaringType;
             if (type != null)
             {
+
+                if (this.CleanNamesOfAsyncContinuations && method.Name == "MoveNext" && type.DeclaringType != null && type.Name.StartsWith("<"))
+                {
+                    // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1
+                    int endIndex = type.Name.IndexOf('>', 1);
+                    if (endIndex > 1)
+                    {
+                        type = type.DeclaringType;
+                    }
+                }
                 string className = IncludeNamespace ? type.FullName : type.Name;
 
-                if (this.CleanNamesOfAnonymousDelegates)
+                if (this.CleanNamesOfAnonymousDelegates && className != null)
                 {
                     // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
                     int index = className.IndexOf("+<>", StringComparison.Ordinal);
@@ -198,10 +216,22 @@ namespace NLog.LayoutRenderers
             if (method != null)
             {
                 string methodName = method.Name;
+
+                var type = method.DeclaringType;
+                if (this.CleanNamesOfAsyncContinuations && method.Name == "MoveNext" && type?.DeclaringType != null && type.Name.StartsWith("<"))
+                {
+                    // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1.MoveNext
+                    int endIndex = type.Name.IndexOf('>', 1);
+                    if (endIndex > 1)
+                    {
+                        methodName = type.Name.Substring(1, endIndex - 1);
+                    }
+                }
+
                 // Clean up the function name if it is an anonymous delegate
                 // <.ctor>b__0
                 // <Main>b__2
-                if (this.CleanNamesOfAnonymousDelegates && (methodName.Contains("__") && methodName.StartsWith("<") && methodName.Contains(">")))
+                if (this.CleanNamesOfAnonymousDelegates && (methodName.StartsWith("<") && methodName.Contains("__") && methodName.Contains(">")))
                 {
                     int startIndex = methodName.IndexOf('<') + 1;
                     int endIndex = methodName.IndexOf('>');
