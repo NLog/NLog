@@ -349,6 +349,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     flushException = ex;
                     flushHit.Set();
+                    Thread.Sleep(10);
                 });
 
             flushHit.WaitOne();
@@ -374,6 +375,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     flushException = ex;
                     flushHit.Set();
+                    Thread.Sleep(10);
                 });
 
             flushHit.WaitOne();
