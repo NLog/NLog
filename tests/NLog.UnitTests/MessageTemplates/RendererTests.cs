@@ -72,6 +72,7 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("{{{0:dd}}}", new object[] { 3 }, "{dd}")]
         [InlineData("{{{0:0{{}", new object[] { 3 }, "{3{")] //format is here "0{"
         [InlineData("hello {0}", new object[] { null }, "hello NULL")]
+        [InlineData("if its {yes}, it should not be {no}", new object[] { true, false }, "if its true, it should not be false")]
         public void RenderTest(string input, object[] args, string expected)
         {
             var culture = CultureInfo.InvariantCulture;

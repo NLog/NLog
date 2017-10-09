@@ -96,8 +96,9 @@ namespace NLog.MessageTemplates
         {
             // todo support all scalar types: 
 
-            // todo boolean
-            // todo numerics complete? (formatable)
+
+    
+
             // todo byte[] - hex?
             // todo datetime, timespan, datetimeoffset
             // todo nullables correct?
@@ -109,6 +110,20 @@ namespace NLog.MessageTemplates
                 if (includeQuotes) builder.Append('"');
                 builder.Append(stringValue);
                 if (includeQuotes) builder.Append('"');
+                return true;
+            }
+
+            var boolValue = value as bool?;
+            if (boolValue != null)
+            {
+                if (boolValue == true)
+                {
+                    builder.Append("true");
+                }
+                else
+                {
+                    builder.Append("false");
+                }
                 return true;
             }
 
@@ -202,7 +217,7 @@ namespace NLog.MessageTemplates
                     SerializeObject(item, format, formatProvider, builder);
                 else
                     SerializeWithoutCyclicLoop((IEnumerable)item, format, formatProvider, builder, withoutFormat, objectsInPath, depth + 1);
-                    
+
                 separator = true;
             }
             return true;
