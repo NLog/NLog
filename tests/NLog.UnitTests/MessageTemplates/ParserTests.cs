@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests.StructuredEvents
+namespace NLog.UnitTests.MessageTemplates
 {
     using System;
     using NLog.MessageTemplates;

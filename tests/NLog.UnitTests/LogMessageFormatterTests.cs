@@ -40,7 +40,7 @@ namespace NLog.UnitTests
     public class LogMessageFormatterTests : NLogTestBase
     {
         [Fact]
-        public void StructuredLoggingNamedTest()
+        public void ExtensionsLoggingFormatTest()
         {
             LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", "Login request from {Username} for {Application}", new[]
             {
@@ -85,7 +85,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void NormalLoggingPositionalTest()
+        public void NormalStringFormatTest()
         {
             LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", null, "Login request from {0} for {1}", new object[]
             {
@@ -116,6 +116,42 @@ namespace NLog.UnitTests
 
             Assert.Contains(new MessageTemplateParameter("0", "John", null), logEventInfo.MessageTemplateParameters);
             Assert.Contains(new MessageTemplateParameter("1", "BestApplicationEver", null), logEventInfo.MessageTemplateParameters);
+        }
+
+        [Fact]
+        public void MessageTemplateFormatTest()
+        {
+            LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", null, "Login request from {@Username} for {Application:l}", new object[]
+            {
+                "John",
+                "BestApplicationEver"
+            });
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug'  >
+                                <layout type='JsonLayout' IncludeAllProperties='true'>
+                                    <attribute name='LogMessage' layout='${message:raw=true}' />
+                                </layout>
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Info' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logEventInfo.LoggerName = logger.Name;
+            logger.Log(logEventInfo);
+            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {@Username} for {Application:l}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+
+            Assert.Equal("Login request from \"John\" for BestApplicationEver", logEventInfo.FormattedMessage);
+
+            Assert.Contains(new KeyValuePair<object, object>("Username", "John"), logEventInfo.Properties);
+            Assert.Contains(new KeyValuePair<object, object>("Application", "BestApplicationEver"), logEventInfo.Properties);
+            Assert.Contains(new MessageTemplateParameter("Username", "John", "@"), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", "l"), logEventInfo.MessageTemplateParameters);
         }
     }
 }
