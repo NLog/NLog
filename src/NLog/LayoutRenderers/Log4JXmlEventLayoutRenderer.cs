@@ -95,7 +95,7 @@ namespace NLog.LayoutRenderers
             try
             {
 #if SILVERLIGHT
-                this.machineName = "silverlight";
+                this._machineName = "silverlight";
 #else
                 this._machineName = Environment.MachineName;
 #endif

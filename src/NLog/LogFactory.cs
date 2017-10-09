@@ -70,7 +70,11 @@ namespace NLog
         private readonly static TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
         private static IAppDomain currentAppDomain;
-        private readonly object _syncRoot = new object();
+
+        /// <remarks>
+        /// Internal for unit tests
+        /// </remarks>
+        internal readonly object _syncRoot = new object();
 
         private LoggingConfiguration _config;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
@@ -236,7 +240,7 @@ namespace NLog
                     }
 
 #if __ANDROID__
-                    if (this.config == null)
+                    if (this._config == null)
                     {
                         //try nlog.config in assets folder
                         const string nlogConfigFilename = "NLog.config";
