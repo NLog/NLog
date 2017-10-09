@@ -34,42 +34,21 @@
 using System;
 using System.Text;
 
-namespace NLog.Internal
+namespace NLog
 {
     /// <summary>
-    /// Allocates new builder and appends to the provided target builder on dispose
+    /// Interface for serialization of object values into string format
     /// </summary>
-    internal struct AppendBuilderCreator : IDisposable
+    public interface IValueSerializer
     {
-        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly StringBuilder _appendTarget;
-
         /// <summary>
-        /// Access the new builder allocated
+        /// Serialization of an object into JSON format.
         /// </summary>
-        public StringBuilder Builder { get { return _builder.Item; } }
-        private readonly StringBuilderPool.ItemHolder _builder;
-
-        public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
-        {
-            _appendTarget = appendTarget;
-            if (_appendTarget.Length > 0 && mustBeEmpty)
-            {
-                _builder = _builderPool.Acquire();
-            }
-            else
-            {
-                _builder = new StringBuilderPool.ItemHolder(_appendTarget, null, 0);
-            }
-        }
-
-        public void Dispose()
-        {
-            if (!ReferenceEquals(_builder.Item, _appendTarget))
-            {
-                _appendTarget.Append(_builder.Item.ToString());
-            }
-            _builder.Dispose();
-        }
+        /// <param name="value">The object to serialize to string.</param>
+        /// <param name="format">A standard or custom object format string</param>
+        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+        /// <param name="builder">Output destination.</param>
+        /// <returns>Serialize succeeded (true/false)</returns>
+        bool SerializeObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder);
     }
 }

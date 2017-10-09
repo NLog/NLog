@@ -54,6 +54,7 @@ namespace NLog.Targets
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
         private const int MaxRecursionDepth = 10;
+        private const int MaxJsonLength = 512 * 1024;
 
         private static readonly DefaultJsonSerializer instance;
 
@@ -281,6 +282,11 @@ namespace NLog.Targets
             foreach (DictionaryEntry de in value)
             {
                 originalLength = destination.Length;
+                if (originalLength > MaxJsonLength)
+                {
+                    break;
+                }
+
                 if (!first)
                 {
                     destination.Append(',');
@@ -316,6 +322,11 @@ namespace NLog.Targets
             foreach (var val in value)
             {
                 originalLength = destination.Length;
+                if (originalLength > MaxJsonLength)
+                {
+                    break;
+                }
+
                 if (!first)
                 {
                     destination.Append(',');
@@ -350,6 +361,11 @@ namespace NLog.Targets
                 else
                 {
                     int originalLength = destination.Length;
+                    if (originalLength > MaxJsonLength)
+                    {
+                        return false;
+                    }
+
                     try
                     {
                         using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
@@ -526,19 +542,8 @@ namespace NLog.Targets
                 if (sb == null)
                 {
                     // Check if we need to upgrade to StringBuilder
-                    if (!EscapeChar(ch, escapeUnicode))
-                    {
-                        switch (ch)
-                        {
-                            case '"':
-                            case '\\':
-                            case '/':
-                                break;
-
-                            default:
-                                continue; // StringBuilder not needed, yet
-                        }
-                    }
+                    if (!RequiresJsonEscape(ch, escapeUnicode))
+                        continue; // StringBuilder not needed, yet
 
                     // StringBuilder needed
                     sb = new StringBuilder(text.Length + 4);
@@ -596,6 +601,23 @@ namespace NLog.Targets
                 return sb.ToString();
             else
                 return text;
+        }
+
+        internal static bool RequiresJsonEscape(char ch, bool escapeUnicode)
+        {
+            if (!EscapeChar(ch, escapeUnicode))
+            {
+                switch (ch)
+                {
+                    case '"':
+                    case '\\':
+                    case '/':
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+            return true;
         }
 
         private static bool EscapeChar(char ch, bool escapeUnicode)

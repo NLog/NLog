@@ -175,20 +175,11 @@ namespace NLog.Layouts
                 }
             }
 
-            int initialLength = this.maxRenderedLength;
-            if (initialLength > MaxInitialRenderBufferLength)
-            {
-                initialLength = MaxInitialRenderBufferLength;
-            }
-
-            using (var localTarget = new AppendBuilderCreator(target, initialLength))
+            cacheLayoutResult = cacheLayoutResult && !this.ThreadAgnostic;
+            using (var localTarget = new AppendBuilderCreator(target, cacheLayoutResult))
             {
                 RenderFormattedMessage(logEvent, localTarget.Builder);
-                if (localTarget.Builder.Length > this.maxRenderedLength)
-                {
-                    this.maxRenderedLength = localTarget.Builder.Length;
-                }
-                if (cacheLayoutResult && !this.ThreadAgnostic)
+                if (cacheLayoutResult)
                 {
                     // when needed as it generates garbage
                     logEvent.AddCachedLayoutValue(this, localTarget.Builder.ToString());
@@ -241,7 +232,7 @@ namespace NLog.Layouts
         /// Renders the layout for the specified logging event by invoking layout renderers.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             target.Append(GetFormattedMessage(logEvent) ?? string.Empty);

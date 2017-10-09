@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -32,44 +32,34 @@
 // 
 
 using System;
-using System.Text;
 
-namespace NLog.Internal
+namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// Allocates new builder and appends to the provided target builder on dispose
+    /// Error when parsing a template.
     /// </summary>
-    internal struct AppendBuilderCreator : IDisposable
+    public class TemplateParserException : Exception
     {
-        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly StringBuilder _appendTarget;
+        /// <summary>
+        /// Current index when the error occurred.
+        /// </summary>
+        public int Index { get; }
 
         /// <summary>
-        /// Access the new builder allocated
+        /// The template we were parsing
         /// </summary>
-        public StringBuilder Builder { get { return _builder.Item; } }
-        private readonly StringBuilderPool.ItemHolder _builder;
+        public string Template { get; }
 
-        public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
+        /// <summary>
+        /// New exception
+        /// </summary>
+        /// <param name="message">The message to be shown.</param>
+        /// <param name="index">Current index when the error occurred.</param>
+        /// <param name="template"></param>
+        public TemplateParserException(string message, int index, string template) : base(message)
         {
-            _appendTarget = appendTarget;
-            if (_appendTarget.Length > 0 && mustBeEmpty)
-            {
-                _builder = _builderPool.Acquire();
-            }
-            else
-            {
-                _builder = new StringBuilderPool.ItemHolder(_appendTarget, null, 0);
-            }
-        }
-
-        public void Dispose()
-        {
-            if (!ReferenceEquals(_builder.Item, _appendTarget))
-            {
-                _appendTarget.Append(_builder.Item.ToString());
-            }
-            _builder.Dispose();
+            Index = index;
+            Template = template;
         }
     }
 }

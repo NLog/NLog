@@ -31,45 +31,27 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
+using System.Collections.Generic;
 
-namespace NLog.Internal
+namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// Allocates new builder and appends to the provided target builder on dispose
+    /// Parameters extracted from parsing <see cref="LogEventInfo.Message"/> as MessageTemplate
     /// </summary>
-    internal struct AppendBuilderCreator : IDisposable
+    public interface IMessageTemplateParameters : IEnumerable<MessageTemplateParameter>
     {
-        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly StringBuilder _appendTarget;
+        /// <summary>
+        /// Number of parameters
+        /// </summary>
+        int Count { get; }
 
         /// <summary>
-        /// Access the new builder allocated
+        /// Gets the parameters at the given index
         /// </summary>
-        public StringBuilder Builder { get { return _builder.Item; } }
-        private readonly StringBuilderPool.ItemHolder _builder;
+        MessageTemplateParameter this[int index] { get; }
 
-        public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
-        {
-            _appendTarget = appendTarget;
-            if (_appendTarget.Length > 0 && mustBeEmpty)
-            {
-                _builder = _builderPool.Acquire();
-            }
-            else
-            {
-                _builder = new StringBuilderPool.ItemHolder(_appendTarget, null, 0);
-            }
-        }
-
-        public void Dispose()
-        {
-            if (!ReferenceEquals(_builder.Item, _appendTarget))
-            {
-                _appendTarget.Append(_builder.Item.ToString());
-            }
-            _builder.Dispose();
-        }
+        /// <summary>Indicates whether the template should be interpreted as positional 
+        /// (all holes are numbers) or named.</summary>
+        bool IsPositional { get; }
     }
 }

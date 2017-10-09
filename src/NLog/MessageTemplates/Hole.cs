@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,45 +31,41 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-
-namespace NLog.Internal
+namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// Allocates new builder and appends to the provided target builder on dispose
+    /// A hole that will be replaced with a value
     /// </summary>
-    internal struct AppendBuilderCreator : IDisposable
+    internal struct Hole
     {
-        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly StringBuilder _appendTarget;
-
         /// <summary>
-        /// Access the new builder allocated
+        /// Constructor
         /// </summary>
-        public StringBuilder Builder { get { return _builder.Item; } }
-        private readonly StringBuilderPool.ItemHolder _builder;
-
-        public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
+        public Hole(string name, string format, CaptureType captureType, short position, short alignment)
         {
-            _appendTarget = appendTarget;
-            if (_appendTarget.Length > 0 && mustBeEmpty)
-            {
-                _builder = _builderPool.Acquire();
-            }
-            else
-            {
-                _builder = new StringBuilderPool.ItemHolder(_appendTarget, null, 0);
-            }
+            Name = name;
+            Format = format;
+            CaptureType = captureType;
+            Index = position;
+            Alignment = alignment;
         }
 
-        public void Dispose()
-        {
-            if (!ReferenceEquals(_builder.Item, _appendTarget))
-            {
-                _appendTarget.Append(_builder.Item.ToString());
-            }
-            _builder.Dispose();
-        }
+        /// <summary>Parameter name sent to structured loggers.</summary>
+        /// <remarks>This is everything between "{" and the first of ",:}". 
+        /// Including surrounding spaces and names that are numbers.</remarks>
+        public readonly string Name;
+        /// <summary>Format to render the parameter.</summary>
+        /// <remarks>This is everything between ":" and the first unescaped "}"</remarks>
+        public readonly string Format;
+        /// <summary>
+        /// Type
+        /// </summary>
+        public readonly CaptureType CaptureType;
+        /// <summary>When the template is positional, this is the parsed name of this parameter.</summary>
+        /// <remarks>For named templates, the value of Index is undefined.</remarks>
+        public readonly short Index;
+        /// <summary>Alignment to render the parameter, by default 0.</summary>
+        /// <remarks>This is the parsed value between "," and the first of ":}"</remarks>
+        public readonly short Alignment;
     }
 }

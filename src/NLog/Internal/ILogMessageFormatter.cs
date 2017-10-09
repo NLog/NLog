@@ -31,45 +31,27 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-
 namespace NLog.Internal
 {
+    using System;
+
     /// <summary>
-    /// Allocates new builder and appends to the provided target builder on dispose
+    /// Format a log message
     /// </summary>
-    internal struct AppendBuilderCreator : IDisposable
+    internal interface ILogMessageFormatter
     {
-        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly StringBuilder _appendTarget;
+        /// <summary>
+        /// Format the message and return
+        /// </summary>
+        /// <param name="logEvent">LogEvent with message to be formatted</param>
+        /// <returns>formatted message</returns>
+        string FormatMessage(LogEventInfo logEvent);
 
         /// <summary>
-        /// Access the new builder allocated
+        /// Has the logevent properties?
         /// </summary>
-        public StringBuilder Builder { get { return _builder.Item; } }
-        private readonly StringBuilderPool.ItemHolder _builder;
-
-        public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
-        {
-            _appendTarget = appendTarget;
-            if (_appendTarget.Length > 0 && mustBeEmpty)
-            {
-                _builder = _builderPool.Acquire();
-            }
-            else
-            {
-                _builder = new StringBuilderPool.ItemHolder(_appendTarget, null, 0);
-            }
-        }
-
-        public void Dispose()
-        {
-            if (!ReferenceEquals(_builder.Item, _appendTarget))
-            {
-                _appendTarget.Append(_builder.Item.ToString());
-            }
-            _builder.Dispose();
-        }
+        /// <param name="logEvent">LogEvent with message to be formatted</param>
+        /// <returns>formatted message</returns>
+        bool HasProperties(LogEventInfo logEvent);
     }
 }

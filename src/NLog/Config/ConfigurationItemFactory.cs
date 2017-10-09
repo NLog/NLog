@@ -205,6 +205,41 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Gets or sets the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
+        /// </summary>
+        public IValueSerializer ValueSerializer
+        {
+            get { return MessageTemplates.ValueSerializer.Instance; }
+            set { MessageTemplates.ValueSerializer.Instance = value; }
+        }
+
+        /// <summary>
+        /// Perform mesage template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
+        /// </summary>
+        public bool? EnableMessageTemplateParser
+        {
+            get
+            {
+                if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogEventInfo.StringFormatMessageFormatter))
+                {
+                    return false;
+                }
+                else if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogMessageTemplateFormatter.Default.MessageFormatter))
+                {
+                    return true;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                LogEventInfo.SetDefaultMessageFormatter(value);
+            }
+        }
+
+        /// <summary>
         /// Gets the time source factory.
         /// </summary>
         /// <value>The time source factory.</value>
@@ -221,8 +256,6 @@ namespace NLog.Config
         {
             get { return this.conditionMethods; }
         }
-
-
 
         /// <summary>
         /// Registers named items from the assembly.

@@ -31,45 +31,23 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-
-namespace NLog.Internal
+namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// Allocates new builder and appends to the provided target builder on dispose
+    /// Combines Literal and Hole
     /// </summary>
-    internal struct AppendBuilderCreator : IDisposable
+    internal struct LiteralHole
     {
-        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly StringBuilder _appendTarget;
+        /// <summary>Literal</summary>
+        public readonly Literal Literal;
+        /// <summary>Hole</summary>
+        /// <remarks>Uninitialized when <see cref="MessageTemplates.Literal.Skip"/> = 0.</remarks>
+        public readonly Hole Hole;
 
-        /// <summary>
-        /// Access the new builder allocated
-        /// </summary>
-        public StringBuilder Builder { get { return _builder.Item; } }
-        private readonly StringBuilderPool.ItemHolder _builder;
-
-        public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
+        internal LiteralHole(Literal literal, Hole hole)
         {
-            _appendTarget = appendTarget;
-            if (_appendTarget.Length > 0 && mustBeEmpty)
-            {
-                _builder = _builderPool.Acquire();
-            }
-            else
-            {
-                _builder = new StringBuilderPool.ItemHolder(_appendTarget, null, 0);
-            }
-        }
-
-        public void Dispose()
-        {
-            if (!ReferenceEquals(_builder.Item, _appendTarget))
-            {
-                _appendTarget.Append(_builder.Item.ToString());
-            }
-            _builder.Dispose();
+            Literal = literal;
+            Hole = hole;
         }
     }
 }

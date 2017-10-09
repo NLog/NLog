@@ -971,11 +971,11 @@ namespace NLog.Targets
         /// <summary>
         /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
         /// </summary>
-        private readonly ReusableStreamCreator reusableFileWriteStream = new ReusableStreamCreator(1024);
+        private readonly ReusableStreamCreator reusableFileWriteStream = new ReusableStreamCreator(4096);
         /// <summary>
         /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
         /// </summary>
-        private readonly ReusableStreamCreator reusableAsyncFileWriteStream = new ReusableStreamCreator(1024);
+        private readonly ReusableStreamCreator reusableAsyncFileWriteStream = new ReusableStreamCreator(4096);
         /// <summary>
         /// Can be used if <see cref="Target.OptimizeBufferReuse"/> has been enabled.
         /// </summary>
@@ -1211,7 +1211,7 @@ namespace NLog.Targets
         /// Formats the log event for write.
         /// </summary>
         /// <param name="logEvent">The log event to be formatted.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result.</param>
+        /// <param name="target"><see cref="StringBuilder"/> for the result.</param>
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             this.Layout.RenderAppendBuilder(logEvent, target);

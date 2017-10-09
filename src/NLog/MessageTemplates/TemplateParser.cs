@@ -31,57 +31,51 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+
+namespace NLog.MessageTemplates
 {
-    using System.Collections.Generic;
-
     /// <summary>
-    /// Description of a single parameter extracted from a MessageTemplate
+    /// Parse templates.
     /// </summary>
-    public struct MessageTemplateParameter
+    internal static class TemplateParser
     {
         /// <summary>
-        /// Parameter Name extracted from <see cref="LogEventInfo.Message"/>
-        /// This is everything between "{" and the first of ",:}".
+        /// Parse a template.
         /// </summary>
-        public readonly string Name;
-        /// <summary>
-        /// Parameter Value extracted from the <see cref="LogEventInfo.Parameters"/>-array
-        /// </summary>
-        public readonly object Value;
-        /// <summary>
-        /// Format to render the parameter.
-        /// This is everything between ":" and the first unescaped "}"
-        /// </summary>
-        public readonly string Format;
-
-        /// <summary>
-        /// Constructs a single message template parameter
-        /// </summary>
-        /// <param name="name">Parameter Name</param>
-        /// <param name="value">Parameter Value</param>
-        /// <param name="format">Parameter Format</param>
-        public MessageTemplateParameter(string name, object value, string format)
+        /// <param name="template">Template to be parsed.</param>
+        /// <exception cref="ArgumentNullException">When <paramref name="template"/> is null.</exception>
+        /// <returns>Template, never null</returns>
+        public static Template Parse(string template)
         {
-            Name = name;
-            Value = value;
-            Format = format;
+            if (template == null)
+                throw new ArgumentNullException(nameof(template));
+
+            bool isPositional = true;
+            List<Literal> literals = new List<Literal>();
+            List<Hole> holes = new List<Hole>();
+
+            TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
+            while (templateEnumerator.MoveNext())
+            {
+                if (templateEnumerator.Current.Literal.Skip == 0)
+                {
+                    literals.Add(templateEnumerator.Current.Literal);
+                }
+                else
+                {
+                    literals.Add(templateEnumerator.Current.Literal);
+                    holes.Add(templateEnumerator.Current.Hole);
+                    if (templateEnumerator.Current.Hole.Index == -1)
+                        isPositional = false;
+                }
+            }
+
+            Debug.Assert(holes.Count == literals.Count(x => x.Skip > 0));
+            return new Template(template, isPositional, literals, holes);
         }
-    }
-
-    /// <summary>
-    /// Parameters extracted from parsing <see cref="LogEventInfo.Message"/> as MessageTemplate
-    /// </summary>
-    public interface IMessageTemplateParameters : IEnumerable<MessageTemplateParameter>
-    {
-        /// <summary>
-        /// Number of parameters
-        /// </summary>
-        int Count { get; }
-
-        /// <summary>
-        /// Gets the parameters at the given index
-        /// </summary>
-        MessageTemplateParameter this[int index] { get; }
     }
 }

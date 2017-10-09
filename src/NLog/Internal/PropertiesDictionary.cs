@@ -36,6 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using NLog.MessageTemplates;
 
     /// <summary>
     /// Dictionary that combines the standard <see cref="LogEventInfo.Properties" /> with the
@@ -87,7 +88,13 @@ namespace NLog.Internal
         /// <param name="parameterList">Message-template-parameters</param>
         public PropertiesDictionary(IList<MessageTemplateParameter> parameterList = null)
         {
-            MessageProperties = parameterList;
+            if (parameterList != null && parameterList.Count > 0)
+            {
+                var messageProperties = new MessageTemplateParameter[parameterList.Count];
+                for (int i = 0; i < parameterList.Count; ++i)
+                    messageProperties[i] = parameterList[i];
+                MessageProperties = messageProperties;
+            }
         }
 
         private bool IsEmpty => (_eventProperties == null || _eventProperties.Count == 0) && (_messageProperties == null || _messageProperties.Count == 0);
@@ -119,25 +126,42 @@ namespace NLog.Internal
 
         public IList<MessageTemplateParameter> MessageProperties
         {
-            get => _messageProperties ?? ArrayHelper.Empty<MessageTemplateParameter>();
-            private set
+            get
             {
-                if (value != null && value.Count > 0)
+                return _messageProperties ?? ArrayHelper.Empty<MessageTemplateParameter>();
+            }
+            internal set
+            {
+                if (_eventProperties == null && VerifyUniqueMessageTemplateParametersFast(value))
                 {
-                    _messageProperties = _eventProperties == null ? CreateUniqueMessagePropertiesListFast(value) : null;
-                    if (_messageProperties == null)
+                    _messageProperties = value;
+                }
+                else
+                {
+                    if (_eventProperties == null)
                     {
-                        // Dictionary was already allocated, or the message-template-parameters are troublesome
-                        var eventProperties = _eventProperties ?? (_eventProperties = new Dictionary<object, PropertyValue>(value.Count));
+                        _eventProperties = new Dictionary<object, PropertyValue>(value.Count);
+                    }
 
-                        _messageProperties = new List<MessageTemplateParameter>(value.Count);
-                        for (int i = 0; i < value.Count; ++i)
-                            _messageProperties.Add(value[i]);
-
-                        if (eventProperties.Count != 0 || !InsertMessagePropertiesIntoEmptyDictionary(_messageProperties, eventProperties))
+                    if (_messageProperties != null && _eventProperties.Count > 0)
+                    {
+                        PropertyValue propertyValue;
+                        for (int i = 0; i < _messageProperties.Count; ++i)
                         {
-                            _messageProperties = CreateUniqueMessagePropertiesListSlow(_messageProperties, eventProperties);
+                            if (_eventProperties.TryGetValue(_messageProperties[i].Name, out propertyValue) && propertyValue.IsMessageProperty)
+                            {
+                                _eventProperties.Remove(_messageProperties[i].Name);
+                            }
                         }
+                    }
+
+                    if (value != null && (_eventProperties.Count != 0 || !InsertMessagePropertiesIntoEmptyDictionary(value, _eventProperties)))
+                    {
+                        _messageProperties = CreateUniqueMessagePropertiesListSlow(value, _eventProperties);
+                    }
+                    else
+                    {
+                        _messageProperties = value;
                     }
                 }
             }
@@ -328,18 +352,7 @@ namespace NLog.Internal
         {
             if (parameterList.Count <= 10)
             {
-                bool uniqueMessageProperties = true;
-                for (int i = 0; i < parameterList.Count - 1; ++i)
-                {
-                    for (int j = i + 1; j < parameterList.Count; ++j)
-                    {
-                        if (parameterList[i].Name == parameterList[j].Name)
-                        {
-                            uniqueMessageProperties = false;
-                            break;
-                        }
-                    }
-                }
+                bool uniqueMessageProperties = VerifyUniqueMessageTemplateParametersFast(parameterList);
                 if (uniqueMessageProperties)
                 {
                     var messageProperties = new MessageTemplateParameter[parameterList.Count];
@@ -350,6 +363,30 @@ namespace NLog.Internal
             }
 
             return null;
+        }
+
+        private static bool VerifyUniqueMessageTemplateParametersFast(IList<MessageTemplateParameter> parameterList)
+        {
+            if (parameterList == null || parameterList.Count == 0)
+                return true;
+
+            if (parameterList.Count > 10)
+                return false;
+
+            bool uniqueMessageProperties = true;
+            for (int i = 0; i < parameterList.Count - 1; ++i)
+            {
+                for (int j = i + 1; j < parameterList.Count; ++j)
+                {
+                    if (parameterList[i].Name == parameterList[j].Name)
+                    {
+                        uniqueMessageProperties = false;
+                        break;
+                    }
+                }
+            }
+
+            return uniqueMessageProperties;
         }
 
         /// <summary>

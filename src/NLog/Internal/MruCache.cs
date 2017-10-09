@@ -71,56 +71,78 @@ namespace NLog.Internal
                     var version = _currentVersion;
                     if (item.Version != version || !EqualityComparer<TValue>.Default.Equals(value, item.Value))
                     {
-                        _dictionary[key] = new MruItem(value, version);
+                        _dictionary[key] = new MruItem(value, version, false);
                     }
                     return false;   // Already exists
                 }
                 else
                 {
-                    var version = ++_currentVersion;
                     if (_dictionary.Count >= _maxCapacity)
                     {
-                        // Make 3 sweeps:
-                        //  1) Versions below _currentVerison - _maxCapacity / 1.5
-                        //  2) Versions below _currentVerison - _maxCapacity / 10
-                        //  3) Versions below _currentVerison - 2
-                        var pruneKeys = new List<TKey>(_dictionary.Count);
-                        for (int i = 1; i <= 3; ++i)
-                        {
-                            long oldVersion = version - 2;
-                            switch (i)
-                            {
-                                case 1: oldVersion = version - (int)(_maxCapacity / 1.5); break;
-                                case 2: oldVersion = version - _maxCapacity / 10; break;
-                            }
-                            foreach (var element in _dictionary)
-                            {
-                                if (element.Value.Version <= oldVersion)
-                                {
-                                    pruneKeys.Add(element.Key);
-                                    if (_dictionary.Count - pruneKeys.Count < _maxCapacity / 1.5)
-                                    {
-                                        i = 3;
-                                        break;  // Do not clear the entire cache
-                                    }
-                                }
-                            }
-                        }
-
-                        foreach (var pruneKey in pruneKeys)
-                        {
-                            _dictionary.Remove(pruneKey);
-                        }
-
-                        if (_dictionary.Count >= _maxCapacity)
-                        {
-                            _dictionary.Clear(); // Failed to perform sweep, fallback to fail safe
-                        }
+                        ++_currentVersion;
+                        PruneCache();
                     }
 
-                    _dictionary.Add(key, new MruItem(value, version));
+                    _dictionary.Add(key, new MruItem(value, _currentVersion, true));
                     return true;
                 }
+            }
+        }
+
+        private void PruneCache()
+        {
+            // There 3 priorities:
+            //  - High Priority - Non-Virgins with version very close to _currentVersion
+            //  - Medium Priority - Version close to _currentVersion
+            //  - Low Priority - Old-Virgins
+            // Make 3 sweeps:
+            //  - Kill all the old ones
+            //  - Kill all the virgins
+            //  - Slaughterhouse
+            long latestGeneration = _currentVersion - 2;
+            long oldestGeneration = 1;
+            var pruneKeys = new List<TKey>((int)(_dictionary.Count / 2.5));
+            for (int i = 0; i < 3; ++i)
+            {
+                long oldGeneration = _currentVersion - 5;
+                switch (i)
+                {
+                    case 0: oldGeneration = _currentVersion - (int)(_maxCapacity / 1.5); break;
+                    case 1: oldGeneration = _currentVersion - 10; break;
+                }
+                if (oldGeneration < oldestGeneration)
+                    oldGeneration = oldestGeneration;
+
+                oldestGeneration = long.MaxValue;
+
+                long elementGeneration = 0;
+                foreach (var element in _dictionary)
+                {
+                    elementGeneration = element.Value.Version;
+                    if (elementGeneration <= oldGeneration || (element.Value.Virgin && (i != 0 || elementGeneration < latestGeneration)))
+                    {
+                        pruneKeys.Add(element.Key);
+                        if (_dictionary.Count - pruneKeys.Count < _maxCapacity / 1.5)
+                        {
+                            i = 3;
+                            break;  // Do not clear the entire cache
+                        }
+                    }
+                    else if (elementGeneration < oldestGeneration)
+                    {
+                        oldestGeneration = elementGeneration;
+                    }
+                }
+            }
+
+            foreach (var pruneKey in pruneKeys)
+            {
+                _dictionary.Remove(pruneKey);
+            }
+
+            if (_dictionary.Count >= _maxCapacity)
+            {
+                _dictionary.Clear(); // Failed to perform sweep, fallback to fail safe
             }
         }
 
@@ -146,7 +168,7 @@ namespace NLog.Internal
                 item = default(MruItem);    // Too many people in the same room
             }
 
-            if (item.Version != _currentVersion)
+            if (item.Version != _currentVersion || item.Virgin)
             {
                 // Update item version to mark as recently used
                 lock (_dictionary)
@@ -154,9 +176,13 @@ namespace NLog.Internal
                     var version = _currentVersion;
                     if (_dictionary.TryGetValue(key, out item))
                     {
-                        if (item.Version != version)
+                        if (item.Version != version || item.Virgin)
                         {
-                            _dictionary[key] = new MruItem(item.Value, version);
+                            if (item.Virgin)
+                            {
+                                version = ++_currentVersion;
+                            }
+                            _dictionary[key] = new MruItem(item.Value, version, false);
                         }
                     }
                     else
@@ -175,11 +201,13 @@ namespace NLog.Internal
         {
             public readonly TValue Value;
             public readonly long Version;
+            public readonly bool Virgin;
 
-            public MruItem(TValue value, long version)
+            public MruItem(TValue value, long version, bool virgin)
             {
                 Value = value;
                 Version = version;
+                Virgin = virgin;
             }
         }
     }

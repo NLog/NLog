@@ -32,44 +32,46 @@
 // 
 
 using System;
-using System.Text;
+using JetBrains.Annotations;
 
-namespace NLog.Internal
+namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// Allocates new builder and appends to the provided target builder on dispose
+    /// Description of a single parameter extracted from a MessageTemplate
     /// </summary>
-    internal struct AppendBuilderCreator : IDisposable
+    public struct MessageTemplateParameter
     {
-        private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
-        private readonly StringBuilder _appendTarget;
+        /// <summary>
+        /// Parameter Name extracted from <see cref="LogEventInfo.Message"/>
+        /// This is everything between "{" and the first of ",:}".
+        /// </summary>
+        [NotNull]
+        public readonly string Name;
 
         /// <summary>
-        /// Access the new builder allocated
+        /// Parameter Value extracted from the <see cref="LogEventInfo.Parameters"/>-array
         /// </summary>
-        public StringBuilder Builder { get { return _builder.Item; } }
-        private readonly StringBuilderPool.ItemHolder _builder;
+        [CanBeNull]
+        public readonly object Value;
 
-        public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)
-        {
-            _appendTarget = appendTarget;
-            if (_appendTarget.Length > 0 && mustBeEmpty)
-            {
-                _builder = _builderPool.Acquire();
-            }
-            else
-            {
-                _builder = new StringBuilderPool.ItemHolder(_appendTarget, null, 0);
-            }
-        }
+        /// <summary>
+        /// Format to render the parameter.
+        /// This is everything between ":" and the first unescaped "}"
+        /// </summary>
+        [CanBeNull]
+        public readonly string Format;
 
-        public void Dispose()
+        /// <summary>
+        /// Constructs a single message template parameter
+        /// </summary>
+        /// <param name="name">Parameter Name</param>
+        /// <param name="value">Parameter Value</param>
+        /// <param name="format">Parameter Format</param>
+        public MessageTemplateParameter([NotNull] string name, object value, string format)
         {
-            if (!ReferenceEquals(_builder.Item, _appendTarget))
-            {
-                _appendTarget.Append(_builder.Item.ToString());
-            }
-            _builder.Dispose();
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Value = value;
+            Format = format;
         }
     }
 }
