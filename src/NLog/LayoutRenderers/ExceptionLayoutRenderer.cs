@@ -51,8 +51,8 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class ExceptionLayoutRenderer : LayoutRenderer
     {
-        private string format;
-        private string innerFormat = string.Empty;
+        private string _format;
+        private string _innerFormat = string.Empty;
         private readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _renderingfunctions;
 
         private static readonly Dictionary<String, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
@@ -102,12 +102,12 @@ namespace NLog.LayoutRenderers
         {
             get
             {
-                return this.format;
+                return this._format;
             }
 
             set
             {
-                this.format = value;
+                this._format = value;
                 Formats = CompileFormat(value);
             }
         }
@@ -122,12 +122,12 @@ namespace NLog.LayoutRenderers
         {
             get
             {
-                return this.innerFormat;
+                return this._innerFormat;
             }
 
             set
             {
-                this.innerFormat = value;
+                this._innerFormat = value;
                 InnerFormats = CompileFormat(value);
             }
         }

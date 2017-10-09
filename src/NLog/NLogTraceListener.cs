@@ -49,12 +49,12 @@ namespace NLog
     public class NLogTraceListener : TraceListener
     {
         private static readonly Assembly systemAssembly = typeof(Trace).Assembly;
-        private LogFactory logFactory;
-        private LogLevel defaultLogLevel = LogLevel.Debug;
-        private bool attributesLoaded;
-        private bool autoLoggerName;
-        private LogLevel forceLogLevel;
-        private bool disableFlush;
+        private LogFactory _logFactory;
+        private LogLevel _defaultLogLevel = LogLevel.Debug;
+        private bool _attributesLoaded;
+        private bool _autoLoggerName;
+        private LogLevel _forceLogLevel;
+        private bool _disableFlush;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogTraceListener"/> class.
@@ -71,13 +71,13 @@ namespace NLog
             get
             {
                 this.InitAttributes();
-                return this.logFactory;
+                return this._logFactory;
             }
 
             set
             {
-                this.attributesLoaded = true;
-                this.logFactory = value;
+                this._attributesLoaded = true;
+                this._logFactory = value;
             }
         }
 
@@ -89,13 +89,13 @@ namespace NLog
             get
             {
                 this.InitAttributes();
-                return this.defaultLogLevel;
+                return this._defaultLogLevel;
             }
 
             set
             {
-                this.attributesLoaded = true;
-                this.defaultLogLevel = value;
+                this._attributesLoaded = true;
+                this._defaultLogLevel = value;
             }
         }
 
@@ -107,13 +107,13 @@ namespace NLog
             get
             {
                 this.InitAttributes();
-                return this.forceLogLevel;
+                return this._forceLogLevel;
             }
 
             set
             {
-                this.attributesLoaded = true;
-                this.forceLogLevel = value;
+                this._attributesLoaded = true;
+                this._forceLogLevel = value;
             }
         }
 
@@ -125,13 +125,13 @@ namespace NLog
             get
             {
                 this.InitAttributes();
-                return this.disableFlush;
+                return this._disableFlush;
             }
 
             set
             {
-                this.attributesLoaded = true;
-                this.disableFlush = value;
+                this._attributesLoaded = true;
+                this._disableFlush = value;
             }
         }
 
@@ -153,13 +153,13 @@ namespace NLog
             get
             {
                 this.InitAttributes();
-                return this.autoLoggerName;
+                return this._autoLoggerName;
             }
 
             set
             {
-                this.attributesLoaded = true;
-                this.autoLoggerName = value;
+                this._attributesLoaded = true;
+                this._autoLoggerName = value;
             }
         }
 
@@ -437,7 +437,7 @@ namespace NLog
                 logger = LogManager.GetLogger(loggerName);
             }
 
-            logLevel = this.forceLogLevel ?? logLevel;
+            logLevel = this._forceLogLevel ?? logLevel;
             if (!logger.IsEnabled(logLevel))
             {
                 return; // We are done
@@ -458,7 +458,7 @@ namespace NLog
 
             ev.Message = message;
             ev.Parameters = arguments;
-            ev.Level = this.forceLogLevel ?? logLevel;
+            ev.Level = this._forceLogLevel ?? logLevel;
 
             if (eventId.HasValue)
             {
@@ -475,9 +475,9 @@ namespace NLog
 
         private void InitAttributes()
         {
-            if (!this.attributesLoaded)
+            if (!this._attributesLoaded)
             {
-                this.attributesLoaded = true;
+                this._attributesLoaded = true;
                 foreach (DictionaryEntry de in this.Attributes)
                 {
                     var key = (string)de.Key;
@@ -486,11 +486,11 @@ namespace NLog
                     switch (key.ToUpperInvariant())
                     {
                         case "DEFAULTLOGLEVEL":
-                            this.defaultLogLevel = LogLevel.FromString(value);
+                            this._defaultLogLevel = LogLevel.FromString(value);
                             break;
 
                         case "FORCELOGLEVEL":
-                            this.forceLogLevel = LogLevel.FromString(value);
+                            this._forceLogLevel = LogLevel.FromString(value);
                             break;
 
                         case "AUTOLOGGERNAME":
@@ -498,7 +498,7 @@ namespace NLog
                             break;
 
                         case "DISABLEFLUSH":
-                            this.disableFlush = Boolean.Parse(value);
+                            this._disableFlush = Boolean.Parse(value);
                             break;
                     }
                 }

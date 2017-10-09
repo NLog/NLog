@@ -83,8 +83,8 @@ namespace NLog.Targets
     {
         private static Assembly systemDataAssembly = typeof(IDbConnection).Assembly;
 
-        private IDbConnection activeConnection = null;
-        private string activeConnectionString;
+        private IDbConnection _activeConnection = null;
+        private string _activeConnectionString;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
@@ -543,7 +543,7 @@ namespace NLog.Targets
             {
                 this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
 
-                using (IDbCommand command = this.activeConnection.CreateCommand())
+                using (IDbCommand command = this._activeConnection.CreateCommand())
                 {
                     command.CommandText = base.RenderLogEvent(this.CommandText, logEvent);
                     command.CommandType = this.CommandType;
@@ -635,33 +635,33 @@ namespace NLog.Targets
 
         private void EnsureConnectionOpen(string connectionString)
         {
-            if (this.activeConnection != null)
+            if (this._activeConnection != null)
             {
-                if (this.activeConnectionString != connectionString)
+                if (this._activeConnectionString != connectionString)
                 {
                     InternalLogger.Trace("DatabaseTarget: close connection because of opening new.");
                     this.CloseConnection();
                 }
             }
 
-            if (this.activeConnection != null)
+            if (this._activeConnection != null)
             {
                 return;
             }
 
             InternalLogger.Trace("DatabaseTarget: open connection.");
-            this.activeConnection = this.OpenConnection(connectionString);
-            this.activeConnectionString = connectionString;
+            this._activeConnection = this.OpenConnection(connectionString);
+            this._activeConnectionString = connectionString;
         }
 
         private void CloseConnection()
         {
-            if (this.activeConnection != null)
+            if (this._activeConnection != null)
             {
-                this.activeConnection.Close();
-                this.activeConnection.Dispose();
-                this.activeConnection = null;
-                this.activeConnectionString = null;
+                this._activeConnection.Close();
+                this._activeConnection.Dispose();
+                this._activeConnection = null;
+                this._activeConnectionString = null;
             }
         }
 
@@ -701,7 +701,7 @@ namespace NLog.Targets
 
                     this.EnsureConnectionOpen(cs);
 
-                    using (var command = this.activeConnection.CreateCommand())
+                    using (var command = this._activeConnection.CreateCommand())
                     {
                         command.CommandType = commandInfo.CommandType;
                         command.CommandText = base.RenderLogEvent(commandInfo.Text, logEvent);

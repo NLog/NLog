@@ -48,7 +48,7 @@ namespace NLog.Config
         where TClassAttributeType : Attribute
         where TMethodAttributeType : NameBaseAttribute
     {
-        private readonly Dictionary<string, MethodInfo> nameToMethodInfo = new Dictionary<string, MethodInfo>();
+        private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>();
 
         /// <summary>
         /// Gets a collection of all registered items in the factory.
@@ -60,7 +60,7 @@ namespace NLog.Config
         /// </returns>
         public IDictionary<string, MethodInfo> AllRegisteredItems
         {
-            get { return this.nameToMethodInfo; }
+            get { return this._nameToMethodInfo; }
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace NLog.Config
         /// </summary>
         public void Clear()
         {
-            this.nameToMethodInfo.Clear();
+            this._nameToMethodInfo.Clear();
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace NLog.Config
         /// <param name="methodInfo">The method info.</param>
         public void RegisterDefinition(string name, MethodInfo methodInfo)
         {
-            this.nameToMethodInfo[name] = methodInfo;
+            this._nameToMethodInfo[name] = methodInfo;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryCreateInstance(string name, out MethodInfo result)
         {
-            return this.nameToMethodInfo.TryGetValue(name, out result);
+            return this._nameToMethodInfo.TryGetValue(name, out result);
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryGetDefinition(string name, out MethodInfo result)
         {
-            return this.nameToMethodInfo.TryGetValue(name, out result);
+            return this._nameToMethodInfo.TryGetValue(name, out result);
         }
     }
 }

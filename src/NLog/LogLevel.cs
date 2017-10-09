@@ -104,8 +104,8 @@ namespace NLog
         public static IEnumerable<LogLevel> AllLoggingLevels { get { return allLoggingLevels; } }
 
 
-        private readonly int ordinal;
-        private readonly string name;
+        private readonly int _ordinal;
+        private readonly string _name;
 
         /// <summary>
         /// Initializes a new instance of <see cref="LogLevel"/>.
@@ -114,8 +114,8 @@ namespace NLog
         /// <param name="ordinal">The log level ordinal number.</param>
         private LogLevel(string name, int ordinal)
         {
-            this.name = name;
-            this.ordinal = ordinal;
+            this._name = name;
+            this._ordinal = ordinal;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace NLog
         /// </summary>
         public string Name
         {
-            get { return this.name; }
+            get { return this._name; }
         }
 
         internal static LogLevel MaxLevel
@@ -141,7 +141,7 @@ namespace NLog
         /// </summary>
         public int Ordinal
         {
-            get { return this.ordinal; }
+            get { return this._ordinal; }
         }
 
         /// <summary>

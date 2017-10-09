@@ -113,7 +113,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Special SyncObject to allow closing down Target while busy retrying
         /// </summary>
-        private readonly object RetrySyncObject = new object();
+        private readonly object _retrySyncObject = new object();
 
         /// <summary>
         /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
@@ -121,7 +121,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">The log event.</param>
         protected override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
         {
-            lock (this.RetrySyncObject)
+            lock (this._retrySyncObject)
             {
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
@@ -139,7 +139,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
-            lock (this.RetrySyncObject)
+            lock (this._retrySyncObject)
             {
                 // Uses RetrySyncObject instead of Target.SyncRoot to allow closing target while doing sleep and retry.
                 Write(logEvent);

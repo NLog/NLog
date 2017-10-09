@@ -363,13 +363,13 @@ namespace NLog.Filters
         /// </summary>
         private struct FilterInfoKey : IEquatable<FilterInfoKey>
         {
-            private readonly StringBuilder StringBuffer;
+            private readonly StringBuilder _stringBuffer;
             public readonly string StringValue;
             public readonly int StringHashCode;
 
             public FilterInfoKey(StringBuilder stringBuffer, string stringValue, int? stringHashCode = null)
             {
-                StringBuffer = stringBuffer;
+                _stringBuffer = stringBuffer;
                 StringValue = stringValue;
                 if (stringHashCode.HasValue)
                 {
@@ -400,17 +400,17 @@ namespace NLog.Filters
                 {
                     return string.Equals(StringValue, other.StringValue, StringComparison.Ordinal);
                 }
-                if (StringBuffer != null && other.StringBuffer != null)
+                if (_stringBuffer != null && other._stringBuffer != null)
                 {
                     // StringBuilder.Equals only works when StringBuilder.Capacity is the same
-                    if (StringBuffer.Capacity != other.StringBuffer.Capacity)
+                    if (_stringBuffer.Capacity != other._stringBuffer.Capacity)
                     {
-                        if (StringBuffer.Length != other.StringBuffer.Length)
+                        if (_stringBuffer.Length != other._stringBuffer.Length)
                             return false;
 
-                        for (int x = 0; x < StringBuffer.Length; ++x)
+                        for (int x = 0; x < _stringBuffer.Length; ++x)
                         {
-                            if (StringBuffer[x] != other.StringBuffer[x])
+                            if (_stringBuffer[x] != other._stringBuffer[x])
                             {
                                 return false;
                             }
@@ -418,9 +418,9 @@ namespace NLog.Filters
 
                         return true;
                     }
-                    return StringBuffer.Equals(other.StringBuffer);
+                    return _stringBuffer.Equals(other._stringBuffer);
                 }
-                return ReferenceEquals(StringBuffer, other.StringBuffer) && ReferenceEquals(StringValue, other.StringValue);
+                return ReferenceEquals(_stringBuffer, other._stringBuffer) && ReferenceEquals(StringValue, other.StringValue);
             }
 
             public override bool Equals(object other)

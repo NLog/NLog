@@ -47,7 +47,7 @@ namespace NLog.Internal.FileAppenders
     [SecuritySafeCritical]
     internal abstract class BaseFileAppender : IDisposable
     {
-        private readonly Random random = new Random();
+        private readonly Random _random = new Random();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseFileAppender" /> class.
@@ -241,7 +241,7 @@ namespace NLog.Internal.FileAppenders
                         throw; // rethrow
                     }
 
-                    int actualDelay = this.random.Next(currentDelay);
+                    int actualDelay = this._random.Next(currentDelay);
                     InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
                     currentDelay *= 2;
                     System.Threading.Thread.Sleep(actualDelay);

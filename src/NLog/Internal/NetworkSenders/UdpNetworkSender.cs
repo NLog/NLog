@@ -46,8 +46,8 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal class UdpNetworkSender : NetworkSender
     {
-        private ISocket socket;
-        private EndPoint endpoint;
+        private ISocket _socket;
+        private EndPoint _endpoint;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UdpNetworkSender"/> class.
@@ -89,8 +89,8 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         protected override void DoInitialize()
         {
-            this.endpoint = this.ParseEndpointAddress(new Uri(this.Address), this.AddressFamily);
-            this.socket = this.CreateSocket(this.endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+            this._endpoint = this.ParseEndpointAddress(new Uri(this.Address), this.AddressFamily);
+            this._socket = this.CreateSocket(this._endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
         }
 
         /// <summary>
@@ -109,8 +109,8 @@ namespace NLog.Internal.NetworkSenders
         {
             try
             {
-                var sock = this.socket;
-                this.socket = null;
+                var sock = this._socket;
+                this._socket = null;
 
                 if (sock != null)
                 {
@@ -147,11 +147,11 @@ namespace NLog.Internal.NetworkSenders
                 args.SetBuffer(bytes, offset, length);
                 args.UserToken = asyncContinuation;
                 args.Completed += this.SocketOperationCompleted;
-                args.RemoteEndPoint = this.endpoint;
+                args.RemoteEndPoint = this._endpoint;
 
-                if (!this.socket.SendToAsync(args))
+                if (!this._socket.SendToAsync(args))
                 {
-                    this.SocketOperationCompleted(this.socket, args);
+                    this.SocketOperationCompleted(this._socket, args);
                 }
             }
         }
@@ -177,7 +177,7 @@ namespace NLog.Internal.NetworkSenders
 
         public override void CheckSocket()
         {
-            if (socket == null)
+            if (_socket == null)
             {
                 DoInitialize();
             }

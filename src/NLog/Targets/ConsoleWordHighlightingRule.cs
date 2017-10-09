@@ -47,7 +47,7 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public class ConsoleWordHighlightingRule
     {
-        private Regex compiledRegex;
+        private Regex _compiledRegex;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleWordHighlightingRule" /> class.
@@ -126,7 +126,7 @@ namespace NLog.Targets
             get
             {
                 //compile regex on first usage.
-                if (this.compiledRegex == null)
+                if (this._compiledRegex == null)
                 {
                     var regexpression = GetRegexExpression();
                     if (regexpression == null)
@@ -136,10 +136,10 @@ namespace NLog.Targets
                     }
 
                     var regexOptions = GetRegexOptions(RegexOptions.Compiled);
-                    this.compiledRegex = new Regex(regexpression, regexOptions);
+                    this._compiledRegex = new Regex(regexpression, regexOptions);
                 }
 
-                return this.compiledRegex;
+                return this._compiledRegex;
             }
         }
 

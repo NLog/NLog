@@ -66,7 +66,7 @@ namespace NLog.Targets
         ///   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
         /// 
         /// </remarks>
-        private bool pauseLogging;
+        private bool _pauseLogging;
 
         private static readonly IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
         {
@@ -89,7 +89,7 @@ namespace NLog.Targets
             this.WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
             this.RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
             this.UseDefaultRowHighlightingRules = true;
-            this.pauseLogging = false;
+            this._pauseLogging = false;
             this.DetectConsoleAvailable = false;
             this.OptimizeBufferReuse = true;
         }
@@ -169,15 +169,15 @@ namespace NLog.Targets
         {
             get
             {
-                return ConsoleTargetHelper.GetConsoleOutputEncoding(this.encoding, this.IsInitialized, this.pauseLogging);
+                return ConsoleTargetHelper.GetConsoleOutputEncoding(this._encoding, this.IsInitialized, this._pauseLogging);
             }
             set
             {
-                if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, this.IsInitialized, this.pauseLogging))
-                    encoding = value;
+                if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, this.IsInitialized, this._pauseLogging))
+                    _encoding = value;
             }
         }
-        private Encoding encoding;
+        private Encoding _encoding;
 #endif
 
         /// <summary>
@@ -207,19 +207,19 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-            this.pauseLogging = false;
+            this._pauseLogging = false;
             if (DetectConsoleAvailable)
             {
                 string reason;
-                pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
-                if (pauseLogging)
+                _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
+                if (_pauseLogging)
                 {
                     InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
             }
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            if (this.encoding != null && !this.pauseLogging)
-                Console.OutputEncoding = this.encoding;
+            if (this._encoding != null && !this._pauseLogging)
+                Console.OutputEncoding = this._encoding;
 #endif
             base.InitializeTarget();
             if (this.Header != null)
@@ -250,7 +250,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (pauseLogging)
+            if (_pauseLogging)
             {
                 //check early for performance
                 return;
@@ -301,14 +301,14 @@ namespace NLog.Targets
                 catch (IndexOutOfRangeException ex)
                 {
                     //this is a bug and therefor stopping logging. For docs, see PauseLogging property
-                    pauseLogging = true;
+                    _pauseLogging = true;
                     InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
                                             "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
                     //this is a bug and therefor stopping logging. For docs, see PauseLogging property
-                    pauseLogging = true;
+                    _pauseLogging = true;
                     InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
                                             "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
                 }
@@ -450,23 +450,23 @@ namespace NLog.Targets
         /// </summary>
         internal struct ColorPair
         {
-            private readonly ConsoleColor foregroundColor;
-            private readonly ConsoleColor backgroundColor;
+            private readonly ConsoleColor _foregroundColor;
+            private readonly ConsoleColor _backgroundColor;
 
             internal ColorPair(ConsoleColor foregroundColor, ConsoleColor backgroundColor)
             {
-                this.foregroundColor = foregroundColor;
-                this.backgroundColor = backgroundColor;
+                this._foregroundColor = foregroundColor;
+                this._backgroundColor = backgroundColor;
             }
 
             internal ConsoleColor BackgroundColor
             {
-                get { return this.backgroundColor; }
+                get { return this._backgroundColor; }
             }
 
             internal ConsoleColor ForegroundColor
             {
-                get { return this.foregroundColor; }
+                get { return this._foregroundColor; }
             }
         }
     }

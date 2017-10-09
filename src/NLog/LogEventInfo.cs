@@ -62,13 +62,13 @@ namespace NLog
 
         private static int globalSequenceId;
 
-        private string formattedMessage;
-        private string message;
-        private object[] parameters;
-        private IFormatProvider formatProvider;
-        private LogMessageFormatter messageFormatter = DefaultMessageFormatter;
-        private IDictionary<Layout, string> layoutCache;
-        private PropertiesDictionary properties;
+        private string _formattedMessage;
+        private string _message;
+        private object[] _parameters;
+        private IFormatProvider _formatProvider;
+        private LogMessageFormatter _messageFormatter = DefaultMessageFormatter;
+        private IDictionary<Layout, string> _layoutCache;
+        private PropertiesDictionary _properties;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEventInfo" /> class.
@@ -102,7 +102,7 @@ namespace NLog
         {
             if (messageTemplateParameters != null && messageTemplateParameters.Count > 0)
             {
-                this.properties = new PropertiesDictionary(messageTemplateParameters);
+                this._properties = new PropertiesDictionary(messageTemplateParameters);
             }
         }
 
@@ -224,11 +224,11 @@ namespace NLog
         /// </summary>
         public string Message
         {
-            get { return this.message; }
+            get { return this._message; }
             set
             {
                 bool rebuildMessageTemplateParameters = ResetMessageTemplateParameters();
-                this.message = value;
+                this._message = value;
                 ResetFormattedMessage(rebuildMessageTemplateParameters);
             }
         }
@@ -239,11 +239,11 @@ namespace NLog
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
         public object[] Parameters
         {
-            get { return this.parameters; }
+            get { return this._parameters; }
             set
             {
                 bool rebuildMessageTemplateParameters = ResetMessageTemplateParameters();
-                this.parameters = value;
+                this._parameters = value;
                 ResetFormattedMessage(rebuildMessageTemplateParameters);
             }
         }
@@ -254,12 +254,12 @@ namespace NLog
         /// </summary>
         public IFormatProvider FormatProvider
         {
-            get { return this.formatProvider; }
+            get { return this._formatProvider; }
             set
             {
-                if (this.formatProvider != value)
+                if (this._formatProvider != value)
                 {
-                    this.formatProvider = value;
+                    this._formatProvider = value;
                     ResetFormattedMessage(false);
                 }
             }
@@ -271,10 +271,10 @@ namespace NLog
         /// </summary>
         public LogMessageFormatter MessageFormatter
         {
-            get { return this.messageFormatter; }
+            get { return this._messageFormatter; }
             set
             {
-                this.messageFormatter = value ?? StringFormatMessageFormatter;
+                this._messageFormatter = value ?? StringFormatMessageFormatter;
                 ResetFormattedMessage(false);
             }
         }
@@ -286,12 +286,12 @@ namespace NLog
         {
             get 
             {
-                if (this.formattedMessage == null)
+                if (this._formattedMessage == null)
                 {
                     this.CalcFormattedMessage();
                 }
 
-                return this.formattedMessage;
+                return this._formattedMessage;
             }
         }
 
@@ -302,9 +302,9 @@ namespace NLog
         {
             get
             {
-                if (this.properties != null)
+                if (this._properties != null)
                 {
-                    return this.properties.Count > 0;
+                    return this._properties.Count > 0;
                 }
                 else
                 {
@@ -313,7 +313,7 @@ namespace NLog
             }
         }
 
-        internal PropertiesDictionary PropertiesDictionary { get { return this.properties; } set { this.properties = value; } }
+        internal PropertiesDictionary PropertiesDictionary { get { return this._properties; } set { this._properties = value; } }
 
         /// <summary>
         /// Gets the dictionary of per-event context properties.
@@ -330,23 +330,23 @@ namespace NLog
         /// <returns></returns>
         private PropertiesDictionary GetPropertiesInternal()
         {
-            if (this.properties == null)
+            if (this._properties == null)
             {
-                Interlocked.CompareExchange(ref this.properties, new PropertiesDictionary(), null);
+                Interlocked.CompareExchange(ref this._properties, new PropertiesDictionary(), null);
                 if (HasMessageTemplateParameters)
                 {
                     this.CalcFormattedMessage();
                     // MessageTemplateParameters have probably been created
                 }
             }
-            return this.properties;
+            return this._properties;
         }
 
         internal bool HasMessageTemplateParameters
         {
             get
             {
-                var logMessageFormatter = this.messageFormatter?.Target as ILogMessageFormatter;
+                var logMessageFormatter = this._messageFormatter?.Target as ILogMessageFormatter;
                 return logMessageFormatter?.HasProperties(this) ?? false;
             }
         }
@@ -358,13 +358,13 @@ namespace NLog
         {
             get
             {
-                if (this.properties != null && this.properties.MessageProperties.Count > 0)
+                if (this._properties != null && this._properties.MessageProperties.Count > 0)
                 {
-                    return new MessageTemplateParameters(this.properties.MessageProperties);
+                    return new MessageTemplateParameters(this._properties.MessageProperties);
                 }
                 else
                 {
-                    return new MessageTemplateParameters(this.parameters);
+                    return new MessageTemplateParameters(this._parameters);
                 }
             }
         }
@@ -500,13 +500,13 @@ namespace NLog
 
         internal string AddCachedLayoutValue(Layout layout, string value)
         {
-            if (this.layoutCache == null)
+            if (this._layoutCache == null)
             {
-                Interlocked.CompareExchange(ref this.layoutCache, new Dictionary<Layout, string>(), null);
+                Interlocked.CompareExchange(ref this._layoutCache, new Dictionary<Layout, string>(), null);
             }
-            lock (this.layoutCache)
+            lock (this._layoutCache)
             {
-                this.layoutCache[layout] = value;
+                this._layoutCache[layout] = value;
             }
 
             return value;
@@ -514,22 +514,22 @@ namespace NLog
 
         internal bool TryGetCachedLayoutValue(Layout layout, out string value)
         {
-            if (this.layoutCache == null)
+            if (this._layoutCache == null)
             {
                 // We don't need lock to see if dictionary has been created
                 value = null;
                 return false;
             }
 
-            lock (this.layoutCache)
+            lock (this._layoutCache)
             {
-                if (this.layoutCache.Count == 0)
+                if (this._layoutCache.Count == 0)
                 {
                     value = null;
                     return false;
                 }
 
-                return this.layoutCache.TryGetValue(layout, out value);
+                return this._layoutCache.TryGetValue(layout, out value);
             }
         }
 
@@ -592,11 +592,11 @@ namespace NLog
         {
             try
             {
-                this.formattedMessage = this.messageFormatter(this);
+                this._formattedMessage = this._messageFormatter(this);
             }
             catch (Exception exception)
             {
-                this.formattedMessage = this.Message;
+                this._formattedMessage = this.Message;
                 InternalLogger.Warn(exception, "Error when formatting a message.");
 
                 if (exception.MustBeRethrown())
@@ -608,7 +608,7 @@ namespace NLog
 
         private void ResetFormattedMessage(bool rebuildMessageTemplateParameters)
         {
-            this.formattedMessage = null;
+            this._formattedMessage = null;
             if (rebuildMessageTemplateParameters && HasMessageTemplateParameters)
             {
                 this.CalcFormattedMessage();
@@ -617,9 +617,9 @@ namespace NLog
 
         private bool ResetMessageTemplateParameters()
         {
-            if (this.properties != null && HasMessageTemplateParameters)
+            if (this._properties != null && HasMessageTemplateParameters)
             {
-                this.properties.MessageProperties = null;
+                this._properties.MessageProperties = null;
                 return true;
             }
             return false;

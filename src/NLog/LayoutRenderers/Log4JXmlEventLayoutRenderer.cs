@@ -66,7 +66,7 @@ namespace NLog.LayoutRenderers
         public Log4JXmlEventLayoutRenderer() : this(LogFactory.CurrentAppDomain)
         {
         }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
@@ -85,8 +85,8 @@ namespace NLog.LayoutRenderers
 #else
             this.AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
-                "{0}({1})",
-                appDomain.FriendlyName,
+                "{0}({1})", 
+                appDomain.FriendlyName, 
                 ThreadIDHelper.Instance.CurrentProcessID);
 #endif
 
@@ -97,15 +97,15 @@ namespace NLog.LayoutRenderers
 #if SILVERLIGHT
                 this.machineName = "silverlight";
 #else
-                this.machineName = Environment.MachineName;
+                this._machineName = Environment.MachineName;
 #endif
             }
             catch (System.Security.SecurityException)
             {
-                this.machineName = string.Empty;
+                this._machineName = string.Empty;
             }
 
-            this.xmlWriterSettings = new XmlWriterSettings
+            this._xmlWriterSettings = new XmlWriterSettings
             {
                 Indent = this.IndentXml,
                 ConformanceLevel = ConformanceLevel.Fragment,
@@ -190,12 +190,9 @@ namespace NLog.LayoutRenderers
         [DefaultValue(" ")]
         public string NdcItemSeparator { get; set; }
 
+        private readonly string _machineName;
 
-
-
-        private readonly string machineName;
-
-        private readonly XmlWriterSettings xmlWriterSettings;
+        private readonly XmlWriterSettings _xmlWriterSettings;
 
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
@@ -233,7 +230,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             StringBuilder sb = new StringBuilder();
-            using (XmlWriter xtw = XmlWriter.Create(sb, this.xmlWriterSettings))
+            using (XmlWriter xtw = XmlWriter.Create(sb, this._xmlWriterSettings))
             {
                 xtw.WriteStartElement("log4j", "event", dummyNamespace);
                 xtw.WriteAttributeSafeString("xmlns", "nlog", null, dummyNLogNamespace);
@@ -375,7 +372,7 @@ namespace NLog.LayoutRenderers
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
                 xtw.WriteAttributeSafeString("name", "log4jmachinename");
-                xtw.WriteAttributeSafeString("value", this.machineName);
+                xtw.WriteAttributeSafeString("value", this._machineName);
                 xtw.WriteEndElement();
 
                 xtw.WriteEndElement();
