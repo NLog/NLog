@@ -66,9 +66,10 @@ namespace NLog
         public delegate CultureInfo GetCultureInfo();
 
         /// <summary>
-        /// Gets the default <see cref="NLog.LogFactory" /> instance.
+        /// Gets the <see cref="NLog.LogFactory" /> instance used in the <see cref="LogManager"/>.
         /// </summary>
-        internal static LogFactory LogFactory
+        /// <remarks>Could be used to pass the to other methods</remarks>
+        public static LogFactory LogFactory
         {
             get { return factory; }
         }
