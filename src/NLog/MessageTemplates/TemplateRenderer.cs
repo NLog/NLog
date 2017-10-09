@@ -89,7 +89,16 @@ namespace NLog.MessageTemplates
                         {
                             messageTemplateParameters = new MessageTemplateParameter[parameters.Length];
                         }
-                        messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, hole.Format);
+                        string holeFormat = hole.Format;
+                        if (string.IsNullOrEmpty(holeFormat))
+                        {
+                            switch (hole.CaptureType)
+                            {
+                                case CaptureType.Stringify: holeFormat = "$"; break;
+                                case CaptureType.Serialize: holeFormat = "@"; break;
+                            }
+                        }
+                        messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, holeFormat);
                         RenderHole(sb, hole, formatProvider, holeParameter);
                     }
                 }

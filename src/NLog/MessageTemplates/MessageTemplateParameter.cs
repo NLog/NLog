@@ -62,6 +62,28 @@ namespace NLog.MessageTemplates
         public readonly string Format;
 
         /// <summary>
+        /// Checks if the <see cref="Format"/> contains reserved letters ('@', '$', 'l')
+        /// </summary>
+        public bool IsReservedFormat
+        {
+            get
+            {
+                switch (Format)
+                {
+                    case "@":
+                    case "$":
+                        return true;
+                    case "l":
+                        if (Value is string || Value == null || Value is char)
+                            return true;
+                        else
+                            return false;
+                }
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Constructs a single message template parameter
         /// </summary>
         /// <param name="name">Parameter Name</param>
