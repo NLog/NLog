@@ -494,11 +494,13 @@ namespace NLog.Config
             InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", this.LoggingRules.Count, configuredNamedTargets.Count);
 
             HashSet<string> targetNamesAtRules = new HashSet<string>(this.LoggingRules.SelectMany(r => r.Targets).Select(t => t.Name));
+            HashSet<string> wrappedTargetNames = new HashSet<string>(configuredNamedTargets.OfType<WrapperTargetBase>().Select(wt => wt.WrappedTarget.Name));
+
 
             int unusedCount = 0;
             configuredNamedTargets.ToList().ForEach((target) =>
             {
-                if (!targetNamesAtRules.Contains(target.Name))
+                if (!targetNamesAtRules.Contains(target.Name) && !wrappedTargetNames.Contains(target.Name))
                 {
                     InternalLogger.Warn("Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
                     unusedCount++;
