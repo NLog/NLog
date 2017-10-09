@@ -333,8 +333,9 @@ namespace NLog
             if (this.properties == null)
             {
                 Interlocked.CompareExchange(ref this.properties, new PropertiesDictionary(), null);
-                if (HasMessageTemplateParameters && !ReferenceEquals(this.Message, this.FormattedMessage))
+                if (HasMessageTemplateParameters)
                 {
+                    this.CalcFormattedMessage();
                     // MessageTemplateParameters have probably been created
                 }
             }
@@ -608,9 +609,9 @@ namespace NLog
         private void ResetFormattedMessage(bool rebuildMessageTemplateParameters)
         {
             this.formattedMessage = null;
-            if (rebuildMessageTemplateParameters && HasMessageTemplateParameters && !ReferenceEquals(this.Message, this.FormattedMessage))
+            if (rebuildMessageTemplateParameters && HasMessageTemplateParameters)
             {
-                // Have re-captured MessageTemplateParameters
+                this.CalcFormattedMessage();
             }
         }
 
