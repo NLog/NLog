@@ -49,7 +49,7 @@ namespace NLog.Targets
 #pragma warning restore 618
     {
         private readonly MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>> _propsCache = new MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>>(10000);
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(10000);
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
         private readonly JsonSerializeOptions _serializeOptions = new JsonSerializeOptions();
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
