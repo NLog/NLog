@@ -157,7 +157,7 @@ namespace NLog.UnitTests
                 LogManager.Configuration = null;
                 Assert.True(called);
                 Assert.Equal(loggingConfiguration, oldConfiguration);
-                Assert.Equal(null, newConfiguration);
+                Assert.Null(newConfiguration);
             }
             finally
             {
