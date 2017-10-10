@@ -288,7 +288,7 @@ namespace NLog.Common
             var formattedMessage =
                 (args == null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
 
-            var builder = new StringBuilder(formattedMessage.Length + TimeStampFormat.Length + 8);
+            var builder = new StringBuilder(formattedMessage.Length + TimeStampFormat.Length + ex?.ToString()?.Length ?? 0 + 25);
             if (IncludeTimestamp)
             {
                 builder
@@ -344,6 +344,14 @@ namespace NLog.Common
                    LogWriter != null;
         }
 
+        /// <summary>
+        /// Write internal messages to the log file defined in <see cref="LogFile"/>.
+        /// </summary>
+        /// <param name="message">Message to write.</param>
+        /// <remarks>
+        /// Message will be logged only when the property <see cref="LogFile"/> is not <c>null</c>, otherwise the
+        /// method has no effect.
+        /// </remarks>
         private static void WriteToLogFile(string message)
         {
             var logFile = LogFile;
@@ -361,6 +369,14 @@ namespace NLog.Common
             }            
         }
 
+        /// <summary>
+        /// Write internal messages to the <see cref="System.IO.TextWriter"/> defined in <see cref="LogWriter"/>.
+        /// </summary>
+        /// <param name="message">Message to write.</param>
+        /// <remarks>
+        /// Message will be logged only when the property <see cref="LogWriter"/> is not <c>null</c>, otherwise the
+        /// method has no effect.
+        /// </remarks>
         private static void WriteToTextWriter(string message)
         {
             var writer = LogWriter;
@@ -375,6 +391,14 @@ namespace NLog.Common
             }
         }
 
+        /// <summary>
+        /// Write internal messages to the <see cref="System.Console"/>.
+        /// </summary>
+        /// <param name="message">Message to write.</param>
+        /// <remarks>
+        /// Message will be logged only when the property <see cref="LogToConsole"/> is <c>true</c>, otherwise the 
+        /// method has no effect.
+        /// </remarks>
         private static void WriteToConsole(string message)
         {
             if (!LogToConsole)
@@ -388,6 +412,14 @@ namespace NLog.Common
             }
         }
 
+        /// <summary>
+        /// Write internal messages to the <see cref="System.Console.Error"/>.
+        /// </summary>
+        /// <param name="message">Message to write.</param>
+        /// <remarks>
+        /// Message will be logged when the property <see cref="LogToConsoleError"/> is <c>true</c>, otherwise the 
+        /// method has no effect.
+        /// </remarks>
         private static void WriteToErrorConsole(string message)
         {
             if (!LogToConsoleError)
