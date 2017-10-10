@@ -155,7 +155,7 @@ namespace NLog.UnitTests.LayoutRenderers
                         NestedDiagnosticsLogicalContext.Push("kopytko");
                         LogManager.GetLogger("A").Debug("d");
                         AssertDebugLastMessage("debug", "kopytko d");
-                        Assert.Equal("kopytko", NestedDiagnosticsLogicalContext.Pop()); // manual pop
+                        Assert.Equal("kopytko", NestedDiagnosticsLogicalContext.PopObject()); // manual pop
                         LogManager.GetLogger("A").Debug("c");
                         AssertDebugLastMessage("debug", "kota c");
                     }
@@ -167,12 +167,12 @@ namespace NLog.UnitTests.LayoutRenderers
             }
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.Pop());
+            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.PopObject());
             NestedDiagnosticsLogicalContext.Push("zzz");
             NestedDiagnosticsLogicalContext.Push("yyy");
-            Assert.Equal("yyy", NestedDiagnosticsLogicalContext.Pop());
+            Assert.Equal("yyy", NestedDiagnosticsLogicalContext.PopObject());
             NestedDiagnosticsLogicalContext.Clear();
-            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.Pop());
+            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.PopObject());
         }
 
         [Fact]
@@ -282,7 +282,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", "100 0");
 
-            NestedDiagnosticsLogicalContext.Pop();
+            NestedDiagnosticsLogicalContext.PopObject();
             LogManager.GetLogger("A").Debug("1");
             AssertDebugLastMessage("debug", "99 1");
 

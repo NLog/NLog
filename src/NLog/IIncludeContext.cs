@@ -31,84 +31,49 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+namespace NLog
 {
-    using NLog.LayoutRenderers;
-
     /// <summary>
-    /// A specialized layout that renders Log4j-compatible XML events.
+    /// Include context properties
     /// </summary>
-    /// <remarks>
-    /// This layout is not meant to be used explicitly. Instead you can use ${log4jxmlevent} layout renderer.
-    /// </remarks>
-    [Layout("Log4JXmlEventLayout")]
-    public class Log4JXmlEventLayout : Layout, IIncludeContext
+    public interface IIncludeContext
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Log4JXmlEventLayout" /> class.
-        /// </summary>
-        public Log4JXmlEventLayout()
-        {
-            this.Renderer = new Log4JXmlEventLayoutRenderer();
-        }
 
-        /// <summary>
-        /// Gets the <see cref="Log4JXmlEventLayoutRenderer"/> instance that renders log events.
-        /// </summary>
-        public Log4JXmlEventLayoutRenderer Renderer { get; private set; }
+
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdc { get { return Renderer.IncludeMdc; } set { Renderer.IncludeMdc = value; } }
-
-        /// <summary>
-        /// Gets or sets the option to include all properties from the log events
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        public bool IncludeAllProperties { get { return Renderer.IncludeAllProperties; } set { Renderer.IncludeAllProperties = value; } }
+        bool IncludeMdc { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdc { get { return Renderer.IncludeNdc; } set { Renderer.IncludeNdc = value; } }
+        bool IncludeNdc { get; set; }
 
-#if !SILVERLIGHT
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        bool IncludeAllProperties { get; set; }
+
+#if NET4_0 || NET4_5
+
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdlc { get { return Renderer.IncludeMdlc; } set { Renderer.IncludeMdlc = value; } }
+        bool IncludeMdlc { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdlc { get { return Renderer.IncludeNdlc; } set { Renderer.IncludeNdlc = value; } }
+        bool IncludeNdlc { get; set; }
 
 #endif
-
-        /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <returns>The rendered layout.</returns>
-        protected override string GetFormattedMessage(LogEventInfo logEvent)
-        {
-            return RenderAllocateBuilder(logEvent);
-        }
-
-        /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <param name="target"><see cref="System.Text.StringBuilder"/> for the result</param>
-        protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
-        {
-            this.Renderer.RenderAppendBuilder(logEvent, target);
-        }
     }
 }
