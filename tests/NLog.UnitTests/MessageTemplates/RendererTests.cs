@@ -73,6 +73,8 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("{{{0:0{{}", new object[] { 3 }, "{3{")] //format is here "0{"
         [InlineData("hello {0}", new object[] { null }, "hello NULL")]
         [InlineData("if its {yes}, it should not be {no}", new object[] { true, false }, "if its true, it should not be false")]
+        [InlineData("Always use the correct {enum}", new object[] { NLog.Config.ExceptionRenderingFormat.Method }, "Always use the correct Method")]
+        [InlineData("Always use the correct {enum:D}", new object[] { NLog.Config.ExceptionRenderingFormat.Method }, "Always use the correct 4")]
         public void RenderTest(string input, object[] args, string expected)
         {
             var culture = CultureInfo.InvariantCulture;

@@ -59,6 +59,8 @@ namespace NLog.MessageTemplates
         private const int MaxValueLength = 512 * 1024;
         private const string LiteralFormatSymbol = "l";
 
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
+
         /// <inheritDoc/>
         public bool SerializeObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
@@ -96,9 +98,6 @@ namespace NLog.MessageTemplates
         {
             // todo support all scalar types: 
 
-
-    
-
             // todo byte[] - hex?
             // todo datetime, timespan, datetimeoffset
             // todo nullables correct?
@@ -113,43 +112,111 @@ namespace NLog.MessageTemplates
                 return true;
             }
 
-            var boolValue = value as bool?;
-            if (boolValue != null)
-            {
-                if (boolValue == true)
-                {
-                    builder.Append("true");
-                }
-                else
-                {
-                    builder.Append("false");
-                }
-                return true;
-            }
-
-            if (value is char)
-            {
-                bool includeQuotes = withoutFormat || format != LiteralFormatSymbol;
-                if (includeQuotes) builder.Append('"');
-                builder.Append((char)value);
-                if (includeQuotes) builder.Append('"');
-                return true;
-            }
-
             if (value == null)
             {
                 builder.Append("NULL");
                 return true;
             }
 
-            var formattable = value as IFormattable;
-            if (formattable != null)
+            IFormattable formattable = null;
+            if (!withoutFormat && (formattable = value as IFormattable) != null)
             {
                 builder.Append(formattable.ToString(format, formatProvider));
                 return true;
             }
+            else
+            {
+                // Optimize for types that are pretty much invariant in all cultures when no format-string
+                TypeCode objTypeCode = Convert.GetTypeCode(value);
+                switch (objTypeCode)
+                {
+                    case TypeCode.Boolean:
+                        {
+                            builder.Append(((bool)value) ? "true" : "false");
+                            return true;
+                        }
+                    case TypeCode.Char:
+                        {
+                            bool includeQuotes = withoutFormat || format != LiteralFormatSymbol;
+                            if (includeQuotes) builder.Append('"');
+                            builder.Append((char)value);
+                            if (includeQuotes) builder.Append('"');
+                            return true;
+                        }
+
+                    case TypeCode.Byte:
+                    case TypeCode.SByte:
+                    case TypeCode.Int16:
+                    case TypeCode.Int32:
+                    case TypeCode.Int64:
+                    case TypeCode.UInt16:
+                    case TypeCode.UInt32:
+                    case TypeCode.UInt64:
+                        {
+                            Enum enumValue;
+                            if ((enumValue = value as Enum) != null)
+                            {
+                                AppendEnumAsString(builder, enumValue);
+                            }
+                            else
+                            {
+                                AppendIntegerAsString(builder, value, objTypeCode);
+                            }
+                        }
+                        return true;
+
+                    case TypeCode.Object:   // Guid, TimeSpan, DateTimeOffset
+                    default:                // Single, Double, Decimal, etc.
+                        break;
+                }
+            }
 
             return false;
+        }
+
+        private static void AppendIntegerAsString(StringBuilder sb, object value, TypeCode objTypeCode)
+        {
+            switch (objTypeCode)
+            {
+                case TypeCode.Byte: sb.AppendInvariant((Byte)value); break;
+                case TypeCode.SByte: sb.AppendInvariant((SByte)value); break;
+                case TypeCode.Int16: sb.AppendInvariant((Int16)value); break;
+                case TypeCode.Int32: sb.AppendInvariant((Int32)value); break;
+                case TypeCode.Int64:
+                    {
+                        Int64 int64 = (Int64)value;
+                        if (int64 < Int32.MaxValue && int64 > Int32.MinValue)
+                            sb.AppendInvariant((Int32)int64);
+                        else
+                            sb.Append(int64);
+                    }
+                    break;
+                case TypeCode.UInt16: sb.AppendInvariant((UInt16)value); break;
+                case TypeCode.UInt32: sb.AppendInvariant((UInt32)value); break;
+                case TypeCode.UInt64:
+                    {
+                        UInt64 uint64 = (UInt64)value;
+                        if (uint64 < UInt32.MaxValue)
+                            sb.AppendInvariant((UInt32)uint64);
+                        else
+                            sb.Append(uint64);
+                    }
+                    break;
+                default:
+                    sb.Append(XmlHelper.XmlConvertToString(value, objTypeCode));
+                    break;
+            }
+        }
+
+        private void AppendEnumAsString(StringBuilder sb, Enum value)
+        {
+            string textValue;
+            if (!_enumCache.TryGetValue(value, out textValue))
+            {
+                textValue = value.ToString();
+                _enumCache.TryAddValue(value, textValue);
+            }
+            sb.Append(textValue);
         }
 
         private bool SerializeWithoutCyclicLoop(IEnumerable collection, string format, IFormatProvider formatProvider, StringBuilder builder, bool withoutFormat,
