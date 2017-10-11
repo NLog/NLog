@@ -939,7 +939,7 @@ namespace NLog.UnitTests.Targets
                 //DUNNO what to expected!
                 //try (which fails)
                 AssertFileContents(
-                    Path.Combine(archiveFolder, string.Format("{0}.txt", archiveFileName)),
+                    Path.Combine(archiveFolder, $"{archiveFileName}.txt"),
                    StringRepeat(times, "aaa\n") + StringRepeat(times, "bbb\n") + StringRepeat(times, "ccc\n") + StringRepeat(times, "ddd\n"),
                     Encoding.UTF8);
             }
@@ -1172,9 +1172,11 @@ namespace NLog.UnitTests.Targets
                     var archiveFileName = archiveFileNameTemplate.Replace("{#}", previousWriteTime.ToString(archiveDateFormat) + (includeSequenceInArchive ? ".0" : string.Empty));
                     var archiveExists = File.Exists(archiveFileName);
                     if (dayIsChanged)
-                        Assert.True(archiveExists, string.Format("new archive should be created when the day part of {0} time is changed", timeKind));
+                        Assert.True(archiveExists,
+                            $"new archive should be created when the day part of {timeKind} time is changed");
                     else
-                        Assert.False(archiveExists, string.Format("new archive should not be create when day part of {0} time is unchanged", timeKind));
+                        Assert.False(archiveExists,
+                            $"new archive should not be create when day part of {timeKind} time is unchanged");
 
                     previousWriteTime = eventInfo.TimeStamp.Date;
                     if (dayIsChanged)
@@ -1358,7 +1360,8 @@ namespace NLog.UnitTests.Targets
                 timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
                 logger.Debug("1234567890");
                 // The archive file name must be based on the last time the file was written.
-                string archiveFileName = string.Format("{0}.txt", timeSource.Time.ToString(archiveDateFormat) + (includeSequenceInArchive ? ".0" : string.Empty));
+                string archiveFileName =
+                    $"{timeSource.Time.ToString(archiveDateFormat) + (includeSequenceInArchive ? ".0" : string.Empty)}.txt";
                 // Effectively update the file's last-write-time.
                 timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
 
@@ -2629,14 +2632,15 @@ namespace NLog.UnitTests.Targets
                 for (int i = 0; i < maxArchiveFiles; i++)
                 {
                     Generate100BytesLog('a');
-                    Assert.True(helper.Exists(i), string.Format("file {0} is missing", i));
+                    Assert.True(helper.Exists(i), $"file {i} is missing");
                 }
 
                 for (int i = maxArchiveFiles; i < 21; i++)
                 {
                     Generate100BytesLog('b');
                     var numberToBeRemoved = i - maxArchiveFiles; // number 11, we need to remove 1 etc
-                    Assert.True(!helper.Exists(numberToBeRemoved), string.Format("archive file {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
+                    Assert.True(!helper.Exists(numberToBeRemoved),
+                        $"archive file {numberToBeRemoved} has not been removed! We are created file {i}");
                 }
 
                 LogManager.Configuration = null;
@@ -2703,8 +2707,10 @@ namespace NLog.UnitTests.Targets
                 for (int i = 0; i <= maxArchiveFiles - 3; i++)
                 {
                     Generate100BytesLog((char)('1' + i));
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))), string.Format("{0} is missing", string.Format(logFile1, "." + i.ToString())));
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))), string.Format("{0} is missing", string.Format(logFile2, "." + i.ToString())));
+                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
+                        $"{string.Format(logFile1, "." + i.ToString())} is missing");
+                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
+                        $"{string.Format(logFile2, "." + i.ToString())} is missing");
                 }
 
                 TimeSource.Current = defaultTimeSource; // restore default time source
@@ -2712,18 +2718,24 @@ namespace NLog.UnitTests.Targets
                 for (int i = 0; i < maxArchiveFiles; i++)
                 {
                     Generate100BytesLog((char)('b' + i));
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))), string.Format("{0} is missing", string.Format(logFile1, "." + i.ToString())));
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))), string.Format("{0} is missing", string.Format(logFile2, "." + i.ToString())));
+                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
+                        $"{string.Format(logFile1, "." + i.ToString())} is missing");
+                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
+                        $"{string.Format(logFile2, "." + i.ToString())} is missing");
                 }
 
                 for (int i = maxArchiveFiles; i < 10; i++)
                 {
                     Generate100BytesLog((char)('b' + i));
                     var numberToBeRemoved = i - maxArchiveFiles;
-                    Assert.False(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + numberToBeRemoved.ToString()))), string.Format("archive FirstFile {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
-                    Assert.False(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + numberToBeRemoved.ToString()))), string.Format("archive SecondFile {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))), string.Format("archive FirstFile {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))), string.Format("archive SecondFile {0} has not been removed! We are created file {1}", numberToBeRemoved, i));
+                    Assert.False(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + numberToBeRemoved.ToString()))),
+                        $"archive FirstFile {numberToBeRemoved} has not been removed! We are created file {i}");
+                    Assert.False(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + numberToBeRemoved.ToString()))),
+                        $"archive SecondFile {numberToBeRemoved} has not been removed! We are created file {i}");
+                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
+                        $"archive FirstFile {numberToBeRemoved} has not been removed! We are created file {i}");
+                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
+                        $"archive SecondFile {numberToBeRemoved} has not been removed! We are created file {i}");
                 }
 
                 LogManager.Configuration = null;
@@ -2823,7 +2835,7 @@ namespace NLog.UnitTests.Targets
 
             public string GetFullPath(int number)
             {
-                return Path.Combine(String.Format("{0}/{1}.{2}.{3}", FolderName, FileName, number, Ext));
+                return Path.Combine($"{FolderName}/{FileName}.{number}.{Ext}");
             }
 
             public static string GenerateTempPath()
@@ -2841,11 +2853,9 @@ namespace NLog.UnitTests.Targets
         {
             string archivePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             const string archiveDateFormat = "yyyy-MM-dd";
-            string archiveFileName = Path.Combine(archivePath, String.Format("{{{0}}}.log", placeHolderSharps));
-            string expectedArchiveFullName = String.Format("{0}/{1}.{2}.log",
-                archivePath,
-                DateTime.Now.ToString(archiveDateFormat),
-                expectedSequenceInArchiveFileName);
+            string archiveFileName = Path.Combine(archivePath, $"{{{placeHolderSharps}}}.log");
+            string expectedArchiveFullName =
+                $"{archivePath}/{DateTime.Now.ToString(archiveDateFormat)}.{expectedSequenceInArchiveFileName}.log";
 
             GenerateArchives(count: sequenceNumber + 1, archiveDateFormat: archiveDateFormat,
                 archiveFileName: archiveFileName, archiveNumbering: ArchiveNumberingMode.DateAndSequence);
@@ -2864,9 +2874,7 @@ namespace NLog.UnitTests.Targets
             string archivePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             string archiveFileName = Path.Combine(archivePath, "{#}.log");
             string expectedDateInArchiveFileName = DateTime.Now.ToString(archiveDateFormat);
-            string expectedArchiveFullName = String.Format("{0}/{1}.1.log",
-                archivePath,
-                expectedDateInArchiveFileName);
+            string expectedArchiveFullName = $"{archivePath}/{expectedDateInArchiveFileName}.1.log";
 
             // We generate 2 archives so that the algorithm that seeks old archives is also tested.
             GenerateArchives(count: 2, archiveDateFormat: archiveDateFormat, archiveFileName: archiveFileName,

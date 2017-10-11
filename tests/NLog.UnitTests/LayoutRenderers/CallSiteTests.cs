@@ -556,11 +556,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var logger = LogManager.GetLogger("A");
             logger.Warn("direct");
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
             LoggerTests.BaseWrapper wrappedLogger = new LoggerTests.MyWrapper();
             wrappedLogger.Log("wrapped");
-            AssertDebugLastMessage("debug", string.Format("{0}|wrapped", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|wrapped");
         }
 
         [Fact]
@@ -647,11 +647,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var logger = LogManager.GetLogger("A");
             logger.Warn("direct");
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
             CompositeWrapper wrappedLogger = new CompositeWrapper();
             wrappedLogger.Log("wrapped");
-            AssertDebugLastMessage("debug", string.Format("{0}|wrapped", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|wrapped");
 
         }
 
@@ -675,7 +675,7 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             AsyncMethod().Wait();
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
         }
 
@@ -707,7 +707,7 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             AsyncMethod2a().Wait();
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
         }
 
@@ -745,7 +745,7 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             AsyncMethod3a().Wait();
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
         }
 
         private async Task AsyncMethod3a()
@@ -792,7 +792,7 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             AsyncMethod4().Wait();
-            AssertDebugLastMessage("debug", string.Format("{0}|Direct, async method", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|Direct, async method");
 
         }
 
@@ -844,7 +844,7 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             MoveNext();
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
         }
 

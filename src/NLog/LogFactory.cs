@@ -1142,8 +1142,8 @@ namespace NLog
                         //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
                         if (cacheKey.ConcreteType.IsStaticClass())
                         {
-                            var errorMessage = String.Format("GetLogger / GetCurrentClassLogger is '{0}' as loggerType can be a static class and should inherit from Logger",
-                                fullName);
+                            var errorMessage =
+                                $"GetLogger / GetCurrentClassLogger is '{fullName}' as loggerType can be a static class and should inherit from Logger";
                             InternalLogger.Error(errorMessage);
                             if (ThrowExceptions)
                             {
@@ -1160,7 +1160,8 @@ namespace NLog
                             {
                                 //well, it's not a Logger, and we should return a Logger.
 
-                                var errorMessage = String.Format("GetLogger / GetCurrentClassLogger got '{0}' as loggerType which doesn't inherit from Logger", fullName);
+                                var errorMessage =
+                                    $"GetLogger / GetCurrentClassLogger got '{fullName}' as loggerType which doesn't inherit from Logger";
                                 InternalLogger.Error(errorMessage);
                                 if (ThrowExceptions)
                                 {

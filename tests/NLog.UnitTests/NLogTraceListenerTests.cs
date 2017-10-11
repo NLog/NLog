@@ -79,10 +79,10 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello");
 
             Trace.Write(3.1415);
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug {0}", 3.1415));
+            AssertDebugLastMessage("debug", $"Logger1 Debug {3.1415}");
 
             Trace.Write(3.1415, "Cat2");
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
+            AssertDebugLastMessage("debug", $"Logger1 Debug Cat2: {3.1415}");
         }
 
         [Fact]
@@ -106,10 +106,10 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello");
 
             Trace.WriteLine(3.1415);
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug {0}", 3.1415));
+            AssertDebugLastMessage("debug", $"Logger1 Debug {3.1415}");
 
             Trace.WriteLine(3.1415, "Cat2");
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
+            AssertDebugLastMessage("debug", $"Logger1 Debug Cat2: {3.1415}");
         }
 
         [Fact]
@@ -202,7 +202,8 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Fatal 42 123");
 
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
-            AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14.ToString(System.Globalization.CultureInfo.CurrentCulture)));
+            AssertDebugLastMessage("debug",
+                $"MySource1 Fatal 42, {3.14.ToString(System.Globalization.CultureInfo.CurrentCulture)}, foo 145");
         }
 
 #if MONO

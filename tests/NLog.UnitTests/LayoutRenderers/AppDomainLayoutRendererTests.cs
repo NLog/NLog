@@ -48,7 +48,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void AppDomainTest()
         {
             //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${appdomain}", string.Format("{0:0000}:{1}", id, friendlyname));
+            AssertLayoutRendererOutput("${appdomain}", $"{id:0000}:{friendlyname}");
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void AppDomainTestLongFormatTest()
         {
             //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${appdomain:format=long}", string.Format("{0:0000}:{1}", id, friendlyname));
+            AssertLayoutRendererOutput("${appdomain:format=long}", $"{id:0000}:{friendlyname}");
         }
 
         [Fact]

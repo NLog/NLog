@@ -93,17 +93,17 @@ namespace NLog.UnitTests.Config
         [InlineData("1:0:0:0", 86400)] //1 day
         public void SetTimeSpanFromXmlTest(string interval, int seconds)
         {
-            var config = CreateConfigurationFromString(string.Format(@"
+            var config = CreateConfigurationFromString($@"
             <nlog throwExceptions='true'>
                 <targets>
-                    <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{0}'>
+                    <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{interval}'>
                         <target name='debug' type='Debug' layout='${{message}}' />
                     </wrapper-target>
                 </targets>
                 <rules>
                     <logger name='*' level='Debug' writeTo='limiting' />
                 </rules>
-            </nlog>", interval));
+            </nlog>");
 
             var target = config.FindTargetByName<LimitingTargetWrapper>("limiting");
             Assert.NotNull(target);

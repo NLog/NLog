@@ -75,16 +75,18 @@ namespace NLog.UnitTests.Targets
         public void MaxMessageLengthShouldBeAsSpecifiedOption()
         {
             const int expectedMaxMessageLength = 1000;
-            LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
+            LoggingConfiguration c = CreateConfigurationFromString($@"
             <nlog ThrowExceptions='true'>
                 <targets>
-                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{0}' />
+                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{
+                    expectedMaxMessageLength
+                }' />
                 </targets>
                 <rules>
                       <logger name='*' writeTo='eventLog1'>
                       </logger>
                     </rules>
-            </nlog>", expectedMaxMessageLength));
+            </nlog>");
 
             var eventLog1 = c.FindTargetByName<EventLogTarget>("eventLog1");
             Assert.Equal(expectedMaxMessageLength, eventLog1.MaxMessageLength);
@@ -95,16 +97,18 @@ namespace NLog.UnitTests.Targets
         [InlineData(-1)]
         public void ConfigurationShouldThrowException_WhenMaxMessageLengthIsNegativeOrZero(int maxMessageLength)
         {
-            string configrationText = string.Format(@"
+            string configrationText = $@"
             <nlog ThrowExceptions='true'>
                 <targets>
-                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{0}' />
+                    <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{
+                    maxMessageLength
+                }' />
                 </targets>
                 <rules>
                       <logger name='*' writeTo='eventLog1'>
                       </logger>
                     </rules>
-            </nlog>", maxMessageLength);
+            </nlog>";
 
             NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configrationText));
             Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.InnerException.InnerException.Message);
@@ -485,11 +489,13 @@ namespace NLog.UnitTests.Targets
                                             );
             if (overflowAction == EventLogTargetOverflowAction.Discard && logMessage.Length > maxMessageLength)
             {
-                Assert.False(filteredEntries.Any(), string.Format("No message is expected. But {0} message(s) found entry of type '{1}' from source '{2}'.", filteredEntries.Count(), expectedEventLogEntryType, expectedSource));
+                Assert.False(filteredEntries.Any(),
+                    $"No message is expected. But {filteredEntries.Count()} message(s) found entry of type '{expectedEventLogEntryType}' from source '{expectedSource}'.");
             }
             else
             {
-                Assert.True(filteredEntries.Any(), string.Format("Failed to find entry of type '{0}' from source '{1}'", expectedEventLogEntryType, expectedSource));
+                Assert.True(filteredEntries.Any(),
+                    $"Failed to find entry of type '{expectedEventLogEntryType}' from source '{expectedSource}'");
             }
 
             return filteredEntries;
@@ -698,7 +704,7 @@ namespace NLog.UnitTests.Targets
         private void AssertWrittenMessage(IEnumerable<EventRecord> eventLogs, string expectedMessage)
         {
             var messages = eventLogs.Where(entry => entry.Properties.Any(prop => Convert.ToString(prop.Value) == expectedMessage));
-            Assert.True(messages.Any(), string.Format("Event records has not the expected message: '{0}'", expectedMessage));
+            Assert.True(messages.Any(), $"Event records has not the expected message: '{expectedMessage}'");
         }
 
         private static TEventLogTarget CreateEventLogTarget<TEventLogTarget>(Layout entryType, string sourceName, EventLogTargetOverflowAction overflowAction, int maxMessageLength)

@@ -96,8 +96,8 @@ namespace NLog.UnitTests.Config
                 var stringWriter = new StringWriter(sb);
                 InternalLogger.LogWriter = stringWriter;
                 string wrongFileName = "WRONG/***[]???////WRONG";
-                LogManager.Configuration = CreateConfigurationFromString(string.Format(@"<?xml version='1.0' encoding='utf-8' ?>
-    <nlog internalLogFile='{0}'
+                LogManager.Configuration = CreateConfigurationFromString($@"<?xml version='1.0' encoding='utf-8' ?>
+    <nlog internalLogFile='{wrongFileName}'
           internalLogLevel='Off'
           throwExceptions='true' >
 
@@ -109,7 +109,7 @@ namespace NLog.UnitTests.Config
         <logger name='*' writeTo='logfile' />
       </rules>
     </nlog>
-    ", wrongFileName));
+    ");
 
                 Assert.Equal("", sb.ToString());
                 Assert.Equal(LogLevel.Off, InternalLogger.LogLevel);
@@ -129,9 +129,15 @@ namespace NLog.UnitTests.Config
 
             using (new InternalLoggerScope(true))
             {
-                CreateConfigurationFromString(string.Format(@"
-<nlog internalLogFile='{0}' internalLogLevel='{1}' internalLogToConsole='{2}' internalLogToConsoleError='{3}' globalThreshold='{4}' throwExceptions='{5}' throwConfigExceptions='{6}' internalLogToTrace='{7}'>
-</nlog>", file, logLevelString, internalLogToConsoleString, internalLogToConsoleErrorString, globalThresholdString, throwExceptionsString, throwConfigExceptionsString, logToTraceString));
+                CreateConfigurationFromString($@"
+<nlog internalLogFile='{file}' internalLogLevel='{logLevelString}' internalLogToConsole='{
+                        internalLogToConsoleString
+                    }' internalLogToConsoleError='{internalLogToConsoleErrorString}' globalThreshold='{
+                        globalThresholdString
+                    }' throwExceptions='{throwExceptionsString}' throwConfigExceptions='{
+                        throwConfigExceptionsString
+                    }' internalLogToTrace='{logToTraceString}'>
+</nlog>");
 
                 Assert.Same(logLevel, InternalLogger.LogLevel);
 
