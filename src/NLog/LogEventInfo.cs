@@ -364,7 +364,7 @@ namespace NLog
                 }
                 else
                 {
-                    return new MessageTemplateParameters(this._parameters);
+                    return new MessageTemplateParameters(this._message, this._parameters);
                 }
             }
         }
