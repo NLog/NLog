@@ -52,7 +52,10 @@ namespace NLog
     /// </summary>
     public static class LogManager
     {
-        private static readonly LogFactory factory = new LogFactory();
+        /// <remarks>
+        /// Internal for unit tests
+        /// </remarks>
+        internal static readonly LogFactory factory = new LogFactory();
         private static ICollection<Assembly> _hiddenAssemblies;
 
         private static readonly object lockObject = new object();

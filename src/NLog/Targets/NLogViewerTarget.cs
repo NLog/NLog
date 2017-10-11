@@ -67,7 +67,7 @@ namespace NLog.Targets
     [Target("NLogViewer")]
     public class NLogViewerTarget : NetworkTarget, IIncludeContext
     {
-        private readonly Log4JXmlEventLayout layout = new Log4JXmlEventLayout();
+        private readonly Log4JXmlEventLayout _layout = new Log4JXmlEventLayout();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogViewerTarget" /> class.
@@ -213,7 +213,7 @@ namespace NLog.Targets
         /// </summary>
         public Log4JXmlEventLayoutRenderer Renderer
         {
-            get { return this.layout.Renderer; }
+            get { return this._layout.Renderer; }
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace NLog.Targets
         {
             get
             {
-                return this.layout;
+                return this._layout;
             }
 
             set

@@ -47,8 +47,8 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("file-contents")]
     public class FileContentsLayoutRenderer : LayoutRenderer
     {
-        private string lastFileName;
-        private string currentFileContents;
+        private string _lastFileName;
+        private string _currentFileContents;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileContentsLayoutRenderer" /> class.
@@ -60,7 +60,7 @@ namespace NLog.LayoutRenderers
 #else
             this.Encoding = Encoding.Default;
 #endif
-            this.lastFileName = string.Empty;
+            this._lastFileName = string.Empty;
         }
 
         /// <summary>
@@ -88,14 +88,14 @@ namespace NLog.LayoutRenderers
             {
                 string fileName = this.FileName.Render(logEvent);
 
-                if (fileName != this.lastFileName)
+                if (fileName != this._lastFileName)
                 {
-                    this.currentFileContents = this.ReadFileContents(fileName);
-                    this.lastFileName = fileName;
+                    this._currentFileContents = this.ReadFileContents(fileName);
+                    this._lastFileName = fileName;
                 }
             }
 
-            builder.Append(this.currentFileContents);
+            builder.Append(this._currentFileContents);
         }
 
         private string ReadFileContents(string fileName)

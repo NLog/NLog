@@ -53,9 +53,9 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class SimpleLayout : Layout, IUsesStackTrace
     {
-        private string fixedText;
-        private string layoutText;
-        private ConfigurationItemFactory configurationItemFactory;
+        private string _fixedText;
+        private string _layoutText;
+        private ConfigurationItemFactory _configurationItemFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
@@ -81,13 +81,13 @@ namespace NLog.Layouts
         /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
         public SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory)
         {
-            this.configurationItemFactory = configurationItemFactory;
+            this._configurationItemFactory = configurationItemFactory;
             this.Text = txt;
         }
 
         internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
         {
-            this.configurationItemFactory = configurationItemFactory;
+            this._configurationItemFactory = configurationItemFactory;
             this.SetRenderers(renderers, text);
         }
 
@@ -104,7 +104,7 @@ namespace NLog.Layouts
         {
             get
             {
-                return this.layoutText;
+                return this._layoutText;
             }
 
             set
@@ -121,7 +121,7 @@ namespace NLog.Layouts
                 else
                 {
                     renderers = LayoutParser.CompileLayout(
-                       this.configurationItemFactory,
+                       this._configurationItemFactory,
                        new SimpleStringReader(value),
                        false,
                        out txt);
@@ -135,7 +135,7 @@ namespace NLog.Layouts
         /// </summary>
         public bool IsFixedText
         {
-            get { return this.fixedText != null; }
+            get { return this._fixedText != null; }
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace NLog.Layouts
         /// </summary>
         public string FixedText
         {
-            get { return fixedText; }
+            get { return _fixedText; }
         }
 
         /// <summary>
@@ -227,15 +227,15 @@ namespace NLog.Layouts
 
             if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
             {
-                this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
+                this._fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
             }
             else
             {
                 //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
-                this.fixedText = null;
+                this._fixedText = null;
             }
 
-            this.layoutText = text;
+            this._layoutText = text;
 
             if (this.LoggingConfiguration != null)
             {
@@ -285,7 +285,7 @@ namespace NLog.Layouts
         {
             if (IsFixedText)
             {
-                return this.fixedText;
+                return this._fixedText;
             }
 
             return RenderAllocateBuilder(logEvent);
@@ -330,7 +330,7 @@ namespace NLog.Layouts
         {
             if (IsFixedText)
             {
-                target.Append(this.fixedText);
+                target.Append(this._fixedText);
                 return;
             }
 

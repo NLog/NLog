@@ -77,10 +77,10 @@ namespace NLog.Targets.Wrappers
     [Target("AsyncWrapper", IsWrapper = true)]
     public class AsyncTargetWrapper : WrapperTargetBase
     {
-        private readonly object writeLockObject = new object();
-        private readonly object timerLockObject = new object();
-        private Timer lazyWriterTimer;
-        private readonly ReusableAsyncLogEventList reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
+        private readonly object _writeLockObject = new object();
+        private readonly object _timerLockObject = new object();
+        private Timer _lazyWriterTimer;
+        private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
@@ -184,11 +184,11 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            if (flushEventsInQueueDelegate == null)
-                flushEventsInQueueDelegate = FlushEventsInQueue;
-            ThreadPool.QueueUserWorkItem(flushEventsInQueueDelegate, asyncContinuation);
+            if (_flushEventsInQueueDelegate == null)
+                _flushEventsInQueueDelegate = FlushEventsInQueue;
+            ThreadPool.QueueUserWorkItem(_flushEventsInQueueDelegate, asyncContinuation);
         }
-        private WaitCallback flushEventsInQueueDelegate;
+        private WaitCallback _flushEventsInQueueDelegate;
 
         /// <summary>
         /// Initializes the target by starting the lazy writer timer.
@@ -201,7 +201,7 @@ namespace NLog.Targets.Wrappers
 
             this.RequestQueue.Clear();
             InternalLogger.Trace("AsyncWrapper '{0}': start timer", this.Name);
-            this.lazyWriterTimer = new Timer(this.ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
+            this._lazyWriterTimer = new Timer(this.ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
             this.StartLazyWriterTimer();
         }
 
@@ -211,7 +211,7 @@ namespace NLog.Targets.Wrappers
         protected override void CloseTarget()
         {
             this.StopLazyWriterThread();
-            if (Monitor.TryEnter(this.writeLockObject, 500))
+            if (Monitor.TryEnter(this._writeLockObject, 500))
             {
                 try
                 {
@@ -219,7 +219,7 @@ namespace NLog.Targets.Wrappers
                 }
                 finally
                 {
-                    Monitor.Exit(this.writeLockObject);
+                    Monitor.Exit(this._writeLockObject);
                 }
             }
             base.CloseTarget();
@@ -231,18 +231,18 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected virtual void StartLazyWriterTimer()
         {
-            lock (this.timerLockObject)
+            lock (this._timerLockObject)
             {
-                if (this.lazyWriterTimer != null)
+                if (this._lazyWriterTimer != null)
                 {
                     if (this.TimeToSleepBetweenBatches <= 0)
                     {
                         InternalLogger.Trace("AsyncWrapper '{0}': Throttled timer scheduled", this.Name);
-                        this.lazyWriterTimer.Change(1, Timeout.Infinite);
+                        this._lazyWriterTimer.Change(1, Timeout.Infinite);
                     }
                     else
                     {
-                        this.lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, Timeout.Infinite);
+                        this._lazyWriterTimer.Change(this.TimeToSleepBetweenBatches, Timeout.Infinite);
                     }
                 }
             }
@@ -258,17 +258,17 @@ namespace NLog.Targets.Wrappers
             bool lockTaken = false;
             try
             {
-                lockTaken = Monitor.TryEnter(this.writeLockObject);
+                lockTaken = Monitor.TryEnter(this._writeLockObject);
                 if (lockTaken)
                 {
                     // Lock taken means no timer-worker-thread is active writing, schedule timer now
-                    lock (this.timerLockObject)
+                    lock (this._timerLockObject)
                     {
-                        if (this.lazyWriterTimer != null)
+                        if (this._lazyWriterTimer != null)
                         {
                             // Not optimal to shedule timer-worker-thread while holding lock,
                             // as the newly scheduled timer-worker-thread will hammer into the writeLockObject
-                            this.lazyWriterTimer.Change(0, Timeout.Infinite);
+                            this._lazyWriterTimer.Change(0, Timeout.Infinite);
                             return true;
                         }
                     }
@@ -281,7 +281,7 @@ namespace NLog.Targets.Wrappers
                 // If not able to take lock, then it means timer-worker-thread is already active,
                 // and timer-worker-thread will check RequestQueue after leaving writeLockObject
                 if (lockTaken)
-                    Monitor.Exit(this.writeLockObject);
+                    Monitor.Exit(this._writeLockObject);
             }
         }
 
@@ -290,12 +290,12 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected virtual void StopLazyWriterThread()
         {
-            lock (this.timerLockObject)
+            lock (this._timerLockObject)
             {
-                var currentTimer = this.lazyWriterTimer;
+                var currentTimer = this._lazyWriterTimer;
                 if (currentTimer != null)
                 {
-                    this.lazyWriterTimer = null;
+                    this._lazyWriterTimer = null;
                     currentTimer.WaitForDispose(TimeSpan.FromSeconds(1));
                 }
             }
@@ -342,14 +342,14 @@ namespace NLog.Targets.Wrappers
 
         private void ProcessPendingEvents(object state)
         {
-            if (this.lazyWriterTimer == null)
+            if (this._lazyWriterTimer == null)
                 return;
 
             bool wroteFullBatchSize = false;
 
             try
             {
-                lock (this.writeLockObject)
+                lock (this._writeLockObject)
                 {
                     int count = WriteEventsInQueue(this.BatchSize, "Timer");
                     if (count == this.BatchSize)
@@ -391,7 +391,7 @@ namespace NLog.Targets.Wrappers
             try
             {
                 var asyncContinuation = state as AsyncContinuation;
-                lock (this.writeLockObject)
+                lock (this._writeLockObject)
                 {
                     WriteEventsInQueue(int.MaxValue, "Flush Async");
                     if (asyncContinuation != null)
@@ -435,7 +435,7 @@ namespace NLog.Targets.Wrappers
                 }
                 else
                 {
-                    using (var targetList = this.reusableAsyncLogEventList.Allocate())
+                    using (var targetList = this._reusableAsyncLogEventList.Allocate())
                     {
                         var logEvents = targetList.Result;
                         this.RequestQueue.DequeueBatch(batchSize, logEvents);

@@ -53,15 +53,15 @@ namespace NLog.Config
     ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class LoggingConfiguration
     {
-        private readonly IDictionary<string, Target> targets =
+        private readonly IDictionary<string, Target> _targets =
             new Dictionary<string, Target>(StringComparer.OrdinalIgnoreCase);
 
-        private List<object> configItems = new List<object>();
+        private List<object> _configItems = new List<object>();
 
         /// <summary>
         /// Variables defined in xml or in API. name is case case insensitive. 
         /// </summary>
-        private readonly Dictionary<string, SimpleLayout> variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, SimpleLayout> _variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
@@ -85,7 +85,7 @@ namespace NLog.Config
         {
             get
             {
-                return variables;
+                return _variables;
             }
         }
 
@@ -100,7 +100,7 @@ namespace NLog.Config
         /// </remarks>
         public ReadOnlyCollection<Target> ConfiguredNamedTargets
         {
-            get { return new List<Target>(this.targets.Values).AsReadOnly(); }
+            get { return new List<Target>(this._targets.Values).AsReadOnly(); }
         }
 
         /// <summary>
@@ -132,8 +132,8 @@ namespace NLog.Config
         {
             get
             {
-                var configTargets = this.configItems.OfType<Target>();
-                return configTargets.Concat(targets.Values).Distinct(TargetNameComparer).ToList().AsReadOnly();
+                var configTargets = this._configItems.OfType<Target>();
+                return configTargets.Concat(_targets.Values).Distinct(TargetNameComparer).ToList().AsReadOnly();
             }
         }
 
@@ -194,7 +194,7 @@ namespace NLog.Config
             if (target == null) { throw new ArgumentNullException("target"); }
 
             InternalLogger.Debug("Registering target {0}: {1}", name, target.GetType().FullName);
-            this.targets[name] = target;
+            this._targets[name] = target;
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace NLog.Config
         {
             Target value;
 
-            if (!this.targets.TryGetValue(name, out value))
+            if (!this._targets.TryGetValue(name, out value))
             {
                 return null;
             }
@@ -341,7 +341,7 @@ namespace NLog.Config
         /// </param>
         public void RemoveTarget(string name)
         {
-            this.targets.Remove(name);
+            this._targets.Remove(name);
         }
 
         /// <summary>
@@ -468,7 +468,7 @@ namespace NLog.Config
 
             InternalLogger.Debug("--- NLog configuration dump ---");
             InternalLogger.Debug("Targets:");
-            var targetList = this.targets.Values.ToList();
+            var targetList = this._targets.Values.ToList();
             foreach (Target target in targetList)
             {
                 InternalLogger.Debug("{0}", target);
@@ -522,19 +522,19 @@ namespace NLog.Config
                 roots.Add(rule);
             }
 
-            var targetList = this.targets.Values.ToList();
+            var targetList = this._targets.Values.ToList();
             foreach (Target target in targetList)
             {
                 roots.Add(target);
             }
 
-            this.configItems = ObjectGraphScanner.FindReachableObjects<object>(roots.ToArray());
+            this._configItems = ObjectGraphScanner.FindReachableObjects<object>(roots.ToArray());
 
             // initialize all config items starting from most nested first
             // so that whenever the container is initialized its children have already been
-            InternalLogger.Info("Found {0} configuration items", this.configItems.Count);
+            InternalLogger.Info("Found {0} configuration items", this._configItems.Count);
 
-            foreach (object o in this.configItems)
+            foreach (object o in this._configItems)
             {
                 PropertyHelper.CheckRequiredParameters(o);
             }
@@ -575,12 +575,12 @@ namespace NLog.Config
 
         private List<IInstallable> GetInstallableItems()
         {
-            return this.configItems.OfType<IInstallable>().ToList();
+            return this._configItems.OfType<IInstallable>().ToList();
         }
 
         private List<ISupportsInitialize> GetSupportsInitializes(bool reverse = false)
         {
-            var items = this.configItems.OfType<ISupportsInitialize>();
+            var items = this._configItems.OfType<ISupportsInitialize>();
             if (reverse)
             {
                 items = items.Reverse();

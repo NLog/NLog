@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// </summary>
     internal class LoggerConfiguration
     {
-        private readonly TargetWithFilterChain[] targetsByLevel;
+        private readonly TargetWithFilterChain[] _targetsByLevel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggerConfiguration" /> class.
@@ -50,7 +50,7 @@ namespace NLog.Internal
         /// </param>
         public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel, bool exceptionLoggingOldStyle = false)
         {
-            this.targetsByLevel = targetsByLevel;
+            this._targetsByLevel = targetsByLevel;
 #pragma warning disable 618
             ExceptionLoggingOldStyle = exceptionLoggingOldStyle;
 #pragma warning restore 618
@@ -75,7 +75,7 @@ namespace NLog.Internal
                 return null;
             }
 
-            return this.targetsByLevel[level.Ordinal];
+            return this._targetsByLevel[level.Ordinal];
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace NLog.Internal
             {
                 return false;
             }
-            return this.targetsByLevel[level.Ordinal] != null;
+            return this._targetsByLevel[level.Ordinal] != null;
         }
     }
 }

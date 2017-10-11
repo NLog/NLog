@@ -104,8 +104,8 @@ namespace NLog.UnitTests
             {
                 bool threadTerminated;
 
-                var primaryLogFactory = typeof(LogManager).GetField("factory", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
-                var primaryLogFactoryLock = typeof(LogFactory).GetField("syncRoot", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(primaryLogFactory);
+                var primaryLogFactory = LogManager.factory;
+                var primaryLogFactoryLock = primaryLogFactory._syncRoot;
                 // Simulate a potential deadlock. 
                 // If the creation of the new LogFactory takes the lock of the global LogFactory, the thread will deadlock.
                 lock (primaryLogFactoryLock)
