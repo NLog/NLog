@@ -288,7 +288,7 @@ namespace NLog.Common
             var formattedMessage =
                 (args == null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
 
-            var builder = new StringBuilder(formattedMessage.Length + TimeStampFormat.Length + ex?.ToString()?.Length ?? 0 + 25);
+            var builder = new StringBuilder(formattedMessage.Length + TimeStampFormat.Length + (ex?.ToString()?.Length ?? 0) + 25);
             if (IncludeTimestamp)
             {
                 builder
