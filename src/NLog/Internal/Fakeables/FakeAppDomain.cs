@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,49 +31,107 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if NETSTANDARD1_5
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace NLog.Internal.Fakeables
 {
-    using System;
-    using System.Collections.Generic;
-
-    /// <summary>
-    /// Interface for fakeable the current <see cref="LogFactory.CurrentAppDomain"/>. Not fully implemented, please methods/properties as necessary.
-    /// </summary>
-    public interface IAppDomain
+    internal class FakeAppDomain : IAppDomain
     {
+        System.Runtime.Loader.AssemblyLoadContext _defaultContext;
+
+        /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+        public FakeAppDomain()
+        {
+            BaseDirectory = AppContext.BaseDirectory;
+            _defaultContext = System.Runtime.Loader.AssemblyLoadContext.Default;
+        }
+
+        #region Implementation of IAppDomain
+
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
         /// </summary>
-        string BaseDirectory { get; }
+        public string BaseDirectory { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the configuration file for an application domain.
         /// </summary>
-        string ConfigurationFile { get; }
+        public string ConfigurationFile { get; set; }
 
         /// <summary>
         /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
         /// </summary>
-        IEnumerable<string> PrivateBinPath { get; }
+        public IEnumerable<string> PrivateBinPath { get; set; }
 
         /// <summary>
         /// Gets or set the friendly name.
         /// </summary>
-        string FriendlyName { get; }
+        public string FriendlyName { get; set; }
 
         /// <summary>
         /// Gets an integer that uniquely identifies the application domain within the process. 
         /// </summary>
-        int Id { get; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Process exit event.
         /// </summary>
-        event EventHandler<EventArgs> ProcessExit;
-        
+        public event EventHandler<EventArgs> ProcessExit
+        {
+            add
+            {
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading += OnContextUnloading;
+                _contextUnloadingEvent += value;
+            }
+            remove
+            {
+                _contextUnloadingEvent -= value;
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading -= OnContextUnloading;
+            }
+        }
+
         /// <summary>
         /// Domain unloaded event.
         /// </summary>
-        event EventHandler<EventArgs> DomainUnload;
+        public event EventHandler<EventArgs> DomainUnload
+        {
+            add
+            {
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading += OnContextUnloading;
+                _contextUnloadingEvent += value;
+            }
+            remove
+            {
+                _contextUnloadingEvent -= value;
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading -= OnContextUnloading;
+            }
+        }
+
+        private event EventHandler<EventArgs> _contextUnloadingEvent;
+
+        private void OnContextUnloading(System.Runtime.Loader.AssemblyLoadContext context)
+        {
+            var handler = _contextUnloadingEvent;
+            if (handler != null) handler.Invoke(context, EventArgs.Empty);
+        }
+        #endregion
+    }
+
+    static class ExtensionMethods
+    {
+        public static void Close(this IDisposable disposable)
+        {
+            disposable.Dispose();
+        }
     }
 }
+
+#endif

@@ -44,7 +44,9 @@ namespace NLog.Targets
     using System.Globalization;
     using System.Reflection;
     using System.Text;
+#if !NETSTANDARD1_5
     using System.Transactions;
+#endif
 
     using NLog.Common;
     using NLog.Config;
@@ -81,7 +83,7 @@ namespace NLog.Targets
     [Target("Database")]
     public class DatabaseTarget : Target, IInstallable
     {
-        private static Assembly systemDataAssembly = typeof(IDbConnection).Assembly;
+        private static Assembly systemDataAssembly = typeof(IDbConnection).GetAssembly();
 
         private IDbConnection _activeConnection = null;
         private string _activeConnectionString;
@@ -394,7 +396,7 @@ namespace NLog.Targets
         /// </summary>
         private void SetConnectionType()
         {
-            switch (this.DBProvider.ToUpper(CultureInfo.InvariantCulture))
+            switch (this.DBProvider.ToUpperInvariant())
             {
                 case "SQLSERVER":
                 case "MSSQL":
@@ -738,6 +740,47 @@ namespace NLog.Targets
                 this.CloseConnection();
             }
         }
+
+#if NETSTANDARD1_5
+        /// <summary>
+        /// Fake transaction
+        /// 
+        /// Transactions aren't in .NET Core: https://github.com/dotnet/corefx/issues/2949
+        /// </summary>
+        private class TransactionScope : IDisposable
+        {
+            private TransactionScopeOption suppress;
+
+            public TransactionScope(TransactionScopeOption suppress)
+            {
+                this.suppress = suppress;
+            }
+
+            public void Complete() { }
+
+        #region Implementation of IDisposable
+
+            /// <summary>
+            ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            /// </summary>
+            public void Dispose()
+            {
+
+            }
+
+        #endregion
+        }
+
+        /// <summary>
+        /// Fake option
+        /// </summary>
+        private enum TransactionScopeOption
+        {
+            Required,
+            RequiresNew,
+            Suppress,
+        }
+#endif
     }
 }
 

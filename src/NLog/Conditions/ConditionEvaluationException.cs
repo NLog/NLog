@@ -69,7 +69,7 @@ namespace NLog.Conditions
         {
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_5
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionEvaluationException" /> class.
         /// </summary>

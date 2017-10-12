@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
+#if !NETSTANDARD1_5
 
 namespace NLog.LayoutRenderers
 {
@@ -39,6 +39,7 @@ namespace NLog.LayoutRenderers
     using System.IO;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// System special folder path (includes My Documents, My Music, Program Files, Desktop, and more).
@@ -94,3 +95,5 @@ namespace NLog.LayoutRenderers
         }
     }
 }
+
+#endif

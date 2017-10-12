@@ -89,7 +89,7 @@ namespace NLog.Internal
         {
 
             var enumType = typeof(TEnum);
-            if (!enumType.IsEnum)
+            if (!enumType.IsEnum())
                 throw new ArgumentException($"Type '{enumType.FullName}' is not an enum");
             
 
