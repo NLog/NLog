@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -65,7 +65,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="createParameters">The create parameters.</param>
-        protected BaseMutexFileAppender(string fileName, ICreateFileParameters createParameters) 
+        protected BaseMutexFileAppender(string fileName, ICreateFileParameters createParameters)
             : base(fileName, createParameters)
         {
 #if SupportsMutex
@@ -117,6 +117,9 @@ namespace NLog.Internal.FileAppenders
             if (!PlatformDetector.SupportsSharableMutex)
                 return new Mutex();
 
+            var name = GetMutexName(mutexNamePrefix);
+
+#if !NETSTANDARD
             // Creates a mutex sharable by more than one process
             var mutexSecurity = new MutexSecurity();
             var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
@@ -125,7 +128,11 @@ namespace NLog.Internal.FileAppenders
             // The constructor will either create new mutex or open
             // an existing one, in a thread-safe manner
             bool createdNew;
-            return new Mutex(false, GetMutexName(mutexNamePrefix), out createdNew, mutexSecurity);
+            return new Mutex(false, name, out createdNew, mutexSecurity);
+#else
+            //Mutex with 4 args has keyword "unsafe"
+            return new Mutex(false, name);
+#endif
         }
 
         private string GetMutexName(string mutexNamePrefix)
@@ -135,9 +142,10 @@ namespace NLog.Internal.FileAppenders
 
             string canonicalName = Path.GetFullPath(FileName).ToLowerInvariant();
 
-            // Mutex names must not contain a backslash, it's the namespace separator,
+            // Mutex names must not contain a slash, it's the namespace separator,
             // but all other are OK
-            canonicalName = canonicalName.Replace('\\', '/');
+            canonicalName = canonicalName.Replace('\\', '_');
+            canonicalName = canonicalName.Replace('/', '_');
             string mutexName = string.Format(mutexNameFormatString, mutexNamePrefix, canonicalName);
 
             // A mutex name must not exceed MAX_PATH (260) characters

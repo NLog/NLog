@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -232,7 +232,7 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo);
 
             var message = GetDebugLastMessage("debug");
-            Assert.Equal(true, message.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString()));
+            Assert.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(), message);
         }
 
         [Fact]
@@ -470,7 +470,6 @@ namespace NLog.UnitTests.Layouts
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
         }
 
-#if NET4_0 || NET4_5
         [Fact]
         public void IncludeMdlcJsonProperties()
         {
@@ -505,7 +504,6 @@ namespace NLog.UnitTests.Layouts
 
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
         }
-#endif
 
         /// <summary>
         /// Test from XML, needed for the list (ExcludeProperties)

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -50,6 +50,15 @@ namespace MyExtensionNamespace
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             return "FooFoo" + this.X;
+        }
+
+        public static implicit operator FooLayout(string text)
+        {
+            int value = 0;
+            if (!int.TryParse(text, out value))
+                return null;
+
+            return new FooLayout() { X = value };
         }
     }
 }

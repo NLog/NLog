@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -43,7 +43,7 @@ namespace NLog.Conditions
     internal sealed class ConditionTokenizer
     {
         private static readonly ConditionTokenType[] charIndexToTokenType = BuildCharIndexToTokenType();
-        private readonly SimpleStringReader stringReader;
+        private readonly SimpleStringReader _stringReader;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionTokenizer"/> class.
@@ -51,7 +51,7 @@ namespace NLog.Conditions
         /// <param name="stringReader">The string reader.</param>
         public ConditionTokenizer(SimpleStringReader stringReader)
         {
-            this.stringReader = stringReader;
+            this._stringReader = stringReader;
             this.TokenType = ConditionTokenType.BeginningOfInput;
             this.GetNextToken();
         }
@@ -517,12 +517,12 @@ namespace NLog.Conditions
 
         private int PeekChar()
         {
-            return this.stringReader.Peek();
+            return this._stringReader.Peek();
         }
 
         private int ReadChar()
         {
-            return this.stringReader.Read();
+            return this._stringReader.Read();
         }
 
         /// <summary>

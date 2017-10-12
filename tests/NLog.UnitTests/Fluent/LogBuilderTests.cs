@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -76,7 +76,6 @@ namespace NLog.UnitTests.Fluent
         }
 #endif
 
-
         ///<remarks>
         /// func because 1 logbuilder creates 1 message
         /// 
@@ -106,7 +105,7 @@ namespace NLog.UnitTests.Fluent
                 .Write();
 
             {
-                var rendered = string.Format("This is a test fluent message '{0}'.", ticks);
+                var rendered = $"This is a test fluent message '{ticks}'.";
                 var expectedEvent = new LogEventInfo(LogLevel.Trace, loggerName, "This is a test fluent message '{0}'.");
                 expectedEvent.Properties["Test"] = "TraceWrite";
                 AssertLastLogEventTarget(expectedEvent);
@@ -475,6 +474,11 @@ namespace NLog.UnitTests.Fluent
         [Fact]
         public void LogBuilder_message_cultureTest()
         {
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] LogBuilderTests.LogBuilder_message_cultureTest because we are running in Travis");
+                return;
+            }
 
             LogManager.Configuration.DefaultCultureInfo = GetCultureInfo("en-US");
 

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -42,8 +42,8 @@ namespace NLog.Internal
     /// </summary>
     internal class TimeoutContinuation : IDisposable
     {
-        private AsyncContinuation asyncContinuation;
-        private Timer timeoutTimer;
+        private AsyncContinuation _asyncContinuation;
+        private Timer _timeoutTimer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeoutContinuation"/> class.
@@ -52,8 +52,8 @@ namespace NLog.Internal
         /// <param name="timeout">The timeout.</param>
         public TimeoutContinuation(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            this.asyncContinuation = asyncContinuation;
-            this.timeoutTimer = new Timer(this.TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
+            this._asyncContinuation = asyncContinuation;
+            this._timeoutTimer = new Timer(this.TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace NLog.Internal
             {
                 this.StopTimer();
 
-                var cont = Interlocked.Exchange(ref this.asyncContinuation, null);
+                var cont = Interlocked.Exchange(ref this._asyncContinuation, null);
                 if (cont != null)
                 {
                     cont(exception);
@@ -95,10 +95,11 @@ namespace NLog.Internal
         {
             lock (this)
             {
-                if (this.timeoutTimer != null)
+                var currentTimer = this._timeoutTimer;
+                if (currentTimer != null)
                 {
-                    this.timeoutTimer.Dispose();
-                    this.timeoutTimer = null;
+                    this._timeoutTimer = null;
+                    currentTimer.WaitForDispose(TimeSpan.Zero);
                 }
             }
         }

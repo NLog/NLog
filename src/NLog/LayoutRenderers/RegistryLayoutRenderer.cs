@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -259,7 +260,7 @@ namespace NLog.LayoutRenderers
             }
 
             //ArgumentException is consistent
-            throw new ArgumentException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
+            throw new ArgumentException($"Key name is not supported. Root hive '{hiveName}' not recognized.");
         }
 
 #if NET3_5

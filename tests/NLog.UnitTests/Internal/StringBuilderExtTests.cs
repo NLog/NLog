@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
 
             input = 0 - input;
-            sb.Clear();
+            sb.Length = 0;
             StringBuilderExt.AppendInvariant(sb, input);
             Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
         }

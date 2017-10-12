@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,8 +45,8 @@ namespace NLog.Conditions
     /// </summary>
 	internal sealed class ConditionMethodExpression : ConditionExpression
     {
-        private readonly bool acceptsLogEvent;
-        private readonly string conditionMethodName;
+        private readonly bool _acceptsLogEvent;
+        private readonly string _conditionMethodName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionMethodExpression" /> class.
@@ -57,17 +57,17 @@ namespace NLog.Conditions
         public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, IEnumerable<ConditionExpression> methodParameters)
         {
             this.MethodInfo = methodInfo;
-            this.conditionMethodName = conditionMethodName;
+            this._conditionMethodName = conditionMethodName;
             this.MethodParameters = new List<ConditionExpression>(methodParameters).AsReadOnly();
 
             ParameterInfo[] formalParameters = this.MethodInfo.GetParameters();
             if (formalParameters.Length > 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
             {
-                this.acceptsLogEvent = true;
+                this._acceptsLogEvent = true;
             }
 
             int actualParameterCount = this.MethodParameters.Count;
-            if (this.acceptsLogEvent)
+            if (this._acceptsLogEvent)
             {
                 actualParameterCount++;
             }
@@ -111,19 +111,19 @@ namespace NLog.Conditions
                 throw new ConditionParseException(message);
             }
 
-            this.lateBoundMethod = Internal.ReflectionHelpers.CreateLateBoundMethod(MethodInfo);
+            this._lateBoundMethod = Internal.ReflectionHelpers.CreateLateBoundMethod(MethodInfo);
             if (formalParameters.Length > MethodParameters.Count)
             {
-                this.lateBoundMethodDefaultParameters = new object[formalParameters.Length - MethodParameters.Count];
+                this._lateBoundMethodDefaultParameters = new object[formalParameters.Length - MethodParameters.Count];
                 for (int i = MethodParameters.Count; i < formalParameters.Length; ++i)
                 {
                     ParameterInfo param = formalParameters[i];
-                    this.lateBoundMethodDefaultParameters[i - MethodParameters.Count] = param.DefaultValue;
+                    this._lateBoundMethodDefaultParameters[i - MethodParameters.Count] = param.DefaultValue;
                 }
             }
             else
             {
-                this.lateBoundMethodDefaultParameters = null;
+                this._lateBoundMethodDefaultParameters = null;
             }
         }
 
@@ -131,8 +131,8 @@ namespace NLog.Conditions
         /// Gets the method info.
         /// </summary>
         public MethodInfo MethodInfo { get; private set; }
-        private readonly Internal.ReflectionHelpers.LateBoundMethod lateBoundMethod;
-        private readonly object[] lateBoundMethodDefaultParameters;
+        private readonly Internal.ReflectionHelpers.LateBoundMethod _lateBoundMethod;
+        private readonly object[] _lateBoundMethodDefaultParameters;
 
         /// <summary>
         /// Gets the method parameters.
@@ -149,7 +149,7 @@ namespace NLog.Conditions
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append(this.conditionMethodName);
+            sb.Append(this._conditionMethodName);
             sb.Append("(");
 
             string separator = string.Empty;
@@ -175,8 +175,8 @@ namespace NLog.Conditions
         /// <returns>Expression result.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            int parameterOffset = this.acceptsLogEvent ? 1 : 0;
-            int parameterDefaults = this.lateBoundMethodDefaultParameters != null ? this.lateBoundMethodDefaultParameters.Length : 0;
+            int parameterOffset = this._acceptsLogEvent ? 1 : 0;
+            int parameterDefaults = this._lateBoundMethodDefaultParameters != null ? this._lateBoundMethodDefaultParameters.Length : 0;
 
             var callParameters = new object[this.MethodParameters.Count + parameterOffset + parameterDefaults];
 
@@ -188,20 +188,20 @@ namespace NLog.Conditions
                 callParameters[i + parameterOffset] = ce.Evaluate(context);
             }
 
-            if (this.acceptsLogEvent)
+            if (this._acceptsLogEvent)
             {
                 callParameters[0] = context;
             }
 
-            if (this.lateBoundMethodDefaultParameters != null)
+            if (this._lateBoundMethodDefaultParameters != null)
             {
-                for (int i = this.lateBoundMethodDefaultParameters.Length - 1; i >= 0; --i)
+                for (int i = this._lateBoundMethodDefaultParameters.Length - 1; i >= 0; --i)
                 {
-                    callParameters[callParameters.Length - i - 1] = this.lateBoundMethodDefaultParameters[i];
+                    callParameters[callParameters.Length - i - 1] = this._lateBoundMethodDefaultParameters[i];
                 }
             }
 
-            return this.lateBoundMethod(null, callParameters);  // Static-method so object-instance = null
+            return this._lateBoundMethod(null, callParameters);  // Static-method so object-instance = null
         }
     }
 }

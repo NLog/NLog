@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
 namespace NLog.Targets
 {
@@ -120,7 +120,7 @@ namespace NLog.Targets
         public Layout Category { get; set; }
 
         /// <summary>
-        /// Optional entrytype. When not set, or when not convertable to <see cref="LogLevel"/> then determined by <see cref="NLog.LogLevel"/>
+        /// Optional entrytype. When not set, or when not convertable to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
         public Layout EntryType { get; set; }
 
@@ -276,7 +276,7 @@ namespace NLog.Targets
 
             short category = this.Category.RenderShort(logEvent, 0, "EventLogTarget.Category");
 
-            EventLog eventLog = GetEventLog(logEvent);
+          
 
             // limitation of EventLog API
             if (message.Length > this.MaxMessageLength)
@@ -284,14 +284,14 @@ namespace NLog.Targets
                 if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
                     message = message.Substring(0, this.MaxMessageLength);
-                    eventLog.WriteEntry(message, entryType, eventId, category);
+                    WriteEntry(logEvent, message, entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
                     for (int offset = 0; offset < message.Length; offset += this.MaxMessageLength)
                     {
                         string chunk = message.Substring(offset, Math.Min(this.MaxMessageLength, (message.Length - offset)));
-                        eventLog.WriteEntry(chunk, entryType, eventId, category);
+                        WriteEntry(logEvent, chunk, entryType, eventId, category);
                     }
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
@@ -302,8 +302,14 @@ namespace NLog.Targets
             }
             else
             {
-                eventLog.WriteEntry(message, entryType, eventId, category);
+                WriteEntry(logEvent, message, entryType, eventId, category);
             }
+        }
+
+        internal virtual void WriteEntry(LogEventInfo logEventInfo, string message, EventLogEntryType entryType, int eventId, short category)
+        {
+            var eventLog = GetEventLog(logEventInfo);
+            eventLog.WriteEntry(message, entryType, eventId, category);
         }
 
         /// <summary>
@@ -365,7 +371,7 @@ namespace NLog.Targets
         /// <returns></returns>
         private EventLog GetEventLog(LogEventInfo logEvent)
         {
-            var renderedSource = this.Source != null ? base.RenderLogEvent(this.Source, logEvent) : null;
+            var renderedSource = RenderSource(logEvent);
             var isCacheUpToDate = eventLogInstance != null && renderedSource == eventLogInstance.Source &&
                                    eventLogInstance.Log == this.Log && eventLogInstance.MachineName == this.MachineName;
 
@@ -379,6 +385,11 @@ namespace NLog.Targets
                 eventLogInstance.MaximumKilobytes = this.MaxKilobytes.Value;
             }
             return eventLogInstance;
+        }
+
+        internal string RenderSource(LogEventInfo logEvent)
+        {
+            return this.Source != null ? base.RenderLogEvent(this.Source, logEvent) : null;
         }
 
         /// <summary>

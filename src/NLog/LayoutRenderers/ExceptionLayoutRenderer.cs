@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -51,8 +51,8 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class ExceptionLayoutRenderer : LayoutRenderer
     {
-        private string format;
-        private string innerFormat = string.Empty;
+        private string _format;
+        private string _innerFormat = string.Empty;
         private readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _renderingfunctions;
 
         private static readonly Dictionary<String, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
@@ -102,12 +102,12 @@ namespace NLog.LayoutRenderers
         {
             get
             {
-                return this.format;
+                return this._format;
             }
 
             set
             {
-                this.format = value;
+                this._format = value;
                 Formats = CompileFormat(value);
             }
         }
@@ -122,12 +122,12 @@ namespace NLog.LayoutRenderers
         {
             get
             {
-                return this.innerFormat;
+                return this._innerFormat;
             }
 
             set
             {
-                this.innerFormat = value;
+                this._innerFormat = value;
                 InnerFormats = CompileFormat(value);
             }
         }
@@ -197,10 +197,14 @@ namespace NLog.LayoutRenderers
 
                 foreach (ExceptionRenderingFormat renderingFormat in this.Formats)
                 {
-                    sb2.Append(separator);
-
+                    var sbCurrentRender = new StringBuilder();
                     var currentRenderFunction = _renderingfunctions[renderingFormat];
-                    currentRenderFunction(sb2, primaryException);
+                    currentRenderFunction(sbCurrentRender, primaryException);
+                    if (sbCurrentRender.Length > 0)
+                    {
+                        sb2.Append(separator);
+                        sb2.Append(sbCurrentRender);
+                    }
                     separator = this.Separator;
                 }
 
@@ -288,7 +292,8 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
-                var message = string.Format("Exception in {0}.AppendMessage(): {1}.", typeof(ExceptionLayoutRenderer).FullName, exception.GetType().FullName);
+                var message =
+                    $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendMessage(): {exception.GetType().FullName}.";
                 sb.Append("NLog message: ");
                 sb.Append(message);
                 InternalLogger.Warn(exception, message);

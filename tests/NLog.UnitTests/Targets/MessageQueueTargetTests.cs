@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if  !MONO
+#if  !MONO && !NETSTANDARD
 
 namespace NLog.UnitTests.Targets
 {
@@ -147,7 +147,7 @@ namespace NLog.UnitTests.Targets
             var messageQueueTarget = configuration.FindTargetByName("q") as MessageQueueTarget;
 
             Assert.NotNull(messageQueueTarget);
-            Assert.Equal(false, messageQueueTarget.CheckIfQueueExists);
+            Assert.False(messageQueueTarget.CheckIfQueueExists);
         }
 
         private static MessageQueueTarget CreateTarget(MessageQueueProxy messageQueueTestProxy, bool createQueue, string queueName = "Test", bool checkIfQueueExists = true)

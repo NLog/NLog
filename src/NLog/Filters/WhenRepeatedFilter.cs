@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -58,6 +58,13 @@ namespace NLog.Filters
         /// </summary>
         [DefaultValue(1000)]
         public int MaxLength { get; set; }
+
+        /// <summary>
+        /// Applies the configured action to the initial logevent that starts the timeout period.
+        /// Used to configure that it should ignore all events until timeout.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool IncludeFirst { get; set; }
 
         /// <summary>
         /// Max number of unique filter values to expect simultaneously
@@ -127,6 +134,9 @@ namespace NLog.Filters
         /// .</returns>
         protected override FilterResult Check(LogEventInfo logEvent)
         {
+            FilterResult filterResult = FilterResult.Neutral;
+            bool obsoleteFilter = false;
+
             lock (_repeatFilter)
             {
                 using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
@@ -148,25 +158,39 @@ namespace NLog.Filters
                     FilterInfoKey filterInfoKey = RenderFilterInfoKey(logEvent, OptimizeBufferReuse ? targetBuilder.Result : null);
 
                     FilterInfo filterInfo;
-                    if (_repeatFilter.TryGetValue(filterInfoKey, out filterInfo))
+                    if (!_repeatFilter.TryGetValue(filterInfoKey, out filterInfo))
                     {
-                        return RefreshFilterInfo(logEvent, filterInfo);
+                        filterInfo = CreateFilterInfo(logEvent);
+                        if (OptimizeBufferReuse && filterInfo.StringBuffer != null)
+                        {
+                            filterInfo.StringBuffer.ClearBuilder();
+                            int length = Math.Min(targetBuilder.Result.Length, MaxLength);
+                            for (int i = 0; i < length; ++i)
+                                filterInfo.StringBuffer.Append(targetBuilder.Result[i]);
+                        }
+                        filterInfo.Refresh(logEvent.Level, logEvent.TimeStamp, 0);
+                        _repeatFilter.Add(new FilterInfoKey(filterInfo.StringBuffer, filterInfoKey.StringValue, filterInfoKey.StringHashCode), filterInfo);
+                        obsoleteFilter = true;
                     }
+                    else
+                    {
+                        if (IncludeFirst)
+                        {
+                            obsoleteFilter = filterInfo.IsObsolete(logEvent.TimeStamp, TimeoutSeconds);
+                        }
 
-                    filterInfo = CreateFilterInfo(logEvent);
-                    if (OptimizeBufferReuse && filterInfo.StringBuffer != null)
-                    {
-                        filterInfo.StringBuffer.ClearBuilder();
-                        int length = Math.Min(targetBuilder.Result.Length, MaxLength);
-                        for (int i = 0; i < length; ++i)
-                            filterInfo.StringBuffer.Append(targetBuilder.Result[i]);
+                        filterResult = RefreshFilterInfo(logEvent, filterInfo);
                     }
-                    filterInfo.Refresh(logEvent.Level, logEvent.TimeStamp, 0);
-                    _repeatFilter.Add(new FilterInfoKey(filterInfo.StringBuffer, filterInfoKey.StringValue, filterInfoKey.StringHashCode), filterInfo);
                 }
             }
 
-            return FilterResult.Neutral;
+            // Ignore the first log-event, and wait until next timeout expiry
+            if (IncludeFirst && obsoleteFilter)
+            {
+                filterResult = Action;
+            }
+
+            return filterResult;
         }
 
         /// <summary>
@@ -339,13 +363,13 @@ namespace NLog.Filters
         /// </summary>
         private struct FilterInfoKey : IEquatable<FilterInfoKey>
         {
-            private readonly StringBuilder StringBuffer;
+            private readonly StringBuilder _stringBuffer;
             public readonly string StringValue;
             public readonly int StringHashCode;
 
             public FilterInfoKey(StringBuilder stringBuffer, string stringValue, int? stringHashCode = null)
             {
-                StringBuffer = stringBuffer;
+                _stringBuffer = stringBuffer;
                 StringValue = stringValue;
                 if (stringHashCode.HasValue)
                 {
@@ -376,17 +400,17 @@ namespace NLog.Filters
                 {
                     return string.Equals(StringValue, other.StringValue, StringComparison.Ordinal);
                 }
-                if (StringBuffer != null && other.StringBuffer != null)
+                if (_stringBuffer != null && other._stringBuffer != null)
                 {
                     // StringBuilder.Equals only works when StringBuilder.Capacity is the same
-                    if (StringBuffer.Capacity != other.StringBuffer.Capacity)
+                    if (_stringBuffer.Capacity != other._stringBuffer.Capacity)
                     {
-                        if (StringBuffer.Length != other.StringBuffer.Length)
+                        if (_stringBuffer.Length != other._stringBuffer.Length)
                             return false;
 
-                        for (int x = 0; x < StringBuffer.Length; ++x)
+                        for (int x = 0; x < _stringBuffer.Length; ++x)
                         {
-                            if (StringBuffer[x] != other.StringBuffer[x])
+                            if (_stringBuffer[x] != other._stringBuffer[x])
                             {
                                 return false;
                             }
@@ -394,9 +418,9 @@ namespace NLog.Filters
 
                         return true;
                     }
-                    return StringBuffer.Equals(other.StringBuffer);
+                    return _stringBuffer.Equals(other._stringBuffer);
                 }
-                return ReferenceEquals(StringBuffer, other.StringBuffer) && ReferenceEquals(StringValue, other.StringValue);
+                return ReferenceEquals(_stringBuffer, other._stringBuffer) && ReferenceEquals(StringValue, other.StringValue);
             }
 
             public override bool Equals(object other)

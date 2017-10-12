@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -39,6 +39,8 @@ namespace MyExtensionNamespace
     [Target("MyTarget")]
     public class MyTarget : Target
     {
+        public FooLayout Layout { get; set; }
+
         protected override void Write(LogEventInfo logEvent)
         {
             // do nothing

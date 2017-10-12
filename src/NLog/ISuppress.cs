@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,7 +34,7 @@
 namespace NLog
 {
     using System;
-#if ASYNC_SUPPORTED
+#if NET4_5
     using System.Threading.Tasks;
 #endif
 
@@ -68,7 +68,7 @@ namespace NLog
         /// <returns>Result returned by the provided function or fallback value in case of exception.</returns>
         T Swallow<T>(Func<T> func, T fallback);
 
-#if ASYNC_SUPPORTED
+#if NET4_5
         /// <summary>
         /// Logs an exception is logged at <c>Error</c> level if the provided task does not run to completion.
         /// </summary>

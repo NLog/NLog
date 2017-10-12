@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -125,8 +125,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expectedResult, consoleErrorWriter.ToString());
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
-
+#if !MONO
         [Fact]
         public void ConsoleEncodingTest()
         {
@@ -173,7 +172,6 @@ namespace NLog.UnitTests.Targets
 #endif
 
 #if !NET3_5 && !MONO
-
         [Fact]
         public void ConsoleRaceCondtionIgnoreTest()
         {

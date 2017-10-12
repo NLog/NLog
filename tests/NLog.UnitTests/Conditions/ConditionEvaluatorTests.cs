@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -30,6 +30,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
+#pragma warning disable xUnit2004 //assert.True can't be used with Object parameter
 
 namespace NLog.UnitTests.Conditions
 {
@@ -261,7 +263,11 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
+#if NETSTANDARD
+        [Fact(Skip = "NetStandard does not mark InvalidOperationException as Serializable")]
+#else
         [Fact]
+#endif
         public void ExceptionTest4()
         {
             var inner = new InvalidOperationException("f");
@@ -299,7 +305,11 @@ namespace NLog.UnitTests.Conditions
             Assert.Same(inner, ex1.InnerException);
         }
 
+#if NETSTANDARD
+        [Fact(Skip = "NetStandard does not mark InvalidOperationException as Serializable")]
+#else
         [Fact]
+#endif
         public void ExceptionTest14()
         {
             var inner = new InvalidOperationException("f");

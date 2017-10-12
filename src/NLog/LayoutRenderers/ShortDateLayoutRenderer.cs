@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -80,8 +80,8 @@ namespace NLog.LayoutRenderers
 
         private class DateData
         {
-            private DateTime date;
-            private string formattedDate;
+            private DateTime _date;
+            private string _formattedDate;
 
             /// <summary>
             /// Appends a date in format yyyy-MM-dd to the StringBuilder.
@@ -94,12 +94,12 @@ namespace NLog.LayoutRenderers
             /// <param name="timestamp">The date to append</param>
             public void AppendDate(StringBuilder builder, DateTime timestamp)
             {
-                if (formattedDate == null || date != timestamp.Date)
+                if (_formattedDate == null || _date != timestamp.Date)
                 {
-                    date = timestamp.Date;
-                    formattedDate = timestamp.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    _date = timestamp.Date;
+                    _formattedDate = timestamp.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
                 }
-                builder.Append(formattedDate);
+                builder.Append(_formattedDate);
             }
         }
     }

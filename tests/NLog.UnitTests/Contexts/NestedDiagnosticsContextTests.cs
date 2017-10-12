@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -212,8 +212,8 @@ namespace NLog.UnitTests.Contexts
                         try
                         {
                             NDC.Clear();
-                            Assert.Equal(null, NDC.TopObject);
-                            Assert.Equal(null, NDC.PopObject());
+                            Assert.Null(NDC.TopObject);
+                            Assert.Null(NDC.PopObject());
                             AssertContents(NDC.GetAllMessages());
                             using (NDC.Push("foo"))
                             {
@@ -237,7 +237,7 @@ namespace NLog.UnitTests.Contexts
                             }
 
                             AssertContents(NDC.GetAllMessages());
-                            Assert.Equal(null, NDC.PopObject());
+                            Assert.Null(NDC.PopObject());
                         }
                         catch (Exception ex)
                         {

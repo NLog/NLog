@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -88,7 +88,7 @@ namespace NLog.LayoutRenderers
 
 #endif
             }
-            var message = string.Format("Could not find {0}", nameNotEmpty ? "assembly " + Name : "entry assembly");
+            var message = $"Could not find {(nameNotEmpty ? "assembly " + Name : "entry assembly")}";
 
 #if !SILVERLIGHT
             var assemblyVersion = assembly == null ? message : assembly.GetName().Version.ToString();

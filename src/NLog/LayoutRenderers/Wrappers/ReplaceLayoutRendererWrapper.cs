@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class ReplaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private Regex regex;
+        private Regex _regex;
 
         /// <summary>
         /// Gets or sets the text to search for.
@@ -121,7 +121,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 regexString = "\\b" + regexString + "\\b";
             }
 
-            this.regex = new Regex(regexString, regexOptions);
+            this._regex = new Regex(regexString, regexOptions);
         }
 
         /// <summary>
@@ -134,8 +134,8 @@ namespace NLog.LayoutRenderers.Wrappers
             var replacer = new Replacer(text, this.ReplaceGroupName, this.ReplaceWith);
 
             return string.IsNullOrEmpty(this.ReplaceGroupName) ?
-                this.regex.Replace(text, this.ReplaceWith)
-                : this.regex.Replace(text, replacer.EvaluateMatch);
+                this._regex.Replace(text, this.ReplaceWith)
+                : this._regex.Replace(text, replacer.EvaluateMatch);
         }
 
         /// <summary>
@@ -144,20 +144,20 @@ namespace NLog.LayoutRenderers.Wrappers
         [ThreadAgnostic]
         public class Replacer
         {
-            private readonly string text;
-            private readonly string replaceGroupName;
-            private readonly string replaceWith;
+            private readonly string _text;
+            private readonly string _replaceGroupName;
+            private readonly string _replaceWith;
 
             internal Replacer(string text, string replaceGroupName, string replaceWith)
             {
-                this.text = text;
-                this.replaceGroupName = replaceGroupName;
-                this.replaceWith = replaceWith;
+                this._text = text;
+                this._replaceGroupName = replaceGroupName;
+                this._replaceWith = replaceWith;
             }
 
             internal string EvaluateMatch(Match match)
             {
-                return ReplaceNamedGroup(text, replaceGroupName, replaceWith, match);
+                return ReplaceNamedGroup(_text, _replaceGroupName, _replaceWith, match);
             }
         }
 

@@ -367,6 +367,10 @@ namespace NLog.SourceCodeTests
         {
             var assemblyToCheck = ConfigurationManager.AppSettings["assemblyToCheckPath"];
             var assemblyToCheck2 = Path.GetFullPath(Path.Combine(_rootDir, assemblyToCheck));
+            if (!File.Exists(assemblyToCheck2))
+            {
+                throw new FileNotFoundException(string.Format("Failed loading DLL from path: {0}", assemblyToCheck2));
+            }
 
             var ass = Assembly.LoadFile(assemblyToCheck2);
             //var types = AppDomain.CurrentDomain.GetAssemblies()

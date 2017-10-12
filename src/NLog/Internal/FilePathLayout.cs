@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -71,7 +71,7 @@ namespace NLog.Internal
         /// <summary>
         /// non null is fixed,
         /// </summary>
-        private string cleanedFixedResult;
+        private string _cleanedFixedResult;
 
         private bool _cleanupInvalidChars;
 
@@ -110,11 +110,11 @@ namespace NLog.Internal
                     var isFixedText = pathLayout2.IsFixedText;
                     if (isFixedText)
                     {
-                        cleanedFixedResult = pathLayout2.FixedText;
+                        _cleanedFixedResult = pathLayout2.FixedText;
                         if (cleanupInvalidChars)
                         {
                             //clean first
-                            cleanedFixedResult = CleanupInvalidFilePath(cleanedFixedResult);
+                            _cleanedFixedResult = CleanupInvalidFilePath(_cleanedFixedResult);
                         }
                     }
 
@@ -152,9 +152,9 @@ namespace NLog.Internal
         /// <returns>String representation of a layout.</returns>
         private string GetRenderedFileName(LogEventInfo logEvent, System.Text.StringBuilder reusableBuilder = null)
         {
-            if (cleanedFixedResult != null)
+            if (_cleanedFixedResult != null)
             {
-                return cleanedFixedResult;
+                return _cleanedFixedResult;
             }
 
             if (_layout == null)
@@ -206,7 +206,7 @@ namespace NLog.Internal
         private string GetCleanFileName(string rawFileName)
         {
             var cleanFileName = rawFileName;
-            if (_cleanupInvalidChars && cleanedFixedResult == null)
+            if (_cleanupInvalidChars && _cleanedFixedResult == null)
             {
                 cleanFileName = CleanupInvalidFilePath(rawFileName);
             }
@@ -240,7 +240,7 @@ namespace NLog.Internal
                 return rawFileName;
             }
 
-            if ((!_cleanupInvalidChars || cleanedFixedResult != null) && _filePathKind == FilePathKind.Absolute)
+            if ((!_cleanupInvalidChars || _cleanedFixedResult != null) && _filePathKind == FilePathKind.Absolute)
                 return rawFileName; // Skip clean filename string-allocation
 
             if (string.Equals(_cachedPrevRawFileName, rawFileName, StringComparison.Ordinal) && _cachedPrevCleanFileName != null)

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -124,9 +124,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                     prevSequenceID = itemWrittenList[i];
                 }
 
-#if MONO || NET3_5 
-                Assert.True(elapsedMilliseconds < 750);    // Skip timing test when running within OpenCover.Console.exe
-#endif
+                if (!IsAppVeyor())
+                    Assert.True(elapsedMilliseconds < 750);    // Skip timing test when running within OpenCover.Console.exe
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)
@@ -254,7 +253,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 Assert.True(continuationHit.WaitOne());
                 Assert.NotNull(lastException);
-                Assert.IsType(typeof(InvalidOperationException), lastException);
+                Assert.IsType<InvalidOperationException>(lastException);
 
                 // no flush on exception
                 Assert.Equal(0, myTarget.FlushCount);
@@ -265,7 +264,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
                 continuationHit.WaitOne();
                 Assert.NotNull(lastException);
-                Assert.IsType(typeof(InvalidOperationException), lastException);
+                Assert.IsType<InvalidOperationException>(lastException);
                 Assert.Equal(0, myTarget.FlushCount);
                 Assert.Equal(2, myTarget.WriteCount);
             }

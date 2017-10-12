@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -178,7 +178,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     // for the first 3 rounds, no target is available
                     Assert.NotNull(exceptions[i]);
-                    Assert.IsType(typeof(InvalidOperationException), exceptions[i]);
+                    Assert.IsType<InvalidOperationException>(exceptions[i]);
                     Assert.Equal("Some failure.", exceptions[i].Message);
                 }
                 else
@@ -198,6 +198,60 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(1, myTarget3.FlushCount);
         }
 
+        [Fact]
+        public void FallbackGroupWithBufferingTargets_ReturnToFirstOnSuccess()
+        {
+            FallbackGroupWithBufferingTargets(true);
+        }
+
+        [Fact]
+        public void FallbackGroupWithBufferingTargets_DoNotReturnToFirstOnSuccess()
+        {
+            FallbackGroupWithBufferingTargets(false);
+        }
+
+        private void FallbackGroupWithBufferingTargets(bool returnToFirstOnSuccess)
+        {
+            const int totalEvents = 1000;
+
+            var myTarget1 = new MyTarget { FailCounter = int.MaxValue }; // Always failing.
+            var myTarget2 = new MyTarget();
+            var myTarget3 = new MyTarget();
+
+            var buffer1 = new BufferingTargetWrapper() { WrappedTarget = myTarget1, FlushTimeout = 100, SlidingTimeout = false };
+            var buffer2 = new BufferingTargetWrapper() { WrappedTarget = myTarget2, FlushTimeout = 100, SlidingTimeout = false };
+            var buffer3 = new BufferingTargetWrapper() { WrappedTarget = myTarget3, FlushTimeout = 100, SlidingTimeout = false };
+
+            var wrapper = CreateAndInitializeFallbackGroupTarget(returnToFirstOnSuccess, buffer1, buffer2, buffer3);
+
+            var allEventsDone = new ManualResetEvent(false);
+            var exceptions = new List<Exception>();
+            for (var i = 0; i < totalEvents; ++i)
+            {
+                wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex =>
+                {
+                    lock (exceptions)
+                    {
+                        exceptions.Add(ex);
+                        if (exceptions.Count >= totalEvents)
+                            allEventsDone.Set();
+                    }
+                }));
+            }
+            allEventsDone.WaitOne();                            // Wait for all events to be delivered.
+
+            Assert.True(totalEvents >= myTarget1.WriteCount,    // Check events weren't delivered twice to myTarget1,
+                "Target 1 received " + myTarget1.WriteCount + " writes although only " + totalEvents + " events were written");
+            Assert.Equal(totalEvents, myTarget2.WriteCount);    // were all delivered exactly once to myTarget2,
+            Assert.Equal(0, myTarget3.WriteCount);              // with nothing delivered to myTarget3.
+
+            Assert.Equal(totalEvents, exceptions.Count);
+            foreach (var e in exceptions)
+            {
+                Assert.Null(e);                                 // All events should have succeeded on myTarget2.
+            }
+        }
+
         private static FallbackGroupTarget CreateAndInitializeFallbackGroupTarget(bool returnToFirstOnSuccess, params Target[] targets)
         {
             var wrapper = new FallbackGroupTarget(targets)
@@ -207,6 +261,10 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             foreach (var target in targets)
             {
+                WrapperTargetBase wrapperTarget = target as WrapperTargetBase;
+                if (wrapperTarget != null)
+                    wrapperTarget.WrappedTarget.Initialize(null);
+
                 target.Initialize(null);
             }
 

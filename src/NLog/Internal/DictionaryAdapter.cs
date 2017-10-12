@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -44,7 +44,7 @@ namespace NLog.Internal
     /// <typeparam name="TValue">The type of the value.</typeparam>
     internal class DictionaryAdapter<TKey, TValue> : IDictionary
     {
-        private readonly IDictionary<TKey, TValue> implementation;
+        private readonly IDictionary<TKey, TValue> _implementation;
 
         /// <summary>
         /// Initializes a new instance of the DictionaryAdapter class.
@@ -52,7 +52,7 @@ namespace NLog.Internal
         /// <param name="implementation">The implementation.</param>
         public DictionaryAdapter(IDictionary<TKey, TValue> implementation)
         {
-            this.implementation = implementation;
+            this._implementation = implementation;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace NLog.Internal
         /// </returns>
         public ICollection Values
         {
-            get { return new List<TValue>(this.implementation.Values); }
+            get { return new List<TValue>(this._implementation.Values); }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace NLog.Internal
         /// </returns>
         public int Count
         {
-            get { return this.implementation.Count; }
+            get { return this._implementation.Count; }
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace NLog.Internal
         /// </returns>
         public object SyncRoot
         {
-            get { return this.implementation; }
+            get { return this._implementation; }
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace NLog.Internal
         /// </returns>
         public bool IsReadOnly
         {
-            get { return this.implementation.IsReadOnly; }
+            get { return this._implementation.IsReadOnly; }
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace NLog.Internal
         /// </returns>
         public ICollection Keys
         {
-            get { return new List<TKey>(this.implementation.Keys); }
+            get { return new List<TKey>(this._implementation.Keys); }
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace NLog.Internal
             {
                 TValue value;
 
-                if (this.implementation.TryGetValue((TKey)key, out value))
+                if (this._implementation.TryGetValue((TKey)key, out value))
                 {
                     return value;
                 }
@@ -159,7 +159,7 @@ namespace NLog.Internal
 
             set
             {
-                this.implementation[(TKey)key] = (TValue)value;
+                this._implementation[(TKey)key] = (TValue)value;
             }
         }
 
@@ -170,7 +170,7 @@ namespace NLog.Internal
         /// <param name="value">The <see cref="T:System.Object"/> to use as the value of the element to add.</param>
         public void Add(object key, object value)
         {
-            this.implementation.Add((TKey)key, (TValue)value);
+            this._implementation.Add((TKey)key, (TValue)value);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace NLog.Internal
         /// </summary>
         public void Clear()
         {
-            this.implementation.Clear();
+            this._implementation.Clear();
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace NLog.Internal
         /// </returns>
         public bool Contains(object key)
         {
-            return this.implementation.ContainsKey((TKey)key);
+            return this._implementation.ContainsKey((TKey)key);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace NLog.Internal
         /// </returns>
         public IDictionaryEnumerator GetEnumerator()
         {
-            return new MyEnumerator(this.implementation.GetEnumerator());
+            return new MyEnumerator(this._implementation.GetEnumerator());
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace NLog.Internal
         /// <param name="key">The key of the element to remove.</param>
         public void Remove(object key)
         {
-            this.implementation.Remove((TKey)key);
+            this._implementation.Remove((TKey)key);
         }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace NLog.Internal
         /// </summary>
         private class MyEnumerator : IDictionaryEnumerator
         {
-            private IEnumerator<KeyValuePair<TKey, TValue>> wrapped;
+            private IEnumerator<KeyValuePair<TKey, TValue>> _wrapped;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="MyEnumerator" /> class.
@@ -247,7 +247,7 @@ namespace NLog.Internal
             /// <param name="wrapped">The wrapped.</param>
             public MyEnumerator(IEnumerator<KeyValuePair<TKey, TValue>> wrapped)
             {
-                this.wrapped = wrapped;
+                this._wrapped = wrapped;
             }
 
             /// <summary>
@@ -259,7 +259,7 @@ namespace NLog.Internal
             /// </returns>
             public DictionaryEntry Entry
             {
-                get { return new DictionaryEntry(this.wrapped.Current.Key, this.wrapped.Current.Value); }
+                get { return new DictionaryEntry(this._wrapped.Current.Key, this._wrapped.Current.Value); }
             }
 
             /// <summary>
@@ -271,7 +271,7 @@ namespace NLog.Internal
             /// </returns>
             public object Key
             {
-                get { return this.wrapped.Current.Key; }
+                get { return this._wrapped.Current.Key; }
             }
 
             /// <summary>
@@ -283,7 +283,7 @@ namespace NLog.Internal
             /// </returns>
             public object Value
             {
-                get { return this.wrapped.Current.Value; }
+                get { return this._wrapped.Current.Value; }
             }
 
             /// <summary>
@@ -306,7 +306,7 @@ namespace NLog.Internal
             /// </returns>
             public bool MoveNext()
             {
-                return this.wrapped.MoveNext();
+                return this._wrapped.MoveNext();
             }
 
             /// <summary>
@@ -314,7 +314,7 @@ namespace NLog.Internal
             /// </summary>
             public void Reset()
             {
-                this.wrapped.Reset();
+                this._wrapped.Reset();
             }
         }
     }

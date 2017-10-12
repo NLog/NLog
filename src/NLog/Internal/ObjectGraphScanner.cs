@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -79,8 +79,14 @@ namespace NLog.Internal
             }
 
             var type = o.GetType();
-            if (!type.IsDefined(typeof(NLogConfigurationItemAttribute), true))
+            try
             {
+                if (type == null || !type.IsDefined(typeof(NLogConfigurationItemAttribute), true))
+                    return;
+            }
+            catch (System.Exception ex)
+            {
+                InternalLogger.Info(ex, "{0}Type reflection not possible for: {1}. Maybe because of .NET Native.", new string(' ', level), o.ToString());
                 return;
             }
 
@@ -104,8 +110,21 @@ namespace NLog.Internal
 
             foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(type))
             {
-                if (prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string) || prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
+                if (prop == null || prop.PropertyType == null || prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string))
                 {
+                    continue;
+                }
+
+                try
+                {
+                    if (prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
+                    {
+                        continue;
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    InternalLogger.Info(ex, "{0}Type reflection not possible for property {1}. Maybe because of .NET Native.", new string(' ', level + 1), prop.Name);
                     continue;
                 }
 
@@ -113,6 +132,11 @@ namespace NLog.Internal
                 if (value == null)
                 {
                     continue;
+                }
+
+                if (InternalLogger.IsTraceEnabled)
+                {
+                    InternalLogger.Trace("{0}Scanning Property {1} '{2}' {3}", new string(' ', level + 1), prop.Name, value.ToString(), prop.PropertyType.Namespace);
                 }
 
                 var list = value as IList;
@@ -137,13 +161,19 @@ namespace NLog.Internal
                     var enumerable = value as IEnumerable;
                     if (enumerable != null)
                     {
-                        //cast to list otherwhise possible:  Collection was modified after the enumerator was instantiated.
+                        //new list to prevent: Collection was modified after the enumerator was instantiated.
                         var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
-
+                        //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
                         ScanPropertiesList(result, elements, level + 1, visitedObjects);
                     }
                     else
                     {
+#if NETSTANDARD
+                        if (!prop.PropertyType.IsDefined(typeof(NLogConfigurationItemAttribute), true))
+                        {
+                            continue;   // .NET native doesn't always allow reflection of System-types (Ex. Encoding)
+                        }
+#endif
                         ScanProperties(result, value, level + 1, visitedObjects);
                     }
                 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Config
 
                 // configuration with current culture
                 var configuration1 = CreateConfigurationFromString(string.Format(configurationTemplate, false));
-                Assert.Equal(null, configuration1.DefaultCultureInfo);
+                Assert.Null(configuration1.DefaultCultureInfo);
 
                 // configuration with invariant culture
                 var configuration2 = CreateConfigurationFromString(string.Format(configurationTemplate, true));
@@ -143,33 +143,38 @@ namespace NLog.UnitTests.Config
             Assert.Equal(expected, output);
         }
 
-
-#if !MONO
         [Fact]
         public void ProcessInfoLayoutRendererCultureTest()
         {
             string cultureName = "de-DE";
             string expected = ".";   // dot as date separator (01.10.2008)
+            string output = string.Empty;
 
             var logEventInfo = CreateLogEventInfo(cultureName);
 
-            var renderer = new ProcessInfoLayoutRenderer();
-            renderer.Property = ProcessInfoProperty.StartTime;
-            renderer.Format = "d";
-            string output = renderer.Render(logEventInfo);
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] CultureInfoTests.ProcessInfoLayoutRendererCultureTest because we are running in Travis");
+            }
+            else
+            {
+                var renderer = new ProcessInfoLayoutRenderer();
+                renderer.Property = ProcessInfoProperty.StartTime;
+                renderer.Format = "d";
+                output = renderer.Render(logEventInfo);
 
-            Assert.Contains(expected, output);
-            Assert.DoesNotContain("/", output);
-            Assert.DoesNotContain("-", output);
+                Assert.Contains(expected, output);
+                Assert.DoesNotContain("/", output);
+                Assert.DoesNotContain("-", output);
+            }
 
             var renderer2 = new ProcessInfoLayoutRenderer();
-            renderer2.Property = ProcessInfoProperty.BasePriority;
+            renderer2.Property = ProcessInfoProperty.PriorityClass;
             renderer2.Format = "d";
             output = renderer2.Render(logEventInfo);
             Assert.True(output.Length >= 1);
             Assert.True("012345678".IndexOf(output[0]) > 0);
         }
-#endif
 
         [Fact]
         public void AllEventPropRendererCultureTest()
@@ -235,8 +240,10 @@ namespace NLog.UnitTests.Config
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US", false);
                 logger.Error(ex, "");
 
+#if !NETSTANDARD
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE", false);
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE", false);
+#endif
                 logger.Error(ex, "");
 
                 Assert.Equal(2, target.Logs.Count);

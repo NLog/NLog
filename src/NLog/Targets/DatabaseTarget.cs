@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,22 +38,30 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Configuration;
+
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
     using System.Reflection;
     using System.Text;
     using System.Transactions;
+
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
+
+#if !NETSTANDARD
+    using System.Configuration;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
+#endif
 
     /// <summary>
     /// Writes log messages to the database using an ADO.NET provider.
     /// </summary>
+    /// <remarks>
+    /// - NETSTANDARD cannot load connectionstrings from .config
+    /// </remarks>
     /// <seealso href="https://github.com/nlog/nlog/wiki/Database-target">Documentation on NLog Wiki</seealso>
     /// <example>
     /// <para>
@@ -75,8 +83,8 @@ namespace NLog.Targets
     {
         private static Assembly systemDataAssembly = typeof(IDbConnection).Assembly;
 
-        private IDbConnection activeConnection = null;
-        private string activeConnectionString;
+        private IDbConnection _activeConnection = null;
+        private string _activeConnectionString;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
@@ -88,7 +96,9 @@ namespace NLog.Targets
             this.UninstallDdlCommands = new List<DatabaseCommandInfo>();
             this.DBProvider = "sqlserver";
             this.DBHost = ".";
+#if !NETSTANDARD
             this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
+#endif
             this.CommandType = CommandType.Text;
             this.OptimizeBufferReuse = GetType() == typeof(DatabaseTarget);
         }
@@ -134,11 +144,13 @@ namespace NLog.Targets
         [DefaultValue("sqlserver")]
         public string DBProvider { get; set; }
 
+#if !NETSTANDARD
         /// <summary>
         /// Gets or sets the name of the connection string (as specified in <see href="http://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public string ConnectionStringName { get; set; }
+#endif
 
         /// <summary>
         /// Gets or sets the connection string. When provided, it overrides the values
@@ -256,10 +268,12 @@ namespace NLog.Targets
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; private set; }
 
+#if !NETSTANDARD
         internal DbProviderFactory ProviderFactory { get; set; }
 
         // this is so we can mock the connection string without creating sub-processes
         internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set; }
+#endif
 
         internal Type ConnectionType { get; set; }
 
@@ -297,13 +311,20 @@ namespace NLog.Targets
         {
             IDbConnection connection;
 
+#if !NETSTANDARD
             if (this.ProviderFactory != null)
             {
                 connection = this.ProviderFactory.CreateConnection();
             }
             else
+#endif
             {
                 connection = (IDbConnection)Activator.CreateInstance(this.ConnectionType);
+            }
+
+            if (connection == null)
+            {
+                throw new NLogRuntimeException("Creation of connection failed");
             }
 
             connection.ConnectionString = connectionString;
@@ -328,7 +349,7 @@ namespace NLog.Targets
             }
 
             bool foundProvider = false;
-
+#if !NETSTANDARD
             if (!string.IsNullOrEmpty(this.ConnectionStringName))
             {
                 // read connection string and provider factory from the configuration file
@@ -360,6 +381,7 @@ namespace NLog.Targets
                     }
                 }
             }
+#endif
 
             if (!foundProvider)
             {
@@ -378,9 +400,14 @@ namespace NLog.Targets
                 case "MSSQL":
                 case "MICROSOFT":
                 case "MSDE":
-                    this.ConnectionType = systemDataAssembly.GetType("System.Data.SqlClient.SqlConnection", true);
+#if NETSTANDARD
+                    var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
+#else
+                    var assembly = systemDataAssembly;
+#endif
+                    this.ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
                     break;
-
+#if !NETSTANDARD
                 case "OLEDB":
                     this.ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
                     break;
@@ -388,7 +415,7 @@ namespace NLog.Targets
                 case "ODBC":
                     this.ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
                     break;
-
+#endif
                 default:
                     this.ConnectionType = Type.GetType(this.DBProvider, true);
                     break;
@@ -516,7 +543,7 @@ namespace NLog.Targets
             {
                 this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
 
-                using (IDbCommand command = this.activeConnection.CreateCommand())
+                using (IDbCommand command = this._activeConnection.CreateCommand())
                 {
                     command.CommandText = base.RenderLogEvent(this.CommandText, logEvent);
                     command.CommandType = this.CommandType;
@@ -608,33 +635,33 @@ namespace NLog.Targets
 
         private void EnsureConnectionOpen(string connectionString)
         {
-            if (this.activeConnection != null)
+            if (this._activeConnection != null)
             {
-                if (this.activeConnectionString != connectionString)
+                if (this._activeConnectionString != connectionString)
                 {
                     InternalLogger.Trace("DatabaseTarget: close connection because of opening new.");
                     this.CloseConnection();
                 }
             }
 
-            if (this.activeConnection != null)
+            if (this._activeConnection != null)
             {
                 return;
             }
 
             InternalLogger.Trace("DatabaseTarget: open connection.");
-            this.activeConnection = this.OpenConnection(connectionString);
-            this.activeConnectionString = connectionString;
+            this._activeConnection = this.OpenConnection(connectionString);
+            this._activeConnectionString = connectionString;
         }
 
         private void CloseConnection()
         {
-            if (this.activeConnection != null)
+            if (this._activeConnection != null)
             {
-                this.activeConnection.Close();
-                this.activeConnection.Dispose();
-                this.activeConnection = null;
-                this.activeConnectionString = null;
+                this._activeConnection.Close();
+                this._activeConnection.Dispose();
+                this._activeConnection = null;
+                this._activeConnectionString = null;
             }
         }
 
@@ -674,7 +701,7 @@ namespace NLog.Targets
 
                     this.EnsureConnectionOpen(cs);
 
-                    using (var command = this.activeConnection.CreateCommand())
+                    using (var command = this._activeConnection.CreateCommand())
                     {
                         command.CommandType = commandInfo.CommandType;
                         command.CommandText = base.RenderLogEvent(commandInfo.Text, logEvent);

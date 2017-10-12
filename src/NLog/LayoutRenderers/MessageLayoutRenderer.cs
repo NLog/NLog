@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -68,13 +68,22 @@ namespace NLog.LayoutRenderers
         public string ExceptionSeparator { get; set; }
 
         /// <summary>
+        /// Gets or sets whether it should render the raw message without formatting parameters
+        /// </summary>
+        /// <docgen category='Layout Options' order='10' />
+        public bool Raw { get; set; }
+
+        /// <summary>
         /// Renders the log message including any positional parameters and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(logEvent.FormattedMessage);
+            if (this.Raw)
+                builder.Append(logEvent.Message);
+            else
+                builder.Append(logEvent.FormattedMessage);
             if (this.WithException && logEvent.Exception != null)
             {
                 builder.Append(this.ExceptionSeparator);

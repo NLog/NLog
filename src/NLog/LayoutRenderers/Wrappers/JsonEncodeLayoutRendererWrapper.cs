@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("json-encode")]
     [AmbientProperty("JsonEncode")]
     [ThreadAgnostic]
-    public sealed class JsonEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class JsonEncodeLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonEncodeLayoutRendererWrapper" /> class.
@@ -72,11 +72,30 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>JSON-encoded string.</returns>
-        protected override string Transform(string text)
+        /// <param name="target">The text to be JSON-encoded.</param>
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            return this.JsonEncode ? Targets.DefaultJsonSerializer.EscapeString(text, this.EscapeUnicode) : text;
+            if (this.JsonEncode)
+            {
+                if (RequiresJsonEncode(target))
+                {
+                    var result = Targets.DefaultJsonSerializer.EscapeString(target.ToString(), this.EscapeUnicode);
+                    target.Length = 0;
+                    target.Append(result);
+                }
+            }
+        }
+
+        private bool RequiresJsonEncode(StringBuilder target)
+        {
+            for (int i = 0; i < target.Length; ++i)
+            {
+                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(target[i], this.EscapeUnicode))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

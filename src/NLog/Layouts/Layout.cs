@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -51,8 +51,8 @@ namespace NLog.Layouts
         /// <summary>
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
         /// </summary>
-        private bool isInitialized;
-        private bool scannedForObjects;
+        private bool _isInitialized;
+        private bool _scannedForObjects;
 
         /// <summary>
         /// Gets a value indicating whether this layout is thread-agnostic (can be rendered on any thread).
@@ -71,7 +71,7 @@ namespace NLog.Layouts
         internal StackTraceUsage StackTraceUsage { get; private set; }
 
         private const int MaxInitialRenderBufferLength = 16384;
-        private int maxRenderedLength;
+        private int _maxRenderedLength;
 
         /// <summary>
         /// Gets the logging configuration this target is part of.
@@ -136,7 +136,7 @@ namespace NLog.Layouts
         /// <returns>String representing log event.</returns>
         public string Render(LogEventInfo logEvent)
         {
-            if (!this.isInitialized)
+            if (!this._isInitialized)
             {
                 this.Initialize(this.LoggingConfiguration);
             }
@@ -160,7 +160,7 @@ namespace NLog.Layouts
         /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
         internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target, bool cacheLayoutResult = false)
         {
-            if (!this.isInitialized)
+            if (!this._isInitialized)
             {
                 this.Initialize(this.LoggingConfiguration);
             }
@@ -175,20 +175,11 @@ namespace NLog.Layouts
                 }
             }
 
-            int initialLength = this.maxRenderedLength;
-            if (initialLength > MaxInitialRenderBufferLength)
-            {
-                initialLength = MaxInitialRenderBufferLength;
-            }
-
-            using (var localTarget = new AppendBuilderCreator(target, initialLength))
+            cacheLayoutResult = cacheLayoutResult && !this.ThreadAgnostic;
+            using (var localTarget = new AppendBuilderCreator(target, cacheLayoutResult))
             {
                 RenderFormattedMessage(logEvent, localTarget.Builder);
-                if (localTarget.Builder.Length > this.maxRenderedLength)
-                {
-                    this.maxRenderedLength = localTarget.Builder.Length;
-                }
-                if (cacheLayoutResult && !this.ThreadAgnostic)
+                if (cacheLayoutResult)
                 {
                     // when needed as it generates garbage
                     logEvent.AddCachedLayoutValue(this, localTarget.Builder.ToString());
@@ -214,7 +205,7 @@ namespace NLog.Layouts
                 }
             }
 
-            int initialLength = this.maxRenderedLength;
+            int initialLength = this._maxRenderedLength;
             if (initialLength > MaxInitialRenderBufferLength)
             {
                 initialLength = MaxInitialRenderBufferLength;
@@ -222,9 +213,9 @@ namespace NLog.Layouts
 
             var sb = reusableBuilder ?? new StringBuilder(initialLength);
             RenderFormattedMessage(logEvent, sb);
-            if (sb.Length > this.maxRenderedLength)
+            if (sb.Length > this._maxRenderedLength)
             {
-                this.maxRenderedLength = sb.Length;
+                this._maxRenderedLength = sb.Length;
             }
 
             if (cacheLayoutResult && !this.ThreadAgnostic)
@@ -241,7 +232,7 @@ namespace NLog.Layouts
         /// Renders the layout for the specified logging event by invoking layout renderers.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             target.Append(GetFormattedMessage(logEvent) ?? string.Empty);
@@ -270,15 +261,15 @@ namespace NLog.Layouts
         /// <param name="configuration">The configuration.</param>
         internal void Initialize(LoggingConfiguration configuration)
         {
-            if (!this.isInitialized)
+            if (!this._isInitialized)
             {
                 this.LoggingConfiguration = configuration;
-                this.isInitialized = true;
-                this.scannedForObjects = false;
+                this._isInitialized = true;
+                this._scannedForObjects = false;
 
                 this.InitializeLayout();
 
-                if (!this.scannedForObjects)
+                if (!this._scannedForObjects)
                 {
                     InternalLogger.Debug("Initialized Layout done but not scanned for objects");
                     PerformObjectScanning();
@@ -299,7 +290,7 @@ namespace NLog.Layouts
             this.StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IStackTraceUsage
             this.StackTraceUsage = objectGraphScannerList.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(item => item == null ? StackTraceUsage.None : item.StackTraceUsage);
 
-            this.scannedForObjects = true;
+            this._scannedForObjects = true;
         }
 
         /// <summary>
@@ -307,10 +298,10 @@ namespace NLog.Layouts
         /// </summary>
         internal void Close()
         {
-            if (this.isInitialized)
+            if (this._isInitialized)
             {
                 this.LoggingConfiguration = null;
-                this.isInitialized = false;
+                this._isInitialized = false;
                 this.CloseLayout();
             }
         }

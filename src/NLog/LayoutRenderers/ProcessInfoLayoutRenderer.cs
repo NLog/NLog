@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !MONO && !SILVERLIGHT
+#if !SILVERLIGHT
 
 namespace NLog.LayoutRenderers
 {
@@ -49,10 +49,10 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processinfo")]
     public class ProcessInfoLayoutRenderer : LayoutRenderer
     {
-        private Process process;
+        private Process _process;
 
-        private PropertyInfo propertyInfo;
-        private ReflectionHelpers.LateBoundMethod lateBoundPropertyGet;
+        private PropertyInfo _propertyInfo;
+        private ReflectionHelpers.LateBoundMethod _lateBoundPropertyGet;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessInfoLayoutRenderer" /> class.
@@ -82,15 +82,15 @@ namespace NLog.LayoutRenderers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            this.propertyInfo = typeof(Process).GetProperty(this.Property.ToString());
-            if (this.propertyInfo == null)
+            this._propertyInfo = typeof(Process).GetProperty(this.Property.ToString());
+            if (this._propertyInfo == null)
             {
-                throw new ArgumentException("Property '" + this.propertyInfo + "' not found in System.Diagnostics.Process");
+                throw new ArgumentException("Property '" + this._propertyInfo + "' not found in System.Diagnostics.Process");
             }
 
-            lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(this.propertyInfo.GetGetMethod());
+            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(this._propertyInfo.GetGetMethod());
 
-            this.process = Process.GetCurrentProcess();
+            this._process = Process.GetCurrentProcess();
         }
 
         /// <summary>
@@ -98,10 +98,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         protected override void CloseLayoutRenderer()
         {
-            if (this.process != null)
+            if (this._process != null)
             {
-                this.process.Close();
-                this.process = null;
+                this._process.Close();
+                this._process = null;
             }
 
             base.CloseLayoutRenderer();
@@ -114,11 +114,11 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (this.lateBoundPropertyGet != null)
+            if (this._lateBoundPropertyGet != null)
             {
                 var formatProvider = GetFormatProvider(logEvent);
-                var value = this.lateBoundPropertyGet(this.process, null);
-                builder.Append(value.ToStringWithOptionalFormat(this.Format, formatProvider));
+                var value = this._lateBoundPropertyGet(this._process, null);
+                builder.AppendFormattedValue(value, this.Format, formatProvider);
             }
         }
     }

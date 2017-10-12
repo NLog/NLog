@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -46,7 +46,7 @@ namespace NLog.UnitTests.Config
         public void ConfigurationItemFactoryDefaultTest()
         {
             var cif = new ConfigurationItemFactory();
-            Assert.IsType(typeof(DebugTarget), cif.CreateInstance(typeof(DebugTarget)));
+            Assert.IsType<DebugTarget>(cif.CreateInstance(typeof(DebugTarget)));
         }
 
         [Fact]
@@ -67,10 +67,11 @@ namespace NLog.UnitTests.Config
             cif.CreateInstance = t => { resolvedTypes.Add(t); return FactoryHelper.CreateInstance(t); };
             Target target = cif.Targets.CreateInstance("Debug");
             Assert.NotNull(target);
-            Assert.Equal(1, resolvedTypes.Count);
+            Assert.Single(resolvedTypes);
             Assert.Equal(typeof(DebugTarget), resolvedTypes[0]);
         }
 
+#if !NETSTANDARD
         // this is just to force reference to NLog.Extended.dll
         public Type ForceExtendedReference = typeof(MessageQueueTarget).DeclaringType;
 
@@ -95,5 +96,6 @@ namespace NLog.UnitTests.Config
         {
             Assert.Equal(expectedTypeName, targets.CreateInstance(itemName).GetType().Name);
         }
+#endif
     }
 }

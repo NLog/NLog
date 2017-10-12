@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -49,11 +49,12 @@ namespace NLog.Targets
 #pragma warning restore 618
     {
         private readonly MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>> _propsCache = new MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>>(10000);
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(10000);
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
         private readonly JsonSerializeOptions _serializeOptions = new JsonSerializeOptions();
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
         private const int MaxRecursionDepth = 10;
+        private const int MaxJsonLength = 512 * 1024;
 
         private static readonly DefaultJsonSerializer instance;
 
@@ -281,6 +282,11 @@ namespace NLog.Targets
             foreach (DictionaryEntry de in value)
             {
                 originalLength = destination.Length;
+                if (originalLength > MaxJsonLength)
+                {
+                    break;
+                }
+
                 if (!first)
                 {
                     destination.Append(',');
@@ -316,6 +322,11 @@ namespace NLog.Targets
             foreach (var val in value)
             {
                 originalLength = destination.Length;
+                if (originalLength > MaxJsonLength)
+                {
+                    break;
+                }
+
                 if (!first)
                 {
                     destination.Append(',');
@@ -345,11 +356,16 @@ namespace NLog.Targets
                 }
                 else if (value is DateTimeOffset)
                 {
-                    QuoteValue(destination, string.Format("{0:yyyy-MM-dd HH:mm:ss zzz}", value));
+                    QuoteValue(destination, $"{value:yyyy-MM-dd HH:mm:ss zzz}");
                 }
                 else
                 {
                     int originalLength = destination.Length;
+                    if (originalLength > MaxJsonLength)
+                    {
+                        return false;
+                    }
+
                     try
                     {
                         using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
@@ -526,19 +542,8 @@ namespace NLog.Targets
                 if (sb == null)
                 {
                     // Check if we need to upgrade to StringBuilder
-                    if (!EscapeChar(ch, escapeUnicode))
-                    {
-                        switch (ch)
-                        {
-                            case '"':
-                            case '\\':
-                            case '/':
-                                break;
-
-                            default:
-                                continue; // StringBuilder not needed, yet
-                        }
-                    }
+                    if (!RequiresJsonEscape(ch, escapeUnicode))
+                        continue; // StringBuilder not needed, yet
 
                     // StringBuilder needed
                     sb = new StringBuilder(text.Length + 4);
@@ -596,6 +601,23 @@ namespace NLog.Targets
                 return sb.ToString();
             else
                 return text;
+        }
+
+        internal static bool RequiresJsonEscape(char ch, bool escapeUnicode)
+        {
+            if (!EscapeChar(ch, escapeUnicode))
+            {
+                switch (ch)
+                {
+                    case '"':
+                    case '\\':
+                    case '/':
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+            return true;
         }
 
         private static bool EscapeChar(char ch, bool escapeUnicode)
@@ -724,7 +746,7 @@ namespace NLog.Targets
         private static PropertyInfo[] GetPropertyInfosNoCache(Type type)
         {
 #if NETSTANDARD
-            var props = type.GetRuntimeProperties().ToArray();
+            var props = System.Linq.Enumerable.ToArray(type.GetRuntimeProperties());
 #else
             var props = type.GetProperties();
 #endif

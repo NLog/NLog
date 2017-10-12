@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -52,7 +52,6 @@ namespace NLog.UnitTests.LayoutRenderers
         [InlineData(0, 0, 0, 0, -506, "00:00:00.000")]
         [InlineData(0, 0, 0, 0, 0, "00:00:00.000")]
         [InlineData(1, 0, 0, 0, 0, "00:00:00.000")]
-        [InlineData(1, 0, 0, 0, 0, "00:00:00.000")]
         public void RenderTimeSpanTest(int day, int hour, int min, int sec, int milisec, string expected)
         {
 
@@ -64,8 +63,6 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(expected, result);
         }
 
-#if !NET3_5
-
         [Fact]
         public void RenderProcessTimeLayoutRenderer()
         {
@@ -76,6 +73,5 @@ namespace NLog.UnitTests.LayoutRenderers
             var expected = time.ToString("hh\\:mm\\:ss\\.fff");
             AssertLayoutRendererOutput(layout, logEvent, expected);
         }
-#endif
     }
 }

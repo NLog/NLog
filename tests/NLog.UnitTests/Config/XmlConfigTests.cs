@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,33 +45,37 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ParseNLogOptionsDefaultTest()
         {
-            var xml = "<nlog></nlog>";
-            var config = CreateConfigurationFromString(xml);
+            using (new InternalLoggerScope())
+            {
+                var xml = "<nlog></nlog>";
+                var config = CreateConfigurationFromString(xml);
 
-            Assert.Equal(false, config.AutoReload);
-            Assert.Equal(true, config.InitializeSucceeded);
-            Assert.Equal("", InternalLogger.LogFile);
-            Assert.Equal(true, InternalLogger.IncludeTimestamp);
-            Assert.Equal(false, InternalLogger.LogToConsole);
-            Assert.Equal(false, InternalLogger.LogToConsoleError);
-            Assert.Equal(null, InternalLogger.LogWriter);
-
+                Assert.False(config.AutoReload);
+                Assert.True(config.InitializeSucceeded);
+                Assert.Equal("", InternalLogger.LogFile);
+                Assert.True(InternalLogger.IncludeTimestamp);
+                Assert.False(InternalLogger.LogToConsole);
+                Assert.False(InternalLogger.LogToConsoleError);
+                Assert.Null(InternalLogger.LogWriter);
+            }
         }
 
         [Fact]
         public void ParseNLogOptionsTest()
         {
-            var xml = "<nlog autoreload='true' logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
-            var config = CreateConfigurationFromString(xml);
+            using (new InternalLoggerScope(true))
+            {
+                var xml = "<nlog autoreload='true' logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
+                var config = CreateConfigurationFromString(xml);
 
-            Assert.Equal(true, config.AutoReload);
-            Assert.Equal(true, config.InitializeSucceeded);
-            Assert.Equal("", InternalLogger.LogFile);
-            Assert.Equal(false, InternalLogger.IncludeTimestamp);
-            Assert.Equal(true, InternalLogger.LogToConsole);
-            Assert.Equal(true, InternalLogger.LogToConsoleError);
-            Assert.Equal(null, InternalLogger.LogWriter);
-
+                Assert.True(config.AutoReload);
+                Assert.True(config.InitializeSucceeded);
+                Assert.Equal("", InternalLogger.LogFile);
+                Assert.False(InternalLogger.IncludeTimestamp);
+                Assert.True(InternalLogger.LogToConsole);
+                Assert.True(InternalLogger.LogToConsoleError);
+                Assert.Null(InternalLogger.LogWriter);
+            }
         }
 
 
@@ -89,17 +93,17 @@ namespace NLog.UnitTests.Config
         [InlineData("1:0:0:0", 86400)] //1 day
         public void SetTimeSpanFromXmlTest(string interval, int seconds)
         {
-            var config = CreateConfigurationFromString(string.Format(@"
-            <nlog>
+            var config = CreateConfigurationFromString($@"
+            <nlog throwExceptions='true'>
                 <targets>
-                    <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{0}'>
+                    <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{interval}'>
                         <target name='debug' type='Debug' layout='${{message}}' />
                     </wrapper-target>
                 </targets>
                 <rules>
                     <logger name='*' level='Debug' writeTo='limiting' />
                 </rules>
-            </nlog>", interval));
+            </nlog>");
 
             var target = config.FindTargetByName<LimitingTargetWrapper>("limiting");
             Assert.NotNull(target);

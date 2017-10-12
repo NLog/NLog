@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,8 +48,8 @@ namespace NLog.LayoutRenderers
     public abstract class LayoutRenderer : ISupportsInitialize, IRenderable, IDisposable
     {
         private const int MaxInitialRenderBufferLength = 16384;
-        private int maxRenderedLength;
-        private bool isInitialized;
+        private int _maxRenderedLength;
+        private bool _isInitialized;
 
         /// <summary>
         /// Gets the logging configuration this target is part of.
@@ -89,7 +89,7 @@ namespace NLog.LayoutRenderers
         /// <returns>String representation of a layout renderer.</returns>
         public string Render(LogEventInfo logEvent)
         {
-            int initialLength = this.maxRenderedLength;
+            int initialLength = this._maxRenderedLength;
             if (initialLength > MaxInitialRenderBufferLength)
             {
                 initialLength = MaxInitialRenderBufferLength;
@@ -97,9 +97,9 @@ namespace NLog.LayoutRenderers
 
             var builder = new StringBuilder(initialLength);
             this.RenderAppendBuilder(logEvent, builder);
-            if (builder.Length > this.maxRenderedLength)
+            if (builder.Length > this._maxRenderedLength)
             {
-                this.maxRenderedLength = builder.Length;
+                this._maxRenderedLength = builder.Length;
             }
 
             return builder.ToString();
@@ -131,9 +131,9 @@ namespace NLog.LayoutRenderers
             if (this.LoggingConfiguration == null)
                 this.LoggingConfiguration = configuration;
 
-            if (!this.isInitialized)
+            if (!this._isInitialized)
             {
-                this.isInitialized = true;
+                this._isInitialized = true;
                 this.InitializeLayoutRenderer();
             }
         }
@@ -143,10 +143,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         internal void Close()
         {
-            if (this.isInitialized)
+            if (this._isInitialized)
             {
                 this.LoggingConfiguration = null;
-                this.isInitialized = false;
+                this._isInitialized = false;
                 this.CloseLayoutRenderer();
             }
         }
@@ -158,9 +158,9 @@ namespace NLog.LayoutRenderers
         /// <param name="builder">The layout render output is appended to builder</param>
         internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder builder)
         {
-            if (!this.isInitialized)
+            if (!this._isInitialized)
             {
-                this.isInitialized = true;
+                this._isInitialized = true;
                 this.InitializeLayoutRenderer();
             }
 

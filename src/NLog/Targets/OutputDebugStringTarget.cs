@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -30,6 +30,10 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
+#if NETSTANDARD
+#define DEBUG   // System.Diagnostics.Debug.WriteLine
+#endif
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
@@ -88,7 +92,11 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
+#if NETSTANDARD
+            System.Diagnostics.Debug.WriteLine(base.RenderLogEvent(this.Layout, logEvent));
+#else
             NativeMethods.OutputDebugString(base.RenderLogEvent(this.Layout, logEvent));
+#endif
         }
     }
 }
