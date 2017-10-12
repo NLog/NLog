@@ -40,8 +40,8 @@ namespace NLog.Time
     /// </summary>
     public abstract class CachedTimeSource : TimeSource
     {
-        private int lastTicks = -1;
-        private DateTime lastTime = DateTime.MinValue;
+        private int _lastTicks = -1;
+        private DateTime _lastTime = DateTime.MinValue;
 
         /// <summary>
         /// Gets raw uncached time from derived time source.
@@ -56,13 +56,13 @@ namespace NLog.Time
             get
             {
                 int tickCount = Environment.TickCount;
-                if (tickCount == lastTicks)
-                    return lastTime;
+                if (tickCount == _lastTicks)
+                    return _lastTime;
                 else
                 {
                     DateTime time = FreshTime;
-                    lastTicks = tickCount;
-                    lastTime = time;
+                    _lastTicks = tickCount;
+                    _lastTime = time;
                     return time;
                 }
             }

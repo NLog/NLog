@@ -45,7 +45,7 @@ namespace NLog.Targets.Wrappers
     [Target("LimitingWrapper", IsWrapper = true)]
     public class LimitingTargetWrapper : WrapperTargetBase
     {
-        private DateTime firstWriteInInterval;
+        private DateTime _firstWriteInInterval;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LimitingTargetWrapper" /> class.
@@ -110,7 +110,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the <c>DateTime</c> when the current <see cref="Interval"/> will be reset.
         /// </summary>
-        public DateTime IntervalResetsAt { get { return firstWriteInInterval + Interval; } }
+        public DateTime IntervalResetsAt { get { return _firstWriteInInterval + Interval; } }
 
         /// <summary>
         /// Gets the number of <see cref="AsyncLogEventInfo"/> written in the current <see cref="Interval"/>.
@@ -161,13 +161,13 @@ namespace NLog.Targets.Wrappers
 
         private void ResetInterval()
         {
-            firstWriteInInterval = TimeSource.Current.Time;
+            _firstWriteInInterval = TimeSource.Current.Time;
             MessagesWrittenCount = 0;
         }
 
         private bool IsIntervalExpired()
         {
-            return TimeSource.Current.Time - firstWriteInInterval > Interval;
+            return TimeSource.Current.Time - _firstWriteInInterval > Interval;
         }
 
     }

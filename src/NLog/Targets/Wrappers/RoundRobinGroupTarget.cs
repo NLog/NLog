@@ -60,8 +60,8 @@ namespace NLog.Targets.Wrappers
     [Target("RoundRobinGroup", IsCompound = true)]
     public class RoundRobinGroupTarget : CompoundTargetBase
     {
-        private int currentTarget = 0;
-        private object lockObject = new object();
+        private int _currentTarget = 0;
+        private object _lockObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoundRobinGroupTarget" /> class.
@@ -114,10 +114,10 @@ namespace NLog.Targets.Wrappers
 
             int selectedTarget;
 
-            lock (this.lockObject)
+            lock (this._lockObject)
             {
-                selectedTarget = this.currentTarget;
-                this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;
+                selectedTarget = this._currentTarget;
+                this._currentTarget = (this._currentTarget + 1) % this.Targets.Count;
             }
 
             this.Targets[selectedTarget].WriteAsyncLogEvent(logEvent);

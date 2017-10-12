@@ -198,30 +198,30 @@ namespace NLog.Targets
         public bool PreAuthenticate { get; set; }
 #endif
 
-        private readonly AsyncOperationCounter pendingManualFlushList = new AsyncOperationCounter();
+        private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
 
-        private bool foundEnableGroupLayout;
-        private bool onlyEnableGroupLayout;   // Attempt to minimize Parameter-Array-Key-allocations
+        private bool _foundEnableGroupLayout;
+        private bool _onlyEnableGroupLayout;   // Attempt to minimize Parameter-Array-Key-allocations
 
         /// <summary>
         /// Initializes the target
         /// </summary>
         protected override void InitializeTarget()
         {
-            this.foundEnableGroupLayout = false;
-            this.onlyEnableGroupLayout = true;
+            this._foundEnableGroupLayout = false;
+            this._onlyEnableGroupLayout = true;
             base.InitializeTarget();
             for (int i = 0; i < this.Parameters.Count; ++i)
             {
                 if (this.Parameters[i].EnableGroupLayout)
                 {
-                    foundEnableGroupLayout = true;
-                    if (!onlyEnableGroupLayout)
+                    _foundEnableGroupLayout = true;
+                    if (!_onlyEnableGroupLayout)
                         break;
                 }
                 else
                 {
-                    onlyEnableGroupLayout = false;
+                    _onlyEnableGroupLayout = false;
                 }
             }
         }
@@ -232,7 +232,7 @@ namespace NLog.Targets
         /// <param name="logEvents">Array of logging events to write</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            if (!foundEnableGroupLayout)
+            if (!_foundEnableGroupLayout)
             {
                 base.Write(logEvents);
             }
@@ -244,9 +244,9 @@ namespace NLog.Targets
             {
                 if (this.Headers != null && this.Headers.Count > 0)
                 {
-                    if (convetToHeaderArrayDelegate == null)
-                        convetToHeaderArrayDelegate = (l) => ConvertToHeaderArray(l.LogEvent);
-                    var headerBuckets = logEvents.BucketSort(this.convetToHeaderArrayDelegate, ArrayDeepEqualityComparer<string>.Default);
+                    if (_convetToHeaderArrayDelegate == null)
+                        _convetToHeaderArrayDelegate = (l) => ConvertToHeaderArray(l.LogEvent);
+                    var headerBuckets = logEvents.BucketSort(this._convetToHeaderArrayDelegate, ArrayDeepEqualityComparer<string>.Default);
                     foreach (var headerBucket in headerBuckets)
                     {
                         DoGroupInvoke(headerBucket.Value, headerBucket.Key);
@@ -258,7 +258,7 @@ namespace NLog.Targets
                 }
             }
         }
-        private SortHelpers.KeySelector<AsyncLogEventInfo, string[]> convetToHeaderArrayDelegate;
+        private SortHelpers.KeySelector<AsyncLogEventInfo, string[]> _convetToHeaderArrayDelegate;
 
         string[] ConvertToHeaderArray(LogEventInfo logEvent)
         {
@@ -277,12 +277,12 @@ namespace NLog.Targets
         /// <param name="headerValues">WebRequest Header Values matching the LogEvents group</param>
         private void DoGroupInvoke(IList<AsyncLogEventInfo> logEvents, string[] headerValues)
         {
-            if (convetToParameterArrayDelegate == null)
-                convetToParameterArrayDelegate = (l) => ConvetToParameterArray(l.LogEvent, true);
+            if (_convetToParameterArrayDelegate == null)
+                _convetToParameterArrayDelegate = (l) => ConvetToParameterArray(l.LogEvent, true);
 
-            var parameterBuckets = onlyEnableGroupLayout
+            var parameterBuckets = _onlyEnableGroupLayout
                 ? new SortHelpers.ReadOnlySingleBucketDictionary<object[], IList<AsyncLogEventInfo>>(new KeyValuePair<object[], IList<AsyncLogEventInfo>>(new object[this.Parameters.Count], logEvents), ArrayDeepEqualityComparer<object>.Default)
-                : logEvents.BucketSort(convetToParameterArrayDelegate, ArrayDeepEqualityComparer<object>.Default);
+                : logEvents.BucketSort(_convetToParameterArrayDelegate, ArrayDeepEqualityComparer<object>.Default);
             foreach (var bucket in parameterBuckets)
             {
                 for (int i = 0; i < this.Parameters.Count; ++i)
@@ -314,7 +314,7 @@ namespace NLog.Targets
                 }
             }
         }
-        private SortHelpers.KeySelector<AsyncLogEventInfo, object[]> convetToParameterArrayDelegate;
+        private SortHelpers.KeySelector<AsyncLogEventInfo, object[]> _convetToParameterArrayDelegate;
 
         class ArrayDeepEqualityComparer<TValue> : IEqualityComparer<TValue[]>
         {
@@ -499,7 +499,7 @@ namespace NLog.Targets
                 postPayload.Position = 0;
                 try
                 {
-                    pendingManualFlushList.BeginOperation();
+                    _pendingManualFlushList.BeginOperation();
 
                     beginFunc(
                         result =>
@@ -541,14 +541,14 @@ namespace NLog.Targets
             }
             else
             {
-                pendingManualFlushList.BeginOperation();
+                _pendingManualFlushList.BeginOperation();
                 sendContinuation(null);
             }
         }
 
         private void DoInvokeCompleted(AsyncContinuation continuation, Exception ex)
         {
-            pendingManualFlushList.CompleteOperation(ex);
+            _pendingManualFlushList.CompleteOperation(ex);
             continuation(ex);
         }
 
@@ -558,7 +558,7 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
+            _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation).Invoke(null);
         }
 
         /// <summary>
@@ -566,7 +566,7 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            pendingManualFlushList.Clear();   // Maybe consider to wait a short while if pending requests?
+            _pendingManualFlushList.Clear();   // Maybe consider to wait a short while if pending requests?
             base.CloseTarget();
         }
 

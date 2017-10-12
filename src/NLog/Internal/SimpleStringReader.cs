@@ -44,7 +44,7 @@ namespace NLog.Internal
 #endif
 	internal class SimpleStringReader
 	{
-        private readonly string text;
+        private readonly string _text;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleStringReader" /> class.
@@ -52,7 +52,7 @@ namespace NLog.Internal
         /// <param name="text">The text to be tokenized.</param>
         public SimpleStringReader(string text)
         {
-            this.text = text;
+            this._text = text;
             this.Position = 0;
         }
 
@@ -66,7 +66,7 @@ namespace NLog.Internal
         /// </summary>
         internal string Text
         {
-            get { return this.text; }
+            get { return this._text; }
         }
 
 #if DEBUG
@@ -76,7 +76,7 @@ namespace NLog.Internal
             {
                 var current = (char)Peek();
                 var done = Substring(0, Position - 1);
-                var todo = ((Position > text.Length) ? Text.Substring(Position + 1) : "");
+                var todo = ((Position > _text.Length) ? Text.Substring(Position + 1) : "");
                 return $"done: '{done}'.   current: '{current}'.   todo: '{todo}'";
             }
         }
@@ -88,9 +88,9 @@ namespace NLog.Internal
         /// <returns></returns>
         internal int Peek()
         {
-            if (this.Position < this.text.Length)
+            if (this.Position < this._text.Length)
             {
-                return this.text[this.Position];
+                return this._text[this.Position];
             }
 
             return -1;
@@ -102,9 +102,9 @@ namespace NLog.Internal
         /// <returns></returns>
         internal int Read()
         {
-            if (this.Position < this.text.Length)
+            if (this.Position < this._text.Length)
             {
-                return this.text[this.Position++];
+                return this._text[this.Position++];
             }
 
             return -1;
@@ -118,7 +118,7 @@ namespace NLog.Internal
         /// <returns></returns>
         internal string Substring(int startIndex, int endIndex)
         {
-            return this.text.Substring(startIndex, endIndex - startIndex);
+            return this._text.Substring(startIndex, endIndex - startIndex);
         }
     }
 }

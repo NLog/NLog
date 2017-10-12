@@ -49,9 +49,9 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class CsvLayout : LayoutWithHeaderAndFooter
     {
-        private string actualColumnDelimiter;
-        private string doubleQuoteChar;
-        private char[] quotableCharacters;
+        private string _actualColumnDelimiter;
+        private string _doubleQuoteChar;
+        private char[] _quotableCharacters;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CsvLayout"/> class.
@@ -123,36 +123,36 @@ namespace NLog.Layouts
             switch (this.Delimiter)
             {
                 case CsvColumnDelimiterMode.Auto:
-                    this.actualColumnDelimiter = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
+                    this._actualColumnDelimiter = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
                     break;
 
                 case CsvColumnDelimiterMode.Comma:
-                    this.actualColumnDelimiter = ",";
+                    this._actualColumnDelimiter = ",";
                     break;
 
                 case CsvColumnDelimiterMode.Semicolon:
-                    this.actualColumnDelimiter = ";";
+                    this._actualColumnDelimiter = ";";
                     break;
 
                 case CsvColumnDelimiterMode.Pipe:
-                    this.actualColumnDelimiter = "|";
+                    this._actualColumnDelimiter = "|";
                     break;
 
                 case CsvColumnDelimiterMode.Tab:
-                    this.actualColumnDelimiter = "\t";
+                    this._actualColumnDelimiter = "\t";
                     break;
 
                 case CsvColumnDelimiterMode.Space:
-                    this.actualColumnDelimiter = " ";
+                    this._actualColumnDelimiter = " ";
                     break;
 
                 case CsvColumnDelimiterMode.Custom:
-                    this.actualColumnDelimiter = this.CustomColumnDelimiter;
+                    this._actualColumnDelimiter = this.CustomColumnDelimiter;
                     break;
             }
 
-            this.quotableCharacters = (this.QuoteChar + "\r\n" + this.actualColumnDelimiter).ToCharArray();
-            this.doubleQuoteChar = this.QuoteChar + this.QuoteChar;
+            this._quotableCharacters = (this.QuoteChar + "\r\n" + this._actualColumnDelimiter).ToCharArray();
+            this._doubleQuoteChar = this.QuoteChar + this.QuoteChar;
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace NLog.Layouts
         {
             if (columnIndex != 0)
             {
-                sb.Append(this.actualColumnDelimiter);
+                sb.Append(this._actualColumnDelimiter);
             }
 
             bool useQuoting;
@@ -232,7 +232,7 @@ namespace NLog.Layouts
 
                 default:
                 case CsvQuotingMode.Auto:
-                    if (columnValue.IndexOfAny(this.quotableCharacters) >= 0)
+                    if (columnValue.IndexOfAny(this._quotableCharacters) >= 0)
                     {
                         useQuoting = true;
                     }
@@ -251,7 +251,7 @@ namespace NLog.Layouts
 
             if (useQuoting)
             {
-                sb.Append(columnValue.Replace(this.QuoteChar, this.doubleQuoteChar));
+                sb.Append(columnValue.Replace(this.QuoteChar, this._doubleQuoteChar));
             }
             else
             {
@@ -270,7 +270,7 @@ namespace NLog.Layouts
         [ThreadAgnostic]
         private class CsvHeaderLayout : Layout
         {
-            private CsvLayout parent;
+            private CsvLayout _parent;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="CsvHeaderLayout"/> class.
@@ -278,7 +278,7 @@ namespace NLog.Layouts
             /// <param name="parent">The parent.</param>
             public CsvHeaderLayout(CsvLayout parent)
             {
-                this.parent = parent;
+                this._parent = parent;
             }
 
             /// <summary>
@@ -298,7 +298,7 @@ namespace NLog.Layouts
             /// <param name="target"><see cref="StringBuilder"/> for the result</param>
             protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
             {
-                this.parent.RenderHeader(target);
+                this._parent.RenderHeader(target);
             }
         }
     }

@@ -43,7 +43,7 @@ namespace NLog.Internal.Fakeables
     public class AppDomainWrapper : IAppDomain
     {
 #if !SILVERLIGHT
-        private readonly AppDomain currentAppDomain;
+        private readonly AppDomain _currentAppDomain;
 #endif
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace NLog.Internal.Fakeables
         public AppDomainWrapper(AppDomain appDomain)
         {
 #if !SILVERLIGHT
-            currentAppDomain = appDomain;
+            _currentAppDomain = appDomain;
             try
             {
                 BaseDirectory = appDomain.BaseDirectory;
@@ -126,8 +126,8 @@ namespace NLog.Internal.Fakeables
             add
             {
 #if !SILVERLIGHT
-                if (this.processExitEvent == null && this.currentAppDomain != null)
-                    this.currentAppDomain.ProcessExit += OnProcessExit;
+                if (this.processExitEvent == null && this._currentAppDomain != null)
+                    this._currentAppDomain.ProcessExit += OnProcessExit;
 #endif
                 this.processExitEvent += value;
             }
@@ -135,8 +135,8 @@ namespace NLog.Internal.Fakeables
             {
                 this.processExitEvent -= value;
 #if !SILVERLIGHT
-                if (this.processExitEvent == null && this.currentAppDomain != null)
-                    this.currentAppDomain.ProcessExit -= OnProcessExit;
+                if (this.processExitEvent == null && this._currentAppDomain != null)
+                    this._currentAppDomain.ProcessExit -= OnProcessExit;
 #endif
             }
         }
@@ -150,8 +150,8 @@ namespace NLog.Internal.Fakeables
             add
             {
 #if !SILVERLIGHT
-                if (this.domainUnloadEvent == null && this.currentAppDomain != null)
-                    this.currentAppDomain.DomainUnload += OnDomainUnload;
+                if (this.domainUnloadEvent == null && this._currentAppDomain != null)
+                    this._currentAppDomain.DomainUnload += OnDomainUnload;
 #endif
                 this.domainUnloadEvent += value;
 
@@ -160,8 +160,8 @@ namespace NLog.Internal.Fakeables
             {
                 this.domainUnloadEvent -= value;
 #if !SILVERLIGHT
-                if (this.domainUnloadEvent == null && this.currentAppDomain != null)
-                    this.currentAppDomain.DomainUnload -= OnDomainUnload;
+                if (this.domainUnloadEvent == null && this._currentAppDomain != null)
+                    this._currentAppDomain.DomainUnload -= OnDomainUnload;
 #endif
             }
         }

@@ -42,7 +42,7 @@ namespace NLog.Internal
     /// </summary>
     internal class SingleCallContinuation
     {
-        private AsyncContinuation asyncContinuation;
+        private AsyncContinuation _asyncContinuation;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SingleCallContinuation"/> class.
@@ -50,7 +50,7 @@ namespace NLog.Internal
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public SingleCallContinuation(AsyncContinuation asyncContinuation)
         {
-            this.asyncContinuation = asyncContinuation;
+            this._asyncContinuation = asyncContinuation;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace NLog.Internal
         {
             try
             {
-                var cont = Interlocked.Exchange(ref this.asyncContinuation, null);
+                var cont = Interlocked.Exchange(ref this._asyncContinuation, null);
                 if (cont != null)
                 {
                     cont(exception);
