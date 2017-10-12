@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers
     using System.Globalization;
     using System.Text;
 
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The Ticks value of current date and time.

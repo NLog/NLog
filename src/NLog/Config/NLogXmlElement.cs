@@ -57,7 +57,7 @@ namespace NLog.Config
             using (var reader = XmlReader.Create(inputUri))
             {
                 reader.MoveToContent();
-                this.Parse(reader);
+                Parse(reader);
             }
         }
 
@@ -68,7 +68,7 @@ namespace NLog.Config
         public NLogXmlElement(XmlReader reader)
             : this()
         {
-            this.Parse(reader);
+            Parse(reader);
         }
 
         /// <summary>
@@ -76,9 +76,9 @@ namespace NLog.Config
         /// </summary>
         private NLogXmlElement()
         {
-            this.AttributeValues = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            this.Children = new List<NLogXmlElement>();
-            this._parsingErrors = new List<string>();
+            AttributeValues = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            Children = new List<NLogXmlElement>();
+            _parsingErrors = new List<string>();
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace NLog.Config
         {
             var result = new List<NLogXmlElement>();
 
-            foreach (var ch in this.Children)
+            foreach (var ch in Children)
             {
                 if (ch.LocalName.Equals(elementName, StringComparison.OrdinalIgnoreCase))
                 {
@@ -134,10 +134,10 @@ namespace NLog.Config
         /// <remarks>Throws if the attribute is not specified.</remarks>
         public string GetRequiredAttribute(string attributeName)
         {
-            string value = this.GetOptionalAttribute(attributeName, null);
+            string value = GetOptionalAttribute(attributeName, null);
             if (value == null)
             {
-                throw new NLogConfigurationException("Expected " + attributeName + " on <" + this.LocalName + " />");
+                throw new NLogConfigurationException("Expected " + attributeName + " on <" + LocalName + " />");
             }
 
             return value;
@@ -153,7 +153,7 @@ namespace NLog.Config
         {
             string value;
 
-            if (!this.AttributeValues.TryGetValue(attributeName, out value))
+            if (!AttributeValues.TryGetValue(attributeName, out value))
             {
                 return defaultValue;
             }
@@ -171,7 +171,7 @@ namespace NLog.Config
         {
             string value;
 
-            if (!this.AttributeValues.TryGetValue(attributeName, out value))
+            if (!AttributeValues.TryGetValue(attributeName, out value))
             {
                 //not defined, don't override default
                 return defaultValue;
@@ -196,7 +196,7 @@ namespace NLog.Config
         {
             string value;
 
-            if (!this.AttributeValues.TryGetValue(attributeName, out value))
+            if (!AttributeValues.TryGetValue(attributeName, out value))
             {
                 value = defaultValue;
             }
@@ -212,13 +212,13 @@ namespace NLog.Config
         {
             foreach (var en in allowedNames)
             {
-                if (this.LocalName.Equals(en, StringComparison.OrdinalIgnoreCase))
+                if (LocalName.Equals(en, StringComparison.OrdinalIgnoreCase))
                 {
                     return;
                 }
             }
 
-            throw new InvalidOperationException("Assertion failed. Expected element name '" + string.Join("|", allowedNames) + "', actual: '" + this.LocalName + "'.");
+            throw new InvalidOperationException("Assertion failed. Expected element name '" + string.Join("|", allowedNames) + "', actual: '" + LocalName + "'.");
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace NLog.Config
                 yield return parsingError;
             }
 
-            foreach (var childElement in this.Children)
+            foreach (var childElement in Children)
             {
                 foreach (var parsingError in childElement.GetParsingErrors())
                 {
@@ -246,16 +246,16 @@ namespace NLog.Config
             {
                 do
                 {
-                    if (!this.AttributeValues.ContainsKey(reader.LocalName))
+                    if (!AttributeValues.ContainsKey(reader.LocalName))
                     {
-                        this.AttributeValues.Add(reader.LocalName, reader.Value);
+                        AttributeValues.Add(reader.LocalName, reader.Value);
                     }
                     else
                     {
                         string message =
                             string.Format(
                                 "Duplicate attribute detected. Attribute name: [{0}]. Duplicate value:[{1}], Current value:[{2}]",
-                                reader.LocalName, reader.Value, this.AttributeValues[reader.LocalName]);
+                                reader.LocalName, reader.Value, AttributeValues[reader.LocalName]);
                         _parsingErrors.Add(message);
                     }
                 }
@@ -263,7 +263,7 @@ namespace NLog.Config
                 reader.MoveToElement();
             }
 
-            this.LocalName = reader.LocalName;
+            LocalName = reader.LocalName;
 
             if (!reader.IsEmptyElement)
             {
@@ -276,13 +276,13 @@ namespace NLog.Config
 
                     if (reader.NodeType == XmlNodeType.CDATA || reader.NodeType == XmlNodeType.Text)
                     {
-                        this.Value += reader.Value;
+                        Value += reader.Value;
                         continue;
                     }
 
                     if (reader.NodeType == XmlNodeType.Element)
                     {
-                        this.Children.Add(new NLogXmlElement(reader));
+                        Children.Add(new NLogXmlElement(reader));
                     }
                 }
             }

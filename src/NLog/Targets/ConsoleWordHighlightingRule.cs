@@ -39,7 +39,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Text;
     using System.Text.RegularExpressions;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Highlighting rule for Win32 colorful console.
@@ -54,8 +54,8 @@ namespace NLog.Targets
         /// </summary>
         public ConsoleWordHighlightingRule()
         {
-            this.BackgroundColor = ConsoleOutputColor.NoChange;
-            this.ForegroundColor = ConsoleOutputColor.NoChange;
+            BackgroundColor = ConsoleOutputColor.NoChange;
+            ForegroundColor = ConsoleOutputColor.NoChange;
         }
 
         /// <summary>
@@ -66,9 +66,9 @@ namespace NLog.Targets
         /// <param name="backgroundColor">Color of the background.</param>
         public ConsoleWordHighlightingRule(string text, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
         {
-            this.Text = text;
-            this.ForegroundColor = foregroundColor;
-            this.BackgroundColor = backgroundColor;
+            Text = text;
+            ForegroundColor = foregroundColor;
+            BackgroundColor = backgroundColor;
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace NLog.Targets
             get
             {
                 //compile regex on first usage.
-                if (this._compiledRegex == null)
+                if (_compiledRegex == null)
                 {
                     var regexpression = GetRegexExpression();
                     if (regexpression == null)
@@ -136,10 +136,10 @@ namespace NLog.Targets
                     }
 
                     var regexOptions = GetRegexOptions(RegexOptions.Compiled);
-                    this._compiledRegex = new Regex(regexpression, regexOptions);
+                    _compiledRegex = new Regex(regexpression, regexOptions);
                 }
 
-                return this._compiledRegex;
+                return _compiledRegex;
             }
         }
 
@@ -150,7 +150,7 @@ namespace NLog.Targets
         /// <returns></returns>
         private RegexOptions GetRegexOptions(RegexOptions regexOptions)
         {
-            if (this.IgnoreCase)
+            if (IgnoreCase)
             {
                 regexOptions |= RegexOptions.IgnoreCase;
             }
@@ -163,12 +163,12 @@ namespace NLog.Targets
         /// <returns></returns>
         private string GetRegexExpression()
         {
-            string regexpression = this.Regex;
+            string regexpression = Regex;
 
-            if (regexpression == null && this.Text != null)
+            if (regexpression == null && Text != null)
             {
-                regexpression = System.Text.RegularExpressions.Regex.Escape(this.Text);
-                if (this.WholeWords)
+                regexpression = System.Text.RegularExpressions.Regex.Escape(Text);
+                if (WholeWords)
                 {
                     regexpression = "\\b" + regexpression + "\\b";
                 }
@@ -186,8 +186,8 @@ namespace NLog.Targets
             StringBuilder result = new StringBuilder(m.Value.Length + 5);
 
             result.Append('\a');
-            result.Append((char)((int)this.ForegroundColor + 'A'));
-            result.Append((char)((int)this.BackgroundColor + 'A'));
+            result.Append((char)((int)ForegroundColor + 'A'));
+            result.Append((char)((int)BackgroundColor + 'A'));
             result.Append(m.Value);
             result.Append('\a');
             result.Append('X');
@@ -200,14 +200,14 @@ namespace NLog.Targets
         {
             if (CompileRegex)
             {
-                var regex = this.CompiledRegex;
+                var regex = CompiledRegex;
                 if (regex == null)
                 {
                     //empty regex so nothing todo
                     return message;
                 }
 
-                return regex.Replace(message, this.MatchEvaluator);
+                return regex.Replace(message, MatchEvaluator);
             }
             //use regex cache
             var expression = GetRegexExpression();
@@ -215,7 +215,7 @@ namespace NLog.Targets
             {
                 RegexOptions regexOptions = GetRegexOptions(RegexOptions.None);
                 //the static methods of Regex will cache the regex
-                return System.Text.RegularExpressions.Regex.Replace(message, expression, this.MatchEvaluator, regexOptions);
+                return System.Text.RegularExpressions.Regex.Replace(message, expression, MatchEvaluator, regexOptions);
             }
             return message;
         }

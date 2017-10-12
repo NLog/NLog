@@ -70,7 +70,7 @@ namespace NLog.Internal
 
                 return s;
             }
-            catch (System.Security.SecurityException)
+            catch (SecurityException)
             {
                 return string.Empty;
             }

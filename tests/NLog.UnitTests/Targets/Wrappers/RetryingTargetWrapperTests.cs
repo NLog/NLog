@@ -185,12 +185,12 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             public MyTarget()
             {
-                this.Events = new List<LogEventInfo>();
+                Events = new List<LogEventInfo>();
             }
 
             public MyTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             public List<LogEventInfo> Events { get; set; }
@@ -199,13 +199,13 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                if (this.ThrowExceptions-- > 0)
+                if (ThrowExceptions-- > 0)
                 {
                     logEvent.Continuation(new InvalidOperationException("Some exception has occurred."));
                     return;
                 }
 
-                this.Events.Add(logEvent.LogEvent);
+                Events.Add(logEvent.LogEvent);
                 logEvent.Continuation(null);
             }
 

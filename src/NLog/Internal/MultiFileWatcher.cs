@@ -38,7 +38,7 @@ namespace NLog.Internal
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Watches multiple files at the same time and raises an event whenever 
@@ -71,8 +71,8 @@ namespace NLog.Internal
         /// </summary>
         public void Dispose()
         {
-            this.FileChanged = null;   // Release event listeners
-            this.StopWatching();
+            FileChanged = null;   // Release event listeners
+            StopWatching();
             GC.SuppressFinalize(this);
         }
 
@@ -87,7 +87,7 @@ namespace NLog.Internal
                 {
                     StopWatching(watcher);
                 }
-                this._watcherMap.Clear();
+                _watcherMap.Clear();
             }
         }
 
@@ -100,10 +100,10 @@ namespace NLog.Internal
             lock (this)
             {
                 FileSystemWatcher watcher;
-                if (this._watcherMap.TryGetValue(fileName, out watcher))
+                if (_watcherMap.TryGetValue(fileName, out watcher))
                 {
                     StopWatching(watcher);
-                    this._watcherMap.Remove(fileName);
+                    _watcherMap.Remove(fileName);
                 }
             }
         }
@@ -128,7 +128,7 @@ namespace NLog.Internal
 
             foreach (string s in fileNames)
             {
-                this.Watch(s);
+                Watch(s);
             }
         }
 
@@ -144,7 +144,7 @@ namespace NLog.Internal
 
             lock (this)
             {
-                if (this._watcherMap.ContainsKey(fileName))
+                if (_watcherMap.ContainsKey(fileName))
                     return;
 
                 var watcher = new FileSystemWatcher
@@ -163,7 +163,7 @@ namespace NLog.Internal
 
                 InternalLogger.Debug("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
                 
-                this._watcherMap.Add(fileName, watcher);
+                _watcherMap.Add(fileName, watcher);
             }
         }
 

@@ -35,7 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
     using System.ComponentModel;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Applies padding to another layout output.
@@ -53,7 +53,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public PaddingLayoutRendererWrapper()
         {
-            this.PadCharacter = ' ';
+            PadCharacter = ' ';
         }
 
         /// <summary>
@@ -100,26 +100,26 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             string s = text ?? string.Empty;
 
-            if (this.Padding != 0)
+            if (Padding != 0)
             {
-                if (this.Padding > 0)
+                if (Padding > 0)
                 {
-                    s = s.PadLeft(this.Padding, this.PadCharacter);
+                    s = s.PadLeft(Padding, PadCharacter);
                 }
                 else
                 {
-                    s = s.PadRight(-this.Padding, this.PadCharacter);
+                    s = s.PadRight(-Padding, PadCharacter);
                 }
 
-                int absolutePadding = this.Padding;
+                int absolutePadding = Padding;
                 if (absolutePadding < 0)
                 {
                     absolutePadding = -absolutePadding;
                 }
 
-                if (this.FixedLength && s.Length > absolutePadding)
+                if (FixedLength && s.Length > absolutePadding)
                 {
-                    if (this.AlignmentOnTruncation == PaddingHorizontalAlignment.Right)
+                    if (AlignmentOnTruncation == PaddingHorizontalAlignment.Right)
                     {
                         s = s.Substring(s.Length - absolutePadding);
                     }

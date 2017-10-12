@@ -57,8 +57,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public AllEventPropertiesLayoutRenderer()
         {
-            this.Separator = ", ";
-            this.Format = "[key]=[value]";
+            Separator = ", ";
+            Format = "[key]=[value]";
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace NLog.LayoutRenderers
         {
 #if NET4_5
 
-            if (this.IncludeCallerInformation)
+            if (IncludeCallerInformation)
             {
                 return logEvent.Properties;
             }

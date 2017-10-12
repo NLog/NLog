@@ -36,8 +36,8 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Writes log events to all targets.
@@ -76,7 +76,7 @@ namespace NLog.Targets.Wrappers
         public SplitGroupTarget(string name, params Target[] targets)
              : this(targets)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncHelpers.ForEachItemSequentially(this.Targets, logEvent.Continuation, (t, cont) => t.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
+            AsyncHelpers.ForEachItemSequentially(Targets, logEvent.Continuation, (t, cont) => t.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
         }
 
         /// <summary>
@@ -124,15 +124,15 @@ namespace NLog.Targets.Wrappers
             for (int i = 0; i < logEvents.Count; ++i)
             {
                 AsyncLogEventInfo ev = logEvents[i];
-                logEvents[i] = new AsyncLogEventInfo(ev.LogEvent, CountedWrap(ev.Continuation, this.Targets.Count));
+                logEvents[i] = new AsyncLogEventInfo(ev.LogEvent, CountedWrap(ev.Continuation, Targets.Count));
             }
 
-            for (int i = 0; i < this.Targets.Count; ++i)
+            for (int i = 0; i < Targets.Count; ++i)
             {
-                InternalLogger.Trace("Sending {0} events to {1}", logEvents.Count, this.Targets[i]);
+                InternalLogger.Trace("Sending {0} events to {1}", logEvents.Count, Targets[i]);
 
                 var targetLogEvents = logEvents;
-                if (i < this.Targets.Count - 1)
+                if (i < Targets.Count - 1)
                 {
                     // OptimizeBufferReuse = true, will change the input-array (so we make clones here)
                     AsyncLogEventInfo[] cloneLogEvents = new AsyncLogEventInfo[logEvents.Count];
@@ -140,7 +140,7 @@ namespace NLog.Targets.Wrappers
                     targetLogEvents = cloneLogEvents;
                 }
 
-                this.Targets[i].WriteAsyncLogEvents(targetLogEvents);
+                Targets[i].WriteAsyncLogEvents(targetLogEvents);
             }
         }
 

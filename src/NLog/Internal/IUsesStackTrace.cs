@@ -33,7 +33,7 @@
 
 namespace NLog.Internal
 {
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Allows components to request stack trace information to be provided in the <see cref="LogEventInfo"/>.

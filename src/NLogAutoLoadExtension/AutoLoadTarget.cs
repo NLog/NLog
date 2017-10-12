@@ -47,7 +47,7 @@ namespace NLogAutloadExtension
 
         public AutoLoadTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         protected override void Write(LogEventInfo logEvent)

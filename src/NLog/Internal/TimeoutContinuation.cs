@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Threading;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Wraps <see cref="AsyncContinuation"/> with a timeout.
@@ -52,8 +52,8 @@ namespace NLog.Internal
         /// <param name="timeout">The timeout.</param>
         public TimeoutContinuation(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            this._asyncContinuation = asyncContinuation;
-            this._timeoutTimer = new Timer(this.TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
+            _asyncContinuation = asyncContinuation;
+            _timeoutTimer = new Timer(TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace NLog.Internal
         {
             try
             {
-                this.StopTimer();
+                StopTimer();
 
-                var cont = Interlocked.Exchange(ref this._asyncContinuation, null);
+                var cont = Interlocked.Exchange(ref _asyncContinuation, null);
                 if (cont != null)
                 {
                     cont(exception);
@@ -87,7 +87,7 @@ namespace NLog.Internal
         /// </summary>
         public void Dispose()
         {
-            this.StopTimer();
+            StopTimer();
             GC.SuppressFinalize(this);
         }
 
@@ -95,10 +95,10 @@ namespace NLog.Internal
         {
             lock (this)
             {
-                var currentTimer = this._timeoutTimer;
+                var currentTimer = _timeoutTimer;
                 if (currentTimer != null)
                 {
-                    this._timeoutTimer = null;
+                    _timeoutTimer = null;
                     currentTimer.WaitForDispose(TimeSpan.Zero);
                 }
             }
@@ -106,7 +106,7 @@ namespace NLog.Internal
 
         private void TimerElapsed(object state)
         {
-            this.Function(new TimeoutException("Timeout."));
+            Function(new TimeoutException("Timeout."));
         }
     }
 }

@@ -36,8 +36,8 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// The identifier of the current process.

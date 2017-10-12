@@ -33,7 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Only outputs the inner layout when exception has been defined for log message.

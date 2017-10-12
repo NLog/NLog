@@ -34,9 +34,9 @@
 namespace NLog.Config
 {
     using System;
-    using NLog.LayoutRenderers;
-    using NLog.Layouts;
-    using NLog.Targets;
+    using LayoutRenderers;
+    using Layouts;
+    using Targets;
 
     /// <summary>
     /// Attaches a simple name to an item (such as <see cref="Target"/>, 
@@ -50,7 +50,7 @@ namespace NLog.Config
         /// <param name="name">The name of the item.</param>
         protected NameBaseAttribute(string name)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>

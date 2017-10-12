@@ -107,14 +107,14 @@ namespace NLog.UnitTests
             return GetDebugTarget(targetName, configuration).LastMessage;
         }
 
-        public NLog.Targets.DebugTarget GetDebugTarget(string targetName)
+        public DebugTarget GetDebugTarget(string targetName)
         {
             return GetDebugTarget(targetName, LogManager.Configuration);
         }
 
-        protected NLog.Targets.DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
+        protected DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
         {
-            var debugTarget = (NLog.Targets.DebugTarget)configuration.FindTargetByName(targetName);
+            var debugTarget = (DebugTarget)configuration.FindTargetByName(targetName);
             Assert.NotNull(debugTarget);
             return debugTarget;
         }
@@ -393,31 +393,31 @@ namespace NLog.UnitTests
             {
                 get
                 {
-                    return this.writer.Encoding;
+                    return writer.Encoding;
                 }
             }
 
             public override void Write(string value)
             {
-                lock (this.writer)
+                lock (writer)
                 {
-                    this.writer.Write(value);
+                    writer.Write(value);
                 }
             }
 
             public override void WriteLine(string value)
             {
-                lock (this.writer)
+                lock (writer)
                 {
-                    this.writer.WriteLine(value);
+                    writer.WriteLine(value);
                 }
             }
 
             public override string ToString()
             {
-                lock (this.writer)
+                lock (writer)
                 {
-                    return this.writer.ToString();
+                    return writer.ToString();
                 }
             }
         }
@@ -475,16 +475,16 @@ namespace NLog.UnitTests
                     ConsoleOutputWriter = new StringWriter() { NewLine = "\n" };
                     ConsoleErrorWriter = new StringWriter() { NewLine = "\n" };
 
-                    this.oldConsoleOutputWriter = Console.Out;
-                    this.oldConsoleErrorWriter = Console.Error;
+                    oldConsoleOutputWriter = Console.Out;
+                    oldConsoleErrorWriter = Console.Error;
 
                     Console.SetOut(ConsoleOutputWriter);
                     Console.SetError(ConsoleErrorWriter);
                 }
 
-                this.globalThreshold = LogManager.GlobalThreshold;
-                this.throwExceptions = LogManager.ThrowExceptions;
-                this.throwConfigExceptions = LogManager.ThrowConfigExceptions;
+                globalThreshold = LogManager.GlobalThreshold;
+                throwExceptions = LogManager.ThrowExceptions;
+                throwConfigExceptions = LogManager.ThrowConfigExceptions;
             }
 
             public void SetConsoleError(StringWriter consoleErrorWriter)
@@ -518,9 +518,9 @@ namespace NLog.UnitTests
                     File.Delete(InternalLogger.LogFile);
 
                 //restore logmanager
-                LogManager.GlobalThreshold = this.globalThreshold;
-                LogManager.ThrowExceptions = this.throwExceptions;
-                LogManager.ThrowConfigExceptions = this.throwConfigExceptions;
+                LogManager.GlobalThreshold = globalThreshold;
+                LogManager.ThrowExceptions = throwExceptions;
+                LogManager.ThrowConfigExceptions = throwConfigExceptions;
             }
         }
     }

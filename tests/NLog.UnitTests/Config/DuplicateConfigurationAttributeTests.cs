@@ -56,7 +56,7 @@ namespace NLog.UnitTests.Config
             var logger = LogManager.GetLogger("A");
             string expectedMesssage = "some message";
             logger.Info(expectedMesssage);
-            var actualMessage = this.GetDebugLastMessage("debug");
+            var actualMessage = GetDebugLastMessage("debug");
             Assert.Equal(expectedMesssage, actualMessage);
         }
 

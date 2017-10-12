@@ -35,9 +35,9 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Config;
-    using NLog.LayoutRenderers;
-    using NLog.Layouts;
+    using Config;
+    using LayoutRenderers;
+    using Layouts;
 
     /// <summary>
     /// Sends log messages to the remote instance of NLog Viewer. 
@@ -77,8 +77,8 @@ namespace NLog.Targets
         /// </remarks>
         public NLogViewerTarget()
         {
-            this.Parameters = new List<NLogViewerParameterInfo>();
-            this.Renderer.Parameters = this.Parameters;
+            Parameters = new List<NLogViewerParameterInfo>();
+            Renderer.Parameters = Parameters;
             NewLine = false;
         }
 
@@ -91,7 +91,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public NLogViewerTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -100,8 +100,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNLogData
         {
-            get { return this.Renderer.IncludeNLogData; }
-            set { this.Renderer.IncludeNLogData = value; }
+            get { return Renderer.IncludeNLogData; }
+            set { Renderer.IncludeNLogData = value; }
         }
 
         /// <summary>
@@ -110,8 +110,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public string AppInfo
         {
-            get { return this.Renderer.AppInfo; }
-            set { this.Renderer.AppInfo = value; }
+            get { return Renderer.AppInfo; }
+            set { Renderer.AppInfo = value; }
         }
 
         /// <summary>
@@ -120,8 +120,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeCallSite
         {
-            get { return this.Renderer.IncludeCallSite; }
-            set { this.Renderer.IncludeCallSite = value; }
+            get { return Renderer.IncludeCallSite; }
+            set { Renderer.IncludeCallSite = value; }
         }
 
 #if !SILVERLIGHT
@@ -131,8 +131,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeSourceInfo
         {
-            get { return this.Renderer.IncludeSourceInfo; }
-            set { this.Renderer.IncludeSourceInfo = value; }
+            get { return Renderer.IncludeSourceInfo; }
+            set { Renderer.IncludeSourceInfo = value; }
         }
 #endif
 
@@ -142,8 +142,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdc
         {
-            get { return this.Renderer.IncludeMdc; }
-            set { this.Renderer.IncludeMdc = value; }
+            get { return Renderer.IncludeMdc; }
+            set { Renderer.IncludeMdc = value; }
         }
 
         /// <summary>
@@ -152,8 +152,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNdc
         {
-            get { return this.Renderer.IncludeNdc; }
-            set { this.Renderer.IncludeNdc = value; }
+            get { return Renderer.IncludeNdc; }
+            set { Renderer.IncludeNdc = value; }
         }
 
 #if !SILVERLIGHT
@@ -164,8 +164,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdlc
         {
-            get { return this.Renderer.IncludeMdlc; }
-            set { this.Renderer.IncludeMdlc = value; }
+            get { return Renderer.IncludeMdlc; }
+            set { Renderer.IncludeMdlc = value; }
         }
 
         /// <summary>
@@ -174,8 +174,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNdlc
         {
-            get { return this.Renderer.IncludeNdlc; }
-            set { this.Renderer.IncludeNdlc = value; }
+            get { return Renderer.IncludeNdlc; }
+            set { Renderer.IncludeNdlc = value; }
         }
 
 #endif
@@ -186,8 +186,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeAllProperties
         {
-            get { return this.Renderer.IncludeAllProperties; }
-            set { this.Renderer.IncludeAllProperties = value; }
+            get { return Renderer.IncludeAllProperties; }
+            set { Renderer.IncludeAllProperties = value; }
         }
 
         /// <summary>
@@ -196,8 +196,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public string NdcItemSeparator
         {
-            get { return this.Renderer.NdcItemSeparator; }
-            set { this.Renderer.NdcItemSeparator = value; }
+            get { return Renderer.NdcItemSeparator; }
+            set { Renderer.NdcItemSeparator = value; }
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace NLog.Targets
         /// </summary>
         public Log4JXmlEventLayoutRenderer Renderer
         {
-            get { return this._layout.Renderer; }
+            get { return _layout.Renderer; }
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace NLog.Targets
         {
             get
             {
-                return this._layout;
+                return _layout;
             }
 
             set

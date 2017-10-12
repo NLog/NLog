@@ -37,7 +37,7 @@ namespace NLog.Internal.NetworkSenders
     using System.Collections.Generic;
     using System.IO;
     using System.Net.Sockets;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Sends messages over a TCP network connection.
@@ -60,7 +60,7 @@ namespace NLog.Internal.NetworkSenders
         public TcpNetworkSender(string url, AddressFamily addressFamily)
             : base(url)
         {
-            this.AddressFamily = addressFamily;
+            AddressFamily = addressFamily;
         }
 
         internal AddressFamily AddressFamily { get; set; }
@@ -87,16 +87,16 @@ namespace NLog.Internal.NetworkSenders
         protected override void DoInitialize()
         {
             var args = new MySocketAsyncEventArgs();
-            args.RemoteEndPoint = this.ParseEndpointAddress(new Uri(this.Address), this.AddressFamily);
-            args.Completed += this.SocketOperationCompleted;
+            args.RemoteEndPoint = ParseEndpointAddress(new Uri(Address), AddressFamily);
+            args.Completed += SocketOperationCompleted;
             args.UserToken = null;
 
-            this._socket = this.CreateSocket(args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            this._asyncOperationInProgress = true;
+            _socket = CreateSocket(args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            _asyncOperationInProgress = true;
 
-            if (!this._socket.ConnectAsync(args))
+            if (!_socket.ConnectAsync(args))
             {
-                this.SocketOperationCompleted(this._socket, args);
+                SocketOperationCompleted(_socket, args);
             }
         }
 
@@ -108,13 +108,13 @@ namespace NLog.Internal.NetworkSenders
         {
             lock (this)
             {
-                if (this._asyncOperationInProgress)
+                if (_asyncOperationInProgress)
                 {
-                    this._closeContinuation = continuation;
+                    _closeContinuation = continuation;
                 }
                 else
                 {
-                    this.CloseSocket(continuation);
+                    CloseSocket(continuation);
                 }
             }
         }
@@ -127,13 +127,13 @@ namespace NLog.Internal.NetworkSenders
         {
             lock (this)
             {
-                if (!this._asyncOperationInProgress && this._pendingRequests.Count == 0)
+                if (!_asyncOperationInProgress && _pendingRequests.Count == 0)
                 {
                     continuation(null);
                 }
                 else
                 {
-                    this._flushContinuation = continuation;
+                    _flushContinuation = continuation;
                 }
             }
         }
@@ -152,13 +152,13 @@ namespace NLog.Internal.NetworkSenders
             var args = new MySocketAsyncEventArgs();
             args.SetBuffer(bytes, offset, length);
             args.UserToken = asyncContinuation;
-            args.Completed += this.SocketOperationCompleted;
+            args.Completed += SocketOperationCompleted;
 
             lock (this)
             {
-                if (this.MaxQueueSize != 0 && this._pendingRequests.Count >= this.MaxQueueSize)
+                if (MaxQueueSize != 0 && _pendingRequests.Count >= MaxQueueSize)
                 {
-                    var dequeued = this._pendingRequests.Dequeue();
+                    var dequeued = _pendingRequests.Dequeue();
 
                     if (dequeued != null)
                     {
@@ -166,18 +166,18 @@ namespace NLog.Internal.NetworkSenders
                     }
                 }
 
-                this._pendingRequests.Enqueue(args);
+                _pendingRequests.Enqueue(args);
             }
 
-            this.ProcessNextQueuedItem();
+            ProcessNextQueuedItem();
         }
 
         private void CloseSocket(AsyncContinuation continuation)
         {
             try
             {
-                var sock = this._socket;
-                this._socket = null;
+                var sock = _socket;
+                _socket = null;
 
                 if (sock != null)
                 {
@@ -201,23 +201,23 @@ namespace NLog.Internal.NetworkSenders
         {
             lock (this)
             {
-                this._asyncOperationInProgress = false;
+                _asyncOperationInProgress = false;
                 var asyncContinuation = e.UserToken as AsyncContinuation;
 
                 if (e.SocketError != SocketError.Success)
                 {
-                    this._pendingError = new IOException("Error: " + e.SocketError);
+                    _pendingError = new IOException("Error: " + e.SocketError);
                 }
 
                 e.Dispose();
 
                 if (asyncContinuation != null)
                 {
-                    asyncContinuation(this._pendingError);
+                    asyncContinuation(_pendingError);
                 }
             }
 
-            this.ProcessNextQueuedItem();
+            ProcessNextQueuedItem();
         }
 
         private void ProcessNextQueuedItem()
@@ -226,47 +226,47 @@ namespace NLog.Internal.NetworkSenders
 
             lock (this)
             {
-                if (this._asyncOperationInProgress)
+                if (_asyncOperationInProgress)
                 {
                     return;
                 }
 
-                if (this._pendingError != null)
+                if (_pendingError != null)
                 {
-                    while (this._pendingRequests.Count != 0)
+                    while (_pendingRequests.Count != 0)
                     {
-                        args = this._pendingRequests.Dequeue();
+                        args = _pendingRequests.Dequeue();
                         var asyncContinuation = (AsyncContinuation)args.UserToken;
                         args.Dispose();
-                        asyncContinuation(this._pendingError);
+                        asyncContinuation(_pendingError);
                     }
                 }
 
-                if (this._pendingRequests.Count == 0)
+                if (_pendingRequests.Count == 0)
                 {
-                    var fc = this._flushContinuation;
+                    var fc = _flushContinuation;
                     if (fc != null)
                     {
-                        this._flushContinuation = null;
-                        fc(this._pendingError);
+                        _flushContinuation = null;
+                        fc(_pendingError);
                     }
 
-                    var cc = this._closeContinuation;
+                    var cc = _closeContinuation;
                     if (cc != null)
                     {
-                        this._closeContinuation = null;
-                        this.CloseSocket(cc);
+                        _closeContinuation = null;
+                        CloseSocket(cc);
                     }
 
                     return;
                 }
 
-                args = this._pendingRequests.Dequeue();
+                args = _pendingRequests.Dequeue();
 
-                this._asyncOperationInProgress = true;
-                if (!this._socket.SendAsync(args))
+                _asyncOperationInProgress = true;
+                if (!_socket.SendAsync(args))
                 {
-                    this.SocketOperationCompleted(this._socket, args);
+                    SocketOperationCompleted(_socket, args);
                 }
             }
         }
@@ -289,7 +289,7 @@ namespace NLog.Internal.NetworkSenders
             /// </summary>
             public void RaiseCompleted()
             {
-                this.OnCompleted(this);
+                OnCompleted(this);
             }
         }
     }

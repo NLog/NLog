@@ -34,8 +34,8 @@
 namespace NLog.Targets
 {
     using System;
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// A parameter to MethodCall.
@@ -48,7 +48,7 @@ namespace NLog.Targets
         /// </summary>
         public MethodCallParameter()
         {
-            this.ParameterType = typeof(string);
+            ParameterType = typeof(string);
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace NLog.Targets
         /// <param name="layout">The layout to use for parameter value.</param>
         public MethodCallParameter(Layout layout)
         {
-            this.ParameterType = typeof(string);
-            this.Layout = layout;
+            ParameterType = typeof(string);
+            Layout = layout;
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace NLog.Targets
         /// <param name="layout">The layout.</param>
         public MethodCallParameter(string parameterName, Layout layout)
         {
-            this.ParameterType = typeof(string);
-            this.Name = parameterName;
-            this.Layout = layout;
+            ParameterType = typeof(string);
+            Name = parameterName;
+            Layout = layout;
         }
 
         /// <summary>
@@ -81,9 +81,9 @@ namespace NLog.Targets
         /// <param name="type">The type of the parameter.</param>
         public MethodCallParameter(string name, Layout layout, Type type)
         {
-            this.ParameterType = type;
-            this.Name = name;
-            this.Layout = layout;
+            ParameterType = type;
+            Name = name;
+            Layout = layout;
         }
 
         /// <summary>

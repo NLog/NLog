@@ -579,8 +579,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
-                this.BufferedWriteCount++;
-                this.BufferedTotalEvents += logEvents.Count;
+                BufferedWriteCount++;
+                BufferedTotalEvents += logEvents.Count;
 
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
@@ -588,7 +588,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     ThreadPool.QueueUserWorkItem(
                         s =>
                         {
-                            if (this.ThrowExceptions)
+                            if (ThrowExceptions)
                             {
                                 @event.Continuation(new InvalidOperationException("Some problem!"));
                             }
@@ -620,30 +620,30 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
-                this.BufferedWriteCount++;
-                this.BufferedTotalEvents += logEvents.Count;
+                BufferedWriteCount++;
+                BufferedTotalEvents += logEvents.Count;
                 base.Write(logEvents);
             }
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
-                this.WriteCount++;
+                Assert.True(FlushCount <= WriteCount);
+                WriteCount++;
                 if (ThrowException)
                 {
                     throw new Exception("Target exception");
                 }
 
-                if (this.FailCounter > 0)
+                if (FailCounter > 0)
                 {
-                    this.FailCounter--;
+                    FailCounter--;
                     throw new InvalidOperationException("Some failure.");
                 }
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                FlushCount++;
                 asyncContinuation(null);
             }
         }

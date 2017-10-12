@@ -33,7 +33,7 @@
 
 namespace NLog.Layouts
 {
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// JSON attribute.
@@ -62,9 +62,9 @@ namespace NLog.Layouts
         /// <param name="encode">Encode value with json-encode</param>
         public JsonAttribute(string name, Layout layout, bool encode)
         {
-            this.Name = name;
-            this.Layout = layout;
-            this.Encode = encode;
+            Name = name;
+            Layout = layout;
+            Encode = encode;
         }
 
         /// <summary>

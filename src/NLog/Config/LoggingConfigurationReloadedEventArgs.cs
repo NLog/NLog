@@ -48,7 +48,7 @@ namespace NLog.Config
         /// <param name="succeeded">Whether configuration reload has succeeded.</param>
         public LoggingConfigurationReloadedEventArgs(bool succeeded)
         {
-            this.Succeeded = succeeded;
+            Succeeded = succeeded;
         }
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace NLog.Config
         /// <param name="exception">The exception during configuration reload.</param>
         public LoggingConfigurationReloadedEventArgs(bool succeeded, Exception exception)
         {
-            this.Succeeded = succeeded;
-            this.Exception = exception;
+            Succeeded = succeeded;
+            Exception = exception;
         }
 
         /// <summary>

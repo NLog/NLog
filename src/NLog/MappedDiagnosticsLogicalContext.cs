@@ -37,7 +37,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// Async version of Mapped Diagnostics Context - a logical context structure that keeps a dictionary

@@ -38,7 +38,7 @@ namespace NLog.Internal.FileAppenders
     using System.IO;
     using System.Security;
 
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Optimized single-process file appender which keeps the file open for exclusive write.
@@ -69,7 +69,7 @@ namespace NLog.Internal.FileAppenders
                     FileTouched();
                 }
             }
-            this._file = CreateFileStream(false);
+            _file = CreateFileStream(false);
         }
 
         /// <summary>
@@ -80,12 +80,12 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (this._file == null)
+            if (_file == null)
             {
                 return;
             }
 
-            this._file.Write(bytes, offset, count);
+            _file.Write(bytes, offset, count);
 
             if (CaptureLastWriteTime)
             {
@@ -98,12 +98,12 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Flush()
         {
-            if (this._file == null)
+            if (_file == null)
             {
                 return;
             }
 
-            this._file.Flush();
+            _file.Flush();
             FileTouched();
         }
 
@@ -112,7 +112,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            if (this._file == null)
+            if (_file == null)
             {
                 return;
             }
@@ -120,7 +120,7 @@ namespace NLog.Internal.FileAppenders
             InternalLogger.Trace("Closing '{0}'", FileName);
             try
             {
-                this._file.Close();
+                _file.Close();
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace NLog.Internal.FileAppenders
             }
             finally
             {
-                this._file = null;
+                _file = null;
             }
         }
 
@@ -141,7 +141,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
-            return this.CreationTimeUtc;
+            return CreationTimeUtc;
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The time the file was last written to.</returns>
         public override DateTime? GetFileLastWriteTimeUtc()
         {
-            return this.LastWriteTimeUtc;
+            return LastWriteTimeUtc;
         }
 
         /// <summary>

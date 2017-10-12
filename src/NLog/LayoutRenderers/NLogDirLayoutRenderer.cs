@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     using System.IO;
     using System.Text;
 
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The directory where NLog.dll is located.
@@ -84,7 +84,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var path = PathHelpers.CombinePaths(NLogDir, this.Dir, this.File);
+            var path = PathHelpers.CombinePaths(NLogDir, Dir, File);
             builder.Append(path);
         }
     }

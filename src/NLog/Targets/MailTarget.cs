@@ -44,10 +44,10 @@ namespace NLog.Targets
     using System.Net.Mail;
     using System.Text;
     using System.IO;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Layouts;
+    using Common;
+    using Config;
+    using Internal;
+    using Layouts;
 
     // For issue #1351 - These are not available for Android or IOS
 #if !__ANDROID__ && !__IOS__
@@ -103,12 +103,12 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "This one is safe.")]
         public MailTarget()
         {
-            this.Body = "${message}${newline}";
-            this.Subject = "Message from NLog on ${machinename}";
-            this.Encoding = Encoding.UTF8;
-            this.SmtpPort = 25;
-            this.SmtpAuthentication = SmtpAuthenticationMode.None;
-            this.Timeout = 10000;
+            Body = "${message}${newline}";
+            Subject = "Message from NLog on ${machinename}";
+            Encoding = Encoding.UTF8;
+            SmtpPort = 25;
+            SmtpAuthentication = SmtpAuthenticationMode.None;
+            Timeout = 10000;
         }
 
 #if !__ANDROID__ && !__IOS__
@@ -156,7 +156,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public MailTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -230,8 +230,8 @@ namespace NLog.Targets
         [DefaultValue("${message}${newline}")]
         public Layout Body
         {
-            get { return this.Layout; }
-            set { this.Layout = value; }
+            get { return Layout; }
+            set { Layout = value; }
         }
 
         /// <summary>
@@ -339,7 +339,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.Write((IList<AsyncLogEventInfo>)new[] { logEvent });
+            Write((IList<AsyncLogEventInfo>)new[] { logEvent });
         }
 
         /// <summary>
@@ -362,11 +362,11 @@ namespace NLog.Targets
         /// <param name="logEvents">Array of logging events.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            var buckets = logEvents.BucketSort(c => this.GetSmtpSettingsKey(c.LogEvent));
+            var buckets = logEvents.BucketSort(c => GetSmtpSettingsKey(c.LogEvent));
             foreach (var bucket in buckets)
             {
                 var eventInfos = bucket.Value;
-                this.ProcessSingleMailMessage(eventInfos);
+                ProcessSingleMailMessage(eventInfos);
             }
         }
 
@@ -404,7 +404,7 @@ namespace NLog.Targets
 
                 using (var msg = CreateMailMessage(lastEvent, bodyBuffer.ToString()))
                 {
-                    using (ISmtpClient client = this.CreateSmtpClient())
+                    using (ISmtpClient client = CreateSmtpClient())
                     {
                         if (!UseSystemNetMailSettings)
                         {
@@ -452,10 +452,10 @@ namespace NLog.Targets
         private StringBuilder CreateBodyBuffer(IEnumerable<AsyncLogEventInfo> events, LogEventInfo firstEvent, LogEventInfo lastEvent)
         {
             var bodyBuffer = new StringBuilder();
-            if (this.Header != null)
+            if (Header != null)
             {
-                bodyBuffer.Append(this.Header.Render(firstEvent));
-                if (this.AddNewLines)
+                bodyBuffer.Append(Header.Render(firstEvent));
+                if (AddNewLines)
                 {
                     bodyBuffer.Append("\n");
                 }
@@ -463,17 +463,17 @@ namespace NLog.Targets
 
             foreach (AsyncLogEventInfo eventInfo in events)
             {
-                bodyBuffer.Append(this.Layout.Render(eventInfo.LogEvent));
-                if (this.AddNewLines)
+                bodyBuffer.Append(Layout.Render(eventInfo.LogEvent));
+                if (AddNewLines)
                 {
                     bodyBuffer.Append("\n");
                 }
             }
 
-            if (this.Footer != null)
+            if (Footer != null)
             {
-                bodyBuffer.Append(this.Footer.Render(lastEvent));
-                if (this.AddNewLines)
+                bodyBuffer.Append(Footer.Render(lastEvent));
+                if (AddNewLines)
                 {
                     bodyBuffer.Append("\n");
                 }
@@ -491,42 +491,42 @@ namespace NLog.Targets
         {
             CheckRequiredParameters();
 
-            if (this.SmtpServer == null && string.IsNullOrEmpty(this.PickupDirectoryLocation))
+            if (SmtpServer == null && string.IsNullOrEmpty(PickupDirectoryLocation))
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
             }
 
-            if (this.DeliveryMethod == SmtpDeliveryMethod.Network && this.SmtpServer == null)
+            if (DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer == null)
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
             }
 
-            if (this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(this.PickupDirectoryLocation))
+            if (DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(PickupDirectoryLocation))
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
             }
 
-            if (this.SmtpServer != null && this.DeliveryMethod == SmtpDeliveryMethod.Network)
+            if (SmtpServer != null && DeliveryMethod == SmtpDeliveryMethod.Network)
             {
-                var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
+                var renderedSmtpServer = SmtpServer.Render(lastEvent);
                 if (string.IsNullOrEmpty(renderedSmtpServer))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
                 }
 
                 client.Host = renderedSmtpServer;
-                client.Port = this.SmtpPort;
-                client.EnableSsl = this.EnableSsl;
+                client.Port = SmtpPort;
+                client.EnableSsl = EnableSsl;
 
-                if (this.SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
+                if (SmtpAuthentication == SmtpAuthenticationMode.Ntlm)
                 {
                     InternalLogger.Trace("  Using NTLM authentication.");
                     client.Credentials = CredentialCache.DefaultNetworkCredentials;
                 }
-                else if (this.SmtpAuthentication == SmtpAuthenticationMode.Basic)
+                else if (SmtpAuthentication == SmtpAuthenticationMode.Basic)
                 {
-                    string username = this.SmtpUserName.Render(lastEvent);
-                    string password = this.SmtpPassword.Render(lastEvent);
+                    string username = SmtpUserName.Render(lastEvent);
+                    string password = SmtpPassword.Render(lastEvent);
 
                     InternalLogger.Trace("  Using basic authentication: Username='{0}' Password='{1}'", username, new string('*', password.Length));
                     client.Credentials = new NetworkCredential(username, password);
@@ -534,14 +534,14 @@ namespace NLog.Targets
 
             }
 
-            if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+            if (!string.IsNullOrEmpty(PickupDirectoryLocation) && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
             {
                 client.PickupDirectoryLocation = ConvertDirectoryLocation(PickupDirectoryLocation);
             }
 
             // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
-            client.DeliveryMethod = this.DeliveryMethod;
-            client.Timeout = this.Timeout;
+            client.DeliveryMethod = DeliveryMethod;
+            client.Timeout = Timeout;
 
 
         }
@@ -568,17 +568,17 @@ namespace NLog.Targets
 
         private void CheckRequiredParameters()
         {
-            if (!this.UseSystemNetMailSettings && this.SmtpServer == null && this.DeliveryMethod == SmtpDeliveryMethod.Network)
+            if (!UseSystemNetMailSettings && SmtpServer == null && DeliveryMethod == SmtpDeliveryMethod.Network)
             {
                 throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=Network. The email message will not be sent.", "SmtpServer");
             }
 
-            if (!this.UseSystemNetMailSettings && string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+            if (!UseSystemNetMailSettings && string.IsNullOrEmpty(PickupDirectoryLocation) && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
             {
                 throw new NLogConfigurationException("The MailTarget's '{0}' properties are not set - but needed because useSystemNetMailSettings=false and DeliveryMethod=SpecifiedPickupDirectory. The email message will not be sent.", "PickupDirectoryLocation");
             }
 
-            if (this.From == null)
+            if (From == null)
             {
                 throw new NLogConfigurationException(RequiredPropertyIsEmptyFormat, "From");
             }
@@ -593,13 +593,13 @@ namespace NLog.Targets
         {
             var sb = new StringBuilder();
 
-            AppendLayout(sb, logEvent, this.From);
-            AppendLayout(sb, logEvent, this.To);
-            AppendLayout(sb, logEvent, this.CC);
-            AppendLayout(sb, logEvent, this.Bcc);
-            AppendLayout(sb, logEvent, this.SmtpServer);
-            AppendLayout(sb, logEvent, this.SmtpPassword);
-            AppendLayout(sb, logEvent, this.SmtpUserName);
+            AppendLayout(sb, logEvent, From);
+            AppendLayout(sb, logEvent, To);
+            AppendLayout(sb, logEvent, CC);
+            AppendLayout(sb, logEvent, Bcc);
+            AppendLayout(sb, logEvent, SmtpServer);
+            AppendLayout(sb, logEvent, SmtpPassword);
+            AppendLayout(sb, logEvent, SmtpUserName);
 
 
             return sb.ToString();
@@ -627,7 +627,7 @@ namespace NLog.Targets
         {
             var msg = new MailMessage();
 
-            var renderedFrom = this.From == null ? null : this.From.Render(lastEvent);
+            var renderedFrom = From == null ? null : From.Render(lastEvent);
 
             if (string.IsNullOrEmpty(renderedFrom))
             {
@@ -635,22 +635,22 @@ namespace NLog.Targets
             }
             msg.From = new MailAddress(renderedFrom);
 
-            var addedTo = AddAddresses(msg.To, this.To, lastEvent);
-            var addedCc = AddAddresses(msg.CC, this.CC, lastEvent);
-            var addedBcc = AddAddresses(msg.Bcc, this.Bcc, lastEvent);
+            var addedTo = AddAddresses(msg.To, To, lastEvent);
+            var addedCc = AddAddresses(msg.CC, CC, lastEvent);
+            var addedBcc = AddAddresses(msg.Bcc, Bcc, lastEvent);
 
             if (!addedTo && !addedCc && !addedBcc)
             {
                 throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "To/Cc/Bcc");
             }
 
-            msg.Subject = this.Subject == null ? string.Empty : this.Subject.Render(lastEvent).Trim();
-            msg.BodyEncoding = this.Encoding;
-            msg.IsBodyHtml = this.Html;
+            msg.Subject = Subject == null ? string.Empty : Subject.Render(lastEvent).Trim();
+            msg.BodyEncoding = Encoding;
+            msg.IsBodyHtml = Html;
 
-            if (this.Priority != null)
+            if (Priority != null)
             {
-                var renderedPriority = this.Priority.Render(lastEvent);
+                var renderedPriority = Priority.Render(lastEvent);
                 try
                 {
 

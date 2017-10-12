@@ -52,7 +52,7 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="protocolType">Type of the protocol.</param>
         internal SocketProxy(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
-            this._socket = new Socket(addressFamily, socketType, protocolType);
+            _socket = new Socket(addressFamily, socketType, protocolType);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace NLog.Internal.NetworkSenders
         {
             get
             {
-                return this._socket;
+                return _socket;
             }
         }
 
@@ -71,7 +71,7 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         public void Close()
         {
-            this._socket.Close();
+            _socket.Close();
         }
 
 #if USE_LEGACY_ASYNC_API
@@ -117,7 +117,7 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>Result of original method.</returns>
         public bool ConnectAsync(SocketAsyncEventArgs args)
         {
-            return this._socket.ConnectAsync(args);
+            return _socket.ConnectAsync(args);
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>Result of original method.</returns>
         public bool SendAsync(SocketAsyncEventArgs args)
         {
-            return this._socket.SendAsync(args);
+            return _socket.SendAsync(args);
         }
 
 #if !SILVERLIGHT
@@ -138,7 +138,7 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>Result of original method.</returns>
         public bool SendToAsync(SocketAsyncEventArgs args)
         {
-            return this._socket.SendToAsync(args);
+            return _socket.SendToAsync(args);
         }
 #endif
 
@@ -149,7 +149,7 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         public void Dispose()
         {
-            ((IDisposable)this._socket).Dispose();
+            ((IDisposable)_socket).Dispose();
         }
     }
 }

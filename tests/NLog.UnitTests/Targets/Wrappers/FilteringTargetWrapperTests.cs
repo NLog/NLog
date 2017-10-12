@@ -278,11 +278,11 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                this.WriteCount++;
+                WriteCount++;
                 ThreadPool.QueueUserWorkItem(
                     s =>
                         {
-                            if (this.ThrowExceptions)
+                            if (ThrowExceptions)
                             {
                                 logEvent.Continuation(new InvalidOperationException("Some problem!"));
                                 logEvent.Continuation(new InvalidOperationException("Some problem!"));
@@ -304,7 +304,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                this.WriteCount++;
+                WriteCount++;
             }
         }
 
@@ -321,8 +321,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override object EvaluateNode(LogEventInfo context)
             {
-                this.CallCount++;
-                return this.result;
+                CallCount++;
+                return result;
             }
 
             public override string ToString()

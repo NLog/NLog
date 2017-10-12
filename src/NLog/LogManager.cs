@@ -42,10 +42,10 @@ namespace NLog
     using System.Runtime.CompilerServices;
     using System.Threading;
 
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Internal.Fakeables;
+    using Common;
+    using Config;
+    using Internal;
+    using Internal.Fakeables;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.

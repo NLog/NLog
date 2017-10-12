@@ -221,8 +221,8 @@ namespace NLog.UnitTests.Targets
 
             protected internal override bool OnSend(NLogEvents events, IEnumerable<AsyncLogEventInfo> asyncContinuations)
             {
-                this.LastPayload = events;
-                ++this.SendCount;
+                LastPayload = events;
+                ++SendCount;
 
                 foreach (var ac in asyncContinuations)
                 {

@@ -37,7 +37,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.ComponentModel;
     using System.Text;
     using Common;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Replaces newline characters from the result of another layout renderer with spaces.

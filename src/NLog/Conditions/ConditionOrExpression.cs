@@ -48,8 +48,8 @@ namespace NLog.Conditions
         /// <param name="right">Right hand side of the OR expression.</param>
         public ConditionOrExpression(ConditionExpression left, ConditionExpression right)
         {
-            this.LeftExpression = left;
-            this.RightExpression = right;
+            LeftExpression = left;
+            RightExpression = right;
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return "(" + this.LeftExpression + " or " + this.RightExpression + ")";
+            return "(" + LeftExpression + " or " + RightExpression + ")";
         }
 
         /// <summary>
@@ -82,13 +82,13 @@ namespace NLog.Conditions
         /// <returns>The value of the alternative operator.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            var bval1 = (bool)this.LeftExpression.Evaluate(context);
+            var bval1 = (bool)LeftExpression.Evaluate(context);
             if (bval1)
             {
                 return boxedTrue;
             }
 
-            var bval2 = (bool)this.RightExpression.Evaluate(context);
+            var bval2 = (bool)RightExpression.Evaluate(context);
             if (bval2)
             {
                 return boxedTrue;

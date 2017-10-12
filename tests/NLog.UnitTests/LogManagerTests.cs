@@ -368,13 +368,13 @@ namespace NLog.UnitTests
         {
             var logger = LogManager.GetCurrentClassLogger();
 
-            Assert.Equal(this.GetType().FullName, logger.Name);
+            Assert.Equal(GetType().FullName, logger.Name);
         }
 
         private static class ImAStaticClass
         {
             [UsedImplicitly]
-            public static readonly Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+            public static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
             static ImAStaticClass() { }
 
@@ -401,21 +401,21 @@ namespace NLog.UnitTests
             /// </summary>
             protected ImAAbstractClass()
             {
-                Logger = NLog.LogManager.GetCurrentClassLogger();
-                LoggerType = NLog.LogManager.GetCurrentClassLogger(typeof(Logger));
+                Logger = LogManager.GetCurrentClassLogger();
+                LoggerType = LogManager.GetCurrentClassLogger(typeof(Logger));
             }
 
             protected ImAAbstractClass(string param1, Func<string> param2)
             {
-                Logger = NLog.LogManager.GetCurrentClassLogger();
-                LoggerType = NLog.LogManager.GetCurrentClassLogger(typeof(Logger));
+                Logger = LogManager.GetCurrentClassLogger();
+                LoggerType = LogManager.GetCurrentClassLogger(typeof(Logger));
             }
         }
 
         private class InheritedFromAbstractClass : ImAAbstractClass
         {
-            public Logger LoggerInherited = NLog.LogManager.GetCurrentClassLogger();
-            public Logger LoggerTypeInherited = NLog.LogManager.GetCurrentClassLogger(typeof(Logger));
+            public Logger LoggerInherited = LogManager.GetCurrentClassLogger();
+            public Logger LoggerTypeInherited = LogManager.GetCurrentClassLogger(typeof(Logger));
 
             public string InheritedName { get { return GetType().FullName; } }
 
@@ -487,7 +487,7 @@ namespace NLog.UnitTests
         {
             var logger = new Lazy<ILogger>(LogManager.GetCurrentClassLogger);
 
-            Assert.Equal(this.GetType().FullName, logger.Value.Name);
+            Assert.Equal(GetType().FullName, logger.Value.Name);
         }
 
         [Fact]
@@ -593,39 +593,39 @@ namespace NLog.UnitTests
 
             public MemoryQueueTarget(string name)
             {
-                this.Name = name;
+                Name = name;
             }
 
             public MemoryQueueTarget(int size)
             {
-                this.maxSize = size;
+                maxSize = size;
             }
 
             protected override void InitializeTarget()
             {
                 base.InitializeTarget();
-                this.Logs = new Queue<string>(maxSize);
+                Logs = new Queue<string>(maxSize);
             }
 
             protected override void CloseTarget()
             {
                 base.CloseTarget();
-                this.Logs = null;
+                Logs = null;
             }
 
             internal Queue<string> Logs { get; private set; }
 
             protected override void Write(LogEventInfo logEvent)
             {
-                if (this.Logs == null)
+                if (Logs == null)
                     throw new ObjectDisposedException("MemoryQueueTarget");
 
-                string msg = this.Layout.Render(logEvent);
+                string msg = Layout.Render(logEvent);
                 if (msg.Length > 100)
                     msg = msg.Substring(0, 100) + "...";
 
-                this.Logs.Enqueue(msg);
-                while (this.Logs.Count > maxSize)
+                Logs.Enqueue(msg);
+                while (Logs.Count > maxSize)
                 {
                     Logs.Dequeue();
                 }

@@ -48,7 +48,7 @@ namespace NLog.Internal.FileAppenders
     using System.Security.AccessControl;
     using System.Security.Principal;
     using System.Security.Cryptography;
-    using NLog.Common;
+    using Common;
 #endif
 
     /// <summary>

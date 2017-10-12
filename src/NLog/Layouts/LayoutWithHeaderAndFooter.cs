@@ -33,8 +33,8 @@
 
 namespace NLog.Layouts
 {
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// A specialized layout that supports header and footer.
@@ -68,7 +68,7 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return this.Layout.Render(logEvent);
+            return Layout.Render(logEvent);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace NLog.Layouts
         /// <param name="target"><see cref="System.Text.StringBuilder"/> for the result.</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
         {
-            this.Layout.RenderAppendBuilder(logEvent, target);
+            Layout.RenderAppendBuilder(logEvent, target);
         }
     }
 }

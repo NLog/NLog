@@ -34,7 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-    using NLog.Config;
+    using Config;
 #if SILVERLIGHT
 	using System.Windows;
 #endif

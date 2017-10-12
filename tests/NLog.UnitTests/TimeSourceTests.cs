@@ -34,7 +34,7 @@
 namespace NLog.UnitTests
 {
     using System;
-    using NLog.Time;
+    using Time;
     using Xunit;
 
     public class TimeSourceTests : NLogTestBase, IDisposable

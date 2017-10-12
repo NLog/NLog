@@ -34,7 +34,7 @@
 namespace NLog.UnitTests.Config
 {
     using System;
-    using NLog.Time;
+    using Time;
     using Xunit;
     
     public class TimeConfigurationTests : NLogTestBase, IDisposable

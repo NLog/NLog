@@ -33,8 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Decodes text "encrypted" with ROT-13.
@@ -55,8 +55,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Transformation Options' order='10' />
         public Layout Text
         {
-            get { return this.Inner; }
-            set { this.Inner = value; }
+            get { return Inner; }
+            set { Inner = value; }
         }
 
         /// <summary>

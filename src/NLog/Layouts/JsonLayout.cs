@@ -36,7 +36,7 @@ namespace NLog.Layouts
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// A specialized layout that renders JSON-formatted events.
@@ -58,10 +58,10 @@ namespace NLog.Layouts
         /// </summary>
         public JsonLayout()
         {
-            this.Attributes = new List<JsonAttribute>();
-            this.RenderEmptyObject = true;
-            this.IncludeAllProperties = false;
-            this.ExcludeProperties = new HashSet<string>();
+            Attributes = new List<JsonAttribute>();
+            RenderEmptyObject = true;
+            IncludeAllProperties = false;
+            ExcludeProperties = new HashSet<string>();
         }
 
         /// <summary>
@@ -115,12 +115,12 @@ namespace NLog.Layouts
             base.InitializeLayout();
             if (IncludeMdc)
             {
-                base.ThreadAgnostic = false;
+                ThreadAgnostic = false;
             }
 #if !SILVERLIGHT
             if (IncludeMdlc)
             {
-                base.ThreadAgnostic = false;
+                ThreadAgnostic = false;
             }
 #endif
         }
@@ -165,9 +165,9 @@ namespace NLog.Layouts
 
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < this.Attributes.Count; i++)
+            for (int i = 0; i < Attributes.Count; i++)
             {
-                var attrib = this.Attributes[i];
+                var attrib = Attributes[i];
                 int beforeAttribLength = sb.Length;
                 if (!RenderAppendJsonPropertyValue(attrib, logEvent, false, sb, sb.Length == orgLength))
                 {
@@ -175,7 +175,7 @@ namespace NLog.Layouts
                 }
             }
 
-            if (this.IncludeMdc)
+            if (IncludeMdc)
             {
                 foreach (string key in MappedDiagnosticsContext.GetNames())
                 {
@@ -187,7 +187,7 @@ namespace NLog.Layouts
             }
 
 #if !SILVERLIGHT
-            if (this.IncludeMdlc)
+            if (IncludeMdlc)
             {
                 foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
                 {
@@ -199,7 +199,7 @@ namespace NLog.Layouts
             }
 #endif
 
-            if (this.IncludeAllProperties && logEvent.HasProperties)
+            if (IncludeAllProperties && logEvent.HasProperties)
             {
                 foreach (var prop in logEvent.Properties)
                 {
@@ -209,7 +209,7 @@ namespace NLog.Layouts
                         continue;
 
                     //Skips properties in the ExcludeProperties list
-                    if (this.ExcludeProperties.Contains(propName))
+                    if (ExcludeProperties.Contains(propName))
                         continue;
 
                     AppendJsonPropertyValue(propName, prop.Value, sb, sb.Length == orgLength);
@@ -229,7 +229,7 @@ namespace NLog.Layouts
             else
             {
                 sb.Append(',');
-                if (!this.SuppressSpaces)
+                if (!SuppressSpaces)
                     sb.Append(' ');
             }
 
@@ -237,7 +237,7 @@ namespace NLog.Layouts
             sb.Append(propName);
             sb.Append('"');
             sb.Append(':');
-            if (!this.SuppressSpaces)
+            if (!SuppressSpaces)
                 sb.Append(' ');
         }
 

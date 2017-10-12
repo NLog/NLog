@@ -40,7 +40,7 @@
 
 namespace NLog.Internal.FileAppenders
 {
-    using NLog.Common;
+    using Common;
     using System;
     using System.IO;
     using System.Security;
@@ -75,22 +75,22 @@ namespace NLog.Internal.FileAppenders
         {
             try
             {
-                this._mutex = CreateSharableMutex("FileLock");
-                this._fileStream = CreateFileStream(true);
-                this._fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
+                _mutex = CreateSharableMutex("FileLock");
+                _fileStream = CreateFileStream(true);
+                _fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
             }
             catch
             {
-                if (this._mutex != null)
+                if (_mutex != null)
                 {
-                    this._mutex.Close();
-                    this._mutex = null;
+                    _mutex.Close();
+                    _mutex = null;
                 }
 
-                if (this._fileStream != null)
+                if (_fileStream != null)
                 {
-                    this._fileStream.Close();
-                    this._fileStream = null;
+                    _fileStream.Close();
+                    _fileStream = null;
                 }
 
                 throw;
@@ -105,14 +105,14 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (this._mutex == null || this._fileStream == null)
+            if (_mutex == null || _fileStream == null)
             {
                 return;
             }
 
             try
             {
-                this._mutex.WaitOne();
+                _mutex.WaitOne();
             }
             catch (AbandonedMutexException)
             {
@@ -123,9 +123,9 @@ namespace NLog.Internal.FileAppenders
 
             try
             {
-                this._fileStream.Seek(0, SeekOrigin.End);
-                this._fileStream.Write(bytes, offset, count);
-                this._fileStream.Flush();
+                _fileStream.Seek(0, SeekOrigin.End);
+                _fileStream.Write(bytes, offset, count);
+                _fileStream.Flush();
                 if (CaptureLastWriteTime)
                 {
                     FileTouched();
@@ -133,7 +133,7 @@ namespace NLog.Internal.FileAppenders
             }
             finally
             {
-                this._mutex.ReleaseMutex();
+                _mutex.ReleaseMutex();
             }
         }
 
@@ -143,11 +143,11 @@ namespace NLog.Internal.FileAppenders
         public override void Close()
         {
             InternalLogger.Trace("Closing '{0}'", FileName);
-            if (this._mutex != null)
+            if (_mutex != null)
             {
                 try
                 {
-                    this._mutex.Close();
+                    _mutex.Close();
                 }
                 catch (Exception ex)
                 {
@@ -156,15 +156,15 @@ namespace NLog.Internal.FileAppenders
                 }
                 finally
                 {
-                    this._mutex = null;
+                    _mutex = null;
                 }
             }
 
-            if (this._fileStream != null)
+            if (_fileStream != null)
             {
                 try
                 {
-                    this._fileStream.Close();
+                    _fileStream.Close();
                 }
                 catch (Exception ex)
                 {
@@ -173,7 +173,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 finally
                 {
-                    this._fileStream = null;
+                    _fileStream = null;
                 }
             }
 
@@ -222,7 +222,7 @@ namespace NLog.Internal.FileAppenders
         private FileCharacteristics GetFileCharacteristics()
         {
             // TODO: It is not efficient to read all the whole FileCharacteristics and then using one property.
-            return _fileCharacteristicsHelper.GetFileCharacteristics(FileName, this._fileStream);
+            return _fileCharacteristicsHelper.GetFileCharacteristics(FileName, _fileStream);
         }
 
         /// <summary>

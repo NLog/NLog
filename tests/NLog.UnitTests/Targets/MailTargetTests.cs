@@ -834,7 +834,7 @@ namespace NLog.UnitTests.Targets
         {
             public MockSmtpClient()
             {
-                this.MessagesSent = new List<MailMessage>();
+                MessagesSent = new List<MailMessage>();
             }
 
             public SmtpDeliveryMethod DeliveryMethod { get; set; }
@@ -850,11 +850,11 @@ namespace NLog.UnitTests.Targets
 
             public void Send(MailMessage msg)
             {
-                if (string.IsNullOrEmpty(this.Host) && string.IsNullOrEmpty(this.PickupDirectoryLocation))
+                if (string.IsNullOrEmpty(Host) && string.IsNullOrEmpty(PickupDirectoryLocation))
                 {
                     throw new InvalidOperationException("[Host/Pickup directory] is null or empty.");
                 }
-                this.MessagesSent.Add(msg);
+                MessagesSent.Add(msg);
                 if (Host == "ERROR")
                 {
                     throw new InvalidOperationException("Some SMTP error.");
@@ -902,27 +902,27 @@ namespace NLog.UnitTests.Targets
             {
                 if (UseSystemNetMailSettings) return;
 
-                if (this.SmtpServer == null && string.IsNullOrEmpty(this.PickupDirectoryLocation))
+                if (SmtpServer == null && string.IsNullOrEmpty(PickupDirectoryLocation))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer/PickupDirectoryLocation"));
         }
 
-                if (this.DeliveryMethod == SmtpDeliveryMethod.Network && this.SmtpServer == null)
+                if (DeliveryMethod == SmtpDeliveryMethod.Network && SmtpServer == null)
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
     }
 
-                if (this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(this.PickupDirectoryLocation))
+                if (DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(PickupDirectoryLocation))
                 {
                     throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
 }
 
-                if (!string.IsNullOrEmpty(this.PickupDirectoryLocation) && this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
+                if (!string.IsNullOrEmpty(PickupDirectoryLocation) && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
                 {
                     Client.PickupDirectoryLocation = ConvertDirectoryLocation(PickupDirectoryLocation);
                 }
 
-                Client.DeliveryMethod = this.DeliveryMethod;
+                Client.DeliveryMethod = DeliveryMethod;
             }
 
             public string SmtpClientPickUpDirectory { get { return Client.PickupDirectoryLocation; } }

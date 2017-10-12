@@ -59,7 +59,7 @@ namespace NLog.LogReceiverService
         /// <param name="logFactory">The log factory.</param>
         protected BaseLogReceiverForwardingService(LogFactory logFactory)
         {
-            this._logFactory = logFactory;
+            _logFactory = logFactory;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NLog.LogReceiverService
                 logEvents[j] = logEventInfo;
             }
 
-            this.ProcessLogMessages(logEvents);
+            ProcessLogMessages(logEvents);
         }
 
         /// <summary>
@@ -108,9 +108,9 @@ namespace NLog.LogReceiverService
             {
                 if (ev.LoggerName != lastLoggerName)
                 {
-                    if (this._logFactory != null)
+                    if (_logFactory != null)
                     {
-                        logger = this._logFactory.GetLogger(ev.LoggerName);
+                        logger = _logFactory.GetLogger(ev.LoggerName);
                     }
                     else
                     {

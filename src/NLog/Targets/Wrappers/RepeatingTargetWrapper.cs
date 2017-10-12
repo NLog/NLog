@@ -36,8 +36,8 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.ComponentModel;
     using System.Threading;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Repeats each log event the specified number of times.
@@ -76,7 +76,7 @@ namespace NLog.Targets.Wrappers
         public RepeatingTargetWrapper(string name, Target wrappedTarget, int repeatCount) 
             : this(wrappedTarget, repeatCount)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -87,8 +87,8 @@ namespace NLog.Targets.Wrappers
         public RepeatingTargetWrapper(Target wrappedTarget, int repeatCount)
         {
             WrappedTarget = wrappedTarget;
-            this.RepeatCount = repeatCount;
-            this.OptimizeBufferReuse = GetType() == typeof(RepeatingTargetWrapper);
+            RepeatCount = repeatCount;
+            OptimizeBufferReuse = GetType() == typeof(RepeatingTargetWrapper);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            AsyncHelpers.Repeat(this.RepeatCount, logEvent.Continuation, cont => this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
+            AsyncHelpers.Repeat(RepeatCount, logEvent.Continuation, cont => WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(cont)));
         }
     }
 }

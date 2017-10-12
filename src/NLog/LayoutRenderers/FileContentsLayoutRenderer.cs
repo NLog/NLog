@@ -36,10 +36,10 @@ namespace NLog.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Layouts;
+    using Common;
+    using Config;
+    using Internal;
+    using Layouts;
 
     /// <summary>
     /// Renders contents of the specified file.
@@ -58,9 +58,9 @@ namespace NLog.LayoutRenderers
 #if SILVERLIGHT
             this.Encoding = Encoding.UTF8;
 #else
-            this.Encoding = Encoding.Default;
+            Encoding = Encoding.Default;
 #endif
-            this._lastFileName = string.Empty;
+            _lastFileName = string.Empty;
         }
 
         /// <summary>
@@ -86,23 +86,23 @@ namespace NLog.LayoutRenderers
         {
             lock (this)
             {
-                string fileName = this.FileName.Render(logEvent);
+                string fileName = FileName.Render(logEvent);
 
-                if (fileName != this._lastFileName)
+                if (fileName != _lastFileName)
                 {
-                    this._currentFileContents = this.ReadFileContents(fileName);
-                    this._lastFileName = fileName;
+                    _currentFileContents = ReadFileContents(fileName);
+                    _lastFileName = fileName;
                 }
             }
 
-            builder.Append(this._currentFileContents);
+            builder.Append(_currentFileContents);
         }
 
         private string ReadFileContents(string fileName)
         {
             try
             {
-                using (var reader = new StreamReader(fileName, this.Encoding))
+                using (var reader = new StreamReader(fileName, Encoding))
                 {
                     return reader.ReadToEnd();
                 }

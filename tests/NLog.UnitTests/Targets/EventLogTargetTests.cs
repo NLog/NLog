@@ -689,7 +689,7 @@ namespace NLog.UnitTests.Targets
 
                 var source = RenderSource(logEventInfo);
 
-                CapturedEvents.Add(new EventRecordMock(eventId, this.Log, source, entryType, message, category));
+                CapturedEvents.Add(new EventRecordMock(eventId, Log, source, entryType, message, category));
             }
 
             #endregion

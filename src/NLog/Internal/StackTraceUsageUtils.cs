@@ -34,7 +34,7 @@
 namespace NLog.Internal
 {
     using System;
-    using NLog.Config;
+    using Config;
     using System.Diagnostics;
 
     /// <summary>

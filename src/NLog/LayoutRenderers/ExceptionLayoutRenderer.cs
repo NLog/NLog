@@ -39,9 +39,9 @@ namespace NLog.LayoutRenderers
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
+    using Common;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Exception information provided through 
@@ -71,11 +71,11 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public ExceptionLayoutRenderer()
         {
-            this.Format = "message";
-            this.Separator = " ";
-            this.ExceptionDataSeparator = ";";
-            this.InnerExceptionSeparator = EnvironmentHelper.NewLine;
-            this.MaxInnerExceptionLevel = 0;
+            Format = "message";
+            Separator = " ";
+            ExceptionDataSeparator = ";";
+            InnerExceptionSeparator = EnvironmentHelper.NewLine;
+            MaxInnerExceptionLevel = 0;
 
             _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>>()
                                                                                                     {
@@ -102,12 +102,12 @@ namespace NLog.LayoutRenderers
         {
             get
             {
-                return this._format;
+                return _format;
             }
 
             set
             {
-                this._format = value;
+                _format = value;
                 Formats = CompileFormat(value);
             }
         }
@@ -122,12 +122,12 @@ namespace NLog.LayoutRenderers
         {
             get
             {
-                return this._innerFormat;
+                return _innerFormat;
             }
 
             set
             {
-                this._innerFormat = value;
+                _innerFormat = value;
                 InnerFormats = CompileFormat(value);
             }
         }
@@ -195,7 +195,7 @@ namespace NLog.LayoutRenderers
                 var sb2 = new StringBuilder(128);
                 string separator = string.Empty;
 
-                foreach (ExceptionRenderingFormat renderingFormat in this.Formats)
+                foreach (ExceptionRenderingFormat renderingFormat in Formats)
                 {
                     var sbCurrentRender = new StringBuilder();
                     var currentRenderFunction = _renderingfunctions[renderingFormat];
@@ -205,12 +205,12 @@ namespace NLog.LayoutRenderers
                         sb2.Append(separator);
                         sb2.Append(sbCurrentRender);
                     }
-                    separator = this.Separator;
+                    separator = Separator;
                 }
 
                 Exception currentException = primaryException.InnerException;
                 int currentLevel = 0;
-                while (currentException != null && currentLevel < this.MaxInnerExceptionLevel)
+                while (currentException != null && currentLevel < MaxInnerExceptionLevel)
                 {
                     AppendInnerException(sb2, currentException);
 
@@ -234,7 +234,7 @@ namespace NLog.LayoutRenderers
             asyncException = asyncException.Flatten();
             if (asyncException.InnerExceptions != null)
             {
-                for (int i = 0; i < asyncException.InnerExceptions.Count && currentLevel < this.MaxInnerExceptionLevel; i++, currentLevel++)
+                for (int i = 0; i < asyncException.InnerExceptions.Count && currentLevel < MaxInnerExceptionLevel; i++, currentLevel++)
                 {
                     var currentException = asyncException.InnerExceptions[i];
                     if (ReferenceEquals(currentException, primaryException.InnerException))
@@ -250,7 +250,7 @@ namespace NLog.LayoutRenderers
                     currentLevel++;
 
                     currentException = currentException.InnerException;
-                    while (currentException != null && currentLevel < this.MaxInnerExceptionLevel)
+                    while (currentException != null && currentLevel < MaxInnerExceptionLevel)
                     {
                         AppendInnerException(builder, currentException);
 
@@ -264,10 +264,10 @@ namespace NLog.LayoutRenderers
         private void AppendInnerException(StringBuilder sb2, Exception currentException)
         {
             // separate inner exceptions
-            sb2.Append(this.InnerExceptionSeparator);
+            sb2.Append(InnerExceptionSeparator);
 
             string separator = string.Empty;
-            foreach (ExceptionRenderingFormat renderingFormat in this.InnerFormats ?? this.Formats)
+            foreach (ExceptionRenderingFormat renderingFormat in InnerFormats ?? Formats)
             {
                 sb2.Append(separator);
 
@@ -275,7 +275,7 @@ namespace NLog.LayoutRenderers
 
                 currentRenderFunction(sb2, currentException);
 
-                separator = this.Separator;
+                separator = Separator;
             }
         }
 

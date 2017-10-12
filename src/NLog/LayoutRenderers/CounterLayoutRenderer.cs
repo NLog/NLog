@@ -53,8 +53,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public CounterLayoutRenderer()
         {
-            this.Increment = 1;
-            this.Value = 1;
+            Increment = 1;
+            Value = 1;
         }
 
         /// <summary>
@@ -86,14 +86,14 @@ namespace NLog.LayoutRenderers
         {
             int v;
 
-            if (this.Sequence != null)
+            if (Sequence != null)
             {
-                v = GetNextSequenceValue(this.Sequence.Render(logEvent), this.Value, this.Increment);
+                v = GetNextSequenceValue(Sequence.Render(logEvent), Value, Increment);
             }
             else
             {
-                v = this.Value;
-                this.Value += this.Increment;
+                v = Value;
+                Value += Increment;
             }
 
             Internal.StringBuilderExt.AppendInvariant(builder, v);

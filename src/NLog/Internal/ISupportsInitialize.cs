@@ -33,7 +33,7 @@
 
 namespace NLog.Internal
 {
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Supports object initialization and termination.

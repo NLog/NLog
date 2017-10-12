@@ -57,7 +57,7 @@ namespace NLog.Internal
         /// </summary>
         public Win32ThreadIDHelper()
         {
-            this.currentProcessID = NativeMethods.GetCurrentProcessId();
+            currentProcessID = NativeMethods.GetCurrentProcessId();
 
             var sb = new StringBuilder(512);
             if (0 == NativeMethods.GetModuleFileName(IntPtr.Zero, sb, sb.Capacity))
@@ -65,8 +65,8 @@ namespace NLog.Internal
                 throw new InvalidOperationException("Cannot determine program name.");
             }
 
-            this.currentProcessName = sb.ToString();
-            this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
+            currentProcessName = sb.ToString();
+            currentProcessBaseName = Path.GetFileNameWithoutExtension(currentProcessName);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace NLog.Internal
         /// <value></value>
         public override int CurrentProcessID
         {
-            get { return this.currentProcessID; }
+            get { return currentProcessID; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace NLog.Internal
         /// <value></value>
         public override string CurrentProcessName
         {
-            get { return this.currentProcessName; }
+            get { return currentProcessName; }
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace NLog.Internal
         /// <value></value>
         public override string CurrentProcessBaseName
         {
-            get { return this.currentProcessBaseName; }
+            get { return currentProcessBaseName; }
         }
     }
 }

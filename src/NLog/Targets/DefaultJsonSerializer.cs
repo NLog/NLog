@@ -45,7 +45,7 @@ namespace NLog.Targets
     /// Default class for serialization of values to JSON format.
     /// </summary>
 #pragma warning disable 618
-    public class DefaultJsonSerializer : IJsonConverter, NLog.Targets.IJsonSerializer
+    public class DefaultJsonSerializer : IJsonConverter, IJsonSerializer
 #pragma warning restore 618
     {
         private readonly MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>> _propsCache = new MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>>(10000);
@@ -735,7 +735,7 @@ namespace NLog.Targets
             catch (Exception ex)
             {
                 properties = ArrayHelper.Empty<PropertyInfo>();
-                NLog.Common.InternalLogger.Warn(ex, "Failed to get JSON properties for type: {0}", type);
+                Common.InternalLogger.Warn(ex, "Failed to get JSON properties for type: {0}", type);
             }
 
             props = new KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>(properties, ArrayHelper.Empty<ReflectionHelpers.LateBoundMethod>());

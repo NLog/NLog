@@ -35,7 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Text;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Filters characters not allowed in the file names by replacing them with safe character.
@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public FileSystemNormalizeLayoutRendererWrapper()
         {
-            this.FSNormalize = true;
+            FSNormalize = true;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="builder">Output to be transformed.</param>
         protected override void TransformFormattedMesssage(StringBuilder builder)
         {
-            if (this.FSNormalize)
+            if (FSNormalize)
             {
                 for (int i = 0; i < builder.Length; i++)
                 {

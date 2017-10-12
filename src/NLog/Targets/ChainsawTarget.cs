@@ -75,7 +75,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public ChainsawTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
     }
 }

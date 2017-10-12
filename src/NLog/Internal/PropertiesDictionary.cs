@@ -36,7 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using NLog.MessageTemplates;
+    using MessageTemplates;
 
     /// <summary>
     /// Dictionary that combines the standard <see cref="LogEventInfo.Properties" /> with the

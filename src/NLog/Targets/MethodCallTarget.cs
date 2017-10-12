@@ -37,7 +37,7 @@ namespace NLog.Targets
     using System.Reflection;
     using System.Collections.Generic;
     using System.Linq;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Calls the specified static method on each log message and passes contextual parameters to it.
@@ -93,7 +93,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public MethodCallTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -103,31 +103,31 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            if (this.ClassName != null && this.MethodName != null)
+            if (ClassName != null && MethodName != null)
             {
-                Type targetType = Type.GetType(this.ClassName);
+                Type targetType = Type.GetType(ClassName);
 
                 if (targetType != null)
                 {
-                    this.Method = targetType.GetMethod(this.MethodName);
-                    if (this.Method == null)
+                    Method = targetType.GetMethod(MethodName);
+                    if (Method == null)
                     {
                         InternalLogger.Warn("Initialize MethodCallTarget, method '{0}' in class '{1}' not found - it should be static", MethodName, ClassName);
                     }
                     else
                     {
-                        this.NeededParameters = this.Method.GetParameters().Length;
+                        NeededParameters = Method.GetParameters().Length;
                     }
                 }
                 else
                 {
                     InternalLogger.Warn("Initialize MethodCallTarget, class '{0}' not found", ClassName);
-                    this.Method = null;
+                    Method = null;
                 }
             }
             else
             {
-                this.Method = null;
+                Method = null;
             }
         }
 
@@ -137,7 +137,7 @@ namespace NLog.Targets
         /// <param name="parameters">Method parameters.</param>
         protected override void DoInvoke(object[] parameters)
         {
-            if (this.Method != null)
+            if (Method != null)
             {
                 var missingParameters = NeededParameters - parameters.Length;
                 if (missingParameters > 0)
@@ -148,7 +148,7 @@ namespace NLog.Targets
                     parameters = newParams.ToArray();
                 }
 
-                this.Method.Invoke(null, parameters);
+                Method.Invoke(null, parameters);
             }
             else
             {

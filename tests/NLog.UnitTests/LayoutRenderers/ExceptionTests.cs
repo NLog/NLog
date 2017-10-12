@@ -87,7 +87,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
-            var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            var debug7Target = (DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
 
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
@@ -130,7 +130,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
-            var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            var debug7Target = (DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
 
             AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(InvalidOperationException).Name);
@@ -176,7 +176,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
-            var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            var debug7Target = (DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
 
             AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(InvalidOperationException).Name);

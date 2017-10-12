@@ -39,7 +39,7 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// High precision timer, based on the value returned from QueryPerformanceCounter() optionally converted to seconds.
@@ -57,10 +57,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public QueryPerformanceCounterLayoutRenderer()
         {
-            this.Normalize = true;
-            this.Difference = false;
-            this.Precision = 4;
-            this.AlignDecimalPoint = true;
+            Normalize = true;
+            Difference = false;
+            Precision = 4;
+            AlignDecimalPoint = true;
         }
 
         /// <summary>
@@ -87,8 +87,8 @@ namespace NLog.LayoutRenderers
         [DefaultValue(true)]
         public bool Seconds
         {
-            get { return !this.raw; }
-            set { this.raw = !value; }
+            get { return !raw; }
+            set { raw = !value; }
         }
 
         /// <summary>
@@ -126,9 +126,9 @@ namespace NLog.LayoutRenderers
                 throw new InvalidOperationException("Cannot determine high-performance counter value.");
             }
 
-            this.frequency = performanceFrequency;
-            this.firstQpcValue = qpcValue;
-            this.lastQpcValue = qpcValue;
+            frequency = performanceFrequency;
+            firstQpcValue = qpcValue;
+            lastQpcValue = qpcValue;
         }
 
         /// <summary>
@@ -147,34 +147,34 @@ namespace NLog.LayoutRenderers
 
             ulong v = qpcValue;
 
-            if (this.Difference)
+            if (Difference)
             {
-                qpcValue -= this.lastQpcValue;
+                qpcValue -= lastQpcValue;
             }
-            else if (this.Normalize)
+            else if (Normalize)
             {
-                qpcValue -= this.firstQpcValue;
+                qpcValue -= firstQpcValue;
             }
 
-            this.lastQpcValue = v;
+            lastQpcValue = v;
 
             string stringValue;
 
-            if (this.Seconds)
+            if (Seconds)
             {
-                double val = Math.Round(qpcValue / this.frequency, this.Precision);
+                double val = Math.Round(qpcValue / frequency, Precision);
 
                 stringValue = Convert.ToString(val, CultureInfo.InvariantCulture);
-                if (this.AlignDecimalPoint)
+                if (AlignDecimalPoint)
                 {
                     int p = stringValue.IndexOf('.');
                     if (p == -1)
                     {
-                        stringValue += "." + new string('0', this.Precision);
+                        stringValue += "." + new string('0', Precision);
                     }
                     else
                     {
-                        stringValue += new string('0', this.Precision - (stringValue.Length - 1 - p));
+                        stringValue += new string('0', Precision - (stringValue.Length - 1 - p));
                     }
                 }
             }

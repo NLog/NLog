@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using System.Globalization;
     using System.Text;
 
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The short date in a sortable format yyyy-MM-dd.
@@ -67,7 +67,7 @@ namespace NLog.LayoutRenderers
         {
             var timestamp = logEvent.TimeStamp;
 
-            if (this.UniversalTime)
+            if (UniversalTime)
             {
                 timestamp = timestamp.ToUniversalTime();
                 CachedUtcDate.AppendDate(builder, timestamp);

@@ -37,7 +37,7 @@ namespace NLog.Common
     using System.Collections.Generic;
     using System.Text;
     using System.Threading;
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// Helpers for asynchronous operations.

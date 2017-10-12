@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Config
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <extensions>
-        <add assemblyFile='" + this.GetExtensionAssemblyFullPath() + @"' />
+        <add assemblyFile='" + GetExtensionAssemblyFullPath() + @"' />
     </extensions>
 
     <targets>
@@ -113,7 +113,7 @@ namespace NLog.UnitTests.Config
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <extensions>
-        <add assembly='" + this.extensionAssemblyName1 + @"' />
+        <add assembly='" + extensionAssemblyName1 + @"' />
     </extensions>
 
     <targets>
@@ -160,7 +160,7 @@ namespace NLog.UnitTests.Config
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <extensions>
-        <add prefix='myprefix' assemblyFile='" + this.GetExtensionAssemblyFullPath() + @"' />
+        <add prefix='myprefix' assemblyFile='" + GetExtensionAssemblyFullPath() + @"' />
     </extensions>
 
     <targets>
@@ -271,7 +271,7 @@ namespace NLog.UnitTests.Config
     </rules>
 
     <extensions>
-        <add assemblyFile='" + this.GetExtensionAssemblyFullPath() + @"' />
+        <add assemblyFile='" + GetExtensionAssemblyFullPath() + @"' />
     </extensions>
 
 </nlog>");
@@ -502,7 +502,7 @@ namespace NLog.UnitTests.Config
             var config = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
     <extensions>
-        <add assemblyFile='" + this.GetExtensionAssemblyFullPath() + @"' />
+        <add assemblyFile='" + GetExtensionAssemblyFullPath() + @"' />
     </extensions>
                 <targets>
                     <target name='myTarget' type='MyTarget' layout='123' />

@@ -52,8 +52,8 @@ namespace NLog.Internal
         /// <param name="text">The text to be tokenized.</param>
         public SimpleStringReader(string text)
         {
-            this._text = text;
-            this.Position = 0;
+            _text = text;
+            Position = 0;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace NLog.Internal
         /// </summary>
         internal string Text
         {
-            get { return this._text; }
+            get { return _text; }
         }
 
 #if DEBUG
@@ -88,9 +88,9 @@ namespace NLog.Internal
         /// <returns></returns>
         internal int Peek()
         {
-            if (this.Position < this._text.Length)
+            if (Position < _text.Length)
             {
-                return this._text[this.Position];
+                return _text[Position];
             }
 
             return -1;
@@ -102,9 +102,9 @@ namespace NLog.Internal
         /// <returns></returns>
         internal int Read()
         {
-            if (this.Position < this._text.Length)
+            if (Position < _text.Length)
             {
-                return this._text[this.Position++];
+                return _text[Position++];
             }
 
             return -1;
@@ -118,7 +118,7 @@ namespace NLog.Internal
         /// <returns></returns>
         internal string Substring(int startIndex, int endIndex)
         {
-            return this._text.Substring(startIndex, endIndex - startIndex);
+            return _text.Substring(startIndex, endIndex - startIndex);
         }
     }
 }

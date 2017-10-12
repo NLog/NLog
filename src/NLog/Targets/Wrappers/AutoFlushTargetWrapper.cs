@@ -33,9 +33,9 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using NLog.Common;
-    using NLog.Conditions;
-    using NLog.Internal;
+    using Common;
+    using Conditions;
+    using Internal;
 
     /// <summary>
     /// Causes a flush on a wrapped target if LogEvent statisfies the <see cref="Condition"/>.

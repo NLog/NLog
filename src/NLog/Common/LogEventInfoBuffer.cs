@@ -34,7 +34,7 @@
 namespace NLog.Common
 {
     using System;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// A cyclic buffer of <see cref="LogEventInfo"/> object.
@@ -57,11 +57,11 @@ namespace NLog.Common
         /// <param name="growLimit">The maximum number of items that the buffer can grow to.</param>
         public LogEventInfoBuffer(int size, bool growAsNeeded, int growLimit)
         {
-            this._growAsNeeded = growAsNeeded;
-            this._buffer = new AsyncLogEventInfo[size];
-            this._growLimit = growLimit;
-            this._getPointer = 0;
-            this._putPointer = 0;
+            _growAsNeeded = growAsNeeded;
+            _buffer = new AsyncLogEventInfo[size];
+            _growLimit = growLimit;
+            _getPointer = 0;
+            _putPointer = 0;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace NLog.Common
         /// </summary>
         public int Size
         {
-            get { return this._buffer.Length; }
+            get { return _buffer.Length; }
         }
 
         /// <summary>
@@ -82,40 +82,40 @@ namespace NLog.Common
             lock (this)
             {
                 // make room for additional item
-                if (this._count >= this._buffer.Length)
+                if (_count >= _buffer.Length)
                 {
-                    if (this._growAsNeeded && this._buffer.Length < this._growLimit)
+                    if (_growAsNeeded && _buffer.Length < _growLimit)
                     {
                         // create a new buffer, copy data from current
-                        int newLength = this._buffer.Length * 2;
-                        if (newLength >= this._growLimit)
+                        int newLength = _buffer.Length * 2;
+                        if (newLength >= _growLimit)
                         {
-                            newLength = this._growLimit;
+                            newLength = _growLimit;
                         }
 
                         // InternalLogger.Trace("Enlarging LogEventInfoBuffer from {0} to {1}", this.buffer.Length, this.buffer.Length * 2);
                         var newBuffer = new AsyncLogEventInfo[newLength];
-                        Array.Copy(this._buffer, 0, newBuffer, 0, this._buffer.Length);
-                        this._buffer = newBuffer;
+                        Array.Copy(_buffer, 0, newBuffer, 0, _buffer.Length);
+                        _buffer = newBuffer;
                     }
                     else
                     {
                         // lose the oldest item
-                        this._getPointer = this._getPointer + 1;
+                        _getPointer = _getPointer + 1;
                     }
                 }
 
                 // put the item
-                this._putPointer = this._putPointer % this._buffer.Length;
-                this._buffer[this._putPointer] = eventInfo;
-                this._putPointer = this._putPointer + 1;
-                this._count++;
-                if (this._count >= this._buffer.Length)
+                _putPointer = _putPointer % _buffer.Length;
+                _buffer[_putPointer] = eventInfo;
+                _putPointer = _putPointer + 1;
+                _count++;
+                if (_count >= _buffer.Length)
                 {
-                    this._count = this._buffer.Length;
+                    _count = _buffer.Length;
                 }
 
-                return this._count;
+                return _count;
             }
         }
 
@@ -127,7 +127,7 @@ namespace NLog.Common
         {
             lock (this)
             {
-                int cnt = this._count;
+                int cnt = _count;
                 if (cnt == 0)
                     return Internal.ArrayHelper.Empty<AsyncLogEventInfo>();
 
@@ -136,15 +136,15 @@ namespace NLog.Common
                 // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
                 for (int i = 0; i < cnt; ++i)
                 {
-                    int p = (this._getPointer + i) % this._buffer.Length;
-                    var e = this._buffer[p];
-                    this._buffer[p] = default(AsyncLogEventInfo); // we don't want memory leaks
+                    int p = (_getPointer + i) % _buffer.Length;
+                    var e = _buffer[p];
+                    _buffer[p] = default(AsyncLogEventInfo); // we don't want memory leaks
                     returnValue[i] = e;
                 }
 
-                this._count = 0;
-                this._getPointer = 0;
-                this._putPointer = 0;
+                _count = 0;
+                _getPointer = 0;
+                _putPointer = 0;
 
                 return returnValue;
             }

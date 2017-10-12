@@ -33,8 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Encodes the result of another layout output for use with URLs.
@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public UrlEncodeLayoutRendererWrapper()
         {
-            this.SpaceAsPlus = true;
+            SpaceAsPlus = true;
         }
 
         /// <summary>

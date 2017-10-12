@@ -35,7 +35,7 @@ using NLog.Layouts;
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using NLog.Config;
+    using Config;
     using System;
     using System.ComponentModel;
 
@@ -73,8 +73,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public CachedLayoutRendererWrapper()
         {
-            this.Cached = true;
-            this.ClearCache = ClearCacheOption.OnInit | ClearCacheOption.OnClose;
+            Cached = true;
+            ClearCache = ClearCacheOption.OnInit | ClearCacheOption.OnClose;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             base.InitializeLayoutRenderer();
             if ((ClearCache & ClearCacheOption.OnInit) == ClearCacheOption.OnInit)
-                this._cachedValue = null;
+                _cachedValue = null;
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             base.CloseLayoutRenderer();
             if ((ClearCache & ClearCacheOption.OnClose) == ClearCacheOption.OnClose)
-                this._cachedValue = null;
+                _cachedValue = null;
         }
 
         /// <summary>
@@ -131,16 +131,16 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Contents of inner layout.</returns>
         protected override string RenderInner(LogEventInfo logEvent)
         {
-            if (this.Cached)
+            if (Cached)
             {
                 var newCacheKey = CacheKey == null ? null: CacheKey.Render(logEvent);
-                if (this._cachedValue == null || this._renderedCacheKey != newCacheKey)
+                if (_cachedValue == null || _renderedCacheKey != newCacheKey)
                 {
-                    this._cachedValue = base.RenderInner(logEvent);
-                    this._renderedCacheKey = newCacheKey;
+                    _cachedValue = base.RenderInner(logEvent);
+                    _renderedCacheKey = newCacheKey;
                 }
 
-                return this._cachedValue;
+                return _cachedValue;
             }
             else
             {

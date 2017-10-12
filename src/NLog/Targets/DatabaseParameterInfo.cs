@@ -36,8 +36,8 @@
 namespace NLog.Targets
 {
     using System.ComponentModel;
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Represents a parameter to a Database target.
@@ -60,8 +60,8 @@ namespace NLog.Targets
         /// <param name="parameterLayout">The parameter layout.</param>
         public DatabaseParameterInfo(string parameterName, Layout parameterLayout)
         {
-            this.Name = parameterName;
-            this.Layout = parameterLayout;
+            Name = parameterName;
+            Layout = parameterLayout;
         }
 
         /// <summary>

@@ -311,19 +311,19 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
-                this.WriteCount++;
+                Assert.True(FlushCount <= WriteCount);
+                WriteCount++;
 
-                if (this.FailCounter > 0)
+                if (FailCounter > 0)
                 {
-                    this.FailCounter--;
+                    FailCounter--;
                     throw new InvalidOperationException("Some failure.");
                 }
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                FlushCount++;
                 asyncContinuation(null);
             }
         }

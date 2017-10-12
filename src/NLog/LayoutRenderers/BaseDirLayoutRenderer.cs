@@ -37,8 +37,8 @@ namespace NLog.LayoutRenderers
     using System.IO;
     using System.Text;
     using Internal.Fakeables;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// The current application domain's base directory.
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public BaseDirLayoutRenderer(IAppDomain appDomain)
         {
-            this._baseDir = appDomain.BaseDirectory;
+            _baseDir = appDomain.BaseDirectory;
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace NLog.LayoutRenderers
 
             if (dir != null)
             {
-                var path = PathHelpers.CombinePaths(dir, this.Dir, this.File);
+                var path = PathHelpers.CombinePaths(dir, Dir, File);
                 builder.Append(path);
             }
         }

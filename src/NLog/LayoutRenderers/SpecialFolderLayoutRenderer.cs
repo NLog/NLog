@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// System special folder path (includes My Documents, My Music, Program Files, Desktop, and more).
@@ -86,9 +86,9 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string basePath = Environment.GetFolderPath(this.Folder);
+            string basePath = Environment.GetFolderPath(Folder);
 
-            var path = PathHelpers.CombinePaths(basePath, this.Dir, this.File);
+            var path = PathHelpers.CombinePaths(basePath, Dir, File);
    
             builder.Append(path);
         }

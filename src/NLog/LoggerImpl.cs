@@ -40,10 +40,10 @@ namespace NLog
     using System.Reflection;
     using System.Threading;
     using JetBrains.Annotations;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Filters;
-    using NLog.Internal;
+    using Common;
+    using Config;
+    using Filters;
+    using Internal;
 
     /// <summary>
     /// Implementation of logging engine.

@@ -37,8 +37,8 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Text;
 
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// The formatted log message.
@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public MessageLayoutRenderer()
         {
-            this.ExceptionSeparator = EnvironmentHelper.NewLine;
+            ExceptionSeparator = EnvironmentHelper.NewLine;
         }
 
         /// <summary>
@@ -80,13 +80,13 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (this.Raw)
+            if (Raw)
                 builder.Append(logEvent.Message);
             else
                 builder.Append(logEvent.FormattedMessage);
-            if (this.WithException && logEvent.Exception != null)
+            if (WithException && logEvent.Exception != null)
             {
-                builder.Append(this.ExceptionSeparator);
+                builder.Append(ExceptionSeparator);
                 builder.Append(logEvent.Exception.ToString());
             }
         }

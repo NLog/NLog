@@ -45,7 +45,7 @@ namespace NLog.Internal.FileAppenders
     using System.Security;
     using System.Threading;
 
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Provides a multiprocess-safe atomic file append while
@@ -99,7 +99,7 @@ namespace NLog.Internal.FileAppenders
             }
 
             var fileShare = FileShare.ReadWrite;
-            if (this.CreateFileParameters.EnableFileDelete)
+            if (CreateFileParameters.EnableFileDelete)
                 fileShare |= FileShare.Delete;
 
             try
@@ -122,15 +122,15 @@ namespace NLog.Internal.FileAppenders
                 long filePosition = fileStream.Position;
                 if (fileExists || filePosition > 0)
                 {
-                    this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
-                    if (this.CreationTimeUtc < DateTime.UtcNow - TimeSpan.FromSeconds(2) && filePosition == 0)
+                    CreationTimeUtc = File.GetCreationTimeUtc(FileName);
+                    if (CreationTimeUtc < DateTime.UtcNow - TimeSpan.FromSeconds(2) && filePosition == 0)
                     {
                         // File wasn't created "almost now". 
                         // This could mean creation time has tunneled through from another file (see comment below).
                         Thread.Sleep(50);
                         // Having waited for a short amount of time usually means the file creation process has continued
                         // code execution just enough to the above point where it has fixed up the creation time.
-                        this.CreationTimeUtc = File.GetCreationTimeUtc(this.FileName);
+                        CreationTimeUtc = File.GetCreationTimeUtc(FileName);
                     }
                 }
                 else
@@ -142,8 +142,8 @@ namespace NLog.Internal.FileAppenders
                     // Unfortunately we can't use the native SetFileTime() to prevent opening the file 2nd time.
                     // This would require another desiredAccess flag which would disable the atomic append feature.
                     // See also UpdateCreationTime()
-                    this.CreationTimeUtc = DateTime.UtcNow;
-                    File.SetCreationTimeUtc(this.FileName, this.CreationTimeUtc);
+                    CreationTimeUtc = DateTime.UtcNow;
+                    File.SetCreationTimeUtc(FileName, CreationTimeUtc);
                 }
             }
             catch
@@ -188,7 +188,7 @@ namespace NLog.Internal.FileAppenders
             catch (Exception ex)
             {
                 InternalLogger.Warn(ex, "Failed to close file '{0}'", FileName);
-                System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+                Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
             }
             finally
             {
@@ -228,11 +228,11 @@ namespace NLog.Internal.FileAppenders
 
         private FileCharacteristics GetFileCharacteristics()
         {
-            if (this.fileStream == null || this.fileCharacteristicsHelper == null)
+            if (fileStream == null || fileCharacteristicsHelper == null)
                 return null;
 
             //todo not efficient to read all the whole FileCharacteristics and then using one property
-            return fileCharacteristicsHelper.GetFileCharacteristics(FileName, this.fileStream);
+            return fileCharacteristicsHelper.GetFileCharacteristics(FileName, fileStream);
         }
 
         /// <summary>

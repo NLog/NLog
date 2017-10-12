@@ -34,8 +34,8 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Base class for <see cref="LayoutRenderer"/>s which wrapping other <see cref="LayoutRenderer"/>s. 
@@ -64,8 +64,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string msg = this.RenderInner(logEvent);
-            builder.Append(this.Transform(msg));
+            string msg = RenderInner(logEvent);
+            builder.Append(Transform(msg));
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Contents of inner layout.</returns>
         protected virtual string RenderInner(LogEventInfo logEvent)
         {
-            return this.Inner.Render(logEvent);
+            return Inner.Render(logEvent);
         }
     }
 }

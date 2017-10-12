@@ -36,7 +36,7 @@ namespace NLog
 {
 #if !SILVERLIGHT
     using System;
-    using NLog.Internal;
+    using Internal;
 	using System.Linq;
 
     /// <summary>

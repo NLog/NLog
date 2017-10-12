@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public GarbageCollectorInfoLayoutRenderer()
         {
-            this.Property = GarbageCollectorProperty.TotalMemory;
+            Property = GarbageCollectorProperty.TotalMemory;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers
         {
             object value = null;
 
-            switch (this.Property)
+            switch (Property)
             {
                 case GarbageCollectorProperty.TotalMemory:
                     value = GC.GetTotalMemory(false);

@@ -43,13 +43,13 @@ namespace MyExtensionNamespace
 
         public int X
         {
-            get { return this.x; }
-            set { this.x = value; }
+            get { return x; }
+            set { x = value; }
         }
 
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return "FooFoo" + this.X;
+            return "FooFoo" + X;
         }
 
         public static implicit operator FooLayout(string text)

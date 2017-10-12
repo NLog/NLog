@@ -47,7 +47,7 @@ namespace NLog.UnitTests
 
         public NLogTraceListenerTests()
         {
-            this.previousCultureInfo = Thread.CurrentThread.CurrentCulture;
+            previousCultureInfo = Thread.CurrentThread.CurrentCulture;
             // set the culture info with the decimal separator (comma) different from InvariantCulture separator (point)
             Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
         }
@@ -55,7 +55,7 @@ namespace NLog.UnitTests
         public void Dispose()
         {
             // restore previous culture info
-            Thread.CurrentThread.CurrentCulture = this.previousCultureInfo;
+            Thread.CurrentThread.CurrentCulture = previousCultureInfo;
         }
 
         [Fact]
@@ -181,7 +181,7 @@ namespace NLog.UnitTests
             Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1", AutoLoggerName = true });
 
             Trace.Write("Hello");
-            AssertDebugLastMessage("debug", this.GetType().FullName + " Debug Hello");
+            AssertDebugLastMessage("debug", GetType().FullName + " Debug Hello");
         }
 
         [Fact]
@@ -202,7 +202,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Fatal 42 123");
 
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
-            AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14.ToString(System.Globalization.CultureInfo.CurrentCulture)));
+            AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14.ToString(CultureInfo.CurrentCulture)));
         }
 
 #if MONO

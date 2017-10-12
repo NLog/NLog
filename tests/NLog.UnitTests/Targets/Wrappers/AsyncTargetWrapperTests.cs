@@ -112,7 +112,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 targetWrapper.Flush(flushHandler);
 
                 for (int i = 0; i < itemPrepareList.Count * 2 && itemWrittenList.Count != itemPrepareList.Count; ++i)
-                    System.Threading.Thread.Sleep(1);
+                    Thread.Sleep(1);
 
                 long elapsedMilliseconds = Environment.TickCount - startTicks;
 
@@ -129,7 +129,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)
-                    System.Threading.Thread.Sleep(1);
+                    Thread.Sleep(1);
                 Assert.Equal(2, flushCounter);
             }
             finally
@@ -463,7 +463,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
+                Assert.True(FlushCount <= WriteCount);
 
                 pendingWriteCounter.BeginOperation();
                 ThreadPool.QueueUserWorkItem(
@@ -471,8 +471,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                         {
                             try
                             {
-                                Interlocked.Increment(ref this.WriteCount);
-                                if (this.ThrowExceptions)
+                                Interlocked.Increment(ref WriteCount);
+                                if (ThrowExceptions)
                                 {
                                     logEvent.Continuation(new InvalidOperationException("Some problem!"));
                                     logEvent.Continuation(new InvalidOperationException("Some problem!"));
@@ -492,7 +492,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                Interlocked.Increment(ref this.FlushCount);
+                Interlocked.Increment(ref FlushCount);
                 var wrappedContinuation = pendingWriteCounter.RegisterCompletionNotification(asyncContinuation);
                 ThreadPool.QueueUserWorkItem(
                     s =>
@@ -511,13 +511,13 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
-                this.WriteCount++;
+                Assert.True(FlushCount <= WriteCount);
+                WriteCount++;
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                FlushCount++;
                 asyncContinuation(null);
             }
         }

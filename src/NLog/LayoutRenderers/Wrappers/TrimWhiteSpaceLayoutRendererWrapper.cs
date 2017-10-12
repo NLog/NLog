@@ -34,7 +34,7 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Trims the whitespace from the result of another layout renderer.
@@ -49,7 +49,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public TrimWhiteSpaceLayoutRendererWrapper()
         {
-            this.TrimWhiteSpace = true;
+            TrimWhiteSpace = true;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace NLog.LayoutRenderers.Wrappers
             if (target == null || target.Length == 0)
                 return;
 
-            if (this.TrimWhiteSpace)
+            if (TrimWhiteSpace)
             {
                 TrimRight(target);  // Fast
                 if (target.Length > 0)

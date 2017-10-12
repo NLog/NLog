@@ -66,7 +66,7 @@ namespace NLog.Layouts
         {
             base.InitializeLayout();
             foreach (var layout in Layouts)
-                layout.Initialize(this.LoggingConfiguration);
+                layout.Initialize(LoggingConfiguration);
         }
 
         /// <summary>
@@ -88,9 +88,9 @@ namespace NLog.Layouts
         {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < this.Layouts.Count; i++)
+            for (int i = 0; i < Layouts.Count; i++)
             {
-                Layout layout = this.Layouts[i];
+                Layout layout = Layouts[i];
                 layout.RenderAppendBuilder(logEvent, target);
             }
         }

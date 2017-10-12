@@ -35,7 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Globalization;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Converts the result of another layout output to upper case.
@@ -55,8 +55,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public UppercaseLayoutRendererWrapper()
         {
-            this.Culture = CultureInfo.InvariantCulture;
-            this.Uppercase = true;
+            Culture = CultureInfo.InvariantCulture;
+            Uppercase = true;
         }
 
         /// <summary>
@@ -79,9 +79,9 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="target">Output to be post-processed.</param>
         protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
         {
-            if (this.Uppercase)
+            if (Uppercase)
             {
-                CultureInfo culture = this.Culture;
+                CultureInfo culture = Culture;
                 for (int i = 0; i < target.Length; ++i)
                     target[i] = char.ToUpper(target[i], culture);
             }

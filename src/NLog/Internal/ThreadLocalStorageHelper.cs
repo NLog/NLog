@@ -62,7 +62,7 @@ namespace NLog.Internal
 #elif NETSTANDARD || NET4_6
             return new System.Threading.ThreadLocal<object>();
 #else
-            return System.Threading.Thread.AllocateDataSlot();
+            return Thread.AllocateDataSlot();
 #endif
         }
 

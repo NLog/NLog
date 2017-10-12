@@ -40,13 +40,13 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using NLog.Conditions;
-    using NLog.Filters;
-    using NLog.Internal;
-    using NLog.LayoutRenderers;
-    using NLog.Layouts;
-    using NLog.Targets;
-    using NLog.Time;
+    using Conditions;
+    using Filters;
+    using Internal;
+    using LayoutRenderers;
+    using Layouts;
+    using Targets;
+    using Time;
 
     /// <summary>
     /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
@@ -79,28 +79,28 @@ namespace NLog.Config
         /// <param name="assemblies">The assemblies to scan for named items.</param>
         public ConfigurationItemFactory(params Assembly[] assemblies)
         {
-            this.CreateInstance = FactoryHelper.CreateInstance;
-            this._targets = new Factory<Target, TargetAttribute>(this);
-            this._filters = new Factory<Filter, FilterAttribute>(this);
-            this._layoutRenderers = new LayoutRendererFactory(this);
-            this._layouts = new Factory<Layout, LayoutAttribute>(this);
-            this._conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
-            this._ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
-            this._timeSources = new Factory<TimeSource, TimeSourceAttribute>(this);
-            this._allFactories = new List<object>
+            CreateInstance = FactoryHelper.CreateInstance;
+            _targets = new Factory<Target, TargetAttribute>(this);
+            _filters = new Factory<Filter, FilterAttribute>(this);
+            _layoutRenderers = new LayoutRendererFactory(this);
+            _layouts = new Factory<Layout, LayoutAttribute>(this);
+            _conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
+            _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
+            _timeSources = new Factory<TimeSource, TimeSourceAttribute>(this);
+            _allFactories = new List<object>
             {
-                this._targets,
-                this._filters,
-                this._layoutRenderers,
-                this._layouts,
-                this._conditionMethods,
-                this._ambientProperties,
-                this._timeSources,
+                _targets,
+                _filters,
+                _layoutRenderers,
+                _layouts,
+                _conditionMethods,
+                _ambientProperties,
+                _timeSources,
             };
 
             foreach (var asm in assemblies)
             {
-                this.RegisterItemsFromAssembly(asm);
+                RegisterItemsFromAssembly(asm);
             }
         }
 
@@ -136,7 +136,7 @@ namespace NLog.Config
         /// <value>The target factory.</value>
         public INamedItemFactory<Target, Type> Targets
         {
-            get { return this._targets; }
+            get { return _targets; }
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace NLog.Config
         /// <value>The filter factory.</value>
         public INamedItemFactory<Filter, Type> Filters
         {
-            get { return this._filters; }
+            get { return _filters; }
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace NLog.Config
         /// <returns></returns>
         internal LayoutRendererFactory GetLayoutRenderers()
         {
-            return this._layoutRenderers;
+            return _layoutRenderers;
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace NLog.Config
         /// <value>The layout renderer factory.</value>
         public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers
         {
-            get { return this._layoutRenderers; }
+            get { return _layoutRenderers; }
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace NLog.Config
         /// <value>The layout factory.</value>
         public INamedItemFactory<Layout, Type> Layouts
         {
-            get { return this._layouts; }
+            get { return _layouts; }
         }
 
         /// <summary>
@@ -182,16 +182,16 @@ namespace NLog.Config
         /// <value>The ambient property factory.</value>
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties
         {
-            get { return this._ambientProperties; }
+            get { return _ambientProperties; }
         }
         
         /// <summary>
         /// Legacy interface, no longer used by the NLog engine
         /// </summary>
         [Obsolete("Use JsonConverter property instead. Marked obsolete on NLog 4.5")]
-        public NLog.Targets.IJsonSerializer JsonSerializer
+        public IJsonSerializer JsonSerializer
         {
-            get { return _jsonSerializer as NLog.Targets.IJsonSerializer; }
+            get { return _jsonSerializer as IJsonSerializer; }
             set { _jsonSerializer = value != null ? (IJsonConverter)new JsonConverterLegacy(value) : DefaultJsonSerializer.Instance; }
         }
 
@@ -245,7 +245,7 @@ namespace NLog.Config
         /// <value>The time source factory.</value>
         public INamedItemFactory<TimeSource, Type> TimeSources
         {
-            get { return this._timeSources; }
+            get { return _timeSources; }
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace NLog.Config
         /// <value>The condition method factory.</value>
         public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods
         {
-            get { return this._conditionMethods; }
+            get { return _conditionMethods; }
         }
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace NLog.Config
         /// <param name="assembly">The assembly.</param>
         public void RegisterItemsFromAssembly(Assembly assembly)
         {
-            this.RegisterItemsFromAssembly(assembly, string.Empty);
+            RegisterItemsFromAssembly(assembly, string.Empty);
         }
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace NLog.Config
             InternalLogger.Debug("ScanAssembly('{0}')", assembly.FullName);
             var typesToScan = assembly.SafeGetTypes();
             PreloadAssembly(typesToScan);
-            foreach (IFactory f in this._allFactories)
+            foreach (IFactory f in _allFactories)
             {
                 f.ScanTypes(typesToScan, itemNamePrefix);
             }
@@ -357,7 +357,7 @@ namespace NLog.Config
         /// </summary>
         public void Clear()
         {
-            foreach (IFactory f in this._allFactories)
+            foreach (IFactory f in _allFactories)
             {
                 f.Clear();
             }
@@ -370,7 +370,7 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterType(Type type, string itemNamePrefix)
         {
-            foreach (IFactory f in this._allFactories)
+            foreach (IFactory f in _allFactories)
             {
                 f.RegisterType(type, itemNamePrefix);
             }
@@ -481,19 +481,19 @@ namespace NLog.Config
 
                 // register types
                 string targetsNamespace = typeof(DebugTarget).Namespace;
-                this._targets.RegisterNamedType("AspNetTrace", targetsNamespace + ".AspNetTraceTarget" + suffix);
-                this._targets.RegisterNamedType("MSMQ", targetsNamespace + ".MessageQueueTarget" + suffix);
-                this._targets.RegisterNamedType("AspNetBufferingWrapper", targetsNamespace + ".Wrappers.AspNetBufferingTargetWrapper" + suffix);
+                _targets.RegisterNamedType("AspNetTrace", targetsNamespace + ".AspNetTraceTarget" + suffix);
+                _targets.RegisterNamedType("MSMQ", targetsNamespace + ".MessageQueueTarget" + suffix);
+                _targets.RegisterNamedType("AspNetBufferingWrapper", targetsNamespace + ".Wrappers.AspNetBufferingTargetWrapper" + suffix);
 
                 // register layout renderers
                 string layoutRenderersNamespace = typeof(MessageLayoutRenderer).Namespace;
-                this._layoutRenderers.RegisterNamedType("appsetting", layoutRenderersNamespace + ".AppSettingLayoutRenderer" + suffix);
-                this._layoutRenderers.RegisterNamedType("aspnet-application", layoutRenderersNamespace + ".AspNetApplicationValueLayoutRenderer" + suffix);
-                this._layoutRenderers.RegisterNamedType("aspnet-request", layoutRenderersNamespace + ".AspNetRequestValueLayoutRenderer" + suffix);
-                this._layoutRenderers.RegisterNamedType("aspnet-sessionid", layoutRenderersNamespace + ".AspNetSessionIDLayoutRenderer" + suffix);
-                this._layoutRenderers.RegisterNamedType("aspnet-session", layoutRenderersNamespace + ".AspNetSessionValueLayoutRenderer" + suffix);
-                this._layoutRenderers.RegisterNamedType("aspnet-user-authtype", layoutRenderersNamespace + ".AspNetUserAuthTypeLayoutRenderer" + suffix);
-                this._layoutRenderers.RegisterNamedType("aspnet-user-identity", layoutRenderersNamespace + ".AspNetUserIdentityLayoutRenderer" + suffix);
+                _layoutRenderers.RegisterNamedType("appsetting", layoutRenderersNamespace + ".AppSettingLayoutRenderer" + suffix);
+                _layoutRenderers.RegisterNamedType("aspnet-application", layoutRenderersNamespace + ".AspNetApplicationValueLayoutRenderer" + suffix);
+                _layoutRenderers.RegisterNamedType("aspnet-request", layoutRenderersNamespace + ".AspNetRequestValueLayoutRenderer" + suffix);
+                _layoutRenderers.RegisterNamedType("aspnet-sessionid", layoutRenderersNamespace + ".AspNetSessionIDLayoutRenderer" + suffix);
+                _layoutRenderers.RegisterNamedType("aspnet-session", layoutRenderersNamespace + ".AspNetSessionValueLayoutRenderer" + suffix);
+                _layoutRenderers.RegisterNamedType("aspnet-user-authtype", layoutRenderersNamespace + ".AspNetUserAuthTypeLayoutRenderer" + suffix);
+                _layoutRenderers.RegisterNamedType("aspnet-user-identity", layoutRenderersNamespace + ".AspNetUserIdentityLayoutRenderer" + suffix);
             }
         }
     }

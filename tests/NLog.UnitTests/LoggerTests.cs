@@ -2107,7 +2107,7 @@ namespace NLog.UnitTests
 
             public MyTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             public LogEventInfo LastEvent { get; private set; }

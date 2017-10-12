@@ -41,10 +41,10 @@ namespace NLog.Config
 
     using JetBrains.Annotations;
 
-    using NLog.Common;
-    using NLog.Internal;
-    using NLog.Layouts;
-    using NLog.Targets;
+    using Common;
+    using Internal;
+    using Layouts;
+    using Targets;
 
     /// <summary>
     /// Keeps logging configuration and provides simple API
@@ -68,7 +68,7 @@ namespace NLog.Config
         /// </summary>
         public LoggingConfiguration()
         {
-            this.LoggingRules = new List<LoggingRule>();
+            LoggingRules = new List<LoggingRule>();
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace NLog.Config
         /// </remarks>
         public ReadOnlyCollection<Target> ConfiguredNamedTargets
         {
-            get { return new List<Target>(this._targets.Values).AsReadOnly(); }
+            get { return new List<Target>(_targets.Values).AsReadOnly(); }
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace NLog.Config
         {
             get
             {
-                var configTargets = this._configItems.OfType<Target>();
+                var configTargets = _configItems.OfType<Target>();
                 return configTargets.Concat(_targets.Values).Distinct(TargetNameComparer).ToList().AsReadOnly();
             }
         }
@@ -194,7 +194,7 @@ namespace NLog.Config
             if (target == null) { throw new ArgumentNullException("target"); }
 
             InternalLogger.Debug("Registering target {0}: {1}", name, target.GetType().FullName);
-            this._targets[name] = target;
+            _targets[name] = target;
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace NLog.Config
         {
             Target value;
 
-            if (!this._targets.TryGetValue(name, out value))
+            if (!_targets.TryGetValue(name, out value))
             {
                 return null;
             }
@@ -341,7 +341,7 @@ namespace NLog.Config
         /// </param>
         public void RemoveTarget(string name)
         {
-            this._targets.Remove(name);
+            _targets.Remove(name);
         }
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace NLog.Config
                 throw new ArgumentNullException("installationContext");
             }
 
-            this.InitializeAll();
+            InitializeAll();
             var configItemsList = GetInstallableItems();
             foreach (IInstallable installable in configItemsList)
             {
@@ -396,7 +396,7 @@ namespace NLog.Config
                 throw new ArgumentNullException("installationContext");
             }
 
-            this.InitializeAll();
+            InitializeAll();
 
             var configItemsList = GetInstallableItems();
             foreach (IInstallable installable in configItemsList)
@@ -468,14 +468,14 @@ namespace NLog.Config
 
             InternalLogger.Debug("--- NLog configuration dump ---");
             InternalLogger.Debug("Targets:");
-            var targetList = this._targets.Values.ToList();
+            var targetList = _targets.Values.ToList();
             foreach (Target target in targetList)
             {
                 InternalLogger.Debug("{0}", target);
             }
 
             InternalLogger.Debug("Rules:");
-            var loggingRules = this.LoggingRules.ToList();
+            var loggingRules = LoggingRules.ToList();
             foreach (LoggingRule rule in loggingRules)
             {
                 InternalLogger.Debug("{0}", rule);
@@ -493,7 +493,7 @@ namespace NLog.Config
             InternalLogger.Trace("Flushing all targets...");
 
             var uniqueTargets = new List<Target>();
-            var loggingRules = this.LoggingRules.ToList();
+            var loggingRules = LoggingRules.ToList();
             foreach (var rule in loggingRules)
             {
                 var targetList = rule.Targets.ToList();
@@ -516,25 +516,25 @@ namespace NLog.Config
         {
             var roots = new List<object>();
 
-            var loggingRules = this.LoggingRules.ToList();
+            var loggingRules = LoggingRules.ToList();
             foreach (LoggingRule rule in loggingRules)
             {
                 roots.Add(rule);
             }
 
-            var targetList = this._targets.Values.ToList();
+            var targetList = _targets.Values.ToList();
             foreach (Target target in targetList)
             {
                 roots.Add(target);
             }
 
-            this._configItems = ObjectGraphScanner.FindReachableObjects<object>(roots.ToArray());
+            _configItems = ObjectGraphScanner.FindReachableObjects<object>(roots.ToArray());
 
             // initialize all config items starting from most nested first
             // so that whenever the container is initialized its children have already been
-            InternalLogger.Info("Found {0} configuration items", this._configItems.Count);
+            InternalLogger.Info("Found {0} configuration items", _configItems.Count);
 
-            foreach (object o in this._configItems)
+            foreach (object o in _configItems)
             {
                 PropertyHelper.CheckRequiredParameters(o);
             }
@@ -542,7 +542,7 @@ namespace NLog.Config
 
         internal void InitializeAll()
         {
-            this.ValidateConfig();
+            ValidateConfig();
 
             var supportsInitializes = GetSupportsInitializes(true);
             foreach (ISupportsInitialize initialize in supportsInitializes)
@@ -570,17 +570,17 @@ namespace NLog.Config
 
         internal void EnsureInitialized()
         {
-            this.InitializeAll();
+            InitializeAll();
         }
 
         private List<IInstallable> GetInstallableItems()
         {
-            return this._configItems.OfType<IInstallable>().ToList();
+            return _configItems.OfType<IInstallable>().ToList();
         }
 
         private List<ISupportsInitialize> GetSupportsInitializes(bool reverse = false)
         {
-            var items = this._configItems.OfType<ISupportsInitialize>();
+            var items = _configItems.OfType<ISupportsInitialize>();
             if (reverse)
             {
                 items = items.Reverse();
@@ -596,7 +596,7 @@ namespace NLog.Config
         {
             foreach (var variable in masterVariables)
             {
-                this.Variables[variable.Key] = variable.Value;
+                Variables[variable.Key] = variable.Value;
             }
         }
     }
