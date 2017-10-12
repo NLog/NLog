@@ -62,8 +62,17 @@ namespace NLog
 
         private static int globalSequenceId;
 
+
+        /// <summary>
+        /// The formatted log message. 
+        /// </summary>
         private string _formattedMessage;
+
+        /// <summary>
+        /// The log message including any parameter placeholders
+        /// </summary>
         private string _message;
+
         private object[] _parameters;
         private IFormatProvider _formatProvider;
         private LogMessageFormatter _messageFormatter = DefaultMessageFormatter;
@@ -364,7 +373,7 @@ namespace NLog
                 }
                 else
                 {
-                    return new MessageTemplateParameters(this._parameters);
+                    return new MessageTemplateParameters(this._message, this._parameters);
                 }
             }
         }

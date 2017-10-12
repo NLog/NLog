@@ -87,8 +87,9 @@ namespace NLog.UnitTests
         [Fact]
         public void NormalStringFormatTest()
         {
-            LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", null, "Login request from {0} for {1}", new object[]
+            LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", null, "{0:X} - Login request from {1} for {2} with userid {0}", new object[]
             {
+                42,
                 "John",
                 "BestApplicationEver"
             });
@@ -110,12 +111,14 @@ namespace NLog.UnitTests
             ILogger logger = LogManager.GetLogger("A");
             logEventInfo.LoggerName = logger.Name;
             logger.Log(logEventInfo);
-            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {0} for {1}\" }");
+            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"{0:X} - Login request from {1} for {2} with userid {0}\" }");
 
-            Assert.Equal("Login request from John for BestApplicationEver", logEventInfo.FormattedMessage);
+            Assert.Equal("2A - Login request from John for BestApplicationEver with userid 42", logEventInfo.FormattedMessage);
 
-            Assert.Contains(new MessageTemplateParameter("0", "John", null), logEventInfo.MessageTemplateParameters);
-            Assert.Contains(new MessageTemplateParameter("1", "BestApplicationEver", null), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("0", 42, "X"), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("1", "John", null), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("2", "BestApplicationEver", null), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("0", 42, null), logEventInfo.MessageTemplateParameters);
         }
 
         [Fact]
