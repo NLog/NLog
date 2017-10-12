@@ -63,6 +63,8 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Constructore for positional parameters
         /// </summary>
+        /// <param name="message">log message including any parameter placeholders</param>
+        /// <param name="parameters">All the parameters</param>
         public MessageTemplateParameters(string message, object[] parameters)
         {
             var hasParameters = parameters != null && parameters.Length > 0;
