@@ -61,10 +61,10 @@ namespace NLog.MessageTemplates
         public bool IsPositional { get; }
 
         /// <summary>
-        /// Constructore for positional parameters
+        /// Constructor for positional parameters
         /// </summary>
-        /// <param name="message">log message including any parameter placeholders</param>
-        /// <param name="parameters">All the parameters</param>
+        /// <param name="message"><see cref="LogEventInfo.Message"/> including any parameter placeholders</param>
+        /// <param name="parameters">All <see cref="LogEventInfo.Parameters"/></param>
         public MessageTemplateParameters(string message, object[] parameters)
         {
             var hasParameters = parameters != null && parameters.Length > 0;
@@ -104,9 +104,9 @@ namespace NLog.MessageTemplates
                     {
                         var hole = templateEnumerator.Current.Hole;
                         if (hole.Index == -1)
-                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[holeIndex++], hole.Format));
+                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[holeIndex++], hole.Format, hole.CaptureType));
                         else
-                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[hole.Index], hole.Format));
+                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[hole.Index], hole.Format, hole.CaptureType));
                     }
                 }
                 return templateParameters;

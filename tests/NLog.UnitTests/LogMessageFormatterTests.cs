@@ -44,8 +44,8 @@ namespace NLog.UnitTests
         {
             LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "MyLogger", "Login request from {Username} for {Application}", new[]
             {
-                new MessageTemplateParameter("Username", "John", null),
-                new MessageTemplateParameter("Application", "BestApplicationEver", null)
+                new MessageTemplateParameter("Username", "John", null, CaptureType.Normal),
+                new MessageTemplateParameter("Application", "BestApplicationEver", null, CaptureType.Normal)
             });
             logEventInfo.Parameters = new object[] { "Login request from John for BestApplicationEver" };
             logEventInfo.MessageFormatter = (logEvent) =>
@@ -80,8 +80,8 @@ namespace NLog.UnitTests
 
             Assert.Contains(new KeyValuePair<object, object>("Username", "John"), logEventInfo.Properties);
             Assert.Contains(new KeyValuePair<object, object>("Application", "BestApplicationEver"), logEventInfo.Properties);
-            Assert.Contains(new MessageTemplateParameter("Username", "John", null), logEventInfo.MessageTemplateParameters);
-            Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", null), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("Username", "John", null, CaptureType.Normal), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", null, CaptureType.Normal), logEventInfo.MessageTemplateParameters);
         }
 
         [Fact]
@@ -115,10 +115,10 @@ namespace NLog.UnitTests
 
             Assert.Equal("2A - Login request from John for BestApplicationEver with userid 42", logEventInfo.FormattedMessage);
 
-            Assert.Contains(new MessageTemplateParameter("0", 42, "X"), logEventInfo.MessageTemplateParameters);
-            Assert.Contains(new MessageTemplateParameter("1", "John", null), logEventInfo.MessageTemplateParameters);
-            Assert.Contains(new MessageTemplateParameter("2", "BestApplicationEver", null), logEventInfo.MessageTemplateParameters);
-            Assert.Contains(new MessageTemplateParameter("0", 42, null), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("0", 42, "X", CaptureType.Normal), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("1", "John", null, CaptureType.Normal), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("2", "BestApplicationEver", null, CaptureType.Normal), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("0", 42, null, CaptureType.Normal), logEventInfo.MessageTemplateParameters);
         }
 
         [Fact]
@@ -153,8 +153,8 @@ namespace NLog.UnitTests
 
             Assert.Contains(new KeyValuePair<object, object>("Username", "John"), logEventInfo.Properties);
             Assert.Contains(new KeyValuePair<object, object>("Application", "BestApplicationEver"), logEventInfo.Properties);
-            Assert.Contains(new MessageTemplateParameter("Username", "John", "@"), logEventInfo.MessageTemplateParameters);
-            Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", "l"), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("Username", "John", null, CaptureType.Serialize), logEventInfo.MessageTemplateParameters);
+            Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", "l", CaptureType.Normal), logEventInfo.MessageTemplateParameters);
         }
     }
 }
