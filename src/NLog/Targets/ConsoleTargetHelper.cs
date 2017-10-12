@@ -62,7 +62,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                reason = string.Format("Unexpected exception: {0}:{1}", ex.GetType().Name, ex.Message);
+                reason = $"Unexpected exception: {ex.GetType().Name}:{ex.Message}";
                 InternalLogger.Warn(ex, "Failed to detect whether console is available.");
                 return false;
             }

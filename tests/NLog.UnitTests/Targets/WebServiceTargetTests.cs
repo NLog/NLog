@@ -255,12 +255,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost()
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{WsAddress}{"api/logme"}'
                                 protocol='HttpPost'
                                 encoding='UTF-8'
                                >
@@ -274,7 +274,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, "api/logme"));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;
@@ -378,12 +378,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         private static Logger SetUpHttpGetWebservice(string relativeUrl)
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{WsAddress}{relativeUrl}'
                                 protocol='HttpGet'
                                 encoding='UTF-8'
                                >
@@ -397,7 +397,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, relativeUrl));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;
@@ -408,7 +408,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         private static void CheckQueueMessage(string message1, ConcurrentBag<string> recievedLogsGetParam1)
         {
             var success = recievedLogsGetParam1.Contains(message1);
-            Assert.True(success, string.Format("message '{0}' not found", message1));
+            Assert.True(success, $"message '{message1}' not found");
         }
 
 
@@ -427,12 +427,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost_checkingLost()
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{WsAddress}{"api/logme"}'
                                 protocol='HttpPost'
                                 encoding='UTF-8'
                                >
@@ -446,7 +446,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, "api/logme"));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;
@@ -486,12 +486,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_json()
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{getWsAddress(1)}{"api/logdoc/json"}'
                                 protocol='JsonPost'
                                 encoding='UTF-8'
                                >
@@ -507,7 +507,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", getWsAddress(1), "api/logdoc/json"));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;
@@ -532,13 +532,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_group_json()
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='BufferingWrapper' bufferSize='6' name='ws'>
                             <target type='WebService'
                                     name='ws_wrapped'
-                                    url='{0}{1}'
+                                    url='{getWsAddress(1)}{"api/logdoc/json"}'
                                     protocol='JsonPost'
                                     encoding='UTF-8'
                                    >
@@ -559,7 +559,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                       <logger name='*' writeTo='ws'>
                       </logger>
                     </rules>
-                </nlog>", getWsAddress(1), "api/logdoc/json"));
+                </nlog>");
 
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
@@ -619,12 +619,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_xml()
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{getWsAddress(1)}{"api/logdoc/xml"}'
                                 protocol='XmlPost'
                                 XmlRoot='ComplexType'
                                 encoding='UTF-8'
@@ -640,7 +640,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", getWsAddress(1), "api/logdoc/xml"));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;

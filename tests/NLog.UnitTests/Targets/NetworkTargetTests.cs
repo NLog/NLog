@@ -125,7 +125,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(actual.IndexOf("1: connect tcp://someaddress/") != -1);
             foreach (var message in messages)
             {
-                Assert.True(actual.IndexOf(string.Format("1: send 0 {0}", message.Length + eolLength)) != -1);
+                Assert.True(actual.IndexOf($"1: send 0 {message.Length + eolLength}") != -1);
             }
             Assert.True(actual.IndexOf("1: close") != -1);
         }

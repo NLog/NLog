@@ -94,7 +94,7 @@ namespace NLog.UnitTests
         {
             string debugLastMessage = GetDebugLastMessage(targetName);
             Assert.True(debugLastMessage.Contains(msg),
-                string.Format("Expected to find '{0}' in last message value on '{1}', but found '{2}'", msg, targetName, debugLastMessage));
+                $"Expected to find '{msg}' in last message value on '{targetName}', but found '{debugLastMessage}'");
         }
 
         protected string GetDebugLastMessage(string targetName)
@@ -128,12 +128,14 @@ namespace NLog.UnitTests
             byte[] encodedBuf = encoding.GetBytes(contents);
 
             byte[] buf = File.ReadAllBytes(fileName);
-            Assert.True(encodedBuf.Length <= buf.Length, string.Format("File:{0} encodedBytes:{1} does not match file.content:{2}, file.length = {3}", fileName, encodedBuf.Length, buf.Length, fi.Length));
+            Assert.True(encodedBuf.Length <= buf.Length,
+                $"File:{fileName} encodedBytes:{encodedBuf.Length} does not match file.content:{buf.Length}, file.length = {fi.Length}");
 
             for (int i = 0; i < encodedBuf.Length; ++i)
             {
                 if (encodedBuf[i] != buf[i])
-                    Assert.True(encodedBuf[i] == buf[i], string.Format("File:{0} content mismatch {1} <> {2} at index {3}", fileName, (int)encodedBuf[i], (int)buf[i], i));
+                    Assert.True(encodedBuf[i] == buf[i],
+                        $"File:{fileName} content mismatch {(int) encodedBuf[i]} <> {(int) buf[i]} at index {i}");
             }
         }
 
@@ -246,12 +248,14 @@ namespace NLog.UnitTests
             }
 
             byte[] buf = File.ReadAllBytes(fileName);
-            Assert.True(encodedBuf.Length == buf.Length, string.Format("File:{0} encodedBytes:{1} does not match file.content:{2}, file.length = {3}", fileName, encodedBuf.Length, buf.Length, fi.Length));
+            Assert.True(encodedBuf.Length == buf.Length,
+                $"File:{fileName} encodedBytes:{encodedBuf.Length} does not match file.content:{buf.Length}, file.length = {fi.Length}");
 
             for (int i = 0; i < buf.Length; ++i)
             {
                 if (encodedBuf[i] != buf[i])
-                    Assert.True(encodedBuf[i] == buf[i], string.Format("File:{0} content mismatch {1} <> {2} at index {3}", fileName, (int)encodedBuf[i], (int)buf[i], i));
+                    Assert.True(encodedBuf[i] == buf[i],
+                        $"File:{fileName} content mismatch {(int) encodedBuf[i]} <> {(int) buf[i]} at index {i}");
             }
         }
 

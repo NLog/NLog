@@ -292,7 +292,8 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
-                var message = string.Format("Exception in {0}.AppendMessage(): {1}.", typeof(ExceptionLayoutRenderer).FullName, exception.GetType().FullName);
+                var message =
+                    $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendMessage(): {exception.GetType().FullName}.";
                 sb.Append("NLog message: ");
                 sb.Append(message);
                 InternalLogger.Warn(exception, message);

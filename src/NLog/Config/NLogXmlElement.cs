@@ -253,9 +253,7 @@ namespace NLog.Config
                     else
                     {
                         string message =
-                            string.Format(
-                                "Duplicate attribute detected. Attribute name: [{0}]. Duplicate value:[{1}], Current value:[{2}]",
-                                reader.LocalName, reader.Value, this.AttributeValues[reader.LocalName]);
+                            $"Duplicate attribute detected. Attribute name: [{reader.LocalName}]. Duplicate value:[{reader.Value}], Current value:[{this.AttributeValues[reader.LocalName]}]";
                         _parsingErrors.Add(message);
                     }
                 }

@@ -571,7 +571,7 @@ namespace NLog.UnitTests.Layouts
         public void LayoutWithListParamTest(string input, string propname, string expected)
         {
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
-            SimpleLayout l = string.Format(@"${{layoutrenderer-with-list:{0}={1}}}", propname, input);
+            SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             var actual = l.Render(le);
@@ -590,7 +590,7 @@ namespace NLog.UnitTests.Layouts
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
             Assert.Throws<NLogConfigurationException>(() =>
             {
-                SimpleLayout l = string.Format(@"${{layoutrenderer-with-list:{0}={1}}}", propname, input);
+                SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";
                
             });
         }

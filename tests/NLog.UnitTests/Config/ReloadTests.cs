@@ -579,7 +579,7 @@ namespace NLog.UnitTests.Config
                 reloadWaiter.WaitForReload();
 
                 if (assertDidReload)
-                    Assert.True(reloadWaiter.DidReload, string.Format("Config '{0}' did not reload.", configFilePath));
+                    Assert.True(reloadWaiter.DidReload, $"Config '{configFilePath}' did not reload.");
             }
         }
 

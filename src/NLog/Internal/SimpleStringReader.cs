@@ -77,7 +77,7 @@ namespace NLog.Internal
                 var current = (char)Peek();
                 var done = Substring(0, Position - 1);
                 var todo = ((Position > _text.Length) ? Text.Substring(Position + 1) : "");
-                return string.Format("done: '{0}'.   current: '{1}'.   todo: '{2}'", done, current, todo);
+                return $"done: '{done}'.   current: '{current}'.   todo: '{todo}'";
             }
         }
 #endif

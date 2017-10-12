@@ -356,7 +356,7 @@ namespace NLog.Targets
                 }
                 else if (value is DateTimeOffset)
                 {
-                    QuoteValue(destination, string.Format("{0:yyyy-MM-dd HH:mm:ss zzz}", value));
+                    QuoteValue(destination, $"{value:yyyy-MM-dd HH:mm:ss zzz}");
                 }
                 else
                 {

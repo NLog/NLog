@@ -114,18 +114,20 @@ namespace NLog.UnitTests.Internal
             var filePath = Path.Combine(fileWritePath, "${level}.txt");
 
             // NOTE Using BufferingWrapper to validate that DomainUnload remembers to perform flush
-            var configXml = string.Format(@"
+            var configXml = $@"
             <nlog throwExceptions='false'>
                 <targets async='true'> 
                     <target name='file' type='BufferingWrapper' bufferSize='10000' flushTimeout='15000'>
-                        <target name='filewrapped' type='file' layout='${{message}} ${{threadid}}' filename='{0}' LineEnding='lf' />
+                        <target name='filewrapped' type='file' layout='${{message}} ${{threadid}}' filename='{
+                    filePath
+                }' LineEnding='lf' />
                     </target>
                 </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' appendto='file'>
                     </logger>
                 </rules>
-            </nlog>", filePath);
+            </nlog>";
 
             LogManager.Configuration = NLogTestBase.CreateConfigurationFromString(configXml);
 

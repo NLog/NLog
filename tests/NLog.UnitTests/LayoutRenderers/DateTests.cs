@@ -74,12 +74,12 @@ namespace NLog.UnitTests.LayoutRenderers
             if (offset2 >= new TimeSpan(0))
             {
                 //+00:00, +01:00 etc
-                Assert.Contains(string.Format("+{0:D2}:{1:D2}", offset2.Hours, offset2.Minutes), result);
+                Assert.Contains($"+{offset2.Hours:D2}:{offset2.Minutes:D2}", result);
             }
             else
             {
                 //-01:00, etc
-                Assert.Contains(string.Format("{0:D2}:{1:D2}", offset2.Hours, offset2.Minutes), result);
+                Assert.Contains($"{offset2.Hours:D2}:{offset2.Minutes:D2}", result);
             }
 
         }

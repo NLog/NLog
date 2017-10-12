@@ -256,7 +256,7 @@ namespace NLog.UnitTests.Common
             var internalLogToTraceAttribute = "";
             if (internalLogToTrace.HasValue)
             {
-                internalLogToTraceAttribute = string.Format(" internalLogToTrace='{0}'", internalLogToTrace.Value);
+                internalLogToTraceAttribute = $" internalLogToTrace='{internalLogToTrace.Value}'";
             }
 
             var xmlConfiguration = string.Format(XmlConfigurationFormat, logLevel, internalLogToTraceAttribute);

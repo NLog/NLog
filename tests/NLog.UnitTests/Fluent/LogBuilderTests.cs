@@ -105,7 +105,7 @@ namespace NLog.UnitTests.Fluent
                 .Write();
 
             {
-                var rendered = string.Format("This is a test fluent message '{0}'.", ticks);
+                var rendered = $"This is a test fluent message '{ticks}'.";
                 var expectedEvent = new LogEventInfo(LogLevel.Trace, loggerName, "This is a test fluent message '{0}'.");
                 expectedEvent.Properties["Test"] = "TraceWrite";
                 AssertLastLogEventTarget(expectedEvent);
