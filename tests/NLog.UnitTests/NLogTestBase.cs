@@ -49,7 +49,6 @@ namespace NLog.UnitTests
     using System.Xml.Linq;
     using System.Xml;
     using System.IO.Compression;
-    using System.Security.Permissions;
 #if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
     using Ionic.Zip;
 #endif
@@ -400,6 +399,16 @@ namespace NLog.UnitTests
                     return this.writer.Encoding;
                 }
             }
+
+#if NETSTANDARD1_5
+            public override void Write(char value)
+            {
+                lock (this.writer)
+                {
+                    this.writer.Write(value);
+                }
+            }
+#endif
 
             public override void Write(string value)
             {

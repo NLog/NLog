@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+#if !NETSTANDARD1_5
     using System;
     using System.IO;
     using Xunit;
@@ -73,4 +74,5 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:dir=aaa:file=bbb.txt}}", Path.Combine(this.sysDir, "aaa", "bbb.txt"));
         }
     }
+#endif
 }
