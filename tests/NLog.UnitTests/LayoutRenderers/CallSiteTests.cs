@@ -796,7 +796,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-#if NET3_5 || NET4_0
+#if NET3_5 || NET4_0 || NETSTANDARD1_5
         [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
 #elif MONO
         [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
@@ -811,14 +811,14 @@ namespace NLog.UnitTests.LayoutRenderers
 
         public async Task<string> GetAsyncCallSite()
         {
+            var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
+#if !NETSTANDARD1_5
             Type loggerType = typeof(Logger);
             var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
             var index = LoggerImpl.FindCallingMethodOnStackTrace(stacktrace, loggerType);
-            var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
             logEvent.SetStackTrace(stacktrace, index);
-
+#endif
             await Task.Delay(0);
-
             Layout l = "${callsite}";
             var callSite = l.Render(logEvent);
             return callSite;
@@ -907,7 +907,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        #endregion
+#endregion
 
         private class MyLogger : Logger
         {
@@ -1049,6 +1049,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
+#if !NETSTANDARD1_5
         /// <summary>
         /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
         /// 
@@ -1061,15 +1062,16 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CallSiteShouldWorkEvenInlined()
         {
+            var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
             Type loggerType = typeof(Logger);
             var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
             var index = LoggerImpl.FindCallingMethodOnStackTrace(stacktrace, loggerType);
-            var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
             logEvent.SetStackTrace(stacktrace, index);
             Layout l = "${callsite}";
             var callSite = l.Render(logEvent);
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
+#endif
 
         [Fact]
         public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NET3_5 && !NETSTANDARD
+
 using System;
 using System.IO;
 using System.Security;
@@ -44,8 +46,6 @@ using NLog.Targets;
 using NLog.Targets.Wrappers;
 using NLog.UnitTests;
 using Xunit;
-
-#if !NET3_5 && !NETSTANDARD
 
 namespace NLog.UnitTests.Internal
 {

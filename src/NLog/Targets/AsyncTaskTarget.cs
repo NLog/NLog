@@ -76,7 +76,7 @@ namespace NLog.Targets
             _taskStartNext = () => TaskStartNext(null);
             _taskCompletion = TaskCompletion;
             _taskCancelledToken = TaskCancelledToken;
-            _taskTimeoutTimer = new Timer(TaskTimeout);
+            _taskTimeoutTimer = new Timer(TaskTimeout, null, Timeout.Infinite, Timeout.Infinite);
             _cancelTokenSource = new CancellationTokenSource();
             _cancelTokenSource.Token.Register(_taskCancelledToken);
             _requestQueue = new Queue<AsyncLogEventInfo>(10000);
