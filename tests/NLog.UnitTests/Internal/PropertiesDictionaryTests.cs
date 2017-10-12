@@ -199,7 +199,7 @@ namespace NLog.UnitTests.Internal
         [Fact]
         public void SingleItemMessagePropertiesDictionaryNoLookup()
         {
-            LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[] { new MessageTemplateParameter("Hello World", 42, null) });
+            LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[] { new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal) });
             IDictionary<object, object> dictionary = logEvent.Properties;
             Assert.Single(dictionary);
             foreach (var item in dictionary)
@@ -230,7 +230,7 @@ namespace NLog.UnitTests.Internal
         [Fact]
         public void SingleItemMessagePropertiesDictionaryWithLookup()
         {
-            LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[] { new MessageTemplateParameter("Hello World", 42, null) });
+            LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[] { new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal) });
             IDictionary<object, object> dictionary = logEvent.Properties;
 
             Assert.Single(dictionary);
@@ -266,7 +266,7 @@ namespace NLog.UnitTests.Internal
         [Fact]
         public void MultiItemPropertiesDictionary()
         {
-            LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[] { new MessageTemplateParameter("Hello World", 42, null) });
+            LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[] { new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal) });
             IDictionary<object, object> dictionary = logEvent.Properties;
 
             dictionary["Goodbye World"] = 666;
@@ -358,8 +358,8 @@ namespace NLog.UnitTests.Internal
         {
             LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[]
             {
-                new MessageTemplateParameter("Hello World", 42, null),
-                new MessageTemplateParameter("Goodbye World", 666, null)
+                new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal),
+                new MessageTemplateParameter("Goodbye World", 666, null, CaptureType.Normal)
             });
             IDictionary<object, object> dictionary = logEvent.Properties;
 
@@ -443,8 +443,8 @@ namespace NLog.UnitTests.Internal
         {
             LogEventInfo logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[]
 {
-                new MessageTemplateParameter("Hello World", 42, null),
-                new MessageTemplateParameter("Hello World", 666, null)
+                new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal),
+                new MessageTemplateParameter("Hello World", 666, null, CaptureType.Normal)
             });
             IDictionary<object, object> dictionary = logEvent.Properties;
 
@@ -452,13 +452,13 @@ namespace NLog.UnitTests.Internal
             Assert.Equal(42, dictionary["Hello World"]);
 
             List<MessageTemplateParameter> parameters = new List<MessageTemplateParameter>();
-            parameters.Add(new MessageTemplateParameter("Hello World", 42, null));
+            parameters.Add(new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal));
             for (int i = 1; i < 100; ++i)
-                parameters.Add(new MessageTemplateParameter("Hello World", 666, null));
+                parameters.Add(new MessageTemplateParameter("Hello World", 666, null, CaptureType.Normal));
             logEvent = new LogEventInfo(LogLevel.Info, "MyLogger", string.Empty, new[]
             {
-                new MessageTemplateParameter("Hello World", 42, null),
-                new MessageTemplateParameter("Hello World", 666, null)
+                new MessageTemplateParameter("Hello World", 42, null, CaptureType.Normal),
+                new MessageTemplateParameter("Hello World", 666, null, CaptureType.Normal)
             });
             Assert.Single(dictionary);
             Assert.Equal(42, dictionary["Hello World"]);

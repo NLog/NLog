@@ -89,16 +89,7 @@ namespace NLog.MessageTemplates
                         {
                             messageTemplateParameters = new MessageTemplateParameter[parameters.Length];
                         }
-                        string holeFormat = hole.Format;
-                        if (string.IsNullOrEmpty(holeFormat))
-                        {
-                            switch (hole.CaptureType)
-                            {
-                                case CaptureType.Stringify: holeFormat = "$"; break;
-                                case CaptureType.Serialize: holeFormat = "@"; break;
-                            }
-                        }
-                        messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, holeFormat);
+                        messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, hole.Format, hole.CaptureType);
                         RenderHole(sb, hole, formatProvider, holeParameter);
                     }
                 }
@@ -165,19 +156,19 @@ namespace NLog.MessageTemplates
             switch (captureType)
             {
                 case CaptureType.Stringify:
-                    ValueSerializer.Instance.SerializeObject(value, "$", formatProvider, sb);
+                    ValueSerializer.Instance.StringifyObject(value, holeFormat, formatProvider, sb);
                     break;
                 case CaptureType.Serialize:
-                    ValueSerializer.Instance.SerializeObject(value, "@", formatProvider, sb);
+                    ValueSerializer.Instance.SerializeObject(value, holeFormat, formatProvider, sb);
                     break;
                 default:
                     if (legacy)
                     {
-                        ValueSerializer.SerializeToString(value, holeFormat, formatProvider, sb);
+                        ValueSerializer.FormatToString(value, holeFormat, formatProvider, sb);
                     }
                     else
                     {
-                        ValueSerializer.Instance.SerializeObject(value, holeFormat, formatProvider, sb);
+                        ValueSerializer.Instance.FormatObject(value, holeFormat, formatProvider, sb);
                     }
                     break;
             }

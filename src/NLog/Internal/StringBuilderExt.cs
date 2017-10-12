@@ -57,9 +57,13 @@ namespace NLog.Internal
             {
                 builder.Append(value);  // Avoid automatic quotes
             }
-            else if (value != null || !string.IsNullOrEmpty(format))
+            else if (format == "@")
             {
-                MessageTemplates.ValueSerializer.Instance.SerializeObject(value, format, formatProvider, builder);
+                MessageTemplates.ValueSerializer.Instance.SerializeObject(value, null, formatProvider, builder);
+            }
+            else if (value != null)
+            {
+                MessageTemplates.ValueSerializer.Instance.FormatObject(value, format, formatProvider, builder);
             }
         }
 
