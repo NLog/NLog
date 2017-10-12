@@ -26,8 +26,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
-    <CodeAnalysisRules></CodeAnalysisRules>
-    <CodeAnalysisRules></CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -379,6 +381,7 @@
     <Compile Include="Targets\ConsoleTargetHelper.cs" />
     <Compile Include="Targets\ConsoleWordHighlightingRule.cs" />
     <Compile Include="Targets\DatabaseCommandInfo.cs" />
+    <Compile Include="Targets\DatabaseParameterConverter.cs" />
     <Compile Include="Targets\DatabaseParameterInfo.cs" />
     <Compile Include="Targets\DatabaseTarget.cs" />
     <Compile Include="Targets\DateAndSequenceArchive.cs" />

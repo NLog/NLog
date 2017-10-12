@@ -42,6 +42,7 @@ namespace NLog.Targets
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
+    using System.Linq;
     using System.Reflection;
     using System.Text;
     using System.Transactions;
@@ -91,6 +92,8 @@ namespace NLog.Targets
             this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
             this.CommandType = CommandType.Text;
             this.OptimizeBufferReuse = GetType() == typeof(DatabaseTarget);
+            this.ParameterDbTypePropertyName = "DbType";
+            this.ParameterConverterType = typeof(DatabaseParameterConverter);
         }
 
         /// <summary>
@@ -249,10 +252,30 @@ namespace NLog.Targets
         public CommandType CommandType { get; set; }
 
         /// <summary>
+        /// Gets or sets property name of the SQL command parameter to set parameter DbType.
+        /// </summary>
+        /// <remarks>
+        /// May set strong DbType, for SQL Server is SqlDbType.
+        /// </remarks>
+        /// <docgen category='SQL Statement' order='12' />
+        [DefaultValue("DbType")]
+        public string ParameterDbTypePropertyName { get; set; }
+
+        /// <summary>
+        /// Gets or sets converter type of the SQL command parameter value.
+        /// </summary>
+        /// <docgen category='SQL Statement' order='13' />
+        [DefaultValue(typeof(DatabaseParameterConverter))]
+        public Type ParameterConverterType { get; set; }
+
+        ///<summary>SQL Command Parameter Converter</summary>
+        private DatabaseParameterConverter ParameterConverter { get; set; }
+
+        /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
-        /// <docgen category='SQL Statement' order='12' />
+        /// <docgen category='SQL Statement' order='14' />
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; private set; }
 
@@ -364,15 +387,6 @@ namespace NLog.Targets
             if (!foundProvider)
             {
                 this.SetConnectionType();
-            }
-            foreach (var parameter in this.Parameters)
-            {
-                if (string.IsNullOrEmpty(parameter.DbType))
-                {
-                    parameter.DbTypeInternal = DbType.String;
-                    continue;
-                }
-                parameter.DbTypeInternal = (DbType)Enum.Parse(typeof(DbType), parameter.DbType);
             }
         }
 
@@ -542,7 +556,6 @@ namespace NLog.Targets
                         {
                             p.ParameterName = par.Name;
                         }
-                        p.DbType = par.DbTypeInternal;
 
                         if (par.Size != 0)
                         {
@@ -560,10 +573,20 @@ namespace NLog.Targets
                         }
 
                         string stringValue = base.RenderLogEvent(par.Layout, logEvent);
-                        p.Value = ConvertTo(par, stringValue);
+                        var dbType = par.DbType;
+                        if (string.IsNullOrEmpty(dbType))
+                        {
+                            dbType = "String";
+                            p.Value = stringValue;
+                        }
+                        else
+                        {
+                            dbType = par.DbType;
+                            SetParameterInfo(p, par, stringValue);
+                        }
                         command.Parameters.Add(p);
 
-                        InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
+                        InternalLogger.Trace("  Parameter: '{0}' = '{1}'[{2}]", p.ParameterName, stringValue, dbType);
                     }
 
                     int result = command.ExecuteNonQuery();
@@ -575,30 +598,31 @@ namespace NLog.Targets
             }
         }
         /// <summary>
-        /// Convert valut to DbType value.
+        /// Set Parameter Type and Value
         /// </summary>
-        protected virtual object ConvertTo(DatabaseParameterInfo par, string value)
+        protected void SetParameterInfo(IDbDataParameter p, DatabaseParameterInfo par, string value)
         {
-            switch (par.DbTypeInternal)
-            {
-                case DbType.String: return value;
-                case DbType.Decimal: return decimal.Parse(value);
-                case DbType.Double: return double.Parse(value);
-                case DbType.Single: return float.Parse(value);
-                case DbType.DateTime:
-                case DbType.DateTime2:
-                case DbType.Date:
-                case DbType.Time:
-                    return DateTime.ParseExact(value, GetDateFormat(par), null);
-            }
-            return value;
+            EnsureResolveParameterInfo(p);
+            this.ParameterConverter.SetParameterDbType(p, par);
+            this.ParameterConverter.SetParameterValue(p, par, value);
         }
         /// <summary>
-        /// Convert valut to DbType value.
+        /// Resolve Parameter DbType And Value Converter
         /// </summary>
-        protected virtual string GetDateFormat(DatabaseParameterInfo par)
+        protected void EnsureResolveParameterInfo(IDbDataParameter p)
         {
-            return string.IsNullOrEmpty(par.Format) ? "yyyy/MM/dd HH:mm:ss.fff" : par.Format;
+            if (this.ParameterConverter == null)
+            {
+                lock (this.SyncRoot)
+                {
+                    if (this.ParameterConverter == null)
+                    {
+                        var converter = (DatabaseParameterConverter)Activator.CreateInstance(this.ParameterConverterType);
+                        converter.Resolve(p, this.ParameterDbTypePropertyName, this.Parameters);
+                        this.ParameterConverter = converter;
+                    }
+                }
+            }
         }
         /// <summary>
         /// Build the connectionstring from the properties. 

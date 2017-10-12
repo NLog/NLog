@@ -385,6 +385,7 @@
     <Compile Include="Targets\ConsoleTargetHelper.cs" />
     <Compile Include="Targets\ConsoleWordHighlightingRule.cs" />
     <Compile Include="Targets\DatabaseCommandInfo.cs" />
+    <Compile Include="Targets\DatabaseParameterConverter.cs" />
     <Compile Include="Targets\DatabaseParameterInfo.cs" />
     <Compile Include="Targets\DatabaseTarget.cs" />
     <Compile Include="Targets\DateAndSequenceArchive.cs" />
