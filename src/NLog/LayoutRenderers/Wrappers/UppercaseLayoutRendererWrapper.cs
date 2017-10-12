@@ -88,7 +88,7 @@ namespace NLog.LayoutRenderers.Wrappers
                 if (culture != null && culture != CultureInfo.InvariantCulture)
                 {
                     stringToUpper = target.ToString();
-                    stringToUpper = culture.TextInfo.ToLower(stringToUpper);
+                    stringToUpper = culture.TextInfo.ToUpper(stringToUpper);
                 }
 #endif
 
