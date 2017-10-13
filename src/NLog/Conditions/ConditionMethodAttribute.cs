@@ -34,7 +34,7 @@
 namespace NLog.Conditions
 {
     using System;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Marks class as a log event Condition and assigns a name to it.

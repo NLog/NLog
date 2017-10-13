@@ -84,7 +84,7 @@ namespace NLog.Targets
         /// </summary>
         public string Name 
         {       
-            get { return this._name; }
+            get { return _name; }
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NLog.Targets
         /// </summary>
         public string NewLineCharacters 
         {
-            get { return this._newLineCharacters; }
+            get { return _newLineCharacters; }
         }
 
         private LineEndingMode() { }
@@ -104,8 +104,8 @@ namespace NLog.Targets
         /// <param name="newLineCharacters">The new line characters to be used.</param>
         private LineEndingMode(string name, string newLineCharacters)
         {
-            this._name = name;
-            this._newLineCharacters = newLineCharacters;
+            _name = name;
+            _newLineCharacters = newLineCharacters;
         }
 
 
@@ -185,7 +185,7 @@ namespace NLog.Targets
         /// <returns>Log level name.</returns>
         public override string ToString()
         {
-            return this.Name;
+            return Name;
         }
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace NLog.Targets
             public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
             {
                 var name = value as string;
-                return name != null ? LineEndingMode.FromString(name) : base.ConvertFrom(context, culture, value);
+                return name != null ? FromString(name) : base.ConvertFrom(context, culture, value);
             }
         }
 

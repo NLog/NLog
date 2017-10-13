@@ -47,11 +47,11 @@ namespace NLog.Targets
     using System.Windows;
     using System.Windows.Threading;
 #endif
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Layouts;
-    using NLog.LogReceiverService;
+    using Common;
+    using Config;
+    using Internal;
+    using Layouts;
+    using LogReceiverService;
 
     /// <summary>
     /// Sends log messages to a NLog Receiver Service (using WCF or Web Services).
@@ -68,7 +68,7 @@ namespace NLog.Targets
         /// </summary>
         public LogReceiverWebServiceTarget()
         {
-            this.Parameters = new List<MethodCallParameter>();
+            Parameters = new List<MethodCallParameter>();
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public LogReceiverWebServiceTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace NLog.Targets
         /// <param name="logEvent">Logging event to be written out.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.Write((IList<AsyncLogEventInfo>)new[] { logEvent });
+            Write((IList<AsyncLogEventInfo>)new[] { logEvent });
         }
 
         /// <summary>
@@ -175,12 +175,12 @@ namespace NLog.Targets
         {
             // if web service call is being processed, buffer new events and return
             // lock is being held here
-            if (this.inCall)
+            if (inCall)
             {
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    this.PrecalculateVolatileLayouts(logEvents[i].LogEvent);
-                    this.buffer.Append(logEvents[i]);
+                    PrecalculateVolatileLayouts(logEvents[i].LogEvent);
+                    buffer.Append(logEvents[i]);
                 }
                 return;
             }
@@ -189,8 +189,8 @@ namespace NLog.Targets
             AsyncLogEventInfo[] logEventsArray = new AsyncLogEventInfo[logEvents.Count];
             logEvents.CopyTo(logEventsArray, 0);
 
-            var networkLogEvents = this.TranslateLogEvents(logEventsArray);
-            this.Send(networkLogEvents, logEventsArray, null);
+            var networkLogEvents = TranslateLogEvents(logEventsArray);
+            Send(networkLogEvents, logEventsArray, null);
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            this.SendBufferedEvents(asyncContinuation);
+            SendBufferedEvents(asyncContinuation);
         }
 
         private static int AddValueAndGetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
@@ -225,9 +225,9 @@ namespace NLog.Targets
             }
 
             string clientID = string.Empty;
-            if (this.ClientId != null)
+            if (ClientId != null)
             {
-                clientID = this.ClientId.Render(logEvents[0].LogEvent);
+                clientID = ClientId.Render(logEvents[0].LogEvent);
             }
 
             var networkLogEvents = new NLogEvents
@@ -240,17 +240,17 @@ namespace NLog.Targets
 
             var stringTable = new Dictionary<string, int>();
 
-            for (int i = 0; i < this.Parameters.Count; ++i)
+            for (int i = 0; i < Parameters.Count; ++i)
             {
-                networkLogEvents.LayoutNames.Add(this.Parameters[i].Name);
+                networkLogEvents.LayoutNames.Add(Parameters[i].Name);
             }
 
-            if (this.IncludeEventProperties)
+            if (IncludeEventProperties)
             {
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
                     var ev = logEvents[i].LogEvent;
-                    this.MergeEventProperties(ev);
+                    MergeEventProperties(ev);
 
                     if (ev.HasProperties)
                     {
@@ -274,7 +274,7 @@ namespace NLog.Targets
             for (int i = 0; i < logEvents.Count; ++i)
             {
                 AsyncLogEventInfo ev = logEvents[i];
-                networkLogEvents.Events[i] = this.TranslateEvent(ev.LogEvent, networkLogEvents, stringTable);
+                networkLogEvents.Events[i] = TranslateEvent(ev.LogEvent, networkLogEvents, stringTable);
             }
 
             return networkLogEvents;
@@ -283,7 +283,7 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Client is disposed asynchronously.")]
         private void Send(NLogEvents events, IList<AsyncLogEventInfo> asyncContinuations, AsyncContinuation flushContinuations)
         {
-            if (!this.OnSend(events, asyncContinuations))
+            if (!OnSend(events, asyncContinuations))
             {
                 if (flushContinuations != null)
                     flushContinuations(null);
@@ -296,7 +296,7 @@ namespace NLog.Targets
             client.ProcessLogMessagesCompleted += (sender, e) =>
             {
                 if (e.Error != null)
-                    InternalLogger.Error(e.Error, "Error in send for LogReceiver: {0}", this.Name);
+                    InternalLogger.Error(e.Error, "Error in send for LogReceiver: {0}", Name);
 
                 // report error to the callers
                 for (int i = 0; i < asyncContinuations.Count; ++i)
@@ -308,10 +308,10 @@ namespace NLog.Targets
                     flushContinuations(e.Error);
 
                 // send any buffered events
-                this.SendBufferedEvents(null);
+                SendBufferedEvents(null);
             };
 
-            this.inCall = true;
+            inCall = true;
 #if SILVERLIGHT
             if (!Deployment.Current.Dispatcher.CheckAccess())
             {
@@ -377,12 +377,12 @@ namespace NLog.Targets
         {
             WcfLogReceiverClient client;
 
-            if (string.IsNullOrEmpty(this.EndpointConfigurationName))
+            if (string.IsNullOrEmpty(EndpointConfigurationName))
             {
                 // endpoint not specified - use BasicHttpBinding
                 Binding binding;
 
-                if (this.UseBinaryEncoding)
+                if (UseBinaryEncoding)
                 {
                     binding = new CustomBinding(new BinaryMessageEncodingBindingElement(), new HttpTransportBindingElement());
                 }
@@ -391,11 +391,11 @@ namespace NLog.Targets
                     binding = new BasicHttpBinding();
                 }
 
-                client = new WcfLogReceiverClient(UseOneWayContract, binding, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(UseOneWayContract, binding, new EndpointAddress(EndpointAddress));
             }
             else
             {
-                client = new WcfLogReceiverClient(UseOneWayContract, this.EndpointConfigurationName, new EndpointAddress(this.EndpointAddress));
+                client = new WcfLogReceiverClient(UseOneWayContract, EndpointConfigurationName, new EndpointAddress(EndpointAddress));
             }
 
             client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
@@ -415,7 +415,7 @@ namespace NLog.Targets
         {
 #pragma warning disable 612, 618
 
-            return this.CreateWcfLogReceiverClient();
+            return CreateWcfLogReceiverClient();
 
 #pragma warning restore 612, 618
 
@@ -442,19 +442,19 @@ namespace NLog.Targets
         {
             try
             {
-                lock (this.SyncRoot)
+                lock (SyncRoot)
                 {
                     // clear inCall flag
-                    AsyncLogEventInfo[] bufferedEvents = this.buffer.GetEventsAndClear();
+                    AsyncLogEventInfo[] bufferedEvents = buffer.GetEventsAndClear();
                     if (bufferedEvents.Length > 0)
                     {
-                        var networkLogEvents = this.TranslateLogEvents(bufferedEvents);
-                        this.Send(networkLogEvents, bufferedEvents, flushContinuation);
+                        var networkLogEvents = TranslateLogEvents(bufferedEvents);
+                        Send(networkLogEvents, bufferedEvents, flushContinuation);
                     }
                     else
                     {
                         // nothing in the buffer, clear in-call flag
-                        this.inCall = false;
+                        inCall = false;
                         if (flushContinuation != null)
                             flushContinuation(null);
                     }
@@ -464,7 +464,7 @@ namespace NLog.Targets
             {
                 if (flushContinuation != null)
                 {
-                    InternalLogger.Error(exception, "Error in flush async for LogReceiver: {0}", this.Name);
+                    InternalLogger.Error(exception, "Error in flush async for LogReceiver: {0}", Name);
                     if (exception.MustBeRethrown())
                         throw;
 
@@ -472,7 +472,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    InternalLogger.Error(exception, "Error in send async for LogReceiver: {0}", this.Name);
+                    InternalLogger.Error(exception, "Error in send async for LogReceiver: {0}", Name);
                     if (exception.MustBeRethrownImmediately())
                     {
                         throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -490,9 +490,9 @@ namespace NLog.Targets
             nlogEvent.LoggerOrdinal = AddValueAndGetStringOrdinal(context, stringTable, eventInfo.LoggerName);
             nlogEvent.TimeDelta = eventInfo.TimeStamp.ToUniversalTime().Ticks - context.BaseTimeUtc;
 
-            for (int i = 0; i < this.Parameters.Count; ++i)
+            for (int i = 0; i < Parameters.Count; ++i)
             {
-                var param = this.Parameters[i];
+                var param = Parameters[i];
                 var value = param.Layout.Render(eventInfo);
                 int stringIndex = AddValueAndGetStringOrdinal(context, stringTable, value);
 
@@ -500,7 +500,7 @@ namespace NLog.Targets
             }
 
             // layout names beyond Parameters.Count are per-event property names.
-            for (int i = this.Parameters.Count; i < context.LayoutNames.Count; ++i)
+            for (int i = Parameters.Count; i < context.LayoutNames.Count; ++i)
             {
                 string value;
                 object propertyValue;

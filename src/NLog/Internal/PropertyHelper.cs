@@ -42,12 +42,12 @@ namespace NLog.Internal
     using System.Globalization;
     using System.Reflection;
     using System.Text;
-    using NLog.Common;
-    using NLog.Conditions;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Layouts;
-    using NLog.Targets;
+    using Common;
+    using Conditions;
+    using Config;
+    using Internal;
+    using Layouts;
+    using Targets;
 
     /// <summary>
     /// Reflection helpers for accessing properties.
@@ -181,7 +181,7 @@ namespace NLog.Internal
 
         internal static void CheckRequiredParameters(object o)
         {
-            foreach (PropertyInfo propInfo in PropertyHelper.GetAllReadableProperties(o.GetType()))
+            foreach (PropertyInfo propInfo in GetAllReadableProperties(o.GetType()))
             {
                 if (propInfo.IsDefined(typeof(RequiredParameterAttribute), false))
                 {
@@ -370,7 +370,7 @@ namespace NLog.Internal
 
                     var values = valueRaw.SplitQuoted(',', '\'', '\\');
 
-                    var collectionAddMethod = concreteType.GetMethod("Add", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+                    var collectionAddMethod = concreteType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
 
                     if (collectionAddMethod == null)
                     {

@@ -41,7 +41,7 @@ namespace NLog.Internal.FileAppenders
     using System;
     using System.IO;
     using System.Threading;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Maintains a collection of file appenders usually associated with file targets.
@@ -348,24 +348,24 @@ namespace NLog.Internal.FileAppenders
             {
                 if (expireTime != DateTime.MinValue)
                 {
-                    for (int i = 0; i < this._appenders.Length; ++i)
+                    for (int i = 0; i < _appenders.Length; ++i)
                     {
-                        if (this._appenders[i] == null)
+                        if (_appenders[i] == null)
                         {
                             break;
                         }
 
-                        if (this._appenders[i].OpenTimeUtc < expireTime)
+                        if (_appenders[i].OpenTimeUtc < expireTime)
                         {
-                            for (int j = i; j < this._appenders.Length; ++j)
+                            for (int j = i; j < _appenders.Length; ++j)
                             {
-                                if (this._appenders[j] == null)
+                                if (_appenders[j] == null)
                                 {
                                     break;
                                 }
 
-                                CloseAppender(this._appenders[j], "Expired", i == 0);
-                                this._appenders[j] = null;
+                                CloseAppender(_appenders[j], "Expired", i == 0);
+                                _appenders[j] = null;
                             }
 
                             break;
@@ -393,9 +393,9 @@ namespace NLog.Internal.FileAppenders
 
         private BaseFileAppender GetAppender(string fileName)
         {
-            for (int i = 0; i < this._appenders.Length; ++i)
+            for (int i = 0; i < _appenders.Length; ++i)
             {
-                BaseFileAppender appender = this._appenders[i];
+                BaseFileAppender appender = _appenders[i];
                 if (appender == null)
                     break;
 

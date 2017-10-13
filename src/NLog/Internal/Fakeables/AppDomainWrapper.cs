@@ -37,7 +37,7 @@ namespace NLog.Internal.Fakeables
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Adapter for <see cref="AppDomain"/> to <see cref="IAppDomain"/>
@@ -123,17 +123,17 @@ namespace NLog.Internal.Fakeables
             add
             {
 #if !SILVERLIGHT
-                if (this.processExitEvent == null && this._currentAppDomain != null)
-                    this._currentAppDomain.ProcessExit += OnProcessExit;
+                if (processExitEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.ProcessExit += OnProcessExit;
 #endif
-                this.processExitEvent += value;
+                processExitEvent += value;
             }
             remove
             {
-                this.processExitEvent -= value;
+                processExitEvent -= value;
 #if !SILVERLIGHT
-                if (this.processExitEvent == null && this._currentAppDomain != null)
-                    this._currentAppDomain.ProcessExit -= OnProcessExit;
+                if (processExitEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.ProcessExit -= OnProcessExit;
 #endif
             }
         }
@@ -147,18 +147,18 @@ namespace NLog.Internal.Fakeables
             add
             {
 #if !SILVERLIGHT
-                if (this.domainUnloadEvent == null && this._currentAppDomain != null)
-                    this._currentAppDomain.DomainUnload += OnDomainUnload;
+                if (domainUnloadEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.DomainUnload += OnDomainUnload;
 #endif
-                this.domainUnloadEvent += value;
+                domainUnloadEvent += value;
 
             }
             remove
             {
-                this.domainUnloadEvent -= value;
+                domainUnloadEvent -= value;
 #if !SILVERLIGHT
-                if (this.domainUnloadEvent == null && this._currentAppDomain != null)
-                    this._currentAppDomain.DomainUnload -= OnDomainUnload;
+                if (domainUnloadEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.DomainUnload -= OnDomainUnload;
 #endif
             }
         }

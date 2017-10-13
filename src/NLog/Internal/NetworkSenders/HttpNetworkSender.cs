@@ -35,7 +35,7 @@ namespace NLog.Internal.NetworkSenders
 {
     using System;
     using System.Net;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Network sender which uses HTTP or HTTPS POST.
@@ -61,7 +61,7 @@ namespace NLog.Internal.NetworkSenders
         /// <remarks>To be overridden in inheriting classes.</remarks>
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            var webRequest = WebRequest.Create(new Uri(this.Address));
+            var webRequest = WebRequest.Create(new Uri(Address));
             webRequest.Method = "POST";
 
             AsyncCallback onResponse =

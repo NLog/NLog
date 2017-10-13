@@ -48,7 +48,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Trace</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsTraceEnabled
         {
-            get { return this._isTraceEnabled; }
+            get { return _isTraceEnabled; }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Debug</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsDebugEnabled
         {
-            get { return this._isDebugEnabled; }
+            get { return _isDebugEnabled; }
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Info</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsInfoEnabled
         {
-            get { return this._isInfoEnabled; }
+            get { return _isInfoEnabled; }
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsWarnEnabled
         {
-            get { return this._isWarnEnabled; }
+            get { return _isWarnEnabled; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Error</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsErrorEnabled
         {
-            get { return this._isErrorEnabled; }
+            get { return _isErrorEnabled; }
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Fatal</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsFatalEnabled
         {
-            get { return this._isFatalEnabled; }
+            get { return _isFatalEnabled; }
         }
 
 
@@ -109,9 +109,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Trace<T>(T value)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, null, value);
+                WriteToTargets(LogLevel.Trace, null, value);
             }
         }
 
@@ -123,9 +123,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Trace<T>(IFormatProvider formatProvider, T value)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, value);
+                WriteToTargets(LogLevel.Trace, formatProvider, value);
             }
         }
 
@@ -135,14 +135,14 @@ namespace NLog
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Trace(LogMessageGenerator messageFunc)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
                 if (messageFunc == null)
                 {
                     throw new ArgumentNullException("messageFunc");
                 }
 
-                this.WriteToTargets(LogLevel.Trace, null, messageFunc());
+                WriteToTargets(LogLevel.Trace, null, messageFunc());
             }
         }
 
@@ -155,7 +155,7 @@ namespace NLog
         [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void TraceException([Localizable(false)] string message, Exception exception)
         {
-            this.Trace(message, exception); 
+            Trace(message, exception); 
         }
 
         /// <summary>
@@ -167,9 +167,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, args); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, args); 
             }
         }
 
@@ -179,9 +179,9 @@ namespace NLog
         /// <param name="message">Log message.</param>
         public void Trace([Localizable(false)] string message) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, null, message);
+                WriteToTargets(LogLevel.Trace, null, message);
             }
         }
 
@@ -193,9 +193,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace([Localizable(false)] string message, params object[] args) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, args);
+                WriteToTargets(LogLevel.Trace, message, args);
             }
         }
 
@@ -208,9 +208,9 @@ namespace NLog
         [Obsolete("Use Trace(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Trace([Localizable(false)] string message, Exception exception)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, exception);
+                WriteToTargets(LogLevel.Trace, message, exception);
             }
         }
 
@@ -221,9 +221,9 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         public void Trace(Exception exception, [Localizable(false)] string message)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, exception, message, null);
+                WriteToTargets(LogLevel.Trace, exception, message, null);
             }
         }
 
@@ -235,9 +235,9 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         public void Trace(Exception exception, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, exception, message, args);
+                WriteToTargets(LogLevel.Trace, exception, message, args);
             }
         }
 
@@ -251,9 +251,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, exception, formatProvider, message, args);
+                WriteToTargets(LogLevel.Trace, exception, formatProvider, message, args);
             }
         }
 
@@ -267,9 +267,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace<TArgument>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -282,12 +282,12 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace<TArgument>([Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this._configuration.ExceptionLoggingOldStyle)
+                if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -296,14 +296,14 @@ namespace NLog
 
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        this.Trace(message, exceptionCandidate);	
+                        Trace(message, exceptionCandidate);	
                         #pragma warning restore 618
                         // ReSharper restore CSharpWarnings::CS0618	
                         return;		
                     }
                 }
 
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -319,9 +319,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument1, argument2 }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument1, argument2 }); 
             }
         }
 
@@ -336,9 +336,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument1, argument2 });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -356,9 +356,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
             }
         }
 
@@ -375,9 +375,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument1, argument2, argument3 });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument1, argument2, argument3 });
             }
         }
 
@@ -395,9 +395,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Debug<T>(T value)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, null, value);
+                WriteToTargets(LogLevel.Debug, null, value);
             }
         }
 
@@ -409,9 +409,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Debug<T>(IFormatProvider formatProvider, T value)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, value);
+                WriteToTargets(LogLevel.Debug, formatProvider, value);
             }
         }
 
@@ -421,14 +421,14 @@ namespace NLog
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Debug(LogMessageGenerator messageFunc)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
                 if (messageFunc == null)
                 {
                     throw new ArgumentNullException("messageFunc");
                 }
 
-                this.WriteToTargets(LogLevel.Debug, null, messageFunc());
+                WriteToTargets(LogLevel.Debug, null, messageFunc());
             }
         }
 
@@ -441,7 +441,7 @@ namespace NLog
         [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void DebugException([Localizable(false)] string message, Exception exception)
         {
-            this.Debug(message, exception); 
+            Debug(message, exception); 
         }
 
         /// <summary>
@@ -453,9 +453,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, args); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, args); 
             }
         }
 
@@ -465,9 +465,9 @@ namespace NLog
         /// <param name="message">Log message.</param>
         public void Debug([Localizable(false)] string message) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, null, message);
+                WriteToTargets(LogLevel.Debug, null, message);
             }
         }
 
@@ -479,9 +479,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug([Localizable(false)] string message, params object[] args) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, args);
+                WriteToTargets(LogLevel.Debug, message, args);
             }
         }
 
@@ -494,9 +494,9 @@ namespace NLog
         [Obsolete("Use Debug(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Debug([Localizable(false)] string message, Exception exception)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, exception);
+                WriteToTargets(LogLevel.Debug, message, exception);
             }
         }
 
@@ -507,9 +507,9 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         public void Debug(Exception exception, [Localizable(false)] string message)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, exception, message, null);
+                WriteToTargets(LogLevel.Debug, exception, message, null);
             }
         }
 
@@ -521,9 +521,9 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         public void Debug(Exception exception, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, exception, message, args);
+                WriteToTargets(LogLevel.Debug, exception, message, args);
             }
         }
 
@@ -537,9 +537,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, exception, formatProvider, message, args);
+                WriteToTargets(LogLevel.Debug, exception, formatProvider, message, args);
             }
         }
 
@@ -553,9 +553,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug<TArgument>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -568,12 +568,12 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug<TArgument>([Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this._configuration.ExceptionLoggingOldStyle)
+                if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -582,14 +582,14 @@ namespace NLog
 
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        this.Debug(message, exceptionCandidate);	
+                        Debug(message, exceptionCandidate);	
                         #pragma warning restore 618
                         // ReSharper restore CSharpWarnings::CS0618	
                         return;		
                     }
                 }
 
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -605,9 +605,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument1, argument2 }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument1, argument2 }); 
             }
         }
 
@@ -622,9 +622,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument1, argument2 });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -642,9 +642,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
             }
         }
 
@@ -661,9 +661,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument1, argument2, argument3 });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument1, argument2, argument3 });
             }
         }
 
@@ -681,9 +681,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Info<T>(T value)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, null, value);
+                WriteToTargets(LogLevel.Info, null, value);
             }
         }
 
@@ -695,9 +695,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Info<T>(IFormatProvider formatProvider, T value)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, value);
+                WriteToTargets(LogLevel.Info, formatProvider, value);
             }
         }
 
@@ -707,14 +707,14 @@ namespace NLog
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Info(LogMessageGenerator messageFunc)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
                 if (messageFunc == null)
                 {
                     throw new ArgumentNullException("messageFunc");
                 }
 
-                this.WriteToTargets(LogLevel.Info, null, messageFunc());
+                WriteToTargets(LogLevel.Info, null, messageFunc());
             }
         }
 
@@ -727,7 +727,7 @@ namespace NLog
         [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void InfoException([Localizable(false)] string message, Exception exception)
         {
-            this.Info(message, exception); 
+            Info(message, exception); 
         }
 
         /// <summary>
@@ -739,9 +739,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, args); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, args); 
             }
         }
 
@@ -751,9 +751,9 @@ namespace NLog
         /// <param name="message">Log message.</param>
         public void Info([Localizable(false)] string message) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, null, message);
+                WriteToTargets(LogLevel.Info, null, message);
             }
         }
 
@@ -765,9 +765,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info([Localizable(false)] string message, params object[] args) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, args);
+                WriteToTargets(LogLevel.Info, message, args);
             }
         }
 
@@ -780,9 +780,9 @@ namespace NLog
         [Obsolete("Use Info(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Info([Localizable(false)] string message, Exception exception)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, exception);
+                WriteToTargets(LogLevel.Info, message, exception);
             }
         }
 
@@ -793,9 +793,9 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         public void Info(Exception exception, [Localizable(false)] string message)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, exception, message, null);
+                WriteToTargets(LogLevel.Info, exception, message, null);
             }
         }
 
@@ -807,9 +807,9 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         public void Info(Exception exception, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, exception, message, args);
+                WriteToTargets(LogLevel.Info, exception, message, args);
             }
         }
 
@@ -823,9 +823,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, exception, formatProvider, message, args);
+                WriteToTargets(LogLevel.Info, exception, formatProvider, message, args);
             }
         }
 
@@ -839,9 +839,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info<TArgument>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -854,12 +854,12 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info<TArgument>([Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this._configuration.ExceptionLoggingOldStyle)
+                if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -868,14 +868,14 @@ namespace NLog
 
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        this.Info(message, exceptionCandidate);	
+                        Info(message, exceptionCandidate);	
                         #pragma warning restore 618
                         // ReSharper restore CSharpWarnings::CS0618	
                         return;		
                     }
                 }
 
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -891,9 +891,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument1, argument2 }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument1, argument2 }); 
             }
         }
 
@@ -908,9 +908,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument1, argument2 });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -928,9 +928,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
             }
         }
 
@@ -947,9 +947,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument1, argument2, argument3 });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument1, argument2, argument3 });
             }
         }
 
@@ -967,9 +967,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Warn<T>(T value)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, null, value);
+                WriteToTargets(LogLevel.Warn, null, value);
             }
         }
 
@@ -981,9 +981,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Warn<T>(IFormatProvider formatProvider, T value)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, value);
+                WriteToTargets(LogLevel.Warn, formatProvider, value);
             }
         }
 
@@ -993,14 +993,14 @@ namespace NLog
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Warn(LogMessageGenerator messageFunc)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
                 if (messageFunc == null)
                 {
                     throw new ArgumentNullException("messageFunc");
                 }
 
-                this.WriteToTargets(LogLevel.Warn, null, messageFunc());
+                WriteToTargets(LogLevel.Warn, null, messageFunc());
             }
         }
 
@@ -1013,7 +1013,7 @@ namespace NLog
         [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void WarnException([Localizable(false)] string message, Exception exception)
         {
-            this.Warn(message, exception); 
+            Warn(message, exception); 
         }
 
         /// <summary>
@@ -1025,9 +1025,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, args); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, args); 
             }
         }
 
@@ -1037,9 +1037,9 @@ namespace NLog
         /// <param name="message">Log message.</param>
         public void Warn([Localizable(false)] string message) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, null, message);
+                WriteToTargets(LogLevel.Warn, null, message);
             }
         }
 
@@ -1051,9 +1051,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn([Localizable(false)] string message, params object[] args) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, args);
+                WriteToTargets(LogLevel.Warn, message, args);
             }
         }
 
@@ -1066,9 +1066,9 @@ namespace NLog
         [Obsolete("Use Warn(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Warn([Localizable(false)] string message, Exception exception)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, exception);
+                WriteToTargets(LogLevel.Warn, message, exception);
             }
         }
 
@@ -1079,9 +1079,9 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         public void Warn(Exception exception, [Localizable(false)] string message)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, exception, message, null);
+                WriteToTargets(LogLevel.Warn, exception, message, null);
             }
         }
 
@@ -1093,9 +1093,9 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         public void Warn(Exception exception, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, exception, message, args);
+                WriteToTargets(LogLevel.Warn, exception, message, args);
             }
         }
 
@@ -1109,9 +1109,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, exception, formatProvider, message, args);
+                WriteToTargets(LogLevel.Warn, exception, formatProvider, message, args);
             }
         }
 
@@ -1125,9 +1125,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn<TArgument>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1140,12 +1140,12 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn<TArgument>([Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this._configuration.ExceptionLoggingOldStyle)
+                if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -1154,14 +1154,14 @@ namespace NLog
 
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        this.Warn(message, exceptionCandidate);	
+                        Warn(message, exceptionCandidate);	
                         #pragma warning restore 618
                         // ReSharper restore CSharpWarnings::CS0618	
                         return;		
                     }
                 }
 
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -1177,9 +1177,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument1, argument2 }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument1, argument2 }); 
             }
         }
 
@@ -1194,9 +1194,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument1, argument2 });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -1214,9 +1214,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
             }
         }
 
@@ -1233,9 +1233,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument1, argument2, argument3 });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument1, argument2, argument3 });
             }
         }
 
@@ -1253,9 +1253,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Error<T>(T value)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, null, value);
+                WriteToTargets(LogLevel.Error, null, value);
             }
         }
 
@@ -1267,9 +1267,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Error<T>(IFormatProvider formatProvider, T value)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, value);
+                WriteToTargets(LogLevel.Error, formatProvider, value);
             }
         }
 
@@ -1279,14 +1279,14 @@ namespace NLog
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Error(LogMessageGenerator messageFunc)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
                 if (messageFunc == null)
                 {
                     throw new ArgumentNullException("messageFunc");
                 }
 
-                this.WriteToTargets(LogLevel.Error, null, messageFunc());
+                WriteToTargets(LogLevel.Error, null, messageFunc());
             }
         }
 
@@ -1299,7 +1299,7 @@ namespace NLog
         [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void ErrorException([Localizable(false)] string message, Exception exception)
         {
-            this.Error(message, exception); 
+            Error(message, exception); 
         }
 
         /// <summary>
@@ -1311,9 +1311,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, args); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, args); 
             }
         }
 
@@ -1323,9 +1323,9 @@ namespace NLog
         /// <param name="message">Log message.</param>
         public void Error([Localizable(false)] string message) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, null, message);
+                WriteToTargets(LogLevel.Error, null, message);
             }
         }
 
@@ -1337,9 +1337,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error([Localizable(false)] string message, params object[] args) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, args);
+                WriteToTargets(LogLevel.Error, message, args);
             }
         }
 
@@ -1352,9 +1352,9 @@ namespace NLog
         [Obsolete("Use Error(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Error([Localizable(false)] string message, Exception exception)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, exception);
+                WriteToTargets(LogLevel.Error, message, exception);
             }
         }
 
@@ -1365,9 +1365,9 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         public void Error(Exception exception, [Localizable(false)] string message)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, exception, message, null);
+                WriteToTargets(LogLevel.Error, exception, message, null);
             }
         }
 
@@ -1379,9 +1379,9 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         public void Error(Exception exception, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, exception, message, args);
+                WriteToTargets(LogLevel.Error, exception, message, args);
             }
         }
 
@@ -1395,9 +1395,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, exception, formatProvider, message, args);
+                WriteToTargets(LogLevel.Error, exception, formatProvider, message, args);
             }
         }
 
@@ -1411,9 +1411,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error<TArgument>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1426,12 +1426,12 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error<TArgument>([Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this._configuration.ExceptionLoggingOldStyle)
+                if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -1440,14 +1440,14 @@ namespace NLog
 
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        this.Error(message, exceptionCandidate);	
+                        Error(message, exceptionCandidate);	
                         #pragma warning restore 618
                         // ReSharper restore CSharpWarnings::CS0618	
                         return;		
                     }
                 }
 
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -1463,9 +1463,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument1, argument2 }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument1, argument2 }); 
             }
         }
 
@@ -1480,9 +1480,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument1, argument2 });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -1500,9 +1500,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
             }
         }
 
@@ -1519,9 +1519,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument1, argument2, argument3 });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument1, argument2, argument3 });
             }
         }
 
@@ -1539,9 +1539,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Fatal<T>(T value)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, null, value);
+                WriteToTargets(LogLevel.Fatal, null, value);
             }
         }
 
@@ -1553,9 +1553,9 @@ namespace NLog
         /// <param name="value">The value to be written.</param>
         public void Fatal<T>(IFormatProvider formatProvider, T value)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, value);
+                WriteToTargets(LogLevel.Fatal, formatProvider, value);
             }
         }
 
@@ -1565,14 +1565,14 @@ namespace NLog
         /// <param name="messageFunc">A function returning message to be written. Function is not evaluated if logging is not enabled.</param>
         public void Fatal(LogMessageGenerator messageFunc)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
                 if (messageFunc == null)
                 {
                     throw new ArgumentNullException("messageFunc");
                 }
 
-                this.WriteToTargets(LogLevel.Fatal, null, messageFunc());
+                WriteToTargets(LogLevel.Fatal, null, messageFunc());
             }
         }
 
@@ -1585,7 +1585,7 @@ namespace NLog
         [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void FatalException([Localizable(false)] string message, Exception exception)
         {
-            this.Fatal(message, exception); 
+            Fatal(message, exception); 
         }
 
         /// <summary>
@@ -1597,9 +1597,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, args); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, args); 
             }
         }
 
@@ -1609,9 +1609,9 @@ namespace NLog
         /// <param name="message">Log message.</param>
         public void Fatal([Localizable(false)] string message) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, null, message);
+                WriteToTargets(LogLevel.Fatal, null, message);
             }
         }
 
@@ -1623,9 +1623,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal([Localizable(false)] string message, params object[] args) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, args);
+                WriteToTargets(LogLevel.Fatal, message, args);
             }
         }
 
@@ -1638,9 +1638,9 @@ namespace NLog
         [Obsolete("Use Fatal(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
         public void Fatal([Localizable(false)] string message, Exception exception)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, exception);
+                WriteToTargets(LogLevel.Fatal, message, exception);
             }
         }
 
@@ -1651,9 +1651,9 @@ namespace NLog
         /// <param name="exception">An exception to be logged.</param>
         public void Fatal(Exception exception, [Localizable(false)] string message)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, exception, message, null);
+                WriteToTargets(LogLevel.Fatal, exception, message, null);
             }
         }
 
@@ -1665,9 +1665,9 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         public void Fatal(Exception exception, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, exception, message, args);
+                WriteToTargets(LogLevel.Fatal, exception, message, args);
             }
         }
 
@@ -1681,9 +1681,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, exception, formatProvider, message, args);
+                WriteToTargets(LogLevel.Fatal, exception, formatProvider, message, args);
             }
         }
 
@@ -1697,9 +1697,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal<TArgument>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1712,12 +1712,12 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal<TArgument>([Localizable(false)] string message, TArgument argument)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this._configuration.ExceptionLoggingOldStyle)
+                if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -1726,14 +1726,14 @@ namespace NLog
 
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        this.Fatal(message, exceptionCandidate);	
+                        Fatal(message, exceptionCandidate);	
                         #pragma warning restore 618
                         // ReSharper restore CSharpWarnings::CS0618	
                         return;		
                     }
                 }
 
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -1749,9 +1749,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal<TArgument1, TArgument2>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument1, argument2 }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument1, argument2 }); 
             }
         }
 
@@ -1766,9 +1766,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument1, argument2 });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -1786,9 +1786,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal<TArgument1, TArgument2, TArgument3>(IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
             }
         }
 
@@ -1805,9 +1805,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument1, argument2, argument3 });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument1, argument2, argument3 });
             }
         }
 

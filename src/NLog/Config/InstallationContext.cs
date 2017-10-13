@@ -75,10 +75,10 @@ namespace NLog.Config
         /// <param name="logOutput">The log output.</param>
         public InstallationContext(TextWriter logOutput)
         {
-            this.LogOutput = logOutput;
-            this.Parameters = new Dictionary<string, string>();
-            this.LogLevel = LogLevel.Info;
-            this.ThrowExceptions = false;
+            LogOutput = logOutput;
+            Parameters = new Dictionary<string, string>();
+            LogLevel = LogLevel.Info;
+            ThrowExceptions = false;
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace NLog.Config
         /// <param name="arguments">The arguments.</param>
         public void Trace([Localizable(false)] string message, params object[] arguments)
         {
-            this.Log(LogLevel.Trace, message, arguments);
+            Log(LogLevel.Trace, message, arguments);
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace NLog.Config
         /// <param name="arguments">The arguments.</param>
         public void Debug([Localizable(false)] string message, params object[] arguments)
         {
-            this.Log(LogLevel.Debug, message, arguments);
+            Log(LogLevel.Debug, message, arguments);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace NLog.Config
         /// <param name="arguments">The arguments.</param>
         public void Info([Localizable(false)] string message, params object[] arguments)
         {
-            this.Log(LogLevel.Info, message, arguments);
+            Log(LogLevel.Info, message, arguments);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace NLog.Config
         /// <param name="arguments">The arguments.</param>
         public void Warning([Localizable(false)] string message, params object[] arguments)
         {
-            this.Log(LogLevel.Warn, message, arguments);
+            Log(LogLevel.Warn, message, arguments);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace NLog.Config
         /// <param name="arguments">The arguments.</param>
         public void Error([Localizable(false)] string message, params object[] arguments)
         {
-            this.Log(LogLevel.Error, message, arguments);
+            Log(LogLevel.Error, message, arguments);
         }
 
         /// <summary>
@@ -162,10 +162,10 @@ namespace NLog.Config
         /// </summary>
         public void Dispose()
         {
-            if (this.LogOutput != null)
+            if (LogOutput != null)
             {
-                this.LogOutput.Close();
-                this.LogOutput = null;
+                LogOutput.Close();
+                LogOutput = null;
             }
         }
 
@@ -178,7 +178,7 @@ namespace NLog.Config
             var eventInfo = LogEventInfo.CreateNullEvent();
 
             // set properties on the event
-            foreach (var kvp in this.Parameters)
+            foreach (var kvp in Parameters)
             {
                 eventInfo.Properties.Add(kvp.Key, kvp.Value);
             }
@@ -188,7 +188,7 @@ namespace NLog.Config
 
         private void Log(LogLevel logLevel, [Localizable(false)] string message, object[] arguments)
         {
-            if (logLevel >= this.LogLevel)
+            if (logLevel >= LogLevel)
             {
                 if (arguments != null && arguments.Length > 0)
                 {
@@ -201,7 +201,7 @@ namespace NLog.Config
 
                 try
                 {
-                    this.LogOutput.WriteLine(message);
+                    LogOutput.WriteLine(message);
                 }
                 finally
                 {

@@ -83,14 +83,14 @@ namespace NLog.UnitTests.Targets
             logger.Warn("WWW");
             logger.Error("EEE");
             logger.Fatal("FFF");
-            System.Threading.Thread.Sleep(50);
+            Thread.Sleep(50);
             Assert.True(asyncTarget.Logs.Count != 0);
             LogManager.Flush();
             Assert.True(asyncTarget.Logs.Count == 6);
             while (asyncTarget.Logs.Count > 0)
             {
                 string logEventMessage = asyncTarget.Logs.Dequeue();
-                Assert.Equal(0, logEventMessage.IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+                Assert.Equal(0, logEventMessage.IndexOf(Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
             }
 
             LogManager.Configuration = null;
@@ -112,7 +112,7 @@ namespace NLog.UnitTests.Targets
             logger.Warn("WWW");
             logger.Error("EEE");
             logger.Fatal("FFF");
-            System.Threading.Thread.Sleep(50);
+            Thread.Sleep(50);
             Assert.True(asyncTarget.Logs.Count != 0);
             LogManager.Flush();
             Assert.True(asyncTarget.Logs.Count == 5);
@@ -120,7 +120,7 @@ namespace NLog.UnitTests.Targets
             {
                 string logEventMessage = asyncTarget.Logs.Dequeue();
                 Assert.Equal(-1, logEventMessage.IndexOf("|Debug|"));
-                Assert.Equal(0, logEventMessage.IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+                Assert.Equal(0, logEventMessage.IndexOf(Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
             }
 
             LogManager.Configuration = null;
@@ -143,7 +143,7 @@ namespace NLog.UnitTests.Targets
             logger.Warn("WWW");
             logger.Error("EEE");
             logger.Fatal("FFF");
-            System.Threading.Thread.Sleep(50);
+            Thread.Sleep(50);
             Assert.True(asyncTarget.Logs.Count != 0);
             LogManager.Flush();
             Assert.True(asyncTarget.Logs.Count == 5);
@@ -151,7 +151,7 @@ namespace NLog.UnitTests.Targets
             {
                 string logEventMessage = asyncTarget.Logs.Dequeue();
                 Assert.Equal(-1, logEventMessage.IndexOf("|Debug|"));
-                Assert.Equal(0, logEventMessage.IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+                Assert.Equal(0, logEventMessage.IndexOf(Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
             }
 
             LogManager.Configuration = null;

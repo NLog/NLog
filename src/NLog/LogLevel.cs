@@ -36,7 +36,7 @@ using System.Collections.Generic;
 namespace NLog
 {
     using System;
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// Defines available log levels.
@@ -114,8 +114,8 @@ namespace NLog
         /// <param name="ordinal">The log level ordinal number.</param>
         private LogLevel(string name, int ordinal)
         {
-            this._name = name;
-            this._ordinal = ordinal;
+            _name = name;
+            _ordinal = ordinal;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace NLog
         /// </summary>
         public string Name
         {
-            get { return this._name; }
+            get { return _name; }
         }
 
         internal static LogLevel MaxLevel
@@ -141,7 +141,7 @@ namespace NLog
         /// </summary>
         public int Ordinal
         {
-            get { return this._ordinal; }
+            get { return _ordinal; }
         }
 
         /// <summary>
@@ -339,7 +339,7 @@ namespace NLog
         /// <returns>Log level name.</returns>
         public override string ToString()
         {
-            return this.Name;
+            return Name;
         }
 
         /// <summary>
@@ -350,7 +350,7 @@ namespace NLog
         /// </returns>
         public override int GetHashCode()
         {
-            return this.Ordinal;
+            return Ordinal;
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace NLog
                 return false;
             }
 
-            return this.Ordinal == other.Ordinal;
+            return Ordinal == other.Ordinal;
         }
 
         /// <summary>
@@ -378,7 +378,7 @@ namespace NLog
         /// this instance; otherwise, <c>false</c>.</returns>
         public bool Equals(LogLevel other)
         {
-            return other != null && this.Ordinal == other.Ordinal;
+            return other != null && Ordinal == other.Ordinal;
         }
 
         /// <summary>
@@ -405,7 +405,7 @@ namespace NLog
             // is impossible to create a invalid instance.
 
             LogLevel level = (LogLevel)obj;
-            return this.Ordinal - level.Ordinal;
+            return Ordinal - level.Ordinal;
         }
     }
 }

@@ -94,7 +94,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             public MyWrapper(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
         }
 
@@ -106,14 +106,14 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             public MyWrappedTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             public int FlushCount { get; set; }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                FlushCount++;
                 base.FlushAsync(asyncContinuation);
             }
 

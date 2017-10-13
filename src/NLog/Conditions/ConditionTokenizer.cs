@@ -35,7 +35,7 @@ namespace NLog.Conditions
 {
     using System;
     using System.Text;
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// Hand-written tokenizer for conditions.
@@ -51,9 +51,9 @@ namespace NLog.Conditions
         /// <param name="stringReader">The string reader.</param>
         public ConditionTokenizer(SimpleStringReader stringReader)
         {
-            this._stringReader = stringReader;
-            this.TokenType = ConditionTokenType.BeginningOfInput;
-            this.GetNextToken();
+            _stringReader = stringReader;
+            TokenType = ConditionTokenType.BeginningOfInput;
+            GetNextToken();
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace NLog.Conditions
         {
             get
             {
-                string s = this.TokenValue;
+                string s = TokenValue;
 
                 return s.Substring(1, s.Length - 2).Replace("''", "'");
             }
@@ -95,12 +95,12 @@ namespace NLog.Conditions
         /// <remarks>If token type doesn't match, an exception is thrown.</remarks>
         public void Expect(ConditionTokenType tokenType)
         {
-            if (this.TokenType != tokenType)
+            if (TokenType != tokenType)
             {
-                throw new ConditionParseException("Expected token of type: " + tokenType + ", got " + this.TokenType + " (" + this.TokenValue + ").");
+                throw new ConditionParseException("Expected token of type: " + tokenType + ", got " + TokenType + " (" + TokenValue + ").");
             }
 
-            this.GetNextToken();
+            GetNextToken();
         }
 
         /// <summary>
@@ -109,13 +109,13 @@ namespace NLog.Conditions
         /// <returns>Keyword value.</returns>
         public string EatKeyword()
         {
-            if (this.TokenType != ConditionTokenType.Keyword)
+            if (TokenType != ConditionTokenType.Keyword)
             {
                 throw new ConditionParseException("Identifier expected");
             }
 
-            string s = this.TokenValue;
-            this.GetNextToken();
+            string s = TokenValue;
+            GetNextToken();
             return s;
         }
 
@@ -128,12 +128,12 @@ namespace NLog.Conditions
         /// </returns>
         public bool IsKeyword(string keyword)
         {
-            if (this.TokenType != ConditionTokenType.Keyword)
+            if (TokenType != ConditionTokenType.Keyword)
             {
                 return false;
             }
 
-            if (!this.TokenValue.Equals(keyword, StringComparison.OrdinalIgnoreCase))
+            if (!TokenValue.Equals(keyword, StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
@@ -149,7 +149,7 @@ namespace NLog.Conditions
         /// </returns>
         public bool IsEOF()
         {
-            if (this.TokenType != ConditionTokenType.EndOfInput)
+            if (TokenType != ConditionTokenType.EndOfInput)
             {
                 return false;
             }
@@ -165,7 +165,7 @@ namespace NLog.Conditions
         /// </returns>
         public bool IsNumber()
         {
-            return this.TokenType == ConditionTokenType.Number;
+            return TokenType == ConditionTokenType.Number;
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace NLog.Conditions
         /// </returns>
         public bool IsToken(ConditionTokenType tokenType)
         {
-            return this.TokenType == tokenType;
+            return TokenType == tokenType;
         }
 
         /// <summary>
@@ -185,19 +185,19 @@ namespace NLog.Conditions
         /// </summary>
         public void GetNextToken()
         {
-            if (this.TokenType == ConditionTokenType.EndOfInput)
+            if (TokenType == ConditionTokenType.EndOfInput)
             {
                 throw new ConditionParseException("Cannot read past end of stream.");
             }
 
-            this.SkipWhitespace();
+            SkipWhitespace();
 
-            this.TokenPosition = this.TokenPosition;
+            TokenPosition = TokenPosition;
 
-            int i = this.PeekChar();
+            int i = PeekChar();
             if (i == -1)
             {
-                this.TokenType = ConditionTokenType.EndOfInput;
+                TokenType = ConditionTokenType.EndOfInput;
                 return;
             }
 
@@ -205,30 +205,30 @@ namespace NLog.Conditions
 
             if (char.IsDigit(ch))
             {
-                this.ParseNumber(ch);
+                ParseNumber(ch);
                 return;
             }
 
             if (ch == '\'')
             {
-                this.ParseSingleQuotedString(ch);
+                ParseSingleQuotedString(ch);
                 return;
             }
 
             if (ch == '_' || char.IsLetter(ch))
             {
-                this.ParseKeyword(ch);
+                ParseKeyword(ch);
                 return;
             }
 
             if (ch == '}' || ch == ':')
             {
                 // when condition is embedded
-                this.TokenType = ConditionTokenType.EndOfInput;
+                TokenType = ConditionTokenType.EndOfInput;
                 return;
             }
 
-            this.TokenValue = ch.ToString();
+            TokenValue = ch.ToString();
 
             var success = TryGetComparisonToken(ch);
             if (success) return;
@@ -242,9 +242,9 @@ namespace NLog.Conditions
 
                 if (tt != ConditionTokenType.Invalid)
                 {
-                    this.TokenType = tt;
-                    this.TokenValue = new string(ch, 1);
-                    this.ReadChar();
+                    TokenType = tt;
+                    TokenValue = new string(ch, 1);
+                    ReadChar();
                     return;
                 }
 
@@ -263,45 +263,45 @@ namespace NLog.Conditions
         {
             if (ch == '<')
             {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
+                ReadChar();
+                int nextChar = PeekChar();
 
                 if (nextChar == '>')
                 {
-                    this.TokenType = ConditionTokenType.NotEqual;
-                    this.TokenValue = "<>";
-                    this.ReadChar();
+                    TokenType = ConditionTokenType.NotEqual;
+                    TokenValue = "<>";
+                    ReadChar();
                     return true;
                 }
 
                 if (nextChar == '=')
                 {
-                    this.TokenType = ConditionTokenType.LessThanOrEqualTo;
-                    this.TokenValue = "<=";
-                    this.ReadChar();
+                    TokenType = ConditionTokenType.LessThanOrEqualTo;
+                    TokenValue = "<=";
+                    ReadChar();
                     return true;
                 }
 
-                this.TokenType = ConditionTokenType.LessThan;
-                this.TokenValue = "<";
+                TokenType = ConditionTokenType.LessThan;
+                TokenValue = "<";
                 return true;
             }
 
             if (ch == '>')
             {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
+                ReadChar();
+                int nextChar = PeekChar();
 
                 if (nextChar == '=')
                 {
-                    this.TokenType = ConditionTokenType.GreaterThanOrEqualTo;
-                    this.TokenValue = ">=";
-                    this.ReadChar();
+                    TokenType = ConditionTokenType.GreaterThanOrEqualTo;
+                    TokenValue = ">=";
+                    ReadChar();
                     return true;
                 }
 
-                this.TokenType = ConditionTokenType.GreaterThan;
-                this.TokenValue = ">";
+                TokenType = ConditionTokenType.GreaterThan;
+                TokenValue = ">";
                 return true;
             }
             return false;
@@ -316,31 +316,31 @@ namespace NLog.Conditions
         {
             if (ch == '!')
             {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
+                ReadChar();
+                int nextChar = PeekChar();
 
                 if (nextChar == '=')
                 {
-                    this.TokenType = ConditionTokenType.NotEqual;
-                    this.TokenValue = "!=";
-                    this.ReadChar();
+                    TokenType = ConditionTokenType.NotEqual;
+                    TokenValue = "!=";
+                    ReadChar();
                     return true;
                 }
 
-                this.TokenType = ConditionTokenType.Not;
-                this.TokenValue = "!";
+                TokenType = ConditionTokenType.Not;
+                TokenValue = "!";
                 return true;
             }
 
             if (ch == '&')
             {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
+                ReadChar();
+                int nextChar = PeekChar();
                 if (nextChar == '&')
                 {
-                    this.TokenType = ConditionTokenType.And;
-                    this.TokenValue = "&&";
-                    this.ReadChar();
+                    TokenType = ConditionTokenType.And;
+                    TokenValue = "&&";
+                    ReadChar();
                     return true;
                 }
 
@@ -349,13 +349,13 @@ namespace NLog.Conditions
 
             if (ch == '|')
             {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
+                ReadChar();
+                int nextChar = PeekChar();
                 if (nextChar == '|')
                 {
-                    this.TokenType = ConditionTokenType.Or;
-                    this.TokenValue = "||";
-                    this.ReadChar();
+                    TokenType = ConditionTokenType.Or;
+                    TokenValue = "||";
+                    ReadChar();
                     return true;
                 }
 
@@ -364,19 +364,19 @@ namespace NLog.Conditions
 
             if (ch == '=')
             {
-                this.ReadChar();
-                int nextChar = this.PeekChar();
+                ReadChar();
+                int nextChar = PeekChar();
 
                 if (nextChar == '=')
                 {
-                    this.TokenType = ConditionTokenType.EqualTo;
-                    this.TokenValue = "==";
-                    this.ReadChar();
+                    TokenType = ConditionTokenType.EqualTo;
+                    TokenValue = "==";
+                    ReadChar();
                     return true;
                 }
 
-                this.TokenType = ConditionTokenType.EqualTo;
-                this.TokenValue = "=";
+                TokenType = ConditionTokenType.EqualTo;
+                TokenValue = "=";
                 return true;
             }
             return false;
@@ -413,25 +413,25 @@ namespace NLog.Conditions
         private void ParseSingleQuotedString(char ch)
         {
             int i;
-            this.TokenType = ConditionTokenType.String;
+            TokenType = ConditionTokenType.String;
 
             StringBuilder sb = new StringBuilder();
 
             sb.Append(ch);
-            this.ReadChar();
+            ReadChar();
 
-            while ((i = this.PeekChar()) != -1)
+            while ((i = PeekChar()) != -1)
             {
                 ch = (char)i;
 
-                sb.Append((char)this.ReadChar());
+                sb.Append((char)ReadChar());
 
                 if (ch == '\'')
                 {
-                    if (this.PeekChar() == (int)'\'')
+                    if (PeekChar() == (int)'\'')
                     {
                         sb.Append('\'');
-                        this.ReadChar();
+                        ReadChar();
                     }
                     else
                     {
@@ -445,25 +445,25 @@ namespace NLog.Conditions
                 throw new ConditionParseException("String literal is missing a closing quote character.");
             }
 
-            this.TokenValue = sb.ToString();
+            TokenValue = sb.ToString();
         }
 
         private void ParseKeyword(char ch)
         {
             int i;
-            this.TokenType = ConditionTokenType.Keyword;
+            TokenType = ConditionTokenType.Keyword;
 
             StringBuilder sb = new StringBuilder();
 
             sb.Append(ch);
 
-            this.ReadChar();
+            ReadChar();
 
-            while ((i = this.PeekChar()) != -1)
+            while ((i = PeekChar()) != -1)
             {
                 if ((char)i == '_' || (char)i == '-' || char.IsLetterOrDigit((char)i))
                 {
-                    sb.Append((char)this.ReadChar());
+                    sb.Append((char)ReadChar());
                 }
                 else
                 {
@@ -471,25 +471,25 @@ namespace NLog.Conditions
                 }
             }
 
-            this.TokenValue = sb.ToString();
+            TokenValue = sb.ToString();
         }
 
         private void ParseNumber(char ch)
         {
             int i;
-            this.TokenType = ConditionTokenType.Number;
+            TokenType = ConditionTokenType.Number;
             StringBuilder sb = new StringBuilder();
 
             sb.Append(ch);
-            this.ReadChar();
+            ReadChar();
 
-            while ((i = this.PeekChar()) != -1)
+            while ((i = PeekChar()) != -1)
             {
                 ch = (char)i;
 
                 if (char.IsDigit(ch) || (ch == '.'))
                 {
-                    sb.Append((char)this.ReadChar());
+                    sb.Append((char)ReadChar());
                 }
                 else
                 {
@@ -497,32 +497,32 @@ namespace NLog.Conditions
                 }
             }
 
-            this.TokenValue = sb.ToString();
+            TokenValue = sb.ToString();
         }
 
         private void SkipWhitespace()
         {
             int ch;
 
-            while ((ch = this.PeekChar()) != -1)
+            while ((ch = PeekChar()) != -1)
             {
                 if (!char.IsWhiteSpace((char)ch))
                 {
                     break;
                 }
 
-                this.ReadChar();
+                ReadChar();
             }
         }
 
         private int PeekChar()
         {
-            return this._stringReader.Peek();
+            return _stringReader.Peek();
         }
 
         private int ReadChar()
         {
-            return this._stringReader.Read();
+            return _stringReader.Read();
         }
 
         /// <summary>
@@ -540,8 +540,8 @@ namespace NLog.Conditions
             /// <param name="tokenType">Type of the token.</param>
             public CharToTokenType(char character, ConditionTokenType tokenType)
             {
-                this.Character = character;
-                this.TokenType = tokenType;
+                Character = character;
+                TokenType = tokenType;
             }
         }
     }

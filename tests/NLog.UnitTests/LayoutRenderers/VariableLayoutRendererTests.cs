@@ -267,7 +267,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void null_should_be_ok()
         {
             Layout l = "${var:var1}";
-            var config = new NLog.Config.LoggingConfiguration();
+            var config = new LoggingConfiguration();
             config.Variables["var1"] = null;
             l.Initialize(config);
             var result = l.Render(LogEventInfo.CreateNullEvent());
@@ -278,7 +278,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void null_should_not_use_default()
         {
             Layout l = "${var:var1:default=x}";
-            var config = new NLog.Config.LoggingConfiguration();
+            var config = new LoggingConfiguration();
             config.Variables["var1"] = null;
             l.Initialize(config);
             var result = l.Render(LogEventInfo.CreateNullEvent());
@@ -289,7 +289,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void notset_should_use_default()
         {
             Layout l = "${var:var1:default=x}";
-            var config = new NLog.Config.LoggingConfiguration();
+            var config = new LoggingConfiguration();
             l.Initialize(config);
             var result = l.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal("x", result);

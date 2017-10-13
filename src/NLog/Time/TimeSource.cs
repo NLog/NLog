@@ -34,8 +34,8 @@
 namespace NLog.Time
 {
     using System;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Defines source of current time.
@@ -70,13 +70,13 @@ namespace NLog.Time
         /// </returns>
         public override string ToString()
         {
-            var targetAttribute = this.GetType().GetCustomAttribute<TimeSourceAttribute>();
+            var targetAttribute = GetType().GetCustomAttribute<TimeSourceAttribute>();
             if (targetAttribute != null)
             {
                 return targetAttribute.Name + " (time source)";
             }
 
-            return this.GetType().Name;
+            return GetType().Name;
         }
 
         /// <summary>

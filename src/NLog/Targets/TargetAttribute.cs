@@ -34,7 +34,7 @@
 namespace NLog.Targets
 {
     using System;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Marks class as a logging target and assigns a name to it.

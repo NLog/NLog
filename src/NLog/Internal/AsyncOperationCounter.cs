@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Keeps track of pending operation count, and can notify when pending operation count reaches zero

@@ -48,10 +48,10 @@ namespace NLog.Targets
     using System.Transactions;
 #endif
 
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Layouts;
+    using Common;
+    using Config;
+    using Internal;
+    using Layouts;
 
 #if !NETSTANDARD
     using System.Configuration;
@@ -93,16 +93,16 @@ namespace NLog.Targets
         /// </summary>
         public DatabaseTarget()
         {
-            this.Parameters = new List<DatabaseParameterInfo>();
-            this.InstallDdlCommands = new List<DatabaseCommandInfo>();
-            this.UninstallDdlCommands = new List<DatabaseCommandInfo>();
-            this.DBProvider = "sqlserver";
-            this.DBHost = ".";
+            Parameters = new List<DatabaseParameterInfo>();
+            InstallDdlCommands = new List<DatabaseCommandInfo>();
+            UninstallDdlCommands = new List<DatabaseCommandInfo>();
+            DBProvider = "sqlserver";
+            DBHost = ".";
 #if !NETSTANDARD
-            this.ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
+            ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
 #endif
-            this.CommandType = CommandType.Text;
-            this.OptimizeBufferReuse = GetType() == typeof(DatabaseTarget);
+            CommandType = CommandType.Text;
+            OptimizeBufferReuse = GetType() == typeof(DatabaseTarget);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public DatabaseTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace NLog.Targets
         /// <param name="installationContext">The installation context.</param>
         public void Install(InstallationContext installationContext)
         {
-            this.RunInstallCommands(installationContext, this.InstallDdlCommands);
+            RunInstallCommands(installationContext, InstallDdlCommands);
         }
 
         /// <summary>
@@ -294,7 +294,7 @@ namespace NLog.Targets
         /// <param name="installationContext">The installation context.</param>
         public void Uninstall(InstallationContext installationContext)
         {
-            this.RunInstallCommands(installationContext, this.UninstallDdlCommands);
+            RunInstallCommands(installationContext, UninstallDdlCommands);
         }
 
         /// <summary>
@@ -314,14 +314,14 @@ namespace NLog.Targets
             IDbConnection connection;
 
 #if !NETSTANDARD
-            if (this.ProviderFactory != null)
+            if (ProviderFactory != null)
             {
-                connection = this.ProviderFactory.CreateConnection();
+                connection = ProviderFactory.CreateConnection();
             }
             else
 #endif
             {
-                connection = (IDbConnection)Activator.CreateInstance(this.ConnectionType);
+                connection = (IDbConnection)Activator.CreateInstance(ConnectionType);
             }
 
             if (connection == null)
@@ -352,19 +352,19 @@ namespace NLog.Targets
 
             bool foundProvider = false;
 #if !NETSTANDARD
-            if (!string.IsNullOrEmpty(this.ConnectionStringName))
+            if (!string.IsNullOrEmpty(ConnectionStringName))
             {
                 // read connection string and provider factory from the configuration file
-                var cs = this.ConnectionStringsSettings[this.ConnectionStringName];
+                var cs = ConnectionStringsSettings[ConnectionStringName];
                 if (cs == null)
                 {
-                    throw new NLogConfigurationException("Connection string '" + this.ConnectionStringName + "' is not declared in <connectionStrings /> section.");
+                    throw new NLogConfigurationException("Connection string '" + ConnectionStringName + "' is not declared in <connectionStrings /> section.");
                 }
 
-                this.ConnectionString = SimpleLayout.Escape(cs.ConnectionString);
+                ConnectionString = SimpleLayout.Escape(cs.ConnectionString);
                 if (!string.IsNullOrEmpty(cs.ProviderName))
                 {
-                    this.ProviderFactory = DbProviderFactories.GetFactory(cs.ProviderName);
+                    ProviderFactory = DbProviderFactories.GetFactory(cs.ProviderName);
                     foundProvider = true;
                 }
             
@@ -375,9 +375,9 @@ namespace NLog.Targets
                 foreach (DataRow row in DbProviderFactories.GetFactoryClasses().Rows)
                 {
                     var invariantname = (string)row["InvariantName"];
-                    if (invariantname == this.DBProvider)
+                    if (invariantname == DBProvider)
                     {
-                        this.ProviderFactory = DbProviderFactories.GetFactory(this.DBProvider);
+                        ProviderFactory = DbProviderFactories.GetFactory(DBProvider);
                         foundProvider = true;
                         break;
                     }
@@ -387,7 +387,7 @@ namespace NLog.Targets
 
             if (!foundProvider)
             {
-                this.SetConnectionType();
+                SetConnectionType();
             }
         }
 
@@ -396,7 +396,7 @@ namespace NLog.Targets
         /// </summary>
         private void SetConnectionType()
         {
-            switch (this.DBProvider.ToUpperInvariant())
+            switch (DBProvider.ToUpperInvariant())
             {
                 case "SQLSERVER":
                 case "MSSQL":
@@ -407,19 +407,19 @@ namespace NLog.Targets
 #else
                     var assembly = systemDataAssembly;
 #endif
-                    this.ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
+                    ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
                     break;
 #if !NETSTANDARD
                 case "OLEDB":
-                    this.ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
+                    ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
                     break;
 
                 case "ODBC":
-                    this.ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
+                    ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
                     break;
 #endif
                 default:
-                    this.ConnectionType = Type.GetType(this.DBProvider, true);
+                    ConnectionType = Type.GetType(DBProvider, true);
                     break;
             }
         }
@@ -431,7 +431,7 @@ namespace NLog.Targets
         {
             base.CloseTarget();
             InternalLogger.Trace("DatabaseTarget: close connection because of CloseTarget");
-            this.CloseConnection();
+            CloseConnection();
         }
 
         /// <summary>
@@ -444,7 +444,7 @@ namespace NLog.Targets
         {
             try
             {
-                this.WriteEventToDatabase(logEvent);
+                WriteEventToDatabase(logEvent);
             }
             catch (Exception exception)
             {
@@ -456,15 +456,15 @@ namespace NLog.Targets
                 }
 
                 InternalLogger.Trace("DatabaseTarget: close connection because of error");
-                this.CloseConnection();
+                CloseConnection();
                 throw;
             }
             finally
             {
-                if (!this.KeepConnection)
+                if (!KeepConnection)
                 {
                     InternalLogger.Trace("DatabaseTarget: close connection (KeepConnection = false).");
-                    this.CloseConnection();
+                    CloseConnection();
                 }
             }
         }
@@ -491,7 +491,7 @@ namespace NLog.Targets
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            var buckets = logEvents.BucketSort(c => this.BuildConnectionString(c.LogEvent));
+            var buckets = logEvents.BucketSort(c => BuildConnectionString(c.LogEvent));
 
             try
             {
@@ -503,7 +503,7 @@ namespace NLog.Targets
 
                         try
                         {
-                            this.WriteEventToDatabase(ev.LogEvent);
+                            WriteEventToDatabase(ev.LogEvent);
                             ev.Continuation(null);
                         }
                         catch (Exception exception)
@@ -516,7 +516,7 @@ namespace NLog.Targets
                                 throw;
                             }
                             InternalLogger.Trace("DatabaseTarget: close connection because of exception");
-                            this.CloseConnection();
+                            CloseConnection();
                             ev.Continuation(exception);
 
                             if (exception.MustBeRethrown())
@@ -529,10 +529,10 @@ namespace NLog.Targets
             }
             finally
             {
-                if (!this.KeepConnection)
+                if (!KeepConnection)
                 {
                     InternalLogger.Trace("DatabaseTarget: close connection because of KeepConnection=false");
-                    this.CloseConnection();
+                    CloseConnection();
                 }
             }
         }
@@ -543,16 +543,16 @@ namespace NLog.Targets
             //Always suppress transaction so that the caller does not rollback loggin if they are rolling back their transaction.
             using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
             {
-                this.EnsureConnectionOpen(this.BuildConnectionString(logEvent));
+                EnsureConnectionOpen(BuildConnectionString(logEvent));
 
-                using (IDbCommand command = this._activeConnection.CreateCommand())
+                using (IDbCommand command = _activeConnection.CreateCommand())
                 {
-                    command.CommandText = base.RenderLogEvent(this.CommandText, logEvent);
-                    command.CommandType = this.CommandType;
+                    command.CommandText = RenderLogEvent(CommandText, logEvent);
+                    command.CommandType = CommandType;
 
                     InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
 
-                    foreach (DatabaseParameterInfo par in this.Parameters)
+                    foreach (DatabaseParameterInfo par in Parameters)
                     {
                         IDbDataParameter p = command.CreateParameter();
                         p.Direction = ParameterDirection.Input;
@@ -576,7 +576,7 @@ namespace NLog.Targets
                             p.Scale = par.Scale;
                         }
 
-                        string stringValue = base.RenderLogEvent(par.Layout, logEvent);
+                        string stringValue = RenderLogEvent(par.Layout, logEvent);
 
                         p.Value = stringValue;
                         command.Parameters.Add(p);
@@ -603,33 +603,33 @@ namespace NLog.Targets
         /// <returns></returns>
         protected string BuildConnectionString(LogEventInfo logEvent)
         {
-            if (this.ConnectionString != null)
+            if (ConnectionString != null)
             {
-                return base.RenderLogEvent(this.ConnectionString, logEvent);
+                return RenderLogEvent(ConnectionString, logEvent);
             }
 
             var sb = new StringBuilder();
 
             sb.Append("Server=");
-            sb.Append(base.RenderLogEvent(this.DBHost, logEvent));
+            sb.Append(RenderLogEvent(DBHost, logEvent));
             sb.Append(";");
-            if (this.DBUserName == null)
+            if (DBUserName == null)
             {
                 sb.Append("Trusted_Connection=SSPI;");
             }
             else
             {
                 sb.Append("User id=");
-                sb.Append(base.RenderLogEvent(this.DBUserName, logEvent));
+                sb.Append(RenderLogEvent(DBUserName, logEvent));
                 sb.Append(";Password=");
-                sb.Append(base.RenderLogEvent(this.DBPassword, logEvent));
+                sb.Append(RenderLogEvent(DBPassword, logEvent));
                 sb.Append(";");
             }
 
-            if (this.DBDatabase != null)
+            if (DBDatabase != null)
             {
                 sb.Append("Database=");
-                sb.Append(base.RenderLogEvent(this.DBDatabase, logEvent));
+                sb.Append(RenderLogEvent(DBDatabase, logEvent));
             }
 
             return sb.ToString();
@@ -637,33 +637,33 @@ namespace NLog.Targets
 
         private void EnsureConnectionOpen(string connectionString)
         {
-            if (this._activeConnection != null)
+            if (_activeConnection != null)
             {
-                if (this._activeConnectionString != connectionString)
+                if (_activeConnectionString != connectionString)
                 {
                     InternalLogger.Trace("DatabaseTarget: close connection because of opening new.");
-                    this.CloseConnection();
+                    CloseConnection();
                 }
             }
 
-            if (this._activeConnection != null)
+            if (_activeConnection != null)
             {
                 return;
             }
 
             InternalLogger.Trace("DatabaseTarget: open connection.");
-            this._activeConnection = this.OpenConnection(connectionString);
-            this._activeConnectionString = connectionString;
+            _activeConnection = OpenConnection(connectionString);
+            _activeConnectionString = connectionString;
         }
 
         private void CloseConnection()
         {
-            if (this._activeConnection != null)
+            if (_activeConnection != null)
             {
-                this._activeConnection.Close();
-                this._activeConnection.Dispose();
-                this._activeConnection = null;
-                this._activeConnectionString = null;
+                _activeConnection.Close();
+                _activeConnection.Dispose();
+                _activeConnection = null;
+                _activeConnectionString = null;
             }
         }
 
@@ -682,31 +682,31 @@ namespace NLog.Targets
                     if (commandInfo.ConnectionString != null)
                     {
                         // if there is connection string specified on the command info, use it
-                        cs = base.RenderLogEvent(commandInfo.ConnectionString, logEvent);
+                        cs = RenderLogEvent(commandInfo.ConnectionString, logEvent);
                     }
-                    else if (this.InstallConnectionString != null)
+                    else if (InstallConnectionString != null)
                     {
                         // next, try InstallConnectionString
-                        cs = base.RenderLogEvent(this.InstallConnectionString, logEvent);
+                        cs = RenderLogEvent(InstallConnectionString, logEvent);
                     }
                     else
                     {
                         // if it's not defined, fall back to regular connection string
-                        cs = this.BuildConnectionString(logEvent);
+                        cs = BuildConnectionString(logEvent);
                     }
 
                     // Set ConnectionType if it has not been initialized already
-                    if (this.ConnectionType == null)
+                    if (ConnectionType == null)
                     {
-                        this.SetConnectionType();
+                        SetConnectionType();
                     }
 
-                    this.EnsureConnectionOpen(cs);
+                    EnsureConnectionOpen(cs);
 
-                    using (var command = this._activeConnection.CreateCommand())
+                    using (var command = _activeConnection.CreateCommand())
                     {
                         command.CommandType = commandInfo.CommandType;
-                        command.CommandText = base.RenderLogEvent(commandInfo.Text, logEvent);
+                        command.CommandText = RenderLogEvent(commandInfo.Text, logEvent);
 
                         try
                         {
@@ -737,7 +737,7 @@ namespace NLog.Targets
             {
                 InternalLogger.Trace("DatabaseTarget: close connection after install.");
 
-                this.CloseConnection();
+                CloseConnection();
             }
         }
 

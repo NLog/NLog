@@ -58,7 +58,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         public NLogEvent()
         {
-            this.ValueIndexes = new List<int>();
+            ValueIndexes = new List<int>();
         }
 
         /// <summary>
@@ -121,9 +121,9 @@ namespace NLog.LogReceiverService
                 var sb = new StringBuilder();
                 string separator = string.Empty;
 
-                if (this.ValueIndexes != null)
+                if (ValueIndexes != null)
                 {
-                    foreach (int index in this.ValueIndexes)
+                    foreach (int index in ValueIndexes)
                     {
                         sb.Append(separator);
                         sb.Append(index);
@@ -136,13 +136,13 @@ namespace NLog.LogReceiverService
 
             set
             {
-                if (this.ValueIndexes != null)
+                if (ValueIndexes != null)
                 {
-                    this.ValueIndexes.Clear();
+                    ValueIndexes.Clear();
                 }
                 else
                 {
-                    this.ValueIndexes = new List<int>();
+                    ValueIndexes = new List<int>();
                 }
 
                 if (!string.IsNullOrEmpty(value))
@@ -151,7 +151,7 @@ namespace NLog.LogReceiverService
 
                     foreach (string chunk in chunks)
                     {
-                        this.ValueIndexes.Add(Convert.ToInt32(chunk, CultureInfo.InvariantCulture));
+                        ValueIndexes.Add(Convert.ToInt32(chunk, CultureInfo.InvariantCulture));
                     }
                 }
             }
@@ -174,12 +174,12 @@ namespace NLog.LogReceiverService
         /// <returns>Converted <see cref="LogEventInfo"/>.</returns>
         internal LogEventInfo ToEventInfo(NLogEvents context, string loggerNamePrefix)
         {
-            var result = new LogEventInfo(LogLevel.FromOrdinal(this.LevelOrdinal), loggerNamePrefix + context.Strings[this.LoggerOrdinal], context.Strings[this.MessageOrdinal]);
-            result.TimeStamp = new DateTime(context.BaseTimeUtc + this.TimeDelta, DateTimeKind.Utc).ToLocalTime();
+            var result = new LogEventInfo(LogLevel.FromOrdinal(LevelOrdinal), loggerNamePrefix + context.Strings[LoggerOrdinal], context.Strings[MessageOrdinal]);
+            result.TimeStamp = new DateTime(context.BaseTimeUtc + TimeDelta, DateTimeKind.Utc).ToLocalTime();
             for (int i = 0; i < context.LayoutNames.Count; ++i)
             {
                 string layoutName = context.LayoutNames[i];
-                string layoutValue = context.Strings[this.ValueIndexes[i]];
+                string layoutValue = context.Strings[ValueIndexes[i]];
 
                 result.Properties[layoutName] = layoutValue;
             }

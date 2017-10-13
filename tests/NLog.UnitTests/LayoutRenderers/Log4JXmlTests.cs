@@ -208,7 +208,7 @@ namespace NLog.UnitTests.LayoutRenderers
                                 break;
 
                             case "locationInfo":
-                                Assert.Equal(this.GetType().Assembly.FullName, reader.GetAttribute("assembly"));
+                                Assert.Equal(GetType().Assembly.FullName, reader.GetAttribute("assembly"));
                                 break;
 
                             case "properties":
@@ -239,7 +239,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var sb = new System.Text.StringBuilder();
 
-            var forbidden = new System.Collections.Generic.HashSet<int>();
+            var forbidden = new HashSet<int>();
             int start = 64976; int end = 65007;
 
             for (int i = start; i <= end; i++)

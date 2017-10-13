@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.Globalization;
     using System.Text;
     using System.Xml;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Converts the result of another layout output to be XML-compliant.
@@ -53,7 +53,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public XmlEncodeLayoutRendererWrapper()
         {
-            this.XmlEncode = true;
+            XmlEncode = true;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Padded and trimmed string.</returns>
         protected override string Transform(string text)
         {
-            return this.XmlEncode ? DoXmlEscape(text) : text;
+            return XmlEncode ? DoXmlEscape(text) : text;
         }
 
         private static string DoXmlEscape(string text)

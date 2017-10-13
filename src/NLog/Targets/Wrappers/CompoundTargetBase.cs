@@ -36,8 +36,8 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// A base class for targets which wrap other (multiple) targets
@@ -51,7 +51,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="targets">The targets.</param>
         protected CompoundTargetBase(params Target[] targets)
         {
-            this.Targets = new List<Target>(targets);
+            Targets = new List<Target>(targets);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace NLog.Targets.Wrappers
             sb.Append(base.ToString());
             sb.Append("(");
 
-            foreach (var t in this.Targets)
+            foreach (var t in Targets)
             {
                 sb.Append(separator);
                 sb.Append(t.ToString());
@@ -96,7 +96,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            AsyncHelpers.ForEachItemInParallel(this.Targets, asyncContinuation, (t, c) => t.Flush(c));
+            AsyncHelpers.ForEachItemInParallel(Targets, asyncContinuation, (t, c) => t.Flush(c));
         }
     }
 }

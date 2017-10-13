@@ -66,7 +66,7 @@ namespace NLog.Targets
         /// </remarks>
         public DebuggerTarget() : base()
         {
-            this.OptimizeBufferReuse = true;
+            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public DebuggerTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -87,9 +87,9 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            if (this.Header != null)
+            if (Header != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, base.RenderLogEvent(this.Header, LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, RenderLogEvent(Header, LogEventInfo.CreateNullEvent()) + "\n");
             }
         }
 
@@ -98,9 +98,9 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            if (this.Footer != null)
+            if (Footer != null)
             {
-                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, base.RenderLogEvent(this.Footer, LogEventInfo.CreateNullEvent()) + "\n");
+                Debugger.Log(LogLevel.Off.Ordinal, string.Empty, RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()) + "\n");
             }
 
             base.CloseTarget();
@@ -115,18 +115,18 @@ namespace NLog.Targets
             if (Debugger.IsLogging())
             {
                 string logMessage = string.Empty;
-                if (this.OptimizeBufferReuse)
+                if (OptimizeBufferReuse)
                 {
-                    using (var localTarget = base.ReusableLayoutBuilder.Allocate())
+                    using (var localTarget = ReusableLayoutBuilder.Allocate())
                     {
-                        this.Layout.RenderAppendBuilder(logEvent, localTarget.Result);
+                        Layout.RenderAppendBuilder(logEvent, localTarget.Result);
                         localTarget.Result.Append('\n');
                         logMessage = localTarget.Result.ToString();
                     }
                 }
                 else
                 {
-                    logMessage = base.RenderLogEvent(this.Layout, logEvent) + "\n";
+                    logMessage = RenderLogEvent(Layout, logEvent) + "\n";
                 }
 
                 Debugger.Log(logEvent.Level.Ordinal, logEvent.LoggerName, logMessage);

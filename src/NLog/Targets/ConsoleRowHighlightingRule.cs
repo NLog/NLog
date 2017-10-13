@@ -36,8 +36,8 @@
 namespace NLog.Targets
 {
     using System.ComponentModel;
-    using NLog.Conditions;
-    using NLog.Config;
+    using Conditions;
+    using Config;
 
     /// <summary>
     /// The row-highlighting condition.
@@ -69,9 +69,9 @@ namespace NLog.Targets
         /// <param name="backgroundColor">Color of the background.</param>
         public ConsoleRowHighlightingRule(ConditionExpression condition, ConsoleOutputColor foregroundColor, ConsoleOutputColor backgroundColor)
         {
-            this.Condition = condition;
-            this.ForegroundColor = foregroundColor;
-            this.BackgroundColor = backgroundColor;
+            Condition = condition;
+            ForegroundColor = foregroundColor;
+            BackgroundColor = backgroundColor;
         }
 
         /// <summary>
@@ -112,12 +112,12 @@ namespace NLog.Targets
         /// </returns>
         public bool CheckCondition(LogEventInfo logEvent)
         {
-            if (this.Condition == null)
+            if (Condition == null)
             {
                 return true;
             }
 
-            return true.Equals(this.Condition.Evaluate(logEvent));
+            return true.Equals(Condition.Evaluate(logEvent));
         }
     }
 }

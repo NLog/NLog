@@ -34,9 +34,9 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
+    using Common;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Base class for targets wrap other (single) targets.
@@ -56,7 +56,7 @@ namespace NLog.Targets.Wrappers
         /// <returns>A string that describes the target.</returns>
         public override string ToString()
         {
-            return base.ToString() + "(" + this.WrappedTarget + ")";
+            return base.ToString() + "(" + WrappedTarget + ")";
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            this.WrappedTarget.Flush(asyncContinuation);
+            WrappedTarget.Flush(asyncContinuation);
         }
 
         /// <summary>

@@ -83,7 +83,7 @@ namespace NLog.LayoutRenderers
         /// <returns></returns>
         private bool TryGetLayout(out SimpleLayout layout)
         {
-            if (this.Name != null)
+            if (Name != null)
             {
                 //don't use LogManager (locking, recursion)
                 var loggingConfiguration = LoggingConfiguration; //?? LogManager.Configuration;
@@ -106,7 +106,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (this.Name != null)
+            if (Name != null)
             {
                 SimpleLayout layout;
                 if (TryGetLayout(out layout))

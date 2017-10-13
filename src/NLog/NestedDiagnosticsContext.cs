@@ -37,7 +37,7 @@ namespace NLog
     using System.Collections.Generic;
     using System.Linq;
 
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// Nested Diagnostics Context - a thread-local structure that keeps a stack
@@ -181,8 +181,8 @@ namespace NLog
             /// <param name="previousCount">The previous count.</param>
             public StackPopper(Stack<object> stack, int previousCount)
             {
-                this._stack = stack;
-                this._previousCount = previousCount;
+                _stack = stack;
+                _previousCount = previousCount;
             }
 
             /// <summary>
@@ -190,9 +190,9 @@ namespace NLog
             /// </summary>
             void IDisposable.Dispose()
             {
-                while (this._stack.Count > this._previousCount)
+                while (_stack.Count > _previousCount)
                 {
-                    this._stack.Pop();
+                    _stack.Pop();
                 }
             }
         }

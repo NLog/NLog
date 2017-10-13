@@ -40,8 +40,8 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Reflection;
     using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// The information about the running process.
@@ -59,7 +59,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public ProcessInfoLayoutRenderer()
         {
-            this.Property = ProcessInfoProperty.Id;
+            Property = ProcessInfoProperty.Id;
         }
 
         /// <summary>
@@ -82,15 +82,15 @@ namespace NLog.LayoutRenderers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            this._propertyInfo = typeof(Process).GetProperty(this.Property.ToString());
-            if (this._propertyInfo == null)
+            _propertyInfo = typeof(Process).GetProperty(Property.ToString());
+            if (_propertyInfo == null)
             {
-                throw new ArgumentException("Property '" + this._propertyInfo + "' not found in System.Diagnostics.Process");
+                throw new ArgumentException("Property '" + _propertyInfo + "' not found in System.Diagnostics.Process");
             }
 
-            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(this._propertyInfo.GetGetMethod());
+            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(_propertyInfo.GetGetMethod());
 
-            this._process = Process.GetCurrentProcess();
+            _process = Process.GetCurrentProcess();
         }
 
         /// <summary>
@@ -98,10 +98,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         protected override void CloseLayoutRenderer()
         {
-            if (this._process != null)
+            if (_process != null)
             {
-                this._process.Close();
-                this._process = null;
+                _process.Close();
+                _process = null;
             }
 
             base.CloseLayoutRenderer();
@@ -114,11 +114,11 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (this._lateBoundPropertyGet != null)
+            if (_lateBoundPropertyGet != null)
             {
                 var formatProvider = GetFormatProvider(logEvent);
-                var value = this._lateBoundPropertyGet(this._process, null);
-                builder.AppendFormattedValue(value, this.Format, formatProvider);
+                var value = _lateBoundPropertyGet(_process, null);
+                builder.AppendFormattedValue(value, Format, formatProvider);
             }
         }
     }

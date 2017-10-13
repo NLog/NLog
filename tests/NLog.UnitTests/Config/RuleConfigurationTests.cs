@@ -230,10 +230,10 @@ namespace NLog.UnitTests.Config
             var logger = LogManager.GetLogger("BBB");
             logger.Warn("test1234");
 
-            this.AssertDebugLastMessage("d1", "test1234");
-            this.AssertDebugLastMessage("d2", "test1234");
-            this.AssertDebugLastMessage("d3", "test1234");
-            this.AssertDebugLastMessage("d4", string.Empty);
+            AssertDebugLastMessage("d1", "test1234");
+            AssertDebugLastMessage("d2", "test1234");
+            AssertDebugLastMessage("d3", "test1234");
+            AssertDebugLastMessage("d4", string.Empty);
         }
 
         [Fact]

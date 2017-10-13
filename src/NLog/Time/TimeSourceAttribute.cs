@@ -34,7 +34,7 @@
 namespace NLog.Time
 {
     using System;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Marks class as a time source and assigns a name to it.

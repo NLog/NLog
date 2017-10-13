@@ -36,8 +36,8 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.ComponentModel;
     using System.Threading;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
@@ -66,7 +66,7 @@ namespace NLog.Targets.Wrappers
         public BufferingTargetWrapper(string name, Target wrappedTarget)
             : this(wrappedTarget)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -108,11 +108,11 @@ namespace NLog.Targets.Wrappers
         /// <param name="overflowAction">The aciton to take when the buffer overflows.</param>
         public BufferingTargetWrapper(Target wrappedTarget, int bufferSize, int flushTimeout, BufferingTargetWrapperOverflowAction overflowAction)
         {
-            this.WrappedTarget = wrappedTarget;
-            this.BufferSize = bufferSize;
-            this.FlushTimeout = flushTimeout;
-            this.SlidingTimeout = true;
-            this.OverflowAction = overflowAction;
+            WrappedTarget = wrappedTarget;
+            BufferSize = bufferSize;
+            FlushTimeout = flushTimeout;
+            SlidingTimeout = true;
+            OverflowAction = overflowAction;
         }
 
         /// <summary>
@@ -170,9 +170,9 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            this._buffer = new LogEventInfoBuffer(this.BufferSize, false, 0);
+            _buffer = new LogEventInfoBuffer(BufferSize, false, 0);
             InternalLogger.Trace("BufferingWrapper '{0}': create timer", Name);
-            this._flushTimer = new Timer(this.FlushCallback, null, Timeout.Infinite, Timeout.Infinite);
+            _flushTimer = new Timer(FlushCallback, null, Timeout.Infinite, Timeout.Infinite);
         }
 
         /// <summary>
@@ -180,13 +180,13 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void CloseTarget()
         {
-            var currentTimer = this._flushTimer;
+            var currentTimer = _flushTimer;
             if (currentTimer != null)
             {
-                this._flushTimer = null;
+                _flushTimer = null;
                 if (currentTimer.WaitForDispose(TimeSpan.FromSeconds(1)))
                 {
-                    lock (this._lockObject)
+                    lock (_lockObject)
                     {
                         WriteEventsInBuffer("Closing Target");
                     }
@@ -203,11 +203,11 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            this.MergeEventProperties(logEvent.LogEvent);
-            this.PrecalculateVolatileLayouts(logEvent.LogEvent);
+            MergeEventProperties(logEvent.LogEvent);
+            PrecalculateVolatileLayouts(logEvent.LogEvent);
 
-            int count = this._buffer.Append(logEvent);
-            if (count >= this.BufferSize)
+            int count = _buffer.Append(logEvent);
+            if (count >= BufferSize)
             {
                 // If the OverflowAction action is set to "Discard", the buffer will automatically
                 // roll over the oldest item.
@@ -218,12 +218,12 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
-                if (this.FlushTimeout > 0)
+                if (FlushTimeout > 0)
                 {
                     // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
-                    if (this.SlidingTimeout || count == 1)
+                    if (SlidingTimeout || count == 1)
                     {
-                        this._flushTimer.Change(this.FlushTimeout, -1);
+                        _flushTimer.Change(FlushTimeout, -1);
                     }
                 }
             }
@@ -233,9 +233,9 @@ namespace NLog.Targets.Wrappers
         {
             try
             {
-                lock (this._lockObject)
+                lock (_lockObject)
                 {
-                    if (this._flushTimer == null)
+                    if (_flushTimer == null)
                         return;
 
                     WriteEventsInBuffer(null);
@@ -243,7 +243,7 @@ namespace NLog.Targets.Wrappers
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "BufferingWrapper '{0}': Error in flush procedure.", this.Name);
+                InternalLogger.Error(exception, "BufferingWrapper '{0}': Error in flush procedure.", Name);
 
                 if (exception.MustBeRethrownImmediately())
                 {
@@ -254,20 +254,20 @@ namespace NLog.Targets.Wrappers
 
         private void WriteEventsInBuffer(string reason)
         {
-            if (this.WrappedTarget == null)
+            if (WrappedTarget == null)
             {
-                InternalLogger.Error("BufferingWrapper '{0}': WrappedTarget is NULL", this.Name);
+                InternalLogger.Error("BufferingWrapper '{0}': WrappedTarget is NULL", Name);
                 return;
             }
 
-            lock (this._lockObject)
+            lock (_lockObject)
             {
-                AsyncLogEventInfo[] logEvents = this._buffer.GetEventsAndClear();
+                AsyncLogEventInfo[] logEvents = _buffer.GetEventsAndClear();
                 if (logEvents.Length > 0)
                 {
                     if (reason != null)
-                        InternalLogger.Trace("BufferingWrapper '{0}': writing {1} events ({2})", this.Name, logEvents.Length, reason);
-                    this.WrappedTarget.WriteAsyncLogEvents(logEvents);
+                        InternalLogger.Trace("BufferingWrapper '{0}': writing {1} events ({2})", Name, logEvents.Length, reason);
+                    WrappedTarget.WriteAsyncLogEvents(logEvents);
                 }
             }
         }

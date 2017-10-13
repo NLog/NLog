@@ -34,8 +34,8 @@
 namespace NLog.Targets
 {
     using System.ComponentModel;
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Represents target that supports string formatting using layouts.
@@ -51,7 +51,7 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "This one is safe.")]
         protected TargetWithLayout()
         {
-            this.Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
+            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
         }
 
         /// <summary>

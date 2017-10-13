@@ -37,7 +37,7 @@ namespace NLog.Internal.NetworkSenders
     using System.IO;
     using System.Net;
     using System.Net.Sockets;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Default implementation of <see cref="INetworkSenderFactory"/>.

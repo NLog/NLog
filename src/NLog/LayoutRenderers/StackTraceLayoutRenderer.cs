@@ -36,8 +36,8 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Stack trace renderer.
@@ -51,9 +51,9 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public StackTraceLayoutRenderer()
         {
-            this.Separator = " => ";
-            this.TopFrames = 3;
-            this.Format = StackTraceFormat.Flat;
+            Separator = " => ";
+            TopFrames = 3;
+            Format = StackTraceFormat.Flat;
         }
 
         /// <summary>
@@ -104,14 +104,14 @@ namespace NLog.LayoutRenderers
                 return;
 
             bool first = true;
-            int startingFrame = logEvent.UserStackFrameNumber + this.TopFrames - 1;
+            int startingFrame = logEvent.UserStackFrameNumber + TopFrames - 1;
             if (startingFrame >= logEvent.StackTrace.GetFrameCount())
             {
                 startingFrame = logEvent.StackTrace.GetFrameCount() - 1;
             }
 
             int endingFrame = logEvent.UserStackFrameNumber + SkipFrames;
-            switch (this.Format)
+            switch (Format)
             {
                 case StackTraceFormat.Raw:
                     for (int i = startingFrame; i >= endingFrame; --i)
@@ -127,7 +127,7 @@ namespace NLog.LayoutRenderers
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
                         {
-                            builder.Append(this.Separator);
+                            builder.Append(Separator);
                         }
 
                         var type = f.GetMethod().DeclaringType;
@@ -153,7 +153,7 @@ namespace NLog.LayoutRenderers
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
                         {
-                            builder.Append(this.Separator);
+                            builder.Append(Separator);
                         }
 
                         builder.Append("[");

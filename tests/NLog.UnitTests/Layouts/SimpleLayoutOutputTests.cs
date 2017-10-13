@@ -156,7 +156,7 @@ namespace NLog.UnitTests.Layouts
         {
             public ThrowsExceptionRenderer()
             {
-                this.Message = "Some message.";
+                Message = "Some message.";
             }
 
             [RequiredParameter]
@@ -165,7 +165,7 @@ namespace NLog.UnitTests.Layouts
 
             protected override void Append(StringBuilder builder, LogEventInfo logEvent)
             {
-                throw new InvalidOperationException(this.Message);
+                throw new InvalidOperationException(Message);
             }
         }
 
@@ -178,13 +178,13 @@ namespace NLog.UnitTests.Layouts
             protected override void InitializeLayout()
             {
                 base.InitializeLayout();
-                this.InitCount++;
+                InitCount++;
             }
 
             protected override void CloseLayout()
             {
                 base.CloseLayout();
-                this.CloseCount++;
+                CloseCount++;
             }
 
             protected override string GetFormattedMessage(LogEventInfo logEvent)

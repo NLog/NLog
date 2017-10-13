@@ -37,9 +37,9 @@ namespace NLog.Layouts
     using System.Linq;
     using System.ComponentModel;
     using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Common;
+    using Config;
+    using Internal;
+    using Common;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
@@ -123,9 +123,9 @@ namespace NLog.Layouts
         /// </remarks>
         public virtual void Precalculate(LogEventInfo logEvent)
         {
-            if (!this.ThreadAgnostic)
+            if (!ThreadAgnostic)
             {
-                this.Render(logEvent);
+                Render(logEvent);
             }
         }
 
@@ -136,17 +136,17 @@ namespace NLog.Layouts
         /// <returns>String representing log event.</returns>
         public string Render(LogEventInfo logEvent)
         {
-            if (!this._isInitialized)
+            if (!_isInitialized)
             {
-                this.Initialize(this.LoggingConfiguration);
+                Initialize(LoggingConfiguration);
             }
 
-            return this.GetFormattedMessage(logEvent);
+            return GetFormattedMessage(logEvent);
         }
 
         internal void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!this.ThreadAgnostic)
+            if (!ThreadAgnostic)
             {
                 RenderAppendBuilder(logEvent, target, true);
             }
@@ -160,12 +160,12 @@ namespace NLog.Layouts
         /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
         internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target, bool cacheLayoutResult = false)
         {
-            if (!this._isInitialized)
+            if (!_isInitialized)
             {
-                this.Initialize(this.LoggingConfiguration);
+                Initialize(LoggingConfiguration);
             }
 
-            if (!this.ThreadAgnostic)
+            if (!ThreadAgnostic)
             {
                 string cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
@@ -175,7 +175,7 @@ namespace NLog.Layouts
                 }
             }
 
-            cacheLayoutResult = cacheLayoutResult && !this.ThreadAgnostic;
+            cacheLayoutResult = cacheLayoutResult && !ThreadAgnostic;
             using (var localTarget = new AppendBuilderCreator(target, cacheLayoutResult))
             {
                 RenderFormattedMessage(logEvent, localTarget.Builder);
@@ -196,7 +196,7 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         internal string RenderAllocateBuilder(LogEventInfo logEvent, StringBuilder reusableBuilder = null, bool cacheLayoutResult = true)
         {
-            if (!this.ThreadAgnostic)
+            if (!ThreadAgnostic)
             {
                 string cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
@@ -205,7 +205,7 @@ namespace NLog.Layouts
                 }
             }
 
-            int initialLength = this._maxRenderedLength;
+            int initialLength = _maxRenderedLength;
             if (initialLength > MaxInitialRenderBufferLength)
             {
                 initialLength = MaxInitialRenderBufferLength;
@@ -213,12 +213,12 @@ namespace NLog.Layouts
 
             var sb = reusableBuilder ?? new StringBuilder(initialLength);
             RenderFormattedMessage(logEvent, sb);
-            if (sb.Length > this._maxRenderedLength)
+            if (sb.Length > _maxRenderedLength)
             {
-                this._maxRenderedLength = sb.Length;
+                _maxRenderedLength = sb.Length;
             }
 
-            if (cacheLayoutResult && !this.ThreadAgnostic)
+            if (cacheLayoutResult && !ThreadAgnostic)
             {
                 return logEvent.AddCachedLayoutValue(this, sb.ToString());
             }
@@ -244,7 +244,7 @@ namespace NLog.Layouts
         /// <param name="configuration">The configuration.</param>
         void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
         {
-            this.Initialize(configuration);
+            Initialize(configuration);
         }
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace NLog.Layouts
         /// </summary>
         void ISupportsInitialize.Close()
         {
-            this.Close();
+            Close();
         }
 
         /// <summary>
@@ -261,15 +261,15 @@ namespace NLog.Layouts
         /// <param name="configuration">The configuration.</param>
         internal void Initialize(LoggingConfiguration configuration)
         {
-            if (!this._isInitialized)
+            if (!_isInitialized)
             {
-                this.LoggingConfiguration = configuration;
-                this._isInitialized = true;
-                this._scannedForObjects = false;
+                LoggingConfiguration = configuration;
+                _isInitialized = true;
+                _scannedForObjects = false;
 
-                this.InitializeLayout();
+                InitializeLayout();
 
-                if (!this._scannedForObjects)
+                if (!_scannedForObjects)
                 {
                     InternalLogger.Debug("Initialized Layout done but not scanned for objects");
                     PerformObjectScanning();
@@ -284,13 +284,13 @@ namespace NLog.Layouts
             // determine whether the layout is thread-agnostic
             // layout is thread agnostic if it is thread-agnostic and 
             // all its nested objects are thread-agnostic.
-            this.ThreadAgnostic = objectGraphScannerList.All(item => item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true));
+            ThreadAgnostic = objectGraphScannerList.All(item => item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true));
 
             // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
-            this.StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IStackTraceUsage
-            this.StackTraceUsage = objectGraphScannerList.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(item => item == null ? StackTraceUsage.None : item.StackTraceUsage);
+            StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IStackTraceUsage
+            StackTraceUsage = objectGraphScannerList.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(item => item == null ? StackTraceUsage.None : item.StackTraceUsage);
 
-            this._scannedForObjects = true;
+            _scannedForObjects = true;
         }
 
         /// <summary>
@@ -298,11 +298,11 @@ namespace NLog.Layouts
         /// </summary>
         internal void Close()
         {
-            if (this._isInitialized)
+            if (_isInitialized)
             {
-                this.LoggingConfiguration = null;
-                this._isInitialized = false;
-                this.CloseLayout();
+                LoggingConfiguration = null;
+                _isInitialized = false;
+                CloseLayout();
             }
         }
 

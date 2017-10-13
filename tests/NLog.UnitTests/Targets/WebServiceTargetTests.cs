@@ -222,8 +222,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             protected override void Dispose(bool disposing)
             {
                 //save stuff before dispose
-                this.Flush();
-                bytes = this.ToArray();
+                Flush();
+                bytes = ToArray();
                 stringed = StreamToString(this);
                 base.Dispose(disposing);
             }
@@ -348,7 +348,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 {
                     LogManager.Flush(0);
                 }
-                catch (NLog.NLogRuntimeException)
+                catch (NLogRuntimeException)
                 { }
                 LogManager.Flush(); // Waits for flush (Scheduled on top of the previous flush)
                 LogManager.Flush(); // Nothing to flush
@@ -944,7 +944,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                         {
                             foreach (var expectedHeader in Context.ExpectedHeaders)
                             {
-                                if (base.Request.Headers.GetValues(expectedHeader.Key).First() != expectedHeader.Value)
+                                if (Request.Headers.GetValues(expectedHeader.Key).First() != expectedHeader.Value)
                                     return;
                             }
                         }

@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System;
     using System.ComponentModel;
     using System.Text;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Escapes output of another layout using JSON rules.
@@ -51,8 +51,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public JsonEncodeLayoutRendererWrapper()
         {
-            this.JsonEncode = true;
-            this.EscapeUnicode = true;
+            JsonEncode = true;
+            EscapeUnicode = true;
         }
 
         /// <summary>
@@ -75,11 +75,11 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="target">The text to be JSON-encoded.</param>
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (this.JsonEncode)
+            if (JsonEncode)
             {
                 if (RequiresJsonEncode(target))
                 {
-                    var result = Targets.DefaultJsonSerializer.EscapeString(target.ToString(), this.EscapeUnicode);
+                    var result = Targets.DefaultJsonSerializer.EscapeString(target.ToString(), EscapeUnicode);
                     target.Length = 0;
                     target.Append(result);
                 }
@@ -90,7 +90,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             for (int i = 0; i < target.Length; ++i)
             {
-                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(target[i], this.EscapeUnicode))
+                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(target[i], EscapeUnicode))
                 {
                     return true;
                 }

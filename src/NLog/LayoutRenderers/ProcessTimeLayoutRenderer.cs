@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Text;
 
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The process time in format HH:mm:ss.mmm.

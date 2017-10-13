@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Text;
 
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The time in a 24-hour, sortable format HH:mm:ss.mmm.
@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             DateTime dt = logEvent.TimeStamp;
-            if (this.UniversalTime)
+            if (UniversalTime)
             {
                 dt = dt.ToUniversalTime();
             }

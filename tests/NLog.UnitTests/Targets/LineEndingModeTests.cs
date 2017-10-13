@@ -67,7 +67,7 @@ namespace NLog.UnitTests.Targets
             Assert.False(LineEndingMode.None.Equals(null));
 
             // Handle running tests on different operating systems
-            if (modeCRLF.NewLineCharacters == System.Environment.NewLine)
+            if (modeCRLF.NewLineCharacters == Environment.NewLine)
             {
                 Assert.False(LineEndingMode.LF == modeDefault);
                 Assert.True(LineEndingMode.CRLF == modeDefault);
@@ -105,7 +105,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(modeCRLF != null);
 
             // Handle running tests on different operating systems
-            if (modeCRLF.NewLineCharacters == System.Environment.NewLine)
+            if (modeCRLF.NewLineCharacters == Environment.NewLine)
             {
                 Assert.True(LineEndingMode.LF != modeDefault);
             }

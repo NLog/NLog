@@ -55,9 +55,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, object value)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, "{0}", new object[] { value });
+                WriteToTargets(level, "{0}", new object[] { value });
             }
         }
 
@@ -70,9 +70,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, IFormatProvider formatProvider, object value) 
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, "{0}", new[] { value });
+                WriteToTargets(level, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -87,9 +87,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, string message, object arg1, object arg2)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new[] { arg1, arg2 });
+                WriteToTargets(level, message, new[] { arg1, arg2 });
             }
         }
 
@@ -105,9 +105,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, string message, object arg1, object arg2, object arg3)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(level, message, new[] { arg1, arg2, arg3 });
             }
         }
 
@@ -122,9 +122,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, bool argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -137,9 +137,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, bool argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -154,9 +154,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, char argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -169,9 +169,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, char argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -186,9 +186,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, byte argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -201,9 +201,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, byte argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -218,9 +218,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, string argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -233,9 +233,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, string argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -250,9 +250,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, int argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -265,9 +265,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, int argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -282,9 +282,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, long argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -297,9 +297,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, long argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -314,9 +314,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, float argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -329,9 +329,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, float argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -346,9 +346,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, double argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -361,9 +361,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, double argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -378,9 +378,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, decimal argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -393,9 +393,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, decimal argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -410,9 +410,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, object argument)
         {
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -425,9 +425,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Log(LogLevel level, string message, object argument) 
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -443,9 +443,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, sbyte argument)
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -460,9 +460,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, string message, sbyte argument)
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -478,9 +478,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, uint argument)
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -495,9 +495,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, string message, uint argument)
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -513,9 +513,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, string message, ulong argument)
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -530,9 +530,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Log(LogLevel level, string message, ulong argument)
         { 
-            if (this.IsEnabled(level))
+            if (IsEnabled(level))
             {
-                this.WriteToTargets(level, message, new object[] { argument });
+                WriteToTargets(level, message, new object[] { argument });
             }
         }
 
@@ -547,9 +547,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(object value)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Trace, "{0}", new object[] { value });
             }
         }
 
@@ -561,9 +561,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(IFormatProvider formatProvider, object value) 
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Trace, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -577,9 +577,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(string message, object arg1, object arg2)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Trace, message, new[] { arg1, arg2 });
             }
         }
 
@@ -594,9 +594,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(string message, object arg1, object arg2, object arg3)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Trace, message, new[] { arg1, arg2, arg3 });
             }
         }
 
@@ -610,9 +610,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, bool argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -624,9 +624,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, bool argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -640,9 +640,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, char argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -654,9 +654,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, char argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -670,9 +670,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, byte argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -684,9 +684,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, byte argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -700,9 +700,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, string argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -714,9 +714,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, string argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -730,9 +730,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, int argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -744,9 +744,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, int argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -760,9 +760,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, long argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -774,9 +774,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, long argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -790,9 +790,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, float argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -804,9 +804,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, float argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -820,9 +820,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, double argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -834,9 +834,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, double argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -850,9 +850,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, decimal argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -864,9 +864,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, decimal argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -880,9 +880,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, object argument)
         {
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -894,9 +894,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Trace(string message, object argument) 
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -911,9 +911,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, sbyte argument)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -927,9 +927,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(string message, sbyte argument)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -944,9 +944,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, uint argument)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -960,9 +960,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(string message, uint argument)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -977,9 +977,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(IFormatProvider formatProvider, string message, ulong argument)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Trace, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -993,9 +993,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Trace(string message, ulong argument)
         { 
-            if (this.IsTraceEnabled)
+            if (IsTraceEnabled)
             {
-                this.WriteToTargets(LogLevel.Trace, message, new object[] { argument });
+                WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
 
@@ -1010,9 +1010,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(object value)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Debug, "{0}", new object[] { value });
             }
         }
 
@@ -1024,9 +1024,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(IFormatProvider formatProvider, object value) 
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Debug, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -1040,9 +1040,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(string message, object arg1, object arg2)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Debug, message, new[] { arg1, arg2 });
             }
         }
 
@@ -1057,9 +1057,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(string message, object arg1, object arg2, object arg3)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Debug, message, new[] { arg1, arg2, arg3 });
             }
         }
 
@@ -1073,9 +1073,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, bool argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1087,9 +1087,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, bool argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1103,9 +1103,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, char argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1117,9 +1117,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, char argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1133,9 +1133,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, byte argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1147,9 +1147,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, byte argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1163,9 +1163,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, string argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1177,9 +1177,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, string argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1193,9 +1193,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, int argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1207,9 +1207,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, int argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1223,9 +1223,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, long argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1237,9 +1237,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, long argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1253,9 +1253,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, float argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1267,9 +1267,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, float argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1283,9 +1283,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, double argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1297,9 +1297,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, double argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1313,9 +1313,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, decimal argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1327,9 +1327,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, decimal argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1343,9 +1343,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, object argument)
         {
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1357,9 +1357,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Debug(string message, object argument) 
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1374,9 +1374,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, sbyte argument)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1390,9 +1390,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(string message, sbyte argument)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1407,9 +1407,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, uint argument)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1423,9 +1423,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(string message, uint argument)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1440,9 +1440,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(IFormatProvider formatProvider, string message, ulong argument)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Debug, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1456,9 +1456,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Debug(string message, ulong argument)
         { 
-            if (this.IsDebugEnabled)
+            if (IsDebugEnabled)
             {
-                this.WriteToTargets(LogLevel.Debug, message, new object[] { argument });
+                WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
 
@@ -1473,9 +1473,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(object value)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Info, "{0}", new object[] { value });
             }
         }
 
@@ -1487,9 +1487,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(IFormatProvider formatProvider, object value) 
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Info, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -1503,9 +1503,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(string message, object arg1, object arg2)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Info, message, new[] { arg1, arg2 });
             }
         }
 
@@ -1520,9 +1520,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(string message, object arg1, object arg2, object arg3)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Info, message, new[] { arg1, arg2, arg3 });
             }
         }
 
@@ -1536,9 +1536,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, bool argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1550,9 +1550,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, bool argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1566,9 +1566,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, char argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1580,9 +1580,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, char argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1596,9 +1596,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, byte argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1610,9 +1610,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, byte argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1626,9 +1626,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, string argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1640,9 +1640,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, string argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1656,9 +1656,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, int argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1670,9 +1670,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, int argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1686,9 +1686,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, long argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1700,9 +1700,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, long argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1716,9 +1716,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, float argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1730,9 +1730,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, float argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1746,9 +1746,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, double argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1760,9 +1760,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, double argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1776,9 +1776,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, decimal argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1790,9 +1790,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, decimal argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1806,9 +1806,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, object argument)
         {
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1820,9 +1820,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Info(string message, object argument) 
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1837,9 +1837,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, sbyte argument)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1853,9 +1853,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(string message, sbyte argument)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1870,9 +1870,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, uint argument)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1886,9 +1886,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(string message, uint argument)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1903,9 +1903,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(IFormatProvider formatProvider, string message, ulong argument)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Info, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -1919,9 +1919,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Info(string message, ulong argument)
         { 
-            if (this.IsInfoEnabled)
+            if (IsInfoEnabled)
             {
-                this.WriteToTargets(LogLevel.Info, message, new object[] { argument });
+                WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
 
@@ -1936,9 +1936,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(object value)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Warn, "{0}", new object[] { value });
             }
         }
 
@@ -1950,9 +1950,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(IFormatProvider formatProvider, object value) 
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Warn, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -1966,9 +1966,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(string message, object arg1, object arg2)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Warn, message, new[] { arg1, arg2 });
             }
         }
 
@@ -1983,9 +1983,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(string message, object arg1, object arg2, object arg3)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Warn, message, new[] { arg1, arg2, arg3 });
             }
         }
 
@@ -1999,9 +1999,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, bool argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2013,9 +2013,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, bool argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2029,9 +2029,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, char argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2043,9 +2043,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, char argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2059,9 +2059,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, byte argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2073,9 +2073,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, byte argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2089,9 +2089,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, string argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2103,9 +2103,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, string argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2119,9 +2119,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, int argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2133,9 +2133,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, int argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2149,9 +2149,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, long argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2163,9 +2163,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, long argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2179,9 +2179,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, float argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2193,9 +2193,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, float argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2209,9 +2209,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, double argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2223,9 +2223,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, double argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2239,9 +2239,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, decimal argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2253,9 +2253,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, decimal argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2269,9 +2269,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, object argument)
         {
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2283,9 +2283,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Warn(string message, object argument) 
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2300,9 +2300,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, sbyte argument)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2316,9 +2316,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(string message, sbyte argument)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2333,9 +2333,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, uint argument)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2349,9 +2349,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(string message, uint argument)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2366,9 +2366,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(IFormatProvider formatProvider, string message, ulong argument)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Warn, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2382,9 +2382,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Warn(string message, ulong argument)
         { 
-            if (this.IsWarnEnabled)
+            if (IsWarnEnabled)
             {
-                this.WriteToTargets(LogLevel.Warn, message, new object[] { argument });
+                WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
 
@@ -2399,9 +2399,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(object value)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Error, "{0}", new object[] { value });
             }
         }
 
@@ -2413,9 +2413,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(IFormatProvider formatProvider, object value) 
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Error, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -2429,9 +2429,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(string message, object arg1, object arg2)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Error, message, new[] { arg1, arg2 });
             }
         }
 
@@ -2446,9 +2446,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(string message, object arg1, object arg2, object arg3)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Error, message, new[] { arg1, arg2, arg3 });
             }
         }
 
@@ -2462,9 +2462,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, bool argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2476,9 +2476,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, bool argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2492,9 +2492,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, char argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2506,9 +2506,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, char argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2522,9 +2522,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, byte argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2536,9 +2536,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, byte argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2552,9 +2552,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, string argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2566,9 +2566,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, string argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2582,9 +2582,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, int argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2596,9 +2596,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, int argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2612,9 +2612,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, long argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2626,9 +2626,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, long argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2642,9 +2642,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, float argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2656,9 +2656,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, float argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2672,9 +2672,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, double argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2686,9 +2686,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, double argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2702,9 +2702,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, decimal argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2716,9 +2716,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, decimal argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2732,9 +2732,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, object argument)
         {
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2746,9 +2746,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Error(string message, object argument) 
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2763,9 +2763,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, sbyte argument)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2779,9 +2779,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(string message, sbyte argument)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2796,9 +2796,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, uint argument)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2812,9 +2812,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(string message, uint argument)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2829,9 +2829,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(IFormatProvider formatProvider, string message, ulong argument)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Error, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2845,9 +2845,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Error(string message, ulong argument)
         { 
-            if (this.IsErrorEnabled)
+            if (IsErrorEnabled)
             {
-                this.WriteToTargets(LogLevel.Error, message, new object[] { argument });
+                WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
 
@@ -2862,9 +2862,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(object value)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Fatal, "{0}", new object[] { value });
             }
         }
 
@@ -2876,9 +2876,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(IFormatProvider formatProvider, object value) 
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Fatal, formatProvider, "{0}", new[] { value });
             }
         }
 
@@ -2892,9 +2892,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(string message, object arg1, object arg2)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new[] { arg1, arg2 });
+                WriteToTargets(LogLevel.Fatal, message, new[] { arg1, arg2 });
             }
         }
 
@@ -2909,9 +2909,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(string message, object arg1, object arg2, object arg3)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new[] { arg1, arg2, arg3 });
+                WriteToTargets(LogLevel.Fatal, message, new[] { arg1, arg2, arg3 });
             }
         }
 
@@ -2925,9 +2925,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, bool argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2939,9 +2939,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, bool argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -2955,9 +2955,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, char argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2969,9 +2969,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, char argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -2985,9 +2985,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, byte argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -2999,9 +2999,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, byte argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3015,9 +3015,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, string argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3029,9 +3029,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, string argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3045,9 +3045,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, int argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3059,9 +3059,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, int argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3075,9 +3075,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, long argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3089,9 +3089,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, long argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3105,9 +3105,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, float argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3119,9 +3119,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, float argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3135,9 +3135,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, double argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3149,9 +3149,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, double argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3165,9 +3165,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, decimal argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3179,9 +3179,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, decimal argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3195,9 +3195,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, object argument)
         {
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3209,9 +3209,9 @@ namespace NLog
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Fatal(string message, object argument) 
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3226,9 +3226,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, sbyte argument)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3242,9 +3242,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(string message, sbyte argument)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3259,9 +3259,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, uint argument)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3275,9 +3275,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(string message, uint argument)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 
@@ -3292,9 +3292,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(IFormatProvider formatProvider, string message, ulong argument)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(LogLevel.Fatal, formatProvider, message, new object[] { argument }); 
             }
         }
 
@@ -3308,9 +3308,9 @@ namespace NLog
         [StringFormatMethod("message")]
         public void Fatal(string message, ulong argument)
         { 
-            if (this.IsFatalEnabled)
+            if (IsFatalEnabled)
             {
-                this.WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
+                WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }
 

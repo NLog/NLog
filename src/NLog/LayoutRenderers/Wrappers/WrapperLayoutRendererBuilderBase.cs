@@ -69,7 +69,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            this.Inner.RenderAppendBuilder(logEvent, target);
+            Inner.RenderAppendBuilder(logEvent, target);
         }
 
         /// <summary>

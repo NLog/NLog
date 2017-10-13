@@ -35,8 +35,8 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
-    using NLog.Internal;
-    using NLog.Config;
+    using Internal;
+    using Config;
 
     /// <summary>
     /// A newline literal.

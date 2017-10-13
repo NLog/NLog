@@ -56,7 +56,7 @@ namespace NLog.Internal
         /// </summary>
         public PortableThreadIDHelper()
         {
-            this._currentProcessId = Process.GetCurrentProcess().Id;
+            _currentProcessId = Process.GetCurrentProcess().Id;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace NLog.Internal
         /// <value></value>
         public override int CurrentProcessID
         {
-            get { return this._currentProcessId; }
+            get { return _currentProcessId; }
         }
 
         /// <summary>
@@ -76,8 +76,8 @@ namespace NLog.Internal
         {
             get
             {
-                this.GetProcessName();
-                return this._currentProcessName;
+                GetProcessName();
+                return _currentProcessName;
             }
         }
 
@@ -89,8 +89,8 @@ namespace NLog.Internal
         {
             get
             {
-                this.GetProcessName();
-                return this._currentProcessBaseName;
+                GetProcessName();
+                return _currentProcessBaseName;
             }
         }
 
@@ -99,11 +99,11 @@ namespace NLog.Internal
         /// </summary>
         private void GetProcessName()
         {
-            if (this._currentProcessName == null)
+            if (_currentProcessName == null)
             {
                 try
                 {
-                    this._currentProcessName = Process.GetCurrentProcess().MainModule.FileName;
+                    _currentProcessName = Process.GetCurrentProcess().MainModule.FileName;
                 }
                 catch (Exception exception)
                 {
@@ -112,10 +112,10 @@ namespace NLog.Internal
                         throw;
                     }
 
-                    this._currentProcessName = UnknownProcessName;
+                    _currentProcessName = UnknownProcessName;
                 }
 
-                this._currentProcessBaseName = Path.GetFileNameWithoutExtension(this._currentProcessName);
+                _currentProcessBaseName = Path.GetFileNameWithoutExtension(_currentProcessName);
             }
         }
     }

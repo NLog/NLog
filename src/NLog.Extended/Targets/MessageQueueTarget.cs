@@ -77,10 +77,10 @@ namespace NLog.Targets
         /// </remarks>
         public MessageQueueTarget()
         {
-            this.MessageQueueProxy = new MessageQueueProxy();
-            this.Label = "NLog";
-            this.Encoding = Encoding.UTF8;
-            this.CheckIfQueueExists = true;
+            MessageQueueProxy = new MessageQueueProxy();
+            Label = "NLog";
+            Encoding = Encoding.UTF8;
+            CheckIfQueueExists = true;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public MessageQueueTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -160,20 +160,20 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (this.Queue == null)
+            if (Queue == null)
             {
                 return;
             }
 
-            var queue = this.Queue.Render(logEvent);
+            var queue = Queue.Render(logEvent);
 
-            if (this.CheckIfQueueExists)
+            if (CheckIfQueueExists)
             {
-                if (!IsFormatNameSyntax(queue) && !this.MessageQueueProxy.Exists(queue))
+                if (!IsFormatNameSyntax(queue) && !MessageQueueProxy.Exists(queue))
                 {
-                    if (this.CreateQueueIfNotExists)
+                    if (CreateQueueIfNotExists)
                     {
-                        this.MessageQueueProxy.Create(queue);
+                        MessageQueueProxy.Create(queue);
                     }
                     else
                     {
@@ -182,8 +182,8 @@ namespace NLog.Targets
                 }
             }
 
-            var msg = this.PrepareMessage(logEvent);
-            this.MessageQueueProxy.Send(queue, msg);
+            var msg = PrepareMessage(logEvent);
+            MessageQueueProxy.Send(queue, msg);
         }
 
         /// <summary>
@@ -199,21 +199,21 @@ namespace NLog.Targets
         protected virtual Message PrepareMessage(LogEventInfo logEvent)
         {
             var msg = new Message();
-            if (this.Label != null)
+            if (Label != null)
             {
-                msg.Label = this.Label.Render(logEvent);
+                msg.Label = Label.Render(logEvent);
             }
 
-            msg.Recoverable = this.Recoverable;
-            msg.Priority = this.messagePriority;
+            msg.Recoverable = Recoverable;
+            msg.Priority = messagePriority;
 
-            if (this.UseXmlEncoding)
+            if (UseXmlEncoding)
             {
                 msg.Body = Layout.Render(logEvent);
             }
             else
             {
-                var dataBytes = this.Encoding.GetBytes(this.Layout.Render(logEvent));
+                var dataBytes = Encoding.GetBytes(Layout.Render(logEvent));
 
                 msg.BodyStream.Write(dataBytes, 0, dataBytes.Length);
             }

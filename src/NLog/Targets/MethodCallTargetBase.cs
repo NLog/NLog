@@ -37,9 +37,9 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
+    using Common;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// The base class for all targets which call methods (local or remote). 
@@ -54,7 +54,7 @@ namespace NLog.Targets
         /// </summary>
         protected MethodCallTargetBase()
         {
-            this.Parameters = new List<MethodCallParameter>();
+            Parameters = new List<MethodCallParameter>();
         }
 
         /// <summary>
@@ -71,24 +71,24 @@ namespace NLog.Targets
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             object[] parameters = ConvetToParameterArray(logEvent.LogEvent, false);
-            this.DoInvoke(parameters, logEvent);
+            DoInvoke(parameters, logEvent);
         }
 
         internal object[] ConvetToParameterArray(LogEventInfo logEvent, bool ignoreGroupParameters)
         {
-            object[] parameters = new object[this.Parameters.Count];
+            object[] parameters = new object[Parameters.Count];
 
             for (int i = 0; i < parameters.Length; ++i)
             {
-                var param = this.Parameters[i];
+                var param = Parameters[i];
                 if (!param.EnableGroupLayout)
                 {
-                    var parameterValue = base.RenderLogEvent(param.Layout, logEvent);
+                    var parameterValue = RenderLogEvent(param.Layout, logEvent);
                     parameters[i] = Convert.ChangeType(parameterValue, param.ParameterType, CultureInfo.InvariantCulture);
                 }
                 else if (!ignoreGroupParameters)
                 {
-                    using (var targetBuilder = this.OptimizeBufferReuse ? this.ReusableLayoutBuilder.Allocate() : this.ReusableLayoutBuilder.None)
+                    using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
                     {
                         StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
                         if (param.GroupHeaderLayout != null)
@@ -107,7 +107,7 @@ namespace NLog.Targets
 
         internal string ConvertParameterGroupValue(IList<AsyncLogEventInfo> logEvents, MethodCallParameter param)
         {
-            using (var targetBuilder = this.OptimizeBufferReuse && logEvents.Count <= 1000 ? this.ReusableLayoutBuilder.Allocate() : this.ReusableLayoutBuilder.None)
+            using (var targetBuilder = OptimizeBufferReuse && logEvents.Count <= 1000 ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
                 if (param.GroupHeaderLayout != null)
@@ -158,7 +158,7 @@ namespace NLog.Targets
         {
             try
             {
-                this.DoInvoke(parameters);
+                DoInvoke(parameters);
                 continuation(null);
             }
             catch (Exception ex)

@@ -35,8 +35,8 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.ComponentModel;
-    using NLog.Common;
-    using NLog.Time;
+    using Common;
+    using Time;
 
 
     /// <summary>
@@ -63,7 +63,7 @@ namespace NLog.Targets.Wrappers
         public LimitingTargetWrapper(string name, Target wrappedTarget) 
             : this(wrappedTarget, 1000, TimeSpan.FromHours(1))
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -83,10 +83,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="interval">Interval in which the maximum number of messages can be written.</param>
         public LimitingTargetWrapper(Target wrappedTarget, int messageLimit, TimeSpan interval)
         {
-            this.MessageLimit = messageLimit;
-            this.Interval = interval;
-            this.WrappedTarget = wrappedTarget;
-            this.OptimizeBufferReuse = GetType() == typeof(LimitingTargetWrapper);
+            MessageLimit = messageLimit;
+            Interval = interval;
+            WrappedTarget = wrappedTarget;
+            OptimizeBufferReuse = GetType() == typeof(LimitingTargetWrapper);
         }
 
         /// <summary>
@@ -122,9 +122,9 @@ namespace NLog.Targets.Wrappers
         ///  </summary>
         protected override void InitializeTarget()
         {
-            if(this.MessageLimit<=0)
+            if(MessageLimit<=0)
                 throw new NLogConfigurationException("The LimitingTargetWrapper\'s MessageLimit property must be > 0.");
-            if(this.Interval<=TimeSpan.Zero)
+            if(Interval<=TimeSpan.Zero)
                 throw new NLogConfigurationException("The LimitingTargetWrapper\'s property Interval must be > 0.");
 
             base.InitializeTarget();
@@ -149,7 +149,7 @@ namespace NLog.Targets.Wrappers
 
             if (MessagesWrittenCount < MessageLimit)
             {
-                this.WrappedTarget.WriteAsyncLogEvent(logEvent);
+                WrappedTarget.WriteAsyncLogEvent(logEvent);
                 MessagesWrittenCount++;
             }
             else

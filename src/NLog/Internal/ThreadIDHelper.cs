@@ -35,7 +35,7 @@
 
 namespace NLog.Internal
 {
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Returns details about current process and thread in a portable manner.

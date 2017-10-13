@@ -52,7 +52,7 @@ namespace NLog.Internal
         /// <param name="implementation">The implementation.</param>
         public DictionaryAdapter(IDictionary<TKey, TValue> implementation)
         {
-            this._implementation = implementation;
+            _implementation = implementation;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace NLog.Internal
         /// </returns>
         public ICollection Values
         {
-            get { return new List<TValue>(this._implementation.Values); }
+            get { return new List<TValue>(_implementation.Values); }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace NLog.Internal
         /// </returns>
         public int Count
         {
-            get { return this._implementation.Count; }
+            get { return _implementation.Count; }
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace NLog.Internal
         /// </returns>
         public object SyncRoot
         {
-            get { return this._implementation; }
+            get { return _implementation; }
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace NLog.Internal
         /// </returns>
         public bool IsReadOnly
         {
-            get { return this._implementation.IsReadOnly; }
+            get { return _implementation.IsReadOnly; }
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace NLog.Internal
         /// </returns>
         public ICollection Keys
         {
-            get { return new List<TKey>(this._implementation.Keys); }
+            get { return new List<TKey>(_implementation.Keys); }
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace NLog.Internal
             {
                 TValue value;
 
-                if (this._implementation.TryGetValue((TKey)key, out value))
+                if (_implementation.TryGetValue((TKey)key, out value))
                 {
                     return value;
                 }
@@ -159,7 +159,7 @@ namespace NLog.Internal
 
             set
             {
-                this._implementation[(TKey)key] = (TValue)value;
+                _implementation[(TKey)key] = (TValue)value;
             }
         }
 
@@ -170,7 +170,7 @@ namespace NLog.Internal
         /// <param name="value">The <see cref="T:System.Object"/> to use as the value of the element to add.</param>
         public void Add(object key, object value)
         {
-            this._implementation.Add((TKey)key, (TValue)value);
+            _implementation.Add((TKey)key, (TValue)value);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace NLog.Internal
         /// </summary>
         public void Clear()
         {
-            this._implementation.Clear();
+            _implementation.Clear();
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace NLog.Internal
         /// </returns>
         public bool Contains(object key)
         {
-            return this._implementation.ContainsKey((TKey)key);
+            return _implementation.ContainsKey((TKey)key);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace NLog.Internal
         /// </returns>
         public IDictionaryEnumerator GetEnumerator()
         {
-            return new MyEnumerator(this._implementation.GetEnumerator());
+            return new MyEnumerator(_implementation.GetEnumerator());
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace NLog.Internal
         /// <param name="key">The key of the element to remove.</param>
         public void Remove(object key)
         {
-            this._implementation.Remove((TKey)key);
+            _implementation.Remove((TKey)key);
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace NLog.Internal
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         /// <summary>
@@ -247,7 +247,7 @@ namespace NLog.Internal
             /// <param name="wrapped">The wrapped.</param>
             public MyEnumerator(IEnumerator<KeyValuePair<TKey, TValue>> wrapped)
             {
-                this._wrapped = wrapped;
+                _wrapped = wrapped;
             }
 
             /// <summary>
@@ -259,7 +259,7 @@ namespace NLog.Internal
             /// </returns>
             public DictionaryEntry Entry
             {
-                get { return new DictionaryEntry(this._wrapped.Current.Key, this._wrapped.Current.Value); }
+                get { return new DictionaryEntry(_wrapped.Current.Key, _wrapped.Current.Value); }
             }
 
             /// <summary>
@@ -271,7 +271,7 @@ namespace NLog.Internal
             /// </returns>
             public object Key
             {
-                get { return this._wrapped.Current.Key; }
+                get { return _wrapped.Current.Key; }
             }
 
             /// <summary>
@@ -283,7 +283,7 @@ namespace NLog.Internal
             /// </returns>
             public object Value
             {
-                get { return this._wrapped.Current.Value; }
+                get { return _wrapped.Current.Value; }
             }
 
             /// <summary>
@@ -295,7 +295,7 @@ namespace NLog.Internal
             /// </returns>
             public object Current
             {
-                get { return this.Entry; }
+                get { return Entry; }
             }
 
             /// <summary>
@@ -306,7 +306,7 @@ namespace NLog.Internal
             /// </returns>
             public bool MoveNext()
             {
-                return this._wrapped.MoveNext();
+                return _wrapped.MoveNext();
             }
 
             /// <summary>
@@ -314,7 +314,7 @@ namespace NLog.Internal
             /// </summary>
             public void Reset()
             {
-                this._wrapped.Reset();
+                _wrapped.Reset();
             }
         }
     }

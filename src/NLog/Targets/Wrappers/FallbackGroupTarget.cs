@@ -34,8 +34,8 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Provides fallback-on-error.
@@ -77,7 +77,7 @@ namespace NLog.Targets.Wrappers
         public FallbackGroupTarget(string name, params Target[] targets)
             : this(targets)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace NLog.Targets.Wrappers
         public FallbackGroupTarget(params Target[] targets)
             : base(targets)
         {
-            this.OptimizeBufferReuse = GetType() == typeof(FallbackGroupTarget);
+            OptimizeBufferReuse = GetType() == typeof(FallbackGroupTarget);
         }
 
         /// <summary>
@@ -118,14 +118,14 @@ namespace NLog.Targets.Wrappers
                     if (ex == null)
                     {
                         // success
-                        lock (this._lockObject)
+                        lock (_lockObject)
                         {
-                            if (this._currentTarget != 0)
+                            if (_currentTarget != 0)
                             {
-                                if (this.ReturnToFirstOnSuccess)
+                                if (ReturnToFirstOnSuccess)
                                 {
-                                    InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[targetToInvoke]);
-                                    this._currentTarget = 0;
+                                    InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", Targets[targetToInvoke]);
+                                    _currentTarget = 0;
                                 }
                             }
                         }
@@ -135,16 +135,16 @@ namespace NLog.Targets.Wrappers
                     }
 
                     // failure
-                    lock (this._lockObject)
+                    lock (_lockObject)
                     {
-                        InternalLogger.Warn(ex, "Fallback: target '{0}' failed. Proceeding to the next one.", this.Targets[targetToInvoke]);
+                        InternalLogger.Warn(ex, "Fallback: target '{0}' failed. Proceeding to the next one.", Targets[targetToInvoke]);
 
                         // error while writing, go to the next one
-                        this._currentTarget = (targetToInvoke + 1) % this.Targets.Count;
+                        _currentTarget = (targetToInvoke + 1) % Targets.Count;
 
                         tryCounter++;
-                        targetToInvoke = this._currentTarget;
-                        if (tryCounter >= this.Targets.Count)
+                        targetToInvoke = _currentTarget;
+                        if (tryCounter >= Targets.Count)
                         {
                             targetToInvoke = -1;
                         }
@@ -152,7 +152,7 @@ namespace NLog.Targets.Wrappers
 
                     if (targetToInvoke >= 0)
                     {
-                        this.Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+                        Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
                     }
                     else
                     {
@@ -160,12 +160,12 @@ namespace NLog.Targets.Wrappers
                     }
                 };
 
-            lock (this._lockObject)
+            lock (_lockObject)
             {
-                targetToInvoke = this._currentTarget;
+                targetToInvoke = _currentTarget;
             }
 
-            this.Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+            Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
         }
     }
 }

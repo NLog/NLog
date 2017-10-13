@@ -33,7 +33,7 @@
 
 namespace NLog.Config
 {
-    using NLog.Targets;
+    using Targets;
 
     /// <summary>
     /// Provides simple programmatic configuration API used for trivial logging cases.

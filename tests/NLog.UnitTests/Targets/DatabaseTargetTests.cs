@@ -606,23 +606,23 @@ Dispose()
             DatabaseTarget dt;
 
             dt = new DatabaseTarget();
-            Assert.Equal("Server=.;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
+            Assert.Equal("Server=.;Trusted_Connection=SSPI;", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.DBHost = "${logger}";
-            Assert.Equal("Server=Logger1;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
+            Assert.Equal("Server=Logger1;Trusted_Connection=SSPI;", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
-            Assert.Equal("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", this.GetConnectionString(dt));
+            Assert.Equal("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
             dt.DBUserName = "user1";
             dt.DBPassword = "password1";
-            Assert.Equal("Server=HOST1;User id=user1;Password=password1;Database=Logger1", this.GetConnectionString(dt));
+            Assert.Equal("Server=HOST1;User id=user1;Password=password1;Database=Logger1", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.ConnectionString = "customConnectionString42";
@@ -630,7 +630,7 @@ Dispose()
             dt.DBDatabase = "${logger}";
             dt.DBUserName = "user1";
             dt.DBPassword = "password1";
-            Assert.Equal("customConnectionString42", this.GetConnectionString(dt));
+            Assert.Equal("customConnectionString42", GetConnectionString(dt));
         }
 
         [Fact]
@@ -810,7 +810,7 @@ Dispose()
 
                 dt.Initialize(null);
 #if !NETSTANDARD
-                Assert.Equal(typeof(System.Data.SqlClient.SqlConnection), dt.ConnectionType);
+                Assert.Equal(typeof(SqlConnection), dt.ConnectionType);
 #else
                 Assert.NotNull(dt.ConnectionType);
 #endif
@@ -874,7 +874,7 @@ Dispose()
 
                 testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
                 {
-                    CommandType = System.Data.CommandType.Text,
+                    CommandType = CommandType.Text,
                     Text = $@"
                     CREATE TABLE NLogTestTable (
                         Id int PRIMARY KEY,
@@ -1082,7 +1082,7 @@ Dispose()
 
                 testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
                 {
-                    CommandType = System.Data.CommandType.Text,
+                    CommandType = CommandType.Text,
                     Text = $@"
                     IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'NLogTestTable')
                         RETURN
@@ -1202,7 +1202,7 @@ Dispose()
 
             databaseTarget.Initialize(null);
             Assert.NotNull(databaseTarget.ProviderFactory);
-            Assert.Equal(typeof(System.Data.SqlClient.SqlClientFactory), databaseTarget.ProviderFactory.GetType());
+            Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
         }
 
         [Fact]
@@ -1226,7 +1226,7 @@ Dispose()
 
             databaseTarget.Initialize(null);
             Assert.NotNull(databaseTarget.ProviderFactory);
-            Assert.Equal(typeof(System.Data.SqlClient.SqlClientFactory), databaseTarget.ProviderFactory.GetType());
+            Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
         }
 #endif
 
@@ -1299,7 +1299,7 @@ Dispose()
 
             public MockDbConnection(string connectionString)
             {
-                this.ConnectionString = connectionString;
+                ConnectionString = connectionString;
             }
 
             public IDbTransaction BeginTransaction(IsolationLevel il)
@@ -1341,9 +1341,9 @@ Dispose()
 
             public void Open()
             {
-                LastConnectionString = this.ConnectionString;
-                AddToLog("Open('{0}').", this.ConnectionString);
-                if (this.ConnectionString == "cannotconnect")
+                LastConnectionString = ConnectionString;
+                AddToLog("Open('{0}').", ConnectionString);
+                if (ConnectionString == "cannotconnect")
                 {
                     throw new InvalidOperationException("Cannot open fake database.");
                 }
@@ -1382,7 +1382,7 @@ Dispose()
 
             public MockDbCommand()
             {
-                this.parameters = new MockParameterCollection(this);
+                parameters = new MockParameterCollection(this);
             }
 
             public void Cancel()
@@ -1400,14 +1400,14 @@ Dispose()
 
             public IDbDataParameter CreateParameter()
             {
-                ((MockDbConnection)this.Connection).AddToLog("CreateParameter({0})", this.paramCount);
+                ((MockDbConnection)Connection).AddToLog("CreateParameter({0})", paramCount);
                 return new MockDbParameter(this, paramCount++);
             }
 
             public int ExecuteNonQuery()
             {
-                ((MockDbConnection)this.Connection).AddToLog("ExecuteNonQuery: {0}", this.CommandText);
-                if (this.Connection.ConnectionString == "cannotexecute")
+                ((MockDbConnection)Connection).AddToLog("ExecuteNonQuery: {0}", CommandText);
+                if (Connection.ConnectionString == "cannotexecute")
                 {
                     throw new InvalidOperationException("Failure during ExecuteNonQuery");
                 }
@@ -1471,8 +1471,8 @@ Dispose()
 
             public DbType DbType
             {
-                get { return this.parameterType; }
-                set { this.parameterType = value; }
+                get { return parameterType; }
+                set { parameterType = value; }
             }
 
             public ParameterDirection Direction
@@ -1492,11 +1492,11 @@ Dispose()
 
             public string ParameterName
             {
-                get { return this.parameterName; }
+                get { return parameterName; }
                 set
                 {
                     ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Name={1}", paramId, value);
-                    this.parameterName = value;
+                    parameterName = value;
                 }
             }
 
@@ -1514,11 +1514,11 @@ Dispose()
 
             public object Value
             {
-                get { return this.parameterValue; }
+                get { return parameterValue; }
                 set
                 {
                     ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Value={1}", paramId, value);
-                    this.parameterValue = value;
+                    parameterValue = value;
                 }
             }
 
@@ -1552,7 +1552,7 @@ Dispose()
 
             public override string ToString()
             {
-                return "Parameter #" + this.paramId;
+                return "Parameter #" + paramId;
             }
         }
 
@@ -1714,7 +1714,7 @@ Dispose()
 
             public override void Open()
             {
-                LastOpenConnectionString = this.ConnectionString;
+                LastOpenConnectionString = ConnectionString;
                 OpenCount++;
             }
 

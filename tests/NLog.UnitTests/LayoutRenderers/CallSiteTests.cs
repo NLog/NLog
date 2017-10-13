@@ -764,7 +764,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         public async Task<IEnumerable<string>> AsyncMethod4()
         {
-            NLog.Logger logger = NLog.LogManager.GetLogger("AnnonTest");
+            Logger logger = LogManager.GetLogger("AnnonTest");
             logger.Info("Direct, async method");
 
             return await Task.FromResult(new string[] { "value1", "value2" });

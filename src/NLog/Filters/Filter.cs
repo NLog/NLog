@@ -33,7 +33,7 @@
 
 namespace NLog.Filters
 {
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// An abstract filter class. Provides a way to eliminate log messages
@@ -47,7 +47,7 @@ namespace NLog.Filters
         /// </summary>
         protected Filter()
         {
-            this.Action = FilterResult.Neutral;
+            Action = FilterResult.Neutral;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace NLog.Filters
         /// <returns>Filter result.</returns>
         internal FilterResult GetFilterResult(LogEventInfo logEvent)
         {
-            return this.Check(logEvent);
+            return Check(logEvent);
         }
 
         /// <summary>

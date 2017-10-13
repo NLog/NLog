@@ -89,11 +89,11 @@ namespace NLog.UnitTests.LogReceiverService
             };
 
             service.ProcessLogMessages(events);
-            this.AssertDebugCounter("debug1", 1);
-            this.AssertDebugCounter("debug2", 0);
-            this.AssertDebugCounter("debug3", 1);
-            this.AssertDebugLastMessage("debug1", "message1 logger1 logger2 logger3");
-            this.AssertDebugLastMessage("debug3", "message1 logger1 logger2 zzz");
+            AssertDebugCounter("debug1", 1);
+            AssertDebugCounter("debug2", 0);
+            AssertDebugCounter("debug3", 1);
+            AssertDebugLastMessage("debug1", "message1 logger1 logger2 logger3");
+            AssertDebugLastMessage("debug3", "message1 logger1 logger2 zzz");
         }
     }
 #endif

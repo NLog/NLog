@@ -489,7 +489,7 @@ namespace NLog.Common
         {
             try
             {
-                if (InternalLogger.LogLevel == NLog.LogLevel.Off)
+                if (LogLevel == LogLevel.Off)
                 {
                     return;
                 }

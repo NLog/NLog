@@ -70,14 +70,14 @@ namespace NLog
         {
             get
             {
-                this.InitAttributes();
-                return this._logFactory;
+                InitAttributes();
+                return _logFactory;
             }
 
             set
             {
-                this._attributesLoaded = true;
-                this._logFactory = value;
+                _attributesLoaded = true;
+                _logFactory = value;
             }
         }
 
@@ -88,14 +88,14 @@ namespace NLog
         {
             get
             {
-                this.InitAttributes();
-                return this._defaultLogLevel;
+                InitAttributes();
+                return _defaultLogLevel;
             }
 
             set
             {
-                this._attributesLoaded = true;
-                this._defaultLogLevel = value;
+                _attributesLoaded = true;
+                _defaultLogLevel = value;
             }
         }
 
@@ -106,14 +106,14 @@ namespace NLog
         {
             get
             {
-                this.InitAttributes();
-                return this._forceLogLevel;
+                InitAttributes();
+                return _forceLogLevel;
             }
 
             set
             {
-                this._attributesLoaded = true;
-                this._forceLogLevel = value;
+                _attributesLoaded = true;
+                _forceLogLevel = value;
             }
         }
 
@@ -124,14 +124,14 @@ namespace NLog
         {
             get
             {
-                this.InitAttributes();
-                return this._disableFlush;
+                InitAttributes();
+                return _disableFlush;
             }
 
             set
             {
-                this._attributesLoaded = true;
-                this._disableFlush = value;
+                _attributesLoaded = true;
+                _disableFlush = value;
             }
         }
 
@@ -152,14 +152,14 @@ namespace NLog
         {
             get
             {
-                this.InitAttributes();
-                return this._autoLoggerName;
+                InitAttributes();
+                return _autoLoggerName;
             }
 
             set
             {
-                this._attributesLoaded = true;
-                this._autoLoggerName = value;
+                _attributesLoaded = true;
+                _autoLoggerName = value;
             }
         }
 
@@ -169,7 +169,7 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void Write(string message)
         {
-            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
+            ProcessLogEventInfo(DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace NLog
         /// <param name="message">A message to write.</param>
         public override void WriteLine(string message)
         {
-            this.ProcessLogEventInfo(this.DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
+            ProcessLogEventInfo(DefaultLogLevel, null, message, null, null, TraceEventType.Resume, null);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace NLog
         /// <param name="message">A message to emit.</param>
         public override void Fail(string message)
         {
-            this.ProcessLogEventInfo(LogLevel.Error, null, message, null, null, TraceEventType.Error, null);
+            ProcessLogEventInfo(LogLevel.Error, null, message, null, null, TraceEventType.Error, null);
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace NLog
         /// <param name="detailMessage">A detailed message to emit.</param>
         public override void Fail(string message, string detailMessage)
         {
-            this.ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null, TraceEventType.Error, null);
+            ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null, TraceEventType.Error, null);
         }
 
         /// <summary>
@@ -213,11 +213,11 @@ namespace NLog
         /// </summary>
         public override void Flush()
         {
-            if (!this.DisableFlush)
+            if (!DisableFlush)
             {
-                if (this.LogFactory != null)
+                if (LogFactory != null)
                 {
-                    this.LogFactory.Flush();
+                    LogFactory.Flush();
                 }
                 else
                 {
@@ -239,7 +239,7 @@ namespace NLog
             if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, string.Empty, null, data, null))
                 return;
 
-            this.TraceData(eventCache, source, eventType, id, new object[] { data });
+            TraceData(eventCache, source, eventType, id, new object[] { data });
         }
 
         /// <summary>
@@ -268,7 +268,7 @@ namespace NLog
                 sb.Append("}");
             }
 
-            this.ProcessLogEventInfo(TranslateLogLevel(eventType), source, sb.ToString(), data, id, eventType, null);
+            ProcessLogEventInfo(TranslateLogLevel(eventType), source, sb.ToString(), data, id, eventType, null);
         }
 
         /// <summary>
@@ -283,7 +283,7 @@ namespace NLog
             if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, string.Empty, null, null, null))
                 return;
 
-            this.ProcessLogEventInfo(TranslateLogLevel(eventType), source, string.Empty, null, id, eventType, null);
+            ProcessLogEventInfo(TranslateLogLevel(eventType), source, string.Empty, null, id, eventType, null);
         }
 
         /// <summary>
@@ -300,7 +300,7 @@ namespace NLog
             if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, format, args, null, null))
                 return;
 
-            this.ProcessLogEventInfo(TranslateLogLevel(eventType), source, format, args, id, eventType, null);
+            ProcessLogEventInfo(TranslateLogLevel(eventType), source, format, args, id, eventType, null);
         }
 
         /// <summary>
@@ -316,7 +316,7 @@ namespace NLog
             if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, message, null, null, null))
                 return;
 
-            this.ProcessLogEventInfo(TranslateLogLevel(eventType), source, message, null, id, eventType, null);
+            ProcessLogEventInfo(TranslateLogLevel(eventType), source, message, null, id, eventType, null);
         }
 
         /// <summary>
@@ -332,7 +332,7 @@ namespace NLog
             if (Filter != null && !Filter.ShouldTrace(eventCache, source, TraceEventType.Transfer, id, message, null, null, null))
                 return;
 
-            this.ProcessLogEventInfo(LogLevel.Debug, source, message, null, id, TraceEventType.Transfer, relatedActivityId);
+            ProcessLogEventInfo(LogLevel.Debug, source, message, null, id, TraceEventType.Transfer, relatedActivityId);
         }
 
         /// <summary>
@@ -387,11 +387,11 @@ namespace NLog
         /// </summary>
         protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
         {
-            loggerName = (loggerName ?? this.Name) ?? string.Empty;
+            loggerName = (loggerName ?? Name) ?? string.Empty;
 
             StackTrace stackTrace = null;
             int userFrameIndex = -1;
-            if (this.AutoLoggerName)
+            if (AutoLoggerName)
             {
                 stackTrace = new StackTrace();
                 MethodBase userMethod = null;
@@ -401,7 +401,7 @@ namespace NLog
                     var frame = stackTrace.GetFrame(i);
                     var method = frame.GetMethod();
 
-                    if (method.DeclaringType == this.GetType())
+                    if (method.DeclaringType == GetType())
                     {
                         // skip all methods of this type
                         continue;
@@ -428,16 +428,16 @@ namespace NLog
             }
 
             ILogger logger;
-            if (this.LogFactory != null)
+            if (LogFactory != null)
             {
-                logger = this.LogFactory.GetLogger(loggerName);
+                logger = LogFactory.GetLogger(loggerName);
             }
             else
             {
                 logger = LogManager.GetLogger(loggerName);
             }
 
-            logLevel = this._forceLogLevel ?? logLevel;
+            logLevel = _forceLogLevel ?? logLevel;
             if (!logger.IsEnabled(logLevel))
             {
                 return; // We are done
@@ -458,7 +458,7 @@ namespace NLog
 
             ev.Message = message;
             ev.Parameters = arguments;
-            ev.Level = this._forceLogLevel ?? logLevel;
+            ev.Level = _forceLogLevel ?? logLevel;
 
             if (eventId.HasValue)
             {
@@ -475,10 +475,10 @@ namespace NLog
 
         private void InitAttributes()
         {
-            if (!this._attributesLoaded)
+            if (!_attributesLoaded)
             {
-                this._attributesLoaded = true;
-                foreach (DictionaryEntry de in this.Attributes)
+                _attributesLoaded = true;
+                foreach (DictionaryEntry de in Attributes)
                 {
                     var key = (string)de.Key;
                     var value = (string)de.Value;
@@ -486,19 +486,19 @@ namespace NLog
                     switch (key.ToUpperInvariant())
                     {
                         case "DEFAULTLOGLEVEL":
-                            this._defaultLogLevel = LogLevel.FromString(value);
+                            _defaultLogLevel = LogLevel.FromString(value);
                             break;
 
                         case "FORCELOGLEVEL":
-                            this._forceLogLevel = LogLevel.FromString(value);
+                            _forceLogLevel = LogLevel.FromString(value);
                             break;
 
                         case "AUTOLOGGERNAME":
-                            this.AutoLoggerName = XmlConvert.ToBoolean(value);
+                            AutoLoggerName = XmlConvert.ToBoolean(value);
                             break;
 
                         case "DISABLEFLUSH":
-                            this._disableFlush = Boolean.Parse(value);
+                            _disableFlush = Boolean.Parse(value);
                             break;
                     }
                 }

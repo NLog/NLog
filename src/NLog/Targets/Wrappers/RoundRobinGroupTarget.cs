@@ -35,8 +35,8 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Threading;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Distributes log events to targets in a round-robin fashion.
@@ -79,7 +79,7 @@ namespace NLog.Targets.Wrappers
         public RoundRobinGroupTarget(string name, params Target[] targets)
              : this(targets)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace NLog.Targets.Wrappers
         public RoundRobinGroupTarget(params Target[] targets)
             : base(targets)
         {
-            this.OptimizeBufferReuse = GetType() == typeof(RoundRobinGroupTarget);
+            OptimizeBufferReuse = GetType() == typeof(RoundRobinGroupTarget);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace NLog.Targets.Wrappers
         /// </remarks>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (this.Targets.Count == 0)
+            if (Targets.Count == 0)
             {
                 logEvent.Continuation(null);
                 return;
@@ -114,13 +114,13 @@ namespace NLog.Targets.Wrappers
 
             int selectedTarget;
 
-            lock (this._lockObject)
+            lock (_lockObject)
             {
-                selectedTarget = this._currentTarget;
-                this._currentTarget = (this._currentTarget + 1) % this.Targets.Count;
+                selectedTarget = _currentTarget;
+                _currentTarget = (_currentTarget + 1) % Targets.Count;
             }
 
-            this.Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
+            Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
         }
     }
 }

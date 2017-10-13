@@ -47,8 +47,8 @@ namespace NLog.Config
         /// <param name="deactivatedConfiguration">The old configuration.</param>
         public LoggingConfigurationChangedEventArgs(LoggingConfiguration activatedConfiguration, LoggingConfiguration deactivatedConfiguration)
         {
-            this.ActivatedConfiguration = activatedConfiguration;
-            this.DeactivatedConfiguration = deactivatedConfiguration;
+            ActivatedConfiguration = activatedConfiguration;
+            DeactivatedConfiguration = deactivatedConfiguration;
         }
 
         /// <summary>

@@ -39,7 +39,7 @@ namespace NLog.Internal.NetworkSenders
     using System.IO;
     using System.Net;
     using System.Net.Sockets;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Sends messages over the network as UDP datagrams.
@@ -57,7 +57,7 @@ namespace NLog.Internal.NetworkSenders
         public UdpNetworkSender(string url, AddressFamily addressFamily)
             : base(url)
         {
-            this.AddressFamily = addressFamily;
+            AddressFamily = addressFamily;
         }
 
         internal AddressFamily AddressFamily { get; set; }
@@ -75,7 +75,7 @@ namespace NLog.Internal.NetworkSenders
             var proxy = new SocketProxy(addressFamily, socketType, protocolType);
 
             Uri uri;
-            if (Uri.TryCreate(this.Address, UriKind.Absolute, out uri)
+            if (Uri.TryCreate(Address, UriKind.Absolute, out uri)
                 && uri.Host.Equals(IPAddress.Broadcast.ToString(), StringComparison.OrdinalIgnoreCase))
             {
                 proxy.UnderlyingSocket.EnableBroadcast = true;
@@ -89,8 +89,8 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         protected override void DoInitialize()
         {
-            this._endpoint = this.ParseEndpointAddress(new Uri(this.Address), this.AddressFamily);
-            this._socket = this.CreateSocket(this._endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+            _endpoint = ParseEndpointAddress(new Uri(Address), AddressFamily);
+            _socket = CreateSocket(_endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace NLog.Internal.NetworkSenders
         {
             lock (this)
             {
-                this.CloseSocket(continuation);
+                CloseSocket(continuation);
             }
         }
 
@@ -109,8 +109,8 @@ namespace NLog.Internal.NetworkSenders
         {
             try
             {
-                var sock = this._socket;
-                this._socket = null;
+                var sock = _socket;
+                _socket = null;
 
                 if (sock != null)
                 {
@@ -146,12 +146,12 @@ namespace NLog.Internal.NetworkSenders
                 var args = new SocketAsyncEventArgs();
                 args.SetBuffer(bytes, offset, length);
                 args.UserToken = asyncContinuation;
-                args.Completed += this.SocketOperationCompleted;
-                args.RemoteEndPoint = this._endpoint;
+                args.Completed += SocketOperationCompleted;
+                args.RemoteEndPoint = _endpoint;
 
-                if (!this._socket.SendToAsync(args))
+                if (!_socket.SendToAsync(args))
                 {
-                    this.SocketOperationCompleted(this._socket, args);
+                    SocketOperationCompleted(_socket, args);
                 }
             }
         }

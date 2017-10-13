@@ -93,7 +93,7 @@ namespace NLog.Internal
                 return true;
 #elif !SILVERLIGHT && !__ANDROID__ && !__IOS__
                 // Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
-                if (IsMono && System.Environment.Version.Major < 4)
+                if (IsMono && Environment.Version.Major < 4)
                     return false;   // MONO ver. 4 is needed for named Mutex to work
                 else
                     return true;

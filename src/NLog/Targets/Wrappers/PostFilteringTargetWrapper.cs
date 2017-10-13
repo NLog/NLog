@@ -35,10 +35,10 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Common;
-    using NLog.Conditions;
-    using NLog.Config;
-    using NLog.Internal;
+    using Common;
+    using Conditions;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Filters buffered log entries based on a set of conditions that are evaluated on a group of events.
@@ -77,7 +77,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public PostFilteringTargetWrapper() : this(null)
         {
-            this.Rules = new List<FilteringRule>();
+            Rules = new List<FilteringRule>();
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public PostFilteringTargetWrapper(Target wrappedTarget)
         {
-            this.Rules = new List<FilteringRule>();
-            this.WrappedTarget = wrappedTarget;
+            Rules = new List<FilteringRule>();
+            WrappedTarget = wrappedTarget;
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace NLog.Targets.Wrappers
         public PostFilteringTargetWrapper(string name, Target wrappedTarget)
             : this(wrappedTarget)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace NLog.Targets.Wrappers
             // evaluate all the rules to get the filtering condition
             for (int i = 0; i < logEvents.Count; ++i)
             {
-                foreach (FilteringRule rule in this.Rules)
+                foreach (FilteringRule rule in Rules)
                 {
                     object v = rule.Exists.Evaluate(logEvents[i].LogEvent);
 
@@ -166,12 +166,12 @@ namespace NLog.Targets.Wrappers
 
             if (resultFilter == null)
             {
-                resultFilter = this.DefaultFilter;
+                resultFilter = DefaultFilter;
             }
 
             if (resultFilter == null)
             {
-                this.WrappedTarget.WriteAsyncLogEvents(logEvents);
+                WrappedTarget.WriteAsyncLogEvents(logEvents);
             }
             else
             {
@@ -197,8 +197,8 @@ namespace NLog.Targets.Wrappers
                 InternalLogger.Trace("After filtering: {0} events.", resultBuffer.Count);
                 if (resultBuffer.Count > 0)
                 {
-                    InternalLogger.Trace("Sending to {0}", this.WrappedTarget);
-                    this.WrappedTarget.WriteAsyncLogEvents(resultBuffer);
+                    InternalLogger.Trace("Sending to {0}", WrappedTarget);
+                    WrappedTarget.WriteAsyncLogEvents(resultBuffer);
                 }
             }
         }

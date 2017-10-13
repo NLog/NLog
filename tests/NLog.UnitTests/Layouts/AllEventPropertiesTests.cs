@@ -140,7 +140,7 @@ namespace NLog.UnitTests.Layouts
                 .Write();
 
 
-            base.AssertDebugLastMessage("m","Test=InfoWrite, coolness=200%, a=not b");
+            AssertDebugLastMessage("m","Test=InfoWrite, coolness=200%, a=not b");
             
         }
 
@@ -177,9 +177,9 @@ namespace NLog.UnitTests.Layouts
                 .Property("a", "not b")
                 .Write();
 
-            base.AssertDebugLastMessageContains("m", "CallerMemberName=");
-            base.AssertDebugLastMessageContains("m", "CallerFilePath=");
-            base.AssertDebugLastMessageContains("m", "CallerLineNumber=");
+            AssertDebugLastMessageContains("m", "CallerMemberName=");
+            AssertDebugLastMessageContains("m", "CallerFilePath=");
+            AssertDebugLastMessageContains("m", "CallerLineNumber=");
         }
 
         private static LogEventInfo BuildLogEventWithProperties()

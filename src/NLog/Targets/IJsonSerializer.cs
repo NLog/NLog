@@ -52,11 +52,11 @@ namespace NLog.Targets
     }
 
 #pragma warning disable 618
-    internal class JsonConverterLegacy : IJsonConverter, NLog.Targets.IJsonSerializer
+    internal class JsonConverterLegacy : IJsonConverter, IJsonSerializer
     {
-        private readonly NLog.Targets.IJsonSerializer _jsonSerializer;
+        private readonly IJsonSerializer _jsonSerializer;
 
-        public JsonConverterLegacy(NLog.Targets.IJsonSerializer jsonSerializer)
+        public JsonConverterLegacy(IJsonSerializer jsonSerializer)
         {
             _jsonSerializer = jsonSerializer;
         }
@@ -72,7 +72,7 @@ namespace NLog.Targets
             return true;
         }
 
-        string NLog.Targets.IJsonSerializer.SerializeObject(object value)
+        string IJsonSerializer.SerializeObject(object value)
         {
             return _jsonSerializer.SerializeObject(value);
         }
