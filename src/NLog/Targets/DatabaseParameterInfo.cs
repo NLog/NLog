@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Data;
-
 #if !SILVERLIGHT
 
 namespace NLog.Targets

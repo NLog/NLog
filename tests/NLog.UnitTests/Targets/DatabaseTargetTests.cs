@@ -618,8 +618,8 @@ Dispose()
             DatabaseTarget dt = c.FindTargetByName("dt") as DatabaseTarget;
             Assert.NotNull(dt);
             dt.Initialize(c);
-            Assert.Equal(dt.ParameterDbTypePropertyName, "DbType");
-            Assert.Equal(dt.ParameterConverterType, typeof(DatabaseParameterConverter));
+            Assert.Equal("DbType", dt.ParameterDbTypePropertyName);
+            Assert.Equal(typeof(DatabaseParameterConverter), dt.ParameterConverterType);
         }
 
         [Fact]
@@ -644,8 +644,8 @@ Dispose()
 
             DatabaseTarget dt = c.FindTargetByName("dt") as DatabaseTarget;
             Assert.NotNull(dt);
-            Assert.Equal(dt.ParameterDbTypePropertyName, "MockDbType");
-            Assert.Equal(dt.ParameterConverterType, typeof(MockDatabaseParameterConverter));
+            Assert.Equal("MockDbType", dt.ParameterDbTypePropertyName);
+            Assert.Equal(typeof(MockDatabaseParameterConverter), dt.ParameterConverterType);
             dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
             dt.Initialize(c);
             List<Exception> exceptions = new List<Exception>();
