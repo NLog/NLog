@@ -89,8 +89,10 @@ namespace NLog.Internal
         {
             get
             {
+#if NETSTANDARD1_5
+                return true;
+#elif !SILVERLIGHT && !__ANDROID__ && !__IOS__
                 // Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
                 if (IsMono && Environment.Version.Major < 4)
                     return false;   // MONO ver. 4 is needed for named Mutex to work
                 else
@@ -103,6 +105,15 @@ namespace NLog.Internal
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {
+#if NETSTANDARD1_5
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+                return RuntimeOS.Windows;
+            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
+                return RuntimeOS.Unix;
+            else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
+                return RuntimeOS.Unix;
+            return RuntimeOS.Unknown;
+#else
             PlatformID platformID = Environment.OSVersion.Platform;
             if ((int)platformID == 4 || (int)platformID == 128)
             {
@@ -125,6 +136,7 @@ namespace NLog.Internal
             }
 
             return RuntimeOS.Unknown;
+#endif
         }
     }
 }

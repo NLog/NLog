@@ -533,7 +533,7 @@ namespace NLog.Config
         {
             content.AssertName("nlog", "configuration");
 
-            switch (content.LocalName.ToUpper(CultureInfo.InvariantCulture))
+            switch (content.LocalName.ToUpperInvariant())
             {
                 case "CONFIGURATION":
                     ParseConfigurationElement(content, filePath, autoReloadDefault);
@@ -609,7 +609,7 @@ namespace NLog.Config
             var children = nlogElement.Children.ToList();
 
             //first load the extensions, as the can be used in other elements (targets etc)
-            var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.InvariantCultureIgnoreCase)).ToList();
+            var extensionsChilds = children.Where(child => child.LocalName.Equals("EXTENSIONS", StringComparison.OrdinalIgnoreCase)).ToList();
             foreach (var extensionsChild in extensionsChilds)
             {
                 ParseExtensionsElement(extensionsChild, Path.GetDirectoryName(filePath));
@@ -620,7 +620,7 @@ namespace NLog.Config
             //parse all other direct elements
             foreach (var child in children)
             {
-                switch (child.LocalName.ToUpper(CultureInfo.InvariantCulture))
+                switch (child.LocalName.ToUpperInvariant())
                 {
                     case "EXTENSIONS":
                         //already parsed
@@ -770,7 +770,7 @@ namespace NLog.Config
             var children = loggerElement.Children.ToList();
             foreach (var child in children)
             {
-                switch (child.LocalName.ToUpper(CultureInfo.InvariantCulture))
+                switch (child.LocalName.ToUpperInvariant())
                 {
                     case "FILTERS":
                         ParseFilters(rule, child);
@@ -824,7 +824,7 @@ namespace NLog.Config
                 string name = targetElement.LocalName;
                 string typeAttributeVal = StripOptionalNamespacePrefix(targetElement.GetOptionalAttribute("type", null));
 
-                switch (name.ToUpper(CultureInfo.InvariantCulture))
+                switch (name.ToUpperInvariant())
                 {
                     case "DEFAULT-WRAPPER":
                         defaultWrapperElement = targetElement;
@@ -1042,15 +1042,7 @@ namespace NLog.Config
         {
             try
             {
-                InternalLogger.Info("Loading assembly name: {0}", assemblyName);
-#if SILVERLIGHT && !WINDOWS_PHONE
-                    var si = Application.GetResourceStream(new Uri(assemblyName + ".dll", UriKind.Relative));
-                    var assemblyPart = new AssemblyPart();
-                    Assembly asm = assemblyPart.Load(si.Stream);
-#else
-                Assembly asm = Assembly.Load(assemblyName);
-#endif
-
+                Assembly asm = AssemblyHelpers.LoadFromName(assemblyName);
                 ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
             }
             catch (Exception exception)
@@ -1075,16 +1067,7 @@ namespace NLog.Config
         {
             try
             {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                    var si = Application.GetResourceStream(new Uri(assemblyFile, UriKind.Relative));
-                    var assemblyPart = new AssemblyPart();
-                    Assembly asm = assemblyPart.Load(si.Stream);
-#else
-                string fullFileName = Path.Combine(baseDirectory, assemblyFile);
-                InternalLogger.Info("Loading assembly file: {0}", fullFileName);
-
-                Assembly asm = Assembly.LoadFrom(fullFileName);
-#endif
+                Assembly asm = AssemblyHelpers.LoadFromPath(assemblyFile, baseDirectory);
                 ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
             }
             catch (Exception exception)
@@ -1235,7 +1218,7 @@ namespace NLog.Config
             TimeSource.Current = newTimeSource;
         }
 
-        #endregion
+#endregion
 
         private static string GetFileLookupKey(string fileName)
         {

@@ -110,6 +110,7 @@ namespace NLog.Internal
         /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
         public static bool MustBeRethrownImmediately(this Exception exception)
         {
+#if !NETSTANDARD1_5
             if (exception is StackOverflowException)
             {
                 return true;
@@ -119,6 +120,7 @@ namespace NLog.Internal
             {
                 return true;
             }
+#endif
 
             if (exception is OutOfMemoryException)
             {

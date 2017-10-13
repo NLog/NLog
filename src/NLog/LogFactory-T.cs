@@ -63,6 +63,9 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public new T GetCurrentClassLogger()
         {
+#if NETSTANDARD1_5
+            return this.GetLogger(Internal.StackTraceUsageUtils.GetClassFullName());
+#else
 #if SILVERLIGHT
             StackFrame frame = new StackFrame(1);
 #else
@@ -70,6 +73,7 @@ namespace NLog
 #endif
 
             return GetLogger(frame.GetMethod().DeclaringType.FullName);
+#endif
         }
     }
 }

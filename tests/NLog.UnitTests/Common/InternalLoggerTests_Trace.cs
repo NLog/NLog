@@ -236,6 +236,7 @@ namespace NLog.UnitTests.Common
             Assert.Equal("NLog: Fatal Logger1 Hello" + Environment.NewLine, mockTraceListener.Messages.First());
         }
 
+#if !NETSTANDARD1_5
         [Fact(Skip = "This test's not working - explenation is in documentation: https://msdn.microsoft.com/pl-pl/library/system.stackoverflowexception(v=vs.110).aspx#Anchor_5. To clarify if StackOverflowException should be thrown.")]
         public void ShouldThrowStackOverFlowExceptionWhenUsingNLogTraceListener()
         {
@@ -243,6 +244,7 @@ namespace NLog.UnitTests.Common
 
             Assert.Throws<StackOverflowException>(() => Trace.WriteLine("StackOverFlowException"));
         }
+#endif
 
         /// <summary>
         /// Helper method to setup tests configuration
@@ -256,7 +258,7 @@ namespace NLog.UnitTests.Common
             var internalLogToTraceAttribute = "";
             if (internalLogToTrace.HasValue)
             {
-                internalLogToTraceAttribute = string.Format(" internalLogToTrace='{0}'", internalLogToTrace.Value);
+                internalLogToTraceAttribute = $" internalLogToTrace='{internalLogToTrace.Value}'";
             }
 
             var xmlConfiguration = string.Format(XmlConfigurationFormat, logLevel, internalLogToTraceAttribute);
@@ -314,9 +316,13 @@ namespace NLog.UnitTests.Common
         /// Creates <see cref="NLogTraceListener"/> instance.
         /// </summary>
         /// <returns><see cref="NLogTraceListener"/> instance.</returns>
-        private static NLogTraceListener CreateNLogTraceListener()
+        private static TraceListener CreateNLogTraceListener()
         {
+#if !NETSTANDARD1_5
             return new NLogTraceListener {Name = "Logger1", ForceLogLevel = LogLevel.Trace};
+#else
+            return null;
+#endif
         }
 
         private class MockTraceListener : TraceListener

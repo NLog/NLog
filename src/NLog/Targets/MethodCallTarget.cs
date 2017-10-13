@@ -38,6 +38,7 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.Linq;
     using Common;
+    using Internal;
 
     /// <summary>
     /// Calls the specified static method on each log message and passes contextual parameters to it.

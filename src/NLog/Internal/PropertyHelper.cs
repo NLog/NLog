@@ -45,6 +45,7 @@ namespace NLog.Internal
     using Common;
     using Conditions;
     using Config;
+    using Internal;
     using Layouts;
     using Targets;
 
@@ -164,7 +165,7 @@ namespace NLog.Internal
 
         internal static Type GetArrayItemType(PropertyInfo propInfo)
         {
-            var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
+            var arrayParameterAttribute = propInfo.GetCustomAttribute<ArrayParameterAttribute>();
             if (arrayParameterAttribute != null)
             {
                 return arrayParameterAttribute.ItemType;
@@ -196,6 +197,43 @@ namespace NLog.Internal
 
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
+#if NETSTANDARD1_5
+            try
+            {
+                if (string.Equals(resultType.Namespace, "System", StringComparison.Ordinal))
+                {
+                    result = null;
+                    return false;
+                }
+
+                var methods = resultType.GetTypeInfo().GetMethods(BindingFlags.Public | BindingFlags.Static);
+                foreach (MethodInfo method in methods.Where(m => m.Name == "op_Implicit"))
+                {
+                    if (resultType.IsAssignableFrom(method.ReturnType))
+                    {
+                        var parameters = method.GetParameters();
+                        if (parameters.Count() == 1 && parameters[0].ParameterType == value.GetType())
+                        {
+                            try
+                            {
+                                result = method.Invoke(null, new[] { value });
+                                return true;
+                            }
+                            catch
+                            {
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Implicit Conversion Failed");
+            }
+
+            result = null;
+            return false;
+#else
             MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
             if (operatorImplicitMethod == null)
             {
@@ -205,6 +243,7 @@ namespace NLog.Internal
 
             result = operatorImplicitMethod.Invoke(null, new object[] { value });
             return true;
+#endif
         }
 
         private static bool TryNLogSpecificConversion(Type propertyType, string value, out object newValue, ConfigurationItemFactory configurationItemFactory)
@@ -227,7 +266,7 @@ namespace NLog.Internal
 
         private static bool TryGetEnumValue(Type resultType, string value, out object result, bool flagsEnumAllowed)
         {
-            if (!resultType.IsEnum)
+            if (!resultType.IsEnum())
             {
                 result = null;
                 return false;
@@ -305,7 +344,7 @@ namespace NLog.Internal
         /// <returns></returns>
         private static bool TryFlatListConversion(Type type, string valueRaw, out object newValue)
         {
-            if (type.IsGenericType)
+            if (type.IsGenericType())
             {
                 var typeDefinition = type.GetGenericTypeDefinition();
 #if NET3_5
@@ -420,7 +459,7 @@ namespace NLog.Internal
             var retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
             foreach (PropertyInfo propInfo in GetAllReadableProperties(t))
             {
-                var arrayParameterAttribute = (ArrayParameterAttribute)Attribute.GetCustomAttribute(propInfo, typeof(ArrayParameterAttribute));
+                var arrayParameterAttribute = propInfo.GetCustomAttribute<ArrayParameterAttribute>();
 
                 if (arrayParameterAttribute != null)
                 {

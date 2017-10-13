@@ -62,39 +62,39 @@ namespace NLog.MessageTemplates
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
 
         /// <inheritDoc/>
-        public bool SerializeObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        public bool StringifyObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
-            bool withoutFormat = string.IsNullOrEmpty(format);
-            if (!withoutFormat && format == "@")
-            {
-                return Config.ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
-            }
-            else if (!withoutFormat && format == "$")
-            {
-                builder.Append('"');
-                SerializeToString(value, null, formatProvider, builder);
-                builder.Append('"');
-                return true;
-            }
-            else
-            {
-                if (SerializeSimpleObject(value, format, formatProvider, builder, withoutFormat))
-                {
-                    return true;
-                }
-
-                IEnumerable collection = value as IEnumerable;
-                if (collection != null)
-                {
-                    return SerializeWithoutCyclicLoop(collection, format, formatProvider, builder, withoutFormat, default(SingleItemOptimizedHashSet<object>), 0);
-                }
-
-                builder.Append(Convert.ToString(value, formatProvider));
-                return true;
-            }
+            builder.Append('"');
+            FormatToString(value, null, formatProvider, builder);
+            builder.Append('"');
+            return true;
         }
 
-        private bool SerializeSimpleObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder, bool withoutFormat)
+        /// <inheritDoc/>
+        public bool FormatObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        {
+            if (SerializeSimpleObject(value, format, formatProvider, builder))
+            {
+                return true;
+            }
+
+            IEnumerable collection = value as IEnumerable;
+            if (collection != null)
+            {
+                return SerializeWithoutCyclicLoop(collection, format, formatProvider, builder, default(SingleItemOptimizedHashSet<object>), 0);
+            }
+
+            builder.Append(Convert.ToString(value, formatProvider));
+            return true;
+        }
+
+        /// <inheritDoc/>
+        public bool SerializeObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        {
+            return Config.ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
+        }
+
+        private bool SerializeSimpleObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
             // todo support all scalar types: 
 
@@ -105,7 +105,7 @@ namespace NLog.MessageTemplates
             var stringValue = value as string;
             if (stringValue != null)
             {
-                bool includeQuotes = withoutFormat || format != LiteralFormatSymbol;
+                bool includeQuotes = format != LiteralFormatSymbol;
                 if (includeQuotes) builder.Append('"');
                 builder.Append(stringValue);
                 if (includeQuotes) builder.Append('"');
@@ -119,7 +119,7 @@ namespace NLog.MessageTemplates
             }
 
             IFormattable formattable = null;
-            if (!withoutFormat && (formattable = value as IFormattable) != null)
+            if (!string.IsNullOrEmpty(format) && (formattable = value as IFormattable) != null)
             {
                 builder.Append(formattable.ToString(format, formatProvider));
                 return true;
@@ -137,7 +137,7 @@ namespace NLog.MessageTemplates
                         }
                     case TypeCode.Char:
                         {
-                            bool includeQuotes = withoutFormat || format != LiteralFormatSymbol;
+                            bool includeQuotes = format != LiteralFormatSymbol;
                             if (includeQuotes) builder.Append('"');
                             builder.Append((char)value);
                             if (includeQuotes) builder.Append('"');
@@ -219,7 +219,7 @@ namespace NLog.MessageTemplates
             sb.Append(textValue);
         }
 
-        private bool SerializeWithoutCyclicLoop(IEnumerable collection, string format, IFormatProvider formatProvider, StringBuilder builder, bool withoutFormat,
+        private bool SerializeWithoutCyclicLoop(IEnumerable collection, string format, IFormatProvider formatProvider, StringBuilder builder,
                 SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             if (objectsInPath.Contains(collection))
@@ -236,17 +236,17 @@ namespace NLog.MessageTemplates
             {
                 using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dictionary, ref objectsInPath, true))
                 {
-                    return SerializeDictionaryObject(dictionary, format, formatProvider, builder, withoutFormat, objectsInPath, depth);
+                    return SerializeDictionaryObject(dictionary, format, formatProvider, builder, objectsInPath, depth);
                 }
             }
 
             using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(collection, ref objectsInPath, true))
             {
-                return SerializeCollectionObject(collection, format, formatProvider, builder, withoutFormat, objectsInPath, depth);
+                return SerializeCollectionObject(collection, format, formatProvider, builder, objectsInPath, depth);
             }
         }
 
-        private bool SerializeDictionaryObject(IDictionary dictionary, string format, IFormatProvider formatProvider, StringBuilder builder, bool withoutFormat, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private bool SerializeDictionaryObject(IDictionary dictionary, string format, IFormatProvider formatProvider, StringBuilder builder, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             bool separator = false;
             foreach (DictionaryEntry item in dictionary)
@@ -257,20 +257,20 @@ namespace NLog.MessageTemplates
                 if (separator) builder.Append(", ");
 
                 if (item.Key is string || !(item.Key is IEnumerable))
-                    SerializeObject(item.Key, format, formatProvider, builder);
+                    FormatObject(item.Key, format, formatProvider, builder);
                 else
-                    SerializeWithoutCyclicLoop((IEnumerable)item.Key, format, formatProvider, builder, withoutFormat, objectsInPath, depth + 1);
+                    SerializeWithoutCyclicLoop((IEnumerable)item.Key, format, formatProvider, builder, objectsInPath, depth + 1);
                 builder.Append("=");
                 if (item.Value is string || !(item.Value is IEnumerable))
-                    SerializeObject(item.Value, format, formatProvider, builder);
+                    FormatObject(item.Value, format, formatProvider, builder);
                 else
-                    SerializeWithoutCyclicLoop((IEnumerable)item.Value, format, formatProvider, builder, withoutFormat, objectsInPath, depth + 1);
+                    SerializeWithoutCyclicLoop((IEnumerable)item.Value, format, formatProvider, builder, objectsInPath, depth + 1);
                 separator = true;
             }
             return true;
         }
 
-        private bool SerializeCollectionObject(IEnumerable collection, string format, IFormatProvider formatProvider, StringBuilder builder, bool withoutFormat, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private bool SerializeCollectionObject(IEnumerable collection, string format, IFormatProvider formatProvider, StringBuilder builder, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             bool separator = false;
             foreach (var item in collection)
@@ -281,16 +281,16 @@ namespace NLog.MessageTemplates
                 if (separator) builder.Append(", ");
 
                 if (item is string || !(item is IEnumerable))
-                    SerializeObject(item, format, formatProvider, builder);
+                    FormatObject(item, format, formatProvider, builder);
                 else
-                    SerializeWithoutCyclicLoop((IEnumerable)item, format, formatProvider, builder, withoutFormat, objectsInPath, depth + 1);
+                    SerializeWithoutCyclicLoop((IEnumerable)item, format, formatProvider, builder, objectsInPath, depth + 1);
 
                 separator = true;
             }
             return true;
         }
 
-        public static void SerializeToString(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        public static void FormatToString(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
             var stringValue = value as string;
             if (stringValue != null)

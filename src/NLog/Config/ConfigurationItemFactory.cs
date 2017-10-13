@@ -382,7 +382,7 @@ namespace NLog.Config
         /// <returns>Default factory.</returns>
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
-            var nlogAssembly = typeof(ILogger).Assembly;
+            var nlogAssembly = typeof(ILogger).GetAssembly();
             var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
 #if !SILVERLIGHT
@@ -422,7 +422,7 @@ namespace NLog.Config
                     var success = false;
                     try
                     {
-                        var extensionAssembly = Assembly.LoadFrom(extensionDll);
+                        var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
                         InternalLogger.LogAssemblyVersion(extensionAssembly);
                         factory.RegisterItemsFromAssembly(extensionAssembly);
                         success = true;

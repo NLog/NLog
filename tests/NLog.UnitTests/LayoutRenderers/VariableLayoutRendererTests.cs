@@ -99,16 +99,16 @@ namespace NLog.UnitTests.LayoutRenderers
 			string folderPath = Path.GetTempPath();
 			string logFilePath = Path.Combine(folderPath, "test.log");
 
-            LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
+            LogManager.Configuration = CreateConfigurationFromString($@"
             <nlog>
-                <variable name='dir' value='{0}' />
+                <variable name='dir' value='{folderPath}' />
                 <targets>
                     <target name='f' type='file' fileName='${{var:dir}}/test.log' layout='${{message}}' lineEnding='LF' />
                 </targets>
                 <rules>
                     <logger name='*' writeTo='f' />
                 </rules>
-            </nlog>", folderPath));
+            </nlog>");
             try
             {
                 LogManager.GetLogger("A").Debug("msg");

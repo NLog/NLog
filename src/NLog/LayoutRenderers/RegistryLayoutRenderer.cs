@@ -260,7 +260,7 @@ namespace NLog.LayoutRenderers
             }
 
             //ArgumentException is consistent
-            throw new ArgumentException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
+            throw new ArgumentException($"Key name is not supported. Root hive '{hiveName}' not recognized.");
         }
 
 #if NET3_5

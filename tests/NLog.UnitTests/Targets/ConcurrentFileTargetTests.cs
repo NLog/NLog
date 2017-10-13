@@ -153,7 +153,7 @@ namespace NLog.UnitTests.Targets
         private string MakeFileName(int numProcesses, int numLogs, string mode)
         {
             // Having separate filenames for the various tests makes debugging easier.
-            return string.Format("test_{0}_{1}_{2}.txt", numProcesses, numLogs, mode.Replace('|', '_'));
+            return $"test_{numProcesses}_{numLogs}_{mode.Replace('|', '_')}.txt";
         }
 
         private void DoConcurrentTest(int numProcesses, int numLogs, string mode)
@@ -221,16 +221,18 @@ namespace NLog.UnitTests.Targets
                             }
                             catch (Exception ex)
                             {
-                                throw new InvalidOperationException(string.Format("Error when parsing line '{0}' in file {1}", line, file), ex);
+                                throw new InvalidOperationException($"Error when parsing line '{line}' in file {file}", ex);
                             }
                         }
 
                         if (verifyFileSize)
                         {
                             if (sr.BaseStream.Length > 100)
-                                throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too large", file, sr.BaseStream.Length));
+                                throw new InvalidOperationException(
+                                    $"Error when reading file {file}, size {sr.BaseStream.Length} is too large");
                             else if (sr.BaseStream.Length < 35 && files[files.Count - 1] != file)
-                                throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too small", file, sr.BaseStream.Length));
+                                throw new InvalidOperationException(
+                                    $"Error when reading file {file}, size {sr.BaseStream.Length} is too small");
                         }
                     }
                 }

@@ -162,10 +162,10 @@ namespace NLog.Targets
             _maxArchiveFiles = 0;
             ConcurrentWriteAttemptDelay = 1;
             ArchiveEvery = FileArchivePeriod.None;
-            ArchiveAboveSize = ArchiveAboveSizeDisabled;
+            ArchiveAboveSize = FileTarget.ArchiveAboveSizeDisabled;
             ConcurrentWriteAttempts = 10;
             ConcurrentWrites = true;
-#if SILVERLIGHT
+#if SILVERLIGHT || NETSTANDARD1_5
             this.Encoding = Encoding.UTF8;
 #else
             Encoding = Encoding.Default;
@@ -1541,7 +1541,7 @@ namespace NLog.Targets
                 for (int i = existingArchiveFiles.Count - 1; i >= 0; i--)
                 {
                     var oldArchiveFile = existingArchiveFiles[i];
-                    if (!string.Equals(oldArchiveFile.FileName, fileInfo.FullName, StringComparison.InvariantCultureIgnoreCase))
+                    if (!string.Equals(oldArchiveFile.FileName, fileInfo.FullName, StringComparison.OrdinalIgnoreCase))
                     {
                         DeleteOldArchiveFile(oldArchiveFile.FileName);
                         existingArchiveFiles.RemoveAt(i);

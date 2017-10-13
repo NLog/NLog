@@ -36,7 +36,7 @@ namespace NLog.MessageTemplates
     /// <summary>
     /// The type of the captured hole
     /// </summary>
-    internal enum CaptureType : byte
+    public enum CaptureType : byte
     {
         /// <summary>
         /// normal {x}

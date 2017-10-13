@@ -108,7 +108,11 @@ namespace NLog.Conditions
         /// <returns>Result of the given relational operator.</returns>
         private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
+#if !NETSTANDARD1_5
             StringComparer comparer = StringComparer.InvariantCulture;
+#else
+            var comparer = new System.Collections.Comparer(CultureInfo.InvariantCulture);
+#endif
             PromoteTypes(ref leftValue, ref rightValue);
             switch (relationalOperator)
             {

@@ -58,6 +58,7 @@ namespace NLog.UnitTests
             Thread.CurrentThread.CurrentCulture = previousCultureInfo;
         }
 
+#if !NETSTANDARD1_5
         [Fact]
         public void TraceWriteTest()
         {
@@ -79,10 +80,10 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello");
 
             Trace.Write(3.1415);
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug {0}", 3.1415));
+            AssertDebugLastMessage("debug", $"Logger1 Debug {3.1415}");
 
             Trace.Write(3.1415, "Cat2");
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
+            AssertDebugLastMessage("debug", $"Logger1 Debug Cat2: {3.1415}");
         }
 
         [Fact]
@@ -106,10 +107,10 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello");
 
             Trace.WriteLine(3.1415);
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug {0}", 3.1415));
+            AssertDebugLastMessage("debug", $"Logger1 Debug {3.1415}");
 
             Trace.WriteLine(3.1415, "Cat2");
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
+            AssertDebugLastMessage("debug", $"Logger1 Debug Cat2: {3.1415}");
         }
 
         [Fact]
@@ -202,7 +203,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Fatal 42 123");
 
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
-            AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14.ToString(CultureInfo.CurrentCulture)));
+            AssertDebugLastMessage("debug", $"MySource1 Fatal 42, {3.14.ToString(CultureInfo.CurrentCulture)}, foo 145");
         }
 
 #if MONO
@@ -316,6 +317,7 @@ namespace NLog.UnitTests
             ts.TraceInformation("Mary had {0} lamb", "a little");
             AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox 0");
         }
+#endif
 
         [Fact]
         public void TraceTargetWriteLineTest()

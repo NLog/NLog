@@ -110,7 +110,7 @@ namespace NLog.Internal
 
             foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(type))
             {
-                if (prop == null || prop.PropertyType == null || prop.PropertyType.IsPrimitive || prop.PropertyType.IsEnum || prop.PropertyType == typeof(string))
+                if (prop == null || prop.PropertyType == null || prop.PropertyType.IsPrimitive() || prop.PropertyType.IsEnum() || prop.PropertyType == typeof(string))
                 {
                     continue;
                 }

@@ -77,8 +77,27 @@ namespace NLog.LayoutRenderers.Wrappers
             if (Lowercase)
             {
                 CultureInfo culture = Culture;
+
+#if NETSTANDARD1_5
+                string stringToLower = null;
+                if (culture != null && culture != CultureInfo.InvariantCulture)
+                {
+                    stringToLower = target.ToString();
+                    stringToLower = culture.TextInfo.ToLower(stringToLower);
+                }
+#endif
+
                 for (int i = 0; i < target.Length; ++i)
+                {
+#if NETSTANDARD1_5
+                    if (stringToLower != null)
+                        target[i] = stringToLower[i];    //no char.ToLower with culture
+                    else
+                        target[i] = char.ToLowerInvariant(target[i]);
+#else
                     target[i] = char.ToLower(target[i], culture);
+#endif
+                }
             }
         }
     }

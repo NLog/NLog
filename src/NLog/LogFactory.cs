@@ -141,7 +141,15 @@ namespace NLog
         /// </summary>
         public static IAppDomain CurrentAppDomain
         {
-            get { return currentAppDomain ?? (currentAppDomain = AppDomainWrapper.CurrentDomain); }
+            get
+            {
+                return currentAppDomain ??
+#if NETSTANDARD1_5
+                    (currentAppDomain = new FakeAppDomain());
+#else
+                    (currentAppDomain = new AppDomainWrapper(AppDomain.CurrentDomain));
+#endif
+            }
             set
             {
                 UnregisterEvents(currentAppDomain);
@@ -408,7 +416,7 @@ namespace NLog
             InternalLogger.Info("Configuration initialized.");
             try
             {
-                InternalLogger.LogAssemblyVersion(typeof(ILogger).Assembly);
+                InternalLogger.LogAssemblyVersion(typeof(ILogger).GetAssembly());
             }
             catch (SecurityException ex)
             {
@@ -445,6 +453,9 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger()
         {
+#if NETSTANDARD1_5
+            return this.GetLogger(StackTraceUsageUtils.GetClassFullName());
+#else
 #if SILVERLIGHT
             var frame = new StackFrame(1);
 #else
@@ -452,6 +463,7 @@ namespace NLog
 #endif
 
             return GetLogger(frame.GetMethod().DeclaringType.FullName);
+#endif
         }
 
         /// <summary>
@@ -464,6 +476,9 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public T GetCurrentClassLogger<T>() where T : Logger
         {
+#if NETSTANDARD1_5
+            return (T)this.GetLogger(StackTraceUsageUtils.GetClassFullName(), typeof(T));
+#else
 #if SILVERLIGHT
             var frame = new StackFrame(1);
 #else
@@ -471,6 +486,7 @@ namespace NLog
 #endif
 
             return (T)GetLogger(frame.GetMethod().DeclaringType.FullName, typeof(T));
+#endif
         }
 
         /// <summary>
@@ -483,13 +499,17 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
-#if !SILVERLIGHT
-            var frame = new StackFrame(1, false);
+#if NETSTANDARD1_5
+            return this.GetLogger(StackTraceUsageUtils.GetClassFullName(), loggerType);
 #else
+#if SILVERLIGHT
             var frame = new StackFrame(1);
+#else
+            var frame = new StackFrame(1, false);
 #endif
 
             return GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
+#endif
         }
 
         /// <summary>
@@ -1114,7 +1134,7 @@ namespace NLog
                 }
             }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_5
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssembly = typeof(LogFactory).Assembly;
             if (!nlogAssembly.GlobalAssemblyCache && !String.IsNullOrEmpty(nlogAssembly.Location))
@@ -1146,8 +1166,8 @@ namespace NLog
                         //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
                         if (cacheKey.ConcreteType.IsStaticClass())
                         {
-                            var errorMessage = String.Format("GetLogger / GetCurrentClassLogger is '{0}' as loggerType can be a static class and should inherit from Logger",
-                                fullName);
+                            var errorMessage =
+                                $"GetLogger / GetCurrentClassLogger is '{fullName}' as loggerType can be a static class and should inherit from Logger";
                             InternalLogger.Error(errorMessage);
                             if (ThrowExceptions)
                             {
@@ -1164,7 +1184,8 @@ namespace NLog
                             {
                                 //well, it's not a Logger, and we should return a Logger.
 
-                                var errorMessage = String.Format("GetLogger / GetCurrentClassLogger got '{0}' as loggerType which doesn't inherit from Logger", fullName);
+                                var errorMessage =
+                                    $"GetLogger / GetCurrentClassLogger got '{fullName}' as loggerType which doesn't inherit from Logger";
                                 InternalLogger.Error(errorMessage);
                                 if (ThrowExceptions)
                                 {

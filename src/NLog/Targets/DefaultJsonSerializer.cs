@@ -356,7 +356,7 @@ namespace NLog.Targets
                 }
                 else if (value is DateTimeOffset)
                 {
-                    QuoteValue(destination, string.Format("{0:yyyy-MM-dd HH:mm:ss zzz}", value));
+                    QuoteValue(destination, $"{value:yyyy-MM-dd HH:mm:ss zzz}");
                 }
                 else
                 {
@@ -418,7 +418,7 @@ namespace NLog.Targets
 
         private static CultureInfo CreateFormatProvider()
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || NETSTANDARD1_5
             var culture = new CultureInfo("en-US");
 #else
             var culture = new CultureInfo("en-US", false);

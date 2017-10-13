@@ -292,7 +292,8 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception exception)
             {
-                var message = string.Format("Exception in {0}.AppendMessage(): {1}.", typeof(ExceptionLayoutRenderer).FullName, exception.GetType().FullName);
+                var message =
+                    $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendMessage(): {exception.GetType().FullName}.";
                 sb.Append("NLog message: ");
                 sb.Append(message);
                 InternalLogger.Warn(exception, message);
@@ -306,7 +307,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose method name should be appended.</param>        
         protected virtual void AppendMethod(StringBuilder sb, Exception ex)
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || NETSTANDARD1_5
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
 #else
             if (ex.TargetSite != null)
@@ -401,7 +402,8 @@ namespace NLog.LayoutRenderers
             }
             return formats;
         }
-#if SILVERLIGHT
+
+#if SILVERLIGHT || NETSTANDARD1_5
         /// <summary>
         /// Find name of method on stracktrace.
         /// </summary>

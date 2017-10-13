@@ -176,7 +176,8 @@ namespace NLog.UnitTests.Targets
                 catch (Exception ex)
                 {
                     var constructionFailed = true;
-                    string failureMessage = String.Format("Error testing constructors for '{0}.{1}`\n{2}", targetType, lastPropertyName, ex.ToString());
+                    string failureMessage =
+                        $"Error testing constructors for '{targetType}.{lastPropertyName}`\n{ex.ToString()}";
                     Assert.False(constructionFailed, failureMessage);
                 }
             }

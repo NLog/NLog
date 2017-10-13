@@ -33,6 +33,7 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+#if !NETSTANDARD1_5
     using System;
     using System.IO;
     using Xunit;
@@ -51,26 +52,27 @@ namespace NLog.UnitTests.LayoutRenderers
             foreach (var specialDirString in Enum.GetNames(typeof(Environment.SpecialFolder))) {
                 var folder = (Environment.SpecialFolder)Enum.Parse(typeof(Environment.SpecialFolder), specialDirString);
 
-                AssertLayoutRendererOutput(string.Format("${{specialfolder:folder={0}}}", specialDirString), Environment.GetFolderPath(folder));
+                AssertLayoutRendererOutput($"${{specialfolder:folder={specialDirString}}}", Environment.GetFolderPath(folder));
             }
         }
 
         [Fact]
         public void SpecialFolderDirCombineTest()
         {
-            AssertLayoutRendererOutput(string.Format("${{specialfolder:folder={0}:dir=aaa}}", sysDirString), Path.Combine(sysDir, "aaa"));
+            AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:dir=aaa}}", Path.Combine(sysDir, "aaa"));
         }
 
         [Fact]
         public void SpecialFolderFileCombineTest()
         {
-            AssertLayoutRendererOutput(string.Format("${{specialfolder:folder={0}:file=aaa.txt}}", sysDirString), Path.Combine(sysDir, "aaa.txt"));
+            AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:file=aaa.txt}}", Path.Combine(sysDir, "aaa.txt"));
         }
 
         [Fact]
         public void SpecialFolderDirFileCombineTest()
         {
-            AssertLayoutRendererOutput(string.Format("${{specialfolder:folder={0}:dir=aaa:file=bbb.txt}}", sysDirString), Path.Combine(sysDir, "aaa", "bbb.txt"));
+            AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:dir=aaa:file=bbb.txt}}", Path.Combine(sysDir, "aaa", "bbb.txt"));
         }
     }
+#endif
 }

@@ -256,15 +256,15 @@ namespace NLog.UnitTests.LogReceiverService
 
         private void RealTestLogReciever(bool useOneWayContract, bool binaryEncode)
         {
-            LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
+            LogManager.Configuration = CreateConfigurationFromString($@"
           <nlog throwExceptions='true'>
                 <targets>
                    <target type='LogReceiverService'
                           name='s1'
                
-                          endpointAddress='{0}'
-                          useOneWayContract='{1}'
-                          useBinaryEncoding='{2}'
+                          endpointAddress='{logRecieverUrl}'
+                          useOneWayContract='{useOneWayContract.ToString().ToLower()}'
+                          useBinaryEncoding='{binaryEncode.ToString().ToLower()}'
                   
                           includeEventProperties='false'>
                   <!--  <parameter name='key1' layout='testparam1'  type='String'/> -->
@@ -276,7 +276,7 @@ namespace NLog.UnitTests.LogReceiverService
                     <logger name='logger1' minlevel='Trace' writeTo='s1' />
               
                 </rules>
-            </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower(), binaryEncode.ToString().ToLower()));
+            </nlog>");
 
 
      

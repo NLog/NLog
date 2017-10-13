@@ -234,7 +234,7 @@ namespace NLog.Targets
         /// </returns>
         public override string ToString()
         {
-            var targetAttribute = (TargetAttribute)Attribute.GetCustomAttribute(GetType(), typeof(TargetAttribute));
+            var targetAttribute = GetType().GetCustomAttribute<TargetAttribute>();
             if (targetAttribute != null)
             {
                 return targetAttribute.Name + " Target[" + (Name ?? "(unnamed)") + "]";

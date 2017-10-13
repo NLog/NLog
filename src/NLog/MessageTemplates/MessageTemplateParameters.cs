@@ -33,8 +33,10 @@
 
 namespace NLog.MessageTemplates
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
+    using NLog.Common;
 
     /// <summary>
     /// Internal implementation of the interface for returning MessageTemplate parameters
@@ -59,9 +61,11 @@ namespace NLog.MessageTemplates
         public bool IsPositional { get; }
 
         /// <summary>
-        /// Constructore for positional parameters
+        /// Constructor for positional parameters
         /// </summary>
-        public MessageTemplateParameters(object[] parameters)
+        /// <param name="message"><see cref="LogEventInfo.Message"/> including any parameter placeholders</param>
+        /// <param name="parameters">All <see cref="LogEventInfo.Parameters"/></param>
+        public MessageTemplateParameters(string message, object[] parameters)
         {
             var hasParameters = parameters != null && parameters.Length > 0;
             if (hasParameters)
@@ -69,7 +73,7 @@ namespace NLog.MessageTemplates
                 IsPositional = true;
             }
 
-            _parameters = CreateParameters(parameters, hasParameters);
+            _parameters = hasParameters ? CreateParameters(message, parameters) : Internal.ArrayHelper.Empty<MessageTemplateParameter>();
         }
 
         /// <summary>
@@ -83,60 +87,35 @@ namespace NLog.MessageTemplates
         /// <summary>
         /// Create MessageTemplateParameter from <paramref name="parameters"/>
         /// </summary>
+        /// <param name="message"></param>
         /// <param name="parameters"></param>
-        /// <param name="hasParameters">is <paramref name="parameters"/> filled? (parameter for performance)</param>
         /// <returns></returns>
-        private MessageTemplateParameter[] CreateParameters(object[] parameters, bool hasParameters)
+        private IList<MessageTemplateParameter> CreateParameters(string message, object[] parameters)
         {
-            if (hasParameters)
+            try
             {
-                var templateParameters = new MessageTemplateParameter[parameters.Length];
-                for (int i = 0; i < parameters.Length; ++i)
+                List<MessageTemplateParameter> templateParameters = new List<MessageTemplateParameter>(parameters.Length);
+
+                int holeIndex = 0;
+                TemplateEnumerator templateEnumerator = new TemplateEnumerator(message);
+                while (templateEnumerator.MoveNext())
                 {
-                    string parameterName;
-                    switch (i)
+                    if (templateEnumerator.Current.Literal.Skip != 0)
                     {
-                        //prevent creating a string (int.ToString())
-                        case 0:
-                            parameterName = "0";
-                            break;
-                        case 1:
-                            parameterName = "1";
-                            break;
-                        case 2:
-                            parameterName = "2";
-                            break;
-                        case 3:
-                            parameterName = "3";
-                            break;
-                        case 4:
-                            parameterName = "4";
-                            break;
-                        case 5:
-                            parameterName = "5";
-                            break;
-                        case 6:
-                            parameterName = "6";
-                            break;
-                        case 7:
-                            parameterName = "7";
-                            break;
-                        case 8:
-                            parameterName = "8";
-                            break;
-                        case 9:
-                            parameterName = "9";
-                            break;
-                        default:
-                            parameterName = i.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                            break;
+                        var hole = templateEnumerator.Current.Hole;
+                        if (hole.Index == -1)
+                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[holeIndex++], hole.Format, hole.CaptureType));
+                        else
+                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[hole.Index], hole.Format, hole.CaptureType));
                     }
-                    templateParameters[i] = new MessageTemplateParameter(parameterName, parameters[i], null);
                 }
                 return templateParameters;
             }
-
-            return Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Error when parsing a message.");
+                return Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            }
         }
     }
 }

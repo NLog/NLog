@@ -827,7 +827,7 @@ namespace NLog.UnitTests.Targets
             var mock = mmt.CreatedMocks[0];
             Assert.Single(mock.MessagesSent);
 
-            Assert.Equal(string.Format("Message from NLog on {0}", Environment.MachineName), mock.MessagesSent[0].Subject);
+            Assert.Equal($"Message from NLog on {Environment.MachineName}", mock.MessagesSent[0].Subject);
         }
 
         public class MockSmtpClient : ISmtpClient

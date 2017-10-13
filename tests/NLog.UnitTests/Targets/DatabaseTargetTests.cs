@@ -1236,17 +1236,17 @@ Dispose()
         [InlineData("", false)]
         public void WarningForObsoleteUseTransactions(string property, bool printWarning)
         {
-            LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
+            LoggingConfiguration c = CreateConfigurationFromString($@"
             <nlog ThrowExceptions='true'>
                 <targets>
-                    <target type='database' {0} name='t1' commandtext='fake sql' connectionstring='somewhere' />
+                    <target type='database' {property} name='t1' commandtext='fake sql' connectionstring='somewhere' />
                 </targets>
                 <rules>
                       <logger name='*' writeTo='t1'>
                        
                       </logger>
                     </rules>
-            </nlog>", property));
+            </nlog>");
 
             StringWriter writer1 = new StringWriter()
             {
