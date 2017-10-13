@@ -61,6 +61,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${windows-identity}", userName);
         }
 
+#if !NETSTANDARD1_5
         [Fact]
         public void IdentityTest1()
         {
@@ -196,7 +197,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
             }
 
-#region Overrides of GenericIdentity
+        #region Overrides of GenericIdentity
 
             /// <summary>
             /// Gets a value indicating whether the user has been authenticated.
@@ -209,7 +210,8 @@ namespace NLog.UnitTests.LayoutRenderers
                 get { return false; }
             }
 
-#endregion
+        #endregion
         }
+#endif
     }
 }

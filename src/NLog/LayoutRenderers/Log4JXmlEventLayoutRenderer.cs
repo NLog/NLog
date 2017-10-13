@@ -235,7 +235,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteStartElement("log4j", "event", dummyNamespace);
                 xtw.WriteAttributeSafeString("xmlns", "nlog", null, dummyNLogNamespace);
                 xtw.WriteAttributeSafeString("logger", logEvent.LoggerName);
-                xtw.WriteAttributeSafeString("level", logEvent.Level.Name.ToUpper(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeSafeString("level", logEvent.Level.Name.ToUpperInvariant());
                 xtw.WriteAttributeSafeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
                 xtw.WriteAttributeSafeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
 
@@ -305,7 +305,7 @@ namespace NLog.LayoutRenderers
                             xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
                             if (type != null)
                             {
-                                xtw.WriteAttributeSafeString("assembly", type.Assembly.FullName);
+                                xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
                             }
                             xtw.WriteEndElement();
 

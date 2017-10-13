@@ -422,7 +422,7 @@ namespace NLog.Targets
         {
             Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
             Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_5
             if (this.PreAuthenticate)
             {
                 request.PreAuthenticate = true;

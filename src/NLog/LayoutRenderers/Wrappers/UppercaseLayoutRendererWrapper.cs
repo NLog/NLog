@@ -82,8 +82,27 @@ namespace NLog.LayoutRenderers.Wrappers
             if (this.Uppercase)
             {
                 CultureInfo culture = this.Culture;
+
+#if NETSTANDARD1_5
+                string stringToUpper = null;
+                if (culture != null && culture != CultureInfo.InvariantCulture)
+                {
+                    stringToUpper = target.ToString();
+                    stringToUpper = culture.TextInfo.ToUpper(stringToUpper);
+                }
+#endif
+
                 for (int i = 0; i < target.Length; ++i)
+                {
+#if NETSTANDARD1_5
+                    if (stringToUpper != null)
+                        target[i] = stringToUpper[i];    //no char.ToUpper with culture
+                    else
+                        target[i] = char.ToUpperInvariant(target[i]);                      
+#else
                     target[i] = char.ToUpper(target[i], culture);
+#endif
+                }
             }
         }
     }

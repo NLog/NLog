@@ -45,12 +45,14 @@ namespace NLog.UnitTests.Internal
     public class ExceptionHelperTests : NLogTestBase
     {
         [Theory]
+#if !NETSTANDARD1_5
         [InlineData(typeof(StackOverflowException), true)]
+        [InlineData(typeof(ThreadAbortException), true)]
+#endif
         [InlineData(typeof(NLogConfigurationException), false)]
         [InlineData(typeof(Exception), false)]
         [InlineData(typeof(ArgumentException), false)]
         [InlineData(typeof(NullReferenceException), false)]
-        [InlineData(typeof(ThreadAbortException), true)]
         [InlineData(typeof(OutOfMemoryException), true)]
         public void TestMustBeRethrowImmediately(Type t, bool result)
         {
@@ -59,8 +61,12 @@ namespace NLog.UnitTests.Internal
         }
 
         [Theory]
+#if !NETSTANDARD1_5
         [InlineData(typeof(StackOverflowException), true, false, false)]
         [InlineData(typeof(StackOverflowException), true, true, false)]
+        [InlineData(typeof(ThreadAbortException), true, false, false)]
+        [InlineData(typeof(ThreadAbortException), true, true, false)]
+#endif
         [InlineData(typeof(NLogConfigurationException), true, true, true)]
         [InlineData(typeof(NLogConfigurationException), false, true, false)]
         [InlineData(typeof(NLogConfigurationException), true, true, null)]
@@ -81,8 +87,6 @@ namespace NLog.UnitTests.Internal
         [InlineData(typeof(ArgumentException), true, true, null)]
         [InlineData(typeof(NullReferenceException), false, false, false)]
         [InlineData(typeof(NullReferenceException), true, true, false)]
-        [InlineData(typeof(ThreadAbortException), true, false, false)]
-        [InlineData(typeof(ThreadAbortException), true, true, false)]
         [InlineData(typeof(OutOfMemoryException), true, false, false)]
         [InlineData(typeof(OutOfMemoryException), true, true, false)]
         public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions, bool? throwConfigException)

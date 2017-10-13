@@ -46,40 +46,55 @@ namespace NLog.MessageTemplates
         /// This is everything between "{" and the first of ",:}".
         /// </summary>
         [NotNull]
-        public readonly string Name;
+        public string Name { get; }
 
         /// <summary>
         /// Parameter Value extracted from the <see cref="LogEventInfo.Parameters"/>-array
         /// </summary>
         [CanBeNull]
-        public readonly object Value;
+        public object Value { get; }
 
         /// <summary>
         /// Format to render the parameter.
         /// This is everything between ":" and the first unescaped "}"
         /// </summary>
         [CanBeNull]
-        public readonly string Format;
+        public string Format { get; }
 
         /// <summary>
-        /// Checks if the <see cref="Format"/> contains reserved letters ('@', '$', 'l')
+        /// Parameter method that should be used to render the parameter
+        /// See also <see cref="IValueSerializer"/>
         /// </summary>
-        public bool IsReservedFormat
+        public CaptureType CaptureType { get; }
+
+        /// <summary>
+        /// Returns index for <see cref="LogEventInfo.Parameters"/>, when <see cref="MessageTemplateParameters.IsPositional"/>
+        /// </summary>
+        public int? PositionalIndex
         {
             get
             {
-                switch (Format)
+                switch (Name)
                 {
-                    case "@":
-                    case "$":
-                        return true;
-                    case "l":
-                        if (Value is string || Value == null || Value is char)
-                            return true;
-                        else
-                            return false;
+                    case "0": return 0;
+                    case "1": return 1;
+                    case "2": return 2;
+                    case "3": return 3;
+                    case "4": return 4;
+                    case "5": return 5;
+                    case "6": return 6;
+                    case "7": return 7;
+                    case "8": return 8;
+                    case "9": return 9;
+                    default:
+                        if (Name?.Length >= 1 && Name[0] >= '0' && Name[0] <= '9')
+                        {
+                            int parameterIndex;
+                            if (int.TryParse(Name, out parameterIndex))
+                                return parameterIndex;
+                        }
+                        return null;
                 }
-                return false;
             }
         }
 
@@ -94,6 +109,22 @@ namespace NLog.MessageTemplates
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Value = value;
             Format = format;
+            CaptureType = CaptureType.Normal;
+        }
+
+        /// <summary>
+        /// Constructs a single message template parameter
+        /// </summary>
+        /// <param name="name">Parameter Name</param>
+        /// <param name="value">Parameter Value</param>
+        /// <param name="format">Parameter Format</param>
+        /// <param name="captureType">Parameter CaptureType</param>
+        public MessageTemplateParameter([NotNull] string name, object value, string format, CaptureType captureType)
+        {
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Value = value;
+            Format = format;
+            CaptureType = captureType;
         }
     }
 }

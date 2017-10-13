@@ -76,6 +76,11 @@
         <xs:documentation>Use InvariantCulture as default culture instead of CurrentCulture.  Default value is: false.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="messageTemplateParser" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>Perform mesage template parsing and formatting of LogEvent messages (true = Always, false = Never, empty = Auto Detect). Default value is: empty.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="NLogTargets">

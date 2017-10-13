@@ -112,8 +112,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         class MyAppDomain : IAppDomain
         {
-            private AppDomainWrapper _appDomain
-                ;
+            private IAppDomain _appDomain;
 
             /// <summary>
             /// Injectable
@@ -167,7 +166,7 @@ namespace NLog.UnitTests.LayoutRenderers
             /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
             public MyAppDomain()
             {
-                _appDomain = AppDomainWrapper.CurrentDomain;
+                _appDomain = LogFactory.CurrentAppDomain;
             }
         }
     }

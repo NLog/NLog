@@ -42,13 +42,33 @@ namespace NLog
     public interface IValueSerializer
     {
         /// <summary>
-        /// Serialization of an object into JSON format.
+        /// Serialization of an object into JSON format (or other destructure format)
         /// </summary>
         /// <param name="value">The object to serialize to string.</param>
-        /// <param name="format">A standard or custom object format string</param>
+        /// <param name="format">The format string for the object</param>
         /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
         /// <param name="builder">Output destination.</param>
         /// <returns>Serialize succeeded (true/false)</returns>
         bool SerializeObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder);
+
+        /// <summary>
+        /// Convert object into into quoted string value
+        /// </summary>
+        /// <param name="value">The object to serialize to string.</param>
+        /// <param name="format">The format string for the object</param>
+        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+        /// <param name="builder">Output destination.</param>
+        /// <returns>Stringify succeeded (true/false)</returns>
+        bool StringifyObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder);
+
+        /// <summary>
+        /// Format object into into string value
+        /// </summary>
+        /// <param name="value">The object to serialize to string.</param>
+        /// <param name="format">The format string for the object</param>
+        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+        /// <param name="builder">Output destination.</param>
+        /// <returns>Formating succeeded (true/false)</returns>
+        bool FormatObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder);
     }
 }

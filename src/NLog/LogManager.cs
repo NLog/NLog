@@ -172,7 +172,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
-            return factory.GetLogger(GetClassFullName());
+            return factory.GetLogger(StackTraceUsageUtils.GetClassFullName());
         }
 
         internal static bool IsHiddenAssembly(Assembly assembly)
@@ -211,7 +211,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(Type loggerType)
         {
-            return factory.GetLogger(GetClassFullName(), loggerType);
+            return factory.GetLogger(StackTraceUsageUtils.GetClassFullName(), loggerType);
         }
 
         /// <summary>
@@ -355,38 +355,6 @@ namespace NLog
         public static void Shutdown()
         {
             factory.Shutdown();
-        }
-
-        /// <summary>
-        /// Gets the fully qualified name of the class invoking the LogManager, including the 
-        /// namespace but not the assembly.    
-        /// </summary>
-        private static string GetClassFullName()
-        {
-            string className;
-            Type declaringType;
-            int framesToSkip = 2;
-
-            do
-            {
-#if SILVERLIGHT
-                StackFrame frame = new StackTrace().GetFrame(framesToSkip);
-#else
-                StackFrame frame = new StackFrame(framesToSkip, false);
-#endif
-                MethodBase method = frame.GetMethod();
-                declaringType = method.DeclaringType;
-                if (declaringType == null)
-                {
-                    className = method.Name;
-                    break;
-                }
-
-                framesToSkip++;
-                className = declaringType.FullName;
-            } while (className.StartsWith("System.", StringComparison.Ordinal));
-
-            return className;
         }
     }
 }
