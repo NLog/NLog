@@ -601,6 +601,88 @@ Dispose()
         }
 
         [Fact]
+        public void EmptyParameterDbTypePropertyNameAndParameterConverterTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='dt' type='Database'>
+                        <DBProvider>MockDb</DBProvider>
+                        <ConnectionString>FooBar</ConnectionString>
+                        <CommandText>INSERT INTO FooBar VALUES(@message)</CommandText>
+                        <parameter name='@message' layout='${message}'/>
+                    </target>
+                </targets>
+            </nlog>");
+
+            DatabaseTarget dt = c.FindTargetByName("dt") as DatabaseTarget;
+            Assert.NotNull(dt);
+            dt.Initialize(c);
+            Assert.Equal("DbType", dt.ParameterDbTypePropertyName);
+            Assert.Equal(typeof(DatabaseParameterConverter), dt.ParameterConverterType);
+        }
+
+        [Fact]
+        public void ParameterDbTypePropertyNameTest()
+        {
+            MockDbConnection.ClearLog();
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='dt' type='Database'>
+                        <DBProvider>MockDb</DBProvider>
+                        <ConnectionString>FooBar</ConnectionString>
+                        <CommandText>INSERT INTO FooBar VALUES(@message,@level,@date)</CommandText>
+                        <ParameterDbTypePropertyName>MockDbType</ParameterDbTypePropertyName>
+                        <ParameterConverterType>NLog.UnitTests.Targets.DatabaseTargetTests+MockDatabaseParameterConverter, NLog.UnitTests</ParameterConverterType>
+                        <parameter name='@message' layout='${message}'/>
+                        <parameter name='@level' dbType='Int32' layout='${level:format=Ordinal}'/>
+                        <parameter name='@date' dbType='DateTime' format='yyyy-MM-dd HH:mm:ss.fff' layout='${date:format=yyyy-MM-dd HH\:mm\:ss.fff}'/>
+                    </target>
+                </targets>
+            </nlog>");
+
+            DatabaseTarget dt = c.FindTargetByName("dt") as DatabaseTarget;
+            Assert.NotNull(dt);
+            Assert.Equal("MockDbType", dt.ParameterDbTypePropertyName);
+            Assert.Equal(typeof(MockDatabaseParameterConverter), dt.ParameterConverterType);
+            dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            dt.Initialize(c);
+            List<Exception> exceptions = new List<Exception>();
+            var alogEvent = new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add);
+            dt.WriteAsyncLogEvent(alogEvent);
+            foreach (var ex in exceptions)
+            {
+                Assert.Null(ex);
+            }
+
+            string expectedLog = @"Open('FooBar').
+CreateParameter(0)
+Parameter #0 Direction=Input
+Parameter #0 Name=@message
+Parameter #0 Value=msg1
+Add Parameter Parameter #0
+CreateParameter(1)
+Parameter #1 Direction=Input
+Parameter #1 Name=@level
+Parameter #1 MockDbType=Int32
+Parameter #1 Value={0}
+Add Parameter Parameter #1
+CreateParameter(2)
+Parameter #2 Direction=Input
+Parameter #2 Name=@date
+Parameter #2 MockDbType=DateTime
+Parameter #2 Value={1}
+Add Parameter Parameter #2
+ExecuteNonQuery: INSERT INTO FooBar VALUES(@message,@level,@date)
+Close()
+Dispose()
+";
+            expectedLog = string.Format(expectedLog, LogLevel.Info.Ordinal.ToString(), alogEvent.LogEvent.TimeStamp.ToString(CultureInfo.InvariantCulture));
+            AssertLog(expectedLog);
+        }
+
+        [Fact]
         public void ConnectionStringBuilderTest1()
         {
             DatabaseTarget dt;
@@ -1472,7 +1554,20 @@ Dispose()
             public DbType DbType
             {
                 get { return this.parameterType; }
-                set { this.parameterType = value; }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} DbType={1}", paramId, value);
+                    this.parameterType = value;
+                }
+            }
+            public DbType MockDbType
+            {
+                get { return this.parameterType; }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} MockDbType={1}", paramId, value);
+                    this.parameterType = value;
+                }
             }
 
             public ParameterDirection Direction
@@ -1727,6 +1822,10 @@ Dispose()
             {
                 get { throw new NotImplementedException(); }
             }
+        }
+
+        public class MockDatabaseParameterConverter : DatabaseParameterConverter
+        {
         }
 
         private class SQLiteTest

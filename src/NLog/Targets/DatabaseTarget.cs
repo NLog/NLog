@@ -103,6 +103,8 @@ namespace NLog.Targets
 #endif
             this.CommandType = CommandType.Text;
             this.OptimizeBufferReuse = GetType() == typeof(DatabaseTarget);
+            this.ParameterDbTypePropertyName = "DbType";
+            this.ParameterConverterType = typeof(DatabaseParameterConverter);
         }
 
         /// <summary>
@@ -263,10 +265,30 @@ namespace NLog.Targets
         public CommandType CommandType { get; set; }
 
         /// <summary>
+        /// Gets or sets property name of the SQL command parameter to set parameter DbType.
+        /// </summary>
+        /// <remarks>
+        /// May set strong DbType, for SQL Server is SqlDbType.
+        /// </remarks>
+        /// <docgen category='SQL Statement' order='12' />
+        [DefaultValue("DbType")]
+        public string ParameterDbTypePropertyName { get; set; }
+
+        /// <summary>
+        /// Gets or sets converter type of the SQL command parameter value.
+        /// </summary>
+        /// <docgen category='SQL Statement' order='13' />
+        [DefaultValue(typeof(DatabaseParameterConverter))]
+        public Type ParameterConverterType { get; set; }
+
+        ///<summary>SQL Command Parameter Converter</summary>
+        private DatabaseParameterConverter ParameterConverter { get; set; }
+
+        /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
-        /// <docgen category='SQL Statement' order='12' />
+        /// <docgen category='SQL Statement' order='14' />
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; private set; }
 
@@ -367,7 +389,7 @@ namespace NLog.Targets
                     this.ProviderFactory = DbProviderFactories.GetFactory(cs.ProviderName);
                     foundProvider = true;
                 }
-            
+
             }
 
             if (!foundProvider)
@@ -536,7 +558,9 @@ namespace NLog.Targets
                 }
             }
         }
-
+        /// <summary>
+        /// Write logEvent to database
+        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
         private void WriteEventToDatabase(LogEventInfo logEvent)
         {
@@ -577,11 +601,20 @@ namespace NLog.Targets
                         }
 
                         string stringValue = base.RenderLogEvent(par.Layout, logEvent);
-
-                        p.Value = stringValue;
+                        var dbType = par.DbType;
+                        if (string.IsNullOrEmpty(dbType))
+                        {
+                            dbType = "String";
+                            p.Value = stringValue;
+                        }
+                        else
+                        {
+                            dbType = par.DbType;
+                            SetParameterInfo(p, par, stringValue);
+                        }
                         command.Parameters.Add(p);
 
-                        InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
+                        InternalLogger.Trace("  Parameter: '{0}' = '{1}'[{2}]", p.ParameterName, stringValue, dbType);
                     }
 
                     int result = command.ExecuteNonQuery();
@@ -590,6 +623,33 @@ namespace NLog.Targets
 
                 //not really needed as there is no transaction at all.
                 transactionScope.Complete();
+            }
+        }
+        /// <summary>
+        /// Set Parameter Type and Value
+        /// </summary>
+        protected void SetParameterInfo(IDbDataParameter p, DatabaseParameterInfo par, string value)
+        {
+            EnsureResolveParameterInfo(p);
+            this.ParameterConverter.SetParameterDbType(p, par);
+            this.ParameterConverter.SetParameterValue(p, par, value);
+        }
+        /// <summary>
+        /// Resolve Parameter DbType And Value Converter
+        /// </summary>
+        protected void EnsureResolveParameterInfo(IDbDataParameter p)
+        {
+            if (this.ParameterConverter == null)
+            {
+                lock (this.SyncRoot)
+                {
+                    if (this.ParameterConverter == null)
+                    {
+                        var converter = (DatabaseParameterConverter)Activator.CreateInstance(this.ParameterConverterType);
+                        converter.Resolve(p, this.ParameterDbTypePropertyName, this.Parameters);
+                        this.ParameterConverter = converter;
+                    }
+                }
             }
         }
         /// <summary>
@@ -754,7 +814,7 @@ namespace NLog.Targets
             public TransactionScope(TransactionScopeOption suppress)
             {
                 this.suppress = suppress;
-            }
+    }
 
             public void Complete() { }
 
