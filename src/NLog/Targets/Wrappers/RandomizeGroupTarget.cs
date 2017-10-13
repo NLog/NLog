@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -59,7 +59,7 @@ namespace NLog.Targets.Wrappers
     [Target("RandomizeGroup", IsCompound = true)]
     public class RandomizeGroupTarget : CompoundTargetBase
     {
-        private readonly Random random = new Random();
+        private readonly Random _random = new Random();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
@@ -105,9 +105,9 @@ namespace NLog.Targets.Wrappers
 
             int selectedTarget;
 
-            lock (this.random)
+            lock (this._random)
             {
-                selectedTarget = this.random.Next(this.Targets.Count);
+                selectedTarget = this._random.Next(this.Targets.Count);
             }
 
             this.Targets[selectedTarget].WriteAsyncLogEvent(logEvent);

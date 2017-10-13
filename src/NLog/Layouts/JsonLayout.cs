@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -86,7 +86,7 @@ namespace NLog.Layouts
         /// </summary>
         public bool IncludeMdc { get; set; }
 
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
@@ -117,7 +117,7 @@ namespace NLog.Layouts
             {
                 base.ThreadAgnostic = false;
             }
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
             if (IncludeMdlc)
             {
                 base.ThreadAgnostic = false;
@@ -138,11 +138,12 @@ namespace NLog.Layouts
         /// Formats the log event as a JSON document for writing.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
+            int orgLength = target.Length;
             RenderJsonFormattedMessage(logEvent, target);
-            if (target.Length == 0 && RenderEmptyObject)
+            if (target.Length == orgLength && RenderEmptyObject)
             {
                 target.Append(SuppressSpaces ? "{}" : "{  }");
             }
@@ -160,15 +161,17 @@ namespace NLog.Layouts
 
         private void RenderJsonFormattedMessage(LogEventInfo logEvent, StringBuilder sb)
         {
+            int orgLength = sb.Length;
+
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.Attributes.Count; i++)
             {
                 var attrib = this.Attributes[i];
-                string text = attrib.LayoutWrapper.Render(logEvent);
-                if (!string.IsNullOrEmpty(text))
+                int beforeAttribLength = sb.Length;
+                if (!RenderAppendJsonPropertyValue(attrib, logEvent, false, sb, sb.Length == orgLength))
                 {
-                    AppendJsonAttributeValue(attrib.Name, attrib.Encode, text, sb);
+                    sb.Length = beforeAttribLength;
                 }
             }
 
@@ -179,11 +182,11 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, sb);
+                    AppendJsonPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
                 }
             }
 
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
             if (this.IncludeMdlc)
             {
                 foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
@@ -191,7 +194,7 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, sb);
+                    AppendJsonPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
                 }
             }
 #endif
@@ -209,17 +212,17 @@ namespace NLog.Layouts
                     if (this.ExcludeProperties.Contains(propName))
                         continue;
 
-                    AppendJsonPropertyValue(propName, prop.Value, sb);
+                    AppendJsonPropertyValue(propName, prop.Value, sb, sb.Length == orgLength);
                 }
             }
 
-            CompleteJsonMessage(sb);
+            if (sb.Length > orgLength)
+                CompleteJsonMessage(sb);
         }
 
-        private void BeginJsonProperty(StringBuilder sb, string propName)
+        private void BeginJsonProperty(StringBuilder sb, string propName, bool beginJsonMessage)
         {
-            bool first = sb.Length == 0;
-            if (first)
+            if (beginJsonMessage)
             {
                 sb.Append(SuppressSpaces ? "{" : "{ ");
             }
@@ -240,34 +243,34 @@ namespace NLog.Layouts
 
         private void CompleteJsonMessage(StringBuilder sb)
         {
-            if (sb.Length > 0)
-                sb.Append(SuppressSpaces ? "}" : " }");
+            sb.Append(SuppressSpaces ? "}" : " }");
         }
 
-        private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb)
+        private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb, bool beginJsonMessage)
         {
-            BeginJsonProperty(sb, propName);
+            BeginJsonProperty(sb, propName, beginJsonMessage);
             JsonConverter.SerializeObject(propertyValue, sb);
         }
 
-        private void AppendJsonAttributeValue(string attributeName, bool attributeQuote, string text, StringBuilder sb)
+        private bool RenderAppendJsonPropertyValue(JsonAttribute attrib, LogEventInfo logEvent, bool renderEmptyValue, StringBuilder sb, bool beginJsonMessage)
         {
-            BeginJsonProperty(sb, attributeName);
-
-            if (attributeQuote)
+            BeginJsonProperty(sb, attrib.Name, beginJsonMessage);
+            if (attrib.Encode)
             {
                 // "\"{0}\":{1}\"{2}\""
                 sb.Append('"');
-                sb.Append(text);
+            }
+            int beforeValueLength = sb.Length;
+            attrib.LayoutWrapper.RenderAppendBuilder(logEvent, sb);
+            if (!renderEmptyValue && beforeValueLength == sb.Length)
+            {
+                return false;
+            }
+            if (attrib.Encode)
+            {
                 sb.Append('"');
             }
-            else
-            {
-                //If encoding is disabled for current attribute, do not escape the value of the attribute.
-                //This enables user to write arbitrary string value (including JSON).
-                // "\"{0}\":{1}{2}"
-                sb.Append(text);
-            }
+            return true;
         }
     }
 }

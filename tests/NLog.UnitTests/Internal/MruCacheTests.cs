@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -63,14 +63,79 @@ namespace NLog.UnitTests.Internal
                 mruCache.TryAddValue(i, i.ToString());
 
             string value;
-            Assert.False(mruCache.TryGetValue(0, out value));
-            Assert.False(mruCache.TryGetValue(90, out value));
+            for (int i = 0; i < 100; ++i)
+            {
+                Assert.False(mruCache.TryGetValue(i, out value));
+            }
 
-            for (int i = 120; i < 200; ++i)
+            for (int i = 140; i < 200; ++i)
             {
                 Assert.True(mruCache.TryGetValue(i, out value));
                 Assert.Equal(i.ToString(), value);
             }
+        }
+
+        [Fact]
+        public void OverflowVersionCacheAndLookupTest()
+        {
+            string value;
+            MruCache<int, string> mruCache = new MruCache<int, string>(100);
+            for (int i = 0; i < 200; ++i)
+            {
+                mruCache.TryAddValue(i, i.ToString());
+                Assert.True(mruCache.TryGetValue(i, out value));    // No longer a virgin
+                Assert.Equal(i.ToString(), value);
+            }
+
+            for (int i = 0; i < 90; ++i)
+            {
+                Assert.False(mruCache.TryGetValue(i, out value));
+            }
+
+            for (int i = 140; i < 200; ++i)
+            {
+                Assert.True(mruCache.TryGetValue(i, out value));
+                Assert.Equal(i.ToString(), value);
+            }
+        }
+
+        [Fact]
+        public void OverflowFreshCacheAndLookupTest()
+        {
+            string value;
+            MruCache<int, string> mruCache = new MruCache<int, string>(100);
+            for (int i = 0; i < 200; ++i)
+            {
+                mruCache.TryAddValue(i, i.ToString());
+                Assert.True(mruCache.TryGetValue(i, out value));    // No longer a virgin
+                Assert.Equal(i.ToString(), value);
+            }
+
+            for (int j = 0; j < 2; ++j)
+            {
+                for (int i = 110; i < 200; ++i)
+                {
+                    if (!mruCache.TryGetValue(i, out value))
+                    {
+                        mruCache.TryAddValue(i, i.ToString());
+                        Assert.True(mruCache.TryGetValue(i, out value));
+                    }
+                }
+            }
+
+            for (int i = 300; i < 310; ++i)
+            {
+                mruCache.TryAddValue(i, i.ToString());
+            }
+
+            int cacheCount = 0;
+            for (int i = 110; i < 200; ++i)
+            {
+                if (mruCache.TryGetValue(i, out value))
+                    ++cacheCount;
+            }
+
+            Assert.True(cacheCount > 60);   // See that old cache was not killed
         }
 
         [Fact]

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -62,9 +62,9 @@ namespace NLog.Internal.FileAppenders
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        private FileStream fileStream;
-        private FileCharacteristicsHelper fileCharacteristicsHelper;
-        private Mutex mutex;
+        private FileStream _fileStream;
+        private FileCharacteristicsHelper _fileCharacteristicsHelper;
+        private Mutex _mutex;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MutexMultiProcessFileAppender" /> class.
@@ -75,22 +75,22 @@ namespace NLog.Internal.FileAppenders
         {
             try
             {
-                this.mutex = CreateSharableMutex("FileLock");
-                this.fileStream = CreateFileStream(true);
-                this.fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
+                this._mutex = CreateSharableMutex("FileLock");
+                this._fileStream = CreateFileStream(true);
+                this._fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
             }
             catch
             {
-                if (this.mutex != null)
+                if (this._mutex != null)
                 {
-                    this.mutex.Close();
-                    this.mutex = null;
+                    this._mutex.Close();
+                    this._mutex = null;
                 }
 
-                if (this.fileStream != null)
+                if (this._fileStream != null)
                 {
-                    this.fileStream.Close();
-                    this.fileStream = null;
+                    this._fileStream.Close();
+                    this._fileStream = null;
                 }
 
                 throw;
@@ -105,14 +105,14 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (this.mutex == null || this.fileStream == null)
+            if (this._mutex == null || this._fileStream == null)
             {
                 return;
             }
 
             try
             {
-                this.mutex.WaitOne();
+                this._mutex.WaitOne();
             }
             catch (AbandonedMutexException)
             {
@@ -123,9 +123,9 @@ namespace NLog.Internal.FileAppenders
 
             try
             {
-                this.fileStream.Seek(0, SeekOrigin.End);
-                this.fileStream.Write(bytes, offset, count);
-                this.fileStream.Flush();
+                this._fileStream.Seek(0, SeekOrigin.End);
+                this._fileStream.Write(bytes, offset, count);
+                this._fileStream.Flush();
                 if (CaptureLastWriteTime)
                 {
                     FileTouched();
@@ -133,7 +133,7 @@ namespace NLog.Internal.FileAppenders
             }
             finally
             {
-                this.mutex.ReleaseMutex();
+                this._mutex.ReleaseMutex();
             }
         }
 
@@ -143,11 +143,11 @@ namespace NLog.Internal.FileAppenders
         public override void Close()
         {
             InternalLogger.Trace("Closing '{0}'", FileName);
-            if (this.mutex != null)
+            if (this._mutex != null)
             {
                 try
                 {
-                    this.mutex.Close();
+                    this._mutex.Close();
                 }
                 catch (Exception ex)
                 {
@@ -156,15 +156,15 @@ namespace NLog.Internal.FileAppenders
                 }
                 finally
                 {
-                    this.mutex = null;
+                    this._mutex = null;
                 }
             }
 
-            if (this.fileStream != null)
+            if (this._fileStream != null)
             {
                 try
                 {
-                    this.fileStream.Close();
+                    this._fileStream.Close();
                 }
                 catch (Exception ex)
                 {
@@ -173,7 +173,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 finally
                 {
-                    this.fileStream = null;
+                    this._fileStream = null;
                 }
             }
 
@@ -222,7 +222,7 @@ namespace NLog.Internal.FileAppenders
         private FileCharacteristics GetFileCharacteristics()
         {
             // TODO: It is not efficient to read all the whole FileCharacteristics and then using one property.
-            return fileCharacteristicsHelper.GetFileCharacteristics(FileName, this.fileStream);
+            return _fileCharacteristicsHelper.GetFileCharacteristics(FileName, this._fileStream);
         }
 
         /// <summary>

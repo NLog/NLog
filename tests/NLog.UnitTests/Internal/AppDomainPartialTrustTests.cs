@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,7 +45,7 @@ using NLog.Targets.Wrappers;
 using NLog.UnitTests;
 using Xunit;
 
-#if !MONO
+#if !NET3_5 && !NETSTANDARD
 
 namespace NLog.UnitTests.Internal
 {
@@ -63,7 +63,12 @@ namespace NLog.UnitTests.Internal
                     // ClassUnderTest must extend MarshalByRefObject
                     AppDomain partialTrusted;
                     var classUnderTest = MediumTrustContext.Create<ClassUnderTest>(fileWritePath, out partialTrusted);
-                    classUnderTest.PartialTrustSuccess(times, fileWritePath);
+#if NET4_0 || NET4_5
+                    using (NLog.NestedDiagnosticsLogicalContext.Push("PartialTrust"))
+#endif
+                    {
+                        classUnderTest.PartialTrustSuccess(times, fileWritePath);
+                    }
                     AppDomain.Unload(partialTrusted);
                 }
 
@@ -109,18 +114,20 @@ namespace NLog.UnitTests.Internal
             var filePath = Path.Combine(fileWritePath, "${level}.txt");
 
             // NOTE Using BufferingWrapper to validate that DomainUnload remembers to perform flush
-            var configXml = string.Format(@"
+            var configXml = $@"
             <nlog throwExceptions='false'>
                 <targets async='true'> 
                     <target name='file' type='BufferingWrapper' bufferSize='10000' flushTimeout='15000'>
-                        <target name='filewrapped' type='file' layout='${{message}} ${{threadid}}' filename='{0}' LineEnding='lf' />
+                        <target name='filewrapped' type='file' layout='${{message}} ${{threadid}}' filename='{
+                    filePath
+                }' LineEnding='lf' />
                     </target>
                 </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' appendto='file'>
                     </logger>
                 </rules>
-            </nlog>", filePath);
+            </nlog>";
 
             LogManager.Configuration = NLogTestBase.CreateConfigurationFromString(configXml);
 

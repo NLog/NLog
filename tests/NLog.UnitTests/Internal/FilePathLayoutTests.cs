@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -41,26 +41,12 @@ namespace NLog.UnitTests.Internal
     using Xunit.Extensions;
     using NLog.Internal;
 
-    public class FilePathLayoutTests : NLogTestBase
+    public class FilePathLayoutTests // Not needed as not using NLog-Core -> : NLogTestBase
     {
         [Theory]
         [InlineData(@"", FilePathKind.Unknown)]
         [InlineData(@" ", FilePathKind.Unknown)]
         [InlineData(null, FilePathKind.Unknown)]
-#if !MONO 
-
-        //no forwardslash on mono
-        [InlineData(@"d:\test.log", FilePathKind.Absolute)]
-        [InlineData(@"d:\test", FilePathKind.Absolute)]
-        [InlineData(@" d:\test", FilePathKind.Absolute)]
-        [InlineData(@" d:\ test", FilePathKind.Absolute)]
-        [InlineData(@" d:\ test\a", FilePathKind.Absolute)]
-        [InlineData(@"\\test\a", FilePathKind.Absolute)]
-        [InlineData(@"\\test/a", FilePathKind.Absolute)]
-        [InlineData(@"\ test\a", FilePathKind.Absolute)]
-        [InlineData(@" a\test.log ", FilePathKind.Relative)]
-#endif
-
         [InlineData(@"/ test\a", FilePathKind.Absolute)]
 
         [InlineData(@"test.log", FilePathKind.Relative)]
@@ -73,14 +59,14 @@ namespace NLog.UnitTests.Internal
         [InlineData(@" .. test.log ", FilePathKind.Relative)]
         [InlineData(@"${basedir}\test.log ", FilePathKind.Absolute)]
         [InlineData(@"${BASEDIR}\test.log ", FilePathKind.Absolute)]
-        [InlineData(@"${BASEDIR}\test ", FilePathKind.Absolute)]
+        [InlineData(@"${basedir}\test ", FilePathKind.Absolute)]
         [InlineData(@"${BASEDIR}\test ", FilePathKind.Absolute)]
         [InlineData(@"${level}\test ", FilePathKind.Unknown)]
 
         [InlineData(@"${basedir}/test.log ", FilePathKind.Absolute)]
         [InlineData(@"${BASEDIR}/test.log ", FilePathKind.Absolute)]
         [InlineData(@"${specialfolder:applicationdata}/test.log ", FilePathKind.Absolute)]
-        [InlineData(@"${BASEDIR}/test ", FilePathKind.Absolute)]
+        [InlineData(@"${basedir}/test ", FilePathKind.Absolute)]
         [InlineData(@"${BASEDIR}/test ", FilePathKind.Absolute)]
         [InlineData(@"${level}/test ", FilePathKind.Unknown)]
         [InlineData(@" ${level}/test ", FilePathKind.Unknown)]
@@ -96,5 +82,24 @@ ${level}/test ", FilePathKind.Relative)]
             Assert.Equal(expected, result);
         }
 
+        [Theory]
+        [InlineData(@"d:\test.log", FilePathKind.Absolute)]
+        [InlineData(@"d:\test", FilePathKind.Absolute)]
+        [InlineData(@" d:\test", FilePathKind.Absolute)]
+        [InlineData(@" d:\ test", FilePathKind.Absolute)]
+        [InlineData(@" d:\ test\a", FilePathKind.Absolute)]
+        [InlineData(@"\\test\a", FilePathKind.Absolute)]
+        [InlineData(@"\\test/a", FilePathKind.Absolute)]
+        [InlineData(@"\ test\a", FilePathKind.Absolute)]
+        [InlineData(@" a\test.log ", FilePathKind.Relative)]
+        public void DetectFilePathKindWindowsPath(string path, FilePathKind expected)
+        {
+            if (System.IO.Path.DirectorySeparatorChar != '\\')
+                return; //no backward-slash on linux
+
+            Layout layout = path;
+            var result = FilePathLayout.DetectFilePathKind(layout);
+            Assert.Equal(expected, result);
+        }
     }
 }

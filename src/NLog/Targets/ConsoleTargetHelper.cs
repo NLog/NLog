@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -62,7 +62,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                reason = string.Format("Unexpected exception: {0}:{1}", ex.GetType().Name, ex.Message);
+                reason = $"Unexpected exception: {ex.GetType().Name}:{ex.Message}";
                 InternalLogger.Warn(ex, "Failed to detect whether console is available.");
                 return false;
             }

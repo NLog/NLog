@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -44,20 +44,23 @@ namespace NLog.Internal
     internal static class StringBuilderExt
     {
         /// <summary>
-        /// Append a value and use formatProvider of <paramref name="logEvent"/> or <paramref name="configuration"/> to convert to string.
+        /// Renders the specified log event context item and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="o">value to append.</param>
-        /// <param name="logEvent">current logEvent for FormatProvider.</param>
-        /// <param name="configuration">Configuration for DefaultCultureInfo</param>
-        public static void Append(this StringBuilder builder, object o, LogEventInfo logEvent, LoggingConfiguration configuration)
+        /// <param name="builder">append to this</param>
+        /// <param name="value">value to be appended</param>
+        /// <param name="format">formatstring. If @, then serialize the value with the Default JsonConverter.</param>
+        /// <param name="formatProvider">provider, for example culture</param>
+        public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider)
         {
-            var formatProvider = logEvent.FormatProvider;
-            if (formatProvider == null && configuration != null)
+            string stringValue = value as string;
+            if (stringValue != null && string.IsNullOrEmpty(format))
             {
-                formatProvider = configuration.DefaultCultureInfo;
+                builder.Append(value);  // Avoid automatic quotes
             }
-            builder.Append(Convert.ToString(o, formatProvider));
+            else if (value != null || !string.IsNullOrEmpty(format))
+            {
+                MessageTemplates.ValueSerializer.Instance.SerializeObject(value, format, formatProvider, builder);
+            }
         }
 
         /// <summary>
@@ -150,14 +153,19 @@ namespace NLog.Internal
 #if !SILVERLIGHT
             if (transformBuffer != null)
             {
+                int charCount = 0;
+                int byteCount = 0;
                 for (int i = 0; i < builder.Length; i += transformBuffer.Length)
                 {
-                    int charCount = Math.Min(builder.Length - i, transformBuffer.Length);
+                    charCount = Math.Min(builder.Length - i, transformBuffer.Length);
                     builder.CopyTo(i, transformBuffer, 0, charCount);
-                    int byteCount = encoding.GetByteCount(transformBuffer, 0, charCount);
-                    ms.SetLength(ms.Length + byteCount);
-                    encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
-                    ms.Position = ms.Length;
+                    byteCount = encoding.GetMaxByteCount(charCount);
+                    ms.SetLength(ms.Position + byteCount);
+                    byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
+                    if ((ms.Position += byteCount) != ms.Length)
+                    {
+                        ms.SetLength(ms.Position);
+                    }
                 }
             }
             else

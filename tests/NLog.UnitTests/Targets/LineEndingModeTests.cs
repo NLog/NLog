@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -134,11 +134,11 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void LineEndingModeToStringTest()
         {
-            Assert.Equal(LineEndingMode.None.ToString(), "None");
-            Assert.Equal(LineEndingMode.Default.ToString(), "Default");
-            Assert.Equal(LineEndingMode.CRLF.ToString(), "CRLF");
-            Assert.Equal(LineEndingMode.CR.ToString(), "CR");
-            Assert.Equal(LineEndingMode.LF.ToString(), "LF");
+            Assert.Equal("None", LineEndingMode.None.ToString());
+            Assert.Equal("Default", LineEndingMode.Default.ToString());
+            Assert.Equal("CRLF", LineEndingMode.CRLF.ToString());
+            Assert.Equal("CR", LineEndingMode.CR.ToString());
+            Assert.Equal("LF", LineEndingMode.LF.ToString());
         }
     }
 }

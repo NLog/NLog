@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using NLog.Common;
 using NLog.Config;
@@ -51,6 +52,16 @@ namespace NLog.UnitTests.Config
         private string extensionAssemblyName1 = "SampleExtensions";
         private string extensionAssemblyFullPath1 = Path.GetFullPath("SampleExtensions.dll");
 
+        private string GetExtensionAssemblyFullPath()
+        {
+#if NETSTANDARD
+            Assert.NotNull(typeof(FooLayout));
+            return typeof(FooLayout).GetTypeInfo().Assembly.Location;
+#else
+            return extensionAssemblyFullPath1;
+#endif
+        }
+
         [Fact]
         public void ExtensionTest1()
         {
@@ -59,7 +70,7 @@ namespace NLog.UnitTests.Config
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <extensions>
-        <add assemblyFile='" + this.extensionAssemblyFullPath1 + @"' />
+        <add assemblyFile='" + this.GetExtensionAssemblyFullPath() + @"' />
     </extensions>
 
     <targets>
@@ -86,7 +97,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
@@ -130,7 +141,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
@@ -149,7 +160,7 @@ namespace NLog.UnitTests.Config
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <extensions>
-        <add prefix='myprefix' assemblyFile='" + this.extensionAssemblyFullPath1 + @"' />
+        <add prefix='myprefix' assemblyFile='" + this.GetExtensionAssemblyFullPath() + @"' />
     </extensions>
 
     <targets>
@@ -176,7 +187,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
@@ -224,7 +235,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
@@ -233,7 +244,6 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, configuration.LoggingRules[0].Filters.Count);
             Assert.Equal("MyExtensionNamespace.WhenFooFilter", configuration.LoggingRules[0].Filters[0].GetType().FullName);
         }
-
 
         [Fact]
         public void ExtensionTest_extensions_not_top_and_used()
@@ -260,8 +270,8 @@ namespace NLog.UnitTests.Config
       </logger>
     </rules>
 
-<extensions>
-        <add assemblyFile='" + this.extensionAssemblyFullPath1 + @"' />
+    <extensions>
+        <add assemblyFile='" + this.GetExtensionAssemblyFullPath() + @"' />
     </extensions>
 
 </nlog>");
@@ -272,7 +282,7 @@ namespace NLog.UnitTests.Config
             var d1Target = (DebugTarget)configuration.FindTargetByName("d1");
             var layout = d1Target.Layout as SimpleLayout;
             Assert.NotNull(layout);
-            Assert.Equal(1, layout.Renderers.Count);
+            Assert.Single(layout.Renderers);
             Assert.Equal("MyExtensionNamespace.FooLayoutRenderer", layout.Renderers[0].GetType().FullName);
 
             var d2Target = (DebugTarget)configuration.FindTargetByName("d2");
@@ -355,7 +365,6 @@ namespace NLog.UnitTests.Config
             CreateConfigurationFromString(configXml);
         }
 
-
         [Fact]
         public void CustomXmlNamespaceTest()
         {
@@ -407,7 +416,7 @@ namespace NLog.UnitTests.Config
 
             EventHandler<AssemblyLoadingEventArgs> onAssemblyLoading = (sender, e) =>
             {
-                if (e.Assembly.FullName.Contains("NLogAutloadExtension"))
+                if (e.Assembly.FullName.Contains("NLogAutoLoadExtension"))
                 {
                     e.Cancel = cancel;
                 }
@@ -429,8 +438,6 @@ namespace NLog.UnitTests.Config
       </logger>
     </rules>
 </nlog>");
-
-
 
                 var autoLoadedTarget = configuration.FindTargetByName("t");
 
@@ -485,8 +492,29 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
-                InternalLogger.LogWriter = null;
+                InternalLogger.Reset();
             }
+        }
+
+        [Fact]
+        public void ImplicitConversionOperatorTest()
+        {
+            var config = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+    <extensions>
+        <add assemblyFile='" + this.GetExtensionAssemblyFullPath() + @"' />
+    </extensions>
+                <targets>
+                    <target name='myTarget' type='MyTarget' layout='123' />
+                </targets>
+                <rules>
+                    <logger name='*' level='Debug' writeTo='myTarget' />
+                </rules>
+            </nlog>");
+
+            var target = config.FindTargetByName<MyTarget>("myTarget");
+            Assert.NotNull(target);
+            Assert.Equal(123, target.Layout.X);
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -90,7 +90,7 @@ namespace NLog.Internal
 
             var enumType = typeof(TEnum);
             if (!enumType.IsEnum)
-                throw new ArgumentException(string.Format("Type '{0}' is not an enum", enumType.FullName));
+                throw new ArgumentException($"Type '{enumType.FullName}' is not an enum");
             
 
        

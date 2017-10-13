@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,10 +37,9 @@ namespace NLog.UnitTests
     using System.IO;
     using System.Threading;
     using System.Reflection;
-
+    using NLog.Config;
     using Xunit;
 
-    using NLog.Config;
 
     public class LogFactoryTests : NLogTestBase
     {
@@ -62,18 +61,15 @@ namespace NLog.UnitTests
         [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {
-
             LogManager.ThrowExceptions = false;
 
             LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog internalLogToConsole='IamNotBooleanValue'>
+            <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
             </nlog>");
-
-
         }
 
         [Fact]
@@ -85,7 +81,7 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = true;
 
                 LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog internalLogToConsole='IamNotBooleanValue'>
+            <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
@@ -98,7 +94,6 @@ namespace NLog.UnitTests
             }
 
             Assert.True(ExceptionThrown);
-
         }
 
         [Fact]
@@ -109,8 +104,8 @@ namespace NLog.UnitTests
             {
                 bool threadTerminated;
 
-                var primaryLogFactory = typeof(LogManager).GetField("factory", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
-                var primaryLogFactoryLock = typeof(LogFactory).GetField("syncRoot", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(primaryLogFactory);
+                var primaryLogFactory = LogManager.factory;
+                var primaryLogFactoryLock = primaryLogFactory._syncRoot;
                 // Simulate a potential deadlock. 
                 // If the creation of the new LogFactory takes the lock of the global LogFactory, the thread will deadlock.
                 lock (primaryLogFactoryLock)
@@ -138,13 +133,38 @@ namespace NLog.UnitTests
         [Fact]
         public void ReloadConfigOnTimer_DoesNotThrowConfigException_IfConfigChangedInBetween()
         {
-            var loggingConfiguration = new LoggingConfiguration();
-            LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
-            var differentConfiguration = new LoggingConfiguration();
+            EventHandler<LoggingConfigurationChangedEventArgs> testChanged = null;
 
-            Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
-        }
+            try
+            {
+                LogManager.Configuration = null;
+
+                var loggingConfiguration = new LoggingConfiguration();
+                LogManager.Configuration = loggingConfiguration;
+                var logFactory = new LogFactory(loggingConfiguration);
+                var differentConfiguration = new LoggingConfiguration();
+
+                // Verify that the random configuration change is ignored (Only the final reset is reacted upon)
+                bool called = false;
+                LoggingConfiguration oldConfiguration = null, newConfiguration = null;
+                testChanged = (s, e) => { called = true; oldConfiguration = e.DeactivatedConfiguration; newConfiguration = e.ActivatedConfiguration; };
+                LogManager.LogFactory.ConfigurationChanged += testChanged;
+
+                var exRecorded = Record.Exception(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
+                Assert.Null(exRecorded);
+
+                // Final reset clears the configuration, so it is changed to null
+                LogManager.Configuration = null;
+                Assert.True(called);
+                Assert.Equal(loggingConfiguration, oldConfiguration);
+                Assert.Null(newConfiguration);
+            }
+            finally
+            {
+                if (testChanged != null)
+                    LogManager.LogFactory.ConfigurationChanged -= testChanged;
+            }
+       }
 
         private class ReloadNullConfiguration : LoggingConfiguration
         {
@@ -161,7 +181,8 @@ namespace NLog.UnitTests
             LogManager.Configuration = loggingConfiguration;
             var logFactory = new LogFactory(loggingConfiguration);
 
-            Assert.DoesNotThrow(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
+            var exRecorded = Record.Exception(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
+            Assert.Null(exRecorded);
         }
 
         [Fact]
@@ -204,11 +225,6 @@ namespace NLog.UnitTests
             logFactory.ReloadConfigOnTimer(loggingConfiguration);
 
             Assert.True(arguments.Succeeded);
-        }
-
-        public static void Throws()
-        {
-            throw new Exception();
         }
 
         /// <summary>
@@ -265,7 +281,7 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.EnableLogging();
             Assert.True(factory.IsLoggingEnabled());
-#pragma warning restore 618           
+#pragma warning restore 618
         }
 
         [Fact]
@@ -305,7 +321,6 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.ResumeLogging();
             Assert.True(factory.IsLoggingEnabled());
-
         }
     }
 }

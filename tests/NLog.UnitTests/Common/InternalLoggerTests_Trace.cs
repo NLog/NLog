@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,8 +33,6 @@
 
 #define DEBUG
 
-#if !__IOS__ && !__ANDROID__
-
 namespace NLog.UnitTests.Common
 {
 
@@ -60,7 +58,7 @@ namespace NLog.UnitTests.Common
 
             InternalLogger.Trace("Logger1 Hello");
 
-            Assert.Equal(0, mockTraceListener.Messages.Count);
+            Assert.Empty(mockTraceListener.Messages);
         }
 
         [Theory]
@@ -77,7 +75,7 @@ namespace NLog.UnitTests.Common
 
             InternalLogger.Trace("Logger1 Hello");
 
-            Assert.Equal(0, mockTraceListener.Messages.Count);
+            Assert.Empty(mockTraceListener.Messages);
         }
 
         [Theory]
@@ -146,11 +144,11 @@ namespace NLog.UnitTests.Common
                     int msgCount = LogLevel.Fatal.Ordinal - logLevelConfig.Ordinal + 1;
                     for (int j = 0; j < msgCount; ++j)
                     {
-                        Assert.True(mockTraceListener.Messages.First().Contains(expected[i]));
+                        Assert.Contains(expected[i], mockTraceListener.Messages.First());
                         mockTraceListener.Messages.RemoveAt(0);
                     }
                 }
-                Assert.Equal(0, mockTraceListener.Messages.Count);
+                Assert.Empty(mockTraceListener.Messages);
             }
         }
 
@@ -164,7 +162,7 @@ namespace NLog.UnitTests.Common
 
             InternalLogger.Trace("Logger1 Hello");
 
-            Assert.Equal(1, mockTraceListener.Messages.Count);
+            Assert.Single(mockTraceListener.Messages);
             Assert.Equal("NLog: Trace Logger1 Hello" + Environment.NewLine, mockTraceListener.Messages.First());
         }
 
@@ -178,7 +176,7 @@ namespace NLog.UnitTests.Common
 
             InternalLogger.Debug("Logger1 Hello");
 
-            Assert.Equal(1, mockTraceListener.Messages.Count);
+            Assert.Single(mockTraceListener.Messages);
             Assert.Equal("NLog: Debug Logger1 Hello" + Environment.NewLine, mockTraceListener.Messages.First());
         }
 
@@ -192,7 +190,7 @@ namespace NLog.UnitTests.Common
 
             InternalLogger.Info("Logger1 Hello");
 
-            Assert.Equal(1, mockTraceListener.Messages.Count);
+            Assert.Single(mockTraceListener.Messages);
             Assert.Equal("NLog: Info Logger1 Hello" + Environment.NewLine, mockTraceListener.Messages.First());
         }
 
@@ -206,7 +204,7 @@ namespace NLog.UnitTests.Common
 
             InternalLogger.Warn("Logger1 Hello");
 
-            Assert.Equal(1, mockTraceListener.Messages.Count);
+            Assert.Single(mockTraceListener.Messages);
             Assert.Equal("NLog: Warn Logger1 Hello" + Environment.NewLine, mockTraceListener.Messages.First());
         }
 
@@ -220,7 +218,7 @@ namespace NLog.UnitTests.Common
 
             InternalLogger.Error("Logger1 Hello");
 
-            Assert.Equal(1, mockTraceListener.Messages.Count);
+            Assert.Single(mockTraceListener.Messages);
             Assert.Equal("NLog: Error Logger1 Hello" + Environment.NewLine, mockTraceListener.Messages.First());
         }
 
@@ -234,7 +232,7 @@ namespace NLog.UnitTests.Common
 
             InternalLogger.Fatal("Logger1 Hello");
 
-            Assert.Equal(1, mockTraceListener.Messages.Count);
+            Assert.Single(mockTraceListener.Messages);
             Assert.Equal("NLog: Fatal Logger1 Hello" + Environment.NewLine, mockTraceListener.Messages.First());
         }
 
@@ -258,7 +256,7 @@ namespace NLog.UnitTests.Common
             var internalLogToTraceAttribute = "";
             if (internalLogToTrace.HasValue)
             {
-                internalLogToTraceAttribute = string.Format(" internalLogToTrace='{0}'", internalLogToTrace.Value);
+                internalLogToTraceAttribute = $" internalLogToTrace='{internalLogToTrace.Value}'";
             }
 
             var xmlConfiguration = string.Format(XmlConfigurationFormat, logLevel, internalLogToTraceAttribute);
@@ -349,5 +347,3 @@ namespace NLog.UnitTests.Common
     }
 
 }
-
-#endif

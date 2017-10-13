@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -76,15 +76,15 @@ namespace NLog.Targets
         public static readonly LineEndingMode None = new LineEndingMode("None", String.Empty);
 
 
-        private readonly string name;
-        private readonly string newLineCharacters;
+        private readonly string _name;
+        private readonly string _newLineCharacters;
 
         /// <summary>
         /// Gets the name of the LineEndingMode instance.
         /// </summary>
         public string Name 
         {       
-            get { return this.name; }
+            get { return this._name; }
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NLog.Targets
         /// </summary>
         public string NewLineCharacters 
         {
-            get { return this.newLineCharacters; }
+            get { return this._newLineCharacters; }
         }
 
         private LineEndingMode() { }
@@ -104,8 +104,8 @@ namespace NLog.Targets
         /// <param name="newLineCharacters">The new line characters to be used.</param>
         private LineEndingMode(string name, string newLineCharacters)
         {
-            this.name = name;
-            this.newLineCharacters = newLineCharacters;
+            this._name = name;
+            this._newLineCharacters = newLineCharacters;
         }
 
 
@@ -197,7 +197,7 @@ namespace NLog.Targets
         /// </returns>
         public override int GetHashCode()
         {
-            return (newLineCharacters != null ? newLineCharacters.GetHashCode() : 0);
+            return (_newLineCharacters != null ? _newLineCharacters.GetHashCode() : 0);
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace NLog.Targets
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return string.Equals(newLineCharacters, other.newLineCharacters);
+            return string.Equals(_newLineCharacters, other._newLineCharacters);
         }
 
 

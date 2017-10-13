@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -56,10 +56,10 @@ namespace NLog.UnitTests.Config
             var rule = c.LoggingRules[0];
             Assert.Equal("*", rule.LoggerNamePattern);
             Assert.Equal(4, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Info));
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
-            Assert.True(rule.Levels.Contains(LogLevel.Error));
-            Assert.True(rule.Levels.Contains(LogLevel.Fatal));
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
+            Assert.Contains(LogLevel.Error, rule.Levels);
+            Assert.Contains(LogLevel.Fatal, rule.Levels);
             Assert.Equal(1, rule.Targets.Count);
             Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
             Assert.False(rule.Final);

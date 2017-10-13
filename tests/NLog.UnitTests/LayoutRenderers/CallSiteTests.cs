@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -49,6 +49,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class CallSiteTests : NLogTestBase
     {
+#if !NETSTANDARD
         [Fact]
         public void HiddenAssemblyTest()
         {
@@ -115,9 +116,10 @@ namespace NLog.UnitTests.LayoutRenderers
             MethodBase currentMethod = MethodBase.GetCurrentMethod();
             AssertDebugLastMessage("debug", currentMethod.DeclaringType.FullName + "." + currentMethod.Name + " msg");
         }
+#endif
 
-#if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
 #else
         [Fact]
 #endif
@@ -365,7 +367,11 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame msg");
         }
 
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#else
         [Fact]
+#endif
         public void GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -383,7 +389,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -420,7 +426,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -453,12 +459,12 @@ namespace NLog.UnitTests.LayoutRenderers
             if (done == true)
             {
                 string lastMessage = GetDebugLastMessage("debug");
-                Assert.True(lastMessage.StartsWith("<DontCleanMethodNamesOfAnonymousDelegatesTest>"));
+                Assert.StartsWith("<DontCleanMethodNamesOfAnonymousDelegatesTest>", lastMessage);
             }
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -495,7 +501,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 #if MONO
-        [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
         [Fact]
 #endif
@@ -528,7 +534,7 @@ namespace NLog.UnitTests.LayoutRenderers
             if (done == true)
             {
                 string lastMessage = GetDebugLastMessage("debug");
-                Assert.True(lastMessage.Contains("+<>"));
+                Assert.Contains("+<>", lastMessage);
             }
         }
 
@@ -550,15 +556,12 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var logger = LogManager.GetLogger("A");
             logger.Warn("direct");
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
             LoggerTests.BaseWrapper wrappedLogger = new LoggerTests.MyWrapper();
             wrappedLogger.Log("wrapped");
-            AssertDebugLastMessage("debug", string.Format("{0}|wrapped", currentMethodFullName));
-
-
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|wrapped");
         }
-
 
         [Fact]
         public void CheckStackTraceUsageForTwoRules()
@@ -644,16 +647,19 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var logger = LogManager.GetLogger("A");
             logger.Warn("direct");
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
             CompositeWrapper wrappedLogger = new CompositeWrapper();
             wrappedLogger.Log("wrapped");
-            AssertDebugLastMessage("debug", string.Format("{0}|wrapped", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|wrapped");
 
         }
 
-#if ASYNC_SUPPORTED
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#else
         [Fact]
+#endif
         public void Show_correct_method_with_async()
         {
 
@@ -669,7 +675,7 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             AsyncMethod().Wait();
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
         }
 
@@ -681,7 +687,11 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
         }
 
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#else
         [Fact]
+#endif
         public void Show_correct_method_with_async2()
         {
 
@@ -697,7 +707,7 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             AsyncMethod2a().Wait();
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
         }
 
@@ -705,6 +715,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             await AsyncMethod2b();
         }
+
         private async Task AsyncMethod2b()
         {
             var logger = LogManager.GetCurrentClassLogger();
@@ -713,11 +724,15 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
         }
 
-
+#if NET3_5 
+        [Fact(Skip = "NET3_5 not supporting async callstack")]
+#elif !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#else
         [Fact]
+#endif
         public void Show_correct_method_with_async3()
         {
-
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod3b";
 
@@ -730,8 +745,7 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             AsyncMethod3a().Wait();
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
-
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
         }
 
         private async Task AsyncMethod3a()
@@ -740,6 +754,7 @@ namespace NLog.UnitTests.LayoutRenderers
             await reader.ReadLineAsync();
             AsyncMethod3b();
         }
+
         private void AsyncMethod3b()
         {
             var logger = LogManager.GetCurrentClassLogger();
@@ -755,7 +770,13 @@ namespace NLog.UnitTests.LayoutRenderers
             return await Task.FromResult(new string[] { "value1", "value2" });
         }
 
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
+#else
         [Fact]
+#endif
         public void Show_correct_method_with_async4()
         {
 
@@ -771,11 +792,17 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             AsyncMethod4().Wait();
-            AssertDebugLastMessage("debug", string.Format("{0}|Direct, async method", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|Direct, async method");
 
         }
 
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
+#else
         [Fact]
+#endif
         public void CallSiteShouldWorkForAsyncMethodsWithReturnValue()
         {
             var callSite = GetAsyncCallSite().GetAwaiter().GetResult();
@@ -797,9 +824,11 @@ namespace NLog.UnitTests.LayoutRenderers
             return callSite;
         }
 
-#endif
-
+#if !DEBUG
+        [Fact(Skip = "RELEASE not working, only DEBUG")]
+#else
         [Fact]
+#endif
         public void Show_correct_method_for_moveNext()
         {
 
@@ -815,7 +844,7 @@ namespace NLog.UnitTests.LayoutRenderers
            </nlog>");
 
             MoveNext();
-            AssertDebugLastMessage("debug", string.Format("{0}|direct", currentMethodFullName));
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
         }
 
@@ -830,10 +859,13 @@ namespace NLog.UnitTests.LayoutRenderers
         public class CompositeWrapper
         {
             private readonly MyWrapper wrappedLogger;
+
             public CompositeWrapper()
             {
                 wrappedLogger = new MyWrapper();
             }
+
+            [MethodImpl(MethodImplOptions.NoInlining)]
             public void Log(string what)
             {
                 wrappedLogger.Log(typeof(CompositeWrapper), what);
@@ -919,7 +951,6 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CallsiteBySubclass_mylogger msg");
 
         }
-
 
         [Fact]
         public void CallsiteBySubclass_logger()
@@ -1040,51 +1071,127 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
         }
 
-    }
-
-    /// <summary>
-    ///   Implementation of <see cref="ILogger" /> for NLog.
-    /// </summary>
-    public class NLogLogger
-    {
-        /// <summary>
-        ///   Initializes a new instance of the <see cref="NLogLogger" /> class.
-        /// </summary>
-        /// <param name="logger"> The logger. </param>
-        public NLogLogger(Logger logger)
+        [Fact]
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
         {
-            Logger = logger;
+            // name of the logging method
+            const string callsiteMethodName = "AsyncMethod5";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=false:cleannamesofasynccontinuations=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            AsyncMethod5().GetAwaiter().GetResult();
+
+            AssertDebugLastMessage("debug", callsiteMethodName);
+        }
+
+        [Fact]
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
+        {
+            // full name of the logging method
+            const string callsiteMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5";
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=true:includenamespace=true:cleannamesofasynccontinuations=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            AsyncMethod5().GetAwaiter().GetResult();
+
+            AssertDebugLastMessage("debug", callsiteMethodFullName);
+        }
+
+        [Fact]
+        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            AsyncMethod5().GetAwaiter().GetResult();
+
+
+
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames - test is unstable on Travis");
+                return;
+            }
+
+            AssertDebugLastMessageContains("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests");
+            AssertDebugLastMessageContains("debug", "MoveNext");
+            AssertDebugLastMessageContains("debug", "d__");
+
+        }
+
+        private async Task AsyncMethod5()
+        {
+            await AMinimalAsyncMethod();
+
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("dude");
+        }
+
+        private async Task AMinimalAsyncMethod()
+        {
+            await Task.Run(() => { });
         }
 
         /// <summary>
-        ///   Gets or sets the logger.
+        ///   Implementation of <see cref="ILogger" /> for NLog.
         /// </summary>
-        /// <value> The logger. </value>
-        protected internal Logger Logger { get; set; }
-
-        /// <summary>
-        ///   Returns a <see cref="string" /> that represents this instance.
-        /// </summary>
-        /// <returns> A <see cref="string" /> that represents this instance. </returns>
-        public override string ToString()
+        public class NLogLogger
         {
-            return Logger.ToString();
-        }
+            /// <summary>
+            ///   Initializes a new instance of the <see cref="NLogLogger" /> class.
+            /// </summary>
+            /// <param name="logger"> The logger. </param>
+            public NLogLogger(Logger logger)
+            {
+                Logger = logger;
+            }
 
-        /// <summary>
-        ///   Logs a debug message.
-        /// </summary>
-        /// <param name="message"> The message to log </param>
-        public void Debug(string message)
-        {
-            Log(LogLevel.Debug, message);
-        }
+            /// <summary>
+            ///   Gets or sets the logger.
+            /// </summary>
+            /// <value> The logger. </value>
+            protected internal Logger Logger { get; set; }
 
-        public void Log(LogLevel logLevel, string message)
-        {
-            Logger.Log(typeof(NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
-        }
+            /// <summary>
+            ///   Returns a <see cref="string" /> that represents this instance.
+            /// </summary>
+            /// <returns> A <see cref="string" /> that represents this instance. </returns>
+            public override string ToString()
+            {
+                return Logger.ToString();
+            }
 
+            /// <summary>
+            ///   Logs a debug message.
+            /// </summary>
+            /// <param name="message"> The message to log </param>
+            public void Debug(string message)
+            {
+                Log(LogLevel.Debug, message);
+            }
+
+            public void Log(LogLevel logLevel, string message)
+            {
+                Logger.Log(typeof(NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
+            }
+
+        }
     }
 }
-

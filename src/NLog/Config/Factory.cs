@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -49,12 +49,12 @@ namespace NLog.Config
         where TBaseType : class
         where TAttributeType : NameBaseAttribute
     {
-        private readonly Dictionary<string, GetTypeDelegate> items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
-        private ConfigurationItemFactory parentFactory;
+        private readonly Dictionary<string, GetTypeDelegate> _items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
+        private ConfigurationItemFactory _parentFactory;
 
         internal Factory(ConfigurationItemFactory parentFactory)
         {
-            this.parentFactory = parentFactory;
+            this._parentFactory = parentFactory;
         }
 
         private delegate Type GetTypeDelegate();
@@ -109,7 +109,7 @@ namespace NLog.Config
         /// <param name="typeName">Name of the type.</param>
         public void RegisterNamedType(string itemName, string typeName)
         {
-            this.items[itemName] = () => Type.GetType(typeName, false);
+            this._items[itemName] = () => Type.GetType(typeName, false);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace NLog.Config
         /// </summary>
         public void Clear()
         {
-            this.items.Clear();
+            this._items.Clear();
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace NLog.Config
         /// <param name="type">The type of the item.</param>
         public void RegisterDefinition(string name, Type type)
         {
-            this.items[name] = () => type;
+            this._items[name] = () => type;
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace NLog.Config
         {
             GetTypeDelegate getTypeDelegate;
 
-            if (!this.items.TryGetValue(itemName, out getTypeDelegate))
+            if (!this._items.TryGetValue(itemName, out getTypeDelegate))
             {
                 result = null;
                 return false;
@@ -180,7 +180,7 @@ namespace NLog.Config
                 return false;
             }
 
-            result = (TBaseType)this.parentFactory.CreateInstance(type);
+            result = (TBaseType)this._parentFactory.CreateInstance(type);
             return true;
         }
 
@@ -219,14 +219,14 @@ namespace NLog.Config
         {
         }
 
-        private Dictionary<string, FuncLayoutRenderer> funcRenderers;
+        private Dictionary<string, FuncLayoutRenderer> _funcRenderers;
 
         /// <summary>
         /// Clear all func layouts
         /// </summary>
         public void ClearFuncLayouts()
         {
-            funcRenderers = null;
+            _funcRenderers = null;
         }
 
         /// <summary>
@@ -236,10 +236,10 @@ namespace NLog.Config
         /// <param name="renderer">the renderer that renders the value.</param>
         public void RegisterFuncLayout(string name, FuncLayoutRenderer renderer)
         {
-            funcRenderers = funcRenderers ?? new Dictionary<string, FuncLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
+            _funcRenderers = _funcRenderers ?? new Dictionary<string, FuncLayoutRenderer>(StringComparer.OrdinalIgnoreCase);
 
             //overwrite current if there is one
-            funcRenderers[name] = renderer;
+            _funcRenderers[name] = renderer;
         }
 
 
@@ -252,10 +252,10 @@ namespace NLog.Config
         public override bool TryCreateInstance(string itemName, out LayoutRenderer result)
         {
             //first try func renderers, as they should have the possiblity to overwrite a current one.
-            if (funcRenderers != null)
+            if (_funcRenderers != null)
             {
                 FuncLayoutRenderer funcResult;
-                var succesAsFunc = funcRenderers.TryGetValue(itemName, out funcResult);
+                var succesAsFunc = _funcRenderers.TryGetValue(itemName, out funcResult);
                 if (succesAsFunc)
                 {
                     result = funcResult;

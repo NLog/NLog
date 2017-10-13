@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -65,8 +65,8 @@ namespace NLog.LayoutRenderers.Wrappers
             OnClose = 2
         }
 
-        private string cachedValue = null;
-        private string renderedCacheKey = null;
+        private string _cachedValue = null;
+        private string _renderedCacheKey = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CachedLayoutRendererWrapper"/> class.
@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             base.InitializeLayoutRenderer();
             if ((ClearCache & ClearCacheOption.OnInit) == ClearCacheOption.OnInit)
-                this.cachedValue = null;
+                this._cachedValue = null;
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             base.CloseLayoutRenderer();
             if ((ClearCache & ClearCacheOption.OnClose) == ClearCacheOption.OnClose)
-                this.cachedValue = null;
+                this._cachedValue = null;
         }
 
         /// <summary>
@@ -134,13 +134,13 @@ namespace NLog.LayoutRenderers.Wrappers
             if (this.Cached)
             {
                 var newCacheKey = CacheKey == null ? null: CacheKey.Render(logEvent);
-                if (this.cachedValue == null || this.renderedCacheKey != newCacheKey)
+                if (this._cachedValue == null || this._renderedCacheKey != newCacheKey)
                 {
-                    this.cachedValue = base.RenderInner(logEvent);
-                    this.renderedCacheKey = newCacheKey;
+                    this._cachedValue = base.RenderInner(logEvent);
+                    this._renderedCacheKey = newCacheKey;
                 }
 
-                return this.cachedValue;
+                return this._cachedValue;
             }
             else
             {

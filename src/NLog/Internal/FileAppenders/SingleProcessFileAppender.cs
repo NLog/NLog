@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,7 +48,7 @@ namespace NLog.Internal.FileAppenders
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        private FileStream file;
+        private FileStream _file;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SingleProcessFileAppender" /> class.
@@ -69,7 +69,7 @@ namespace NLog.Internal.FileAppenders
                     FileTouched();
                 }
             }
-            this.file = CreateFileStream(false);
+            this._file = CreateFileStream(false);
         }
 
         /// <summary>
@@ -80,12 +80,12 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (this.file == null)
+            if (this._file == null)
             {
                 return;
             }
 
-            this.file.Write(bytes, offset, count);
+            this._file.Write(bytes, offset, count);
 
             if (CaptureLastWriteTime)
             {
@@ -98,12 +98,12 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Flush()
         {
-            if (this.file == null)
+            if (this._file == null)
             {
                 return;
             }
 
-            this.file.Flush();
+            this._file.Flush();
             FileTouched();
         }
 
@@ -112,7 +112,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            if (this.file == null)
+            if (this._file == null)
             {
                 return;
             }
@@ -120,7 +120,7 @@ namespace NLog.Internal.FileAppenders
             InternalLogger.Trace("Closing '{0}'", FileName);
             try
             {
-                this.file.Close();
+                this._file.Close();
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace NLog.Internal.FileAppenders
             }
             finally
             {
-                this.file = null;
+                this._file = null;
             }
         }
 
@@ -160,8 +160,8 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
-            if (file == null) { return null; }
-            return file.Length;
+            if (_file == null) { return null; }
+            return _file.Length;
         }
 
         /// <summary>

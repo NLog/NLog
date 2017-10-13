@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -60,8 +60,9 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //don't use GlobalDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
-            var o = GlobalDiagnosticsContext.GetObject(this.Item);
-            builder.Append(o, logEvent, LoggingConfiguration);
+            var value = GlobalDiagnosticsContext.GetObject(this.Item);
+            var formatProvider = GetFormatProvider(logEvent, null);
+            builder.AppendFormattedValue(value, null, formatProvider);
         }
     }
 }

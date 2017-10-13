@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -59,7 +59,7 @@ namespace NLog.UnitTests
             cont(null);
             cont(sampleException);
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.Null(exceptions[0]);
         }
 
@@ -77,7 +77,7 @@ namespace NLog.UnitTests
             cont(sampleException);
             cont(null);
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.Same(sampleException, exceptions[0]);
         }
 
@@ -95,7 +95,7 @@ namespace NLog.UnitTests
             cont(null);
             cont(null);
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.Null(exceptions[0]);
         }
 
@@ -129,7 +129,7 @@ namespace NLog.UnitTests
             // cleanup
             LogManager.ThrowExceptions = false;
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.Null(exceptions[0]);
         }
 
@@ -149,8 +149,8 @@ namespace NLog.UnitTests
             resetEvent.WaitOne(TimeSpan.FromSeconds(1));
 
             // make sure we got timeout exception
-            Assert.Equal(1, exceptions.Count);
-            Assert.IsType(typeof(TimeoutException), exceptions[0]);
+            Assert.Single(exceptions);
+            Assert.IsType<TimeoutException>(exceptions[0]);
             Assert.Equal("Timeout.", exceptions[0].Message);
 
             // those will be ignored
@@ -159,7 +159,7 @@ namespace NLog.UnitTests
             cont(null);
             cont(new InvalidOperationException("Some exception"));
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
         }
 
         [Fact]
@@ -167,17 +167,17 @@ namespace NLog.UnitTests
         {
             var exceptions = new List<Exception>();
 
-            // set up a timer to strike in 1 second
-            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromMilliseconds(500));
+            // set up a timer to strike 
+            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromMilliseconds(50));
 
             // call success quickly, hopefully before the timer comes
             cont(null);
 
-            // sleep 2 seconds to make sure timer event comes
-            Thread.Sleep(1000);
+            // sleep to make sure timer event comes
+            Thread.Sleep(100);
 
             // make sure we got success, not a timer exception
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.Null(exceptions[0]);
 
             // those will be ignored
@@ -186,27 +186,28 @@ namespace NLog.UnitTests
             cont(null);
             cont(new InvalidOperationException("Some exception"));
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.Null(exceptions[0]);
         }
+
 
         [Fact]
         public void ContinuationErrorTimeoutNotHitTest()
         {
             var exceptions = new List<Exception>();
 
-            // set up a timer to strike in 3 second
-            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromSeconds(500));
+            // set up a timer to strike
+            var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromMilliseconds(50));
 
             var exception = new InvalidOperationException("Foo");
             // call success quickly, hopefully before the timer comes
             cont(exception);
 
-            // sleep 2 seconds to make sure timer event comes
-            Thread.Sleep(1000);
+            // sleep to make sure timer event comes
+            Thread.Sleep(100);
 
             // make sure we got success, not a timer exception
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.NotNull(exceptions[0]);
 
             Assert.Same(exception, exceptions[0]);
@@ -217,7 +218,7 @@ namespace NLog.UnitTests
             cont(null);
             cont(new InvalidOperationException("Some exception"));
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.NotNull(exceptions[0]);
         }
 
@@ -443,7 +444,6 @@ namespace NLog.UnitTests
             using (new InternalLoggerScope())
             {
                 InternalLogger.LogLevel = LogLevel.Trace;
-                InternalLogger.LogToConsole = true;
 
                 var finalContinuationInvoked = new ManualResetEvent(false);
                 Exception lastException = null;
@@ -460,7 +460,7 @@ namespace NLog.UnitTests
                 AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
                     (i, cont) =>
                         {
-                            Console.WriteLine("Callback on {0}", Thread.CurrentThread.ManagedThreadId);
+
                             lock (input)
                             {
                                 sum += i;
@@ -477,7 +477,7 @@ namespace NLog.UnitTests
                 finalContinuationInvoked.WaitOne();
                 Assert.Equal(55, sum);
                 Assert.NotNull(lastException);
-                Assert.IsType(typeof(InvalidOperationException), lastException);
+                Assert.IsType<InvalidOperationException>(lastException);
                 Assert.Equal("Some failure.", lastException.Message);
             }
         }
@@ -511,8 +511,8 @@ namespace NLog.UnitTests
             finalContinuationInvoked.WaitOne();
             Assert.Equal(55, sum);
             Assert.NotNull(lastException);
-            Assert.IsType(typeof(NLogRuntimeException), lastException);
-            Assert.True(lastException.Message.StartsWith("Got multiple exceptions:\r\n"));
+            Assert.IsType<NLogRuntimeException>(lastException);
+            Assert.StartsWith("Got multiple exceptions:\r\n", lastException.Message);
         }
 
         [Fact]

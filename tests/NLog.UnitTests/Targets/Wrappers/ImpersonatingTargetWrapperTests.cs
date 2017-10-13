@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+#if !MONO && !NETSTANDARD
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
@@ -77,7 +77,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             var exceptions = new List<Exception>();
             wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             wrapper.WriteAsyncLogEvents(
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                 LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
@@ -122,7 +122,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 var exceptions = new List<Exception>();
                 wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-                Assert.Equal(1, exceptions.Count);
+                Assert.Single(exceptions);
                 wrapper.WriteAsyncLogEvents(
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
                     LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),

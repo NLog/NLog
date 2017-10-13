@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -64,7 +64,6 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${basedir:file=aaa.txt}", Path.Combine(baseDir, "aaa.txt"));
         }
 
-#if !SILVERLIGHT
         [Fact]
         public void BaseDirCurrentProcessTest()
         {
@@ -72,10 +71,9 @@ namespace NLog.UnitTests.LayoutRenderers
             var dir = l.Render(LogEventInfo.CreateNullEvent());
 
             Assert.NotNull(dir);
-            Assert.True(Directory.Exists(dir), string.Format("dir '{0}' doesn't exists", dir));
+            Assert.True(Directory.Exists(dir), $"dir '{dir}' doesn't exists");
             Assert.Equal(Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName), dir);
         }
-#endif
 
         [Fact]
         public void BaseDirDirFileCombineTest()
@@ -101,7 +99,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 var paths = LogManager.LogFactory.GetCandidateConfigFilePaths().ToList();
                 var count = paths.Count(p => p.StartsWith(fakeBaseDir));
 
-                Assert.True(count > 0, string.Format("At least one path should start with '{0}'", fakeBaseDir));
+                Assert.True(count > 0, $"At least one path should start with '{fakeBaseDir}'");
 
             }
             finally

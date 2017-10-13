@@ -1,12 +1,16 @@
-rem install SHFB first, rebuild Nlog and update BuildVersion in this script
 rem @echo off
+rem First rebuild Nlog and update BuildVersion in this script
+
+rem install SHFB
+..\..\tools\nuget.exe install EWSoftware.SHFB -excludeversion -OutputDirectory ..\..\tools\
+..\..\tools\nuget.exe install EWSoftware.SHFB.NETFramework -excludeversion -OutputDirectory ..\..\tools\
+
 set FRAMEWORK1=.NET Framework 4.5
 set FRAMEWORK="%FRAMEWORK1%"
-set BuildVersion=4.4.0
-
+set BuildVersion=4.4
 
 set Configuration=Release
 
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe %~dp0NLog.shfbproj /p:Configuration=Release /p:Framework=%FRAMEWORK% /p:AssemblyName=NLog /p:BuildVersion=%BuildVersion% /p:BuildLabelOverride=NONE
- rem copy favicon
-copy favicon.ico  "..\..\build\bin\%configuration%\%FRAMEWORK1%\doc\icons\favicon.ico"
+msbuild.exe %~dp0NLog.shfbproj /p:Configuration=Release /p:Framework=%FRAMEWORK% /p:AssemblyName=NLog /p:BuildVersion=%BuildVersion% /p:BuildLabelOverride=NONE
+rem copy favicon
+copy favicon.ico ".\Doc\icons\favicon.ico"

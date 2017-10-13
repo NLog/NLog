@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -69,20 +69,20 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
 
-            Debug.Write("Hello");
+            Trace.Write("Hello");
             AssertDebugLastMessage("debug", "Logger1 Debug Hello");
 
-            Debug.Write("Hello", "Cat1");
+            Trace.Write("Hello", "Cat1");
             AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello");
 
-            Debug.Write(3.1415);
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug {0}", 3.1415));
+            Trace.Write(3.1415);
+            AssertDebugLastMessage("debug", $"Logger1 Debug {3.1415}");
 
-            Debug.Write(3.1415, "Cat2");
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
+            Trace.Write(3.1415, "Cat2");
+            AssertDebugLastMessage("debug", $"Logger1 Debug Cat2: {3.1415}");
         }
 
         [Fact]
@@ -96,20 +96,20 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
 
-            Debug.WriteLine("Hello");
+            Trace.WriteLine("Hello");
             AssertDebugLastMessage("debug", "Logger1 Debug Hello");
 
-            Debug.WriteLine("Hello", "Cat1");
+            Trace.WriteLine("Hello", "Cat1");
             AssertDebugLastMessage("debug", "Logger1 Debug Cat1: Hello");
 
-            Debug.WriteLine(3.1415);
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug {0}", 3.1415));
+            Trace.WriteLine(3.1415);
+            AssertDebugLastMessage("debug", $"Logger1 Debug {3.1415}");
 
-            Debug.WriteLine(3.1415, "Cat2");
-            AssertDebugLastMessage("debug", string.Format("Logger1 Debug Cat2: {0}", 3.1415));
+            Trace.WriteLine(3.1415, "Cat2");
+            AssertDebugLastMessage("debug", $"Logger1 Debug Cat2: {3.1415}");
         }
 
         [Fact]
@@ -123,10 +123,10 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1", DefaultLogLevel = LogLevel.Trace });
 
-            Debug.Write("Hello");
+            Trace.Write("Hello");
             AssertDebugLastMessage("debug", "Logger1 Trace Hello");
         }
 
@@ -156,13 +156,13 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1" });
 
-            Debug.Fail("Message");
+            Trace.Fail("Message");
             AssertDebugLastMessage("debug", "Logger1 Error Message");
 
-            Debug.Fail("Message", "Detailed Message");
+            Trace.Fail("Message", "Detailed Message");
             AssertDebugLastMessage("debug", "Logger1 Error Message Detailed Message");
         }
 
@@ -177,10 +177,10 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            Debug.Listeners.Clear();
-            Debug.Listeners.Add(new NLogTraceListener { Name = "Logger1", AutoLoggerName = true });
+            Trace.Listeners.Clear();
+            Trace.Listeners.Add(new NLogTraceListener { Name = "Logger1", AutoLoggerName = true });
 
-            Debug.Write("Hello");
+            Trace.Write("Hello");
             AssertDebugLastMessage("debug", this.GetType().FullName + " Debug Hello");
         }
 
@@ -202,7 +202,8 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "MySource1 Fatal 42 123");
 
             ts.TraceData(TraceEventType.Critical, 145, 42, 3.14, "foo");
-            AssertDebugLastMessage("debug", string.Format("MySource1 Fatal 42, {0}, foo 145", 3.14.ToString(System.Globalization.CultureInfo.CurrentCulture)));
+            AssertDebugLastMessage("debug",
+                $"MySource1 Fatal 42, {3.14.ToString(System.Globalization.CultureInfo.CurrentCulture)}, foo 145");
         }
 
 #if MONO
@@ -315,6 +316,37 @@ namespace NLog.UnitTests
 
             ts.TraceInformation("Mary had {0} lamb", "a little");
             AssertDebugLastMessage("debug", "MySource1 Warn Quick brown fox 0");
+        }
+
+        [Fact]
+        public void TraceTargetWriteLineTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets>
+                        <target name='trace' type='Trace' layout='${logger} ${level} ${message}' rawWrite='true' />
+                    </targets>
+                    <rules>
+                        <logger name='*' minlevel='Trace' writeTo='trace' />
+                    </rules>
+                </nlog>");
+
+            var logger = LogManager.GetLogger("MySource1");
+            var sw = new System.IO.StringWriter();
+
+            try
+            {
+                Trace.Listeners.Clear();
+                Trace.Listeners.Add(new TextWriterTraceListener(sw));
+                logger.Error("Quick brown fox");
+                Trace.Flush();
+            }
+            finally
+            {
+                Trace.Listeners.Clear();
+            }
+
+            Assert.Equal("MySource1 Error Quick brown fox" + Environment.NewLine, sw.GetStringBuilder().ToString());
         }
 
         private static TraceSource CreateTraceSource()

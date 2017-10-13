@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,15 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using NLog.Common;
 using NLog.Internal;
 using Xunit;
@@ -61,7 +56,6 @@ namespace NLog.UnitTests.Internal
         {
             var ex = CreateException(t);
             Assert.Equal(result, ex.MustBeRethrownImmediately());
-
         }
 
         [Theory]
@@ -109,7 +103,6 @@ namespace NLog.UnitTests.Internal
         [InlineData("Error has been raised.", typeof(NLogConfigurationException), true, "Warn")]
         [InlineData("", typeof(ArgumentException), true, "Warn")]
         [InlineData("", typeof(NLogConfigurationException), true, "Warn")]
-
         public void MustBeRethrown_ShouldLog_exception_and_only_once(string text, Type exceptionType, bool logFirst, string levelText)
         {
             using (new InternalLoggerScope())
@@ -117,7 +110,10 @@ namespace NLog.UnitTests.Internal
 
                 var level = LogLevel.FromString(levelText);
                 InternalLogger.LogLevel = LogLevel.Trace;
-                InternalLogger.LogToConsole = true;
+
+                var stringWriter = new StringWriter();
+                InternalLogger.LogWriter = stringWriter;
+
                 InternalLogger.IncludeTimestamp = false;
 
                 var ex1 = CreateException(exceptionType);
@@ -128,14 +124,6 @@ namespace NLog.UnitTests.Internal
                 string expected =
                     levelText + " " + text + prefix + ex1 + Environment.NewLine;
 
-                StringWriter consoleOutWriter = new StringWriter()
-                {
-                    NewLine = Environment.NewLine
-                };
-
-                // Redirect the console output to a StringWriter.
-                Console.SetOut(consoleOutWriter);
-
                 // Named (based on LogLevel) public methods.
 
                 if (logFirst)
@@ -143,8 +131,8 @@ namespace NLog.UnitTests.Internal
 
                 ex1.MustBeRethrown();
 
-                consoleOutWriter.Flush();
-                var actual = consoleOutWriter.ToString();
+                stringWriter.Flush();
+                var actual = stringWriter.ToString();
                 Assert.Equal(expected, actual);
             }
 

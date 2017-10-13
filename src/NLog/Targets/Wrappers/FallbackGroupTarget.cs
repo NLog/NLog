@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -58,8 +58,8 @@ namespace NLog.Targets.Wrappers
     [Target("FallbackGroup", IsCompound = true)]
     public class FallbackGroupTarget : CompoundTargetBase
     {
-        private int currentTarget;
-        private object lockObject = new object();
+        private int _currentTarget;
+        private object _lockObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FallbackGroupTarget"/> class.
@@ -111,21 +111,21 @@ namespace NLog.Targets.Wrappers
         {
             AsyncContinuation continuation = null;
             int tryCounter = 0;
-            int targetToInvoke;
+            int targetToInvoke = 0;
 
             continuation = ex =>
                 {
                     if (ex == null)
                     {
                         // success
-                        lock (this.lockObject)
+                        lock (this._lockObject)
                         {
-                            if (this.currentTarget != 0)
+                            if (this._currentTarget != 0)
                             {
                                 if (this.ReturnToFirstOnSuccess)
                                 {
-                                    InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[this.currentTarget]);
-                                    this.currentTarget = 0;
+                                    InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", this.Targets[targetToInvoke]);
+                                    this._currentTarget = 0;
                                 }
                             }
                         }
@@ -135,15 +135,15 @@ namespace NLog.Targets.Wrappers
                     }
 
                     // failure
-                    lock (this.lockObject)
+                    lock (this._lockObject)
                     {
-                        InternalLogger.Warn(ex, "Fallback: target '{0}' failed. Proceeding to the next one.", this.Targets[this.currentTarget]);
+                        InternalLogger.Warn(ex, "Fallback: target '{0}' failed. Proceeding to the next one.", this.Targets[targetToInvoke]);
 
                         // error while writing, go to the next one
-                        this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;
+                        this._currentTarget = (targetToInvoke + 1) % this.Targets.Count;
 
                         tryCounter++;
-                        targetToInvoke = this.currentTarget;
+                        targetToInvoke = this._currentTarget;
                         if (tryCounter >= this.Targets.Count)
                         {
                             targetToInvoke = -1;
@@ -160,9 +160,9 @@ namespace NLog.Targets.Wrappers
                     }
                 };
 
-            lock (this.lockObject)
+            lock (this._lockObject)
             {
-                targetToInvoke = this.currentTarget;
+                targetToInvoke = this._currentTarget;
             }
 
             this.Targets[targetToInvoke].WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));

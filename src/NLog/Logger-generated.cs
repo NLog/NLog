@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,7 +48,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Trace</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsTraceEnabled
         {
-            get { return this.isTraceEnabled; }
+            get { return this._isTraceEnabled; }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Debug</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsDebugEnabled
         {
-            get { return this.isDebugEnabled; }
+            get { return this._isDebugEnabled; }
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Info</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsInfoEnabled
         {
-            get { return this.isInfoEnabled; }
+            get { return this._isInfoEnabled; }
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsWarnEnabled
         {
-            get { return this.isWarnEnabled; }
+            get { return this._isWarnEnabled; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Error</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsErrorEnabled
         {
-            get { return this.isErrorEnabled; }
+            get { return this._isErrorEnabled; }
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Fatal</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsFatalEnabled
         {
-            get { return this.isFatalEnabled; }
+            get { return this._isFatalEnabled; }
         }
 
 
@@ -287,7 +287,7 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this.configuration.ExceptionLoggingOldStyle)
+                if (this._configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -573,7 +573,7 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this.configuration.ExceptionLoggingOldStyle)
+                if (this._configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -859,7 +859,7 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this.configuration.ExceptionLoggingOldStyle)
+                if (this._configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -1145,7 +1145,7 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this.configuration.ExceptionLoggingOldStyle)
+                if (this._configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -1431,7 +1431,7 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this.configuration.ExceptionLoggingOldStyle)
+                if (this._configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		
@@ -1717,7 +1717,7 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (this.configuration.ExceptionLoggingOldStyle)
+                if (this._configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
                     var exceptionCandidate = argument as Exception;		

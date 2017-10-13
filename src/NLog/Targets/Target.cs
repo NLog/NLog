@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,13 +48,13 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public abstract class Target : ISupportsInitialize, IDisposable
     {
-        private readonly object lockObject = new object();
-        private List<Layout> allLayouts;
+        private readonly object _lockObject = new object();
+        private List<Layout> _allLayouts;
         
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
-        private bool allLayoutsAreThreadAgnostic;
-        private bool scannedForLayouts;
-        private Exception initializeException;
+        private bool _allLayoutsAreThreadAgnostic;
+        private bool _scannedForLayouts;
+        private Exception _initializeException;
 
         /// <summary>
         /// The Max StackTraceUsage of all the <see cref="Layout"/> in this Target
@@ -79,7 +79,7 @@ namespace NLog.Targets
         /// </summary>
         protected object SyncRoot
         {
-            get { return this.lockObject; }
+            get { return this._lockObject; }
         }
 
         /// <summary>
@@ -94,17 +94,17 @@ namespace NLog.Targets
         {
             get
             {
-                if (this.isInitialized)
+                if (this._isInitialized)
                     return true;    // Initialization has completed
 
                 // Lets wait for initialization to complete, and then check again
                 lock (this.SyncRoot)
                 {
-                    return this.isInitialized;
+                    return this._isInitialized;
                 }
             }
         }
-        private volatile bool isInitialized;
+        private volatile bool _isInitialized;
 
         /// <summary>
         /// Can be used if <see cref="OptimizeBufferReuse"/> has been enabled.
@@ -119,7 +119,7 @@ namespace NLog.Targets
         {
             lock (this.SyncRoot)
             { 
-                bool wasInitialized = this.isInitialized;
+                bool wasInitialized = this._isInitialized;
                 this.Initialize(configuration);
                 if (wasInitialized && configuration != null)
                 {
@@ -193,22 +193,22 @@ namespace NLog.Targets
         /// </param>
         public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
         {
-            if (this.allLayoutsAreThreadAgnostic)
+            if (this._allLayoutsAreThreadAgnostic)
                 return;
 
             // Not all Layouts support concurrent threads, so we have to protect them
             lock (this.SyncRoot)
             {
-                if (!this.isInitialized)
+                if (!this._isInitialized)
                     return;
 
-                if (this.allLayouts != null)
+                if (this._allLayouts != null)
                 {
                     if (this.OptimizeBufferReuse)
                     {
                         using (var targetBuilder = this.ReusableLayoutBuilder.Allocate())
                         {
-                            foreach (Layout layout in this.allLayouts)
+                            foreach (Layout layout in this._allLayouts)
                             {
                                 targetBuilder.Result.ClearBuilder();
                                 layout.PrecalculateBuilder(logEvent, targetBuilder.Result);
@@ -217,7 +217,7 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        foreach (Layout layout in this.allLayouts)
+                        foreach (Layout layout in this._allLayouts)
                         {
                             layout.Precalculate(logEvent);
                         }
@@ -258,7 +258,7 @@ namespace NLog.Targets
                 return;
             }
 
-            if (this.initializeException != null)
+            if (this._initializeException != null)
             {
                 lock (this.SyncRoot)
                 {
@@ -309,7 +309,7 @@ namespace NLog.Targets
                 return;
             }
 
-            if (this.initializeException != null)
+            if (this._initializeException != null)
             {
                 lock (this.SyncRoot)
                 {
@@ -360,8 +360,8 @@ namespace NLog.Targets
                     try
                     {
                         this.InitializeTarget();
-                        this.initializeException = null;
-                        if (!scannedForLayouts)
+                        this._initializeException = null;
+                        if (!_scannedForLayouts)
                         {
                             InternalLogger.Debug("InitializeTarget is done but not scanned For Layouts");
                             //this is critical, as we need the layouts. So if base.InitializeTarget() isn't called, we fix the layouts here.
@@ -372,7 +372,7 @@ namespace NLog.Targets
                     {
                         InternalLogger.Error(exception, "Error initializing target '{0}'.", this);
 
-                        this.initializeException = exception;
+                        this._initializeException = exception;
 
                         if (exception.MustBeRethrown())
                         {
@@ -381,7 +381,7 @@ namespace NLog.Targets
                     }
                     finally
                     {
-                        this.isInitialized = true;
+                        this._isInitialized = true;
                     }
                 }
             }
@@ -398,11 +398,11 @@ namespace NLog.Targets
 
                 if (this.IsInitialized)
                 {
-                    this.isInitialized = false;
+                    this._isInitialized = false;
 
                     try
                     {
-                        if (this.initializeException == null)
+                        if (this._initializeException == null)
                         {
                             // if Init succeeded, call Close()
                             InternalLogger.Debug("Closing target '{0}'.", this);
@@ -431,10 +431,10 @@ namespace NLog.Targets
         {
             if (disposing)
             {
-                if (this.isInitialized)
+                if (this._isInitialized)
                 {
-                    this.isInitialized = false;
-                    if (this.initializeException == null)
+                    this._isInitialized = false;
+                    if (this._initializeException == null)
                     {
                         this.CloseTarget();
                     }
@@ -454,11 +454,11 @@ namespace NLog.Targets
 
         private void FindAllLayouts()
         {
-            this.allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(this);
-            InternalLogger.Trace("{0} has {1} layouts", this, this.allLayouts.Count);
-            this.allLayoutsAreThreadAgnostic = allLayouts.All(layout => layout.ThreadAgnostic);
-            this.StackTraceUsage = allLayouts.DefaultIfEmpty().Max(layout => layout == null ? StackTraceUsage.None : layout.StackTraceUsage);
-            this.scannedForLayouts = true;
+            this._allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(this);
+            InternalLogger.Trace("{0} has {1} layouts", this, this._allLayouts.Count);
+            this._allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
+            this.StackTraceUsage = _allLayouts.DefaultIfEmpty().Max(layout => layout == null ? StackTraceUsage.None : layout.StackTraceUsage);
+            this._scannedForLayouts = true;
         }
 
         /// <summary>
@@ -633,7 +633,7 @@ namespace NLog.Targets
 
         private Exception CreateInitException()
         {
-            return new NLogRuntimeException("Target " + this + " failed to initialize.", this.initializeException);
+            return new NLogRuntimeException("Target " + this + " failed to initialize.", this._initializeException);
         }
 
         /// <summary>

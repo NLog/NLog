@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -80,11 +80,11 @@ namespace NLog.Config
 
         #region private fields
 
-        private readonly Dictionary<string, bool> fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, bool> _fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
-        private string originalFileName;
+        private string _originalFileName;
 
-        private LogFactory logFactory = null;
+        private LogFactory _logFactory = null;
 
         private ConfigurationItemFactory ConfigurationItemFactory
         {
@@ -129,7 +129,7 @@ namespace NLog.Config
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         public XmlLoggingConfiguration(string fileName, bool ignoreErrors, LogFactory logFactory)
         {
-            this.logFactory = logFactory;
+            this._logFactory = logFactory;
 
             using (XmlReader reader = CreateFileReader(fileName))
             {
@@ -200,7 +200,7 @@ namespace NLog.Config
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         public XmlLoggingConfiguration(XmlReader reader, string fileName, bool ignoreErrors, LogFactory logFactory)
         {
-            this.logFactory = logFactory;
+            this._logFactory = logFactory;
             this.Initialize(reader, fileName, ignoreErrors);
         }
 
@@ -212,7 +212,7 @@ namespace NLog.Config
         /// <param name="fileName">Name of the XML file.</param>
         internal XmlLoggingConfiguration(XmlElement element, string fileName)
         {
-            logFactory = LogManager.LogFactory;
+            _logFactory = LogManager.LogFactory;
 
             using (var stringReader = new StringReader(element.OuterXml))
             {
@@ -230,7 +230,7 @@ namespace NLog.Config
         /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
         internal XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
         {
-            logFactory = LogManager.LogFactory;
+            _logFactory = LogManager.LogFactory;
 
             using (var stringReader = new StringReader(element.OuterXml))
             {
@@ -244,7 +244,7 @@ namespace NLog.Config
 
         #region public properties
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         /// <summary>
         /// Gets the default <see cref="LoggingConfiguration" /> object by parsing 
         /// the application configuration file (<c>app.exe.config</c>).
@@ -272,13 +272,13 @@ namespace NLog.Config
         {
             get
             {
-                return this.fileMustAutoReloadLookup.Values.All(mustAutoReload => mustAutoReload);
+                return this._fileMustAutoReloadLookup.Values.All(mustAutoReload => mustAutoReload);
             }
             set
             {
-                var autoReloadFiles = this.fileMustAutoReloadLookup.Keys.ToList();
+                var autoReloadFiles = this._fileMustAutoReloadLookup.Keys.ToList();
                 foreach (string nextFile in autoReloadFiles)
-                    this.fileMustAutoReloadLookup[nextFile] = value;
+                    this._fileMustAutoReloadLookup[nextFile] = value;
             }
         }
 
@@ -291,7 +291,7 @@ namespace NLog.Config
         {
             get
             {
-                return this.fileMustAutoReloadLookup.Where(entry => entry.Value).Select(entry => entry.Key);
+                return this._fileMustAutoReloadLookup.Where(entry => entry.Value).Select(entry => entry.Key);
             }
         }
 
@@ -305,7 +305,7 @@ namespace NLog.Config
         /// <returns>The new <see cref="XmlLoggingConfiguration" /> object.</returns>
         public override LoggingConfiguration Reload()
         {
-            return new XmlLoggingConfiguration(this.originalFileName);
+            return new XmlLoggingConfiguration(this._originalFileName);
         }
 
         /// <summary>
@@ -414,7 +414,7 @@ namespace NLog.Config
                 var content = new NLogXmlElement(reader);
                 if (fileName != null)
                 {
-                    this.originalFileName = fileName;
+                    this._originalFileName = fileName;
                     this.ParseTopLevel(content, fileName, autoReloadDefault: false);
 
                     InternalLogger.Info("Configured from an XML element in {0}...", fileName);
@@ -494,11 +494,13 @@ namespace NLog.Config
             InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", this.LoggingRules.Count, configuredNamedTargets.Count);
 
             HashSet<string> targetNamesAtRules = new HashSet<string>(this.LoggingRules.SelectMany(r => r.Targets).Select(t => t.Name));
+            HashSet<string> wrappedTargetNames = new HashSet<string>(configuredNamedTargets.OfType<WrapperTargetBase>().Select(wt => wt.WrappedTarget.Name));
+
 
             int unusedCount = 0;
             configuredNamedTargets.ToList().ForEach((target) =>
             {
-                if (!targetNamesAtRules.Contains(target.Name))
+                if (!targetNamesAtRules.Contains(target.Name) && !wrappedTargetNames.Contains(target.Name))
                 {
                     InternalLogger.Warn("Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
                     unusedCount++;
@@ -515,7 +517,7 @@ namespace NLog.Config
         /// <param name="autoReloadDefault"></param>
         private void ConfigureFromFile(string fileName, bool autoReloadDefault)
         {
-            if (!this.fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
+            if (!this._fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
                 this.ParseTopLevel(new NLogXmlElement(fileName), fileName, autoReloadDefault);
         }
 
@@ -586,20 +588,23 @@ namespace NLog.Config
 
             bool autoReload = nlogElement.GetOptionalBooleanAttribute("autoReload", autoReloadDefault);
             if (filePath != null)
-                this.fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
+                this._fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
 
-            logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", logFactory.ThrowExceptions);
-            logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", logFactory.ThrowConfigExceptions);
-            logFactory.KeepVariablesOnReload = nlogElement.GetOptionalBooleanAttribute("keepVariablesOnReload", logFactory.KeepVariablesOnReload);
+            _logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", _logFactory.ThrowExceptions);
+            _logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", _logFactory.ThrowConfigExceptions);
+            _logFactory.KeepVariablesOnReload = nlogElement.GetOptionalBooleanAttribute("keepVariablesOnReload", _logFactory.KeepVariablesOnReload);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
+
+            bool? messageTemplateParser = nlogElement.GetOptionalBooleanAttribute("messageTemplateParser", null);
+            this.ConfigurationItemFactory.EnableMessageTemplateParser = messageTemplateParser;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             InternalLogger.LogToTrace = nlogElement.GetOptionalBooleanAttribute("internalLogToTrace", InternalLogger.LogToTrace);
 #endif
             InternalLogger.IncludeTimestamp = nlogElement.GetOptionalBooleanAttribute("internalLogIncludeTimestamp", InternalLogger.IncludeTimestamp);
-            logFactory.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", logFactory.GlobalThreshold.Name));
+            _logFactory.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", _logFactory.GlobalThreshold.Name));
 
             var children = nlogElement.Children.ToList();
 

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -160,7 +160,6 @@ namespace NLog.UnitTests.Targets
         }
 
 #if !NET3_5 && !MONO
-
         [Fact]
         public void ColoredConsoleRaceCondtionIgnoreTest()
         {
@@ -194,7 +193,7 @@ namespace NLog.UnitTests.Targets
                 target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "Logger", message).WithContinuation(exceptions.Add));
                 target.Close();
 
-                Assert.Equal(1, exceptions.Count);
+                Assert.Single(exceptions);
                 Assert.True(exceptions.TrueForAll(e => e == null));
             }
             finally

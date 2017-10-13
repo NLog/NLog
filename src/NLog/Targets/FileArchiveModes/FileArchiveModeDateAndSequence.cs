@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,6 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using NLog.Common;
 
 namespace NLog.Targets.FileArchiveModes
 {
@@ -91,7 +92,7 @@ namespace NLog.Targets.FileArchiveModes
             int minSequenceLength = archiveFileNameTemplate.EndAt - archiveFileNameTemplate.BeginAt - 2;
             string paddedSequence = nextSequenceNumber.ToString().PadLeft(minSequenceLength, '0');
             string archiveFileNameWithoutPath = archiveFileNameTemplate.ReplacePattern("*").Replace("*",
-                string.Format("{0}.{1}", archiveDate.ToString(_archiveDateFormat), paddedSequence));
+                $"{archiveDate.ToString(_archiveDateFormat)}.{paddedSequence}");
             string dirName = Path.GetDirectoryName(archiveFilePath);
             archiveFilePath = Path.Combine(dirName, archiveFileNameWithoutPath);
             return new DateAndSequenceArchive(archiveFilePath, archiveDate, _archiveDateFormat, nextSequenceNumber);
@@ -141,7 +142,7 @@ namespace NLog.Targets.FileArchiveModes
             {
                 return false;
             }
-
+            InternalLogger.Trace("FileTarget: parsed date '{0}' from file-template '{1}'", datePart, fileTemplate?.Template);
             return true;
         }
     }

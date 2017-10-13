@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -107,7 +107,7 @@ namespace NLog.UnitTests.Targets
                 }
             }
 
-            Assert.Equal(1, senderFactory.Senders.Count);
+            Assert.Single(senderFactory.Senders);
 
             var sender = senderFactory.Senders[0];
             target.Close();
@@ -125,7 +125,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(actual.IndexOf("1: connect tcp://someaddress/") != -1);
             foreach (var message in messages)
             {
-                Assert.True(actual.IndexOf(string.Format("1: send 0 {0}", message.Length + eolLength)) != -1);
+                Assert.True(actual.IndexOf($"1: send 0 {message.Length + eolLength}") != -1);
             }
             Assert.True(actual.IndexOf("1: close") != -1);
         }
@@ -650,7 +650,7 @@ namespace NLog.UnitTests.Targets
                     {
                         lock (exceptions)
                         {
-                            Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
+                            // Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
                             exceptions.Add(ex);
                             pendingWrites--;
                             if (pendingWrites == 0)

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -83,7 +83,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.Initialize(null);
             wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => lastException = ex));
             Assert.NotNull(lastException);
-            Assert.IsType(typeof(NotSupportedException), lastException);
+            Assert.IsType<NotSupportedException>(lastException);
         }
 
         public class MyWrapper : WrapperTargetBase

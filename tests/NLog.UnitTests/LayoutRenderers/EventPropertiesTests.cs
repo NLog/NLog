@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -102,14 +102,30 @@ namespace NLog.UnitTests.LayoutRenderers
 
             Assert.Equal("2020-2-21", layout.Render(logEvent));
         }
+
         [Fact]
         public void DateTimeCulture()
         {
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] EventPropertiesTests.DateTimeCulture because we are running in Travis");
+                return;
+            }
+
             Layout layout = "${event-properties:prop1:culture=nl-NL}";
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
             logEvent.Properties["prop1"] = new DateTime(2020, 2, 21, 23, 1, 0);
 
             Assert.Equal("21-2-2020 23:01:00", layout.Render(logEvent));
+        }
+
+        [Fact]
+        public void JsonFormat()
+        {
+            Layout layout = "${event-properties:prop1:format=@}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = new string[] { "Hello", "World" };
+            Assert.Equal("[\"Hello\",\"World\"]", layout.Render(logEvent));
         }
     }
 }

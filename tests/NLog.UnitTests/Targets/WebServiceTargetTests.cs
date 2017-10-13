@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -32,20 +32,19 @@
 // 
 
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using NLog.Internal;
 using NLog.Targets;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-#if NET4_5
+#if !NETSTANDARD
+using System.Collections.Concurrent;
 using System.Web.Http;
 using Owin;
 using Microsoft.Owin.Hosting;
@@ -96,7 +95,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             WebserviceTest_httppost_utf8("", false);
         }
 
-
         [Fact]
         public void WebserviceTest_httppost_utf8_with_bom()
         {
@@ -134,9 +132,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             var target = configuration.FindTargetByName("webservice") as WebServiceTarget;
             Assert.NotNull(target);
 
-            Assert.Equal(target.Parameters.Count, 6);
+            Assert.Equal(6, target.Parameters.Count);
 
-            Assert.Equal(target.Encoding.WebName, "utf-8");
+            Assert.Equal("utf-8", target.Encoding.WebName);
 
             //async call with mockup stream
             WebRequest webRequest = WebRequest.Create("http://www.test.com");
@@ -179,9 +177,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             Assert.Equal(bytes.Length, includeBom ? 126 : 123);
         }
-
-        #region helpers
-
+#region helpers
 
         private Stream GenerateStreamFromString(string s)
         {
@@ -217,7 +213,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public byte[] bytes;
             public string stringed;
 
-            #region Overrides of MemoryStream
+#region Overrides of MemoryStream
 
             /// <summary>
             /// Releases the unmanaged resources used by the <see cref="T:System.IO.MemoryStream"/> class and optionally releases the managed resources.
@@ -239,15 +235,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 return sr.ReadToEnd();
             }
 
-            #endregion
+#endregion
         }
 
 
-        #endregion
+#endregion
 
-#if NET4_5
-
-
+#if !NETSTANDARD
         const string WsAddress = "http://localhost:9000/";
 
         private static string getWsAddress(int portOffset)
@@ -261,12 +255,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost()
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{WsAddress}{"api/logme"}'
                                 protocol='HttpPost'
                                 encoding='UTF-8'
                                >
@@ -280,7 +274,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, "api/logme"));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;
@@ -301,12 +295,10 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 logger.Info(message2);
             });
 
-
-            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
             Assert.Equal(2, LogMeController.RecievedLogsPostParam1.Count);
             CheckQueueMessage(message1, LogMeController.RecievedLogsPostParam1);
             CheckQueueMessage(message2, LogMeController.RecievedLogsPostParam1);
-
         }
 
         /// <summary>
@@ -329,7 +321,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             });
 
 
-            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
             Assert.Equal(2, LogMeController.RecievedLogsGetParam1.Count);
             CheckQueueMessage(message1, LogMeController.RecievedLogsGetParam1);
             CheckQueueMessage(message2, LogMeController.RecievedLogsGetParam1);
@@ -379,19 +371,19 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             });
 
 
-            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
-            Assert.Equal(1, LogMeController.RecievedLogsGetParam1.Count);
+            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
+            Assert.Single(LogMeController.RecievedLogsGetParam1);
             CheckQueueMessage("another message", LogMeController.RecievedLogsGetParam1);
         }
 
         private static Logger SetUpHttpGetWebservice(string relativeUrl)
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{WsAddress}{relativeUrl}'
                                 protocol='HttpGet'
                                 encoding='UTF-8'
                                >
@@ -405,7 +397,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, relativeUrl));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;
@@ -416,7 +408,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         private static void CheckQueueMessage(string message1, ConcurrentBag<string> recievedLogsGetParam1)
         {
             var success = recievedLogsGetParam1.Contains(message1);
-            Assert.True(success, string.Format("message '{0}' not found", message1));
+            Assert.True(success, $"message '{message1}' not found");
         }
 
 
@@ -435,14 +427,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost_checkingLost()
         {
-
-
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{WsAddress}{"api/logme"}'
                                 protocol='HttpPost'
                                 encoding='UTF-8'
                                >
@@ -456,7 +446,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", WsAddress, "api/logme"));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;
@@ -485,11 +475,10 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
             });
 
-            Assert.Equal(LogMeController.CountdownEvent.CurrentCount, 0);
+            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
             Assert.Equal(createdMessages.Count, LogMeController.RecievedLogsPostParam1.Count);
             //Assert.Equal(createdMessages, ValuesController.RecievedLogsPostParam1);
         }
-
 
         /// <summary>
         /// Test the Webservice with REST api - <see cref="WebServiceProtocol.JsonPost"/>
@@ -497,12 +486,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_json()
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{getWsAddress(1)}{"api/logdoc/json"}'
                                 protocol='JsonPost'
                                 encoding='UTF-8'
                                >
@@ -518,7 +507,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", getWsAddress(1), "api/logdoc/json"));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;
@@ -537,6 +526,92 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
         }
 
+                /// <summary>
+        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.JsonPost"/>
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_restapi_group_json()
+        {
+            var configuration = CreateConfigurationFromString($@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='BufferingWrapper' bufferSize='6' name='ws'>
+                            <target type='WebService'
+                                    name='ws_wrapped'
+                                    url='{getWsAddress(1)}{"api/logdoc/json"}'
+                                    protocol='JsonPost'
+                                    encoding='UTF-8'
+                                   >
+                                <header name='Authorization' layout='OpenBackDoor' />
+                                <parameter name='param1' enableGroupLayout='true' groupHeaderLayout='{{ ' groupItemSeparatorLayout=' , ' groupFooterLayout=' }}'>
+                                    <layout type='JsonLayout'>
+                                        <attribute name='level' layout='${{level}}'/>
+                                        <attribute name='message' layout='${{message}}'/>
+                                    </layout>
+                                </parameter>
+                                <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
+                                <parameter name='param3' ParameterType='System.Boolean' layout='True'/>
+                                <parameter name='param4' ParameterType='System.DateTime' layout='${{longdate:universalTime=true}}'/>
+                            </target>
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                      </logger>
+                    </rules>
+                </nlog>");
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+            var txt = "message 1 with a JSON POST<hello><again\\>\"\b";   // Lets tease the JSON serializer and see it can handle valid and invalid xml chars
+            var expected = new System.Text.StringBuilder();
+            for (int i = 0; i < 3; ++i)
+            {
+                if (expected.Length == 0)
+                    expected.Append("{ ");
+                else
+                    expected.Append(" , ");
+                expected.Append("{ \"level\": \"Info\", \"message\": \"message 1 with a JSON POST<hello><again\\\\>\\\"\\b\" }");
+            }
+            expected.Append(" }");
+            var count = 2;
+            var context = new LogDocController.TestContext(1, count, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" } }, expected.ToString(), "info", true, DateTime.UtcNow);
+
+            StartOwinDocTest(context, () =>
+            {
+                var defaultTimeSource = Time.TimeSource.Current;
+                try
+                {
+                    var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                    if (timeSource.Time.Minute == 59)
+                    {
+                        timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                        timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+                    }
+                    Time.TimeSource.Current = timeSource;
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        logger.Info(txt);
+                    }
+
+                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(2));
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        logger.Info(txt);
+                    }
+                }
+                finally
+                {
+                    Time.TimeSource.Current = defaultTimeSource; // restore default time source
+                }
+            });
+
+            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
+        }
+
 
         /// <summary>
         /// Test the Webservice with REST api - <see cref="WebServiceProtocol.XmlPost"/> 
@@ -544,12 +619,12 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_xml()
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = CreateConfigurationFromString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
                                 name='ws'
-                                url='{0}{1}'
+                                url='{getWsAddress(1)}{"api/logdoc/xml"}'
                                 protocol='XmlPost'
                                 XmlRoot='ComplexType'
                                 encoding='UTF-8'
@@ -565,7 +640,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                        
                       </logger>
                     </rules>
-                </nlog>", getWsAddress(1), "api/logdoc/xml"));
+                </nlog>");
 
 
             LogManager.Configuration = configuration;
@@ -690,7 +765,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 //this is working. 
                 if (complexType == null)
                 {
-                    throw new ArgumentNullException("complexType");
+                    throw new ArgumentNullException(nameof(complexType));
                 }
                 RecievedLogsPostParam1.Add(complexType.Param1);
 
@@ -850,7 +925,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 if (complexType == null)
                 {
-                    throw new ArgumentNullException("complexType");
+                    throw new ArgumentNullException(nameof(complexType));
                 }
 
                 processRequest(complexType);
@@ -883,7 +958,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 if (complexType == null)
                 {
-                    throw new ArgumentNullException("complexType");
+                    throw new ArgumentNullException(nameof(complexType));
                 }
 
                 processRequest(complexType);

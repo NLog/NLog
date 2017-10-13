@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -220,6 +220,13 @@ namespace NLog.Targets
                 //this is a bug and therefor stopping logging. For docs, see PauseLogging property
                 _pauseLogging = true;
                 InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                //this is a bug and therefor stopping logging. For docs, see PauseLogging property
+                _pauseLogging = true;
+                InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
                                         "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
             }
         }

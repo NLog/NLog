@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -68,18 +68,18 @@ namespace NLog.UnitTests.LayoutRenderers
             var logEvent = new LogEventInfo(LogLevel.Info, "logger", "msg");
             var result = dateLayoutRenderer.Render(logEvent);
 
-            var offset = TimeZone.CurrentTimeZone;
+            var offset = TimeZoneInfo.Local;
             var offset2 = offset.GetUtcOffset(DateTime.Now);
 
             if (offset2 >= new TimeSpan(0))
             {
                 //+00:00, +01:00 etc
-                Assert.Contains(string.Format("+{0:D2}:{1:D2}", offset2.Hours, offset2.Minutes), result);
+                Assert.Contains($"+{offset2.Hours:D2}:{offset2.Minutes:D2}", result);
             }
             else
             {
                 //-01:00, etc
-                Assert.Contains(string.Format("{0:D2}:{1:D2}", offset2.Hours, offset2.Minutes), result);
+                Assert.Contains($"{offset2.Hours:D2}:{offset2.Minutes:D2}", result);
             }
 
         }

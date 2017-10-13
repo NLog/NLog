@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -81,11 +81,10 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             object value;
-
             if (logEvent.HasProperties && logEvent.Properties.TryGetValue(this.Item, out value))
             {
-                var formatProvider = GetFormatProvider(logEvent, Culture);
-                builder.Append(value.ToStringWithOptionalFormat(Format, formatProvider));
+                var formatProvider = GetFormatProvider(logEvent, this.Culture);
+                builder.AppendFormattedValue(value, this.Format, formatProvider);
             }
         }
     }

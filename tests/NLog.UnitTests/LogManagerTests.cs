@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,17 +37,12 @@ namespace NLog.UnitTests
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.IO;
     using Xunit;
     using NLog.Common;
     using NLog.Config;
     using NLog.Targets;
-
-#if NET4_5
     using System.Threading.Tasks;
-    using Microsoft.Practices.Unity;
-#endif
 
     public class LogManagerTests : NLogTestBase
     {
@@ -117,7 +112,7 @@ namespace NLog.UnitTests
             LogManager.ThrowExceptions = false;
         }
 
-        //[Fact(Skip="Side effects to other unit tests.")]
+        [Fact(Skip="Side effects to other unit tests.")]
         public void GlobalThresholdTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -277,27 +272,16 @@ namespace NLog.UnitTests
             _reloadCounter++;
         }
 
-        private bool IsMacOsX()
-        {
-#if MONO
-            if (Directory.Exists("/Library/Frameworks/Mono.framework/"))
-            {
-                return true;
-            }
-
-#endif
-            return false;
-        }
-
         [Fact]
         public void AutoReloadTest()
         {
-            if (IsMacOsX())
+#if NETSTANDARD
+            if (IsTravis())
             {
-                // skip this on Mac OS, since it requires root permissions for
-                // filesystem watcher
+                Console.WriteLine("[SKIP] LogManagerTests.AutoReloadTest because we are running in Travis");
                 return;
             }
+#endif
 
             using (new InternalLoggerScope())
             {
@@ -390,7 +374,7 @@ namespace NLog.UnitTests
         private static class ImAStaticClass
         {
             [UsedImplicitly]
-            private static readonly Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+            public static readonly Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
             static ImAStaticClass() { }
 
@@ -402,31 +386,72 @@ namespace NLog.UnitTests
         public void GetCurrentClassLogger_static_class()
         {
             ImAStaticClass.DummyToInvokeInitializers();
+            Assert.Equal(typeof(ImAStaticClass).FullName, ImAStaticClass.Logger.Name);
         }
 
         private abstract class ImAAbstractClass
         {
+            public Logger Logger { get; private set; }
+            public Logger LoggerType { get; private set; }
+
+            public string BaseName { get { return typeof(ImAAbstractClass).FullName; } }
+
             /// <summary>
             /// Initializes a new instance of the <see cref="T:System.Object"/> class.
             /// </summary>
             protected ImAAbstractClass()
             {
-                Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+                Logger = NLog.LogManager.GetCurrentClassLogger();
+                LoggerType = NLog.LogManager.GetCurrentClassLogger(typeof(Logger));
+            }
+
+            protected ImAAbstractClass(string param1, Func<string> param2)
+            {
+                Logger = NLog.LogManager.GetCurrentClassLogger();
+                LoggerType = NLog.LogManager.GetCurrentClassLogger(typeof(Logger));
             }
         }
 
         private class InheritedFromAbstractClass : ImAAbstractClass
         {
+            public Logger LoggerInherited = NLog.LogManager.GetCurrentClassLogger();
+            public Logger LoggerTypeInherited = NLog.LogManager.GetCurrentClassLogger(typeof(Logger));
 
+            public string InheritedName { get { return GetType().FullName; } }
+
+            public InheritedFromAbstractClass()
+                : base()
+            {
+            }
+
+            public InheritedFromAbstractClass(string param1, Func<string> param2)
+                : base(param1, param2)
+            {
+            }
         }
 
         /// <summary>
-        /// Creating instance in a static ctor should not be a problm
+        /// Creating instance in a abstract ctor should not be a problem
         /// </summary>
         [Fact]
         public void GetCurrentClassLogger_abstract_class()
         {
             var instance = new InheritedFromAbstractClass();
+            Assert.Equal(instance.BaseName, instance.Logger.Name);
+            Assert.Equal(instance.BaseName, instance.LoggerType.Name);
+            Assert.Equal(instance.InheritedName, instance.LoggerInherited.Name);
+            Assert.Equal(instance.InheritedName, instance.LoggerTypeInherited.Name);
+        }
+
+        /// <summary>
+        /// Creating instance in a abstract ctor should not be a problem
+        /// </summary>
+        [Fact]
+        public void GetCurrentClassLogger_abstract_class_with_parameter()
+        {
+            var instance = new InheritedFromAbstractClass("Hello", null);
+            Assert.Equal(instance.BaseName, instance.Logger.Name);
+            Assert.Equal(instance.BaseName, instance.LoggerType.Name);
         }
 
         /// <summary>
@@ -437,8 +462,6 @@ namespace NLog.UnitTests
 
         }
 
-
-
         /// <summary>
         /// ImNotALogger inherits not from Logger , but should not throw an exception
         /// </summary>
@@ -447,7 +470,6 @@ namespace NLog.UnitTests
         {
             var instance = LogManager.GetLogger("a", typeof(ImNotALogger));
             Assert.NotNull(instance);
-
         }
 
         /// <summary>
@@ -458,11 +480,8 @@ namespace NLog.UnitTests
         {
             var instance = LogManager.GetLogger("a", typeof(ImAStaticClass));
             Assert.NotNull(instance);
-
         }
 
-
-#if NET4_0 || NET4_5
         [Fact]
         public void GivenLazyClass_WhenGetCurrentClassLogger_ThenLoggerNameShouldBeCurrentClass()
         {
@@ -470,8 +489,6 @@ namespace NLog.UnitTests
 
             Assert.Equal(this.GetType().FullName, logger.Value.Name);
         }
-#endif
-#if NET4_5
 
         [Fact]
         public void ThreadSafe_Shutdown()
@@ -491,18 +508,8 @@ namespace NLog.UnitTests
             System.Threading.Thread.Sleep(20);
             stopFlag = true;
             System.Threading.Thread.Sleep(20);
-            Assert.Equal(false, exceptionThrown);
+            Assert.False(exceptionThrown);
         }
-
-
-        /// <summary>
-        /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        private static MemoryQueueTarget mTarget = new MemoryQueueTarget(500);
-        /// <summary>
-        /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        private static MemoryQueueTarget mTarget2 = new MemoryQueueTarget(500);
 
         /// <summary>
         /// Note: THe problem  can be reproduced when: debugging the unittest + "break when exception is thrown" checked in visual studio.
@@ -512,27 +519,64 @@ namespace NLog.UnitTests
         [Fact]
         public void ThreadSafe_getCurrentClassLogger_test()
         {
-            using (var c = new UnityContainer())
-            {
-                var r = Enumerable.Range(1, 100); //reported with 10.
-                Task.Run(() =>
-                {
-                    //need for init
-                    LogManager.Configuration = new LoggingConfiguration();
-                    LogManager.Configuration.AddTarget("memory", mTarget);
-                    LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget));
-                    LogManager.Configuration.AddTarget("memory2", mTarget2);
-                    LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget2));
-                    LogManager.ReconfigExistingLoggers();
-                });
+            MemoryQueueTarget mTarget = new MemoryQueueTarget(1000);
+            MemoryQueueTarget mTarget2 = new MemoryQueueTarget(1000);
 
-                Parallel.ForEach(r, a =>
-                {
-                    var res = c.Resolve<ClassA>();
-                });
+            var task1 = Task.Run(() =>
+            {
+                //need for init
+                LogManager.Configuration = new LoggingConfiguration();
+                LogManager.ThrowExceptions = true;
+
+                LogManager.Configuration.AddTarget("memory", mTarget);
+                LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget));
+                System.Threading.Thread.Sleep(1);
+                LogManager.ReconfigExistingLoggers();
+                System.Threading.Thread.Sleep(1);
                 mTarget.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
+            });
+
+            var task2 = task1.ContinueWith((t) =>
+            {
+                LogManager.Configuration.AddTarget("memory2", mTarget2);
+                LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget2));
+                System.Threading.Thread.Sleep(1);
+                LogManager.ReconfigExistingLoggers();
+                System.Threading.Thread.Sleep(1);
                 mTarget2.Layout = @"${date:format=HH\:mm\:ss}|${level:uppercase=true}|${message} ${exception:format=tostring}";
-            }
+            });
+
+            System.Threading.Thread.Sleep(1);
+
+            Parallel.For(0, 8, new ParallelOptions() { MaxDegreeOfParallelism = 8 }, (e) =>
+            {
+                bool task1Complete = false, task2Complete = false;
+                for (int i = 0; i < 100; ++i)
+                {
+                    if (i > 25 && !task1Complete)
+                    {
+                        task1.Wait(5000);
+                        task1Complete = true;
+                    }
+                    if (i > 75 && !task2Complete)
+                    {
+                        task2.Wait(5000);
+                        task2Complete = true;
+                    }
+
+                    // Multiple threads initializing new loggers while configuration is changing
+                    var loggerA = LogManager.GetLogger(e + "A" + i);
+                    loggerA.Info("Hi there {0}", e);
+                    var loggerB = LogManager.GetLogger(e + "B" + i);
+                    loggerB.Info("Hi there {0}", e);
+                    var loggerC = LogManager.GetLogger(e + "C" + i);
+                    loggerC.Info("Hi there {0}", e);
+                    var loggerD = LogManager.GetLogger(e + "D" + i);
+                    loggerD.Info("Hi there {0}", e);
+                };
+            });
+
+            Assert.NotEqual(0, mTarget.Logs.Count + mTarget2.Logs.Count);
         }
 
         /// <summary>
@@ -569,7 +613,7 @@ namespace NLog.UnitTests
                 this.Logs = null;
             }
 
-            public Queue<string> Logs { get; private set; }
+            internal Queue<string> Logs { get; private set; }
 
             protected override void Write(LogEventInfo logEvent)
             {
@@ -587,53 +631,5 @@ namespace NLog.UnitTests
                 }
             }
         }
-
-        /// <summary>
-        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        public class ClassA
-        {
-            private static Logger logger = LogManager.GetCurrentClassLogger();
-            public ClassA(ClassB dd)
-            {
-                logger.Info("Hi there A");
-
-            }
-        }
-        /// <summary>
-        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        public class ClassB
-        {
-            private static Logger logger = LogManager.GetCurrentClassLogger();
-            public ClassB(ClassC dd)
-            {
-                logger.Info("Hi there B");
-            }
-        }
-        /// <summary>
-        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        public class ClassC
-        {
-            private static Logger logger = LogManager.GetCurrentClassLogger();
-            public ClassC(ClassD dd)
-            {
-                logger.Info("Hi there C");
-
-            }
-        }
-        /// <summary>
-        /// class for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        public class ClassD
-        {
-            private static Logger logger = LogManager.GetCurrentClassLogger();
-            public ClassD()
-            {
-                logger.Info("Hi there D");
-            }
-        }
-#endif
     }
 }

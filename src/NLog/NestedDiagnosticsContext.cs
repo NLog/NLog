@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -171,8 +171,8 @@ namespace NLog
         /// </summary>
         private class StackPopper : IDisposable
         {
-            private Stack<object> stack;
-            private int previousCount;
+            private Stack<object> _stack;
+            private int _previousCount;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="StackPopper" /> class.
@@ -181,8 +181,8 @@ namespace NLog
             /// <param name="previousCount">The previous count.</param>
             public StackPopper(Stack<object> stack, int previousCount)
             {
-                this.stack = stack;
-                this.previousCount = previousCount;
+                this._stack = stack;
+                this._previousCount = previousCount;
             }
 
             /// <summary>
@@ -190,9 +190,9 @@ namespace NLog
             /// </summary>
             void IDisposable.Dispose()
             {
-                while (this.stack.Count > this.previousCount)
+                while (this._stack.Count > this._previousCount)
                 {
-                    this.stack.Pop();
+                    this._stack.Pop();
                 }
             }
         }

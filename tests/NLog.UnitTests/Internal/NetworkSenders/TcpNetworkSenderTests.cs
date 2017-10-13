@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -138,7 +138,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         {
             var sender = new TcpNetworkSender("tcp://foo:1234", AddressFamily.Unspecified);
             var socket = sender.CreateSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Assert.IsType(typeof(SocketProxy), socket);
+            Assert.IsType<SocketProxy>(socket);
         }
 
         [Fact]

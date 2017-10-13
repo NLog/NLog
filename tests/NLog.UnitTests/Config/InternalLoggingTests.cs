@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -63,7 +63,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void InternalLoggingConfigTestDefaults()
         {
-            using (new InternalLoggerScope())
+            using (new InternalLoggerScope(true))
             {
                 InternalLogger.LogLevel = LogLevel.Error;
                 InternalLogger.LogToConsole = true;
@@ -71,9 +71,7 @@ namespace NLog.UnitTests.Config
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
                 LogManager.ThrowConfigExceptions = null;
-#if !__IOS__ && !__ANDROID__
                 InternalLogger.LogToTrace = true;
-#endif
 
                 CreateConfigurationFromString(@"
 <nlog>
@@ -85,38 +83,39 @@ namespace NLog.UnitTests.Config
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
                 Assert.Null(LogManager.ThrowConfigExceptions);
-#if !__IOS__ && !__ANDROID__
                 Assert.True(InternalLogger.LogToTrace);
-#endif
             }
         }
 
         [Fact]
         public void InternalLoggingConfig_off_should_be_off()
         {
-            var sb = new StringBuilder();
-            var stringWriter = new StringWriter(sb);
-            InternalLogger.LogWriter = stringWriter;
-            string wrongFileName = "WRONG/***[]???////WRONG";
-            LogManager.Configuration = CreateConfigurationFromString(string.Format(@"<?xml version='1.0' encoding='utf-8' ?>
-<nlog internalLogFile='{0}'
-      internalLogLevel='Off'
-      throwExceptions='true' >
+            using (new InternalLoggerScope())
+            {
+                var sb = new StringBuilder();
+                var stringWriter = new StringWriter(sb);
+                InternalLogger.LogWriter = stringWriter;
+                string wrongFileName = "WRONG/***[]???////WRONG";
+                LogManager.Configuration = CreateConfigurationFromString($@"<?xml version='1.0' encoding='utf-8' ?>
+    <nlog internalLogFile='{wrongFileName}'
+          internalLogLevel='Off'
+          throwExceptions='true' >
 
-  <targets>
-    <target name='logfile' type='File' fileName='WRONG'  />
-  </targets>
+      <targets>
+        <target name='logfile' type='File' fileName='WRONG'  />
+      </targets>
 
-  <rules>
-    <logger name='*' writeTo='logfile' />
-  </rules>
-</nlog>
-", wrongFileName));
+      <rules>
+        <logger name='*' writeTo='logfile' />
+      </rules>
+    </nlog>
+    ");
 
-            Assert.Equal("",sb.ToString());
-            Assert.Equal(LogLevel.Off,InternalLogger.LogLevel);
-            Assert.False(InternalLogger.ExceptionThrowWhenWriting);
+                Assert.Equal("", sb.ToString());
+                Assert.Equal(LogLevel.Off, InternalLogger.LogLevel);
+                Assert.False(InternalLogger.ExceptionThrowWhenWriting);
             }
+        }
 
         private void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool logToTrace)
         {
@@ -128,11 +127,17 @@ namespace NLog.UnitTests.Config
             var throwConfigExceptionsString = throwConfigExceptions == null ? "" : throwConfigExceptions.ToString().ToLower();
             var logToTraceString = logToTrace.ToString().ToLower();
 
-            using (new InternalLoggerScope())
+            using (new InternalLoggerScope(true))
             {
-                CreateConfigurationFromString(string.Format(@"
-<nlog internalLogFile='{0}' internalLogLevel='{1}' internalLogToConsole='{2}' internalLogToConsoleError='{3}' globalThreshold='{4}' throwExceptions='{5}' throwConfigExceptions='{6}' internalLogToTrace='{7}'>
-</nlog>", file, logLevelString, internalLogToConsoleString, internalLogToConsoleErrorString, globalThresholdString, throwExceptionsString, throwConfigExceptionsString, logToTraceString));
+                CreateConfigurationFromString($@"
+<nlog internalLogFile='{file}' internalLogLevel='{logLevelString}' internalLogToConsole='{
+                        internalLogToConsoleString
+                    }' internalLogToConsoleError='{internalLogToConsoleErrorString}' globalThreshold='{
+                        globalThresholdString
+                    }' throwExceptions='{throwExceptionsString}' throwConfigExceptions='{
+                        throwConfigExceptionsString
+                    }' internalLogToTrace='{logToTraceString}'>
+</nlog>");
 
                 Assert.Same(logLevel, InternalLogger.LogLevel);
 
@@ -148,9 +153,7 @@ namespace NLog.UnitTests.Config
 
                 Assert.Equal(throwConfigExceptions, LogManager.ThrowConfigExceptions);
 
-#if !__IOS__ && !__ANDROID__
                 Assert.Equal(logToTrace, InternalLogger.LogToTrace);
-#endif
             }
         }
     }

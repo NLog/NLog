@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -144,13 +144,13 @@ namespace NLog.UnitTests.Layouts
             
         }
 
-        
-#if NET4_5
-
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting Caller-Attributes")]
+#else
         [Fact]
+#endif
         public void AllEventWithFluent_with_callerInformation()
         {
-
             var configuration = CreateConfigurationFromString(@"
                 <nlog throwExceptions='true' >
                     <targets>
@@ -158,8 +158,6 @@ namespace NLog.UnitTests.Layouts
                                 name='m'
                                layout='${all-event-properties:IncludeCallerInformation=true}'
                                >
-                           
-     
                         </target>
                     </targets>
                     <rules>
@@ -169,9 +167,7 @@ namespace NLog.UnitTests.Layouts
                     </rules>
                 </nlog>");
 
-
             LogManager.Configuration = configuration;
-
       
             var logger = LogManager.GetCurrentClassLogger();
             logger.Debug()
@@ -181,15 +177,11 @@ namespace NLog.UnitTests.Layouts
                 .Property("a", "not b")
                 .Write();
 
-
             base.AssertDebugLastMessageContains("m", "CallerMemberName=");
             base.AssertDebugLastMessageContains("m", "CallerFilePath=");
             base.AssertDebugLastMessageContains("m", "CallerLineNumber=");
-
         }
-        
-#endif
-        
+
         private static LogEventInfo BuildLogEventWithProperties()
         {
             var ev = new LogEventInfo();

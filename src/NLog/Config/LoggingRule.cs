@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -47,11 +47,11 @@ namespace NLog.Config
     [NLogConfigurationItem]
     public class LoggingRule
     {
-        private readonly bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
+        private readonly bool[] _logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
-        private string loggerNamePattern;
-        private MatchMode loggerNameMatchMode;
-        private string loggerNameMatchArgument;
+        private string _loggerNamePattern;
+        private MatchMode _loggerNameMatchMode;
+        private string _loggerNameMatchArgument;
 
         /// <summary>
         /// Create an empty <see cref="LoggingRule" />.
@@ -146,19 +146,19 @@ namespace NLog.Config
         {
             get
             {
-                return this.loggerNamePattern;
+                return this._loggerNamePattern;
             }
 
             set
             {
-                this.loggerNamePattern = value;
-                int firstPos = this.loggerNamePattern.IndexOf('*');
-                int lastPos = this.loggerNamePattern.LastIndexOf('*');
+                this._loggerNamePattern = value;
+                int firstPos = this._loggerNamePattern.IndexOf('*');
+                int lastPos = this._loggerNamePattern.LastIndexOf('*');
 
                 if (firstPos < 0)
                 {
-                    this.loggerNameMatchMode = MatchMode.Equals;
-                    this.loggerNameMatchArgument = value;
+                    this._loggerNameMatchMode = MatchMode.Equals;
+                    this._loggerNameMatchArgument = value;
                     return;
                 }
 
@@ -169,15 +169,15 @@ namespace NLog.Config
 
                     if (before.Length > 0)
                     {
-                        this.loggerNameMatchMode = MatchMode.StartsWith;
-                        this.loggerNameMatchArgument = before;
+                        this._loggerNameMatchMode = MatchMode.StartsWith;
+                        this._loggerNameMatchArgument = before;
                         return;
                     }
 
                     if (after.Length > 0)
                     {
-                        this.loggerNameMatchMode = MatchMode.EndsWith;
-                        this.loggerNameMatchArgument = after;
+                        this._loggerNameMatchMode = MatchMode.EndsWith;
+                        this._loggerNameMatchArgument = after;
                         return;
                     }
 
@@ -188,13 +188,13 @@ namespace NLog.Config
                 if (firstPos == 0 && lastPos == this.LoggerNamePattern.Length - 1)
                 {
                     string text = this.LoggerNamePattern.Substring(1, this.LoggerNamePattern.Length - 2);
-                    this.loggerNameMatchMode = MatchMode.Contains;
-                    this.loggerNameMatchArgument = text;
+                    this._loggerNameMatchMode = MatchMode.Contains;
+                    this._loggerNameMatchArgument = text;
                     return;
                 }
 
-                this.loggerNameMatchMode = MatchMode.None;
-                this.loggerNameMatchArgument = string.Empty;
+                this._loggerNameMatchMode = MatchMode.None;
+                this._loggerNameMatchArgument = string.Empty;
             }
         }
 
@@ -209,7 +209,7 @@ namespace NLog.Config
 
                 for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
                 {
-                    if (this.logLevels[i])
+                    if (this._logLevels[i])
                     {
                         levels.Add(LogLevel.FromOrdinal(i));
                     }
@@ -230,7 +230,7 @@ namespace NLog.Config
                 return;
             }
 
-            this.logLevels[level.Ordinal] = true;
+            this._logLevels[level.Ordinal] = true;
         }
 
         /// <summary>
@@ -257,7 +257,7 @@ namespace NLog.Config
                 return;
             }
 
-            this.logLevels[level.Ordinal] = false;
+            this._logLevels[level.Ordinal] = false;
         }
 
         /// <summary>
@@ -270,11 +270,11 @@ namespace NLog.Config
         {
             var sb = new StringBuilder();
 
-            sb.AppendFormat(CultureInfo.InvariantCulture, "logNamePattern: ({0}:{1})", this.loggerNameMatchArgument, this.loggerNameMatchMode);
+            sb.AppendFormat(CultureInfo.InvariantCulture, "logNamePattern: ({0}:{1})", this._loggerNameMatchArgument, this._loggerNameMatchMode);
             sb.Append(" levels: [ ");
-            for (int i = 0; i < this.logLevels.Length; ++i)
+            for (int i = 0; i < this._logLevels.Length; ++i)
             {
-                if (this.logLevels[i])
+                if (this._logLevels[i])
                 {
                     sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", LogLevel.FromOrdinal(i).ToString());
                 }
@@ -302,7 +302,7 @@ namespace NLog.Config
                 return false;
             }
 
-            return this.logLevels[level.Ordinal];
+            return this._logLevels[level.Ordinal];
         }
 
         /// <summary>
@@ -312,7 +312,7 @@ namespace NLog.Config
         /// <returns>A value of <see langword="true"/> when the name matches, <see langword="false" /> otherwise.</returns>
         public bool NameMatches(string loggerName)
         {
-            switch (this.loggerNameMatchMode)
+            switch (this._loggerNameMatchMode)
             {
                 case MatchMode.All:
                     return true;
@@ -322,16 +322,16 @@ namespace NLog.Config
                     return false;
 
                 case MatchMode.Equals:
-                    return loggerName.Equals(this.loggerNameMatchArgument, StringComparison.Ordinal);
+                    return loggerName.Equals(this._loggerNameMatchArgument, StringComparison.Ordinal);
 
                 case MatchMode.StartsWith:
-                    return loggerName.StartsWith(this.loggerNameMatchArgument, StringComparison.Ordinal);
+                    return loggerName.StartsWith(this._loggerNameMatchArgument, StringComparison.Ordinal);
 
                 case MatchMode.EndsWith:
-                    return loggerName.EndsWith(this.loggerNameMatchArgument, StringComparison.Ordinal);
+                    return loggerName.EndsWith(this._loggerNameMatchArgument, StringComparison.Ordinal);
 
                 case MatchMode.Contains:
-                    return loggerName.IndexOf(this.loggerNameMatchArgument, StringComparison.Ordinal) >= 0;
+                    return loggerName.IndexOf(this._loggerNameMatchArgument, StringComparison.Ordinal) >= 0;
             }
         }
 
