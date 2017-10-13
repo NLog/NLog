@@ -81,35 +81,35 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the database parameter DbType.
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Parameter Options' order='2' />
         [DefaultValue(null)]
         public string DbType { get; set; }
 
         /// <summary>
         /// Gets or sets convert format of the database parameter value .
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Parameter Options' order='3' />
         [DefaultValue(null)]
         public string Format { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter size.
         /// </summary>
-        /// <docgen category='Parameter Options' order='2' />
+        /// <docgen category='Parameter Options' order='4' />
         [DefaultValue(0)]
         public int Size { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter precision.
         /// </summary>
-        /// <docgen category='Parameter Options' order='3' />
+        /// <docgen category='Parameter Options' order='5' />
         [DefaultValue(0)]
         public byte Precision { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter scale.
         /// </summary>
-        /// <docgen category='Parameter Options' order='4' />
+        /// <docgen category='Parameter Options' order='6' />
         [DefaultValue(0)]
         public byte Scale { get; set; }
     }

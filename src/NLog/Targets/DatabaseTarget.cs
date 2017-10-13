@@ -42,7 +42,6 @@ namespace NLog.Targets
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
-    using System.Linq;
     using System.Reflection;
     using System.Text;
 #if !NETSTANDARD1_5
@@ -563,7 +562,7 @@ namespace NLog.Targets
         /// Write logEvent to database
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
-        protected virtual void WriteEventToDatabase(LogEventInfo logEvent)
+        private void WriteEventToDatabase(LogEventInfo logEvent)
         {
             //Always suppress transaction so that the caller does not rollback loggin if they are rolling back their transaction.
             using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
