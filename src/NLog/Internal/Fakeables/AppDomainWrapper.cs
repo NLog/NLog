@@ -37,7 +37,7 @@ namespace NLog.Internal.Fakeables
 {
     using System;
     using System.Collections.Generic;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Adapter for <see cref="AppDomain"/> to <see cref="IAppDomain"/>
@@ -89,6 +89,11 @@ namespace NLog.Internal.Fakeables
             Id = appDomain.Id;
 #endif
         }
+
+        /// <summary>
+        /// Creates an AppDomainWrapper for the current <see cref="AppDomain"/>
+        /// </summary>
+        public static AppDomainWrapper CurrentDomain { get { return new AppDomainWrapper(AppDomain.CurrentDomain); } }
 
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
