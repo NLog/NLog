@@ -1757,29 +1757,29 @@ namespace NLog.UnitTests
         [InlineData(null, true)]
         [InlineData(null, false)]
         [InlineData(null, null)]
-        public void StructuredEventsConfigTest(bool? messageTemplateParser, bool? overrideMessageTemplateParser)
+        public void StructuredEventsConfigTest(bool? parseMessageTemplates, bool? overrideParseMessageTemplates)
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
-                <nlog messageTemplateParser='" + (messageTemplateParser?.ToString() ?? string.Empty) + @"'>
+                <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
                     <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' writeTo='debug' />
                     </rules>
                 </nlog>");
 
-            if (messageTemplateParser.HasValue)
+            if (parseMessageTemplates.HasValue)
             {
-                Assert.Equal(ConfigurationItemFactory.Default.EnableMessageTemplateParser, messageTemplateParser.Value);
+                Assert.Equal(ConfigurationItemFactory.Default.ParseMessageTemplates, parseMessageTemplates.Value);
             }
 
-            if (overrideMessageTemplateParser.HasValue)
+            if (overrideParseMessageTemplates.HasValue)
             {
-                ConfigurationItemFactory.Default.EnableMessageTemplateParser = overrideMessageTemplateParser.Value;
+                ConfigurationItemFactory.Default.ParseMessageTemplates = overrideParseMessageTemplates.Value;
             }
 
             ILogger logger = LogManager.GetLogger("A");
             logger.Debug("Hello World {0}", new object[] { null });
-            if (messageTemplateParser == true || overrideMessageTemplateParser == true)
+            if (parseMessageTemplates == true || overrideParseMessageTemplates == true)
                 AssertDebugLastMessage("debug", "Hello World NULL");
             else
                 AssertDebugLastMessage("debug", "Hello World ");
