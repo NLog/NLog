@@ -71,6 +71,10 @@ namespace NLog.Config
         /// <summary>
         /// Appends the contents of an Exception's Data property to the specified target.
         /// </summary>
-        Data = 6
+        Data = 6,
+        /// <summary>
+        /// Destructure the exception (usually into JSON)
+        /// </summary>
+        Serialize = 7,
     }
 }
