@@ -52,8 +52,18 @@ namespace NLog.LayoutRenderers.Wrappers
             using (var localTarget = new Internal.AppendBuilderCreator(builder, true))
             {
                 RenderFormattedMessage(logEvent, localTarget.Builder);
-                TransformFormattedMesssage(localTarget.Builder);
+                TransformFormattedMesssage(logEvent, localTarget.Builder);
             }
+        }
+
+        /// <summary>
+        /// Transforms the output of another layout.
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="target">Output to be transform.</param>
+        protected virtual void TransformFormattedMesssage(LogEventInfo logEvent, StringBuilder target)
+        {
+            TransformFormattedMesssage(target);
         }
 
         /// <summary>
@@ -65,7 +75,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Renders the inner layout contents.
         /// </summary>
-        /// <param name="logEvent">Logging</param>
+        /// <param name="logEvent"></param>
         /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected virtual void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
