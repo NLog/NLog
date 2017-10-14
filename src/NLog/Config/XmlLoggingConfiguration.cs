@@ -597,8 +597,8 @@ namespace NLog.Config
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
 
-            bool? messageTemplateParser = nlogElement.GetOptionalBooleanAttribute("messageTemplateParser", null);
-            ConfigurationItemFactory.EnableMessageTemplateParser = messageTemplateParser;
+            bool? parseMessageTemplates = nlogElement.GetOptionalBooleanAttribute("parseMessageTemplates", null);
+            ConfigurationItemFactory.ParseMessageTemplates = parseMessageTemplates;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             InternalLogger.LogToTrace = nlogElement.GetOptionalBooleanAttribute("internalLogToTrace", InternalLogger.LogToTrace);
