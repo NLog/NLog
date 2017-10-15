@@ -40,7 +40,7 @@ namespace NLog
     /// <summary>
     /// Exception thrown during log event processing.
     /// </summary>
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_5
     [Serializable]
 #endif
     public class NLogRuntimeException : Exception

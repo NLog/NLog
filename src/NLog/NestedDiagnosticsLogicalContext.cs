@@ -143,7 +143,7 @@ namespace NLog
             object Value { get; }
         }
 
-#if !NETSTANDARD && !NET4_6
+#if !NETSTANDARD1_5
         [Serializable]
 #endif
         class NestedContext<T> : INestedContext

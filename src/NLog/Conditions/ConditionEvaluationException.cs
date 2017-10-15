@@ -38,7 +38,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Exception during evaluation of condition expression.
     /// </summary>
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_5
     [Serializable]
 #endif
     public class ConditionEvaluationException : Exception 
