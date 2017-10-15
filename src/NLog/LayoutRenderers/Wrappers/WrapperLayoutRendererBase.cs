@@ -65,14 +65,24 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             string msg = RenderInner(logEvent);
-            builder.Append(Transform(msg));
+            builder.Append(Transform(logEvent, msg));
+        }
+
+        /// <summary>
+        /// Transforms the output of another layout.
+        /// </summary>
+        /// <param name="logEvent">Logging event.</param>
+        /// <param name="text">Output to be transform.</param>
+        /// <returns>Transformed text.</returns>
+        protected virtual string Transform(LogEventInfo logEvent, string text)
+        {
+            return Transform(text);
         }
 
         /// <summary>
         /// Transforms the output of another layout.
         /// </summary>
         /// <param name="text">Output to be transform.</param>
-        /// <remarks>If the <see cref="LogEventInfo"/> is needed, overwrite <see cref="Append"/>.</remarks>
         /// <returns>Transformed text.</returns>
         protected abstract string Transform(string text);
 
