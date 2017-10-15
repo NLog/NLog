@@ -43,50 +43,32 @@ namespace NLog.Common
          /// <summary>
         /// Gets a value indicating whether internal log includes Trace messages.
         /// </summary>
-        public static bool IsTraceEnabled
-        {
-            get { return LogLevel.Trace >= LogLevel; }
-        }
+        public static bool IsTraceEnabled => LogLevel.Trace >= LogLevel;
 
         /// <summary>
         /// Gets a value indicating whether internal log includes Debug messages.
         /// </summary>
-        public static bool IsDebugEnabled
-        {
-            get { return LogLevel.Debug >= LogLevel; }
-        }
+        public static bool IsDebugEnabled => LogLevel.Debug >= LogLevel;
 
         /// <summary>
         /// Gets a value indicating whether internal log includes Info messages.
         /// </summary>
-        public static bool IsInfoEnabled
-        {
-            get { return LogLevel.Info >= LogLevel; }
-        }
+        public static bool IsInfoEnabled => LogLevel.Info >= LogLevel;
 
         /// <summary>
         /// Gets a value indicating whether internal log includes Warn messages.
         /// </summary>
-        public static bool IsWarnEnabled
-        {
-            get { return LogLevel.Warn >= LogLevel; }
-        }
+        public static bool IsWarnEnabled => LogLevel.Warn >= LogLevel;
 
         /// <summary>
         /// Gets a value indicating whether internal log includes Error messages.
         /// </summary>
-        public static bool IsErrorEnabled
-        {
-            get { return LogLevel.Error >= LogLevel; }
-        }
+        public static bool IsErrorEnabled => LogLevel.Error >= LogLevel;
 
         /// <summary>
         /// Gets a value indicating whether internal log includes Fatal messages.
         /// </summary>
-        public static bool IsFatalEnabled
-        {
-            get { return LogLevel.Fatal >= LogLevel; }
-        }
+        public static bool IsFatalEnabled => LogLevel.Fatal >= LogLevel;
 
 
         /// <summary>

@@ -77,10 +77,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
         /// </summary>
-        protected object SyncRoot
-        {
-            get { return _lockObject; }
-        }
+        protected object SyncRoot => _lockObject;
 
         /// <summary>
         /// Gets the logging configuration this target is part of.

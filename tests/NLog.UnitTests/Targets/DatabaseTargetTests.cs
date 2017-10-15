@@ -1324,20 +1324,14 @@ Dispose()
 
             public string ConnectionString { get; set; }
 
-            public int ConnectionTimeout
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public int ConnectionTimeout => throw new NotImplementedException();
 
             public IDbCommand CreateCommand()
             {
                 return new MockDbCommand() { Connection = this };
             }
 
-            public string Database
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public string Database => throw new NotImplementedException();
 
             public void Open()
             {
@@ -1349,10 +1343,7 @@ Dispose()
                 }
             }
 
-            public ConnectionState State
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public ConnectionState State => throw new NotImplementedException();
 
             public void Dispose()
             {
@@ -1430,10 +1421,7 @@ Dispose()
                 throw new NotImplementedException();
             }
 
-            public IDataParameterCollection Parameters
-            {
-                get { return parameters; }
-            }
+            public IDataParameterCollection Parameters => parameters;
 
             public void Prepare()
             {
@@ -1444,8 +1432,8 @@ Dispose()
 
             public UpdateRowSource UpdatedRowSource
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
 
             public void Dispose()
@@ -1471,28 +1459,22 @@ Dispose()
 
             public DbType DbType
             {
-                get { return parameterType; }
-                set { parameterType = value; }
+                get => parameterType;
+                set => parameterType = value;
             }
 
             public ParameterDirection Direction
             {
-                get { throw new NotImplementedException(); }
-                set
-                {
-                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Direction={1}", paramId,
-                        value);
-                }
+                get => throw new NotImplementedException();
+                set => ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Direction={1}", paramId,
+                    value);
             }
 
-            public bool IsNullable
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public bool IsNullable => throw new NotImplementedException();
 
             public string ParameterName
             {
-                get { return parameterName; }
+                get => parameterName;
                 set
                 {
                     ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Name={1}", paramId, value);
@@ -1502,19 +1484,19 @@ Dispose()
 
             public string SourceColumn
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
 
             public DataRowVersion SourceVersion
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
 
             public object Value
             {
-                get { return parameterValue; }
+                get => parameterValue;
                 set
                 {
                     ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Value={1}", paramId, value);
@@ -1524,30 +1506,21 @@ Dispose()
 
             public byte Precision
             {
-                get { throw new NotImplementedException(); }
-                set
-                {
-                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Precision={1}", paramId,
-                        value);
-                }
+                get => throw new NotImplementedException();
+                set => ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Precision={1}", paramId,
+                    value);
             }
 
             public byte Scale
             {
-                get { throw new NotImplementedException(); }
-                set
-                {
-                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Scale={1}", paramId, value);
-                }
+                get => throw new NotImplementedException();
+                set => ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Scale={1}", paramId, value);
             }
 
             public int Size
             {
-                get { throw new NotImplementedException(); }
-                set
-                {
-                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Size={1}", paramId, value);
-                }
+                get => throw new NotImplementedException();
+                set => ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Size={1}", paramId, value);
             }
 
             public override string ToString()
@@ -1575,20 +1548,11 @@ Dispose()
                 throw new NotImplementedException();
             }
 
-            public int Count
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public int Count => throw new NotImplementedException();
 
-            public object SyncRoot
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public object SyncRoot => throw new NotImplementedException();
 
-            public bool IsSynchronized
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public bool IsSynchronized => throw new NotImplementedException();
 
             public int Add(object value)
             {
@@ -1628,19 +1592,13 @@ Dispose()
 
             object IList.this[int index]
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
 
-            public bool IsReadOnly
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public bool IsReadOnly => throw new NotImplementedException();
 
-            public bool IsFixedSize
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public bool IsFixedSize => throw new NotImplementedException();
 
             public bool Contains(string parameterName)
             {
@@ -1659,8 +1617,8 @@ Dispose()
 
             object IDataParameterCollection.this[string parameterName]
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
         }
 
@@ -1702,15 +1660,9 @@ Dispose()
                 throw new NotImplementedException();
             }
 
-            public override string DataSource
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public override string DataSource => throw new NotImplementedException();
 
-            public override string Database
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public override string Database => throw new NotImplementedException();
 
             public override void Open()
             {
@@ -1718,15 +1670,9 @@ Dispose()
                 OpenCount++;
             }
 
-            public override string ServerVersion
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public override string ServerVersion => throw new NotImplementedException();
 
-            public override ConnectionState State
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public override ConnectionState State => throw new NotImplementedException();
         }
 
         private class SQLiteTest

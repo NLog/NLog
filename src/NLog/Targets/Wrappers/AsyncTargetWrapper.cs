@@ -150,8 +150,8 @@ namespace NLog.Targets.Wrappers
         [DefaultValue("Discard")]
         public AsyncTargetWrapperOverflowAction OverflowAction
         {
-            get { return RequestQueue.OnOverflow; }
-            set { RequestQueue.OnOverflow = value; }
+            get => RequestQueue.OnOverflow;
+            set => RequestQueue.OnOverflow = value;
         }
 
         /// <summary>
@@ -161,8 +161,8 @@ namespace NLog.Targets.Wrappers
         [DefaultValue(10000)]
         public int QueueLimit
         {
-            get { return RequestQueue.RequestLimit; }
-            set { RequestQueue.RequestLimit = value; }
+            get => RequestQueue.RequestLimit;
+            set => RequestQueue.RequestLimit = value;
         }
 
         /// <summary>

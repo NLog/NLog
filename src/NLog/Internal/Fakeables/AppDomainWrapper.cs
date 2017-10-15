@@ -93,7 +93,7 @@ namespace NLog.Internal.Fakeables
         /// <summary>
         /// Creates an AppDomainWrapper for the current <see cref="AppDomain"/>
         /// </summary>
-        public static AppDomainWrapper CurrentDomain { get { return new AppDomainWrapper(AppDomain.CurrentDomain); } }
+        public static AppDomainWrapper CurrentDomain => new AppDomainWrapper(AppDomain.CurrentDomain);
 
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.

@@ -506,13 +506,7 @@ namespace NLog.UnitTests.Targets
 
             public string SetOnly { private get; set; }
 
-            public object Ex
-            {
-                get
-                {
-                    throw new Exception("oops");
-                }
-            }
+            public object Ex => throw new Exception("oops");
         }
 
 

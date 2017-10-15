@@ -95,13 +95,13 @@ namespace NLog
         /// <summary>
         /// Gets all the availiable log levels (Trace, Debug, Info, Warn, Error, Fatal, Off).
         /// </summary>
-        public static IEnumerable<LogLevel> AllLevels { get { return allLevels; } }
+        public static IEnumerable<LogLevel> AllLevels => allLevels;
 
         /// <summary>
         ///  Gets all the log levels that can be used to log events (Trace, Debug, Info, Warn, Error, Fatal) 
         ///  i.e <c>LogLevel.Off</c> is excluded.
         /// </summary>
-        public static IEnumerable<LogLevel> AllLoggingLevels { get { return allLoggingLevels; } }
+        public static IEnumerable<LogLevel> AllLoggingLevels => allLoggingLevels;
 
 
         private readonly int _ordinal;
@@ -121,28 +121,16 @@ namespace NLog
         /// <summary>
         /// Gets the name of the log level.
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-        }
+        public string Name => _name;
 
-        internal static LogLevel MaxLevel
-        {
-            get { return Fatal; }
-        }
+        internal static LogLevel MaxLevel => Fatal;
 
-        internal static LogLevel MinLevel
-        {
-            get { return Trace; }
-        }
+        internal static LogLevel MinLevel => Trace;
 
         /// <summary>
         /// Gets the ordinal of the log level.
         /// </summary>
-        public int Ordinal
-        {
-            get { return _ordinal; }
-        }
+        public int Ordinal => _ordinal;
 
         /// <summary>
         /// Compares two <see cref="LogLevel"/> objects 

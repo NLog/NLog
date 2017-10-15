@@ -69,7 +69,7 @@ namespace NLog.LayoutRenderers
         [DefaultParameter]
         public string Format
         {
-            get { return _format; }
+            get => _format;
             set
             {
                 _format = value;

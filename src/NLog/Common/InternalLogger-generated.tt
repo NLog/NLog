@@ -49,10 +49,7 @@ namespace NLog.Common
         /// <summary>
         /// Gets a value indicating whether internal log includes <#=level#> messages.
         /// </summary>
-        public static bool Is<#=level#>Enabled
-        {
-            get { return LogLevel.<#=level#> >= LogLevel; }
-        }
+        public static bool Is<#=level#>Enabled => LogLevel.<#=level#> >= LogLevel;
 
 <#
     }

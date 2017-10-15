@@ -172,7 +172,7 @@ namespace NLog.Internal
             readonly KeyValuePair<TKey, TValue>? _singleBucket;
             readonly Dictionary<TKey, TValue> _multiBucket;
             readonly IEqualityComparer<TKey> _comparer;
-            public IEqualityComparer<TKey> Comparer { get { return _comparer; } }
+            public IEqualityComparer<TKey> Comparer => _comparer;
 
             public ReadOnlySingleBucketDictionary(KeyValuePair<TKey, TValue> singleBucket)
                 : this(singleBucket, EqualityComparer<TKey>.Default)
@@ -230,7 +230,7 @@ namespace NLog.Internal
             }
 
             /// <inheritDoc/>
-            public bool IsReadOnly { get { return true; } }
+            public bool IsReadOnly => true;
 
             /// <summary>
             /// Allows direct lookup of existing keys. If trying to access non-existing key exception is thrown.
@@ -249,10 +249,7 @@ namespace NLog.Internal
                     else
                         throw new KeyNotFoundException();
                 }
-                set
-                {
-                    throw new NotSupportedException("Readonly");
-                }
+                set => throw new NotSupportedException("Readonly");
             }
 
             /// <summary>
@@ -289,7 +286,7 @@ namespace NLog.Internal
                     }
                 }
 
-                object IEnumerator.Current { get { return Current; } }
+                object IEnumerator.Current => Current;
 
                 public void Dispose()
                 {

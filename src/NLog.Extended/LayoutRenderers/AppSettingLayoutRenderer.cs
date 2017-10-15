@@ -68,8 +68,8 @@ namespace NLog.LayoutRenderers
 
 		internal IConfigurationManager ConfigurationManager
 		{
-			get { return configurationManager; }
-			set { configurationManager = value; }
+			get => configurationManager;
+		    set => configurationManager = value;
 		}
 
 		/// <summary>

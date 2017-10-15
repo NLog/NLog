@@ -61,19 +61,25 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdc { get { return Renderer.IncludeMdc; } set { Renderer.IncludeMdc = value; } }
+        public bool IncludeMdc { get => Renderer.IncludeMdc;
+            set => Renderer.IncludeMdc = value;
+        }
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeAllProperties { get { return Renderer.IncludeAllProperties; } set { Renderer.IncludeAllProperties = value; } }
+        public bool IncludeAllProperties { get => Renderer.IncludeAllProperties;
+            set => Renderer.IncludeAllProperties = value;
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdc { get { return Renderer.IncludeNdc; } set { Renderer.IncludeNdc = value; } }
+        public bool IncludeNdc { get => Renderer.IncludeNdc;
+            set => Renderer.IncludeNdc = value;
+        }
 
 #if !SILVERLIGHT
 
@@ -81,13 +87,17 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdlc { get { return Renderer.IncludeMdlc; } set { Renderer.IncludeMdlc = value; } }
+        public bool IncludeMdlc { get => Renderer.IncludeMdlc;
+            set => Renderer.IncludeMdlc = value;
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdlc { get { return Renderer.IncludeNdlc; } set { Renderer.IncludeNdlc = value; } }
+        public bool IncludeNdlc { get => Renderer.IncludeNdlc;
+            set => Renderer.IncludeNdlc = value;
+        }
 
 #endif
 

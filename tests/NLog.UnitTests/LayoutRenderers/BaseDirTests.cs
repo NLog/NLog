@@ -122,45 +122,33 @@ namespace NLog.UnitTests.LayoutRenderers
             /// <summary>
             /// Gets or sets the name of the configuration file for an application domain.
             /// </summary>
-            public string ConfigurationFile
-            {
-                get { return _appDomain.ConfigurationFile; }
-            }
+            public string ConfigurationFile => _appDomain.ConfigurationFile;
 
             /// <summary>
             /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
             /// </summary>
-            public IEnumerable<string> PrivateBinPath
-            {
-                get { return _appDomain.PrivateBinPath; }
-            }
+            public IEnumerable<string> PrivateBinPath => _appDomain.PrivateBinPath;
 
             /// <summary>
             /// Gets or set the friendly name.
             /// </summary>
-            public string FriendlyName
-            {
-                get { return _appDomain.FriendlyName; }
-            }
+            public string FriendlyName => _appDomain.FriendlyName;
 
             /// <summary>
             /// Gets an integer that uniquely identifies the application domain within the process. 
             /// </summary>
-            public int Id
-            {
-                get { return _appDomain.Id; }
-            }
+            public int Id => _appDomain.Id;
 
             public event EventHandler<EventArgs> ProcessExit
             {
-                add { _appDomain.ProcessExit += value; }
-                remove { _appDomain.ProcessExit -= value; }
+                add => _appDomain.ProcessExit += value;
+                remove => _appDomain.ProcessExit -= value;
             }
 
             public event EventHandler<EventArgs> DomainUnload
             {
-                add { _appDomain.DomainUnload += value; }
-                remove { _appDomain.DomainUnload -= value; }
+                add => _appDomain.DomainUnload += value;
+                remove => _appDomain.DomainUnload -= value;
             }
 
             /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>

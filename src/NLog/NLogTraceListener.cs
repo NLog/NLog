@@ -140,10 +140,7 @@ namespace NLog
         /// </summary>
         /// <value></value>
         /// <returns>true if the trace listener is thread safe; otherwise, false. The default is false.</returns>
-        public override bool IsThreadSafe
-        {
-            get { return true; }
-        }
+        public override bool IsThreadSafe => true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to use auto logger name detected from the stack trace.

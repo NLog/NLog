@@ -100,8 +100,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNLogData
         {
-            get { return Renderer.IncludeNLogData; }
-            set { Renderer.IncludeNLogData = value; }
+            get => Renderer.IncludeNLogData;
+            set => Renderer.IncludeNLogData = value;
         }
 
         /// <summary>
@@ -110,8 +110,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public string AppInfo
         {
-            get { return Renderer.AppInfo; }
-            set { Renderer.AppInfo = value; }
+            get => Renderer.AppInfo;
+            set => Renderer.AppInfo = value;
         }
 
         /// <summary>
@@ -120,8 +120,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeCallSite
         {
-            get { return Renderer.IncludeCallSite; }
-            set { Renderer.IncludeCallSite = value; }
+            get => Renderer.IncludeCallSite;
+            set => Renderer.IncludeCallSite = value;
         }
 
 #if !SILVERLIGHT
@@ -131,8 +131,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeSourceInfo
         {
-            get { return Renderer.IncludeSourceInfo; }
-            set { Renderer.IncludeSourceInfo = value; }
+            get => Renderer.IncludeSourceInfo;
+            set => Renderer.IncludeSourceInfo = value;
         }
 #endif
 
@@ -142,8 +142,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdc
         {
-            get { return Renderer.IncludeMdc; }
-            set { Renderer.IncludeMdc = value; }
+            get => Renderer.IncludeMdc;
+            set => Renderer.IncludeMdc = value;
         }
 
         /// <summary>
@@ -152,8 +152,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNdc
         {
-            get { return Renderer.IncludeNdc; }
-            set { Renderer.IncludeNdc = value; }
+            get => Renderer.IncludeNdc;
+            set => Renderer.IncludeNdc = value;
         }
 
 #if !SILVERLIGHT
@@ -164,8 +164,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdlc
         {
-            get { return Renderer.IncludeMdlc; }
-            set { Renderer.IncludeMdlc = value; }
+            get => Renderer.IncludeMdlc;
+            set => Renderer.IncludeMdlc = value;
         }
 
         /// <summary>
@@ -174,8 +174,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNdlc
         {
-            get { return Renderer.IncludeNdlc; }
-            set { Renderer.IncludeNdlc = value; }
+            get => Renderer.IncludeNdlc;
+            set => Renderer.IncludeNdlc = value;
         }
 
 #endif
@@ -186,8 +186,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeAllProperties
         {
-            get { return Renderer.IncludeAllProperties; }
-            set { Renderer.IncludeAllProperties = value; }
+            get => Renderer.IncludeAllProperties;
+            set => Renderer.IncludeAllProperties = value;
         }
 
         /// <summary>
@@ -196,8 +196,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public string NdcItemSeparator
         {
-            get { return Renderer.NdcItemSeparator; }
-            set { Renderer.NdcItemSeparator = value; }
+            get => Renderer.NdcItemSeparator;
+            set => Renderer.NdcItemSeparator = value;
         }
 
         /// <summary>
@@ -211,10 +211,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the layout renderer which produces Log4j-compatible XML events.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer Renderer
-        {
-            get { return _layout.Renderer; }
-        }
+        public Log4JXmlEventLayoutRenderer Renderer => _layout.Renderer;
 
         /// <summary>
         /// Gets or sets the instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.

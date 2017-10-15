@@ -136,7 +136,9 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         [DefaultValue("Soap11")]
-        public WebServiceProtocol Protocol { get { return _activeProtocol.Key; } set { _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(value, null); } }
+        public WebServiceProtocol Protocol { get => _activeProtocol.Key;
+            set => _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(value, null);
+        }
         private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>();
 
         /// <summary>
@@ -702,15 +704,9 @@ namespace NLog.Targets
                 _encodingFlags = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
             }
 
-            protected override string ContentType
-            {
-                get { return "application/x-www-form-urlencoded"; }
-            }
+            protected override string ContentType => "application/x-www-form-urlencoded";
 
-            protected override string Separator
-            {
-                get { return "&"; }
-            }
+            protected override string Separator => "&";
 
             protected override void AppendFormattedParameter(StringBuilder builder, MethodCallParameter parameter, object value)
             {
@@ -727,25 +723,16 @@ namespace NLog.Targets
 
         private class HttpPostJsonFormatter : HttpPostTextFormatterBase
         {
-            private IJsonConverter JsonConverter
-            {
-                get { return _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter); }
-            }
+            private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter);
             private IJsonConverter _jsonConverter = null;
 
             public HttpPostJsonFormatter(WebServiceTarget target) : base(target)
             {
             }
 
-            protected override string ContentType
-            {
-                get { return "application/json"; }
-            }
+            protected override string ContentType => "application/json";
 
-            protected override string Separator
-            {
-                get { return ","; }
-            }
+            protected override string Separator => ",";
 
             protected override void BeginFormattedMessage(StringBuilder builder)
             {
@@ -772,15 +759,9 @@ namespace NLog.Targets
             {
             }
 
-            protected override string SoapEnvelopeNamespace
-            {
-                get { return SoapEnvelopeNamespaceUri; }
-            }
+            protected override string SoapEnvelopeNamespace => SoapEnvelopeNamespaceUri;
 
-            protected override string SoapName
-            {
-                get { return "soap"; }
-            }
+            protected override string SoapName => "soap";
 
             protected override void InitRequest(HttpWebRequest request)
             {
@@ -806,15 +787,9 @@ namespace NLog.Targets
             {
             }
 
-            protected override string SoapEnvelopeNamespace
-            {
-                get { return Soap12EnvelopeNamespaceUri; }
-            }
+            protected override string SoapEnvelopeNamespace => Soap12EnvelopeNamespaceUri;
 
-            protected override string SoapName
-            {
-                get { return "soap12"; }
-            }
+            protected override string SoapName => "soap12";
         }
 
         private abstract class HttpPostSoapFormatterBase : HttpPostXmlFormatterBase
@@ -902,10 +877,7 @@ namespace NLog.Targets
         {
             private readonly XmlWriterSettings _xmlWriterSettings;
 
-            protected override string ContentType
-            {
-                get { return "application/xml"; }
-            }
+            protected override string ContentType => "application/xml";
 
             public HttpPostXmlDocumentFormatter(WebServiceTarget target) : base(target)
             {
@@ -934,10 +906,7 @@ namespace NLog.Targets
             {
             }
 
-            protected override string ContentType
-            {
-                get { return "text/xml"; }
-            }
+            protected override string ContentType => "text/xml";
 
             protected void WriteAllParametersToCurrenElement(XmlWriter currentXmlWriter, object[] parameterValues)
             {

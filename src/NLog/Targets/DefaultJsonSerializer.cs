@@ -61,10 +61,7 @@ namespace NLog.Targets
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
-        public static DefaultJsonSerializer Instance
-        {
-            get { return instance; }
-        }
+        public static DefaultJsonSerializer Instance => instance;
 
         static DefaultJsonSerializer()
         {

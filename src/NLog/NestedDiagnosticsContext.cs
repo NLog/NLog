@@ -52,13 +52,7 @@ namespace NLog
         /// Gets the top NDC message but doesn't remove it.
         /// </summary>
         /// <returns>The top message. .</returns>
-        public static string TopMessage
-        {
-            get
-            {
-                return FormatHelper.ConvertToString(TopObject, null);
-            }
-        }
+        public static string TopMessage => FormatHelper.ConvertToString(TopObject, null);
 
         /// <summary>
         /// Gets the top NDC object but doesn't remove it.
@@ -73,10 +67,7 @@ namespace NLog
             }
         }
 
-        private static Stack<object> ThreadStack
-        {
-            get { return ThreadLocalStorageHelper.GetDataForSlot<Stack<object>>(dataSlot); }
-        }
+        private static Stack<object> ThreadStack => ThreadLocalStorageHelper.GetDataForSlot<Stack<object>>(dataSlot);
 
         /// <summary>
         /// Pushes the specified text on current thread NDC.

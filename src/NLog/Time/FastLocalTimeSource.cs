@@ -44,7 +44,7 @@ namespace NLog.Time
         /// <summary>
         /// Gets uncached local time directly from DateTime.Now.
         /// </summary>
-        protected override DateTime FreshTime { get { return DateTime.Now; } }
+        protected override DateTime FreshTime => DateTime.Now;
 
         /// <summary>
         ///  Converts the specified system time to the same form as the time value originated from this time source.

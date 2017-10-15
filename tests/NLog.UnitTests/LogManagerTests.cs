@@ -394,7 +394,7 @@ namespace NLog.UnitTests
             public Logger Logger { get; private set; }
             public Logger LoggerType { get; private set; }
 
-            public string BaseName { get { return typeof(ImAAbstractClass).FullName; } }
+            public string BaseName => typeof(ImAAbstractClass).FullName;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="T:System.Object"/> class.
@@ -417,7 +417,7 @@ namespace NLog.UnitTests
             public Logger LoggerInherited = LogManager.GetCurrentClassLogger();
             public Logger LoggerTypeInherited = LogManager.GetCurrentClassLogger(typeof(Logger));
 
-            public string InheritedName { get { return GetType().FullName; } }
+            public string InheritedName => GetType().FullName;
 
             public InheritedFromAbstractClass()
                 : base()

@@ -46,55 +46,37 @@ namespace NLog
         /// Gets a value indicating whether logging is enabled for the <c>Trace</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Trace</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsTraceEnabled
-        {
-            get { return _isTraceEnabled; }
-        }
+        public bool IsTraceEnabled => _isTraceEnabled;
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Debug</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Debug</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsDebugEnabled
-        {
-            get { return _isDebugEnabled; }
-        }
+        public bool IsDebugEnabled => _isDebugEnabled;
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Info</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Info</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsInfoEnabled
-        {
-            get { return _isInfoEnabled; }
-        }
+        public bool IsInfoEnabled => _isInfoEnabled;
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Warn</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsWarnEnabled
-        {
-            get { return _isWarnEnabled; }
-        }
+        public bool IsWarnEnabled => _isWarnEnabled;
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Error</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Error</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsErrorEnabled
-        {
-            get { return _isErrorEnabled; }
-        }
+        public bool IsErrorEnabled => _isErrorEnabled;
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the <c>Fatal</c> level.
         /// </summary>
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Fatal</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsFatalEnabled
-        {
-            get { return _isFatalEnabled; }
-        }
+        public bool IsFatalEnabled => _isFatalEnabled;
 
 
         #region Trace() overloads 

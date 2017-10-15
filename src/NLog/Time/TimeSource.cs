@@ -58,8 +58,8 @@ namespace NLog.Time
         /// </remarks>
         public static TimeSource Current
         {
-            get { return currentSource; }
-            set { currentSource = value; }
+            get => currentSource;
+            set => currentSource = value;
         }
 
         /// <summary>

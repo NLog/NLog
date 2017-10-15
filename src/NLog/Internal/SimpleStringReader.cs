@@ -64,10 +64,7 @@ namespace NLog.Internal
         /// <summary>
         /// Full text to be parsed
         /// </summary>
-        internal string Text
-        {
-            get { return _text; }
-        }
+        internal string Text => _text;
 
 #if DEBUG
         string CurrentState

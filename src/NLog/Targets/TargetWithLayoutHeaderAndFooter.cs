@@ -58,10 +58,7 @@ namespace NLog.Targets
         [RequiredParameter]
         public override Layout Layout
         {
-            get
-            {
-                return LHF.Layout;
-            }
+            get => LHF.Layout;
 
             set
             {
@@ -89,8 +86,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='3' />
         public Layout Footer
         {
-            get { return LHF.Footer; }
-            set { LHF.Footer = value; }
+            get => LHF.Footer;
+            set => LHF.Footer = value;
         }
 
         /// <summary>
@@ -99,8 +96,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='2' />
         public Layout Header
         {
-            get { return LHF.Header; }
-            set { LHF.Header = value; }
+            get => LHF.Header;
+            set => LHF.Header = value;
         }
 
         /// <summary>
@@ -109,8 +106,8 @@ namespace NLog.Targets
         /// <value>The layout with header and footer.</value>
         private LayoutWithHeaderAndFooter LHF
         {
-            get { return (LayoutWithHeaderAndFooter)base.Layout; }
-            set { base.Layout = value; }
+            get => (LayoutWithHeaderAndFooter)base.Layout;
+            set => base.Layout = value;
         }
    }
 }

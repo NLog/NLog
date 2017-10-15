@@ -925,7 +925,7 @@ namespace NLog.UnitTests.Targets
                 Client.DeliveryMethod = DeliveryMethod;
             }
 
-            public string SmtpClientPickUpDirectory { get { return Client.PickupDirectoryLocation; } }
+            public string SmtpClientPickUpDirectory => Client.PickupDirectoryLocation;
         }
 
 

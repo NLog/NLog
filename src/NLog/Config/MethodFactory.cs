@@ -58,10 +58,7 @@ namespace NLog.Config
         /// of the item and value is the <see cref="MethodInfo"/> of
         /// the item.
         /// </returns>
-        public IDictionary<string, MethodInfo> AllRegisteredItems
-        {
-            get { return _nameToMethodInfo; }
-        }
+        public IDictionary<string, MethodInfo> AllRegisteredItems => _nameToMethodInfo;
 
         /// <summary>
         /// Scans the assembly for classes marked with <typeparamref name="TClassAttributeType"/>
