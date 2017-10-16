@@ -44,7 +44,7 @@ namespace NLog.Time
         /// <summary>
         /// Gets current UTC time directly from DateTime.UtcNow.
         /// </summary>
-        public override DateTime Time { get { return DateTime.UtcNow; } }
+        public override DateTime Time => DateTime.UtcNow;
 
         /// <summary>
         ///  Converts the specified system time to the same form as the time value originated from this time source.

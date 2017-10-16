@@ -102,10 +102,7 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         public string Text
         {
-            get
-            {
-                return _layoutText;
-            }
+            get => _layoutText;
 
             set
             {
@@ -133,18 +130,12 @@ namespace NLog.Layouts
         /// <summary>
         /// Is the message fixed? (no Layout renderers used)
         /// </summary>
-        public bool IsFixedText
-        {
-            get { return _fixedText != null; }
-        }
+        public bool IsFixedText => _fixedText != null;
 
         /// <summary>
         /// Get the fixed text. Only set when <see cref="IsFixedText"/> is <c>true</c>
         /// </summary>
-        public string FixedText
-        {
-            get { return _fixedText; }
-        }
+        public string FixedText => _fixedText;
 
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
@@ -154,7 +145,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
         /// </summary>
-        public new StackTraceUsage StackTraceUsage { get { return base.StackTraceUsage; } }
+        public new StackTraceUsage StackTraceUsage => base.StackTraceUsage;
 
         /// <summary>
         /// Converts a text to a simple layout.

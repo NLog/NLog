@@ -149,7 +149,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public string ArchiveFilePatternToWatch
         {
-            get { return _archiveFilePatternToWatch; }
+            get => _archiveFilePatternToWatch;
             set
             {
                 if (_archiveFilePatternToWatch != value)

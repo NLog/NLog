@@ -82,18 +82,12 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the name of the LineEndingMode instance.
         /// </summary>
-        public string Name 
-        {       
-            get { return _name; }
-        }
+        public string Name => _name;
 
         /// <summary>
         /// Gets the new line characters (value) of the LineEndingMode instance.  
         /// </summary>
-        public string NewLineCharacters 
-        {
-            get { return _newLineCharacters; }
-        }
+        public string NewLineCharacters => _newLineCharacters;
 
         private LineEndingMode() { }
         

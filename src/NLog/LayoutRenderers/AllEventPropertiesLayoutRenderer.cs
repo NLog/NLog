@@ -86,7 +86,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public string Format
         {
-            get { return _format; }
+            get => _format;
             set
             {
                 if (!value.Contains("[key]"))

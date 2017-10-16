@@ -119,7 +119,7 @@ namespace NLog.Config
                     defaultInstance = BuildDefaultFactory();
                 return defaultInstance;
             }
-            set { defaultInstance = value; }
+            set => defaultInstance = value;
         }
 
         /// <summary>
@@ -134,19 +134,13 @@ namespace NLog.Config
         /// Gets the <see cref="Target"/> factory.
         /// </summary>
         /// <value>The target factory.</value>
-        public INamedItemFactory<Target, Type> Targets
-        {
-            get { return _targets; }
-        }
+        public INamedItemFactory<Target, Type> Targets => _targets;
 
         /// <summary>
         /// Gets the <see cref="Filter"/> factory.
         /// </summary>
         /// <value>The filter factory.</value>
-        public INamedItemFactory<Filter, Type> Filters
-        {
-            get { return _filters; }
-        }
+        public INamedItemFactory<Filter, Type> Filters => _filters;
 
         /// <summary>
         /// gets the <see cref="LayoutRenderer"/> factory
@@ -162,37 +156,28 @@ namespace NLog.Config
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout renderer factory.</value>
-        public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers
-        {
-            get { return _layoutRenderers; }
-        }
+        public INamedItemFactory<LayoutRenderer, Type> LayoutRenderers => _layoutRenderers;
 
         /// <summary>
         /// Gets the <see cref="LayoutRenderer"/> factory.
         /// </summary>
         /// <value>The layout factory.</value>
-        public INamedItemFactory<Layout, Type> Layouts
-        {
-            get { return _layouts; }
-        }
+        public INamedItemFactory<Layout, Type> Layouts => _layouts;
 
         /// <summary>
         /// Gets the ambient property factory.
         /// </summary>
         /// <value>The ambient property factory.</value>
-        public INamedItemFactory<LayoutRenderer, Type> AmbientProperties
-        {
-            get { return _ambientProperties; }
-        }
-        
+        public INamedItemFactory<LayoutRenderer, Type> AmbientProperties => _ambientProperties;
+
         /// <summary>
         /// Legacy interface, no longer used by the NLog engine
         /// </summary>
         [Obsolete("Use JsonConverter property instead. Marked obsolete on NLog 4.5")]
         public IJsonSerializer JsonSerializer
         {
-            get { return _jsonSerializer as IJsonSerializer; }
-            set { _jsonSerializer = value != null ? (IJsonConverter)new JsonConverterLegacy(value) : DefaultJsonSerializer.Instance; }
+            get => _jsonSerializer as IJsonSerializer;
+            set => _jsonSerializer = value != null ? (IJsonConverter)new JsonConverterLegacy(value) : DefaultJsonSerializer.Instance;
         }
 
         /// <summary>
@@ -200,8 +185,8 @@ namespace NLog.Config
         /// </summary>
         public IJsonConverter JsonConverter
         {
-            get { return _jsonSerializer; }
-            set { _jsonSerializer = value ?? DefaultJsonSerializer.Instance; }
+            get => _jsonSerializer;
+            set => _jsonSerializer = value ?? DefaultJsonSerializer.Instance;
         }
 
         /// <summary>
@@ -209,8 +194,8 @@ namespace NLog.Config
         /// </summary>
         public IValueSerializer ValueSerializer
         {
-            get { return MessageTemplates.ValueSerializer.Instance; }
-            set { MessageTemplates.ValueSerializer.Instance = value; }
+            get => MessageTemplates.ValueSerializer.Instance;
+            set => MessageTemplates.ValueSerializer.Instance = value;
         }
 
         /// <summary>
@@ -238,29 +223,20 @@ namespace NLog.Config
                     return null;
                 }
             }
-            set
-            {
-                LogEventInfo.SetDefaultMessageFormatter(value);
-            }
+            set => LogEventInfo.SetDefaultMessageFormatter(value);
         }
 
         /// <summary>
         /// Gets the time source factory.
         /// </summary>
         /// <value>The time source factory.</value>
-        public INamedItemFactory<TimeSource, Type> TimeSources
-        {
-            get { return _timeSources; }
-        }
+        public INamedItemFactory<TimeSource, Type> TimeSources => _timeSources;
 
         /// <summary>
         /// Gets the condition method factory.
         /// </summary>
         /// <value>The condition method factory.</value>
-        public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods
-        {
-            get { return _conditionMethods; }
-        }
+        public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods => _conditionMethods;
 
         /// <summary>
         /// Registers named items from the assembly.

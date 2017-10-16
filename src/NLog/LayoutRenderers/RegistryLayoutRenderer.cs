@@ -190,10 +190,7 @@ namespace NLog.LayoutRenderers
             /// <summary>
             /// Has <see cref="SubKey"/>?
             /// </summary>
-            public bool HasSubKey
-            {
-                get { return !string.IsNullOrEmpty(SubKey); }
-            }
+            public bool HasSubKey => !string.IsNullOrEmpty(SubKey);
         }
 
         /// <summary>

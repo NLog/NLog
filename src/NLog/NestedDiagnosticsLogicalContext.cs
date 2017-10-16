@@ -150,7 +150,7 @@ namespace NLog
         {
             public INestedContext Parent { get; private set; }
             public T Value { get; private set; }
-            object INestedContext.Value { get { return Value; } }
+            object INestedContext.Value => Value;
             public int FrameLevel { get; private set; }
 
             public NestedContext(INestedContext parent, T value)

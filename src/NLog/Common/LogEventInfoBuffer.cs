@@ -67,10 +67,7 @@ namespace NLog.Common
         /// <summary>
         /// Gets the number of items in the array.
         /// </summary>
-        public int Size
-        {
-            get { return _buffer.Length; }
-        }
+        public int Size => _buffer.Length;
 
         /// <summary>
         /// Adds the specified log event to the buffer.

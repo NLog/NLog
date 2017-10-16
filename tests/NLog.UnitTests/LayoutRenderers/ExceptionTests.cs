@@ -595,10 +595,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
         {
-            public override string Message
-            {
-                get { throw new Exception("Exception from Message property"); }
-            }
+            public override string Message => throw new Exception("Exception from Message property");
         }
 
         private void SetConfigurationForExceptionUsingRootMethodTests()

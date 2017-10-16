@@ -101,10 +101,7 @@ namespace NLog.LayoutRenderers
         [DefaultParameter]
         public string Format
         {
-            get
-            {
-                return _format;
-            }
+            get => _format;
 
             set
             {
@@ -121,10 +118,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public string InnerFormat
         {
-            get
-            {
-                return _innerFormat;
-            }
+            get => _innerFormat;
 
             set
             {

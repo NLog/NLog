@@ -174,18 +174,12 @@ namespace NLog
         /// <summary>
         /// Gets a value indicating whether stack trace has been set for this event.
         /// </summary>
-        public bool HasStackTrace
-        {
-            get { return StackTrace != null; }
-        }
+        public bool HasStackTrace => StackTrace != null;
 
         /// <summary>
         /// Gets the stack frame of the method that did the logging.
         /// </summary>
-        public StackFrame UserStackFrame
-        {
-            get { return (StackTrace != null) ? StackTrace.GetFrame(UserStackFrameNumber) : null; }
-        }
+        public StackFrame UserStackFrame => (StackTrace != null) ? StackTrace.GetFrame(UserStackFrameNumber) : null;
 
         /// <summary>
         /// Gets the number index of the stack frame that represents the user
@@ -233,7 +227,7 @@ namespace NLog
         /// </summary>
         public string Message
         {
-            get { return _message; }
+            get => _message;
             set
             {
                 bool rebuildMessageTemplateParameters = ResetMessageTemplateParameters();
@@ -248,7 +242,7 @@ namespace NLog
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
         public object[] Parameters
         {
-            get { return _parameters; }
+            get => _parameters;
             set
             {
                 bool rebuildMessageTemplateParameters = ResetMessageTemplateParameters();
@@ -263,7 +257,7 @@ namespace NLog
         /// </summary>
         public IFormatProvider FormatProvider
         {
-            get { return _formatProvider; }
+            get => _formatProvider;
             set
             {
                 if (_formatProvider != value)
@@ -280,7 +274,7 @@ namespace NLog
         /// </summary>
         public LogMessageFormatter MessageFormatter
         {
-            get { return _messageFormatter; }
+            get => _messageFormatter;
             set
             {
                 _messageFormatter = value ?? StringFormatMessageFormatter;
@@ -322,15 +316,14 @@ namespace NLog
             }
         }
 
-        internal PropertiesDictionary PropertiesDictionary { get { return _properties; } set { _properties = value; } }
+        internal PropertiesDictionary PropertiesDictionary { get => _properties;
+            set => _properties = value;
+        }
 
         /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
-        public IDictionary<object, object> Properties 
-        {
-            get { return GetPropertiesInternal(); }
-        }
+        public IDictionary<object, object> Properties => GetPropertiesInternal();
 
         /// <summary>
         /// Gets the dictionary of per-event context properties. 
@@ -383,7 +376,7 @@ namespace NLog
         /// </summary>
         /// <remarks>This property was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
         [Obsolete("Use LogEventInfo.Properties instead.  Marked obsolete on NLog 2.0", true)]
-        public IDictionary Context { get { return GetPropertiesInternal().EventContext; } }
+        public IDictionary Context => GetPropertiesInternal().EventContext;
 
         /// <summary>
         /// Creates the null event.

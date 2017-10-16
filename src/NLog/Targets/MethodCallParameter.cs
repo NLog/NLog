@@ -97,7 +97,9 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Backwards compatibility")]
-        public Type Type { get { return ParameterType; } set { ParameterType = value; } }
+        public Type Type { get => ParameterType;
+            set => ParameterType = value;
+        }
 
         /// <summary>
         /// Gets or sets the type of the parameter.

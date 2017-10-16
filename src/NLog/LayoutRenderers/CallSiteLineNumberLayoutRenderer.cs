@@ -57,13 +57,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage
-        {
-            get
-            {
-                return StackTraceUsage.WithSource;
-            }
-        }
+        StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsage.WithSource;
 
         /// <summary>
         /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.

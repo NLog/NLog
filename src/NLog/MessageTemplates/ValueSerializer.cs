@@ -45,8 +45,8 @@ namespace NLog.MessageTemplates
     {
         public static IValueSerializer Instance
         {
-            get { return _instance ?? (_instance = new ValueSerializer()); }
-            set { _instance = value ?? new ValueSerializer(); }
+            get => _instance ?? (_instance = new ValueSerializer());
+            set => _instance = value ?? new ValueSerializer();
         }
         private static IValueSerializer _instance = null;
 

@@ -387,13 +387,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                 this.uri = uri;
             }
 
-            public override AddressFamily AddressFamily
-            {
-                get
-                {
-                    return (AddressFamily)10000;
-                }
-            }
+            public override AddressFamily AddressFamily => (AddressFamily)10000;
 
             public override string ToString()
             {

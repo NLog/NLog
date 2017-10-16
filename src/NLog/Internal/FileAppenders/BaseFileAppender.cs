@@ -78,7 +78,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The creation time of the file.</returns>
         public DateTime CreationTimeUtc
         {
-            get { return _creationTimeUtc; }
+            get => _creationTimeUtc;
             internal set
             {
                 _creationTimeUtc = value;

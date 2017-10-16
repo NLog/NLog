@@ -126,10 +126,7 @@ namespace NLog.Internal
 
         public IList<MessageTemplateParameter> MessageProperties
         {
-            get
-            {
-                return _messageProperties ?? ArrayHelper.Empty<MessageTemplateParameter>();
-            }
+            get => _messageProperties ?? ArrayHelper.Empty<MessageTemplateParameter>();
             internal set
             {
                 if (_eventProperties == null && VerifyUniqueMessageTemplateParametersFast(value))

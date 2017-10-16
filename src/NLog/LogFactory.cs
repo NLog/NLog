@@ -380,10 +380,7 @@ namespace NLog
         /// </summary>
         public LogLevel GlobalThreshold
         {
-            get
-            {
-                return _globalThreshold;
-            }
+            get => _globalThreshold;
 
             set
             {
@@ -1361,10 +1358,7 @@ namespace NLog
                 return null;
             }
 
-            public IEnumerable<Logger> Loggers
-            {
-                get { return GetLoggers(); }
-            }
+            public IEnumerable<Logger> Loggers => GetLoggers();
 
             private IEnumerable<Logger> GetLoggers()
             {

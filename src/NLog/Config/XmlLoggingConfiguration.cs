@@ -86,10 +86,7 @@ namespace NLog.Config
 
         private LogFactory _logFactory = null;
 
-        private ConfigurationItemFactory ConfigurationItemFactory
-        {
-            get { return ConfigurationItemFactory.Default; }
-        }
+        private ConfigurationItemFactory ConfigurationItemFactory => ConfigurationItemFactory.Default;
 
         #endregion
 

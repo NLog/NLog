@@ -58,13 +58,7 @@ namespace NLog.Internal.NetworkSenders
         /// <summary>
         /// Gets underlying socket instance.
         /// </summary>
-        public Socket UnderlyingSocket
-        {
-            get
-            {
-                return _socket;
-            }
-        }
+        public Socket UnderlyingSocket => _socket;
 
         /// <summary>
         /// Closes the wrapped socket.

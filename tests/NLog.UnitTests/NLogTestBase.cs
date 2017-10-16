@@ -392,13 +392,7 @@ namespace NLog.UnitTests
         {
             private readonly StringWriter writer = new StringWriter();
 
-            public override Encoding Encoding
-            {
-                get
-                {
-                    return writer.Encoding;
-                }
-            }
+            public override Encoding Encoding => writer.Encoding;
 
 #if NETSTANDARD1_5
             public override void Write(char value)

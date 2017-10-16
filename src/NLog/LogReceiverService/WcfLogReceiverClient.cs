@@ -203,11 +203,7 @@ namespace NLog.LogReceiverService
         /// <summary>
         /// Enables the user to configure client and service credentials as well as service credential authentication settings for use on the client side of communication.
         /// </summary>
-        public ClientCredentials ClientCredentials
-        {
-            get { return ProxiedClient.ClientCredentials; }
-        }
-
+        public ClientCredentials ClientCredentials => ProxiedClient.ClientCredentials;
 
 
         /// <summary>
@@ -250,8 +246,8 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> CloseCompleted
         {
-            add { ProxiedClient.CloseCompleted += value; }
-            remove { ProxiedClient.CloseCompleted -= value; }
+            add => ProxiedClient.CloseCompleted += value;
+            remove => ProxiedClient.CloseCompleted -= value;
         }
 
         /// <summary>
@@ -259,8 +255,8 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler Closed
         {
-            add { ProxiedClient.Closed += value; }
-            remove { ProxiedClient.Closed -= value; }
+            add => ProxiedClient.Closed += value;
+            remove => ProxiedClient.Closed -= value;
         }
 
         /// <summary>
@@ -268,8 +264,8 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler Closing
         {
-            add { ProxiedClient.Closing += value; }
-            remove { ProxiedClient.Closing -= value; }
+            add => ProxiedClient.Closing += value;
+            remove => ProxiedClient.Closing -= value;
         }
 
 #if !SILVERLIGHT && !NETSTANDARD
@@ -290,8 +286,8 @@ namespace NLog.LogReceiverService
         /// <value>The cookie container.</value>
         public CookieContainer CookieContainer
         {
-            get { return ProxiedClient.CookieContainer; }
-            set { ProxiedClient.CookieContainer = value; }
+            get => ProxiedClient.CookieContainer;
+            set => ProxiedClient.CookieContainer = value;
         }
 #endif
 
@@ -316,10 +312,7 @@ namespace NLog.LogReceiverService
         /// <summary>
         /// Gets the target endpoint for the service to which the WCF client can connect.
         /// </summary>
-        public ServiceEndpoint Endpoint
-        {
-            get { return ProxiedClient.Endpoint; }
-        }
+        public ServiceEndpoint Endpoint => ProxiedClient.Endpoint;
 
         /// <summary>
         /// Ends asynchronous processing of log messages.
@@ -335,17 +328,14 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler Faulted
         {
-            add { ProxiedClient.Faulted += value; }
-            remove { ProxiedClient.Faulted -= value; }
+            add => ProxiedClient.Faulted += value;
+            remove => ProxiedClient.Faulted -= value;
         }
 
         /// <summary>
         /// Gets the underlying <see cref="IClientChannel"/> implementation.
         /// </summary>
-        public IClientChannel InnerChannel
-        {
-            get { return ProxiedClient.InnerChannel; }
-        }
+        public IClientChannel InnerChannel => ProxiedClient.InnerChannel;
 
         /// <summary>
         /// Causes a communication object to transition from the created state into the opened state.  
@@ -387,8 +377,8 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> OpenCompleted
         {
-            add { ProxiedClient.OpenCompleted += value; }
-            remove { ProxiedClient.OpenCompleted -= value; }
+            add => ProxiedClient.OpenCompleted += value;
+            remove => ProxiedClient.OpenCompleted -= value;
         }
 
         /// <summary>
@@ -396,8 +386,8 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler Opened
         {
-            add { ProxiedClient.Opened += value; }
-            remove { ProxiedClient.Opened -= value; }
+            add => ProxiedClient.Opened += value;
+            remove => ProxiedClient.Opened -= value;
         }
 
         /// <summary>
@@ -405,8 +395,8 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler Opening
         {
-            add { ProxiedClient.Opening += value; }
-            remove { ProxiedClient.Opening -= value; }
+            add => ProxiedClient.Opening += value;
+            remove => ProxiedClient.Opening -= value;
         }
 
         /// <summary>
@@ -433,8 +423,8 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> ProcessLogMessagesCompleted
         {
-            add { ProxiedClient.ProcessLogMessagesCompleted += value; }
-            remove { ProxiedClient.ProcessLogMessagesCompleted -= value; }
+            add => ProxiedClient.ProcessLogMessagesCompleted += value;
+            remove => ProxiedClient.ProcessLogMessagesCompleted -= value;
         }
 
         /// <summary>
@@ -443,10 +433,7 @@ namespace NLog.LogReceiverService
         /// <returns>
         /// The value of the <see cref="T:System.ServiceModel.CommunicationState"/> of the object.
         /// </returns>
-        public CommunicationState State
-        {
-            get { return ProxiedClient.State; }
-        }
+        public CommunicationState State => ProxiedClient.State;
 
         #endregion
 

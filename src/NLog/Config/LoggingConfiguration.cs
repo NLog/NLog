@@ -81,13 +81,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
-        public IDictionary<string, SimpleLayout> Variables
-        {
-            get
-            {
-                return _variables;
-            }
-        }
+        public IDictionary<string, SimpleLayout> Variables => _variables;
 
         /// <summary>
         /// Gets a collection of named targets specified in the configuration.
@@ -98,18 +92,12 @@ namespace NLog.Config
         /// <remarks>
         /// Unnamed targets (such as those wrapped by other targets) are not returned.
         /// </remarks>
-        public ReadOnlyCollection<Target> ConfiguredNamedTargets
-        {
-            get { return new List<Target>(_targets.Values).AsReadOnly(); }
-        }
+        public ReadOnlyCollection<Target> ConfiguredNamedTargets => new List<Target>(_targets.Values).AsReadOnly();
 
         /// <summary>
         /// Gets the collection of file names which should be watched for changes by NLog.
         /// </summary>
-        public virtual IEnumerable<string> FileNamesToWatch
-        {
-            get { return ArrayHelper.Empty<string>(); }
-        }
+        public virtual IEnumerable<string> FileNamesToWatch => ArrayHelper.Empty<string>();
 
         /// <summary>
         /// Gets the collection of logging rules.
