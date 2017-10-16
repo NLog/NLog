@@ -1559,7 +1559,7 @@ Dispose()
                     ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} DbType={1}", paramId, value);
                     parameterType = value;
                 }
-            
+            }
             public DbType MockDbType
             {
                 get { return parameterType; }
