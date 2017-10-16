@@ -105,7 +105,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             try
             {
-                var id = this.CreateWindowsIdentity(NLogTestUser, Environment.MachineName, NLogTestUserPassword, SecurityLogOnType.Interactive, LogOnProviderType.Default, SecurityImpersonationLevel.Identification);
+                var id = CreateWindowsIdentity(NLogTestUser, Environment.MachineName, NLogTestUserPassword, SecurityLogOnType.Interactive, LogOnProviderType.Default, SecurityImpersonationLevel.Identification);
                 id.Impersonate();
 
                 WindowsIdentity changedIdentity = WindowsIdentity.GetCurrent();
@@ -254,12 +254,12 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             public MyTarget()
             {
-                this.Events = new List<LogEventInfo>();
+                Events = new List<LogEventInfo>();
             }
 
             public MyTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             public List<LogEventInfo> Events { get; set; }
@@ -269,36 +269,36 @@ namespace NLog.UnitTests.Targets.Wrappers
             protected override void InitializeTarget()
             {
                 base.InitializeTarget();
-                this.AssertExpectedUser();
+                AssertExpectedUser();
             }
 
             protected override void CloseTarget()
             {
                 base.CloseTarget();
-                this.AssertExpectedUser();
+                AssertExpectedUser();
             }
 
             protected override void Write(LogEventInfo logEvent)
             {
-                this.AssertExpectedUser();
-                this.Events.Add(logEvent);
+                AssertExpectedUser();
+                Events.Add(logEvent);
             }
 
             protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
-                this.AssertExpectedUser();
+                AssertExpectedUser();
                 base.Write(logEvents);
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.AssertExpectedUser();
+                AssertExpectedUser();
                 base.FlushAsync(asyncContinuation);
             }
 
             private void AssertExpectedUser()
             {
-                if (this.ExpectedUser != null)
+                if (ExpectedUser != null)
                 {
                     var windowsIdentity = WindowsIdentity.GetCurrent();
                     Assert.True(windowsIdentity.IsAuthenticated);

@@ -36,8 +36,8 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Globalization;
     using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Log event context data. See <see cref="LogEventInfo.Properties"/>.
@@ -81,10 +81,10 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             object value;
-            if (logEvent.HasProperties && logEvent.Properties.TryGetValue(this.Item, out value))
+            if (logEvent.HasProperties && logEvent.Properties.TryGetValue(Item, out value))
             {
-                var formatProvider = GetFormatProvider(logEvent, this.Culture);
-                builder.AppendFormattedValue(value, this.Format, formatProvider);
+                var formatProvider = GetFormatProvider(logEvent, Culture);
+                builder.AppendFormattedValue(value, Format, formatProvider);
             }
         }
     }

@@ -40,9 +40,9 @@ namespace NLog.Targets
     using System.Net;
     using System.Text;
     using System.Xml;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
+    using Common;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Calls the specified web service on each log message.
@@ -93,15 +93,15 @@ namespace NLog.Targets
         /// </summary>
         public WebServiceTarget()
         {
-            this.Protocol = WebServiceProtocol.Soap11;
+            Protocol = WebServiceProtocol.Soap11;
 
             //default NO utf-8 bom 
             const bool writeBOM = false;
-            this.Encoding = new UTF8Encoding(writeBOM);
-            this.IncludeBOM = writeBOM;
-            this.OptimizeBufferReuse = true;
+            Encoding = new UTF8Encoding(writeBOM);
+            IncludeBOM = writeBOM;
+            OptimizeBufferReuse = true;
 
-            this.Headers = new List<MethodCallParameter>();
+            Headers = new List<MethodCallParameter>();
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target</param>
         public WebServiceTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -208,12 +208,12 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-            this._foundEnableGroupLayout = false;
-            this._onlyEnableGroupLayout = true;
+            _foundEnableGroupLayout = false;
+            _onlyEnableGroupLayout = true;
             base.InitializeTarget();
-            for (int i = 0; i < this.Parameters.Count; ++i)
+            for (int i = 0; i < Parameters.Count; ++i)
             {
-                if (this.Parameters[i].EnableGroupLayout)
+                if (Parameters[i].EnableGroupLayout)
                 {
                     _foundEnableGroupLayout = true;
                     if (!_onlyEnableGroupLayout)
@@ -242,11 +242,11 @@ namespace NLog.Targets
             }
             else
             {
-                if (this.Headers != null && this.Headers.Count > 0)
+                if (Headers != null && Headers.Count > 0)
                 {
                     if (_convetToHeaderArrayDelegate == null)
                         _convetToHeaderArrayDelegate = (l) => ConvertToHeaderArray(l.LogEvent);
-                    var headerBuckets = logEvents.BucketSort(this._convetToHeaderArrayDelegate, ArrayDeepEqualityComparer<string>.Default);
+                    var headerBuckets = logEvents.BucketSort(_convetToHeaderArrayDelegate, ArrayDeepEqualityComparer<string>.Default);
                     foreach (var headerBucket in headerBuckets)
                     {
                         DoGroupInvoke(headerBucket.Value, headerBucket.Key);
@@ -262,10 +262,10 @@ namespace NLog.Targets
 
         string[] ConvertToHeaderArray(LogEventInfo logEvent)
         {
-            string[] headers = new string[this.Headers.Count];
-            for (int i = 0; i < this.Headers.Count; i++)
+            string[] headers = new string[Headers.Count];
+            for (int i = 0; i < Headers.Count; i++)
             {
-                headers[i] = base.RenderLogEvent(this.Headers[i].Layout, logEvent);
+                headers[i] = RenderLogEvent(Headers[i].Layout, logEvent);
             }
             return headers;
         }
@@ -281,13 +281,13 @@ namespace NLog.Targets
                 _convetToParameterArrayDelegate = (l) => ConvetToParameterArray(l.LogEvent, true);
 
             var parameterBuckets = _onlyEnableGroupLayout
-                ? new SortHelpers.ReadOnlySingleBucketDictionary<object[], IList<AsyncLogEventInfo>>(new KeyValuePair<object[], IList<AsyncLogEventInfo>>(new object[this.Parameters.Count], logEvents), ArrayDeepEqualityComparer<object>.Default)
+                ? new SortHelpers.ReadOnlySingleBucketDictionary<object[], IList<AsyncLogEventInfo>>(new KeyValuePair<object[], IList<AsyncLogEventInfo>>(new object[Parameters.Count], logEvents), ArrayDeepEqualityComparer<object>.Default)
                 : logEvents.BucketSort(_convetToParameterArrayDelegate, ArrayDeepEqualityComparer<object>.Default);
             foreach (var bucket in parameterBuckets)
             {
-                for (int i = 0; i < this.Parameters.Count; ++i)
+                for (int i = 0; i < Parameters.Count; ++i)
                 {
-                    var param = this.Parameters[i];
+                    var param = Parameters[i];
                     if (param.EnableGroupLayout)
                     {
                         bucket.Key[i] = ConvertParameterGroupValue(bucket.Value, param);
@@ -386,15 +386,15 @@ namespace NLog.Targets
         {
             var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
 
-            if (this.Headers != null && this.Headers.Count > 0)
+            if (Headers != null && Headers.Count > 0)
             {
-                for (int i = 0; i < this.Headers.Count; i++)
+                for (int i = 0; i < Headers.Count; i++)
                 {
-                    string headerValue = base.RenderLogEvent(this.Headers[i].Layout, logEvent.LogEvent);
+                    string headerValue = RenderLogEvent(Headers[i].Layout, logEvent.LogEvent);
                     if (headerValue == null)
                         continue;
 
-                    request.Headers[this.Headers[i].Name] = headerValue;
+                    request.Headers[Headers[i].Name] = headerValue;
                 }
             }
 
@@ -404,14 +404,14 @@ namespace NLog.Targets
         void DoGroupInvokeAsync(string[] headerValues, object[] parameters, AsyncContinuation continuation)
         {
             var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
-            if (this.Headers != null && this.Headers.Count > 0)
+            if (Headers != null && Headers.Count > 0)
             {
-                for (int i = 0; i < this.Headers.Count; i++)
+                for (int i = 0; i < Headers.Count; i++)
                 {
                     string headerValue = headerValues[i];
                     if (headerValue == null)
                         continue;
-                    request.Headers[this.Headers[i].Name] = headerValue;
+                    request.Headers[Headers[i].Name] = headerValue;
                 }
             }
 
@@ -423,7 +423,7 @@ namespace NLog.Targets
             Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
             Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
 #if !SILVERLIGHT && !NETSTANDARD1_5
-            if (this.PreAuthenticate)
+            if (PreAuthenticate)
             {
                 request.PreAuthenticate = true;
             }
@@ -443,7 +443,7 @@ namespace NLog.Targets
             else
             {
                 if (_activeProtocol.Value == null)
-                    _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(this.Protocol, _postFormatterFactories[this.Protocol](this));
+                    _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(Protocol, _postFormatterFactories[Protocol](this));
                 postPayload = _activeProtocol.Value.PrepareRequest(request, parameters);
             }
 
@@ -471,7 +471,7 @@ namespace NLog.Targets
                                 }
                                 catch (Exception ex2)
                                 {
-                                    InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", this.Name);
+                                    InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", Name);
                                     if (ex2.MustBeRethrownImmediately())
                                     {
                                         throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -484,7 +484,7 @@ namespace NLog.Targets
                     }
                     catch (Exception ex2)
                     {
-                        InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", this.Name);
+                        InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", Name);
                         if (ex2.MustBeRethrown())
                         {
                             throw;
@@ -508,7 +508,7 @@ namespace NLog.Targets
                             {
                                 using (Stream stream = getStreamFunc(result))
                                 {
-                                    WriteStreamAndFixPreamble(postPayload, stream, this.IncludeBOM, this.Encoding);
+                                    WriteStreamAndFixPreamble(postPayload, stream, IncludeBOM, Encoding);
 
                                     postPayload.Dispose();
                                 }
@@ -517,7 +517,7 @@ namespace NLog.Targets
                             }
                             catch (Exception ex)
                             {
-                                InternalLogger.Error(ex, "Error when sending to Webservice: {0}", this.Name);
+                                InternalLogger.Error(ex, "Error when sending to Webservice: {0}", Name);
                                 if (ex.MustBeRethrownImmediately())
                                 {
                                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -530,7 +530,7 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Error when sending to Webservice: {0}", this.Name);
+                    InternalLogger.Error(ex, "Error when sending to Webservice: {0}", Name);
                     if (ex.MustBeRethrown())
                     {
                         throw;
@@ -577,21 +577,21 @@ namespace NLog.Targets
         /// <returns></returns>
         private Uri BuildWebServiceUrl(object[] parameterValues)
         {
-            if (this.Protocol != WebServiceProtocol.HttpGet)
+            if (Protocol != WebServiceProtocol.HttpGet)
             {
-                return this.Url;
+                return Url;
             }
 
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
             string queryParameters = string.Empty;
-            using (var targetBuilder = this.OptimizeBufferReuse ? this.ReusableLayoutBuilder.Allocate() : this.ReusableLayoutBuilder.None)
+            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
                 BuildWebServiceQueryParameters(parameterValues, sb);
                 queryParameters = sb.ToString();
             }
 
-            var builder = new UriBuilder(this.Url);
+            var builder = new UriBuilder(Url);
             //append our query string to the URL following 
             //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
             if (builder.Query != null && builder.Query.Length > 1)
@@ -611,10 +611,10 @@ namespace NLog.Targets
             UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
 
             string separator = string.Empty;
-            for (int i = 0; i < this.Parameters.Count; i++)
+            for (int i = 0; i < Parameters.Count; i++)
             {
                 sb.Append(separator);
-                sb.Append(this.Parameters[i].Name);
+                sb.Append(Parameters[i].Name);
                 sb.Append("=");
                 string parameterValue = XmlHelper.XmlConvertToString(parameterValues[i]);
                 if (!string.IsNullOrEmpty(parameterValue))
@@ -774,7 +774,7 @@ namespace NLog.Targets
 
             protected override string SoapEnvelopeNamespace
             {
-                get { return WebServiceTarget.SoapEnvelopeNamespaceUri; }
+                get { return SoapEnvelopeNamespaceUri; }
             }
 
             protected override string SoapName
@@ -808,7 +808,7 @@ namespace NLog.Targets
 
             protected override string SoapEnvelopeNamespace
             {
-                get { return WebServiceTarget.Soap12EnvelopeNamespaceUri; }
+                get { return Soap12EnvelopeNamespaceUri; }
             }
 
             protected override string SoapName

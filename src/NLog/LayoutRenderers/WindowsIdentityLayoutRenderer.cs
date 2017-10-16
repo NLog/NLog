@@ -50,8 +50,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public WindowsIdentityLayoutRenderer()
         {
-            this.UserName = true;
-            this.Domain = true;
+            UserName = true;
+            Domain = true;
         }
 
         /// <summary>
@@ -80,9 +80,9 @@ namespace NLog.LayoutRenderers
             {
                 string output = string.Empty;
 
-                if (this.UserName)
+                if (UserName)
                 {
-                    if (this.Domain)
+                    if (Domain)
                     {
                         // username && domain
                         output = currentIdentity.Name;
@@ -104,7 +104,7 @@ namespace NLog.LayoutRenderers
                 else
                 {
                     // no username
-                    if (!this.Domain)
+                    if (!Domain)
                     {
                         // nothing to output
                         return;

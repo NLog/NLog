@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public GuidLayoutRenderer()
         {
-            this.Format = "N";
+            Format = "N";
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (this.GeneratedFromLogEvent)
+            if (GeneratedFromLogEvent)
             {
                 int hashCode = logEvent.GetHashCode();
                 short b = (short)((hashCode >> 16) & 0XFFFF);
@@ -85,11 +85,11 @@ namespace NLog.LayoutRenderers
                 byte i = (byte)((zeroDateTicks >> 16) & 0xFF);
                 byte j = (byte)((zeroDateTicks >> 8) & 0xFF);
                 byte k = (byte)(zeroDateTicks & 0XFF);
-                builder.Append(new Guid(logEvent.SequenceID, b, c, d, e, f, g, h, i, j, k).ToString(this.Format));
+                builder.Append(new Guid(logEvent.SequenceID, b, c, d, e, f, g, h, i, j, k).ToString(Format));
             }
             else
             {
-                builder.Append(Guid.NewGuid().ToString(this.Format));
+                builder.Append(Guid.NewGuid().ToString(Format));
             }
         }
     }

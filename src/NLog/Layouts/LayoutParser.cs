@@ -38,12 +38,12 @@ namespace NLog.Layouts
     using System.Diagnostics;
     using System.Reflection;
     using System.Text;
-    using NLog.Common;
-    using NLog.Conditions;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.LayoutRenderers;
-    using NLog.LayoutRenderers.Wrappers;
+    using Common;
+    using Conditions;
+    using Config;
+    using Internal;
+    using LayoutRenderers;
+    using LayoutRenderers.Wrappers;
 
     /// <summary>
     /// Parses layout strings.

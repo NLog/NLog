@@ -41,8 +41,8 @@ namespace NLog.Targets.Wrappers
     using System.Runtime.InteropServices;
     using System.Security;
     using System.Security.Principal;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Impersonates another user for the duration of the write.
@@ -71,7 +71,7 @@ namespace NLog.Targets.Wrappers
         public ImpersonatingTargetWrapper(string name, Target wrappedTarget)
             : this(wrappedTarget)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -80,11 +80,11 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         public ImpersonatingTargetWrapper(Target wrappedTarget)
         {
-            this.Domain = ".";
-            this.LogOnType = SecurityLogOnType.Interactive;
-            this.LogOnProvider = LogOnProviderType.Default;
-            this.ImpersonationLevel = SecurityImpersonationLevel.Impersonation;
-            this.WrappedTarget = wrappedTarget;
+            Domain = ".";
+            LogOnType = SecurityLogOnType.Interactive;
+            LogOnProvider = LogOnProviderType.Default;
+            ImpersonationLevel = SecurityImpersonationLevel.Impersonation;
+            WrappedTarget = wrappedTarget;
         }
 
         /// <summary>
@@ -136,12 +136,12 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void InitializeTarget()
         {
-            if (!this.RevertToSelf)
+            if (!RevertToSelf)
             {
-                this.newIdentity = this.CreateWindowsIdentity(out this.duplicateTokenHandle);
+                newIdentity = CreateWindowsIdentity(out duplicateTokenHandle);
             }
 
-            using (this.DoImpersonate())
+            using (DoImpersonate())
             {
                 base.InitializeTarget();
             }
@@ -152,21 +152,21 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void CloseTarget()
         {
-            using (this.DoImpersonate())
+            using (DoImpersonate())
             {
                 base.CloseTarget();
             }
 
-            if (this.duplicateTokenHandle != IntPtr.Zero)
+            if (duplicateTokenHandle != IntPtr.Zero)
             {
-                NativeMethods.CloseHandle(this.duplicateTokenHandle);
-                this.duplicateTokenHandle = IntPtr.Zero;
+                NativeMethods.CloseHandle(duplicateTokenHandle);
+                duplicateTokenHandle = IntPtr.Zero;
             }
 
-            if (this.newIdentity != null)
+            if (newIdentity != null)
             {
-                this.newIdentity.Dispose();
-                this.newIdentity = null;
+                newIdentity.Dispose();
+                newIdentity = null;
             }
         }
 
@@ -177,9 +177,9 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            using (this.DoImpersonate())
+            using (DoImpersonate())
             {
-                this.WrappedTarget.WriteAsyncLogEvent(logEvent);
+                WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
         }
 
@@ -204,9 +204,9 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Log events.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            using (this.DoImpersonate())
+            using (DoImpersonate())
             {
-                this.WrappedTarget.WriteAsyncLogEvents(logEvents);
+                WrappedTarget.WriteAsyncLogEvents(logEvents);
             }
         }
 
@@ -216,20 +216,20 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            using (this.DoImpersonate())
+            using (DoImpersonate())
             {
-                this.WrappedTarget.Flush(asyncContinuation);
+                WrappedTarget.Flush(asyncContinuation);
             }
         }
 
         private IDisposable DoImpersonate()
         {
-            if (this.RevertToSelf)
+            if (RevertToSelf)
             {
                 return new ContextReverter(WindowsIdentity.Impersonate(IntPtr.Zero));
             }
 
-            return new ContextReverter(this.newIdentity.Impersonate());
+            return new ContextReverter(newIdentity.Impersonate());
         }
 
         //
@@ -242,17 +242,17 @@ namespace NLog.Targets.Wrappers
             IntPtr logonHandle;
 
             if (!NativeMethods.LogonUser(
-                this.UserName,
-                this.Domain,
-                this.Password,
-                (int)this.LogOnType,
-                (int)this.LogOnProvider,
+                UserName,
+                Domain,
+                Password,
+                (int)LogOnType,
+                (int)LogOnProvider,
                 out logonHandle))
             {
                 throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
             }
 
-            if (!NativeMethods.DuplicateToken(logonHandle, (int)this.ImpersonationLevel, out handle))
+            if (!NativeMethods.DuplicateToken(logonHandle, (int)ImpersonationLevel, out handle))
             {
                 NativeMethods.CloseHandle(logonHandle);
                 throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
@@ -278,7 +278,7 @@ namespace NLog.Targets.Wrappers
             /// <param name="windowsImpersonationContext">The windows impersonation context.</param>
             public ContextReverter(WindowsImpersonationContext windowsImpersonationContext)
             {
-                this.wic = windowsImpersonationContext;
+                wic = windowsImpersonationContext;
             }
 
             /// <summary>
@@ -286,7 +286,7 @@ namespace NLog.Targets.Wrappers
             /// </summary>
             public void Dispose()
             {
-                this.wic.Undo();
+                wic.Undo();
             }
         }
     }

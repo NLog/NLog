@@ -644,7 +644,7 @@ namespace NLog.UnitTests.Config
 
             public MyTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
         }
 
@@ -688,7 +688,7 @@ namespace NLog.UnitTests.Config
 
             public MyNullableTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
         }
 

@@ -36,8 +36,8 @@ namespace NLog.LayoutRenderers
     using System.IO;
     using System.Text;
 
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// A temporary directory.
@@ -68,7 +68,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var path = PathHelpers.CombinePaths(tempDir, this.Dir, this.File);
+            var path = PathHelpers.CombinePaths(tempDir, Dir, File);
             builder.Append(path);
         }
     }

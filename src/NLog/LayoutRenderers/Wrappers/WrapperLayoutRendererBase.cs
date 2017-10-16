@@ -34,8 +34,8 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Base class for <see cref="LayoutRenderer"/>s which wrapping other <see cref="LayoutRenderer"/>s. 
@@ -64,15 +64,25 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string msg = this.RenderInner(logEvent);
-            builder.Append(this.Transform(msg));
+            string msg = RenderInner(logEvent);
+            builder.Append(Transform(logEvent, msg));
+        }
+
+        /// <summary>
+        /// Transforms the output of another layout.
+        /// </summary>
+        /// <param name="logEvent">Logging event.</param>
+        /// <param name="text">Output to be transform.</param>
+        /// <returns>Transformed text.</returns>
+        protected virtual string Transform(LogEventInfo logEvent, string text)
+        {
+            return Transform(text);
         }
 
         /// <summary>
         /// Transforms the output of another layout.
         /// </summary>
         /// <param name="text">Output to be transform.</param>
-        /// <remarks>If the <see cref="LogEventInfo"/> is needed, overwrite <see cref="Append"/>.</remarks>
         /// <returns>Transformed text.</returns>
         protected abstract string Transform(string text);
 
@@ -83,7 +93,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Contents of inner layout.</returns>
         protected virtual string RenderInner(LogEventInfo logEvent)
         {
-            return this.Inner.Render(logEvent);
+            return Inner.Render(logEvent);
         }
     }
 }

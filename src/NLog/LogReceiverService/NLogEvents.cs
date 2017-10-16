@@ -120,11 +120,11 @@ namespace NLog.LogReceiverService
         /// </returns>
         public IList<LogEventInfo> ToEventInfo(string loggerNamePrefix)
         {
-            var result = new LogEventInfo[this.Events.Length];
+            var result = new LogEventInfo[Events.Length];
 
             for (int i = 0; i < result.Length; ++i)
             {
-                result[i] = this.Events[i].ToEventInfo(this, loggerNamePrefix);
+                result[i] = Events[i].ToEventInfo(this, loggerNamePrefix);
             }
 
             return result;
@@ -138,7 +138,7 @@ namespace NLog.LogReceiverService
         /// </returns>
         public IList<LogEventInfo> ToEventInfo()
         {
-            return this.ToEventInfo(string.Empty);
+            return ToEventInfo(string.Empty);
         }
     }
 }

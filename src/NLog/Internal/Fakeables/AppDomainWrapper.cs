@@ -91,6 +91,11 @@ namespace NLog.Internal.Fakeables
         }
 
         /// <summary>
+        /// Creates an AppDomainWrapper for the current <see cref="AppDomain"/>
+        /// </summary>
+        public static AppDomainWrapper CurrentDomain { get { return new AppDomainWrapper(AppDomain.CurrentDomain); } }
+
+        /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
         /// </summary>
         public string BaseDirectory { get; private set; }
@@ -123,17 +128,17 @@ namespace NLog.Internal.Fakeables
             add
             {
 #if !SILVERLIGHT
-                if (this.processExitEvent == null && this._currentAppDomain != null)
-                    this._currentAppDomain.ProcessExit += OnProcessExit;
+                if (processExitEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.ProcessExit += OnProcessExit;
 #endif
-                this.processExitEvent += value;
+                processExitEvent += value;
             }
             remove
             {
-                this.processExitEvent -= value;
+                processExitEvent -= value;
 #if !SILVERLIGHT
-                if (this.processExitEvent == null && this._currentAppDomain != null)
-                    this._currentAppDomain.ProcessExit -= OnProcessExit;
+                if (processExitEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.ProcessExit -= OnProcessExit;
 #endif
             }
         }
@@ -147,18 +152,18 @@ namespace NLog.Internal.Fakeables
             add
             {
 #if !SILVERLIGHT
-                if (this.domainUnloadEvent == null && this._currentAppDomain != null)
-                    this._currentAppDomain.DomainUnload += OnDomainUnload;
+                if (domainUnloadEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.DomainUnload += OnDomainUnload;
 #endif
-                this.domainUnloadEvent += value;
+                domainUnloadEvent += value;
 
             }
             remove
             {
-                this.domainUnloadEvent -= value;
+                domainUnloadEvent -= value;
 #if !SILVERLIGHT
-                if (this.domainUnloadEvent == null && this._currentAppDomain != null)
-                    this._currentAppDomain.DomainUnload -= OnDomainUnload;
+                if (domainUnloadEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.DomainUnload -= OnDomainUnload;
 #endif
             }
         }

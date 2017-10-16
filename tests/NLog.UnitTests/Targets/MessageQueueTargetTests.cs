@@ -175,18 +175,18 @@ namespace NLog.UnitTests.Targets
 
             public MessageQueueTestProxy()
             {
-                this.SentMessages = new List<Message>();
+                SentMessages = new List<Message>();
             }
 
             public override bool Exists(string queue)
             {
-                this.QueueExistsCalled = true;
-                return this.QueueExists;
+                QueueExistsCalled = true;
+                return QueueExists;
             }
 
             public override void Create(string queue)
             {
-                this.QueueCreated = true;
+                QueueCreated = true;
             }
 
             public override void Send(string queue, Message message)

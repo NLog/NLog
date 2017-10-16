@@ -43,15 +43,15 @@ namespace MyExtensionNamespace
 
         public int X
         {
-            get { return this.x; }
-            set { this.x = value; }
+            get { return x; }
+            set { x = value; }
         }
 
         protected override FilterResult Check(LogEventInfo logEvent)
         {
             if (X == 42)
             {
-                return this.Action;
+                return Action;
             }
 
             return FilterResult.Neutral;

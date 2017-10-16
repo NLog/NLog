@@ -33,7 +33,7 @@
 
 namespace NLog.Conditions
 {
-    using NLog.Layouts;
+    using Layouts;
 
     /// <summary>
     /// Condition layout expression (represented by a string literal
@@ -47,7 +47,7 @@ namespace NLog.Conditions
         /// <param name="layout">The layout.</param>
         public ConditionLayoutExpression(Layout layout)
         {
-            this.Layout = layout;
+            Layout = layout;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace NLog.Conditions
         /// <returns>String literal in single quotes.</returns>
         public override string ToString()
         {
-            return this.Layout.ToString();
+            return Layout.ToString();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace NLog.Conditions
         /// <returns>The value of the layout.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            return this.Layout.Render(context);
+            return Layout.Render(context);
         }
     }
 }

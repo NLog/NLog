@@ -40,8 +40,8 @@ namespace NLog.LayoutRenderers
     using System.IO;
     using System.Reflection;
     using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// The call site (class name, method name and source information).
@@ -55,13 +55,13 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public CallSiteLayoutRenderer()
         {
-            this.ClassName = true;
-            this.MethodName = true;
-            this.CleanNamesOfAnonymousDelegates = false;
-            this.IncludeNamespace = true;
+            ClassName = true;
+            MethodName = true;
+            CleanNamesOfAnonymousDelegates = false;
+            IncludeNamespace = true;
 #if !SILVERLIGHT
-            this.FileName = false;
-            this.IncludeSourcePath = true;
+            FileName = false;
+            IncludeSourcePath = true;
 #endif
         }
 
@@ -131,7 +131,7 @@ namespace NLog.LayoutRenderers
             get
             {
 #if !SILVERLIGHT
-                if (this.FileName)
+                if (FileName)
                 {
                     return StackTraceUsage.Max;
                 }
@@ -152,18 +152,18 @@ namespace NLog.LayoutRenderers
             if (frame != null)
             {
                 MethodBase method = frame.GetMethod();
-                if (this.ClassName)
+                if (ClassName)
                 {
                     AppendClassName(builder, method);
                 }
 
-                if (this.MethodName)
+                if (MethodName)
                 {
                     AppendMethodName(builder, method);
                 }
 
 #if !SILVERLIGHT
-                if (this.FileName)
+                if (FileName)
                 {
                     AppendFileName(builder, frame);
                 }
@@ -177,7 +177,7 @@ namespace NLog.LayoutRenderers
             if (type != null)
             {
 
-                if (this.CleanNamesOfAsyncContinuations && method.Name == "MoveNext" && type.DeclaringType != null && type.Name.StartsWith("<"))
+                if (CleanNamesOfAsyncContinuations && method.Name == "MoveNext" && type.DeclaringType != null && type.Name.StartsWith("<"))
                 {
                     // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1
                     int endIndex = type.Name.IndexOf('>', 1);
@@ -188,7 +188,7 @@ namespace NLog.LayoutRenderers
                 }
                 string className = IncludeNamespace ? type.FullName : type.Name;
 
-                if (this.CleanNamesOfAnonymousDelegates && className != null)
+                if (CleanNamesOfAnonymousDelegates && className != null)
                 {
                     // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
                     int index = className.IndexOf("+<>", StringComparison.Ordinal);
@@ -208,7 +208,7 @@ namespace NLog.LayoutRenderers
 
         private void AppendMethodName(StringBuilder builder, MethodBase method)
         {
-            if (this.ClassName)
+            if (ClassName)
             {
                 builder.Append(".");
             }
@@ -218,7 +218,7 @@ namespace NLog.LayoutRenderers
                 string methodName = method.Name;
 
                 var type = method.DeclaringType;
-                if (this.CleanNamesOfAsyncContinuations && method.Name == "MoveNext" && type?.DeclaringType != null && type.Name.StartsWith("<"))
+                if (CleanNamesOfAsyncContinuations && method.Name == "MoveNext" && type?.DeclaringType != null && type.Name.StartsWith("<"))
                 {
                     // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1.MoveNext
                     int endIndex = type.Name.IndexOf('>', 1);
@@ -231,7 +231,7 @@ namespace NLog.LayoutRenderers
                 // Clean up the function name if it is an anonymous delegate
                 // <.ctor>b__0
                 // <Main>b__2
-                if (this.CleanNamesOfAnonymousDelegates && (methodName.StartsWith("<") && methodName.Contains("__") && methodName.Contains(">")))
+                if (CleanNamesOfAnonymousDelegates && (methodName.StartsWith("<") && methodName.Contains("__") && methodName.Contains(">")))
                 {
                     int startIndex = methodName.IndexOf('<') + 1;
                     int endIndex = methodName.IndexOf('>');
@@ -254,7 +254,7 @@ namespace NLog.LayoutRenderers
             if (fileName != null)
             {
                 builder.Append("(");
-                if (this.IncludeSourcePath)
+                if (IncludeSourcePath)
                 {
                     builder.Append(fileName);
                 }

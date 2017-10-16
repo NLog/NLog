@@ -548,62 +548,62 @@ namespace NLog.UnitTests.Targets
 
             public MyTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             protected override void InitializeTarget()
             {
-                if (this.ThrowOnInitialize)
+                if (ThrowOnInitialize)
                 {
                     throw new InvalidOperationException("Init error.");
                 }
 
-                Assert.Equal(0, this.inBlockingOperation);
-                this.InitializeCount++;
+                Assert.Equal(0, inBlockingOperation);
+                InitializeCount++;
                 base.InitializeTarget();
             }
 
             protected override void CloseTarget()
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.CloseCount++;
+                Assert.Equal(0, inBlockingOperation);
+                CloseCount++;
                 base.CloseTarget();
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.FlushCount++;
+                Assert.Equal(0, inBlockingOperation);
+                FlushCount++;
                 base.FlushAsync(asyncContinuation);
             }
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.WriteCount++;
+                Assert.Equal(0, inBlockingOperation);
+                WriteCount++;
             }
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.WriteCount2++;
+                Assert.Equal(0, inBlockingOperation);
+                WriteCount2++;
                 base.Write(logEvent);
             }
 
             protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.WriteCount3++;
+                Assert.Equal(0, inBlockingOperation);
+                WriteCount3++;
                 base.Write(logEvents);
             }
 
             public void BlockingOperation(int millisecondsTimeout)
             {
-                lock (this.SyncRoot)
+                lock (SyncRoot)
                 {
-                    this.inBlockingOperation++;
+                    inBlockingOperation++;
                     Thread.Sleep(millisecondsTimeout);
-                    this.inBlockingOperation--;
+                    inBlockingOperation--;
                 }
             }
         }
@@ -627,7 +627,7 @@ namespace NLog.UnitTests.Targets
 
             public WrongMyTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             /// <summary>

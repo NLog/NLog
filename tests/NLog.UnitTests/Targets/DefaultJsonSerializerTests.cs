@@ -241,7 +241,7 @@ namespace NLog.UnitTests.Targets
             DateTime utcNow = DateTime.UtcNow;
             utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
             var actual = _serializer.SerializeObject(utcNow);
-            Assert.Equal("\"" + utcNow.ToString("yyyy-MM-ddTHH:mm:ssZ", System.Globalization.CultureInfo.InvariantCulture) + "\"", actual);
+            Assert.Equal("\"" + utcNow.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture) + "\"", actual);
         }
 
         [Fact]
@@ -266,7 +266,7 @@ namespace NLog.UnitTests.Targets
             DateTime utcNow = DateTime.UtcNow;
             utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
             var actual = _serializer.SerializeObject(utcNow, new JsonSerializeOptions { Format = "dddd d M" });
-            Assert.Equal("\"" + utcNow.ToString("dddd d M", System.Globalization.CultureInfo.InvariantCulture) + "\"", actual);
+            Assert.Equal("\"" + utcNow.ToString("dddd d M", CultureInfo.InvariantCulture) + "\"", actual);
         }
 
         [Fact]
@@ -530,7 +530,7 @@ namespace NLog.UnitTests.Targets
 
             IEnumerator IEnumerable.GetEnumerator()
             {
-                return this.GetEnumerator();
+                return GetEnumerator();
             }
         }
     }

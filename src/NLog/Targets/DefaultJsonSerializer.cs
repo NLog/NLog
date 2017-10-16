@@ -45,7 +45,7 @@ namespace NLog.Targets
     /// Default class for serialization of values to JSON format.
     /// </summary>
 #pragma warning disable 618
-    public class DefaultJsonSerializer : IJsonConverter, NLog.Targets.IJsonSerializer
+    public class DefaultJsonSerializer : IJsonConverter, IJsonSerializer
 #pragma warning restore 618
     {
         private readonly MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>> _propsCache = new MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>>(10000);
@@ -349,7 +349,7 @@ namespace NLog.Targets
             TypeCode objTypeCode = Convert.GetTypeCode(value);
             if (objTypeCode == TypeCode.Object)
             {
-                if (value is Guid || value is TimeSpan)
+                if (value is Guid || value is TimeSpan || value is MemberInfo || value is Assembly)
                 {
                     //object without property, to string
                     QuoteValue(destination, Convert.ToString(value, CultureInfo.InvariantCulture));
@@ -726,16 +726,16 @@ namespace NLog.Targets
 
             try
             {
-                properties = GetPropertyInfosNoCache(type);
-                if (properties == null)
-                {
-                    properties = ArrayHelper.Empty<PropertyInfo>();
-                }
+                properties = type.GetProperties(PublicProperties);
             }
             catch (Exception ex)
             {
-                properties = ArrayHelper.Empty<PropertyInfo>();
-                NLog.Common.InternalLogger.Warn(ex, "Failed to get JSON properties for type: {0}", type);
+                Common.InternalLogger.Warn(ex, "Failed to get JSON properties for type: {0}", type);
+            }
+            finally
+            {
+                if (properties == null)
+                    properties = ArrayHelper.Empty<PropertyInfo>();
             }
 
             props = new KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>(properties, ArrayHelper.Empty<ReflectionHelpers.LateBoundMethod>());
@@ -743,16 +743,6 @@ namespace NLog.Targets
             return props;
         }
 
-        private static PropertyInfo[] GetPropertyInfosNoCache(Type type)
-        {
-#if NETSTANDARD
-            var props = System.Linq.Enumerable.ToArray(type.GetRuntimeProperties());
-#else
-            var props = type.GetProperties();
-#endif
-            return props;
-        }
-
-
+        private const BindingFlags PublicProperties = BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
     }
 }

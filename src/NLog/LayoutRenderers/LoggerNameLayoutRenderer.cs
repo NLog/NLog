@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
 
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The logger name.
@@ -59,7 +59,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (this.ShortName)
+            if (ShortName)
             {
                 int lastDot = logEvent.LoggerName.LastIndexOf('.');
                 if (lastDot < 0)

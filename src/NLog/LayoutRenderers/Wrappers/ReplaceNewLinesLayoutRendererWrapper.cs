@@ -33,7 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using NLog.Config;
+    using Config;
     using System;
     using System.ComponentModel;
 

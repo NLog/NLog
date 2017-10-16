@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Globalization;
-    using NLog.MessageTemplates;
+    using MessageTemplates;
 
     internal sealed class LogMessageTemplateFormatter : ILogMessageFormatter
     {

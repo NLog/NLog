@@ -44,7 +44,7 @@ namespace NLog.Conditions
         /// <param name="expression">The expression.</param>
         public ConditionNotExpression(ConditionExpression expression)
         {
-            this.Expression = expression;
+            Expression = expression;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return "(not " + this.Expression + ")";
+            return "(not " + Expression + ")";
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace NLog.Conditions
         /// <returns>Expression result.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            return !(bool)this.Expression.Evaluate(context);
+            return !(bool)Expression.Evaluate(context);
         }
     }
 }

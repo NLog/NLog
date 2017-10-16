@@ -38,7 +38,7 @@ namespace NLog.Internal
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Reflection helpers.

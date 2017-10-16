@@ -42,7 +42,7 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
@@ -86,12 +86,12 @@ namespace NLog.Targets
         /// </remarks>
         public ColoredConsoleTarget()
         {
-            this.WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
-            this.RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
-            this.UseDefaultRowHighlightingRules = true;
-            this._pauseLogging = false;
-            this.DetectConsoleAvailable = false;
-            this.OptimizeBufferReuse = true;
+            WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
+            RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
+            UseDefaultRowHighlightingRules = true;
+            _pauseLogging = false;
+            DetectConsoleAvailable = false;
+            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public ColoredConsoleTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -169,11 +169,11 @@ namespace NLog.Targets
         {
             get
             {
-                return ConsoleTargetHelper.GetConsoleOutputEncoding(this._encoding, this.IsInitialized, this._pauseLogging);
+                return ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
             }
             set
             {
-                if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, this.IsInitialized, this._pauseLogging))
+                if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, IsInitialized, _pauseLogging))
                     _encoding = value;
             }
         }
@@ -207,7 +207,7 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-            this._pauseLogging = false;
+            _pauseLogging = false;
             if (DetectConsoleAvailable)
             {
                 string reason;
@@ -218,14 +218,14 @@ namespace NLog.Targets
                 }
             }
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            if (this._encoding != null && !this._pauseLogging)
-                Console.OutputEncoding = this._encoding;
+            if (_encoding != null && !_pauseLogging)
+                Console.OutputEncoding = _encoding;
 #endif
             base.InitializeTarget();
-            if (this.Header != null)
+            if (Header != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.WriteToOutput(lei, base.RenderLogEvent(this.Header, lei));
+                WriteToOutput(lei, RenderLogEvent(Header, lei));
             }
         }
 
@@ -234,10 +234,10 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            if (this.Footer != null)
+            if (Footer != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.WriteToOutput(lei, base.RenderLogEvent(this.Footer, lei));
+                WriteToOutput(lei, RenderLogEvent(Footer, lei));
             }
 
             base.CloseTarget();
@@ -255,7 +255,7 @@ namespace NLog.Targets
                 //check early for performance
                 return;
             }
-            this.WriteToOutput(logEvent, base.RenderLogEvent(this.Layout, logEvent));
+            WriteToOutput(logEvent, RenderLogEvent(Layout, logEvent));
         }
 
         private void WriteToOutput(LogEventInfo logEvent, string message)
@@ -279,15 +279,15 @@ namespace NLog.Targets
 
                 try
                 {
-                    var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
-                    if (this.WordHighlightingRules.Count == 0)
+                    var consoleStream = ErrorStream ? Console.Error : Console.Out;
+                    if (WordHighlightingRules.Count == 0)
                     {
                         consoleStream.WriteLine(message);
                     }
                     else
                     {
                         message = message.Replace("\a", "\a\a");
-                        foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
+                        foreach (ConsoleWordHighlightingRule hl in WordHighlightingRules)
                         {
                             message = hl.ReplaceWithEscapeSequences(message);
                         }
@@ -324,13 +324,13 @@ namespace NLog.Targets
 
         private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
         {
-            foreach (ConsoleRowHighlightingRule rule in this.RowHighlightingRules)
+            foreach (ConsoleRowHighlightingRule rule in RowHighlightingRules)
             {
                 if (rule.CheckCondition(logEvent))
                     return rule;
             }
 
-            if (this.UseDefaultRowHighlightingRules)
+            if (UseDefaultRowHighlightingRules)
             {
                 foreach (ConsoleRowHighlightingRule rule in DefaultConsoleRowHighlightingRules)
                 {
@@ -455,18 +455,18 @@ namespace NLog.Targets
 
             internal ColorPair(ConsoleColor foregroundColor, ConsoleColor backgroundColor)
             {
-                this._foregroundColor = foregroundColor;
-                this._backgroundColor = backgroundColor;
+                _foregroundColor = foregroundColor;
+                _backgroundColor = backgroundColor;
             }
 
             internal ConsoleColor BackgroundColor
             {
-                get { return this._backgroundColor; }
+                get { return _backgroundColor; }
             }
 
             internal ConsoleColor ForegroundColor
             {
-                get { return this._foregroundColor; }
+                get { return _foregroundColor; }
             }
         }
     }

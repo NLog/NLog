@@ -37,8 +37,8 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Factory for class-based items.
@@ -54,7 +54,7 @@ namespace NLog.Config
 
         internal Factory(ConfigurationItemFactory parentFactory)
         {
-            this._parentFactory = parentFactory;
+            _parentFactory = parentFactory;
         }
 
         private delegate Type GetTypeDelegate();
@@ -70,7 +70,7 @@ namespace NLog.Config
             {
                 try
                 {
-                    this.RegisterType(t, prefix);
+                    RegisterType(t, prefix);
                 }
                 catch (Exception exception)
                 {
@@ -97,7 +97,7 @@ namespace NLog.Config
             {
                 foreach (TAttributeType attr in attributes)
                 {
-                    this.RegisterDefinition(itemNamePrefix + attr.Name, type);
+                    RegisterDefinition(itemNamePrefix + attr.Name, type);
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace NLog.Config
         /// <param name="typeName">Name of the type.</param>
         public void RegisterNamedType(string itemName, string typeName)
         {
-            this._items[itemName] = () => Type.GetType(typeName, false);
+            _items[itemName] = () => Type.GetType(typeName, false);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace NLog.Config
         /// </summary>
         public void Clear()
         {
-            this._items.Clear();
+            _items.Clear();
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace NLog.Config
         /// <param name="type">The type of the item.</param>
         public void RegisterDefinition(string name, Type type)
         {
-            this._items[name] = () => type;
+            _items[name] = () => type;
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace NLog.Config
         {
             GetTypeDelegate getTypeDelegate;
 
-            if (!this._items.TryGetValue(itemName, out getTypeDelegate))
+            if (!_items.TryGetValue(itemName, out getTypeDelegate))
             {
                 result = null;
                 return false;
@@ -174,13 +174,13 @@ namespace NLog.Config
         {
             Type type;
 
-            if (!this.TryGetDefinition(itemName, out type))
+            if (!TryGetDefinition(itemName, out type))
             {
                 result = null;
                 return false;
             }
 
-            result = (TBaseType)this._parentFactory.CreateInstance(type);
+            result = (TBaseType)_parentFactory.CreateInstance(type);
             return true;
         }
 
@@ -193,7 +193,7 @@ namespace NLog.Config
         {
             TBaseType result;
 
-            if (this.TryCreateInstance(name, out result))
+            if (TryCreateInstance(name, out result))
             {
                 return result;
             }

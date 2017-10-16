@@ -33,7 +33,7 @@
 
 namespace NLog.Internal.FileAppenders
 {
-    using NLog.Targets;
+    using Targets;
 
     /// <summary>
     /// Interface that provides parameters for create file function.

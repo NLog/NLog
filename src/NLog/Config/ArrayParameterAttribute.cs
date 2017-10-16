@@ -49,8 +49,8 @@ namespace NLog.Config
         /// <param name="elementName">The XML element name that represents the item.</param>
         public ArrayParameterAttribute(Type itemType, string elementName)
         {
-            this.ItemType = itemType;
-            this.ElementName = elementName;
+            ItemType = itemType;
+            ElementName = elementName;
         }
 
         /// <summary>

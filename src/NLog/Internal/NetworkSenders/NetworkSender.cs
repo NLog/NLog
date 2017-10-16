@@ -38,7 +38,7 @@ namespace NLog.Internal.NetworkSenders
     using System.Net;
     using System.Net.Sockets;
     using System.Threading;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// A base class for all network senders. Supports one-way sending of messages
@@ -54,8 +54,8 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="url">The network URL.</param>
         protected NetworkSender(string url)
         {
-            this.Address = url;
-            this.LastSendTime = Interlocked.Increment(ref currentSendTime);
+            Address = url;
+            LastSendTime = Interlocked.Increment(ref currentSendTime);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         public void Initialize()
         {
-            this.DoInitialize();
+            DoInitialize();
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="continuation">The continuation.</param>
         public void Close(AsyncContinuation continuation)
         {
-            this.DoClose(continuation);
+            DoClose(continuation);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="continuation">The continuation.</param>
         public void FlushAsync(AsyncContinuation continuation)
         {
-            this.DoFlush(continuation);
+            DoFlush(continuation);
         }
 
         /// <summary>
@@ -103,8 +103,8 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public void Send(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            this.LastSendTime = Interlocked.Increment(ref currentSendTime);
-            this.DoSend(bytes, offset, length, asyncContinuation);
+            LastSendTime = Interlocked.Increment(ref currentSendTime);
+            DoSend(bytes, offset, length, asyncContinuation);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -197,7 +197,7 @@ namespace NLog.Internal.NetworkSenders
         {
             if (disposing)
             {
-                this.Close(ex => { });
+                Close(ex => { });
             }
         }
     }

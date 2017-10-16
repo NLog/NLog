@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Targets
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
-    using NLog.Time;
+    using Time;
     using System.Globalization;
 
     public abstract class FileTargetTests : NLogTestBase
@@ -2926,7 +2926,7 @@ namespace NLog.UnitTests.Targets
 </nlog>
 ");
 
-                NLog.LogManager.GetLogger("Test").Info("very important message");
+                LogManager.GetLogger("Test").Info("very important message");
             }
             finally
             {
@@ -2958,7 +2958,7 @@ namespace NLog.UnitTests.Targets
 </nlog>
 ");
 
-                NLog.LogManager.GetLogger("Test").Info("very important message");
+                LogManager.GetLogger("Test").Info("very important message");
             }
             finally
             {

@@ -36,7 +36,7 @@ namespace NLog.Internal.FileAppenders
     using System;
     using System.IO;
     using System.Security;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Implementation of <see cref="BaseFileAppender"/> which caches 
@@ -66,15 +66,15 @@ namespace NLog.Internal.FileAppenders
                 {
                     FileTouched(fileInfo.GetLastWriteTimeUtc());
                 }
-                this._currentFileLength = fileInfo.Length;
+                _currentFileLength = fileInfo.Length;
             }
             else
             {
                 FileTouched();
-                this._currentFileLength = 0;
+                _currentFileLength = 0;
             }
 
-            this._file = this.CreateFileStream(false);
+            _file = CreateFileStream(false);
         }
 
         /// <summary>
@@ -82,13 +82,13 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            if (this._file != null)
+            if (_file != null)
             {
                 InternalLogger.Trace("Closing '{0}'", FileName);
 
                 try
                 {
-                    this._file.Close();
+                    _file.Close();
                 }
                 catch (Exception ex)
                 {
@@ -98,7 +98,7 @@ namespace NLog.Internal.FileAppenders
                 }
                 finally
                 {
-                    this._file = null;
+                    _file = null;
                 }
             }
         }
@@ -108,12 +108,12 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Flush()
         {
-            if (this._file == null)
+            if (_file == null)
             {
                 return;
             }
 
-            this._file.Flush();
+            _file.Flush();
             FileTouched();
         }
 
@@ -124,7 +124,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
-            return this.CreationTimeUtc;
+            return CreationTimeUtc;
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The time the file was last written to.</returns>
         public override DateTime? GetFileLastWriteTimeUtc()
         {
-            return this.LastWriteTimeUtc;
+            return LastWriteTimeUtc;
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
-            return this._currentFileLength;
+            return _currentFileLength;
         }
 
         /// <summary>
@@ -154,13 +154,13 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (this._file == null)
+            if (_file == null)
             {
                 return;
             }
 
-            this._currentFileLength += count;
-            this._file.Write(bytes, offset, count);
+            _currentFileLength += count;
+            _file.Write(bytes, offset, count);
 
             if (CaptureLastWriteTime)
             {

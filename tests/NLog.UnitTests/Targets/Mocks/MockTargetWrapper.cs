@@ -53,7 +53,7 @@ namespace NLog.UnitTests.Targets.Mocks
         /// <param name="name">Name of the target.</param>
         public MockTargetWrapper(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         protected override void CloseTarget()

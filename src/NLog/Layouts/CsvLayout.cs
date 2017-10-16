@@ -38,7 +38,7 @@ namespace NLog.Layouts
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// A specialized layout that renders CSV-formatted events.
@@ -58,14 +58,14 @@ namespace NLog.Layouts
         /// </summary>
         public CsvLayout()
         {
-            this.Columns = new List<CsvColumn>();
-            this.WithHeader = true;
-            this.Delimiter = CsvColumnDelimiterMode.Auto;
-            this.Quoting = CsvQuotingMode.Auto;
-            this.QuoteChar = "\"";
-            this.Layout = this;
-            this.Header = new CsvHeaderLayout(this);
-            this.Footer = null;
+            Columns = new List<CsvColumn>();
+            WithHeader = true;
+            Delimiter = CsvColumnDelimiterMode.Auto;
+            Quoting = CsvQuotingMode.Auto;
+            QuoteChar = "\"";
+            Layout = this;
+            Header = new CsvHeaderLayout(this);
+            Footer = null;
         }
 
         /// <summary>
@@ -115,44 +115,44 @@ namespace NLog.Layouts
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
-            if (!this.WithHeader)
+            if (!WithHeader)
             {
-                this.Header = null;
+                Header = null;
             }
 
-            switch (this.Delimiter)
+            switch (Delimiter)
             {
                 case CsvColumnDelimiterMode.Auto:
-                    this._actualColumnDelimiter = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
+                    _actualColumnDelimiter = CultureInfo.CurrentCulture.TextInfo.ListSeparator;
                     break;
 
                 case CsvColumnDelimiterMode.Comma:
-                    this._actualColumnDelimiter = ",";
+                    _actualColumnDelimiter = ",";
                     break;
 
                 case CsvColumnDelimiterMode.Semicolon:
-                    this._actualColumnDelimiter = ";";
+                    _actualColumnDelimiter = ";";
                     break;
 
                 case CsvColumnDelimiterMode.Pipe:
-                    this._actualColumnDelimiter = "|";
+                    _actualColumnDelimiter = "|";
                     break;
 
                 case CsvColumnDelimiterMode.Tab:
-                    this._actualColumnDelimiter = "\t";
+                    _actualColumnDelimiter = "\t";
                     break;
 
                 case CsvColumnDelimiterMode.Space:
-                    this._actualColumnDelimiter = " ";
+                    _actualColumnDelimiter = " ";
                     break;
 
                 case CsvColumnDelimiterMode.Custom:
-                    this._actualColumnDelimiter = this.CustomColumnDelimiter;
+                    _actualColumnDelimiter = CustomColumnDelimiter;
                     break;
             }
 
-            this._quotableCharacters = (this.QuoteChar + "\r\n" + this._actualColumnDelimiter).ToCharArray();
-            this._doubleQuoteChar = this.QuoteChar + this.QuoteChar;
+            _quotableCharacters = (QuoteChar + "\r\n" + _actualColumnDelimiter).ToCharArray();
+            _doubleQuoteChar = QuoteChar + QuoteChar;
         }
 
         /// <summary>
@@ -169,9 +169,9 @@ namespace NLog.Layouts
         {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < this.Columns.Count; i++)
+            for (int i = 0; i < Columns.Count; i++)
             {
-                CsvColumn col = this.Columns[i];
+                CsvColumn col = Columns[i];
                 string text = col.Layout.Render(logEvent);
 
                 RenderCol(sb, i, text);
@@ -196,9 +196,9 @@ namespace NLog.Layouts
         {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < this.Columns.Count; i++)
+            for (int i = 0; i < Columns.Count; i++)
             {
-                CsvColumn col = this.Columns[i];
+                CsvColumn col = Columns[i];
                 string text = col.Name;
 
                 RenderCol(sb, i, text);
@@ -215,12 +215,12 @@ namespace NLog.Layouts
         {
             if (columnIndex != 0)
             {
-                sb.Append(this._actualColumnDelimiter);
+                sb.Append(_actualColumnDelimiter);
             }
 
             bool useQuoting;
 
-            switch (this.Quoting)
+            switch (Quoting)
             {
                 case CsvQuotingMode.Nothing:
                     useQuoting = false;
@@ -232,7 +232,7 @@ namespace NLog.Layouts
 
                 default:
                 case CsvQuotingMode.Auto:
-                    if (columnValue.IndexOfAny(this._quotableCharacters) >= 0)
+                    if (columnValue.IndexOfAny(_quotableCharacters) >= 0)
                     {
                         useQuoting = true;
                     }
@@ -246,12 +246,12 @@ namespace NLog.Layouts
 
             if (useQuoting)
             {
-                sb.Append(this.QuoteChar);
+                sb.Append(QuoteChar);
             }
 
             if (useQuoting)
             {
-                sb.Append(columnValue.Replace(this.QuoteChar, this._doubleQuoteChar));
+                sb.Append(columnValue.Replace(QuoteChar, _doubleQuoteChar));
             }
             else
             {
@@ -260,7 +260,7 @@ namespace NLog.Layouts
 
             if (useQuoting)
             {
-                sb.Append(this.QuoteChar);
+                sb.Append(QuoteChar);
             }
         }
 
@@ -278,7 +278,7 @@ namespace NLog.Layouts
             /// <param name="parent">The parent.</param>
             public CsvHeaderLayout(CsvLayout parent)
             {
-                this._parent = parent;
+                _parent = parent;
             }
 
             /// <summary>
@@ -298,7 +298,7 @@ namespace NLog.Layouts
             /// <param name="target"><see cref="StringBuilder"/> for the result</param>
             protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
             {
-                this._parent.RenderHeader(target);
+                _parent.RenderHeader(target);
             }
         }
     }

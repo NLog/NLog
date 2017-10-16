@@ -74,6 +74,8 @@ namespace NLog.Common
         /// </summary>
         public static void Reset()
         {
+            // TODO: Extract class - InternalLoggerConfigurationReader
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
@@ -248,77 +250,19 @@ namespace NLog.Common
                 return;
             }
 
-            if (!LoggingEnabled(level))
+            if (!IsLoggingEnabled(level))
             {
                 return;
             }
 
             try
             {
-                var formattedMessage = message;
-                if (args != null)
-                {
-                    formattedMessage = string.Format(CultureInfo.InvariantCulture, message, args);
-                }
+                string msg = FormatMessage(ex, level, message, args);
 
-                var builder = new StringBuilder(message.Length + 32);
-                if (IncludeTimestamp)
-                {
-                    builder.Append(TimeSource.Current.Time.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-                    builder.Append(" ");
-                }
-
-                builder.Append(level);
-                builder.Append(" ");
-                builder.Append(formattedMessage);
-                if (ex != null)
-                {
-                    ex.MarkAsLoggedToInternalLogger();
-                    builder.Append(" Exception: ");
-                    builder.Append(ex);
-                }
-                var msg = builder.ToString();
-
-                // log to file
-                var logFile = LogFile;
-                if (!string.IsNullOrEmpty(logFile))
-                {
-                    lock (LockObject)
-                    {
-                        using (var textWriter = File.AppendText(logFile))
-                        {
-                            textWriter.WriteLine(msg);
-                        }
-                    }
-                }
-
-                // log to LogWriter
-                var writer = LogWriter;
-                if (writer != null)
-                {
-                    lock (LockObject)
-                    {
-                        writer.WriteLine(msg);
-                    }
-                }
-
-                // log to console
-                if (LogToConsole)
-                {
-                    lock (LockObject)
-                    {
-                        Console.WriteLine(msg);
-                    }
-                }
-
-                // log to console error
-                if (LogToConsoleError)
-                {
-                    lock (LockObject)
-                    {
-                        Console.Error.WriteLine(msg);
-                    }
-                }
+                WriteToLogFile(msg);
+                WriteToTextWriter(msg);
+                WriteToConsole(msg);
+                WriteToErrorConsole(msg);
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 WriteToTrace(msg);
@@ -336,6 +280,39 @@ namespace NLog.Common
             }
         }
 
+        private static string FormatMessage([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
+        {
+            const string TimeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
+            const string FieldSeparator = " ";
+
+            var formattedMessage =
+                (args == null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
+
+            var builder = new StringBuilder(formattedMessage.Length + TimeStampFormat.Length + (ex?.ToString()?.Length ?? 0) + 25);
+            if (IncludeTimestamp)
+            {
+                builder
+                    .Append(TimeSource.Current.Time.ToString(TimeStampFormat, CultureInfo.InvariantCulture))
+                    .Append(FieldSeparator);
+            }
+
+            builder
+                .Append(level)
+                .Append(FieldSeparator)
+                .Append(formattedMessage);
+
+            if (ex != null)
+            {
+                ex.MarkAsLoggedToInternalLogger();
+                builder
+                    .Append(FieldSeparator)
+                    .Append("Exception: ")
+                    .Append(ex);
+            }
+
+            return builder.ToString();
+        }
+
         /// <summary>
         /// Determine if logging should be avoided because of exception type. 
         /// </summary>
@@ -351,7 +328,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
-        private static bool LoggingEnabled(LogLevel logLevel)
+        private static bool IsLoggingEnabled(LogLevel logLevel)
         {
             if (logLevel == LogLevel.Off || logLevel < LogLevel)
             {
@@ -367,6 +344,96 @@ namespace NLog.Common
                    LogWriter != null;
         }
 
+        /// <summary>
+        /// Write internal messages to the log file defined in <see cref="LogFile"/>.
+        /// </summary>
+        /// <param name="message">Message to write.</param>
+        /// <remarks>
+        /// Message will be logged only when the property <see cref="LogFile"/> is not <c>null</c>, otherwise the
+        /// method has no effect.
+        /// </remarks>
+        private static void WriteToLogFile(string message)
+        {
+            var logFile = LogFile;
+            if (string.IsNullOrEmpty(logFile))
+            {
+                return;
+            }
+
+            lock (LockObject)
+            {
+                using (var textWriter = File.AppendText(logFile))
+                {
+                    textWriter.WriteLine(message);
+                }
+            }            
+        }
+
+        /// <summary>
+        /// Write internal messages to the <see cref="System.IO.TextWriter"/> defined in <see cref="LogWriter"/>.
+        /// </summary>
+        /// <param name="message">Message to write.</param>
+        /// <remarks>
+        /// Message will be logged only when the property <see cref="LogWriter"/> is not <c>null</c>, otherwise the
+        /// method has no effect.
+        /// </remarks>
+        private static void WriteToTextWriter(string message)
+        {
+            var writer = LogWriter;
+            if (writer == null)
+            {
+                return;
+            }
+
+            lock (LockObject)
+            {
+                writer.WriteLine(message);
+            }
+        }
+
+        /// <summary>
+        /// Write internal messages to the <see cref="System.Console"/>.
+        /// </summary>
+        /// <param name="message">Message to write.</param>
+        /// <remarks>
+        /// Message will be logged only when the property <see cref="LogToConsole"/> is <c>true</c>, otherwise the 
+        /// method has no effect.
+        /// </remarks>
+        private static void WriteToConsole(string message)
+        {
+            if (!LogToConsole)
+            {
+                return;
+            }
+
+            lock (LockObject)
+            {
+                Console.WriteLine(message);
+            }
+        }
+
+        /// <summary>
+        /// Write internal messages to the <see cref="System.Console.Error"/>.
+        /// </summary>
+        /// <param name="message">Message to write.</param>
+        /// <remarks>
+        /// Message will be logged when the property <see cref="LogToConsoleError"/> is <c>true</c>, otherwise the 
+        /// method has no effect.
+        /// </remarks>
+        private static void WriteToErrorConsole(string message)
+        {
+            if (!LogToConsoleError)
+            {
+                return;
+            }
+
+            lock (LockObject)
+            {
+                Console.Error.WriteLine(message);
+            }
+
+        }
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
@@ -380,7 +447,6 @@ namespace NLog.Common
         /// </remarks>
         private static void WriteToTrace(string message)
         {
-
             if (!LogToTrace)
             {
                 return;
@@ -388,7 +454,6 @@ namespace NLog.Common
 
             System.Diagnostics.Trace.WriteLine(message, "NLog");
         }
-
 #endif
 
         /// <summary>
@@ -489,7 +554,7 @@ namespace NLog.Common
         {
             try
             {
-                if (InternalLogger.LogLevel == NLog.LogLevel.Off)
+                if (LogLevel == LogLevel.Off)
                 {
                     return;
                 }

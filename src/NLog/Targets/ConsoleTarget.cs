@@ -123,8 +123,8 @@ namespace NLog.Targets
         public ConsoleTarget() : base()
         {
             _pauseLogging = false;
-            this.DetectConsoleAvailable = false;
-            this.OptimizeBufferReuse = true;
+            DetectConsoleAvailable = false;
+            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public ConsoleTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -160,9 +160,9 @@ namespace NLog.Targets
                 Console.OutputEncoding = _encoding;
 #endif
             base.InitializeTarget();
-            if (this.Header != null)
+            if (Header != null)
             {
-                this.WriteToOutput(base.RenderLogEvent(this.Header, LogEventInfo.CreateNullEvent()));
+                WriteToOutput(RenderLogEvent(Header, LogEventInfo.CreateNullEvent()));
             }
         }
 
@@ -171,9 +171,9 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            if (this.Footer != null)
+            if (Footer != null)
             {
-                this.WriteToOutput(base.RenderLogEvent(this.Footer, LogEventInfo.CreateNullEvent()));
+                WriteToOutput(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
             }
 
             base.CloseTarget();
@@ -195,7 +195,7 @@ namespace NLog.Targets
                 return;
             }
 
-            this.WriteToOutput(base.RenderLogEvent(this.Layout, logEvent));
+            WriteToOutput(RenderLogEvent(Layout, logEvent));
         }
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace NLog.Targets
 
         private TextWriter GetOutput()
         {
-            return this.Error ? Console.Error : Console.Out;
+            return Error ? Console.Error : Console.Out;
         }
     }
 }

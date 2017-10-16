@@ -37,8 +37,8 @@ namespace NLog.Internal
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using NLog.Common;
-    using NLog.Config;
+    using Common;
+    using Config;
 
     /// <summary>
     /// Scans (breadth-first) the object graph following all the edges whose are 

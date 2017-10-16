@@ -33,8 +33,8 @@
 
 namespace NLog.Targets
 {
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Represents a parameter to a NLogViewer target.

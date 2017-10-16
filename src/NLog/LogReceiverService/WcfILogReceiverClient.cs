@@ -114,7 +114,7 @@ namespace NLog.LogReceiverService
         /// </returns>
         public override IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState)
         {
-            return this.Channel.BeginProcessLogMessages(events, callback, asyncState);
+            return Channel.BeginProcessLogMessages(events, callback, asyncState);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace NLog.LogReceiverService
         /// <param name="result">The result.</param>
         public override void EndProcessLogMessages(IAsyncResult result)
         {
-            this.Channel.EndProcessLogMessages(result);
+            Channel.EndProcessLogMessages(result);
         }
 
 #if SILVERLIGHT

@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using System;
 
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The log level.

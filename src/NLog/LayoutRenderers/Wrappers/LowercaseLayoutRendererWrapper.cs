@@ -35,7 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Globalization;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Converts the result of another layout output to lower case.
@@ -50,8 +50,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public LowercaseLayoutRendererWrapper()
         {
-            this.Culture = CultureInfo.InvariantCulture;
-            this.Lowercase = true;
+            Culture = CultureInfo.InvariantCulture;
+            Lowercase = true;
         }
 
         /// <summary>
@@ -74,9 +74,9 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="target">Output to be post-processed.</param>
         protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
         {
-            if (this.Lowercase)
+            if (Lowercase)
             {
-                CultureInfo culture = this.Culture;
+                CultureInfo culture = Culture;
 
 #if NETSTANDARD1_5
                 string stringToLower = null;

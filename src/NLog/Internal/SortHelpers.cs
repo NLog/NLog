@@ -36,7 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Provides helpers to sort log events and associated continuations.
@@ -247,7 +247,7 @@ namespace NLog.Internal
                     else if (_singleBucket.HasValue && _comparer.Equals(_singleBucket.Value.Key, key))
                         return _singleBucket.Value.Value;
                     else
-                        throw new System.Collections.Generic.KeyNotFoundException();
+                        throw new KeyNotFoundException();
                 }
                 set
                 {

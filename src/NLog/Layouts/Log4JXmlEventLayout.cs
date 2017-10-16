@@ -33,7 +33,7 @@
 
 namespace NLog.Layouts
 {
-    using NLog.LayoutRenderers;
+    using LayoutRenderers;
 
     /// <summary>
     /// A specialized layout that renders Log4j-compatible XML events.
@@ -49,7 +49,7 @@ namespace NLog.Layouts
         /// </summary>
         public Log4JXmlEventLayout()
         {
-            this.Renderer = new Log4JXmlEventLayoutRenderer();
+            Renderer = new Log4JXmlEventLayoutRenderer();
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace NLog.Layouts
         /// <param name="target"><see cref="System.Text.StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
         {
-            this.Renderer.RenderAppendBuilder(logEvent, target);
+            Renderer.RenderAppendBuilder(logEvent, target);
         }
     }
 }

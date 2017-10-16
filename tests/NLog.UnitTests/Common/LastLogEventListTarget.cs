@@ -50,7 +50,7 @@ namespace NLog.UnitTests.Common
 
         public LastLogEventListTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace NLog.UnitTests.Common
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            this.LastLogEvent = logEvent;
+            LastLogEvent = logEvent;
         }
 
         public LogEventInfo LastLogEvent { get; set; }

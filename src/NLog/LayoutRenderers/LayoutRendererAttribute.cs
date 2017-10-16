@@ -34,7 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Marks class as a layout renderer and assigns a name to it.

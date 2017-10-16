@@ -37,7 +37,7 @@ namespace NLog.Filters
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// Matches when the result of the calculated layout has been repeated a moment ago

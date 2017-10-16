@@ -59,19 +59,19 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void SpecialFolderDirCombineTest()
         {
-            AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:dir=aaa}}", Path.Combine(this.sysDir, "aaa"));
+            AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:dir=aaa}}", Path.Combine(sysDir, "aaa"));
         }
 
         [Fact]
         public void SpecialFolderFileCombineTest()
         {
-            AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:file=aaa.txt}}", Path.Combine(this.sysDir, "aaa.txt"));
+            AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:file=aaa.txt}}", Path.Combine(sysDir, "aaa.txt"));
         }
 
         [Fact]
         public void SpecialFolderDirFileCombineTest()
         {
-            AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:dir=aaa:file=bbb.txt}}", Path.Combine(this.sysDir, "aaa", "bbb.txt"));
+            AssertLayoutRendererOutput($"${{specialfolder:folder={sysDirString}:dir=aaa:file=bbb.txt}}", Path.Combine(sysDir, "aaa", "bbb.txt"));
         }
     }
 #endif

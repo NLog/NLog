@@ -60,7 +60,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //don't use GlobalDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
-            var value = GlobalDiagnosticsContext.GetObject(this.Item);
+            var value = GlobalDiagnosticsContext.GetObject(Item);
             var formatProvider = GetFormatProvider(logEvent, null);
             builder.AppendFormattedValue(value, null, formatProvider);
         }

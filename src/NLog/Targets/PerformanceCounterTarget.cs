@@ -42,9 +42,9 @@ namespace NLog.Targets
     using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
+    using Common;
+    using Config;
+    using Internal;
     using Layouts;
 
     /// <summary>
@@ -85,10 +85,10 @@ namespace NLog.Targets
         /// </summary>
         public PerformanceCounterTarget()
         {
-            this.CounterType = PerformanceCounterType.NumberOfItems32;
-            this.IncrementValue = new SimpleLayout("1");
-            this.InstanceName = string.Empty;
-            this.CounterHelp = string.Empty;
+            CounterType = PerformanceCounterType.NumberOfItems32;
+            IncrementValue = new SimpleLayout("1");
+            InstanceName = string.Empty;
+            CounterHelp = string.Empty;
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public PerformanceCounterTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -153,8 +153,8 @@ namespace NLog.Targets
         public void Install(InstallationContext installationContext)
         {
             // categories must be installed together, so we must find all PerfCounter targets in the configuration file
-            var countersByCategory = this.LoggingConfiguration.AllTargets.OfType<PerformanceCounterTarget>().BucketSort(c => c.CategoryName);
-            string categoryName = this.CategoryName;
+            var countersByCategory = LoggingConfiguration.AllTargets.OfType<PerformanceCounterTarget>().BucketSort(c => c.CategoryName);
+            string categoryName = CategoryName;
 
             if (countersByCategory[categoryName].Any(c => c.created))
             {
@@ -165,7 +165,7 @@ namespace NLog.Targets
             try
             {
                 PerformanceCounterCategoryType categoryType;
-                CounterCreationDataCollection ccds = GetCounterCreationDataCollection(countersByCategory[this.CategoryName], out categoryType);
+                CounterCreationDataCollection ccds = GetCounterCreationDataCollection(countersByCategory[CategoryName], out categoryType);
 
                 if (PerformanceCounterCategory.Exists(categoryName))
                 {
@@ -218,7 +218,7 @@ namespace NLog.Targets
         /// <param name="installationContext">The installation context.</param>
         public void Uninstall(InstallationContext installationContext)
         {
-            string categoryName = this.CategoryName;
+            string categoryName = CategoryName;
 
             if (PerformanceCounterCategory.Exists(categoryName))
             {
@@ -240,12 +240,12 @@ namespace NLog.Targets
         /// </returns>
         public bool? IsInstalled(InstallationContext installationContext)
         {
-            if (!PerformanceCounterCategory.Exists(this.CategoryName))
+            if (!PerformanceCounterCategory.Exists(CategoryName))
             {
                 return false;
             }
 
-            return PerformanceCounterCategory.CounterExists(this.CounterName, this.CategoryName);
+            return PerformanceCounterCategory.CounterExists(CounterName, CategoryName);
         }
 
         /// <summary>
@@ -254,12 +254,12 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (this.EnsureInitialized())
+            if (EnsureInitialized())
             {
                 string incrementValueString = IncrementValue.Render(logEvent);
                 long incrementValue;
                 if (Int64.TryParse(incrementValueString, out incrementValue))
-                    this.perfCounter.IncrementBy(incrementValue);
+                    perfCounter.IncrementBy(incrementValue);
                 else
                     InternalLogger.Error("Error incrementing PerfCounter {0}. IncrementValue must be an integer but was <{1}>", CounterName, incrementValueString);
             }
@@ -272,13 +272,13 @@ namespace NLog.Targets
         {
             base.CloseTarget();
 
-            if (this.perfCounter != null)
+            if (perfCounter != null)
             {
-                this.perfCounter.Close();
-                this.perfCounter = null;
+                perfCounter.Close();
+                perfCounter = null;
             }
 
-            this.initialized = false;
+            initialized = false;
         }
 
         private static CounterCreationDataCollection GetCounterCreationDataCollection(IEnumerable<PerformanceCounterTarget> countersInCategory, out PerformanceCounterCategoryType categoryType)
@@ -305,25 +305,25 @@ namespace NLog.Targets
         /// <returns>True if the performance counter is operational, false otherwise.</returns>
         private bool EnsureInitialized()
         {
-            if (!this.initialized)
+            if (!initialized)
             {
-                this.initialized = true;
+                initialized = true;
 
-                if (this.AutoCreate)
+                if (AutoCreate)
                 {
                     using (var context = new InstallationContext())
                     {
-                        this.Install(context);
+                        Install(context);
                     }
                 }
 
                 try
                 {
-                    this.perfCounter = new PerformanceCounter(this.CategoryName, this.CounterName, this.InstanceName, false);
+                    perfCounter = new PerformanceCounter(CategoryName, CounterName, InstanceName, false);
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Error(exception, "Cannot open performance counter {0}/{1}/{2}.", this.CategoryName, this.CounterName, this.InstanceName);
+                    InternalLogger.Error(exception, "Cannot open performance counter {0}/{1}/{2}.", CategoryName, CounterName, InstanceName);
 
                     if (exception.MustBeRethrown())
                     {
@@ -333,7 +333,7 @@ namespace NLog.Targets
                 }
             }
 
-            return this.perfCounter != null;
+            return perfCounter != null;
         }
     }
 }

@@ -36,8 +36,8 @@ using NLog.Layouts;
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
-    using NLog.Conditions;
-    using NLog.Config;
+    using Conditions;
+    using Config;
 
     /// <summary>
     /// Only outputs the inner layout when the specified condition has been met.
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            if (this.When == null || true.Equals(this.When.Evaluate(logEvent)))
+            if (When == null || true.Equals(When.Evaluate(logEvent)))
             {
                 base.RenderFormattedMessage(logEvent, target);
             }

@@ -33,7 +33,7 @@
 
 namespace NLog.Layouts
 {
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// A column in the CSV.
@@ -57,8 +57,8 @@ namespace NLog.Layouts
         /// <param name="layout">The layout of the column.</param>
         public CsvColumn(string name, Layout layout)
         {
-            this.Name = name;
-            this.Layout = layout;
+            Name = name;
+            Layout = layout;
         }
 
         /// <summary>

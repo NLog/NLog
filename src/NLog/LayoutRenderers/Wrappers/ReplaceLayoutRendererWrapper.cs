@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Replaces a string in the output of another layout with another string.
@@ -99,9 +99,9 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            string regexString = this.SearchFor;
+            string regexString = SearchFor;
 
-            if (!this.Regex)
+            if (!Regex)
             {
                 regexString = System.Text.RegularExpressions.Regex.Escape(regexString);
             }
@@ -111,17 +111,17 @@ namespace NLog.LayoutRenderers.Wrappers
 #else
             RegexOptions regexOptions = RegexOptions.Compiled;
 #endif
-            if (this.IgnoreCase)
+            if (IgnoreCase)
             {
                 regexOptions |= RegexOptions.IgnoreCase;
             }
 
-            if (this.WholeWords)
+            if (WholeWords)
             {
                 regexString = "\\b" + regexString + "\\b";
             }
 
-            this._regex = new Regex(regexString, regexOptions);
+            _regex = new Regex(regexString, regexOptions);
         }
 
         /// <summary>
@@ -131,11 +131,11 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Post-processed text.</returns>
         protected override string Transform(string text)
         {
-            var replacer = new Replacer(text, this.ReplaceGroupName, this.ReplaceWith);
+            var replacer = new Replacer(text, ReplaceGroupName, ReplaceWith);
 
-            return string.IsNullOrEmpty(this.ReplaceGroupName) ?
-                this._regex.Replace(text, this.ReplaceWith)
-                : this._regex.Replace(text, replacer.EvaluateMatch);
+            return string.IsNullOrEmpty(ReplaceGroupName) ?
+                _regex.Replace(text, ReplaceWith)
+                : _regex.Replace(text, replacer.EvaluateMatch);
         }
 
         /// <summary>
@@ -150,9 +150,9 @@ namespace NLog.LayoutRenderers.Wrappers
 
             internal Replacer(string text, string replaceGroupName, string replaceWith)
             {
-                this._text = text;
-                this._replaceGroupName = replaceGroupName;
-                this._replaceWith = replaceWith;
+                _text = text;
+                _replaceGroupName = replaceGroupName;
+                _replaceWith = replaceWith;
             }
 
             internal string EvaluateMatch(Match match)

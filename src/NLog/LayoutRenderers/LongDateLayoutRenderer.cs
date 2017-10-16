@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Text;
 
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.mmm.
@@ -64,7 +64,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             DateTime dt = logEvent.TimeStamp;
-            if (this.UniversalTime)
+            if (UniversalTime)
             {
                 dt = dt.ToUniversalTime();
             }

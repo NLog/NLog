@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Threading;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Implements a single-call guard around given continuation function.
@@ -50,7 +50,7 @@ namespace NLog.Internal
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         public SingleCallContinuation(AsyncContinuation asyncContinuation)
         {
-            this._asyncContinuation = asyncContinuation;
+            _asyncContinuation = asyncContinuation;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace NLog.Internal
         {
             try
             {
-                var cont = Interlocked.Exchange(ref this._asyncContinuation, null);
+                var cont = Interlocked.Exchange(ref _asyncContinuation, null);
                 if (cont != null)
                 {
                     cont(exception);

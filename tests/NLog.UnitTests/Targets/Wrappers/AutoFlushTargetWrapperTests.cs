@@ -285,12 +285,12 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
-                this.WriteCount++;
+                Assert.True(FlushCount <= WriteCount);
+                WriteCount++;
                 ThreadPool.QueueUserWorkItem(
                     s =>
                         {
-                            if (this.ThrowExceptions)
+                            if (ThrowExceptions)
                             {
                                 logEvent.Continuation(new InvalidOperationException("Some problem!"));
                                 logEvent.Continuation(new InvalidOperationException("Some problem!"));
@@ -305,7 +305,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                FlushCount++;
                 ThreadPool.QueueUserWorkItem(
                     s => asyncContinuation(null));
             }
@@ -320,13 +320,13 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
-                this.WriteCount++;
+                Assert.True(FlushCount <= WriteCount);
+                WriteCount++;
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                FlushCount++;
                 asyncContinuation(null);
             }
         }

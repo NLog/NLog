@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Globalization;
     using System.Text;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Installation parameter (passed to InstallNLogConfig).
@@ -61,7 +61,7 @@ namespace NLog.LayoutRenderers
         {
             object value;
 
-            if (logEvent.Properties.TryGetValue(this.Parameter, out value))
+            if (logEvent.Properties.TryGetValue(Parameter, out value))
             {
                 var formatProvider = GetFormatProvider(logEvent);
                 builder.Append(Convert.ToString(value, formatProvider));

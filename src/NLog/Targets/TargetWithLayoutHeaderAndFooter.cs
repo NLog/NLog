@@ -33,8 +33,8 @@
 
 namespace NLog.Targets
 {
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Represents target that supports string formatting using layouts.
@@ -60,7 +60,7 @@ namespace NLog.Targets
         {
             get
             {
-                return this.LHF.Layout;
+                return LHF.Layout;
             }
 
             set
@@ -69,16 +69,16 @@ namespace NLog.Targets
                 {
                     base.Layout = value;
                 }
-                else if (this.LHF == null)
+                else if (LHF == null)
                 {
-                    this.LHF = new LayoutWithHeaderAndFooter()
+                    LHF = new LayoutWithHeaderAndFooter()
                     {
                         Layout = value
                     };
                 }
                 else
                 {
-                    this.LHF.Layout = value;
+                    LHF.Layout = value;
                 }
             }
         }
@@ -89,8 +89,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='3' />
         public Layout Footer
         {
-            get { return this.LHF.Footer; }
-            set { this.LHF.Footer = value; }
+            get { return LHF.Footer; }
+            set { LHF.Footer = value; }
         }
 
         /// <summary>
@@ -99,8 +99,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='2' />
         public Layout Header
         {
-            get { return this.LHF.Header; }
-            set { this.LHF.Header = value; }
+            get { return LHF.Header; }
+            set { LHF.Header = value; }
         }
 
         /// <summary>
