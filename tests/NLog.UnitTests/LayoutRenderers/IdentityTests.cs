@@ -205,12 +205,9 @@ namespace NLog.UnitTests.LayoutRenderers
             /// <returns>
             /// true if the user was has been authenticated; otherwise, false.
             /// </returns>
-            public override bool IsAuthenticated
-            {
-                get { return false; }
-            }
+            public override bool IsAuthenticated => false;
 
-        #endregion
+            #endregion
         }
 #endif
     }

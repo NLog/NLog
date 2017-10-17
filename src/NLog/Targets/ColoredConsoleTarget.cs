@@ -167,10 +167,7 @@ namespace NLog.Targets
         /// <remarks>Has side effect</remarks>
         public Encoding Encoding
         {
-            get
-            {
-                return ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
-            }
+            get => ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
             set
             {
                 if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, IsInitialized, _pauseLogging))
@@ -459,15 +456,9 @@ namespace NLog.Targets
                 _backgroundColor = backgroundColor;
             }
 
-            internal ConsoleColor BackgroundColor
-            {
-                get { return _backgroundColor; }
-            }
+            internal ConsoleColor BackgroundColor => _backgroundColor;
 
-            internal ConsoleColor ForegroundColor
-            {
-                get { return _foregroundColor; }
-            }
+            internal ConsoleColor ForegroundColor => _foregroundColor;
         }
     }
 }

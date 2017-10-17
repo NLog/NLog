@@ -593,7 +593,7 @@ namespace NLog.UnitTests.Config
                 LogManager.ConfigurationReloaded += SignalCounterEvent(counterEvent);
             }
 
-            public bool DidReload { get { return counterEvent.WaitOne(0); } }
+            public bool DidReload => counterEvent.WaitOne(0);
 
             public void Dispose()
             {

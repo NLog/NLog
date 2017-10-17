@@ -45,42 +45,27 @@ namespace NLog.Internal
         /// <summary>
         /// Gets the current runtime OS.
         /// </summary>
-        public static RuntimeOS CurrentOS
-        {
-            get { return currentOS; }
-        }
-        
+        public static RuntimeOS CurrentOS => currentOS;
+
         /// <summary>
         /// Gets a value indicating whether current OS is a desktop version of Windows.
         /// </summary>
-        public static bool IsDesktopWin32
-        {
-            get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT; }
-        }
-        
+        public static bool IsDesktopWin32 => currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT;
+
         /// <summary>
         /// Gets a value indicating whether current OS is Win32-based (desktop or mobile).
         /// </summary>
-        public static bool IsWin32
-        {
-            get { return currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT || currentOS == RuntimeOS.WindowsCE; }
-        }
-        
+        public static bool IsWin32 => currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT || currentOS == RuntimeOS.WindowsCE;
+
         /// <summary>
         /// Gets a value indicating whether current OS is Unix-based.
         /// </summary>
-        public static bool IsUnix
-        {
-            get { return currentOS == RuntimeOS.Unix; }
-        }
+        public static bool IsUnix => currentOS == RuntimeOS.Unix;
 
         /// <summary>
         /// Gets a value indicating whether current runtime is Mono-based
         /// </summary>
-        public static bool IsMono
-        {
-            get { return Type.GetType("Mono.Runtime") != null; }
-        }
+        public static bool IsMono => Type.GetType("Mono.Runtime") != null;
 
         /// <summary>
         /// Gets a value indicating whether current runtime supports use of mutex

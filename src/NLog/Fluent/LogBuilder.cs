@@ -83,10 +83,7 @@ namespace NLog.Fluent
         /// <summary>
         /// Gets the <see cref="LogEventInfo"/> created by the builder.
         /// </summary>
-        public LogEventInfo LogEventInfo
-        {
-            get { return _logEvent; }
-        }
+        public LogEventInfo LogEventInfo => _logEvent;
 
         /// <summary>
         /// Sets the <paramref name="exception"/> information of the logging event.

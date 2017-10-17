@@ -404,7 +404,7 @@ namespace NLog.UnitTests.Common
                 _time = time;
             }
 
-            public override DateTime Time { get { return _time; } }
+            public override DateTime Time => _time;
 
             public override DateTime FromSystemTime(DateTime systemTime)
             {

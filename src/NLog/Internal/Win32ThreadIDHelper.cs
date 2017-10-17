@@ -73,28 +73,19 @@ namespace NLog.Internal
         /// Gets current process ID.
         /// </summary>
         /// <value></value>
-        public override int CurrentProcessID
-        {
-            get { return currentProcessID; }
-        }
+        public override int CurrentProcessID => currentProcessID;
 
         /// <summary>
         /// Gets current process name.
         /// </summary>
         /// <value></value>
-        public override string CurrentProcessName
-        {
-            get { return currentProcessName; }
-        }
+        public override string CurrentProcessName => currentProcessName;
 
         /// <summary>
         /// Gets current process name (excluding filename extension, if any).
         /// </summary>
         /// <value></value>
-        public override string CurrentProcessBaseName
-        {
-            get { return currentProcessBaseName; }
-        }
+        public override string CurrentProcessBaseName => currentProcessBaseName;
     }
 }
 

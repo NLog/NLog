@@ -150,7 +150,7 @@ namespace NLog.Targets
         [DefaultValue(16384)]
         public int MaxMessageLength
         {
-            get { return maxMessageLength; }
+            get => maxMessageLength;
             set
             {
                 if (value <= 0)
@@ -174,7 +174,7 @@ namespace NLog.Targets
         [DefaultValue(null)]
         public long? MaxKilobytes
         {
-            get { return maxKilobytes; }
+            get => maxKilobytes;
             set
             {   //Event log API restriction
                 if (value != null && (value < 64 || value > 4194240 || (value % 64 != 0)))

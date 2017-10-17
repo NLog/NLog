@@ -55,8 +55,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Transformation Options' order='10' />
         public Layout Text
         {
-            get { return Inner; }
-            set { Inner = value; }
+            get => Inner;
+            set => Inner = value;
         }
 
         /// <summary>

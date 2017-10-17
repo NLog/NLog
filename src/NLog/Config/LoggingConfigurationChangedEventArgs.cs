@@ -68,13 +68,13 @@ namespace NLog.Config
         /// </summary>
         /// <value>The new configuration.</value>
         [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
-        public LoggingConfiguration OldConfiguration { get { return ActivatedConfiguration; } }
+        public LoggingConfiguration OldConfiguration => ActivatedConfiguration;
 
         /// <summary>
         /// Gets the old configuration
         /// </summary>
         /// <value>The old configuration.</value>
         [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
-        public LoggingConfiguration NewConfiguration { get { return DeactivatedConfiguration; } }
+        public LoggingConfiguration NewConfiguration => DeactivatedConfiguration;
     }
 }

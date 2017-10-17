@@ -48,8 +48,8 @@ namespace NLog.Layouts
     {
         private IJsonConverter JsonConverter
         {
-            get { return _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter); }
-            set { _jsonConverter = value; }
+            get => _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter);
+            set => _jsonConverter = value;
         }
         private IJsonConverter _jsonConverter = null;
 

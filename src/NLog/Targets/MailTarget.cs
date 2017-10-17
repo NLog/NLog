@@ -143,7 +143,7 @@ namespace NLog.Targets
 
                 return _currentailSettings;
             }
-            set { _currentailSettings = value; }
+            set => _currentailSettings = value;
         }
 #endif
 
@@ -230,8 +230,8 @@ namespace NLog.Targets
         [DefaultValue("${message}${newline}")]
         public Layout Body
         {
-            get { return Layout; }
-            set { Layout = value; }
+            get => Layout;
+            set => Layout = value;
         }
 
         /// <summary>

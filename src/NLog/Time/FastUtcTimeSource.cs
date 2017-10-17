@@ -44,7 +44,7 @@ namespace NLog.Time
         /// <summary>
         /// Gets uncached UTC time directly from DateTime.UtcNow.
         /// </summary>
-        protected override DateTime FreshTime { get { return DateTime.UtcNow; } }
+        protected override DateTime FreshTime => DateTime.UtcNow;
 
         /// <summary>
         ///  Converts the specified system time to the same form as the time value originated from this time source.

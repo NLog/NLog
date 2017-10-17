@@ -174,7 +174,7 @@ namespace NLog.Targets.FileArchiveModes
             /// </summary>
             public int EndAt { get; private set; }
 
-            private bool FoundPattern { get { return BeginAt != -1 && EndAt != -1; } }
+            private bool FoundPattern => BeginAt != -1 && EndAt != -1;
 
             public FileNameTemplate(string template)
             {

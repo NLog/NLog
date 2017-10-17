@@ -66,7 +66,9 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Delay the flush until the LogEvent has been confirmed as written
         /// </summary>
-        public bool AsyncFlush { get { return _asyncFlush ?? true; } set { _asyncFlush = value; } }
+        public bool AsyncFlush { get => _asyncFlush ?? true;
+            set => _asyncFlush = value;
+        }
         private bool? _asyncFlush;
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();

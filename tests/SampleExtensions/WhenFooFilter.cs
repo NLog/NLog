@@ -43,8 +43,8 @@ namespace MyExtensionNamespace
 
         public int X
         {
-            get { return x; }
-            set { x = value; }
+            get => x;
+            set => x = value;
         }
 
         protected override FilterResult Check(LogEventInfo logEvent)

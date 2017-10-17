@@ -64,7 +64,7 @@ namespace NLog.Targets
         /// <summary>
         /// Task Scheduler used for processing async Tasks
         /// </summary>
-        protected virtual TaskScheduler TaskScheduler { get { return TaskScheduler.Default; } }
+        protected virtual TaskScheduler TaskScheduler => TaskScheduler.Default;
 
         /// <summary>
         /// Constructor

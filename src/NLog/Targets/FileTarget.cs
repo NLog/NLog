@@ -257,7 +257,7 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool CleanupFileName
         {
-            get { return _cleanupFileName; }
+            get => _cleanupFileName;
             set
             {
                 if (_cleanupFileName != value)
@@ -276,7 +276,7 @@ namespace NLog.Targets
         [DefaultValue(FilePathKind.Unknown)]
         public FilePathKind FileNameKind
         {
-            get { return _fileNameKind; }
+            get => _fileNameKind;
             set
             {
                 if (_fileNameKind != value)
@@ -328,7 +328,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool KeepFileOpen
         {
-            get { return _keepFileOpen; }
+            get => _keepFileOpen;
             set
             {
                 if (_keepFileOpen != value)
@@ -369,14 +369,8 @@ namespace NLog.Targets
         /// <summary>
         /// Should we capture the last write time of a file?
         /// </summary>
-        bool ICreateFileParameters.CaptureLastWriteTime
-        {
-            get
-            {
-                return ArchiveNumbering == ArchiveNumberingMode.Date ||
-                       ArchiveNumbering == ArchiveNumberingMode.DateAndSequence;
-            }
-        }
+        bool ICreateFileParameters.CaptureLastWriteTime => ArchiveNumbering == ArchiveNumberingMode.Date ||
+                                                           ArchiveNumbering == ArchiveNumberingMode.DateAndSequence;
 
         /// <summary>
         /// Gets or sets the line ending mode.
@@ -385,9 +379,9 @@ namespace NLog.Targets
         [Advanced]
         public LineEndingMode LineEnding
         {
-            get { return _lineEndingMode; }
+            get => _lineEndingMode;
 
-            set { _lineEndingMode = value; }
+            set => _lineEndingMode = value;
         }
 
         /// <summary>
@@ -455,7 +449,7 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool ConcurrentWrites
         {
-            get { return _concurrentWrites; }
+            get => _concurrentWrites;
             set
             {
                 if (_concurrentWrites != value)
@@ -528,7 +522,7 @@ namespace NLog.Targets
         [DefaultValue("")]
         public string ArchiveDateFormat
         {
-            get { return _archiveDateFormat; }
+            get => _archiveDateFormat;
             set
             {
                 if (_archiveDateFormat != value)
@@ -555,7 +549,7 @@ namespace NLog.Targets
         /// <docgen category='Archival Options' order='10' />
         public long ArchiveAboveSize
         {
-            get { return _archiveAboveSize; }
+            get => _archiveAboveSize;
             set
             {
                 if ((_archiveAboveSize == ArchiveAboveSizeDisabled) != (value == ArchiveAboveSizeDisabled))
@@ -587,7 +581,7 @@ namespace NLog.Targets
         /// <docgen category='Archival Options' order='10' />
         public FileArchivePeriod ArchiveEvery
         {
-            get { return _archiveEvery; }
+            get => _archiveEvery;
             set
             {
                 if (_archiveEvery != value)
@@ -603,7 +597,7 @@ namespace NLog.Targets
         /// </summary>
         public FilePathKind ArchiveFileKind
         {
-            get { return _archiveFileKind; }
+            get => _archiveFileKind;
             set
             {
                 if (_archiveFileKind != value)
@@ -647,7 +641,7 @@ namespace NLog.Targets
         [DefaultValue(0)]
         public int MaxArchiveFiles
         {
-            get { return _maxArchiveFiles; }
+            get => _maxArchiveFiles;
             set
             {
                 if (_maxArchiveFiles != value)
@@ -664,7 +658,7 @@ namespace NLog.Targets
         /// <docgen category='Archival Options' order='10' />
         public ArchiveNumberingMode ArchiveNumbering
         {
-            get { return _archiveNumbering; }
+            get => _archiveNumbering;
             set
             {
                 if (_archiveNumbering != value)
@@ -691,7 +685,7 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool EnableArchiveFileCompression
         {
-            get { return _enableArchiveFileCompression && FileCompressor != null; }
+            get => _enableArchiveFileCompression && FileCompressor != null;
             set
             {
                 if (_enableArchiveFileCompression != value)
@@ -725,10 +719,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the characters that are appended after each line.
         /// </summary>
-        protected internal string NewLineChars
-        {
-            get { return _lineEndingMode.NewLineCharacters; }
-        }
+        protected internal string NewLineChars => _lineEndingMode.NewLineCharacters;
 
         /// <summary>
         /// Refresh the ArchiveFilePatternToWatch option of the <see cref="FileAppenderCache" />. 

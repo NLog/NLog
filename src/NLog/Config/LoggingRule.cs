@@ -144,10 +144,7 @@ namespace NLog.Config
         /// </remarks>
         public string LoggerNamePattern
         {
-            get
-            {
-                return _loggerNamePattern;
-            }
+            get => _loggerNamePattern;
 
             set
             {

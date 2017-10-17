@@ -110,7 +110,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the <c>DateTime</c> when the current <see cref="Interval"/> will be reset.
         /// </summary>
-        public DateTime IntervalResetsAt { get { return _firstWriteInInterval + Interval; } }
+        public DateTime IntervalResetsAt => _firstWriteInInterval + Interval;
 
         /// <summary>
         /// Gets the number of <see cref="AsyncLogEventInfo"/> written in the current <see cref="Interval"/>.

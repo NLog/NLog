@@ -87,8 +87,8 @@ namespace NLog.LayoutRenderers
         [DefaultValue(true)]
         public bool Seconds
         {
-            get { return !raw; }
-            set { raw = !value; }
+            get => !raw;
+            set => raw = !value;
         }
 
         /// <summary>

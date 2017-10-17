@@ -93,10 +93,7 @@ namespace NLog.Targets
         /// <remarks>Has side effect</remarks>
         public Encoding Encoding
         {
-            get
-            {
-                return ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
-            }
+            get => ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
             set
             {
                 if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, IsInitialized, _pauseLogging))

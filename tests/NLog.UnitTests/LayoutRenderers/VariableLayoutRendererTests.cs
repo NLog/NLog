@@ -326,12 +326,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             private static readonly LogFactory _instance = new LogFactory(_mockConfig);
 
-            public static LogFactory Instance
-            {
-                get { return _instance; }
-            }
-
-
+            public static LogFactory Instance => _instance;
         }
 
 

@@ -62,10 +62,7 @@ namespace NLog.Internal
         /// <returns>
         /// An <see cref="T:System.Collections.ICollection"/> object containing the values in the <see cref="T:System.Collections.IDictionary"/> object.
         /// </returns>
-        public ICollection Values
-        {
-            get { return new List<TValue>(_implementation.Values); }
-        }
+        public ICollection Values => new List<TValue>(_implementation.Values);
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.ICollection"/>.
@@ -74,10 +71,7 @@ namespace NLog.Internal
         /// <returns>
         /// The number of elements contained in the <see cref="T:System.Collections.ICollection"/>.
         /// </returns>
-        public int Count
-        {
-            get { return _implementation.Count; }
-        }
+        public int Count => _implementation.Count;
 
         /// <summary>
         /// Gets a value indicating whether access to the <see cref="T:System.Collections.ICollection"/> is synchronized (thread safe).
@@ -85,10 +79,7 @@ namespace NLog.Internal
         /// <value></value>
         /// <returns>true if access to the <see cref="T:System.Collections.ICollection"/> is synchronized (thread safe); otherwise, false.
         /// </returns>
-        public bool IsSynchronized
-        {
-            get { return false; }
-        }
+        public bool IsSynchronized => false;
 
         /// <summary>
         /// Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
@@ -97,10 +88,7 @@ namespace NLog.Internal
         /// <returns>
         /// An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
         /// </returns>
-        public object SyncRoot
-        {
-            get { return _implementation; }
-        }
+        public object SyncRoot => _implementation;
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="T:System.Collections.IDictionary"/> object has a fixed size.
@@ -108,10 +96,7 @@ namespace NLog.Internal
         /// <value></value>
         /// <returns>true if the <see cref="T:System.Collections.IDictionary"/> object has a fixed size; otherwise, false.
         /// </returns>
-        public bool IsFixedSize
-        {
-            get { return false; }
-        }
+        public bool IsFixedSize => false;
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="T:System.Collections.IDictionary"/> object is read-only.
@@ -119,10 +104,7 @@ namespace NLog.Internal
         /// <value></value>
         /// <returns>true if the <see cref="T:System.Collections.IDictionary"/> object is read-only; otherwise, false.
         /// </returns>
-        public bool IsReadOnly
-        {
-            get { return _implementation.IsReadOnly; }
-        }
+        public bool IsReadOnly => _implementation.IsReadOnly;
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.ICollection"/> object containing the keys of the <see cref="T:System.Collections.IDictionary"/> object.
@@ -131,10 +113,7 @@ namespace NLog.Internal
         /// <returns>
         /// An <see cref="T:System.Collections.ICollection"/> object containing the keys of the <see cref="T:System.Collections.IDictionary"/> object.
         /// </returns>
-        public ICollection Keys
-        {
-            get { return new List<TKey>(_implementation.Keys); }
-        }
+        public ICollection Keys => new List<TKey>(_implementation.Keys);
 
         /// <summary>
         /// Gets or sets the <see cref="System.Object"/> with the specified key.
@@ -157,10 +136,7 @@ namespace NLog.Internal
                 }
             }
 
-            set
-            {
-                _implementation[(TKey)key] = (TValue)value;
-            }
+            set => _implementation[(TKey)key] = (TValue)value;
         }
 
         /// <summary>
@@ -257,10 +233,7 @@ namespace NLog.Internal
             /// <returns>
             /// A <see cref="T:System.Collections.DictionaryEntry"/> containing both the key and the value of the current dictionary entry.
             /// </returns>
-            public DictionaryEntry Entry
-            {
-                get { return new DictionaryEntry(_wrapped.Current.Key, _wrapped.Current.Value); }
-            }
+            public DictionaryEntry Entry => new DictionaryEntry(_wrapped.Current.Key, _wrapped.Current.Value);
 
             /// <summary>
             /// Gets the key of the current dictionary entry.
@@ -269,10 +242,7 @@ namespace NLog.Internal
             /// <returns>
             /// The key of the current element of the enumeration.
             /// </returns>
-            public object Key
-            {
-                get { return _wrapped.Current.Key; }
-            }
+            public object Key => _wrapped.Current.Key;
 
             /// <summary>
             /// Gets the value of the current dictionary entry.
@@ -281,10 +251,7 @@ namespace NLog.Internal
             /// <returns>
             /// The value of the current element of the enumeration.
             /// </returns>
-            public object Value
-            {
-                get { return _wrapped.Current.Value; }
-            }
+            public object Value => _wrapped.Current.Value;
 
             /// <summary>
             /// Gets the current element in the collection.
@@ -293,10 +260,7 @@ namespace NLog.Internal
             /// <returns>
             /// The current element in the collection.
             /// </returns>
-            public object Current
-            {
-                get { return Entry; }
-            }
+            public object Current => Entry;
 
             /// <summary>
             /// Advances the enumerator to the next element of the collection.

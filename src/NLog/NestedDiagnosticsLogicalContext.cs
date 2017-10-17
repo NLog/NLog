@@ -143,14 +143,14 @@ namespace NLog
             object Value { get; }
         }
 
-#if !NETSTANDARD && !NET4_6
+#if !NETSTANDARD1_5
         [Serializable]
 #endif
         class NestedContext<T> : INestedContext
         {
             public INestedContext Parent { get; private set; }
             public T Value { get; private set; }
-            object INestedContext.Value { get { return Value; } }
+            object INestedContext.Value => Value;
             public int FrameLevel { get; private set; }
 
             public NestedContext(INestedContext parent, T value)

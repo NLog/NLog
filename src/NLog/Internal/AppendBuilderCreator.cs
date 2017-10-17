@@ -47,7 +47,8 @@ namespace NLog.Internal
         /// <summary>
         /// Access the new builder allocated
         /// </summary>
-        public StringBuilder Builder { get { return _builder.Item; } }
+        public StringBuilder Builder => _builder.Item;
+
         private readonly StringBuilderPool.ItemHolder _builder;
 
         public AppendBuilderCreator(StringBuilder appendTarget, bool mustBeEmpty)

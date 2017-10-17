@@ -47,13 +47,7 @@ namespace NLog.Internal
         /// <summary>
         /// Gets the wrapper around ConfigurationManager.AppSettings.
         /// </summary>
-        public NameValueCollection AppSettings
-        {
-            get
-            {
-                return System.Configuration.ConfigurationManager.AppSettings;
-            }
-        }
+        public NameValueCollection AppSettings => System.Configuration.ConfigurationManager.AppSettings;
     }
 }
 

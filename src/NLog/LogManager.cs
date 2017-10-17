@@ -72,18 +72,15 @@ namespace NLog
         /// Gets the <see cref="NLog.LogFactory" /> instance used in the <see cref="LogManager"/>.
         /// </summary>
         /// <remarks>Could be used to pass the to other methods</remarks>
-        public static LogFactory LogFactory
-        {
-            get { return factory; }
-        }
+        public static LogFactory LogFactory => factory;
 
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
         public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged
         {
-            add { factory.ConfigurationChanged += value; }
-            remove { factory.ConfigurationChanged -= value; }
+            add => factory.ConfigurationChanged += value;
+            remove => factory.ConfigurationChanged -= value;
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
@@ -92,8 +89,8 @@ namespace NLog
         /// </summary>
         public static event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded
         {
-            add { factory.ConfigurationReloaded += value; }
-            remove { factory.ConfigurationReloaded -= value; }
+            add => factory.ConfigurationReloaded += value;
+            remove => factory.ConfigurationReloaded -= value;
         }
 #endif
         /// <summary>
@@ -102,8 +99,8 @@ namespace NLog
         /// </summary>
         public static bool ThrowExceptions
         {
-            get { return factory.ThrowExceptions; }
-            set { factory.ThrowExceptions = value; }
+            get => factory.ThrowExceptions;
+            set => factory.ThrowExceptions = value;
         }
 
         /// <summary>
@@ -117,8 +114,8 @@ namespace NLog
         /// </remarks>
         public static bool? ThrowConfigExceptions
         {
-            get { return factory.ThrowConfigExceptions; }
-            set { factory.ThrowConfigExceptions = value; }
+            get => factory.ThrowConfigExceptions;
+            set => factory.ThrowConfigExceptions = value;
         }
 
         /// <summary>
@@ -127,8 +124,8 @@ namespace NLog
         /// </summary>
         public static bool KeepVariablesOnReload
         {
-            get { return factory.KeepVariablesOnReload; }
-            set { factory.KeepVariablesOnReload = value; }
+            get => factory.KeepVariablesOnReload;
+            set => factory.KeepVariablesOnReload = value;
         }
 
 
@@ -138,8 +135,8 @@ namespace NLog
         /// </summary>
         public static LoggingConfiguration Configuration
         {
-            get { return factory.Configuration; }
-            set { factory.Configuration = value; }
+            get => factory.Configuration;
+            set => factory.Configuration = value;
         }
 
         /// <summary>
@@ -147,8 +144,8 @@ namespace NLog
         /// </summary>
         public static LogLevel GlobalThreshold
         {
-            get { return factory.GlobalThreshold; }
-            set { factory.GlobalThreshold = value; }
+            get => factory.GlobalThreshold;
+            set => factory.GlobalThreshold = value;
         }
 
         /// <summary>
@@ -159,7 +156,7 @@ namespace NLog
         public static GetCultureInfo DefaultCultureInfo
         {
             get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
-            set { throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo."); }
+            set => throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo.");
         }
 
         /// <summary>
