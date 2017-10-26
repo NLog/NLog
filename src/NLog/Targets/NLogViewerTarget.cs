@@ -35,9 +35,9 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using Config;
-    using LayoutRenderers;
-    using Layouts;
+    using NLog.Config;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
 
     /// <summary>
     /// Sends log messages to the remote instance of NLog Viewer. 
@@ -157,7 +157,6 @@ namespace NLog.Targets
         }
 
 #if !SILVERLIGHT
-
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
         /// </summary>
@@ -178,6 +177,15 @@ namespace NLog.Targets
             set => Renderer.IncludeNdlc = value;
         }
 
+        /// <summary>
+        /// Gets or sets the NDLC item separator.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public string NdlcItemSeparator
+        {
+            get => Renderer.NdlcItemSeparator;
+            set => Renderer.NdlcItemSeparator = value;
+        }
 #endif
 
         /// <summary>
