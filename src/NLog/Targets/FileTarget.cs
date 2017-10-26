@@ -36,8 +36,6 @@
 #define SupportsMutex
 #endif
 
-using NLog.Targets.FileArchiveModes;
-
 namespace NLog.Targets
 {
     using System;
@@ -50,12 +48,13 @@ namespace NLog.Targets
 #endif
     using System.Text;
     using System.Threading;
-    using Common;
-    using Config;
-    using Internal;
-    using Internal.FileAppenders;
-    using Layouts;
-    using Time;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Internal.FileAppenders;
+    using NLog.Layouts;
+    using NLog.Targets.FileArchiveModes;
+    using NLog.Time;
 
     /// <summary>
     /// Writes log messages to one or more files.
@@ -860,29 +859,31 @@ namespace NLog.Targets
             }
             else if (ConcurrentWrites)
             {
-#if !SupportsMutex
-                return RetryingMultiProcessFileAppender.TheFactory;
-#else
+#if SupportsMutex
+                if (!ForceMutexConcurrentWrites)
+                {
 #if MONO
-                if (PlatformDetector.IsUnix)
-                {
-                    return UnixMultiProcessFileAppender.TheFactory;
-                }
+                    if (PlatformDetector.IsUnix)
+                    {
+                        return UnixMultiProcessFileAppender.TheFactory;
+                    }
 #elif !NETSTANDARD
-                if (!ForceMutexConcurrentWrites && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
-                {
-                    return WindowsMultiProcessFileAppender.TheFactory;
-                }
+                    if (PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
+                    {
+                        return WindowsMultiProcessFileAppender.TheFactory;
+                    }
 #endif
+                }
+
                 if (PlatformDetector.SupportsSharableMutex)
                 {
                     return MutexMultiProcessFileAppender.TheFactory;
                 }
                 else
+#endif  // SupportsMutex
                 {
                     return RetryingMultiProcessFileAppender.TheFactory;
                 }
-#endif  // SupportsMutex
             }
             else if (IsArchivingEnabled())
                 return CountingSingleProcessFileAppender.TheFactory;

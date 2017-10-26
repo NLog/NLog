@@ -44,7 +44,7 @@ namespace NLog.Targets.FileArchiveModes
     /// </summary>
     sealed class FileArchiveModeRolling : IFileArchiveMode
     {
-        public bool AttemptCleanupOnInitializeFile(string initializeFile, int maxArchiveFiles)
+        public bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
         {
             return false;   // For historic reasons, then cleanup of rolling archives are not done on startup
         }

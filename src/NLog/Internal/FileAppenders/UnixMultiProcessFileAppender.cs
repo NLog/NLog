@@ -60,9 +60,9 @@ namespace NLog.Internal.FileAppenders
     /// processes are trying to write to the same file, because setting the file
     /// pointer to the end of the file and appending can be made one operation.
     /// </remarks>
-    internal class UnixMultiProcessFileAppender : BaseFileAppender
+    internal class UnixMultiProcessFileAppender : BaseMutexFileAppender
     {
-        private UnixStream file;
+        private UnixStream _file;
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
@@ -104,25 +104,25 @@ namespace NLog.Internal.FileAppenders
 
             try
             {
-                this.file = new UnixStream(fd, true);
+                _file = new UnixStream(fd, true);
 
-                long filePosition = this.file.Position;
+                long filePosition = _file.Position;
                 if (fileExists || filePosition > 0)
                 {
                     if (fileInfo != null)
                     {
-                        this.CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => File.GetCreationTimeUtc(f.FullName), (f) => { f.Refresh(); return f.LastStatusChangeTimeUtc; }, (f) => DateTime.UtcNow).Value;
+                        CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => File.GetCreationTimeUtc(f.FullName), (f) => { f.Refresh(); return f.LastStatusChangeTimeUtc; }, (f) => DateTime.UtcNow).Value;
                     }
                     else
                     {
-                        this.CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileName, (f) => File.GetCreationTimeUtc(f), (f) => DateTime.UtcNow).Value;
+                        CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileName, (f) => File.GetCreationTimeUtc(f), (f) => DateTime.UtcNow).Value;
                     }
                 }
                 else
                 {
                     // We actually created the file and eventually concurrent processes 
-                    this.CreationTimeUtc = DateTime.UtcNow;
-                    File.SetCreationTimeUtc(this.FileName, this.CreationTimeUtc);
+                    CreationTimeUtc = DateTime.UtcNow;
+                    File.SetCreationTimeUtc(FileName, CreationTimeUtc);
                 }
             }
             catch
@@ -140,9 +140,9 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            if (this.file == null)
+            if (_file == null)
                 return;
-            this.file.Write(bytes, offset, count);
+            _file.Write(bytes, offset, count);
         }
 
         /// <summary>
@@ -150,12 +150,13 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            if (this.file == null)
+            if (_file == null)
                 return;
+
             InternalLogger.Trace("Closing '{0}'", FileName);
             try
             {
-                this.file.Close();
+                _file?.Close();
             }
             catch (Exception ex)
             {
@@ -165,7 +166,7 @@ namespace NLog.Internal.FileAppenders
             }
             finally
             {
-                this.file = null;
+                _file = null;
             }
         }
         
@@ -176,7 +177,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>The file creation time.</returns>
         public override DateTime? GetFileCreationTimeUtc()
         {
-            return this.CreationTimeUtc;    // File is kept open, so creation time is static
+            return CreationTimeUtc;    // File is kept open, so creation time is static
         }
         
         /// <summary>

@@ -41,7 +41,7 @@ namespace NLog.Targets.FileArchiveModes
     /// Dynamically converts a non-template archiveFilePath into a correct archiveFilePattern.
     /// Before called the original IFileArchiveMode, that has been wrapped by this
     /// </summary>
-    class FileArchiveModeDynamicTemplate : IFileArchiveMode
+    sealed class FileArchiveModeDynamicTemplate : IFileArchiveMode
     {
         private readonly IFileArchiveMode _archiveHelper;
 
@@ -56,9 +56,9 @@ namespace NLog.Targets.FileArchiveModes
             _archiveHelper = archiveHelper;
         }
 
-        public bool AttemptCleanupOnInitializeFile(string initializeFile, int maxArchiveFiles)
+        public bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
         {
-            return _archiveHelper.AttemptCleanupOnInitializeFile(initializeFile, maxArchiveFiles);
+            return _archiveHelper.AttemptCleanupOnInitializeFile(archiveFilePath, maxArchiveFiles);
         }
 
         public IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles)
