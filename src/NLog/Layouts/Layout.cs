@@ -37,9 +37,9 @@ namespace NLog.Layouts
     using System.Linq;
     using System.ComponentModel;
     using System.Text;
-    using Config;
-    using Internal;
-    using Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Common;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
@@ -279,7 +279,7 @@ namespace NLog.Layouts
 
         internal void PerformObjectScanning()
         {
-            var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<object>(this);
+            var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<object>(true, this);
 
             // determine whether the layout is thread-agnostic
             // layout is thread agnostic if it is thread-agnostic and 

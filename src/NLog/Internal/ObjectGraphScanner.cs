@@ -37,8 +37,8 @@ namespace NLog.Internal
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using Common;
-    using Config;
+    using NLog.Common;
+    using NLog.Config;
 
     /// <summary>
     /// Scans (breadth-first) the object graph following all the edges whose are 
@@ -52,9 +52,10 @@ namespace NLog.Internal
         /// from any of the given root objects when traversing the object graph over public properties.
         /// </summary>
         /// <typeparam name="T">Type of the objects to return.</typeparam>
+        /// <param name="aggressiveSearch">Also search the properties of the wanted objects.</param>
         /// <param name="rootObjects">The root objects.</param>
         /// <returns>Ordered list of objects implementing T.</returns>
-        public static List<T> FindReachableObjects<T>(params object[] rootObjects)
+        public static List<T> FindReachableObjects<T>(bool aggressiveSearch, params object[] rootObjects)
             where T : class
         {
             InternalLogger.Trace("FindReachableObject<{0}>:", typeof(T));
@@ -63,14 +64,14 @@ namespace NLog.Internal
 
             foreach (var rootObject in rootObjects)
             {
-                ScanProperties(result, rootObject, 0, visitedObjects);
+                ScanProperties(aggressiveSearch, result, rootObject, 0, visitedObjects);
             }
 
             return result.ToList();
         }
 
         /// <remarks>ISet is not there in .net35, so using HashSet</remarks>
-        private static void ScanProperties<T>(List<T> result, object o, int level, HashSet<object> visitedObjects)
+        private static void ScanProperties<T>(bool aggressiveSearch, List<T> result, object o, int level, HashSet<object> visitedObjects)
             where T : class
         {
             if (o == null)
@@ -101,6 +102,10 @@ namespace NLog.Internal
             if (t != null)
             {
                 result.Add(t);
+                if (!aggressiveSearch)
+                {
+                    return;
+                }
             }
 
             if (InternalLogger.IsTraceEnabled)
@@ -154,7 +159,7 @@ namespace NLog.Internal
                             elements.Add(item);
                         }
                     }
-                    ScanPropertiesList(result, elements, level + 1, visitedObjects);
+                    ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
                 }
                 else
                 {
@@ -164,7 +169,7 @@ namespace NLog.Internal
                         //new list to prevent: Collection was modified after the enumerator was instantiated.
                         var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
                         //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
-                        ScanPropertiesList(result, elements, level + 1, visitedObjects);
+                        ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
                     }
                     else
                     {
@@ -174,17 +179,17 @@ namespace NLog.Internal
                             continue;   // .NET native doesn't always allow reflection of System-types (Ex. Encoding)
                         }
 #endif
-                        ScanProperties(result, value, level + 1, visitedObjects);
+                        ScanProperties(aggressiveSearch, result, value, level + 1, visitedObjects);
                     }
                 }
             }
         }
 
-        private static void ScanPropertiesList<T>(List<T> result, IEnumerable<object> elements, int level, HashSet<object> visitedObjects) where T : class
+        private static void ScanPropertiesList<T>(bool aggressiveSearch, List<T> result, IEnumerable<object> elements, int level, HashSet<object> visitedObjects) where T : class
         {
             foreach (object element in elements)
             {
-                ScanProperties(result, element, level, visitedObjects);
+                ScanProperties(aggressiveSearch, result, element, level, visitedObjects);
             }
         }
     }

@@ -41,10 +41,10 @@ namespace NLog.Config
 
     using JetBrains.Annotations;
 
-    using Common;
-    using Internal;
-    using Layouts;
-    using Targets;
+    using NLog.Common;
+    using NLog.Internal;
+    using NLog.Layouts;
+    using NLog.Targets;
 
     /// <summary>
     /// Keeps logging configuration and provides simple API
@@ -516,7 +516,7 @@ namespace NLog.Config
                 roots.Add(target);
             }
 
-            _configItems = ObjectGraphScanner.FindReachableObjects<object>(roots.ToArray());
+            _configItems = ObjectGraphScanner.FindReachableObjects<object>(true, roots.ToArray());
 
             // initialize all config items starting from most nested first
             // so that whenever the container is initialized its children have already been
