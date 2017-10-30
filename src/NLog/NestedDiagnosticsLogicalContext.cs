@@ -36,8 +36,8 @@ namespace NLog
 {
 #if !SILVERLIGHT
     using System;
-    using Internal;
-	using System.Linq;
+    using System.Linq;
+    using NLog.Internal;
 
     /// <summary>
     /// Async version of <see cref="NestedDiagnosticsContext" /> - a logical context structure that keeps a stack
@@ -74,19 +74,61 @@ namespace NLog
         /// <returns>The top message, which is removed from the stack, as a string value.</returns>
         public static string Pop(IFormatProvider formatProvider)
         {
-            return FormatHelper.ConvertToString(PopObject(), formatProvider);
+            return FormatHelper.ConvertToString(PopObject() ?? string.Empty, formatProvider);
         }
 
         /// <summary>
-        /// Pops the top message off the current stack
+        /// Pops the top message off the current NDLC stack
         /// </summary>
-        /// <returns>The top message which is no longer on the stack.</returns>
+        /// <returns>The object from the top of the NDLC stack, if defined; otherwise <c>null</c>.</returns>
         public static object PopObject()
         {
             var current = GetThreadLocal();
             if (current != null)
                 SetThreadLocal(current.Parent);
-            return current != null ? current.Value : string.Empty;
+            return current != null ? current.Value : null;
+        }
+
+        /// <summary>
+        /// Peeks the top object on the current NDLC stack
+        /// </summary>
+        /// <returns>The object from the top of the NDLC stack, if defined; otherwise <c>null</c>.</returns>
+        public static object PeekObject()
+        {
+            return PeekContext(false)?.Value;
+        }
+
+        /// <summary>
+        /// Peeks the current scope, and returns its start time
+        /// </summary>
+        /// <returns>Scope Creation Time</returns>
+        internal static DateTime PeekTopScopeBeginTime()
+        {
+            return PeekContext(false)?.CreatedTime ?? DateTime.MinValue;
+        }
+
+        /// <summary>
+        /// Peeks the first scope, and returns its start time
+        /// </summary>
+        /// <returns>Scope Creation Time</returns>
+        internal static DateTime PeekBottomScopeBeginTime()
+        {
+            return PeekContext(true)?.CreatedTime ?? DateTime.MinValue;
+        }
+
+        private static INestedContext PeekContext(bool bottomScope)
+        {
+            var current = GetThreadLocal();
+            if (current != null)
+            {
+                if (bottomScope)
+                {
+                    while (current.Parent != null)
+                        current = current.Parent;
+                }
+                return current;
+            }
+            return null;
         }
 
         /// <summary>
@@ -141,6 +183,7 @@ namespace NLog
             INestedContext Parent { get; }
             int FrameLevel { get; }
             object Value { get; }
+            DateTime CreatedTime { get; }
         }
 
 #if !NETSTANDARD1_5
@@ -151,12 +194,14 @@ namespace NLog
             public INestedContext Parent { get; private set; }
             public T Value { get; private set; }
             object INestedContext.Value => Value;
+            public DateTime CreatedTime { get; private set; }
             public int FrameLevel { get; private set; }
 
             public NestedContext(INestedContext parent, T value)
             {
                 Parent = parent;
                 Value = value;
+                CreatedTime = DateTime.UtcNow; // Low time resolution, but okay fast
                 FrameLevel = parent != null ? parent.FrameLevel + 1 : 1; 
             }
 

@@ -167,12 +167,12 @@ namespace NLog.UnitTests.LayoutRenderers
             }
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.PopObject());
+            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.Pop());
             NestedDiagnosticsLogicalContext.Push("zzz");
             NestedDiagnosticsLogicalContext.Push("yyy");
-            Assert.Equal("yyy", NestedDiagnosticsLogicalContext.PopObject());
+            Assert.Equal("yyy", NestedDiagnosticsLogicalContext.Pop());
             NestedDiagnosticsLogicalContext.Clear();
-            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.PopObject());
+            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.Pop());
         }
 
         [Fact]
@@ -289,6 +289,82 @@ namespace NLog.UnitTests.LayoutRenderers
             NestedDiagnosticsLogicalContext.Clear();
             LogManager.GetLogger("A").Debug("2");
             AssertDebugLastMessage("debug", " 2");
+        }
+
+        [Fact]
+        public void NDLCTimingTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${ndlc}|${ndlctiming:CurrentScope=false:ScopeBeginTime=true:Format=yyyy-MM-dd HH\:mm\:ss}|${ndlctiming:CurrentScope=false:ScopeBeginTime=false:Format=fff}|${ndlctiming:CurrentScope=true:ScopeBeginTime=true:Format=HH\:mm\:ss.fff}|${ndlctiming:CurrentScope=true:ScopeBeginTime=false:Format=fffffff}|${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            NestedDiagnosticsLogicalContext.Clear();
+            LogManager.GetLogger("A").Debug("0");
+            AssertDebugLastMessage("debug", "|||||0");
+            using (NestedDiagnosticsLogicalContext.Push("ala"))
+            {
+                LogManager.GetLogger("A").Debug("a");
+                var measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
+                Assert.Equal(6, measurements.Length);
+                Assert.Equal("ala", measurements[0]);
+#if !NET3_5
+                Assert.InRange(int.Parse(measurements[2]), 0, 999);
+                Assert.InRange(int.Parse(measurements[4]), 0, 9999999);
+#endif
+                Assert.Equal("a", measurements[measurements.Length-1]);
+
+                System.Threading.Thread.Sleep(10);
+
+                LogManager.GetLogger("A").Debug("b");
+                measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
+                Assert.Equal("ala", measurements[0]);
+#if !NET3_5
+                Assert.InRange(int.Parse(measurements[2]), 10, 999);
+                Assert.InRange(int.Parse(measurements[4]), 100000, 9999999);
+#endif
+                Assert.Equal("b", measurements[measurements.Length - 1]);
+
+                using (NestedDiagnosticsLogicalContext.Push("ma"))
+                {
+                    LogManager.GetLogger("A").Debug("a");
+                    measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
+                    Assert.Equal(6, measurements.Length);
+                    Assert.Equal("ala ma", measurements[0]);
+#if !NET3_5
+                    Assert.InRange(int.Parse(measurements[2]), 10, 999);
+                    Assert.InRange(int.Parse(measurements[4]), 0, 9999999);
+#endif
+                    Assert.Equal("a", measurements[measurements.Length - 1]);
+
+                    System.Threading.Thread.Sleep(10);
+
+                    LogManager.GetLogger("A").Debug("b");
+                    measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
+                    Assert.Equal(6, measurements.Length);
+                    Assert.Equal("ala ma", measurements[0]);
+#if !NET3_5
+                    Assert.InRange(int.Parse(measurements[2]), 20, 999);
+                    Assert.InRange(int.Parse(measurements[4]), 100000, 9999999);
+#endif
+                    Assert.Equal("b", measurements[measurements.Length - 1]);
+                }
+
+                LogManager.GetLogger("A").Debug("c");
+                measurements = GetDebugLastMessage("debug").Split(new[] { '|' }, System.StringSplitOptions.RemoveEmptyEntries);
+                Assert.Equal("ala", measurements[0]);
+#if !NET3_5
+                Assert.InRange(int.Parse(measurements[2]), 20, 999);
+                Assert.InRange(int.Parse(measurements[4]), 200000, 9999999);
+#endif
+                Assert.Equal("c", measurements[measurements.Length - 1]);
+            }
+
+            LogManager.GetLogger("A").Debug("0");
+            AssertDebugLastMessage("debug", "|||||0");
         }
     }
 }
