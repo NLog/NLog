@@ -40,6 +40,7 @@ namespace NLog.Layouts
     using NLog.Config;
     using NLog.Internal;
     using NLog.Common;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
@@ -351,6 +352,16 @@ namespace NLog.Layouts
         {
             ConfigurationItemFactory.Default.Layouts
                 .RegisterDefinition(name, layoutType);
+        }
+
+        internal string ToStringWithNestedItems<T>(IList<T> nestedItems, Func<T, string> nextItemToString)
+        {
+            if (nestedItems?.Count > 0)
+            {
+                var nestedNames = nestedItems.Select(c => nextItemToString(c)).ToArray();
+                return string.Concat(GetType().Name, "=", string.Join("|", nestedNames));
+            }
+            return base.ToString();
         }
     }
 }

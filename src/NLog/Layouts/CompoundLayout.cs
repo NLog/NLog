@@ -34,9 +34,10 @@
 
 namespace NLog.Layouts
 {
-    using Config;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// A layout containing one or more nested layouts.
@@ -103,6 +104,15 @@ namespace NLog.Layouts
             foreach (var layout in Layouts)
                 layout.Close();
             base.CloseLayout();
+        }
+
+        /// <summary>
+        /// Generate description of Compound Layout
+        /// </summary>
+        /// <returns>Compound Layout String Description</returns>
+        public override string ToString()
+        {
+            return ToStringWithNestedItems(Layouts, l => l.ToString());
         }
     }
 }

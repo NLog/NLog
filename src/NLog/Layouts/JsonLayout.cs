@@ -34,6 +34,7 @@
 namespace NLog.Layouts
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Text;
     using Config;
@@ -271,6 +272,15 @@ namespace NLog.Layouts
                 sb.Append('"');
             }
             return true;
+        }
+
+        /// <summary>
+        /// Generate description of JSON Layout
+        /// </summary>
+        /// <returns>JSON Layout String Description</returns>
+        public override string ToString()
+        {
+            return ToStringWithNestedItems(Attributes, a => string.Concat(a.Name, "-", a.Layout?.ToString()));
         }
     }
 }

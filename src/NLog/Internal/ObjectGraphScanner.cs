@@ -98,6 +98,11 @@ namespace NLog.Internal
 
             visitedObjects.Add(o);
 
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, o);
+            }
+
             var t = o as T;
             if (t != null)
             {
@@ -106,11 +111,6 @@ namespace NLog.Internal
                 {
                     return;
                 }
-            }
-
-            if (InternalLogger.IsTraceEnabled)
-            {
-                InternalLogger.Trace("{0}Scanning {1} '{2}'", new string(' ', level), type.Name, o);
             }
 
             foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(type))

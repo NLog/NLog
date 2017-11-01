@@ -35,11 +35,12 @@ namespace NLog.Layouts
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Text;
-    using Common;
-    using Config;
-    using Internal;
-    using LayoutRenderers;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.LayoutRenderers;
 
     /// <summary>
     /// Represents a string with embedded placeholders that can render contextual information.
@@ -209,7 +210,12 @@ namespace NLog.Layouts
         /// </returns>
         public override string ToString()
         {
-            return "'" + Text + "'";
+            if (string.IsNullOrEmpty(Text) && Renderers?.Count > 0)
+            {
+                return ToStringWithNestedItems(Renderers, r => r.ToString());
+            }
+
+            return string.Concat("'", Text, "'");
         }
 
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
