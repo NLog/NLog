@@ -37,14 +37,13 @@ namespace NLog.LayoutRenderers
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
-    using System.IO;
     using System.Reflection;
     using System.Text;
     using System.Xml;
-    using Internal.Fakeables;
-    using Config;
-    using Internal;
-    using Targets;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Internal.Fakeables;
+    using NLog.Targets;
 
     /// <summary>
     /// XML event description compatible with log4j, Chainsaw and NLogViewer.
@@ -74,7 +73,7 @@ namespace NLog.LayoutRenderers
         {
             IncludeNLogData = true;
             NdcItemSeparator = " ";
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
             NdlcItemSeparator = " ";
 #endif
 
@@ -250,7 +249,7 @@ namespace NLog.LayoutRenderers
                 {
                     ndcContent = string.Join(NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages());
                 }
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
                 if (IncludeNdlc)
                 {
                     if (ndcContent != null)

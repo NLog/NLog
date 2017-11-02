@@ -33,7 +33,7 @@
 
 namespace NLog.Layouts
 {
-    using LayoutRenderers;
+    using NLog.LayoutRenderers;
 
     /// <summary>
     /// A specialized layout that renders Log4j-compatible XML events.
@@ -61,7 +61,9 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdc { get => Renderer.IncludeMdc;
+        public bool IncludeMdc
+        {
+            get => Renderer.IncludeMdc;
             set => Renderer.IncludeMdc = value;
         }
 
@@ -69,7 +71,9 @@ namespace NLog.Layouts
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeAllProperties { get => Renderer.IncludeAllProperties;
+        public bool IncludeAllProperties
+        {
+            get => Renderer.IncludeAllProperties;
             set => Renderer.IncludeAllProperties = value;
         }
 
@@ -77,17 +81,20 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdc { get => Renderer.IncludeNdc;
+        public bool IncludeNdc
+        {
+            get => Renderer.IncludeNdc;
             set => Renderer.IncludeNdc = value;
         }
 
 #if !SILVERLIGHT
-
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdlc { get => Renderer.IncludeMdlc;
+        public bool IncludeMdlc
+        {
+            get => Renderer.IncludeMdlc;
             set => Renderer.IncludeMdlc = value;
         }
 
@@ -95,10 +102,11 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public bool IncludeNdlc { get => Renderer.IncludeNdlc;
+        public bool IncludeNdlc
+        {
+            get => Renderer.IncludeNdlc;
             set => Renderer.IncludeNdlc = value;
         }
-
 #endif
 
         /// <summary>
