@@ -40,9 +40,9 @@ namespace NLog.Targets
     using System.Net;
     using System.Text;
     using System.Xml;
-    using Common;
-    using Config;
-    using Internal;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Calls the specified web service on each log message.
@@ -136,10 +136,32 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
         [DefaultValue("Soap11")]
-        public WebServiceProtocol Protocol { get => _activeProtocol.Key;
+        public WebServiceProtocol Protocol
+        {
+            get => _activeProtocol.Key;
             set => _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(value, null);
         }
         private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>();
+
+#if !SILVERLIGHT
+        /// <summary>
+        /// Gets or sets the proxy configuration when calling web service
+        /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
+        [DefaultValue("DefaultWebProxy")]
+        public WebServiceProxyType ProxyType
+        {
+            get => _activeProxy.Key;
+            set => _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(value, null);
+        }
+        private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>();
+#endif
+
+        /// <summary>
+        /// Gets or sets the custom proxy address, include port separated by a colon
+        /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
+        public string ProxyAddress { get; set; }
 
         /// <summary>
         /// Should we include the BOM (Byte-order-mark) for UTF? Influences the <see cref="Encoding"/> property.
@@ -424,12 +446,45 @@ namespace NLog.Targets
         {
             Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
             Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
+
+#if !SILVERLIGHT
+            switch (ProxyType)
+            {
+                case WebServiceProxyType.NoProxy:
+                    request.Proxy = null;
+                    break;
+#if!NETSTANDARD1_5
+                case WebServiceProxyType.AutoProxy:
+                    if (_activeProxy.Value == null)
+                    {
+                        IWebProxy proxy = WebRequest.GetSystemWebProxy();
+                        proxy.Credentials = CredentialCache.DefaultCredentials;
+                        _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(ProxyType, proxy);
+                    }
+                    request.Proxy = _activeProxy.Value;
+                    break;
+                case WebServiceProxyType.ProxyAddress:
+                    if (!string.IsNullOrEmpty(ProxyAddress))
+                    {
+                        if (_activeProxy.Value == null)
+                        {
+                            IWebProxy proxy = new WebProxy(ProxyAddress, true);
+                            _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(ProxyType, proxy);
+                        }
+                        request.Proxy = _activeProxy.Value;
+                    }
+                    break;
+#endif
+            }
+#endif
+
 #if !SILVERLIGHT && !NETSTANDARD1_5
-            if (PreAuthenticate)
+            if (PreAuthenticate || ProxyType == WebServiceProxyType.AutoProxy)
             {
                 request.PreAuthenticate = true;
             }
 #endif
+
             DoInvoke(parameters, continuation, request, begin, getStream);
         }
 
