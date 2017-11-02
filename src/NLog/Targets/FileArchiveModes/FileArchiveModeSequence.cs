@@ -52,7 +52,7 @@ namespace NLog.Targets.FileArchiveModes
             _archiveDateFormat = archiveDateFormat;
         }
 
-        public override bool AttemptCleanupOnInitializeFile(string initializeFile, int maxArchiveFiles)
+        public override bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
         {
             return false;   // For historic reasons, then cleanup of sequence archives are not done on startup
         }

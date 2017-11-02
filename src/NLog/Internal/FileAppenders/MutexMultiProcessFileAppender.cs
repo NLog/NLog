@@ -40,11 +40,11 @@
 
 namespace NLog.Internal.FileAppenders
 {
-    using Common;
     using System;
     using System.IO;
     using System.Security;
     using System.Threading;
+    using NLog.Common;
 
     /// <summary>
     /// Provides a multiprocess-safe atomic file appends while
@@ -63,7 +63,7 @@ namespace NLog.Internal.FileAppenders
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         private FileStream _fileStream;
-        private FileCharacteristicsHelper _fileCharacteristicsHelper;
+        private readonly FileCharacteristicsHelper _fileCharacteristicsHelper;
         private Mutex _mutex;
 
         /// <summary>
@@ -142,39 +142,39 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public override void Close()
         {
-            InternalLogger.Trace("Closing '{0}'", FileName);
-            if (_mutex != null)
+            if (_mutex == null && _fileStream == null)
             {
-                try
-                {
-                    _mutex.Close();
-                }
-                catch (Exception ex)
-                {
-                    // Swallow exception as the mutex now is in final state (abandoned instead of closed)
-                    InternalLogger.Warn(ex, "Failed to close mutex: '{0}'", FileName);
-                }
-                finally
-                {
-                    _mutex = null;
-                }
+                return;
             }
 
-            if (_fileStream != null)
+            InternalLogger.Trace("Closing '{0}'", FileName);
+            try
             {
-                try
-                {
-                    _fileStream.Close();
-                }
-                catch (Exception ex)
-                {
-                    // Swallow exception as the file-stream now is in final state (broken instead of closed)
-                    InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
-                }
-                finally
-                {
-                    _fileStream = null;
-                }
+                _mutex?.Close();
+            }
+            catch (Exception ex)
+            {
+                // Swallow exception as the mutex now is in final state (abandoned instead of closed)
+                InternalLogger.Warn(ex, "Failed to close mutex: '{0}'", FileName);
+            }
+            finally
+            {
+                _mutex = null;
+            }
+
+            try
+            {
+                _fileStream?.Close();
+            }
+            catch (Exception ex)
+            {
+                // Swallow exception as the file-stream now is in final state (broken instead of closed)
+                InternalLogger.Warn(ex, "Failed to close file: '{0}'", FileName);
+                System.Threading.Thread.Sleep(1);   // Artificial delay to avoid hammering a bad file location
+            }
+            finally
+            {
+                _fileStream = null;
             }
 
             FileTouched();
