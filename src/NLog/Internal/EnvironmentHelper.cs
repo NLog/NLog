@@ -33,7 +33,6 @@
 
 namespace NLog.Internal
 {
-
     using System;
     using System.Security;
 
@@ -51,14 +50,13 @@ namespace NLog.Internal
 #else
                 string newline = "\r\n";
 #endif
-
                 return newline;
             }
         }
 
-#if !SILVERLIGHT
         internal static string GetSafeEnvironmentVariable(string name)
         {
+#if !SILVERLIGHT
             try
             {
                 string s = Environment.GetEnvironmentVariable(name);
@@ -72,9 +70,11 @@ namespace NLog.Internal
             }
             catch (SecurityException)
             {
-                return string.Empty;
+                return null;
             }
-        }
+#else
+            return null;
 #endif
+        }
     }
 }

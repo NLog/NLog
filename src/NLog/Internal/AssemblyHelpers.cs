@@ -89,7 +89,7 @@ using System.Windows;
         {
             InternalLogger.Info("Loading assembly: {0}", assemblyName);
 
-#if NETSTANDARD || WINDOWS_PHONE
+#if NETSTANDARD1_5 || WINDOWS_PHONE
             var name = new AssemblyName(assemblyName);
             return Assembly.Load(name);
 #elif SILVERLIGHT && !WINDOWS_PHONE

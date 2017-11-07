@@ -56,37 +56,70 @@ namespace NLog.Internal.Fakeables
         {
 #if !SILVERLIGHT
             _currentAppDomain = appDomain;
+#endif
             try
             {
-                BaseDirectory = appDomain.BaseDirectory;
+                BaseDirectory = LookupBaseDirectory(appDomain);
             }
-            catch (System.Security.SecurityException ex)
+            catch (Exception ex)
             {
                 InternalLogger.Warn(ex, "AppDomain.BaseDirectory Failed");
                 BaseDirectory = string.Empty;
             }
-#if !NETSTANDARD
+
             try
             {
-                ConfigurationFile = appDomain.SetupInformation.ConfigurationFile;
+                ConfigurationFile = LookupConfigurationFile(appDomain);
             }
-            catch (System.Security.SecurityException ex)
+            catch (Exception ex)
             {
                 InternalLogger.Warn(ex, "AppDomain.SetupInformation.ConfigurationFile Failed");
                 ConfigurationFile = string.Empty;
             }
 
-            string privateBinPath = appDomain.SetupInformation.PrivateBinPath;
-            PrivateBinPath = string.IsNullOrEmpty(privateBinPath)
-                                 ? ArrayHelper.Empty<string>()
-                                 : appDomain.SetupInformation.PrivateBinPath.Split(new[] {';'},
-                                                                                   StringSplitOptions.RemoveEmptyEntries);
-#else
-            PrivateBinPath = ArrayHelper.Empty<string>();
-            ConfigurationFile = string.Empty;
-#endif
+            try
+            {
+                PrivateBinPath = LookupPrivateBinPath(appDomain);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "AppDomain.SetupInformation.PrivateBinPath Failed");
+                PrivateBinPath = ArrayHelper.Empty<string>();
+            }
+
+#if !SILVERLIGHT
             FriendlyName = appDomain.FriendlyName;
             Id = appDomain.Id;
+#endif
+        }
+
+        private static string LookupBaseDirectory(AppDomain appDomain)
+        {
+#if !SILVERLIGHT
+            return appDomain.BaseDirectory;
+#else
+            return string.Empty;
+#endif
+        }
+
+        private static string LookupConfigurationFile(AppDomain appDomain)
+        {
+#if !NETSTANDARD && !SILVERLIGHT
+            return appDomain.SetupInformation.ConfigurationFile;
+#else
+            return string.Empty;
+#endif
+        }
+
+        private static string[] LookupPrivateBinPath(AppDomain appDomain)
+        {
+#if !NETSTANDARD && !SILVERLIGHT
+            string privateBinPath = appDomain.SetupInformation.PrivateBinPath;
+            return string.IsNullOrEmpty(privateBinPath)
+                                    ? ArrayHelper.Empty<string>()
+                                    : privateBinPath.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+#else
+            return ArrayHelper.Empty<string>();
 #endif
         }
 
