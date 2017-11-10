@@ -815,8 +815,10 @@ namespace NLog.UnitTests.LayoutRenderers
 #if !NETSTANDARD1_5
             Type loggerType = typeof(Logger);
             var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
-            var index = LoggerImpl.FindCallingMethodOnStackTrace(stacktrace, loggerType);
-            logEvent.SetStackTrace(stacktrace, index);
+            var stackFrames = stacktrace.GetFrames();
+            var index = LoggerImpl.FindCallingMethodOnStackTrace(stackFrames, loggerType) ?? 0;
+            int? indexLegacy = LoggerImpl.SkipToUserStackFrameLegacy(stackFrames, index);
+            logEvent.GetCallSiteInformationInternal().SetStackTrace(stacktrace, index, indexLegacy);
 #endif
             await Task.Delay(0);
             Layout l = "${callsite}";
@@ -1065,8 +1067,10 @@ namespace NLog.UnitTests.LayoutRenderers
             var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
             Type loggerType = typeof(Logger);
             var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
-            var index = LoggerImpl.FindCallingMethodOnStackTrace(stacktrace, loggerType);
-            logEvent.SetStackTrace(stacktrace, index);
+            var stackFrames = stacktrace.GetFrames();
+            var index = LoggerImpl.FindCallingMethodOnStackTrace(stackFrames, loggerType) ?? 0;
+            int? indexLegacy = LoggerImpl.SkipToUserStackFrameLegacy(stackFrames, index);
+            logEvent.GetCallSiteInformationInternal().SetStackTrace(stacktrace, index, indexLegacy);
             Layout l = "${callsite}";
             var callSite = l.Render(logEvent);
             Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);

@@ -565,11 +565,11 @@ namespace NLog.UnitTests.Fluent
             Assert.Equal(expected.Message, lastLogEvent.Message);
 
             Assert.NotNull(lastLogEvent.Properties);
-            //remove caller as they are also removed from the alleventrenders.
+
+            // TODO NLog ver. 5 - Remove these properties
             lastLogEvent.Properties.Remove("CallerMemberName");
             lastLogEvent.Properties.Remove("CallerLineNumber");
             lastLogEvent.Properties.Remove("CallerFilePath");
-
 
             Assert.Equal(expected.Properties, lastLogEvent.Properties);
             Assert.Equal(expected.LoggerName, lastLogEvent.LoggerName);

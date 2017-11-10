@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Diagnostics.CodeAnalysis;
-using NLog.MessageTemplates;
-
 namespace NLog
 {
     using System;
@@ -43,10 +40,11 @@ namespace NLog
     using System.Diagnostics;
     using System.Globalization;
     using System.Threading;
-    using Common;
-    using Internal;
-    using Layouts;
-    using Time;
+    using NLog.Common;
+    using NLog.Internal;
+    using NLog.Layouts;
+    using NLog.MessageTemplates;
+    using NLog.Time;
 
     /// <summary>
     /// Represents the logging event.
@@ -156,14 +154,14 @@ namespace NLog
         /// Gets the unique identifier of log event which is automatically generated
         /// and monotonously increasing.
         /// </summary>
-        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "ID", Justification = "Backwards compatibility")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "ID", Justification = "Backwards compatibility")]
         // ReSharper disable once InconsistentNaming
         public int SequenceID { get; private set; }
 
         /// <summary>
         /// Gets or sets the timestamp of the logging event.
         /// </summary>
-        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp", Justification = "Backwards compatibility.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp", Justification = "Backwards compatibility.")]
         public DateTime TimeStamp { get; set; }
 
         /// <summary>
@@ -171,26 +169,44 @@ namespace NLog
         /// </summary>
         public LogLevel Level { get; set; }
 
+        internal CallSiteInformation CallSiteInformation { get; private set; }
+        internal CallSiteInformation GetCallSiteInformationInternal() { return CallSiteInformation ?? (CallSiteInformation = new CallSiteInformation()); }
+
         /// <summary>
         /// Gets a value indicating whether stack trace has been set for this event.
         /// </summary>
-        public bool HasStackTrace => StackTrace != null;
+        public bool HasStackTrace => CallSiteInformation?.StackTrace != null;
 
         /// <summary>
         /// Gets the stack frame of the method that did the logging.
         /// </summary>
-        public StackFrame UserStackFrame => (StackTrace != null) ? StackTrace.GetFrame(UserStackFrameNumber) : null;
+        public StackFrame UserStackFrame => CallSiteInformation?.UserStackFrame;
 
         /// <summary>
         /// Gets the number index of the stack frame that represents the user
         /// code (not the NLog code).
         /// </summary>
-        public int UserStackFrameNumber { get; private set; }
+        public int UserStackFrameNumber => CallSiteInformation?.UserStackFrameNumberLegacy ?? CallSiteInformation?.UserStackFrameNumber ?? 0;
 
         /// <summary>
         /// Gets the entire stack trace.
         /// </summary>
-        public StackTrace StackTrace { get; private set; }
+        public StackTrace StackTrace => CallSiteInformation?.StackTrace;
+
+        /// <summary>
+        /// Gets the callsite member function name
+        /// </summary>
+        public string CallerMemberName => CallSiteInformation?.GetCallerMemberName(null, false, true, true);
+
+        /// <summary>
+        /// Gets the callsite source file path
+        /// </summary>
+        public string CallerFilePath => CallSiteInformation?.CallerFilePath;
+
+        /// <summary>
+        /// Gets the callsite source file line number
+        /// </summary>
+        public int CallerLineNumber => CallSiteInformation?.CallerLineNumber ?? 0;
 
         /// <summary>
         /// Gets or sets the exception information.
@@ -239,7 +255,7 @@ namespace NLog
         /// <summary>
         /// Gets or sets the parameter values or null if no parameters have been specified.
         /// </summary>
-        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "For backwards compatibility.")]
         public object[] Parameters
         {
             get => _parameters;
@@ -316,9 +332,7 @@ namespace NLog
             }
         }
 
-        internal PropertiesDictionary PropertiesDictionary { get => _properties;
-            set => _properties = value;
-        }
+        internal PropertiesDictionary PropertiesDictionary { get => _properties; set => _properties = value; }
 
         /// <summary>
         /// Gets the dictionary of per-event context properties.
@@ -496,8 +510,18 @@ namespace NLog
         /// <param name="userStackFrame">Index of the first user stack frame within the stack trace.</param>
         public void SetStackTrace(StackTrace stackTrace, int userStackFrame)
         {
-            StackTrace = stackTrace;
-            UserStackFrameNumber = userStackFrame;
+            GetCallSiteInformationInternal().SetStackTrace(stackTrace, userStackFrame, null);
+        }
+
+        /// <summary>
+        /// Sets the details retrieved from the Caller Information Attributes
+        /// </summary>
+        /// <param name="callerMemberName"></param>
+        /// <param name="callerFilePath"></param>
+        /// <param name="callerLineNumber"></param>
+        public void SetCallerInfo(string callerMemberName, string callerFilePath, int callerLineNumber)
+        {
+            GetCallSiteInformationInternal().SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
         }
 
         internal string AddCachedLayoutValue(Layout layout, string value)

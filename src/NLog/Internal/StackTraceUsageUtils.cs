@@ -70,6 +70,74 @@ namespace NLog.Internal
 #endif
         }
 
+        public static string GetStackFrameMethodName(MethodBase method, bool includeMethodInfo, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
+        {
+            if (method == null)
+                return null;
+
+            string methodName = method.Name;
+
+            var callerClassType = method.DeclaringType;
+            if (cleanAsyncMoveNext && methodName == "MoveNext" && callerClassType?.DeclaringType != null && callerClassType.Name.StartsWith("<"))
+            {
+                // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1.MoveNext
+                int endIndex = callerClassType.Name.IndexOf('>', 1);
+                if (endIndex > 1)
+                {
+                    methodName = callerClassType.Name.Substring(1, endIndex - 1);
+                }
+            }
+
+            // Clean up the function name if it is an anonymous delegate
+            // <.ctor>b__0
+            // <Main>b__2
+            if (cleanAnonymousDelegates && (methodName.StartsWith("<") && methodName.Contains("__") && methodName.Contains(">")))
+            {
+                int startIndex = methodName.IndexOf('<') + 1;
+                int endIndex = methodName.IndexOf('>');
+
+                methodName = methodName.Substring(startIndex, endIndex - startIndex);
+            }
+
+            if (includeMethodInfo && methodName == method.Name)
+            {
+                methodName = method.ToString();
+            }
+
+            return methodName;
+        }
+
+        public static string GetStackFrameMethodClassName(MethodBase method, bool includeNameSpace, bool cleanAsyncMoveNext, bool cleanAnonymousDelegates)
+        {
+            if (method == null)
+                return null;
+
+            var callerClassType = method.DeclaringType;
+            if (cleanAsyncMoveNext && method.Name == "MoveNext" && callerClassType?.DeclaringType != null && callerClassType.Name.StartsWith("<"))
+            {
+                // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1
+                int endIndex = callerClassType.Name.IndexOf('>', 1);
+                if (endIndex > 1)
+                {
+                    callerClassType = callerClassType.DeclaringType;
+                }
+            }
+
+            string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
+
+            if (cleanAnonymousDelegates && className != null)
+            {
+                // NLog.UnitTests.LayoutRenderers.CallSiteTests+<>c__DisplayClassa
+                int index = className.IndexOf("+<>", StringComparison.Ordinal);
+                if (index >= 0)
+                {
+                    className = className.Substring(0, index);
+                }
+            }
+
+            return className;
+        }
+
         /// <summary>
         /// Gets the fully qualified name of the class invoking the calling method, including the 
         /// namespace but not the assembly.    

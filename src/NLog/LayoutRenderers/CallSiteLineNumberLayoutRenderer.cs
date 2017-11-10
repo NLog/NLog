@@ -33,11 +33,10 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using NLog.Config;
 using NLog.Internal;
+
 #if !SILVERLIGHT
 namespace NLog.LayoutRenderers
 {
@@ -66,12 +65,10 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            StackFrame frame = logEvent.StackTrace != null ? logEvent.StackTrace.GetFrame(logEvent.UserStackFrameNumber + SkipFrames) : null;
-            if (frame != null)
+            if (logEvent.CallSiteInformation != null)
             {
-                var linenumber = frame.GetFileLineNumber();
+                int linenumber = logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
                 builder.Append(linenumber);
-
             }
         }
     }
