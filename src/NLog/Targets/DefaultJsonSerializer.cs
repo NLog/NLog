@@ -740,6 +740,6 @@ namespace NLog.Targets
             return props;
         }
 
-        private const BindingFlags PublicProperties = BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
+        private const BindingFlags PublicProperties = BindingFlags.Instance | BindingFlags.Public;
     }
 }
