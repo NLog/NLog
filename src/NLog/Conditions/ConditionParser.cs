@@ -38,9 +38,9 @@ namespace NLog.Conditions
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using Config;
-    using Internal;
-    using Layouts;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Condition parser. Turns a string representation of condition expression
@@ -91,7 +91,7 @@ namespace NLog.Conditions
             ConditionExpression expression = parser.ParseExpression();
             if (!parser._tokenizer.IsEOF())
             {
-                throw new ConditionParseException("Unexpected token: " + parser._tokenizer.TokenValue);
+                throw new ConditionParseException($"Unexpected token: {parser._tokenizer.TokenValue}");
             }
 
             return expression;
@@ -145,7 +145,7 @@ namespace NLog.Conditions
                     throw;
                 }
 
-                throw new ConditionParseException("Cannot resolve function '" + functionName + "'", exception);
+                throw new ConditionParseException($"Cannot resolve function '{functionName}'", exception);
             }
         }
 
@@ -164,7 +164,7 @@ namespace NLog.Conditions
                 _tokenizer.GetNextToken();
                 if (!_tokenizer.IsNumber())
                 {
-                    throw new ConditionParseException("Number expected, got " + _tokenizer.TokenType);
+                    throw new ConditionParseException($"Number expected, got {_tokenizer.TokenType}");
                 }
 
                 string numberString = _tokenizer.TokenValue;

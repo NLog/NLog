@@ -46,11 +46,11 @@ namespace NLog
 
     using JetBrains.Annotations;
 
-    using Common;
-    using Config;
-    using Internal;
-    using Targets;
-    using Internal.Fakeables;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Targets;
+    using NLog.Internal.Fakeables;
 
 #if SILVERLIGHT && !__IOS__ && !__ANDROID__
     using System.Windows;
@@ -1319,11 +1319,11 @@ namespace NLog
             /// <summary>
             /// Determines if two objects of the same type are equal in value.
             /// </summary>
-            /// <param name="key">Other object to compare to.</param>
+            /// <param name="other">Other object to compare to.</param>
             /// <returns>True if objects are equal, false otherwise.</returns>
-            public bool Equals(LoggerCacheKey key)
+            public bool Equals(LoggerCacheKey other)
             {
-                return (ConcreteType == key.ConcreteType) && string.Equals(key.Name, Name, StringComparison.Ordinal);
+                return (ConcreteType == other.ConcreteType) && string.Equals(other.Name, Name, StringComparison.Ordinal);
             }
         }
 
@@ -1383,7 +1383,7 @@ namespace NLog
         /// </summary>
         private class LogEnabler : IDisposable
         {
-            private LogFactory _factory;
+            private readonly LogFactory _factory;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="LogEnabler" /> class.

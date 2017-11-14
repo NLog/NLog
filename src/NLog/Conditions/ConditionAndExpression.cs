@@ -68,7 +68,7 @@ namespace NLog.Conditions
         /// <returns>A concatenated '(Left) and (Right)' string.</returns>
         public override string ToString()
         {
-            return "(" + Left + " and " + Right + ")";
+            return $"({Left} and {Right})";
         }
 
         /// <summary>

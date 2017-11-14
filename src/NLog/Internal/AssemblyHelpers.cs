@@ -44,7 +44,7 @@ using System.Windows;
     /// <summary>
     /// Helpers for <see cref="Assembly"/>.
     /// </summary>
-    internal class AssemblyHelpers
+    internal static class AssemblyHelpers
     {
         /// <summary>
         /// Load from url

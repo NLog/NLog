@@ -37,10 +37,10 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.Linq;
 
-    using Common;
-    using Config;
-    using Internal;
-    using Layouts;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Represents logging target.
@@ -234,7 +234,7 @@ namespace NLog.Targets
             var targetAttribute = GetType().GetCustomAttribute<TargetAttribute>();
             if (targetAttribute != null)
             {
-                return targetAttribute.Name + " Target[" + (Name ?? "(unnamed)") + "]";
+                return $"{targetAttribute.Name} Target[{(Name ?? "(unnamed)")}]";
             }
 
             return GetType().Name;
@@ -630,7 +630,7 @@ namespace NLog.Targets
 
         private Exception CreateInitException()
         {
-            return new NLogRuntimeException("Target " + this + " failed to initialize.", _initializeException);
+            return new NLogRuntimeException($"Target {this} failed to initialize.", _initializeException);
         }
 
         /// <summary>

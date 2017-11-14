@@ -37,7 +37,7 @@ namespace NLog
     using System.Collections.Generic;
     using System.Linq;
 
-    using Internal;
+    using NLog.Internal;
 
     /// <summary>
     /// Nested Diagnostics Context - a thread-local structure that keeps a stack
@@ -162,8 +162,8 @@ namespace NLog
         /// </summary>
         private class StackPopper : IDisposable
         {
-            private Stack<object> _stack;
-            private int _previousCount;
+            private readonly Stack<object> _stack;
+            private readonly int _previousCount;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="StackPopper" /> class.

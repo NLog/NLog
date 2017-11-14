@@ -36,7 +36,7 @@ namespace NLog.Conditions
     using System;
     using System.Globalization;
     using System.Collections.Generic;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Condition relational (<b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&lt;=</b>,
@@ -83,7 +83,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return "(" + LeftExpression + " " + GetOperatorString() + " " + RightExpression + ")";
+            return $"({LeftExpression} {GetOperatorString()} {RightExpression})";
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace NLog.Conditions
                     return comparer.Compare(leftValue, rightValue) < 0;
 
                 default:
-                    throw new NotSupportedException("Relational operator " + relationalOperator + " is not supported.");
+                    throw new NotSupportedException($"Relational operator {relationalOperator} is not supported.");
             }
         }
         

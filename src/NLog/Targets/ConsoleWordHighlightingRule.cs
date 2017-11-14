@@ -39,7 +39,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Text;
     using System.Text.RegularExpressions;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Highlighting rule for Win32 colorful console.
@@ -170,7 +170,7 @@ namespace NLog.Targets
                 regexpression = System.Text.RegularExpressions.Regex.Escape(Text);
                 if (WholeWords)
                 {
-                    regexpression = "\\b" + regexpression + "\\b";
+                    regexpression = string.Concat("\\b", regexpression, "\\b");
                 }
             }
             return regexpression;
