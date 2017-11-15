@@ -209,6 +209,16 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Gets or sets the renderer for log4j:event logger-xml-attribute (Default ${logger})
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public Layout LoggerName
+        {
+            get => Renderer.LoggerName;
+            set => Renderer.LoggerName = value;
+        }
+
+        /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a named parameter.
         /// </summary>

@@ -43,6 +43,7 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
     using NLog.Internal;
     using NLog.Internal.Fakeables;
+    using NLog.Layouts;
     using NLog.Targets;
 
     /// <summary>
@@ -189,6 +190,12 @@ namespace NLog.LayoutRenderers
         [DefaultValue(" ")]
         public string NdcItemSeparator { get; set; }
 
+        /// <summary>
+        /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public Layout LoggerName { get; set; }
+
         private readonly string _machineName;
 
         private readonly XmlWriterSettings _xmlWriterSettings;
@@ -233,7 +240,7 @@ namespace NLog.LayoutRenderers
             {
                 xtw.WriteStartElement("log4j", "event", dummyNamespace);
                 xtw.WriteAttributeSafeString("xmlns", "nlog", null, dummyNLogNamespace);
-                xtw.WriteAttributeSafeString("logger", logEvent.LoggerName);
+                xtw.WriteAttributeSafeString("logger", LoggerName != null ? LoggerName.Render(logEvent) : logEvent.LoggerName);
                 xtw.WriteAttributeSafeString("level", logEvent.Level.Name.ToUpperInvariant());
                 xtw.WriteAttributeSafeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
                 xtw.WriteAttributeSafeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
