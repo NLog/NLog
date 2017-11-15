@@ -27,6 +27,7 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5 Extended Profile</Title>
     <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
@@ -35,11 +36,13 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5 Extended Profile</Title>
     <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
@@ -52,6 +55,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
   </ItemGroup>
 

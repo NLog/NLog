@@ -38,6 +38,7 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
@@ -46,18 +47,20 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DefineConstants>$(DefineConstants);NET4_0;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DefineConstants>$(DefineConstants);NET3_5;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
     <Title>NLog for NetStandard 1.5</Title>
-    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD1_5</DefineConstants>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD1_5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
@@ -77,6 +80,7 @@
     <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT4;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
@@ -87,6 +91,7 @@
     <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT5;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
@@ -97,6 +102,7 @@
     <SilverlightVersion Condition="'$(SilverlightVersion)' == ''">$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DefineConstants>$(DefineConstants);SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
   </PropertyGroup>
 
@@ -105,10 +111,11 @@
     <TargetFrameworkIdentifier>MonoAndroid</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <LanguageTargets Condition="Exists('$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets')">$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets</LanguageTargets>
-    <DefineConstants>$(DefineConstants);__ANDROID__</DefineConstants>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DefineConstants>$(DefineConstants);__ANDROID__</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'xamarinios10' ">
@@ -116,8 +123,9 @@
     <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
     <LanguageTargets Condition="Exists('$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets')">$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets</LanguageTargets>
-    <DefineConstants>$(DefineConstants);__IOS__</DefineConstants>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DefineConstants>$(DefineConstants);__IOS__</DefineConstants>
   </PropertyGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
