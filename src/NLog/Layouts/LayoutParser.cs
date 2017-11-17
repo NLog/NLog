@@ -38,12 +38,12 @@ namespace NLog.Layouts
     using System.Diagnostics;
     using System.Reflection;
     using System.Text;
-    using Common;
-    using Conditions;
-    using Config;
-    using Internal;
-    using LayoutRenderers;
-    using LayoutRenderers.Wrappers;
+    using NLog.Common;
+    using NLog.Conditions;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.LayoutRenderers;
+    using NLog.LayoutRenderers.Wrappers;
 
     /// <summary>
     /// Parses layout strings.
@@ -482,7 +482,7 @@ namespace NLog.Layouts
 
         private static bool CanBeConvertedToLiteral(LayoutRenderer lr)
         {
-            foreach (IRenderable renderable in ObjectGraphScanner.FindReachableObjects<IRenderable>(lr))
+            foreach (IRenderable renderable in ObjectGraphScanner.FindReachableObjects<IRenderable>(true, lr))
             {
                 if (renderable.GetType() == typeof(SimpleLayout))
                 {

@@ -37,10 +37,10 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.Linq;
 
-    using Common;
-    using Config;
-    using Internal;
-    using Layouts;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Represents logging target.
@@ -451,7 +451,7 @@ namespace NLog.Targets
 
         private void FindAllLayouts()
         {
-            _allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(this);
+            _allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(false, this);
             InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Count);
             _allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
             StackTraceUsage = _allLayouts.DefaultIfEmpty().Max(layout => layout == null ? StackTraceUsage.None : layout.StackTraceUsage);

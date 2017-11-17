@@ -37,9 +37,10 @@ namespace NLog.Layouts
     using System.Linq;
     using System.ComponentModel;
     using System.Text;
-    using Config;
-    using Internal;
-    using Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Common;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
@@ -279,7 +280,7 @@ namespace NLog.Layouts
 
         internal void PerformObjectScanning()
         {
-            var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<object>(this);
+            var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<object>(true, this);
 
             // determine whether the layout is thread-agnostic
             // layout is thread agnostic if it is thread-agnostic and 
@@ -351,6 +352,16 @@ namespace NLog.Layouts
         {
             ConfigurationItemFactory.Default.Layouts
                 .RegisterDefinition(name, layoutType);
+        }
+
+        internal string ToStringWithNestedItems<T>(IList<T> nestedItems, Func<T, string> nextItemToString)
+        {
+            if (nestedItems?.Count > 0)
+            {
+                var nestedNames = nestedItems.Select(c => nextItemToString(c)).ToArray();
+                return string.Concat(GetType().Name, "=", string.Join("|", nestedNames));
+            }
+            return base.ToString();
         }
     }
 }

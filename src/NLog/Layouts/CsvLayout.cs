@@ -35,10 +35,11 @@ namespace NLog.Layouts
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// A specialized layout that renders CSV-formatted events.
@@ -300,6 +301,15 @@ namespace NLog.Layouts
             {
                 _parent.RenderHeader(target);
             }
+        }
+
+        /// <summary>
+        /// Generate description of CSV Layout
+        /// </summary>
+        /// <returns>CSV Layout String Description</returns>
+        public override string ToString()
+        {
+            return ToStringWithNestedItems(Columns, c => c.Name);
         }
     }
 }
