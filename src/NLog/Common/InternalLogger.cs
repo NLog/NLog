@@ -40,12 +40,8 @@ namespace NLog.Common
     using System.IO;
     using System.Reflection;
     using System.Text;
-    using Internal;
-    using Time;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-    using ConfigurationManager = System.Configuration.ConfigurationManager;
-    using System.Diagnostics;
-#endif
+    using NLog.Internal;
+    using NLog.Time;
 
     /// <summary>
     /// NLog internal logger.
@@ -76,7 +72,7 @@ namespace NLog.Common
         {
             // TODO: Extract class - InternalLoggerConfigurationReader
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
             LogToConsole = GetSetting("nlog.internalLogToConsole", "NLOG_INTERNAL_LOG_TO_CONSOLE", false);
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
@@ -467,7 +463,7 @@ namespace NLog.Common
 #if SILVERLIGHT || __IOS__ || __ANDROID__ || NETSTANDARD
                 Info(assembly.FullName);
 #else
-                var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+                var fileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
                 Info("{0}. File version: {1}. Product version: {2}.",
                     assembly.FullName,
                     fileVersionInfo.FileVersion,
@@ -480,26 +476,55 @@ namespace NLog.Common
             }
         }
 
+        private static string GetAppSettings(string configName)
+        {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+            try
+            {
+                return System.Configuration.ConfigurationManager.AppSettings[configName];
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+            }
+#endif
+            return null;
+        }
+
         private static string GetSettingString(string configName, string envName)
         {
-            string settingValue = ConfigurationManager.AppSettings[configName];
-            if (settingValue == null)
+            try
             {
-                try
+                string settingValue = GetAppSettings(configName);
+                if (settingValue != null)
+                    return settingValue;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
                 {
-                    settingValue = Environment.GetEnvironmentVariable(envName);
-                }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrownImmediately())
-                    {
-                        throw;
-                    }
+                    throw;
                 }
             }
 
-            return settingValue;
+            try
+            {
+                string settingValue = EnvironmentHelper.GetSafeEnvironmentVariable(envName);
+                if (!string.IsNullOrEmpty(settingValue))
+                    return settingValue;
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+            }
+
+            return null;
         }
 
         private static LogLevel GetSetting(string configName, string envName, LogLevel defaultValue)
@@ -547,7 +572,6 @@ namespace NLog.Common
                 return defaultValue;
             }
         }
-#endif
 
 #if !SILVERLIGHT
         private static void CreateDirectoriesIfNeeded(string filename)
