@@ -165,7 +165,7 @@ namespace NLog.Targets
             ConcurrentWriteAttempts = 10;
             ConcurrentWrites = true;
 #if SILVERLIGHT || NETSTANDARD1_5
-            this.Encoding = Encoding.UTF8;
+            Encoding = Encoding.UTF8;
 #else
             Encoding = Encoding.Default;
 #endif
@@ -370,6 +370,8 @@ namespace NLog.Targets
         /// </summary>
         bool ICreateFileParameters.CaptureLastWriteTime => ArchiveNumbering == ArchiveNumberingMode.Date ||
                                                            ArchiveNumbering == ArchiveNumberingMode.DateAndSequence;
+
+        bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
 
         /// <summary>
         /// Gets or sets the line ending mode.
@@ -735,7 +737,7 @@ namespace NLog.Targets
                 if (KeepFileOpen)
                     _fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 
-                bool mustWatchArchiving = IsArchivingEnabled() && ConcurrentWrites && KeepFileOpen;
+                bool mustWatchArchiving = IsArchivingEnabled && ConcurrentWrites && KeepFileOpen;
                 if (mustWatchArchiving)
                 {
                     string fileNamePattern = GetArchiveFileNamePattern(fileName, logEvent);
@@ -885,17 +887,13 @@ namespace NLog.Targets
                     return RetryingMultiProcessFileAppender.TheFactory;
                 }
             }
-            else if (IsArchivingEnabled())
+            else if (IsArchivingEnabled)
                 return CountingSingleProcessFileAppender.TheFactory;
             else
                 return SingleProcessFileAppender.TheFactory;
         }
 
-        private bool IsArchivingEnabled()
-        {
-            return ArchiveAboveSize != ArchiveAboveSizeDisabled ||
-                   ArchiveEvery != FileArchivePeriod.None;
-        }
+        private bool IsArchivingEnabled => ArchiveAboveSize != ArchiveAboveSizeDisabled || ArchiveEvery != FileArchivePeriod.None;
 
         /// <summary>
         /// Initializes file logging by creating data structures that
