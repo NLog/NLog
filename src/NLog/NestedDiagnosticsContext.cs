@@ -37,7 +37,7 @@ namespace NLog
     using System.Collections.Generic;
     using System.Linq;
 
-    using Internal;
+    using NLog.Internal;
 
     /// <summary>
     /// Nested Diagnostics Context - a thread-local structure that keeps a stack
@@ -58,14 +58,7 @@ namespace NLog
         /// Gets the top NDC object but doesn't remove it.
         /// </summary>
         /// <returns>The object at the top of the NDC stack if defined; otherwise <c>null</c>.</returns>
-        public static object TopObject
-        {
-            get 
-            {
-                Stack<object> stack = ThreadStack;
-                return (stack.Count > 0) ? stack.Peek() : null;
-            }
-        }
+        public static object TopObject => PeekObject();
 
         private static Stack<object> ThreadStack => ThreadLocalStorageHelper.GetDataForSlot<Stack<object>>(dataSlot);
 
@@ -108,7 +101,7 @@ namespace NLog
         /// <returns>The top message, which is removed from the stack, as a string value.</returns>
         public static string Pop(IFormatProvider formatProvider)
         {
-            return FormatHelper.ConvertToString(PopObject(), formatProvider);
+            return FormatHelper.ConvertToString(PopObject() ?? string.Empty, formatProvider);
         }
 
         /// <summary>
@@ -119,6 +112,16 @@ namespace NLog
         {
             Stack<object> stack = ThreadStack;
             return (stack.Count > 0) ? stack.Pop() : null;
+        }
+
+        /// <summary>
+        /// Peeks the first object on the NDC stack
+        /// </summary>
+        /// <returns>The object from the top of the NDC stack, if defined; otherwise <c>null</c>.</returns>
+        public static object PeekObject()
+        {
+            Stack<object> stack = ThreadStack;
+            return (stack.Count > 0) ? stack.Peek() : null;
         }
 
         /// <summary>
