@@ -152,7 +152,7 @@ namespace NLog.Internal
                         }
                     }
 
-                    if (value != null && (_eventProperties.Count != 0 || !InsertMessagePropertiesIntoEmptyDictionary(value, _eventProperties)))
+                    if (value != null && (_eventProperties.Count > 0 || !InsertMessagePropertiesIntoEmptyDictionary(value, _eventProperties)))
                     {
                         _messageProperties = CreateUniqueMessagePropertiesListSlow(value, _eventProperties);
                     }
@@ -341,27 +341,10 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Attempt to use the message-template-parameters without allocating a dictionary
+        /// Check if the message-template-parameters can be used directly without allocating a dictionary
         /// </summary>
         /// <param name="parameterList">Message-template-parameters</param>
-        /// <returns>List of message-template-parameters if succesful (else null)</returns>
-        private static IList<MessageTemplateParameter> CreateUniqueMessagePropertiesListFast(IList<MessageTemplateParameter> parameterList)
-        {
-            if (parameterList.Count <= 10)
-            {
-                bool uniqueMessageProperties = VerifyUniqueMessageTemplateParametersFast(parameterList);
-                if (uniqueMessageProperties)
-                {
-                    var messageProperties = new MessageTemplateParameter[parameterList.Count];
-                    for (int i = 0; i < parameterList.Count; ++i)
-                        messageProperties[i] = parameterList[i];
-                    return messageProperties;
-                }
-            }
-
-            return null;
-        }
-
+        /// <returns>Are all parameter names unique (true / false)</returns>
         private static bool VerifyUniqueMessageTemplateParametersFast(IList<MessageTemplateParameter> parameterList)
         {
             if (parameterList == null || parameterList.Count == 0)
