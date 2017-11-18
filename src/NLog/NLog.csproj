@@ -13,7 +13,10 @@
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <PackageTags>logging;log;tracing;logfiles;NLog;database;eventlog;email;wcf;netcore;dynamic</PackageTags>
     <PackageReleaseNotes>
- Structured logging is back!
+beta 8: Mail target for .NET standard,  &amp; many improvements
+      
+NLog 4.5 summary:      
+ Structured logging
  NetStandard 2.0 support
       
      
