@@ -193,6 +193,7 @@ namespace NLog.Targets
         /// maxMessageSize.
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
+        [DefaultValue(NetworkTargetOverflowAction.Split)]
         public NetworkTargetOverflowAction OnOverflow { get; set; }
 
         /// <summary>
