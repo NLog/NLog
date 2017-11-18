@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
         {
-            IncludeNLogData = true;
+            IncludeNLogData = true; // TODO NLog ver. 5 - Disable this by default, as mostly duplicate data is added
             NdcItemSeparator = " ";
 #if !SILVERLIGHT
             NdlcItemSeparator = " ";
@@ -248,6 +248,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteElementSafeString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
                 if (logEvent.Exception != null)
                 {
+                    // TODO Why twice the exception details?
                     xtw.WriteElementSafeString("log4j", "throwable", dummyNamespace, logEvent.Exception.ToString());
                 }
 
@@ -276,6 +277,7 @@ namespace NLog.LayoutRenderers
 
                 if (logEvent.Exception != null)
                 {
+                    // TODO Why twice the exception details?
                     xtw.WriteStartElement("log4j", "throwable", dummyNamespace);
                     xtw.WriteSafeCData(logEvent.Exception.ToString());
                     xtw.WriteEndElement();
@@ -283,24 +285,24 @@ namespace NLog.LayoutRenderers
 
                 if (IncludeCallSite || IncludeSourceInfo)
                 {
-                    System.Diagnostics.StackFrame frame = logEvent.UserStackFrame;
-                    if (frame != null)
+                    if (logEvent.CallSiteInformation != null)
                     {
-                        MethodBase methodBase = frame.GetMethod();
-                        Type type = methodBase.DeclaringType;
+                        MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
+                        string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
+                        string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
 
                         xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
-                        if (type != null)
+                        if (!string.IsNullOrEmpty(callerClassName))
                         {
-                            xtw.WriteAttributeSafeString("class", type.FullName);
+                            xtw.WriteAttributeSafeString("class", callerClassName);
                         }
 
-                        xtw.WriteAttributeSafeString("method", methodBase.ToString());
+                        xtw.WriteAttributeSafeString("method", callerMemberName);
 #if !SILVERLIGHT
                         if (IncludeSourceInfo)
                         {
-                            xtw.WriteAttributeSafeString("file", frame.GetFileName());
-                            xtw.WriteAttributeSafeString("line", frame.GetFileLineNumber().ToString(CultureInfo.InvariantCulture));
+                            xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
+                            xtw.WriteAttributeSafeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
                         }
 #endif
                         xtw.WriteEndElement();
@@ -309,6 +311,7 @@ namespace NLog.LayoutRenderers
                         {
                             xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
                             xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
+                            var type = methodBase?.DeclaringType;
                             if (type != null)
                             {
                                 xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);

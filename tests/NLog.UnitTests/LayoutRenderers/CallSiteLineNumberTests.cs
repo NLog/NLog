@@ -31,22 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#region
-
 using System;
-using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
-
-#endregion
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-    #region
-
-    using System;
-
-    #endregion
-
     public class CallSiteLineNumberTests : NLogTestBase
     {
 #if !DEBUG
@@ -65,7 +55,7 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             ILogger logger = LogManager.GetLogger("A");
-          
+
 #if !NET4_5 && !MONO
 #line 100000
 #endif
@@ -78,6 +68,55 @@ namespace NLog.UnitTests.LayoutRenderers
 #if !NET4_5 && !MONO
 #line default
 #endif
+        }
+
+#if !MONO
+        [Fact]
+#else
+        [Fact(Skip = "MONO is not good with callsite line numbers")]
+#endif
+        public void LineNumberOnlyAsyncTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+        <nlog>
+            <targets><target name='debug' type='Debug' layout='${callsite-linenumber}' /></targets>
+            <rules>
+                <logger name='*' minlevel='Debug' writeTo='debug' />
+            </rules>
+        </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            Func<string> getLastMessage = () => GetDebugLastMessage("debug");
+            logger.Debug("msg");
+            var lastMessage = getLastMessage();
+            Assert.NotEqual(0, int.Parse(lastMessage));
+            WriteMessages(logger, getLastMessage).Wait();
+        }
+
+        private static async Task WriteMessages(ILogger logger, Func<string> getLastMessage)
+        {
+            logger.Info("Line number should be non-zero");
+            var lastMessage1 = getLastMessage();
+            Assert.NotEqual(0, int.Parse(lastMessage1));
+
+            try
+            {
+                await Task.Delay(1);
+
+                logger.Info("Line number should be non-zero");
+                var lastMessage2 = getLastMessage();
+                Assert.NotEqual(0, int.Parse(lastMessage2));
+
+                // Here I have some other logic ...
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+            }
+
+            logger.Info("Line number should be non-zero");
+            var lastMessage3 = getLastMessage();
+            Assert.NotEqual(0, int.Parse(lastMessage3));
         }
     }
 }

@@ -298,12 +298,15 @@ namespace NLog.Fluent
             [CallerFilePath]string callerFilePath = null,
             [CallerLineNumber]int callerLineNumber = 0)
         {
+            // TODO NLog ver. 5 - Remove these properties
             if (callerMemberName != null)
                 Property("CallerMemberName", callerMemberName);
             if (callerFilePath != null)
                 Property("CallerFilePath", callerFilePath);
             if (callerLineNumber != 0)
                 Property("CallerLineNumber", callerLineNumber);
+
+            _logEvent.SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }
