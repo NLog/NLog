@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
+#if !NETSTANDARD1_5
 
 namespace NLog.UnitTests.Targets
 {
@@ -44,7 +44,9 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using Xunit;
 	using System.IO;
+#if !NETSTANDARD
     using System.Net.Configuration;
+#endif
 
     public class MailTargetTests : NLogTestBase
     {
@@ -757,7 +759,9 @@ namespace NLog.UnitTests.Targets
                 SmtpPort = 27,
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = true,
+#if !NETSTANDARD
                 SmtpSection = new SmtpSection { From = "config@foo.com" }
+#endif
             };
             Assert.Equal("'nlog@foo.com'", mmt.From.ToString());
 
@@ -769,7 +773,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True_ReadFromFromConfigFile()
         {
-
+#if !NETSTANDARD
             var mmt = new MailTarget()
             {
                 From = null,
@@ -785,12 +789,13 @@ namespace NLog.UnitTests.Targets
             mmt.Initialize(null);
 
             Assert.Equal("'config@foo.com'", mmt.From.ToString());
+#endif
         }
 
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_False_ReadFromFromConfigFile()
         {
-
+#if !NETSTANDARD
             var mmt = new MailTarget()
             {
                 From = null,
@@ -804,6 +809,7 @@ namespace NLog.UnitTests.Targets
             Assert.Null(mmt.From);
 
             Assert.Throws <NLogConfigurationException>(() => mmt.Initialize(null));
+#endif
         }
 
         [Fact]
