@@ -39,10 +39,10 @@ namespace NLog.MessageTemplates
     internal struct LiteralHole
     {
         /// <summary>Literal</summary>
-        public readonly Literal Literal;
+        public Literal Literal { get; }
         /// <summary>Hole</summary>
         /// <remarks>Uninitialized when <see cref="MessageTemplates.Literal.Skip"/> = 0.</remarks>
-        public readonly Hole Hole;
+        public Hole Hole { get; }
 
         internal LiteralHole(Literal literal, Hole hole)
         {

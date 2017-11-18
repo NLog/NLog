@@ -173,7 +173,7 @@ namespace NLog.Conditions
                 if (TryPromoteTypes(ref leftValue, rightType, ref rightValue, leftType)) return;
             }
 
-            throw new ConditionEvaluationException("Cannot find common type for '" + leftType.Name + "' and '" + rightType.Name + "'.");
+            throw new ConditionEvaluationException($"Cannot find common type for '{leftType.Name}' and '{rightType.Name}'.");
         }
         
         /// <summary>
@@ -331,7 +331,7 @@ namespace NLog.Conditions
                     return "<=";
 
                 default:
-                    throw new NotSupportedException("Relational operator " + RelationalOperator + " is not supported.");
+                    throw new NotSupportedException($"Relational operator {RelationalOperator} is not supported.");
             }
         }
     }

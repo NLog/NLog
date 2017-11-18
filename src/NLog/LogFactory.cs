@@ -1286,8 +1286,8 @@ namespace NLog
         /// </summary>
         internal struct LoggerCacheKey : IEquatable<LoggerCacheKey>
         {
-            public readonly string Name;
-            public readonly Type ConcreteType;
+            public string Name { get; }
+            public Type ConcreteType { get; }
 
             public LoggerCacheKey(string name, Type concreteType)
             {
