@@ -202,7 +202,7 @@ namespace NLog
         /// <param name="detailMessage">A detailed message to emit.</param>
         public override void Fail(string message, string detailMessage)
         {
-            ProcessLogEventInfo(LogLevel.Error, null, message + " " + detailMessage, null, null, TraceEventType.Error, null);
+            ProcessLogEventInfo(LogLevel.Error, null, string.Concat(message, " ", detailMessage), null, null, TraceEventType.Error, null);
         }
 
         /// <summary>

@@ -59,21 +59,21 @@ namespace NLog.Internal
 
 #endif 
 
-        private Layout _layout;
+        private readonly Layout _layout;
 
-        private FilePathKind _filePathKind;
+        private readonly FilePathKind _filePathKind;
 
         /// <summary>
         /// not null when <see cref="_filePathKind"/> == <c>false</c>
         /// </summary>
-        private string _baseDir;
+        private readonly string _baseDir;
 
         /// <summary>
         /// non null is fixed,
         /// </summary>
-        private string _cleanedFixedResult;
+        private readonly string _cleanedFixedResult;
 
-        private bool _cleanupInvalidChars;
+        private readonly bool _cleanupInvalidChars;
 
         /// <summary>
         /// <see cref="_cachedPrevRawFileName"/> is the cache-key, and when newly rendered filename matches the cache-key,

@@ -31,12 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-
 namespace NLog
 {
     using System;
-    using Internal;
+    using System.Collections.Generic;
+    using NLog.Internal;
 
     /// <summary>
     /// Defines available log levels.
@@ -318,7 +317,7 @@ namespace NLog
                 return Off;
             }
 
-            throw new ArgumentException("Unknown log level: " + levelName);
+            throw new ArgumentException($"Unknown log level: {levelName}");
         }
 
         /// <summary>

@@ -35,8 +35,8 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Threading;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Distributes log events to targets in a round-robin fashion.
@@ -61,7 +61,7 @@ namespace NLog.Targets.Wrappers
     public class RoundRobinGroupTarget : CompoundTargetBase
     {
         private int _currentTarget = 0;
-        private object _lockObject = new object();
+        private readonly object _lockObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoundRobinGroupTarget" /> class.

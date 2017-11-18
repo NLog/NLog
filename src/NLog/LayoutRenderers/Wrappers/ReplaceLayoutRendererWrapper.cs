@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Replaces a string in the output of another layout with another string.
@@ -118,7 +118,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
             if (WholeWords)
             {
-                regexString = "\\b" + regexString + "\\b";
+                regexString = string.Concat("\\b", regexString, "\\b");
             }
 
             _regex = new Regex(regexString, regexOptions);

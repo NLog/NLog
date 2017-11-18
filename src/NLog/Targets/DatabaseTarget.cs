@@ -48,10 +48,10 @@ namespace NLog.Targets
     using System.Transactions;
 #endif
 
-    using Common;
-    using Config;
-    using Internal;
-    using Layouts;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
 
 #if !NETSTANDARD
     using System.Configuration;
@@ -358,7 +358,7 @@ namespace NLog.Targets
                 var cs = ConnectionStringsSettings[ConnectionStringName];
                 if (cs == null)
                 {
-                    throw new NLogConfigurationException("Connection string '" + ConnectionStringName + "' is not declared in <connectionStrings /> section.");
+                    throw new NLogConfigurationException($"Connection string '{ConnectionStringName}' is not declared in <connectionStrings /> section.");
                 }
 
                 ConnectionString = SimpleLayout.Escape(cs.ConnectionString);
@@ -749,7 +749,7 @@ namespace NLog.Targets
         /// </summary>
         private class TransactionScope : IDisposable
         {
-            private TransactionScopeOption suppress;
+            private readonly TransactionScopeOption suppress;
 
             public TransactionScope(TransactionScopeOption suppress)
             {

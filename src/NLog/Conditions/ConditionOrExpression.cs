@@ -72,7 +72,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return "(" + LeftExpression + " or " + RightExpression + ")";
+            return $"({LeftExpression} or {RightExpression})";
         }
 
         /// <summary>

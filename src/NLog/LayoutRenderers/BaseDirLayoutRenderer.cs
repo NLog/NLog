@@ -37,8 +37,8 @@ namespace NLog.LayoutRenderers
     using System.IO;
     using System.Text;
     using Internal.Fakeables;
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The current application domain's base directory.
@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class BaseDirLayoutRenderer : LayoutRenderer
     {
-        private string _baseDir;
+        private readonly string _baseDir;
 
 #if !SILVERLIGHT
 

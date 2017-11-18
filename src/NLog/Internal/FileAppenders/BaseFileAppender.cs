@@ -38,8 +38,8 @@ namespace NLog.Internal.FileAppenders
     using System.Runtime.InteropServices;
     using System.Security;
 
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Base class for optimized file appenders.
@@ -292,8 +292,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch
             {
-                if (fileStream != null)
-                    fileStream.Dispose();
+                fileStream?.Dispose();
 
                 if ((handle != null) && (!handle.IsClosed))
                     handle.Close();

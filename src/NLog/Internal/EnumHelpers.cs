@@ -31,18 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace NLog.Internal
 {
+    using System;
 
     internal static class EnumHelpers
     {
-
-
-
         /// <summary>
         /// Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object. A parameter specifies whether the operation is case-sensitive. The return value indicates whether the conversion succeeded.
         /// </summary>
@@ -68,14 +62,10 @@ namespace NLog.Internal
         public static bool TryParse<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct
         {
 #if NET3_5
-
             return TryParseEnum_net3(value, ignoreCase, out result);
 #else
             return Enum.TryParse(value, ignoreCase, out result);
 #endif
-
-
-
         }
 
         /// <summary>
@@ -87,21 +77,15 @@ namespace NLog.Internal
         // ReSharper disable once UnusedMember.Local
         private static bool TryParseEnum_net3<TEnum>(string value, bool ignoreCase, out TEnum result) where TEnum : struct
         {
-
             var enumType = typeof(TEnum);
             if (!enumType.IsEnum())
                 throw new ArgumentException($"Type '{enumType.FullName}' is not an enum");
-            
-
-       
 
             if (StringHelpers.IsNullOrWhiteSpace(value))
             {
                 result = default(TEnum);
                 return false;
             }
-
-          
 
             try
             {
@@ -113,8 +97,6 @@ namespace NLog.Internal
                 result = default(TEnum);
                 return false;
             }
-
-
         }
     }
 }

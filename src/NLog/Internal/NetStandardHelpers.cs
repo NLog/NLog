@@ -82,6 +82,41 @@ namespace NLog.Internal
             return type.GetTypeInfo().GetMethod(name, bindingAttr);
         }
 
+        public static MethodInfo GetMethod(this Type type, string name, BindingFlags bindingAttr, object binder, Type[] types, ParameterModifier[] modifiers)
+        {
+            if (binder != null)
+                throw new ArgumentException("Not supported", nameof(binder));
+            if (modifiers != null)
+                throw new ArgumentException("Not supported", nameof(modifiers));
+
+            var methods = type.GetTypeInfo().GetMethods(BindingFlags.Public | BindingFlags.Static);
+            foreach (MethodInfo method in methods)
+            {
+                if (method.Name != name)
+                    continue;
+
+                var parameters = method.GetParameters();
+                if (parameters == null || parameters.Length != types.Length)
+                    continue;
+
+                for (int i = 0; i < parameters.Length; ++i)
+                {
+                    if (parameters[i].ParameterType != types[i])
+                    {
+                        parameters = null;
+                        break;
+                    }
+                }
+
+                if (parameters != null)
+                {
+                    return method;
+                }
+            }
+
+            return null;
+        }
+
         public static PropertyInfo GetProperty(this Type type, string name)
         {
             return type.GetTypeInfo().GetProperty(name);

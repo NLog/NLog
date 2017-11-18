@@ -31,15 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Globalization;
     using System.Text;
-    using Common;
-    using Config;
-    using Internal;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Render environmental information related to logging events.
@@ -67,7 +66,7 @@ namespace NLog.LayoutRenderers
             var lra = GetType().GetCustomAttribute<LayoutRendererAttribute>();
             if (lra != null)
             {
-                return "Layout Renderer: ${" + lra.Name + "}";
+                return $"Layout Renderer: ${{{lra.Name}}}";
             }
 
             return GetType().Name;

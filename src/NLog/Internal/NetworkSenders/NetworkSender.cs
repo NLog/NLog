@@ -38,7 +38,7 @@ namespace NLog.Internal.NetworkSenders
     using System.Net;
     using System.Net.Sockets;
     using System.Threading;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// A base class for all network senders. Supports one-way sending of messages
@@ -183,7 +183,7 @@ namespace NLog.Internal.NetworkSenders
                             }
                         }
 
-                        throw new IOException("Cannot resolve '" + uri.Host + "' to an address in '" + addressFamily + "'");
+                        throw new IOException($"Cannot resolve '{uri.Host}' to an address in '{addressFamily}'");
                     }
             }
 #endif

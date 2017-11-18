@@ -31,23 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections;
-using System.Linq;
-
 namespace NLog.Internal
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
+    using System.Linq;
     using System.Reflection;
     using System.Text;
-    using Common;
-    using Conditions;
-    using Config;
-    using Internal;
-    using Layouts;
-    using Targets;
+    using NLog.Common;
+    using NLog.Conditions;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
+    using NLog.Targets;
 
     /// <summary>
     /// Reflection helpers for accessing properties.
@@ -71,14 +70,14 @@ namespace NLog.Internal
 
             if (!TryGetPropertyInfo(obj, propertyName, out propInfo))
             {
-                throw new NotSupportedException("Parameter " + propertyName + " not supported on " + obj.GetType().Name);
+                throw new NotSupportedException($"Parameter {propertyName} not supported on {obj.GetType().Name}");
             }
 
             try
             {
                 if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
                 {
-                    throw new NotSupportedException("Parameter " + propertyName + " of " + obj.GetType().Name + " is an array and cannot be assigned a scalar value.");
+                    throw new NotSupportedException($"Parameter {propertyName} of {obj.GetType().Name} is an array and cannot be assigned a scalar value.");
                 }
 
                 object newValue;
@@ -99,7 +98,7 @@ namespace NLog.Internal
             }
             catch (TargetInvocationException ex)
             {
-                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + obj, ex.InnerException);
+                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}' on {obj}", ex.InnerException);
             }
             catch (Exception exception)
             {
@@ -110,7 +109,7 @@ namespace NLog.Internal
                     throw;
                 }
 
-                throw new NLogConfigurationException("Error when setting property '" + propInfo.Name + "' on " + obj, exception);
+                throw new NLogConfigurationException($"Error when setting property '{propInfo.Name}' on {obj}", exception);
             }
         }
 
@@ -126,7 +125,7 @@ namespace NLog.Internal
 
             if (!TryGetPropertyInfo(t, propertyName, out propInfo))
             {
-                throw new NotSupportedException("Parameter " + propertyName + " not supported on " + t.Name);
+                throw new NotSupportedException($"Parameter {propertyName} not supported on {t.Name}");
             }
 
             return propInfo.IsDefined(typeof(ArrayParameterAttribute), false);
@@ -189,7 +188,7 @@ namespace NLog.Internal
                     if (value == null)
                     {
                         throw new NLogConfigurationException(
-                            "Required parameter '" + propInfo.Name + "' on '" + o + "' was not specified.");
+                            $"Required parameter '{propInfo.Name}' on '{o}' was not specified.");
                     }
                 }
             }
@@ -197,7 +196,6 @@ namespace NLog.Internal
 
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
-#if NETSTANDARD1_5
             try
             {
                 if (string.Equals(resultType.Namespace, "System", StringComparison.Ordinal))
@@ -206,44 +204,22 @@ namespace NLog.Internal
                     return false;
                 }
 
-                var methods = resultType.GetTypeInfo().GetMethods(BindingFlags.Public | BindingFlags.Static);
-                foreach (MethodInfo method in methods.Where(m => m.Name == "op_Implicit"))
+                MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { value.GetType() }, null);
+                if (operatorImplicitMethod == null || !resultType.IsAssignableFrom(operatorImplicitMethod.ReturnType))
                 {
-                    if (resultType.IsAssignableFrom(method.ReturnType))
-                    {
-                        var parameters = method.GetParameters();
-                        if (parameters.Count() == 1 && parameters[0].ParameterType == value.GetType())
-                        {
-                            try
-                            {
-                                result = method.Invoke(null, new[] { value });
-                                return true;
-                            }
-                            catch
-                            {
-                            }
-                        }
-                    }
+                    result = null;
+                    return false;
                 }
+
+                result = operatorImplicitMethod.Invoke(null, new object[] { value });
+                return true;
             }
             catch (Exception ex)
             {
-                InternalLogger.Warn(ex, "Implicit Conversion Failed");
+                InternalLogger.Warn(ex, "Implicit Conversion Failed of {0} to {1}", value, resultType);
             }
-
             result = null;
             return false;
-#else
-            MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
-            if (operatorImplicitMethod == null)
-            {
-                result = null;
-                return false;
-            }
-
-            result = operatorImplicitMethod.Invoke(null, new object[] { value });
-            return true;
-#endif
         }
 
         private static bool TryNLogSpecificConversion(Type propertyType, string value, out object newValue, ConfigurationItemFactory configurationItemFactory)
@@ -281,7 +257,7 @@ namespace NLog.Internal
                     FieldInfo enumField = resultType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
                     if (enumField == null)
                     {
-                        throw new NLogConfigurationException("Invalid enumeration value '" + value + "'.");
+                        throw new NLogConfigurationException($"Invalid enumeration value '{value}'.");
                     }
 
                     union |= Convert.ToUInt64(enumField.GetValue(null), CultureInfo.InvariantCulture);
@@ -297,7 +273,7 @@ namespace NLog.Internal
                 FieldInfo enumField = resultType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
                 if (enumField == null)
                 {
-                    throw new NLogConfigurationException("Invalid enumeration value '" + value + "'.");
+                    throw new NLogConfigurationException($"Invalid enumeration value '{value}'.");
                 }
 
                 result = enumField.GetValue(null);

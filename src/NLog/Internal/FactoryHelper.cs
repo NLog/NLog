@@ -54,7 +54,7 @@ namespace NLog.Internal
             }
             catch (Exception)
             {
-                throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
+                throw new NLogConfigurationException("Cannot access the constructor of type: {t.FullName}. Is the required permission granted?");
             }
 #else
             ConstructorInfo constructor = t.GetConstructor(ArrayHelper.Empty<Type>());
@@ -64,7 +64,7 @@ namespace NLog.Internal
             }
             else
             {
-                throw new NLogConfigurationException("Cannot access the constructor of type: " + t.FullName + ". Is the required permission granted?");
+                throw new NLogConfigurationException($"Cannot access the constructor of type: {t.FullName}. Is the required permission granted?");
             }
 #endif
         }

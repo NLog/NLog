@@ -38,9 +38,9 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Text;
     using System.Threading;
-    using Common;
-    using Internal.NetworkSenders;
-    using Layouts;
+    using NLog.Common;
+    using NLog.Internal.NetworkSenders;
+    using NLog.Layouts;
 
     /// <summary>
     /// Sends log messages over the network.
@@ -82,8 +82,8 @@ namespace NLog.Targets
     [Target("Network")]
     public class NetworkTarget : TargetWithLayout
     {
-        private Dictionary<string, LinkedListNode<NetworkSender>> _currentSenderCache = new Dictionary<string, LinkedListNode<NetworkSender>>();
-        private LinkedList<NetworkSender> _openNetworkSenders = new LinkedList<NetworkSender>();
+        private readonly Dictionary<string, LinkedListNode<NetworkSender>> _currentSenderCache = new Dictionary<string, LinkedListNode<NetworkSender>>();
+        private readonly LinkedList<NetworkSender> _openNetworkSenders = new LinkedList<NetworkSender>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
@@ -511,7 +511,7 @@ namespace NLog.Targets
 
                         if (OnOverflow == NetworkTargetOverflowAction.Error)
                         {
-                            continuation(new OverflowException("Attempted to send a message larger than MaxMessageSize (" + MaxMessageSize + "). Actual size was: " + buffer.Length + ". Adjust OnOverflow and MaxMessageSize parameters accordingly."));
+                            continuation(new OverflowException($"Attempted to send a message larger than MaxMessageSize ({MaxMessageSize}). Actual size was: {buffer.Length}. Adjust OnOverflow and MaxMessageSize parameters accordingly."));
                             return;
                         }
 

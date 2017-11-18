@@ -34,8 +34,8 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Provides fallback-on-error.
@@ -59,7 +59,7 @@ namespace NLog.Targets.Wrappers
     public class FallbackGroupTarget : CompoundTargetBase
     {
         private int _currentTarget;
-        private object _lockObject = new object();
+        private readonly object _lockObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FallbackGroupTarget"/> class.

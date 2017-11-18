@@ -61,7 +61,7 @@ namespace NLog.Conditions
         /// </returns>
         public override string ToString()
         {
-            return "(not " + Expression + ")";
+            return $"(not {Expression})";
         }
 
         /// <summary>

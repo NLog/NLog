@@ -40,8 +40,8 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Reflection;
     using System.Text;
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The information about the running process.
@@ -85,7 +85,7 @@ namespace NLog.LayoutRenderers
             _propertyInfo = typeof(Process).GetProperty(Property.ToString());
             if (_propertyInfo == null)
             {
-                throw new ArgumentException("Property '" + _propertyInfo + "' not found in System.Diagnostics.Process");
+                throw new ArgumentException($"Property '{_propertyInfo}' not found in System.Diagnostics.Process");
             }
 
             _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(_propertyInfo.GetGetMethod());

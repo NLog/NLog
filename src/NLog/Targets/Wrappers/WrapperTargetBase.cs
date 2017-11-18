@@ -34,9 +34,8 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using Common;
-    using Config;
-    using Internal;
+    using NLog.Common;
+    using NLog.Config;
 
     /// <summary>
     /// Base class for targets wrap other (single) targets.
@@ -56,7 +55,7 @@ namespace NLog.Targets.Wrappers
         /// <returns>A string that describes the target.</returns>
         public override string ToString()
         {
-            return base.ToString() + "(" + WrappedTarget + ")";
+            return $"{base.ToString()}({WrappedTarget})";
         }
 
         /// <summary>
