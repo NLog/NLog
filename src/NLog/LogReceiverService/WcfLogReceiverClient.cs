@@ -31,18 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Net;
-
 #if WCF_SUPPORTED
 
 namespace NLog.LogReceiverService
 {
-    using System.ServiceModel.Description;
     using System;
     using System.ComponentModel;
+    using System.Net;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
-
+    using System.ServiceModel.Description;
 
     /// <summary>
     /// Log Receiver Client facade. It allows the use either of the one way or two way 
@@ -128,7 +126,7 @@ namespace NLog.LogReceiverService
 
         }
 
-        #region delegating
+#region delegating
 
         /// <summary>
         /// Causes a communication object to transition immediately from its current state into the closed state.  
@@ -435,7 +433,7 @@ namespace NLog.LogReceiverService
         /// </returns>
         public CommunicationState State => ProxiedClient.State;
 
-        #endregion
+#endregion
 
 
         /// <summary>

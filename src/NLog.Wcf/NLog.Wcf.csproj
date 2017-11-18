@@ -1,0 +1,98 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+
+    <TargetFrameworks>netstandard1.5;netstandard2.0</TargetFrameworks>
+
+    <Title>NLog.WCF for .NET Standard</Title>
+    <Company>NLog</Company>
+    <Description>NLog.WCF ServiceModel provides LogReceiverService target and the WCF contract interfaces/implementations for NetStandard</Description>
+    <Product>NLog WCF v$(ProductVersion)</Product>
+    <InformationalVersion>$(ProductVersion)</InformationalVersion>
+    <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+
+    <PackageReleaseNotes>
+      Wiki:
+      https://github.com/NLog/NLog/wiki/LogReceiverService-target
+    </PackageReleaseNotes>
+    <PackageTags>NLog;WCF;ServiceModel;logging;log</PackageTags>
+    <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
+    <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
+    <PackageLicenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+    <Title>NLog.Wcf for NetStandard 1.5</Title>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD1_5;WCF_SUPPORTED</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <Title>NLog.Wcf for NetStandard 2.0</Title>
+    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD2_0;WCF_SUPPORTED</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\NLog\LogReceiverService\BaseLogReceiverForwardingService.cs" Link="BaseLogReceiverForwardingService.cs" />
+    <Compile Include="..\NLog\LogReceiverService\ILogReceiverClient.cs" Link="ILogReceiverClient.cs" />
+    <Compile Include="..\NLog\LogReceiverService\ILogReceiverOneWayClient.cs" Link="ILogReceiverOneWayClient.cs" />
+    <Compile Include="..\NLog\LogReceiverService\ILogReceiverOneWayServer.cs" Link="ILogReceiverOneWayServer.cs" />
+    <Compile Include="..\NLog\LogReceiverService\ILogReceiverServer.cs" Link="ILogReceiverServer.cs" />
+    <Compile Include="..\NLog\LogReceiverService\ILogReceiverTwoWayClient.cs" Link="ILogReceiverTwoWayClient.cs" />
+    <Compile Include="..\NLog\LogReceiverService\IWcfLogReceiverClient.cs" Link="IWcfLogReceiverClient.cs" />
+    <Compile Include="..\NLog\LogReceiverService\LogReceiverForwardingService.cs" Link="LogReceiverForwardingService.cs" />
+    <Compile Include="..\NLog\LogReceiverService\LogReceiverOneWayForwardingService.cs" Link="LogReceiverOneWayForwardingService.cs" />
+    <Compile Include="..\NLog\LogReceiverService\LogReceiverServiceConfig.cs" Link="LogReceiverServiceConfig.cs" />
+    <Compile Include="..\NLog\LogReceiverService\NLogEvent.cs" Link="NLogEvent.cs" />
+    <Compile Include="..\NLog\LogReceiverService\NLogEvents.cs" Link="NLogEvents.cs" />
+    <Compile Include="..\NLog\LogReceiverService\SoapLogReceiverClient.cs" Link="SoapLogReceiverClient.cs" />
+    <Compile Include="..\NLog\LogReceiverService\StringCollection.cs" Link="StringCollection.cs" />
+    <Compile Include="..\NLog\LogReceiverService\WcfILogReceiverClient.cs" Link="WcfILogReceiverClient.cs" />
+    <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverClient.cs" Link="WcfLogReceiverClient.cs" />
+    <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverClientBase.cs" Link="WcfLogReceiverClientBase.cs" />
+    <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverOneWayClient.cs" Link="WcfLogReceiverOneWayClient.cs" />
+    <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverTwoWayClient.cs" Link="WcfLogReceiverTwoWayClient.cs" />
+    <Compile Include="..\NLog\Targets\LogReceiverWebServiceTarget.cs" Link="LogReceiverWebServiceTarget.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NLog\NLog.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.0.1" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.1.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.1.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.1.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\NLog\Resources\NLog.ico" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+  </PropertyGroup>
+
+</Project>
