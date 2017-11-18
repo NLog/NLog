@@ -104,6 +104,14 @@ namespace NLog.LayoutRenderers
             {
                 _machineName = string.Empty;
             }
+        }
+
+        /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
 
             _xmlWriterSettings = new XmlWriterSettings
             {
@@ -183,7 +191,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNdc { get; set; }
 
-        /// <summary>
+        /// <summary>   
         /// Gets or sets the NDC item separator.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
@@ -198,7 +206,7 @@ namespace NLog.LayoutRenderers
 
         private readonly string _machineName;
 
-        private readonly XmlWriterSettings _xmlWriterSettings;
+        private XmlWriterSettings _xmlWriterSettings;
 
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
