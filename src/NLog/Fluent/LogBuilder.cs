@@ -139,7 +139,7 @@ namespace NLog.Fluent
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        [StringFormatMethod("format")]
+        [MessageTemplateFormatMethod("format")]
         public LogBuilder Message(string format, object arg0)
         {
             _logEvent.Message = format;
@@ -155,7 +155,7 @@ namespace NLog.Fluent
         /// <param name="arg0">The first object to format.</param>
         /// <param name="arg1">The second object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        [StringFormatMethod("format")]
+        [MessageTemplateFormatMethod("format")]
         public LogBuilder Message(string format, object arg0, object arg1)
         {
             _logEvent.Message = format;
@@ -172,7 +172,7 @@ namespace NLog.Fluent
         /// <param name="arg1">The second object to format.</param>
         /// <param name="arg2">The third object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        [StringFormatMethod("format")]
+        [MessageTemplateFormatMethod("format")]
         public LogBuilder Message(string format, object arg0, object arg1, object arg2)
         {
             _logEvent.Message = format;
@@ -190,7 +190,7 @@ namespace NLog.Fluent
         /// <param name="arg2">The third object to format.</param>
         /// <param name="arg3">The fourth object to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        [StringFormatMethod("format")]
+        [MessageTemplateFormatMethod("format")]
         public LogBuilder Message(string format, object arg0, object arg1, object arg2, object arg3)
         {
             _logEvent.Message = format;
@@ -205,7 +205,7 @@ namespace NLog.Fluent
         /// <param name="format">A composite format string.</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        [StringFormatMethod("format")]
+        [MessageTemplateFormatMethod("format")]
         public LogBuilder Message(string format, params object[] args)
         {
             _logEvent.Message = format;
@@ -221,7 +221,7 @@ namespace NLog.Fluent
         /// <param name="format">A composite format string.</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
         /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
-        [StringFormatMethod("format")]
+        [MessageTemplateFormatMethod("format")]
         public LogBuilder Message(IFormatProvider provider, string format, params object[] args)
         {
             _logEvent.FormatProvider = provider;
