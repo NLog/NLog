@@ -52,12 +52,12 @@ namespace NLog.Internal
             /// <summary>
             /// Value of the property 
             /// </summary>
-            public readonly object Value;
+            public object Value;
 
             /// <summary>
             /// Is this a property of the message?
             /// </summary>
-            public readonly bool IsMessageProperty;
+            public bool IsMessageProperty;
 
             /// <summary>
             /// 
