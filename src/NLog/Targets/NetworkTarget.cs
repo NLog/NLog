@@ -173,7 +173,6 @@ namespace NLog.Targets
         /// Gets or sets the maximum current connections. 0 = no maximum.
         /// </summary>
         /// <docgen category="Connection Options" order="10"/>
-        [DefaultValue(0)]
         public int MaxConnections { get; set; }
 
         /// <summary>
