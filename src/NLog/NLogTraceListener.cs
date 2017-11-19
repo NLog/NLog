@@ -475,6 +475,14 @@ namespace NLog
             if (!_attributesLoaded)
             {
                 _attributesLoaded = true;
+
+                if (Trace.AutoFlush)
+                {
+                    // Avoid a world of hurt, by not constantly spawning new flush threads
+                    // Also timeout exceptions thrown by Flush() will not break diagnostic Trace-logic
+                    _disableFlush = true;
+                }
+
                 foreach (DictionaryEntry de in Attributes)
                 {
                     var key = (string)de.Key;
