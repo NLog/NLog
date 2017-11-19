@@ -11,20 +11,20 @@
     <Product>NLog v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
-    <PackageTags>logging;log;tracing;logfiles;NLog;database;eventlog;email;wcf;netcore;dynamic</PackageTags>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+    
     <PackageReleaseNotes>
  Structured logging is back!
  NetStandard 2.0 support
-      
-     
     </PackageReleaseNotes>
+    <PackageTags>NLog;logging;log;tracing;logfiles;database;eventlog;email;wcf</PackageTags>
     <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
     <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
-    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
-    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+
 
     <SignAssembly>true</SignAssembly>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
@@ -65,7 +65,7 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog for NetStandard 2.0</Title>
-    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
@@ -230,14 +230,6 @@
     <PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.0.1" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.0.11" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="System.Security.Principal.Windows" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(monobuild)' != '' ">

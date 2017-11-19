@@ -33,7 +33,6 @@
 
 namespace NLog.UnitTests.LogReceiverService
 {
-#if !NETSTANDARD1_5
     using System;
     using NLog.LogReceiverService;
     using Xunit;
@@ -96,5 +95,4 @@ namespace NLog.UnitTests.LogReceiverService
             AssertDebugLastMessage("debug3", "message1 logger1 logger2 zzz");
         }
     }
-#endif
 }

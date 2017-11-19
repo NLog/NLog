@@ -5,14 +5,28 @@
 
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35</TargetFrameworks>
 
-    <Title>NLog for unknown platform Extended Profile</Title>
+    <Title>NLog for Extended Profile</Title>
     <Company>NLog</Company>
-    <Description>NLog</Description>
+    <Description>NLog.Extended.dll provides MSMQ target and AppSetting renderer</Description>
     <Product>NLog Extended Profile v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+
+    <PackageReleaseNotes>
+      News post:
+      http://nlog-project.org/2015/06/09/nlog-4-has-been-released.html
+      Wiki:
+      https://github.com/NLog/NLog/wiki/MSMQ-target
+      https://github.com/NLog/NLog/wiki/AppSetting-Layout-Renderer
+    </PackageReleaseNotes>
+    <PackageTags>NLog;MSMQ;AppSettings;logging;log</PackageTags>
+    <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
+    <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
+    <PackageLicenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
 
     <SignAssembly>true</SignAssembly>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
@@ -58,6 +72,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\NLog\Resources\NLog.ico" />
   </ItemGroup>
 
   <PropertyGroup>

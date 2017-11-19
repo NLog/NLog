@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD || WCF_SUPPORTED
+
 namespace NLog.LogReceiverService
 {
     /// <summary>
@@ -41,3 +43,5 @@ namespace NLog.LogReceiverService
         internal const string WebServiceNamespace = "http://nlog-project.org/ws/";
     }
 }
+
+#endif

@@ -61,7 +61,6 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertLayoutRendererOutput("${windows-identity}", userName);
         }
 
-#if !NETSTANDARD1_5
         [Fact]
         public void IdentityTest1()
         {
@@ -209,6 +208,5 @@ namespace NLog.UnitTests.LayoutRenderers
 
             #endregion
         }
-#endif
     }
 }

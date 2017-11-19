@@ -31,7 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__ && !NETSTANDARD
+#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__ && !NETSTANDARD || WCF_SUPPORTED
+
 namespace NLog.Targets
 {
     using System;
@@ -47,11 +48,11 @@ namespace NLog.Targets
     using System.Windows;
     using System.Windows.Threading;
 #endif
-    using Common;
-    using Config;
-    using Internal;
-    using Layouts;
-    using LogReceiverService;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
+    using NLog.LogReceiverService;
 
     /// <summary>
     /// Sends log messages to a NLog Receiver Service (using WCF or Web Services).
@@ -465,18 +466,21 @@ namespace NLog.Targets
                 if (flushContinuation != null)
                 {
                     InternalLogger.Error(exception, "Error in flush async for LogReceiver: {0}", Name);
+#if !NETSTANDARD
                     if (exception.MustBeRethrown())
                         throw;
-
+#endif
                     flushContinuation(exception);
                 }
                 else
                 {
                     InternalLogger.Error(exception, "Error in send async for LogReceiver: {0}", Name);
+#if !NETSTANDARD
                     if (exception.MustBeRethrownImmediately())
                     {
                         throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                     }
+#endif
                 }
             }
         }
