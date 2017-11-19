@@ -79,6 +79,8 @@ namespace NLog.Targets
         {
             Parameters = new List<NLogViewerParameterInfo>();
             Renderer.Parameters = Parameters;
+            OnConnectionOverflow = NetworkTargetConnectionsOverflowAction.Block;
+            MaxConnections = 16;
             NewLine = false;
         }
 
