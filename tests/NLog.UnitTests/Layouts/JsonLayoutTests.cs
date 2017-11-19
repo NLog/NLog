@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
 using NLog.Targets;
 
 namespace NLog.UnitTests.Layouts
@@ -533,6 +534,38 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo);
 
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+        }     
+        
+        
+        /// <summary>
+        /// Serialize object deep
+        /// </summary>
+        [Fact]
+        public void SerializeObject()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' >
+                 </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo = new LogEventInfo();
+
+            logEventInfo.Properties.Add("nestedObject", new List<object> {new {val = "value1", val2 ="value2"}});
+
+            logger.Debug(logEventInfo);
+
+            AssertDebugLastMessage("debug", "{ \"nestedObject\": [{\"val\":\"value1\", \"val2\":\"value2\"}] }");
         }
 
         private static LogEventInfo CreateLogEventWithExcluded()
