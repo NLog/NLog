@@ -601,6 +601,107 @@ Dispose()
         }
 
         [Fact]
+        public void OutParameterTest()
+        {
+            MockDbConnection.ClearLog();
+            DatabaseTarget dt = new DatabaseTarget()
+            {
+                CommandType = CommandType.StoredProcedure,
+                CommandText = "StoredProcWithReturnValue",
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                KeepConnection = true,
+                Parameters =
+                {
+                    new DatabaseParameterInfo("msg", "${message}"),
+                    new DatabaseParameterInfo("lvl", "${level}"),
+                    new DatabaseParameterInfo("lg", "${logger}"),
+
+                }
+            };
+            DatabaseParameterInfo outputParam = new DatabaseParameterInfo("id", "${id}");
+            outputParam.Direction = ParameterDirection.Output;
+            dt.Parameters.Add(outputParam);
+
+            dt.Initialize(null);
+
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
+
+            // when we pass multiple log events in an array, the target will bucket-sort them by
+            // connection string and group all commands for the same connection string together
+            // to minimize number of db open/close operations
+            // in this case msg1, msg2 and msg4 will be written together to MyLogger database
+            // and msg3 will be written to MyLogger2 database
+
+            List<Exception> exceptions = new List<Exception>();
+            var events = new[]
+            {
+                new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Debug, "MyLogger2", "msg3").WithContinuation(exceptions.Add),
+            };
+
+            dt.WriteAsyncLogEvents(events);
+            foreach (var ex in exceptions)
+            {
+                Assert.Null(ex);
+            }
+
+            string expectedLog = @"Open('Server=.;Trusted_Connection=SSPI;').
+CreateParameter(0)
+Parameter #0 Direction=0
+Parameter #0 Name=msg
+Parameter #0 Value=msg1
+Add Parameter Parameter #0
+CreateParameter(1)
+Parameter #1 Direction=0
+Parameter #1 Name=lvl
+Parameter #1 Value=Info
+Add Parameter Parameter #1
+CreateParameter(2)
+Parameter #2 Direction=0
+Parameter #2 Name=lg
+Parameter #2 Value=MyLogger
+Add Parameter Parameter #2
+CreateParameter(3)
+Parameter #3 Direction=Output
+Parameter #3 Name=id
+Parameter #3 Value=
+Add Parameter Parameter #3
+ExecuteNonQuery: StoredProcWithReturnValue
+CreateParameter(0)
+Parameter #0 Direction=0
+Parameter #0 Name=msg
+Parameter #0 Value=msg3
+Add Parameter Parameter #0
+CreateParameter(1)
+Parameter #1 Direction=0
+Parameter #1 Name=lvl
+Parameter #1 Value=Debug
+Add Parameter Parameter #1
+CreateParameter(2)
+Parameter #2 Direction=0
+Parameter #2 Name=lg
+Parameter #2 Value=MyLogger2
+Add Parameter Parameter #2
+CreateParameter(3)
+Parameter #3 Direction=Output
+Parameter #3 Name=id
+Parameter #3 Value=
+Add Parameter Parameter #3
+ExecuteNonQuery: StoredProcWithReturnValue
+";
+
+            AssertLog(expectedLog);
+
+            MockDbConnection.ClearLog();
+            dt.Close();
+            expectedLog = @"Close()
+Dispose()
+";
+
+            AssertLog(expectedLog);
+        }
+
+        [Fact]
         public void ConnectionStringBuilderTest1()
         {
             DatabaseTarget dt;
@@ -1333,6 +1434,8 @@ Dispose()
 
             public string Database => throw new NotImplementedException();
 
+            public string Direction { get; set; }
+
             public void Open()
             {
                 LastConnectionString = ConnectionString;
@@ -1532,6 +1635,8 @@ Dispose()
         private class MockParameterCollection : IDataParameterCollection
         {
             private readonly MockDbCommand command;
+            private Dictionary<string, IDbDataParameter> parameters = new Dictionary<string, IDbDataParameter>();
+
 
             public MockParameterCollection(MockDbCommand command)
             {
@@ -1557,6 +1662,11 @@ Dispose()
             public int Add(object value)
             {
                 ((MockDbConnection)command.Connection).AddToLog("Add Parameter {0}", value);
+                IDbDataParameter parameter = value as IDbDataParameter;
+                if (value != null)
+                {
+                    this.parameters.Add(parameter.ParameterName, parameter);
+                }
                 return 0;
             }
 
@@ -1602,7 +1712,7 @@ Dispose()
 
             public bool Contains(string parameterName)
             {
-                throw new NotImplementedException();
+                return this.parameters.ContainsKey(parameterName);
             }
 
             public int IndexOf(string parameterName)
@@ -1617,7 +1727,7 @@ Dispose()
 
             object IDataParameterCollection.this[string parameterName]
             {
-                get => throw new NotImplementedException();
+                get { return this.parameters[parameterName]; }
                 set => throw new NotImplementedException();
             }
         }
