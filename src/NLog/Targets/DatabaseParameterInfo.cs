@@ -36,6 +36,7 @@
 namespace NLog.Targets
 {
     using System.ComponentModel;
+    using System.Data;
     using Config;
     using Layouts;
 
@@ -98,6 +99,21 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='10' />
         [DefaultValue(0)]
         public byte Scale { get; set; }
+            
+        /// <summary>
+        /// Gets or sets the database parameter scale.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue(ParameterDirection.Input)]
+        public ParameterDirection Direction { get; set; }
+
+        /// <summary>
+        /// Gets or sets the database parameter DbType.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue(DbType.String)]
+        public DbType DbType { get; set; }
+
     }
 }
 

@@ -555,7 +555,9 @@ namespace NLog.Targets
                     foreach (DatabaseParameterInfo par in Parameters)
                     {
                         IDbDataParameter p = command.CreateParameter();
-                        p.Direction = ParameterDirection.Input;
+                        p.Direction = par.Direction;
+                        p.DbType = par.DbType;
+
                         if (par.Name != null)
                         {
                             p.ParameterName = par.Name;
@@ -585,6 +587,10 @@ namespace NLog.Targets
                     }
 
                     int result = command.ExecuteNonQuery();
+                    
+                    // fire post-execute events
+                    FireEvents(command, logEvent);
+
                     InternalLogger.Trace("Finished execution, result = {0}", result);
                 }
 
@@ -592,6 +598,40 @@ namespace NLog.Targets
                 transactionScope.Complete();
             }
         }
+
+        /// <summary>
+        /// Calls events on DatabaeLogEventInfo
+        /// </summary>
+        /// <param name="command">IDbCommand with collection of parameters, which might contain an output parameter</param>
+        /// <param name="logEvent">LogEventInfo with DatabaseTargetWritten events.</param>
+        /// <remarks>The IDbCommand is no longer in the transaction!</remarks>
+        private void FireEvents(IDbCommand command, LogEventInfo logEvent)
+        {
+            if (command == null)
+                return;
+            foreach (DatabaseParameterInfo par in this.Parameters)
+            {
+                if ((par.Direction == ParameterDirection.Output) ||
+                    (par.Direction == ParameterDirection.InputOutput) ||
+                    (par.Direction == ParameterDirection.ReturnValue))
+                {
+                    if (command.Parameters.Contains(par.Name))
+                    {
+                        IDbDataParameter dbParameter = command.Parameters[par.Name] as IDbDataParameter;
+                        if (dbParameter != null)
+                        {
+                            logEvent.OnDatabaseTargetWritten(par.Name, dbParameter.Value);
+                        }
+                    }
+                    else
+                    {
+                        InternalLogger.Error(string.Format("The item {0} does not exist in the parameter collection", par.Name));
+                    }
+
+                }
+            }
+        }
+
         /// <summary>
         /// Build the connectionstring from the properties. 
         /// </summary>

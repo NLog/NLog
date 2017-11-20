@@ -151,6 +151,31 @@ namespace NLog
         }
 
         /// <summary>
+        /// The delegate for the DatabaseTargetWritten event.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        public delegate void DatabaseTargetWrittenHandler(string name, object value);
+
+        /// <summary>
+        /// The event called when a DatabaseTarget with an output parameter has been written to the database.
+        /// </summary>
+        public event DatabaseTargetWrittenHandler DatabaseTargetWritten;
+
+        /// <summary>
+        /// Used internally to call the client's event handler(s)
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        internal void OnDatabaseTargetWritten(string name, object value)
+        {
+            if (DatabaseTargetWritten != null)
+            {
+                DatabaseTargetWritten(name, value);
+            }
+        }
+
+        /// <summary>
         /// Gets the unique identifier of log event which is automatically generated
         /// and monotonously increasing.
         /// </summary>
@@ -437,7 +462,13 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, object message)
         {
-            return new LogEventInfo(logLevel, loggerName, formatProvider, "{0}", new[] { message });
+            LogEventInfo retVal = new LogEventInfo(logLevel, loggerName, formatProvider, "{0}", new[] { message });
+            if (message is LogEventInfo)
+            {
+                LogEventInfo logEventInfo = message as LogEventInfo;
+                retVal.DatabaseTargetWritten = logEventInfo.DatabaseTargetWritten;
+            }
+            return retVal;
         }
 
         /// <summary>
