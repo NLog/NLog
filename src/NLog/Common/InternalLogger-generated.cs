@@ -76,7 +76,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Trace([Localizable(false)] string message, params object[] args)
         {
             Write(null, LogLevel.Trace, message, args);
@@ -108,7 +108,7 @@ namespace NLog.Common
 		/// <param name="ex">Exception to be logged.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Trace(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Trace, message, args);
@@ -120,7 +120,7 @@ namespace NLog.Common
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Trace<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsTraceEnabled)
@@ -135,7 +135,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Trace<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsTraceEnabled)
@@ -152,7 +152,7 @@ namespace NLog.Common
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Trace<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsTraceEnabled)
@@ -186,7 +186,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Debug([Localizable(false)] string message, params object[] args)
         {
             Write(null, LogLevel.Debug, message, args);
@@ -218,7 +218,7 @@ namespace NLog.Common
 		/// <param name="ex">Exception to be logged.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Debug(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Debug, message, args);
@@ -230,7 +230,7 @@ namespace NLog.Common
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Debug<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsDebugEnabled)
@@ -245,7 +245,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Debug<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsDebugEnabled)
@@ -262,7 +262,7 @@ namespace NLog.Common
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Debug<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsDebugEnabled)
@@ -296,7 +296,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Info([Localizable(false)] string message, params object[] args)
         {
             Write(null, LogLevel.Info, message, args);
@@ -328,7 +328,7 @@ namespace NLog.Common
 		/// <param name="ex">Exception to be logged.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Info(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Info, message, args);
@@ -340,7 +340,7 @@ namespace NLog.Common
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Info<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsInfoEnabled)
@@ -355,7 +355,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Info<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsInfoEnabled)
@@ -372,7 +372,7 @@ namespace NLog.Common
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Info<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsInfoEnabled)
@@ -406,7 +406,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Warn([Localizable(false)] string message, params object[] args)
         {
             Write(null, LogLevel.Warn, message, args);
@@ -438,7 +438,7 @@ namespace NLog.Common
 		/// <param name="ex">Exception to be logged.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Warn(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Warn, message, args);
@@ -450,7 +450,7 @@ namespace NLog.Common
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Warn<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsWarnEnabled)
@@ -465,7 +465,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Warn<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsWarnEnabled)
@@ -482,7 +482,7 @@ namespace NLog.Common
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Warn<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsWarnEnabled)
@@ -516,7 +516,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Error([Localizable(false)] string message, params object[] args)
         {
             Write(null, LogLevel.Error, message, args);
@@ -548,7 +548,7 @@ namespace NLog.Common
 		/// <param name="ex">Exception to be logged.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Error(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Error, message, args);
@@ -560,7 +560,7 @@ namespace NLog.Common
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Error<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsErrorEnabled)
@@ -575,7 +575,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Error<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsErrorEnabled)
@@ -592,7 +592,7 @@ namespace NLog.Common
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Error<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsErrorEnabled)
@@ -626,7 +626,7 @@ namespace NLog.Common
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Fatal([Localizable(false)] string message, params object[] args)
         {
             Write(null, LogLevel.Fatal, message, args);
@@ -658,7 +658,7 @@ namespace NLog.Common
 		/// <param name="ex">Exception to be logged.</param>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="args">Arguments to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Fatal(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Fatal, message, args);
@@ -670,7 +670,7 @@ namespace NLog.Common
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Fatal<TArgument1>([Localizable(false)] string message, TArgument1 arg0)
         {
             if (IsFatalEnabled)
@@ -685,7 +685,7 @@ namespace NLog.Common
         /// <param name="message">Message which may include positional parameters.</param>
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Fatal<TArgument1, TArgument2>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1)
         {
             if (IsFatalEnabled)
@@ -702,7 +702,7 @@ namespace NLog.Common
         /// <param name="arg0">Argument {0} to the message.</param>
         /// <param name="arg1">Argument {1} to the message.</param>
 		/// <param name="arg2">Argument {2} to the message.</param>
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         public static void Fatal<TArgument1, TArgument2, TArgument3>([Localizable(false)] string message, TArgument1 arg0, TArgument2 arg1, TArgument3 arg2)
         {
             if (IsFatalEnabled)

@@ -72,7 +72,7 @@ namespace NLog
         /// <param name="arg1">First argument to format.</param>
         /// <param name="arg2">Second argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, object arg1, object arg2);
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace NLog
         /// <param name="arg2">Second argument to format.</param>
         /// <param name="arg3">Third argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, object arg1, object arg2, object arg3);
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, bool argument);
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, bool argument);
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, char argument);
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, char argument);
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, byte argument);
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, byte argument);
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, string argument);
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, string argument);
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, int argument);
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, int argument);
 
         /// <summary>
@@ -200,7 +200,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, long argument);
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, long argument);
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, float argument);
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, float argument);
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, double argument);
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, double argument);
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, decimal argument);
 
         /// <summary>
@@ -273,7 +273,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, decimal argument);
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, object argument);
 
         /// <summary>
@@ -294,7 +294,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, object argument);
 
         /// <summary>
@@ -305,7 +305,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, sbyte argument);
 
         /// <summary>
@@ -315,7 +315,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>    
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, sbyte argument);
 
         /// <summary>
@@ -326,7 +326,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>        
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, uint argument);
 
         /// <summary>
@@ -337,7 +337,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, uint argument);
 
         /// <summary>
@@ -349,7 +349,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, IFormatProvider formatProvider, string message, ulong argument);
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [StringFormatMethod("message")]
+        [MessageTemplateFormatMethod("message")]
         void Log(LogLevel level, string message, ulong argument);
 
         #endregion
