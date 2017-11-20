@@ -15,7 +15,10 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
- Structured logging is back!
+beta 8: Mail target for .NET standard,  &amp; many improvements
+      
+NLog 4.5 summary:      
+ Structured logging
  NetStandard 2.0 support
     </PackageReleaseNotes>
     <PackageTags>NLog;logging;log;tracing;logfiles;database;eventlog;email;wcf</PackageTags>
