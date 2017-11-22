@@ -199,9 +199,9 @@ namespace NLog.Internal
 
         struct MruItem
         {
-            public TValue Value;
-            public long Version;
-            public bool Virgin;
+            public readonly TValue Value;
+            public readonly long Version;
+            public readonly bool Virgin;
 
             public MruItem(TValue value, long version, bool virgin)
             {
