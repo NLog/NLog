@@ -47,8 +47,8 @@ namespace NLog.Internal.FileAppenders
 #if SupportsMutex
 #if !NETSTANDARD1_5
     using System.Security.AccessControl;
-#endif
     using System.Security.Principal;
+#endif
     using System.Security.Cryptography;
     using Common;
 #endif
