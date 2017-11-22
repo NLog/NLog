@@ -92,6 +92,39 @@ namespace NLog.UnitTests.MessageTemplates
             RenderAndTest(input, culture, args, expected);
         }
 
+        [Theory]
+        [InlineData("test {0:u}", "1970-01-01", "test 1970-01-01 00:00:00Z")]
+        [InlineData("test {0:MM/dd/yy}", "1970-01-01", "test 01/01/70")]
+        public void RenderDateTime(string input, string arg, string expected)
+        {
+            var culture = CultureInfo.InvariantCulture;
+
+            DateTime dt = DateTime.Parse(arg, culture, DateTimeStyles.AdjustToUniversal);
+            RenderAndTest(input, culture, new object[] { dt }, expected);
+        }
+
+        [Theory]
+        [InlineData("test {0:c}", "1:2:3:4.5", "test 1.02:03:04.5000000")]
+        [InlineData("test {0:hh\\:mm\\:ss\\.ff}", "1:2:3:4.5", "test 02:03:04.50")]
+        public void RenderTimeSpan(string input, string arg, string expected)
+        {
+            var culture = CultureInfo.InvariantCulture;
+
+            TimeSpan ts = TimeSpan.Parse(arg, culture);
+            RenderAndTest(input, culture, new object[] { ts }, expected);
+        }
+
+        [Theory]
+        [InlineData("test {0:u}", "1 Jan 1970 01:02:03Z", "test 1970-01-01 01:02:03Z")]
+        [InlineData("test {0:s}", "1 Jan 1970 01:02:03Z", "test 1970-01-01T01:02:03")]
+        public void RenderDateTimeOffset(string input, string arg, string expected)
+        {
+            var culture = CultureInfo.InvariantCulture;
+
+            DateTimeOffset dto = DateTimeOffset.Parse(arg, culture, DateTimeStyles.AdjustToUniversal);
+            RenderAndTest(input, culture, new object[] { dto }, expected);
+        }
+
         private static void RenderAndTest(string input, CultureInfo culture, object[] args, string expected)
         {
             var template = TemplateParser.Parse(input);
