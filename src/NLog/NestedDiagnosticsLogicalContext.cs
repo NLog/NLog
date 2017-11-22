@@ -195,19 +195,23 @@ namespace NLog
             public T Value { get; private set; }
             object INestedContext.Value => Value;
             public DateTime CreatedTime { get; private set; }
-            public int FrameLevel { get; private set; }
+            public int FrameLevel => _frameLevel;
+            private int _frameLevel;
 
             public NestedContext(INestedContext parent, T value)
             {
                 Parent = parent;
                 Value = value;
                 CreatedTime = DateTime.UtcNow; // Low time resolution, but okay fast
-                FrameLevel = parent != null ? parent.FrameLevel + 1 : 1; 
+                _frameLevel = parent != null ? parent.FrameLevel + 1 : 1; 
             }
 
             void IDisposable.Dispose()
             {
-                PopObject();
+                if (System.Threading.Interlocked.Exchange(ref _frameLevel, 0) != 0)
+                {
+                    PopObject();
+                }
             }
 
             public override string ToString()
