@@ -228,11 +228,9 @@ NLog 4.5 summary:
     <PackageReference Include="System.Net.NameResolution" Version="4.0.0" />
     <PackageReference Include="System.Net.Requests" Version="4.0.11" />
     <PackageReference Include="System.Runtime.Loader" Version="4.0.0" />
-    <PackageReference Include="System.Security.Principal" Version="4.0.1" />
     <PackageReference Include="System.Threading.Thread" Version="4.0.0" />
     <PackageReference Include="System.Threading.ThreadPool" Version="4.0.10" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.0.1" />
-    <PackageReference Include="System.Xml.XmlSerializer" Version="4.0.11" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(monobuild)' != '' ">
