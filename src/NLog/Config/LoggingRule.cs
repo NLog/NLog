@@ -37,9 +37,10 @@ namespace NLog.Config
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Globalization;
+    using System.Linq;
     using System.Text;
-    using Filters;
-    using Targets;
+    using NLog.Filters;
+    using NLog.Targets;
 
     /// <summary>
     /// Represents a logging rule. An equivalent of &lt;logger /&gt; configuration element.
@@ -125,6 +126,8 @@ namespace NLog.Config
         /// Gets a collection of child rules to be evaluated when this rule matches.
         /// </summary>
         public IList<LoggingRule> ChildRules { get; private set; }
+
+        internal List<LoggingRule> CloneChildRulesThreadSafe() { lock (ChildRules) return ChildRules.ToList(); }
 
         /// <summary>
         /// Gets a collection of filters to be checked before writing to targets.
