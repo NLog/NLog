@@ -167,12 +167,12 @@ namespace NLog.UnitTests.LayoutRenderers
             }
             LogManager.GetLogger("A").Debug("0");
             AssertDebugLastMessage("debug", " 0");
-            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.Pop());
+            Assert.Null(NestedDiagnosticsLogicalContext.Pop()); //inconsistent with NDC - should be string.empty, but for backwardsscomp. Fix in NLog 5
             NestedDiagnosticsLogicalContext.Push("zzz");
             NestedDiagnosticsLogicalContext.Push("yyy");
             Assert.Equal("yyy", NestedDiagnosticsLogicalContext.Pop());
             NestedDiagnosticsLogicalContext.Clear();
-            Assert.Equal(string.Empty, NestedDiagnosticsLogicalContext.Pop());
+            Assert.Null(NestedDiagnosticsLogicalContext.Pop()); //inconsistent with NDC - should be string.empty, but for backwardsscomp. Fix in NLog 5
         }
 
         [Fact]
