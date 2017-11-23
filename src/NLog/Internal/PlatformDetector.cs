@@ -65,7 +65,8 @@ namespace NLog.Internal
         /// <summary>
         /// Gets a value indicating whether current runtime is Mono-based
         /// </summary>
-        public static bool IsMono => Type.GetType("Mono.Runtime") != null;
+        public static bool IsMono => _isMono ?? (_isMono = Type.GetType("Mono.Runtime") != null).Value;
+        private static bool? _isMono;
 
         /// <summary>
         /// Gets a value indicating whether current runtime supports use of mutex

@@ -2966,6 +2966,49 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Fact]
+        public void LoggingShouldNotTriggerTypeResolveEventTest()
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempPath, "log.log");
+
+            System.ResolveEventHandler noResolveTest = (s, args) => { Assert.True(false); return null; };
+
+            try
+            {
+                LogManager.Configuration = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                        <targets>
+                            <target name='file1' encoding='UTF-8' type='File' fileName='" + logFile + @"'>
+                                <layout type='JsonLayout'>
+                                  <attribute name='message' layout='${message}' />
+                                  <attribute name='xml'>
+                                    <layout type='Log4JXmlEventLayout' />
+                                  </attribute>
+                                </layout>
+                            </target>
+                        </targets>
+                        <rules>
+                            <logger name='*' minlevel='Trace' writeTo='file1' />
+                        </rules>
+                    </nlog>");
+
+                LogManager.GetLogger("Test").Info("very important message");
+
+                AppDomain.CurrentDomain.TypeResolve += noResolveTest;
+                AppDomain.CurrentDomain.AssemblyResolve += noResolveTest;
+
+                LogManager.GetLogger("Test").Info("very important message");
+            }
+            finally
+            {
+                AppDomain.CurrentDomain.TypeResolve -= noResolveTest;
+                AppDomain.CurrentDomain.AssemblyResolve -= noResolveTest;
+                LogManager.Configuration = null;
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
