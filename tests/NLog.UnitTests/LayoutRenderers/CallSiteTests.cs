@@ -689,6 +689,28 @@ namespace NLog.UnitTests.LayoutRenderers
 
 #if NET3_5 || NET4_0
         [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
+#else
+        [Fact]
+#endif
+        public void Show_correct_filename_with_async()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite:className=False:fileName=True:includeSourcePath=False:methodName=False}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Warn' writeTo='debug' />
+               </rules>
+           </nlog>");
+
+            AsyncMethod().Wait();
+            Assert.Contains("CallSiteTests.cs", GetDebugLastMessage("debug"));
+            Assert.Contains("|direct", GetDebugLastMessage("debug"));
+        }
+
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
 #else
         [Fact]
 #endif
