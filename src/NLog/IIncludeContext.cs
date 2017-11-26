@@ -36,11 +36,8 @@ namespace NLog
     /// <summary>
     /// Include context properties
     /// </summary>
-    public interface IIncludeContext
+    internal interface IIncludeContext
     {
-
-
-
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
@@ -60,7 +57,6 @@ namespace NLog
         bool IncludeAllProperties { get; set; }
 
 #if NET4_0 || NET4_5
-
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
