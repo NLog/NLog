@@ -183,6 +183,46 @@ namespace NLog.Internal
         }
 
         /// <summary>
+        /// Copies the contents of the StringBuilder to the destination StringBuilder
+        /// </summary>
+        /// <param name="builder">StringBuilder source</param>
+        /// <param name="destination">StringBuilder destination</param>
+        public static void CopyTo(this StringBuilder builder, StringBuilder destination)
+        {
+            int sourceLength = builder.Length;
+            if (sourceLength > 0)
+            {
+                destination.EnsureCapacity(sourceLength + destination.Length);
+                if (sourceLength < 8)
+                {
+                    // Skip char-buffer allocation for small strings
+                    for (int i = 0; i < sourceLength; ++i)
+                        destination.Append(builder[i]);
+                }
+                else if (sourceLength < 512)
+                {
+                    // Single char-buffer allocation through string-object
+                    destination.Append(builder.ToString());
+                }
+                else
+                {
+#if !SILVERLIGHT
+                    // Reuse single char-buffer allocation for large StringBuilders
+                    char[] buffer = new char[256];
+                    for (int i = 0; i < sourceLength; i += buffer.Length)
+                    {
+                        int charCount = Math.Min(sourceLength - i, buffer.Length);
+                        builder.CopyTo(i, buffer, 0, charCount);
+                        destination.Append(buffer, 0, charCount);
+                    }
+#else
+                    destination.Append(builder.ToString());
+#endif
+                }
+            }
+        }
+
+        /// <summary>
         /// Append a number and pad with 0 to 2 digits
         /// </summary>
         /// <param name="builder">append to this</param>

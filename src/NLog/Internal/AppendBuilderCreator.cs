@@ -68,9 +68,9 @@ namespace NLog.Internal
         {
             if (!ReferenceEquals(_builder.Item, _appendTarget))
             {
-                _appendTarget.Append(_builder.Item.ToString());
+                _builder.Item.CopyTo(_appendTarget);
+                _builder.Dispose();
             }
-            _builder.Dispose();
         }
     }
 }
