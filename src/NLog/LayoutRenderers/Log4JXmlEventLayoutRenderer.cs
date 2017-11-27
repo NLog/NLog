@@ -400,7 +400,7 @@ namespace NLog.LayoutRenderers
                 // get rid of 'nlog' and 'log4j' namespace declarations
                 sb.Replace(dummyNamespaceRemover, string.Empty);
                 sb.Replace(dummyNLogNamespaceRemover, string.Empty);
-                builder.Append(sb.ToString());  // StringBuilder.Replace is not good when reusing the StringBuilder
+                sb.CopyTo(builder); // StringBuilder.Replace is not good when reusing the StringBuilder
             }
         }
 

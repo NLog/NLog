@@ -76,25 +76,28 @@ namespace NLog.Internal
             {
                 return logEvent.Message;
             }
-            // Prevent multiple layouts on different targets to render the same properties
-            lock (logEvent)
+            using (var builder = _builderPool.Acquire())
             {
-                using (var builder = _builderPool.Acquire())
+                logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder.Item, out var messageTemplateParameterList);
+                if (logEvent.PropertiesDictionary != null || messageTemplateParameterList != null)
                 {
-                    logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder.Item, out var messageTemplateParameterList);
-                    if (logEvent.PropertiesDictionary == null)
+                    // Prevent multiple layouts on different targets to update the same properties
+                    lock (logEvent)
                     {
-                        if (messageTemplateParameterList != null && messageTemplateParameterList.Count > 0)
+                        if (logEvent.PropertiesDictionary == null)
                         {
-                            logEvent.PropertiesDictionary = new PropertiesDictionary(messageTemplateParameterList);
+                            if (messageTemplateParameterList != null && messageTemplateParameterList.Count > 0)
+                            {
+                                logEvent.PropertiesDictionary = new PropertiesDictionary(messageTemplateParameterList);
+                            }
+                        }
+                        else
+                        {
+                            logEvent.PropertiesDictionary.MessageProperties = messageTemplateParameterList;
                         }
                     }
-                    else
-                    {
-                        logEvent.PropertiesDictionary.MessageProperties = messageTemplateParameterList;
-                    }
-                    return builder.Item.ToString();
                 }
+                return builder.Item.ToString();
             }
         }
     }
