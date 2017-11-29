@@ -848,10 +848,8 @@ namespace NLog
             }
         }
 #endif
-        private void GetTargetsByLevelForLogger(string name, IEnumerable<LoggingRule> rules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
+        private void GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
-            //no "System.InvalidOperationException: Collection was modified"
-            var loggingRules = new List<LoggingRule>(rules);
             foreach (LoggingRule rule in loggingRules)
             {
                 if (!rule.NameMatches(name))
@@ -886,8 +884,10 @@ namespace NLog
                 }
 
                 // Recursively analyze the child rules.
-                GetTargetsByLevelForLogger(name, rule.ChildRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
-
+                if (rule.ChildRules.Count != 0)
+                {
+                    GetTargetsByLevelForLogger(name, rule.CloneChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels);
+                }
             }
 
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
@@ -908,7 +908,9 @@ namespace NLog
 
             if (configuration != null && IsLoggingEnabled())
             {
-                GetTargetsByLevelForLogger(name, configuration.LoggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
+                //no "System.InvalidOperationException: Collection was modified"
+                var loggingRules = configuration.GetLoggingRulesThreadSafe();
+                GetTargetsByLevelForLogger(name, loggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             }
 
             if (InternalLogger.IsDebugEnabled)
