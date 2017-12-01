@@ -178,12 +178,7 @@ namespace NLog.Conditions
         [ConditionMethod("regex-matches")]
         public static bool RegexMatches(string input, string pattern, string options)
         {
-            RegexOptions regexOpts =
-#if SILVERLIGHT
-                RegexOptions.None;
-#else
-                RegexOptions.Compiled;
-#endif
+            RegexOptions regexOpts = RegexOptions.None;
 
             if (options.IndexOf('i') != -1)
             {
