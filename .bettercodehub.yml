@@ -1,0 +1,8 @@
+exclude:
+- /examples/.*
+- /src/VSIntegration/ItemTemplatesGenerator/generate_variants.pl
+- /tests/SampleExtensions/.*
+- /tools/.*
+component_depth: 1
+languages:
+- csharp
