@@ -36,6 +36,7 @@ namespace NLog.Conditions
     using System;
     using System.Runtime.InteropServices;
     using System.Reflection;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// A bunch of utility methods (mostly predicates) which can be used in
@@ -166,5 +167,43 @@ namespace NLog.Conditions
         {
             return text.Length;
         }
+
+        /// <summary>
+        /// Indicates whether the specified regular expression finds a match in the specified input string.
+        /// </summary>
+        /// <param name="input">The string to search for a match.</param>
+        /// <param name="pattern">The regular expression pattern to match.</param>
+        /// <param name="options">A string consisting of the desired options for the test. Available options are : 'i' for ignore case, 'm' for multi-line, 's' for single line and 'x' for ignore pattern whitespace.</param>
+        /// <returns>true if the regular expression finds a match; otherwise, false.</returns>
+        [ConditionMethod("regex-matches")]
+        public static bool RegexMatches(string input, string pattern, string options)
+        {
+            RegexOptions regexOpts =
+#if SILVERLIGHT
+                RegexOptions.None;
+#else
+                RegexOptions.Compiled;
+#endif
+
+            if (options.IndexOf('i') != -1)
+            {
+                regexOpts |= RegexOptions.IgnoreCase;
+            }
+            if (options.IndexOf('m') != -1)
+            {
+                regexOpts |= RegexOptions.Multiline;
+            }
+            if (options.IndexOf('s') != -1)
+            {
+                regexOpts |= RegexOptions.Singleline;
+            }
+            if (options.IndexOf('x') != -1)
+            {
+                regexOpts |= RegexOptions.IgnorePatternWhitespace;
+            }
+
+            return Regex.IsMatch(input, pattern, regexOpts);
+        }
+
     }
 }

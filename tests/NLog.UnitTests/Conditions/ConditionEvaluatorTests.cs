@@ -77,6 +77,17 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(false, "contains('foobar','oobe')");
             AssertEvaluationResult(false, "contains('','foo')");
             AssertEvaluationResult(true, "contains('foo','')");
+
+            AssertEvaluationResult(true, "regex-matches('foo', '^foo$', '')");
+            AssertEvaluationResult(false, "regex-matches('foo', '^bar$', '')");
+            AssertEvaluationResult(true, "regex-matches('Foo', '^foo$', 'i')");
+            AssertEvaluationResult(false, "regex-matches('Foo', '^foo$', '')");
+            AssertEvaluationResult(true, "regex-matches('foo\nbar', '^foo$', 'm')");
+            AssertEvaluationResult(false, "regex-matches('foo\nbar', '^foo$', '')");
+            AssertEvaluationResult(true, "regex-matches('foo\nbar', '^foo.bar$', 's')");
+            AssertEvaluationResult(false, "regex-matches('foo\nbar', '^foo.bar$', '')");
+            AssertEvaluationResult(false, "regex-matches('foo bar', '^foo bar$', 'x')");
+            AssertEvaluationResult(true, "regex-matches('foo bar', '^foo bar$', '')");
         }
 
         [Fact]
