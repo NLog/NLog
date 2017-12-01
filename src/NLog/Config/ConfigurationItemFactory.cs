@@ -366,35 +366,37 @@ namespace NLog.Config
             var nlogAssembly = typeof(ILogger).GetAssembly();
             var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
-#if !SILVERLIGHT
 
+#if !SILVERLIGHT
             try
             {
-                Uri assemblyCodeBase;
-                if (!Uri.TryCreate(nlogAssembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
+                var assemblyLocation = GetAssemblyFileLocation(nlogAssembly);
+                var extensionDlls = GetNLogExtensionFiles(assemblyLocation);
+                if (extensionDlls.Length==0)
                 {
-                    InternalLogger.Warn("No auto loading because assembly code base is unknown");
-                    return factory;
+                    var entryAssembly = Assembly.GetEntryAssembly();
+                    if (!string.IsNullOrEmpty(entryAssembly?.CodeBase))
+                    {
+                        if (!string.Equals(entryAssembly?.CodeBase, nlogAssembly.CodeBase, StringComparison.OrdinalIgnoreCase))
+                        {
+                            assemblyLocation = GetAssemblyFileLocation(entryAssembly);
+                            extensionDlls = GetNLogExtensionFiles(assemblyLocation);
+                        }
+                    }
+                    else
+                    {
+                        // TODO Consider to prioritize AppDomain.PrivateBinPath
+                        var appDomainBaseDirectory = LogFactory.CurrentAppDomain.BaseDirectory;
+                        if (!string.IsNullOrEmpty(appDomainBaseDirectory))
+                        {
+                            if (!string.Equals(appDomainBaseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase))
+                            {
+                                assemblyLocation = appDomainBaseDirectory;
+                                extensionDlls = GetNLogExtensionFiles(appDomainBaseDirectory);
+                            }
+                        }
+                    }
                 }
-
-                var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
-                if (assemblyLocation == null)
-                {
-                    InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
-                    return factory;
-                }
-                if (!Directory.Exists(assemblyLocation))
-                {
-                    InternalLogger.Warn("No auto loading because '{0}' doesn't exists", assemblyLocation);
-                    return factory;
-                }
-
-                var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
-                    .Select(Path.GetFileName)
-                    .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
-                    .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
-                    .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
-                    .Select(x => Path.Combine(assemblyLocation, x));
 
                 InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
                 foreach (var extensionDll in extensionDlls)
@@ -443,9 +445,93 @@ namespace NLog.Config
             }
             InternalLogger.Debug("Auto loading done");
 #endif
-
             return factory;
         }
+
+#if !SILVERLIGHT
+        private static string GetAssemblyFileLocation(Assembly assembly)
+        {
+            try
+            {
+                Uri assemblyCodeBase;
+                if (!Uri.TryCreate(assembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
+                {
+                    InternalLogger.Warn("No auto loading because assembly code base is unknown");
+                    return string.Empty;
+                }
+
+                var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
+                if (assemblyLocation == null)
+                {
+                    InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
+                    return string.Empty;
+                }
+                if (!Directory.Exists(assemblyLocation))
+                {
+                    InternalLogger.Warn("No auto loading because '{0}' doesn't exists", assemblyLocation);
+                    return string.Empty;
+                }
+
+                return assemblyLocation;
+            }
+            catch (System.Security.SecurityException ex)
+            {
+                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                return string.Empty;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                return string.Empty;
+            }
+        }
+
+        private static string[] GetNLogExtensionFiles(string assemblyLocation)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(assemblyLocation))
+                {
+                    return ArrayHelper.Empty<string>();
+                }
+
+                InternalLogger.Debug("Search for auto loading files, location: {0}", assemblyLocation);
+                var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
+                .Select(Path.GetFileName)
+                .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
+                .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
+                .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
+                .Select(x => Path.Combine(assemblyLocation, x));
+                return extensionDlls.ToArray();
+            }
+            catch (System.Security.SecurityException ex)
+            {
+                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                return ArrayHelper.Empty<string>();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                return ArrayHelper.Empty<string>();
+            }
+        }
+#endif
 
         /// <summary>
         /// Registers items in NLog.Extended.dll using late-bound types, so that we don't need a reference to NLog.Extended.dll.
