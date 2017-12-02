@@ -173,32 +173,33 @@ namespace NLog.Conditions
         /// </summary>
         /// <param name="input">The string to search for a match.</param>
         /// <param name="pattern">The regular expression pattern to match.</param>
-        /// <param name="options">A string consisting of the desired options for the test. Available options are : 'i' for ignore case, 'm' for multi-line, 's' for single line and 'x' for ignore pattern whitespace.</param>
+        /// <param name="options">A string consisting of the desired options for the test. The possible values are those of the <see cref="RegexOptions"/> separated by commas.</param>
         /// <returns>true if the regular expression finds a match; otherwise, false.</returns>
         [ConditionMethod("regex-matches")]
-        public static bool RegexMatches(string input, string pattern, string options)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Not called directly, only ever Invoked.")]
+#if SILVERLIGHT
+        public static bool RegexMatches(string input, string pattern, [Optional] string options)
+#else
+        public static bool RegexMatches(string input, string pattern, [Optional, DefaultParameterValue("")] string options)
+#endif
         {
-            RegexOptions regexOpts = RegexOptions.None;
-
-            if (options.IndexOf('i') != -1)
-            {
-                regexOpts |= RegexOptions.IgnoreCase;
-            }
-            if (options.IndexOf('m') != -1)
-            {
-                regexOpts |= RegexOptions.Multiline;
-            }
-            if (options.IndexOf('s') != -1)
-            {
-                regexOpts |= RegexOptions.Singleline;
-            }
-            if (options.IndexOf('x') != -1)
-            {
-                regexOpts |= RegexOptions.IgnorePatternWhitespace;
-            }
-
+            RegexOptions regexOpts = ParseRegexOptions(options);
             return Regex.IsMatch(input, pattern, regexOpts);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        private static RegexOptions ParseRegexOptions(string options)
+        {
+            if (string.IsNullOrEmpty(options))
+            {
+                return RegexOptions.None;
+            }
+
+            return (RegexOptions)Enum.Parse(typeof(RegexOptions), options, true);
+        }
     }
 }
