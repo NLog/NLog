@@ -43,6 +43,7 @@ namespace NLog.Config
     /// </summary>
     public static class SimpleConfigurator
     {
+#if !WINDOWS_UWP
         /// <summary>
         /// Configures NLog for console logging so that all messages above and including
         /// the <see cref="NLog.LogLevel.Info"/> level are output to the console.
@@ -66,6 +67,7 @@ namespace NLog.Config
             config.AddRule(minLevel, LogLevel.MaxLevel, consoleTarget, "*");
             LogManager.Configuration = config;
         }
+#endif
 
         /// <summary>
         /// Configures NLog for to log to the specified target so that all messages 

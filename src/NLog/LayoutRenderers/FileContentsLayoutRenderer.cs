@@ -36,10 +36,10 @@ namespace NLog.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
-    using Common;
-    using Config;
-    using Internal;
-    using Layouts;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Renders contents of the specified file.
@@ -55,7 +55,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public FileContentsLayoutRenderer()
         {
-#if SILVERLIGHT || NETSTANDARD1_5
+#if SILVERLIGHT || NETSTANDARD1_0
             this.Encoding = Encoding.UTF8;
 #else
             Encoding = Encoding.Default;
@@ -102,7 +102,7 @@ namespace NLog.LayoutRenderers
         {
             try
             {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
                 return File.ReadAllText(fileName, Encoding);
 #else
                 using (var reader = new StreamReader(fileName, Encoding))

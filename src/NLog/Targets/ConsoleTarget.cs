@@ -31,14 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using NLog.Common;
+#if !WINDOWS_UWP
 
 namespace NLog.Targets
 {
     using System;
+    using System.IO;
     using System.Text;
     using System.ComponentModel;
+
+    using NLog.Common;
 
     /// <summary>
     /// Writes log messages to the console.
@@ -234,3 +236,5 @@ namespace NLog.Targets
         }
     }
 }
+
+#endif

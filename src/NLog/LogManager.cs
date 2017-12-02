@@ -42,10 +42,10 @@ namespace NLog
     using System.Runtime.CompilerServices;
     using System.Threading;
 
-    using Common;
-    using Config;
-    using Internal;
-    using Internal.Fakeables;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Internal.Fakeables;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -83,7 +83,7 @@ namespace NLog
             remove => factory.ConfigurationChanged -= value;
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>

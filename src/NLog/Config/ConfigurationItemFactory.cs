@@ -40,13 +40,13 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using Conditions;
-    using Filters;
-    using Internal;
-    using LayoutRenderers;
-    using Layouts;
-    using Targets;
-    using Time;
+    using NLog.Conditions;
+    using NLog.Filters;
+    using NLog.Internal;
+    using NLog.LayoutRenderers;
+    using NLog.Layouts;
+    using NLog.Targets;
+    using NLog.Time;
 
     /// <summary>
     /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
@@ -367,7 +367,7 @@ namespace NLog.Config
             var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !WINDOWS_UWP
             try
             {
                 var assemblyLocation = GetAssemblyFileLocation(nlogAssembly);
@@ -448,7 +448,7 @@ namespace NLog.Config
             return factory;
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !WINDOWS_UWP
         private static string GetAssemblyFileLocation(Assembly assembly)
         {
             try

@@ -34,7 +34,6 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-    using System.Threading;
 
     /// <summary>
     /// The identifier of the current thread.
@@ -50,7 +49,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture needed for ints
-            Internal.StringBuilderExt.AppendInvariant(builder, Thread.CurrentThread.ManagedThreadId);
+            Internal.StringBuilderExt.AppendInvariant(builder, Common.AsyncHelpers.GetManagedThreadId());
         }
     }
 }

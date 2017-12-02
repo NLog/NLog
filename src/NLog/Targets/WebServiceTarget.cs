@@ -453,7 +453,7 @@ namespace NLog.Targets
                 case WebServiceProxyType.NoProxy:
                     request.Proxy = null;
                     break;
-#if!NETSTANDARD1_5
+#if !NETSTANDARD1_0
                 case WebServiceProxyType.AutoProxy:
                     if (_activeProxy.Value == null)
                     {
@@ -478,7 +478,7 @@ namespace NLog.Targets
             }
 #endif
 
-#if !SILVERLIGHT && !NETSTANDARD1_5
+#if !SILVERLIGHT && !NETSTANDARD1_0
             if (PreAuthenticate || ProxyType == WebServiceProxyType.AutoProxy)
             {
                 request.PreAuthenticate = true;

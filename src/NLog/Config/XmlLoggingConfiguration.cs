@@ -1021,12 +1021,14 @@ namespace NLog.Config
                     }
                 }
 
+#if !WINDOWS_UWP
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
                     ParseExtensionWithAssemblyFle(baseDirectory, assemblyFile, prefix);
                     continue;
                 }
+#endif
 
                 string assemblyName = addElement.GetOptionalAttribute("assembly", null);
                 if (assemblyName != null)
@@ -1061,6 +1063,7 @@ namespace NLog.Config
             }
         }
 
+#if !WINDOWS_UWP
         private void ParseExtensionWithAssemblyFle(string baseDirectory, string assemblyFile, string prefix)
         {
             try
@@ -1084,9 +1087,8 @@ namespace NLog.Config
                     throw configException;
                 }
             }
-
-            return;
         }
+#endif
 
         private void ParseIncludeElement(NLogXmlElement includeElement, string baseDirectory, bool autoReloadDefault)
         {

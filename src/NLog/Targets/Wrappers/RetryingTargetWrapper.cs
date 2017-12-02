@@ -37,8 +37,8 @@ namespace NLog.Targets.Wrappers
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Threading;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Retries in case of write error.
@@ -178,7 +178,7 @@ namespace NLog.Targets.Wrappers
                 for (int i = 0; i < RetryDelayMilliseconds;)
                 {
                     int retryDelay = Math.Min(100, RetryDelayMilliseconds - i);
-                    Thread.Sleep(retryDelay);
+                    AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(retryDelay));
                     i += retryDelay;
                     if (!IsInitialized)
                     {

@@ -170,7 +170,7 @@ namespace NLog.Internal.NetworkSenders
 
                 default:
                     {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
                         var addresses = Dns.GetHostAddressesAsync(uri.Host).Result;
 #else
                         var addresses = Dns.GetHostEntry(uri.Host).AddressList;

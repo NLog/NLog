@@ -415,7 +415,7 @@ namespace NLog.Targets
 
         private static CultureInfo CreateFormatProvider()
         {
-#if SILVERLIGHT || NETSTANDARD1_5
+#if SILVERLIGHT || NETSTANDARD1_0
             var culture = new CultureInfo("en-US");
 #else
             var culture = new CultureInfo("en-US", false);

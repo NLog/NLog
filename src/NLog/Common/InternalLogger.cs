@@ -111,7 +111,7 @@ namespace NLog.Common
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
-        /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics.Trace"/>.
+        /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics"/>.Trace
         /// </summary>
         public static bool LogToTrace { get; set; }
 #endif
@@ -257,10 +257,13 @@ namespace NLog.Common
 
                 WriteToLogFile(msg);
                 WriteToTextWriter(msg);
+
+#if !WINDOWS_UWP
                 WriteToConsole(msg);
                 WriteToErrorConsole(msg);
+#endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                 WriteToTrace(msg);
 #endif
             }
@@ -362,7 +365,7 @@ namespace NLog.Common
                 {
                     textWriter.WriteLine(message);
                 }
-            }            
+            }
         }
 
         /// <summary>
@@ -387,6 +390,7 @@ namespace NLog.Common
             }
         }
 
+#if !WINDOWS_UWP
         /// <summary>
         /// Write internal messages to the <see cref="System.Console"/>.
         /// </summary>
@@ -407,7 +411,9 @@ namespace NLog.Common
                 Console.WriteLine(message);
             }
         }
+#endif
 
+#if !WINDOWS_UWP
         /// <summary>
         /// Write internal messages to the <see cref="System.Console.Error"/>.
         /// </summary>
@@ -423,14 +429,15 @@ namespace NLog.Common
                 return;
             }
 
+
             lock (LockObject)
             {
                 Console.Error.WriteLine(message);
             }
-
         }
+#endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         /// <summary>
         /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
         /// </summary>
@@ -460,7 +467,7 @@ namespace NLog.Common
         {
             try
             {
-#if SILVERLIGHT || __IOS__ || __ANDROID__ || NETSTANDARD
+#if SILVERLIGHT || __IOS__ || __ANDROID__ || NETSTANDARD1_0
                 Info(assembly.FullName);
 #else
                 var fileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);

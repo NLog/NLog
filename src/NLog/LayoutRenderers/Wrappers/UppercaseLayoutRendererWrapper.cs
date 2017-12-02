@@ -35,7 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Globalization;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Converts the result of another layout output to upper case.
@@ -83,7 +83,7 @@ namespace NLog.LayoutRenderers.Wrappers
             {
                 CultureInfo culture = Culture;
 
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
                 string stringToUpper = null;
                 if (culture != null && culture != CultureInfo.InvariantCulture)
                 {
@@ -94,7 +94,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
                 for (int i = 0; i < target.Length; ++i)
                 {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
                     if (stringToUpper != null)
                         target[i] = stringToUpper[i];    //no char.ToUpper with culture
                     else

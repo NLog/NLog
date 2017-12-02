@@ -188,7 +188,7 @@ namespace NLog
             DateTime CreatedTime { get; }
         }
 
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_0
         [Serializable]
 #endif
         class NestedContext<T> : INestedContext

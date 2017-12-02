@@ -44,7 +44,7 @@ namespace NLog.Targets
     using System.Globalization;
     using System.Reflection;
     using System.Text;
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_0
     using System.Transactions;
 #endif
 
@@ -741,7 +741,7 @@ namespace NLog.Targets
             }
         }
 
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
         /// <summary>
         /// Fake transaction
         /// 

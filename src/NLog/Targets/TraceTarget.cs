@@ -33,7 +33,7 @@
 
 #define TRACE
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !WINDOWS_UWP
 
 namespace NLog.Targets
 {

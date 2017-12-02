@@ -36,8 +36,8 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.ComponentModel;
     using System.Threading;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Provides asynchronous, buffered execution of target writes.
@@ -186,9 +186,9 @@ namespace NLog.Targets.Wrappers
         {
             if (_flushEventsInQueueDelegate == null)
                 _flushEventsInQueueDelegate = FlushEventsInQueue;
-            ThreadPool.QueueUserWorkItem(_flushEventsInQueueDelegate, asyncContinuation);
+            AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate, asyncContinuation);
         }
-        private WaitCallback _flushEventsInQueueDelegate;
+        private Action<object> _flushEventsInQueueDelegate;
 
         /// <summary>
         /// Initializes the target by starting the lazy writer timer.

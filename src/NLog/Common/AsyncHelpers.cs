@@ -37,13 +37,40 @@ namespace NLog.Common
     using System.Collections.Generic;
     using System.Text;
     using System.Threading;
-    using Internal;
+    using NLog.Internal;
 
     /// <summary>
     /// Helpers for asynchronous operations.
     /// </summary>
     public static class AsyncHelpers
     {
+        internal static int GetManagedThreadId()
+        {
+#if WINDOWS_UWP
+            return System.Environment.CurrentManagedThreadId;
+#else
+            return Thread.CurrentThread.ManagedThreadId;
+#endif
+        }
+
+        internal static void StartAsyncTask(Action<object> action, object state)
+        {
+#if NET4_0 || NET4_5 || NETSTANDARD
+            System.Threading.Tasks.Task.Factory.StartNew(action, state, CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+#else
+            ThreadPool.QueueUserWorkItem(new WaitCallback(action), state);
+#endif
+        }
+
+        internal static void WaitForDelay(TimeSpan delay)
+        {
+#if WINDOWS_UWP
+            System.Threading.Tasks.Task.Delay(delay).Wait();
+#else
+            Thread.Sleep(delay);
+#endif
+        }
+
         /// <summary>
         /// Iterates over all items in the given collection and runs the specified action
         /// in sequence (each action executes only after the preceding one has completed without an error).
@@ -202,8 +229,7 @@ namespace NLog.Common
             foreach (T item in items)
             {
                 T itemCopy = item;
-
-                ThreadPool.QueueUserWorkItem(s =>
+                StartAsyncTask(s =>
                 {
                     try
                     {
@@ -217,7 +243,7 @@ namespace NLog.Common
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
                     }
-                });
+                }, null);
             }
         }
 

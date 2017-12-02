@@ -79,9 +79,11 @@ namespace NLog.LayoutRenderers
 #endif
 
 #if SILVERLIGHT
-            this.AppInfo = "Silverlight Application";
+            AppInfo = "Silverlight Application";
+#elif WINDOWS_UWP
+            AppInfo = "UWP Application";
 #elif __IOS__
-			this.AppInfo = "MonoTouch Application";
+            AppInfo = "MonoTouch Application";
 #else
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
@@ -95,7 +97,9 @@ namespace NLog.LayoutRenderers
             try
             {
 #if SILVERLIGHT
-                this._machineName = "silverlight";
+                _machineName = "silverlight";
+#elif WINDOWS_UWP
+                _machineName = "uwp";
 #else
                 _machineName = Environment.MachineName;
 #endif
@@ -251,7 +255,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeSafeString("logger", LoggerName != null ? LoggerName.Render(logEvent) : logEvent.LoggerName);
                 xtw.WriteAttributeSafeString("level", logEvent.Level.Name.ToUpperInvariant());
                 xtw.WriteAttributeSafeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
-                xtw.WriteAttributeSafeString("thread", System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeSafeString("thread", Common.AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
 
                 xtw.WriteElementSafeString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
                 if (logEvent.Exception != null)

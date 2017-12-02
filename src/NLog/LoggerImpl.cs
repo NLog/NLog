@@ -67,29 +67,33 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if NETSTANDARD1_5
+#if WINDOWS_UWP
+                stackTrace = null;
+#elif NETSTANDARD1_5
                 stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
 #elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 #else
                 stackTrace = new StackTrace();
 #endif
-
-                var stackFrames = stackTrace.GetFrames();
-                int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
-                int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
-                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
+                if (stackTrace != null)
+                {
+                    var stackFrames = stackTrace.GetFrames();
+                    int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
+                    int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
+                    logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
+                }
             }
 
             AsyncContinuation exceptionHandler = (ex) => { };
             if (factory.ThrowExceptions)
             {
-                int originalThreadId = Thread.CurrentThread.ManagedThreadId;
+                int originalThreadId = AsyncHelpers.GetManagedThreadId();
                 exceptionHandler = ex =>
                 {
                     if (ex != null)
                     {
-                        if (Thread.CurrentThread.ManagedThreadId == originalThreadId)
+                        if (AsyncHelpers.GetManagedThreadId() == originalThreadId)
                         {
                             throw new NLogRuntimeException("Exception occurred in NLog", ex);
                         }

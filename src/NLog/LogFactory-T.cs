@@ -63,7 +63,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public new T GetCurrentClassLogger()
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return this.GetLogger(Internal.StackTraceUsageUtils.GetClassFullName());
 #else
 #if SILVERLIGHT

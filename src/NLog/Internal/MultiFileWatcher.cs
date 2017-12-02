@@ -31,14 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
 
 namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Watches multiple files at the same time and raises an event whenever 
