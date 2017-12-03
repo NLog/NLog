@@ -1,8 +1,11 @@
 exclude:
 - /examples/.*
-- /src/VSIntegration/ItemTemplatesGenerator/generate_variants.pl
+- /src/VSIntegration/.*
+- /src/Docs/.*
+- /src/NLogAutoLoadExtension/.*
+- /src/InstallNLogConfig/.*
 - /tests/SampleExtensions/.*
 - /tools/.*
-component_depth: 1
+component_depth: 3
 languages:
 - csharp
