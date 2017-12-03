@@ -82,12 +82,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private static bool IsSafeCharacter(char c)
         {
-            if (char.IsLetterOrDigit(c) || c == '_' || c == '-' || c == '.' || c == ' ')
-            {
-                return true;
-            }
-
-            return false;
+            return char.IsLetterOrDigit(c) || c == '_' || c == '-' || c == '.' || c == ' ';
         }
     }
 }

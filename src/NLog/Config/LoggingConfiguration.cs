@@ -199,9 +199,7 @@ namespace NLog.Config
         /// </returns>
         public Target FindTargetByName(string name)
         {
-            Target value;
-
-            if (!_targets.TryGetValue(name, out value))
+            if (!_targets.TryGetValue(name, out var value))
             {
                 return null;
             }

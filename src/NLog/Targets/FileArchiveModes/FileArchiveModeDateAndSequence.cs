@@ -66,13 +66,9 @@ namespace NLog.Targets.FileArchiveModes
         protected override DateAndSequenceArchive GenerateArchiveFileInfo(FileInfo archiveFile, FileNameTemplate fileTemplate)
         {
             //Get the archive file name or empty string if it's null
-            string archiveFileNameWithoutPath = Path.GetFileName(archiveFile.FullName) ?? "";
+            string archiveFileNameWithoutPath = Path.GetFileName(archiveFile.FullName) ?? string.Empty;
 
-            DateTime date;
-            int sequence;
-            if (
-                !TryParseDateAndSequence(archiveFileNameWithoutPath, _archiveDateFormat, fileTemplate, out date,
-                    out sequence))
+            if (!TryParseDateAndSequence(archiveFileNameWithoutPath, _archiveDateFormat, fileTemplate, out var date, out var sequence))
             {
                 return null;
             }

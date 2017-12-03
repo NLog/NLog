@@ -106,14 +106,7 @@ namespace NLog.LayoutRenderers
                         builder.Append(separator);
                         separator = Separator;
 
-                        if (identity.IsAuthenticated)
-                        {
-                            builder.Append("auth");
-                        }
-                        else
-                        {
-                            builder.Append("notauth");
-                        }
+                        builder.Append(identity.IsAuthenticated ? "auth" : "notauth");
                     }
 
                     if (AuthType)

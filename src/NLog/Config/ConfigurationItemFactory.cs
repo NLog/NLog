@@ -113,12 +113,7 @@ namespace NLog.Config
         /// </remarks>
         public static ConfigurationItemFactory Default
         {
-            get
-            {
-                if (defaultInstance == null)
-                    defaultInstance = BuildDefaultFactory();
-                return defaultInstance;
-            }
+            get => defaultInstance ?? (defaultInstance = BuildDefaultFactory());
             set => defaultInstance = value;
         }
 

@@ -127,12 +127,7 @@ namespace NLog.Conditions
                 return false;
             }
 
-            if (!TokenValue.Equals(keyword, StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            return true;
+            return TokenValue.Equals(keyword, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -143,12 +138,7 @@ namespace NLog.Conditions
         /// </returns>
         public bool IsEOF()
         {
-            if (TokenType != ConditionTokenType.EndOfInput)
-            {
-                return false;
-            }
-
-            return true;
+            return TokenType == ConditionTokenType.EndOfInput;
         }
 
         /// <summary>

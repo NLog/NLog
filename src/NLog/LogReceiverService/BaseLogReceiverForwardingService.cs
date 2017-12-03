@@ -120,10 +120,7 @@ namespace NLog.LogReceiverService
                     lastLoggerName = ev.LoggerName;
                 }
 
-                if (logger != null)
-                {
-                    logger.Log(ev);
-                }
+                logger?.Log(ev);
             }
         }
     }

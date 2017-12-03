@@ -248,11 +248,7 @@ namespace NLog.Conditions
         /// <returns></returns>
         private static bool TryPromoteTypes(ref object val1, Type type1, ref object val2, Type type2)
         {
-            if (TryPromoteType(ref val1, type1))
-            {
-                return true;
-            }
-            return TryPromoteType(ref val2, type2);
+            return TryPromoteType(ref val1, type1) || TryPromoteType(ref val2, type2);
         }
 
         /// <summary>

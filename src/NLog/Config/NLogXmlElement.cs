@@ -151,9 +151,7 @@ namespace NLog.Config
         /// <returns>Boolean attribute value or default.</returns>
         public bool GetOptionalBooleanAttribute(string attributeName, bool defaultValue)
         {
-            string value;
-
-            if (!AttributeValues.TryGetValue(attributeName, out value))
+            if (!AttributeValues.TryGetValue(attributeName, out var value))
             {
                 return defaultValue;
             }
