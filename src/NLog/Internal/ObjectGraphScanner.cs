@@ -58,7 +58,10 @@ namespace NLog.Internal
         public static List<T> FindReachableObjects<T>(bool aggressiveSearch, params object[] rootObjects)
             where T : class
         {
-            InternalLogger.Trace("FindReachableObject<{0}>:", typeof(T));
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("FindReachableObject<{0}>:", typeof(T));
+            }
             var result = new List<T>();
             var visitedObjects = new HashSet<object>();
 
