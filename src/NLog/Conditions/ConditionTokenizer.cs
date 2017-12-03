@@ -57,12 +57,6 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Gets the token position.
-        /// </summary>
-        /// <value>The token position.</value>
-        public int TokenPosition { get; private set; }
-
-        /// <summary>
         /// Gets the type of the token.
         /// </summary>
         /// <value>The type of the token.</value>
@@ -133,12 +127,7 @@ namespace NLog.Conditions
                 return false;
             }
 
-            if (!TokenValue.Equals(keyword, StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            return true;
+            return TokenValue.Equals(keyword, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -149,12 +138,7 @@ namespace NLog.Conditions
         /// </returns>
         public bool IsEOF()
         {
-            if (TokenType != ConditionTokenType.EndOfInput)
-            {
-                return false;
-            }
-
-            return true;
+            return TokenType == ConditionTokenType.EndOfInput;
         }
 
         /// <summary>

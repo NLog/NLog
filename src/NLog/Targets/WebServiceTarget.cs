@@ -328,7 +328,15 @@ namespace NLog.Targets
                     AsyncContinuation groupCompleted = (ex) =>
                     {
                         for (int i = 0; i < groupContinuations.Length; ++i)
-                            try { groupContinuations[i].Invoke(ex); } catch { /* Nothing to do about it */ };
+                            try
+                            {
+                                groupContinuations[i].Invoke(ex);
+                            }
+                            catch (Exception ex2)
+                            {
+                                InternalLogger.Trace(ex2, "Exception in Webservice invoke, but ignoring it.");
+                                 /* Nothing to do about it */
+                            };
                     };
                     DoGroupInvokeAsync(headerValues, bucket.Key, groupCompleted);
                 }

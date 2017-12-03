@@ -125,7 +125,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event. Ignored.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            Object registryValue = null;
+            object registryValue = null;
             // Value = null is necessary for querying "unnamed values"
             string renderedValue = Value != null ? Value.Render(logEvent) : null;
 

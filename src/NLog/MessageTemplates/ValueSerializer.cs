@@ -48,7 +48,7 @@ namespace NLog.MessageTemplates
             get => _instance ?? (_instance = new ValueSerializer());
             set => _instance = value ?? new ValueSerializer();
         }
-        private static IValueSerializer _instance = null;
+        private static IValueSerializer _instance;
 
         /// <summary>Singleton</summary>
         private ValueSerializer()
@@ -102,8 +102,7 @@ namespace NLog.MessageTemplates
             // todo datetime, timespan, datetimeoffset
             // todo nullables correct?
 
-            var stringValue = value as string;
-            if (stringValue != null)
+            if (value is string stringValue)
             {
                 bool includeQuotes = format != LiteralFormatSymbol;
                 if (includeQuotes) builder.Append('"');
@@ -118,7 +117,7 @@ namespace NLog.MessageTemplates
                 return true;
             }
 
-            IFormattable formattable = null;
+            IFormattable formattable;
             if (!string.IsNullOrEmpty(format) && (formattable = value as IFormattable) != null)
             {
                 builder.Append(formattable.ToString(format, formatProvider));
@@ -178,26 +177,26 @@ namespace NLog.MessageTemplates
         {
             switch (objTypeCode)
             {
-                case TypeCode.Byte: sb.AppendInvariant((Byte)value); break;
-                case TypeCode.SByte: sb.AppendInvariant((SByte)value); break;
-                case TypeCode.Int16: sb.AppendInvariant((Int16)value); break;
-                case TypeCode.Int32: sb.AppendInvariant((Int32)value); break;
+                case TypeCode.Byte: sb.AppendInvariant((byte)value); break;
+                case TypeCode.SByte: sb.AppendInvariant((sbyte)value); break;
+                case TypeCode.Int16: sb.AppendInvariant((short)value); break;
+                case TypeCode.Int32: sb.AppendInvariant((int)value); break;
                 case TypeCode.Int64:
                     {
-                        Int64 int64 = (Int64)value;
-                        if (int64 < Int32.MaxValue && int64 > Int32.MinValue)
-                            sb.AppendInvariant((Int32)int64);
+                        long int64 = (long)value;
+                        if (int64 < int.MaxValue && int64 > int.MinValue)
+                            sb.AppendInvariant((int)int64);
                         else
                             sb.Append(int64);
                     }
                     break;
-                case TypeCode.UInt16: sb.AppendInvariant((UInt16)value); break;
-                case TypeCode.UInt32: sb.AppendInvariant((UInt32)value); break;
+                case TypeCode.UInt16: sb.AppendInvariant((ushort)value); break;
+                case TypeCode.UInt32: sb.AppendInvariant((uint)value); break;
                 case TypeCode.UInt64:
                     {
-                        UInt64 uint64 = (UInt64)value;
-                        if (uint64 < UInt32.MaxValue)
-                            sb.AppendInvariant((UInt32)uint64);
+                        ulong uint64 = (ulong)value;
+                        if (uint64 < uint.MaxValue)
+                            sb.AppendInvariant((uint)uint64);
                         else
                             sb.Append(uint64);
                     }

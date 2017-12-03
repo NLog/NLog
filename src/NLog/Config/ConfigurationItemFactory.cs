@@ -55,7 +55,7 @@ namespace NLog.Config
     /// </summary>
     public class ConfigurationItemFactory
     {
-        private static ConfigurationItemFactory defaultInstance = null;
+        private static ConfigurationItemFactory defaultInstance;
 
         private readonly IList<object> _allFactories;
         private readonly Factory<Target, TargetAttribute> _targets;
@@ -113,12 +113,7 @@ namespace NLog.Config
         /// </remarks>
         public static ConfigurationItemFactory Default
         {
-            get
-            {
-                if (defaultInstance == null)
-                    defaultInstance = BuildDefaultFactory();
-                return defaultInstance;
-            }
+            get => defaultInstance ?? (defaultInstance = BuildDefaultFactory());
             set => defaultInstance = value;
         }
 
@@ -377,7 +372,7 @@ namespace NLog.Config
                     var entryAssembly = Assembly.GetEntryAssembly();
                     if (!string.IsNullOrEmpty(entryAssembly?.CodeBase))
                     {
-                        if (!string.Equals(entryAssembly?.CodeBase, nlogAssembly.CodeBase, StringComparison.OrdinalIgnoreCase))
+                        if (!string.Equals(entryAssembly.CodeBase, nlogAssembly.CodeBase, StringComparison.OrdinalIgnoreCase))
                         {
                             assemblyLocation = GetAssemblyFileLocation(entryAssembly);
                             extensionDlls = GetNLogExtensionFiles(assemblyLocation);

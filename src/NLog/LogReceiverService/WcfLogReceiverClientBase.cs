@@ -124,12 +124,7 @@ namespace NLog.LogReceiverService
             get
             {
                 var httpCookieContainerManager = InnerChannel.GetProperty<IHttpCookieContainerManager>();
-                if (httpCookieContainerManager != null)
-                {
-                    return httpCookieContainerManager.CookieContainer;
-                }
-
-                return null;
+                return httpCookieContainerManager?.CookieContainer;
             }
             set
             {

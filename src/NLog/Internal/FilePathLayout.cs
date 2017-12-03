@@ -48,14 +48,14 @@ namespace NLog.Internal
         /// <summary>
         /// Cached directory separator char array to avoid memory allocation on each method call.
         /// </summary>
-        private readonly static char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
+        private static readonly char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
 
 #if !SILVERLIGHT || WINDOWS_PHONE
 
         /// <summary>
         /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
         /// </summary>
-        private readonly static HashSet<char> InvalidFileNameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
+        private static readonly HashSet<char> InvalidFileNameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
 
 #endif 
 
@@ -346,7 +346,7 @@ namespace NLog.Internal
             if (fileNameChars != null)
             {
                 //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
-                var dirName = lastDirSeparator > 0 ? filePath.Substring(0, lastDirSeparator + 1) : String.Empty;
+                var dirName = lastDirSeparator > 0 ? filePath.Substring(0, lastDirSeparator + 1) : string.Empty;
                 string fileName = new string(fileNameChars);
                 return Path.Combine(dirName, fileName);
             }

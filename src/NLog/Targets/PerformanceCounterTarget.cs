@@ -258,7 +258,7 @@ namespace NLog.Targets
             {
                 string incrementValueString = IncrementValue.Render(logEvent);
                 long incrementValue;
-                if (Int64.TryParse(incrementValueString, out incrementValue))
+                if (long.TryParse(incrementValueString, out incrementValue))
                     perfCounter.IncrementBy(incrementValue);
                 else
                     InternalLogger.Error("Error incrementing PerfCounter {0}. IncrementValue must be an integer but was <{1}>", CounterName, incrementValueString);

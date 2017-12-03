@@ -112,12 +112,7 @@ namespace NLog.Targets
         /// </returns>
         public bool CheckCondition(LogEventInfo logEvent)
         {
-            if (Condition == null)
-            {
-                return true;
-            }
-
-            return true.Equals(Condition.Evaluate(logEvent));
+            return Condition == null || true.Equals(Condition.Evaluate(logEvent));
         }
     }
 }

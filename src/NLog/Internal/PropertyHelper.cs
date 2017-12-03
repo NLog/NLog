@@ -165,12 +165,7 @@ namespace NLog.Internal
         internal static Type GetArrayItemType(PropertyInfo propInfo)
         {
             var arrayParameterAttribute = propInfo.GetCustomAttribute<ArrayParameterAttribute>();
-            if (arrayParameterAttribute != null)
-            {
-                return arrayParameterAttribute.ItemType;
-            }
-
-            return null;
+            return arrayParameterAttribute?.ItemType;
         }
 
         internal static IEnumerable<PropertyInfo> GetAllReadableProperties(Type type)

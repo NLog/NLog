@@ -34,7 +34,6 @@
 namespace NLog.Config
 {
     using System;
-    using System.Reflection;
 
     /// <summary>
     /// Provides means to populate factories of named items (such as targets, layouts, layout renderers, etc.).

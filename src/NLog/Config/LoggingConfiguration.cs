@@ -132,7 +132,7 @@ namespace NLog.Config
         /// Compare <see cref="Target"/> objects based on their name.
         /// </summary>
         /// <remarks>This property is use to cache the comparer object.</remarks>
-        private readonly static IEqualityComparer<Target> TargetNameComparer = new TargetNameEqualityComparer();
+        private static readonly IEqualityComparer<Target> TargetNameComparer = new TargetNameEqualityComparer();
 
         /// <summary>
         /// Defines methods to support the comparison of <see cref="Target"/> objects for equality based on their name.
@@ -199,9 +199,7 @@ namespace NLog.Config
         /// </returns>
         public Target FindTargetByName(string name)
         {
-            Target value;
-
-            if (!_targets.TryGetValue(name, out value))
+            if (!_targets.TryGetValue(name, out var value))
             {
                 return null;
             }

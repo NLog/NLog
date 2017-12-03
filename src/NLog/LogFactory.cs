@@ -318,7 +318,7 @@ namespace NLog
                 }
 
                 //ToArray needed for .Net 3.5
-                InternalLogger.Warn(exception, "Cannot start file watching: {0}", String.Join(",", _config.FileNamesToWatch.ToArray()));
+                InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", _config.FileNamesToWatch.ToArray()));
 
                 
             }
@@ -1146,7 +1146,7 @@ namespace NLog
 #if !SILVERLIGHT && !NETSTANDARD1_0
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssembly = typeof(LogFactory).Assembly;
-            if (!nlogAssembly.GlobalAssemblyCache && !String.IsNullOrEmpty(nlogAssembly.Location))
+            if (!nlogAssembly.GlobalAssemblyCache && !string.IsNullOrEmpty(nlogAssembly.Location))
             {
                 yield return nlogAssembly.Location + ".nlog";
             }

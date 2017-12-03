@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.Append(Guid.Empty.Equals(Trace.CorrelationManager.ActivityId) ?
-                String.Empty : Trace.CorrelationManager.ActivityId.ToString("D", CultureInfo.InvariantCulture));
+                string.Empty : Trace.CorrelationManager.ActivityId.ToString("D", CultureInfo.InvariantCulture));
         }
     }
 }

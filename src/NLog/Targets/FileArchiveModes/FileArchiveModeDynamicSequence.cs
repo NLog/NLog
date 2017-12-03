@@ -183,7 +183,7 @@ namespace NLog.Targets.FileArchiveModes
             string numberPart = previousToLastDotIdx == -1 ? archiveFileName.Substring(lastDotIdx + 1) : archiveFileName.Substring(previousToLastDotIdx + 1, lastDotIdx - previousToLastDotIdx - 1);
 
             int archiveNumber;
-            return Int32.TryParse(numberPart, out archiveNumber) ? archiveNumber : 0;
+            return int.TryParse(numberPart, out archiveNumber) ? archiveNumber : 0;
         }
 
         public override DateAndSequenceArchive GenerateArchiveFileName(string archiveFilePath, DateTime archiveDate, List<DateAndSequenceArchive> existingArchiveFiles)

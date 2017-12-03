@@ -503,7 +503,7 @@ namespace NLog
                             break;
 
                         case "DISABLEFLUSH":
-                            _disableFlush = Boolean.Parse(value);
+                            _disableFlush = bool.Parse(value);
                             break;
                     }
                 }

@@ -403,7 +403,7 @@ namespace NLog
         /// <returns>Null log event.</returns>
         public static LogEventInfo CreateNullEvent()
         {
-            return new LogEventInfo(LogLevel.Off, String.Empty, String.Empty);
+            return new LogEventInfo(LogLevel.Off, string.Empty, string.Empty);
         }
 
         /// <summary>
@@ -616,7 +616,7 @@ namespace NLog
             }
             else
             {
-                return String.Format(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Message, logEvent.Parameters);
+                return string.Format(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Message, logEvent.Parameters);
             }
         }
 

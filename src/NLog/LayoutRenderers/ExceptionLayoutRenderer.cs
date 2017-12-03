@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers
         private string _innerFormat = string.Empty;
         private readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _renderingfunctions;
 
-        private static readonly Dictionary<String, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
+        private static readonly Dictionary<string, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
                                                                                                     {
                                                                                                         {"MESSAGE",ExceptionRenderingFormat.Message},
                                                                                                         {"TYPE", ExceptionRenderingFormat.Type},

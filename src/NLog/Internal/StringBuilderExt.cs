@@ -54,7 +54,7 @@ namespace NLog.Internal
         public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider)
         {
             string stringValue = value as string;
-            if (stringValue != null && String.IsNullOrEmpty(format))
+            if (stringValue != null && string.IsNullOrEmpty(format))
             {
                 builder.Append(value);  // Avoid automatic quotes
             }
@@ -79,7 +79,7 @@ namespace NLog.Internal
             if (value < 0)
             {
                 builder.Append('-');
-                uint uint_value = UInt32.MaxValue - ((uint)value) + 1; //< This is to deal with Int32.MinValue
+                uint uint_value = uint.MaxValue - ((uint)value) + 1; //< This is to deal with Int32.MinValue
                 AppendInvariant(builder, uint_value);
             }
             else
@@ -251,26 +251,26 @@ namespace NLog.Internal
         {
             switch (objTypeCode)
             {
-                case TypeCode.Byte: sb.AppendInvariant((Byte)value); break;
-                case TypeCode.SByte: sb.AppendInvariant((SByte)value); break;
-                case TypeCode.Int16: sb.AppendInvariant((Int16)value); break;
-                case TypeCode.Int32: sb.AppendInvariant((Int32)value); break;
+                case TypeCode.Byte: sb.AppendInvariant((byte)value); break;
+                case TypeCode.SByte: sb.AppendInvariant((sbyte)value); break;
+                case TypeCode.Int16: sb.AppendInvariant((short)value); break;
+                case TypeCode.Int32: sb.AppendInvariant((int)value); break;
                 case TypeCode.Int64:
                 {
-                    Int64 int64 = (Int64)value;
-                    if (int64 < Int32.MaxValue && int64 > Int32.MinValue)
-                        sb.AppendInvariant((Int32)int64);
+                    long int64 = (long)value;
+                    if (int64 < int.MaxValue && int64 > int.MinValue)
+                        sb.AppendInvariant((int)int64);
                     else
                         sb.Append(int64);
                 }
                     break;
-                case TypeCode.UInt16: sb.AppendInvariant((UInt16)value); break;
-                case TypeCode.UInt32: sb.AppendInvariant((UInt32)value); break;
+                case TypeCode.UInt16: sb.AppendInvariant((ushort)value); break;
+                case TypeCode.UInt32: sb.AppendInvariant((uint)value); break;
                 case TypeCode.UInt64:
                 {
-                    UInt64 uint64 = (UInt64)value;
-                    if (uint64 < UInt32.MaxValue)
-                        sb.AppendInvariant((UInt32)uint64);
+                    ulong uint64 = (ulong)value;
+                    if (uint64 < uint.MaxValue)
+                        sb.AppendInvariant((uint)uint64);
                     else
                         sb.Append(uint64);
                 }

@@ -191,7 +191,7 @@ namespace NLog.Targets.FileArchiveModes
             /// <returns></returns>
             public string ReplacePattern(string replacementValue)
             {
-                return !FoundPattern || String.IsNullOrEmpty(replacementValue) ? Template : Template.Substring(0, BeginAt) + replacementValue + Template.Substring(EndAt);
+                return !FoundPattern || string.IsNullOrEmpty(replacementValue) ? Template : Template.Substring(0, BeginAt) + replacementValue + Template.Substring(EndAt);
             }
         }
     }
