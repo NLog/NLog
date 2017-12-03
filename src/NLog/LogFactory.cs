@@ -67,7 +67,7 @@ namespace NLog
         private readonly MultiFileWatcher _watcher;
 #endif
 
-        private readonly static TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
+        private static readonly TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
         private static IAppDomain currentAppDomain;
 
@@ -420,7 +420,7 @@ namespace NLog
             get
             {
                 var configuration = Configuration;
-                return configuration != null ? configuration.DefaultCultureInfo : null;
+                return configuration?.DefaultCultureInfo;
             }
         }
 
@@ -571,10 +571,7 @@ namespace NLog
 
             lock (_syncRoot)
             {
-                if (_config != null)
-                {
-                    _config.InitializeAll();
-                }
+                _config?.InitializeAll();
 
                 loggers = _loggerCache.Loggers;
             }
@@ -769,11 +766,7 @@ namespace NLog
         /// <param name="e">Event arguments.</param>
         protected virtual void OnConfigurationChanged(LoggingConfigurationChangedEventArgs e)
         {
-            var changed = ConfigurationChanged;
-            if (changed != null)
-            {
-                changed(this, e);
-            }
+            ConfigurationChanged?.Invoke(this, e);
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
@@ -783,7 +776,7 @@ namespace NLog
         /// <param name="e">Event arguments</param>
         protected virtual void OnConfigurationReloaded(LoggingConfigurationReloadedEventArgs e)
         {
-            if (ConfigurationReloaded != null) ConfigurationReloaded.Invoke(this, e);
+            ConfigurationReloaded?.Invoke(this, e);
         }
 #endif
 
@@ -1332,7 +1325,7 @@ namespace NLog
             /// <returns>True if objects are equal, false otherwise.</returns>
             public override bool Equals(object obj)
             {
-                return obj is LoggerCacheKey && Equals((LoggerCacheKey)obj);
+                return obj is LoggerCacheKey key && Equals(key);
             }
 
             /// <summary>
@@ -1367,8 +1360,7 @@ namespace NLog
 
             public Logger Retrieve(LoggerCacheKey cacheKey)
             {
-                WeakReference loggerReference;
-                if (_loggerCache.TryGetValue(cacheKey, out loggerReference))
+                if (_loggerCache.TryGetValue(cacheKey, out var loggerReference))
                 {
                     // logger in the cache and still referenced
                     return loggerReference.Target as Logger;
@@ -1386,8 +1378,7 @@ namespace NLog
 
                 foreach (WeakReference loggerReference in _loggerCache.Values)
                 {
-                    Logger logger = loggerReference.Target as Logger;
-                    if (logger != null)
+                    if (loggerReference.Target is Logger logger)
                     {
                         values.Add(logger);
                     }
@@ -1454,9 +1445,7 @@ namespace NLog
         {
             try
             {
-                var loggerShutdown = LoggerShutdown;
-                if (loggerShutdown != null)
-                    loggerShutdown.Invoke(sender, args);
+                LoggerShutdown?.Invoke(sender, args);
             }
             catch (Exception ex)
             {
