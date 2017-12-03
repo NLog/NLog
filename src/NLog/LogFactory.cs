@@ -826,8 +826,7 @@ namespace NLog
                     //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
                     //therefor we check the InitializeSucceeded property.
 
-                    var xmlConfig = newConfig as XmlLoggingConfiguration;
-                    if (xmlConfig != null)
+                    if (newConfig is XmlLoggingConfiguration xmlConfig)
                     {
                         if (!xmlConfig.InitializeSucceeded.HasValue || !xmlConfig.InitializeSucceeded.Value)
                         {
@@ -991,11 +990,8 @@ namespace NLog
                         currentTimer.WaitForDispose(TimeSpan.Zero);
                     }
 
-                    if (_watcher != null)
-                    {
-                        // Dispose file-watcher after having dispose timer to avoid race
-                        _watcher.Dispose();
-                    }
+                    // Dispose file-watcher after having dispose timer to avoid race
+                    _watcher?.Dispose();
 #endif
 
                     var oldConfig = _config;
