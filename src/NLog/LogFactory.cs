@@ -208,65 +208,19 @@ namespace NLog
 
                     if (_config == null)
                     {
-                        try
-                        {
-                            // Try to load default configuration.
-                            _config = XmlLoggingConfiguration.AppConfig;
-                        }
-                        catch (Exception ex)
-                        {
-                            //loading could fail due to an invalid XML file (app.config) etc.
-                            if (ex.MustBeRethrown())
-                            {
-                                throw;
-                            }
-
-                        }
+                        TryLoadFromAppConfig();
                     }
 #endif
                     // Retest the condition as we might have loaded a config.
                     if (_config == null)
                     {
-                        var configFileNames = GetCandidateConfigFilePaths();
-                        foreach (string configFile in configFileNames)
-                        {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                            Uri configFileUri = new Uri(configFile, UriKind.Relative);
-                            if (Application.GetResourceStream(configFileUri) != null)
-                            {
-                                LoadLoggingConfiguration(configFile);
-                                break;
-                            }
-#else
-                            if (File.Exists(configFile))
-                            {
-                                LoadLoggingConfiguration(configFile);
-                                break;
-                            }
-#endif
-                        }
+                        TryLoadFromFilePaths();
                     }
 
 #if __ANDROID__
                     if (this._config == null)
                     {
-                        //try nlog.config in assets folder
-                        const string nlogConfigFilename = "NLog.config";
-                        try
-                        {
-                            using (var stream = Android.App.Application.Context.Assets.Open(nlogConfigFilename))
-                            {
-                                if (stream != null)
-                                {
-                                    LoadLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
-                                }
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            InternalLogger.Trace(e, "no {0} in assets folder", nlogConfigFilename);
-                        }
-
+                        TryLoadFromAndroidAssets();
                     }
 #endif
 
@@ -276,20 +230,7 @@ namespace NLog
                         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                             _config.Dump();
-                            try
-                            {
-                                _watcher.Watch(_config.FileNamesToWatch);
-                            }
-                            catch (Exception exception)
-                            {
-                                if (exception.MustBeRethrownImmediately())
-                                {
-                                    throw;
-                                }
-
-                                InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
-                                //TODO NLog 5: check "MustBeRethrown" 
-                            }
+                            TryWachtingConfigFile();
 #endif
                             _config.InitializeAll();
 
@@ -374,6 +315,92 @@ namespace NLog
                 }
             }
         }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+        private void TryWachtingConfigFile()
+        {
+            try
+            {
+                _watcher.Watch(_config.FileNamesToWatch);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
+                //TODO NLog 5: check "MustBeRethrown" 
+            }
+        }
+#endif
+
+#if __ANDROID__
+
+        private void TryLoadFromAndroidAssets()
+        {
+//try nlog.config in assets folder
+            const string nlogConfigFilename = "NLog.config";
+            try
+            {
+                using (var stream = Android.App.Application.Context.Assets.Open(nlogConfigFilename))
+                {
+                    if (stream != null)
+                    {
+                        LoadLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                InternalLogger.Trace(e, "no {0} in assets folder", nlogConfigFilename);
+            }
+        }
+
+#endif
+
+        private void TryLoadFromFilePaths()
+        {
+            var configFileNames = GetCandidateConfigFilePaths();
+            foreach (string configFile in configFileNames)
+            {
+#if SILVERLIGHT && !WINDOWS_PHONE
+                            Uri configFileUri = new Uri(configFile, UriKind.Relative);
+                            if (Application.GetResourceStream(configFileUri) != null)
+                            {
+                                LoadLoggingConfiguration(configFile);
+                                break;
+                            }
+#else
+                if (File.Exists(configFile))
+                {
+                    LoadLoggingConfiguration(configFile);
+                    break;
+                }
+#endif
+            }
+        }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+
+        private void TryLoadFromAppConfig()
+        {
+            try
+            {
+                // Try to load default configuration.
+                _config = XmlLoggingConfiguration.AppConfig;
+            }
+            catch (Exception ex)
+            {
+                //loading could fail due to an invalid XML file (app.config) etc.
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
+        }
+#endif
 
         /// <summary>
         /// Gets or sets the global log level threshold. Log events below this threshold are not logged.
@@ -943,7 +970,7 @@ namespace NLog
         /// </summary>
         private bool _isDisposing;
 
-        private  void Close(TimeSpan flushTimeout)
+        private void Close(TimeSpan flushTimeout)
         {
             if (_isDisposing)
             {
