@@ -997,34 +997,7 @@ namespace NLog
                     var oldConfig = _config;
                     if (_configLoaded && oldConfig != null)
                     {
-                        try
-                        {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP && !MONO
-                            bool attemptClose = true;
-                            if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono)
-                            {
-                                // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown (Maybe better with MONO 4.1)
-                                ManualResetEvent flushCompleted = new ManualResetEvent(false);
-                                oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
-                                attemptClose = flushCompleted.WaitOne(flushTimeout);
-                            }
-                            if (!attemptClose)
-                            {
-                                InternalLogger.Warn("Target flush timeout. One or more targets did not complete flush operation, skipping target close.");
-                            }
-                            else
-#endif
-                            {
-                                // Flush completed within timeout, lets try and close down
-                                oldConfig.Close();
-                                _config = null;
-                                OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            InternalLogger.Error(ex, "Error with close.");
-                        }
+                        CloseOldConfig(flushTimeout, oldConfig);
                     }
                 }
                 finally
@@ -1034,6 +1007,38 @@ namespace NLog
             }
 
             ConfigurationChanged = null;    // Release event listeners
+        }
+
+        private void CloseOldConfig(TimeSpan flushTimeout, LoggingConfiguration oldConfig)
+        {
+            try
+            {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP && !MONO
+                bool attemptClose = true;
+                if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono)
+                {
+                    // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown (Maybe better with MONO 4.1)
+                    ManualResetEvent flushCompleted = new ManualResetEvent(false);
+                    oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
+                    attemptClose = flushCompleted.WaitOne(flushTimeout);
+                }
+                if (!attemptClose)
+                {
+                    InternalLogger.Warn("Target flush timeout. One or more targets did not complete flush operation, skipping target close.");
+                }
+                else
+#endif
+                {
+                    // Flush completed within timeout, lets try and close down
+                    oldConfig.Close();
+                    _config = null;
+                    OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
+                }
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Error with close.");
+            }
         }
 
         /// <summary>
