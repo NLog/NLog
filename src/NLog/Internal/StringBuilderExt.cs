@@ -35,6 +35,7 @@ using System;
 using System.IO;
 using System.Text;
 using NLog.Config;
+using NLog.MessageTemplates;
 
 namespace NLog.Internal
 {
@@ -53,17 +54,17 @@ namespace NLog.Internal
         public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider)
         {
             string stringValue = value as string;
-            if (stringValue != null && string.IsNullOrEmpty(format))
+            if (stringValue != null && String.IsNullOrEmpty(format))
             {
                 builder.Append(value);  // Avoid automatic quotes
             }
             else if (format == "@")
             {
-                MessageTemplates.ValueSerializer.Instance.SerializeObject(value, null, formatProvider, builder);
+                ValueSerializer.Instance.SerializeObject(value, null, formatProvider, builder);
             }
             else if (value != null)
             {
-                MessageTemplates.ValueSerializer.Instance.FormatObject(value, format, formatProvider, builder);
+                ValueSerializer.Instance.FormatObject(value, format, formatProvider, builder);
             }
         }
 
@@ -244,6 +245,40 @@ namespace NLog.Internal
             builder.Append((char)(((number / 100) % 10) + '0'));
             builder.Append((char)(((number / 10) % 10) + '0'));
             builder.Append((char)(((number / 1) % 10) + '0'));
+        }
+
+        internal static void AppendIntegerAsString(this StringBuilder sb, object value, TypeCode objTypeCode)
+        {
+            switch (objTypeCode)
+            {
+                case TypeCode.Byte: sb.AppendInvariant((Byte)value); break;
+                case TypeCode.SByte: sb.AppendInvariant((SByte)value); break;
+                case TypeCode.Int16: sb.AppendInvariant((Int16)value); break;
+                case TypeCode.Int32: sb.AppendInvariant((Int32)value); break;
+                case TypeCode.Int64:
+                {
+                    Int64 int64 = (Int64)value;
+                    if (int64 < Int32.MaxValue && int64 > Int32.MinValue)
+                        sb.AppendInvariant((Int32)int64);
+                    else
+                        sb.Append(int64);
+                }
+                    break;
+                case TypeCode.UInt16: sb.AppendInvariant((UInt16)value); break;
+                case TypeCode.UInt32: sb.AppendInvariant((UInt32)value); break;
+                case TypeCode.UInt64:
+                {
+                    UInt64 uint64 = (UInt64)value;
+                    if (uint64 < UInt32.MaxValue)
+                        sb.AppendInvariant((UInt32)uint64);
+                    else
+                        sb.Append(uint64);
+                }
+                    break;
+                default:
+                    sb.Append(XmlHelper.XmlConvertToString(value, objTypeCode));
+                    break;
+            }
         }
     }
 }

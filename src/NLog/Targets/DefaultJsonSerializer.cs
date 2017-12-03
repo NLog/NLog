@@ -389,7 +389,7 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        AppendIntegerAsString(destination, value, objTypeCode);
+                        destination.AppendIntegerAsString(value, objTypeCode);
                     }
                 }
                 else
