@@ -208,7 +208,6 @@ namespace NLog.Common
                 ex =>
                 {
                     InternalLogger.Trace("Continuation invoked: {0}", ex);
-                    int r;
 
                     if (ex != null)
                     {
@@ -218,7 +217,7 @@ namespace NLog.Common
                         }
                     }
 
-                    r = Interlocked.Decrement(ref remaining);
+                    var r = Interlocked.Decrement(ref remaining);
                     InternalLogger.Trace("Parallel task completed. {0} items remaining", r);
                     if (r == 0)
                     {
