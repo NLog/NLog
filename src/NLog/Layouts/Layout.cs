@@ -288,7 +288,7 @@ namespace NLog.Layouts
             ThreadAgnostic = objectGraphScannerList.All(item => item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true));
 
             // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
-            StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IStackTraceUsage
+            StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IUsesStackTrace
             StackTraceUsage = objectGraphScannerList.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(item => item == null ? StackTraceUsage.None : item.StackTraceUsage);
 
             _scannedForObjects = true;
