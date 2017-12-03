@@ -306,7 +306,7 @@ namespace NLog.Fluent
             if (callerLineNumber != 0)
                 Property("CallerLineNumber", callerLineNumber);
 
-            _logEvent.SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
+            _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }

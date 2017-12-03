@@ -31,17 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.IO;
-    using System.Reflection;
     using System.Text;
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The call site (class name, method name and source information).
@@ -178,7 +175,7 @@ namespace NLog.LayoutRenderers
                 if (FileName)
                 {
                     string fileName = logEvent.CallSiteInformation.GetCallerFilePath(SkipFrames);
-                    if (fileName != null)
+                    if (!string.IsNullOrEmpty(fileName))
                     {
                         int lineNumber = logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
                         AppendFileName(builder, fileName, lineNumber);
