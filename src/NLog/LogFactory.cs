@@ -52,7 +52,7 @@ namespace NLog
     using NLog.Targets;
     using NLog.Internal.Fakeables;
 
-#if SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if SILVERLIGHT
     using System.Windows;
 #endif
 
@@ -61,7 +61,7 @@ namespace NLog
     /// </summary>
     public class LogFactory : IDisposable
     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         private const int ReconfigAfterFileChangedTimeout = 1000;
         internal Timer reloadTimer;
         private readonly MultiFileWatcher _watcher;
@@ -94,7 +94,7 @@ namespace NLog
         /// </summary>
         public event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> gets reloaded.
         /// </summary>
@@ -103,7 +103,7 @@ namespace NLog
 
         private static event EventHandler<EventArgs> LoggerShutdown;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         /// <summary>
         /// Initializes static members of the LogManager class.
         /// </summary>
@@ -119,7 +119,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
             _watcher = new MultiFileWatcher();
             _watcher.FileChanged += ConfigFileChanged;
             LoggerShutdown += OnStopLogging;
@@ -144,7 +144,7 @@ namespace NLog
             get
             {
                 return currentAppDomain ??
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
                     (currentAppDomain = new FakeAppDomain());
 #else
                     (currentAppDomain = new AppDomainWrapper(AppDomain.CurrentDomain));
@@ -274,7 +274,7 @@ namespace NLog
                     {
                         try
                         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                             _config.Dump();
                             try
                             {
@@ -307,7 +307,7 @@ namespace NLog
 
             set
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                 try
                 {
                     _watcher.StopWatching();
@@ -347,7 +347,7 @@ namespace NLog
 
                             _config.InitializeAll();
                             ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                             try
                             {
                                 _watcher.Watch(_config.FileNamesToWatch);
@@ -450,7 +450,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger()
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return this.GetLogger(StackTraceUsageUtils.GetClassFullName());
 #else
 #if SILVERLIGHT
@@ -473,7 +473,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public T GetCurrentClassLogger<T>() where T : Logger
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return (T)this.GetLogger(StackTraceUsageUtils.GetClassFullName(), typeof(T));
 #else
 #if SILVERLIGHT
@@ -496,7 +496,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public Logger GetCurrentClassLogger(Type loggerType)
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return this.GetLogger(StackTraceUsageUtils.GetClassFullName(), loggerType);
 #else
 #if SILVERLIGHT
@@ -760,7 +760,7 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         /// <summary>
         /// Raises the event when the configuration is reloaded. 
         /// </summary>
@@ -771,7 +771,7 @@ namespace NLog
         }
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         internal void ReloadConfigOnTimer(object state)
         {
             if (reloadTimer == null && _isDisposing)
@@ -952,7 +952,7 @@ namespace NLog
 
             _isDisposing = true;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
             LoggerShutdown -= OnStopLogging;
             ConfigurationReloaded = null;   // Release event listeners
 
@@ -967,7 +967,7 @@ namespace NLog
             {
                 try
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                     var currentTimer = reloadTimer;
                     if (currentTimer != null)
                     {
@@ -987,7 +987,7 @@ namespace NLog
                     {
                         try
                         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP && !MONO
                             bool attemptClose = true;
                             if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono)
                             {
@@ -1133,7 +1133,7 @@ namespace NLog
                 }
             }
 
-#if !SILVERLIGHT && !NETSTANDARD1_5
+#if !SILVERLIGHT && !NETSTANDARD1_0
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
             var nlogAssembly = typeof(LogFactory).Assembly;
             if (!nlogAssembly.GlobalAssemblyCache && !String.IsNullOrEmpty(nlogAssembly.Location))
@@ -1245,7 +1245,7 @@ namespace NLog
         }
 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         private void ConfigFileChanged(object sender, EventArgs args)
         {
             InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);

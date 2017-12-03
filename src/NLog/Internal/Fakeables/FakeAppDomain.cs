@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
 
 using System;
 using System.Collections.Generic;
@@ -41,13 +41,17 @@ namespace NLog.Internal.Fakeables
 {
     internal class FakeAppDomain : IAppDomain
     {
+#if NETSTANDARD1_5
         System.Runtime.Loader.AssemblyLoadContext _defaultContext;
+#endif
 
         /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
         public FakeAppDomain()
         {
             BaseDirectory = AppContext.BaseDirectory;
+#if NETSTANDARD1_5
             _defaultContext = System.Runtime.Loader.AssemblyLoadContext.Default;
+#endif
         }
 
         #region Implementation of IAppDomain
@@ -84,15 +88,19 @@ namespace NLog.Internal.Fakeables
         {
             add
             {
+#if NETSTANDARD1_5
                 if (_contextUnloadingEvent == null && _defaultContext != null)
                     _defaultContext.Unloading += OnContextUnloading;
                 _contextUnloadingEvent += value;
+#endif
             }
             remove
             {
+#if NETSTANDARD1_5
                 _contextUnloadingEvent -= value;
                 if (_contextUnloadingEvent == null && _defaultContext != null)
                     _defaultContext.Unloading -= OnContextUnloading;
+#endif
             }
         }
 
@@ -103,18 +111,23 @@ namespace NLog.Internal.Fakeables
         {
             add
             {
+#if NETSTANDARD1_5
                 if (_contextUnloadingEvent == null && _defaultContext != null)
                     _defaultContext.Unloading += OnContextUnloading;
                 _contextUnloadingEvent += value;
+#endif
             }
             remove
             {
+#if NETSTANDARD1_5
                 _contextUnloadingEvent -= value;
                 if (_contextUnloadingEvent == null && _defaultContext != null)
                     _defaultContext.Unloading -= OnContextUnloading;
+#endif
             }
         }
 
+#if NETSTANDARD1_5
         private event EventHandler<EventArgs> _contextUnloadingEvent;
 
         private void OnContextUnloading(System.Runtime.Loader.AssemblyLoadContext context)
@@ -122,15 +135,8 @@ namespace NLog.Internal.Fakeables
             var handler = _contextUnloadingEvent;
             if (handler != null) handler.Invoke(context, EventArgs.Empty);
         }
+#endif
         #endregion
-    }
-
-    static class ExtensionMethods
-    {
-        public static void Close(this IDisposable disposable)
-        {
-            disposable.Dispose();
-        }
     }
 }
 

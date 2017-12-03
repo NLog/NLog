@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !WINDOWS_UWP
 // Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
 #define SupportsMutex
 #endif
@@ -143,7 +143,7 @@ namespace NLog.Targets
         /// </summary>
         private string _previousLogFileName;
 
-        private bool _concurrentWrites;
+        private bool? _concurrentWrites;
         private bool _keepFileOpen;
         private bool _cleanupFileName;
         private FilePathKind _fileNameKind;
@@ -164,7 +164,7 @@ namespace NLog.Targets
             ArchiveAboveSize = FileTarget.ArchiveAboveSizeDisabled;
             ConcurrentWriteAttempts = 10;
             ConcurrentWrites = true;
-#if SILVERLIGHT || NETSTANDARD1_5
+#if SILVERLIGHT || NETSTANDARD1_0
             Encoding = Encoding.UTF8;
 #else
             Encoding = Encoding.Default;
@@ -450,7 +450,14 @@ namespace NLog.Targets
         [DefaultValue(true)]
         public bool ConcurrentWrites
         {
-            get => _concurrentWrites;
+            get
+            {
+#if SupportsMutex
+                return _concurrentWrites ?? true;
+#else
+                return _concurrentWrites ?? false;  // Better user experience for mobile platforms
+#endif
+            }
             set
             {
                 if (_concurrentWrites != value)
@@ -733,10 +740,10 @@ namespace NLog.Targets
             {
                 _fileAppenderCache.CheckCloseAppenders -= AutoClosingTimerCallback;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 if (KeepFileOpen)
                     _fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                 bool mustWatchArchiving = IsArchivingEnabled && ConcurrentWrites && KeepFileOpen;
                 if (mustWatchArchiving)
                 {
@@ -1316,7 +1323,7 @@ namespace NLog.Targets
                         if (!File.Exists(fileName) || File.Exists(archiveFileName))
                             throw;
 
-                        Thread.Sleep(50);
+                        AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(50));
 
                         if (!File.Exists(fileName) || File.Exists(archiveFileName))
                             throw;
@@ -1365,7 +1372,7 @@ namespace NLog.Targets
                     FileInfo currentFileInfo;
                     for (int i = 0; i < 120; ++i)
                     {
-                        Thread.Sleep(100);
+                        AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(100));
                         currentFileInfo = new FileInfo(fileName);
                         if (!currentFileInfo.Exists || currentFileInfo.CreationTime != originalFileCreationTime)
                             return;
@@ -1642,7 +1649,7 @@ namespace NLog.Targets
                         archiveMutex = _fileAppenderCache.GetArchiveMutex(archiveFile);
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                     _fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif
                     // Close possible stale file handles, before doing extra check
@@ -1654,7 +1661,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                     InternalLogger.Trace("FileTarget: invalidate invalid files");
                     _fileAppenderCache.InvalidateAppendersForInvalidFiles();
 #endif

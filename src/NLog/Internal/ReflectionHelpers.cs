@@ -38,7 +38,7 @@ namespace NLog.Internal
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Reflection helpers.
@@ -165,7 +165,7 @@ namespace NLog.Internal
 
         public static bool IsEnum(this Type type)
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return type.GetTypeInfo().IsEnum;
 #else
             return type.IsEnum;
@@ -174,7 +174,7 @@ namespace NLog.Internal
 
         public static bool IsPrimitive(this Type type)
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return type.GetTypeInfo().IsPrimitive;
 #else
             return type.IsPrimitive;
@@ -183,7 +183,7 @@ namespace NLog.Internal
 
         public static bool IsSealed(this Type type)
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return type.GetTypeInfo().IsSealed;
 #else
             return type.IsSealed;
@@ -192,7 +192,7 @@ namespace NLog.Internal
 
         public static bool IsAbstract(this Type type)
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return type.GetTypeInfo().IsAbstract;
 #else
             return type.IsAbstract;
@@ -201,7 +201,7 @@ namespace NLog.Internal
 
         public static bool IsClass(this Type type)
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return type.GetTypeInfo().IsClass;
 #else
             return type.IsClass;
@@ -210,7 +210,7 @@ namespace NLog.Internal
 
         public static bool IsGenericType(this Type type)
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return type.GetTypeInfo().IsGenericType;
 #else
             return type.IsGenericType;
@@ -219,7 +219,7 @@ namespace NLog.Internal
 
         public static TAttr GetCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             var typeInfo = type.GetTypeInfo();
             return typeInfo.GetCustomAttribute<TAttr>();
 #else
@@ -230,7 +230,7 @@ namespace NLog.Internal
         public static TAttr GetCustomAttribute<TAttr>(this PropertyInfo info)
              where TAttr : Attribute
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return info.GetCustomAttributes(typeof(TAttr), false).FirstOrDefault() as TAttr;
 #else
             return (TAttr)Attribute.GetCustomAttribute(info, typeof(TAttr));
@@ -239,7 +239,7 @@ namespace NLog.Internal
 
         public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(this Type type, bool inherit) where TAttr : Attribute
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             return type.GetTypeInfo().GetCustomAttributes<TAttr>(inherit);
 #else
             return (TAttr[])type.GetCustomAttributes(typeof(TAttr), inherit);
@@ -248,7 +248,7 @@ namespace NLog.Internal
 
         public static Assembly GetAssembly(this Type type)
         {
-#if NETSTANDARD1_5
+#if NETSTANDARD1_0
             var typeInfo = type.GetTypeInfo();
             return typeInfo.Assembly;
 #else

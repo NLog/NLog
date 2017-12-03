@@ -33,12 +33,9 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.Text;
-    using Config;
-#if SILVERLIGHT
-	using System.Windows;
-#endif
     using System.Reflection;
+    using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// Assembly version.
@@ -60,42 +57,34 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if SILVERLIGHT
-            string name;
-#else
-            Assembly assembly;
-#endif
-            
+            string assemblyVersion = GetAssemblyApplicationVersion(Name);
+            if (string.IsNullOrEmpty(assemblyVersion))
+            {
+                assemblyVersion = $"Could not find {(string.IsNullOrEmpty(Name) ? "entry" : Name)} assembly";
+            }
+            builder.Append(assemblyVersion);
+        }
 
-            var nameNotEmpty = !string.IsNullOrEmpty(Name);
-            if (nameNotEmpty)
+        string GetAssemblyApplicationVersion(string assemblyName)
+        {
+            if (!string.IsNullOrEmpty(assemblyName))
             {
 #if SILVERLIGHT
-                name = Name;
+                return new AssemblyName(assemblyName).Version.ToString();
 #else
-                assembly = Assembly.Load(new AssemblyName(Name));
+                return Assembly.Load(new AssemblyName(assemblyName))?.GetName().Version.ToString();
 #endif
             }
             else
             {
-
 #if SILVERLIGHT
-			    var assembly = Application.Current.GetType().Assembly;
-                
-                name = assembly.FullName;
+                return new AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName).Version.ToString();
+#elif WINDOWS_UWP
+                return Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion;
 #else
-                assembly = Assembly.GetEntryAssembly();
-
+                return Assembly.GetEntryAssembly()?.GetName().Version.ToString();
 #endif
             }
-            var message = $"Could not find {(nameNotEmpty ? "assembly " + Name : "entry assembly")}";
-
-#if !SILVERLIGHT
-            var assemblyVersion = assembly == null ? message : assembly.GetName().Version.ToString();
-#else
-            var assemblyVersion = name == null ? message : new AssemblyName(name).Version.ToString();
-#endif
-            builder.Append(assemblyVersion);
         }
     }
 }

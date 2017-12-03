@@ -31,15 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_0
 
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.IO;
     using System.Text;
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// System special folder path (includes My Documents, My Music, Program Files, Desktop, and more).

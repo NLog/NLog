@@ -37,9 +37,9 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
-    using Common;
-    using Config;
-    using Internal;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The machine name that the process is running on.
@@ -59,7 +59,13 @@ namespace NLog.LayoutRenderers
             base.InitializeLayoutRenderer();
             try
             {
+#if WINDOWS_UWP
+                MachineName = EnvironmentHelper.GetSafeEnvironmentVariable("COMPUTERNAME") ?? string.Empty;
+                if (string.IsNullOrEmpty(MachineName))
+                    MachineName = EnvironmentHelper.GetSafeEnvironmentVariable("HOSTNAME") ?? string.Empty;
+#else
                 MachineName = Environment.MachineName;
+#endif
             }
             catch (Exception exception)
             {

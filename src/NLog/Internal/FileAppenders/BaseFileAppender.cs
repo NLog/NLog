@@ -244,7 +244,7 @@ namespace NLog.Internal.FileAppenders
                     int actualDelay = _random.Next(currentDelay);
                     InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, FileName, actualDelay);
                     currentDelay *= 2;
-                    System.Threading.Thread.Sleep(actualDelay);
+                    AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(actualDelay));
                 }
             }
 

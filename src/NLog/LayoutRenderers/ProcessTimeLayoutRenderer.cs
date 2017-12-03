@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Text;
 
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// The process time in format HH:mm:ss.mmm.
@@ -67,12 +67,11 @@ namespace NLog.LayoutRenderers
         /// <param name="culture"></param>
         internal static void WritetTimestamp(StringBuilder builder, TimeSpan ts, CultureInfo culture)
         {
-          
             string timeSeparator;
             string ticksSeparator;
             if (culture != null)
             {
-#if !SILVERLIGHT && !NETSTANDARD1_5
+#if !SILVERLIGHT && !NETSTANDARD1_0
                 timeSeparator = culture.DateTimeFormat.TimeSeparator;
 #else
                 timeSeparator = ":"; 

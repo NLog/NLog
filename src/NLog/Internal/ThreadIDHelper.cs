@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
+#if !SILVERLIGHT && !__IOS__ && !WINDOWS_UWP
 
 namespace NLog.Internal
 {
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Returns details about current process and thread in a portable manner.

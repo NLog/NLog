@@ -34,10 +34,10 @@
 namespace NLog.Internal
 {
     using System;
-    using Config;
     using System.Diagnostics;
     using System.Reflection;
     using System.Runtime.CompilerServices;
+    using NLog.Config;
 
     /// <summary>
     /// Utilities for dealing with <see cref="StackTraceUsage"/> values.
@@ -49,7 +49,7 @@ namespace NLog.Internal
             return (StackTraceUsage)Math.Max((int)u1, (int)u2);
         }
 
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_0
         /// <summary>
         /// Get this stacktrace for inline unit test
         /// </summary>
@@ -63,7 +63,7 @@ namespace NLog.Internal
 
         public static int GetFrameCount(this StackTrace strackTrace)
         {
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_0
             return strackTrace.FrameCount;
 #else
             return strackTrace.GetFrames().Length;
@@ -148,7 +148,7 @@ namespace NLog.Internal
             int framesToSkip = 2;
 
             string className = string.Empty;
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_0
             Type declaringType;
 
             do

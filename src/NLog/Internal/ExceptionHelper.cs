@@ -34,8 +34,8 @@
 namespace NLog.Internal
 {
     using System;
-    using Common;
     using System.Threading;
+    using NLog.Common;
 
     /// <summary>
     /// Helper class for dealing with exceptions.
@@ -110,7 +110,7 @@ namespace NLog.Internal
         /// <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
         public static bool MustBeRethrownImmediately(this Exception exception)
         {
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_0
             if (exception is StackOverflowException)
             {
                 return true;

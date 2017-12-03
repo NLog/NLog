@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Text;
 
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// The time in a 24-hour, sortable format HH:mm:ss.mmm.
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers
             string ticksSeparator;
             if (culture != null)
             {
-#if !SILVERLIGHT && !NETSTANDARD1_5
+#if !SILVERLIGHT && !NETSTANDARD1_0
                 timeSeparator = culture.DateTimeFormat.TimeSeparator;
 #else
                 timeSeparator = ":";
