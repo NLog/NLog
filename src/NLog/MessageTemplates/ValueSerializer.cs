@@ -48,7 +48,7 @@ namespace NLog.MessageTemplates
             get => _instance ?? (_instance = new ValueSerializer());
             set => _instance = value ?? new ValueSerializer();
         }
-        private static IValueSerializer _instance = null;
+        private static IValueSerializer _instance;
 
         /// <summary>Singleton</summary>
         private ValueSerializer()
@@ -102,8 +102,7 @@ namespace NLog.MessageTemplates
             // todo datetime, timespan, datetimeoffset
             // todo nullables correct?
 
-            var stringValue = value as string;
-            if (stringValue != null)
+            if (value is string stringValue)
             {
                 bool includeQuotes = format != LiteralFormatSymbol;
                 if (includeQuotes) builder.Append('"');
@@ -118,7 +117,7 @@ namespace NLog.MessageTemplates
                 return true;
             }
 
-            IFormattable formattable = null;
+            IFormattable formattable;
             if (!string.IsNullOrEmpty(format) && (formattable = value as IFormattable) != null)
             {
                 builder.Append(formattable.ToString(format, formatProvider));

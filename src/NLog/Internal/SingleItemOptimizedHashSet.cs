@@ -87,7 +87,7 @@ namespace NLog.Internal
             }
         }
 
-        public int Count => _hashset != null ? _hashset.Count : (EqualityComparer<T>.Default.Equals(_singleItem, default(T)) ? 0 : 1);
+        public int Count => _hashset?.Count ?? (EqualityComparer<T>.Default.Equals(_singleItem, default(T)) ? 0 : 1);
 
         public bool IsReadOnly => false;
 

@@ -212,7 +212,7 @@ namespace NLog.Internal.FileAppenders
         public override DateTime? GetFileLastWriteTimeUtc()
         {
             var fileChars = GetFileCharacteristics();
-            return fileChars != null ? fileChars.LastWriteTimeUtc : (DateTime?)null;
+            return fileChars?.LastWriteTimeUtc;
         }
 
         /// <summary>

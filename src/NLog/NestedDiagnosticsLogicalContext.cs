@@ -88,7 +88,7 @@ namespace NLog
             var current = GetThreadLocal();
             if (current != null)
                 SetThreadLocal(current.Parent);
-            return current != null ? current.Value : null;
+            return current?.Value;
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace NLog
             public override string ToString()
             {
                 object value = Value;
-                return value != null ? value.ToString() : "null";
+                return value?.ToString() ?? "null";
             }
         }
 

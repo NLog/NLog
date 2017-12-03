@@ -68,7 +68,7 @@ namespace NLog.Internal
         /// <summary>
         /// Gets the stack frame of the method that did the logging.
         /// </summary>
-        public StackFrame UserStackFrame => (StackTrace != null) ? StackTrace.GetFrame(UserStackFrameNumberLegacy ?? UserStackFrameNumber) : null;
+        public StackFrame UserStackFrame => StackTrace?.GetFrame(UserStackFrameNumberLegacy ?? UserStackFrameNumber);
 
         /// <summary>
         /// Gets the number index of the stack frame that represents the user
