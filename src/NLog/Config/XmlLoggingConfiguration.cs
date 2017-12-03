@@ -718,6 +718,31 @@ namespace NLog.Config
 
             rule.Final = loggerElement.GetOptionalBooleanAttribute("final", false);
 
+            ParseLevels(loggerElement, rule);
+
+            var children = loggerElement.Children.ToList();
+            foreach (var child in children)
+            {
+                switch (child.LocalName.ToUpperInvariant())
+                {
+                    case "FILTERS":
+                        ParseFilters(rule, child);
+                        break;
+
+                    case "LOGGER":
+                        ParseLoggerElement(child, rule.ChildRules);
+                        break;
+                }
+            }
+
+            lock (rulesCollection)
+            {
+                rulesCollection.Add(rule);
+            }
+        }
+
+        private static void ParseLevels(NLogXmlElement loggerElement, LoggingRule rule)
+        {
             string levelString;
 
             if (loggerElement.AttributeValues.TryGetValue("level", out levelString))
@@ -760,26 +785,6 @@ namespace NLog.Config
                 {
                     rule.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
                 }
-            }
-
-            var children = loggerElement.Children.ToList();
-            foreach (var child in children)
-            {
-                switch (child.LocalName.ToUpperInvariant())
-                {
-                    case "FILTERS":
-                        ParseFilters(rule, child);
-                        break;
-
-                    case "LOGGER":
-                        ParseLoggerElement(child, rule.ChildRules);
-                        break;
-                }
-            }
-
-            lock (rulesCollection)
-            {
-                rulesCollection.Add(rule);
             }
         }
 
