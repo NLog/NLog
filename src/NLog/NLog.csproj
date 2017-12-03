@@ -15,11 +15,64 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-beta 8: Mail target for .NET standard,  &amp; many improvements
-      
-NLog 4.5 summary:      
- Structured logging
- NetStandard 2.0 support
+
+NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking changes! Also a lot
+
+# RC 2 main features
+
+- Support for UWP
+- Added "regex-matches" condition method for filtering
+- .NET Core: Improve auto loading of NLog extension dlls
+- And more, see all details: https://github.com/NLog/NLog/milestone/58?closed=1
+
+# List of important changes in NLog 4.5
+
+## Features:
+
+- Support for .Net Standard 1.5 #2341
+- Support for .Net Standard 2.0 #2263 + #2402
+- Support for UPW #2441
+- Introduced Structured logging #2208 + #2262 + #2244
+- Default file archive logic is now easier to use #1993
+- Introduced InstallationContext.ThrowExceptions #2214
+- WebServiceTarget can now batch multiple logevents into single request #2223
+- WebServiceTarget - Allow configuration of proxy address #2375
+- Json conversion also supports object properties #2179
+- event-properties layout-renderer can now render objects as json #2241
+- exception layout-renderer can now render exceptions as json #2357
+- ${guid}, added GeneratedFromLogEvent #2226
+- TraceTarget RawWrite to always perform Trace.WriteLine independent of LogLevel #1968
+- Adding OverflowAction options to BufferingTargetWrapper #2276
+- WhenRepeatedFilter #2123 + #2297
+- ${callsite} added CleanNamesOfAsyncContinuations option #2292
+- ${ndlctiming} allows timing of ndlc-scopes #2377
+- NLogViewerTarget - Enable override of the Logger-name #2390
+- ${sequenceid} added #2411
+- Added "regex-matches" for filtering #2437
+
+## BugFixes:
+
+- Improve archive stability during concurrent file access #1889
+- FallbackGroup could lose log events #2265
+- Exception separator should only be inserted for available items #2250
+- ${exception} - only include separator when items are available #2257
+- LogFactory - Fixes broken EventArgs for ConfigurationChanged #1897
+- Do not report wrapped targets as unused targets #2290
+- Added IIncludeContext, implemented missing properties #2117
+- Improve logging of callsite linenumber for async-methods #2386
+- NLogTraceListener - DisableFlush is enabled by default when AutoFlush=true #2407
+- NLogViewer - Better defaults for connection limits #2404
+- LoggingConfiguration.LoggingRules is not thread safe #2393, 2418
+
+## Performance:
+
+- More targets has OptimizeBufferReuse enabled by default #1913 + #1923 + #1912 + #1911 + #1910 + #1909 + #1908 + #1907
+- StringBuilderPool - Improved Layout Render Performance by reusing StringBuilders #2208
+- JsonLayout - Improved Layout Performance, by optimizing use of StringBuilder #2208
+- FileTarget - Faster byte-encoding of log messsages, by using crude Encoding.GetMaxByteCount() instead of exact Encoding.GetByteCount() #2208
+- Target - Precalculate Layout should ignore sub-layouts for complex layout (Ex Json) #2378
+
+
     </PackageReleaseNotes>
     <PackageTags>NLog;logging;log;tracing;logfiles;database;eventlog;email;wcf</PackageTags>
     <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
