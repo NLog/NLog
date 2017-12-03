@@ -289,20 +289,7 @@ namespace NLog
                             _config.InitializeAll();
                             ReconfigExistingLoggers();
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
-                            try
-                            {
-                                _watcher.Watch(_config.FileNamesToWatch);
-                            }
-                            catch (Exception exception)
-                            {
-                                //ToArray needed for .Net 3.5
-                                InternalLogger.Warn(exception, "Cannot start file watching: {0}", String.Join(",", _config.FileNamesToWatch.ToArray()));
-
-                                if (exception.MustBeRethrown())
-                                {
-                                    throw;
-                                }
-                            }
+                            TryWachtingConfigFile();
 #endif
                         }
                         finally
@@ -325,13 +312,15 @@ namespace NLog
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrownImmediately())
+                if (exception.MustBeRethrown())
                 {
                     throw;
                 }
 
-                InternalLogger.Warn(exception, "Cannot start file watching. File watching is disabled");
-                //TODO NLog 5: check "MustBeRethrown" 
+                //ToArray needed for .Net 3.5
+                InternalLogger.Warn(exception, "Cannot start file watching: {0}", String.Join(",", _config.FileNamesToWatch.ToArray()));
+
+                
             }
         }
 #endif
