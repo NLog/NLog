@@ -77,6 +77,20 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(false, "contains('foobar','oobe')");
             AssertEvaluationResult(false, "contains('','foo')");
             AssertEvaluationResult(true, "contains('foo','')");
+
+            AssertEvaluationResult(true, "regex-matches('foo', '^foo$')");
+            AssertEvaluationResult(false, "regex-matches('foo', '^bar$')");
+            
+            //Check that calling with empty strign is equivalent with not passing the parameter
+            AssertEvaluationResult(true, "regex-matches('foo', '^foo$', '')");
+            AssertEvaluationResult(false, "regex-matches('foo', '^bar$', '')");
+
+            //Check that options are parsed correctly
+            AssertEvaluationResult(true, "regex-matches('Foo', '^foo$', 'ignorecase')");
+            AssertEvaluationResult(false, "regex-matches('Foo', '^foo$')");
+            AssertEvaluationResult(true, "regex-matches('foo\nbar', '^Foo$', 'ignorecase,multiline')");
+            AssertEvaluationResult(false, "regex-matches('foo\nbar', '^Foo$')");
+            Assert.Throws<ConditionEvaluationException>(() => AssertEvaluationResult(true, "regex-matches('foo\nbar', '^Foo$', 'ignorecase,nonexistent')"));
         }
 
         [Fact]
