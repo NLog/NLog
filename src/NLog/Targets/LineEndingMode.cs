@@ -75,7 +75,7 @@ namespace NLog.Targets
         /// Do not insert any line ending.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
-        public static readonly LineEndingMode None = new LineEndingMode("None", String.Empty);
+        public static readonly LineEndingMode None = new LineEndingMode("None", string.Empty);
 
 
         private readonly string _name;

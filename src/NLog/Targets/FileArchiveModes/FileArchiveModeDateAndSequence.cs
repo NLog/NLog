@@ -123,7 +123,7 @@ namespace NLog.Targets.FileArchiveModes
             int sequenceIndex = dateAndSequence.LastIndexOf('.') + 1;
 
             string sequencePart = dateAndSequence.Substring(sequenceIndex);
-            if (!Int32.TryParse(sequencePart, NumberStyles.None, CultureInfo.CurrentCulture, out sequence))
+            if (!int.TryParse(sequencePart, NumberStyles.None, CultureInfo.CurrentCulture, out sequence))
             {
                 date = default(DateTime);
                 return false;

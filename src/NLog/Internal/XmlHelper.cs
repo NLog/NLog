@@ -136,26 +136,26 @@ namespace NLog.Internal
             switch (objTypeCode)
             {
                 case TypeCode.Boolean:
-                    return XmlConvert.ToString((Boolean)value);   // boolean as lowercase
+                    return XmlConvert.ToString((bool)value);   // boolean as lowercase
                 case TypeCode.Byte:
-                    return XmlConvert.ToString((Byte)value);
+                    return XmlConvert.ToString((byte)value);
                 case TypeCode.SByte:
-                    return XmlConvert.ToString((SByte)value);
+                    return XmlConvert.ToString((sbyte)value);
                 case TypeCode.Int16:
-                    return XmlConvert.ToString((Int16)value);
+                    return XmlConvert.ToString((short)value);
                 case TypeCode.Int32:
-                    return XmlConvert.ToString((Int32)value);
+                    return XmlConvert.ToString((int)value);
                 case TypeCode.Int64:
-                    return XmlConvert.ToString((Int64)value);
+                    return XmlConvert.ToString((long)value);
                 case TypeCode.UInt16:
-                    return XmlConvert.ToString((UInt16)value);
+                    return XmlConvert.ToString((ushort)value);
                 case TypeCode.UInt32:
-                    return XmlConvert.ToString((UInt32)value);
+                    return XmlConvert.ToString((uint)value);
                 case TypeCode.UInt64:
-                    return XmlConvert.ToString((UInt64)value);
+                    return XmlConvert.ToString((ulong)value);
                 case TypeCode.Single:
                     {
-                        float singleValue = (Single)value;
+                        float singleValue = (float)value;
                         if (float.IsInfinity(singleValue))
                             return Convert.ToString(singleValue, System.Globalization.CultureInfo.InvariantCulture); // Infinity instead of INF
                         else
@@ -163,18 +163,18 @@ namespace NLog.Internal
                     }
                 case TypeCode.Double:
                     {
-                        double doubleValue = (Double)value;
+                        double doubleValue = (double)value;
                         if (double.IsInfinity(doubleValue))
                             return Convert.ToString(doubleValue, System.Globalization.CultureInfo.InvariantCulture); // Infinity instead of INF
                         else
                             return XmlConvert.ToString(doubleValue);    // 16 digits scale
                     }
                 case TypeCode.Decimal:
-                    return XmlConvert.ToString((Decimal)value);
+                    return XmlConvert.ToString((decimal)value);
                 case TypeCode.DateTime:
                     return XmlConvert.ToString((DateTime)value, XmlDateTimeSerializationMode.Utc);
                 case TypeCode.Char:
-                    return XmlConvert.ToString((Char)value);
+                    return XmlConvert.ToString((char)value);
                 case TypeCode.String:
                     return (string)value;
                 default:

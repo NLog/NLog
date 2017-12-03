@@ -346,7 +346,7 @@ namespace NLog.Internal
             if (fileNameChars != null)
             {
                 //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
-                var dirName = lastDirSeparator > 0 ? filePath.Substring(0, lastDirSeparator + 1) : String.Empty;
+                var dirName = lastDirSeparator > 0 ? filePath.Substring(0, lastDirSeparator + 1) : string.Empty;
                 string fileName = new string(fileNameChars);
                 return Path.Combine(dirName, fileName);
             }
