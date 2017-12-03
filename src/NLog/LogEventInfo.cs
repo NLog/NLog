@@ -194,6 +194,11 @@ namespace NLog
         public StackTrace StackTrace => CallSiteInformation?.StackTrace;
 
         /// <summary>
+        /// Gets the callsite class name
+        /// </summary>
+        public string CallerClassName => CallSiteInformation?.CallerClassName;
+
+        /// <summary>
         /// Gets the callsite member function name
         /// </summary>
         public string CallerMemberName => CallSiteInformation?.GetCallerMemberName(null, false, true, true);
@@ -516,12 +521,13 @@ namespace NLog
         /// <summary>
         /// Sets the details retrieved from the Caller Information Attributes
         /// </summary>
+        /// <param name="callerClassName"></param>
         /// <param name="callerMemberName"></param>
         /// <param name="callerFilePath"></param>
         /// <param name="callerLineNumber"></param>
-        public void SetCallerInfo(string callerMemberName, string callerFilePath, int callerLineNumber)
+        public void SetCallerInfo(string callerClassName, string callerMemberName, string callerFilePath, int callerLineNumber)
         {
-            GetCallSiteInformationInternal().SetCallerInfo(callerMemberName, callerFilePath, callerLineNumber);
+            GetCallSiteInformationInternal().SetCallerInfo(callerClassName, callerMemberName, callerFilePath, callerLineNumber);
         }
 
         internal string AddCachedLayoutValue(Layout layout, string value)
