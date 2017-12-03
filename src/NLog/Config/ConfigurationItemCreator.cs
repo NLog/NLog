@@ -35,13 +35,6 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
-    using Conditions;
-    using Filters;
-    using Internal;
-    using LayoutRenderers;
-    using Layouts;
-    using Targets;
 
     /// <summary>
     /// Constructs a new instance the configuration item (target, layout, layout renderer, etc.) given its type.

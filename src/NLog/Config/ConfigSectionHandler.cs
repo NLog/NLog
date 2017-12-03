@@ -40,7 +40,6 @@ namespace NLog.Config
     using System.Xml;
     using Internal.Fakeables;
     using Common;
-    using Internal;
 
     /// <summary>
     /// NLog configuration section handler class for configuring NLog from App.config.
