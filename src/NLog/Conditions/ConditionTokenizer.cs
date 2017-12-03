@@ -57,12 +57,6 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Gets the token position.
-        /// </summary>
-        /// <value>The token position.</value>
-        public int TokenPosition { get; private set; }
-
-        /// <summary>
         /// Gets the type of the token.
         /// </summary>
         /// <value>The type of the token.</value>
