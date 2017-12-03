@@ -100,7 +100,6 @@ namespace NLog.LayoutRenderers
             if (logEvent.StackTrace == null)
                 return;
 
-            bool first = true;
             int startingFrame = logEvent.UserStackFrameNumber + TopFrames - 1;
             if (startingFrame >= logEvent.StackTrace.GetFrameCount())
             {
@@ -111,54 +110,71 @@ namespace NLog.LayoutRenderers
             switch (Format)
             {
                 case StackTraceFormat.Raw:
-                    for (int i = startingFrame; i >= endingFrame; --i)
-                    {
-                        StackFrame f = logEvent.StackTrace.GetFrame(i);
-                        builder.Append(f.ToString());
-                    }
+                    AppendRaw(builder, logEvent, startingFrame, endingFrame);
                     break;
 
                 case StackTraceFormat.Flat:
-                    for (int i = startingFrame; i >= endingFrame; --i)
-                    {
-                        StackFrame f = logEvent.StackTrace.GetFrame(i);
-                        if (!first)
-                        {
-                            builder.Append(Separator);
-                        }
-
-                        var type = f.GetMethod().DeclaringType;
-
-                        if (type != null)
-                        {
-                            builder.Append(type.Name);
-                        }
-                        else
-                        {
-                            builder.Append("<no type>");
-                        }
-
-                        builder.Append(".");
-                        builder.Append(f.GetMethod().Name);
-                        first = false;
-                    }
+                    AppendFlat(builder, logEvent, startingFrame, endingFrame);
                     break;
 
                 case StackTraceFormat.DetailedFlat:
-                    for (int i = startingFrame; i >= endingFrame; --i)
-                    {
-                        StackFrame f = logEvent.StackTrace.GetFrame(i);
-                        if (!first)
-                        {
-                            builder.Append(Separator);
-                        }
-
-                        builder.Append("[");
-                        builder.Append(f.GetMethod());
-                        builder.Append("]");
-                        first = false;
-                    }
+                    AppendDetailedFlat(builder, logEvent, startingFrame, endingFrame);
                     break;
+            }
+        }
+
+        private static void AppendRaw(StringBuilder builder, LogEventInfo logEvent, int startingFrame, int endingFrame)
+        {
+            for (int i = startingFrame; i >= endingFrame; --i)
+            {
+                StackFrame f = logEvent.StackTrace.GetFrame(i);
+                builder.Append(f.ToString());
+            }
+        }
+
+        private void AppendFlat(StringBuilder builder, LogEventInfo logEvent, int startingFrame, int endingFrame)
+        {
+            bool first = true;
+            for (int i = startingFrame; i >= endingFrame; --i)
+            {
+                StackFrame f = logEvent.StackTrace.GetFrame(i);
+                if (!first)
+                {
+                    builder.Append(Separator);
+                }
+
+                var type = f.GetMethod().DeclaringType;
+
+                if (type != null)
+                {
+                    builder.Append(type.Name);
+                }
+                else
+                {
+                    builder.Append("<no type>");
+                }
+
+                builder.Append(".");
+                builder.Append(f.GetMethod().Name);
+                first = false;
+            }
+        }
+
+        private void AppendDetailedFlat(StringBuilder builder, LogEventInfo logEvent, int startingFrame, int endingFrame)
+        {
+            bool first = true;
+            for (int i = startingFrame; i >= endingFrame; --i)
+            {
+                StackFrame f = logEvent.StackTrace.GetFrame(i);
+                if (!first)
+                {
+                    builder.Append(Separator);
+                }
+
+                builder.Append("[");
+                builder.Append(f.GetMethod());
+                builder.Append("]");
+                first = false;
             }
         }
     }
