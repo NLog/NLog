@@ -382,15 +382,7 @@ namespace NLog.Targets
             {
                 if (IsNumericTypeCode(objTypeCode, false))
                 {
-                    Enum enumValue;
-                    if (!options.EnumAsInteger && (enumValue = value as Enum) != null)
-                    {
-                        QuoteValue(destination, EnumAsString(enumValue));
-                    }
-                    else
-                    {
-                        destination.AppendIntegerAsString(value, objTypeCode);
-                    }
+                    SerializeNumber(value, destination, options, objTypeCode);
                 }
                 else
                 {
@@ -411,6 +403,19 @@ namespace NLog.Targets
             }
 
             return true;
+        }
+
+        private void SerializeNumber(object value, StringBuilder destination, JsonSerializeOptions options, TypeCode objTypeCode)
+        {
+            Enum enumValue;
+            if (!options.EnumAsInteger && (enumValue = value as Enum) != null)
+            {
+                QuoteValue(destination, EnumAsString(enumValue));
+            }
+            else
+            {
+                destination.AppendIntegerAsString(value, objTypeCode);
+            }
         }
 
         private static CultureInfo CreateFormatProvider()
