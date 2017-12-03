@@ -504,6 +504,13 @@ namespace NLog.Targets
                 postPayload = _activeProtocol.Value.PrepareRequest(request, parameters);
             }
 
+            var sendContinuation = CreateSendContinuation(continuation, request);
+
+            PostPayload(continuation, beginFunc, getStreamFunc, postPayload, sendContinuation);
+        }
+
+        private AsyncContinuation CreateSendContinuation(AsyncContinuation continuation, HttpWebRequest request)
+        {
             AsyncContinuation sendContinuation =
                 ex =>
                 {
@@ -531,7 +538,7 @@ namespace NLog.Targets
                                     InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", Name);
                                     if (ex2.MustBeRethrownImmediately())
                                     {
-                                        throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                                        throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                                     }
 
                                     DoInvokeCompleted(continuation, ex2);
@@ -550,7 +557,11 @@ namespace NLog.Targets
                         DoInvokeCompleted(continuation, ex2);
                     }
                 };
+            return sendContinuation;
+        }
 
+        private void PostPayload(AsyncContinuation continuation, Func<AsyncCallback, IAsyncResult> beginFunc, Func<IAsyncResult, Stream> getStreamFunc, Stream postPayload, AsyncContinuation sendContinuation)
+        {
             if (postPayload != null && postPayload.Length > 0)
             {
                 postPayload.Position = 0;
@@ -577,7 +588,7 @@ namespace NLog.Targets
                                 InternalLogger.Error(ex, "Error when sending to Webservice: {0}", Name);
                                 if (ex.MustBeRethrownImmediately())
                                 {
-                                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                                    throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                                 }
 
                                 postPayload.Dispose();
