@@ -382,15 +382,7 @@ namespace NLog.Targets
             {
                 if (IsNumericTypeCode(objTypeCode, false))
                 {
-                    Enum enumValue;
-                    if (!options.EnumAsInteger && (enumValue = value as Enum) != null)
-                    {
-                        QuoteValue(destination, EnumAsString(enumValue));
-                    }
-                    else
-                    {
-                        AppendIntegerAsString(destination, value, objTypeCode);
-                    }
+                    SerializeNumber(value, destination, options, objTypeCode);
                 }
                 else
                 {
@@ -411,6 +403,19 @@ namespace NLog.Targets
             }
 
             return true;
+        }
+
+        private void SerializeNumber(object value, StringBuilder destination, JsonSerializeOptions options, TypeCode objTypeCode)
+        {
+            Enum enumValue;
+            if (!options.EnumAsInteger && (enumValue = value as Enum) != null)
+            {
+                QuoteValue(destination, EnumAsString(enumValue));
+            }
+            else
+            {
+                destination.AppendIntegerAsString(value, objTypeCode);
+            }
         }
 
         private static CultureInfo CreateFormatProvider()
@@ -437,38 +442,6 @@ namespace NLog.Targets
             destination.Append('"');
             destination.Append(value);
             destination.Append('"');
-        }
-
-        private static void AppendIntegerAsString(StringBuilder sb, object value, TypeCode objTypeCode)
-        {
-            switch (objTypeCode)
-            {
-                case TypeCode.Byte: sb.AppendInvariant((Byte)value); break;
-                case TypeCode.SByte: sb.AppendInvariant((SByte)value); break;
-                case TypeCode.Int16: sb.AppendInvariant((Int16)value); break;
-                case TypeCode.Int32: sb.AppendInvariant((Int32)value); break;
-                case TypeCode.Int64:
-                    {
-                        Int64 int64 = (Int64)value;
-                        if (int64 < Int32.MaxValue && int64 > Int32.MinValue)
-                            sb.AppendInvariant((Int32)int64);
-                        else
-                            sb.Append(int64);
-                    } break;
-                case TypeCode.UInt16: sb.AppendInvariant((UInt16)value); break;
-                case TypeCode.UInt32: sb.AppendInvariant((UInt32)value); break;
-                case TypeCode.UInt64:
-                    {
-                        UInt64 uint64 = (UInt64)value;
-                        if (uint64 < UInt32.MaxValue)
-                            sb.AppendInvariant((UInt32)uint64);
-                        else
-                            sb.Append(uint64);
-                    } break;
-                default:
-                    sb.Append(XmlHelper.XmlConvertToString(value, objTypeCode));
-                    break;
-            }
         }
 
         private string EnumAsString(Enum value)
@@ -646,12 +619,11 @@ namespace NLog.Targets
             destination.Append('{');
 
             bool first = true;
-            int originalLength = 0;
             bool useLateBoundMethods = props.Key.Length == props.Value.Length;
 
             for (var i = 0; i < props.Key.Length; i++)
             {
-                originalLength = destination.Length;
+                var originalLength = destination.Length;
 
                 try
                 {

@@ -264,127 +264,22 @@ namespace NLog.LayoutRenderers
                     xtw.WriteElementSafeString("log4j", "throwable", dummyNamespace, logEvent.Exception.ToString());
                 }
 
-                string ndcContent = null;
-                if (IncludeNdc)
-                {
-                    ndcContent = string.Join(NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages());
-                }
-#if !SILVERLIGHT
-                if (IncludeNdlc)
-                {
-                    if (ndcContent != null)
-                    {
-                        //extra separator
-                        ndcContent += NdcItemSeparator;
-                    }
-                    ndcContent += string.Join(NdlcItemSeparator, NestedDiagnosticsLogicalContext.GetAllMessages());
-                }
-#endif
+                AppendNdc(xtw);
 
-                if (ndcContent != null)
-                {
-                    //NDLC and NDC should be in the same element
-                    xtw.WriteElementSafeString("log4j", "NDC", dummyNamespace, ndcContent);
-                }
+                AppendException(logEvent, xtw);
 
-                if (logEvent.Exception != null)
-                {
-                    // TODO Why twice the exception details?
-                    xtw.WriteStartElement("log4j", "throwable", dummyNamespace);
-                    xtw.WriteSafeCData(logEvent.Exception.ToString());
-                    xtw.WriteEndElement();
-                }
+                AppendCallSite(logEvent, xtw);
 
-                if (IncludeCallSite || IncludeSourceInfo)
-                {
-                    if (logEvent.CallSiteInformation != null)
-                    {
-                        MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
-                        string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
-                        string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
+                AppendProperties(xtw);
 
-                        xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
-                        if (!string.IsNullOrEmpty(callerClassName))
-                        {
-                            xtw.WriteAttributeSafeString("class", callerClassName);
-                        }
-
-                        xtw.WriteAttributeSafeString("method", callerMemberName);
-#if !SILVERLIGHT
-                        if (IncludeSourceInfo)
-                        {
-                            xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
-                            xtw.WriteAttributeSafeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
-                        }
-#endif
-                        xtw.WriteEndElement();
-
-                        if (IncludeNLogData)
-                        {
-                            xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
-                            xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
-                            var type = methodBase?.DeclaringType;
-                            if (type != null)
-                            {
-                                xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
-                            }
-                            xtw.WriteEndElement();
-
-                            xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                            AppendProperties("nlog", xtw, logEvent);
-                            xtw.WriteEndElement();
-                        }
-                    }
-                }
-
-                xtw.WriteStartElement("log4j", "properties", dummyNamespace);
-                if (IncludeMdc)
-                {
-                    foreach (string key in MappedDiagnosticsContext.GetNames())
-                    {
-                        string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsContext.GetObject(key));
-                        if (propertyValue == null)
-                            continue;
-
-                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                        xtw.WriteAttributeSafeString("name", key);
-                        xtw.WriteAttributeSafeString("value", propertyValue);
-                        xtw.WriteEndElement();
-                    }
-                }
-
-#if !SILVERLIGHT
-                if (IncludeMdlc)
-                {
-                    foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
-                    {
-                        string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsLogicalContext.GetObject(key));
-                        if (propertyValue == null)
-                            continue;
-
-                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                        xtw.WriteAttributeSafeString("name", key);
-                        xtw.WriteAttributeSafeString("value", propertyValue);
-                        xtw.WriteEndElement();
-                    }
-                }
-#endif
+                AppendMdlc(xtw);
 
                 if (IncludeAllProperties)
                 {
                     AppendProperties("log4j", xtw, logEvent);
                 }
 
-                if (Parameters.Count > 0)
-                {
-                    foreach (NLogViewerParameterInfo parameter in Parameters)
-                    {
-                        xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                        xtw.WriteAttributeSafeString("name", parameter.Name);
-                        xtw.WriteAttributeSafeString("value", parameter.Layout.Render(logEvent));
-                        xtw.WriteEndElement();
-                    }
-                }
+                AppendParameters(logEvent, xtw);
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
                 xtw.WriteAttributeSafeString("name", "log4japp");
@@ -405,6 +300,141 @@ namespace NLog.LayoutRenderers
                 sb.Replace(dummyNamespaceRemover, string.Empty);
                 sb.Replace(dummyNLogNamespaceRemover, string.Empty);
                 sb.CopyTo(builder); // StringBuilder.Replace is not good when reusing the StringBuilder
+            }
+        }
+
+        private void AppendMdlc(XmlWriter xtw)
+        {
+#if !SILVERLIGHT
+            if (IncludeMdlc)
+            {
+                foreach (string key in MappedDiagnosticsLogicalContext.GetNames())
+                {
+                    string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsLogicalContext.GetObject(key));
+                    if (propertyValue == null)
+                        continue;
+
+                    xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                    xtw.WriteAttributeSafeString("name", key);
+                    xtw.WriteAttributeSafeString("value", propertyValue);
+                    xtw.WriteEndElement();
+                }
+            }
+#endif
+        }
+
+        private void AppendNdc(XmlWriter xtw)
+        {
+            string ndcContent = null;
+            if (IncludeNdc)
+            {
+                ndcContent = string.Join(NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages());
+            }
+#if !SILVERLIGHT
+            if (IncludeNdlc)
+            {
+                if (ndcContent != null)
+                {
+                    //extra separator
+                    ndcContent += NdcItemSeparator;
+                }
+                ndcContent += string.Join(NdlcItemSeparator, NestedDiagnosticsLogicalContext.GetAllMessages());
+            }
+#endif
+
+            if (ndcContent != null)
+            {
+                //NDLC and NDC should be in the same element
+                xtw.WriteElementSafeString("log4j", "NDC", dummyNamespace, ndcContent);
+            }
+        }
+
+        private static void AppendException(LogEventInfo logEvent, XmlWriter xtw)
+        {
+            if (logEvent.Exception != null)
+            {
+                // TODO Why twice the exception details?
+                xtw.WriteStartElement("log4j", "throwable", dummyNamespace);
+                xtw.WriteSafeCData(logEvent.Exception.ToString());
+                xtw.WriteEndElement();
+            }
+        }
+
+        private void AppendParameters(LogEventInfo logEvent, XmlWriter xtw)
+        {
+            if (Parameters.Count > 0)
+            {
+                foreach (NLogViewerParameterInfo parameter in Parameters)
+                {
+                    xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                    xtw.WriteAttributeSafeString("name", parameter.Name);
+                    xtw.WriteAttributeSafeString("value", parameter.Layout.Render(logEvent));
+                    xtw.WriteEndElement();
+                }
+            }
+        }
+
+        private void AppendProperties(XmlWriter xtw)
+        {
+            xtw.WriteStartElement("log4j", "properties", dummyNamespace);
+            if (IncludeMdc)
+            {
+                foreach (string key in MappedDiagnosticsContext.GetNames())
+                {
+                    string propertyValue = XmlHelper.XmlConvertToString(MappedDiagnosticsContext.GetObject(key));
+                    if (propertyValue == null)
+                        continue;
+
+                    xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                    xtw.WriteAttributeSafeString("name", key);
+                    xtw.WriteAttributeSafeString("value", propertyValue);
+                    xtw.WriteEndElement();
+                }
+            }
+        }
+
+        private void AppendCallSite(LogEventInfo logEvent, XmlWriter xtw)
+        {
+            if (IncludeCallSite || IncludeSourceInfo)
+            {
+                if (logEvent.CallSiteInformation != null)
+                {
+                    MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
+                    string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
+                    string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
+
+                    xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
+                    if (!string.IsNullOrEmpty(callerClassName))
+                    {
+                        xtw.WriteAttributeSafeString("class", callerClassName);
+                    }
+
+                    xtw.WriteAttributeSafeString("method", callerMemberName);
+#if !SILVERLIGHT
+                    if (IncludeSourceInfo)
+                    {
+                        xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
+                        xtw.WriteAttributeSafeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
+                    }
+#endif
+                    xtw.WriteEndElement();
+
+                    if (IncludeNLogData)
+                    {
+                        xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
+                        xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
+                        var type = methodBase?.DeclaringType;
+                        if (type != null)
+                        {
+                            xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
+                        }
+                        xtw.WriteEndElement();
+
+                        xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
+                        AppendProperties("nlog", xtw, logEvent);
+                        xtw.WriteEndElement();
+                    }
+                }
             }
         }
 
