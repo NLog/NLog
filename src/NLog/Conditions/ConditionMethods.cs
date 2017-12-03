@@ -35,7 +35,6 @@ namespace NLog.Conditions
 {
     using System;
     using System.Runtime.InteropServices;
-    using System.Reflection;
     using System.Text.RegularExpressions;
 
     /// <summary>
