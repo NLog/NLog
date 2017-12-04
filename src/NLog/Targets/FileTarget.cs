@@ -783,7 +783,6 @@ namespace NLog.Targets
         /// </remarks>
         public void CleanupInitializedFiles(DateTime cleanupThreshold)
         {
-
             if (InternalLogger.IsTraceEnabled)
             {
                 InternalLogger.Trace("FileTarget: Cleanup Initialized Files with cleanupThreshold {0}", cleanupThreshold);
@@ -1629,6 +1628,9 @@ namespace NLog.Targets
         /// <returns>True when archive operation of the file was completed (by this target or a concurrent target)</returns>
         private bool TryArchiveFile(string fileName, LogEventInfo ev, int upcomingWriteSize, bool initializedNewFile)
         {
+            if (!IsArchivingEnabled)
+                return false;
+
             string archiveFile = string.Empty;
 
 #if SupportsMutex
@@ -1638,10 +1640,9 @@ namespace NLog.Targets
             try
             {
                 archiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize);
-                InternalLogger.Trace("FileTarget: init archiving file '{0}'", archiveFile);
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
-                    InternalLogger.Trace("FileTarget: invalidate for file '{0}'", archiveFile);
+                    InternalLogger.Trace("FileTarget: Archive attempt for file '{0}'", archiveFile);
 #if SupportsMutex
                     // Acquire the mutex from the file-appender, before closing the file-apppender (remember not to close the Mutex)
                     archiveMutex = _fileAppenderCache.GetArchiveMutex(fileName);
@@ -1650,7 +1651,7 @@ namespace NLog.Targets
 #endif
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
-                    _fileAppenderCache.InvalidateAppendersForInvalidFiles();
+                    _fileAppenderCache.InvalidateAppendersForArchivedFiles();
 #endif
                     // Close possible stale file handles, before doing extra check
                     if (!string.IsNullOrEmpty(fileName) && fileName != archiveFile)
@@ -1662,14 +1663,13 @@ namespace NLog.Targets
                 else
                 {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
-                    InternalLogger.Trace("FileTarget: invalidate invalid files");
-                    _fileAppenderCache.InvalidateAppendersForInvalidFiles();
+                    _fileAppenderCache.InvalidateAppendersForArchivedFiles();
 #endif
                 }
             }
             catch (Exception exception)
             {
-                InternalLogger.Warn(exception, "Failed to check archive for file '{0}'.", fileName);
+                InternalLogger.Warn(exception, "FileTarget: Failed to check archive for file '{0}'.", fileName);
                 if (exception.MustBeRethrown())
                 {
                     throw;
@@ -1686,7 +1686,7 @@ namespace NLog.Targets
                         if (archiveMutex != null)
                             archiveMutex.WaitOne();
                         else if (!KeepFileOpen || ConcurrentWrites)
-                            InternalLogger.Info("Archive mutex not available: {0}", archiveFile);
+                            InternalLogger.Info("FileTarget: Archive mutex not available: {0}", archiveFile);
                     }
                     catch (AbandonedMutexException)
                     {
@@ -1700,6 +1700,7 @@ namespace NLog.Targets
                     var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize);
                     if (string.IsNullOrEmpty(validatedArchiveFile))
                     {
+                        InternalLogger.Trace("FileTarget: Archive already performed for file '{0}'", archiveFile);
                         if (archiveFile != fileName)
                             _initializedFiles.Remove(fileName);
                         _initializedFiles.Remove(archiveFile);
@@ -1712,7 +1713,7 @@ namespace NLog.Targets
                 }
                 catch (Exception exception)
                 {
-                    InternalLogger.Warn(exception, "Failed to archive file '{0}'.", archiveFile);
+                    InternalLogger.Warn(exception, "FileTarget: Failed to archive file '{0}'.", archiveFile);
                     if (exception.MustBeRethrown())
                     {
                         throw;

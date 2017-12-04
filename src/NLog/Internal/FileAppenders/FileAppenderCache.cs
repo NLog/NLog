@@ -171,11 +171,12 @@ namespace NLog.Internal.FileAppenders
         /// <summary>
         /// Invalidates appenders for all files that were archived.
         /// </summary>
-        public void InvalidateAppendersForInvalidFiles()
+        public void InvalidateAppendersForArchivedFiles()
         {
             if (_logFileWasArchived)
             {
                 _logFileWasArchived = false;
+                InternalLogger.Trace("FileAppender: Invalidate archived files");
                 CloseAppenders("Cleanup Archive");
             }
         }
