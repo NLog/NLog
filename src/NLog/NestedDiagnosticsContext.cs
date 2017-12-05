@@ -60,7 +60,10 @@ namespace NLog
         /// <returns>The object at the top of the NDC stack if defined; otherwise <c>null</c>.</returns>
         public static object TopObject => PeekObject();
 
-        private static Stack<object> ThreadStack => ThreadLocalStorageHelper.GetDataForSlot<Stack<object>>(dataSlot);
+        private static Stack<object> GetThreadStack(bool create = true)
+        {
+            return ThreadLocalStorageHelper.GetDataForSlot<Stack<object>>(dataSlot, create);
+        }
 
         /// <summary>
         /// Pushes the specified text on current thread NDC.
@@ -79,7 +82,7 @@ namespace NLog
         /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
         public static IDisposable Push(object value)
         {
-            Stack<object> stack = ThreadStack;
+            Stack<object> stack = GetThreadStack(true);
             int previousCount = stack.Count;
             stack.Push(value);
             return new StackPopper(stack, previousCount);
@@ -110,7 +113,7 @@ namespace NLog
         /// <returns>The object from the top of the NDC stack, if defined; otherwise <c>null</c>.</returns>
         public static object PopObject()
         {
-            Stack<object> stack = ThreadStack;
+            Stack<object> stack = GetThreadStack(true);
             return (stack.Count > 0) ? stack.Pop() : null;
         }
 
@@ -120,8 +123,8 @@ namespace NLog
         /// <returns>The object from the top of the NDC stack, if defined; otherwise <c>null</c>.</returns>
         public static object PeekObject()
         {
-            Stack<object> stack = ThreadStack;
-            return (stack.Count > 0) ? stack.Peek() : null;
+            Stack<object> stack = GetThreadStack(false);
+            return (stack?.Count > 0) ? stack.Peek() : null;
         }
 
         /// <summary>
@@ -129,7 +132,8 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            ThreadStack.Clear();
+            Stack<object> stack = GetThreadStack(false);
+            stack?.Clear();
         }
 
         /// <summary>
@@ -148,7 +152,11 @@ namespace NLog
         /// <returns>Array of strings.</returns>
         public static string[] GetAllMessages(IFormatProvider formatProvider) 
         {
-            return ThreadStack.Select((o) => FormatHelper.ConvertToString(o, formatProvider)).ToArray();
+            Stack<object> stack = GetThreadStack(false);
+            if (stack == null)
+                return ArrayHelper.Empty<string>();
+            else
+                return stack.Select((o) => FormatHelper.ConvertToString(o, formatProvider)).ToArray();
         }
 
         /// <summary>
@@ -157,7 +165,11 @@ namespace NLog
         /// <returns>Array of objects on the stack.</returns>
         public static object[] GetAllObjects() 
         {
-            return ThreadStack.ToArray();
+            Stack<object> stack = GetThreadStack(false);
+            if (stack == null)
+                return ArrayHelper.Empty<object>();
+            else
+                return stack.ToArray();
         }
 
         /// <summary>
