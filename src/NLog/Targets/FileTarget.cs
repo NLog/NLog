@@ -2141,18 +2141,22 @@ namespace NLog.Targets
             //  Write header and BOM only on empty files or if file info cannot be obtained.
             if (length == null || length == 0)
             {
-                InternalLogger.Trace("FileTarget: Write byte order mark");
-                var preamble = Encoding.GetPreamble();
-                if (preamble.Length >= 0)
-                    appender.Write(preamble, 0, preamble.Length);
-
-                if (Header == null) return;
-
-                InternalLogger.Trace("FileTarget: Write header");
-                ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
-                if (headerBytes.Count > 0)
+                if (WriteBom)
                 {
-                    appender.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
+                    InternalLogger.Trace("FileTarget: Write byte order mark");
+                    var preamble = Encoding.GetPreamble();
+                    if (preamble.Length >= 0)
+                        appender.Write(preamble, 0, preamble.Length);
+                }
+
+                if (Header != null)
+                {
+                    InternalLogger.Trace("FileTarget: Write header");
+                    ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
+                    if (headerBytes.Count > 0)
+                    {
+                        appender.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
+                    }
                 }
             }
         }
