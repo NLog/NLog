@@ -214,6 +214,36 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Fact]
+        public void SimpleFileTestWriteBom()
+        {
+            var logFile = Path.GetTempFileName();
+            try
+            {
+                var fileTarget = WrapFileTarget(new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Encoding = Encoding.UTF8,
+                    WriteBom = true,
+                    Layout = "${level} ${message}",
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
+                logger.Debug("aaa");
+
+                LogManager.Configuration = null;    // Flush
+
+                AssertFileContents(logFile, "Debug aaa\n", Encoding.UTF8, true);
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+            }
+        }
+
 #if !MONO
         /// <summary>
         /// If a drive doesn't existing, before repeatatly creating a dir was tried. This test was taking +60 seconds 
