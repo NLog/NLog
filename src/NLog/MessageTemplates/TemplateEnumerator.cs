@@ -333,7 +333,7 @@ namespace NLog.MessageTemplates
             int i = _template.IndexOfAny(search, _position);
             if (i == -1 && required)
             {
-                var formattedChars = string.Join(", ", search.Select(c => "'" + c + "'").ToArray());
+                var formattedChars = string.Join(", ", search.Select(c => string.Concat("'", c.ToString(), "'")).ToArray());
                 throw new TemplateParserException($"Reached end of template while expecting one of {formattedChars}.", _position, _template);
             }
             _position = i == -1 ? _length : i;

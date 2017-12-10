@@ -551,7 +551,7 @@ namespace NLog.Config
 
                     if (LogManager.ThrowExceptions)
                     {
-                        throw new NLogConfigurationException("Error during initialization of " + initialize, exception);
+                        throw new NLogConfigurationException($"Error during initialization of {initialize}", exception);
                     }
                 }
             }
