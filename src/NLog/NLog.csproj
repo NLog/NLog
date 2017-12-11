@@ -18,7 +18,12 @@
 
 NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking changes! Also a lot
 
-# RC 2 main features
+# RC 3 summary
+
+- File target: support for writing BOM (WriteBom option)
+- Futher memory allocation improvements
+
+# RC 2 summary
 
 - Support for UWP
 - Added "regex-matches" condition method for filtering
@@ -49,6 +54,7 @@ NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking 
 - NLogViewerTarget - Enable override of the Logger-name #2390
 - ${sequenceid} added #2411
 - Added "regex-matches" for filtering #2437
+- File target: support for writing BOM (WriteBom option) #2456
 
 ## BugFixes:
 
@@ -62,7 +68,7 @@ NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking 
 - Improve logging of callsite linenumber for async-methods #2386
 - NLogTraceListener - DisableFlush is enabled by default when AutoFlush=true #2407
 - NLogViewer - Better defaults for connection limits #2404
-- LoggingConfiguration.LoggingRules is not thread safe #2393, 2418
+- LoggingConfiguration.LoggingRules is not thread safe #2393, #2418
 
 ## Performance:
 
