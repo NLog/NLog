@@ -159,18 +159,18 @@ namespace NLog.Internal
             if (transformBuffer != null)
             {
                 int charCount = 0;
-                int byteCount = 0;
+                int byteCount = encoding.GetMaxByteCount(builder.Length);
+                ms.SetLength(ms.Position + byteCount);
                 for (int i = 0; i < builder.Length; i += transformBuffer.Length)
                 {
                     charCount = Math.Min(builder.Length - i, transformBuffer.Length);
                     builder.CopyTo(i, transformBuffer, 0, charCount);
-                    byteCount = encoding.GetMaxByteCount(charCount);
-                    ms.SetLength(ms.Position + byteCount);
                     byteCount = encoding.GetBytes(transformBuffer, 0, charCount, ms.GetBuffer(), (int)ms.Position);
-                    if ((ms.Position += byteCount) != ms.Length)
-                    {
-                        ms.SetLength(ms.Position);
-                    }
+                    ms.Position += byteCount;
+                }
+                if (ms.Position != ms.Length)
+                {
+                    ms.SetLength(ms.Position);
                 }
             }
             else
