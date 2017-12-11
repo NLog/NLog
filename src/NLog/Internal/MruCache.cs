@@ -40,38 +40,38 @@ namespace NLog.Internal
     /// </summary>
     internal class MruCache<TKey, TValue>
     {
-        private readonly Dictionary<TKey, MruItem> _dictionary;
+        private readonly Dictionary<TKey, MruCacheItem> _dictionary;
         private readonly int _maxCapacity;
         private long _currentVersion;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="maxCapacity">Max number of items to hold before discarding</param>
+        /// <param name="maxCapacity">Maximum number of items the cache will hold before discarding.</param>
         public MruCache(int maxCapacity)
         {
             _maxCapacity = maxCapacity;
-            _dictionary = new Dictionary<TKey, MruItem>(_maxCapacity);
+            _dictionary = new Dictionary<TKey, MruCacheItem>(_maxCapacity);
             _currentVersion = 1;
         }
 
         /// <summary>
-        /// Insert item into caceh
+        /// Attempt to insert item into cache.
         /// </summary>
-        /// <param name="key">Dictionary Key</param>
-        /// <param name="value">Dictionary Value</param>
-        /// <returns>Key did not exist already</returns>
+        /// <param name="key">Key of the item to be inserted in the cache.</param>
+        /// <param name="value">Value of the item to be inserted in the cache.</param>
+        /// <returns><c>true</c> when the key does not already exist in the cache, <c>false</c> otherwise.</returns>
         public bool TryAddValue(TKey key, TValue value)
         {
             lock (_dictionary)
             {
-                MruItem item;
+                MruCacheItem item;
                 if (_dictionary.TryGetValue(key, out item))
                 {
                     var version = _currentVersion;
                     if (item.Version != version || !EqualityComparer<TValue>.Default.Equals(value, item.Value))
                     {
-                        _dictionary[key] = new MruItem(value, version, false);
+                        _dictionary[key] = new MruCacheItem(value, version, false);
                     }
                     return false;   // Already exists
                 }
@@ -83,7 +83,7 @@ namespace NLog.Internal
                         PruneCache();
                     }
 
-                    _dictionary.Add(key, new MruItem(value, _currentVersion, true));
+                    _dictionary.Add(key, new MruCacheItem(value, _currentVersion, true));
                     return true;
                 }
             }
@@ -147,14 +147,14 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Lookup existing item in cache
+        /// Lookup existing item in cache.
         /// </summary>
-        /// <param name="key">Dictionary Key</param>
-        /// <param name="value">Dictionary Value [out]</param>
-        /// <returns>Key found</returns>
+        /// <param name="key">Key of the item to be searched in the cache.</param>
+        /// <param name="value">Output value of the item found in the cache.</param>
+        /// <returns><c>True</c> when the key is found in the cache, <c>false</c> otherwise.</returns>
         public bool TryGetValue(TKey key, out TValue value)
         {
-            MruItem item;
+            MruCacheItem item;
             try
             {
                 if (!_dictionary.TryGetValue(key, out item))
@@ -165,7 +165,7 @@ namespace NLog.Internal
             }
             catch
             {
-                item = default(MruItem);    // Too many people in the same room
+                item = default(MruCacheItem);    // Too many people in the same room
             }
 
             if (item.Version != _currentVersion || item.Virgin)
@@ -182,7 +182,7 @@ namespace NLog.Internal
                             {
                                 version = ++_currentVersion;
                             }
-                            _dictionary[key] = new MruItem(item.Value, version, false);
+                            _dictionary[key] = new MruCacheItem(item.Value, version, false);
                         }
                     }
                     else
@@ -197,13 +197,13 @@ namespace NLog.Internal
             return true;
         }
 
-        struct MruItem
+        struct MruCacheItem
         {
-            public readonly TValue Value;
-            public readonly long Version;
-            public readonly bool Virgin;
+            public TValue Value { get; }
+            public long Version { get; }
+            public bool Virgin { get; }
 
-            public MruItem(TValue value, long version, bool virgin)
+            public MruCacheItem(TValue value, long version, bool virgin)
             {
                 Value = value;
                 Version = version;
