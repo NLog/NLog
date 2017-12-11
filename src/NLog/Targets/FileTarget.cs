@@ -479,6 +479,12 @@ namespace NLog.Targets
         public bool NetworkWrites { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files
+        /// </summary>
+        [DefaultValue(false)]
+        public bool WriteBom { get; set; }
+
+        /// <summary>
         /// Gets or sets the number of times the write is appended on the file before NLog
         /// discards the log message.
         /// </summary>
@@ -1941,7 +1947,7 @@ namespace NLog.Targets
             {
                 if (initializedNewFile)
                 {
-                    WriteHeader(appender);
+                    WriteHeaderAndBom(appender);
                 }
 
                 appender.Write(bytes.Array, bytes.Offset, bytes.Count);
@@ -2122,24 +2128,35 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Writes the header information to a file.
+        /// Writes the header information and byte order mark to a file.
         /// </summary>
         /// <param name="appender">File appender associated with the file.</param>
-        private void WriteHeader(BaseFileAppender appender)
+        private void WriteHeaderAndBom(BaseFileAppender appender)
         {
             //performance: cheap check before checking file info 
-            if (Header == null) return;
+            if (Header == null && !WriteBom) return;
 
             //todo replace with hasWritten?
             var length = appender.GetFileLength();
-            //  Write header only on empty files or if file info cannot be obtained.
+            //  Write header and BOM only on empty files or if file info cannot be obtained.
             if (length == null || length == 0)
             {
-                InternalLogger.Trace("FileTarget: Write header");
-                ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
-                if (headerBytes.Count > 0)
+                if (WriteBom)
                 {
-                    appender.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
+                    InternalLogger.Trace("FileTarget: Write byte order mark");
+                    var preamble = Encoding.GetPreamble();
+                    if (preamble.Length >= 0)
+                        appender.Write(preamble, 0, preamble.Length);
+                }
+
+                if (Header != null)
+                {
+                    InternalLogger.Trace("FileTarget: Write header");
+                    ArraySegment<byte> headerBytes = GetLayoutBytes(Header);
+                    if (headerBytes.Count > 0)
+                    {
+                        appender.Write(headerBytes.Array, headerBytes.Offset, headerBytes.Count);
+                    }
                 }
             }
         }
