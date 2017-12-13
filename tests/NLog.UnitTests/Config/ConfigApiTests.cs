@@ -262,5 +262,33 @@ namespace NLog.UnitTests.Config
             var s = loggingRule.ToString();
             Assert.Equal("logNamePattern: (namespace.comp1:Equals) levels: [ ] appendTo: [ file1 file2 ]", s);
         }
+
+        [Fact]
+        public void LogRuleSetLoggingLevels_enables()
+        {
+            var rule = new LoggingRule();
+            rule.SetLoggingLevels(LogLevel.Warn, LogLevel.Fatal);
+            Assert.Equal(rule.Levels, new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal });
+        }
+
+        [Fact]
+        public void LogRuleSetLoggingLevels_disables()
+        {
+            var rule = new LoggingRule();
+            rule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
+
+            rule.SetLoggingLevels(LogLevel.Warn, LogLevel.Fatal);
+            Assert.Equal(rule.Levels, new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal });
+        }
+
+        [Fact]
+        public void LogRuleDisableLoggingLevels()
+        {
+            var rule = new LoggingRule();
+            rule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
+
+            rule.DisableLoggingForLevels(LogLevel.Warn, LogLevel.Fatal);
+            Assert.Equal(rule.Levels, new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info });
+        }
     }
 }
