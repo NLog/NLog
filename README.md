@@ -61,6 +61,17 @@ For the possible options in the config, check the [Target list](https://github.c
 Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)
 
 
+
+-----
+
+:info:
+
+ ℹ️ Looking for NLog 5? Just install NLog 4.5!
+
+NLog 4.5 implements the platforms added in NLog 5 (.NET Standard 1, .NET Standard 2, UWP, etc) and added structural logging, *without breaking changes*!
+
+----
+
 Packages & Status
 ---
 NLog consists of multiple packages. Most of the functionality is inside the NLog (core) package. What's inside the packages? See [targets](https://github.com/NLog/NLog/wiki/Targets) and [layout renderers](https://github.com/NLog/NLog/wiki/Layout-Renderers) overview!
