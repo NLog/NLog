@@ -64,8 +64,6 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
 -----
 
-:info:
-
  ℹ️ Looking for NLog 5? Just install NLog 4.5!
 
 NLog 4.5 implements the platforms added in NLog 5 (.NET Standard 1, .NET Standard 2, UWP, etc) and added structural logging, *without breaking changes*!
