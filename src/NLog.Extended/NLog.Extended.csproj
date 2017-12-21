@@ -24,7 +24,7 @@
     <PackageTags>NLog;MSMQ;AppSettings;logging;log</PackageTags>
     <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
     <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
-    <PackageLicenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
 
@@ -34,6 +34,7 @@
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
     <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net45' ">Full</DebugType>
   </PropertyGroup>
