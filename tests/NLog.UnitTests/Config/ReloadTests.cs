@@ -564,6 +564,39 @@ namespace NLog.UnitTests.Config
 
         }
 
+        [Fact]
+        public void TestReloadingInvalidConfiguration()
+        {
+            var validXmlConfig = @"<nlog>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>";
+            var invalidXmlConfig = "";
+
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempPath);
+
+            try {
+                var nlogConfigFile = Path.Combine(tempPath, "NLog.config");
+                WriteConfigFile(nlogConfigFile, invalidXmlConfig);
+
+                var invalidConfiguration = new XmlLoggingConfiguration(nlogConfigFile);
+                Assert.False(invalidConfiguration.InitializeSucceeded);
+
+                WriteConfigFile(nlogConfigFile, validXmlConfig);
+                var validReloadedConfiguration = (XmlLoggingConfiguration)invalidConfiguration.Reload();
+                Assert.True(validReloadedConfiguration.InitializeSucceeded);                
+            }
+            finally
+            {
+                if (Directory.Exists(tempPath))
+                {
+                    Directory.Delete(tempPath, true);
+                }
+            }
+        }
 
         private static void WriteConfigFile(string configFilePath, string config)
         {
