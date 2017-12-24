@@ -92,7 +92,7 @@ namespace NLog
         private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> {Trace, Debug, Info, Warn, Error, Fatal}.AsReadOnly();
 
         /// <summary>
-        /// Gets all the availiable log levels (Trace, Debug, Info, Warn, Error, Fatal, Off).
+        /// Gets all the available log levels (Trace, Debug, Info, Warn, Error, Fatal, Off).
         /// </summary>
         public static IEnumerable<LogLevel> AllLevels => allLevels;
 
