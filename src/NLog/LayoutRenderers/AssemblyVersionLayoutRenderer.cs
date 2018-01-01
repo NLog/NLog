@@ -73,34 +73,78 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string assemblyVersion = GetAssemblyApplicationVersion(Name);
-            if (string.IsNullOrEmpty(assemblyVersion))
+            var version = GetAssemblyVersion(Name);
+
+            if (string.IsNullOrEmpty(version))
             {
-                assemblyVersion = $"Could not find {(string.IsNullOrEmpty(Name) ? "entry" : Name)} assembly";
+                version = $"Could not find {(string.IsNullOrEmpty(Name) ? "entry" : Name)} assembly";
             }
-            builder.Append(assemblyVersion);
+
+            builder.Append(version);
         }
 
-        string GetAssemblyApplicationVersion(string assemblyName)
-        {
-            if (!string.IsNullOrEmpty(assemblyName))
-            {
 #if SILVERLIGHT
-                return new AssemblyName(assemblyName).Version.ToString();
-#else
-                return Assembly.Load(new AssemblyName(assemblyName))?.GetName().Version.ToString();
-#endif
+
+        private static string GetAssemblyVersion()
+        {
+            return GetAssemblyVersion(null);
+        }
+
+        private static string GetAssemblyVersion(string assemblyName)
+        {
+            var assemblyName = GetAssemblyName(assemblyName);
+            return assemblyName.Version.ToString();
+        }
+
+        private static AssemblyName GetAssemblyName(string assemblyName)
+        {
+            if (string.IsNullOrEmpty(assemblyName))
+            {
+                return new AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName);
             }
             else
             {
-#if SILVERLIGHT
-                return new AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName).Version.ToString();
-#elif WINDOWS_UWP
-                return Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion;
-#else
-                return Assembly.GetEntryAssembly()?.GetName().Version.ToString();
-#endif
+                return new AssemblyName(assemblyName);
             }
         }
+
+#elif WINDOWS_UWP
+
+        private static string GetAssemblyVersion()
+        {
+            return Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion;
+        }
+
+        private static string GetAssemblyVersion(string assemblyName)
+        {
+            return Assembly.Load(new AssemblyName(assemblyName))?.GetName().Version.ToString();
+        }
+
+#else
+
+        private static string GetAssemblyVersion()
+        {
+            return GetAssemblyVersion(null);
+        }
+
+        private static string GetAssemblyVersion(string assemblyName)
+        {
+            var assembly = GetAssembly(assemblyName);
+            return assembly?.GetName().Version.ToString();
+        }
+
+        private static Assembly GetAssembly(string assemblyName)
+        {
+            if (string.IsNullOrEmpty(assemblyName))
+            {
+                return Assembly.GetEntryAssembly();
+            }
+            else
+            {
+                return Assembly.Load(new AssemblyName(assemblyName));
+            }
+        }
+
+#endif
     }
 }
