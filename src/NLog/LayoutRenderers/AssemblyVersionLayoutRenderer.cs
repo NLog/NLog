@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System.ComponentModel;
     using System.Reflection;
     using System.Text;
     using NLog.Config;
@@ -45,10 +46,25 @@ namespace NLog.LayoutRenderers
     public class AssemblyVersionLayoutRenderer : LayoutRenderer
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="AssemblyVersionLayoutRenderer" /> class.
+        /// </summary>
+        public AssemblyVersionLayoutRenderer()
+        {
+            Type = AssemblyVersionType.Assembly;
+        }
+
+        /// <summary>
         /// The (full) name of the assembly. If <c>null</c>, using the entry assembly.
         /// </summary>
         [DefaultParameter]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of assembly version to retrieve.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(nameof(AssemblyVersionType.Assembly))]
+        public AssemblyVersionType Type { get; set; }
 
         /// <summary>
         /// Renders assembly version and appends it to the specified <see cref="StringBuilder" />.
