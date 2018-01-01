@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System.ComponentModel;
+    using System.Diagnostics;
     using System.Reflection;
     using System.Text;
     using NLog.Config;
@@ -62,18 +63,23 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the type of assembly version to retrieve.
         /// </summary>
+        /// <remarks>
+        /// Some version type and platform combinations are not fully supported.
+        /// UWP: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless <see cref="Name"/> is given.
+        /// Silverlight: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned.
+        /// </remarks>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(nameof(AssemblyVersionType.Assembly))]
         public AssemblyVersionType Type { get; set; }
 
         /// <summary>
-        /// Renders assembly version and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders an assembly version and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var version = GetAssemblyVersion(Name);
+            var version = GetVersion();
 
             if (string.IsNullOrEmpty(version))
             {
@@ -85,66 +91,81 @@ namespace NLog.LayoutRenderers
 
 #if SILVERLIGHT
 
-        private static string GetAssemblyVersion()
+        private string GetVersion()
         {
-            return GetAssemblyVersion(null);
-        }
-
-        private static string GetAssemblyVersion(string assemblyName)
-        {
-            var assemblyName = GetAssemblyName(assemblyName);
-            return assemblyName.Version.ToString();
-        }
-
-        private static AssemblyName GetAssemblyName(string assemblyName)
-        {
-            if (string.IsNullOrEmpty(assemblyName))
+            if (string.IsNullOrEmpty(Name))
             {
-                return new AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName);
+                return new AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName).Version.ToString();
             }
             else
             {
-                return new AssemblyName(assemblyName);
+                return new AssemblyName(Name).Version.ToString();
             }
         }
 
 #elif WINDOWS_UWP
 
-        private static string GetAssemblyVersion()
+        private string GetVersion()
         {
-            return Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion;
+            if (string.IsNullOrEmpty(Name))
+            {
+                return Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion;
+            }
+            else
+            {
+                return GetVersion(GetAssembly());
+            }
         }
 
-        private static string GetAssemblyVersion(string assemblyName)
+        private Assembly GetAssembly()
         {
-            return Assembly.Load(new AssemblyName(assemblyName))?.GetName().Version.ToString();
+            return Assembly.Load(new AssemblyName(Name));
         }
 
 #else
 
-        private static string GetAssemblyVersion()
+        private string GetVersion()
         {
-            return GetAssemblyVersion(null);
+            return GetVersion(Name);
         }
 
-        private static string GetAssemblyVersion(string assemblyName)
+        private Assembly GetAssembly()
         {
-            var assembly = GetAssembly(assemblyName);
-            return assembly?.GetName().Version.ToString();
-        }
-
-        private static Assembly GetAssembly(string assemblyName)
-        {
-            if (string.IsNullOrEmpty(assemblyName))
+            if (string.IsNullOrEmpty(Name))
             {
                 return Assembly.GetEntryAssembly();
             }
             else
             {
-                return Assembly.Load(new AssemblyName(assemblyName));
+                return Assembly.Load(new AssemblyName(Name));
             }
         }
 
 #endif
+
+        private string GetVersion(Assembly assembly)
+        {
+            switch (Type)
+            {
+                case AssemblyVersionType.File:
+                    return assembly?.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
+
+                case AssemblyVersionType.Informational:
+                    return assembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+
+                case AssemblyVersionType.Product:
+#if NET4_5 || NETCOREAPP1_0 || NETSTANDARD2_0
+                    return FileVersionInfo.GetVersionInfo(assembly?.Location)?.ProductVersion;
+#else
+                    if (!string.IsNullOrEmpty(Name))
+                        return FileVersionInfo.GetVersionInfo(Name)?.ProductVersion;
+                    else
+                        return assembly?.GetName().Version?.ToString();
+#endif
+
+                default:
+                    return assembly?.GetName().Version?.ToString();
+            }
+        }
     }
 }
