@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 namespace NLog.LayoutRenderers
 {
     using System.ComponentModel;
@@ -38,6 +39,7 @@ namespace NLog.LayoutRenderers
     using System.Reflection;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Assembly version.
@@ -65,8 +67,9 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <remarks>
         /// Some version type and platform combinations are not fully supported.
-        /// UWP versions prior to 10.0.16299: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless <see cref="Name"/> is given.
-        /// Silverlight: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned.
+        /// - Earlier than .NET Standard 2.0 (and not full .NET Framework): Value for <see cref="AssemblyVersionType.Product"/> is not available and <see cref="AssemblyVersionType.Assembly"/> is returned instead.
+        /// - UWP earlier than .NET Standard 1.5: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless the <see cref="Name"/> parameter is specified.
+        /// - Silverlight: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned.
         /// </remarks>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(nameof(AssemblyVersionType.Assembly))]
@@ -93,13 +96,19 @@ namespace NLog.LayoutRenderers
 
         private string GetVersion()
         {
+            var assemblyName = GetAssemblyName();
+            assemblyName.Version.ToString();
+        }
+
+        private AssemblyName GetAssemblyName()
+        {
             if (string.IsNullOrEmpty(Name))
             {
-                return new AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName).Version.ToString();
+                return new AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName);
             }
             else
             {
-                return new AssemblyName(Name).Version.ToString();
+                return new AssemblyName(Name);
             }
         }
 
@@ -113,7 +122,8 @@ namespace NLog.LayoutRenderers
             }
             else
             {
-                return GetVersion(GetAssembly());
+                var assembly = GetAssembly();
+                return assembly?.GetName().Version.ToString();
             }
         }
 
@@ -126,7 +136,8 @@ namespace NLog.LayoutRenderers
 
         private string GetVersion()
         {
-            return GetVersion(GetAssembly());
+            var assembly = GetAssembly();
+            return GetVersion(assembly);
         }
 
         private Assembly GetAssembly()
@@ -141,31 +152,25 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#endif
-
         private string GetVersion(Assembly assembly)
         {
             switch (Type)
             {
                 case AssemblyVersionType.File:
-                    return assembly?.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
+                    return assembly?.GetType().GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
 
                 case AssemblyVersionType.Informational:
-                    return assembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+                    return assembly?.GetType().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 
+#if !NETSTANDARD1_5
                 case AssemblyVersionType.Product:
-#if NET3_5 || NET4_0 || NET4_5 || NETCOREAPP1_0 || NETSTANDARD2_0
-                    return FileVersionInfo.GetVersionInfo(assembly?.Location)?.ProductVersion;
-#else
-                    if (!string.IsNullOrEmpty(Name))
-                        return FileVersionInfo.GetVersionInfo(Name)?.ProductVersion;
-                    else
-                        return assembly?.GetName().Version?.ToString();
+                    return FileVersionInfo.GetVersionInfo(assembly?.Location).ProductVersion;
 #endif
 
                 default:
                     return assembly?.GetName().Version?.ToString();
             }
         }
-    }
+#endif
+            }
 }
