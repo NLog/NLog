@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <remarks>
         /// Some version type and platform combinations are not fully supported.
-        /// UWP: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless <see cref="Name"/> is given.
+        /// UWP versions prior to 10.0.16299: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless <see cref="Name"/> is given.
         /// Silverlight: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned.
         /// </remarks>
         /// <docgen category='Rendering Options' order='10' />
@@ -103,7 +103,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#elif WINDOWS_UWP
+#elif WINDOWS_UWP && !NETSTANDARD1_5
 
         private string GetVersion()
         {
@@ -126,7 +126,7 @@ namespace NLog.LayoutRenderers
 
         private string GetVersion()
         {
-            return GetVersion(Name);
+            return GetVersion(GetAssembly());
         }
 
         private Assembly GetAssembly()
@@ -154,7 +154,7 @@ namespace NLog.LayoutRenderers
                     return assembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 
                 case AssemblyVersionType.Product:
-#if NET4_5 || NETCOREAPP1_0 || NETSTANDARD2_0
+#if NET45 || NETCOREAPP1_0 || NETSTANDARD2_0
                     return FileVersionInfo.GetVersionInfo(assembly?.Location)?.ProductVersion;
 #else
                     if (!string.IsNullOrEmpty(Name))
