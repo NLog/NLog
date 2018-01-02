@@ -154,7 +154,7 @@ namespace NLog.LayoutRenderers
                     return assembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 
                 case AssemblyVersionType.Product:
-#if NET45 || NETCOREAPP1_0 || NETSTANDARD2_0
+#if NET3_5 || NET4_0 || NET4_5 || NETCOREAPP1_0 || NETSTANDARD2_0
                     return FileVersionInfo.GetVersionInfo(assembly?.Location)?.ProductVersion;
 #else
                     if (!string.IsNullOrEmpty(Name))
