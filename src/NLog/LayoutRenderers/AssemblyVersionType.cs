@@ -34,17 +34,23 @@
 namespace NLog.LayoutRenderers
 {
     /// <summary>
-    /// TODO:
     /// Type of assembly version to retrieve.
     /// </summary>
     public enum AssemblyVersionType
     {
+        /// <summary>
+        /// Gets the assembly version.
+        /// </summary>
         Assembly,
 
+        /// <summary>
+        /// Gets the file version.
+        /// </summary>
         File,
 
-        Product,
-
+        /// <summary>
+        /// Gets additional version information.
+        /// </summary>
         Informational
     }
 }

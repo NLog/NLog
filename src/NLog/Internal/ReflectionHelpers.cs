@@ -237,6 +237,16 @@ namespace NLog.Internal
 #endif
         }
 
+        public static TAttr GetCustomAttribute<TAttr>(this Assembly assembly)
+            where TAttr : Attribute
+        {
+#if NETSTANDARD1_0
+            return assembly.GetCustomAttributes(typeof(TAttr)).FirstOrDefault() as TAttr;
+#else
+            return (TAttr)Attribute.GetCustomAttribute(assembly, typeof(TAttr));
+#endif
+        }
+
         public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(this Type type, bool inherit) where TAttr : Attribute
         {
 #if NETSTANDARD1_0

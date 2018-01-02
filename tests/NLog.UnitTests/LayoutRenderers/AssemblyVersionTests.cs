@@ -31,10 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Reflection;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
+    using System.Reflection;
+    using NLog.LayoutRenderers;
     using Xunit;
 
     public class AssemblyVersionTests : NLogTestBase
@@ -52,5 +53,82 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             AssertLayoutRendererOutput("${assembly-version:NLogAutoLoadExtension}", "2.0.0.0");
         }
+
+        [Fact]
+        public void AssemblyNameVersionTypeTest()
+        {
+            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=assembly}", "2.0.0.0");
+            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=file}", "2.0.0.0");
+        }
+
+#if !NETSTANDARD
+        private const string AssemblyVersionTest = "1.1.1.1";
+        private const string AssemblyFileVersionTest = "1.1.1.2";
+        private const string AssemblyInformationalVersionTest = "Version 1";
+
+        [Theory]
+        [InlineData(AssemblyVersionType.Assembly, AssemblyVersionTest)]
+        [InlineData(AssemblyVersionType.File, AssemblyFileVersionTest)]
+        [InlineData(AssemblyVersionType.Informational, AssemblyInformationalVersionTest)]
+        public void AssemblyVersionTypeTest(AssemblyVersionType type, string expected)
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${assembly-version:type=" + type.ToString().ToLower() + @"}' /></targets>
+                <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
+            </nlog>");
+            var logger = LogManager.GetLogger("SomeLogger");
+            var compiledAssembly = GenerateTestAssembly();
+            var testLoggerType = compiledAssembly.GetType("LogTester.LoggerTest");
+            var logMethod = testLoggerType.GetMethod("TestLog");
+            var testLoggerInstance = Activator.CreateInstance(testLoggerType);
+            logMethod.Invoke(testLoggerInstance, new object[] { logger, compiledAssembly });
+            AssertDebugLastMessage("debug", expected);
+        }
+
+        private static Assembly GenerateTestAssembly()
+        {
+            const string code = @"
+                using System;
+                using System.Reflection;
+
+                [assembly: AssemblyVersion(""" + AssemblyVersionTest + @""")]
+                [assembly: AssemblyFileVersion(""" + AssemblyFileVersionTest + @""")]
+                [assembly: AssemblyInformationalVersion(""" + AssemblyInformationalVersionTest + @""")]
+
+                namespace LogTester
+                {
+                    public class LoggerTest
+                    {
+                        public void TestLog(NLog.Logger logger, Assembly assembly)
+                        {
+                            SetEntryAssembly(assembly);
+                            logger.Debug(""msg"");
+                        }
+
+                        private static void SetEntryAssembly(Assembly assembly)
+                        {
+                            var manager = new AppDomainManager();
+                            var domain = AppDomain.CurrentDomain;
+                            manager.GetType().GetField(""m_entryAssembly"", BindingFlags.Instance | BindingFlags.NonPublic)
+                                .SetValue(manager, assembly);
+                            domain.GetType().GetField(""_domainManager"", BindingFlags.Instance | BindingFlags.NonPublic)
+                                .SetValue(domain, manager);
+                        }
+                    }
+                }";
+
+            var provider = new Microsoft.CSharp.CSharpCodeProvider();
+            var parameters = new System.CodeDom.Compiler.CompilerParameters
+            {
+                GenerateInMemory = true,
+                GenerateExecutable = false,
+                ReferencedAssemblies = {"NLog.dll"}
+            };
+            System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
+            var compiledAssembly = results.CompiledAssembly;
+            return compiledAssembly;
+        }
+#endif
     }
 }

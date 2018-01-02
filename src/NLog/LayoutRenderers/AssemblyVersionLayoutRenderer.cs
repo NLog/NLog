@@ -35,8 +35,6 @@
 namespace NLog.LayoutRenderers
 {
     using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Reflection;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -67,7 +65,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <remarks>
         /// Some version type and platform combinations are not fully supported.
-        /// - Earlier than .NET Standard 2.0 (and not full .NET Framework): Value for <see cref="AssemblyVersionType.Product"/> is not available and <see cref="AssemblyVersionType.Assembly"/> is returned instead.
         /// - UWP earlier than .NET Standard 1.5: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned unless the <see cref="Name"/> parameter is specified.
         /// - Silverlight: Value for <see cref="AssemblyVersionType.Assembly"/> is always returned.
         /// </remarks>
@@ -100,15 +97,15 @@ namespace NLog.LayoutRenderers
             assemblyName.Version.ToString();
         }
 
-        private AssemblyName GetAssemblyName()
+        private System.Reflection.AssemblyName GetAssemblyName()
         {
             if (string.IsNullOrEmpty(Name))
             {
-                return new AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName);
+                return new System.Reflection.AssemblyName(System.Windows.Application.Current.GetType().Assembly.FullName);
             }
             else
             {
-                return new AssemblyName(Name);
+                return new System.Reflection.AssemblyName(Name);
             }
         }
 
@@ -127,9 +124,9 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private Assembly GetAssembly()
+        private System.Reflection.Assembly GetAssembly()
         {
-            return Assembly.Load(new AssemblyName(Name));
+            return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(Name));
         }
 
 #else
@@ -140,32 +137,27 @@ namespace NLog.LayoutRenderers
             return GetVersion(assembly);
         }
 
-        private Assembly GetAssembly()
+        private System.Reflection.Assembly GetAssembly()
         {
             if (string.IsNullOrEmpty(Name))
             {
-                return Assembly.GetEntryAssembly();
+                return System.Reflection.Assembly.GetEntryAssembly();
             }
             else
             {
-                return Assembly.Load(new AssemblyName(Name));
+                return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(Name));
             }
         }
 
-        private string GetVersion(Assembly assembly)
+        private string GetVersion(System.Reflection.Assembly assembly)
         {
             switch (Type)
             {
                 case AssemblyVersionType.File:
-                    return assembly?.GetType().GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
+                    return assembly?.GetCustomAttribute<System.Reflection.AssemblyFileVersionAttribute>()?.Version;
 
                 case AssemblyVersionType.Informational:
-                    return assembly?.GetType().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
-
-#if !NETSTANDARD1_5
-                case AssemblyVersionType.Product:
-                    return FileVersionInfo.GetVersionInfo(assembly?.Location).ProductVersion;
-#endif
+                    return assembly?.GetCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 
                 default:
                     return assembly?.GetName().Version?.ToString();
