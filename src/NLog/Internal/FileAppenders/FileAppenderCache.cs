@@ -328,13 +328,15 @@ namespace NLog.Internal.FileAppenders
             {
                 for (int i = 0; i < _appenders.Length; ++i)
                 {
-                    if (_appenders[i] == null)
+                    var oldAppender = _appenders[i];
+                    if (oldAppender == null)
                     {
                         break;
                     }
 
-                    CloseAppender(_appenders[i], reason, true);
+                    CloseAppender(oldAppender, reason, true);
                     _appenders[i] = null;
+                    oldAppender.Dispose();  // Dispose of Archive Mutex
                 }
             }
         }
@@ -367,13 +369,15 @@ namespace NLog.Internal.FileAppenders
                         {
                             for (int j = i; j < _appenders.Length; ++j)
                             {
-                                if (_appenders[j] == null)
+                                var oldAppender = _appenders[j];
+                                if (oldAppender == null)
                                 {
                                     break;
                                 }
 
-                                CloseAppender(_appenders[j], "Expired", i == 0);
+                                CloseAppender(oldAppender, "Expired", i == 0);
                                 _appenders[j] = null;
+                                oldAppender.Dispose();  // Dispose of Archive Mutex
                             }
 
                             break;
@@ -414,14 +418,6 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
-#if SupportsMutex
-        public Mutex GetArchiveMutex(string fileName)
-        {
-            var appender = GetAppender(fileName) as BaseMutexFileAppender;
-            return appender == null ? null : appender.ArchiveMutex;
-        }
-#endif
-
         public DateTime? GetFileCreationTimeSource(string filePath, bool fallback)
         {
             var appender = GetAppender(filePath);
@@ -448,7 +444,7 @@ namespace NLog.Internal.FileAppenders
                     InvalidateAppender(appender.FileName);
                     throw;
                 }
-            }                
+            }
             if (result == null && fallback)
             {
                 var fileInfo = new FileInfo(filePath);
@@ -524,27 +520,29 @@ namespace NLog.Internal.FileAppenders
         /// Closes the specified appender and removes it from the list. 
         /// </summary>
         /// <param name="filePath">File name of the appender to be closed.</param>
-        public void InvalidateAppender(string filePath)
+        /// <returns>File Appender that matched the filePath (null if none found)</returns>
+        public BaseFileAppender InvalidateAppender(string filePath)
         {
             for (int i = 0; i < _appenders.Length; ++i)
             {
-                if (_appenders[i] == null)
+                var oldAppender = _appenders[i];
+                if (oldAppender == null)
                 {
                     break;
                 }
 
-                if (string.Equals(_appenders[i].FileName, filePath, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(oldAppender.FileName, filePath, StringComparison.OrdinalIgnoreCase))
                 {
-                    var oldAppender = _appenders[i];
                     for (int j = i; j < _appenders.Length - 1; ++j)
                     {
                         _appenders[j] = _appenders[j + 1];
                     }
                     _appenders[_appenders.Length - 1] = null;
                     CloseAppender(oldAppender, "Invalidate", _appenders[0] == null);
-                    break;
+                    return oldAppender; // Return without Dispose of Archive Mutex
                 }
             }
+            return null;
         }
 
         private void CloseAppender(BaseFileAppender appender, string reason, bool lastAppender)
