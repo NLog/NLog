@@ -89,7 +89,7 @@ namespace NLog.LayoutRenderers
 
             if (string.IsNullOrEmpty(version))
             {
-                version = $"Could not find {(string.IsNullOrEmpty(Name) ? "entry" : Name)} assembly";
+                version = $"Could not find value for {(string.IsNullOrEmpty(Name) ? "entry" : Name)} assembly and version type {Type}";
             }
 
             builder.Append(version);
@@ -115,7 +115,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#elif WINDOWS_UWP && !NETSTANDARD1_5
+#elif WINDOWS_UWP //&& !NETSTANDARD1_5
 
         private string GetVersion()
         {

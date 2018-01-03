@@ -345,7 +345,7 @@ NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking 
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\NLog.ico" />
-    
+
     <None Update="Common\InternalLogger-generated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InternalLogger-generated.cs</LastGenOutput>
