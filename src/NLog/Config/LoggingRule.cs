@@ -261,6 +261,30 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Disables logging for particular levels between (included) <paramref name="minLevel"/> and <paramref name="maxLevel"/>.
+        /// </summary>
+        /// <param name="minLevel">Minimum log level to be disables.</param>
+        /// <param name="maxLevel">Maximum log level to de disabled.</param>
+        public void DisableLoggingForLevels(LogLevel minLevel, LogLevel maxLevel)
+        {
+            for (int i = minLevel.Ordinal; i <= maxLevel.Ordinal; i++)
+            {
+                DisableLoggingForLevel(LogLevel.FromOrdinal(i));
+            }
+        }
+
+        /// <summary>
+        /// Enables logging the levels between (included) <paramref name="minLevel"/> and <paramref name="maxLevel"/>. All the other levels will be disabled.
+        /// </summary>
+        /// <param name="minLevel">>Minimum log level needed to trigger this rule.</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
+        public void SetLoggingLevels(LogLevel minLevel, LogLevel maxLevel)
+        {
+            DisableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
+            EnableLoggingForLevels(minLevel, maxLevel);
+        }
+
+        /// <summary>
         /// Returns a string representation of <see cref="LoggingRule"/>. Used for debugging.
         /// </summary>
         /// <returns>
