@@ -40,9 +40,15 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// Assembly version.
+    /// Renders the assembly version information for the entry assembly or a named assembly.
     /// </summary>
-    /// <remarks>The entry assembly can't be found in some cases e.g. ASP.NET, Unit tests etc.</remarks>
+    /// <remarks>
+    /// As this layout renderer uses reflection and version information is unlikely to change during application execution,
+    /// it is recommended to use it in conjunction with the <see cref="NLog.LayoutRenderers.Wrappers.CachedLayoutRendererWrapper"/>.
+    /// </remarks>
+    /// <remarks>
+    /// The entry assembly can't be found in some cases e.g. ASP.NET, unit tests, etc.
+    /// </remarks>
     [LayoutRenderer("assembly-version")]
     public class AssemblyVersionLayoutRenderer : LayoutRenderer
     {

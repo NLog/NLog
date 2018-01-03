@@ -59,6 +59,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=assembly}", "2.0.0.0");
             AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=file}", "2.0.0.0");
+            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=informational}", "1.0.0");
         }
 
 #if !NETSTANDARD
@@ -102,7 +103,8 @@ namespace NLog.UnitTests.LayoutRenderers
                     {
                         public void TestLog(NLog.Logger logger, Assembly assembly)
                         {
-                            SetEntryAssembly(assembly);
+                            if (System.Reflection.Assembly.GetEntryAssembly() == null)
+                                SetEntryAssembly(assembly); // Required in some unit testing scenarios, see https://github.com/Microsoft/vstest/issues/649
                             logger.Debug(""msg"");
                         }
 
