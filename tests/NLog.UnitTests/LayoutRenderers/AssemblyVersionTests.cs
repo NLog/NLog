@@ -111,11 +111,20 @@ namespace NLog.UnitTests.LayoutRenderers
                         private static void SetEntryAssembly(Assembly assembly)
                         {
                             var manager = new AppDomainManager();
+
                             var domain = AppDomain.CurrentDomain;
-                            manager.GetType().GetField(""m_entryAssembly"", BindingFlags.Instance | BindingFlags.NonPublic)
-                                .SetValue(manager, assembly);
-                            domain.GetType().GetField(""_domainManager"", BindingFlags.Instance | BindingFlags.NonPublic)
-                                .SetValue(domain, manager);
+                            if (domain == null)
+                                throw new InvalidOperationException(""Current app domain is null"");
+
+                            var entryAssemblyField = manager.GetType().GetField(""m_entryAssembly"", BindingFlags.Instance | BindingFlags.NonPublic);
+                            if (entryAssemblyField == null)
+                                throw new InvalidOperationException(""Unable to find field m_entryAssembly"");
+                            entryAssemblyField.SetValue(manager, assembly);
+
+                            var domainManagerField = domain.GetType().GetField(""_domainManager"", BindingFlags.Instance | BindingFlags.NonPublic);
+                            if (domainManagerField == null)
+                                throw new InvalidOperationException(""Unable to find field _domainManager"");
+                            domainManagerField.SetValue(domain, manager);
                         }
                     }
                 }";
