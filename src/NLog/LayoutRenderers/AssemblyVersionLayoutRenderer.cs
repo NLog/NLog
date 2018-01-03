@@ -115,7 +115,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#elif WINDOWS_UWP //&& !NETSTANDARD1_5
+#elif WINDOWS_UWP
 
         private string GetVersion()
         {
