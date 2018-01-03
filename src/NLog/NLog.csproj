@@ -83,10 +83,9 @@ NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking 
     <PackageTags>NLog;logging;log;tracing;logfiles;database;eventlog;email;wcf</PackageTags>
     <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
     <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
-    <PackageLicenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
-
 
     <SignAssembly>true</SignAssembly>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
@@ -94,6 +93,7 @@ NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking 
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'netstandard2.0' ">true</TreatWarningsAsErrors>
 
     <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net45' ">Full</DebugType>
   </PropertyGroup>

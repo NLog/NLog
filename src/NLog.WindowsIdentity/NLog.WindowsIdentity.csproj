@@ -21,7 +21,7 @@
     <PackageTags>NLog;WindowsIdentity;logging;log</PackageTags>
     <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
     <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
-    <PackageLicenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
 
@@ -31,6 +31,7 @@
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
