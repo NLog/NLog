@@ -100,7 +100,7 @@ namespace NLog.LayoutRenderers
         private string GetVersion()
         {
             var assemblyName = GetAssemblyName();
-            assemblyName.Version.ToString();
+            return assemblyName.Version.ToString();
         }
 
         private System.Reflection.AssemblyName GetAssemblyName()
