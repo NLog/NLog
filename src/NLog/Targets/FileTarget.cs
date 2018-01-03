@@ -1486,7 +1486,7 @@ namespace NLog.Targets
             string periodAfterPreviousLogEventTimeString = periodAfterPreviousLogEventTime.ToString(formatString, CultureInfo.InvariantCulture);
             return lastWriteTimeString == periodAfterPreviousLogEventTimeString;
         }
-            
+
         /// <summary>
         /// Calculate the DateTime of the requested day of the week.
         /// </summary>
@@ -1639,9 +1639,7 @@ namespace NLog.Targets
 
             string archiveFile = string.Empty;
 
-#if SupportsMutex
-            Mutex archiveMutex = null;
-#endif
+            BaseFileAppender archivedAppender = null;
 
             try
             {
@@ -1649,22 +1647,23 @@ namespace NLog.Targets
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
                     InternalLogger.Trace("FileTarget: Archive attempt for file '{0}'", archiveFile);
-#if SupportsMutex
-                    // Acquire the mutex from the file-appender, before closing the file-apppender (remember not to close the Mutex)
-                    archiveMutex = _fileAppenderCache.GetArchiveMutex(fileName);
-                    if (archiveMutex == null && fileName != archiveFile)
-                        archiveMutex = _fileAppenderCache.GetArchiveMutex(archiveFile);
-#endif
+                    archivedAppender = _fileAppenderCache.InvalidateAppender(fileName);
+                    if (fileName != archiveFile)
+                    {
+                        var fileAppender = _fileAppenderCache.InvalidateAppender(archiveFile);
+                        archivedAppender = archivedAppender ?? fileAppender;
+                    }
+
+                    if (!string.IsNullOrEmpty(_previousLogFileName) && _previousLogFileName != archiveFile && _previousLogFileName != fileName)
+                    {
+                        var fileAppender = _fileAppenderCache.InvalidateAppender(_previousLogFileName);
+                        archivedAppender = archivedAppender ?? fileAppender;
+                    }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+                    // Closes all file handles if any archive operation has been detected by file-watcher
                     _fileAppenderCache.InvalidateAppendersForArchivedFiles();
 #endif
-                    // Close possible stale file handles, before doing extra check
-                    if (!string.IsNullOrEmpty(fileName) && fileName != archiveFile)
-                        _fileAppenderCache.InvalidateAppender(fileName);
-                    if (!string.IsNullOrEmpty(_previousLogFileName) && _previousLogFileName != archiveFile && _previousLogFileName != fileName)
-                        _fileAppenderCache.InvalidateAppender(_previousLogFileName);
-                    _fileAppenderCache.InvalidateAppender(archiveFile);
                 }
                 else
                 {
@@ -1689,8 +1688,8 @@ namespace NLog.Targets
 #if SupportsMutex
                     try
                     {
-                        if (archiveMutex != null)
-                            archiveMutex.WaitOne();
+                        if (archivedAppender is BaseMutexFileAppender mutexFileAppender)
+                            mutexFileAppender.ArchiveMutex?.WaitOne();
                         else if (!KeepFileOpen || ConcurrentWrites)
                             InternalLogger.Info("FileTarget: Archive mutex not available: {0}", archiveFile);
                     }
@@ -1728,8 +1727,10 @@ namespace NLog.Targets
                 finally
                 {
 #if SupportsMutex
-                    archiveMutex?.ReleaseMutex();
+                    if (archivedAppender is BaseMutexFileAppender mutexFileAppender)
+                        mutexFileAppender.ArchiveMutex?.ReleaseMutex();
 #endif
+                    archivedAppender?.Dispose();    // Dispose of Archive Mutex
                 }
             }
 
@@ -2009,7 +2010,7 @@ namespace NLog.Targets
         /// <param name="isArchiving">Indicates if the file is being finalized for archiving.</param>
         private void FinalizeFile(string fileName, bool isArchiving = false)
         {
-            InternalLogger.Trace("FileTarget: FinalizeFile '{0}, isArchiving: {1}'",fileName, isArchiving);
+            InternalLogger.Trace("FileTarget: FinalizeFile '{0}, isArchiving: {1}'", fileName, isArchiving);
             if ((isArchiving) || (!WriteFooterOnArchivingOnly))
                 WriteFooter(fileName);
 
