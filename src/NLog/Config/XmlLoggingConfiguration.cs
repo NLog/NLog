@@ -406,11 +406,11 @@ namespace NLog.Config
             try
             {
                 InitializeSucceeded = null;
+                _originalFileName = fileName;
                 reader.MoveToContent();
                 var content = new NLogXmlElement(reader);
                 if (fileName != null)
-                {
-                    _originalFileName = fileName;
+                {                    
                     ParseTopLevel(content, fileName, autoReloadDefault: false);
 
                     InternalLogger.Info("Configured from an XML element in {0}...", fileName);
