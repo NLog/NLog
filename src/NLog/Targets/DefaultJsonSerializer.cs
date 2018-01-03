@@ -51,6 +51,7 @@ namespace NLog.Targets
         private readonly MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>> _propsCache = new MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>>(10000);
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
         private readonly JsonSerializeOptions _serializeOptions = new JsonSerializeOptions();
+        private readonly JsonSerializeOptions _exceptionSerializeOptions = new JsonSerializeOptions() { SanitizeDictionaryKeys = true };
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
         private const int MaxRecursionDepth = 10;
@@ -72,8 +73,7 @@ namespace NLog.Targets
         { }
 
         /// <summary>
-        /// Returns a serialization of an object
-        /// int JSON format.
+        /// Returns a serialization of an object into JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
         /// <returns>Serialized value.</returns>
@@ -83,20 +83,18 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Returns a serialization of an object
-        /// int JSON format.
+        /// Returns a serialization of an object into JSON format.
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
-        /// <param name="options">Options</param>
+        /// <param name="options">serialisation options</param>
         /// <returns>Serialized value.</returns>
         public string SerializeObject(object value, JsonSerializeOptions options)
         {
-            string str;
             if (value == null)
             {
                 return "null";
             }
-            else if ((str = value as string) != null)
+            else if (value is string str)
             {
                 return QuoteValue(EscapeString(str, options.EscapeUnicode));
             }
@@ -112,14 +110,14 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        str = XmlHelper.XmlConvertToString(value, objTypeCode);
+                        string xmlStr = XmlHelper.XmlConvertToString(value, objTypeCode);
                         if (SkipQuotes(objTypeCode))
                         {
-                            return str;
+                            return xmlStr;
                         }
                         else
                         {
-                            return QuoteValue(str);
+                            return QuoteValue(xmlStr);
                         }
                     }
                 }
@@ -136,40 +134,37 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// 
+        /// Serialization of the object in JSON format to the destination StringBuilder
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="destination"></param>
-        /// <returns></returns>
+        /// <param name="value">The object to serialize to JSON.</param>
+        /// <param name="destination">Write the resulting JSON to this destination.</param>
+        /// <returns>Object serialized succesfully (true/false).</returns>
         public bool SerializeObject(object value, StringBuilder destination)
         {
             return SerializeObject(value, destination, _serializeOptions);
         }
 
         /// <summary>
-        /// 
+        /// Serialization of the object in JSON format to the destination StringBuilder
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="destination"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="value">The object to serialize to JSON.</param>
+        /// <param name="destination">Write the resulting JSON to this destination.</param>
+        /// <param name="options">serialisation options</param>
+        /// <returns>Object serialized succesfully (true/false).</returns>
         public bool SerializeObject(object value, StringBuilder destination, JsonSerializeOptions options)
         {
             return SerializeObject(value, destination, options, default(SingleItemOptimizedHashSet<object>), 0);
         }
 
         /// <summary>
-        /// Returns a serialization of an object
-        /// int JSON format.
+        /// Serialization of the object in JSON format to the destination StringBuilder
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
-        /// <param name="destination">The object to serialize to JSON.</param>
+        /// <param name="destination">Write the resulting JSON to this destination.</param>
         /// <param name="options">serialisation options</param>
-        /// <param name="objectsInPath">The objects in path.</param>
+        /// <param name="objectsInPath">The objects in path (Avoid cyclic reference loop).</param>
         /// <param name="depth">The current depth (level) of recursion.</param>
-        /// <returns>
-        /// Serialized value.
-        /// </returns>
+        /// <returns>Object serialized succesfully (true/false).</returns>
         private bool SerializeObject(object value, StringBuilder destination, JsonSerializeOptions options,
                 SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
@@ -182,26 +177,22 @@ namespace NLog.Targets
                 return false; // reached maximum recursion level, no further serialization
             }
 
-            IEnumerable enumerable;
-            IDictionary dict;
-            string str;
-
             if (value == null)
             {
                 destination.Append("null");
             }
-            else if ((str = value as string) != null)
+            else if (value is string str)
             {
                 QuoteValue(destination, EscapeString(str, options.EscapeUnicode));
             }
-            else if ((dict = value as IDictionary) != null)
+            else if (value is IDictionary dict)
             {
                 using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dict, ref objectsInPath, true))
                 {
                     SerializeDictionaryObject(dict, destination, options, objectsInPath, depth);
                 }
             }
-            else if ((enumerable = value as IEnumerable) != null)
+            else if (value is IEnumerable enumerable)
             {
                 using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true))
                 {
@@ -210,10 +201,9 @@ namespace NLog.Targets
             }
             else
             {
-                IFormattable formattable;
                 var format = options.Format;
                 var hasFormat = !StringHelpers.IsNullOrWhiteSpace(format);
-                if ((options.FormatProvider != null || hasFormat) && (formattable = value as IFormattable) != null)
+                if ((options.FormatProvider != null || hasFormat) && (value is IFormattable formattable))
                 {
                     if (!SerializeWithFormatProvider(value, destination, options, formattable, format, hasFormat))
                     {
@@ -296,6 +286,18 @@ namespace NLog.Targets
                 }
                 else
                 {
+                    if (options.SanitizeDictionaryKeys)
+                    {
+                        int quoteSkipCount = options.QuoteKeys ? 1 : 0;
+                        int keyEndIndex = destination.Length - quoteSkipCount;
+                        int keyStartIndex = originalLength + (first ? 0 : 1) + quoteSkipCount;
+                        if (!SanitizeDictionaryKey(destination, keyStartIndex, keyEndIndex - keyStartIndex))
+                        {
+                            destination.Length = originalLength;    // Empty keys are not allowed
+                            continue;
+                        }
+                    }
+
                     destination.Append(':');
                     if (!SerializeObject(de.Value, destination, options, objectsInPath, depth + 1))
                     {
@@ -308,6 +310,25 @@ namespace NLog.Targets
                 }
             }
             destination.Append('}');
+        }
+
+        private static bool SanitizeDictionaryKey(StringBuilder destination, int keyStartIndex, int keyLength)
+        {
+            if (keyLength == 0)
+            {
+                return false;   // Empty keys are not allowed
+            }
+
+            int keyEndIndex = keyStartIndex + keyLength;
+            for (int i = keyStartIndex; i < keyEndIndex; ++i)
+            {
+                char keyChar = destination[i];
+                if (keyChar == '_' || char.IsLetterOrDigit(keyChar))
+                    continue;
+
+                destination[i] = '_';
+            }
+            return true;
         }
 
         private void SerializeCollectionObject(IEnumerable value, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
@@ -365,6 +386,12 @@ namespace NLog.Targets
 
                     try
                     {
+                        if (value is Exception && ReferenceEquals(options, instance._serializeOptions))
+                        {
+                            // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
+                            options = instance._exceptionSerializeOptions;
+                        }
+
                         using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
                         {
                             return SerializeProperties(value, destination, options, objectsInPath, depth);
