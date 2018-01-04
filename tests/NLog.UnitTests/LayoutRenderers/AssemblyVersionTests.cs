@@ -52,7 +52,9 @@ namespace NLog.UnitTests.LayoutRenderers
         public void EntryAssemblyVersionTest()
         {
             var assembly = Assembly.GetEntryAssembly();
-            var assemblyVersion = assembly == null ? "Could not find entry assembly" : assembly.GetName().Version.ToString();
+            var assemblyVersion = assembly == null ?
+                $"Could not find value for entry assembly and version type {nameof(AssemblyVersionType.Assembly)}"
+                : assembly.GetName().Version.ToString();
             AssertLayoutRendererOutput("${assembly-version}", assemblyVersion);
         }
 
