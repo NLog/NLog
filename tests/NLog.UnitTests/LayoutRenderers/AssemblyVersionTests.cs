@@ -37,9 +37,17 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.Reflection;
     using NLog.LayoutRenderers;
     using Xunit;
+	using Xunit.Abstractions;
 
     public class AssemblyVersionTests : NLogTestBase
     {
+        private readonly ITestOutputHelper _testOutputHelper;
+
+        public AssemblyVersionTests(ITestOutputHelper testOutputHelper)
+        {
+            _testOutputHelper = testOutputHelper;
+        }
+
         [Fact]
         public void EntryAssemblyVersionTest()
         {
@@ -75,7 +83,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${assembly-version:type=" + type.ToString().ToLower() + @"}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${message:withException=true}|${assembly-version:type=" + type.ToString().ToLower() + @"}' /></targets>
                 <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
             </nlog>");
             var logger = LogManager.GetLogger("SomeLogger");
@@ -83,8 +91,22 @@ namespace NLog.UnitTests.LayoutRenderers
             var testLoggerType = compiledAssembly.GetType("LogTester.LoggerTest");
             var logMethod = testLoggerType.GetMethod("TestLog");
             var testLoggerInstance = Activator.CreateInstance(testLoggerType);
+
             logMethod.Invoke(testLoggerInstance, new object[] { logger, compiledAssembly });
-            AssertDebugLastMessage("debug", expected);
+
+            var lastMessage = GetDebugLastMessage("debug");
+            var messageParts = lastMessage.Split('|');
+            var logMessage = messageParts[0];
+            var logVersion = messageParts[1];
+            if (logMessage.StartsWith("Skip:"))
+            {
+                _testOutputHelper.WriteLine(logMessage);
+            }
+            else
+            {
+                Assert.StartsWith("Pass:", logMessage);
+                Assert.Equal(expected, logVersion);
+            }
         }
 
         private static Assembly GenerateTestAssembly()
@@ -104,8 +126,23 @@ namespace NLog.UnitTests.LayoutRenderers
                         public void TestLog(NLog.Logger logger, Assembly assembly)
                         {
                             if (System.Reflection.Assembly.GetEntryAssembly() == null)
-                                SetEntryAssembly(assembly); // Required in some unit testing scenarios, see https://github.com/Microsoft/vstest/issues/649
-                            logger.Debug(""msg"");
+                            {
+                                // In some unit testing scenarios we cannot find the entry assembly
+                                // So we attempt to force this to be set, which can also still fail
+                                // This is not expected to be necessary in Visual Studio
+                                // See https://github.com/Microsoft/vstest/issues/649
+                                try
+                                {
+                                    SetEntryAssembly(assembly);
+                                }
+                                catch (InvalidOperationException ioex)
+                                {
+                                    logger.Debug(ioex, ""Skip: No entry assembly"");
+                                    return;
+                                }
+                            }
+
+                            logger.Debug(""Pass: Test fully executed"");
                         }
 
                         private static void SetEntryAssembly(Assembly assembly)
