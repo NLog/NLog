@@ -31,19 +31,30 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Reflection;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
+    using System.Reflection;
+    using NLog.LayoutRenderers;
     using Xunit;
+	using Xunit.Abstractions;
 
     public class AssemblyVersionTests : NLogTestBase
     {
+        private readonly ITestOutputHelper _testOutputHelper;
+
+        public AssemblyVersionTests(ITestOutputHelper testOutputHelper)
+        {
+            _testOutputHelper = testOutputHelper;
+        }
+
         [Fact]
         public void EntryAssemblyVersionTest()
         {
             var assembly = Assembly.GetEntryAssembly();
-            var assemblyVersion = assembly == null ? "Could not find entry assembly" : assembly.GetName().Version.ToString();
+            var assemblyVersion = assembly == null
+                ? $"Could not find value for entry assembly and version type {nameof(AssemblyVersionType.Assembly)}"
+                : assembly.GetName().Version.ToString();
             AssertLayoutRendererOutput("${assembly-version}", assemblyVersion);
         }
 
@@ -52,5 +63,122 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             AssertLayoutRendererOutput("${assembly-version:NLogAutoLoadExtension}", "2.0.0.0");
         }
+
+        [Fact]
+        public void AssemblyNameVersionTypeTest()
+        {
+            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=assembly}", "2.0.0.0");
+            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=file}", "2.0.0.0");
+            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=informational}", "1.0.0");
+        }
+
+#if !NETSTANDARD
+        private const string AssemblyVersionTest = "1.1.1.1";
+        private const string AssemblyFileVersionTest = "1.1.1.2";
+        private const string AssemblyInformationalVersionTest = "Version 1";
+
+        [Theory]
+        [InlineData(AssemblyVersionType.Assembly, AssemblyVersionTest)]
+        [InlineData(AssemblyVersionType.File, AssemblyFileVersionTest)]
+        [InlineData(AssemblyVersionType.Informational, AssemblyInformationalVersionTest)]
+        public void AssemblyVersionTypeTest(AssemblyVersionType type, string expected)
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${message:withException=true}|${assembly-version:type=" + type.ToString().ToLower() + @"}' /></targets>
+                <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
+            </nlog>");
+            var logger = LogManager.GetLogger("SomeLogger");
+            var compiledAssembly = GenerateTestAssembly();
+            var testLoggerType = compiledAssembly.GetType("LogTester.LoggerTest");
+            var logMethod = testLoggerType.GetMethod("TestLog");
+            var testLoggerInstance = Activator.CreateInstance(testLoggerType);
+
+            logMethod.Invoke(testLoggerInstance, new object[] { logger, compiledAssembly });
+
+            var lastMessage = GetDebugLastMessage("debug");
+            var messageParts = lastMessage.Split('|');
+            var logMessage = messageParts[0];
+            var logVersion = messageParts[1];
+            if (logMessage.StartsWith("Skip:"))
+            {
+                _testOutputHelper.WriteLine(logMessage);
+            }
+            else
+            {
+                Assert.StartsWith("Pass:", logMessage);
+                Assert.Equal(expected, logVersion);
+            }
+        }
+
+        private static Assembly GenerateTestAssembly()
+        {
+            const string code = @"
+                using System;
+                using System.Reflection;
+
+                [assembly: AssemblyVersion(""" + AssemblyVersionTest + @""")]
+                [assembly: AssemblyFileVersion(""" + AssemblyFileVersionTest + @""")]
+                [assembly: AssemblyInformationalVersion(""" + AssemblyInformationalVersionTest + @""")]
+
+                namespace LogTester
+                {
+                    public class LoggerTest
+                    {
+                        public void TestLog(NLog.Logger logger, Assembly assembly)
+                        {
+                            if (System.Reflection.Assembly.GetEntryAssembly() == null)
+                            {
+                                // In some unit testing scenarios we cannot find the entry assembly
+                                // So we attempt to force this to be set, which can also still fail
+                                // This is not expected to be necessary in Visual Studio
+                                // See https://github.com/Microsoft/vstest/issues/649
+                                try
+                                {
+                                    SetEntryAssembly(assembly);
+                                }
+                                catch (InvalidOperationException ioex)
+                                {
+                                    logger.Debug(ioex, ""Skip: No entry assembly"");
+                                    return;
+                                }
+                            }
+
+                            logger.Debug(""Pass: Test fully executed"");
+                        }
+
+                        private static void SetEntryAssembly(Assembly assembly)
+                        {
+                            var manager = new AppDomainManager();
+
+                            var domain = AppDomain.CurrentDomain;
+                            if (domain == null)
+                                throw new InvalidOperationException(""Current app domain is null"");
+
+                            var entryAssemblyField = manager.GetType().GetField(""m_entryAssembly"", BindingFlags.Instance | BindingFlags.NonPublic);
+                            if (entryAssemblyField == null)
+                                throw new InvalidOperationException(""Unable to find field m_entryAssembly"");
+                            entryAssemblyField.SetValue(manager, assembly);
+
+                            var domainManagerField = domain.GetType().GetField(""_domainManager"", BindingFlags.Instance | BindingFlags.NonPublic);
+                            if (domainManagerField == null)
+                                throw new InvalidOperationException(""Unable to find field _domainManager"");
+                            domainManagerField.SetValue(domain, manager);
+                        }
+                    }
+                }";
+
+            var provider = new Microsoft.CSharp.CSharpCodeProvider();
+            var parameters = new System.CodeDom.Compiler.CompilerParameters
+            {
+                GenerateInMemory = true,
+                GenerateExecutable = false,
+                ReferencedAssemblies = {"NLog.dll"}
+            };
+            System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
+            var compiledAssembly = results.CompiledAssembly;
+            return compiledAssembly;
+        }
+#endif
     }
 }
