@@ -38,7 +38,7 @@ namespace NLog.MessageTemplates
     /// <summary>
     /// Parameters extracted from parsing <see cref="LogEventInfo.Message"/> as MessageTemplate
     /// </summary>
-    public interface IMessageTemplateParameters : IEnumerable<MessageTemplateParameter>
+    internal interface IMessageTemplateParameters : IEnumerable<MessageTemplateParameter>
     {
         /// <summary>
         /// Number of parameters

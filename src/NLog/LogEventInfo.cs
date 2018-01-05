@@ -375,7 +375,7 @@ namespace NLog
         /// <summary>
         /// Gets the named parameters extracted from parsing <see cref="Message"/> as MessageTemplate
         /// </summary>
-        public IMessageTemplateParameters MessageTemplateParameters
+        public MessageTemplateParameters MessageTemplateParameters
         {
             get
             {
