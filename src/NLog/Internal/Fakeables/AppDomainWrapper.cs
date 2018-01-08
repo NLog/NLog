@@ -37,6 +37,7 @@ namespace NLog.Internal.Fakeables
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
     using NLog.Common;
 
     /// <summary>
@@ -152,6 +153,20 @@ namespace NLog.Internal.Fakeables
         /// Gets an integer that uniquely identifies the application domain within the process. 
         /// </summary>
         public int Id { get; private set; }
+
+        /// <summary>
+        /// Gets the assemblies that have been loaded into the execution context of this application domain.
+        /// </summary>
+        /// <returns>A list of assemblies in this application domain.</returns>
+        public IEnumerable<Assembly> GetAssemblies()
+        {
+#if !SILVERLIGHT
+            if (_currentAppDomain != null)
+                return _currentAppDomain.GetAssemblies();
+            else
+#endif
+                return Internal.ArrayHelper.Empty<Assembly>();
+        }
 
         /// <summary>
         /// Process exit event.

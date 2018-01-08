@@ -394,6 +394,7 @@ namespace NLog.Config
                 }
 
                 InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
+                HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (var extensionDll in extensionDlls)
                 {
                     InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
@@ -403,6 +404,7 @@ namespace NLog.Config
                         var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
                         InternalLogger.LogAssemblyVersion(extensionAssembly);
                         factory.RegisterItemsFromAssembly(extensionAssembly);
+                        alreadyRegistered.Add(extensionAssembly.FullName);
                         success = true;
                     }
                     catch (Exception ex)
@@ -419,8 +421,29 @@ namespace NLog.Config
                     {
                         InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
                     }
-
                 }
+
+#if !NETSTANDARD1_0
+                var allAssemblies = LogFactory.CurrentAppDomain.GetAssemblies();
+                foreach (var assembly in allAssemblies)
+                {
+                    if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (alreadyRegistered.Contains(assembly.FullName))
+                        {
+                            factory.RegisterItemsFromAssembly(assembly);
+                            continue;
+                        }
+                    }
+                    if ( assembly.FullName.StartsWith("NLog.Extensions.Logging", StringComparison.OrdinalIgnoreCase)
+                      || assembly.FullName.StartsWith("NLog.Web", StringComparison.OrdinalIgnoreCase)
+                      || assembly.FullName.StartsWith("Microsoft.Extensions.Logging", StringComparison.OrdinalIgnoreCase)
+                      || assembly.FullName.StartsWith("Microsoft.Logging", StringComparison.OrdinalIgnoreCase))
+                    {
+                        LogManager.AddHiddenAssembly(assembly);
+                    }
+                }
+#endif
             }
             catch (System.Security.SecurityException ex)
             {
