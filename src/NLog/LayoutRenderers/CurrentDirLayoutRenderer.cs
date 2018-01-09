@@ -46,16 +46,6 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class CurrentDirLayoutRenderer : LayoutRenderer
     {
-        private readonly string _currentDir;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CurrentDirLayoutRenderer" /> class.
-        /// </summary>
-        public CurrentDirLayoutRenderer()
-        {
-            _currentDir = Directory.GetCurrentDirectory();
-        }
-
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with the current directory.
         /// </summary>
@@ -75,14 +65,9 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var dir = _currentDir;
-
-            if (dir != null)
-            {
-                var path = PathHelpers.CombinePaths(dir, Dir, File);
-                builder.Append(path);
-            }
+            var currentDir = Directory.GetCurrentDirectory();
+            var path = PathHelpers.CombinePaths(currentDir, Dir, File);
+            builder.Append(path);
         }
     }
 }
-
