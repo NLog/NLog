@@ -36,6 +36,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace NLog.Internal.Fakeables
 {
@@ -54,7 +55,7 @@ namespace NLog.Internal.Fakeables
 #endif
         }
 
-        #region Implementation of IAppDomain
+#region Implementation of IAppDomain
 
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
@@ -80,6 +81,15 @@ namespace NLog.Internal.Fakeables
         /// Gets an integer that uniquely identifies the application domain within the process. 
         /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Gets the assemblies that have been loaded into the execution context of this application domain.
+        /// </summary>
+        /// <returns>A list of assemblies in this application domain.</returns>
+        public IEnumerable<Assembly> GetAssemblies()
+        {
+            return Internal.ArrayHelper.Empty<Assembly>();  // TODO NETSTANDARD1_6 has DependencyContext.RuntimeLibraries
+        }
 
         /// <summary>
         /// Process exit event.
@@ -136,7 +146,7 @@ namespace NLog.Internal.Fakeables
             if (handler != null) handler.Invoke(context, EventArgs.Empty);
         }
 #endif
-        #endregion
+#endregion
     }
 }
 

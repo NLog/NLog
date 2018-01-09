@@ -319,6 +319,7 @@ NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking 
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="1.3.0" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.0.0" />
     <PackageReference Include="System.Data.Common" Version="4.1.0" />
     <PackageReference Include="System.Diagnostics.StackTrace" Version="4.0.1" />
     <PackageReference Include="System.IO.Compression" Version="4.1.0" />

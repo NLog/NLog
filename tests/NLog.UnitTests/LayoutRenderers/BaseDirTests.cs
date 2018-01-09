@@ -40,6 +40,7 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.IO;
+    using System.Reflection;
     using Xunit;
 
     public class BaseDirTests : NLogTestBase
@@ -138,6 +139,8 @@ namespace NLog.UnitTests.LayoutRenderers
             /// Gets an integer that uniquely identifies the application domain within the process. 
             /// </summary>
             public int Id => _appDomain.Id;
+
+            public IEnumerable<Assembly> GetAssemblies() { return new Assembly[0]; }
 
             public event EventHandler<EventArgs> ProcessExit
             {
