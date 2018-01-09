@@ -35,17 +35,14 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
-    using System.Threading;
 
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
-    using NLog.Internal.Fakeables;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -128,7 +125,6 @@ namespace NLog
             set => factory.KeepVariablesOnReload = value;
         }
 
-
         /// <summary>
         /// Gets or sets the current logging configuration.
         /// <see cref="NLog.LogFactory.Configuration" />
@@ -137,6 +133,17 @@ namespace NLog
         {
             get => factory.Configuration;
             set => factory.Configuration = value;
+        }
+
+        /// <summary>
+        /// Loads logging configuration from file (Currently only XML configuration files supported)
+        /// </summary>
+        /// <param name="configFile">Configuration file to be read</param>
+        /// <returns>LogFactory instance for fluent interface</returns>
+        public static LogFactory LoadConfiguration(string configFile)
+        {
+            factory.LoadConfiguration(configFile);
+            return factory;
         }
 
         /// <summary>
