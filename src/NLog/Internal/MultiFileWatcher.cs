@@ -108,13 +108,6 @@ namespace NLog.Internal
             }
         }
 
-        private void StopWatching(FileSystemWatcher watcher)
-        {
-            InternalLogger.Debug("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
-            watcher.EnableRaisingEvents = false;
-            watcher.Dispose();
-        }
-
         /// <summary>
         /// Watches the specified files for changes.
         /// </summary>
@@ -165,6 +158,18 @@ namespace NLog.Internal
                 
                 _watcherMap.Add(fileName, watcher);
             }
+        }
+
+        private void StopWatching(FileSystemWatcher watcher)
+        {
+            InternalLogger.Debug("Stopping file watching for path '{0}' filter '{1}'", watcher.Path, watcher.Filter);
+            watcher.EnableRaisingEvents = false;
+            watcher.Created -= OnFileChanged;
+            watcher.Changed -= OnFileChanged;
+            watcher.Deleted -= OnFileChanged;
+            watcher.Renamed -= OnFileChanged;
+            watcher.Error -= OnWatcherError;
+            watcher.Dispose();
         }
 
         private void OnWatcherError(object source, ErrorEventArgs e)
