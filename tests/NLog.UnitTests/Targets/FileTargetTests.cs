@@ -154,9 +154,9 @@ namespace NLog.UnitTests.Targets
                 File.Move(logFile, logFile2);
                 if (keepFileOpen)
 #if MONO
-                    Thread.Sleep(500);  // Allow AutoClose-Timer-Thread to react (Runs every 50 msec)
+                    Thread.Sleep(1000); // Allow AutoClose-Timer-Thread to react (FileWatcher depends on operating system, fallback to polling every 3 secs)
 #else
-                    Thread.Sleep(150);  // Allow AutoClose-Timer-Thread to react (Runs every 50 msec)
+                    Thread.Sleep(150);  // Allow AutoClose-Timer-Thread to react (FileWatcher schedules timer after 50 msec)
 #endif
                 logger.Info("bbb");
 
