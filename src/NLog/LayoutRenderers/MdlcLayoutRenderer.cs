@@ -35,8 +35,8 @@ namespace NLog.LayoutRenderers
 {
 #if !SILVERLIGHT
     using System.Text;
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Mapped Diagnostic Logical Context item (based on CallContext).
@@ -53,6 +53,11 @@ namespace NLog.LayoutRenderers
         public string Item { get; set; }
 
         /// <summary>
+        /// Format string for conversion from object to string.
+        /// </summary>
+        public string Format { get; set; }
+
+        /// <summary>
         /// Renders the specified MDLC item and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -62,7 +67,7 @@ namespace NLog.LayoutRenderers
             //don't use MappedDiagnosticsLogicalContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
             var value = MappedDiagnosticsLogicalContext.GetObject(Item);
             var formatProvider = GetFormatProvider(logEvent, null);
-            builder.AppendFormattedValue(value, null, formatProvider);
+            builder.AppendFormattedValue(value, Format, formatProvider);
         }
     }
 #endif

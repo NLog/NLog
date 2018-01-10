@@ -63,6 +63,24 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void MdlcLayoutFormatTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${mdlc:item=myitem:format=@} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            MappedDiagnosticsLogicalContext.Clear();
+            MappedDiagnosticsLogicalContext.Set("myitem", new { RequestId = 123 });
+            LogManager.GetLogger("A").Debug("a");
+            AssertDebugLastMessage("debug", "{\"RequestId\":123} a");
+            MappedDiagnosticsLogicalContext.Clear();
+        }
+
+        [Fact]
         public void given_item_does_not_exist_when_rendering_item_and_message_should_render_only_message()
         {
             const string message = "message";

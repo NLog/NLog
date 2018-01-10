@@ -60,5 +60,22 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("A").Debug("c");
             AssertDebugLastMessage("debug", " c");
         }
+
+        [Fact]
+        public void GDCFormatTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${gdc:item=appid:format=@} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            GlobalDiagnosticsContext.Clear();
+            GlobalDiagnosticsContext.Set("appid", new { AppId = 123 });
+            LogManager.GetLogger("A").Debug("a");
+            AssertDebugLastMessage("debug", "{\"AppId\":123} a");
+        }
     }
 }
