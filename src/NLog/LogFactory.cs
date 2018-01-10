@@ -218,7 +218,7 @@ namespace NLog
                     }
 
 #if __ANDROID__
-                    if (this._config == null)
+                    if (_config == null)
                     {
                         TryLoadFromAndroidAssets();
                     }
@@ -319,8 +319,6 @@ namespace NLog
 
                 //ToArray needed for .Net 3.5
                 InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", _config.FileNamesToWatch.ToArray()));
-
-                
             }
         }
 #endif
@@ -337,7 +335,7 @@ namespace NLog
                 {
                     if (stream != null)
                     {
-                        LoadLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
+                        _config = TryLoadLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
                     }
                 }
             }
@@ -355,16 +353,16 @@ namespace NLog
             foreach (string configFile in configFileNames)
             {
 #if SILVERLIGHT && !WINDOWS_PHONE
-                            Uri configFileUri = new Uri(configFile, UriKind.Relative);
-                            if (Application.GetResourceStream(configFileUri) != null)
-                            {
-                                LoadLoggingConfiguration(configFile);
-                                break;
-                            }
+                Uri configFileUri = new Uri(configFile, UriKind.Relative);
+                if (Application.GetResourceStream(configFileUri) != null)
+                {
+                    _config = TryLoadLoggingConfiguration(configFile);
+                    break;
+                }
 #else
                 if (File.Exists(configFile))
                 {
-                    LoadLoggingConfiguration(configFile);
+                    _config = TryLoadLoggingConfiguration(configFile);
                     break;
                 }
 #endif
@@ -567,13 +565,13 @@ namespace NLog
         /// </summary>
         public void ReconfigExistingLoggers()
         {
-            IEnumerable<Logger> loggers;
+            List<Logger> loggers;
 
             lock (_syncRoot)
             {
                 _config?.InitializeAll();
 
-                loggers = _loggerCache.Loggers;
+                loggers = _loggerCache.GetLoggers();
             }
 
             foreach (var logger in loggers)
@@ -821,7 +819,7 @@ namespace NLog
 
                     if (newConfig is XmlLoggingConfiguration xmlConfig)
                     {
-                        if (!xmlConfig.InitializeSucceeded.HasValue || !xmlConfig.InitializeSucceeded.Value)
+                        if (xmlConfig.InitializeSucceeded != true)
                         {
                             throw new NLogConfigurationException("Configuration.Reload() failed. Invalid XML?");
                         }
@@ -1248,12 +1246,29 @@ namespace NLog
             return newLogger;
         }
 
-        private void LoadLoggingConfiguration(string configFile)
+        /// <summary>
+        /// Loads logging configuration from file (Currently only XML configuration files supported)
+        /// </summary>
+        /// <param name="configFile">Configuration file to be read</param>
+        /// <returns>LogFactory instance for fluent interface</returns>
+        public LogFactory LoadConfiguration(string configFile)
         {
-            InternalLogger.Debug("Loading config from {0}", configFile);
-            _config = new XmlLoggingConfiguration(configFile, this);
+            Configuration = TryLoadLoggingConfiguration(configFile);
+            return this;
         }
 
+        private LoggingConfiguration TryLoadLoggingConfiguration(string configFile)
+        {
+            InternalLogger.Debug("Loading config from {0}", configFile);
+            var xmlConfig = new XmlLoggingConfiguration(configFile, this);
+            //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
+            //therefor we check the InitializeSucceeded property.
+            if (xmlConfig.InitializeSucceeded != true)
+            {
+                InternalLogger.Warn("Failed loading config from {0}. Invalid XML?", configFile);
+            }
+            return xmlConfig;
+        }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         private void ConfigFileChanged(object sender, EventArgs args)
@@ -1369,9 +1384,7 @@ namespace NLog
                 return null;
             }
 
-            public IEnumerable<Logger> Loggers => GetLoggers();
-
-            private IEnumerable<Logger> GetLoggers()
+            public List<Logger> GetLoggers()
             {
                 // TODO: Test if loggerCache.Values.ToList<Logger>() can be used for the conversion instead.
                 List<Logger> values = new List<Logger>(_loggerCache.Count);
