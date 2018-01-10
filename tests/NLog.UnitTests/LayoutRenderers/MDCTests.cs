@@ -61,5 +61,22 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("A").Debug("c");
             AssertDebugLastMessage("debug", " c");
         }
+
+        [Fact]
+        public void MDCFormatTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${mdc:item=myitem:format=@} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("myitem", new { RequestId = 123 });
+            LogManager.GetLogger("A").Debug("a");
+            AssertDebugLastMessage("debug", "{\"RequestId\":123} a");
+        }
     }
 }
