@@ -429,12 +429,12 @@ namespace NLog.Config
                 {
                     if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase))
                     {
-                        if (alreadyRegistered.Contains(assembly.FullName))
+                        if (!alreadyRegistered.Contains(assembly.FullName))
                         {
                             factory.RegisterItemsFromAssembly(assembly);
-                            continue;
                         }
                     }
+
                     if ( assembly.FullName.StartsWith("NLog.Extensions.Logging", StringComparison.OrdinalIgnoreCase)
                       || assembly.FullName.StartsWith("NLog.Web", StringComparison.OrdinalIgnoreCase)
                       || assembly.FullName.StartsWith("Microsoft.Extensions.Logging", StringComparison.OrdinalIgnoreCase)
