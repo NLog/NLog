@@ -168,7 +168,7 @@ namespace NLog.Internal
             return arrayParameterAttribute?.ItemType;
         }
 
-        internal static IEnumerable<PropertyInfo> GetAllReadableProperties(Type type)
+        internal static PropertyInfo[] GetAllReadableProperties(Type type)
         {
             return type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
         }

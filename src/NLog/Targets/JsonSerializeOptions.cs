@@ -69,6 +69,14 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool EnumAsInteger { get; set; }
 
+        /// <summary>
+        /// Should dictionary keys be sanitized. All characters must either be letters, numbers or underscore character (_).
+        /// 
+        /// Any other characters will be converted to underscore character (_)
+        /// </summary>
+        [DefaultValue(false)]
+        public bool SanitizeDictionaryKeys { get; set; }
+
         /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
         public JsonSerializeOptions()
         {
