@@ -531,7 +531,7 @@ namespace NLog
         /// are not guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name)
         {
-            return GetLogger(new LoggerCacheKey(name, typeof(Logger)));
+            return GetLogger(new LoggerCacheKey(name, typeof(Logger)), name);
         }
 
         /// <summary>
@@ -543,7 +543,7 @@ namespace NLog
         /// are not guaranteed to return the same logger reference.</returns>
         public T GetLogger<T>(string name) where T : Logger
         {
-            return (T)GetLogger(new LoggerCacheKey(name, typeof(T)));
+            return (T)GetLogger(new LoggerCacheKey(name, typeof(T)), name);
         }
 
         /// <summary>
@@ -555,7 +555,7 @@ namespace NLog
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name, Type loggerType)
         {
-            return GetLogger(new LoggerCacheKey(name, loggerType));
+            return GetLogger(new LoggerCacheKey(name, loggerType), name);
         }
 
         /// <summary>
@@ -1151,7 +1151,16 @@ namespace NLog
 #endif
         }
 
-        private Logger GetLogger(LoggerCacheKey cacheKey)
+        internal Logger CreateNewUniqueLogger(string loggerName, Type concreteType)
+        {
+            lock (_syncRoot)
+            {
+                _loggerCache.PruneLoggerCache();
+                return GetLogger(new LoggerCacheKey(string.Concat(loggerName, "_", Guid.NewGuid().ToString()), concreteType), loggerName);
+            }
+        }
+
+        private Logger GetLogger(LoggerCacheKey cacheKey, string loggerName)
         {
             lock (_syncRoot)
             {
@@ -1225,7 +1234,7 @@ namespace NLog
 
                 if (cacheKey.ConcreteType != null)
                 {
-                    newLogger.Initialize(cacheKey.Name, GetConfigurationForLogger(cacheKey.Name, Configuration), this);
+                    newLogger.Initialize(loggerName, GetConfigurationForLogger(loggerName, Configuration), this);
                 }
 
                 // TODO: Clarify what is the intention when cacheKey.ConcreteType = null.
@@ -1398,6 +1407,26 @@ namespace NLog
                 }
 
                 return values;
+            }
+
+            public void PruneLoggerCache()
+            {
+                List<LoggerCacheKey> pruneLoggerKeys = null;
+                foreach (var loggerReference in _loggerCache)
+                {
+                    if (!loggerReference.Value.IsAlive)
+                    {
+                        pruneLoggerKeys = pruneLoggerKeys ?? new List<LoggerCacheKey>();
+                        pruneLoggerKeys.Add(loggerReference.Key);
+                    }
+                }
+                if (pruneLoggerKeys != null)
+                {
+                    foreach (var loggerKey in pruneLoggerKeys)
+                    {
+                        _loggerCache.Remove(loggerKey);
+                    }
+                }
             }
         }
 

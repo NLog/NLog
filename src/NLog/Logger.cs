@@ -34,6 +34,7 @@
 namespace NLog
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using NLog.Internal;
 
@@ -56,6 +57,9 @@ namespace NLog
         private volatile bool _isWarnEnabled;
         private volatile bool _isErrorEnabled;
         private volatile bool _isFatalEnabled;
+
+        private Dictionary<string, object> _contextProperties;
+        private bool _includeLogicalContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Logger"/> class.
@@ -92,6 +96,40 @@ namespace NLog
             }
 
             return GetTargetsForLevel(level) != null;
+        }
+
+        /// <summary>
+        /// Creates new logger that automatically appends the specified property to all log events
+        /// </summary>
+        /// <param name="propertyKey">Property Name</param>
+        /// <param name="propertyValue">Property Value</param>
+        /// <returns>New Logger that automatically appends specified property</returns>
+        public Logger WithProperty(string propertyKey, object propertyValue)
+        {
+            if (string.IsNullOrEmpty(propertyKey))
+                throw new ArgumentException(nameof(propertyKey));
+
+            Logger logger = Factory.CreateNewUniqueLogger(Name, GetType());
+            var contextProperties = _contextProperties != null
+                ? new Dictionary<string, object>(_contextProperties)
+                : new Dictionary<string, object>();
+            contextProperties[propertyKey] = propertyValue;
+            logger.InitializeContext(contextProperties, _includeLogicalContext);
+            return logger;
+        }
+
+        /// <summary>
+        /// Creates new logger that automatically appends any async MDLC properties to the actual LogEvent
+        /// </summary>
+        /// <returns>New Logger that automatically appends MDLC properties</returns>
+        public Logger WithLogicalContext()
+        {
+            if (_includeLogicalContext)
+                return this;
+
+            Logger logger = Factory.CreateNewUniqueLogger(Name, GetType());
+            logger.InitializeContext(_contextProperties, true);
+            return logger;
         }
 
         /// <summary>
@@ -405,8 +443,29 @@ namespace NLog
             {
                 logEvent.FormatProvider = Factory.DefaultCultureInfo;
             }
+#if !SILVERLIGHT
+            if (_includeLogicalContext)
+            {
+                foreach (var mdlcKey in MappedDiagnosticsLogicalContext.GetNames())
+                {
+                    if (!logEvent.Properties.ContainsKey(mdlcKey))
+                    {
+                        logEvent.Properties[mdlcKey] = MappedDiagnosticsLogicalContext.GetObject(mdlcKey);
+                    }
+                }
+            }
+#endif
+            if (_contextProperties != null)
+            {
+                foreach (var property in _contextProperties)
+                {
+                    if (!logEvent.Properties.ContainsKey(property.Key))
+                    {
+                        logEvent.Properties[property.Key] = property.Value;
+                    }
+                }
+            }
             return logEvent;
-
         }
 
         #endregion
@@ -551,6 +610,12 @@ namespace NLog
             Name = name;
             Factory = factory;
             SetConfiguration(loggerConfiguration);
+        }
+
+        private void InitializeContext(Dictionary<string, object> contextProperties, bool includeLogicalContext)
+        {
+            _contextProperties = contextProperties;
+            _includeLogicalContext = includeLogicalContext;
         }
 
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)

@@ -2145,5 +2145,40 @@ namespace NLog.UnitTests
             Assert.Equal("b", props["A"]);
             Assert.Equal(1, props.Count);
         }
+
+        static Logger GetContextLoggerFromTemporary(string loggerName)
+        {
+            var loggerRaw = LogManager.GetLogger(loggerName);
+            var loggerStage1 = loggerRaw.WithProperty("Stage", 1);
+            loggerRaw.Trace("{Stage}", "Connected");
+            return loggerStage1;
+        }
+
+        [Fact]
+        public void LogEventTemplateShouldOverrideProperties()
+        {
+            string uniqueLoggerName = Guid.NewGuid().ToString();
+
+            var config = new LoggingConfiguration();
+            var target = new MyTarget();
+            config.LoggingRules.Add(new LoggingRule(uniqueLoggerName, LogLevel.Trace, target));
+            LogManager.Configuration = config;
+            Logger loggerStage1 = GetContextLoggerFromTemporary(uniqueLoggerName);
+            GC.Collect();   // nobody's holding a reference to loggerRaw anymore, so GC.Collect(2) should free it
+            var loggerStage2 = loggerStage1.WithProperty("Stage", 2);
+            Assert.Single(target.LastEvent.Properties);
+            Assert.Contains(new KeyValuePair<object, object>("Stage", "Connected"), target.LastEvent.Properties);
+            loggerStage1.Trace("Login attempt from {userid}", "kermit");
+            Assert.Equal(2, target.LastEvent.Properties.Count);
+            Assert.Contains(new KeyValuePair<object, object>("Stage", 1), target.LastEvent.Properties);
+            Assert.Contains(new KeyValuePair<object, object>("userid", "kermit"), target.LastEvent.Properties);
+            loggerStage2.Trace("Login succesful for {userid}", "kermit");
+            Assert.Equal(2, target.LastEvent.Properties.Count);
+            Assert.Contains(new KeyValuePair<object, object>("Stage", 2), target.LastEvent.Properties);
+            Assert.Contains(new KeyValuePair<object, object>("userid", "kermit"), target.LastEvent.Properties);
+            loggerStage2.Trace("{Stage}", "Disconnected");
+            Assert.Single(target.LastEvent.Properties);
+            Assert.Contains(new KeyValuePair<object, object>("Stage", "Disconnected"), target.LastEvent.Properties);
+        }
     }
 }
