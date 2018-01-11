@@ -1751,6 +1751,68 @@ namespace NLog.UnitTests
             Assert.Throws<InvalidOperationException>(() => logger.Log(new LogEventInfo()));
         }
 
+
+        [Fact]
+        public void SingleTargetMessageFormatOptimizationTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets>
+                        <target name='target1' type='Debug' layout='${logger}|${message}' />
+                        <target name='target2' type='Debug' layout='${logger}|${message}' />
+                    </targets>
+                    <rules>
+                        <logger name='SingleTarget' writeTo='target1' />
+                        <logger name='DualTarget' writeTo='target1,target2' />
+                    </rules>
+                </nlog>");
+
+            var singleLogger = LogManager.GetLogger("SingleTarget");
+            var dualLogger = LogManager.GetLogger("DualTarget");
+
+            ConfigurationItemFactory.Default.ParseMessageTemplates = null;
+
+            singleLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello");
+            singleLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello World");
+
+            dualLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "DualTarget|Hello");
+            AssertDebugLastMessage("target2", "DualTarget|Hello");
+            dualLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "DualTarget|Hello World");
+            AssertDebugLastMessage("target2", "DualTarget|Hello World");
+
+            ConfigurationItemFactory.Default.ParseMessageTemplates = true;
+
+            singleLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello");
+            singleLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello World");
+
+            dualLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "DualTarget|Hello");
+            AssertDebugLastMessage("target2", "DualTarget|Hello");
+            dualLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "DualTarget|Hello World");
+            AssertDebugLastMessage("target2", "DualTarget|Hello World");
+
+            ConfigurationItemFactory.Default.ParseMessageTemplates = false;
+
+            singleLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello");
+            singleLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello World");
+
+            dualLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "DualTarget|Hello");
+            AssertDebugLastMessage("target2", "DualTarget|Hello");
+            dualLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "DualTarget|Hello World");
+            AssertDebugLastMessage("target2", "DualTarget|Hello World");
+        }
+
         [Theory]
         [InlineData(true, null)]
         [InlineData(false, null)]

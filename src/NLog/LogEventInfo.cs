@@ -56,10 +56,10 @@ namespace NLog
         /// </summary>
         public static readonly DateTime ZeroDate = DateTime.UtcNow;
         internal static readonly LogMessageFormatter StringFormatMessageFormatter = GetStringFormatMessageFormatter;
-        internal static LogMessageFormatter DefaultMessageFormatter { get; set; } = LogMessageTemplateFormatter.DefaultAuto.MessageFormatter;
+        internal static LogMessageFormatter DefaultMessageFormatter { get; private set; } = LogMessageTemplateFormatter.DefaultAuto.MessageFormatter;
+        internal static LogMessageFormatter DefaultMessageFormatterSingleTarget { get; private set; } = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
 
         private static int globalSequenceId;
-
 
         /// <summary>
         /// The formatted log message. 
@@ -337,28 +337,37 @@ namespace NLog
             }
         }
 
-        internal PropertiesDictionary PropertiesDictionary { get => _properties; set => _properties = value; }
-
         /// <summary>
         /// Gets the dictionary of per-event context properties.
         /// </summary>
-        public IDictionary<object, object> Properties => GetPropertiesInternal();
+        public IDictionary<object, object> Properties => CreateOrUpdatePropertiesInternal();
 
         /// <summary>
         /// Gets the dictionary of per-event context properties. 
         /// Internal helper for the PropertiesDictionary type.
         /// </summary>
+        /// <param name="forceCreate">Create the event-properties dictionary, even if no initial template parameters</param>
+        /// <param name="templateParameters">Provided when having parsed the message template and capture template parameters (else null)</param>
         /// <returns></returns>
-        private PropertiesDictionary GetPropertiesInternal()
+        internal PropertiesDictionary CreateOrUpdatePropertiesInternal(bool forceCreate = true, IList<MessageTemplateParameter> templateParameters = null)
         {
-            if (_properties == null)
+            var properties = _properties;
+            if (properties == null)
             {
-                Interlocked.CompareExchange(ref _properties, new PropertiesDictionary(), null);
-                if (HasMessageTemplateParameters)
+                if (forceCreate || templateParameters?.Count > 0)
                 {
-                    CalcFormattedMessage();
-                    // MessageTemplateParameters have probably been created
+                    properties = new PropertiesDictionary(templateParameters);
+                    Interlocked.CompareExchange(ref _properties, properties, null);
+                    if (forceCreate && HasMessageTemplateParameters)
+                    {
+                        // Trigger capture of MessageTemplateParameters from logevent-message
+                        CalcFormattedMessage();
+                    }
                 }
+            }
+            else if (templateParameters != null)
+            {
+                properties.MessageProperties = templateParameters;
             }
             return _properties;
         }
@@ -395,7 +404,7 @@ namespace NLog
         /// </summary>
         /// <remarks>This property was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
         [Obsolete("Use LogEventInfo.Properties instead.  Marked obsolete on NLog 2.0", true)]
-        public IDictionary Context => GetPropertiesInternal().EventContext;
+        public IDictionary Context => CreateOrUpdatePropertiesInternal().EventContext;
 
         /// <summary>
         /// Creates the null event.
@@ -638,6 +647,32 @@ namespace NLog
             }
         }
 
+        internal void AppendFormattedMessage(ILogMessageFormatter messageFormatter, System.Text.StringBuilder builder)
+        {
+            if (_formattedMessage != null)
+            {
+                builder.Append(_formattedMessage);
+            }
+            else
+            {
+                int originalLength = builder.Length;
+                try
+                {
+                    messageFormatter.AppendFormattedMessage(this, builder);
+                }
+                catch (Exception ex)
+                {
+                    builder.Length = originalLength;
+                    builder.Append(_message ?? string.Empty);
+                    InternalLogger.Warn(ex, "Error when formatting a message.");
+                    if (ex.MustBeRethrown())
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
         private void ResetFormattedMessage(bool rebuildMessageTemplateParameters)
         {
             _formattedMessage = null;
@@ -667,17 +702,20 @@ namespace NLog
             {
                 InternalLogger.Info("Message Template Format always enabled");
                 DefaultMessageFormatter = LogMessageTemplateFormatter.Default.MessageFormatter;
+                DefaultMessageFormatterSingleTarget = LogMessageTemplateFormatter.DefaultSingleTarget.MessageFormatter;
             }
             else if (mode == false)
             {
                 InternalLogger.Info("Message Template String Format always enabled");
                 DefaultMessageFormatter = StringFormatMessageFormatter;
+                DefaultMessageFormatterSingleTarget = null; // No single target optimization
             }
             else
             {
                 //null = auto
                 InternalLogger.Info("Message Template Auto Format enabled");
                 DefaultMessageFormatter = LogMessageTemplateFormatter.DefaultAuto.MessageFormatter;
+                DefaultMessageFormatterSingleTarget = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
             }
         }
     }

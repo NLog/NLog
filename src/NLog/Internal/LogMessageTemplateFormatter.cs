@@ -35,26 +35,32 @@ namespace NLog.Internal
 {
     using System;
     using System.Globalization;
+    using System.Text;
     using MessageTemplates;
 
     internal sealed class LogMessageTemplateFormatter : ILogMessageFormatter
     {
-        public static readonly LogMessageTemplateFormatter DefaultAuto = new LogMessageTemplateFormatter(false);
-        public static readonly LogMessageTemplateFormatter Default = new LogMessageTemplateFormatter(true);
+        public static readonly LogMessageTemplateFormatter DefaultAuto = new LogMessageTemplateFormatter(false, false);
+        public static readonly LogMessageTemplateFormatter Default = new LogMessageTemplateFormatter(true, false);
+        public static readonly LogMessageTemplateFormatter DefaultAutoSingleTarget = new LogMessageTemplateFormatter(false, true);
+        public static readonly LogMessageTemplateFormatter DefaultSingleTarget = new LogMessageTemplateFormatter(true, true);
         private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
 
         /// <summary>
         /// When true: Do not fallback to StringBuilder.Format for positional templates
         /// </summary>
         private readonly bool _forceTemplateRenderer;
+        private readonly bool _singleTargetOnly;
 
         /// <summary>
         /// New formatter
         /// </summary>
         /// <param name="forceTemplateRenderer">When true: Do not fallback to StringBuilder.Format for positional templates</param>
-        private LogMessageTemplateFormatter(bool forceTemplateRenderer)
+        /// <param name="singleTargetOnly"></param>
+        private LogMessageTemplateFormatter(bool forceTemplateRenderer, bool singleTargetOnly)
         {
             _forceTemplateRenderer = forceTemplateRenderer;
+            _singleTargetOnly = singleTargetOnly;
             MessageFormatter = FormatMessage;
         }
 
@@ -62,43 +68,61 @@ namespace NLog.Internal
         /// The MessageFormatter delegate
         /// </summary>
         public LogMessageFormatter MessageFormatter { get; }
-
+ 
         public bool HasProperties(LogEventInfo logEvent)
+        {
+            if (!HasParameters(logEvent))
+                return false;
+
+            if (_singleTargetOnly)
+            {
+                // Make quick check for valid message template parameter names
+                TemplateEnumerator holeEnumerator = new TemplateEnumerator(logEvent.Message);
+                if (holeEnumerator.MoveNext() && holeEnumerator.Current.Literal.Skip != 0 && holeEnumerator.Current.Hole.Index != -1)
+                {
+                    return false;   // Skip allocation of PropertiesDictionary
+                }
+            }
+
+            return true;    // Parse message template and allocate PropertiesDictionary
+        }
+
+        private bool HasParameters(LogEventInfo logEvent)
         {
             //if message is empty, there no parameters
             //null check cheapest, so in-front
             return logEvent.Parameters != null && !string.IsNullOrEmpty(logEvent.Message) && logEvent.Parameters.Length > 0;
         }
 
+        public void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder)
+        {
+            if (!HasParameters(logEvent))
+            {
+                builder.Append(logEvent.Message ?? string.Empty);
+            }
+            else
+            {
+                logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out var messageTemplateParameterList);
+            }
+        }
+
         public string FormatMessage(LogEventInfo logEvent)
         {
-            if (!HasProperties(logEvent))
+            if (!HasParameters(logEvent))
             {
                 return logEvent.Message;
             }
             using (var builder = _builderPool.Acquire())
             {
-                logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder.Item, out var messageTemplateParameterList);
-                if (logEvent.PropertiesDictionary != null || messageTemplateParameterList != null)
-                {
-                    // Prevent multiple layouts on different targets to update the same properties
-                    lock (logEvent)
-                    {
-                        if (logEvent.PropertiesDictionary == null)
-                        {
-                            if (messageTemplateParameterList != null && messageTemplateParameterList.Count > 0)
-                            {
-                                logEvent.PropertiesDictionary = new PropertiesDictionary(messageTemplateParameterList);
-                            }
-                        }
-                        else
-                        {
-                            logEvent.PropertiesDictionary.MessageProperties = messageTemplateParameterList;
-                        }
-                    }
-                }
+                AppendToBuilder(logEvent, builder.Item);
                 return builder.Item.ToString();
             }
+        }
+
+        private void AppendToBuilder(LogEventInfo logEvent, StringBuilder builder)
+        {
+            logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out var messageTemplateParameterList);
+            logEvent.CreateOrUpdatePropertiesInternal(false, messageTemplateParameterList ?? ArrayHelper.Empty<MessageTemplateParameter>());
         }
     }
 }

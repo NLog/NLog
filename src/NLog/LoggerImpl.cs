@@ -37,7 +37,6 @@ namespace NLog
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
-    using System.Threading;
     using JetBrains.Annotations;
     using NLog.Common;
     using NLog.Config;
@@ -99,6 +98,19 @@ namespace NLog
                         }
                     }
                 };
+            }
+
+            if (targets.NextInChain == null
+             && logEvent.Parameters != null
+             && logEvent.Parameters.Length > 0
+             && logEvent.Message?.Length < 128
+             && ReferenceEquals(logEvent.MessageFormatter, LogEventInfo.DefaultMessageFormatter))
+            {
+                // Signal MessageLayoutRenderer to skip string allocation of LogEventInfo.FormattedMessage
+                if (!ReferenceEquals(logEvent.MessageFormatter, LogEventInfo.StringFormatMessageFormatter))
+                {
+                    logEvent.MessageFormatter = LogEventInfo.DefaultMessageFormatterSingleTarget;
+                }
             }
 
             for (var t = targets; t != null; t = t.NextInChain)
@@ -299,33 +311,6 @@ namespace NLog
                 }
 
                 return FilterResult.Ignore;
-            }
-        }
-
-        /// <summary>
-        /// Stackframe with correspending index on the stracktrace
-        /// </summary>
-        private class StackFrameWithIndex
-        {
-            /// <summary>
-            /// Index of <see cref="StackFrame"/> on the stack.
-            /// </summary>
-            public int StackFrameIndex { get; private set; }
-
-            /// <summary>
-            /// A stackframe
-            /// </summary>
-            public StackFrame StackFrame { get; private set; }
-
-            /// <summary>
-            /// New item
-            /// </summary>
-            /// <param name="stackFrameIndex">Index of <paramref name="stackFrame"/> on the stack.</param>
-            /// <param name="stackFrame">A stackframe</param>
-            public StackFrameWithIndex(int stackFrameIndex, StackFrame stackFrame)
-            {
-                StackFrameIndex = stackFrameIndex;
-                StackFrame = stackFrame;
             }
         }
     }
