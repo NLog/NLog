@@ -33,7 +33,7 @@
 
 namespace NLog.Internal
 {
-    using System;
+    using System.Text;
 
     /// <summary>
     /// Format a log message
@@ -53,5 +53,12 @@ namespace NLog.Internal
         /// <param name="logEvent">LogEvent with message to be formatted</param>
         /// <returns>formatted message</returns>
         bool HasProperties(LogEventInfo logEvent);
+
+        /// <summary>
+        /// Appends the logevent message to the provided StringBuilder
+        /// </summary>
+        /// <param name="logEvent">LogEvent with message to be formatted</param>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the formatted message.</param>
+        void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder);
     }
 }
