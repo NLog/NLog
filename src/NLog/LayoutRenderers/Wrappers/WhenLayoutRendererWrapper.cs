@@ -31,13 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
-    using Conditions;
-    using Config;
+    using NLog.Conditions;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Only outputs the inner layout when the specified condition has been met.
@@ -52,13 +51,12 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <docgen category="Transformation Options" order="10"/>
         [RequiredParameter]
-
         public ConditionExpression When { get; set; }
-
 
         /// <summary>
         /// If <see cref="When"/> is not met, print this layout.
         /// </summary>
+        /// <docgen category="Transformation Options" order="10"/>
         public Layout Else { get; set; }
 
         /// <summary>

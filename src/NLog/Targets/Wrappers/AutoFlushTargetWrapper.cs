@@ -33,9 +33,9 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using Common;
-    using Conditions;
-    using Internal;
+    using NLog.Common;
+    using NLog.Conditions;
+    using NLog.Internal;
 
     /// <summary>
     /// Causes a flush on a wrapped target if LogEvent statisfies the <see cref="Condition"/>.
@@ -61,11 +61,13 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the condition expression. Log events who meet this condition will cause
         /// a flush on the wrapped target.
         /// </summary>
+        /// <docgen category='General Options' order='10' />
         public ConditionExpression Condition { get; set; }
 
         /// <summary>
         /// Delay the flush until the LogEvent has been confirmed as written
         /// </summary>
+        /// <docgen category='General Options' order='10' />
         public bool AsyncFlush { get => _asyncFlush ?? true;
             set => _asyncFlush = value;
         }

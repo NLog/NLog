@@ -34,10 +34,9 @@
 namespace NLog.Layouts
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
     using System.Text;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// A specialized layout that renders JSON-formatted events.
@@ -68,40 +67,46 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the array of attributes' configurations.
         /// </summary>
-        /// <docgen category='CSV Options' order='10' />
+        /// <docgen category='JSON Options' order='10' />
         [ArrayParameter(typeof(JsonAttribute), "attribute")]
         public IList<JsonAttribute> Attributes { get; private set; }
 
         /// <summary>
         /// Gets or sets the option to suppress the extra spaces in the output json
         /// </summary>
+        /// <docgen category='JSON Options' order='10' />
         public bool SuppressSpaces { get; set; }
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
+        /// <docgen category='JSON Options' order='10' />
         public bool RenderEmptyObject { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
+        /// <docgen category='JSON Options' order='10' />
         public bool IncludeMdc { get; set; }
 
 #if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
+        /// <docgen category='JSON Options' order='10' />
         public bool IncludeMdlc { get; set; }
 #endif
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log events
         /// </summary>
+        /// <docgen category='JSON Options' order='10' />
         public bool IncludeAllProperties { get; set; }
 
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
         /// </summary>
+        /// <docgen category='JSON Options' order='10' />
 #if NET3_5
         public HashSet<string> ExcludeProperties { get; set; }
 #else

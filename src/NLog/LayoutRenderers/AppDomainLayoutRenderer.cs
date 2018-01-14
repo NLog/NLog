@@ -35,7 +35,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Text;
 using NLog.Config;
 using NLog.Internal.Fakeables;
@@ -77,6 +76,7 @@ namespace NLog.LayoutRenderers
         /// The first parameter is the  <see cref="IAppDomain.Id"/>, the second the second the  <see cref="IAppDomain.FriendlyName"/>
         /// This string is used in <see cref="string.Format(string,object[])"/>
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultParameter]
         [DefaultValue(LongFormatCode)]
         public string Format { get; set; }

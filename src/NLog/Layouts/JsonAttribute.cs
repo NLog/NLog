@@ -33,7 +33,7 @@
 
 namespace NLog.Layouts
 {
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// JSON attribute.
@@ -70,12 +70,14 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the name of the attribute.
         /// </summary>
+        /// <docgen category='JSON Attribute Options' order='10' />
         [RequiredParameter]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that will be rendered as the attribute's value.
         /// </summary>
+        /// <docgen category='JSON Attribute Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get => LayoutWrapper.Inner;
             set => LayoutWrapper.Inner = value;
@@ -84,6 +86,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Determines wether or not this attribute will be Json encoded.
         /// </summary>
+        /// <docgen category='JSON Attribute Options' order='100' />
         public bool Encode { get => LayoutWrapper.JsonEncode;
             set => LayoutWrapper.JsonEncode = value;
         }
@@ -91,6 +94,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets a value indicating whether to escape non-ascii characters
         /// </summary>
+        /// <docgen category='JSON Attribute Options' order='100' />
         public bool EscapeUnicode { get => LayoutWrapper.EscapeUnicode;
             set => LayoutWrapper.EscapeUnicode = value;
         }

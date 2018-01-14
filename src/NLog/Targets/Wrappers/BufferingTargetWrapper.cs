@@ -36,8 +36,8 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.ComponentModel;
     using System.Threading;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// A target that buffers log events and sends them in batches to the wrapped target.
@@ -151,6 +151,7 @@ namespace NLog.Targets.Wrappers
         /// setting to <see cref="BufferingTargetWrapperOverflowAction.Flush"/> will flush the
         /// entire buffer to the wrapped target.
         /// </remarks>
+        /// <docgen category='Buffering Options' order='100' />
         [DefaultValue("Flush")]
         public BufferingTargetWrapperOverflowAction OverflowAction { get; set; }
 

@@ -33,12 +33,10 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.Diagnostics;
+    using System;
     using System.ComponentModel;
     using System.Text;
-    using System;
-
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// The log level.
@@ -50,6 +48,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets a value indicating the output format of the level.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(LevelFormat.Name)]
         public LevelFormat Format { get; set; }
 

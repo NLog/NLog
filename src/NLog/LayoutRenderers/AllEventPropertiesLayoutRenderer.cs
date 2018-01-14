@@ -76,6 +76,7 @@ namespace NLog.LayoutRenderers
         /// 
         /// See https://msdn.microsoft.com/en-us/library/hh534540.aspx
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(false)]
         public bool IncludeCallerInformation { get; set; }
 

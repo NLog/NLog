@@ -61,6 +61,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Generate the Guid from the NLog LogEvent (Will be the same for all targets)
         /// </summary>
+        /// <docgen category='Rendering Options' order='100' />
         [DefaultValue(false)]
         public bool GeneratedFromLogEvent { get; set; }
 

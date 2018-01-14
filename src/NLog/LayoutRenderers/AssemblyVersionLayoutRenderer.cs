@@ -63,6 +63,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// The (full) name of the assembly. If <c>null</c>, using the entry assembly.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultParameter]
         public string Name { get; set; }
 

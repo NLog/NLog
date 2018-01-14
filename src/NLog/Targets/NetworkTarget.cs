@@ -178,12 +178,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the action that should be taken if the will be more connections than <see cref="MaxConnections"/>.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Connection Options' order='10' />
         public NetworkTargetConnectionsOverflowAction OnConnectionOverflow { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum queue size.
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         [DefaultValue(0)]
         public int MaxQueueSize { get; set; }
 
@@ -191,7 +192,7 @@ namespace NLog.Targets
         /// Gets or sets the action that should be taken if the message is larger than
         /// maxMessageSize.
         /// </summary>
-        /// <docgen category='Layout Options' order='10' />
+        /// <docgen category='Connection Options' order='10' />
         [DefaultValue(NetworkTargetOverflowAction.Split)]
         public NetworkTargetOverflowAction OnOverflow { get; set; }
 
