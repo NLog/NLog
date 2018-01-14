@@ -1228,6 +1228,30 @@ Dispose()
             Assert.NotNull(databaseTarget.ProviderFactory);
             Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
         }
+
+        [Fact]
+        public void GetProviderNameFromConnectionString()
+        {
+            LogManager.ThrowExceptions = true;
+            var databaseTarget = new DatabaseTarget()
+            {
+                Name = "myTarget",
+                ConnectionStringName = "test_connectionstring_with_providerName",
+                CommandText = "notimportant",
+            };
+
+            databaseTarget.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
+            {
+                new ConnectionStringSettings("test_connectionstring_with_providerName",
+                    "metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SqlClient;provider connection string=\"data source=192.168.0.100;initial catalog=TEST_DB;user id=myUser;password=SecretPassword;multipleactiveresultsets=True;application name=EntityFramework\"",
+                    "System.Data.EntityClient"),
+            };
+
+            databaseTarget.Initialize(null);
+            Assert.NotNull(databaseTarget.ProviderFactory);
+            Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
+            Assert.Equal(((NLog.Layouts.SimpleLayout)databaseTarget.ConnectionString).FixedText, "data source=192.168.0.100;initial catalog=TEST_DB;user id=myUser;password=SecretPassword;multipleactiveresultsets=True;application name=EntityFramework");
+        }
 #endif
 
         [Theory]

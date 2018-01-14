@@ -351,6 +351,8 @@ namespace NLog.Targets
             }
 
             bool foundProvider = false;
+            string providerName = string.Empty;
+
 #if !NETSTANDARD
             if (!string.IsNullOrEmpty(ConnectionStringName))
             {
@@ -364,24 +366,54 @@ namespace NLog.Targets
                 ConnectionString = SimpleLayout.Escape(cs.ConnectionString);
                 if (!string.IsNullOrEmpty(cs.ProviderName))
                 {
-                    ProviderFactory = DbProviderFactories.GetFactory(cs.ProviderName);
-                    foundProvider = true;
+                    providerName = cs.ProviderName;
                 }
-            
+            }
+#endif
+
+            if (ConnectionString != null)
+            {
+                try
+                {
+                    var connectionString = BuildConnectionString(LogEventInfo.CreateNullEvent());
+                    var dbConnectionStringBuilder = new DbConnectionStringBuilder { ConnectionString = connectionString };
+                    if (dbConnectionStringBuilder.TryGetValue("provider connection string", out var connectionStringValue))
+                    {
+                        // Special Entity Framework Connection String
+                        if (dbConnectionStringBuilder.TryGetValue("provider", out var providerValue))
+                        {
+                            // Provider was overriden by ConnectionString
+                            providerName = providerValue.ToString();
+                        }
+
+                        // ConnectionString was overriden by ConnectionString :)
+                        ConnectionString = SimpleLayout.Escape(connectionStringValue.ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Warn(ex, "DbConnectionStringBuilder failed to parse ConnectionString");
+                }
             }
 
-            if (!foundProvider)
+#if !NETSTANDARD
+            if (string.IsNullOrEmpty(providerName))
             {
                 foreach (DataRow row in DbProviderFactories.GetFactoryClasses().Rows)
                 {
                     var invariantname = (string)row["InvariantName"];
                     if (invariantname == DBProvider)
                     {
-                        ProviderFactory = DbProviderFactories.GetFactory(DBProvider);
-                        foundProvider = true;
+                        providerName = DBProvider;
                         break;
                     }
                 }
+            }
+
+            if (!string.IsNullOrEmpty(providerName))
+            {
+                ProviderFactory = DbProviderFactories.GetFactory(providerName);
+                foundProvider = true;
             }
 #endif
 
