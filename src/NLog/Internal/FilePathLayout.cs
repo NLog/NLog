@@ -277,8 +277,12 @@ namespace NLog.Internal
 
             //nb: ${basedir} has already been rewritten in the SimpleLayout.compile
             var path = isFixedText ? pathLayout.FixedText : pathLayout.Text;
+            return DetectFilePathKind(path, isFixedText);
+        }
 
-            if (path != null)
+        internal static FilePathKind DetectFilePathKind(string path, bool isFixedText = true)
+        {
+            if (!string.IsNullOrEmpty(path))
             {
                 path = path.TrimStart();
 
@@ -288,11 +292,11 @@ namespace NLog.Internal
                     var firstChar = path[0];
                     if (firstChar == Path.DirectorySeparatorChar || firstChar == Path.AltDirectorySeparatorChar)
                         return FilePathKind.Absolute;
+
                     if (firstChar == '.') //. and ..
                     {
                         return FilePathKind.Relative;
                     }
-
 
                     if (length >= 2)
                     {
@@ -300,14 +304,13 @@ namespace NLog.Internal
                         //on unix VolumeSeparatorChar == DirectorySeparatorChar
                         if (Path.VolumeSeparatorChar != Path.DirectorySeparatorChar && secondChar == Path.VolumeSeparatorChar)
                             return FilePathKind.Absolute;
-
                     }
+
                     if (!isFixedText && path.StartsWith("${", StringComparison.OrdinalIgnoreCase))
                     {
                         //if first part is a layout, then unknown
                         return FilePathKind.Unknown;
                     }
-
 
                     //not a layout renderer, but text
                     return FilePathKind.Relative;

@@ -1253,6 +1253,11 @@ namespace NLog
         /// <returns>LogFactory instance for fluent interface</returns>
         public LogFactory LoadConfiguration(string configFile)
         {
+            if (FilePathLayout.DetectFilePathKind(configFile) == FilePathKind.Relative)
+            {
+                configFile = Path.Combine(CurrentAppDomain.BaseDirectory, configFile);
+            }
+
             Configuration = TryLoadLoggingConfiguration(configFile);
             return this;
         }
