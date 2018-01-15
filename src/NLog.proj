@@ -384,7 +384,7 @@
   <Target Name="NuGetConfigPackage">
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
-    <Exec Command='"$(NuGetTool)" pack NLog.Config.nuspec -OutputDirectory "$(NuGetOutputPath)" -properties BuildVersion=$(NuGetVersion)' WorkingDirectory="$(NuGetBuildPath)\NLog.Config" />
+    <Exec Command='"$(NuGetTool)" pack NLog.Config.nuspec -OutputDirectory "$(NuGetOutputPath)" -Properties $(NuGetProperties)' WorkingDirectory="$(NuGetBuildPath)\NLog.Config" />
   </Target>
 
   <Target Name="NuGetSchemaPackage">
@@ -396,7 +396,7 @@
 
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
-    <Exec Command='"$(NuGetTool)" pack NLog.Schema.nuspec -OutputDirectory "$(NuGetOutputPath)" -properties BuildVersion=$(NuGetVersion))' WorkingDirectory="$(NuGetBuildPath)\NLog.Schema" />
+    <Exec Command='"$(NuGetTool)" pack NLog.Schema.nuspec -OutputDirectory "$(NuGetOutputPath)" -Properties $(NuGetProperties)' WorkingDirectory="$(NuGetBuildPath)\NLog.Schema" />
   </Target>
 
                                                                                  
