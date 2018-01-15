@@ -42,7 +42,6 @@ namespace NLog.LayoutRenderers
     /// The current working directory of the application.
     /// </summary>
     [LayoutRenderer("currentdir")]
-    [AppDomainFixedOutput]
     [ThreadAgnostic]
     public class CurrentDirLayoutRenderer : LayoutRenderer
     {
