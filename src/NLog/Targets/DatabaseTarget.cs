@@ -435,6 +435,7 @@ namespace NLog.Targets
                 case "MICROSOFT":
                 case "MSDE":
 #if NETSTANDARD
+                case "SYSTEM.DATA.SQLCLIENT":
                     var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
 #else
                     var assembly = systemDataAssembly;
