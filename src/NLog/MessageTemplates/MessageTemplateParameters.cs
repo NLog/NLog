@@ -39,11 +39,11 @@ namespace NLog.MessageTemplates
     using NLog.Common;
 
     /// <summary>
-    /// Internal implementation of the interface for returning MessageTemplate parameters
+    /// Parameters extracted from parsing <see cref="LogEventInfo.Message"/> as MessageTemplate
     /// </summary>
-    internal class MessageTemplateParameters : IMessageTemplateParameters
+    public sealed class MessageTemplateParameters : IEnumerable<MessageTemplateParameter>
     {
-        readonly IList<MessageTemplateParameter> _parameters;
+        private readonly IList<MessageTemplateParameter> _parameters;
 
         /// <inheritDoc/>
         public MessageTemplateParameter this[int index] => _parameters[index];
