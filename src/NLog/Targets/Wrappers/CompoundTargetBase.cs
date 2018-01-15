@@ -36,8 +36,8 @@ namespace NLog.Targets.Wrappers
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// A base class for targets which wrap other (multiple) targets

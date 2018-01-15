@@ -93,6 +93,7 @@ namespace NLog.Targets
         /// The encoding for writing messages to the <see cref="Console"/>.
         ///  </summary>
         /// <remarks>Has side effect</remarks>
+        /// <docgen category='Console Options' order='10' />
         public Encoding Encoding
         {
             get => ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
@@ -110,6 +111,7 @@ namespace NLog.Targets
         ///  - Disables console writing if Environment.UserInteractive = False (Windows Service)
         ///  - Disables console writing if Console Standard Input is not available (Non-Console-App)
         /// </summary>
+        /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
         public bool DetectConsoleAvailable { get; set; }
 

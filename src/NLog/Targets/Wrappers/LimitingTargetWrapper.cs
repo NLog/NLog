@@ -95,6 +95,7 @@ namespace NLog.Targets.Wrappers
         /// <remarks>
         /// Messages received after <see cref="MessageLimit"/> has been reached in the current <see cref="Interval"/> will be discarded.
         /// </remarks>
+        /// <docgen category='General Options' order='10' />
         [DefaultValue(1000)]
         public int MessageLimit { get; set; }
 
@@ -104,17 +105,20 @@ namespace NLog.Targets.Wrappers
         /// <remarks>
         /// Messages received after <see cref="MessageLimit"/> has been reached in the current <see cref="Interval"/> will be discarded.
         /// </remarks>
+        /// <docgen category='General Options' order='10' />
         [DefaultValue(typeof(TimeSpan), "01:00")]
         public TimeSpan Interval { get; set; }
 
         /// <summary>
         /// Gets the <c>DateTime</c> when the current <see cref="Interval"/> will be reset.
         /// </summary>
+        /// <docgen category='General Options' order='10' />
         public DateTime IntervalResetsAt => _firstWriteInInterval + Interval;
 
         /// <summary>
         /// Gets the number of <see cref="AsyncLogEventInfo"/> written in the current <see cref="Interval"/>.
         /// </summary>
+        /// <docgen category='General Options' order='10' />
         public int MessagesWrittenCount { get; private set; }
 
         /// <summary>

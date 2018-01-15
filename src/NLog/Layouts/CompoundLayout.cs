@@ -56,7 +56,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the inner layouts.
         /// </summary>
-        /// <docgen category='CSV Options' order='10' />
+        /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(Layout), "layout")]
         public IList<Layout> Layouts { get; private set; }
 

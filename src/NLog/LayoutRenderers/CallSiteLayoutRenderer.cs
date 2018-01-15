@@ -101,6 +101,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets or sets the number of frames to skip.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(0)]
         public int SkipFrames { get; set; }
 

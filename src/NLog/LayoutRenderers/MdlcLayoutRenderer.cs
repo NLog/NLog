@@ -55,6 +55,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Format string for conversion from object to string.
         /// </summary>
+        /// <docgen category='Rendering Options' order='50' />
         public string Format { get; set; }
 
         /// <summary>

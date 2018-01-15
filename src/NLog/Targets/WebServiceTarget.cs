@@ -168,6 +168,7 @@ namespace NLog.Targets
         /// 
         /// This will only work for UTF-8.
         /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
         public bool? IncludeBOM { get; set; }
 
         /// <summary>
@@ -180,14 +181,14 @@ namespace NLog.Targets
         /// Gets or sets a value whether escaping be done according to Rfc3986 (Supports Internationalized Resource Identifiers - IRIs)
         /// </summary>
         /// <value>A value of <c>true</c> if Rfc3986; otherwise, <c>false</c> for legacy Rfc2396.</value>
-        /// <docgen category='Web Service Options' order='10' />
+        /// <docgen category='Web Service Options' order='100' />
         public bool EscapeDataRfc3986 { get; set; }
 
         /// <summary>
         /// Gets or sets a value whether escaping be done according to the old NLog style (Very non-standard)
         /// </summary>
         /// <value>A value of <c>true</c> if legacy encoding; otherwise, <c>false</c> for standard UTF8 encoding.</value>
-        /// <docgen category='Web Service Options' order='10' />
+        /// <docgen category='Web Service Options' order='100' />
         public bool EscapeDataNLogLegacy { get; set; }
 
         /// <summary>
@@ -196,7 +197,7 @@ namespace NLog.Targets
         /// If so, this property must not be <c>null</c>.
         /// (see <see cref="Protocol"/> and <see cref="WebServiceProtocol.XmlPost"/>).
         /// </summary>
-        /// <docgen category='Web Service Options' order='10' />
+        /// <docgen category='Web Service Options' order='100' />
         public string XmlRoot { get; set; }
 
         /// <summary>
@@ -204,7 +205,7 @@ namespace NLog.Targets
         /// if POST of XML document chosen.
         /// (see <see cref="Protocol"/> and <see cref="WebServiceProtocol.XmlPost"/>).
         /// </summary>
-        /// <docgen category='Web Service Options' order='10' />
+        /// <docgen category='Web Service Options' order='100' />
         public string XmlRootNamespace { get; set; }
 
         /// <summary>
@@ -218,7 +219,7 @@ namespace NLog.Targets
         /// <summary>
         /// Indicates whether to pre-authenticate the HttpWebRequest (Requires 'Authorization' in <see cref="Headers"/> parameters)
         /// </summary>
-        /// <docgen category='Web Service Options' order='10' />
+        /// <docgen category='Web Service Options' order='100' />
         public bool PreAuthenticate { get; set; }
 #endif
 

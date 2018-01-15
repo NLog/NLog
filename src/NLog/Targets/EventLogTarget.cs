@@ -38,13 +38,11 @@ namespace NLog.Targets
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Globalization;
-    using System.Security;
     using Internal.Fakeables;
-    using Common;
-    using Config;
-    using Internal;
-    using Layouts;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Writes log message to the Event Log.
@@ -122,6 +120,7 @@ namespace NLog.Targets
         /// <summary>
         /// Optional entrytype. When not set, or when not convertable to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
+        /// <docgen category='Event Log Options' order='10' />
         public Layout EntryType { get; set; }
 
         /// <summary>
@@ -141,12 +140,11 @@ namespace NLog.Targets
         [DefaultValue("Application")]
         public string Log { get; set; }
 
-        private int maxMessageLength;
-        
         /// <summary>
         /// Gets or sets the message length limit to write to the Event Log.
         /// </summary>
         /// <remarks><value>MaxMessageLength</value> cannot be zero or negative</remarks>
+        /// <docgen category='Event Log Options' order='10' />
         [DefaultValue(16384)]
         public int MaxMessageLength
         {
@@ -159,9 +157,7 @@ namespace NLog.Targets
                 maxMessageLength = value;
             }
         }
-
-              
-        private long? maxKilobytes;
+        private int maxMessageLength;
 
         /// <summary>
         /// Gets or sets the maximum Event log size in kilobytes.
@@ -171,6 +167,7 @@ namespace NLog.Targets
         /// Default is 512 Kilobytes as specified by Eventlog API
         /// </summary>
         /// <remarks><value>MaxKilobytes</value> cannot be less than 64 or greater than 4194240 or not a multiple of 64. If <c>null</c>, use the default value</remarks>
+        /// <docgen category='Event Log Options' order='10' />
         [DefaultValue(null)]
         public long? MaxKilobytes
         {
@@ -182,6 +179,7 @@ namespace NLog.Targets
                 maxKilobytes = value;
             }
         }
+        private long? maxKilobytes;
 
         /// <summary>
         /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.

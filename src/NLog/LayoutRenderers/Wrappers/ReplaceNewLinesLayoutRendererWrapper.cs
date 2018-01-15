@@ -33,10 +33,9 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using Config;
     using System;
     using System.ComponentModel;
-
+    using NLog.Config;
 
     /// <summary>
     /// Replaces newline characters from the result of another layout renderer with spaces.
@@ -57,9 +56,9 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating the string that should be used for separating lines.
         /// </summary>
+        /// <docgen category='Transformation Options' order='10' />
         [DefaultValue(" ")]
         public string Replacement { get; set; }
-
 
         /// <summary>
         /// Post-processes the rendered message. 

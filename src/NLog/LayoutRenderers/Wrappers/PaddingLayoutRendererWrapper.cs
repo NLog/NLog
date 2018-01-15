@@ -35,7 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
     using System.ComponentModel;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Applies padding to another layout output.
@@ -88,6 +88,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// or right-aligned (characters removed from the left). The
         /// default is left alignment.
         /// </summary>
+        /// <docgen category='Transformation Options' order='10' />RegistryLayoutRenderer
         [DefaultValue(PaddingHorizontalAlignment.Left)]
         public PaddingHorizontalAlignment AlignmentOnTruncation { get; set; }
 

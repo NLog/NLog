@@ -65,6 +65,7 @@ namespace NLog.Targets
         /// <summary>
         /// Always use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
         /// </summary>
+        /// <docgen category='Layout Options' order='100' />
         [DefaultValue(false)]
         public bool RawWrite { get; set; }
 

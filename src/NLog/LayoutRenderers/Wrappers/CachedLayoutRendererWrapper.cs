@@ -31,13 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using Config;
     using System;
     using System.ComponentModel;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Applies caching to another layout output.
@@ -87,11 +86,13 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating when the cache is cleared.
         /// </summary>
+        /// <docgen category='Caching Options' order='10' />
         public ClearCacheOption ClearCache { get; set; }
 
         /// <summary>
         /// Cachekey. If the cachekey changes, resets the value. For example, the cachekey would be the current day.s
         /// </summary>
+        /// <docgen category='Caching Options' order='10' />
         public Layout CacheKey { get; set; }
 
         /// <summary>

@@ -253,6 +253,7 @@ namespace NLog.Targets
         /// Cleanup invalid values in a filename, e.g. slashes in a filename. If set to <c>true</c>, this can impact the performance of massive writes. 
         /// If set to <c>false</c>, nothing gets written when the filename is wrong.
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(true)]
         public bool CleanupFileName
         {
@@ -272,6 +273,7 @@ namespace NLog.Targets
         /// <summary>
         /// Is the  <see cref="FileName"/> an absolute or relative path?
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(FilePathKind.Unknown)]
         public FilePathKind FileNameKind
         {
@@ -435,6 +437,7 @@ namespace NLog.Targets
         /// Gets or sets whether or not this target should just discard all data that its asked to write.
         /// Mostly used for when testing NLog Stack except final write
         /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
         [DefaultValue(false)]
         [Advanced]
         public bool DiscardAll { get; set; }
@@ -481,6 +484,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether to write BOM (byte order mark) in created files
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]
         public bool WriteBom { get; set; }
 
@@ -609,6 +613,7 @@ namespace NLog.Targets
         /// <summary>
         /// Is the  <see cref="ArchiveFileName"/> an absolute or relative path?
         /// </summary>
+        /// <docgen category='Archival Options' order='10' />
         public FilePathKind ArchiveFileKind
         {
             get => _archiveFileKind;
@@ -690,6 +695,7 @@ namespace NLog.Targets
         /// on platforms other than .Net4.5.
         /// Defaults to ZipArchiveFileCompressor on .Net4.5 and to null otherwise.
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         public static IFileCompressor FileCompressor { get; set; }
 
         /// <summary>
@@ -713,6 +719,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]
         public bool ForceManaged { get; set; }
 
@@ -720,6 +727,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
+        /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]
         public bool ForceMutexConcurrentWrites { get; set; }
 #endif
@@ -727,6 +735,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating whether the footer should be written only when the file is archived.
         /// </summary>
+        /// <docgen category='Archival Options' order='10' />
         [DefaultValue(false)]
         public bool WriteFooterOnArchivingOnly { get; set; }
 

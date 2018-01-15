@@ -37,7 +37,7 @@ namespace NLog.Filters
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
-    using Internal;
+    using NLog.Internal;
 
     /// <summary>
     /// Matches when the result of the calculated layout has been repeated a moment ago
@@ -50,12 +50,14 @@ namespace NLog.Filters
         /// <summary>
         /// How long before a filter expires, and logging is accepted again
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         [DefaultValue(10)]
         public int TimeoutSeconds { get; set; }
 
         /// <summary>
         /// Max length of filter values, will truncate if above limit
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         [DefaultValue(1000)]
         public int MaxLength { get; set; }
 
@@ -63,42 +65,49 @@ namespace NLog.Filters
         /// Applies the configured action to the initial logevent that starts the timeout period.
         /// Used to configure that it should ignore all events until timeout.
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         [DefaultValue(false)]
         public bool IncludeFirst { get; set; }
 
         /// <summary>
         /// Max number of unique filter values to expect simultaneously
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         [DefaultValue(50000)]
         public int MaxFilterCacheSize { get; set; }
 
         /// <summary>
         /// Default number of unique filter values to expect, will automatically increase if needed
         /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         [DefaultValue(1000)]
         public int DefaultFilterCacheSize { get; set; }
 
         /// <summary>
         /// Insert FilterCount value into <see cref="LogEventInfo.Properties"/> when an event is no longer filtered
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(null)]
         public string FilterCountPropertyName { get; set; }
 
         /// <summary>
         /// Append FilterCount to the <see cref="LogEventInfo.Message"/> when an event is no longer filtered
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(null)]
         public string FilterCountMessageAppendFormat { get; set; }
 
         /// <summary>
         /// Reuse internal buffers, and doesn't have to constantly allocate new buffers
         /// </summary>
+        /// <docgen category='Performance Options' order='10' />
         [DefaultValue(true)]
         public bool OptimizeBufferReuse { get; set; }
 
         /// <summary>
         /// Default buffer size for the internal buffers
         /// </summary>
+        /// <docgen category='Performance Options' order='10' />
         [DefaultValue(1000)]
         public int OptimizeBufferDefaultLength { get; set; }
 

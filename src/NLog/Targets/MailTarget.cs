@@ -213,7 +213,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to add new lines between log entries.
         /// </summary>
         /// <value>A value of <c>true</c> if new lines should be added; otherwise, <c>false</c>.</value>
-        /// <docgen category='Layout Options' order='99' />
+        /// <docgen category='Message Options' order='99' />
         public bool AddNewLines { get; set; }
 
         /// <summary>
@@ -239,14 +239,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets encoding to be used for sending e-mail.
         /// </summary>
-        /// <docgen category='Layout Options' order='20' />
+        /// <docgen category='Message Options' order='20' />
         [DefaultValue("UTF8")]
         public Encoding Encoding { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to send message as HTML instead of plain text.
         /// </summary>
-        /// <docgen category='Layout Options' order='11' />
+        /// <docgen category='Message Options' order='11' />
         [DefaultValue(false)]
         public bool Html { get; set; }
 
@@ -313,12 +313,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the priority used for sending mails.
         /// </summary>
+        /// <docgen category='Message Options' order='100' />
         public Layout Priority { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether NewLine characters in the body should be replaced with <br/> tags.
         /// </summary>
         /// <remarks>Only happens when <see cref="Html"/> is set to true.</remarks>
+        /// <docgen category='Message Options' order='100' />
         [DefaultValue(false)]
         public bool ReplaceNewlineWithBrTagInHtml { get; set; }
 
@@ -326,6 +328,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating the SMTP client timeout.
         /// </summary>
         /// <remarks>Warning: zero is not infinit waiting</remarks>
+        /// <docgen category='SMTP Options' order='100' />
         [DefaultValue(10000)]
         public int Timeout { get; set; }
 
