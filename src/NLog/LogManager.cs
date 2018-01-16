@@ -196,7 +196,7 @@ namespace NLog
                 };
             }
 
-            InternalLogger.Trace("Hidden Assembly ignored in CallSite StackTrace: {0}", assembly?.FullName);
+            InternalLogger.Trace("Assembly '{0}' will be hidden in callsite stacktrace", assembly?.FullName);
         }
 
         /// <summary>
