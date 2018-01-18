@@ -65,11 +65,6 @@ namespace NLog.Targets.FileArchiveModes
             _customArchiveFileName = customArchiveFileName;
         }
 
-        protected override FileNameTemplate GenerateFileNameTemplate(string archiveFilePath)
-        {
-            return null;
-        }
-
         private static bool RemoveNonLetters(string fileName, int startPosition, StringBuilder sb, out int digitsRemoved)
         {
             digitsRemoved = 0;
@@ -90,7 +85,9 @@ namespace NLog.Targets.FileArchiveModes
                     {
                         wildCardActive = true;
                         digitsRemoved = 1;
-                        sb.Append('*');
+                        sb.Append('{');
+                        sb.Append('#');
+                        sb.Append('}');
                     }
                     else if (!wildCardActive.Value)
                     {
@@ -117,7 +114,7 @@ namespace NLog.Targets.FileArchiveModes
             return wildCardActive.HasValue;
         }
 
-        protected override string GenerateFileNameMask(string archiveFilePath, FileNameTemplate fileTemplate)
+        protected override FileNameTemplate GenerateFileNameTemplate(string archiveFilePath)
         {
             string currentFileName = Path.GetFileNameWithoutExtension(archiveFilePath);
             int digitsRemoved;
@@ -155,17 +152,84 @@ namespace NLog.Targets.FileArchiveModes
                 case ArchiveNumberingMode.DateAndSequence:
                     {
                         // Force sequence-number into template (Just before extension)
-                        if (sb.Length > 0 && sb[sb.Length - 1] != '*')
-                            sb.Append('*');
+                        if (sb.Length > 3 && sb[sb.Length - 3] != '{' && sb[sb.Length - 2] != '#' && sb[sb.Length - 1] != '}')
+                        {
+                            if (digitsRemoved <= 1)
+                            {
+                                sb.Append("{");
+                                sb.Append("#");
+                                sb.Append("}");
+                            }
+                            else
+                            {
+                                sb.Append('*');
+                            }
+                        }
                     }
                     break;
             }
             sb.Append(Path.GetExtension(archiveFilePath));
-            return sb.ToString();
+            return base.GenerateFileNameTemplate(sb.ToString());
         }
 
         protected override DateAndSequenceArchive GenerateArchiveFileInfo(FileInfo archiveFile, FileNameTemplate fileTemplate)
         {
+            if (fileTemplate?.EndAt > 0)
+            {
+                string filename = archiveFile.Name;
+                int templatePos = 0;
+                for (int i = 0; i < filename.Length; ++i)
+                {
+                    char fileNameChar = filename[i];
+
+                    if (templatePos >= fileTemplate.Template.Length)
+                    {
+                        if (char.IsLetter(fileNameChar))
+                            return null;    // reached end of template, but still letters
+
+                        break;
+                    }
+
+                    char templateChar;
+                    if (templatePos < fileTemplate.EndAt && i >= fileTemplate.BeginAt)
+                    {
+                        // Inside wildcard, skip validation of non-letters
+                        if (char.IsLetter(fileNameChar))
+                        {
+                            templatePos = fileTemplate.EndAt;
+                            do
+                            {
+                                if (templatePos >= fileTemplate.Template.Length)
+                                    return null;    // reached end of template, but still letters
+                                templateChar = fileTemplate.Template[templatePos];
+                                ++templatePos;
+                            } while (!char.IsLetter(templateChar));
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        templateChar = fileTemplate.Template[templatePos];
+                        ++templatePos;
+                    }
+
+                    if (fileNameChar == templateChar || char.ToLowerInvariant(fileNameChar) == char.ToLowerInvariant(templateChar))
+                    {
+                        continue;
+                    }
+
+                    if (templateChar == '*' && !char.IsLetter(fileNameChar))
+                    {
+                        break;  // Reached archive-seq-no, lets call it a day
+                    }
+
+                    return null; // filename is not matching file-template
+                }
+            }
+
             int sequenceNumber = ExtractArchiveNumberFromFileName(archiveFile.FullName);
             InternalLogger.Trace("FileTarget: extracted sequenceNumber: {0} from file '{1}'", sequenceNumber, archiveFile.FullName);
             var creationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(archiveFile, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
