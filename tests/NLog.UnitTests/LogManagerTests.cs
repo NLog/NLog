@@ -519,8 +519,8 @@ namespace NLog.UnitTests
         [Fact]
         public void ThreadSafe_getCurrentClassLogger_test()
         {
-            MemoryQueueTarget mTarget = new MemoryQueueTarget(1000);
-            MemoryQueueTarget mTarget2 = new MemoryQueueTarget(1000);
+            MemoryQueueTarget mTarget = new MemoryQueueTarget(1000) { Name = "memory" };
+            MemoryQueueTarget mTarget2 = new MemoryQueueTarget(1000) { Name = "memory2" };
 
             var task1 = Task.Run(() =>
             {
@@ -528,8 +528,8 @@ namespace NLog.UnitTests
                 LogManager.Configuration = new LoggingConfiguration();
                 LogManager.ThrowExceptions = true;
 
-                LogManager.Configuration.AddTarget("memory", mTarget);
-                LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget));
+                LogManager.Configuration.AddTarget(mTarget.Name, mTarget);
+                LogManager.Configuration.AddRuleForAllLevels(mTarget.Name);
                 System.Threading.Thread.Sleep(1);
                 LogManager.ReconfigExistingLoggers();
                 System.Threading.Thread.Sleep(1);
@@ -538,8 +538,8 @@ namespace NLog.UnitTests
 
             var task2 = task1.ContinueWith((t) =>
             {
-                LogManager.Configuration.AddTarget("memory2", mTarget2);
-                LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, mTarget2));
+                LogManager.Configuration.AddTarget(mTarget2.Name, mTarget2);
+                LogManager.Configuration.AddRuleForAllLevels(mTarget2.Name);
                 System.Threading.Thread.Sleep(1);
                 LogManager.ReconfigExistingLoggers();
                 System.Threading.Thread.Sleep(1);

@@ -124,6 +124,17 @@ namespace NLog.UnitTests.Targets
         [MemberData(nameof(SimpleFileTest_TestParameters))]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
+#if MONO
+            if (IsTravis())
+            {
+                if (concurrentWrites && keepFileOpen)
+                {
+                    Console.WriteLine("[SKIP] FileTargetTests.SimpleFileDeleteTest(concurrentWrites: True, keepFileOpen: True) because we are running in Travis");
+                    return;
+                }
+            }
+#endif
+
             var logFile = Path.GetTempFileName();
             var logFile2 = Path.Combine(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()), Path.GetFileName(logFile));
 
@@ -154,7 +165,7 @@ namespace NLog.UnitTests.Targets
                 File.Move(logFile, logFile2);
                 if (keepFileOpen)
 #if MONO
-                    Thread.Sleep(1000); // Allow AutoClose-Timer-Thread to react (FileWatcher depends on operating system, fallback to polling every 3 secs)
+                    Thread.Sleep(500); // Allow AutoClose-Timer-Thread to react (FileWatcher depends on operating system, fallback to polling every 3 secs)
 #else
                     Thread.Sleep(150);  // Allow AutoClose-Timer-Thread to react (FileWatcher schedules timer after 50 msec)
 #endif
@@ -2693,8 +2704,8 @@ namespace NLog.UnitTests.Targets
             const int maxArchiveFiles = 5;
 
             var tempPath = ArchiveFileNameHelper.GenerateTempPath();
-            var logFile1 = Path.Combine(tempPath, "FirstFile{0}.txt");
-            var logFile2 = Path.Combine(tempPath, "SecondFile{0}.txt");
+            var logFile1 = Path.Combine(tempPath, "log{0}.txt");
+            var logFile2 = Path.Combine(tempPath, "log-other{0}.txt");
 
             var defaultTimeSource = TimeSource.Current;
             try
