@@ -202,6 +202,8 @@ namespace NLog
                     assembly
                 };
             }
+
+            InternalLogger.Trace("Assembly '{0}' will be hidden in callsite stacktrace", assembly?.FullName);
         }
 
         /// <summary>

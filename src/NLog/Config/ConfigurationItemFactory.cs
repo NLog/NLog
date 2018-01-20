@@ -395,6 +395,7 @@ namespace NLog.Config
 
                 InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
                 HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                alreadyRegistered.Add(nlogAssembly.FullName);
                 foreach (var extensionDll in extensionDlls)
                 {
                     InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
@@ -435,10 +436,13 @@ namespace NLog.Config
                         }
                     }
 
-                    if ( assembly.FullName.StartsWith("NLog.Extensions.Logging", StringComparison.OrdinalIgnoreCase)
-                      || assembly.FullName.StartsWith("NLog.Web", StringComparison.OrdinalIgnoreCase)
-                      || assembly.FullName.StartsWith("Microsoft.Extensions.Logging", StringComparison.OrdinalIgnoreCase)
-                      || assembly.FullName.StartsWith("Microsoft.Logging", StringComparison.OrdinalIgnoreCase))
+                    if ( assembly.FullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
+                      || assembly.FullName.StartsWith("NLog.Web,", StringComparison.OrdinalIgnoreCase)
+                      || assembly.FullName.StartsWith("NLog.Web.AspNetCore,", StringComparison.OrdinalIgnoreCase)
+                      || assembly.FullName.StartsWith("Microsoft.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
+                      || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Abstractions,", StringComparison.OrdinalIgnoreCase)
+                      || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Filter,", StringComparison.OrdinalIgnoreCase)
+                      || assembly.FullName.StartsWith("Microsoft.Logging,", StringComparison.OrdinalIgnoreCase))
                     {
                         LogManager.AddHiddenAssembly(assembly);
                     }
