@@ -69,6 +69,9 @@ namespace NLog.Targets
             instance = new DefaultJsonSerializer();
         }
 
+        /// <summary>
+        /// Private. Use <see cref="Instance"/>
+        /// </summary>
         private DefaultJsonSerializer()
         { }
 
