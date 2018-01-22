@@ -34,6 +34,7 @@
 using System;
 using System.Collections;
 using System.Text;
+using NLog.Config;
 using NLog.Internal;
 
 namespace NLog.MessageTemplates
@@ -61,7 +62,14 @@ namespace NLog.MessageTemplates
 
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
 
-        /// <inheritDoc/>
+        /// <summary>
+        /// Convert a object to a string without format and double quotes and append to <paramref name="builder"/>.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="format">Format, not used</param>
+        /// <param name="formatProvider">Format provider for the value.</param>
+        /// <param name="builder">Append to this</param>
+        /// <returns></returns>
         public bool StringifyObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
             builder.Append('"');
@@ -70,7 +78,14 @@ namespace NLog.MessageTemplates
             return true;
         }
 
-        /// <inheritDoc/>
+        /// <summary>
+        /// Format an object to a readable string, or if it's an object, serialize
+        /// </summary>
+        /// <param name="value">The value to convert</param>
+        /// <param name="format"></param>
+        /// <param name="formatProvider"></param>
+        /// <param name="builder"></param>
+        /// <returns></returns>
         public bool FormatObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
             if (SerializeSimpleObject(value, format, formatProvider, builder))
@@ -88,12 +103,27 @@ namespace NLog.MessageTemplates
             return true;
         }
 
-        /// <inheritDoc/>
+        /// <summary>
+        /// Serialize an object to JSON with the help of <see cref="ConfigurationItemFactory.JsonConverter"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="format"></param>
+        /// <param name="formatProvider"></param>
+        /// <param name="builder"></param>
+        /// <returns></returns>
         public bool SerializeObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
             return Config.ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
         }
 
+        /// <summary>
+        /// Try serialising a scalar (string, int, NULL) or simple type (IFormattable)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="format"></param>
+        /// <param name="formatProvider"></param>
+        /// <param name="builder"></param>
+        /// <returns></returns>
         private bool SerializeSimpleObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
             // todo support all scalar types: 
@@ -173,6 +203,12 @@ namespace NLog.MessageTemplates
             return false;
         }
 
+        /// <summary>
+        /// Apend a int type (byte, int) as string
+        /// </summary>
+        /// <param name="sb"></param>
+        /// <param name="value"></param>
+        /// <param name="objTypeCode"></param>
         private static void AppendIntegerAsString(StringBuilder sb, object value, TypeCode objTypeCode)
         {
             switch (objTypeCode)
@@ -245,6 +281,19 @@ namespace NLog.MessageTemplates
             }
         }
 
+        /// <summary>
+        /// Serialize Dictionary as JSON like structure, without { and }
+        /// </summary>
+        /// <example>
+        /// "FirstOrder"=true, "Previous login"=20-12-2017 14:55:32, "number of tries"=1
+        /// </example>
+        /// <param name="dictionary"></param>
+        /// <param name="format">formatstring of an item</param>
+        /// <param name="formatProvider"></param>
+        /// <param name="builder"></param>
+        /// <param name="objectsInPath"></param>
+        /// <param name="depth"></param>
+        /// <returns></returns>
         private bool SerializeDictionaryObject(IDictionary dictionary, string format, IFormatProvider formatProvider, StringBuilder builder, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             bool separator = false;
@@ -289,6 +338,13 @@ namespace NLog.MessageTemplates
             return true;
         }
 
+        /// <summary>
+        /// Convert a value to a string with format and append to <paramref name="builder"/>.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="format">Format sting for the value.</param>
+        /// <param name="formatProvider">Format provider for the value.</param>
+        /// <param name="builder">Append to this</param>
         public static void FormatToString(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
             var stringValue = value as string;
