@@ -153,24 +153,13 @@ namespace NLog.MessageTemplates
                 return;
             }
 
-            switch (captureType)
+            if (captureType == CaptureType.Normal && legacy)
             {
-                case CaptureType.Stringify:
-                    ValueSerializer.Instance.StringifyObject(value, holeFormat, formatProvider, sb);
-                    break;
-                case CaptureType.Serialize:
-                    ValueSerializer.Instance.SerializeObject(value, holeFormat, formatProvider, sb);
-                    break;
-                default:
-                    if (legacy)
-                    {
-                        ValueSerializer.FormatToString(value, holeFormat, formatProvider, sb);
-                    }
-                    else
-                    {
-                        ValueSerializer.Instance.FormatObject(value, holeFormat, formatProvider, sb);
-                    }
-                    break;
+                ValueFormatter.FormatToString(value, holeFormat, formatProvider, sb);
+            }
+            else
+            {
+                ValueFormatter.Instance.FormatValue(value, holeFormat, captureType, formatProvider, sb);
             }
         }
     }

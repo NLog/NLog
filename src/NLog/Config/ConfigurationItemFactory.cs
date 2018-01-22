@@ -187,10 +187,10 @@ namespace NLog.Config
         /// <summary>
         /// Gets or sets the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
         /// </summary>
-        public IValueSerializer ValueSerializer
+        public IValueFormatter ValueFormatter
         {
-            get => MessageTemplates.ValueSerializer.Instance;
-            set => MessageTemplates.ValueSerializer.Instance = value;
+            get => MessageTemplates.ValueFormatter.Instance;
+            set => MessageTemplates.ValueFormatter.Instance = value;
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace NLog.Config
         /// </summary>
         /// <remarks>
         /// - Null (Auto Detect) : NLog-parser checks <see cref="LogEventInfo.Message"/> for positional parameters, and will then fallback to string.Format-rendering.
-        /// - True: Always performs the parsing of <see cref="LogEventInfo.Message"/> and rendering of <see cref="LogEventInfo.FormattedMessage"/> using the NLog-parser (Allows custom formatting with <see cref="ValueSerializer"/>)
+        /// - True: Always performs the parsing of <see cref="LogEventInfo.Message"/> and rendering of <see cref="LogEventInfo.FormattedMessage"/> using the NLog-parser (Allows custom formatting with <see cref="ValueFormatter"/>)
         /// - False: Always performs parsing and rendering using string.Format (Fastest if not using structured logging)
         /// </remarks>
         public bool? ParseMessageTemplates
