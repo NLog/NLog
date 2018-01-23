@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.UnitTests.Common;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -1831,13 +1833,7 @@ namespace NLog.UnitTests
         [InlineData(true, "OrderId", "Client")] //succeeeds, but gives JSON like (no quoted key, missing quotes arround string, =, other spacing)
         public void MixedStructuredEventsConfigTest(bool? parseMessageTemplates, string param1, string param2)
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-                <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
-                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
-                    <rules>
-                        <logger name='*' writeTo='debug' />
-                    </rules>
-                </nlog>");
+            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
             ILogger logger = LogManager.GetLogger("A");
             logger.Debug("Process order {" + param1 + "} for {" + param2 + "}", 13424, new { ClientId = 3001, ClientName = "John Doe" });
 
@@ -1867,6 +1863,25 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", $"Process order {param1Value} for {param2Value}");
         }
 
+
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        [InlineData(null)]
+        public void TooManyStructuredParametersShouldKeepBeInParamList(bool? parseMessageTemplates)
+        {
+            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates, "LastLogEvent");
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("Hello World {0}", "world", "universe");
+            var target = LogManager.Configuration.FindTargetByName<LastLogEventListTarget>("debug");
+
+            Assert.Equal(2, target.LastLogEvent.Parameters.Length);
+            Assert.Equal("world", target.LastLogEvent.Parameters[0]);
+            Assert.Equal("universe", target.LastLogEvent.Parameters[1]);
+
+        }
+
         [Theory]
         [InlineData(true, null)]
         [InlineData(false, null)]
@@ -1875,13 +1890,7 @@ namespace NLog.UnitTests
         [InlineData(null, null)]
         public void StructuredEventsConfigTest(bool? parseMessageTemplates, bool? overrideParseMessageTemplates)
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-                <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
-                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
-                    <rules>
-                        <logger name='*' writeTo='debug' />
-                    </rules>
-                </nlog>");
+            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
 
             if (parseMessageTemplates.HasValue)
             {
@@ -2193,6 +2202,17 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Important Noise");
         }
 
+
+        private static XmlLoggingConfiguration CreateSimpleDebugConfig(bool? parseMessageTemplates, string targetType = "Debug")
+        {
+            return CreateConfigurationFromString(@"
+                <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
+                    <targets><target name='debug' type='"+targetType+@"' layout='${message}${exception}' /></targets>
+                    <rules>
+                        <logger name='*' writeTo='debug' />
+                    </rules>
+                </nlog>");
+        }
 
         private class Person
         {
