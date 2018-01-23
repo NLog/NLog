@@ -1814,6 +1814,34 @@ namespace NLog.UnitTests
         }
 
         [Theory]
+        [InlineData(null, "OrderId", "@Client")]
+        [InlineData(true, "OrderId", "@Client")]
+        [InlineData(null, "0", "@Client")] //fails: gives "Process order {0} for {@Client}"
+        [InlineData(true, "0", "@Client")] //fails: gives "...ess order 13424 for 13424"
+        [InlineData(true, "OrderId", "Client")] //succeeeds, but gives JSON like (no quoted key, missing quotes arround string, =, other spacing)
+        public void MixedStructuredEventsConfigTest(bool? parseMessageTemplates, string param1, string param2)
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
+                    <rules>
+                        <logger name='*' writeTo='debug' />
+                    </rules>
+                </nlog>");
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("Process order {"+ param1 + "} for {" + param2 + "}", 13424, new {ClientId = 3001, ClientName = "John Doe"});
+
+            if (param2.StartsWith("@"))
+            {
+                AssertDebugLastMessage("debug", "Process order 13424 for {\"ClientId\":3001, \"ClientName\":\"John Doe\"}");
+            }
+            else
+            {
+                AssertDebugLastMessage("debug", "Process order 13424 for { ClientId = 3001, ClientName = John Doe }"); //todo no quoted key? Other layout than JSON?
+            }
+        }
+
+        [Theory]
         [InlineData(true, null)]
         [InlineData(false, null)]
         [InlineData(null, true)]
