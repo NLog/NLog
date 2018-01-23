@@ -196,6 +196,11 @@ namespace NLog.MessageTemplates
             _literalLength = 0;
         }
 
+        /// <summary>
+        /// Parse name and output parameterIndex
+        /// </summary>
+        /// <param name="parameterIndex">-1 for non-indexed</param>
+        /// <returns></returns>
         private string ParseName(out int parameterIndex)
         {
             parameterIndex = -1;

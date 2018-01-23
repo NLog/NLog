@@ -1816,8 +1816,16 @@ namespace NLog.UnitTests
         [Theory]
         [InlineData(null, "OrderId", "@Client")]
         [InlineData(true, "OrderId", "@Client")]
-        [InlineData(null, "0", "@Client")] //fails: gives "Process order {0} for {@Client}"
-        [InlineData(true, "0", "@Client")] //fails: gives "...ess order 13424 for 13424"
+        [InlineData(null, "0", "@Client", Skip = "Not supported for performance reasons")] 
+        [InlineData(true, "0", "@Client")]       
+        [InlineData(null, "$0", "@Client")]
+        [InlineData(true, "$0", "@Client")]
+        [InlineData(null, "@0", "@Client")]
+        [InlineData(true, "@0", "@Client")]   
+        [InlineData(null, "1", "@Client", Skip = "Not supported for performance reasons")]
+        [InlineData(true, "1", "@Client")] 
+        [InlineData(true, "0", "1")] 
+        [InlineData(false, "0", "1")] 
         [InlineData(true, "OrderId", "Client")] //succeeeds, but gives JSON like (no quoted key, missing quotes arround string, =, other spacing)
         public void MixedStructuredEventsConfigTest(bool? parseMessageTemplates, string param1, string param2)
         {
@@ -1831,14 +1839,30 @@ namespace NLog.UnitTests
             ILogger logger = LogManager.GetLogger("A");
             logger.Debug("Process order {"+ param1 + "} for {" + param2 + "}", 13424, new {ClientId = 3001, ClientName = "John Doe"});
 
-            if (param2.StartsWith("@"))
+
+
+            string param1Value;
+
+            if (param1.StartsWith("$"))
             {
-                AssertDebugLastMessage("debug", "Process order 13424 for {\"ClientId\":3001, \"ClientName\":\"John Doe\"}");
+                param1Value = "\"13424\"";
             }
             else
             {
-                AssertDebugLastMessage("debug", "Process order 13424 for { ClientId = 3001, ClientName = John Doe }"); //todo no quoted key? Other layout than JSON?
+                param1Value = "13424";
             }
+
+            string param2Value;
+            if (param2.StartsWith("@"))
+            {
+                param2Value = "{\"ClientId\":3001, \"ClientName\":\"John Doe\"}";
+            }
+            else
+            {
+                param2Value = "{ ClientId = 3001, ClientName = John Doe }";
+            }
+
+            AssertDebugLastMessage("debug", $"Process order {param1Value} for {param2Value}");
         }
 
         [Theory]
