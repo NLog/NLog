@@ -1814,6 +1814,60 @@ namespace NLog.UnitTests
         }
 
         [Theory]
+        [InlineData(null, "OrderId", "@Client")]
+        [InlineData(true, "OrderId", "@Client")]
+        [InlineData(null, "0", "@Client", Skip = "Not supported for performance reasons")]
+        [InlineData(true, "0", "@Client")]
+        [InlineData(null, "$0", "@Client")]
+        [InlineData(true, "$0", "@Client")]
+        [InlineData(null, "@0", "@Client")]
+        [InlineData(true, "@0", "@Client")]
+        [InlineData(null, "1", "@Client", Skip = "Not supported for performance reasons")]
+        [InlineData(true, "1", "@Client")]
+        [InlineData(null, "@Client", "1")]
+        [InlineData(true, "@Client", "1")]
+        [InlineData(true, "0", "1")]
+        [InlineData(false, "0", "1")]
+        [InlineData(true, "OrderId", "Client")] //succeeeds, but gives JSON like (no quoted key, missing quotes arround string, =, other spacing)
+        public void MixedStructuredEventsConfigTest(bool? parseMessageTemplates, string param1, string param2)
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
+                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
+                    <rules>
+                        <logger name='*' writeTo='debug' />
+                    </rules>
+                </nlog>");
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("Process order {" + param1 + "} for {" + param2 + "}", 13424, new { ClientId = 3001, ClientName = "John Doe" });
+
+
+
+            string param1Value;
+
+            if (param1.StartsWith("$"))
+            {
+                param1Value = "\"13424\"";
+            }
+            else
+            {
+                param1Value = "13424";
+            }
+
+            string param2Value;
+            if (param2.StartsWith("@"))
+            {
+                param2Value = "{\"ClientId\":3001, \"ClientName\":\"John Doe\"}";
+            }
+            else
+            {
+                param2Value = "{ ClientId = 3001, ClientName = John Doe }";
+            }
+
+            AssertDebugLastMessage("debug", $"Process order {param1Value} for {param2Value}");
+        }
+
+        [Theory]
         [InlineData(true, null)]
         [InlineData(false, null)]
         [InlineData(null, true)]
