@@ -1250,7 +1250,7 @@ Dispose()
             databaseTarget.Initialize(null);
             Assert.NotNull(databaseTarget.ProviderFactory);
             Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
-            Assert.Equal(((NLog.Layouts.SimpleLayout)databaseTarget.ConnectionString).FixedText, "data source=192.168.0.100;initial catalog=TEST_DB;user id=myUser;password=SecretPassword;multipleactiveresultsets=True;application name=EntityFramework");
+            Assert.Equal("data source=192.168.0.100;initial catalog=TEST_DB;user id=myUser;password=SecretPassword;multipleactiveresultsets=True;application name=EntityFramework", ((NLog.Layouts.SimpleLayout)databaseTarget.ConnectionString).FixedText);
         }
 #endif
 
