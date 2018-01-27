@@ -120,19 +120,21 @@ namespace NLog.Config
         /// <summary>
         /// Gets a collection of targets that should be written to when this rule matches.
         /// </summary>
-        public IList<Target> Targets { get; private set; }
+        public IList<Target> Targets { get; }
 
         /// <summary>
         /// Gets a collection of child rules to be evaluated when this rule matches.
         /// </summary>
-        public IList<LoggingRule> ChildRules { get; private set; }
+        public IList<LoggingRule> ChildRules { get; }
 
-        internal List<LoggingRule> CloneChildRulesThreadSafe() { lock (ChildRules) return ChildRules.ToList(); }
+        internal List<LoggingRule> GetChildRulesThreadSafe() { lock (ChildRules) return ChildRules.ToList(); }
+        internal List<Target> GetTargetsThreadSafe() { lock (Targets) return Targets.ToList(); }
+        internal bool RemoveTargetThreadSafe(Target target) { lock (Targets) return Targets.Remove(target); }
 
         /// <summary>
         /// Gets a collection of filters to be checked before writing to targets.
         /// </summary>
-        public IList<Filter> Filters { get; private set; }
+        public IList<Filter> Filters { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to quit processing any further rule when this one matches.
@@ -305,7 +307,7 @@ namespace NLog.Config
             }
 
             sb.Append("] appendTo: [ ");
-            foreach (Target app in Targets)
+            foreach (Target app in GetTargetsThreadSafe())
             {
                 sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", app.Name);
             }
