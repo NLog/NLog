@@ -2111,6 +2111,34 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Login request from \"John\" for \"BestApplicationEver\"{ \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
         }
 
+        [Fact]
+        public void TestOptimizedBlackHoleLogger()
+        {
+            LogManager.ThrowExceptions = true;
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug' layout='${message}' />
+                    </targets>
+                    <rules>
+                        <logger name='Microsoft*' maxLevel='Info' writeTo='' final='true' />
+                        <logger name='*' minlevel='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            ILogger loggerMicrosoft = LogManager.GetLogger("Microsoft.NoiseGenerator");
+            ILogger loggerA = LogManager.GetLogger("A");
+
+            loggerMicrosoft.Warn("Important Noise");
+            AssertDebugLastMessage("debug", "Important Noise");
+            loggerMicrosoft.Debug("White Noise");
+            AssertDebugLastMessage("debug", "Important Noise");
+            loggerA.Debug("Good Noise");
+            AssertDebugLastMessage("debug", "Good Noise");
+            loggerA.Error("Important Noise");
+            AssertDebugLastMessage("debug", "Important Noise");
+        }
+
 
         private class Person
         {

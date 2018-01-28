@@ -703,6 +703,9 @@ namespace NLog.Config
                 foreach (string t in appendTo.Split(','))
                 {
                     string targetName = t.Trim();
+                    if (string.IsNullOrEmpty(targetName))
+                        continue;
+
                     Target target = FindTargetByName(targetName);
 
                     if (target != null)
