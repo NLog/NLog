@@ -100,6 +100,7 @@ namespace NLog.Targets
             MaxMessageSize = 65000;
             ConnectionCacheSize = 5;
             LineEnding = LineEndingMode.CRLF;
+            OptimizeBufferReuse = GetType() == typeof(NetworkTarget);
         }
 
         /// <summary>
@@ -268,7 +269,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            string address = Address.Render(logEvent.LogEvent);
+            string address = RenderLogEvent(Address, logEvent.LogEvent);
             InternalLogger.Trace("Sending to address:  '{0}'", address);
 
             byte[] bytes = GetBytesToWrite(logEvent.LogEvent);
@@ -385,7 +386,7 @@ namespace NLog.Targets
         {
             string text;
 
-            var rendered = Layout.Render(logEvent);
+            var rendered = RenderLogEvent(Layout, logEvent);
             InternalLogger.Trace("Sending: {0}", rendered);
 
             if (NewLine)
