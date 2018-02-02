@@ -187,7 +187,7 @@ namespace NLog.Targets
 
             WriteFooterOnArchivingOnly = false;
 
-            OptimizeBufferReuse = GetType() == typeof(FileTarget);    // Pure FileTarget has support
+            OptimizeBufferReuse = GetType() == typeof(FileTarget);    // Class not sealed, reduce breaking changes
         }
 
 #if NET4_5

@@ -100,7 +100,7 @@ namespace NLog.Targets
             MaxMessageSize = 65000;
             ConnectionCacheSize = 5;
             LineEnding = LineEndingMode.CRLF;
-            OptimizeBufferReuse = GetType() == typeof(NetworkTarget);
+            OptimizeBufferReuse = GetType() == typeof(NetworkTarget);   // Class not sealed, reduce breaking changes
         }
 
         /// <summary>

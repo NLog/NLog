@@ -197,7 +197,7 @@ namespace NLog.Targets.Wrappers
         {
             base.InitializeTarget();
             if (!OptimizeBufferReuse && WrappedTarget != null && WrappedTarget.OptimizeBufferReuse)
-                OptimizeBufferReuse = GetType() == typeof(AsyncTargetWrapper); // TODO NLog 5 - Manual Opt-Out
+                OptimizeBufferReuse = GetType() == typeof(AsyncTargetWrapper); // Class not sealed, reduce breaking changes
 
             RequestQueue.Clear();
             InternalLogger.Trace("AsyncWrapper '{0}': start timer", Name);

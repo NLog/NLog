@@ -102,7 +102,7 @@ namespace NLog.Targets
             ConnectionStringsSettings = ConfigurationManager.ConnectionStrings;
 #endif
             CommandType = CommandType.Text;
-            OptimizeBufferReuse = GetType() == typeof(DatabaseTarget);
+            OptimizeBufferReuse = GetType() == typeof(DatabaseTarget);  // Class not sealed, reduce breaking changes
         }
 
         /// <summary>

@@ -82,7 +82,7 @@ namespace NLog.Targets
             OnConnectionOverflow = NetworkTargetConnectionsOverflowAction.Block;
             MaxConnections = 16;
             NewLine = false;
-            OptimizeBufferReuse = GetType() == typeof(NLogViewerTarget);
+            OptimizeBufferReuse = GetType() == typeof(NLogViewerTarget);    // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
