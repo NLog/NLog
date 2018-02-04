@@ -39,6 +39,7 @@ namespace NLog.Targets
     using System.Text;
     using System.Threading;
     using NLog.Common;
+    using NLog.Internal;
     using NLog.Internal.NetworkSenders;
     using NLog.Layouts;
 
@@ -84,6 +85,8 @@ namespace NLog.Targets
     {
         private readonly Dictionary<string, LinkedListNode<NetworkSender>> _currentSenderCache = new Dictionary<string, LinkedListNode<NetworkSender>>();
         private readonly LinkedList<NetworkSender> _openNetworkSenders = new LinkedList<NetworkSender>();
+
+        private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(16 * 1024);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
@@ -384,21 +387,53 @@ namespace NLog.Targets
         /// <returns>Byte array.</returns>
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
-            string text;
-
-            var rendered = RenderLogEvent(Layout, logEvent);
-            InternalLogger.Trace("Sending: {0}", rendered);
-
-            if (NewLine)
+            if (OptimizeBufferReuse)
             {
-                text = rendered + LineEnding.NewLineCharacters;
+                if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out string text))
+                {
+                    InternalLogger.Trace("{0} - Sending {1}", this, text);
+                    return Encoding.GetBytes(text);
+                }
+                else
+                {
+                    using (var localBuilder = ReusableLayoutBuilder.Allocate())
+                    {
+                        Layout.RenderAppendBuilder(logEvent, localBuilder.Result, false);
+                        if (NewLine)
+                        {
+                            localBuilder.Result.Append(LineEnding.NewLineCharacters);
+                        }
+
+                        InternalLogger.Trace("{0} - Sending {1} chars", this, localBuilder.Result.Length);
+
+                        using (var localBuffer = _reusableEncodingBuffer.Allocate())
+                        {
+#if !SILVERLIGHT
+                            if (localBuilder.Result.Length <= localBuffer.Result.Length)
+                            {
+                                localBuilder.Result.CopyTo(0, localBuffer.Result, 0, localBuilder.Result.Length);
+                                return Encoding.GetBytes(localBuffer.Result, 0, localBuilder.Result.Length);
+                            }
+                            else
+#endif
+                            {
+                                var rendered = localBuilder.Result.ToString();
+                                return Encoding.GetBytes(rendered);
+                            }
+                        }
+                    }
+                }
             }
             else
             {
-                text = rendered;
+                var rendered = Layout.Render(logEvent);
+                InternalLogger.Trace("{0} - Sending: {1}", this, rendered);
+                if (NewLine)
+                {
+                    rendered += LineEnding.NewLineCharacters;
+                }
+                return Encoding.GetBytes(rendered);
             }
-
-            return Encoding.GetBytes(text);
         }
 
         private LinkedListNode<NetworkSender> GetCachedNetworkSender(string address)
