@@ -35,8 +35,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Text;
+using NLog.Common;
 using NLog.Internal;
 
 namespace NLog.Targets
@@ -729,12 +731,22 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                Common.InternalLogger.Warn(ex, "Failed to get JSON properties for type: {0}", type);
+                InternalLogger.Warn(ex, "Failed to get JSON properties for type: {0}", type);
             }
             finally
             {
                 if (properties == null)
                     properties = ArrayHelper.Empty<PropertyInfo>();
+            }
+
+            // Skip Index-Item-Properties (Ex. public string this[int Index])
+            foreach (var prop in properties)
+            {
+                if (!prop.CanRead || prop.GetIndexParameters().Length != 0 || prop.GetGetMethod() == null)
+                {
+                    properties = properties.Where(p => p.CanRead && p.GetIndexParameters().Length == 0 && p.GetGetMethod() != null).ToArray();
+                    break;
+                }
             }
 
             props = new KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>(properties, ArrayHelper.Empty<ReflectionHelpers.LateBoundMethod>());

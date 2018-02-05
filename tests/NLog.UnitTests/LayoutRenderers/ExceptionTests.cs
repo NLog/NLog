@@ -685,9 +685,12 @@ namespace NLog.UnitTests.LayoutRenderers
                 :base(message)
             {
                 ParamName = paramName;
+                StrangeProperty = "Strange World";
             }
 
             public string ParamName { get; }
+
+            public string StrangeProperty { private get; set; }
         }
 
         [Fact]
