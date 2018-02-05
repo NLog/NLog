@@ -559,11 +559,7 @@ namespace NLog.UnitTests.Layouts
 
             ILogger logger = LogManager.GetLogger("A");
 
-            var logEventInfo = new LogEventInfo();
-
-            logEventInfo.Properties.Add("nestedObject", new List<object> {new {val = "value1", val2 ="value2"}});
-
-            logger.Debug(logEventInfo);
+            logger.Debug("{@nestedObject}", new List<object> { new { val = "value1", val2 = "value2" } });
 
             AssertDebugLastMessage("debug", "{ \"nestedObject\": [{\"val\":\"value1\", \"val2\":\"value2\"}] }");
         }

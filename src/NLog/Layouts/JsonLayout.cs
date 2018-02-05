@@ -52,6 +52,12 @@ namespace NLog.Layouts
             set => _jsonConverter = value;
         }
         private IJsonConverter _jsonConverter = null;
+        private IValueFormatter ValueFormatter
+        {
+            get => _valueFormatter ?? (_valueFormatter = ConfigurationItemFactory.Default.ValueFormatter);
+            set => _valueFormatter = value;
+        }
+        private IValueFormatter _valueFormatter = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLayout"/> class.
@@ -98,7 +104,7 @@ namespace NLog.Layouts
 #endif
 
         /// <summary>
-        /// Gets or sets the option to include all properties from the log events
+        /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
         /// <docgen category='JSON Options' order='10' />
         public bool IncludeAllProperties { get; set; }
@@ -175,7 +181,7 @@ namespace NLog.Layouts
             {
                 var attrib = Attributes[i];
                 int beforeAttribLength = sb.Length;
-                if (!RenderAppendJsonPropertyValue(attrib, logEvent, false, sb, sb.Length == orgLength))
+                if (!RenderAppendJsonPropertyValue(attrib, logEvent, sb, sb.Length == orgLength))
                 {
                     sb.Length = beforeAttribLength;
                 }
@@ -188,7 +194,7 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
+                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Normal, sb, sb.Length == orgLength);
                 }
             }
 
@@ -200,25 +206,23 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
+                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Normal, sb, sb.Length == orgLength);
                 }
             }
 #endif
 
             if (IncludeAllProperties && logEvent.HasProperties)
             {
-                foreach (var prop in logEvent.Properties)
+                var propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true) as IEnumerable<MessageTemplates.MessageTemplateParameter>;
+                foreach (var prop in propertiesList)
                 {
-                    //Determine property name
-                    string propName = Internal.XmlHelper.XmlConvertToString(prop.Key ?? string.Empty);
-                    if (string.IsNullOrEmpty(propName))
+                    if (string.IsNullOrEmpty(prop.Name))
                         continue;
 
-                    //Skips properties in the ExcludeProperties list
-                    if (ExcludeProperties.Contains(propName))
+                    if (ExcludeProperties.Contains(prop.Name))
                         continue;
 
-                    AppendJsonPropertyValue(propName, prop.Value, sb, sb.Length == orgLength);
+                    AppendJsonPropertyValue(prop.Name, prop.Value, prop.Format, logEvent.FormatProvider, prop.CaptureType, sb, sb.Length == orgLength);
                 }
             }
 
@@ -252,13 +256,58 @@ namespace NLog.Layouts
             sb.Append(SuppressSpaces ? "}" : " }");
         }
 
-        private void AppendJsonPropertyValue(string propName, object propertyValue, StringBuilder sb, bool beginJsonMessage)
+        private void AppendJsonPropertyValue(string propName, object propertyValue, string format, IFormatProvider formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
             BeginJsonProperty(sb, propName, beginJsonMessage);
-            JsonConverter.SerializeObject(propertyValue, sb);
+            if (captureType == MessageTemplates.CaptureType.Serialize)
+            {
+                JsonConverter.SerializeObject(propertyValue, sb);
+            }
+            else if (captureType == MessageTemplates.CaptureType.Stringify)
+            {
+                int originalStart = sb.Length;
+                ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
+                PerformJsonEscapeIfNeeded(sb, originalStart);
+            }
+            else
+            {
+                TypeCode objTypeCode = Convert.GetTypeCode(propertyValue);
+                if (objTypeCode == TypeCode.Object)
+                {
+                    int originalStart = sb.Length;
+                    sb.Append('"');
+                    ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
+                    sb.Append('"');
+                    PerformJsonEscapeIfNeeded(sb, originalStart);
+                }
+                else
+                {
+                    JsonConverter.SerializeObject(propertyValue, sb);
+                }
+            }
         }
 
-        private bool RenderAppendJsonPropertyValue(JsonAttribute attrib, LogEventInfo logEvent, bool renderEmptyValue, StringBuilder sb, bool beginJsonMessage)
+        private static void PerformJsonEscapeIfNeeded(StringBuilder sb, int valueStart)
+        {
+            if (sb.Length - valueStart <= 2)
+                return;
+
+            for (int i = valueStart + 1; i < sb.Length - 1; ++i)
+            {
+                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false))
+                {
+                    var jsonEscape = sb.ToString(valueStart + 1, sb.Length - valueStart - 2);
+                    jsonEscape = Targets.DefaultJsonSerializer.EscapeString(jsonEscape, false);
+                    sb.Length = valueStart;
+                    sb.Append('"');
+                    sb.Append(jsonEscape);
+                    sb.Append('"');
+                    break;
+                }
+            }
+        }
+
+        private bool RenderAppendJsonPropertyValue(JsonAttribute attrib, LogEventInfo logEvent, StringBuilder sb, bool beginJsonMessage)
         {
             BeginJsonProperty(sb, attrib.Name, beginJsonMessage);
             if (attrib.Encode)
@@ -268,7 +317,7 @@ namespace NLog.Layouts
             }
             int beforeValueLength = sb.Length;
             attrib.LayoutWrapper.RenderAppendBuilder(logEvent, sb);
-            if (!renderEmptyValue && beforeValueLength == sb.Length)
+            if (!attrib.IncludeEmptyValue && beforeValueLength == sb.Length)
             {
                 return false;
             }

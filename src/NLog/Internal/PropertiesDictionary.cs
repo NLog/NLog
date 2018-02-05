@@ -45,7 +45,7 @@ namespace NLog.Internal
     /// The <see cref="MessageProperties" /> are returned as the first items
     /// in the collection, and in positional order.
     /// </summary>
-    internal sealed class PropertiesDictionary : IDictionary<object, object>
+    internal sealed class PropertiesDictionary : IDictionary<object, object>, IEnumerable<MessageTemplateParameter>
     {
         private struct PropertyValue
         {
@@ -353,20 +353,16 @@ namespace NLog.Internal
             if (parameterList.Count > 10)
                 return false;
 
-            bool uniqueMessageProperties = true;
             for (int i = 0; i < parameterList.Count - 1; ++i)
             {
                 for (int j = i + 1; j < parameterList.Count; ++j)
                 {
                     if (parameterList[i].Name == parameterList[j].Name)
-                    {
-                        uniqueMessageProperties = false;
-                        break;
-                    }
+                        return false;
                 }
             }
 
-            return uniqueMessageProperties;
+            return true;
         }
 
         /// <summary>
@@ -431,7 +427,12 @@ namespace NLog.Internal
             return messagePropertiesUnique ?? messageProperties;
         }
 
-        private class DictionaryEnumeratorBase
+        IEnumerator<MessageTemplateParameter> IEnumerable<MessageTemplateParameter>.GetEnumerator()
+        {
+            return new ParameterEnumerator(this);
+        }
+
+        private class DictionaryEnumeratorBase : IDisposable
         {
             private readonly PropertiesDictionary _dictionary;
             private int? _messagePropertiesEnumerator;
@@ -443,7 +444,7 @@ namespace NLog.Internal
                 _dictionary = dictionary;
             }
 
-            protected KeyValuePair<object, object> CurrentPair
+            protected KeyValuePair<object, object> CurrentProperty
             {
                 get
                 {
@@ -454,6 +455,31 @@ namespace NLog.Internal
                     }
                     if (_eventEnumeratorCreated)
                         return new KeyValuePair<object, object>(_eventEnumerator.Current.Key, _eventEnumerator.Current.Value.Value);
+                    throw new InvalidOperationException();
+                }
+            }
+
+            protected MessageTemplateParameter CurrentParameter
+            {
+                get
+                {
+                    if (_messagePropertiesEnumerator.HasValue)
+                    {
+                        return _dictionary._messageProperties[_messagePropertiesEnumerator.Value];
+                    }
+                    if (_eventEnumeratorCreated)
+                    {
+                        string parameterName = "";
+                        try
+                        {
+                            parameterName = XmlHelper.XmlConvertToString(_eventEnumerator.Current.Key ?? string.Empty);
+                        }
+                        catch
+                        {
+                            parameterName = "";
+                        }
+                        return new MessageTemplateParameter(parameterName, _eventEnumerator.Current.Value.Value, null, CaptureType.Normal);
+                    }
                     throw new InvalidOperationException();
                 }
             }
@@ -545,13 +571,27 @@ namespace NLog.Internal
             }
         }
 
+        private class ParameterEnumerator : DictionaryEnumeratorBase, IEnumerator<MessageTemplateParameter>
+        {
+            /// <inheritDoc/>
+            public MessageTemplateParameter Current => CurrentParameter;
+
+            /// <inheritDoc/>
+            object IEnumerator.Current => CurrentParameter;
+
+            public ParameterEnumerator(PropertiesDictionary dictionary)
+                : base(dictionary)
+            {
+            }
+        }
+
         private class DictionaryEnumerator : DictionaryEnumeratorBase, IEnumerator<KeyValuePair<object, object>>
         {
             /// <inheritDoc/>
-            public KeyValuePair<object, object> Current => CurrentPair;
+            public KeyValuePair<object, object> Current => CurrentProperty;
 
             /// <inheritDoc/>
-            object IEnumerator.Current => CurrentPair;
+            object IEnumerator.Current => CurrentProperty;
 
             public DictionaryEnumerator(PropertiesDictionary dictionary)
                 : base(dictionary)
@@ -644,7 +684,7 @@ namespace NLog.Internal
                 }
 
                 /// <inheritDoc/>
-                public object Current => _keyCollection ? CurrentPair.Key : CurrentPair.Value;
+                public object Current => _keyCollection ? CurrentProperty.Key : CurrentProperty.Value;
             }
         }
     }

@@ -2078,9 +2078,9 @@ namespace NLog.UnitTests
 
             ILogger logger = LogManager.GetLogger("A");
 
-            logger.Error("Login request from {Username} for {Application}", "John", "BestApplicationEver");
+            logger.Error("Login request from {@Username} for {$Application}", new Person("John"), "BestApplicationEver");
 
-            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {Username} for {Application}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {@Username} for {$Application}\", \"Username\": {\"Name\":\"John\"}, \"Application\": \"BestApplicationEver\" }");
         }
 
         /// <summary>
@@ -2106,9 +2106,9 @@ namespace NLog.UnitTests
 
             ILogger logger = LogManager.GetLogger("A");
 
-            logger.Error("Login request from {Username} for {Application}", "John", "BestApplicationEver");
+            logger.Error("Login request from {Username} for {Application}", new Person("\"John\""), "BestApplicationEver");
 
-            AssertDebugLastMessage("debug", "Login request from \"John\" for \"BestApplicationEver\"{ \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+            AssertDebugLastMessage("debug", "Login request from \"John\" for \"BestApplicationEver\"{ \"Username\": \"\\\"John\\\"\", \"Application\": \"BestApplicationEver\" }");
         }
 
         [Fact]
@@ -2155,6 +2155,7 @@ namespace NLog.UnitTests
 
             public List<Person> Childs { get; set; }
 
+            public override string ToString() { return Name; }
         }
 
         public abstract class BaseWrapper

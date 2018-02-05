@@ -65,6 +65,7 @@ namespace NLog.Layouts
             Name = name;
             Layout = layout;
             Encode = encode;
+            IncludeEmptyValue = false;
         }
 
         /// <summary>
@@ -79,7 +80,9 @@ namespace NLog.Layouts
         /// </summary>
         /// <docgen category='JSON Attribute Options' order='10' />
         [RequiredParameter]
-        public Layout Layout { get => LayoutWrapper.Inner;
+        public Layout Layout
+        {
+            get => LayoutWrapper.Inner;
             set => LayoutWrapper.Inner = value;
         }
 
@@ -87,7 +90,9 @@ namespace NLog.Layouts
         /// Determines wether or not this attribute will be Json encoded.
         /// </summary>
         /// <docgen category='JSON Attribute Options' order='100' />
-        public bool Encode { get => LayoutWrapper.JsonEncode;
+        public bool Encode
+        {
+            get => LayoutWrapper.JsonEncode;
             set => LayoutWrapper.JsonEncode = value;
         }
 
@@ -95,9 +100,17 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to escape non-ascii characters
         /// </summary>
         /// <docgen category='JSON Attribute Options' order='100' />
-        public bool EscapeUnicode { get => LayoutWrapper.EscapeUnicode;
+        public bool EscapeUnicode
+        {
+            get => LayoutWrapper.EscapeUnicode;
             set => LayoutWrapper.EscapeUnicode = value;
         }
+
+        /// <summary>
+        /// Gets or sets whether an attribute with empty value should be included in the output
+        /// </summary>
+        /// <docgen category='JSON Attribute Options' order='100' />
+        public bool IncludeEmptyValue { get; set; }
 
         internal readonly LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper LayoutWrapper = new LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper();
     }
