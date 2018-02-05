@@ -88,7 +88,7 @@ namespace NLog.Targets.Wrappers
         {
             WrappedTarget = wrappedTarget;
             RepeatCount = repeatCount;
-            OptimizeBufferReuse = GetType() == typeof(RepeatingTargetWrapper);
+            OptimizeBufferReuse = GetType() == typeof(RepeatingTargetWrapper);  // Class not sealed, reduce breaking changes
         }
 
         /// <summary>

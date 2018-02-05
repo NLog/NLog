@@ -85,7 +85,7 @@ namespace NLog.Targets
             Log = "Application";
             MachineName = ".";
             MaxMessageLength = 16384;
-            OptimizeBufferReuse = GetType() == typeof(EventLogTarget);
+            OptimizeBufferReuse = GetType() == typeof(EventLogTarget);  // Class not sealed, reduce breaking changes
         }
 
         /// <summary>

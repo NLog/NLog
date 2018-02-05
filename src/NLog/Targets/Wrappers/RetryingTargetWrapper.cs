@@ -93,7 +93,7 @@ namespace NLog.Targets.Wrappers
             WrappedTarget = wrappedTarget;
             RetryCount = retryCount;
             RetryDelayMilliseconds = retryDelayMilliseconds;
-            OptimizeBufferReuse = GetType() == typeof(RetryingTargetWrapper);
+            OptimizeBufferReuse = GetType() == typeof(RetryingTargetWrapper);   // Class not sealed, reduce breaking changes
         }
 
         /// <summary>

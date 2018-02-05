@@ -64,7 +64,7 @@ namespace NLog.Internal
         public struct LockOject : IDisposable
         {
             /// <summary>
-            /// Access the MemoryStream acquired
+            /// Access the acquired reusable object 
             /// </summary>
             public readonly T Result;
             private readonly ReusableObjectCreator<T> _owner;

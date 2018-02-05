@@ -90,7 +90,7 @@ namespace NLog.Targets.Wrappers
         {
             WrappedTarget = wrappedTarget;
             Condition = condition;
-            OptimizeBufferReuse = GetType() == typeof(FilteringTargetWrapper);
+            OptimizeBufferReuse = GetType() == typeof(FilteringTargetWrapper);  // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
