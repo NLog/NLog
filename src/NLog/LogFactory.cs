@@ -873,7 +873,7 @@ namespace NLog
                     if (rule.Final)
                         suppressedLevels[i] = true;
 
-                    foreach (Target target in rule.Targets.ToList())
+                    foreach (Target target in rule.GetTargetsThreadSafe())
                     {
                         var awf = new TargetWithFilterChain(target, rule.Filters);
                         if (lastTargetsByLevel[i] != null)
@@ -892,7 +892,7 @@ namespace NLog
                 // Recursively analyze the child rules.
                 if (rule.ChildRules.Count != 0)
                 {
-                    GetTargetsByLevelForLogger(name, rule.CloneChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels);
+                    GetTargetsByLevelForLogger(name, rule.GetChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels);
                 }
             }
 

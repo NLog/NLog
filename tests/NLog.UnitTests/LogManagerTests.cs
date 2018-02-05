@@ -38,6 +38,7 @@ namespace NLog.UnitTests
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using Xunit;
     using NLog.Common;
     using NLog.Config;
@@ -579,6 +580,44 @@ namespace NLog.UnitTests
             Assert.NotEqual(0, mTarget.Logs.Count + mTarget2.Logs.Count);
         }
 
+        [Fact]
+        public void RemovedTargetShouldNotLog()
+        {
+            LogManager.ThrowExceptions = true;
+
+            var config = new LoggingConfiguration();
+            var targetA = new MemoryQueueTarget("TargetA") { Layout = "A | ${message}" };
+            var targetB = new MemoryQueueTarget("TargetB") { Layout = "B | ${message}" };
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, targetA);
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, targetB);
+
+            LogManager.Configuration = config;
+
+            Assert.Equal(new[] { "TargetA", "TargetB" }, LogManager.Configuration.ConfiguredNamedTargets.Select(target => target.Name));
+
+            Assert.NotNull(LogManager.Configuration.FindTargetByName("TargetA"));
+            Assert.NotNull(LogManager.Configuration.FindTargetByName("TargetB"));
+
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Info("Hello World");
+
+            Assert.Equal("A | Hello World", targetA.Logs.LastOrDefault());
+            Assert.Equal("B | Hello World", targetB.Logs.LastOrDefault());
+
+            // Remove the first target from the configuration
+            LogManager.Configuration.RemoveTarget("TargetA");
+
+            Assert.Equal(new[] { "TargetB" }, LogManager.Configuration.ConfiguredNamedTargets.Select(target => target.Name));
+
+            Assert.Null(LogManager.Configuration.FindTargetByName("TargetA"));
+            Assert.NotNull(LogManager.Configuration.FindTargetByName("TargetB"));
+
+            logger.Info("Goodbye World");
+
+            Assert.Null(targetA.Logs);  // Flushed and closed
+            Assert.Equal("B | Goodbye World", targetB.Logs.LastOrDefault());
+        }
+
         /// <summary>
         /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
         /// </summary>
@@ -591,7 +630,7 @@ namespace NLog.UnitTests
             {
             }
 
-            public MemoryQueueTarget(string name)
+            public MemoryQueueTarget(string name) : this(1)
             {
                 Name = name;
             }
