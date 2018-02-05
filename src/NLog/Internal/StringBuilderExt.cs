@@ -60,11 +60,11 @@ namespace NLog.Internal
             }
             else if (format == "@")
             {
-                ValueSerializer.Instance.SerializeObject(value, null, formatProvider, builder);
+                ValueFormatter.Instance.FormatValue(value, null, CaptureType.Serialize, formatProvider, builder);
             }
             else if (value != null)
             {
-                ValueSerializer.Instance.FormatObject(value, format, formatProvider, builder);
+                ValueFormatter.Instance.FormatValue(value, format, CaptureType.Normal, formatProvider, builder);
             }
         }
 

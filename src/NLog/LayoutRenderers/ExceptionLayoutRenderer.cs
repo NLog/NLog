@@ -379,7 +379,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose properties should be appended.</param>
         protected virtual void AppendSerializeObject(StringBuilder sb, Exception ex)
         {
-            ConfigurationItemFactory.Default.ValueSerializer.SerializeObject(ex, null, null, sb);
+            ConfigurationItemFactory.Default.ValueFormatter.FormatValue(ex, null, MessageTemplates.CaptureType.Serialize, null, sb);
         }
 
         /// <summary>

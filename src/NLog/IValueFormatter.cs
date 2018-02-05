@@ -33,50 +33,24 @@
 
 using System;
 using System.Text;
+using NLog.MessageTemplates;
 
 namespace NLog
 {
     /// <summary>
     /// Render a message template property to a string
-    /// 
-    /// If stringify is set, <see cref="StringifyObject"/> will be used
-    /// If serialize is set, <see cref="SerializeObject"/> will be used
-    /// Otherwise <see cref="FormatObject"/> will be used
     /// </summary>
-    public interface IValueSerializer
+    public interface IValueFormatter
     {
         /// <summary>
-        /// Serialization of an object, e.g. JSON and append to <paramref name="builder"/>. Used if Serialize is set.
+        /// Serialization of an object, e.g. JSON and append to <paramref name="builder"/>
         /// </summary>
         /// <param name="value">The object to serialize to string.</param>
-        /// <param name="format">The format string for the value</param>
+        /// <param name="format">Parameter Format</param>
+        /// <param name="captureType">Parameter CaptureType</param>
         /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
         /// <param name="builder">Output destination.</param>
         /// <returns>Serialize succeeded (true/false)</returns>
-        bool SerializeObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder);
-
-        /// <summary>
-        /// Convert object into into string value and append to <paramref name="builder"/>. Used if Stringify is set.
-        /// </summary>
-        /// <param name="value">The object to convert to string.</param>
-        /// <param name="format">The format string for the value</param>
-        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
-        /// <param name="builder">Output destination.</param>
-        /// <returns>Stringify succeeded (true/false)</returns>
-        bool StringifyObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder);
-
-        /// <summary>
-        /// Format object into into string value and append to <paramref name="builder"/>. Used for rendering the template properties.
-        /// </summary>
-        /// <remarks>
-        /// Stringify and Serialize isn't set
-        /// </remarks>
-        /// <remarks>This one is called if Stringify and Serialize isn't set for this property.</remarks>
-        /// <param name="value">The object to convert to string.</param>
-        /// <param name="format">The format string for the value</param>
-        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
-        /// <param name="builder">Output destination.</param>
-        /// <returns>Formating succeeded (true/false)</returns>
-        bool FormatObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder);
+        bool FormatValue(object value, string format, CaptureType captureType, IFormatProvider formatProvider, StringBuilder builder);
     }
 }

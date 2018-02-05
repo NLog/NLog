@@ -63,7 +63,7 @@ namespace NLog.MessageTemplates
 
         /// <summary>
         /// Parameter method that should be used to render the parameter
-        /// See also <see cref="IValueSerializer"/>
+        /// See also <see cref="IValueFormatter"/>
         /// </summary>
         public CaptureType CaptureType { get; }
 
