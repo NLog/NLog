@@ -102,6 +102,11 @@ namespace NLog.Targets
             OptimizeBufferReuse = true;
 
             Headers = new List<MethodCallParameter>();
+
+#if NETSTANDARD
+            // WebRequest.GetSystemWebProxy throws PlatformNotSupportedException on NetCore, when Proxy is not configured
+            ProxyType = WebServiceProxyType.NoProxy;
+#endif
         }
 
         /// <summary>
@@ -336,7 +341,7 @@ namespace NLog.Targets
                             catch (Exception ex2)
                             {
                                 InternalLogger.Trace(ex2, "Exception in Webservice invoke, but ignoring it.");
-                                 /* Nothing to do about it */
+                                /* Nothing to do about it */
                             };
                     };
                     DoGroupInvokeAsync(headerValues, bucket.Key, groupCompleted);
@@ -459,8 +464,7 @@ namespace NLog.Targets
 #if !SILVERLIGHT
             switch (ProxyType)
             {
-                case WebServiceProxyType.NoProxy:
-                    request.Proxy = null;
+                case WebServiceProxyType.DefaultWebProxy:
                     break;
 #if !NETSTANDARD1_0
                 case WebServiceProxyType.AutoProxy:
@@ -484,6 +488,9 @@ namespace NLog.Targets
                     }
                     break;
 #endif
+                default:
+                    request.Proxy = null;
+                    break;
             }
 #endif
 
@@ -497,7 +504,7 @@ namespace NLog.Targets
             DoInvoke(parameters, continuation, request, begin, getStream);
         }
 
-        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc, 
+        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc,
             Func<IAsyncResult, Stream> getStreamFunc)
         {
             Stream postPayload = null;

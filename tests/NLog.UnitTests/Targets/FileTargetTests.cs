@@ -120,21 +120,14 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#if !MONO
         [Theory]
+#else
+        [Theory(Skip="Not supported on MONO on Travis, because of FileSystemWatcher not working")]
+#endif
         [MemberData(nameof(SimpleFileTest_TestParameters))]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
-#if MONO
-            if (IsTravis())
-            {
-                if (concurrentWrites && keepFileOpen)
-                {
-                    Console.WriteLine("[SKIP] FileTargetTests.SimpleFileDeleteTest(concurrentWrites: True, keepFileOpen: True) because we are running in Travis");
-                    return;
-                }
-            }
-#endif
-
             var logFile = Path.GetTempFileName();
             var logFile2 = Path.Combine(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()), Path.GetFileName(logFile));
 
