@@ -61,9 +61,11 @@ namespace NLog.MessageTemplates
             while (holeEnumerator.MoveNext())
             {
                 var literal = holeEnumerator.Current.Literal;
-                if (holeIndex == 0 && !forceTemplateRenderer && sb.Length == 0 && literal.Skip != 0 && holeEnumerator.Current.Hole.Index != -1)
+                var currentHole = holeEnumerator.Current.Hole;
+                //if first hole is a number (and without capture type) and force is off, assume normal string.format
+                if (holeIndex == 0 && !forceTemplateRenderer && sb.Length == 0 && literal.Skip != 0 && currentHole.Index != -1 && currentHole.CaptureType == CaptureType.Normal)
                 {
-                    // Not a template
+                    // Not a structured template
                     sb.AppendFormat(formatProvider, template, parameters);
                     return;
                 }
@@ -77,21 +79,15 @@ namespace NLog.MessageTemplates
                 else
                 {
                     pos += literal.Skip;
-                    var hole = holeEnumerator.Current.Hole;
-                    if (hole.Index != -1)
+                    var hole = currentHole;
+                    var holeParameter = parameters[holeIndex];
+                    if (messageTemplateParameters == null)
                     {
-                        RenderHole(sb, hole, formatProvider, parameters[hole.Index], true);
+                        messageTemplateParameters = new MessageTemplateParameter[parameters.Length];
                     }
-                    else
-                    {
-                        var holeParameter = parameters[holeIndex];
-                        if (messageTemplateParameters == null)
-                        {
-                            messageTemplateParameters = new MessageTemplateParameter[parameters.Length];
-                        }
-                        messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, hole.Format, hole.CaptureType);
-                        RenderHole(sb, hole, formatProvider, holeParameter);
-                    }
+
+                    messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, hole.Format, hole.CaptureType);
+                    RenderHole(sb, hole, formatProvider, holeParameter);
                 }
             }
 

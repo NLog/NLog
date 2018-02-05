@@ -62,7 +62,7 @@ namespace NLog.MessageTemplates
         /// </summary>
         public readonly CaptureType CaptureType;
         /// <summary>When the template is positional, this is the parsed name of this parameter.</summary>
-        /// <remarks>For named templates, the value of Index is undefined.</remarks>
+        /// <remarks>For named templates, the value of Index is -1.</remarks>
         public readonly short Index;
         /// <summary>Alignment to render the parameter, by default 0.</summary>
         /// <remarks>This is the parsed value between "," and the first of ":}"</remarks>
