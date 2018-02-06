@@ -390,7 +390,7 @@ namespace NLog
             {
                 if (_properties != null && _properties.MessageProperties.Count > 0)
                 {
-                    return new MessageTemplateParameters(_properties.MessageProperties);
+                    return new MessageTemplateParameters(_properties.MessageProperties, _message, _parameters);
                 }
                 else
                 {
