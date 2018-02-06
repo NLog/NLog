@@ -68,7 +68,8 @@ namespace NLog.Internal
         /// The MessageFormatter delegate
         /// </summary>
         public LogMessageFormatter MessageFormatter { get; }
- 
+
+        /// <inheritDoc/>
         public bool HasProperties(LogEventInfo logEvent)
         {
             if (!HasParameters(logEvent))

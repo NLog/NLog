@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,45 +31,52 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog
+namespace NLog.Targets
 {
+    using NLog.Config;
+    using NLog.Layouts;
+
     /// <summary>
-    /// Include context properties
+    /// Attribute details for <see cref="TargetWithContext"/> 
     /// </summary>
-    internal interface IIncludeContext
+    [NLogConfigurationItem]
+    [ThreadAgnostic]
+    public class TargetWithContextProperty
     {
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
+        /// Initializes a new instance of the <see cref="TargetWithContextProperty" /> class.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        bool IncludeMdc { get; set; }
+        public TargetWithContextProperty() : this(null, null) { }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsContext"/> stack.
+        /// Initializes a new instance of the <see cref="TargetWithContextProperty" /> class.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        bool IncludeNdc { get; set; }
+        /// <param name="name">The name of the attribute.</param>
+        /// <param name="layout">The layout of the attribute's value.</param>
+        public TargetWithContextProperty(string name, Layout layout)
+        {
+            Name = name;
+            Layout = layout;
+            IncludeEmptyValue = true;
+        }
 
         /// <summary>
-        /// Gets or sets the option to include all properties from the log events
+        /// Gets or sets the name of the attribute.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        bool IncludeAllProperties { get; set; }
-
-#if !SILVERLIGHT
+        /// <docgen category='Property Options' order='10' />
+        [RequiredParameter]
+        public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
+        /// Gets or sets the layout that will be rendered as the attribute's value.
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        bool IncludeMdlc { get; set; }
+        /// <docgen category='Property Options' order='10' />
+        [RequiredParameter]
+        public Layout Layout { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
+        /// Gets or sets when an empty value should cause the property to be included
         /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        bool IncludeNdlc { get; set; }
-
-#endif
+        public bool IncludeEmptyValue { get; set; }
     }
 }

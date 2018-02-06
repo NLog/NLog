@@ -47,8 +47,6 @@ namespace NLog.UnitTests.Targets
     {
         class AsyncTaskTestTarget : AsyncTaskTarget
         {
-            public Layout Layout { get; set; }
-
             internal Queue<string> Logs = new Queue<string>();
 
             protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken token)

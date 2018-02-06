@@ -156,6 +156,11 @@ namespace NLog.Layouts
             _doubleQuoteChar = QuoteChar + QuoteChar;
         }
 
+        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
+        }
+
         /// <summary>
         /// Formats the log event for write.
         /// </summary>
@@ -280,6 +285,11 @@ namespace NLog.Layouts
             public CsvHeaderLayout(CsvLayout parent)
             {
                 _parent = parent;
+            }
+
+            internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+            {
+                if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
             }
 
             /// <summary>
