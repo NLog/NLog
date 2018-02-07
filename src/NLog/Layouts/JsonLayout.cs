@@ -46,18 +46,45 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class JsonLayout : Layout
     {
-        private IJsonConverter JsonConverter
+        private LimitRecursionJsonConvert JsonConverter
         {
-            get => _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter);
+            get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, ConfigurationItemFactory.Default.JsonConverter));
             set => _jsonConverter = value;
         }
-        private IJsonConverter _jsonConverter = null;
+        private LimitRecursionJsonConvert _jsonConverter = null;
         private IValueFormatter ValueFormatter
         {
             get => _valueFormatter ?? (_valueFormatter = ConfigurationItemFactory.Default.ValueFormatter);
             set => _valueFormatter = value;
         }
         private IValueFormatter _valueFormatter = null;
+
+        class LimitRecursionJsonConvert : IJsonConverter
+        {
+            readonly IJsonConverter _converter;
+            readonly Targets.DefaultJsonSerializer _serializer;
+            readonly Targets.JsonSerializeOptions _serializerOptions;
+
+            public LimitRecursionJsonConvert(int maxRecursionLimit, IJsonConverter converter)
+            {
+                _converter = converter;
+                _serializer = converter as Targets.DefaultJsonSerializer;
+                _serializerOptions = new Targets.JsonSerializeOptions() { MaxRecursionLimit = Math.Max(0, maxRecursionLimit) };
+            }
+
+            public bool SerializeObject(object value, StringBuilder builder)
+            {
+                if (_serializer != null)
+                    return _serializer.SerializeObject(value, builder, _serializerOptions);
+                else
+                    return _converter.SerializeObject(value, builder);
+            }
+
+            public bool SerializeObjectNoLimit(object value, StringBuilder builder)
+            {
+                return _converter.SerializeObject(value, builder);
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLayout"/> class.
@@ -68,6 +95,7 @@ namespace NLog.Layouts
             RenderEmptyObject = true;
             IncludeAllProperties = false;
             ExcludeProperties = new HashSet<string>();
+            MaxRecursionLimit = 0;  // Will enumerate simple collections but not object properties. TODO NLog 5.0 change to 1 (or higher)
         }
 
         /// <summary>
@@ -120,6 +148,11 @@ namespace NLog.Layouts
 #endif
 
         /// <summary>
+        /// How far should the JSON serializer follow object references before backing off
+        /// </summary>
+        public int MaxRecursionLimit { get; set; }
+
+        /// <summary>
         /// Initializes the layout.
         /// </summary>
         protected override void InitializeLayout()
@@ -143,6 +176,7 @@ namespace NLog.Layouts
         protected override void CloseLayout()
         {
             JsonConverter = null;
+            ValueFormatter = null;
             base.CloseLayout();
         }
 
@@ -194,7 +228,7 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Normal, sb, sb.Length == orgLength);
+                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
                 }
             }
 
@@ -206,7 +240,7 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
-                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Normal, sb, sb.Length == orgLength);
+                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
                 }
             }
 #endif
@@ -259,31 +293,21 @@ namespace NLog.Layouts
         private void AppendJsonPropertyValue(string propName, object propertyValue, string format, IFormatProvider formatProvider, MessageTemplates.CaptureType captureType, StringBuilder sb, bool beginJsonMessage)
         {
             BeginJsonProperty(sb, propName, beginJsonMessage);
-            if (captureType == MessageTemplates.CaptureType.Serialize)
+            if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Serialize)
             {
-                JsonConverter.SerializeObject(propertyValue, sb);
+                // Overrides MaxRecursionLimit as message-template tells us it is safe
+                JsonConverter.SerializeObjectNoLimit(propertyValue, sb);
             }
-            else if (captureType == MessageTemplates.CaptureType.Stringify)
+            else if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Stringify)
             {
+                // Overrides MaxRecursionLimit as message-template tells us it is unsafe
                 int originalStart = sb.Length;
                 ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
                 PerformJsonEscapeIfNeeded(sb, originalStart);
             }
             else
             {
-                TypeCode objTypeCode = Convert.GetTypeCode(propertyValue);
-                if (objTypeCode == TypeCode.Object)
-                {
-                    int originalStart = sb.Length;
-                    sb.Append('"');
-                    ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
-                    sb.Append('"');
-                    PerformJsonEscapeIfNeeded(sb, originalStart);
-                }
-                else
-                {
-                    JsonConverter.SerializeObject(propertyValue, sb);
-                }
+                JsonConverter.SerializeObject(propertyValue, sb);
             }
         }
 

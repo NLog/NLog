@@ -39,6 +39,10 @@ namespace NLog.MessageTemplates
     public enum CaptureType : byte
     {
         /// <summary>
+        /// Not decided
+        /// </summary>
+        Unknown,
+        /// <summary>
         /// normal {x}
         /// </summary>
         Normal,

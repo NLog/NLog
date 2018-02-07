@@ -478,7 +478,7 @@ namespace NLog.Internal
                         {
                             parameterName = "";
                         }
-                        return new MessageTemplateParameter(parameterName, _eventEnumerator.Current.Value.Value, null, CaptureType.Normal);
+                        return new MessageTemplateParameter(parameterName, _eventEnumerator.Current.Value.Value, null, CaptureType.Unknown);
                     }
                     throw new InvalidOperationException();
                 }

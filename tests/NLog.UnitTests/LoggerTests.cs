@@ -2095,7 +2095,7 @@ namespace NLog.UnitTests
                         <target name='debug' type='Debug'  >
                               <layout type='CompoundLayout'>
                                 <layout type='SimpleLayout' text='${message}' />
-                                <layout type='JsonLayout' IncludeAllProperties='true' />
+                                <layout type='JsonLayout' IncludeAllProperties='true' maxRecursionLimit='0' />
                               </layout>
                         </target>
                     </targets>
