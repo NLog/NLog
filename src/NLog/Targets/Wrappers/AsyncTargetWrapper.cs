@@ -119,6 +119,8 @@ namespace NLog.Targets.Wrappers
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
             RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
+            RequestQueue.LogEventDropped += OnRequestQueueDropItem;
+            RequestQueue.LogEventQueueGrow += OnRequestQueueGrow;
             TimeToSleepBetweenBatches = 50;
             BatchSize = 200;
             FullBatchSizeWriteLimit = 5;
@@ -142,6 +144,12 @@ namespace NLog.Targets.Wrappers
         [DefaultValue(50)]
         public int TimeToSleepBetweenBatches { get; set; }
 
+        /// <summary>
+        /// Raises when event queue grow. 
+        /// Queue can grow when <see cref="OverflowAction"/> was setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
+        /// </summary>
+        public event EventHandler<LogEventQueueGrowEventArgs> EventQueueGrow;
+        
         /// <summary>
         /// Gets or sets the action to be taken when the lazy writer thread request queue count
         /// exceeds the set limit.
@@ -216,6 +224,8 @@ namespace NLog.Targets.Wrappers
                 try
                 {
                     WriteEventsInQueue(int.MaxValue, "Closing Target");
+                    RequestQueue.LogEventDropped -= OnRequestQueueDropItem;
+                    RequestQueue.LogEventQueueGrow -= OnRequestQueueGrow;
                 }
                 finally
                 {
@@ -452,6 +462,21 @@ namespace NLog.Targets.Wrappers
                     break;
             }
             return count;
+        }
+
+        private void OnRequestQueueDropItem(object sender, LogEventDroppedEventArgs logEventDroppedEventArgs)
+        {
+            OnLogEventDropped(logEventDroppedEventArgs.AsyncLogEventInfo.LogEvent);
+        }
+
+        private void OnRequestQueueGrow(object sender, LogEventQueueGrowEventArgs logEventQueueGrowEventArgs)
+        {
+            OnEventQueueGrow(logEventQueueGrowEventArgs);
+        }
+
+        private void OnEventQueueGrow(LogEventQueueGrowEventArgs e)
+        {
+            EventQueueGrow?.Invoke(this, e);
         }
     }
 }

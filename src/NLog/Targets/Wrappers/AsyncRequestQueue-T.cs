@@ -67,6 +67,16 @@ namespace NLog.Targets.Wrappers
         public AsyncTargetWrapperOverflowAction OnOverflow { get; set; }
 
         /// <summary>
+        /// Notifies about log event that was dropped when <see cref="OnOverflow"/> setted to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
+        /// </summary>
+        public event EventHandler<LogEventDroppedEventArgs> LogEventDropped;
+
+        /// <summary>
+        /// Notifies when queue size is growing over <see cref="RequestLimit"/>
+        /// </summary>
+        public event EventHandler<LogEventQueueGrowEventArgs> LogEventQueueGrow;
+
+        /// <summary>
         /// Gets the number of requests currently in the queue.
         /// </summary>
         public int RequestCount
@@ -97,11 +107,13 @@ namespace NLog.Targets.Wrappers
                     {
                         case AsyncTargetWrapperOverflowAction.Discard:
                             InternalLogger.Debug("Discarding one element from queue");
-                            _logEventInfoQueue.Dequeue();
+                            var lostItem = _logEventInfoQueue.Dequeue();
+                            OnLogEventDropped(new LogEventDroppedEventArgs(lostItem));
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
                             InternalLogger.Debug("The overflow action is Grow, adding element anyway");
+                            OnLogEventQueueGrows(new LogEventQueueGrowEventArgs(RequestLimit, RequestCount +1));
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Block:
@@ -185,5 +197,17 @@ namespace NLog.Targets.Wrappers
                 _logEventInfoQueue.Clear();
             }
         }
+
+        /// <summary>
+        /// Raise event when queued element was dropped because of queue overflow
+        /// </summary>
+        /// <param name="e">Dropped queue item</param>
+        protected void OnLogEventDropped(LogEventDroppedEventArgs e) => LogEventDropped?.Invoke(this, e);
+        
+        /// <summary>
+        /// Raise event when <see cref="RequestCount"/> overflow <see cref="RequestLimit"/>
+        /// </summary>
+        /// <param name="e">Contains current values of <see cref="RequestLimit"/> and <see cref="RequestCount"/></param>
+        protected virtual void OnLogEventQueueGrows(LogEventQueueGrowEventArgs e) => LogEventQueueGrow?.Invoke(this, e);
     }
 }
