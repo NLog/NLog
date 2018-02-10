@@ -230,170 +230,6 @@ namespace NLog.Targets
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
 
-        private bool _foundEnableGroupLayout;
-        private bool _onlyEnableGroupLayout;   // Attempt to minimize Parameter-Array-Key-allocations
-
-        /// <summary>
-        /// Initializes the target
-        /// </summary>
-        protected override void InitializeTarget()
-        {
-            _foundEnableGroupLayout = false;
-            _onlyEnableGroupLayout = true;
-            base.InitializeTarget();
-            for (int i = 0; i < Parameters.Count; ++i)
-            {
-                if (Parameters[i].EnableGroupLayout)
-                {
-                    _foundEnableGroupLayout = true;
-                    if (!_onlyEnableGroupLayout)
-                        break;
-                }
-                else
-                {
-                    _onlyEnableGroupLayout = false;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Writes an array of logging events to the log target
-        /// </summary>
-        /// <param name="logEvents">Array of logging events to write</param>
-        protected override void Write(IList<AsyncLogEventInfo> logEvents)
-        {
-            if (!_foundEnableGroupLayout)
-            {
-                base.Write(logEvents);
-            }
-            else if (logEvents.Count == 1)
-            {
-                base.Write(logEvents[0]);
-            }
-            else
-            {
-                if (Headers != null && Headers.Count > 0)
-                {
-                    if (_convetToHeaderArrayDelegate == null)
-                        _convetToHeaderArrayDelegate = (l) => ConvertToHeaderArray(l.LogEvent);
-                    var headerBuckets = logEvents.BucketSort(_convetToHeaderArrayDelegate, ArrayDeepEqualityComparer<string>.Default);
-                    foreach (var headerBucket in headerBuckets)
-                    {
-                        DoGroupInvoke(headerBucket.Value, headerBucket.Key);
-                    }
-                }
-                else
-                {
-                    DoGroupInvoke(logEvents, ArrayHelper.Empty<string>());
-                }
-            }
-        }
-        private SortHelpers.KeySelector<AsyncLogEventInfo, string[]> _convetToHeaderArrayDelegate;
-
-        string[] ConvertToHeaderArray(LogEventInfo logEvent)
-        {
-            string[] headers = new string[Headers.Count];
-            for (int i = 0; i < Headers.Count; i++)
-            {
-                headers[i] = RenderLogEvent(Headers[i].Layout, logEvent);
-            }
-            return headers;
-        }
-
-        /// <summary>
-        /// Writes a group of LogEvents in a single WebRequest
-        /// </summary>
-        /// <param name="logEvents">Array of logging events to write</param>
-        /// <param name="headerValues">WebRequest Header Values matching the LogEvents group</param>
-        private void DoGroupInvoke(IList<AsyncLogEventInfo> logEvents, string[] headerValues)
-        {
-            if (_convetToParameterArrayDelegate == null)
-                _convetToParameterArrayDelegate = (l) => ConvetToParameterArray(l.LogEvent, true);
-
-            var parameterBuckets = _onlyEnableGroupLayout
-                ? new SortHelpers.ReadOnlySingleBucketDictionary<object[], IList<AsyncLogEventInfo>>(new KeyValuePair<object[], IList<AsyncLogEventInfo>>(new object[Parameters.Count], logEvents), ArrayDeepEqualityComparer<object>.Default)
-                : logEvents.BucketSort(_convetToParameterArrayDelegate, ArrayDeepEqualityComparer<object>.Default);
-            foreach (var bucket in parameterBuckets)
-            {
-                for (int i = 0; i < Parameters.Count; ++i)
-                {
-                    var param = Parameters[i];
-                    if (param.EnableGroupLayout)
-                    {
-                        bucket.Key[i] = ConvertParameterGroupValue(bucket.Value, param);
-                    }
-                }
-
-                if (bucket.Value.Count > 1)
-                {
-                    AsyncContinuation[] groupContinuations = new AsyncContinuation[bucket.Value.Count];
-                    for (int i = 0; i < groupContinuations.Length; ++i)
-                    {
-                        groupContinuations[i] = bucket.Value[i].Continuation;
-                    }
-                    AsyncContinuation groupCompleted = (ex) =>
-                    {
-                        for (int i = 0; i < groupContinuations.Length; ++i)
-                            try
-                            {
-                                groupContinuations[i].Invoke(ex);
-                            }
-                            catch (Exception ex2)
-                            {
-                                InternalLogger.Trace(ex2, "Exception in Webservice invoke, but ignoring it.");
-                                /* Nothing to do about it */
-                            };
-                    };
-                    DoGroupInvokeAsync(headerValues, bucket.Key, groupCompleted);
-                }
-                else
-                {
-                    DoGroupInvokeAsync(headerValues, bucket.Key, bucket.Value[0].Continuation);
-                }
-            }
-        }
-        private SortHelpers.KeySelector<AsyncLogEventInfo, object[]> _convetToParameterArrayDelegate;
-
-        class ArrayDeepEqualityComparer<TValue> : IEqualityComparer<TValue[]>
-        {
-            public static readonly ArrayDeepEqualityComparer<TValue> Default = new ArrayDeepEqualityComparer<TValue>();
-
-            public bool Equals(TValue[] x, TValue[] y)
-            {
-                if (x.Length != y.Length)
-                    return false;
-
-                object xval, yval;
-                for (int i = 0; i < x.Length; ++i)
-                {
-                    xval = x[i];
-                    yval = y[i];
-                    if (xval != null && yval != null)
-                    {
-                        if (!xval.Equals(yval))
-                            return false;
-                    }
-                    else if (!ReferenceEquals(xval, yval))
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-
-            public int GetHashCode(TValue[] obj)
-            {
-                int hashCode = obj.Length.GetHashCode();
-                for (int i = 0; i < obj.Length; ++i)
-                {
-                    if (obj[i] != null)
-                        hashCode = hashCode ^ obj[i].GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
         /// <summary>
         /// Calls the target method. Must be implemented in concrete classes.
         /// </summary>
@@ -437,23 +273,6 @@ namespace NLog.Targets
             }
 
             DoInvoke(parameters, request, logEvent.Continuation);
-        }
-
-        void DoGroupInvokeAsync(string[] headerValues, object[] parameters, AsyncContinuation continuation)
-        {
-            var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
-            if (Headers != null && Headers.Count > 0)
-            {
-                for (int i = 0; i < Headers.Count; i++)
-                {
-                    string headerValue = headerValues[i];
-                    if (headerValue == null)
-                        continue;
-                    request.Headers[Headers[i].Name] = headerValue;
-                }
-            }
-
-            DoInvoke(parameters, request, continuation);
         }
 
         void DoInvoke(object[] parameters, HttpWebRequest request, AsyncContinuation continuation)
@@ -504,7 +323,7 @@ namespace NLog.Targets
             DoInvoke(parameters, continuation, request, begin, getStream);
         }
 
-        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc,
+        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc, 
             Func<IAsyncResult, Stream> getStreamFunc)
         {
             Stream postPayload = null;

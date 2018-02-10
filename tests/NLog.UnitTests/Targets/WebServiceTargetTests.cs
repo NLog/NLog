@@ -177,7 +177,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             Assert.Equal(bytes.Length, includeBom ? 126 : 123);
         }
-#region helpers
+        #region helpers
 
         private Stream GenerateStreamFromString(string s)
         {
@@ -213,7 +213,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public byte[] bytes;
             public string stringed;
 
-#region Overrides of MemoryStream
+            #region Overrides of MemoryStream
 
             /// <summary>
             /// Releases the unmanaged resources used by the <see cref="T:System.IO.MemoryStream"/> class and optionally releases the managed resources.
@@ -235,11 +235,11 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 return sr.ReadToEnd();
             }
 
-#endregion
+            #endregion
         }
 
 
-#endregion
+        #endregion
 
 #if !NETSTANDARD
         const string WsAddress = "http://localhost:9000/";
@@ -521,92 +521,6 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 for (int i = 0; i < count; i++)
                     logger.Info(txt);
-            });
-
-            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
-        }
-
-                /// <summary>
-        /// Test the Webservice with REST api - <see cref="WebServiceProtocol.JsonPost"/>
-        /// </summary>
-        [Fact]
-        public void WebserviceTest_restapi_group_json()
-        {
-            var configuration = CreateConfigurationFromString($@"
-                <nlog throwExceptions='true'>
-                    <targets>
-                        <target type='BufferingWrapper' bufferSize='6' name='ws'>
-                            <target type='WebService'
-                                    name='ws_wrapped'
-                                    url='{getWsAddress(1)}{"api/logdoc/json"}'
-                                    protocol='JsonPost'
-                                    encoding='UTF-8'
-                                   >
-                                <header name='Authorization' layout='OpenBackDoor' />
-                                <parameter name='param1' enableGroupLayout='true' groupHeaderLayout='{{ ' groupItemSeparatorLayout=' , ' groupFooterLayout=' }}'>
-                                    <layout type='JsonLayout'>
-                                        <attribute name='level' layout='${{level}}'/>
-                                        <attribute name='message' layout='${{message}}'/>
-                                    </layout>
-                                </parameter>
-                                <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
-                                <parameter name='param3' ParameterType='System.Boolean' layout='True'/>
-                                <parameter name='param4' ParameterType='System.DateTime' layout='${{longdate:universalTime=true}}'/>
-                            </target>
-                        </target>
-                    </targets>
-                    <rules>
-                      <logger name='*' writeTo='ws'>
-                      </logger>
-                    </rules>
-                </nlog>");
-
-            LogManager.Configuration = configuration;
-            var logger = LogManager.GetCurrentClassLogger();
-
-            var txt = "message 1 with a JSON POST<hello><again\\>\"\b";   // Lets tease the JSON serializer and see it can handle valid and invalid xml chars
-            var expected = new System.Text.StringBuilder();
-            for (int i = 0; i < 3; ++i)
-            {
-                if (expected.Length == 0)
-                    expected.Append("{ ");
-                else
-                    expected.Append(" , ");
-                expected.Append("{ \"level\": \"Info\", \"message\": \"message 1 with a JSON POST<hello><again\\\\>\\\"\\b\" }");
-            }
-            expected.Append(" }");
-            var count = 2;
-            var context = new LogDocController.TestContext(1, count, false, new Dictionary<string, string>() { { "Authorization", "OpenBackDoor" } }, expected.ToString(), "info", true, DateTime.UtcNow);
-
-            StartOwinDocTest(context, () =>
-            {
-                var defaultTimeSource = Time.TimeSource.Current;
-                try
-                {
-                    var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
-                    if (timeSource.Time.Minute == 59)
-                    {
-                        timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
-                        timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
-                    }
-                    Time.TimeSource.Current = timeSource;
-
-                    for (int i = 0; i < 3; i++)
-                    {
-                        logger.Info(txt);
-                    }
-
-                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(2));
-
-                    for (int i = 0; i < 3; i++)
-                    {
-                        logger.Info(txt);
-                    }
-                }
-                finally
-                {
-                    Time.TimeSource.Current = defaultTimeSource; // restore default time source
-                }
             });
 
             Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
