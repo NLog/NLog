@@ -17,5 +17,12 @@ Note: extensions to NLog will report XSD errors. Those can be ignored safely.  <
     <projectUrl>http://nlog-project.org/</projectUrl>
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
     <tags>nlog, intellisense, xsd</tags>
+      <contentFiles>
+      <files include="**/*.*" buildAction="None" copyToOutput="false" flatten="true" />
+    </contentFiles>
   </metadata>
+  <files>
+    <file src="content\**" target="contentFiles\any\any" />
+    <file src="content\**" target="content\" /> <!-- legacy -->
+  </files>
 </package>
