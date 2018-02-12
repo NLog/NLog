@@ -41,19 +41,19 @@ namespace NLog.Targets
     /// </summary>
     [NLogConfigurationItem]
     [ThreadAgnostic]
-    public class TargetWithContextProperty
+    public class TargetPropertyWithContext
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TargetWithContextProperty" /> class.
+        /// Initializes a new instance of the <see cref="TargetPropertyWithContext" /> class.
         /// </summary>
-        public TargetWithContextProperty() : this(null, null) { }
+        public TargetPropertyWithContext() : this(null, null) { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TargetWithContextProperty" /> class.
+        /// Initializes a new instance of the <see cref="TargetPropertyWithContext" /> class.
         /// </summary>
         /// <param name="name">The name of the attribute.</param>
         /// <param name="layout">The layout of the attribute's value.</param>
-        public TargetWithContextProperty(string name, Layout layout)
+        public TargetPropertyWithContext(string name, Layout layout)
         {
             Name = name;
             Layout = layout;

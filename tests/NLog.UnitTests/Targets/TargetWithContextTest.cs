@@ -44,17 +44,17 @@ namespace NLog.UnitTests.Targets
     {
         public class CustomTargetWithContext : TargetWithContext
         {
-            public class CustomTargetWithContextProperty : TargetWithContextProperty
+            public class CustomTargetPropertyWithContext : TargetPropertyWithContext
             {
                 public string Hello { get; set; }
             }
 
-            [NLog.Config.ArrayParameter(typeof(CustomTargetWithContextProperty), "contextproperty")]
-            public override IList<TargetWithContextProperty> ContextProperties { get;  }
+            [NLog.Config.ArrayParameter(typeof(CustomTargetPropertyWithContext), "contextproperty")]
+            public override IList<TargetPropertyWithContext> ContextProperties { get;  }
 
             public CustomTargetWithContext()
             {
-                ContextProperties = new List<TargetWithContextProperty>();
+                ContextProperties = new List<TargetPropertyWithContext>();
             }
 
             public IDictionary<string, object> LastCombinedProperties;
@@ -74,7 +74,7 @@ namespace NLog.UnitTests.Targets
         public void TargetWithContextAsyncTest()
         {
             CustomTargetWithContext target = new CustomTargetWithContext();
-            target.ContextProperties.Add(new TargetWithContextProperty("threadid", "${threadid}"));
+            target.ContextProperties.Add(new TargetPropertyWithContext("threadid", "${threadid}"));
             target.IncludeMdlc = true;
             target.IncludeMdc = true;
             target.IncludeGdc = true;

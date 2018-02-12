@@ -107,8 +107,8 @@ namespace NLog.Targets
         /// Gets the array of custom attributes to be passed into the logevent context
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
-        [ArrayParameter(typeof(TargetWithContextProperty), "contextproperty")]
-        public virtual IList<TargetWithContextProperty> ContextProperties { get; }
+        [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
+        public virtual IList<TargetPropertyWithContext> ContextProperties { get; }
 
         /// <summary>
         /// Constructor
