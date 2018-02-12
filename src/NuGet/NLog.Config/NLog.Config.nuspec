@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
-<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata 
+    xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>NLog.Config</id>
     <title>NLog Configuration</title>
     <version>$BuildVersion$</version>
@@ -19,5 +22,12 @@
       <dependency id="NLog.Schema" version="$BuildVersion$" />
     </dependencies>
     <tags>nlog, xml, config</tags>
+    <contentFiles>
+      <files include="**/*.*" buildAction="None" copyToOutput="true" flatten="true" />
+    </contentFiles>
   </metadata>
+  <files>
+    <file src="content\**" target="contentFiles\any\any" />
+    <file src="content\**" target="content\" /> <!-- legacy -->
+  </files>
 </package>
