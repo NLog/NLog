@@ -33,6 +33,7 @@
 
 namespace NLog.Layouts
 {
+    using System.Text;
     using NLog.LayoutRenderers;
 
     /// <summary>
@@ -109,6 +110,11 @@ namespace NLog.Layouts
         }
 #endif
 
+        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
+        }
+
         /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
         /// </summary>
@@ -123,8 +129,8 @@ namespace NLog.Layouts
         /// Renders the layout for the specified logging event by invoking layout renderers.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="target"><see cref="System.Text.StringBuilder"/> for the result</param>
-        protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
+        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
+        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             Renderer.RenderAppendBuilder(logEvent, target);
         }

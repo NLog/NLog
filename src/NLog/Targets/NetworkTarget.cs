@@ -389,10 +389,10 @@ namespace NLog.Targets
         {
             if (OptimizeBufferReuse)
             {
-                if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out string text))
+                if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
                 {
                     InternalLogger.Trace("{0} - Sending {1}", this, text);
-                    return Encoding.GetBytes(text);
+                    return Encoding.GetBytes(text.ToString());
                 }
                 else
                 {

@@ -180,6 +180,11 @@ namespace NLog.Layouts
             base.CloseLayout();
         }
 
+        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
+        }
+
         /// <summary>
         /// Formats the log event as a JSON document for writing.
         /// </summary>

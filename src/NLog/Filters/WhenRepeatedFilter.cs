@@ -268,7 +268,7 @@ namespace NLog.Filters
         {
             if (targetBuilder != null)
             {
-                Layout.RenderAppendBuilder(logEvent, targetBuilder, false);
+                Layout.RenderAppendBuilder(logEvent, targetBuilder);
                 if (targetBuilder.Length > MaxLength)
                     targetBuilder.Length = MaxLength;
                 return new FilterInfoKey(targetBuilder, null);

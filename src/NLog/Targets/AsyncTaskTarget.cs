@@ -33,19 +33,18 @@
 
 namespace NLog.Targets
 {
+#if !NET3_5 && !SILVERLIGHT4
     using System;
     using System.Collections.Generic;
-    using System.Threading;
-
-#if !NET3_5 && !SILVERLIGHT4
-    using System.Threading.Tasks;
-    using Common;
     using System.ComponentModel;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using NLog.Common;
 
     /// <summary>
     /// Abstract Target with async Task support
     /// </summary>
-    public abstract class AsyncTaskTarget : Target
+    public abstract class AsyncTaskTarget : TargetWithContext
     {
         private readonly Timer _taskTimeoutTimer;
         private CancellationTokenSource _cancelTokenSource;

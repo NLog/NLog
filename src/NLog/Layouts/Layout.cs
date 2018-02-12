@@ -34,13 +34,13 @@
 namespace NLog.Layouts
 {
     using System;
-    using System.Linq;
+    using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Common;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Abstract interface that layouts must implement.
@@ -142,15 +142,28 @@ namespace NLog.Layouts
                 Initialize(LoggingConfiguration);
             }
 
-            return GetFormattedMessage(logEvent);
-        }
-
-        internal void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
-        {
             if (!ThreadAgnostic)
             {
-                RenderAppendBuilder(logEvent, target, true);
+                object cachedValue;
+                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+                {
+                    return cachedValue?.ToString() ?? string.Empty;
+                }
             }
+
+            string layoutValue = GetFormattedMessage(logEvent) ?? string.Empty;
+            if (!ThreadAgnostic)
+            {
+                // Would be nice to only do this in Precalculate(), but we need to ensure internal cache
+                // is updated for for custom Layouts that overrides Precalculate (without calling base.Precalculate)
+                logEvent.AddCachedLayoutValue(this, layoutValue);
+            }
+            return layoutValue;
+        }
+
+        internal virtual void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            Precalculate(logEvent); // Allow custom Layouts to work with OptimizeBufferReuse
         }
 
         /// <summary>
@@ -168,10 +181,10 @@ namespace NLog.Layouts
 
             if (!ThreadAgnostic)
             {
-                string cachedValue;
+                object cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
                 {
-                    target.Append(cachedValue);
+                    target.Append(cachedValue?.ToString() ?? string.Empty);
                     return;
                 }
             }
@@ -193,19 +206,9 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         /// <param name="reusableBuilder">StringBuilder to help minimize allocations [optional].</param>
-        /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
         /// <returns>The rendered layout.</returns>
-        internal string RenderAllocateBuilder(LogEventInfo logEvent, StringBuilder reusableBuilder = null, bool cacheLayoutResult = true)
+        internal string RenderAllocateBuilder(LogEventInfo logEvent, StringBuilder reusableBuilder = null)
         {
-            if (!ThreadAgnostic)
-            {
-                string cachedValue;
-                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-                {
-                    return cachedValue;
-                }
-            }
-
             int initialLength = _maxRenderedLength;
             if (initialLength > MaxInitialRenderBufferLength)
             {
@@ -219,14 +222,7 @@ namespace NLog.Layouts
                 _maxRenderedLength = sb.Length;
             }
 
-            if (cacheLayoutResult && !ThreadAgnostic)
-            {
-                return logEvent.AddCachedLayoutValue(this, sb.ToString());
-            }
-            else
-            {
-                return sb.ToString();
-            }
+            return sb.ToString();
         }
 
         /// <summary>

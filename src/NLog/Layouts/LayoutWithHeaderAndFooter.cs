@@ -33,14 +33,15 @@
 
 namespace NLog.Layouts
 {
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A specialized layout that supports header and footer.
     /// </summary>
     [Layout("LayoutWithHeaderAndFooter")]
     [ThreadAgnostic]
+    [AppDomainFixedOutput]
     public class LayoutWithHeaderAndFooter : Layout
     {
         /// <summary>

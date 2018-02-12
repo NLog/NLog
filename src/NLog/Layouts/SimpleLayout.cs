@@ -35,7 +35,6 @@ namespace NLog.Layouts
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Linq;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
@@ -270,6 +269,11 @@ namespace NLog.Layouts
             }
 
             base.InitializeLayout();
+        }
+
+        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
         }
 
         /// <summary>

@@ -166,9 +166,11 @@ namespace NLog.Internal
             {
                 if (!_layout.ThreadAgnostic)
                 {
-                    string cachedResult;
+                    object cachedResult;
                     if (logEvent.TryGetCachedLayoutValue(_layout, out cachedResult))
-                        return cachedResult;
+                    {
+                        return cachedResult?.ToString() ?? string.Empty;
+                    }
                 }
 
                 _layout.RenderAppendBuilder(logEvent, reusableBuilder);
