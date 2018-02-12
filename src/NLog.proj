@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
 
   <UsingTask AssemblyFile="packages\xunit.1.9.1\lib\net20\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit"/>
 
@@ -382,33 +382,17 @@
   </Target>
 
   <Target Name="NuGetConfigPackage">
-    <ItemGroup>
-      <NuGetConfigFiles Include="NuGet/NLog.Config/**" />
-    </ItemGroup>
-	
-    <!-- prepare static files -->
-    <RemoveDir Directories="$(NuGetBuildPath)\NLog.Config" />
-    <Copy SourceFiles="@(NuGetConfigFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Config\%(RecursiveDir)" />
-	
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Config\NLog.Config.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
-
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
-    <Exec Command='"$(NuGetTool)" pack NLog.Config.nuspec -OutputDirectory "$(NuGetOutputPath)"' WorkingDirectory="$(NuGetBuildPath)\NLog.Config" />
+    <Exec Command='"$(NuGetTool)" pack NLog.Config.nuspec -OutputDirectory "$(NuGetOutputPath)" -Properties $(NuGetProperties)' WorkingDirectory="$(NuGetBuildPath)\NLog.Config" />
   </Target>
 
   <Target Name="NuGetSchemaPackage">
-    <ItemGroup>
-      <NuGetSchemaFiles Include="NuGet/NLog.Schema/**" />
-    </ItemGroup>
-	
     <!-- prepare static files -->
     <RemoveDir Directories="$(NuGetBuildPath)\NLog.Schema" />
     <Copy SourceFiles="@(NuGetSchemaFiles)" DestinationFolder="$(NuGetBuildPath)\NLog.Schema\%(RecursiveDir)" />
     <Copy SourceFiles="$(BaseOutputDirectory)\bin\$(Configuration)\NLog.xsd"
           DestinationFolder="$(NuGetBuildPath)\NLog.Schema\content" />
-	
-    <TokenReplace Path="$(NuGetBuildPath)\NLog.Schema\NLog.Schema.nuspec" Token="$BuildVersion$" Replacement="$(NuGetVersion)" />
 
     <!-- package -->	  
     <MakeDir Directories="$(NuGetOutputPath)" />
