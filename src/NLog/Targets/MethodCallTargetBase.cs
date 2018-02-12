@@ -36,10 +36,9 @@ namespace NLog.Targets
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Text;
-    using Common;
-    using Config;
-    using Internal;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The base class for all targets which call methods (local or remote). 
@@ -47,8 +46,6 @@ namespace NLog.Targets
     /// </summary>
     public abstract class MethodCallTargetBase : Target
     {
-        private const int MaxGroupRenderSingleBufferLength = 128 * 1024;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodCallTargetBase" /> class.
         /// </summary>
@@ -70,73 +67,16 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            object[] parameters = ConvetToParameterArray(logEvent.LogEvent, false);
-            DoInvoke(parameters, logEvent);
-        }
-
-        internal object[] ConvetToParameterArray(LogEventInfo logEvent, bool ignoreGroupParameters)
-        {
             object[] parameters = new object[Parameters.Count];
 
             for (int i = 0; i < parameters.Length; ++i)
             {
                 var param = Parameters[i];
-                if (!param.EnableGroupLayout)
-                {
-                    var parameterValue = RenderLogEvent(param.Layout, logEvent);
-                    parameters[i] = Convert.ChangeType(parameterValue, param.ParameterType, CultureInfo.InvariantCulture);
-                }
-                else if (!ignoreGroupParameters)
-                {
-                    using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
-                    {
-                        StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
-                        if (param.GroupHeaderLayout != null)
-                            param.GroupHeaderLayout.RenderAppendBuilder(logEvent, sb);
-                        if (param.Layout != null)
-                            param.Layout.RenderAppendBuilder(logEvent, sb);
-                        if (param.GroupFooterLayout != null)
-                            param.GroupFooterLayout.RenderAppendBuilder(logEvent, sb);
-                        parameters[i] = sb.ToString();
-                    }
-                }
+                var parameterValue = RenderLogEvent(param.Layout, logEvent.LogEvent);
+                parameters[i] = Convert.ChangeType(parameterValue, param.ParameterType, CultureInfo.InvariantCulture);
             }
 
-            return parameters;
-        }
-
-        internal string ConvertParameterGroupValue(IList<AsyncLogEventInfo> logEvents, MethodCallParameter param)
-        {
-            using (var targetBuilder = OptimizeBufferReuse && logEvents.Count <= 1000 ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
-            {
-                StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
-                if (param.GroupHeaderLayout != null)
-                    param.GroupHeaderLayout.RenderAppendBuilder(logEvents[0].LogEvent, sb);
-                for (int x = 0; x < logEvents.Count; ++x)
-                {
-                    if (x != 0 && param.GroupItemSeparatorLayout != null)
-                        param.GroupItemSeparatorLayout.RenderAppendBuilder(logEvents[x].LogEvent, sb);
-
-                    if (param.Layout != null)
-                    {
-                        // If payload becomes too big, then use local StringBuilder to avoid json-maxlength-validation
-                        if (sb.Length < MaxGroupRenderSingleBufferLength)
-                        {
-                            param.Layout.RenderAppendBuilder(logEvents[x].LogEvent, sb);
-                        }
-                        else
-                        {
-                            using (var localTarget = new AppendBuilderCreator(sb, true))
-                            {
-                                param.Layout.RenderAppendBuilder(logEvents[x].LogEvent, localTarget.Builder);
-                            }
-                        }
-                    }
-                }
-                if (param.GroupFooterLayout != null)
-                    param.GroupFooterLayout.RenderAppendBuilder(logEvents[logEvents.Count - 1].LogEvent, sb);
-                return sb.ToString();
-            }
+            DoInvoke(parameters, logEvent);
         }
 
         /// <summary>
