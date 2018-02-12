@@ -541,13 +541,13 @@ namespace NLog.UnitTests.Layouts
         /// Serialize object deep
         /// </summary>
         [Fact]
-        public void SerializeObject()
+        public void SerializeObjectRecursionSingle()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
-                 <layout type=""JsonLayout"" IncludeAllProperties='true' >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' maxRecursionLimit='1' >
                  </layout>
                 </target>
             </targets>
@@ -559,13 +559,73 @@ namespace NLog.UnitTests.Layouts
 
             ILogger logger = LogManager.GetLogger("A");
 
-            var logEventInfo = new LogEventInfo();
+            var logEventInfo1 = new LogEventInfo();
 
-            logEventInfo.Properties.Add("nestedObject", new List<object> {new {val = "value1", val2 ="value2"}});
+            logEventInfo1.Properties.Add("nestedObject", new List<object> { new { val = 1, val2 = "value2" }, new { val3 = 3, val4 = "value4" } });
 
-            logger.Debug(logEventInfo);
+            logger.Debug(logEventInfo1);
 
-            AssertDebugLastMessage("debug", "{ \"nestedObject\": [{\"val\":\"value1\", \"val2\":\"value2\"}] }");
+            AssertDebugLastMessage("debug", "{ \"nestedObject\": [{\"val\":1, \"val2\":\"value2\"},{\"val3\":3, \"val4\":\"value4\"}] }");
+
+            var logEventInfo2 = new LogEventInfo();
+
+            logEventInfo2.Properties.Add("nestedObject", new { val = 1, val2 = "value2" });
+
+            logger.Debug(logEventInfo2);
+
+            AssertDebugLastMessage("debug", "{ \"nestedObject\": {\"val\":1, \"val2\":\"value2\"} }");
+
+            var logEventInfo3 = new LogEventInfo();
+
+            logEventInfo3.Properties.Add("nestedObject", new List<object> { new List<object> { new { val = 1, val2 = "value2" } } });
+
+            logger.Debug(logEventInfo3);
+
+            AssertDebugLastMessage("debug", "{ \"nestedObject\": [[\"{ val = 1, val2 = value2 }\"]] }");  // Allows nested collection, but then only ToString
+        }
+
+        [Fact]
+        public void SerializeObjectRecursionZero()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' maxRecursionLimit='0' >
+                 </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo1 = new LogEventInfo();
+
+            logEventInfo1.Properties.Add("nestedObject", new List<object> { new { val = 1, val2 = "value2" }, new { val3 = 3, val4 = "value5" } });
+
+            logger.Debug(logEventInfo1);
+
+            AssertDebugLastMessage("debug", "{ \"nestedObject\": [\"{ val = 1, val2 = value2 }\",\"{ val3 = 3, val4 = value5 }\"] }");  // Allows single collection recursion
+
+            var logEventInfo2 = new LogEventInfo();
+
+            logEventInfo2.Properties.Add("nestedObject", new { val = 1, val2 = "value2" });
+
+            logger.Debug(logEventInfo2);
+
+            AssertDebugLastMessage("debug", "{ \"nestedObject\": \"{ val = 1, val2 = value2 }\" }");    // Never object recursion, only ToString
+
+            var logEventInfo3 = new LogEventInfo();
+
+            logEventInfo3.Properties.Add("nestedObject", new List<object> { new List<object> { new { val = 1, val2 = "value2" } } });
+
+            logger.Debug(logEventInfo3);
+
+            AssertDebugLastMessage("debug", "{ \"nestedObject\": [] }");  // No support for nested collections
         }
 
         private static LogEventInfo CreateLogEventWithExcluded()

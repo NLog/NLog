@@ -57,7 +57,7 @@ namespace NLog.Internal.Fakeables
             {
                 FriendlyName = GetFriendlyNameFromEntryAssembly() ?? GetFriendlyNameFromProcessName() ?? "UnknownAppDomain";
             }
-            catch (Exception ex)
+            catch
             {
                 FriendlyName = "UnknownAppDomain";
             }
@@ -74,7 +74,7 @@ namespace NLog.Internal.Fakeables
                 string assemblyName =  Assembly.GetEntryAssembly()?.GetName()?.Name;
                 return string.IsNullOrEmpty(assemblyName) ? null : assemblyName;
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }
@@ -87,7 +87,7 @@ namespace NLog.Internal.Fakeables
                 string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
                 return string.IsNullOrEmpty(processName) ? null : processName;
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }

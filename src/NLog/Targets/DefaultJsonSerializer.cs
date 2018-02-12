@@ -56,7 +56,6 @@ namespace NLog.Targets
         private readonly JsonSerializeOptions _exceptionSerializeOptions = new JsonSerializeOptions() { SanitizeDictionaryKeys = true };
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
-        private const int MaxRecursionDepth = 10;
         private const int MaxJsonLength = 512 * 1024;
 
         private static readonly DefaultJsonSerializer instance;
@@ -177,10 +176,6 @@ namespace NLog.Targets
             {
                 return false; // detected reference loop, skip serialization
             }
-            if (depth > MaxRecursionDepth)
-            {
-                return false; // reached maximum recursion level, no further serialization
-            }
 
             if (value == null)
             {
@@ -269,6 +264,10 @@ namespace NLog.Targets
         {
             bool first = true;
 
+            int nextDepth = objectsInPath.Count <= 1 ? depth : (depth + 1);
+            if (nextDepth > options.MaxRecursionLimit)
+                return;
+
             int originalLength;
             destination.Append('{');
             foreach (DictionaryEntry de in value)
@@ -285,7 +284,7 @@ namespace NLog.Targets
                 }
 
                 //only serialize, if key and value are serialized without error (e.g. due to reference loop)
-                if (!SerializeObject(de.Key, destination, options, objectsInPath, depth + 1))
+                if (!SerializeObject(de.Key, destination, options, objectsInPath, nextDepth))
                 {
                     destination.Length = originalLength;
                 }
@@ -304,7 +303,7 @@ namespace NLog.Targets
                     }
 
                     destination.Append(':');
-                    if (!SerializeObject(de.Value, destination, options, objectsInPath, depth + 1))
+                    if (!SerializeObject(de.Value, destination, options, objectsInPath, nextDepth))
                     {
                         destination.Length = originalLength;
                     }
@@ -340,6 +339,10 @@ namespace NLog.Targets
         {
             bool first = true;
 
+            int nextDepth = objectsInPath.Count <= 1 ? depth : (depth + 1); // Allow serialization of list-items 
+            if (nextDepth > options.MaxRecursionLimit)
+                return;
+
             int originalLength;
             destination.Append('[');
             foreach (var val in value)
@@ -355,7 +358,7 @@ namespace NLog.Targets
                     destination.Append(',');
                 }
 
-                if (!SerializeObject(val, destination, options, objectsInPath, depth + 1))
+                if (!SerializeObject(val, destination, options, objectsInPath, nextDepth))
                 {
                     destination.Length = originalLength;
                 }
@@ -389,24 +392,39 @@ namespace NLog.Targets
                         return false;
                     }
 
-                    try
+                    if (depth < options.MaxRecursionLimit)
                     {
-                        if (value is Exception && ReferenceEquals(options, instance._serializeOptions))
+                        try
                         {
-                            // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
-                            options = instance._exceptionSerializeOptions;
-                        }
+                            if (value is Exception && ReferenceEquals(options, instance._serializeOptions))
+                            {
+                                // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
+                                options = instance._exceptionSerializeOptions;
+                            }
 
-                        using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
+                            using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
+                            {
+                                return SerializeProperties(value, destination, options, objectsInPath, depth);
+                            }
+                        }
+                        catch
                         {
-                            return SerializeProperties(value, destination, options, objectsInPath, depth);
+                            //nothing to add, so return is OK
+                            destination.Length = originalLength;
+                            return false;
                         }
                     }
-                    catch
+                    else
                     {
-                        //nothing to add, so return is OK
-                        destination.Length = originalLength;
-                        return false;
+                        try
+                        {
+                            string str = EscapeString(Convert.ToString(value, CultureInfo.InvariantCulture), options.EscapeUnicode);
+                            QuoteValue(destination, str);
+                        }
+                        catch
+                        {
+                            return false;
+                        }
                     }
                 }
             }
