@@ -6,7 +6,7 @@
     //Render all Render and parse methods
     //T4 templates are built in Visual Studio. See https://msdn.microsoft.com/en-us/library/bb126445.aspx
 #>// 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
