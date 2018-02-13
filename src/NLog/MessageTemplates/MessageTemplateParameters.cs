@@ -114,7 +114,7 @@ namespace NLog.MessageTemplates
 
             try
             {
-                int holeIndex = 0;
+                short holeIndex = 0;
                 TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
                 while (templateEnumerator.MoveNext())
                 {
@@ -124,20 +124,27 @@ namespace NLog.MessageTemplates
                         if (hole.Index != -1 && isPositional)
                         {
                             holeIndex++;
-                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[hole.Index], hole.Format, hole.CaptureType));
+                            var value = GetHoleValueSafe(parameters, hole.Index);
+                            templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
                         }
-                        else
+                        else 
                         {
-                            isPositional = false;
-                            if (holeIndex != 0)
+                            if (isPositional)
                             {
-                                // rewind and try again
-                                templateEnumerator = new TemplateEnumerator(template);
-                                holeIndex = 0;
-                                templateParameters.Clear();
-                                continue;
+                                isPositional = false;
+                                if (holeIndex != 0)
+                                {
+                                    // rewind and try again
+                                    templateEnumerator = new TemplateEnumerator(template);
+                                    holeIndex = 0;
+                                    templateParameters.Clear();
+                                    continue;
+                                }
                             }
-                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[holeIndex++], hole.Format, hole.CaptureType));
+
+                            var value = GetHoleValueSafe(parameters, holeIndex);
+                            templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
+                            holeIndex++;
                         }
                     }
                 }
@@ -156,5 +163,12 @@ namespace NLog.MessageTemplates
                 return templateParameters;
             }
         }
+
+        private static object GetHoleValueSafe(object[] parameters, short holeIndex)
+        {
+            var value = parameters.Length > holeIndex ? parameters[holeIndex] : null;
+            return value;
+        }
     }
 }
+
