@@ -75,7 +75,7 @@ namespace NLog.MessageTemplates
         /// </summary>
         /// <param name="message"><see cref="LogEventInfo.Message"/> including any parameter placeholders</param>
         /// <param name="parameters">All <see cref="LogEventInfo.Parameters"/></param>
-        public MessageTemplateParameters(string message, object[] parameters)
+        internal MessageTemplateParameters(string message, object[] parameters)
         {
             var hasParameters = parameters != null && parameters.Length > 0;
             bool isPositional = hasParameters;

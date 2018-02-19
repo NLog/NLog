@@ -89,8 +89,7 @@ namespace NLog.MessageTemplates
                     default:
                         if (Name?.Length >= 1 && Name[0] >= '0' && Name[0] <= '9')
                         {
-                            int parameterIndex;
-                            if (int.TryParse(Name, out parameterIndex))
+                            if (int.TryParse(Name, out var parameterIndex))
                                 return parameterIndex;
                         }
                         return null;
@@ -104,7 +103,7 @@ namespace NLog.MessageTemplates
         /// <param name="name">Parameter Name</param>
         /// <param name="value">Parameter Value</param>
         /// <param name="format">Parameter Format</param>
-        public MessageTemplateParameter([NotNull] string name, object value, string format)
+        internal MessageTemplateParameter([NotNull] string name, object value, string format)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Value = value;
