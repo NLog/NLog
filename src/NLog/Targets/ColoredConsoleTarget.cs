@@ -55,16 +55,16 @@ namespace NLog.Targets
         /// Should logging being paused/stopped because of the race condition bug in Console.Writeline?
         /// </summary>
         /// <remarks>
-        ///   Console.Out.Writeline / Console.Error.Writeline could throw 'IndexOutOfRangeException', which is a bug. 
+        ///   Console.Out.Writeline / Console.Error.Writeline could throw 'IndexOutOfRangeException', which is a bug.
         /// See http://stackoverflow.com/questions/33915790/console-out-and-console-error-race-condition-error-in-a-windows-service-written
         /// and https://connect.microsoft.com/VisualStudio/feedback/details/2057284/console-out-probable-i-o-race-condition-issue-in-multi-threaded-windows-service
-        ///             
-        /// Full error: 
+        ///
+        /// Full error:
         ///   Error during session close: System.IndexOutOfRangeException: Probable I/ O race condition detected while copying memory.
-        ///   The I/ O package is not thread safe by default.In multithreaded applications, 
-        ///   a stream must be accessed in a thread-safe way, such as a thread - safe wrapper returned by TextReader's or 
+        ///   The I/ O package is not thread safe by default.In multithreaded applications,
+        ///   a stream must be accessed in a thread-safe way, such as a thread - safe wrapper returned by TextReader's or
         ///   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
-        /// 
+        ///
         /// </remarks>
         private bool _pauseLogging;
 
