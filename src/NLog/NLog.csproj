@@ -18,6 +18,12 @@
 
 NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking changes! Also a lot features has been added!
 
+# RC 6 summary:
+
+- [#2576](https://github.com/NLog/NLog/pull/2576) Fix possible infinite loop in message template parser + better handling incorrect templates (@304NotModified, @snakefoot)
+- [#2581](https://github.com/NLog/NLog/pull/2581) MessageTemplateParameter(s) ctors to internal (@304NotModified)
+- See also https://github.com/NLog/NLog/milestone/63?closed=1
+
 # RC 5 summary:
 
 - [#2570](https://github.com/nlog/nlog/pull/2570) Update nuspec NLog.Config and NLog.Schema (@304NotModified)
