@@ -53,6 +53,29 @@ namespace NLog
         private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
 
         /// <summary>
+        /// 
+        /// </summary>
+        private class ItemRemover : IDisposable
+        {
+            private readonly string _item;
+            private bool _disposed = false;
+
+            public ItemRemover(string item)
+            {
+                this._item = item;
+            }
+
+            public void Dispose()
+            {
+                if (!_disposed)
+                {
+                    _disposed = true;
+                    Remove(_item);
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the thread-local dictionary
         /// </summary>
         /// <param name="create">Must be true for any subsequent dictionary modification operation</param>
@@ -71,9 +94,10 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
-        public static void Set(string item, string value)
+        public static IDisposable Set(string item, string value)
         {
             GetThreadDictionary(true)[item] = value;
+            return new ItemRemover(item);
         }
 
         /// <summary>
@@ -81,9 +105,10 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
-        public static void Set(string item, object value)
+        public static IDisposable Set(string item, object value)
         {
             GetThreadDictionary(true)[item] = value;
+            return new ItemRemover(item);
         }
 
         /// <summary>

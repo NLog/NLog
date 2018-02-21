@@ -37,6 +37,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using Internal;
 
     /// <summary>
@@ -50,6 +51,29 @@ namespace NLog
     /// </remarks>
     public static class MappedDiagnosticsLogicalContext
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private class ItemRemover : IDisposable
+        {
+            private readonly string _item;
+            //boolean as int to allow the use of Interlocked.Exchange
+            private int _disposed = 0;
+
+            public ItemRemover(string item)
+            {
+                _item = item;
+            }
+
+            public void Dispose()
+            {
+                if (Interlocked.Exchange(ref _disposed, 1) == 0)
+                {
+                    Remove(_item); 
+                }
+            }
+        }
+
         /// <summary>
         /// Simulate ImmutableDictionary behavior (which is not yet part of all .NET frameworks).
         /// In future the real ImmutableDictionary could be used here to minimize memory usage and copying time.
@@ -115,9 +139,10 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
-        public static void Set(string item, string value)
+        public static IDisposable Set(string item, string value)
         {
             GetLogicalThreadDictionary(true)[item] = value;
+            return new ItemRemover(item);
         }
 
         /// <summary>
@@ -125,9 +150,10 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
-        public static void Set(string item, object value)
+        public static IDisposable Set(string item, object value)
         {
             GetLogicalThreadDictionary(true)[item] = value;
+            return new ItemRemover(item);
         }
 
         /// <summary>
