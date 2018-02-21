@@ -57,7 +57,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, "{0}", new object[] { value });
+                WriteToTargets(level, null, value);
             }
         }
 
@@ -72,7 +72,7 @@ namespace NLog
         {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, formatProvider, "{0}", new[] { value });
+                WriteToTargets(level, formatProvider, value);
             }
         }
 
@@ -549,7 +549,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Trace, null, value);
             }
         }
 
@@ -563,7 +563,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Trace, formatProvider, value);
             }
         }
 
@@ -1012,7 +1012,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Debug, null, value);
             }
         }
 
@@ -1026,7 +1026,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Debug, formatProvider, value);
             }
         }
 
@@ -1475,7 +1475,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Info, null, value);
             }
         }
 
@@ -1489,7 +1489,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Info, formatProvider, value);
             }
         }
 
@@ -1938,7 +1938,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Warn, null, value);
             }
         }
 
@@ -1952,7 +1952,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Warn, formatProvider, value);
             }
         }
 
@@ -2401,7 +2401,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Error, null, value);
             }
         }
 
@@ -2415,7 +2415,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Error, formatProvider, value);
             }
         }
 
@@ -2864,7 +2864,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, "{0}", new object[] { value });
+                WriteToTargets(LogLevel.Fatal, null, value);
             }
         }
 
@@ -2878,7 +2878,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, formatProvider, "{0}", new[] { value });
+                WriteToTargets(LogLevel.Fatal, formatProvider, value);
             }
         }
 

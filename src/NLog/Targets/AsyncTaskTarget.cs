@@ -114,7 +114,6 @@ namespace NLog.Targets
                 return;
             }
 
-            MergeEventProperties(logEvent.LogEvent);
             PrecalculateVolatileLayouts(logEvent.LogEvent);
 
             _requestQueue.Enqueue(logEvent);

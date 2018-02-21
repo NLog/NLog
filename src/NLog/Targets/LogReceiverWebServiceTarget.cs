@@ -251,7 +251,6 @@ namespace NLog.Targets
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
                     var ev = logEvents[i].LogEvent;
-                    MergeEventProperties(ev);
 
                     if (ev.HasProperties)
                     {

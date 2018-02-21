@@ -492,8 +492,6 @@ namespace NLog.Targets
         {
             try
             {
-                MergeEventProperties(logEvent.LogEvent);
-
                 Write(logEvent.LogEvent);
                 logEvent.Continuation(null);
             }
@@ -638,6 +636,7 @@ namespace NLog.Targets
         /// parameters of the given event info object.
         /// </summary>
         /// <param name="logEvent">The event info object to perform the merge to.</param>
+        [Obsolete("Logger.Trace(logEvent) now automatically captures the logEvent Properties. Marked obsolete on NLog 4.6")]
         protected void MergeEventProperties(LogEventInfo logEvent)
         {
             if (logEvent.Parameters == null || logEvent.Parameters.Length == 0)

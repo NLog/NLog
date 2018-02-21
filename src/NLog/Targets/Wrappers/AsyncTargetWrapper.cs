@@ -312,7 +312,6 @@ namespace NLog.Targets.Wrappers
         /// </remarks>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            MergeEventProperties(logEvent.LogEvent);
             PrecalculateVolatileLayouts(logEvent.LogEvent);
             bool queueWasEmpty = RequestQueue.Enqueue(logEvent);
             if (queueWasEmpty && TimeToSleepBetweenBatches <= 0)
