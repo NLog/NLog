@@ -607,12 +607,7 @@ namespace NLog
 
         private static bool IsSafeToDeferFormatting(object value)
         {
-            if (value == null)
-            {
-                return true;
-            }
-
-            return value.GetType().IsPrimitive() || (value is string);
+            return value == null || Convert.GetTypeCode(value) != TypeCode.Object;
         }
 
         private static string GetStringFormatMessageFormatter(LogEventInfo logEvent)
