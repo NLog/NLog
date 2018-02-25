@@ -228,12 +228,11 @@ namespace NLog
                     {
                         try
                         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                             _config.Dump();
+                            ReconfigExistingLoggers();
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                             TryWachtingConfigFile();
 #endif
-                            _config.InitializeAll();
-
                             LogConfigurationInitialized();
                         }
                         finally
@@ -285,8 +284,6 @@ namespace NLog
                         try
                         {
                             _config.Dump();
-
-                            _config.InitializeAll();
                             ReconfigExistingLoggers();
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                             TryWachtingConfigFile();
@@ -433,7 +430,6 @@ namespace NLog
             {
                 InternalLogger.Debug(ex, "Not running in full trust");
             }
-
         }
 
         /// <summary>
