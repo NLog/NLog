@@ -139,9 +139,10 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
-        public static IDisposable Set(string item, string value)
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        public static IDisposable Push(string item, string value)
         {
-            GetLogicalThreadDictionary(true)[item] = value;
+            Set(item, value);
             return new ItemRemover(item);
         }
 
@@ -150,10 +151,31 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
-        public static IDisposable Set(string item, object value)
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        public static IDisposable Push(string item, object value)
+        {
+            Set(item, value);
+            return new ItemRemover(item);
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        public static void Set(string item, string value)
         {
             GetLogicalThreadDictionary(true)[item] = value;
-            return new ItemRemover(item);
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        public static void Set(string item, object value)
+        {
+            GetLogicalThreadDictionary(true)[item] = value;
         }
 
         /// <summary>
