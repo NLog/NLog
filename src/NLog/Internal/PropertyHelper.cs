@@ -88,8 +88,8 @@ namespace NLog.Internal
 
                 if (!(TryNLogSpecificConversion(propertyType, value, out newValue, configurationItemFactory)
                     || TryGetEnumValue(propertyType, value, out newValue, true)
-                    || TryImplicitConversion(propertyType, value, out newValue)
                     || TrySpecialConversion(propertyType, value, out newValue)
+                    || TryImplicitConversion(propertyType, value, out newValue)
                     || TryFlatListConversion(propertyType, value, out newValue)
                     || TryTypeConverterConversion(propertyType, value, out newValue)))
                     newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
@@ -168,7 +168,7 @@ namespace NLog.Internal
             if (arrayParameterAttribute != null)
             {
                 return arrayParameterAttribute.ItemType;
-            }
+        }
 
             return null;
         }
@@ -196,15 +196,34 @@ namespace NLog.Internal
 
         private static bool TryImplicitConversion(Type resultType, string value, out object result)
         {
-            MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
-            if (operatorImplicitMethod == null)
+            try
             {
-                result = null;
-                return false;
-            }
+#if !WINDOWS_UWP
+                if (Type.GetTypeCode(resultType) != TypeCode.Object)
+#else
+                if (resultType.IsPrimitive() || resultType == typeof(string))
+#endif
+                {
+                    result = null;
+                    return false;
+                }
 
-            result = operatorImplicitMethod.Invoke(null, new object[] { value });
-            return true;
+                MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { value.GetType() }, null);
+                if (operatorImplicitMethod == null || !resultType.IsAssignableFrom(operatorImplicitMethod.ReturnType))
+                {
+                    result = null;
+                    return false;
+                }
+
+                result = operatorImplicitMethod.Invoke(null, new object[] { value });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Implicit Conversion Failed of {0} to {1}", value, resultType);
+            }
+            result = null;
+            return false;
         }
 
         private static bool TryNLogSpecificConversion(Type propertyType, string value, out object newValue, ConfigurationItemFactory configurationItemFactory)
@@ -341,8 +360,8 @@ namespace NLog.Internal
                     foreach (var value in values)
                     {
                         if (!(TryGetEnumValue(propertyType, value, out newValue, false)
-                               || TryImplicitConversion(propertyType, value, out newValue)
                                || TrySpecialConversion(propertyType, value, out newValue)
+                               || TryImplicitConversion(propertyType, value, out newValue)
                                || TryTypeConverterConversion(propertyType, value, out newValue)))
                         {
                             newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
