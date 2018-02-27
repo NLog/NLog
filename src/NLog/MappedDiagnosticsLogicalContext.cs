@@ -140,7 +140,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
-        public static IDisposable Push(string item, string value)
+        public static IDisposable SetScoped(string item, string value)
         {
             Set(item, value);
             return new ItemRemover(item);
@@ -152,7 +152,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
-        public static IDisposable Push(string item, object value)
+        public static IDisposable SetScoped(string item, object value)
         {
             Set(item, value);
             return new ItemRemover(item);

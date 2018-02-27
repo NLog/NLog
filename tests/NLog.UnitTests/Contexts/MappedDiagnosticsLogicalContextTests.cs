@@ -323,7 +323,7 @@ namespace NLog.UnitTests.Contexts
 
             MappedDiagnosticsLogicalContext.Clear();
             MappedDiagnosticsLogicalContext.Set(itemNotRemovedKey, "itemNotRemoved");
-            using (MappedDiagnosticsLogicalContext.Push(itemRemovedKey, "itemRemoved"))
+            using (MappedDiagnosticsLogicalContext.SetScoped(itemRemovedKey, "itemRemoved"))
             {
                 Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, itemRemovedKey });
             }
@@ -337,7 +337,7 @@ namespace NLog.UnitTests.Contexts
             const string itemKey = "itemKey";
 
             MappedDiagnosticsLogicalContext.Clear();
-            IDisposable disposable = MappedDiagnosticsLogicalContext.Push(itemKey, "item1");
+            IDisposable disposable = MappedDiagnosticsLogicalContext.SetScoped(itemKey, "item1");
 
             disposable.Dispose();
             Assert.False(MappedDiagnosticsLogicalContext.Contains(itemKey));
