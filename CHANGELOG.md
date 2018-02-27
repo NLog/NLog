@@ -1,6 +1,13 @@
 See also [releases](https://github.com/NLog/NLog/releases) and [milestones](https://github.com/NLog/NLog/milestones).
 
-### v4.4.12 (2017/08/08]
+### v4.4.13 (2018/02/28)
+
+#### Fixes
+
+- [#2600](https://github.com/nlog/nlog/pull/2600) Fix 'System.ReadOnlySpan`1[System.Char]' cannot be converted to type 'System.String' (@snakefoot)
+
+
+### v4.4.12 (2017/08/08)
 
 #### Fixes
 
