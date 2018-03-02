@@ -108,12 +108,12 @@ namespace NLog.Targets.Wrappers
                         case AsyncTargetWrapperOverflowAction.Discard:
                             InternalLogger.Debug("Discarding one element from queue");
                             var lostItem = _logEventInfoQueue.Dequeue();
-                            OnLogEventDropped(new LogEventDroppedEventArgs(lostItem));
+                            OnLogEventDropped(lostItem);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
                             InternalLogger.Debug("The overflow action is Grow, adding element anyway");
-                            OnLogEventQueueGrows(new LogEventQueueGrowEventArgs(RequestLimit, RequestCount +1));
+                            OnLogEventQueueGrows(RequestCount + 1);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Block:
@@ -201,13 +201,34 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Raise event when queued element was dropped because of queue overflow
         /// </summary>
-        /// <param name="e">Dropped queue item</param>
-        protected void OnLogEventDropped(LogEventDroppedEventArgs e) => LogEventDropped?.Invoke(this, e);
-        
+        /// <param name="logEventInfo">Dropped queue item</param>
+        private void OnLogEventDropped(AsyncLogEventInfo logEventInfo)
+        {
+            var logEventDropped = LogEventDropped;
+            if (logEventDropped == null)
+            {
+                return;
+            }
+
+            LogEventDroppedEventArgs eventArg = new LogEventDroppedEventArgs(logEventInfo);
+            logEventDropped.Invoke(this, eventArg);
+        }
+
         /// <summary>
         /// Raise event when <see cref="RequestCount"/> overflow <see cref="RequestLimit"/>
         /// </summary>
-        /// <param name="e">Contains current values of <see cref="RequestLimit"/> and <see cref="RequestCount"/></param>
-        protected virtual void OnLogEventQueueGrows(LogEventQueueGrowEventArgs e) => LogEventQueueGrow?.Invoke(this, e);
+        /// <param name="requestsCount"> current requests count</param>
+        private void OnLogEventQueueGrows(int requestsCount)
+        {
+            var logEventQueueGrow = LogEventQueueGrow;
+            if (logEventQueueGrow == null)
+            {
+                return;
+            }
+
+            var eventArg = new LogEventQueueGrowEventArgs(RequestLimit, requestsCount);
+            logEventQueueGrow.Invoke(this, eventArg);
+        }
+
     }
 }
