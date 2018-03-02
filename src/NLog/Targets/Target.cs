@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -681,9 +681,17 @@ namespace NLog.Targets
                 if (simpleLayout != null && simpleLayout.IsFixedText)
                     return simpleLayout.Render(logEvent);
 
+                if (!layout.ThreadAgnostic)
+                {
+                    if (logEvent.TryGetCachedLayoutValue(layout, out var value))
+                    {
+                        return value?.ToString() ?? string.Empty;
+                    }
+                }
+
                 using (var localTarget = ReusableLayoutBuilder.Allocate())
                 {
-                    return layout.RenderAllocateBuilder(logEvent, localTarget.Result, false);
+                    return layout.RenderAllocateBuilder(logEvent, localTarget.Result);
                 }
             }
             else

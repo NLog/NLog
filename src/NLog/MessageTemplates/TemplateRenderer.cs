@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -57,15 +57,22 @@ namespace NLog.MessageTemplates
             int holeIndex = 0;
             messageTemplateParameters = null;
 
-            TemplateEnumerator holeEnumerator = new TemplateEnumerator(template);
-            while (holeEnumerator.MoveNext())
+            int originalLength = sb.Length;
+
+            TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
+            while (templateEnumerator.MoveNext())
             {
-                var literal = holeEnumerator.Current.Literal;
-                if (holeIndex == 0 && !forceTemplateRenderer && sb.Length == 0 && literal.Skip != 0 && holeEnumerator.Current.Hole.Index != -1)
+                var literal = templateEnumerator.Current.Literal;
+
+                if (holeIndex == 0 && !forceTemplateRenderer && literal.Skip != 0 && sb.Length == originalLength)
                 {
-                    // Not a template
-                    sb.AppendFormat(formatProvider, template, parameters);
-                    return;
+                    var hole = templateEnumerator.Current.Hole;
+                    if (hole.Index != -1 && hole.CaptureType == CaptureType.Normal)
+                    {
+                        // Not a structured template
+                        sb.AppendFormat(formatProvider, template, parameters);
+                        return;
+                    }
                 }
 
                 sb.Append(template, pos, literal.Print);
@@ -77,9 +84,10 @@ namespace NLog.MessageTemplates
                 else
                 {
                     pos += literal.Skip;
-                    var hole = holeEnumerator.Current.Hole;
-                    if (hole.Index != -1)
+                    var hole = templateEnumerator.Current.Hole;
+                    if (hole.Index != -1 && messageTemplateParameters == null)
                     {
+                        holeIndex++;
                         RenderHole(sb, hole, formatProvider, parameters[hole.Index], true);
                     }
                     else
@@ -88,6 +96,15 @@ namespace NLog.MessageTemplates
                         if (messageTemplateParameters == null)
                         {
                             messageTemplateParameters = new MessageTemplateParameter[parameters.Length];
+                            if (holeIndex != 0)
+                            {
+                                // rewind and try again
+                                templateEnumerator = new TemplateEnumerator(template);
+                                sb.Length = originalLength;
+                                holeIndex = 0;
+                                pos = 0;
+                                continue;
+                            }
                         }
                         messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, hole.Format, hole.CaptureType);
                         RenderHole(sb, hole, formatProvider, holeParameter);
@@ -153,24 +170,13 @@ namespace NLog.MessageTemplates
                 return;
             }
 
-            switch (captureType)
+            if (captureType == CaptureType.Normal && legacy)
             {
-                case CaptureType.Stringify:
-                    ValueSerializer.Instance.StringifyObject(value, holeFormat, formatProvider, sb);
-                    break;
-                case CaptureType.Serialize:
-                    ValueSerializer.Instance.SerializeObject(value, holeFormat, formatProvider, sb);
-                    break;
-                default:
-                    if (legacy)
-                    {
-                        ValueSerializer.FormatToString(value, holeFormat, formatProvider, sb);
-                    }
-                    else
-                    {
-                        ValueSerializer.Instance.FormatObject(value, holeFormat, formatProvider, sb);
-                    }
-                    break;
+                ValueFormatter.FormatToString(value, holeFormat, formatProvider, sb);
+            }
+            else
+            {
+                ValueFormatter.Instance.FormatValue(value, holeFormat, captureType, formatProvider, sb);
             }
         }
     }

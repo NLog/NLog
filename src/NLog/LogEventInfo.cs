@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -74,7 +74,7 @@ namespace NLog
         private object[] _parameters;
         private IFormatProvider _formatProvider;
         private LogMessageFormatter _messageFormatter = DefaultMessageFormatter;
-        private IDictionary<Layout, string> _layoutCache;
+        private IDictionary<Layout, object> _layoutCache;
         private PropertiesDictionary _properties;
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace NLog
         /// <summary>
         /// Gets the callsite class name
         /// </summary>
-        public string CallerClassName => CallSiteInformation?.CallerClassName;
+        public string CallerClassName => CallSiteInformation?.GetCallerClassName(null, true, true, true);
 
         /// <summary>
         /// Gets the callsite member function name
@@ -206,12 +206,12 @@ namespace NLog
         /// <summary>
         /// Gets the callsite source file path
         /// </summary>
-        public string CallerFilePath => CallSiteInformation?.CallerFilePath;
+        public string CallerFilePath => CallSiteInformation?.GetCallerFilePath(0);
 
         /// <summary>
         /// Gets the callsite source file line number
         /// </summary>
-        public int CallerLineNumber => CallSiteInformation?.CallerLineNumber ?? 0;
+        public int CallerLineNumber => CallSiteInformation?.GetCallerLineNumber(0) ?? 0;
 
         /// <summary>
         /// Gets or sets the exception information.
@@ -320,7 +320,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Checks if any per-event context properties (Without allocation)
+        /// Checks if any per-event properties (Without allocation)
         /// </summary>
         public bool HasProperties
         {
@@ -390,7 +390,7 @@ namespace NLog
             {
                 if (_properties != null && _properties.MessageProperties.Count > 0)
                 {
-                    return new MessageTemplateParameters(_properties.MessageProperties);
+                    return new MessageTemplateParameters(_properties.MessageProperties, _message, _parameters);
                 }
                 else
                 {
@@ -539,21 +539,19 @@ namespace NLog
             GetCallSiteInformationInternal().SetCallerInfo(callerClassName, callerMemberName, callerFilePath, callerLineNumber);
         }
 
-        internal string AddCachedLayoutValue(Layout layout, string value)
+        internal void AddCachedLayoutValue(Layout layout, object value)
         {
             if (_layoutCache == null)
             {
-                Interlocked.CompareExchange(ref _layoutCache, new Dictionary<Layout, string>(), null);
+                Interlocked.CompareExchange(ref _layoutCache, new Dictionary<Layout, object>(), null);
             }
             lock (_layoutCache)
             {
                 _layoutCache[layout] = value;
             }
-
-            return value;
         }
 
-        internal bool TryGetCachedLayoutValue(Layout layout, out string value)
+        internal bool TryGetCachedLayoutValue(Layout layout, out object value)
         {
             if (_layoutCache == null)
             {

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -30,13 +30,11 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
-using NLog.Time;
 
 namespace NLog.Fluent
 {
@@ -72,12 +70,7 @@ namespace NLog.Fluent
                 throw new ArgumentNullException("logLevel");
 
             _logger = logger;
-            _logEvent = new LogEventInfo
-            {
-                Level = logLevel,
-                LoggerName = logger.Name,
-                TimeStamp = TimeSource.Current.Time
-            };
+            _logEvent = new LogEventInfo() { LoggerName = logger.Name, Level = logLevel };
         }
 
         /// <summary>
@@ -298,6 +291,9 @@ namespace NLog.Fluent
             [CallerFilePath]string callerFilePath = null,
             [CallerLineNumber]int callerLineNumber = 0)
         {
+            if (!_logger.IsEnabled(_logEvent.Level))
+                return;
+
             // TODO NLog ver. 5 - Remove these properties
             if (callerMemberName != null)
                 Property("CallerMemberName", callerMemberName);
@@ -334,7 +330,7 @@ namespace NLog.Fluent
             [CallerFilePath]string callerFilePath = null,
             [CallerLineNumber]int callerLineNumber = 0)
         {
-            if (condition == null || !condition())
+            if (condition == null || !condition() || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
             if (callerMemberName != null)
@@ -343,6 +339,8 @@ namespace NLog.Fluent
                 Property("CallerFilePath", callerFilePath);
             if (callerLineNumber != 0)
                 Property("CallerLineNumber", callerLineNumber);
+
+            _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }
@@ -353,7 +351,7 @@ namespace NLog.Fluent
         /// <param name="condition">If condition is true, write log event; otherwise ignore event.</param>
         public void WriteIf(Func<bool> condition)
         {
-            if (condition == null || !condition())
+            if (condition == null || !condition() || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
             _logger.Log(_logEvent);
@@ -374,7 +372,7 @@ namespace NLog.Fluent
             [CallerFilePath]string callerFilePath = null, 
             [CallerLineNumber]int callerLineNumber = 0)
         {
-            if (!condition)
+            if (!condition || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
             if (callerMemberName != null)
@@ -383,6 +381,8 @@ namespace NLog.Fluent
                 Property("CallerFilePath", callerFilePath);
             if (callerLineNumber != 0)
                 Property("CallerLineNumber", callerLineNumber);
+
+            _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
 
             _logger.Log(_logEvent);
         }
@@ -393,7 +393,7 @@ namespace NLog.Fluent
         /// <param name="condition">If condition is true, write log event; otherwise ignore event.</param>
         public void WriteIf(bool condition)
         {
-            if (!condition)
+            if (!condition || !_logger.IsEnabled(_logEvent.Level))
                 return;
 
             _logger.Log(_logEvent);

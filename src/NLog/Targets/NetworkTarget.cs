@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -39,6 +39,7 @@ namespace NLog.Targets
     using System.Text;
     using System.Threading;
     using NLog.Common;
+    using NLog.Internal;
     using NLog.Internal.NetworkSenders;
     using NLog.Layouts;
 
@@ -85,6 +86,8 @@ namespace NLog.Targets
         private readonly Dictionary<string, LinkedListNode<NetworkSender>> _currentSenderCache = new Dictionary<string, LinkedListNode<NetworkSender>>();
         private readonly LinkedList<NetworkSender> _openNetworkSenders = new LinkedList<NetworkSender>();
 
+        private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(16 * 1024);
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
         /// </summary>
@@ -100,6 +103,7 @@ namespace NLog.Targets
             MaxMessageSize = 65000;
             ConnectionCacheSize = 5;
             LineEnding = LineEndingMode.CRLF;
+            OptimizeBufferReuse = GetType() == typeof(NetworkTarget);   // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
@@ -268,7 +272,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            string address = Address.Render(logEvent.LogEvent);
+            string address = RenderLogEvent(Address, logEvent.LogEvent);
             InternalLogger.Trace("Sending to address:  '{0}'", address);
 
             byte[] bytes = GetBytesToWrite(logEvent.LogEvent);
@@ -383,21 +387,53 @@ namespace NLog.Targets
         /// <returns>Byte array.</returns>
         protected virtual byte[] GetBytesToWrite(LogEventInfo logEvent)
         {
-            string text;
-
-            var rendered = Layout.Render(logEvent);
-            InternalLogger.Trace("Sending: {0}", rendered);
-
-            if (NewLine)
+            if (OptimizeBufferReuse)
             {
-                text = rendered + LineEnding.NewLineCharacters;
+                if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
+                {
+                    InternalLogger.Trace("{0} - Sending {1}", this, text);
+                    return Encoding.GetBytes(text.ToString());
+                }
+                else
+                {
+                    using (var localBuilder = ReusableLayoutBuilder.Allocate())
+                    {
+                        Layout.RenderAppendBuilder(logEvent, localBuilder.Result, false);
+                        if (NewLine)
+                        {
+                            localBuilder.Result.Append(LineEnding.NewLineCharacters);
+                        }
+
+                        InternalLogger.Trace("{0} - Sending {1} chars", this, localBuilder.Result.Length);
+
+                        using (var localBuffer = _reusableEncodingBuffer.Allocate())
+                        {
+#if !SILVERLIGHT
+                            if (localBuilder.Result.Length <= localBuffer.Result.Length)
+                            {
+                                localBuilder.Result.CopyTo(0, localBuffer.Result, 0, localBuilder.Result.Length);
+                                return Encoding.GetBytes(localBuffer.Result, 0, localBuilder.Result.Length);
+                            }
+                            else
+#endif
+                            {
+                                var rendered = localBuilder.Result.ToString();
+                                return Encoding.GetBytes(rendered);
+                            }
+                        }
+                    }
+                }
             }
             else
             {
-                text = rendered;
+                var rendered = Layout.Render(logEvent);
+                InternalLogger.Trace("{0} - Sending: {1}", this, rendered);
+                if (NewLine)
+                {
+                    rendered += LineEnding.NewLineCharacters;
+                }
+                return Encoding.GetBytes(rendered);
             }
-
-            return Encoding.GetBytes(text);
         }
 
         private LinkedListNode<NetworkSender> GetCachedNetworkSender(string address)

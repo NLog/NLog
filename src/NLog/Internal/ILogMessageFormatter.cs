@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -51,7 +51,7 @@ namespace NLog.Internal
         /// Has the logevent properties?
         /// </summary>
         /// <param name="logEvent">LogEvent with message to be formatted</param>
-        /// <returns>formatted message</returns>
+        /// <returns>False when logevent has no properties to be extracted</returns>
         bool HasProperties(LogEventInfo logEvent);
 
         /// <summary>

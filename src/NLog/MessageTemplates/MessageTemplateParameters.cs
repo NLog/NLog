@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -46,76 +46,129 @@ namespace NLog.MessageTemplates
         private readonly IList<MessageTemplateParameter> _parameters;
 
         /// <inheritDoc/>
-        public MessageTemplateParameter this[int index] => _parameters[index];
-
-        /// <inheritDoc/>
-        public int Count => _parameters.Count;
-
-        /// <inheritDoc/>
         public IEnumerator<MessageTemplateParameter> GetEnumerator() { return _parameters.GetEnumerator(); }
 
         /// <inheritDoc/>
         IEnumerator IEnumerable.GetEnumerator() { return _parameters.GetEnumerator(); }
 
-        /// <inheritDoc/>
+        /// <summary>
+        /// Gets the parameters at the given index
+        /// </summary>
+        public MessageTemplateParameter this[int index] => _parameters[index];
+
+        /// <summary>
+        /// Number of parameters
+        /// </summary>
+        public int Count => _parameters.Count;
+
+        /// <summary>Indicates whether the template should be interpreted as positional 
+        /// (all holes are numbers) or named.</summary>
         public bool IsPositional { get; }
 
         /// <summary>
-        /// Constructor for positional parameters
+        /// Indicates whether the template was parsed successful, and there are no unmatched parameters
+        /// </summary>
+        internal bool IsValidTemplate { get; }
+
+        /// <summary>
+        /// Constructor for parsing the message template with parameters
         /// </summary>
         /// <param name="message"><see cref="LogEventInfo.Message"/> including any parameter placeholders</param>
         /// <param name="parameters">All <see cref="LogEventInfo.Parameters"/></param>
-        public MessageTemplateParameters(string message, object[] parameters)
+        internal MessageTemplateParameters(string message, object[] parameters)
         {
             var hasParameters = parameters != null && parameters.Length > 0;
-            if (hasParameters)
-            {
-                IsPositional = true;
-            }
-
-            _parameters = hasParameters ? CreateParameters(message, parameters) : Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            bool isPositional = hasParameters;
+            bool isValidTemplate = !hasParameters;
+            _parameters = hasParameters ? ParseMessageTemplate(message, parameters, out isPositional, out isValidTemplate) : Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            IsPositional = isPositional;
+            IsValidTemplate = isValidTemplate;
         }
 
         /// <summary>
-        /// Constructor for named parameters
+        /// Constructor for named parameters that already has been parsed
         /// </summary>
-        public MessageTemplateParameters(IList<MessageTemplateParameter> parameters)
+        internal MessageTemplateParameters(IList<MessageTemplateParameter> templateParameters, string message, object[] parameters)
         {
-            _parameters = parameters ?? Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            _parameters = templateParameters ?? Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            if (parameters != null && _parameters.Count != parameters.Length)
+            {
+                IsValidTemplate = false;
+            }
         }
 
         /// <summary>
         /// Create MessageTemplateParameter from <paramref name="parameters"/>
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="template"></param>
         /// <param name="parameters"></param>
+        /// <param name="isPositional"></param>
+        /// <param name="isValidTemplate"></param>
         /// <returns></returns>
-        private IList<MessageTemplateParameter> CreateParameters(string message, object[] parameters)
+        private static IList<MessageTemplateParameter> ParseMessageTemplate(string template, object[] parameters, out bool isPositional, out bool isValidTemplate)
         {
+            isPositional = true;
+            isValidTemplate = true;
+
+            List<MessageTemplateParameter> templateParameters = new List<MessageTemplateParameter>(parameters.Length);
+
             try
             {
-                List<MessageTemplateParameter> templateParameters = new List<MessageTemplateParameter>(parameters.Length);
-
-                int holeIndex = 0;
-                TemplateEnumerator templateEnumerator = new TemplateEnumerator(message);
+                short holeIndex = 0;
+                TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
                 while (templateEnumerator.MoveNext())
                 {
                     if (templateEnumerator.Current.Literal.Skip != 0)
                     {
                         var hole = templateEnumerator.Current.Hole;
-                        if (hole.Index == -1)
-                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[holeIndex++], hole.Format, hole.CaptureType));
-                        else
-                            templateParameters.Add(new MessageTemplateParameter(hole.Name, parameters[hole.Index], hole.Format, hole.CaptureType));
+                        if (hole.Index != -1 && isPositional)
+                        {
+                            holeIndex++;
+                            var value = GetHoleValueSafe(parameters, hole.Index);
+                            templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
+                        }
+                        else 
+                        {
+                            if (isPositional)
+                            {
+                                isPositional = false;
+                                if (holeIndex != 0)
+                                {
+                                    // rewind and try again
+                                    templateEnumerator = new TemplateEnumerator(template);
+                                    holeIndex = 0;
+                                    templateParameters.Clear();
+                                    continue;
+                                }
+                            }
+
+                            var value = GetHoleValueSafe(parameters, holeIndex);
+                            templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
+                            holeIndex++;
+                        }
                     }
                 }
+
+                if (templateParameters.Count != parameters.Length)
+                {
+                    isValidTemplate = false;
+                }
+
                 return templateParameters;
             }
             catch (Exception ex)
             {
+                isValidTemplate = false;
                 InternalLogger.Warn(ex, "Error when parsing a message.");
-                return Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+                return templateParameters;
             }
+        }
+
+        private static object GetHoleValueSafe(object[] parameters, short holeIndex)
+        {
+            var value = parameters.Length > holeIndex ? parameters[holeIndex] : null;
+            return value;
         }
     }
 }
+

@@ -35,12 +35,12 @@ In case of a BUG:
 - What is the expected result?
 - Did you checked the [Internal log](https://github.com/NLog/NLog/wiki/Internal-Logging)?
 - Please post full exception details (message, stacktrace, inner exceptions)
-- Are there any work arrounds? yes/no
-- Is there a version in which it did worked? 
+- Are there any workarounds? yes/no
+- Is there a version in which it did work? 
 - Can you help us by writing an unit test?
 
 
-in case of a FEATURE REQUEST:
+In case of a FEATURE REQUEST:
  
  - Why do we need it?
  - An example of the XML config, if relevant. 

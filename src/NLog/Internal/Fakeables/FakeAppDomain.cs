@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -52,10 +52,47 @@ namespace NLog.Internal.Fakeables
             BaseDirectory = AppContext.BaseDirectory;
 #if NETSTANDARD1_5
             _defaultContext = System.Runtime.Loader.AssemblyLoadContext.Default;
+
+            try
+            {
+                FriendlyName = GetFriendlyNameFromEntryAssembly() ?? GetFriendlyNameFromProcessName() ?? "UnknownAppDomain";
+            }
+            catch
+            {
+                FriendlyName = "UnknownAppDomain";
+            }
 #endif
         }
 
 #region Implementation of IAppDomain
+
+#if NETSTANDARD1_5
+        private static string GetFriendlyNameFromEntryAssembly()
+        {
+            try
+            {
+                string assemblyName =  Assembly.GetEntryAssembly()?.GetName()?.Name;
+                return string.IsNullOrEmpty(assemblyName) ? null : assemblyName;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static string GetFriendlyNameFromProcessName()
+        {
+            try
+            {
+                string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+                return string.IsNullOrEmpty(processName) ? null : processName;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+#endif
 
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.

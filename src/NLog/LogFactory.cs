@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -228,12 +228,11 @@ namespace NLog
                     {
                         try
                         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                             _config.Dump();
+                            ReconfigExistingLoggers();
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                             TryWachtingConfigFile();
 #endif
-                            _config.InitializeAll();
-
                             LogConfigurationInitialized();
                         }
                         finally
@@ -285,8 +284,6 @@ namespace NLog
                         try
                         {
                             _config.Dump();
-
-                            _config.InitializeAll();
                             ReconfigExistingLoggers();
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
                             TryWachtingConfigFile();
@@ -433,7 +430,6 @@ namespace NLog
             {
                 InternalLogger.Debug(ex, "Not running in full trust");
             }
-
         }
 
         /// <summary>
@@ -873,7 +869,7 @@ namespace NLog
                     if (rule.Final)
                         suppressedLevels[i] = true;
 
-                    foreach (Target target in rule.Targets.ToList())
+                    foreach (Target target in rule.GetTargetsThreadSafe())
                     {
                         var awf = new TargetWithFilterChain(target, rule.Filters);
                         if (lastTargetsByLevel[i] != null)
@@ -892,7 +888,7 @@ namespace NLog
                 // Recursively analyze the child rules.
                 if (rule.ChildRules.Count != 0)
                 {
-                    GetTargetsByLevelForLogger(name, rule.CloneChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels);
+                    GetTargetsByLevelForLogger(name, rule.GetChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels);
                 }
             }
 

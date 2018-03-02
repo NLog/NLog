@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -268,7 +268,7 @@ namespace NLog.Filters
         {
             if (targetBuilder != null)
             {
-                Layout.RenderAppendBuilder(logEvent, targetBuilder, false);
+                Layout.RenderAppendBuilder(logEvent, targetBuilder);
                 if (targetBuilder.Length > MaxLength)
                     targetBuilder.Length = MaxLength;
                 return new FilterInfoKey(targetBuilder, null);

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -85,7 +85,7 @@ namespace NLog.Targets
             Log = "Application";
             MachineName = ".";
             MaxMessageLength = 16384;
-            OptimizeBufferReuse = GetType() == typeof(EventLogTarget);
+            OptimizeBufferReuse = GetType() == typeof(EventLogTarget);  // Class not sealed, reduce breaking changes
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,8 +34,8 @@
 namespace NLog.Targets
 {
     using System;
-    using Config;
-    using Layouts;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// A parameter to MethodCall.
@@ -97,7 +97,9 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Backwards compatibility")]
-        public Type Type { get => ParameterType;
+        public Type Type
+        {
+            get => ParameterType;
             set => ParameterType = value;
         }
 
@@ -113,29 +115,5 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
-
-        /// <summary>
-        /// Parameter can combine multiple LogEvents into a single parameter value
-        /// </summary>
-        /// <docgen category='Parameter Group Options' order='100' />
-        public bool EnableGroupLayout { get; set; }
-
-        /// <summary>
-        /// Group Header when combining multiple LogEvents into a single parameter value (<see cref="EnableGroupLayout"/>)
-        /// </summary>
-        /// <docgen category='Parameter Group Options' order='100' />
-        public Layout GroupHeaderLayout { get; set; }
-
-        /// <summary>
-        /// Group Item Separator when combining multiple LogEvents into a single parameter value (<see cref="EnableGroupLayout"/>)
-        /// </summary>
-        /// <docgen category='Parameter Group Options' order='100' />
-        public Layout GroupItemSeparatorLayout { get; set; }
-
-        /// <summary>
-        /// Group Footer when combining multiple LogEvents into a single parameter value (<see cref="EnableGroupLayout"/>)
-        /// </summary>
-        /// <docgen category='Parameter Group Options' order='100' />
-        public Layout GroupFooterLayout { get; set; }
     }
 }

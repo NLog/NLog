@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -30,6 +30,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
+using NLog.UnitTests.Common;
 
 namespace NLog.UnitTests
 {
@@ -1814,6 +1816,73 @@ namespace NLog.UnitTests
         }
 
         [Theory]
+        [InlineData(null, "OrderId", "@Client")]
+        [InlineData(true, "OrderId", "@Client")]
+        [InlineData(null, "0", "@Client", Skip = "Not supported for performance reasons")]
+        [InlineData(true, "0", "@Client")]
+        [InlineData(null, "$0", "@Client")]
+        [InlineData(true, "$0", "@Client")]
+        [InlineData(null, "@0", "@Client")]
+        [InlineData(true, "@0", "@Client")]
+        [InlineData(null, "1", "@Client", Skip = "Not supported for performance reasons")]
+        [InlineData(true, "1", "@Client")]
+        [InlineData(null, "@Client", "1")]
+        [InlineData(true, "@Client", "1")]
+        [InlineData(true, "0", "1")]
+        [InlineData(false, "0", "1")]
+        [InlineData(true, "OrderId", "Client")] //succeeeds, but gives JSON like (no quoted key, missing quotes arround string, =, other spacing)
+        public void MixedStructuredEventsConfigTest(bool? parseMessageTemplates, string param1, string param2)
+        {
+            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("Process order {" + param1 + "} for {" + param2 + "}", 13424, new { ClientId = 3001, ClientName = "John Doe" });
+
+
+
+            string param1Value;
+
+            if (param1.StartsWith("$"))
+            {
+                param1Value = "\"13424\"";
+            }
+            else
+            {
+                param1Value = "13424";
+            }
+
+            string param2Value;
+            if (param2.StartsWith("@"))
+            {
+                param2Value = "{\"ClientId\":3001, \"ClientName\":\"John Doe\"}";
+            }
+            else
+            {
+                param2Value = "{ ClientId = 3001, ClientName = John Doe }";
+            }
+
+            AssertDebugLastMessage("debug", $"Process order {param1Value} for {param2Value}");
+        }
+
+
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        [InlineData(null)]
+        public void TooManyStructuredParametersShouldKeepBeInParamList(bool? parseMessageTemplates)
+        {
+            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates, "LastLogEvent");
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("Hello World {0}", "world", "universe");
+            var target = LogManager.Configuration.FindTargetByName<LastLogEventListTarget>("debug");
+
+            Assert.Equal(2, target.LastLogEvent.Parameters.Length);
+            Assert.Equal("world", target.LastLogEvent.Parameters[0]);
+            Assert.Equal("universe", target.LastLogEvent.Parameters[1]);
+
+        }
+
+        [Theory]
         [InlineData(true, null)]
         [InlineData(false, null)]
         [InlineData(null, true)]
@@ -1821,13 +1890,7 @@ namespace NLog.UnitTests
         [InlineData(null, null)]
         public void StructuredEventsConfigTest(bool? parseMessageTemplates, bool? overrideParseMessageTemplates)
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-                <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
-                    <targets><target name='debug' type='Debug' layout='${message}${exception}' /></targets>
-                    <rules>
-                        <logger name='*' writeTo='debug' />
-                    </rules>
-                </nlog>");
+            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
 
             if (parseMessageTemplates.HasValue)
             {
@@ -2078,9 +2141,9 @@ namespace NLog.UnitTests
 
             ILogger logger = LogManager.GetLogger("A");
 
-            logger.Error("Login request from {Username} for {Application}", "John", "BestApplicationEver");
+            logger.Error("Login request from {@Username} for {$Application}", new Person("John"), "BestApplicationEver");
 
-            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {Username} for {Application}\", \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {@Username} for {$Application}\", \"Username\": {\"Name\":\"John\"}, \"Application\": \"BestApplicationEver\" }");
         }
 
         /// <summary>
@@ -2095,7 +2158,7 @@ namespace NLog.UnitTests
                         <target name='debug' type='Debug'  >
                               <layout type='CompoundLayout'>
                                 <layout type='SimpleLayout' text='${message}' />
-                                <layout type='JsonLayout' IncludeAllProperties='true' />
+                                <layout type='JsonLayout' IncludeAllProperties='true' maxRecursionLimit='0' />
                               </layout>
                         </target>
                     </targets>
@@ -2106,9 +2169,9 @@ namespace NLog.UnitTests
 
             ILogger logger = LogManager.GetLogger("A");
 
-            logger.Error("Login request from {Username} for {Application}", "John", "BestApplicationEver");
+            logger.Error("Login request from {Username} for {Application}", new Person("\"John\""), "BestApplicationEver");
 
-            AssertDebugLastMessage("debug", "Login request from \"John\" for \"BestApplicationEver\"{ \"Username\": \"John\", \"Application\": \"BestApplicationEver\" }");
+            AssertDebugLastMessage("debug", "Login request from \"John\" for \"BestApplicationEver\"{ \"Username\": \"\\\"John\\\"\", \"Application\": \"BestApplicationEver\" }");
         }
 
         [Fact]
@@ -2140,6 +2203,17 @@ namespace NLog.UnitTests
         }
 
 
+        private static XmlLoggingConfiguration CreateSimpleDebugConfig(bool? parseMessageTemplates, string targetType = "Debug")
+        {
+            return CreateConfigurationFromString(@"
+                <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
+                    <targets><target name='debug' type='"+targetType+@"' layout='${message}${exception}' /></targets>
+                    <rules>
+                        <logger name='*' writeTo='debug' />
+                    </rules>
+                </nlog>");
+        }
+
         private class Person
         {
             public Person()
@@ -2155,6 +2229,7 @@ namespace NLog.UnitTests
 
             public List<Person> Childs { get; set; }
 
+            public override string ToString() { return Name; }
         }
 
         public abstract class BaseWrapper

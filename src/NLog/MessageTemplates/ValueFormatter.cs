@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -42,17 +42,17 @@ namespace NLog.MessageTemplates
     /// <summary>
     /// Convert Render or serialize a value, with optionnally backwardscompatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
     /// </summary>
-    internal class ValueSerializer : IValueSerializer
+    internal class ValueFormatter : IValueFormatter
     {
-        public static IValueSerializer Instance
+        public static IValueFormatter Instance
         {
-            get => _instance ?? (_instance = new ValueSerializer());
-            set => _instance = value ?? new ValueSerializer();
+            get => _instance ?? (_instance = new ValueFormatter());
+            set => _instance = value ?? new ValueFormatter();
         }
-        private static IValueSerializer _instance;
+        private static IValueFormatter _instance;
 
         /// <summary>Singleton</summary>
-        private ValueSerializer()
+        private ValueFormatter()
         {
         }
 
@@ -63,19 +63,34 @@ namespace NLog.MessageTemplates
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
 
         /// <summary>
-        /// Convert a object to a string without format and double quotes and append to <paramref name="builder"/>.
+        /// Serialization of an object, e.g. JSON and append to <paramref name="builder"/>
         /// </summary>
-        /// <param name="value">The value to convert.</param>
-        /// <param name="format">Format, not used</param>
-        /// <param name="formatProvider">Format provider for the value.</param>
-        /// <param name="builder">Append to this</param>
-        /// <returns></returns>
-        public bool StringifyObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        /// <param name="value">The object to serialize to string.</param>
+        /// <param name="format">Parameter Format</param>
+        /// <param name="captureType">Parameter CaptureType</param>
+        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+        /// <param name="builder">Output destination.</param>
+        /// <returns>Serialize succeeded (true/false)</returns>
+        public bool FormatValue(object value, string format, CaptureType captureType, IFormatProvider formatProvider, StringBuilder builder)
         {
-            builder.Append('"');
-            FormatToString(value, null, formatProvider, builder);
-            builder.Append('"');
-            return true;
+            switch (captureType)
+            {
+                case CaptureType.Serialize:
+                    {
+                        return ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
+                    }
+                case CaptureType.Stringify:
+                    {
+                        builder.Append('"');
+                        FormatToString(value, null, formatProvider, builder);
+                        builder.Append('"');
+                        return true;
+                    }
+                default:
+                    {
+                        return FormatObject(value, format, formatProvider, builder);
+                    }
+            }
         }
 
         /// <summary>
@@ -104,19 +119,6 @@ namespace NLog.MessageTemplates
         }
 
         /// <summary>
-        /// Serialize an object to JSON with the help of <see cref="ConfigurationItemFactory.JsonConverter"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="format"></param>
-        /// <param name="formatProvider"></param>
-        /// <param name="builder"></param>
-        /// <returns></returns>
-        public bool SerializeObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
-        {
-            return Config.ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
-        }
-
-        /// <summary>
         /// Try serialising a scalar (string, int, NULL) or simple type (IFormattable)
         /// </summary>
         /// <param name="value"></param>
@@ -129,7 +131,6 @@ namespace NLog.MessageTemplates
             // todo support all scalar types: 
 
             // todo byte[] - hex?
-            // todo datetime, timespan, datetimeoffset
             // todo nullables correct?
 
             if (value is string stringValue)

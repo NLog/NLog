@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -159,7 +159,7 @@ namespace NLog.UnitTests.Targets
             var actual = _serializer.SerializeObject(d);
 
             var cnt = Regex.Matches(actual, "\\[\"alpha\",\"bravo\"\\]").Count;
-            Assert.Equal(9, cnt);       // maximum level is 10 => 10 recursion is skipped => count is 10 - 1    
+            Assert.Equal(10, cnt);   
         }
 
         [Fact]
@@ -437,6 +437,25 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("{\"Name\":\"test name\"}", actual);
         }
 
+#if NETSTANDARD || NET462 || NET47
+        [Fact]
+        public void SerializeValueTuple_Test()
+        {
+            // Could perform reflection on fields, but one have to lookup TupleElementNamesAttribute to get names
+            // ValueTuples are for internal usage, better to use AnonymousObject for key/value-pairs
+            var object1 = (Name: "test name", Id: 1);
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("\"(test name, 1)\"", actual);
+        }
+#endif
+        [Fact]
+        public void SerializeAnonymousObject_Test()
+        {
+            var object1 = new { Name = "test name" };
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("{\"Name\":\"test name\"}", actual);
+        }
+
         [Fact]
         public void SingleItemOptimizedHashSetTest()
         {
@@ -482,7 +501,7 @@ namespace NLog.UnitTests.Targets
         {
             private string something = "something";
 
-            #region Overrides of Object
+#region Overrides of Object
 
             /// <summary>Returns a string that represents the current object.</summary>
             /// <returns>A string that represents the current object.</returns>
@@ -491,7 +510,7 @@ namespace NLog.UnitTests.Targets
                 return something;
             }
 
-            #endregion
+#endregion
         }
 
         private class ObjectWithExceptionAndPrivateSetter

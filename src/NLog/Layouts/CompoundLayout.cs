@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,7 +34,6 @@
 
 namespace NLog.Layouts
 {
-    using System.Linq;
     using System.Collections.Generic;
     using System.Text;
     using NLog.Config;
@@ -43,6 +42,8 @@ namespace NLog.Layouts
     /// A layout containing one or more nested layouts.
     /// </summary>
     [Layout("CompoundLayout")]
+    [ThreadAgnostic]
+    [AppDomainFixedOutput]
     public class CompoundLayout : Layout
     {
         /// <summary>
@@ -68,6 +69,11 @@ namespace NLog.Layouts
             base.InitializeLayout();
             foreach (var layout in Layouts)
                 layout.Initialize(LoggingConfiguration);
+        }
+
+        internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
         }
 
         /// <summary>

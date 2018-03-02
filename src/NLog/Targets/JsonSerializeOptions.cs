@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -77,10 +77,17 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool SanitizeDictionaryKeys { get; set; }
 
+        /// <summary>
+        /// How far down the rabbit hole should the Json Serializer go with object-reflection before stopping
+        /// </summary>
+        [DefaultValue(10)]
+        public int MaxRecursionLimit { get; set; }
+
         /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
         public JsonSerializeOptions()
         {
             QuoteKeys = true;
+            MaxRecursionLimit = 10;
         }
     }
 }
