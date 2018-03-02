@@ -268,6 +268,7 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         /// <param name="targetName">Name of the target to be written when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRule(LogLevel minLevel, LogLevel maxLevel, string targetName, string loggerNamePattern = "*", bool final = false)
         {
             var target = FindTargetByName(targetName);
@@ -286,6 +287,7 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRule(LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern = "*", bool final = false)
         {
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
@@ -299,6 +301,7 @@ namespace NLog.Config
         /// <param name="level">log level needed to trigger this rule. </param>
         /// <param name="targetName">Name of the target to be written when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRuleForOneLevel(LogLevel level, string targetName, string loggerNamePattern = "*", bool final = false)
         {
             var target = FindTargetByName(targetName);
@@ -316,6 +319,7 @@ namespace NLog.Config
         /// <param name="level">log level needed to trigger this rule. </param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern = "*", bool final = false)
         {
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
@@ -330,6 +334,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="targetName">Name of the target to be written when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRuleForAllLevels(string targetName, string loggerNamePattern = "*", bool final = false)
         {
             var target = FindTargetByName(targetName);
@@ -346,6 +351,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
         public void AddRuleForAllLevels(Target target, string loggerNamePattern = "*", bool final = false)
         {
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
