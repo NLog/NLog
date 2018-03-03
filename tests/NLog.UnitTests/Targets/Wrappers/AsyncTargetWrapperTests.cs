@@ -124,8 +124,10 @@ namespace NLog.UnitTests.Targets.Wrappers
                     prevSequenceID = itemWrittenList[i];
                 }
 
-                if (!IsAppVeyor())
-                    Assert.True(elapsedMilliseconds < 750);    // Skip timing test when running within OpenCover.Console.exe
+#if NET4_5
+                if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
+#endif
+                    Assert.True(elapsedMilliseconds < 950);
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)

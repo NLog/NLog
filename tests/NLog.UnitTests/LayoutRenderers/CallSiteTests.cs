@@ -1176,7 +1176,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private async Task AMinimalAsyncMethod()
         {
-            await Task.Run(() => { });
+            await Task.Delay(1);    // Ensure it always becomes async, and it is not inlined
         }
 
         /// <summary>
