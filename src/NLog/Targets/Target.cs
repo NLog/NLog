@@ -75,12 +75,6 @@ namespace NLog.Targets
         public bool OptimizeBufferReuse { get; set; }
 
         /// <summary>
-        /// Raise event when Target cannot store LogEvent.
-        /// Event arg contains losed LogEvent
-        /// </summary>
-        public event EventHandler<TargetDropEventEventArgs> LogEventDropped;
-
-        /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
         /// </summary>
         protected object SyncRoot => _lockObject;
@@ -724,11 +718,5 @@ namespace NLog.Targets
             ConfigurationItemFactory.Default.Targets
                 .RegisterDefinition(name, targetType);
         }
-
-        /// <summary>
-        /// Raise <see cref="LogEventDropped"/> event
-        /// </summary>
-        /// <param name="e">Lost log event</param>
-        protected void OnLogEventDropped(LogEventInfo e) => LogEventDropped?.Invoke(this, new TargetDropEventEventArgs(e));
     }
 }

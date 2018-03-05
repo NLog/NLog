@@ -145,6 +145,12 @@ namespace NLog.Targets.Wrappers
         public int TimeToSleepBetweenBatches { get; set; }
 
         /// <summary>
+        /// Raise event when Target cannot store LogEvent.
+        /// Event arg contains losed LogEvent
+        /// </summary>
+        public event EventHandler<TargetDropEventEventArgs> LogEventDropped;
+
+        /// <summary>
         /// Raises when event queue grow. 
         /// Queue can grow when <see cref="OverflowAction"/> was setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
         /// </summary>
@@ -464,19 +470,14 @@ namespace NLog.Targets.Wrappers
             return count;
         }
 
-        private void OnRequestQueueDropItem(object sender, LogEventDroppedEventArgs logEventDroppedEventArgs)
+        private void OnRequestQueueDropItem(object sender, LogEventDroppedEventArgs logEventDroppedEventArgs) 
         {
-            OnLogEventDropped(logEventDroppedEventArgs.AsyncLogEventInfo.LogEvent);
+            LogEventDropped?.Invoke(this, new TargetDropEventEventArgs(logEventDroppedEventArgs.AsyncLogEventInfo.LogEvent));
         }
 
-        private void OnRequestQueueGrow(object sender, LogEventQueueGrowEventArgs logEventQueueGrowEventArgs)
+        private void OnRequestQueueGrow(object sender, LogEventQueueGrowEventArgs logEventQueueGrowEventArgs) 
         {
-            OnEventQueueGrow(logEventQueueGrowEventArgs);
-        }
-
-        private void OnEventQueueGrow(LogEventQueueGrowEventArgs e)
-        {
-            EventQueueGrow?.Invoke(this, e);
+            EventQueueGrow?.Invoke(this, logEventQueueGrowEventArgs);
         }
     }
 }
