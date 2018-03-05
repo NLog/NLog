@@ -37,30 +37,31 @@ namespace NLog.Targets.Wrappers
 
     /// <summary> 
     /// Raises by  <see cref="AsyncRequestQueue"/> when 
-    /// <see cref="AsyncRequestQueue.OnOverflow"/> setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
-    /// and current queue size bigger than requested
+    /// queue is full
+    /// and <see cref="AsyncRequestQueue.OnOverflow"/> setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
+    /// By default queue doubles it size.
     /// </summary>
     public class LogEventQueueGrowEventArgs : EventArgs
     {
         /// <summary>
-        /// Contains <see cref="AsyncRequestQueue"/> required and current queue size.
+        /// Contains <see cref="AsyncRequestQueue"/> items count and new queue size.
         /// </summary>
-        /// <param name="requestLimit">Required queue size</param>
-        /// <param name="requestCount">Current queue size</param>
-        public LogEventQueueGrowEventArgs(int requestLimit, int requestCount)
+        /// <param name="newQueueSize">Required queue size</param>
+        /// <param name="requestsCount">Current queue size</param>
+        public LogEventQueueGrowEventArgs(int newQueueSize, int requestsCount)
         {
-            RequestLimit = requestLimit;
-            RequestCount = requestCount;
+            NewQueueSize = newQueueSize;
+            RequestsCount = requestsCount;
         }
 
         /// <summary>
-        /// Required queue size
+        /// New queue size
         /// </summary>
-        public int RequestLimit { get; }
+        public int NewQueueSize { get; }
 
         /// <summary>
-        /// Current queue size
+        /// Current requests count
         /// </summary>
-        public int RequestCount { get; }
+        public int RequestsCount { get; }
     }
 }

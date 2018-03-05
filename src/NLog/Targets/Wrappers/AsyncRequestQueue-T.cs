@@ -113,6 +113,7 @@ namespace NLog.Targets.Wrappers
 
                         case AsyncTargetWrapperOverflowAction.Grow:
                             InternalLogger.Debug("The overflow action is Grow, adding element anyway");
+                            RequestLimit *= 2;
                             OnLogEventQueueGrows(RequestCount + 1);
                             break;
 
@@ -202,33 +203,12 @@ namespace NLog.Targets.Wrappers
         /// Raise event when queued element was dropped because of queue overflow
         /// </summary>
         /// <param name="logEventInfo">Dropped queue item</param>
-        private void OnLogEventDropped(AsyncLogEventInfo logEventInfo)
-        {
-            var logEventDropped = LogEventDropped;
-            if (logEventDropped == null)
-            {
-                return;
-            }
-
-            LogEventDroppedEventArgs eventArg = new LogEventDroppedEventArgs(logEventInfo);
-            logEventDropped.Invoke(this, eventArg);
-        }
+        private void OnLogEventDropped(AsyncLogEventInfo logEventInfo) => LogEventDropped?.Invoke(this, new LogEventDroppedEventArgs(logEventInfo));
 
         /// <summary>
         /// Raise event when <see cref="RequestCount"/> overflow <see cref="RequestLimit"/>
         /// </summary>
         /// <param name="requestsCount"> current requests count</param>
-        private void OnLogEventQueueGrows(int requestsCount)
-        {
-            var logEventQueueGrow = LogEventQueueGrow;
-            if (logEventQueueGrow == null)
-            {
-                return;
-            }
-
-            var eventArg = new LogEventQueueGrowEventArgs(RequestLimit, requestsCount);
-            logEventQueueGrow.Invoke(this, eventArg);
-        }
-
+        private void OnLogEventQueueGrows(int requestsCount) => LogEventQueueGrow?.Invoke(this, new LogEventQueueGrowEventArgs(RequestLimit, requestsCount));
     }
 }
