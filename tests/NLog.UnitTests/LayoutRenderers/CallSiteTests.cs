@@ -939,11 +939,10 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#endregion
+        #endregion
 
         private class MyLogger : Logger
         {
-
         }
 
         [Fact]
@@ -1042,12 +1041,25 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Flush();
             logMessage = target.Logs[2];
             Assert.Contains("ThreadId=" + Thread.CurrentThread.ManagedThreadId.ToString(), logMessage);
+
+            // See that interface logging also works (Improve support for Microsoft.Extension.Logging.ILogger replacement)
+            INLogLogger ilogger = logger;
+            WriteLogMessage(ilogger);
+            LogManager.Flush();
+            logMessage = target.Logs[3];
+            Assert.Contains("CallSiteTests.WriteLogMessage", logMessage);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         private void WriteLogMessage(NLogLogger logger)
         {
             logger.Debug("something");
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void WriteLogMessage(INLogLogger logger)
+        {
+            logger.Log(LogLevel.Debug, "something");
         }
 
         /// <summary>
@@ -1179,10 +1191,25 @@ namespace NLog.UnitTests.LayoutRenderers
             await Task.Delay(1);    // Ensure it always becomes async, and it is not inlined
         }
 
+        public interface INLogLogger
+        {
+            void Log(LogLevel logLevel, string message);
+        }
+
+        public abstract class NLogLoggerBase : INLogLogger
+        {
+            protected abstract Logger Logger { get; }
+
+            void INLogLogger.Log(LogLevel logLevel, string message)
+            {
+                Logger.Log(typeof(INLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
+            }
+        }
+
         /// <summary>
         ///   Implementation of <see cref="ILogger" /> for NLog.
         /// </summary>
-        public class NLogLogger
+        public class NLogLogger : NLogLoggerBase
         {
             /// <summary>
             ///   Initializes a new instance of the <see cref="NLogLogger" /> class.
@@ -1197,7 +1224,7 @@ namespace NLog.UnitTests.LayoutRenderers
             ///   Gets or sets the logger.
             /// </summary>
             /// <value> The logger. </value>
-            protected internal Logger Logger { get; set; }
+            protected override Logger Logger { get; }
 
             /// <summary>
             ///   Returns a <see cref="string" /> that represents this instance.
