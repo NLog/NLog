@@ -300,7 +300,7 @@ namespace NLog.Config
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
-        public void AddRule(LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern = "*", bool final = false)
+        public void AddRule(LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern, bool final)
         {
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
             AddLoggingRulesThreadSafe(new LoggingRule(loggerNamePattern, minLevel, maxLevel, target) { Final = final });
@@ -343,7 +343,7 @@ namespace NLog.Config
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
-        public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern = "*", bool final = false)
+        public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern, bool final)
         {
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
             var loggingRule = new LoggingRule(loggerNamePattern, target) { Final = final };
@@ -385,7 +385,7 @@ namespace NLog.Config
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
         /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
-        public void AddRuleForAllLevels(Target target, string loggerNamePattern = "*", bool final = false)
+        public void AddRuleForAllLevels(Target target, string loggerNamePattern, bool final)
         {
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
             var loggingRule = new LoggingRule(loggerNamePattern, target) { Final = final };
