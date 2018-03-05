@@ -43,7 +43,7 @@ namespace NLog.Config
     /// </summary>
     public static class SimpleConfigurator
     {
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
         /// <summary>
         /// Configures NLog for console logging so that all messages above and including
         /// the <see cref="NLog.LogLevel.Info"/> level are output to the console.

@@ -116,7 +116,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-#elif WINDOWS_UWP && !NETSTANDARD1_5
+#elif NETSTANDARD1_3
 
         private string GetVersion()
         {
@@ -135,7 +135,6 @@ namespace NLog.LayoutRenderers
         {
             return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(Name));
         }
-
 #else
 
         private string GetVersion()

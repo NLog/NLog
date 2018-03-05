@@ -111,7 +111,7 @@ namespace NLog.Conditions
 #if !NETSTANDARD1_0
             StringComparer comparer = StringComparer.InvariantCulture;
 #else
-            var comparer = new System.Collections.Comparer(CultureInfo.InvariantCulture);
+            var comparer = System.Collections.Comparer.DefaultInvariant;
 #endif
             PromoteTypes(ref leftValue, ref rightValue);
             switch (relationalOperator)

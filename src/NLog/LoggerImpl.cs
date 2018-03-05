@@ -66,10 +66,10 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if WINDOWS_UWP
-                stackTrace = null;
-#elif NETSTANDARD1_5
+#if NETSTANDARD1_5
                 stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
+#elif NETSTANDARD1_0
+                stackTrace = null;
 #elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 #else

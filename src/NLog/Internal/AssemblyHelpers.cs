@@ -46,7 +46,7 @@ using System.Windows;
     /// </summary>
     internal static class AssemblyHelpers
     {
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
         /// <summary>
         /// Load from url
         /// </summary>

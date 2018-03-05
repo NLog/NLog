@@ -59,18 +59,15 @@ namespace NLog.LayoutRenderers
             base.InitializeLayoutRenderer();
             try
             {
-#if WINDOWS_UWP
-                MachineName = EnvironmentHelper.GetSafeEnvironmentVariable("COMPUTERNAME") ?? string.Empty;
+                MachineName = EnvironmentHelper.GetMachineName();
                 if (string.IsNullOrEmpty(MachineName))
-                    MachineName = EnvironmentHelper.GetSafeEnvironmentVariable("HOSTNAME") ?? string.Empty;
-#else
-                MachineName = Environment.MachineName;
-#endif
+                {
+                    InternalLogger.Info("MachineName is not available.");
+                }
             }
             catch (Exception exception)
             {
                 InternalLogger.Error(exception, "Error getting machine name.");
-
                 if (exception.MustBeRethrown())
                 {
                     throw;

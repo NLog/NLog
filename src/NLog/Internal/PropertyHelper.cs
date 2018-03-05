@@ -193,7 +193,7 @@ namespace NLog.Internal
         {
             try
             {
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
                 if (Type.GetTypeCode(resultType) != TypeCode.Object)
 #else
                 if (resultType.IsPrimitive() || resultType == typeof(string))
@@ -378,7 +378,7 @@ namespace NLog.Internal
 
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
             var converter = TypeDescriptor.GetConverter(type);
             if (converter.CanConvertFrom(typeof(string)))
             {

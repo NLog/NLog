@@ -40,6 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Reflection;
     using System.Text;
     using System.Xml;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Internal.Fakeables;
@@ -80,15 +81,15 @@ namespace NLog.LayoutRenderers
 
 #if SILVERLIGHT
             AppInfo = "Silverlight Application";
-#elif WINDOWS_UWP
-            AppInfo = "UWP Application";
+#elif NETSTANDARD1_3
+            AppInfo = "NetCore Application";
 #elif __IOS__
             AppInfo = "MonoTouch Application";
 #else
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
-                "{0}({1})", 
-                appDomain.FriendlyName, 
+                "{0}({1})",
+                appDomain.FriendlyName,
                 ThreadIDHelper.Instance.CurrentProcessID);
 #endif
 
@@ -96,16 +97,20 @@ namespace NLog.LayoutRenderers
 
             try
             {
-#if SILVERLIGHT
-                _machineName = "silverlight";
-#elif WINDOWS_UWP
-                _machineName = "uwp";
-#else
-                _machineName = Environment.MachineName;
-#endif
+                _machineName = EnvironmentHelper.GetMachineName();
+                if (string.IsNullOrEmpty(_machineName))
+                {
+                    InternalLogger.Info("MachineName is not available.");
+                }
             }
-            catch (System.Security.SecurityException)
+            catch (Exception exception)
             {
+                InternalLogger.Error(exception, "Error getting machine name.");
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
                 _machineName = string.Empty;
             }
         }
