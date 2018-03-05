@@ -258,12 +258,12 @@ namespace NLog.Common
                 WriteToLogFile(msg);
                 WriteToTextWriter(msg);
 
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
                 WriteToConsole(msg);
                 WriteToErrorConsole(msg);
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
                 WriteToTrace(msg);
 #endif
             }
@@ -390,7 +390,7 @@ namespace NLog.Common
             }
         }
 
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
         /// <summary>
         /// Write internal messages to the <see cref="System.Console"/>.
         /// </summary>
@@ -413,7 +413,7 @@ namespace NLog.Common
         }
 #endif
 
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
         /// <summary>
         /// Write internal messages to the <see cref="System.Console.Error"/>.
         /// </summary>
@@ -437,7 +437,7 @@ namespace NLog.Common
         }
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         /// <summary>
         /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
         /// </summary>

@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
     {
         private readonly string _baseDir;
 
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
 
         /// <summary>
         /// cached
@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers
         {
 
             var dir = _baseDir;
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
             if (ProcessDir)
             {
                 dir = _processDir ?? (_processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));

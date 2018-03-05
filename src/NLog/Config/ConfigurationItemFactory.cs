@@ -362,7 +362,7 @@ namespace NLog.Config
             var factory = new ConfigurationItemFactory(nlogAssembly);
             factory.RegisterExtendedItems();
 
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
             try
             {
                 var assemblyLocation = GetAssemblyFileLocation(nlogAssembly);
@@ -470,7 +470,7 @@ namespace NLog.Config
             return factory;
         }
 
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
         private static string GetAssemblyFileLocation(Assembly assembly)
         {
             try

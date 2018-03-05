@@ -1029,7 +1029,7 @@ namespace NLog.Config
                     }
                 }
 
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
                 string assemblyFile = addElement.GetOptionalAttribute("assemblyFile", null);
                 if (assemblyFile != null)
                 {
@@ -1071,7 +1071,7 @@ namespace NLog.Config
             }
         }
 
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
         private void ParseExtensionWithAssemblyFle(string baseDirectory, string assemblyFile, string prefix)
         {
             try

@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
             builder.Append(System.Threading.Thread.CurrentThread.Name);
 #endif
         }

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
 // Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
 #define SupportsMutex
 #endif
@@ -758,7 +758,7 @@ namespace NLog.Targets
                 if (KeepFileOpen)
                     _fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
                 bool mustWatchArchiving = IsArchivingEnabled && ConcurrentWrites && KeepFileOpen;
                 if (mustWatchArchiving)
                 {
@@ -1669,14 +1669,14 @@ namespace NLog.Targets
                         archivedAppender = archivedAppender ?? fileAppender;
                     }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
                     // Closes all file handles if any archive operation has been detected by file-watcher
                     _fileAppenderCache.InvalidateAppendersForArchivedFiles();
 #endif
                 }
                 else
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
                     _fileAppenderCache.InvalidateAppendersForArchivedFiles();
 #endif
                 }
