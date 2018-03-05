@@ -268,8 +268,7 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         /// <param name="targetName">Name of the target to be written when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
-        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
-        public void AddRule(LogLevel minLevel, LogLevel maxLevel, string targetName, string loggerNamePattern = "*", bool final = false)
+        public void AddRule(LogLevel minLevel, LogLevel maxLevel, string targetName, string loggerNamePattern = "*")
         {
             var target = FindTargetByName(targetName);
             if (target == null)
@@ -277,7 +276,20 @@ namespace NLog.Config
                 throw new NLogRuntimeException("Target '{0}' not found", targetName);
             }
 
-            AddRule(minLevel, maxLevel, target, loggerNamePattern, final);
+            AddRule(minLevel, maxLevel, target, loggerNamePattern, false);
+        }
+
+        /// <summary>
+        /// Add a rule with min- and maxLevel.
+        /// </summary>
+        /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
+        /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        public void AddRule(LogLevel minLevel, LogLevel maxLevel, Target target, string loggerNamePattern = "*")
+        {
+            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            AddRule(minLevel, maxLevel, target, loggerNamePattern, false);
         }
 
         /// <summary>
@@ -301,8 +313,7 @@ namespace NLog.Config
         /// <param name="level">log level needed to trigger this rule. </param>
         /// <param name="targetName">Name of the target to be written when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
-        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
-        public void AddRuleForOneLevel(LogLevel level, string targetName, string loggerNamePattern = "*", bool final = false)
+        public void AddRuleForOneLevel(LogLevel level, string targetName, string loggerNamePattern = "*")
         {
             var target = FindTargetByName(targetName);
             if (target == null)
@@ -310,9 +321,21 @@ namespace NLog.Config
                 throw new NLogConfigurationException("Target '{0}' not found", targetName);
             }
 
-            AddRuleForOneLevel(level, target, loggerNamePattern, final);
+            AddRuleForOneLevel(level, target, loggerNamePattern, false);
         }
 
+        /// <summary>
+        /// Add a rule for one loglevel.
+        /// </summary>
+        /// <param name="level">log level needed to trigger this rule. </param>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        public void AddRuleForOneLevel(LogLevel level, Target target, string loggerNamePattern = "*")
+        {
+            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            AddRuleForOneLevel(level, target, loggerNamePattern, false);
+        }
+        
         /// <summary>
         /// Add a rule for one loglevel.
         /// </summary>
@@ -334,8 +357,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="targetName">Name of the target to be written when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
-        /// <param name="final">Gets or sets a value indicating whether to quit processing any further rule when this one matches.</param>
-        public void AddRuleForAllLevels(string targetName, string loggerNamePattern = "*", bool final = false)
+        public void AddRuleForAllLevels(string targetName, string loggerNamePattern = "*")
         {
             var target = FindTargetByName(targetName);
             if (target == null)
@@ -343,9 +365,20 @@ namespace NLog.Config
                 throw new NLogRuntimeException("Target '{0}' not found", targetName);
             }
 
-            AddRuleForAllLevels(target, loggerNamePattern, final);
+            AddRuleForAllLevels(target, loggerNamePattern, false);
         }
-
+        
+        /// <summary>
+        /// Add a rule for alle loglevels.
+        /// </summary>
+        /// <param name="target">Target to be written to when the rule matches.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        public void AddRuleForAllLevels(Target target, string loggerNamePattern = "*")
+        {
+            if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            AddRuleForAllLevels(target, loggerNamePattern, false);
+        }
+        
         /// <summary>
         /// Add a rule for alle loglevels.
         /// </summary>
