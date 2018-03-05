@@ -88,8 +88,8 @@ namespace NLog.Internal
 
                 if (!(TryNLogSpecificConversion(propertyType, value, out newValue, configurationItemFactory)
                     || TryGetEnumValue(propertyType, value, out newValue, true)
-                    || TryImplicitConversion(propertyType, value, out newValue)
                     || TrySpecialConversion(propertyType, value, out newValue)
+                    || TryImplicitConversion(propertyType, value, out newValue)
                     || TryFlatListConversion(propertyType, value, out newValue)
                     || TryTypeConverterConversion(propertyType, value, out newValue)))
                     newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
@@ -193,7 +193,11 @@ namespace NLog.Internal
         {
             try
             {
-                if (string.Equals(resultType.Namespace, "System", StringComparison.Ordinal))
+#if !WINDOWS_UWP
+                if (Type.GetTypeCode(resultType) != TypeCode.Object)
+#else
+                if (resultType.IsPrimitive() || resultType == typeof(string))
+#endif
                 {
                     result = null;
                     return false;
@@ -351,8 +355,8 @@ namespace NLog.Internal
                     foreach (var value in values)
                     {
                         if (!(TryGetEnumValue(propertyType, value, out newValue, false)
-                               || TryImplicitConversion(propertyType, value, out newValue)
                                || TrySpecialConversion(propertyType, value, out newValue)
+                               || TryImplicitConversion(propertyType, value, out newValue)
                                || TryTypeConverterConversion(propertyType, value, out newValue)))
                         {
                             newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
