@@ -349,7 +349,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     flushException = ex;
                     flushHit.Set();
-                    Thread.Sleep(10);
                 });
 
             flushHit.WaitOne();
@@ -375,7 +374,6 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     flushException = ex;
                     flushHit.Set();
-                    Thread.Sleep(10);
                 });
 
             flushHit.WaitOne();
@@ -569,6 +567,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
         private class MyAsyncTarget : Target
         {
+            private readonly NLog.Internal.AsyncOperationCounter _pendingWriteCounter = new NLog.Internal.AsyncOperationCounter();
+
             public int BufferedWriteCount { get; private set; }
             public int BufferedTotalEvents { get; private set; }
 
@@ -579,6 +579,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
+                _pendingWriteCounter.BeginOperation();
+
                 BufferedWriteCount++;
                 BufferedTotalEvents += logEvents.Count;
 
@@ -588,13 +590,20 @@ namespace NLog.UnitTests.Targets.Wrappers
                     ThreadPool.QueueUserWorkItem(
                         s =>
                         {
-                            if (ThrowExceptions)
+                            try
                             {
-                                @event.Continuation(new InvalidOperationException("Some problem!"));
+                                if (ThrowExceptions)
+                                {
+                                    @event.Continuation(new InvalidOperationException("Some problem!"));
+                                }
+                                else
+                                {
+                                    @event.Continuation(null);
+                                }
                             }
-                            else
+                            finally
                             {
-                                @event.Continuation(null);
+                                _pendingWriteCounter.CompleteOperation(null);
                             }
                         });
                 }
@@ -602,8 +611,12 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
+                var wrappedContinuation = _pendingWriteCounter.RegisterCompletionNotification(asyncContinuation);
                 ThreadPool.QueueUserWorkItem(
-                    s => asyncContinuation(null));
+                    s =>
+                    {
+                        wrappedContinuation(null);
+                    });
             }
 
             public bool ThrowExceptions { get; set; }
