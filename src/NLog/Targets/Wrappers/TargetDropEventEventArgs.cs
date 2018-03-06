@@ -33,10 +33,10 @@
 
 using System;
 
-namespace NLog.Targets
+namespace NLog.Targets.Wrappers
 {
     /// <summary>
-    /// Arguments for <see cref="Target.LogEventDropped"/> events.
+    /// Arguments for <see cref="AsyncTargetWrapper.LogEventDropped"/> events.
     /// </summary>
     public class TargetDropEventEventArgs : EventArgs
     {
