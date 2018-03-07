@@ -108,7 +108,7 @@ namespace NLog.Targets.Wrappers
                         case AsyncTargetWrapperOverflowAction.Discard:
                             InternalLogger.Debug("Discarding one element from queue");
                             var lostItem = _logEventInfoQueue.Dequeue();
-                            OnLogEventDropped(lostItem);
+                            OnLogEventDropped(lostItem.LogEvent);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
@@ -203,7 +203,7 @@ namespace NLog.Targets.Wrappers
         /// Raise event when queued element was dropped because of queue overflow
         /// </summary>
         /// <param name="logEventInfo">Dropped queue item</param>
-        private void OnLogEventDropped(AsyncLogEventInfo logEventInfo) => LogEventDropped?.Invoke(this, new LogEventDroppedEventArgs(logEventInfo));
+        private void OnLogEventDropped(LogEventInfo logEventInfo) => LogEventDropped?.Invoke(this, new LogEventDroppedEventArgs(logEventInfo));
 
         /// <summary>
         /// Raise event when <see cref="RequestCount"/> overflow <see cref="RequestLimit"/>

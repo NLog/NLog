@@ -32,20 +32,20 @@
 // 
 
 using System;
-using NLog.Common;
 
 namespace NLog.Targets.Wrappers
 {
     /// <summary>
-    /// Contains LogEvent that was dropped from AsyncRequestQueue because of reaching max capacity
+    /// Arguments for <see cref="AsyncTargetWrapper.LogEventDropped"/> events.
     /// </summary>
-    internal class LogEventDroppedEventArgs : EventArgs
+    public class LogEventDroppedEventArgs : EventArgs
     {
-        public LogEventDroppedEventArgs(AsyncLogEventInfo eventInfo) => AsyncLogEventInfo = eventInfo;
+        /// <inheritdoc />
+        public LogEventDroppedEventArgs(LogEventInfo logEventInfo) => DroppedLogEventInfo = logEventInfo;
 
         /// <summary>
-        /// Dropped AsyncLogEventInfo
+        /// Instance of <see cref="LogEventInfo"/> that was dropped by <see cref="Target"/>
         /// </summary>
-        public AsyncLogEventInfo AsyncLogEventInfo { get; }
+        public LogEventInfo DroppedLogEventInfo { get; }
     }
 }

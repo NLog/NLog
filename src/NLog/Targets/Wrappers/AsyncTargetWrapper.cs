@@ -81,6 +81,8 @@ namespace NLog.Targets.Wrappers
         private readonly object _timerLockObject = new object();
         private Timer _lazyWriterTimer;
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
+        private event EventHandler<LogEventDroppedEventArgs> logEventDroppedEvent;
+        private event EventHandler<LogEventQueueGrowEventArgs> eventQueueGrowEvent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
@@ -119,8 +121,6 @@ namespace NLog.Targets.Wrappers
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
             RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
-            RequestQueue.LogEventDropped += OnRequestQueueDropItem;
-            RequestQueue.LogEventQueueGrow += OnRequestQueueGrow;
             TimeToSleepBetweenBatches = 50;
             BatchSize = 200;
             FullBatchSizeWriteLimit = 5;
@@ -144,17 +144,58 @@ namespace NLog.Targets.Wrappers
         [DefaultValue(50)]
         public int TimeToSleepBetweenBatches { get; set; }
 
+        
         /// <summary>
         /// Raise event when Target cannot store LogEvent.
         /// Event arg contains losed LogEvent
         /// </summary>
-        public event EventHandler<TargetDropEventEventArgs> LogEventDropped;
+        public event EventHandler<LogEventDroppedEventArgs> LogEventDropped
+        {
+            add
+            {
+                if (logEventDroppedEvent == null && RequestQueue != null )
+                {
+                    RequestQueue.LogEventDropped += OnRequestQueueDropItem;
+                }
 
+                logEventDroppedEvent += value;
+            }
+            remove
+            {
+                logEventDroppedEvent -= value;
+
+                if (logEventDroppedEvent == null && RequestQueue != null)
+                {
+                    RequestQueue.LogEventDropped -= OnRequestQueueDropItem;
+                }
+            }
+        }
+        
         /// <summary>
         /// Raises when event queue grow. 
         /// Queue can grow when <see cref="OverflowAction"/> was setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
         /// </summary>
-        public event EventHandler<LogEventQueueGrowEventArgs> EventQueueGrow;
+        public event EventHandler<LogEventQueueGrowEventArgs> EventQueueGrow
+        {
+            add
+            {
+                if (eventQueueGrowEvent == null && RequestQueue != null)
+                {
+                    RequestQueue.LogEventQueueGrow += OnRequestQueueGrow;
+                }
+
+                eventQueueGrowEvent += value;
+            }
+            remove
+            {
+                eventQueueGrowEvent -= value;
+
+                if (eventQueueGrowEvent == null && RequestQueue != null)
+                {
+                    RequestQueue.LogEventQueueGrow -= OnRequestQueueGrow;
+                }
+            }
+        }
         
         /// <summary>
         /// Gets or sets the action to be taken when the lazy writer thread request queue count
@@ -472,12 +513,12 @@ namespace NLog.Targets.Wrappers
 
         private void OnRequestQueueDropItem(object sender, LogEventDroppedEventArgs logEventDroppedEventArgs) 
         {
-            LogEventDropped?.Invoke(this, new TargetDropEventEventArgs(logEventDroppedEventArgs.AsyncLogEventInfo.LogEvent));
+            logEventDroppedEvent?.Invoke(this, logEventDroppedEventArgs);
         }
 
         private void OnRequestQueueGrow(object sender, LogEventQueueGrowEventArgs logEventQueueGrowEventArgs) 
         {
-            EventQueueGrow?.Invoke(this, logEventQueueGrowEventArgs);
+            eventQueueGrowEvent?.Invoke(this, logEventQueueGrowEventArgs);
         }
     }
 }
