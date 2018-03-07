@@ -81,8 +81,8 @@ namespace NLog.Targets.Wrappers
         private readonly object _timerLockObject = new object();
         private Timer _lazyWriterTimer;
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
-        private event EventHandler<LogEventDroppedEventArgs> logEventDroppedEvent;
-        private event EventHandler<LogEventQueueGrowEventArgs> eventQueueGrowEvent;
+        private event EventHandler<LogEventDroppedEventArgs> _logEventDroppedEvent;
+        private event EventHandler<LogEventQueueGrowEventArgs> _eventQueueGrowEvent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
@@ -153,18 +153,18 @@ namespace NLog.Targets.Wrappers
         {
             add
             {
-                if (logEventDroppedEvent == null && RequestQueue != null )
+                if (_logEventDroppedEvent == null && RequestQueue != null )
                 {
                     RequestQueue.LogEventDropped += OnRequestQueueDropItem;
                 }
 
-                logEventDroppedEvent += value;
+                _logEventDroppedEvent += value;
             }
             remove
             {
-                logEventDroppedEvent -= value;
+                _logEventDroppedEvent -= value;
 
-                if (logEventDroppedEvent == null && RequestQueue != null)
+                if (_logEventDroppedEvent == null && RequestQueue != null)
                 {
                     RequestQueue.LogEventDropped -= OnRequestQueueDropItem;
                 }
@@ -179,18 +179,18 @@ namespace NLog.Targets.Wrappers
         {
             add
             {
-                if (eventQueueGrowEvent == null && RequestQueue != null)
+                if (_eventQueueGrowEvent == null && RequestQueue != null)
                 {
                     RequestQueue.LogEventQueueGrow += OnRequestQueueGrow;
                 }
 
-                eventQueueGrowEvent += value;
+                _eventQueueGrowEvent += value;
             }
             remove
             {
-                eventQueueGrowEvent -= value;
+                _eventQueueGrowEvent -= value;
 
-                if (eventQueueGrowEvent == null && RequestQueue != null)
+                if (_eventQueueGrowEvent == null && RequestQueue != null)
                 {
                     RequestQueue.LogEventQueueGrow -= OnRequestQueueGrow;
                 }
@@ -511,12 +511,12 @@ namespace NLog.Targets.Wrappers
 
         private void OnRequestQueueDropItem(object sender, LogEventDroppedEventArgs logEventDroppedEventArgs) 
         {
-            logEventDroppedEvent?.Invoke(this, logEventDroppedEventArgs);
+            _logEventDroppedEvent?.Invoke(this, logEventDroppedEventArgs);
         }
 
         private void OnRequestQueueGrow(object sender, LogEventQueueGrowEventArgs logEventQueueGrowEventArgs) 
         {
-            eventQueueGrowEvent?.Invoke(this, logEventQueueGrowEventArgs);
+            _eventQueueGrowEvent?.Invoke(this, logEventQueueGrowEventArgs);
         }
     }
 }
