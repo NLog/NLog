@@ -271,8 +271,6 @@ namespace NLog.Targets.Wrappers
                 try
                 {
                     WriteEventsInQueue(int.MaxValue, "Closing Target");
-                    RequestQueue.LogEventDropped -= OnRequestQueueDropItem;
-                    RequestQueue.LogEventQueueGrow -= OnRequestQueueGrow;
                 }
                 finally
                 {
