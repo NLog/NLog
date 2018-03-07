@@ -18,6 +18,23 @@
 
 NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking changes! Also a lot features has been added!
 
+
+# RC 7 summary:
+
+- [#2612](https://github.com/nlog/nlog/pull/2612) add final param to `AddRule` Methods (#2612) (@893949088)
+- [#2590](https://github.com/nlog/nlog/pull/2590) WebServiceTarget - JsonPost with support for single nameless parameter (@snakefoot)
+- [#2604](https://github.com/nlog/nlog/pull/2604) FileTarget - Failing to CreateArchiveMutex should not stop logging (#2604) (@snakefoot)
+- [#2592](https://github.com/nlog/nlog/pull/2592) Make Set methods of MDC and MDLC return IDisposable (#2592) (@MikeFH)
+- [#2591](https://github.com/nlog/nlog/pull/2591) callsite-filename renderer (#2591) (@brunotag)
+- [#2597](https://github.com/nlog/nlog/pull/2597) Replace WINDOWS_UWP with NETSTANDARD1_3 to support UWP10 shared libraries (@snakefoot)
+- [#2599](https://github.com/nlog/nlog/pull/2599) TryImplicitConversion should only check object types (@snakefoot)
+- [#2595](https://github.com/nlog/nlog/pull/2595) IsSafeToDeferFormatting - Convert.GetTypeCode is faster and better (@snakefoot)
+- [#2609](https://github.com/nlog/nlog/pull/2609) NLog - Fix Callsite when wrapping ILogger in Microsoft Extension Logging (@snakefoot)
+- [#2613](https://github.com/nlog/nlog/pull/2613) Attempt to make some unit-tests more stable (@snakefoot)
+- [#2603](https://github.com/nlog/nlog/pull/2603) MultiFileWatcher - Improve error handling if FileSystemWatcher fails (@snakefoot)
+
+- See also https://github.com/NLog/NLog/milestone/66?closed=1
+
 # RC 6 summary:
 
 - [#2576](https://github.com/NLog/NLog/pull/2576) Fix possible infinite loop in message template parser + better handling incorrect templates (@304NotModified, @snakefoot)
