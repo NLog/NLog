@@ -91,9 +91,17 @@ namespace NLog.Internal.FileAppenders
             {
                 return CreateSharableMutex("FileArchiveLock");
             }
-            catch (SecurityException ex)
+            catch (Exception ex)
             {
-                InternalLogger.Warn(ex, "Failed to create global archive mutex: {0}", FileName);
+                if (ex is SecurityException || ex is NotSupportedException || ex is NotImplementedException)
+                {
+                    InternalLogger.Warn(ex, "Failed to create global archive mutex: {0}", FileName);
+                    return new Mutex();
+                }
+
+                InternalLogger.Error(ex, "Failed to create global archive mutex: {0}", FileName);
+                if (ex.MustBeRethrown())
+                    throw;
                 return new Mutex();
             }
         }

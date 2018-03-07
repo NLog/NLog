@@ -32,6 +32,7 @@
 // 
 
 using System;
+using NLog.Common;
 
 namespace NLog.Targets.FileArchiveModes
 {
@@ -46,11 +47,18 @@ namespace NLog.Targets.FileArchiveModes
                     return archiveHelper;
             }
 
-            if (archiveNumbering != ArchiveNumberingMode.Sequence && !customArchiveFileName)
+            if (archiveNumbering != ArchiveNumberingMode.Sequence)
             {
-                IFileArchiveMode archiveHelper = CreateStrictFileArchiveMode(archiveNumbering, dateFormat, maxArchiveFiles);
-                if (archiveHelper != null)
-                    return new FileArchiveModeDynamicTemplate(archiveHelper);
+                if (!customArchiveFileName)
+                {
+                    IFileArchiveMode archiveHelper = CreateStrictFileArchiveMode(archiveNumbering, dateFormat, maxArchiveFiles);
+                    if (archiveHelper != null)
+                        return new FileArchiveModeDynamicTemplate(archiveHelper);
+                }
+                else
+                {
+                    InternalLogger.Info("FileTarget: Pattern {{#}} is missing in ArchiveFileName `{0}` (Fallback to dynamic wildcard)", archiveFilePath);
+                }
             }
 
             return new FileArchiveModeDynamicSequence(archiveNumbering, dateFormat, customArchiveFileName);
