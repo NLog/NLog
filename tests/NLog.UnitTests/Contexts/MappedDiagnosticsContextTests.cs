@@ -214,5 +214,39 @@ namespace NLog.UnitTests.Contexts
             Assert.Null(getObject);
             Assert.Empty(getValue);
         }
+
+        [Fact]
+        public void disposable_removes_item()
+        {
+            const string itemNotRemovedKey = "itemNotRemovedKey";
+            const string itemRemovedKey = "itemRemovedKey";
+
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set(itemNotRemovedKey, "itemNotRemoved");
+            using (MappedDiagnosticsContext.SetScoped(itemRemovedKey, "itemRemoved"))
+            {
+                Assert.Equal(MappedDiagnosticsContext.GetNames(), new[] { itemNotRemovedKey, itemRemovedKey });
+            }
+
+            Assert.Equal(MappedDiagnosticsContext.GetNames(), new[] { itemNotRemovedKey });
+        }
+
+        [Fact]
+        public void dispose_is_idempotent()
+        {
+            const string itemKey = "itemKey";
+
+            MappedDiagnosticsContext.Clear();            
+            IDisposable disposable = MappedDiagnosticsContext.SetScoped(itemKey, "item1");
+
+            disposable.Dispose();
+            Assert.False(MappedDiagnosticsContext.Contains(itemKey));
+
+            //This item shouldn't be removed since it is not the disposable one
+            MappedDiagnosticsContext.Set(itemKey, "item2");
+            disposable.Dispose();
+
+            Assert.True(MappedDiagnosticsContext.Contains(itemKey));
+        }
     }
 }

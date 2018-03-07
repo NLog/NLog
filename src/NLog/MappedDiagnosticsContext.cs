@@ -53,6 +53,29 @@ namespace NLog
         private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
 
         /// <summary>
+        /// 
+        /// </summary>
+        private class ItemRemover : IDisposable
+        {
+            private readonly string _item;
+            private bool _disposed = false;
+
+            public ItemRemover(string item)
+            {
+                this._item = item;
+            }
+
+            public void Dispose()
+            {
+                if (!_disposed)
+                {
+                    _disposed = true;
+                    Remove(_item);
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the thread-local dictionary
         /// </summary>
         /// <param name="create">Must be true for any subsequent dictionary modification operation</param>
@@ -64,6 +87,30 @@ namespace NLog
                 return EmptyDefaultDictionary;
 
             return dictionary;
+        }
+
+        /// <summary>
+        /// Sets the current thread MDC item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        /// <returns>An <see cref="IDisposable"/> that can be used to remove the item from the current thread MDC.</returns>
+        public static IDisposable SetScoped(string item, string value)
+        {
+            Set(item, value);
+            return new ItemRemover(item);
+        }
+
+        /// <summary>
+        /// Sets the current thread MDC item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current thread MDC.</returns>
+        public static IDisposable SetScoped(string item, object value)
+        {
+            Set(item, value);
+            return new ItemRemover(item);
         }
 
         /// <summary>

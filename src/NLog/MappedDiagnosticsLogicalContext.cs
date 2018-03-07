@@ -37,6 +37,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using Internal;
 
     /// <summary>
@@ -50,6 +51,29 @@ namespace NLog
     /// </remarks>
     public static class MappedDiagnosticsLogicalContext
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private class ItemRemover : IDisposable
+        {
+            private readonly string _item;
+            //boolean as int to allow the use of Interlocked.Exchange
+            private int _disposed = 0;
+
+            public ItemRemover(string item)
+            {
+                _item = item;
+            }
+
+            public void Dispose()
+            {
+                if (Interlocked.Exchange(ref _disposed, 1) == 0)
+                {
+                    Remove(_item); 
+                }
+            }
+        }
+
         /// <summary>
         /// Simulate ImmutableDictionary behavior (which is not yet part of all .NET frameworks).
         /// In future the real ImmutableDictionary could be used here to minimize memory usage and copying time.
@@ -108,6 +132,30 @@ namespace NLog
             object value;
             GetLogicalThreadDictionary().TryGetValue(item, out value);
             return value;
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        public static IDisposable SetScoped(string item, string value)
+        {
+            Set(item, value);
+            return new ItemRemover(item);
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        public static IDisposable SetScoped(string item, object value)
+        {
+            Set(item, value);
+            return new ItemRemover(item);
         }
 
         /// <summary>
