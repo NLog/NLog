@@ -685,7 +685,7 @@ namespace NLog.UnitTests.Config
             var factory = LogManager.LogFactory;
 
             //reloadTimer should be set for ReloadConfigOnTimer
-            factory.reloadTimer = new Timer((a) => { });
+            factory._reloadTimer = new Timer((a) => { });
             factory.ReloadConfigOnTimer(this);
             _reloading = false;
             return factory.Configuration;

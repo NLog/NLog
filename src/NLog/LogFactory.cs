@@ -63,7 +63,7 @@ namespace NLog
     {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         private const int ReconfigAfterFileChangedTimeout = 1000;
-        internal Timer reloadTimer;
+        internal Timer _reloadTimer;
         private readonly MultiFileWatcher _watcher;
 #endif
 
@@ -200,7 +200,7 @@ namespace NLog
 
                 lock (_syncRoot)
                 {
-                    if (_configLoaded)
+                    if (_configLoaded || _isDisposing)
                         return _config;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
@@ -269,9 +269,7 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT
                         Flush();
-#endif
                         oldConfig.Close();
                     }
 
@@ -576,7 +574,6 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -603,7 +600,6 @@ namespace NLog
                 {
                     throw;
                 }
-
             }
         }
 
@@ -616,7 +612,6 @@ namespace NLog
         {
             Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
         }
-#endif
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
@@ -648,8 +643,11 @@ namespace NLog
             try
             {
                 InternalLogger.Trace("LogFactory.Flush({0})", timeout);
-
-                var loggingConfiguration = Configuration;
+                LoggingConfiguration loggingConfiguration = null;
+                lock (_syncRoot)
+                {
+                    loggingConfiguration = _config; // Flush should not attempt to auto-load Configuration
+                }
                 if (loggingConfiguration != null)
                 {
                     loggingConfiguration.FlushAllTargets(AsyncHelpers.WithTimeout(asyncContinuation, timeout));
@@ -777,7 +775,7 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         internal void ReloadConfigOnTimer(object state)
         {
-            if (reloadTimer == null && _isDisposing)
+            if (_reloadTimer == null && _isDisposing)
             {
                 return; //timer was disposed already. 
             }
@@ -794,16 +792,16 @@ namespace NLog
                         return; //timer was disposed already. 
                     }
 
-                    var currentTimer = reloadTimer;
+                    var currentTimer = _reloadTimer;
                     if (currentTimer != null)
                     {
-                        reloadTimer = null;
+                        _reloadTimer = null;
                         currentTimer.WaitForDispose(TimeSpan.Zero);
                     }
 
                     _watcher.StopWatching();
 
-                    if (Configuration != configurationToReload)
+                    if (_config != configurationToReload)
                     {
                         throw new NLogConfigurationException("Config changed in between. Not reloading.");
                     }
@@ -962,6 +960,7 @@ namespace NLog
             {
                 // Disable startup of new reload-timers
                 _watcher.FileChanged -= ConfigFileChanged;
+                _watcher.StopWatching();
             }
 #endif
 
@@ -970,10 +969,10 @@ namespace NLog
                 try
                 {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                    var currentTimer = reloadTimer;
+                    var currentTimer = _reloadTimer;
                     if (currentTimer != null)
                     {
-                        reloadTimer = null;
+                        _reloadTimer = null;
                         currentTimer.WaitForDispose(TimeSpan.Zero);
                     }
 
@@ -1000,25 +999,30 @@ namespace NLog
         {
             try
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3 && !MONO
                 bool attemptClose = true;
-                if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono)
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3 && !MONO
+                if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono && !PlatformDetector.IsUnix)
                 {
-                    // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown (Maybe better with MONO 4.1)
+                    // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown
                     ManualResetEvent flushCompleted = new ManualResetEvent(false);
                     oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
                     attemptClose = flushCompleted.WaitOne(flushTimeout);
                 }
+#endif
+
+                // Disable all loggers, so things become quiet
+                _config = null;
+                ReconfigExistingLoggers();
+
                 if (!attemptClose)
                 {
                     InternalLogger.Warn("Target flush timeout. One or more targets did not complete flush operation, skipping target close.");
                 }
                 else
-#endif
                 {
                     // Flush completed within timeout, lets try and close down
                     oldConfig.Close();
-                    _config = null;
                     OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(null, oldConfig));
                 }
             }
@@ -1046,13 +1050,14 @@ namespace NLog
             InternalLogger.Info("Logger closing down...");
             if (!_isDisposing && _configLoaded)
             {
-                var loadedConfig = Configuration;
-                if (loadedConfig != null)
+                lock (_syncRoot)
                 {
-                    ManualResetEvent flushCompleted = new ManualResetEvent(false);
-                    loadedConfig.FlushAllTargets((ex) => flushCompleted.Set());
-                    flushCompleted.WaitOne(DefaultFlushTimeout);
-                    loadedConfig.Close();
+                    if (_isDisposing || !_configLoaded)
+                        return;
+
+                    Configuration = null;
+                    _configLoaded = true;       // Locked disabled state
+                    ReconfigExistingLoggers();  // Disable all loggers, so things become quiet
                 }
             }
             InternalLogger.Info("Logger has been closed down.");
@@ -1288,12 +1293,12 @@ namespace NLog
                     return;
                 }
 
-                if (reloadTimer == null)
+                if (_reloadTimer == null)
                 {
                     var configuration = Configuration;
                     if (configuration != null)
                     {
-                        reloadTimer = new Timer(
+                        _reloadTimer = new Timer(
                                 ReloadConfigOnTimer,
                                 configuration,
                                 ReconfigAfterFileChangedTimeout,
@@ -1302,7 +1307,7 @@ namespace NLog
                 }
                 else
                 {
-                    reloadTimer.Change(
+                    _reloadTimer.Change(
                             ReconfigAfterFileChangedTimeout,
                             Timeout.Infinite);
                 }
