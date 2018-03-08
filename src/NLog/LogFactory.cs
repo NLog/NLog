@@ -269,9 +269,7 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT
                         Flush();
-#endif
                         oldConfig.Close();
                     }
 
@@ -576,7 +574,6 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -603,7 +600,6 @@ namespace NLog
                 {
                     throw;
                 }
-
             }
         }
 
@@ -616,7 +612,6 @@ namespace NLog
         {
             Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
         }
-#endif
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
@@ -962,6 +957,7 @@ namespace NLog
             {
                 // Disable startup of new reload-timers
                 _watcher.FileChanged -= ConfigFileChanged;
+                _watcher.StopWatching();
             }
 #endif
 
@@ -1002,9 +998,9 @@ namespace NLog
             {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3 && !MONO
                 bool attemptClose = true;
-                if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono)
+                if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono && !PlatformDetector.IsUnix)
                 {
-                    // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown (Maybe better with MONO 4.1)
+                    // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown
                     ManualResetEvent flushCompleted = new ManualResetEvent(false);
                     oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
                     attemptClose = flushCompleted.WaitOne(flushTimeout);
@@ -1046,14 +1042,7 @@ namespace NLog
             InternalLogger.Info("Logger closing down...");
             if (!_isDisposing && _configLoaded)
             {
-                var loadedConfig = Configuration;
-                if (loadedConfig != null)
-                {
-                    ManualResetEvent flushCompleted = new ManualResetEvent(false);
-                    loadedConfig.FlushAllTargets((ex) => flushCompleted.Set());
-                    flushCompleted.WaitOne(DefaultFlushTimeout);
-                    loadedConfig.Close();
-                }
+                Configuration = null;
             }
             InternalLogger.Info("Logger has been closed down.");
         }
