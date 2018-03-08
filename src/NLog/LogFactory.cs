@@ -63,7 +63,7 @@ namespace NLog
     {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         private const int ReconfigAfterFileChangedTimeout = 1000;
-        internal Timer reloadTimer;
+        internal Timer _reloadTimer;
         private readonly MultiFileWatcher _watcher;
 #endif
 
@@ -270,17 +270,19 @@ namespace NLog
                     if (oldConfig != null)
                     {
                         InternalLogger.Info("Closing old configuration.");
-#if !SILVERLIGHT
+                        if (value == null)
+                        {
+                            _config = value;
+                            _configLoaded = false;
+                            ReconfigExistingLoggers();  // Disable all loggers, so things become quiet
+                        }
                         Flush();
-#endif
                         oldConfig.Close();
                     }
 
                     _config = value;
 
-                    if (_config == null)
-                        _configLoaded = false;
-                    else
+                    if (_config != null)
                     {
                         try
                         {
@@ -433,7 +435,6 @@ namespace NLog
             {
                 InternalLogger.Debug(ex, "Not running in full trust");
             }
-
         }
 
         /// <summary>
@@ -580,7 +581,6 @@ namespace NLog
             }
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -607,7 +607,6 @@ namespace NLog
                 {
                     throw;
                 }
-
             }
         }
 
@@ -620,7 +619,6 @@ namespace NLog
         {
             Flush(TimeSpan.FromMilliseconds(timeoutMilliseconds));
         }
-#endif
 
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets).
@@ -781,7 +779,7 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
         internal void ReloadConfigOnTimer(object state)
         {
-            if (reloadTimer == null && _isDisposing)
+            if (_reloadTimer == null && _isDisposing)
             {
                 return; //timer was disposed already. 
             }
@@ -798,16 +796,16 @@ namespace NLog
                         return; //timer was disposed already. 
                     }
 
-                    var currentTimer = reloadTimer;
+                    var currentTimer = _reloadTimer;
                     if (currentTimer != null)
                     {
-                        reloadTimer = null;
+                        _reloadTimer = null;
                         currentTimer.WaitForDispose(TimeSpan.Zero);
                     }
 
                     _watcher.StopWatching();
 
-                    if (Configuration != configurationToReload)
+                    if (_config != configurationToReload)
                     {
                         throw new NLogConfigurationException("Config changed in between. Not reloading.");
                     }
@@ -966,6 +964,7 @@ namespace NLog
             {
                 // Disable startup of new reload-timers
                 _watcher.FileChanged -= ConfigFileChanged;
+                _watcher.StopWatching();
             }
 #endif
 
@@ -974,10 +973,10 @@ namespace NLog
                 try
                 {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
-                    var currentTimer = reloadTimer;
+                    var currentTimer = _reloadTimer;
                     if (currentTimer != null)
                     {
-                        reloadTimer = null;
+                        _reloadTimer = null;
                         currentTimer.WaitForDispose(TimeSpan.Zero);
                     }
 
@@ -1006,9 +1005,9 @@ namespace NLog
             {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP && !MONO
                 bool attemptClose = true;
-                if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono)
+                if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono && !PlatformDetector.IsUnix)
                 {
-                    // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown (Maybe better with MONO 4.1)
+                    // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown
                     ManualResetEvent flushCompleted = new ManualResetEvent(false);
                     oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
                     attemptClose = flushCompleted.WaitOne(flushTimeout);
@@ -1050,14 +1049,7 @@ namespace NLog
             InternalLogger.Info("Logger closing down...");
             if (!_isDisposing && _configLoaded)
             {
-                var loadedConfig = Configuration;
-                if (loadedConfig != null)
-                {
-                    ManualResetEvent flushCompleted = new ManualResetEvent(false);
-                    loadedConfig.FlushAllTargets((ex) => flushCompleted.Set());
-                    flushCompleted.WaitOne(DefaultFlushTimeout);
-                    loadedConfig.Close();
-                }
+                Configuration = null;
             }
             InternalLogger.Info("Logger has been closed down.");
         }
@@ -1292,12 +1284,12 @@ namespace NLog
                     return;
                 }
 
-                if (reloadTimer == null)
+                if (_reloadTimer == null)
                 {
                     var configuration = Configuration;
                     if (configuration != null)
                     {
-                        reloadTimer = new Timer(
+                        _reloadTimer = new Timer(
                                 ReloadConfigOnTimer,
                                 configuration,
                                 ReconfigAfterFileChangedTimeout,
@@ -1306,7 +1298,7 @@ namespace NLog
                 }
                 else
                 {
-                    reloadTimer.Change(
+                    _reloadTimer.Change(
                             ReconfigAfterFileChangedTimeout,
                             Timeout.Infinite);
                 }
