@@ -490,7 +490,6 @@ namespace NLog.Targets
                 var networkSender = senderNode.Value;
                 lock (_openNetworkSenders)
                 {
-
                     if (TryRemove(_openNetworkSenders, senderNode))
                     {
                         // only remove it once
@@ -515,15 +514,26 @@ namespace NLog.Targets
         private void ChunkedSend(NetworkSender sender, byte[] buffer, AsyncContinuation continuation)
         {
             int tosend = buffer.Length;
-            int pos = 0;
-
-            AsyncContinuation sendNextChunk = null;
-
-           
-
-            sendNextChunk = ex =>
+            if (tosend <= MaxMessageSize)
+            {
+                // Chunking is not needed, no need to perform delegate capture
+                InternalLogger.Trace("Sending chunk, position: {0}, length: {1}", 0, tosend);
+                if (tosend <= 0)
                 {
-                  
+                    continuation(null);
+                    return;
+                }
+
+                sender.Send(buffer, 0, tosend, continuation);
+            }
+            else
+            {
+                int pos = 0;
+
+                AsyncContinuation sendNextChunk = null;
+
+                sendNextChunk = ex =>
+                {
                     if (ex != null)
                     {
                         continuation(ex);
@@ -562,7 +572,9 @@ namespace NLog.Targets
                     sender.Send(buffer, pos0, chunksize, sendNextChunk);
                 };
 
-            sendNextChunk(null);
+                sendNextChunk(null);
+            }
         }
     }
 }
+
