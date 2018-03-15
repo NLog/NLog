@@ -43,7 +43,6 @@ namespace NLog.Internal
         public static readonly LogMessageTemplateFormatter DefaultAuto = new LogMessageTemplateFormatter(false, false);
         public static readonly LogMessageTemplateFormatter Default = new LogMessageTemplateFormatter(true, false);
         public static readonly LogMessageTemplateFormatter DefaultAutoSingleTarget = new LogMessageTemplateFormatter(false, true);
-        public static readonly LogMessageTemplateFormatter DefaultSingleTarget = new LogMessageTemplateFormatter(true, true);
         private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
 
         /// <summary>
@@ -77,11 +76,13 @@ namespace NLog.Internal
 
             if (_singleTargetOnly)
             {
-                // Make quick check for valid message template parameter names
+                // Perform quick check for valid message template parameter names (No support for rewind if mixed message-template)
                 TemplateEnumerator holeEnumerator = new TemplateEnumerator(logEvent.Message);
-                if (holeEnumerator.MoveNext() && holeEnumerator.Current.Literal.Skip != 0 && holeEnumerator.Current.Hole.Index != -1)
+                if (holeEnumerator.MoveNext())
                 {
-                    return false;   // Skip allocation of PropertiesDictionary
+                    var currentHole = holeEnumerator.Current;
+                    if (currentHole.Literal.Skip != 0 && currentHole.Hole.Index != -1 && currentHole.Hole.CaptureType == CaptureType.Normal)
+                        return false;   // Skip allocation of PropertiesDictionary
                 }
             }
 

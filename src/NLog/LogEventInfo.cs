@@ -57,7 +57,6 @@ namespace NLog
         public static readonly DateTime ZeroDate = DateTime.UtcNow;
         internal static readonly LogMessageFormatter StringFormatMessageFormatter = GetStringFormatMessageFormatter;
         internal static LogMessageFormatter DefaultMessageFormatter { get; private set; } = LogMessageTemplateFormatter.DefaultAuto.MessageFormatter;
-        internal static LogMessageFormatter DefaultMessageFormatterSingleTarget { get; private set; } = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
 
         private static int globalSequenceId;
 
@@ -695,20 +694,17 @@ namespace NLog
             {
                 InternalLogger.Info("Message Template Format always enabled");
                 DefaultMessageFormatter = LogMessageTemplateFormatter.Default.MessageFormatter;
-                DefaultMessageFormatterSingleTarget = LogMessageTemplateFormatter.DefaultSingleTarget.MessageFormatter;
             }
             else if (mode == false)
             {
                 InternalLogger.Info("Message Template String Format always enabled");
                 DefaultMessageFormatter = StringFormatMessageFormatter;
-                DefaultMessageFormatterSingleTarget = null; // No single target optimization
             }
             else
             {
                 //null = auto
                 InternalLogger.Info("Message Template Auto Format enabled");
                 DefaultMessageFormatter = LogMessageTemplateFormatter.DefaultAuto.MessageFormatter;
-                DefaultMessageFormatterSingleTarget = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
             }
         }
     }
