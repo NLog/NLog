@@ -103,14 +103,10 @@ namespace NLog
             if (targets.NextInChain == null
              && logEvent.Parameters != null
              && logEvent.Parameters.Length > 0
-             && logEvent.Message?.Length < 128
-             && ReferenceEquals(logEvent.MessageFormatter, LogEventInfo.DefaultMessageFormatter))
+             && logEvent.Message?.Length < 256
+             && ReferenceEquals(logEvent.MessageFormatter, LogMessageTemplateFormatter.DefaultAuto.MessageFormatter))
             {
-                // Signal MessageLayoutRenderer to skip string allocation of LogEventInfo.FormattedMessage
-                if (!ReferenceEquals(logEvent.MessageFormatter, LogEventInfo.StringFormatMessageFormatter))
-                {
-                    logEvent.MessageFormatter = LogEventInfo.DefaultMessageFormatterSingleTarget;
-                }
+                logEvent.MessageFormatter = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
             }
 
             for (var t = targets; t != null; t = t.NextInChain)

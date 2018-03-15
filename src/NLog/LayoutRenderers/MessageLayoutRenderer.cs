@@ -84,10 +84,10 @@ namespace NLog.LayoutRenderers
             }
             else
             {
-                if (ReferenceEquals(logEvent.MessageFormatter, LogEventInfo.DefaultMessageFormatterSingleTarget) && (logEvent.MessageFormatter.Target is ILogMessageFormatter messageFormatter))
+                if (ReferenceEquals(logEvent.MessageFormatter, LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter))
                 {
                     // Skip string-allocation of LogEventInfo.FormattedMessage, but just write directly to StringBuilder
-                    logEvent.AppendFormattedMessage(messageFormatter, builder);
+                    logEvent.AppendFormattedMessage(LogMessageTemplateFormatter.DefaultAutoSingleTarget, builder);
                 }
                 else
                 {
