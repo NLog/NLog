@@ -78,11 +78,9 @@ namespace NLog.Internal
             {
                 // Perform quick check for valid message template parameter names (No support for rewind if mixed message-template)
                 TemplateEnumerator holeEnumerator = new TemplateEnumerator(logEvent.Message);
-                if (holeEnumerator.MoveNext())
+                if (holeEnumerator.MoveNext() && holeEnumerator.Current.MaybePositionalTemplate)
                 {
-                    var currentHole = holeEnumerator.Current;
-                    if (currentHole.Literal.Skip != 0 && currentHole.Hole.Index != -1 && currentHole.Hole.CaptureType == CaptureType.Normal)
-                        return false;   // Skip allocation of PropertiesDictionary
+                    return false;   // Skip allocation of PropertiesDictionary
                 }
             }
 

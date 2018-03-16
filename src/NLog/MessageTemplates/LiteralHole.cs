@@ -44,10 +44,12 @@ namespace NLog.MessageTemplates
         /// <remarks>Uninitialized when <see cref="MessageTemplates.Literal.Skip"/> = 0.</remarks>
         public readonly Hole Hole;
 
-        internal LiteralHole(Literal literal, Hole hole)
+        public LiteralHole(Literal literal, Hole hole)
         {
             Literal = literal;
             Hole = hole;
         }
+
+        public bool MaybePositionalTemplate => Literal.Skip != 0 && Hole.Index != -1 && Hole.CaptureType == CaptureType.Normal;
     }
 }

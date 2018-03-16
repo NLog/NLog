@@ -62,19 +62,14 @@ namespace NLog.MessageTemplates
             TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
             while (templateEnumerator.MoveNext())
             {
-                var literal = templateEnumerator.Current.Literal;
-
-                if (holeIndex == 0 && !forceTemplateRenderer && literal.Skip != 0 && sb.Length == originalLength)
+                if (holeIndex == 0 && !forceTemplateRenderer && templateEnumerator.Current.MaybePositionalTemplate && sb.Length == originalLength)
                 {
-                    var hole = templateEnumerator.Current.Hole;
-                    if (hole.Index != -1 && hole.CaptureType == CaptureType.Normal)
-                    {
-                        // Not a structured template
-                        sb.AppendFormat(formatProvider, template, parameters);
-                        return;
-                    }
+                    // Not a structured template
+                    sb.AppendFormat(formatProvider, template, parameters);
+                    return;
                 }
 
+                var literal = templateEnumerator.Current.Literal;
                 sb.Append(template, pos, literal.Print);
                 pos += literal.Print;
                 if (literal.Skip == 0)
