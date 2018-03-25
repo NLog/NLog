@@ -31,22 +31,11 @@ Things to check before applying the PR.
 Build Pipeline 
 ===
 
-Requirements
 
-- Silverlight
-- Xamarin Studio license for Xamarin.iOs & Xamarin.Android
-- UWP (Univeral Windows platform)
-- .Net 3.5 / 4.5 (you have .Net 4 with the latest .Net 4.x release)
+For developing: the following platforms will be used:
+- net45;net40-client;net35;netstandard1.3;netstandard1.5;netstandard2.0 (see nlog.csproj)
 
-Nuget packages and build are created in the following steps:
-
-
-1. Call MSbuild with correct version numbers.  See below
-2. Assemblies are patched by MSbuild
-3. Binaries are written to build\bin\debug \ build\bin\release
-4. NuGet packages are created from the binaries and src\NuGet\NLog\NLog.nuspec. Nuget packages are written to build\bin\release\NuGetPackages \ build\bin\debug\NuGetPackages
-
-
+For releasing, the following additional platfoms will be used: sl4;sl5;wp8;monoandroid44;xamarinios10 - see build.ps1
 
 NuGet package management
 ===
@@ -54,19 +43,7 @@ NuGet package management
 
 ## Create NuGet packages
 
-### Example 4.1.2 RC
-
-```
-cd nlog/src
-msbuild NLog.proj /t:rebuild /t:NuGetPackage  /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.1.2.443 /p:BuildVersion=4.1.2-rc /p:configuration=release /p:BuildLabelOverride=NONE
-```
-
-### Example 4.1.2 (RTM)
-
-```
-cd nlog/src
-msbuild NLog.proj /t:rebuild /t:NuGetPackage  /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.1.2.444 /p:BuildVersion=4.1.2 /p:configuration=release /p:BuildLabelOverride=NONE
-```
+Use `msbuild /t:Restore,Pack ...`, see build.ps1
 
 ## Publish symbols packages
 
