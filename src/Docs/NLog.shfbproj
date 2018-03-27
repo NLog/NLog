@@ -18,8 +18,7 @@
     </BuildLabel>
     <BuildVersion Condition="'$(BuildVersion)'==''">
     </BuildVersion>
-    <SHFBSchemaVersion>2015.6.5.0</SHFBSchemaVersion>
-
+    <SHFBSchemaVersion>2017.9.26.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
     <AssemblyName>NLog</AssemblyName>
@@ -30,27 +29,32 @@
     <OutputPath>Doc\</OutputPath>
     <HtmlHelpName>NLog</HtmlHelpName>
     <DocumentationSources>
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.dll" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.xml" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Extended.dll" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Extended.xml" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Web.dll" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Web.xml" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.ManualFlush.dll" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.ManualFlush.xml" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Windows.Forms.dll" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Windows.Forms.xml" xmlns="" />
-  <!--    <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Elmah.dll" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Elmah.xml" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Owin.Logging.dll" xmlns="" />
-      <DocumentationSource sourceFile="$(NLogDllPath)\NLog.Owin.Logging.xml" xmlns="" /> -->
-    </DocumentationSources>
-    <HelpTitle>NLog $(BuildVersion)</HelpTitle>
-    <CopyrightText>Copyright %28c%29 2004-2016 NLog</CopyrightText>
+      <DocumentationSource sourceFile="..\NLog\bin\Release\net45\NLog.dll" platform=".NET Framework 4.5" />
+<DocumentationSource sourceFile="..\NLog\bin\Release\net45\NLog.xml" platform=".NET Framework 4.5" />
+<DocumentationSource sourceFile="..\NLog.Extended\bin\Release\net45\NLog.Extended.dll" platform=".NET Framework 4.5" />
+<DocumentationSource sourceFile="..\NLog.Extended\bin\Release\net45\NLog.Extended.xml" platform=".NET Framework 4.5" />
+<DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.dll" />
+<DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.xml" />
+<DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.dll" />
+<DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.xml" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Windows.Forms.XML" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Windows.Forms.dll" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.dll" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.xml" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.dll" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.xml" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Owin.Logging.dll" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Owin.Logging.xml" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.dll" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.xml" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Web.dll" />
+<DocumentationSource sourceFile="dll_to_doc\NLog.Web.xml" /></DocumentationSources>
+    <HelpTitle>NLog 4.5</HelpTitle>
+    <CopyrightText>Copyright %28c%29 2004-2018 NLog</CopyrightText>
     <FeedbackEMailAddress>
     </FeedbackEMailAddress>
     <CopyrightHref>http://nlog-project.org/</CopyrightHref>
-    <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
+    <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
         <component id="Code Block Component">
@@ -84,7 +88,7 @@
       <NamespaceSummaryItem name="NLog.Common" isDocumented="True">Common components used when implementing NLog extensions.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.ComInterop" isDocumented="False">COM Interop classes.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True">WCF proxy classes for implementing clients and servers of log receiver service.</NamespaceSummaryItem>
-	  <NamespaceSummaryItem name="NLog.Web" isDocumented="False">Integration with ASP.NET.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog.Web" isDocumented="False">Integration with ASP.NET.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Fluent" isDocumented="True">Fluent logging API</NamespaceSummaryItem>
       <NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
       <NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem>
@@ -92,13 +96,27 @@
       <NamespaceSummaryItem name="NLog.Targets (Group)" isGroup="True" isDocumented="True">All targets</NamespaceSummaryItem>
     </NamespaceSummaries>
     <PlugInConfigurations>
+      <PlugInConfig id="Assembly Binding Redirection" enabled="True">
+        <configuration useGAC="false">
+          <assemblyBinding />
+          <ignoreIfUnresolved>
+            <assemblyIdentity name="BusinessObjects.Licensing.KeycodeDecoder" />
+            <assemblyIdentity name="MailKit" />
+            <assemblyIdentity name="Microsoft.*" />
+            <assemblyIdentity name="Microsoft.VisualStudio.TestTools.UITest.Playback" />
+            <assemblyIdentity name="MimeKit" />
+            <assemblyIdentity name="MiMeKit" />
+            <assemblyIdentity name="Owin" />
+          </ignoreIfUnresolved>
+        </configuration>
+      </PlugInConfig>
     </PlugInConfigurations>
     <NamingMethod>MemberName</NamingMethod>
     <ProjectSummary>
     </ProjectSummary>
     <HelpFileFormat>Website</HelpFileFormat>
-    <SyntaxFilters>C#, Visual Basic, Visual Basic Usage</SyntaxFilters>
-    <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
+    <SyntaxFilters>C#, Visual Basic, Visual Basic Usage, F#</SyntaxFilters>
+    <BuildAssemblerVerbosity>OnlyErrors</BuildAssemblerVerbosity>
     <IndentHtml>False</IndentHtml>
     <KeepLogFile>True</KeepLogFile>
     <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
@@ -132,5 +150,4 @@
   </PropertyGroup>
   <!-- Import the SHFB build targets -->
   <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
-
 </Project>
