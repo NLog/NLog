@@ -106,7 +106,7 @@ namespace NLog
         /// <returns>Scope Creation Time</returns>
         internal static DateTime PeekTopScopeBeginTime()
         {
-            return PeekContext(false)?.CreatedTime ?? DateTime.MinValue;
+            return new DateTime(PeekContext(false)?.CreatedTimeUtcTicks ?? DateTime.MinValue.Ticks, DateTimeKind.Utc);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace NLog
         /// <returns>Scope Creation Time</returns>
         internal static DateTime PeekBottomScopeBeginTime()
         {
-            return PeekContext(true)?.CreatedTime ?? DateTime.MinValue;
+            return new DateTime(PeekContext(true)?.CreatedTimeUtcTicks ?? DateTime.MinValue.Ticks, DateTimeKind.Utc);
         }
 
         private static INestedContext PeekContext(bool bottomScope)
@@ -185,7 +185,7 @@ namespace NLog
             INestedContext Parent { get; }
             int FrameLevel { get; }
             object Value { get; }
-            DateTime CreatedTime { get; }
+            long CreatedTimeUtcTicks { get; }
         }
 
 #if !NETSTANDARD1_0
@@ -193,24 +193,24 @@ namespace NLog
 #endif
         class NestedContext<T> : INestedContext
         {
-            public INestedContext Parent { get; private set; }
-            public T Value { get; private set; }
+            public INestedContext Parent { get; }
+            public T Value { get; }
             object INestedContext.Value => Value;
-            public DateTime CreatedTime { get; private set; }
-            public int FrameLevel => _frameLevel;
-            private int _frameLevel;
-
+            public long CreatedTimeUtcTicks { get; }
+            public int FrameLevel { get; }
+            private int _disposed;
+            
             public NestedContext(INestedContext parent, T value)
             {
                 Parent = parent;
                 Value = value;
-                CreatedTime = DateTime.UtcNow; // Low time resolution, but okay fast
-                _frameLevel = parent != null ? parent.FrameLevel + 1 : 1; 
+                CreatedTimeUtcTicks = DateTime.UtcNow.Ticks; // Low time resolution, but okay fast
+                FrameLevel = parent != null ? parent.FrameLevel + 1 : 1; 
             }
 
             void IDisposable.Dispose()
             {
-                if (System.Threading.Interlocked.Exchange(ref _frameLevel, 0) != 0)
+                if (System.Threading.Interlocked.Exchange(ref _disposed, 1) != 1)
                 {
                     PopObject();
                 }
