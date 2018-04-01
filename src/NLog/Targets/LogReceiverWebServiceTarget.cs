@@ -203,14 +203,24 @@ namespace NLog.Targets
             SendBufferedEvents(asyncContinuation);
         }
 
+        /// <summary>
+        /// Add value to the <see cref="NLogEvents.Strings"/>, returns ordinal in <see cref="NLogEvents.Strings"/>
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="stringTable">lookup so only unique items will be added to <see cref="NLogEvents.Strings"/></param>
+        /// <param name="value">value to add</param>
+        /// <returns></returns>
         private static int AddValueAndGetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
         {
-            int stringIndex;
 
-            if (!stringTable.TryGetValue(value, out stringIndex))
+            if (value == null || !stringTable.TryGetValue(value, out var stringIndex))
             {
                 stringIndex = context.Strings.Count;
-                stringTable.Add(value, stringIndex);
+                if (value != null)
+                {
+					//don't add null to the string table, that would crash
+                    stringTable.Add(value, stringIndex);
+                }
                 context.Strings.Add(value);
             }
 
@@ -485,7 +495,7 @@ namespace NLog.Targets
             }
         }
 
-        private NLogEvent TranslateEvent(LogEventInfo eventInfo, NLogEvents context, Dictionary<string, int> stringTable)
+        internal NLogEvent TranslateEvent(LogEventInfo eventInfo, NLogEvents context, Dictionary<string, int> stringTable)
         {
             var nlogEvent = new NLogEvent();
             nlogEvent.Id = eventInfo.SequenceID;
