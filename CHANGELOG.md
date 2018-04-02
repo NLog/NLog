@@ -3,6 +3,15 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 
 ## Change Log
 
+
+### V4.5.1 (2018/04/03)
+- [#2639](https://github.com/nlog/nlog/pull/2639) MessageTemplates - Optimize ParseHole for positional templates (@snakefoot)
+- [#2640](https://github.com/nlog/nlog/pull/2640) FileTarget - InitializeFile no longer need justData parameter + dispose fileapenders earlier (@snakefoot)
+- [#2638](https://github.com/nlog/nlog/pull/2638) Handle null values correctly in LogReceiverSecureService (@304NotModified)
+- [#2628](https://github.com/nlog/nlog/pull/2628) RoundRobinGroupTarget - Replaced lock with Interlocked for performance (@snakefoot)
+- [#2637](https://github.com/nlog/nlog/pull/2637) Fix IndexOutOfRangeException in NestedDiagnosticsLogicalContext (@snakefoot)
+
+
 ### V4.5 RTM (2018/03/25)
 
 NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking changes! Also a lot features has been added!
