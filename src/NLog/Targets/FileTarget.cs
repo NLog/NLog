@@ -1156,11 +1156,11 @@ namespace NLog.Targets
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, ArraySegment<byte> bytesToWrite)
         {
-            bool initializedNewFile = InitializeFile(fileName, logEvent, false);
+            bool initializedNewFile = InitializeFile(fileName, logEvent);
 
             bool archiveOccurred = TryArchiveFile(fileName, logEvent, bytesToWrite.Count, initializedNewFile);
             if (archiveOccurred)
-                initializedNewFile = InitializeFile(fileName, logEvent, false);
+                initializedNewFile = InitializeFile(fileName, logEvent);
 
             WriteToFile(fileName, bytesToWrite, initializedNewFile);
 
@@ -1527,7 +1527,7 @@ namespace NLog.Targets
             if (!fileInfo.Exists)
             {
                 // Close possible stale file handles
-                _fileAppenderCache.InvalidateAppender(fileName);
+                _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
                 _initializedFiles.Remove(fileName);
                 return;
             }
@@ -1970,7 +1970,7 @@ namespace NLog.Targets
             catch (Exception ex)
             {
                 InternalLogger.Error(ex, "Failed write to file '{0}'.", fileName);
-                _fileAppenderCache.InvalidateAppender(fileName);
+                _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
                 throw;
             }
         }
@@ -1981,34 +1981,31 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
-        /// <param name="justData">Indicates that only content section should be written in the file.</param>
         /// <returns><see langword="true"/> when file header should be written; <see langword="false"/> otherwise.</returns>
-        private bool InitializeFile(string fileName, LogEventInfo logEvent, bool justData)
+        private bool InitializeFile(string fileName, LogEventInfo logEvent)
         {
             bool initializedNewFile = false;
 
-            if (!justData)
+            var now = logEvent.TimeStamp;
+            DateTime lastTime;
+            if (!_initializedFiles.TryGetValue(fileName, out lastTime))
             {
-                var now = logEvent.TimeStamp;
-                DateTime lastTime;
-                if (!_initializedFiles.TryGetValue(fileName, out lastTime))
+                ProcessOnStartup(fileName, logEvent);
+
+                _initializedFilesCounter++;
+                if (_initializedFilesCounter >= InitializedFilesCounterMax)
                 {
-                    ProcessOnStartup(fileName, logEvent);
-
-                    _initializedFiles[fileName] = now;
-                    _initializedFilesCounter++;
-                    initializedNewFile = true;
-
-                    if (_initializedFilesCounter >= InitializedFilesCounterMax)
-                    {
-                        _initializedFilesCounter = 0;
-                        CleanupInitializedFiles();
-                    }
+                    _initializedFilesCounter = 0;
+                    CleanupInitializedFiles();
                 }
-                if (lastTime != now)
-                    _initializedFiles[fileName] = now;
-            }
 
+                _initializedFiles[fileName] = now;
+                initializedNewFile = true;
+            }
+            else if (lastTime != now)
+            {
+                _initializedFiles[fileName] = now;
+            }
             return initializedNewFile;
         }
 
@@ -2023,7 +2020,7 @@ namespace NLog.Targets
             if ((isArchiving) || (!WriteFooterOnArchivingOnly))
                 WriteFooter(fileName);
 
-            _fileAppenderCache.InvalidateAppender(fileName);
+            _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
             _initializedFiles.Remove(fileName);
         }
 
