@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Targets;
+
 namespace NLog.UnitTests.LogReceiverService
 {
     using System.Collections.Generic;
@@ -51,6 +53,44 @@ namespace NLog.UnitTests.LogReceiverService
     public class LogReceiverServiceTests : NLogTestBase
     {
         private const string logRecieverUrl = "http://localhost:8080/logrecievertest";
+
+
+
+#if !NETSTANDARD || WCF_SUPPORTED
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        [InlineData("message1")]
+        public void TranslateEventAndBack(string message)
+        {
+            // Arrange
+            var service = new LogReceiverWebServiceTarget {IncludeEventProperties = true};
+
+            var logEvent = new LogEventInfo(LogLevel.Debug, "logger1", message);
+
+            var nLogEvents = new NLogEvents
+            {
+                Strings = new StringCollection(),
+                LayoutNames = new StringCollection(),
+                BaseTimeUtc = DateTime.UtcNow.Ticks,
+                ClientName = "client1",
+                Events = new NLogEvent[0]
+
+            };
+            var dict2 = new Dictionary<string, int>();
+
+            // Act
+            var translateEvent = service.TranslateEvent(logEvent, nLogEvents, dict2);
+            var result = translateEvent.ToEventInfo(nLogEvents, "");
+
+            // Assert
+            Assert.Equal("logger1", result.LoggerName);
+            Assert.Equal(message, result.Message);
+
+        }
+#endif
+
 
         [Fact]
         public void ToLogEventInfoTest()
@@ -279,7 +319,6 @@ namespace NLog.UnitTests.LogReceiverService
             </nlog>");
 
 
-     
             ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
 
         }
@@ -345,7 +384,7 @@ namespace NLog.UnitTests.LogReceiverService
             //more important is that both are retrieved with the correct info
             Assert.Equal(2, recieved.Count);
 
-            var logmessages = new HashSet<string> {recieved[0].ToEventInfo().First().Message, recieved[1].ToEventInfo().First().Message};
+            var logmessages = new HashSet<string> { recieved[0].ToEventInfo().First().Message, recieved[1].ToEventInfo().First().Message };
 
             Assert.True(logmessages.Contains("test 1"), "message 1 is missing");
             Assert.True(logmessages.Contains("test 2"), "message 2 is missing");
