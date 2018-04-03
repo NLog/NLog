@@ -4,22 +4,30 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 ## Change Log
 
 
-### V4.5.1 (2018/04/03)
+### v4.5.1 (2018/04/03)
+
+#### Fixes
+
+- [#2637](https://github.com/nlog/nlog/pull/2637) Fix IndexOutOfRangeException in NestedDiagnosticsLogicalContext (@snakefoot)
+- [#2638](https://github.com/nlog/nlog/pull/2638) Handle null values correctly in LogReceiverSecureService (@304NotModified)
+
+#### Performance
+
 - [#2639](https://github.com/nlog/nlog/pull/2639) MessageTemplates - Optimize ParseHole for positional templates (@snakefoot)
 - [#2640](https://github.com/nlog/nlog/pull/2640) FileTarget - InitializeFile no longer need justData parameter + dispose fileapenders earlier (@snakefoot)
-- [#2638](https://github.com/nlog/nlog/pull/2638) Handle null values correctly in LogReceiverSecureService (@304NotModified)
 - [#2628](https://github.com/nlog/nlog/pull/2628) RoundRobinGroupTarget - Replaced lock with Interlocked for performance (@snakefoot)
-- [#2637](https://github.com/nlog/nlog/pull/2637) Fix IndexOutOfRangeException in NestedDiagnosticsLogicalContext (@snakefoot)
 
 
-### V4.5 RTM (2018/03/25)
+
+
+### v4.5 RTM (2018/03/25)
 
 NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking changes! Also a lot features has been added!
 
 
 List of important changes in NLog 4.5
 
-**Features:**
+#### Features
 
 - Support for .Net Standard 2.0 [#2263](https://github.com/nlog/nlog/pull/2263) + [#2402](https://github.com/nlog/nlog/pull/2402) (@snakefoot)
 - Support for .Net Standard 1.5 [#2341](https://github.com/nlog/nlog/pull/2341) (@snakefoot)
@@ -50,7 +58,7 @@ List of important changes in NLog 4.5
 - MDC + MDLC with SetScoped property support  [#2592](https://github.com/nlog/nlog/pull/2592) (@MikeFH)
 - LoggingConfiguration AddRule includes final-parameter [#2612](https://github.com/nlog/nlog/pull/2612) (@893949088)
 
-**BugFixes:**
+#### Fixes 
 - Improve archive stability during concurrent file access [#1889](https://github.com/nlog/nlog/pull/1889) (@snakefoot)
 - FallbackGroup could lose log events [#2265](https://github.com/nlog/nlog/pull/2265) (@frabar666)
 - ${exception} - only include separator when items are available [#2257](https://github.com/nlog/nlog/pull/2257) (@jojosardez)
@@ -67,7 +75,7 @@ List of important changes in NLog 4.5
 - FileTarget does not fail on platforms without global mutex support [#2604](https://github.com/nlog/nlog/pull/2604) (@snakefoot)
 - LoggingConfiguration does not fail when AutoReload is not possible on the platforms without FileWatcher [#2603](https://github.com/nlog/nlog/pull/2603)  (@snakefoot)
 
-**Performance:**
+#### Performance 
 - More targets has OptimizeBufferReuse enabled by default [#1913](https://github.com/nlog/nlog/pull/1913) + [#1923](https://github.com/nlog/nlog/pull/1923) + [#1912](https://github.com/nlog/nlog/pull/1912) + [#1911](https://github.com/nlog/nlog/pull/1911) + [#1910](https://github.com/nlog/nlog/pull/1910) + [#1909](https://github.com/nlog/nlog/pull/1909) + [#1908](https://github.com/nlog/nlog/pull/1908) + [#1907](https://github.com/nlog/nlog/pull/1907) + [#2560](https://github.com/nlog/nlog/pull/2560)   (@snakefoot)
 - StringBuilderPool - Improved Layout Render Performance by reusing StringBuilders [#2208](https://github.com/nlog/nlog/pull/2208)   (@snakefoot)
 - JsonLayout - Improved Layout Performance, by optimizing use of StringBuilder [#2208](https://github.com/nlog/nlog/pull/2208)   (@snakefoot)
@@ -416,7 +424,7 @@ Changes since rc 07:
 - [#1893](https://github.com/nlog/nlog/pull/1893) FileTarget - MONO doesn't like using the native Win32 API (@snakefoot)
 - [#1883](https://github.com/nlog/nlog/pull/1883) LogFactory.Dispose - Should always close down created targets (@snakefoot)
 
-### V4.4.1 (2016/12/24)
+### v4.4.1 (2016/12/24)
 
 Summary:
 
@@ -448,7 +456,7 @@ Detail:
 - [#1844](https://github.com/nlog/nlog/pull/1844) FileTarget - Mono2 runtime detection to skip using named archive-mutex (@snakefoot)
 
 
-### V4.4  (2016/12/14)
+### v4.4  (2016/12/14)
 
 #### Features
 
@@ -545,7 +553,7 @@ Detail:
 - [#1635](https://github.com/nlog/nlog/pull/1635) Fix ${tempdir} and ${nlogdir} if both have dir and file. (@304NotModified)
 
 
-### V4.3.8 (2016/09/05)
+### v4.3.8 (2016/09/05)
 
 #### Features
 - [#1619](https://github.com/NLog/NLog/pull/1619) NetworkTarget: Added option to specify EOL (@kevindaub)
@@ -558,7 +566,7 @@ Detail:
 #### Fixes
 - [#1616](https://github.com/nlog/nlog/pull/1616) FileTarget: Don't throw an exception if a dir is missing when deleting old files on startup (@304NotModified)
 
-### V4.3.7 (2016/08/06)
+### v4.3.7 (2016/08/06)
 
 #### Features
 - [#1469](https://github.com/nlog/nlog/pull/1469) Allow overwriting possible nlog configuration file paths (@304NotModified)
@@ -573,7 +581,7 @@ Detail:
 - [#1556](https://github.com/nlog/nlog/pull/1556) Bugfix: Use the culture when rendering the layout (@304NotModified)
  
 
-### V4.3.6 (2016/07/24)
+### v4.3.6 (2016/07/24)
 
 #### Features
 - [#1531](https://github.com/nlog/nlog/pull/1531) Support Android 4.4 (@304NotModified)
@@ -585,7 +593,7 @@ Detail:
 - [#1547](https://github.com/nlog/nlog/pull/1547) LogReceiverWebServiceTarget is leaking communication channels (@MartinTherriault)
 
 
-### V4.3.5 (2016/06/13)
+### v4.3.5 (2016/06/13)
 
 #### Features
 - [#1471](https://github.com/nlog/nlog/pull/1471) Add else option to ${when} (@304NotModified)
@@ -595,7 +603,7 @@ Detail:
 
 - [#1504](https://github.com/nlog/nlog/pull/1504) Fix ${callsite} with async method with return value (@PELNZ)
 
-### V4.3.4 (2016/05/16)
+### v4.3.4 (2016/05/16)
 
 #### Features
 - [#1423](https://github.com/nlog/nlog/pull/1423) Injection of zip-compressor for fileTarget (@AndreGleichner)
