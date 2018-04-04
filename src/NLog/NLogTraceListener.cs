@@ -48,7 +48,6 @@ namespace NLog
     /// </summary>
     public class NLogTraceListener : TraceListener
     {
-        private static readonly Assembly systemAssembly = typeof(Trace).Assembly;
         private LogFactory _logFactory;
         private LogLevel _defaultLogLevel = LogLevel.Debug;
         private bool _attributesLoaded;
@@ -391,35 +390,14 @@ namespace NLog
             if (AutoLoggerName)
             {
                 stackTrace = new StackTrace();
-                MethodBase userMethod = null;
-
                 for (int i = 0; i < stackTrace.FrameCount; ++i)
                 {
                     var frame = stackTrace.GetFrame(i);
-                    var method = frame.GetMethod();
-
-                    if (method.DeclaringType == GetType())
+                    loggerName = Internal.StackTraceUsageUtils.LookupClassNameFromStackFrame(frame);
+                    if (!string.IsNullOrEmpty(loggerName))
                     {
-                        // skip all methods of this type
-                        continue;
-                    }
-
-                    if (method.DeclaringType != null && method.DeclaringType.Assembly == systemAssembly)
-                    {
-                        // skip all methods from System.dll
-                        continue;
-                    }
-
-                    userFrameIndex = i;
-                    userMethod = method;
-                    break;
-                }
-
-                if (userFrameIndex >= 0)
-                {
-                    if (userMethod != null && userMethod.DeclaringType != null)
-                    {
-                        loggerName = userMethod.DeclaringType.FullName;
+                        userFrameIndex = i;
+                        break;
                     }
                 }
             }

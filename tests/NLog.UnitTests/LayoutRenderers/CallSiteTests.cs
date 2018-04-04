@@ -846,7 +846,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
 #if !NETSTANDARD1_5
             Type loggerType = typeof(Logger);
-            var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
+            var stacktrace = new System.Diagnostics.StackTrace();
             var stackFrames = stacktrace.GetFrames();
             var index = LoggerImpl.FindCallingMethodOnStackTrace(stackFrames, loggerType) ?? 0;
             int? indexLegacy = LoggerImpl.SkipToUserStackFrameLegacy(stackFrames, index);
@@ -1105,7 +1105,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
             Type loggerType = typeof(Logger);
-            var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
+            var stacktrace = new System.Diagnostics.StackTrace();
             var stackFrames = stacktrace.GetFrames();
             var index = LoggerImpl.FindCallingMethodOnStackTrace(stackFrames, loggerType) ?? 0;
             int? indexLegacy = LoggerImpl.SkipToUserStackFrameLegacy(stackFrames, index);

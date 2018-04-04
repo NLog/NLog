@@ -167,12 +167,12 @@ namespace NLog
                 if (SkipAssembly(stackFrame))
                     continue;
 
-                if (stackFrame.GetMethod().Name == "MoveNext")
+                if (stackFrame.GetMethod()?.Name == "MoveNext")
                 {
                     if (stackFrames.Length > i)
                     {
                         var nextStackFrame = stackFrames[i + 1];
-                        var declaringType = nextStackFrame.GetMethod().DeclaringType;
+                        var declaringType = nextStackFrame.GetMethod()?.DeclaringType;
                         if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) ||
                             declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
                         {
@@ -195,11 +195,8 @@ namespace NLog
         /// <returns><c>true</c>, we should skip.</returns>
         private static bool SkipAssembly(StackFrame frame)
         {
-            var method = frame.GetMethod();
-            var assembly = method.DeclaringType != null ? method.DeclaringType.GetAssembly() : method.Module.Assembly;
-            // skip stack frame if the method declaring type assembly is from hidden assemblies list
-            var skipAssembly = SkipAssembly(assembly);
-            return skipAssembly;
+            var assembly = StackTraceUsageUtils.LookupAssemblyFromStackFrame(frame);
+            return assembly == null || LogManager.IsHiddenAssembly(assembly);
         }
 
         /// <summary>
@@ -211,34 +208,9 @@ namespace NLog
         private static bool IsLoggerType(StackFrame frame, Type loggerType)
         {
             var method = frame.GetMethod();
-            Type declaringType = method.DeclaringType;
+            Type declaringType = method?.DeclaringType;
             var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || loggerType.IsAssignableFrom(declaringType));
             return isLoggerType;
-        }
-
-        private static bool SkipAssembly(Assembly assembly)
-        {
-            if (assembly == nlogAssembly)
-            {
-                return true;
-            }
-
-            if (assembly == mscorlibAssembly)
-            {
-                return true;
-            }
-
-            if (assembly == systemAssembly)
-            {
-                return true;
-            }
-
-            if (LogManager.IsHiddenAssembly(assembly))
-            {
-                return true;
-            }
-
-            return false;
         }
 
         private static bool WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)

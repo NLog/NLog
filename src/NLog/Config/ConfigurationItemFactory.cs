@@ -481,23 +481,32 @@ namespace NLog.Config
 
                 fullName = assembly.FullName;
 
+#if NETSTANDARD
+                if (string.IsNullOrEmpty(assembly.Location))
+                {
+                    // Assembly with no actual location should be skipped (Avoid PlatformNotSupportedException)
+                    InternalLogger.Warn("Skipping auto loading location because location is empty: {0}", fullName);
+                    return string.Empty;
+                }
+#endif
+
                 Uri assemblyCodeBase;
                 if (!Uri.TryCreate(assembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
                 {
-                    InternalLogger.Warn("Skipping auto loading location because code base is unknown: `{0}` ({1})", assembly.CodeBase, fullName);
+                    InternalLogger.Warn("Skipping auto loading location because code base is unknown: '{0}' ({1})", assembly.CodeBase, fullName);
                     return string.Empty;
                 }
 
                 var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
                 if (string.IsNullOrEmpty(assemblyLocation))
                 {
-                    InternalLogger.Warn("Skipping auto loading location because it is not a valid directory: `{0}` ({1})", assemblyCodeBase.LocalPath, fullName);
+                    InternalLogger.Warn("Skipping auto loading location because it is not a valid directory: '{0}' ({1})", assemblyCodeBase.LocalPath, fullName);
                     return string.Empty;
                 }
 
                 if (!Directory.Exists(assemblyLocation))
                 {
-                    InternalLogger.Warn("Skipping auto loading location because directory doesn't exists: `{0}` ({1})", assemblyLocation, fullName);
+                    InternalLogger.Warn("Skipping auto loading location because directory doesn't exists: '{0}' ({1})", assemblyLocation, fullName);
                     return string.Empty;
                 }
 
