@@ -369,14 +369,11 @@ namespace NLog.Config
                 var extensionDlls = GetNLogExtensionFiles(assemblyLocation);
                 if (extensionDlls.Length==0)
                 {
-                    var entryAssembly = Assembly.GetEntryAssembly();
-                    if (!string.IsNullOrEmpty(entryAssembly?.CodeBase))
+                    var entryLocation = GetAssemblyFileLocation(Assembly.GetEntryAssembly());
+                    if (!string.IsNullOrEmpty(entryLocation) && !string.Equals(entryLocation, assemblyLocation, StringComparison.OrdinalIgnoreCase))
                     {
-                        if (!string.Equals(entryAssembly.CodeBase, nlogAssembly.CodeBase, StringComparison.OrdinalIgnoreCase))
-                        {
-                            assemblyLocation = GetAssemblyFileLocation(entryAssembly);
-                            extensionDlls = GetNLogExtensionFiles(assemblyLocation);
-                        }
+                        assemblyLocation = entryLocation;
+                        extensionDlls = GetNLogExtensionFiles(entryLocation);
                     }
                     else
                     {
@@ -473,32 +470,51 @@ namespace NLog.Config
 #if !SILVERLIGHT && !NETSTANDARD1_3
         private static string GetAssemblyFileLocation(Assembly assembly)
         {
+            string fullName = string.Empty;
+
             try
             {
+                if (assembly == null)
+                {
+                    return string.Empty;
+                }
+
+                fullName = assembly.FullName;
+
                 Uri assemblyCodeBase;
                 if (!Uri.TryCreate(assembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
                 {
-                    InternalLogger.Warn("No auto loading because assembly code base is unknown");
+                    InternalLogger.Warn("Skipping auto loading location because code base is unknown: `{0}` ({1})", assembly.CodeBase, fullName);
                     return string.Empty;
                 }
 
                 var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
-                if (assemblyLocation == null)
+                if (string.IsNullOrEmpty(assemblyLocation))
                 {
-                    InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
-                    return string.Empty;
-                }
-                if (!Directory.Exists(assemblyLocation))
-                {
-                    InternalLogger.Warn("No auto loading because '{0}' doesn't exists", assemblyLocation);
+                    InternalLogger.Warn("Skipping auto loading location because it is not a valid directory: `{0}` ({1})", assemblyCodeBase.LocalPath, fullName);
                     return string.Empty;
                 }
 
-                return assemblyLocation;
+                if (!Directory.Exists(assemblyLocation))
+                {
+                    InternalLogger.Warn("Skipping auto loading location because directory doesn't exists: `{0}` ({1})", assemblyLocation, fullName);
+                    return string.Empty;
+                }
+
+                return string.Empty;
+            }
+            catch (System.PlatformNotSupportedException ex)
+            {
+                InternalLogger.Warn(ex, "Skipping auto loading location because assembly lookup is not supported: {0}", fullName);
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                return string.Empty;
             }
             catch (System.Security.SecurityException ex)
             {
-                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                InternalLogger.Warn(ex, "Skipping auto loading location because assembly lookup is not allowed: {0}", fullName);
                 if (ex.MustBeRethrown())
                 {
                     throw;
@@ -507,7 +523,7 @@ namespace NLog.Config
             }
             catch (UnauthorizedAccessException ex)
             {
-                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                InternalLogger.Warn(ex, "Skipping auto loading location because assembly lookup is not allowed: {0}", fullName);
                 if (ex.MustBeRethrown())
                 {
                     throw;
