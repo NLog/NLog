@@ -252,6 +252,41 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
+        [Fact]
+        public void FallbackGroupTargetAsyncTest()
+        {
+            var myTarget1 = new MyTarget { FailCounter = int.MaxValue }; // Always failing.
+            var myTarget1Async = new AsyncTargetWrapper(myTarget1) { TimeToSleepBetweenBatches = 0 }; // Always failing.
+            var myTarget2 = new MyTarget() { Layout = "${ndlc}" };
+
+            var wrapper = CreateAndInitializeFallbackGroupTarget(true, myTarget1Async, myTarget2);
+
+            var exceptions = new List<Exception>();
+
+            // no exceptions
+            for (var i = 0; i < 10; ++i)
+            {
+                using (NestedDiagnosticsLogicalContext.Push("Hello World"))
+                {
+                    wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+                }
+            }
+
+            ManualResetEvent resetEvent = new ManualResetEvent(false);
+            myTarget1Async.Flush((ex) => { Assert.Null(ex); resetEvent.Set(); });
+            resetEvent.WaitOne(1000);
+
+            Assert.Equal(10, exceptions.Count);
+            for (var i = 0; i < 10; ++i)
+            {
+                Assert.Null(exceptions[i]);
+            }
+
+            Assert.Equal(10, myTarget2.WriteCount);
+
+            AssertNoFlushException(wrapper);
+        }
+
         private static FallbackGroupTarget CreateAndInitializeFallbackGroupTarget(bool returnToFirstOnSuccess, params Target[] targets)
         {
             var wrapper = new FallbackGroupTarget(targets)
@@ -303,7 +338,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Assert.True(false, flushException.ToString());
         }
 
-        private class MyTarget : Target
+        private class MyTarget : TargetWithLayout
         {
             public int FlushCount { get; set; }
             public int WriteCount { get; set; }
@@ -311,6 +346,11 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
+                if (Layout != null && string.IsNullOrEmpty(Layout.Render(logEvent)))
+                {
+                    throw new InvalidOperationException("Empty LogEvent.");
+                }
+
                 Assert.True(FlushCount <= WriteCount);
                 WriteCount++;
 
