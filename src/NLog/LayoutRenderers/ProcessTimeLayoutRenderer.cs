@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.Globalization;
     using System.Text;
-
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The process time in format HH:mm:ss.mmm.
@@ -84,50 +83,31 @@ namespace NLog.LayoutRenderers
                 ticksSeparator = ".";
             }
 
-
-            if (ts.Hours < 10)
-            {
-                builder.Append('0');
-            }
-
-            builder.Append(ts.Hours);
-            
+            builder.Append2DigitsZeroPadded(ts.Hours);
             builder.Append(timeSeparator);
-            if (ts.Minutes < 10)
-            {
-                builder.Append('0');
-            }
-
-            builder.Append(ts.Minutes);
+            builder.Append2DigitsZeroPadded(ts.Minutes);
             builder.Append(timeSeparator);
-            if (ts.Seconds < 10)
-            {
-                builder.Append('0');
-            }
-
-            builder.Append(ts.Seconds);
-          
+            builder.Append2DigitsZeroPadded(ts.Seconds);
             builder.Append(ticksSeparator);
-
-            if (ts.Milliseconds < 100)
+            int milliseconds = ts.Milliseconds;
+            if (milliseconds < 100)
             {
                 builder.Append('0');
 
-                if (ts.Milliseconds < 10)
+                if (milliseconds < 10)
                 {
                     builder.Append('0');
 
-                    if (ts.Milliseconds < 0)
+                    if (milliseconds < 0)
                     {
                         //don't write negative times. This is probably an accuracy problem (accuracy is by default 16ms, see https://github.com/NLog/NLog/wiki/Time-Source)
                         builder.Append('0');
                         return;
-                        
                     }
                 }
             }
 
-            builder.Append(ts.Milliseconds);
+            builder.Append(milliseconds);
         }
     }
 }
