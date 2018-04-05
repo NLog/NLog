@@ -1718,11 +1718,18 @@ namespace NLog.Targets
                         if (archiveFile != fileName)
                             _initializedFiles.Remove(fileName);
                         _initializedFiles.Remove(archiveFile);
-                        return true;
+                    }
+                    else
+                    {
+                        archiveFile = validatedArchiveFile;
+                        DoAutoArchive(archiveFile, ev, initializedNewFile);
                     }
 
-                    archiveFile = validatedArchiveFile;
-                    DoAutoArchive(archiveFile, ev, initializedNewFile);
+                    if (_previousLogFileName == archiveFile)
+                    {
+                        _previousLogFileName = null;
+                        _previousLogEventTimestamp = null;
+                    }
                     return true;
                 }
                 catch (Exception exception)
@@ -1985,6 +1992,14 @@ namespace NLog.Targets
         private bool InitializeFile(string fileName, LogEventInfo logEvent)
         {
             bool initializedNewFile = false;
+
+            if (_initializedFiles.Count != 0 && _previousLogEventTimestamp.HasValue && _previousLogFileName == fileName)
+            {
+                if (logEvent.TimeStamp == _previousLogEventTimestamp.Value)
+                {
+                    return false;
+                }
+            }
 
             var now = logEvent.TimeStamp;
             DateTime lastTime;
