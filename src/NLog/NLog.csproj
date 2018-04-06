@@ -15,7 +15,7 @@ Supported platforms:
 - .NET Framework 3.5, 4, 4.5, 4.6 &amp; 4.7
 - .NET Standard 1.3+ and 2.0+;
 - .NET Framework 4 client profile
-- Xamarin Android, iOs
+- Xamarin Android, Xamarin iOs
 - UWP
 - Windows Phone 8
 - Silverlight 4 and 5
@@ -33,7 +33,20 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 
-Some small fixes and (performance) improvements. No critical bugs are reported for NLog 4.5.
+
+Features:
+
+- [#2648] ${processtime} and ${time} added invariant option (@snakefoot)
+
+Fixes:
+
+- [#2643] UWP with NetStandard2 on Net Native does not support Assembly.CodeBase + Handle native methods in StackTrace (#2643) (@snakefoot)
+- [#2644] FallbackGroupTarget: handle async state on fallback correctly (@snakefoot)
+
+Performance
+- [#2645] Minor performance optimization of some layoutrenderers (@snakefoot)
+- [#2642] FileTarget - InitializeFile should skip dictionary lookup when same file (@snakefoot)
+
 
 for full changelog, check https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
