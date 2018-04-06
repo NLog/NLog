@@ -200,7 +200,7 @@ namespace NLog.LayoutRenderers
             }
 
             builder.Append(":");
-            builder.Append(lineNumber);
+            builder.AppendInvariant(lineNumber);
             builder.Append(")");
         }
 #endif

@@ -37,6 +37,7 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The log level.
@@ -68,7 +69,7 @@ namespace NLog.LayoutRenderers
                     builder.Append(logEvent.Level.ToString()[0]);
                     break;
                 case LevelFormat.Ordinal:
-                    builder.Append(logEvent.Level.Ordinal);
+                    builder.AppendInvariant(logEvent.Level.Ordinal);
                     break;
             }
         }

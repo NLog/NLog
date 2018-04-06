@@ -69,7 +69,7 @@ namespace NLog.LayoutRenderers
             if (logEvent.CallSiteInformation != null)
             {
                 int linenumber = logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
-                builder.Append(linenumber);
+                builder.AppendInvariant(linenumber);
             }
         }
     }

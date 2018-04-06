@@ -33,9 +33,9 @@
 
 namespace NLog.LayoutRenderers
 {
-    using Config;
-    using System.Globalization;
     using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The sequence ID
@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
+            builder.AppendInvariant(logEvent.SequenceID);
         }
     }
 }
