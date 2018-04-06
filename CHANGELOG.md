@@ -4,6 +4,23 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 ## Change Log
 
 
+### v4.5.2 (2018/04/06)
+
+#### Features
+
+- [#2648](https://github.com/nlog/nlog/pull/2648) ${processtime} and ${time} added invariant option (@snakefoot)
+
+#### Fixes
+
+- [#2643](https://github.com/nlog/nlog/pull/2643) UWP with NetStandard2 on Net Native does not support Assembly.CodeBase + Handle native methods in StackTrace (#2643) (@snakefoot)
+- [#2644](https://github.com/nlog/nlog/pull/2644) FallbackGroupTarget: handle async state on fallback correctly (@snakefoot)
+
+#### Performance
+
+- [#2645](https://github.com/nlog/nlog/pull/2645) Minor performance optimization of some layoutrenderers (@snakefoot)
+- [#2642](https://github.com/nlog/nlog/pull/2642) FileTarget - InitializeFile should skip dictionary lookup when same file (@snakefoot)
+
+
 ### v4.5.1 (2018/04/03)
 
 #### Fixes
