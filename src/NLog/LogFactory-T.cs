@@ -64,16 +64,13 @@ namespace NLog
         public new T GetCurrentClassLogger()
         {
 #if NETSTANDARD1_0
-            return this.GetLogger(Internal.StackTraceUsageUtils.GetClassFullName());
+            var className = Internal.StackTraceUsageUtils.GetClassFullName();
+#elif SILVERLIGHT
+            var className = Internal.StackTraceUsageUtils.GetClassFullName(new StackFrame(1));
 #else
-#if SILVERLIGHT
-            StackFrame frame = new StackFrame(1);
-#else
-            StackFrame frame = new StackFrame(1, false);
+            var className = Internal.StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #endif
-
-            return GetLogger(frame.GetMethod().DeclaringType.FullName);
-#endif
+            return GetLogger(className);
         }
     }
 }

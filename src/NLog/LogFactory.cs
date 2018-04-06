@@ -459,16 +459,13 @@ namespace NLog
         public Logger GetCurrentClassLogger()
         {
 #if NETSTANDARD1_0
-            return this.GetLogger(StackTraceUsageUtils.GetClassFullName());
+            var className = StackTraceUsageUtils.GetClassFullName();
+#elif SILVERLIGHT
+            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1));
 #else
-#if SILVERLIGHT
-            var frame = new StackFrame(1);
-#else
-            var frame = new StackFrame(1, false);
+            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #endif
-
-            return GetLogger(frame.GetMethod().DeclaringType.FullName);
-#endif
+            return GetLogger(className);
         }
 
         /// <summary>
@@ -482,16 +479,13 @@ namespace NLog
         public T GetCurrentClassLogger<T>() where T : Logger
         {
 #if NETSTANDARD1_0
-            return (T)this.GetLogger(StackTraceUsageUtils.GetClassFullName(), typeof(T));
+            var className = StackTraceUsageUtils.GetClassFullName();
+#elif SILVERLIGHT
+            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1));
 #else
-#if SILVERLIGHT
-            var frame = new StackFrame(1);
-#else
-            var frame = new StackFrame(1, false);
+            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #endif
-
-            return (T)GetLogger(frame.GetMethod().DeclaringType.FullName, typeof(T));
-#endif
+            return (T)GetLogger(className, typeof(T));
         }
 
         /// <summary>
@@ -505,16 +499,13 @@ namespace NLog
         public Logger GetCurrentClassLogger(Type loggerType)
         {
 #if NETSTANDARD1_0
-            return this.GetLogger(StackTraceUsageUtils.GetClassFullName(), loggerType);
+            var className = StackTraceUsageUtils.GetClassFullName();
+#elif SILVERLIGHT
+            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1));
 #else
-#if SILVERLIGHT
-            var frame = new StackFrame(1);
-#else
-            var frame = new StackFrame(1, false);
+            var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #endif
-
-            return GetLogger(frame.GetMethod().DeclaringType.FullName, loggerType);
-#endif
+            return GetLogger(className, loggerType);
         }
 
         /// <summary>
