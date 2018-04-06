@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
+    using System.ComponentModel;
     using System.Globalization;
     using System.Text;
     using NLog.Config;
@@ -47,6 +48,13 @@ namespace NLog.LayoutRenderers
     public class ProcessTimeLayoutRenderer : LayoutRenderer
     {
         /// <summary>
+        /// Gets or sets a value indicating whether to output in culture invariant format
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(false)]
+        public bool Invariant { get; set; }
+
+        /// <summary>
         /// Renders the current process running time and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -54,7 +62,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             TimeSpan ts = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
-            var culture = GetCulture(logEvent);
+            var culture = Invariant ? null : GetCulture(logEvent);
             WritetTimestamp(builder, ts, culture);
         }
 
@@ -66,21 +74,14 @@ namespace NLog.LayoutRenderers
         /// <param name="culture"></param>
         internal static void WritetTimestamp(StringBuilder builder, TimeSpan ts, CultureInfo culture)
         {
-            string timeSeparator;
-            string ticksSeparator;
+            string timeSeparator = ":";
+            string ticksSeparator = ".";
             if (culture != null)
             {
 #if !SILVERLIGHT && !NETSTANDARD1_0
                 timeSeparator = culture.DateTimeFormat.TimeSeparator;
-#else
-                timeSeparator = ":"; 
 #endif
                 ticksSeparator = culture.NumberFormat.NumberDecimalSeparator;
-            }
-            else
-            {
-                timeSeparator = ":";
-                ticksSeparator = ".";
             }
 
             builder.Append2DigitsZeroPadded(ts.Hours);
