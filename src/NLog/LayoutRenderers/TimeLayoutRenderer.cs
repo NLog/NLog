@@ -31,17 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Text;
-
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The time in a 24-hour, sortable format HH:mm:ss.mmm.
@@ -58,6 +54,13 @@ namespace NLog.LayoutRenderers
         public bool UniversalTime { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to output in culture invariant format
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(false)]
+        public bool Invariant { get; set; }
+
+        /// <summary>
         /// Renders time in the 24-h format (HH:mm:ss.mmm) and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -69,24 +72,19 @@ namespace NLog.LayoutRenderers
             {
                 dt = dt.ToUniversalTime();
             }
-            
-            var culture = GetCulture(logEvent);
 
-            string timeSeparator;
-            string ticksSeparator;
-            if (culture != null)
+            string timeSeparator = ":";
+            string ticksSeparator = ".";
+            if (!Invariant)
             {
+                var culture = GetCulture(logEvent);
+                if (culture != null)
+                {
 #if !SILVERLIGHT && !NETSTANDARD1_0
-                timeSeparator = culture.DateTimeFormat.TimeSeparator;
-#else
-                timeSeparator = ":";
+                    timeSeparator = culture.DateTimeFormat.TimeSeparator;
 #endif
-                ticksSeparator = culture.NumberFormat.NumberDecimalSeparator;
-            }
-            else
-            {
-                timeSeparator = ":";
-                ticksSeparator = ".";
+                    ticksSeparator = culture.NumberFormat.NumberDecimalSeparator;
+                }
             }
 
             builder.Append2DigitsZeroPadded(dt.Hour);
