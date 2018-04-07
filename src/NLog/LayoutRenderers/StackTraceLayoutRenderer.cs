@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("stacktrace")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class StackTraceLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>

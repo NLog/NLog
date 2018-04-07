@@ -42,6 +42,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("sequenceid")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class SequenceIdLayoutRenderer : LayoutRenderer
     {
         /// <summary>

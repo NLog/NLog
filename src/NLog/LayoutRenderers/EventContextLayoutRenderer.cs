@@ -34,9 +34,8 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Globalization;
     using System.Text;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Log event context data.

@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers
 {
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Globalization;
     using System.Text;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// A counter value (increases on each layout rendering).
@@ -96,7 +95,7 @@ namespace NLog.LayoutRenderers
                 Value += Increment;
             }
 
-            Internal.StringBuilderExt.AppendInvariant(builder, v);
+            builder.AppendInvariant(v);
         }
 
         private static int GetNextSequenceValue(string sequenceName, int defaultValue, int increment)

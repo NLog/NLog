@@ -35,11 +35,13 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// Nested Diagnostic Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("ndc")]
+    [ThreadSafe]
     public class NdcLayoutRenderer : LayoutRenderer
     {
         /// <summary>

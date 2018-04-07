@@ -43,7 +43,7 @@ namespace NLog.Layouts
     /// </summary>
     [Layout("JsonLayout")]
     [ThreadAgnostic]
-    [AppDomainFixedOutput]
+    [ThreadSafe]
     public class JsonLayout : Layout
     {
         private LimitRecursionJsonConvert JsonConverter

@@ -53,6 +53,7 @@ namespace NLog.Targets
         
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool _allLayoutsAreThreadAgnostic;
+        private bool _allLayoutsAreThreadSafe;
         private bool _scannedForLayouts;
         private Exception _initializeException;
 
@@ -107,6 +108,7 @@ namespace NLog.Targets
         /// Can be used if <see cref="OptimizeBufferReuse"/> has been enabled.
         /// </summary>
         internal readonly ReusableBuilderCreator ReusableLayoutBuilder = new ReusableBuilderCreator();
+        private StringBuilderPool _precalculateStringBuilderPool;
 
         /// <summary>
         /// Initializes this instance.
@@ -194,15 +196,40 @@ namespace NLog.Targets
                 return;
 
             // Not all Layouts support concurrent threads, so we have to protect them
-            lock (SyncRoot)
+            if (OptimizeBufferReuse)
             {
-                if (!_isInitialized)
-                    return;
-
-                if (_allLayouts != null)
+                if (_allLayoutsAreThreadSafe)
                 {
-                    if (OptimizeBufferReuse)
+                    if (!IsInitialized)
+                        return;
+
+                    if (_allLayouts == null)
+                        return;
+
+                    if (_precalculateStringBuilderPool == null)
                     {
+                        System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(System.Environment.ProcessorCount * 4, 1024), null);
+                    }
+
+                    using (var targetBuilder = _precalculateStringBuilderPool.Acquire())
+                    {
+                        foreach (Layout layout in _allLayouts)
+                        {
+                            targetBuilder.Item.ClearBuilder();
+                            layout.PrecalculateBuilder(logEvent, targetBuilder.Item);
+                        }
+                    }
+                }
+                else
+                {
+                    lock (SyncRoot)
+                    {
+                        if (!_isInitialized)
+                            return;
+
+                        if (_allLayouts == null)
+                            return;
+
                         using (var targetBuilder = ReusableLayoutBuilder.Allocate())
                         {
                             foreach (Layout layout in _allLayouts)
@@ -212,12 +239,21 @@ namespace NLog.Targets
                             }
                         }
                     }
-                    else
+                }
+            }
+            else
+            {
+                lock (SyncRoot)
+                {
+                    if (!_isInitialized)
+                        return;
+
+                    if (_allLayouts == null)
+                        return;
+
+                    foreach (Layout layout in _allLayouts)
                     {
-                        foreach (Layout layout in _allLayouts)
-                        {
-                            layout.Precalculate(logEvent);
-                        }
+                        layout.Precalculate(logEvent);
                     }
                 }
             }
@@ -454,6 +490,10 @@ namespace NLog.Targets
             _allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(false, this);
             InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Count);
             _allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
+            if (!_allLayoutsAreThreadAgnostic)
+            {
+                _allLayoutsAreThreadSafe = _allLayouts.All(layout => layout.ThreadSafe);
+            }
             StackTraceUsage = _allLayouts.DefaultIfEmpty().Max(layout => layout == null ? StackTraceUsage.None : layout.StackTraceUsage);
             _scannedForLayouts = true;
         }

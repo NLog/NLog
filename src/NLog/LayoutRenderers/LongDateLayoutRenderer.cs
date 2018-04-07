@@ -31,22 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Text;
-
-    using Config;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.mmm.
     /// </summary>
     [LayoutRenderer("longdate")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class LongDateLayoutRenderer : LayoutRenderer
     {
         /// <summary>

@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processid")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class ProcessIdLayoutRenderer : LayoutRenderer
     {
         /// <summary>

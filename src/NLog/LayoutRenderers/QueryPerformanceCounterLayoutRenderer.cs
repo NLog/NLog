@@ -39,7 +39,7 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
-    using Internal;
+    using NLog.Internal;
 
     /// <summary>
     /// High precision timer, based on the value returned from QueryPerformanceCounter() optionally converted to seconds.

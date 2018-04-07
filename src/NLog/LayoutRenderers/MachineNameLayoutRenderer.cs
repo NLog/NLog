@@ -47,6 +47,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("machinename")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class MachineNameLayoutRenderer : LayoutRenderer
     {
         internal string MachineName { get; private set; }

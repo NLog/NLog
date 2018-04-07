@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("callsite")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class CallSiteLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>

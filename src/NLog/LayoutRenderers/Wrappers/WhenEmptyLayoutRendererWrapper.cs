@@ -34,8 +34,8 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
-    using Config;
-    using Layouts;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Outputs alternative layout when the inner layout produces empty result.
@@ -43,6 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("whenEmpty")]
     [AmbientProperty("WhenEmpty")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>

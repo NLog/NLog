@@ -35,14 +35,14 @@ namespace NLog.LayoutRenderers
 {
     using System.Globalization;
     using System.Text;
-
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// The Ticks value of current date and time.
     /// </summary>
     [LayoutRenderer("ticks")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class TicksLayoutRenderer : LayoutRenderer
     {
         /// <summary>

@@ -35,7 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Text;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Filters characters not allowed in the file names by replacing them with safe character.
@@ -43,6 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("filesystem-normalize")]
     [AmbientProperty("FSNormalize")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class FileSystemNormalizeLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
