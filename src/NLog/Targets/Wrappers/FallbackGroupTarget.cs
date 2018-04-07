@@ -133,7 +133,7 @@ namespace NLog.Targets.Wrappers
                             if (Interlocked.CompareExchange(ref _currentTarget, 0, 0) != 0)
 #endif
                             {
-                                InternalLogger.Debug("Fallback: target '{0}' succeeded. Returning to the first one.", Targets[targetToInvoke]);
+                                InternalLogger.Debug("FallbackGroup(Name={0}): Target '{1}' succeeded. Returning to the first one.", Name, Targets[targetToInvoke]);
                                 Interlocked.Exchange(ref _currentTarget, 0);
                             }
                         }
@@ -143,7 +143,7 @@ namespace NLog.Targets.Wrappers
                     }
 
                     // failure
-                    InternalLogger.Warn(ex, "Fallback: target '{0}' failed. Proceeding to the next one.", Targets[targetToInvoke]);
+                    InternalLogger.Warn(ex, "FallbackGroup(Name={0}): Target '{1}' failed. Proceeding to the next one.", Name, Targets[targetToInvoke]);
 
                     // error while writing, go to the next one
                     tryCounter++;

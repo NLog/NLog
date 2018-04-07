@@ -273,7 +273,7 @@ namespace NLog.Targets
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             string address = RenderLogEvent(Address, logEvent.LogEvent);
-            InternalLogger.Trace("Sending to address:  '{0}'", address);
+            InternalLogger.Trace("NetworkTarget(Name={0}): Sending to address: '{1}'", Name, address);
 
             byte[] bytes = GetBytesToWrite(logEvent.LogEvent);
 
@@ -288,7 +288,7 @@ namespace NLog.Targets
                     {
                         if (ex != null)
                         {
-                            InternalLogger.Error(ex, "Error when sending.");
+                            InternalLogger.Error(ex, "NetworkTarget(Name={0}): Error when sending.", Name);
                             ReleaseCachedConnection(senderNode);
                         }
 
@@ -311,23 +311,23 @@ namespace NLog.Targets
                         switch (OnConnectionOverflow)
                         {
                             case NetworkTargetConnectionsOverflowAction.DiscardMessage:
-                                InternalLogger.Warn("Discarding message otherwise to many connections.");
+                                InternalLogger.Warn("NetworkTarget(Name={0}): Discarding message otherwise to many connections.", Name);
                                 logEvent.Continuation(null);
                                 return;
 
                             case NetworkTargetConnectionsOverflowAction.AllowNewConnnection:
-                                InternalLogger.Debug("Too may connections, but this is allowed");
+                                InternalLogger.Debug("NetworkTarget(Name={0}): Too may connections, but this is allowed", Name);
                                 break;
 
                             case NetworkTargetConnectionsOverflowAction.Block:
                                 while (_openNetworkSenders.Count >= MaxConnections)
                                 {
-                                    InternalLogger.Debug("Blocking networktarget otherwhise too many connections.");
+                                    InternalLogger.Debug("NetworkTarget(Name={0}): Blocking networktarget otherwhise too many connections.", Name);
                                     Monitor.Wait(_openNetworkSenders);
-                                    InternalLogger.Trace("Entered critical section.");
+                                    InternalLogger.Trace("NetworkTarget(Name={0}): Entered critical section.", Name);
                                 }
 
-                                InternalLogger.Trace("Limit ok.");
+                                InternalLogger.Trace("NetworkTarget(Name={0}): Limit ok.", Name);
                                 break;
                         }
                     }
@@ -353,7 +353,7 @@ namespace NLog.Targets
 
                         if (ex != null)
                         {
-                            InternalLogger.Error(ex, "Error when sending.");
+                            InternalLogger.Error(ex, "NetworkTarget(Name={0}): Error when sending.", Name);
                         }
 
                         sender.Close(ex2 => { });
@@ -391,7 +391,7 @@ namespace NLog.Targets
             {
                 if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
                 {
-                    InternalLogger.Trace("{0} - Sending {1}", this, text);
+                    InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1}", Name, text);
                     return Encoding.GetBytes(text.ToString());
                 }
                 else
@@ -404,7 +404,7 @@ namespace NLog.Targets
                             localBuilder.Result.Append(LineEnding.NewLineCharacters);
                         }
 
-                        InternalLogger.Trace("{0} - Sending {1} chars", this, localBuilder.Result.Length);
+                        InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1} chars", Name, localBuilder.Result.Length);
 
                         using (var localBuffer = _reusableEncodingBuffer.Allocate())
                         {
@@ -427,7 +427,7 @@ namespace NLog.Targets
             else
             {
                 var rendered = Layout.Render(logEvent);
-                InternalLogger.Trace("{0} - Sending: {1}", this, rendered);
+                InternalLogger.Trace("NetworkTarget(Name={0}): Sending: {1}", Name, rendered);
                 if (NewLine)
                 {
                     rendered += LineEnding.NewLineCharacters;
@@ -539,7 +539,7 @@ namespace NLog.Targets
                         continuation(ex);
                         return;
                     }
-                    InternalLogger.Trace("Sending chunk, position: {0}, length: {1}", pos, tosend);
+                    InternalLogger.Trace("NetworkTarget(Name={0}): Sending chunk, position: {1}, length: {2}", Name, pos, tosend);
                     if (tosend <= 0)
                     {
                         continuation(null);
@@ -551,7 +551,7 @@ namespace NLog.Targets
                     {
                         if (OnOverflow == NetworkTargetOverflowAction.Discard)
                         {
-                            InternalLogger.Trace("discard because chunksize > this.MaxMessageSize");
+                            InternalLogger.Trace("NetworkTarget(Name={0}): Discard because chunksize > this.MaxMessageSize", Name);
                             continuation(null);
                             return;
                         }

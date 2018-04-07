@@ -128,11 +128,11 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             string result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.True(result.IndexOf("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events") != -1);
-            Assert.True(result.IndexOf("Trace Rule matched: (level >= Warn)") != -1);
-            Assert.True(result.IndexOf("Trace Filter to apply: (level >= Debug)") != -1);
-            Assert.True(result.IndexOf("Trace After filtering: 6 events.") != -1);
-            Assert.True(result.IndexOf("Trace Sending to MyTarget") != -1);
+            Assert.True(result.IndexOf("Running on 7 events") != -1);
+            Assert.True(result.IndexOf("Rule matched: (level >= Warn)") != -1);
+            Assert.True(result.IndexOf("Filter to apply: (level >= Debug)") != -1);
+            Assert.True(result.IndexOf("After filtering: 6 events.") != -1);
+            Assert.True(result.IndexOf("Sending to MyTarget") != -1);
 
             // make sure all Debug,Info,Warn events went through
             Assert.Equal(6, target.Events.Count);
@@ -184,11 +184,11 @@ namespace NLog.UnitTests.Targets.Wrappers
             };
 
             var result = RunAndCaptureInternalLog(() => wrapper.WriteAsyncLogEvents(events), LogLevel.Trace);
-            Assert.True(result.IndexOf("Trace Running PostFilteringWrapper Target[(unnamed)](MyTarget) on 7 events") != -1);
-            Assert.True(result.IndexOf("Trace Rule matched: (level >= Error)") != -1);
-            Assert.True(result.IndexOf("Trace Filter to apply: True") != -1);
-            Assert.True(result.IndexOf("Trace After filtering: 7 events.") != -1);
-            Assert.True(result.IndexOf("Trace Sending to MyTarget") != -1);
+            Assert.True(result.IndexOf("Running on 7 events") != -1);
+            Assert.True(result.IndexOf("Rule matched: (level >= Error)") != -1);
+            Assert.True(result.IndexOf("Filter to apply: True") != -1);
+            Assert.True(result.IndexOf("After filtering: 7 events.") != -1);
+            Assert.True(result.IndexOf("Sending to MyTarget") != -1);
 
             // make sure all events went through
             Assert.Equal(7, target.Events.Count);

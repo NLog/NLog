@@ -407,7 +407,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 },
                 LogLevel.Trace);
 
-            Assert.True(internalLog.Contains("AsyncWrapper 'AsyncTargetWrapperExceptionTest_Wrapper': WrappedTarget is NULL"), internalLog);
+            Assert.True(internalLog.Contains("WrappedTarget is NULL"), internalLog);
         }
 
         [Fact]

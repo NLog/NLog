@@ -210,7 +210,7 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(fixedSource))
             {
-                InternalLogger.Debug("Skipping removing of event source because it contains layout renderers");
+                InternalLogger.Debug("EventLogTarget(Name={0}): Skipping removing of event source because it contains layout renderers", Name);
             }
             else
             {
@@ -233,7 +233,7 @@ namespace NLog.Targets
             {
                 return EventLog.SourceExists(fixedSource, MachineName);
             }
-            InternalLogger.Debug("Unclear if event source exists because it contains layout renderers");
+            InternalLogger.Debug("EventLogTarget(Name={0}): Unclear if event source exists because it contains layout renderers", Name);
             return null; //unclear! 
         }
 
@@ -248,7 +248,7 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(fixedSource))
             {
-                InternalLogger.Debug("Skipping creation of event source because it contains layout renderers");
+                InternalLogger.Debug("EventLogTarget(Name={0}): Skipping creation of event source because it contains layout renderers", Name);
             }
             else
             {
@@ -400,7 +400,7 @@ namespace NLog.Targets
 
             if (string.IsNullOrEmpty(fixedSource))
             {
-                InternalLogger.Debug("Skipping creation of event source because it contains layout renderers");
+                InternalLogger.Debug("EventLogTarget(Name={0}): Skipping creation of event source because it contains layout renderers", Name);
                 //we can only create event sources if the source is fixed (no layout)
                 return;
 
@@ -436,7 +436,7 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "Error when connecting to EventLog.");
+                InternalLogger.Error(exception, "EventLogTarget(Name={0}): Error when connecting to EventLog.", Name);
                 if (alwaysThrowError || exception.MustBeRethrown())
                 {
                     throw;

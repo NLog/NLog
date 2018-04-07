@@ -347,7 +347,7 @@ namespace NLog.Targets
             if (UseTransactions.HasValue)
 #pragma warning restore 618
             {
-                InternalLogger.Warn("UseTransactions property is obsolete and will not be used - will be removed in NLog 6");
+                InternalLogger.Warn("DatabaseTarget(Name={0}): UseTransactions property is obsolete and will not be used - will be removed in NLog 6", Name);
             }
 
             bool foundProvider = false;
@@ -392,7 +392,7 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Warn(ex, "DbConnectionStringBuilder failed to parse ConnectionString");
+                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
                 }
             }
 
@@ -463,7 +463,7 @@ namespace NLog.Targets
         protected override void CloseTarget()
         {
             base.CloseTarget();
-            InternalLogger.Trace("DatabaseTarget: close connection because of CloseTarget");
+            InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of CloseTarget", Name);
             CloseConnection();
         }
 
@@ -481,14 +481,14 @@ namespace NLog.Targets
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "Error when writing to database.");
+                InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error when writing to database.", Name);
 
                 if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
-                InternalLogger.Trace("DatabaseTarget: close connection because of error");
+                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of error", Name);
                 CloseConnection();
                 throw;
             }
@@ -496,7 +496,7 @@ namespace NLog.Targets
             {
                 if (!KeepConnection)
                 {
-                    InternalLogger.Trace("DatabaseTarget: close connection (KeepConnection = false).");
+                    InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection (KeepConnection = false).", Name);
                     CloseConnection();
                 }
             }
@@ -542,13 +542,13 @@ namespace NLog.Targets
                         catch (Exception exception)
                         {
                             // in case of exception, close the connection and report it
-                            InternalLogger.Error(exception, "Error when writing to database.");
+                            InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error when writing to database.", Name);
 
                             if (exception.MustBeRethrownImmediately())
                             {
                                 throw;
                             }
-                            InternalLogger.Trace("DatabaseTarget: close connection because of exception");
+                            InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of exception", Name);
                             CloseConnection();
                             ev.Continuation(exception);
 
@@ -564,7 +564,7 @@ namespace NLog.Targets
             {
                 if (!KeepConnection)
                 {
-                    InternalLogger.Trace("DatabaseTarget: close connection because of KeepConnection=false");
+                    InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of KeepConnection=false", Name);
                     CloseConnection();
                 }
             }
@@ -583,10 +583,11 @@ namespace NLog.Targets
                     command.CommandText = RenderLogEvent(CommandText, logEvent);
                     command.CommandType = CommandType;
 
-                    InternalLogger.Trace("Executing {0}: {1}", command.CommandType, command.CommandText);
+                    InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, command.CommandType, command.CommandText);
 
-                    foreach (DatabaseParameterInfo par in Parameters)
+                    for (int i = 0; i < Parameters.Count; ++i)
                     {
+                        DatabaseParameterInfo par = Parameters[i];
                         IDbDataParameter p = command.CreateParameter();
                         p.Direction = ParameterDirection.Input;
                         if (par.Name != null)
@@ -614,11 +615,11 @@ namespace NLog.Targets
                         p.Value = stringValue;
                         command.Parameters.Add(p);
 
-                        InternalLogger.Trace("  Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
+                        InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
                     }
 
                     int result = command.ExecuteNonQuery();
-                    InternalLogger.Trace("Finished execution, result = {0}", result);
+                    InternalLogger.Trace("DatabaseTarget(Name={0}): Finished execution, result = {1}", Name, result);
                 }
 
                 //not really needed as there is no transaction at all.
@@ -674,7 +675,7 @@ namespace NLog.Targets
             {
                 if (_activeConnectionString != connectionString)
                 {
-                    InternalLogger.Trace("DatabaseTarget: close connection because of opening new.");
+                    InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of opening new.", Name);
                     CloseConnection();
                 }
             }
@@ -684,7 +685,7 @@ namespace NLog.Targets
                 return;
             }
 
-            InternalLogger.Trace("DatabaseTarget: open connection.");
+            InternalLogger.Trace("DatabaseTarget(Name={0}): Open connection.", Name);
             _activeConnection = OpenConnection(connectionString);
             _activeConnectionString = connectionString;
         }
@@ -743,7 +744,7 @@ namespace NLog.Targets
 
                         try
                         {
-                            installationContext.Trace("Executing {0} '{1}'", command.CommandType, command.CommandText);
+                            installationContext.Trace("DatabaseTarget(Name={0}) - Executing {1} '{2}'", Name, command.CommandType, command.CommandText);
                             command.ExecuteNonQuery();
                         }
                         catch (Exception exception)
@@ -768,7 +769,7 @@ namespace NLog.Targets
             }
             finally
             {
-                InternalLogger.Trace("DatabaseTarget: close connection after install.");
+                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection after install.", Name);
 
                 CloseConnection();
             }
