@@ -559,9 +559,18 @@ namespace NLog.Config
                 .Select(x => Path.Combine(assemblyLocation, x));
                 return extensionDlls.ToArray();
             }
+            catch (System.IO.DirectoryNotFoundException ex)
+            {
+                InternalLogger.Warn(ex, "Skipping auto loading location because assembly directory does not exist: {0}", assemblyLocation);
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                return ArrayHelper.Empty<string>();
+            }
             catch (System.Security.SecurityException ex)
             {
-                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                InternalLogger.Warn(ex, "Skipping auto loading location because access not allowed to assembly directory: {0}", assemblyLocation);
                 if (ex.MustBeRethrown())
                 {
                     throw;
@@ -570,7 +579,7 @@ namespace NLog.Config
             }
             catch (UnauthorizedAccessException ex)
             {
-                InternalLogger.Warn(ex, "Seems that we do not have permission");
+                InternalLogger.Warn(ex, "Skipping auto loading location because access not allowed to assembly directory: {0}", assemblyLocation);
                 if (ex.MustBeRethrown())
                 {
                     throw;
