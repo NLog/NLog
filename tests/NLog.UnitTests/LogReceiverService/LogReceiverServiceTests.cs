@@ -31,9 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-using NLog.Targets;
-
 namespace NLog.UnitTests.LogReceiverService
 {
     using System.Collections.Generic;
@@ -48,6 +45,7 @@ namespace NLog.UnitTests.LogReceiverService
     using System.ServiceModel.Description;
     using System.Xml;
     using System.Xml.Serialization;
+    using NLog.Config;
     using NLog.Layouts;
     using NLog.LogReceiverService;
 
@@ -55,9 +53,7 @@ namespace NLog.UnitTests.LogReceiverService
     {
         private const string logRecieverUrl = "http://localhost:8080/logrecievertest";
 
-
-
-#if !NETSTANDARD || WCF_SUPPORTED
+#if WCF_SUPPORTED
         [Theory]
         [InlineData(null)]
         [InlineData("")]
@@ -91,7 +87,6 @@ namespace NLog.UnitTests.LogReceiverService
 
         }
 #endif
-
 
         [Fact]
         public void ToLogEventInfoTest()

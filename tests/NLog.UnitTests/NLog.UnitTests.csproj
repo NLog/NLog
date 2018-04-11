@@ -59,10 +59,6 @@
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
 
-    <ProjectReference Include="..\..\src\NLog.Wcf\NLog.Wcf.csproj">
-      <Private>true</Private>
-    </ProjectReference>
-
     <ProjectReference Include="..\..\src\NLog.WindowsIdentity\NLog.WindowsIdentity.csproj">
       <Private>true</Private>
     </ProjectReference>
@@ -125,6 +121,9 @@
       <Private>true</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.csproj">
+      <Private>true</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NLog.Wcf\NLog.Wcf.csproj">
       <Private>true</Private>
     </ProjectReference>
     <ProjectReference Include="..\PackageLoaderTestAssembly\PackageLoaderTestAssembly.csproj" />

@@ -42,15 +42,9 @@ using System.ServiceModel.Description;
 namespace NLog.LogReceiverService
 {
 
-#if SILVERLIGHT
-    /// <summary>
-    /// Client of ILogReceiverServer
-    /// </summary>
-#else
     /// <summary>
     /// Client of <see cref="ILogReceiverServer"/>
     /// </summary>
-#endif
     public interface IWcfLogReceiverClient : ICommunicationObject
     {
         /// <summary>
@@ -135,22 +129,12 @@ namespace NLog.LogReceiverService
         /// <param name="result">The result.</param>
         void EndProcessLogMessages(IAsyncResult result);
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !NETSTANDARD
         /// <summary>
         /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
         /// </summary>
         void DisplayInitializationUI();
 #endif
-
-#if !NET4_0 && !NET3_5 && !NETSTANDARD
-
-        /// <summary>
-        /// Gets or sets the cookie container.
-        /// </summary>
-        /// <value>The cookie container.</value>
-        CookieContainer CookieContainer { get; set; }
-#endif
-
     }
 }
 
