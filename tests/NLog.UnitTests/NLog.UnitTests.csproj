@@ -59,10 +59,6 @@
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
 
-    <ProjectReference Include="..\..\src\NLog.Wcf\NLog.Wcf.csproj">
-      <Private>true</Private>
-    </ProjectReference>
-
     <ProjectReference Include="..\..\src\NLog.WindowsIdentity\NLog.WindowsIdentity.csproj">
       <Private>true</Private>
     </ProjectReference>
@@ -102,6 +98,10 @@
       <HintPath>..\..\src\NLog.Extended\bin\$(Configuration)\$(TestTargetFramework)\NLog.Extended.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NLog.Wcf">
+      <HintPath>..\..\src\NLog.Wcf\bin\$(Configuration)\$(TestTargetFramework)\NLog.Wcf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NLogAutoLoadExtension">
       <HintPath>..\..\tests\NLogAutoLoadExtension\bin\$(Configuration)\$(TestTargetFramework)\NLogAutoLoadExtension.dll</HintPath>
       <Private>True</Private>
@@ -125,6 +125,9 @@
       <Private>true</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.csproj">
+      <Private>true</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NLog.Wcf\NLog.Wcf.csproj">
       <Private>true</Private>
     </ProjectReference>
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.csproj">

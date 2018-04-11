@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__ && !NETSTANDARD || WCF_SUPPORTED
+#if WCF_SUPPORTED
 
 namespace NLog.Targets
 {
@@ -476,21 +476,15 @@ namespace NLog.Targets
                 if (flushContinuation != null)
                 {
                     InternalLogger.Error(exception, "Error in flush async for LogReceiver: {0}", Name);
-#if !NETSTANDARD
-                    if (exception.MustBeRethrown())
+                    if (LogManager.ThrowExceptions)
                         throw;
-#endif
+
                     flushContinuation(exception);
                 }
                 else
                 {
+                    // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                     InternalLogger.Error(exception, "Error in send async for LogReceiver: {0}", Name);
-#if !NETSTANDARD
-                    if (exception.MustBeRethrownImmediately())
-                    {
-                        throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                    }
-#endif
                 }
             }
         }

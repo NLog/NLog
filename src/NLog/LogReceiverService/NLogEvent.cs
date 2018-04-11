@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD || WCF_SUPPORTED
+#if WCF_SUPPORTED
 
 namespace NLog.LogReceiverService
 {
