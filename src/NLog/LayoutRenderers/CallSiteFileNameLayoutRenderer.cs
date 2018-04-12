@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-using NLog.Internal;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
+using NLog.Config;
+using NLog.Internal;
 
 #if !SILVERLIGHT
 namespace NLog.LayoutRenderers
@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("callsite-filename")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class CallSiteFileNameLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>

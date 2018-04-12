@@ -43,6 +43,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("currentdir")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class CurrentDirLayoutRenderer : LayoutRenderer
     {
         /// <summary>

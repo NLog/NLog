@@ -51,7 +51,7 @@ namespace NLog.Internal
         /// <param name="maxBuilderCapacity">Max StringBuilder Size</param>
         public StringBuilderPool(int poolCapacity, int initialBuilderCapacity = 16 * 1024, int maxBuilderCapacity = 512 * 1024)
         {
-            _fastPool = new StringBuilder(initialBuilderCapacity);
+            _fastPool = new StringBuilder(Math.Max(initialBuilderCapacity, 16 * 1024));
             _slowPool = new StringBuilder[poolCapacity];
             for (int i = 0; i < _slowPool.Length; ++i)
             {

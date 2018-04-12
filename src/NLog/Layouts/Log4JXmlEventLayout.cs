@@ -34,6 +34,7 @@
 namespace NLog.Layouts
 {
     using System.Text;
+    using NLog.Config;
     using NLog.LayoutRenderers;
 
     /// <summary>
@@ -43,6 +44,9 @@ namespace NLog.Layouts
     /// This layout is not meant to be used explicitly. Instead you can use ${log4jxmlevent} layout renderer.
     /// </remarks>
     [Layout("Log4JXmlEventLayout")]
+    [ThreadAgnostic]
+    [ThreadSafe]
+    [AppDomainFixedOutput]
     public class Log4JXmlEventLayout : Layout, IIncludeContext
     {
         /// <summary>

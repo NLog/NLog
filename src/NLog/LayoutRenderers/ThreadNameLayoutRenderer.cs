@@ -34,11 +34,13 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// The name of the current thread.
     /// </summary>
     [LayoutRenderer("threadname")]
+    [ThreadSafe]
     public class ThreadNameLayoutRenderer : LayoutRenderer
     {
         /// <summary>

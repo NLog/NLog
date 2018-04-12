@@ -47,6 +47,7 @@ namespace NLog.LayoutRenderers
     /// The information about the running process.
     /// </summary>
     [LayoutRenderer("processinfo")]
+    [ThreadSafe]
     public class ProcessInfoLayoutRenderer : LayoutRenderer
     {
         private Process _process;

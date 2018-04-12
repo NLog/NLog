@@ -43,6 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("lowercase")]
     [AmbientProperty("Lowercase")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>

@@ -36,11 +36,13 @@ namespace NLog.LayoutRenderers
 #if !SILVERLIGHT
     using System;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// <see cref="NestedDiagnosticsLogicalContext"/> Renderer (Async scope)
     /// </summary>
     [LayoutRenderer("ndlc")]
+    [ThreadSafe]
     public class NdlcLayoutRenderer : LayoutRenderer
     {
         /// <summary>

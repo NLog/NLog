@@ -36,8 +36,8 @@ namespace NLog.LayoutRenderers
     using System.IO;
     using System.Text;
 
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A temporary directory.
@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("tempdir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class TempDirLayoutRenderer : LayoutRenderer
     {
         private static string tempDir = Path.GetTempPath();

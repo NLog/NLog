@@ -40,10 +40,11 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// The time in a 24-hour, sortable format HH:mm:ss.mmm.
+    /// The time in a 24-hour, sortable format HH:mm:ss.mmmm.
     /// </summary>
     [LayoutRenderer("time")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class TimeLayoutRenderer : LayoutRenderer
     {
         /// <summary>

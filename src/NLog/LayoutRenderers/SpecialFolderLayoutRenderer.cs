@@ -46,6 +46,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("specialfolder")]
     [AppDomainFixedOutput]
+    [ThreadSafe]
     public class SpecialFolderLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -88,9 +89,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             string basePath = Environment.GetFolderPath(Folder);
-
             var path = PathHelpers.CombinePaths(basePath, Dir, File);
-   
             builder.Append(path);
         }
     }

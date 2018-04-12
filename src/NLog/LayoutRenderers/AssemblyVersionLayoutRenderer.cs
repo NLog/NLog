@@ -50,6 +50,8 @@ namespace NLog.LayoutRenderers
     /// The entry assembly can't be found in some cases e.g. ASP.NET, unit tests, etc.
     /// </remarks>
     [LayoutRenderer("assembly-version")]
+    [ThreadAgnostic]
+    [ThreadSafe]
     public class AssemblyVersionLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -80,13 +82,33 @@ namespace NLog.LayoutRenderers
         public AssemblyVersionType Type { get; set; }
 
         /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        protected override void InitializeLayoutRenderer()
+        {
+            _assemblyVersion = null;
+            base.InitializeLayoutRenderer();
+        }
+
+        /// <summary>
+        /// Closes the layout renderer.
+        /// </summary>
+        protected override void CloseLayoutRenderer()
+        {
+            _assemblyVersion = null;
+            base.CloseLayoutRenderer();
+        }
+
+        private string _assemblyVersion;
+
+        /// <summary>
         /// Renders an assembly version and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var version = GetVersion();
+            var version = _assemblyVersion ?? (_assemblyVersion = GetVersion());
 
             if (string.IsNullOrEmpty(version))
             {
@@ -170,5 +192,5 @@ namespace NLog.LayoutRenderers
             }
         }
 #endif
-            }
+    }
 }

@@ -33,13 +33,14 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Only outputs the inner layout when exception has been defined for log message.
     /// </summary>
     [LayoutRenderer("onexception")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class OnExceptionLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,48 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+namespace NLog.Config
 {
-    using NLog.Config;
+    using System;
 
     /// <summary>
-    /// A column in the CSV.
+    /// Marks the layout or layout renderer as thread safe - it producing correct results 
+    /// regardless of the number of threads it's running on. 
+    ///
+    /// Without this attribute then the target concurrency will be reduced
     /// </summary>
-    [NLogConfigurationItem]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public class CsvColumn 
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class ThreadSafeAttribute : Attribute
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CsvColumn" /> class.
-        /// </summary>
-        public CsvColumn()
-            : this(null, null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CsvColumn" /> class.
-        /// </summary>
-        /// <param name="name">The name of the column.</param>
-        /// <param name="layout">The layout of the column.</param>
-        public CsvColumn(string name, Layout layout)
-        {
-            Name = name;
-            Layout = layout;
-        }
-
-        /// <summary>
-        /// Gets or sets the name of the column.
-        /// </summary>
-        /// <docgen category='CSV Column Options' order='10' />
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the layout of the column.
-        /// </summary>
-        /// <docgen category='CSV Column Options' order='10' />
-        [RequiredParameter]
-        public Layout Layout { get; set; }
     }
 }
