@@ -1433,42 +1433,54 @@ namespace NLog.Targets
             return formatString;
         }
 
-        private DateTime GetArchiveDate(string fileName, LogEventInfo logEvent)
+        private DateTime? GetArchiveDate(string fileName, LogEventInfo logEvent, bool initializedNewFile)
         {
-            var lastWriteTimeUtc = _fileAppenderCache.GetFileLastWriteTimeUtc(fileName, true);
+            var lastWriteTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, true);
 
-            //todo null check
-            var lastWriteTime = TimeSource.Current.FromSystemTime(lastWriteTimeUtc.Value);
-
-            InternalLogger.Trace("Calculating archive date. Last write time: {0}; Previous log event time: {1}", lastWriteTime, _previousLogEventTimestamp);
-
-            bool previousLogIsMoreRecent = _previousLogEventTimestamp.HasValue && (_previousLogEventTimestamp.Value > lastWriteTime);
-            if (previousLogIsMoreRecent)
+            DateTime? previousLogEventTimestamp = string.Equals(fileName, _previousLogFileName, StringComparison.OrdinalIgnoreCase) ? _previousLogEventTimestamp : null;
+            if (!previousLogEventTimestamp.HasValue && !initializedNewFile)
             {
-                InternalLogger.Trace("Using previous log event time (is more recent)");
-                return _previousLogEventTimestamp.Value;
+                if (_initializedFiles.TryGetValue(fileName, out var initializedTimeSamp))
+                {
+                    previousLogEventTimestamp = initializedTimeSamp;
+                }
             }
 
-            if (_previousLogEventTimestamp.HasValue && PreviousLogOverlappedPeriod(logEvent, lastWriteTime))
+            InternalLogger.Trace("Calculating archive date. Last write time: {0}; Previous log event time: {1}", lastWriteTimeSource, previousLogEventTimestamp);
+            if (!lastWriteTimeSource.HasValue)
             {
-                InternalLogger.Trace("Using previous log event time (previous log overlapped period)");
-                return _previousLogEventTimestamp.Value;
+                if (!previousLogEventTimestamp.HasValue)
+                {
+                    InternalLogger.Info("FileTarget(Name={0}): Unable to acquire useful timestamp to archive file: {1}", Name, fileName);
+                }
+                return previousLogEventTimestamp;
+            }
+
+            if (lastWriteTimeSource.HasValue && previousLogEventTimestamp.HasValue)
+            {
+                if (previousLogEventTimestamp.Value > lastWriteTimeSource.Value)
+                {
+                    InternalLogger.Trace("Using previous log event time (is more recent)");
+                    return previousLogEventTimestamp.Value;
+                }
+
+                if (PreviousLogOverlappedPeriod(logEvent, previousLogEventTimestamp.Value, lastWriteTimeSource.Value))
+                {
+                    InternalLogger.Trace("Using previous log event time (previous log overlapped period)");
+                    return previousLogEventTimestamp.Value;
+                }
             }
 
             InternalLogger.Trace("Using last write time");
-            return lastWriteTime;
+            return lastWriteTimeSource.Value;
         }
 
-        private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime lastWrite)
+        private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime previousLogEventTimestamp, DateTime lastFileWrite)
         {
-            DateTime timestamp;
-            if (!_previousLogEventTimestamp.HasValue)
-                return false;
-            else
-                timestamp = _previousLogEventTimestamp.Value;
+            DateTime timestamp = previousLogEventTimestamp;
 
             string formatString = GetArchiveDateFormatString(string.Empty);
-            string lastWriteTimeString = lastWrite.ToString(formatString, CultureInfo.InvariantCulture);
+            string lastWriteTimeString = lastFileWrite.ToString(formatString, CultureInfo.InvariantCulture);
             string logEventTimeString = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
 
             if (lastWriteTimeString != logEventTimeString)
@@ -1570,8 +1582,8 @@ namespace NLog.Targets
                 }
             }
 
-            DateTime archiveDate = GetArchiveDate(fileName, eventInfo);
-            var archiveFileName = fileArchiveStyle.GenerateArchiveFileName(archiveFilePattern, archiveDate, existingArchiveFiles);
+            DateTime? archiveDate = GetArchiveDate(fileName, eventInfo, initializedNewFile);
+            var archiveFileName = archiveDate.HasValue ? fileArchiveStyle.GenerateArchiveFileName(archiveFilePattern, archiveDate.Value, existingArchiveFiles) : null;
             if (archiveFileName != null)
             {
                 if (initializedNewFile)
@@ -1813,23 +1825,27 @@ namespace NLog.Targets
                 return null;
             }
 
-            fileName = GetPotentialFileForArchiving(fileName);
-
-            if (fileName == null)
+            var previousFileName = GetPotentialFileForArchiving(fileName);
+            if (previousFileName == null)
             {
                 return null;
             }
 
-            var length = _fileAppenderCache.GetFileLength(fileName, true);
+            var length = _fileAppenderCache.GetFileLength(previousFileName, true);
             if (length == null)
             {
                 return null;
             }
 
+            if (previousFileName != fileName)
+            {
+                upcomingWriteSize = 0;  // Not going to write to this file
+            }
+
             var shouldArchive = length.Value + upcomingWriteSize > ArchiveAboveSize;
             if (shouldArchive)
             {
-                return fileName;
+                return previousFileName;
             }
             return null;
 
