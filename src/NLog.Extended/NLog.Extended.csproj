@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35;netstandard2.0</TargetFrameworks>
 
     <Title>NLog for Extended Profile</Title>
     <Company>NLog</Company>
@@ -59,11 +59,21 @@
     <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
+    
+    
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+        <Title>NLog for NetStandard 2.0 Extended Profile</Title>
+        <DefineConstants>$(DefineConstants);NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    </PropertyGroup>
 
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
     <Title>$(Title) - Mono</Title>
     <DefineConstants>$(DefineConstants)MONO</DefineConstants>
   </PropertyGroup>
+    
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NLog\NLog.csproj" />

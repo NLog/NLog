@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 #if !SILVERLIGHT
 
 namespace NLog.LayoutRenderers
@@ -38,6 +40,10 @@ namespace NLog.LayoutRenderers
 	using System.Text;
 	using Config;
 	using Internal;
+
+#if NETSTANDARD2_0
+	using System.Configuration;
+#endif
 
 	/// <summary>
 	/// Application setting.
@@ -52,7 +58,17 @@ namespace NLog.LayoutRenderers
 	[LayoutRenderer("appsetting")]
 	public class AppSettingLayoutRenderer : LayoutRenderer
 	{
+        #if !NETSTANDARD2_0
+
 		private IConfigurationManager configurationManager = new ConfigurationManager();
+
+	    internal IConfigurationManager ConfigurationManager
+	    {
+	        get => configurationManager;
+	        set => configurationManager = value;
+	    }
+
+        #endif
 
 		///<summary>
 		/// The AppSetting name.
@@ -65,13 +81,7 @@ namespace NLog.LayoutRenderers
 		/// The default value to render if the AppSetting value is null.
 		///</summary>
 		public string Default { get; set; }
-
-		internal IConfigurationManager ConfigurationManager
-		{
-			get => configurationManager;
-		    set => configurationManager = value;
-		}
-
+        
 		/// <summary>
 		/// Renders the specified application setting or default value and appends it to the specified <see cref="StringBuilder" />.
 		/// </summary>
