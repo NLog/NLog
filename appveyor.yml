@@ -16,6 +16,7 @@ build_script:
   - ps: .\run-sonar.ps1
 
 test_script:
+  - ps: $last = git log -1 --pretty=%B;if ($last -match 'skip tests') {Write-output "skipping tests";exit 0}
   - msbuild /t:rebuild .\tools\CheckSourceCode\src\ /p:Configuration=Release /verbosity:minimal
   - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
   - ps: .\run-tests.ps1
