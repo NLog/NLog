@@ -316,7 +316,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch (SecurityException)
             {
-                InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream");
+                InternalLogger.Debug("Could not use native Windows create file, falling back to managed filestream: {0}", FileName);
             }
 #endif
 

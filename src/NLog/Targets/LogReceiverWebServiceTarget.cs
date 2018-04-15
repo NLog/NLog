@@ -231,7 +231,7 @@ namespace NLog.Targets
         {
             if (logEvents.Count == 0 && !LogManager.ThrowExceptions)
             {
-                InternalLogger.Error("LogEvents array is empty, sending empty event...");
+                InternalLogger.Error("LogReceiverServiceTarget(Name={0}): LogEvents array is empty, sending empty event...", Name);
                 return new NLogEvents();
             }
 
@@ -307,7 +307,7 @@ namespace NLog.Targets
             client.ProcessLogMessagesCompleted += (sender, e) =>
             {
                 if (e.Error != null)
-                    InternalLogger.Error(e.Error, "Error in send for LogReceiver: {0}", Name);
+                    InternalLogger.Error(e.Error, "LogReceiverServiceTarget(Name={0}): Error while sending", Name);
 
                 // report error to the callers
                 for (int i = 0; i < asyncContinuations.Count; ++i)
@@ -350,7 +350,7 @@ namespace NLog.Targets
                         }
                         catch (Exception ex)
                         {
-                            InternalLogger.Error(ex, "Error in send for LogReceiver: {0}", this.Name);
+                            InternalLogger.Error(ex, "LogReceiverServiceTarget(Name={0}): Error while sending", Name);
                             if (ex.MustBeRethrownImmediately())
                             {
                                 throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -475,7 +475,7 @@ namespace NLog.Targets
             {
                 if (flushContinuation != null)
                 {
-                    InternalLogger.Error(exception, "Error in flush async for LogReceiver: {0}", Name);
+                    InternalLogger.Error(exception, "LogReceiverServiceTarget(Name={0}): Error in flush async", Name);
 #if !NETSTANDARD
                     if (exception.MustBeRethrown())
                         throw;
@@ -484,7 +484,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    InternalLogger.Error(exception, "Error in send async for LogReceiver: {0}", Name);
+                    InternalLogger.Error(exception, "LogReceiverServiceTarget(Name={0}): Error in send async", Name);
 #if !NETSTANDARD
                     if (exception.MustBeRethrownImmediately())
                     {

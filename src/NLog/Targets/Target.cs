@@ -396,14 +396,14 @@ namespace NLog.Targets
                         _initializeException = null;
                         if (!_scannedForLayouts)
                         {
-                            InternalLogger.Debug("InitializeTarget is done but not scanned For Layouts");
+                            InternalLogger.Debug("{0}: InitializeTarget is done but not scanned For Layouts", this);
                             //this is critical, as we need the layouts. So if base.InitializeTarget() isn't called, we fix the layouts here.
                             FindAllLayouts();
                         }
                     }
                     catch (Exception exception)
                     {
-                        InternalLogger.Error(exception, "Error initializing target '{0}'.", this);
+                        InternalLogger.Error(exception, "{0}: Error initializing target", this);
 
                         _initializeException = exception;
 
@@ -445,7 +445,7 @@ namespace NLog.Targets
                     }
                     catch (Exception exception)
                     {
-                        InternalLogger.Error(exception, "Error closing target '{0}'.", this);
+                        InternalLogger.Error(exception, "{0}: Error closing target", this);
 
                         if (exception.MustBeRethrown())
                         {

@@ -370,7 +370,7 @@ namespace NLog.Targets
                                 }
                                 catch (Exception ex2)
                                 {
-                                    InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", Name);
+                                    InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error sending request", Name);
                                     if (ex2.MustBeRethrownImmediately())
                                     {
                                         throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -383,7 +383,7 @@ namespace NLog.Targets
                     }
                     catch (Exception ex2)
                     {
-                        InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", Name);
+                        InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error starting request", Name);
                         if (ex2.MustBeRethrown())
                         {
                             throw;
@@ -420,7 +420,7 @@ namespace NLog.Targets
                             }
                             catch (Exception ex)
                             {
-                                InternalLogger.Error(ex, "Error when sending to Webservice: {0}", Name);
+                                InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error sending post data", Name);
                                 if (ex.MustBeRethrownImmediately())
                                 {
                                     throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -433,7 +433,7 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Error when sending to Webservice: {0}", Name);
+                    InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error starting post data", Name);
                     if (ex.MustBeRethrown())
                     {
                         throw;
