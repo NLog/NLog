@@ -2697,8 +2697,7 @@ namespace NLog.UnitTests.Targets
             const int maxArchiveFiles = 5;
 
             var tempPath = ArchiveFileNameHelper.GenerateTempPath();
-            var logFile1 = Path.Combine(tempPath, "log{0}.txt");
-            var logFile2 = Path.Combine(tempPath, "log-other{0}.txt");
+            var logFile = Path.Combine(tempPath, "{0}{1}.txt");
 
             var defaultTimeSource = TimeSource.Current;
             try
@@ -2712,64 +2711,77 @@ namespace NLog.UnitTests.Targets
                 }
                 TimeSource.Current = timeSource;
 
-                var fileTarget1 = new FileTarget
+                var fileTarget = new FileTarget
                 {
-                    FileName = string.Format(logFile1, "${shortdate}"),
+                    FileName = string.Format(logFile, "${logger}","${shortdate}"),
                     ArchiveAboveSize = 100,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
                     MaxArchiveFiles = maxArchiveFiles,
                 };
 
-                var fileTarget2 = new FileTarget
-                {
-                    FileName = string.Format(logFile2, "${shortdate}"),
-                    ArchiveAboveSize = 100,
-                    LineEnding = LineEndingMode.LF,
-                    Layout = "${message}",
-                    MaxArchiveFiles = maxArchiveFiles,
-                };
-
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget1, LogLevel.Debug);
-                LoggingRule rule = new LoggingRule("*", LogLevel.Debug, fileTarget2);
-                LogManager.Configuration.LoggingRules.Add(rule);
-                LogManager.ReconfigExistingLoggers();
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                var logger1 = LogManager.GetLogger("log");
+                var logger2 = LogManager.GetLogger("log-other");
 
                 timeSource.AddToLocalTime(TimeSpan.Zero - TimeSpan.FromDays(1));
 
-                Generate100BytesLog((char)('0'));
+                Generate100BytesLog((char)('0'), logger1);
+                Generate100BytesLog((char)('0'), logger2);
                 for (int i = 0; i <= maxArchiveFiles - 3; i++)
                 {
-                    Generate100BytesLog((char)('1' + i));
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
-                        $"{string.Format(logFile1, "." + i.ToString())} is missing");
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
-                        $"{string.Format(logFile2, "." + i.ToString())} is missing");
+                    Generate100BytesLog((char)('1' + i), logger1);
+                    Generate100BytesLog((char)('1' + i), logger2);
+                    var logFile1 = string.Format(logFile, logger1.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd"));
+                    var logFile2 = string.Format(logFile, logger2.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd"));
+                    Assert.True(File.Exists(logFile1),
+                        $"{logFile1} is missing");
+                    Assert.True(File.Exists(logFile2),
+                        $"{logFile2} is missing");
+                    logFile1 = string.Format(logFile, logger1.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString());
+                    logFile2 = string.Format(logFile, logger2.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString());
+                    Assert.True(File.Exists(logFile1),
+                        $"{logFile1} is missing");
+                    Assert.True(File.Exists(logFile2),
+                        $"{logFile2} is missing");
                 }
 
                 TimeSource.Current = defaultTimeSource; // restore default time source
-                Generate100BytesLog((char)('a'));
+                Generate100BytesLog((char)('a'), logger1);
+                Generate100BytesLog((char)('a'), logger2);
                 for (int i = 0; i < maxArchiveFiles; i++)
                 {
-                    Generate100BytesLog((char)('b' + i));
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
-                        $"{string.Format(logFile1, "." + i.ToString())} is missing");
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
-                        $"{string.Format(logFile2, "." + i.ToString())} is missing");
+                    Generate100BytesLog((char)('b' + i), logger1);
+                    Generate100BytesLog((char)('b' + i), logger2);
+                    var logFile1 = string.Format(logFile, logger1.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString());
+                    var logFile2 = string.Format(logFile, logger2.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString());
+                    Assert.True(File.Exists(logFile1),
+                        $"{logFile1} is missing");
+                    Assert.True(File.Exists(logFile2),
+                        $"{logFile2} is missing");
                 }
 
                 for (int i = maxArchiveFiles; i < 10; i++)
                 {
-                    Generate100BytesLog((char)('b' + i));
+                    Generate100BytesLog((char)('b' + i), logger1);
+                    Generate100BytesLog((char)('b' + i), logger2);
                     var numberToBeRemoved = i - maxArchiveFiles;
-                    Assert.False(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + numberToBeRemoved.ToString()))),
+
+                    var logFile1 = string.Format(logFile, logger1.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + numberToBeRemoved.ToString());
+                    var logFile2 = string.Format(logFile, logger2.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + numberToBeRemoved.ToString());
+
+                    Assert.False(File.Exists(logFile1),
                         $"archive FirstFile {numberToBeRemoved} has not been removed! We are created file {i}");
-                    Assert.False(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + numberToBeRemoved.ToString()))),
+                    Assert.False(File.Exists(logFile2),
                         $"archive SecondFile {numberToBeRemoved} has not been removed! We are created file {i}");
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile1, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
-                        $"archive FirstFile {numberToBeRemoved} has not been removed! We are created file {i}");
-                    Assert.True(File.Exists(Path.Combine(tempPath, string.Format(logFile2, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString()))),
-                        $"archive SecondFile {numberToBeRemoved} has not been removed! We are created file {i}");
+
+                    logFile1 = string.Format(logFile, logger1.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString());
+                    logFile2 = string.Format(logFile, logger2.Name, TimeSource.Current.Time.Date.ToString("yyyy-MM-dd") + "." + i.ToString());
+
+                    Assert.True(File.Exists(logFile1),
+                        $"{logFile1} is missing");
+                    Assert.True(File.Exists(logFile2),
+                        $"{logFile2} is missing");
                 }
 
                 LogManager.Configuration = null;
@@ -2829,8 +2841,9 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        private void Generate100BytesLog(char c)
+        private void Generate100BytesLog(char c, ILogger logger = null)
         {
+            logger = logger ?? this.logger;
             for (var i = 0; i < 25; ++i)
             {
                 //3 chars with newlines = 4 bytes

@@ -441,7 +441,7 @@ namespace NLog.Internal.FileAppenders
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "Failed to get file creation time for file '{0}'.", appender.FileName);
-                    InvalidateAppender(appender.FileName);
+                    InvalidateAppender(appender.FileName)?.Dispose();
                     throw;
                 }
             }
@@ -471,7 +471,7 @@ namespace NLog.Internal.FileAppenders
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "Failed to get last write time for file '{0}'.", appender.FileName);
-                    InvalidateAppender(appender.FileName);
+                    InvalidateAppender(appender.FileName)?.Dispose();
                     throw;
                 }
             }
@@ -500,7 +500,7 @@ namespace NLog.Internal.FileAppenders
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "Failed to get length for file '{0}'.", appender.FileName);
-                    InvalidateAppender(appender.FileName);
+                    InvalidateAppender(appender.FileName)?.Dispose();
                     throw;
                 }
             }
