@@ -66,6 +66,8 @@ namespace NLog.Layouts
         /// </remarks>
         internal bool ThreadAgnostic { get; set; }
 
+        internal bool ThreadSafe { get; set; }
+
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
         /// </summary>
@@ -282,6 +284,7 @@ namespace NLog.Layouts
             // layout is thread agnostic if it is thread-agnostic and 
             // all its nested objects are thread-agnostic.
             ThreadAgnostic = objectGraphScannerList.All(item => item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true));
+            ThreadSafe = objectGraphScannerList.All(item => item.GetType().IsDefined(typeof(ThreadSafeAttribute), true));
 
             // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
             StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IUsesStackTrace

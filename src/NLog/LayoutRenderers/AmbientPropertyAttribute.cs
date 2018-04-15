@@ -34,7 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Designates a property of the class as an ambient property.

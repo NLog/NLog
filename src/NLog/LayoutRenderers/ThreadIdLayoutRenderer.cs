@@ -34,11 +34,15 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The identifier of the current thread.
     /// </summary>
     [LayoutRenderer("threadid")]
+    [ThreadSafe]
     public class ThreadIdLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -49,7 +53,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture needed for ints
-            Internal.StringBuilderExt.AppendInvariant(builder, Common.AsyncHelpers.GetManagedThreadId());
+            builder.AppendInvariant(AsyncHelpers.GetManagedThreadId());
         }
     }
 }

@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
-    using Internal.Fakeables;
+    using NLog.Internal.Fakeables;
     using NLog.Config;
     using NLog.Internal;
 
@@ -46,6 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("basedir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class BaseDirLayoutRenderer : LayoutRenderer
     {
         private readonly string _baseDir;

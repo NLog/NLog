@@ -36,8 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System;
     using System.ComponentModel;
     using System.Text;
-    using Common;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Replaces newline characters from the result of another layout renderer with spaces.
@@ -45,9 +44,9 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("wrapline")]
     [AmbientProperty("WrapLine")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class WrapLineLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="WrapLineLayoutRendererWrapper" /> class.
         /// </summary>
@@ -75,7 +74,6 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (WrapLine <= 0)
             {
-
                 return text;
             }
 

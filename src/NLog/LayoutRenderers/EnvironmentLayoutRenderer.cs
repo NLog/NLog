@@ -36,14 +36,15 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-    using Layouts;
-    using Config;
-    using Internal;
+    using NLog.Layouts;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The environment variable.
     /// </summary>
     [LayoutRenderer("environment")]
+    [ThreadSafe]
     public class EnvironmentLayoutRenderer : LayoutRenderer
     {
         /// <summary>

@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("level")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class LevelLayoutRenderer : LayoutRenderer
     {
         /// <summary>

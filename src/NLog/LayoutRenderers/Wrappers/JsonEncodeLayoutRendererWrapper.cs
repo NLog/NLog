@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System;
     using System.ComponentModel;
     using System.Text;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Escapes output of another layout using JSON rules.
@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("json-encode")]
     [AmbientProperty("JsonEncode")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class JsonEncodeLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>

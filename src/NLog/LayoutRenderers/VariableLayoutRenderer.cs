@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers
 {
+    using System.Collections.Generic;
     using System.Text;
-    using Config;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Render a NLog variable (xml or config)
     /// </summary>
     [LayoutRenderer("var")]
+    [ThreadSafe]
     public class VariableLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -65,7 +65,6 @@ namespace NLog.LayoutRenderers
         /// </summary>
         protected override void InitializeLayoutRenderer()
         {
-
             SimpleLayout layout;
             if (TryGetLayout(out layout) && layout != null)
             {
@@ -113,7 +112,6 @@ namespace NLog.LayoutRenderers
                 {
                     //todo in later stage also layout as values?
                     //ignore NULL, but it set, so don't use default.
-
                     if (layout != null)
                     {
                         builder.Append(layout.Render(logEvent));

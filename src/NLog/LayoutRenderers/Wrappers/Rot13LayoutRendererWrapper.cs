@@ -33,8 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using Config;
-    using Layouts;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Decodes text "encrypted" with ROT-13.
@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("rot13")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class Rot13LayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>

@@ -39,11 +39,14 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The information about the garbage collector.
     /// </summary>
     [LayoutRenderer("gc")]
+    [ThreadSafe]
     public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -68,7 +71,13 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            object value = null;
+            var formatProvider = GetFormatProvider(logEvent);
+            if (ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))
+            {
+                formatProvider = null;
+            }
+
+            long value = 0;
 
             switch (Property)
             {
@@ -92,16 +101,17 @@ namespace NLog.LayoutRenderers
                 case GarbageCollectorProperty.CollectionCount2:
                     value = GC.CollectionCount(2);
                     break;
-
 #endif
                 
                 case GarbageCollectorProperty.MaxGeneration:
                     value = GC.MaxGeneration;
                     break;
             }
-            var formatProvider = GetFormatProvider(logEvent);
 
-            builder.Append(Convert.ToString(value, formatProvider));
+            if (formatProvider == null && value >= 0 && value < uint.MaxValue)
+                builder.AppendInvariant((uint)value);
+            else
+                builder.Append(Convert.ToString(value, formatProvider ?? CultureInfo.InvariantCulture));
         }
     }
 }

@@ -46,6 +46,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("all-event-properties")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class AllEventPropertiesLayoutRenderer : LayoutRenderer
     {
         private string _format;

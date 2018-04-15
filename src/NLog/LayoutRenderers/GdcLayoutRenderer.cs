@@ -42,6 +42,7 @@ namespace NLog.LayoutRenderers
     /// Global Diagnostics Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("gdc")]
+    [ThreadSafe]
     public class GdcLayoutRenderer : LayoutRenderer
     {
         /// <summary>

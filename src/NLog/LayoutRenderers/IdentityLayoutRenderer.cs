@@ -39,11 +39,13 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Security.Principal;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// Thread identity information (name and authentication information).
     /// </summary>
     [LayoutRenderer("identity")]
+    [ThreadSafe]
     public class IdentityLayoutRenderer : LayoutRenderer
     {
         /// <summary>

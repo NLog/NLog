@@ -35,14 +35,14 @@ namespace NLog.LayoutRenderers
 {
     using System.ComponentModel;
     using System.Text;
-
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// The logger name.
     /// </summary>
     [LayoutRenderer("logger")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class LoggerNameLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -68,7 +68,7 @@ namespace NLog.LayoutRenderers
                 }
                 else
                 {
-                    builder.Append(logEvent.LoggerName.Substring(lastDot + 1));
+                    builder.Append(logEvent.LoggerName, lastDot + 1, logEvent.LoggerName.Length - lastDot - 1);
                 }
             }
             else

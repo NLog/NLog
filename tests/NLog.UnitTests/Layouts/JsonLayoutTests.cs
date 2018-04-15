@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Targets;
-
 namespace NLog.UnitTests.Layouts
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using NLog.Layouts;
+    using NLog.Targets;
     using Xunit;
 
     public class JsonLayoutTests : NLogTestBase
@@ -212,8 +212,8 @@ namespace NLog.UnitTests.Layouts
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
-            <targets>
-                <target name='debug' type='Debug'  >
+            <targets async='true'>
+                <target name='debug' type='Debug'>
                  <layout type='JsonLayout'>
                     <attribute name='type' layout='${exception:format=Type}'/>
                     <attribute name='message' layout='${exception:format=Message}'/>
@@ -232,7 +232,10 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo);
 
-            var message = GetDebugLastMessage("debug");
+            var target = LogManager.Configuration.AllTargets.OfType<DebugTarget>().First();
+            LogManager.Configuration = null;    // Flush
+
+            var message = target.LastMessage;
             Assert.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(), message);
         }
 

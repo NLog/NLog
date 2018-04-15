@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.Globalization;
     using System.Text;
     using System.Xml;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Converts the result of another layout output to be XML-compliant.
@@ -46,6 +46,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("xml-encode")]
     [AmbientProperty("XmlEncode")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
@@ -73,8 +74,13 @@ namespace NLog.LayoutRenderers.Wrappers
             return XmlEncode ? DoXmlEscape(text) : text;
         }
 
+        private static readonly char[] XmlEscapeChars = new char[] { '<', '>', '&', '\'', '"' };
+
         private static string DoXmlEscape(string text)
         {
+            if (text.Length < 4096 && text.IndexOfAny(XmlEscapeChars) < 0)
+                return text;
+
             var sb = new StringBuilder(text.Length);
 
             for (int i = 0; i < text.Length; ++i)

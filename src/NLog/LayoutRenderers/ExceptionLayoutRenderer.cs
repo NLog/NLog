@@ -48,6 +48,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("exception")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class ExceptionLayoutRenderer : LayoutRenderer
     {
         private string _format;

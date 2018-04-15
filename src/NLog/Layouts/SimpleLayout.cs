@@ -50,6 +50,7 @@ namespace NLog.Layouts
     /// </remarks>
     [Layout("SimpleLayout")]
     [ThreadAgnostic]
+    [ThreadSafe]
     [AppDomainFixedOutput]
     public class SimpleLayout : Layout, IUsesStackTrace
     {

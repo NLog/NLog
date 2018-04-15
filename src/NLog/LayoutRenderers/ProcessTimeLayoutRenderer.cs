@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("processtime")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class ProcessTimeLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -108,7 +109,7 @@ namespace NLog.LayoutRenderers
                 }
             }
 
-            builder.Append(milliseconds);
+            builder.AppendInvariant(milliseconds);
         }
     }
 }

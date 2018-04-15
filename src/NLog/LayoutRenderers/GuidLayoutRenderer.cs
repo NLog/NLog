@@ -36,11 +36,13 @@ namespace NLog.LayoutRenderers
     using System;
     using System.ComponentModel;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// Globally-unique identifier (GUID).
     /// </summary>
     [LayoutRenderer("guid")]
+    [ThreadSafe]
     public class GuidLayoutRenderer : LayoutRenderer
     {
         /// <summary>

@@ -43,6 +43,7 @@ namespace NLog.Layouts
     /// </summary>
     [Layout("CompoundLayout")]
     [ThreadAgnostic]
+    [ThreadSafe]
     [AppDomainFixedOutput]
     public class CompoundLayout : Layout
     {

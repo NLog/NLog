@@ -37,26 +37,24 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
-
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// The short date in a sortable format yyyy-MM-dd.
     /// </summary>
     [LayoutRenderer("shortdate")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class ShortDateLayoutRenderer : LayoutRenderer
     {
-
-        private static readonly DateData CachedUtcDate = new DateData();
-        private static readonly DateData CachedLocalDate = new DateData();
-
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(false)]
         public bool UniversalTime { get; set; }
+
+        private CachedDateFormatted _cachedDateFormatted = new CachedDateFormatted(DateTime.MaxValue, string.Empty);
 
         /// <summary>
         /// Renders the current short date string (yyyy-MM-dd) and appends it to the specified <see cref="StringBuilder" />.
@@ -66,41 +64,31 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var timestamp = logEvent.TimeStamp;
-
             if (UniversalTime)
             {
                 timestamp = timestamp.ToUniversalTime();
-                CachedUtcDate.AppendDate(builder, timestamp);
             }
-            else
+
+            var cachedDateFormatted = _cachedDateFormatted;
+            if (cachedDateFormatted.Date != timestamp.Date)
             {
-                CachedLocalDate.AppendDate(builder, timestamp);
+                var formatTime = timestamp.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+                _cachedDateFormatted = cachedDateFormatted = new CachedDateFormatted(timestamp.Date, formatTime);
             }
+
+            builder.Append(cachedDateFormatted.FormattedDate);
         }
 
-        private class DateData
+        private class CachedDateFormatted
         {
-            private DateTime _date;
-            private string _formattedDate;
-
-            /// <summary>
-            /// Appends a date in format yyyy-MM-dd to the StringBuilder.
-            /// The DateTime.ToString() result is cached for future uses
-            /// since it only changes once a day. This optimization yields a
-            /// performance boost of 40% and makes the renderer allocation-free
-            /// in must cases.
-            /// </summary>
-            /// <param name="builder">The <see cref="StringBuilder"/> to append the date to</param>
-            /// <param name="timestamp">The date to append</param>
-            public void AppendDate(StringBuilder builder, DateTime timestamp)
+            public CachedDateFormatted(DateTime date, string formattedDate)
             {
-                if (_formattedDate == null || _date != timestamp.Date)
-                {
-                    _date = timestamp.Date;
-                    _formattedDate = timestamp.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-                }
-                builder.Append(_formattedDate);
+                Date = date;
+                FormattedDate = formattedDate;
             }
+
+            public readonly DateTime Date;
+            public readonly string FormattedDate;
         }
     }
 }

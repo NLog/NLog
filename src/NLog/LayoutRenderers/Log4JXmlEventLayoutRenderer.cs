@@ -51,6 +51,7 @@ namespace NLog.LayoutRenderers
     /// XML event description compatible with log4j, Chainsaw and NLogViewer.
     /// </summary>
     [LayoutRenderer("log4jxmlevent")]
+    [ThreadSafe]
     public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace, IIncludeContext
     {
         private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
@@ -260,7 +261,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeSafeString("logger", LoggerName != null ? LoggerName.Render(logEvent) : logEvent.LoggerName);
                 xtw.WriteAttributeSafeString("level", logEvent.Level.Name.ToUpperInvariant());
                 xtw.WriteAttributeSafeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
-                xtw.WriteAttributeSafeString("thread", Common.AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeSafeString("thread", AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
 
                 xtw.WriteElementSafeString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
                 if (logEvent.Exception != null)
@@ -335,6 +336,7 @@ namespace NLog.LayoutRenderers
             {
                 ndcContent = string.Join(NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages());
             }
+
 #if !SILVERLIGHT
             if (IncludeNdlc)
             {

@@ -46,6 +46,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </example>
     [LayoutRenderer("replace")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class ReplaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         private Regex _regex;

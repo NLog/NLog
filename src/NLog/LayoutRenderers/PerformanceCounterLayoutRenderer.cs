@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Globalization;
     using System.Text;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// The performance counter.
