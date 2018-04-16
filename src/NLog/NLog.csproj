@@ -32,20 +32,19 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-
-
-Features:
-
-- [#2648] ${processtime} and ${time} added invariant option (@snakefoot)
-
 Fixes:
 
-- [#2643] UWP with NetStandard2 on Net Native does not support Assembly.CodeBase + Handle native methods in StackTrace (#2643) (@snakefoot)
-- [#2644] FallbackGroupTarget: handle async state on fallback correctly (@snakefoot)
+- [#2662](https://github.com/nlog/nlog/pull/2662) FileTarget - Improve handling of archives with multiple active files (@snakefoot)
 
-Performance
-- [#2645] Minor performance optimization of some layoutrenderers (@snakefoot)
-- [#2642] FileTarget - InitializeFile should skip dictionary lookup when same file (@snakefoot)
+Enhancements:
+
+- [#2587](https://github.com/nlog/nlog/pull/2587) Internal Log - Include target type and target name in the log messages (@snakefoot)
+- [#2651](https://github.com/nlog/nlog/pull/2651) Searching for NLog Extension Files should handle DirectoryNotFoundException  (@snakefoot)
+
+Performance:
+
+- [#2653](https://github.com/nlog/nlog/pull/2653) LayoutRenderer ThreadSafe Attribute introduced to allow lock free Precalculate + other small performance improvements (@snakefoot)
+
 
 
 for full changelog, check https://github.com/NLog/NLog/blob/master/CHANGELOG.md
