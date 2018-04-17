@@ -115,7 +115,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WrongClassDontThrow()
         {
-            TestMethodCall(null, "StaticAndPublic", "NLog.UnitTests222.Targets.CallTest, NLog.UnitTests");
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "StaticAndPublic", "NLog.UnitTests222.Targets.CallTest, NLog.UnitTests");
+            }
         }
 
         [Fact]
