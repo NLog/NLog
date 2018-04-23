@@ -98,6 +98,63 @@ namespace NLog.Internal
         }
 #endif
 
+        private static readonly char[] XmlEscapeChars = new char[] { '<', '>', '&', '\'', '"' };
+        private static readonly char[] XmlEscapeNewlineChars = new char[] { '<', '>', '&', '\'', '"', '\r', '\n' };
+
+        internal static string EscapeXmlString(string text, bool xmlEncodeNewlines, StringBuilder result = null)
+        {
+            if (result == null && text.Length < 4096 && text.IndexOfAny(xmlEncodeNewlines ? XmlEscapeNewlineChars : XmlEscapeChars) < 0)
+                return text;
+
+            var sb = result ?? new StringBuilder(text.Length);
+            for (int i = 0; i < text.Length; ++i)
+            {
+                switch (text[i])
+                {
+                    case '<':
+                        sb.Append("&lt;");
+                        break;
+
+                    case '>':
+                        sb.Append("&gt;");
+                        break;
+
+                    case '&':
+                        sb.Append("&amp;");
+                        break;
+
+                    case '\'':
+                        sb.Append("&apos;");
+                        break;
+
+                    case '"':
+                        sb.Append("&quot;");
+                        break;
+
+                    case '\r':
+                        if (xmlEncodeNewlines)
+                            sb.Append("&#13;");
+                        else
+                            sb.Append(text[i]);
+                        break;
+
+                    case '\n':
+                        if (xmlEncodeNewlines)
+                            sb.Append("&#10;");
+                        else
+                            sb.Append(text[i]);
+                        break;
+
+                    default:
+                        sb.Append(text[i]);
+                        break;
+                }
+            }
+
+            return result == null ? sb.ToString() : null;
+        }
+
+
         /// <summary>
         /// Converts object value to invariant format, and strips any invalid xml-characters
         /// </summary>
@@ -105,8 +162,8 @@ namespace NLog.Internal
         /// <returns>Object value converted to string</returns>
         internal static string XmlConvertToStringSafe(object value)
         {
-            string valueString = XmlConvertToString(value);
-            return RemoveInvalidXmlChars(valueString);
+            TypeCode objTypeCode = Convert.GetTypeCode(value);
+            return XmlConvertToString(value, objTypeCode, true);
         }
 
         /// <summary>
@@ -117,7 +174,108 @@ namespace NLog.Internal
         internal static string XmlConvertToString(object value)
         {
             TypeCode objTypeCode = Convert.GetTypeCode(value);
-            return XmlConvertToString(value, objTypeCode);
+            return XmlConvertToString(value, objTypeCode, false);
+        }
+
+        /// <summary>
+        /// XML elements must follow these naming rules:
+        ///  - Element names are case-sensitive
+        ///  - Element names must start with a letter or underscore
+        ///  - Element names cannot start with the letters xml(or XML, or Xml, etc)
+        ///  - Element names can contain letters, digits, hyphens, underscores, and periods
+        ///  - Element names cannot contain spaces
+        /// </summary>
+        /// <param name="xmlElementName"></param>
+        /// <param name="allowNamespace"></param>
+        internal static string XmlConvertToElementName(string xmlElementName, bool allowNamespace)
+        {
+            if (string.IsNullOrEmpty(xmlElementName))
+                return xmlElementName;
+
+            xmlElementName = RemoveInvalidXmlChars(xmlElementName);
+
+            StringBuilder sb = null;
+            for (int i = 0; i < xmlElementName.Length; ++i)
+            {
+                char chr = xmlElementName[i];
+                if (char.IsLetter(chr))
+                {
+                    if (i == 0 && (chr == 'x' || chr == 'X') && xmlElementName.Length >= 3)
+                    {
+                        if (char.ToLowerInvariant(xmlElementName[1]) == 'm' && char.ToLowerInvariant(xmlElementName[2]) == 'l')
+                        {
+                            sb = new StringBuilder(xmlElementName.Length + 1);
+                            sb.Append('_'); // Prefix with underscore
+                            sb.Append(chr);
+                            continue;
+                        }
+                    }
+                    sb?.Append(chr);
+                    continue;
+                }
+
+                if (i == 0)
+                {
+                    if (chr == '_')
+                    {
+                        sb?.Append(chr);
+                        continue;
+                    }
+                }
+                else
+                {
+                    switch (chr)
+                    {
+                        case ':':   // namespace-delimeter
+                            if (allowNamespace)
+                            {
+                                allowNamespace = false;
+                                continue;
+                            }
+                            break;
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                        case '-':
+                        case '_':
+                        case '.':
+                            {
+                                sb?.Append(chr);
+                                continue;
+                            }
+                    }
+                }
+
+                if (sb == null)
+                {
+                    sb = new StringBuilder(xmlElementName.Length);
+                    if (i > 1)
+                        sb.Append(xmlElementName, 0, i - 1);
+                    if (i == 0 && char.IsWhiteSpace(chr))
+                    {
+                        for (; i < xmlElementName.Length - 1; ++i)
+                        {
+                            if (!char.IsWhiteSpace(xmlElementName[i + 1]))
+                                break;
+                        }
+                        continue;
+                    }
+                }
+                sb.Append('_');
+            }
+
+            if (sb != null)
+            {
+                sb.TrimRight();
+            }
+            return sb?.ToString() ?? xmlElementName;
         }
 
         /// <summary>
@@ -125,8 +283,9 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="value">Object value</param>
         /// <param name="objTypeCode">Object TypeCode</param>
+        /// <param name="safeConversion">Object TypeCode</param>
         /// <returns>Object value converted to string</returns>
-        internal static string XmlConvertToString(object value, TypeCode objTypeCode)
+        internal static string XmlConvertToString(object value, TypeCode objTypeCode, bool safeConversion = false)
         {
             if (value == null)
             {
@@ -176,11 +335,12 @@ namespace NLog.Internal
                 case TypeCode.Char:
                     return XmlConvert.ToString((char)value);
                 case TypeCode.String:
-                    return (string)value;
+                    return safeConversion ? RemoveInvalidXmlChars((string)value) : (string)value;
                 default:
                     try
                     {
-                        return Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture);
+                        string valueString = Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture);
+                        return safeConversion ? RemoveInvalidXmlChars(valueString) : valueString;
                     }
                     catch
                     {
@@ -206,14 +366,12 @@ namespace NLog.Internal
         /// Safe version of WriteAttributeString
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="thread"></param>
         /// <param name="localName"></param>
-        public static void WriteAttributeSafeString(this XmlWriter writer, string thread, string localName)
+        /// <param name="value"></param>
+        public static void WriteAttributeSafeString(this XmlWriter writer, string localName, string value)
         {
-            writer.WriteAttributeString(RemoveInvalidXmlChars(thread), RemoveInvalidXmlChars(localName));
+            writer.WriteAttributeString(RemoveInvalidXmlChars(localName), RemoveInvalidXmlChars(value));
         }
-
-
 
         /// <summary>
         /// Safe version of WriteElementSafeString

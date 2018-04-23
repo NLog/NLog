@@ -33,12 +33,10 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using System;
     using System.ComponentModel;
-    using System.Globalization;
     using System.Text;
-    using System.Xml;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Converts the result of another layout output to be XML-compliant.
@@ -47,7 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("XmlEncode")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlEncodeLayoutRendererWrapper" /> class.
@@ -65,55 +63,48 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool XmlEncode { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to tranform newlines (\r\n) into (&#13;&#10;)
+        /// </summary>
+        [DefaultValue(false)]
+        public bool XmlEncodeNewlines { get; set; }
+
+        /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Padded and trimmed string.</returns>
-        protected override string Transform(string text)
+        /// <param name="target">The text to be post-processed.</param>
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            return XmlEncode ? DoXmlEscape(text) : text;
-        }
+            if (!XmlEncode)
+                return;
 
-        private static readonly char[] XmlEscapeChars = new char[] { '<', '>', '&', '\'', '"' };
-
-        private static string DoXmlEscape(string text)
-        {
-            if (text.Length < 4096 && text.IndexOfAny(XmlEscapeChars) < 0)
-                return text;
-
-            var sb = new StringBuilder(text.Length);
-
-            for (int i = 0; i < text.Length; ++i)
+            for (int i = 0; i < target.Length; ++i)
             {
-                switch (text[i])
+                switch (target[i])
                 {
                     case '<':
-                        sb.Append("&lt;");
-                        break;
-
                     case '>':
-                        sb.Append("&gt;");
-                        break;
-
                     case '&':
-                        sb.Append("&amp;");
-                        break;
-
                     case '\'':
-                        sb.Append("&apos;");
-                        break;
-
                     case '"':
-                        sb.Append("&quot;");
-                        break;
-
-                    default:
-                        sb.Append(text[i]);
-                        break;
+                        {
+                            string escapeString = target.ToString();
+                            target.Length = 0;
+                            XmlHelper.EscapeXmlString(escapeString, XmlEncodeNewlines, target);
+                            return;
+                        }
+                    case '\r':
+                    case '\n':
+                        {
+                            if (XmlEncodeNewlines)
+                            {
+                                string escapeString = target.ToString();
+                                target.Length = 0;
+                                XmlHelper.EscapeXmlString(escapeString, true, target);
+                                return;
+                            }
+                        } break;
                 }
             }
-
-            return sb.ToString();
         }
     }
 }

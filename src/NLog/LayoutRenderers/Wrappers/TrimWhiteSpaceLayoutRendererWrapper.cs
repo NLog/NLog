@@ -37,6 +37,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Trims the whitespace from the result of another layout renderer.
