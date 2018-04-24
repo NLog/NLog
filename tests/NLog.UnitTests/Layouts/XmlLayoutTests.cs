@@ -95,9 +95,9 @@ namespace NLog.UnitTests.Layouts
             MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
 
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", null, null, "some message");
-            logEventInfo.Properties["nlogPropertyKey"] = "<nlogPropertyValue>";
+            logEventInfo.Properties["nlogPropertyKey"] = "<nlog\r\nPropertyValue>";
 
-            Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:data name=""foo1"" value=""bar1"" /><log4j:data name=""foo2"" value=""bar2"" /><log4j:data name=""foo3"" value=""bar3"" /><log4j:data name=""nlogPropertyKey"" value=""&lt;nlogPropertyValue&gt;"" /></log4j:event>", xmlLayout.Render(logEventInfo));
+            Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:data name=""foo1"" value=""bar1"" /><log4j:data name=""foo2"" value=""bar2"" /><log4j:data name=""foo3"" value=""bar3"" /><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;"" /></log4j:event>", xmlLayout.Render(logEventInfo));
         }
     }
 }
