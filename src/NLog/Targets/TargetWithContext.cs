@@ -108,7 +108,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
-        public virtual IList<TargetPropertyWithContext> ContextProperties { get; }
+        public virtual IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
 
         /// <summary>
         /// Constructor
