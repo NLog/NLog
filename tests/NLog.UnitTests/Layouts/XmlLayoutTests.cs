@@ -37,7 +37,7 @@ namespace NLog.UnitTests.Layouts
     using NLog.Layouts;
     using Xunit;
 
-    public class XmlLayoutTests
+    public class XmlLayoutTests : NLogTestBase
     {
         [Fact]
         public void XmlLayoutRendering()
@@ -66,27 +66,25 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void XmlLayoutLog4j()
         {
-            var xmlLayout = new XmlLayout()
-            {
-                NodeName = "log4j:event",
-                Attributes =
-                    {
-                        new XmlAttribute("logger", "${logger}") { IncludeEmptyValue = true },
-                        new XmlAttribute("level", "${uppercase:${level}}") { IncludeEmptyValue = true },
-                    },
-                Nodes = 
-                    {
-                        new XmlLayout("log4j:message", "${message}"),
-                        new XmlLayout("log4j:throwable", "${exception:format=tostring}"),
-                        new XmlLayout("log4j:locationInfo", null) { Attributes = { new XmlAttribute("class", "${callsite:methodName=false}") { IncludeEmptyValue = true } } },
-                    },
-            };
-            xmlLayout.PropertiesNodeName = "log4j:data";
-            xmlLayout.PropertiesNodeKeyAttribute = "name=\"{0}\"";
-            xmlLayout.PropertiesNodeValueAttribute = "value=\"{0}\"";
-            xmlLayout.IncludeAllProperties = true;
-            xmlLayout.IncludeMdc = true;
-            xmlLayout.IncludeMdlc = true;
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='debug'>
+                            <layout type='xmllayout' nodeName='log4j:event' propertiesNodeName='log4j:data' propertiesNodeKeyAttribute='name=&quot;{0}&quot;' propertiesNodeValueAttribute='value=&quot;{0}&quot;' includeAllProperties='true' includeMdc='true' includeMdlc='true' >
+                                <attribute name='logger' layout='${logger}' includeEmptyValue='true' />
+                                <attribute name='level' layout='${uppercase:${level}}' includeEmptyValue='true' />
+                                <node nodeName='log4j:message' nodeValue='${message}' />
+                                <node nodeName='log4j:throwable' nodeValue='${exception:format=tostring}' />
+                                <node nodeName='log4j:locationInfo'>
+                                    <attribute name='class' layout='${callsite:methodName=false}' includeEmptyValue='true' />
+                                </node>
+                            </layout>
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' minlevel='debug' appendto='debug' />
+                    </rules>
+                </nlog>");
 
             MappedDiagnosticsContext.Clear();
             MappedDiagnosticsContext.Set("foo1", "bar1");
@@ -95,10 +93,14 @@ namespace NLog.UnitTests.Layouts
             MappedDiagnosticsLogicalContext.Clear();
             MappedDiagnosticsLogicalContext.Set("foo3", "bar3");
 
+            var logger = LogManager.GetLogger("hello");
+
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", null, null, "some message");
             logEventInfo.Properties["nlogPropertyKey"] = "<nlog\r\nPropertyValue>";
+            logger.Log(logEventInfo);
 
-            Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:locationInfo class="""" /><log4j:data name=""foo1"" value=""bar1"" /><log4j:data name=""foo2"" value=""bar2"" /><log4j:data name=""foo3"" value=""bar3"" /><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;"" /></log4j:event>", xmlLayout.Render(logEventInfo));
+            var target = LogManager.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
+            Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:locationInfo class=""NLog.UnitTests.Layouts.XmlLayoutTests"" /><log4j:data name=""foo1"" value=""bar1"" /><log4j:data name=""foo2"" value=""bar2"" /><log4j:data name=""foo3"" value=""bar3"" /><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;"" /></log4j:event>", target.LastMessage);
         }
     }
 }

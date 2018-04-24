@@ -33,6 +33,7 @@
 
 namespace NLog.Layouts
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
@@ -195,14 +196,25 @@ namespace NLog.Layouts
                 ThreadAgnostic = false;
             }
 #endif
-        }
-
-        /// <summary>
-        /// Closes the layout.
-        /// </summary>
-        protected override void CloseLayout()
-        {
-            base.CloseLayout();
+            if (Attributes.Count > 1)
+            {
+                HashSet<string> attributeValidator = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var attribute in Attributes)
+                {
+                    if (string.IsNullOrEmpty(attribute.Name))
+                    {
+                        Common.InternalLogger.Warn("XmlLayout(NodeName={0}): Contains attribute with missing name (Ignored)");
+                    }
+                    else if (attributeValidator.Contains(attribute.Name))
+                    {
+                        Common.InternalLogger.Warn("XmlLayout(NodeName={0}): Contains duplicate attribute name: {1} (Invalid xml)", NodeName, attribute.Name);
+                    }
+                    else
+                    {
+                        attributeValidator.Add(attribute.Name);
+                    }
+                }
+            }
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
@@ -471,6 +483,22 @@ namespace NLog.Layouts
             sb.Append("</");
             sb.Append(xmlName);
             sb.Append('>');
+        }
+
+        /// <summary>
+        /// Generate description of XML Layout
+        /// </summary>
+        /// <returns>XML Layout String Description</returns>
+        public override string ToString()
+        {
+            if (Nodes.Count > 0)
+                return ToStringWithNestedItems(Nodes, l => l.ToString());
+            else if (Attributes.Count > 0)
+                return ToStringWithNestedItems(Attributes, a => "Attrib:" + a.Name);
+            else if (NodeName != null)
+                return ToStringWithNestedItems(new[] { this }, n => "Node:" + n.NodeName);
+            else
+                return GetType().Name;
         }
     }
 }
