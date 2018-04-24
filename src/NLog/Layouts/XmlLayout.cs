@@ -124,10 +124,12 @@ namespace NLog.Layouts
         /// <remarks>
         /// Support string-format where {0} means property-key-name
         /// 
-        /// Skips closing element tag when having configured <see cref="PropertiesFormatValueAttribute"/>
+        /// Skips closing element tag when having configured <see cref="PropertiesNodeValueAttribute"/>
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        public string PropertiesFormatElementName { get; set; } = "property";
+        public string PropertiesNodeName { get { return _propertiesNodeName; } set { _propertiesNodeName = value; _propertiesNodeNameFormat = value?.IndexOf('{') >= 0; } }
+        private string _propertiesNodeName = "property";
+        private bool _propertiesNodeNameFormat;
 
         /// <summary>
         /// XML attribute format to use when rendering property-key
@@ -138,7 +140,7 @@ namespace NLog.Layouts
         /// Replaces newlines with underscore (_)
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        public string PropertiesFormatKeyAttribute { get; set; } = "key=\"{0}\"";
+        public string PropertiesNodeKeyAttribute { get; set; } = "key=\"{0}\"";
 
         /// <summary>
         /// XML attribute format to use when rendering property-value
@@ -153,7 +155,7 @@ namespace NLog.Layouts
         /// Skips closing element tag when using attribute for value
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        public string PropertiesFormatValueAttribute { get; set; }
+        public string PropertiesNodeValueAttribute { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLayout"/> class.
@@ -219,8 +221,9 @@ namespace NLog.Layouts
             RenderXmlFormattedMessage(logEvent, target);
             if (target.Length == orgLength && IncludeEmptyValue && !string.IsNullOrEmpty(NodeName))
             {
-                BeginXmlDocument(target, NodeName);
-                EndXmlDocument(target, NodeName);
+                target.Append('<');
+                target.Append(NodeName);
+                target.Append("/>");
             }
         }
 
@@ -252,10 +255,27 @@ namespace NLog.Layouts
                 }
                 if (sb.Length != orgLength)
                 {
-                    sb.Append('>');
-                    if (IndentXml)
-                        sb.AppendLine();
+                    bool hasNodes = 
+                        NodeValue != null ||
+                        Nodes.Count > 0 ||
+                        IncludeMdc ||
+#if !SILVERLIGHT
+                        IncludeMdlc ||
+#endif
+                        (IncludeAllProperties && logEvent.HasProperties);
+                    if (!hasNodes)
+                    {
+                        sb.Append(" />");
+                        return;
+                    }
+                    else
+                    {
+                        sb.Append('>');
+                        if (IndentXml)
+                            sb.AppendLine();
+                    }
                 }
+
                 if (NodeValue != null)
                 {
                     int beforeNodeLength = sb.Length;
@@ -331,12 +351,12 @@ namespace NLog.Layouts
 
         private void AppendXmlPropertyValue(string propName, object propertyValue, StringBuilder sb, bool beginXmlDocument)
         {
-            if (string.IsNullOrEmpty(PropertiesFormatElementName))
+            if (string.IsNullOrEmpty(PropertiesNodeName))
                 return; // Not supported
 
-            string xmlKeyString = XmlHelper.XmlConvertToElementName(propName?.Trim(), false);
-            if (string.IsNullOrEmpty(xmlKeyString))
-                return;
+            propName = propName?.Trim();
+            if (string.IsNullOrEmpty(propName))
+                return; // Not supported
 
             if (beginXmlDocument && !string.IsNullOrEmpty(NodeName))
             {
@@ -346,21 +366,31 @@ namespace NLog.Layouts
             if (IndentXml && !string.IsNullOrEmpty(NodeName))
                 sb.Append("  ");
 
-            string xmlValueString = XmlHelper.XmlConvertToStringSafe(propertyValue);
-
             sb.Append('<');
-            sb.AppendFormat(PropertiesFormatElementName, xmlKeyString);
-            if (!string.IsNullOrEmpty(PropertiesFormatKeyAttribute))
+            string propNameElement = null;
+            if (_propertiesNodeNameFormat)
             {
-                sb.Append(' ');
-                sb.AppendFormat(PropertiesFormatKeyAttribute, xmlKeyString);
+                propNameElement = XmlHelper.XmlConvertToStringSafe(propName);
+                sb.AppendFormat(PropertiesNodeName, propNameElement);
+            }
+            else
+            {
+                sb.Append(PropertiesNodeName);
             }
 
-            if (!string.IsNullOrEmpty(PropertiesFormatValueAttribute))
+            if (!string.IsNullOrEmpty(PropertiesNodeKeyAttribute))
+            {
+                string propNameAttribute = ReferenceEquals(propName, propNameElement) ? propName : XmlHelper.EscapeXmlString(propName, true);
+                sb.Append(' ');
+                sb.AppendFormat(PropertiesNodeKeyAttribute, propNameAttribute);
+            }
+
+            string xmlValueString = XmlHelper.XmlConvertToStringSafe(propertyValue);
+            if (!string.IsNullOrEmpty(PropertiesNodeValueAttribute))
             {
                 xmlValueString = XmlHelper.EscapeXmlString(xmlValueString, true);
                 sb.Append(' ');
-                sb.AppendFormat(PropertiesFormatValueAttribute, xmlValueString);
+                sb.AppendFormat(PropertiesNodeValueAttribute, xmlValueString);
                 sb.Append(" />");
             }
             else
@@ -368,7 +398,10 @@ namespace NLog.Layouts
                 sb.Append('>');
                 XmlHelper.EscapeXmlString(xmlValueString, false, sb);
                 sb.Append("</");
-                sb.AppendFormat(PropertiesFormatElementName, xmlKeyString);
+                if (_propertiesNodeNameFormat)
+                    sb.AppendFormat(PropertiesNodeName, propNameElement);
+                else
+                    sb.AppendFormat(PropertiesNodeName, PropertiesNodeName);
                 sb.Append('>');
             }
             if (IndentXml)

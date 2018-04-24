@@ -77,12 +77,13 @@ namespace NLog.UnitTests.Layouts
                 Nodes = 
                     {
                         new XmlLayout("log4j:message", "${message}"),
-                        new XmlLayout("log4j:throwable", "${exception:format=tostring}") { IncludeEmptyValue = false },
+                        new XmlLayout("log4j:throwable", "${exception:format=tostring}"),
+                        new XmlLayout("log4j:locationInfo", null) { Attributes = { new XmlAttribute("class", "${callsite:methodName=false}") { IncludeEmptyValue = true } } },
                     },
             };
-            xmlLayout.PropertiesFormatElementName = "log4j:data";
-            xmlLayout.PropertiesFormatKeyAttribute = "name=\"{0}\"";
-            xmlLayout.PropertiesFormatValueAttribute = "value=\"{0}\"";
+            xmlLayout.PropertiesNodeName = "log4j:data";
+            xmlLayout.PropertiesNodeKeyAttribute = "name=\"{0}\"";
+            xmlLayout.PropertiesNodeValueAttribute = "value=\"{0}\"";
             xmlLayout.IncludeAllProperties = true;
             xmlLayout.IncludeMdc = true;
             xmlLayout.IncludeMdlc = true;
@@ -97,7 +98,7 @@ namespace NLog.UnitTests.Layouts
             var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "A", null, null, "some message");
             logEventInfo.Properties["nlogPropertyKey"] = "<nlog\r\nPropertyValue>";
 
-            Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:data name=""foo1"" value=""bar1"" /><log4j:data name=""foo2"" value=""bar2"" /><log4j:data name=""foo3"" value=""bar3"" /><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;"" /></log4j:event>", xmlLayout.Render(logEventInfo));
+            Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:locationInfo class="""" /><log4j:data name=""foo1"" value=""bar1"" /><log4j:data name=""foo2"" value=""bar2"" /><log4j:data name=""foo3"" value=""bar3"" /><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;"" /></log4j:event>", xmlLayout.Render(logEventInfo));
         }
     }
 }

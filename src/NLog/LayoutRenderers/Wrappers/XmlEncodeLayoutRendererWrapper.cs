@@ -86,24 +86,20 @@ namespace NLog.LayoutRenderers.Wrappers
                     case '&':
                     case '\'':
                     case '"':
-                        {
-                            string escapeString = target.ToString();
-                            target.Length = 0;
-                            XmlHelper.EscapeXmlString(escapeString, XmlEncodeNewlines, target);
-                            return;
-                        }
+                        break;
                     case '\r':
                     case '\n':
-                        {
-                            if (XmlEncodeNewlines)
-                            {
-                                string escapeString = target.ToString();
-                                target.Length = 0;
-                                XmlHelper.EscapeXmlString(escapeString, true, target);
-                                return;
-                            }
-                        } break;
+                        if (XmlEncodeNewlines)
+                            break;
+                        continue;
+                    default:
+                        continue;
                 }
+
+                string escapeString = target.ToString();
+                target.Length = 0;
+                XmlHelper.EscapeXmlString(escapeString, XmlEncodeNewlines, target);
+                return;
             }
         }
     }
