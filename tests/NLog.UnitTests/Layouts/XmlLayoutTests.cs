@@ -70,7 +70,7 @@ namespace NLog.UnitTests.Layouts
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='debug'>
-                            <layout type='xmllayout' nodeName='log4j:event' propertiesNodeName='log4j:data' propertiesNodeKeyAttribute='name=&quot;{0}&quot;' propertiesNodeValueAttribute='value=&quot;{0}&quot;' includeAllProperties='true' includeMdc='true' includeMdlc='true' >
+                            <layout type='xmllayout' nodeName='log4j:event' propertiesNodeName='log4j:data' propertiesNodeKeyAttribute='name' propertiesNodeValueAttribute='value' includeAllProperties='true' includeMdc='true' includeMdlc='true' >
                                 <attribute name='logger' layout='${logger}' includeEmptyValue='true' />
                                 <attribute name='level' layout='${uppercase:${level}}' includeEmptyValue='true' />
                                 <node nodeName='log4j:message' nodeValue='${message}' />
@@ -100,7 +100,7 @@ namespace NLog.UnitTests.Layouts
             logger.Log(logEventInfo);
 
             var target = LogManager.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
-            Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:locationInfo class=""NLog.UnitTests.Layouts.XmlLayoutTests"" /><log4j:data name=""foo1"" value=""bar1"" /><log4j:data name=""foo2"" value=""bar2"" /><log4j:data name=""foo3"" value=""bar3"" /><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;"" /></log4j:event>", target.LastMessage);
+            Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:locationInfo class=""NLog.UnitTests.Layouts.XmlLayoutTests""/><log4j:data name=""foo1"" value=""bar1""/><log4j:data name=""foo2"" value=""bar2""/><log4j:data name=""foo3"" value=""bar3""/><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;""/></log4j:event>", target.LastMessage);
         }
     }
 }

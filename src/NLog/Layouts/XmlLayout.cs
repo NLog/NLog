@@ -136,12 +136,10 @@ namespace NLog.Layouts
         /// XML attribute format to use when rendering property-key
         /// </summary>
         /// <remarks>
-        /// Support string-format where {0} means property-key-name
-        /// 
-        /// Replaces newlines with underscore (_)
+        /// Replaces newlines with &#13;&#10;
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        public string PropertiesNodeKeyAttribute { get; set; } = "key=\"{0}\"";
+        public string PropertiesNodeKeyAttribute { get; set; } = "key";
 
         /// <summary>
         /// XML attribute format to use when rendering property-value
@@ -149,8 +147,6 @@ namespace NLog.Layouts
         /// When null (or empty) then value is formatted as XML-element-value
         /// </summary>
         /// <remarks>
-        /// Support string-format where {0} means property-value
-        /// 
         /// Replaces newlines with &#13;&#10;
         /// 
         /// Skips closing element tag when using attribute for value
@@ -277,7 +273,7 @@ namespace NLog.Layouts
                         (IncludeAllProperties && logEvent.HasProperties);
                     if (!hasNodes)
                     {
-                        sb.Append(" />");
+                        sb.Append("/>");
                         return;
                     }
                     else
@@ -392,18 +388,22 @@ namespace NLog.Layouts
 
             if (!string.IsNullOrEmpty(PropertiesNodeKeyAttribute))
             {
-                string propNameAttribute = ReferenceEquals(propName, propNameElement) ? propName : XmlHelper.EscapeXmlString(propName, true);
                 sb.Append(' ');
-                sb.AppendFormat(PropertiesNodeKeyAttribute, propNameAttribute);
+                sb.Append(PropertiesNodeKeyAttribute);
+                sb.Append("=\"");
+                XmlHelper.EscapeXmlString(propName, true, sb);
+                sb.Append('\"');
             }
 
             string xmlValueString = XmlHelper.XmlConvertToStringSafe(propertyValue);
             if (!string.IsNullOrEmpty(PropertiesNodeValueAttribute))
             {
-                xmlValueString = XmlHelper.EscapeXmlString(xmlValueString, true);
                 sb.Append(' ');
-                sb.AppendFormat(PropertiesNodeValueAttribute, xmlValueString);
-                sb.Append(" />");
+                sb.Append(PropertiesNodeValueAttribute);
+                sb.Append("=\"");
+                XmlHelper.EscapeXmlString(xmlValueString, true, sb);
+                sb.Append('\"');
+                sb.Append("/>");
             }
             else
             {
