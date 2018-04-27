@@ -363,11 +363,11 @@ namespace NLog.Targets
                     throw new NLogConfigurationException($"Connection string '{ConnectionStringName}' is not declared in <connectionStrings /> section.");
                 }
 
-                ConnectionString = SimpleLayout.Escape(cs.ConnectionString);
-                if (!string.IsNullOrEmpty(cs.ProviderName))
+                if (!string.IsNullOrEmpty(cs.ConnectionString?.Trim()))
                 {
-                    providerName = cs.ProviderName;
+                    ConnectionString = SimpleLayout.Escape(cs.ConnectionString.Trim());
                 }
+                providerName = cs.ProviderName?.Trim() ?? string.Empty;
             }
 #endif
 
@@ -383,7 +383,7 @@ namespace NLog.Targets
                         if (dbConnectionStringBuilder.TryGetValue("provider", out var providerValue))
                         {
                             // Provider was overriden by ConnectionString
-                            providerName = providerValue.ToString();
+                            providerName = providerValue.ToString()?.Trim() ?? string.Empty;
                         }
 
                         // ConnectionString was overriden by ConnectionString :)
@@ -392,34 +392,63 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
+#if !NETSTANDARD
+                    if (!string.IsNullOrEmpty(ConnectionStringName))
+                        InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
+                    else
+#endif
+                        InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
                 }
             }
 
 #if !NETSTANDARD
             if (string.IsNullOrEmpty(providerName))
             {
-                foreach (DataRow row in DbProviderFactories.GetFactoryClasses().Rows)
+                string dbProvider = DBProvider?.Trim() ?? string.Empty;
+                if (!string.IsNullOrEmpty(dbProvider))
                 {
-                    var invariantname = (string)row["InvariantName"];
-                    if (invariantname == DBProvider)
+                    foreach (DataRow row in DbProviderFactories.GetFactoryClasses().Rows)
                     {
-                        providerName = DBProvider;
-                        break;
+                        var invariantname = (string)row["InvariantName"];
+                        if (string.Equals(invariantname, dbProvider, StringComparison.OrdinalIgnoreCase))
+                        {
+                            providerName = invariantname;
+                            break;
+                        }
                     }
                 }
             }
 
             if (!string.IsNullOrEmpty(providerName))
             {
-                ProviderFactory = DbProviderFactories.GetFactory(providerName);
-                foundProvider = true;
+                try
+                {
+                    ProviderFactory = DbProviderFactories.GetFactory(providerName);
+                    foundProvider = true;
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): DbProviderFactories failed to get factory from ProviderName={1}", Name, providerName);
+                    throw;
+                }
             }
 #endif
 
             if (!foundProvider)
             {
-                SetConnectionType();
+                try
+                {
+                    SetConnectionType();
+                    if (ConnectionType == null)
+                    {
+                        InternalLogger.Warn("DatabaseTarget(Name={0}): No ConnectionType created from DBProvider={1}", Name, DBProvider);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): Failed to create ConnectionType from DBProvider={1}", Name, DBProvider);
+                    throw;
+                }
             }
         }
 
@@ -792,8 +821,6 @@ namespace NLog.Targets
 
             public void Complete() { }
 
-        #region Implementation of IDisposable
-
             /// <summary>
             ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             /// </summary>
@@ -801,8 +828,6 @@ namespace NLog.Targets
             {
 
             }
-
-        #endregion
         }
 
         /// <summary>
