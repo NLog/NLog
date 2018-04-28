@@ -95,6 +95,68 @@ namespace NLog.Internal.NetworkSenders
             }
 
 #if !SILVERLIGHT
+#if !NETSTANDARD1_0
+            if (url.StartsWith("ssl://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new TcpNetworkSender(url, AddressFamily.Unspecified)
+                {
+                    MaxQueueSize = maxQueueSize,
+                    SslProtocols = System.Security.Authentication.SslProtocols.Default,    // Use the default protocol from System.Net.ServicePointManager.SecurityProtocol
+                };
+            }
+
+            if (url.StartsWith("ssl2://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new TcpNetworkSender(url, AddressFamily.Unspecified)
+                {
+                    MaxQueueSize = maxQueueSize,
+#pragma warning disable 618
+                    SslProtocols = System.Security.Authentication.SslProtocols.Ssl2,
+#pragma warning restore 618
+                };
+            }
+
+            if (url.StartsWith("ssl3://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new TcpNetworkSender(url, AddressFamily.Unspecified)
+                {
+                    MaxQueueSize = maxQueueSize,
+#pragma warning disable 618
+                    SslProtocols = System.Security.Authentication.SslProtocols.Ssl3,
+#pragma warning restore 618
+                };
+            }
+
+            if (url.StartsWith("tls://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new TcpNetworkSender(url, AddressFamily.Unspecified)
+                {
+                    MaxQueueSize = maxQueueSize,
+                    SslProtocols = System.Security.Authentication.SslProtocols.Tls,
+                };
+            }
+
+#if NET4_5
+            if (url.StartsWith("tls11://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new TcpNetworkSender(url, AddressFamily.Unspecified)
+                {
+                    MaxQueueSize = maxQueueSize,
+                    SslProtocols = System.Security.Authentication.SslProtocols.Tls11,
+                };
+            }
+
+            if (url.StartsWith("tls12://", StringComparison.OrdinalIgnoreCase))
+            {
+                return new TcpNetworkSender(url, AddressFamily.Unspecified)
+                {
+                    MaxQueueSize = maxQueueSize,
+                    SslProtocols = System.Security.Authentication.SslProtocols.Tls12,
+                };
+            }
+#endif
+#endif
+
             if (url.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
             {
                 return new UdpNetworkSender(url, AddressFamily.Unspecified);
