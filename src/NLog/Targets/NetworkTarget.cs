@@ -279,7 +279,16 @@ namespace NLog.Targets
 
             if (KeepConnection)
             {
-                var senderNode = GetCachedNetworkSender(address);
+                LinkedListNode<NetworkSender> senderNode;
+                try
+                {
+                    senderNode = GetCachedNetworkSender(address);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "NetworkTarget(Name={0}): Failed to create sender to address: '{1}'", Name, address);
+                    throw;
+                }
 
                 ChunkedSend(
                     senderNode.Value,
@@ -297,7 +306,6 @@ namespace NLog.Targets
             }
             else
             {
-
                 NetworkSender sender;
                 LinkedListNode<NetworkSender> linkedListNode;
 
@@ -332,8 +340,16 @@ namespace NLog.Targets
                         }
                     }
 
-                    sender = SenderFactory.Create(address, MaxQueueSize);
-                    sender.Initialize();
+                    try
+                    {
+                        sender = SenderFactory.Create(address, MaxQueueSize);
+                        sender.Initialize();
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error(ex, "NetworkTarget(Name={0}): Failed to create sender to address: '{1}'", Name, address);
+                        throw;
+                    }
 
                     linkedListNode = _openNetworkSenders.AddLast(sender);
                 }
