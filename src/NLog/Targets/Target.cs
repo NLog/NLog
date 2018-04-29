@@ -302,7 +302,17 @@ namespace NLog.Targets
 
             var wrappedContinuation = AsyncHelpers.PreventMultipleCalls(logEvent.Continuation);
             var wrappedLogEvent = logEvent.LogEvent.WithContinuation(wrappedContinuation);
-            WriteAsyncThreadSafe(wrappedLogEvent);
+            try
+            {
+                WriteAsyncThreadSafe(wrappedLogEvent);
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrown())
+                    throw;
+
+                wrappedLogEvent.Continuation(ex);
+            }
         }
 
         /// <summary>
@@ -374,7 +384,23 @@ namespace NLog.Targets
                 wrappedEvents = cloneLogEvents;
             }
 
-            WriteAsyncThreadSafe(wrappedEvents);
+            try
+            {
+                WriteAsyncThreadSafe(wrappedEvents);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
+                // in case of synchronous failure, assume that nothing is running asynchronously
+                for (int i = 0; i < wrappedEvents.Count; ++i)
+                {
+                    wrappedEvents[i].Continuation(exception);
+                }
+            }
         }
 
         /// <summary>
@@ -548,6 +574,11 @@ namespace NLog.Targets
 
         /// <summary>
         /// Writes a log event to the log target, in a thread safe manner.
+        /// Any override of this method has to provide their own synchronization mechanism.
+        /// 
+        /// !WARNING! Custom targets should only override this method if able to provide their
+        /// own synchronization mechanism. <see cref="Layout" />-objects are not guaranteed to be
+        /// threadsafe, so using them without a SyncRoot-object can be dangerous.
         /// </summary>
         /// <param name="logEvent">Log event to be written out.</param>
         protected virtual void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
@@ -561,19 +592,7 @@ namespace NLog.Targets
                     return;
                 }
 
-                try
-                {
-                    Write(logEvent);
-                }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    logEvent.Continuation(exception);
-                }
+                Write(logEvent);
             }
         }
 
@@ -609,6 +628,10 @@ namespace NLog.Targets
         /// NOTE! Obsolete, instead override WriteAsyncThreadSafe(IList{AsyncLogEventInfo} logEvents)
         /// 
         /// Writes an array of logging events to the log target, in a thread safe manner.
+        /// 
+        /// !WARNING! Custom targets should only override this method if able to provide their
+        /// own synchronization mechanism. <see cref="Layout" />-objects are not guaranteed to be
+        /// threadsafe, so using them without a SyncRoot-object can be dangerous.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
         [Obsolete("Instead override WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
@@ -619,6 +642,11 @@ namespace NLog.Targets
 
         /// <summary>
         /// Writes an array of logging events to the log target, in a thread safe manner.
+        /// Any override of this method has to provide their own synchronization mechanism.
+        /// 
+        /// !WARNING! Custom targets should only override this method if able to provide their
+        /// own synchronization mechanism. <see cref="Layout" />-objects are not guaranteed to be
+        /// threadsafe, so using them without a SyncRoot-object can be dangerous.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
         protected virtual void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
@@ -635,33 +663,17 @@ namespace NLog.Targets
                     return;
                 }
 
-                try
+                AsyncLogEventInfo[] logEventsArray = OptimizeBufferReuse ? null : logEvents as AsyncLogEventInfo[];
+                if (!OptimizeBufferReuse && logEventsArray != null)
                 {
-                    AsyncLogEventInfo[] logEventsArray = OptimizeBufferReuse ? null : logEvents as AsyncLogEventInfo[];
-                    if (!OptimizeBufferReuse && logEventsArray != null)
-                    {
-                        // Backwards compatibility
+                    // Backwards compatibility
 #pragma warning disable 612, 618
-                        Write(logEventsArray);
+                    Write(logEventsArray);
 #pragma warning restore 612, 618
-                    }
-                    else
-                    {
-                        Write(logEvents);
-                    }
                 }
-                catch (Exception exception)
+                else
                 {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    // in case of synchronous failure, assume that nothing is running asynchronously
-                    for (int i = 0; i < logEvents.Count; ++i)
-                    {
-                        logEvents[i].Continuation(exception);
-                    }
+                    Write(logEvents);
                 }
             }
         }
