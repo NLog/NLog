@@ -3,16 +3,14 @@ $sonarQubeId = "nlog"
 $github = "nlog/nlog"
 $baseBranch = "master"
 
-
 if ($env:APPVEYOR_REPO_NAME -eq $github) {
 
     if (-not $env:sonar_token) {
         Write-warning "Sonar: not running SonarQube, no sonar_token"
         return;
     }
-
-  
-    $preview = $true;
+ 
+    $preview = $false;
      
     if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { 
         $preview = $true;
@@ -30,15 +28,16 @@ if ($env:APPVEYOR_REPO_NAME -eq $github) {
 
     if ($preview) {
         Write-Output "Sonar: Running Sonar in preview mode for PR $env:APPVEYOR_PULL_REQUEST_NUMBER"
-        MSBuild.SonarQube.Runner.exe begin /k:"$sonarQubeId" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=$env:sonar_token" /d:"sonar.analysis.mode=preview" /d:"sonar.github.pullRequest=$env:APPVEYOR_PULL_REQUEST_NUMBER" /d:"sonar.github.repository=$github" /d:"sonar.github.oauth=$env:github_auth_token" 
+        SonarScanner.MSBuild.exe begin /k:"$sonarQubeId" /d:"sonar.analysis.mode=preview" /d:"sonar.github.pullRequest=$env:APPVEYOR_PULL_REQUEST_NUMBER" /d:"sonar.github.repository=$github" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=$env:sonar_token" 
     }
     else {
         Write-Output "Sonar: Running Sonar in non-preview mode, on branch $env:APPVEYOR_REPO_BRANCH"
-        MSBuild.SonarQube.Runner.exe begin /k:"$sonarQubeId" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=$env:sonar_token" 
+        SonarScanner.MSBuild.exe begin /k:"$sonarQubeId" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=$env:sonar_token" 
     }
 
-    msbuild $projectFile /verbosity:minimal
-    MSBuild.SonarQube.Runner.exe end /d:"sonar.login=$env:sonar_token"
+    msbuild /t:Rebuild $projectFile /p:targetFrameworks=net45 /verbosity:minimal
+
+    SonarScanner.MSBuild.exe end /d:"sonar.login=$env:sonar_token"
 }
 else {
     Write-Output "not running SonarQube as we're on '$env:APPVEYOR_REPO_NAME'"
