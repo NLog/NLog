@@ -450,7 +450,15 @@ namespace NLog
         /// <returns>Instance of <see cref="LogEventInfo"/>.</returns>
         public static LogEventInfo Create(LogLevel logLevel, string loggerName, IFormatProvider formatProvider, object message)
         {
-            return new LogEventInfo(logLevel, loggerName, formatProvider, "{0}", new[] { message });
+            Exception exception = message as Exception;
+            if (exception == null && message is LogEventInfo logEvent)
+            {
+                logEvent.LoggerName = loggerName;
+                logEvent.Level = logLevel;
+                logEvent.FormatProvider = formatProvider ?? logEvent.FormatProvider;
+                return logEvent;
+            }
+            return new LogEventInfo(logLevel, loggerName, formatProvider, "{0}", new[] { message }, exception);
         }
 
         /// <summary>

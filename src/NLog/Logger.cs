@@ -569,12 +569,6 @@ namespace NLog
         private void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
         {
             var logEvent = PrepareLogEventInfo(LogEventInfo.Create(level, Name, formatProvider, value));
-            var ex = value as Exception;
-            if (ex != null)
-            {
-                //also record exception
-                logEvent.Exception = ex;
-            }
             LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logEvent, Factory);
         }
 
