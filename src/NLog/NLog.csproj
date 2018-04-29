@@ -327,6 +327,8 @@ for what is supported in each platform, see https://github.com/NLog/NLog/wiki/pl
 
   <PropertyGroup>
     <AssemblyTitle>$(Title)</AssemblyTitle>
+    <!-- SonarQube WARNING: The following projects do not have a valid ProjectGuid and were not built using a valid solution (.sln) thus will be skipped from analysis… -->
+    <ProjectGuid>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</ProjectGuid>
   </PropertyGroup>
 
 </Project>
