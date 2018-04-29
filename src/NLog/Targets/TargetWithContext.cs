@@ -108,7 +108,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
-        public virtual IList<TargetPropertyWithContext> ContextProperties { get; }
+        public virtual IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
 
         /// <summary>
         /// Constructor
@@ -529,6 +529,8 @@ namespace NLog.Targets
             return true;
         }
 
+        [ThreadSafe]
+        [ThreadAgnostic]
         private class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace
         {
             public Layout TargetLayout { get => _targetLayout; set => _targetLayout = ReferenceEquals(this, value) ? _targetLayout : value; }
@@ -593,13 +595,12 @@ namespace NLog.Targets
             protected override void InitializeLayout()
             {
                 base.InitializeLayout();
-                ThreadAgnostic = IncludeMdc
-                    || IncludeNdc
+                if (IncludeMdc || IncludeNdc)
+                    ThreadAgnostic = false;
 #if !SILVERLIGHT
-                    || IncludeMdlc
-                    || IncludeNdlc
+                if (IncludeMdlc || IncludeNdlc)
+                    ThreadAgnostic = false;
 #endif
-                    ;
             }
 
             public override string ToString()
@@ -661,6 +662,7 @@ namespace NLog.Targets
                 TargetLayout?.RenderAppendBuilder(logEvent, target, false);
             }
 
+            [ThreadSafe]
             public class LayoutContextMdc : Layout
             {
                 private readonly TargetWithContext _owner;
@@ -694,6 +696,7 @@ namespace NLog.Targets
             }
 
 #if !SILVERLIGHT
+            [ThreadSafe]
             public class LayoutContextMdlc : Layout
             {
                 private readonly TargetWithContext _owner;
@@ -726,7 +729,7 @@ namespace NLog.Targets
                 }
             }
 #endif
-
+            [ThreadSafe]
             public class LayoutContextNdc : Layout
             {
                 private readonly TargetWithContext _owner;
@@ -760,6 +763,7 @@ namespace NLog.Targets
             }
 
 #if !SILVERLIGHT
+            [ThreadSafe]
             public class LayoutContextNdlc : Layout
             {
                 private readonly TargetWithContext _owner;
