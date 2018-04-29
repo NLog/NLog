@@ -44,13 +44,14 @@ namespace NLog.UnitTests.Layouts
         {
             var xmlLayout = new XmlLayout()
             {
-                Nodes =
+                Elements =
                     {
                         new XmlLayout("date", "${longdate}"),
                         new XmlLayout("level", "${level}"),
                         new XmlLayout("message", "${message}"),
                     },
                 IndentXml = true,
+                IncludeAllProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -59,8 +60,9 @@ namespace NLog.UnitTests.Layouts
                 Level = LogLevel.Info,
                 Message = "hello, world"
             };
+            logEventInfo.Properties["nlogPropertyKey"] = "nlogPropertyValue";
 
-            Assert.Equal(string.Format(System.Globalization.CultureInfo.InvariantCulture, @"<logevent>{0}{1}<date>2010-01-01 12:34:56.0000</date>{0}{1}<level>Info</level>{0}{1}<message>hello, world</message>{0}</logevent>", Environment.NewLine, "  "), xmlLayout.Render(logEventInfo));
+            Assert.Equal(string.Format(System.Globalization.CultureInfo.InvariantCulture, @"<logevent>{0}{1}<date>2010-01-01 12:34:56.0000</date>{0}{1}<level>Info</level>{0}{1}<message>hello, world</message>{0}{1}<property key=""nlogPropertyKey"">nlogPropertyValue</property>{0}</logevent>", Environment.NewLine, "  "), xmlLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -70,14 +72,14 @@ namespace NLog.UnitTests.Layouts
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='debug'>
-                            <layout type='xmllayout' nodeName='log4j:event' propertiesNodeName='log4j:data' propertiesNodeKeyAttribute='name' propertiesNodeValueAttribute='value' includeAllProperties='true' includeMdc='true' includeMdlc='true' >
+                            <layout type='xmllayout' elementName='log4j:event' propertiesElementName='log4j:data' propertiesElementKeyAttribute='name' propertiesElementValueAttribute='value' includeAllProperties='true' includeMdc='true' includeMdlc='true' >
                                 <attribute name='logger' layout='${logger}' includeEmptyValue='true' />
                                 <attribute name='level' layout='${uppercase:${level}}' includeEmptyValue='true' />
-                                <node nodeName='log4j:message' nodeValue='${message}' />
-                                <node nodeName='log4j:throwable' nodeValue='${exception:format=tostring}' />
-                                <node nodeName='log4j:locationInfo'>
+                                <element elementName='log4j:message' elementValue='${message}' />
+                                <element elementName='log4j:throwable' elementValue='${exception:format=tostring}' />
+                                <element elementName='log4j:locationInfo'>
                                     <attribute name='class' layout='${callsite:methodName=false}' includeEmptyValue='true' />
-                                </node>
+                                </element>
                             </layout>
                         </target>
                     </targets>
