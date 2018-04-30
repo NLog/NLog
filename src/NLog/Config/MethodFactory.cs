@@ -120,50 +120,50 @@ namespace NLog.Config
         /// <summary>
         /// Registers the definition of a single method.
         /// </summary>
-        /// <param name="name">The method name.</param>
-        /// <param name="methodInfo">The method info.</param>
-        public void RegisterDefinition(string name, MethodInfo methodInfo)
+        /// <param name="itemName">The method name.</param>
+        /// <param name="itemDefinition">The method info.</param>
+        public void RegisterDefinition(string itemName, MethodInfo itemDefinition)
         {
-            _nameToMethodInfo[name] = methodInfo;
+            _nameToMethodInfo[itemName] = itemDefinition;
         }
 
         /// <summary>
         /// Tries to retrieve method by name.
         /// </summary>
-        /// <param name="name">The method name.</param>
+        /// <param name="itemName">The method name.</param>
         /// <param name="result">The result.</param>
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
-        public bool TryCreateInstance(string name, out MethodInfo result)
+        public bool TryCreateInstance(string itemName, out MethodInfo result)
         {
-            return _nameToMethodInfo.TryGetValue(name, out result);
+            return _nameToMethodInfo.TryGetValue(itemName, out result);
         }
 
         /// <summary>
         /// Retrieves method by name.
         /// </summary>
-        /// <param name="name">Method name.</param>
+        /// <param name="itemName">Method name.</param>
         /// <returns>MethodInfo object.</returns>
-        public MethodInfo CreateInstance(string name)
+        public MethodInfo CreateInstance(string itemName)
         {
             MethodInfo result;
 
-            if (TryCreateInstance(name, out result))
+            if (TryCreateInstance(itemName, out result))
             {
                 return result;
             }
 
-            throw new NLogConfigurationException("Unknown function: '" + name + "'");
+            throw new NLogConfigurationException($"Unknown function: '{itemName}'");
         }
 
         /// <summary>
         /// Tries to get method definition.
         /// </summary>
-        /// <param name="name">The method .</param>
+        /// <param name="itemName">The method name.</param>
         /// <param name="result">The result.</param>
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
-        public bool TryGetDefinition(string name, out MethodInfo result)
+        public bool TryGetDefinition(string itemName, out MethodInfo result)
         {
-            return _nameToMethodInfo.TryGetValue(name, out result);
+            return _nameToMethodInfo.TryGetValue(itemName, out result);
         }
     }
 }

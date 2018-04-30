@@ -215,7 +215,7 @@ namespace NLog.Internal
         /// </summary>
         private class MyEnumerator : IDictionaryEnumerator
         {
-            private IEnumerator<KeyValuePair<TKey, TValue>> _wrapped;
+            private readonly IEnumerator<KeyValuePair<TKey, TValue>> _wrapped;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="MyEnumerator" /> class.

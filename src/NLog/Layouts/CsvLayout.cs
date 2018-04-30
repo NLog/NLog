@@ -276,7 +276,7 @@ namespace NLog.Layouts
         [ThreadAgnostic]
         private class CsvHeaderLayout : Layout
         {
-            private CsvLayout _parent;
+            private readonly CsvLayout _parent;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="CsvHeaderLayout"/> class.

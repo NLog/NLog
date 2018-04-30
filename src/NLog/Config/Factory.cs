@@ -50,7 +50,7 @@ namespace NLog.Config
         where TAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, GetTypeDelegate> _items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
-        private ConfigurationItemFactory _parentFactory;
+        private readonly ConfigurationItemFactory _parentFactory;
 
         internal Factory(ConfigurationItemFactory parentFactory)
         {
@@ -123,11 +123,11 @@ namespace NLog.Config
         /// <summary>
         /// Registers a single type definition.
         /// </summary>
-        /// <param name="name">The item name.</param>
-        /// <param name="type">The type of the item.</param>
-        public void RegisterDefinition(string name, Type type)
+        /// <param name="itemName">The item name.</param>
+        /// <param name="typeName">The type of the item.</param>
+        public void RegisterDefinition(string itemName, Type typeName)
         {
-            _items[name] = () => type;
+            _items[itemName] = () => typeName;
         }
 
         /// <summary>

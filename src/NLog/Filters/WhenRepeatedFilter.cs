@@ -432,9 +432,9 @@ namespace NLog.Filters
                 return ReferenceEquals(_stringBuffer, other._stringBuffer) && ReferenceEquals(StringValue, other.StringValue);
             }
 
-            public override bool Equals(object other)
+            public override bool Equals(object obj)
             {
-                return other is FilterInfoKey && Equals((FilterInfoKey)other);
+                return obj is FilterInfoKey && Equals((FilterInfoKey)obj);
             }
         }
     }
