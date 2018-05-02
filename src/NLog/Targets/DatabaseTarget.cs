@@ -83,8 +83,6 @@ namespace NLog.Targets
     [Target("Database")]
     public class DatabaseTarget : Target, IInstallable
     {
-        private static Assembly systemDataAssembly = typeof(IDbConnection).GetAssembly();
-
         private IDbConnection _activeConnection = null;
         private string _activeConnectionString;
 
@@ -465,23 +463,32 @@ namespace NLog.Targets
                 case "MSDE":
 #if NETSTANDARD
                 case "SYSTEM.DATA.SQLCLIENT":
-                    var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
+                    {
+                        var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
 #else
-                    var assembly = systemDataAssembly;
+                    {
+                        var assembly = typeof(IDbConnection).GetAssembly();
 #endif
-                    ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
-                    break;
+                        ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
+                        break;
+                    }
 #if !NETSTANDARD
                 case "OLEDB":
-                    ConnectionType = systemDataAssembly.GetType("System.Data.OleDb.OleDbConnection", true);
-                    break;
+                    {
+                        var assembly = typeof(IDbConnection).GetAssembly();
+                        ConnectionType = assembly.GetType("System.Data.OleDb.OleDbConnection", true, true);
+                        break;
+                    }
 
                 case "ODBC":
-                    ConnectionType = systemDataAssembly.GetType("System.Data.Odbc.OdbcConnection", true);
-                    break;
+                    {
+                        var assembly = typeof(IDbConnection).GetAssembly();
+                        ConnectionType = assembly.GetType("System.Data.Odbc.OdbcConnection", true, true);
+                        break;
+                    }
 #endif
                 default:
-                    ConnectionType = Type.GetType(DBProvider, true);
+                    ConnectionType = Type.GetType(DBProvider, true, true);
                     break;
             }
         }
