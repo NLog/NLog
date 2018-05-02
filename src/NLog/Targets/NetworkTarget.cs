@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.Targets
 {
     using System;
@@ -207,6 +209,14 @@ namespace NLog.Targets
         [DefaultValue("utf-8")]
         public Encoding Encoding { get; set; }
 
+#if !SILVERLIGHT
+        /// <summary>
+        /// Get or set the SSL/TLS protocols. Default no SSL/TLS is used. Currently only implemented for TCP.
+        /// </summary>
+        public System.Security.Authentication.SslProtocols SslProtocols { get; set; } = System.Security.Authentication.SslProtocols.None;
+
+#endif
+
         internal INetworkSenderFactory SenderFactory { get; set; }
 
         /// <summary>
@@ -342,7 +352,11 @@ namespace NLog.Targets
 
                     try
                     {
+#if !SILVERLIGHT
+                        sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols);
+#else
                         sender = SenderFactory.Create(address, MaxQueueSize);
+#endif
                         sender.Initialize();
                     }
                     catch (Exception ex)
@@ -378,6 +392,8 @@ namespace NLog.Targets
 
             }
         }
+
+
 
         /// <summary>
         /// Try to remove. 
@@ -487,7 +503,11 @@ namespace NLog.Targets
                     }
                 }
 
+#if !SILVERLIGHT
+                var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols);
+#else
                 var sender = SenderFactory.Create(address, MaxQueueSize);
+#endif
                 sender.Initialize();
                 lock (_openNetworkSenders)
                 {

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 namespace NLog.Internal.NetworkSenders
 {
 #if !NETSTANDARD1_0 && !SILVERLIGHT

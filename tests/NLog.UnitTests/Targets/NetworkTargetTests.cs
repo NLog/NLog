@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Security.Authentication;
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -886,13 +888,31 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("5: close") != -1);
         }
 
+
+        [Theory]
+        [InlineData("none", SslProtocols.None)] //we can't set it on ""
+        [InlineData("tls", SslProtocols.Tls)]
+        [InlineData("tls11", SslProtocols.Tls11)]
+        [InlineData("tls,tls11", SslProtocols.Tls11 | SslProtocols.Tls)]
+        public void SslProtocolsConfigTest(string sslOptions, SslProtocols expected)
+        {
+            var config =  CreateConfigurationFromString($@"
+            <nlog>
+                <targets><target name='target1' type='network' layout='${{message}}' Address='tcp://127.0.0.1' sslProtocols='{sslOptions}' /></targets>
+               
+            </nlog>");
+
+            var target = config.FindTargetByName<NetworkTarget>("target1");
+            Assert.Equal(expected, target.SslProtocols);
+        }
+
         internal class MySenderFactory : INetworkSenderFactory
         {
             internal List<MyNetworkSender> Senders = new List<MyNetworkSender>();
             internal StringWriter Log = new StringWriter();
             private int idCounter;
 
-            public NetworkSender Create(string url, int maximumQueueSize)
+            public NetworkSender Create(string url, int maximumQueueSize, SslProtocols sslProtocols)
             {
                 var sender = new MyNetworkSender(url, ++idCounter, Log, this);
                 Senders.Add(sender);
