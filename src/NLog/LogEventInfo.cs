@@ -375,8 +375,13 @@ namespace NLog
         {
             get
             {
-                var logMessageFormatter = _messageFormatter?.Target as ILogMessageFormatter;
-                return logMessageFormatter?.HasProperties(this) ?? false;
+                // Have not yet parsed/rendered the FormattedMessage, so check with ILogMessageFormatter
+                if (_formattedMessage == null)
+                {
+                    var logMessageFormatter = _messageFormatter?.Target as ILogMessageFormatter;
+                    return logMessageFormatter?.HasProperties(this) ?? false;
+                }
+                return false;
             }
         }
 

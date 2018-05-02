@@ -1863,7 +1863,19 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", $"Process order {param1Value} for {param2Value}");
         }
 
-
+        [Fact]
+        public void StructuredParametersShouldHandleDeferredCheck()
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder("Test");
+            LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, "{0}", new object[] { sb });
+            sb.Clear();
+            string formattedMessage = logEventInfo.FormattedMessage;
+            Assert.Equal("Test", formattedMessage);
+            var properties = logEventInfo.Properties;
+            Assert.Empty(properties);
+            string formattedMessage2 = logEventInfo.FormattedMessage;
+            Assert.Equal("Test", formattedMessage2);
+        }
 
         [Theory]
         [InlineData(true)]
@@ -1879,7 +1891,6 @@ namespace NLog.UnitTests
             Assert.Equal(2, target.LastLogEvent.Parameters.Length);
             Assert.Equal("world", target.LastLogEvent.Parameters[0]);
             Assert.Equal("universe", target.LastLogEvent.Parameters[1]);
-
         }
 
         [Theory]
