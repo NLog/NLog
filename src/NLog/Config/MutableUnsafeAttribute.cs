@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,43 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+namespace NLog.Config
 {
     using System;
-    using System.Text;
-    using NLog.Config;
 
     /// <summary>
-    /// Log event context data.
+    /// Marks the layout or layout renderer depends on mutable objects from the LogEvent
+    /// 
+    /// This can be <see cref="LogEventInfo.Properties"/> or <see cref="LogEventInfo.Exception"/>
     /// </summary>
-    /// <remarks>This class was marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
-    [LayoutRenderer("event-context")]
-    [MutableUnsafe]
-    [Obsolete("Use EventPropertiesLayoutRenderer class instead. Marked obsolete on NLog 2.0")]
-    public class EventContextLayoutRenderer : LayoutRenderer
+    [AttributeUsage(AttributeTargets.Class)]
+    public sealed class MutableUnsafeAttribute : Attribute
     {
-        /// <summary>
-        /// Gets or sets the name of the item.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [RequiredParameter]
-        [DefaultParameter]
-        public string Item { get; set; }
-
-        /// <summary>
-        /// Renders the specified log event context item and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            object value;
-
-            if (logEvent.HasProperties && logEvent.Properties.TryGetValue(Item, out value))
-            {
-                var formatProvider = GetFormatProvider(logEvent);
-                builder.Append(Convert.ToString(value, formatProvider));
-            }
-        }
     }
 }

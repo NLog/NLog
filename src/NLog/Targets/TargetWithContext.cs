@@ -601,6 +601,8 @@ namespace NLog.Targets
                 if (IncludeMdlc || IncludeNdlc)
                     ThreadAgnostic = false;
 #endif
+                if (IncludeAllProperties)
+                    MutableUnsafe = true;   // TODO Need to convert Properties to an immutable state
             }
 
             public override string ToString()
@@ -610,7 +612,7 @@ namespace NLog.Targets
 
             public override void Precalculate(LogEventInfo logEvent)
             {
-                if (!(TargetLayout?.ThreadAgnostic ?? true))
+                if (!(TargetLayout?.ThreadAgnostic ?? true) || (TargetLayout?.MutableUnsafe ?? false))
                 {
                     TargetLayout.Precalculate(logEvent);
                     if (logEvent.TryGetCachedLayoutValue(TargetLayout, out var cachedLayout))
@@ -625,7 +627,7 @@ namespace NLog.Targets
 
             internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
             {
-                if (!(TargetLayout?.ThreadAgnostic ?? true))
+                if (!(TargetLayout?.ThreadAgnostic ?? true) || (TargetLayout?.MutableUnsafe ?? false))
                 {
                     TargetLayout.PrecalculateBuilder(logEvent, target);
                     if (logEvent.TryGetCachedLayoutValue(TargetLayout, out var cachedLayout))

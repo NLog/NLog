@@ -68,6 +68,8 @@ namespace NLog.Layouts
 
         internal bool ThreadSafe { get; set; }
 
+        internal bool MutableUnsafe { get; set; }
+
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
         /// </summary>
@@ -126,7 +128,7 @@ namespace NLog.Layouts
         /// </remarks>
         public virtual void Precalculate(LogEventInfo logEvent)
         {
-            if (!ThreadAgnostic)
+            if (!ThreadAgnostic || MutableUnsafe)
             {
                 Render(logEvent);
             }
@@ -144,7 +146,7 @@ namespace NLog.Layouts
                 Initialize(LoggingConfiguration);
             }
 
-            if (!ThreadAgnostic)
+            if (!ThreadAgnostic || MutableUnsafe)
             {
                 object cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
@@ -154,7 +156,7 @@ namespace NLog.Layouts
             }
 
             string layoutValue = GetFormattedMessage(logEvent) ?? string.Empty;
-            if (!ThreadAgnostic)
+            if (!ThreadAgnostic || MutableUnsafe)
             {
                 // Would be nice to only do this in Precalculate(), but we need to ensure internal cache
                 // is updated for for custom Layouts that overrides Precalculate (without calling base.Precalculate)
@@ -181,7 +183,7 @@ namespace NLog.Layouts
                 Initialize(LoggingConfiguration);
             }
 
-            if (!ThreadAgnostic)
+            if (!ThreadAgnostic || MutableUnsafe)
             {
                 object cachedValue;
                 if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
@@ -285,6 +287,7 @@ namespace NLog.Layouts
             // all its nested objects are thread-agnostic.
             ThreadAgnostic = objectGraphScannerList.All(item => item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true));
             ThreadSafe = objectGraphScannerList.All(item => item.GetType().IsDefined(typeof(ThreadSafeAttribute), true));
+            MutableUnsafe = objectGraphScannerList.Any(item => item.GetType().IsDefined(typeof(MutableUnsafeAttribute), true));
 
             // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
             StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IUsesStackTrace

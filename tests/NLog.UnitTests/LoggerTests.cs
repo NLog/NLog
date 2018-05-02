@@ -2147,6 +2147,37 @@ namespace NLog.UnitTests
         }
 
         /// <summary>
+        /// Only properties
+        /// </summary>
+        [Fact]
+        public void TestStructuredProperties_json_async()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debugbuffer' type='bufferingWrapper'>
+                            <target name='debug' type='Debug'  >
+                                    <layout type='JsonLayout' IncludeAllProperties='true'>
+                                        <attribute name='LogMessage' layout='${message:raw=true}' />
+                                    </layout>
+                            </target>
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Error' writeTo='debugbuffer' />
+                    </rules>
+                </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder("BestApplicationEver");
+            logger.Error("Login request from {@Username} for {$Application}", new Person("John"), sb);
+            sb.Clear();
+            LogManager.Flush();
+            AssertDebugLastMessage("debug", "{ \"LogMessage\": \"Login request from {@Username} for {$Application}\", \"Username\": {\"Name\":\"John\"}, \"Application\": \"BestApplicationEver\" }");
+        }
+
+        /// <summary>
         /// Properties and message
         /// </summary>
         [Fact]

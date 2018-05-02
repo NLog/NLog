@@ -164,7 +164,7 @@ namespace NLog.Internal
 
             if (reusableBuilder != null)
             {
-                if (!_layout.ThreadAgnostic)
+                if (!_layout.ThreadAgnostic || _layout.MutableUnsafe)
                 {
                     object cachedResult;
                     if (logEvent.TryGetCachedLayoutValue(_layout, out cachedResult))

@@ -54,6 +54,7 @@ namespace NLog.Targets
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool _allLayoutsAreThreadAgnostic;
         private bool _allLayoutsAreThreadSafe;
+        private bool _oneLayoutIsMutableUnsafe;
         private bool _scannedForLayouts;
         private Exception _initializeException;
 
@@ -193,7 +194,13 @@ namespace NLog.Targets
         public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
         {
             if (_allLayoutsAreThreadAgnostic)
-                return;
+            {
+                if (!_oneLayoutIsMutableUnsafe)
+                    return;
+
+                if (IsLogEventMutableSafe(logEvent))
+                    return;
+            }
 
             // Not all Layouts support concurrent threads, so we have to protect them
             if (OptimizeBufferReuse)
@@ -257,6 +264,36 @@ namespace NLog.Targets
                     }
                 }
             }
+        }
+
+        private bool IsLogEventMutableSafe(LogEventInfo logEvent)
+        {
+            if (logEvent.Exception == null)
+            {
+                if (!logEvent.HasProperties)
+                    return true; // No mutable state, no need to precalculate
+
+                var properties = logEvent.CreateOrUpdatePropertiesInternal(false);
+                if (properties == null || properties.Count == 0)
+                    return true; // No mutable state, no need to precalculate
+
+                if (properties.Count <= 5)
+                {
+                    bool immutableProperties = true;
+                    foreach (var property in properties)
+                    {
+                        if (Convert.GetTypeCode(property.Value) == TypeCode.Object)
+                        {
+                            immutableProperties = false;
+                            break;
+                        }
+                    }
+                    if (immutableProperties)
+                        return true; // No mutable state, no need to precalculate
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -520,6 +557,10 @@ namespace NLog.Targets
             {
                 _allLayoutsAreThreadSafe = _allLayouts.All(layout => layout.ThreadSafe);
             }
+            else
+            {
+                _oneLayoutIsMutableUnsafe = _allLayouts.Any(layout => layout.MutableUnsafe);
+            }
             StackTraceUsage = _allLayouts.DefaultIfEmpty().Max(layout => layout == null ? StackTraceUsage.None : layout.StackTraceUsage);
             _scannedForLayouts = true;
         }
@@ -726,7 +767,7 @@ namespace NLog.Targets
                 if (simpleLayout != null && simpleLayout.IsFixedText)
                     return simpleLayout.Render(logEvent);
 
-                if (!layout.ThreadAgnostic)
+                if (!layout.ThreadAgnostic || layout.MutableUnsafe)
                 {
                     if (logEvent.TryGetCachedLayoutValue(layout, out var value))
                     {
