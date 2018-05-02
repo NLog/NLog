@@ -746,7 +746,7 @@ namespace NLog.Targets
                 }
             }
 
-            protected abstract void WriteStringContent(StringBuilder sb, object[] parameterValues);
+            protected abstract void WriteStringContent(StringBuilder builder, object[] parameterValues);
         }
 
         private class HttpPostXmlDocumentFormatter : HttpPostXmlFormatterBase

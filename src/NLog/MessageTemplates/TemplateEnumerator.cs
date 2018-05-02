@@ -353,34 +353,31 @@ namespace NLog.MessageTemplates
         private int ReadInt()
         {
             bool negative = false;
-            bool hasDigits = false;
             int i = 0;
             for (int x = 0; x < 12; ++x)
             {
                 char c = Peek();
+
                 int digit = c - '0';
                 if (digit < 0 || digit > 9)
                 {
+                    if (x > 0 && !negative || x > 1)
+                        return negative ? -i : i;  // Found one or more digits
+
                     if (x == 0 && c == '-')
                     {
                         negative = true;
                         _position++;
                         continue;
                     }
-                    else
-                    {
-                        break;
-                    }
+                    break;
                 }
-                hasDigits = true;
+
                 _position++;
                 i = i * 10 + digit;
             }
 
-            if (!hasDigits)
-                throw new TemplateParserException("An integer is expected", _position, _template);
-
-            return negative ? -i : i;
+            throw new TemplateParserException("An integer is expected", _position, _template);
         }
 
         private string ReadUntil(char[] search, bool required = true)

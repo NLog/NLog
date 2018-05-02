@@ -65,17 +65,17 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Replaces all non-safe characters with underscore to make valid filepath
         /// </summary>
-        /// <param name="builder">Output to be transformed.</param>
-        protected override void TransformFormattedMesssage(StringBuilder builder)
+        /// <param name="target">Output to be transformed.</param>
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
             if (FSNormalize)
             {
-                for (int i = 0; i < builder.Length; i++)
+                for (int i = 0; i < target.Length; i++)
                 {
-                    char c = builder[i];
+                    char c = target[i];
                     if (!IsSafeCharacter(c))
                     {
-                        builder[i] = '_';
+                        target[i] = '_';
                     }
                 }
             }

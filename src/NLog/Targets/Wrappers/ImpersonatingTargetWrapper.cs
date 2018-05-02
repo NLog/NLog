@@ -270,7 +270,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         internal class ContextReverter : IDisposable
         {
-            private WindowsImpersonationContext wic;
+            private readonly WindowsImpersonationContext wic;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ContextReverter" /> class.

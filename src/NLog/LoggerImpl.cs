@@ -58,28 +58,23 @@ namespace NLog
                 return;
             }
 
+#if !NETSTANDARD1_0 || NETSTANDARD1_5
             StackTraceUsage stu = targets.GetStackTraceUsage();
-
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
-                StackTrace stackTrace;
 #if NETSTANDARD1_5
-                stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
-#elif NETSTANDARD1_0
-                stackTrace = null;
+                var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
 #elif !SILVERLIGHT
-                stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
+                var stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 #else
-                stackTrace = new StackTrace();
+                var stackTrace = new StackTrace();
 #endif
-                if (stackTrace != null)
-                {
-                    var stackFrames = stackTrace.GetFrames();
-                    int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
-                    int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
-                    logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
-                }
+                var stackFrames = stackTrace.GetFrames();
+                int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
+                int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
+                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
             }
+#endif
 
             AsyncContinuation exceptionHandler = (ex) => { };
             if (factory.ThrowExceptions)

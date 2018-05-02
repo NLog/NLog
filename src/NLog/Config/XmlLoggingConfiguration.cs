@@ -83,7 +83,7 @@ namespace NLog.Config
 
         private string _originalFileName;
 
-        private LogFactory _logFactory = null;
+        private readonly LogFactory _logFactory;
 
         private ConfigurationItemFactory ConfigurationItemFactory => ConfigurationItemFactory.Default;
 

@@ -445,7 +445,8 @@ namespace NLog.Internal.FileAppenders
                     throw;
                 }
             }
-            if (result == null && fallback)
+
+            if (fallback)
             {
                 var fileInfo = new FileInfo(filePath);
                 if (fileInfo.Exists)
