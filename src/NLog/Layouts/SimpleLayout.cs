@@ -56,7 +56,7 @@ namespace NLog.Layouts
     {
         private string _fixedText;
         private string _layoutText;
-        private ConfigurationItemFactory _configurationItemFactory;
+        private readonly ConfigurationItemFactory _configurationItemFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
