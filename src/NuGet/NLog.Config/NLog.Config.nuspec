@@ -29,5 +29,6 @@
   <files>
     <file src="content\**" target="contentFiles\any\any" />
     <file src="content\**" target="content\" /> <!-- legacy -->
+    <file src="tools\**" target="tools\" /> <!-- legacy, need install.ps1 for non-core projects -->
   </files>
 </package>
