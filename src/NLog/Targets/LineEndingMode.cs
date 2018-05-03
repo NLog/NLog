@@ -116,7 +116,7 @@ namespace NLog.Targets
         /// <exception cref="ArgumentOutOfRangeException">There is no line ending mode with the specified name.</exception>
         public static LineEndingMode FromString([NotNull] string name)
         {
-            if (name == null) throw new ArgumentNullException("name");
+            if (name == null) throw new ArgumentNullException(nameof(name));
 
             if (name.Equals(CRLF.Name, StringComparison.OrdinalIgnoreCase)) return CRLF;
             if (name.Equals(LF.Name, StringComparison.OrdinalIgnoreCase)) return LF;
@@ -125,7 +125,7 @@ namespace NLog.Targets
             if (name.Equals(None.Name, StringComparison.OrdinalIgnoreCase)) return None;
 
 #if !SILVERLIGHT
-            throw new ArgumentOutOfRangeException("name", name, "LineEndingMode is out of range");
+            throw new ArgumentOutOfRangeException(nameof(name), name, "LineEndingMode is out of range");
 #else
             throw new ArgumentOutOfRangeException("name", "LineEndingMode is out of range");
 #endif

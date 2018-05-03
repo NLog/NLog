@@ -139,7 +139,7 @@ namespace NLog
             {
                 if (messageFunc == null)
                 {
-                    throw new ArgumentNullException("messageFunc");
+                    throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Trace, null, messageFunc());
@@ -426,7 +426,7 @@ namespace NLog
             {
                 if (messageFunc == null)
                 {
-                    throw new ArgumentNullException("messageFunc");
+                    throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Debug, null, messageFunc());
@@ -713,7 +713,7 @@ namespace NLog
             {
                 if (messageFunc == null)
                 {
-                    throw new ArgumentNullException("messageFunc");
+                    throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Info, null, messageFunc());
@@ -1000,7 +1000,7 @@ namespace NLog
             {
                 if (messageFunc == null)
                 {
-                    throw new ArgumentNullException("messageFunc");
+                    throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Warn, null, messageFunc());
@@ -1287,7 +1287,7 @@ namespace NLog
             {
                 if (messageFunc == null)
                 {
-                    throw new ArgumentNullException("messageFunc");
+                    throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Error, null, messageFunc());
@@ -1574,7 +1574,7 @@ namespace NLog
             {
                 if (messageFunc == null)
                 {
-                    throw new ArgumentNullException("messageFunc");
+                    throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(LogLevel.Fatal, null, messageFunc());

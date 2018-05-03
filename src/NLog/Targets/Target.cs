@@ -153,7 +153,7 @@ namespace NLog.Targets
         {
             if (asyncContinuation == null)
             {
-                throw new ArgumentNullException("asyncContinuation");
+                throw new ArgumentNullException(nameof(asyncContinuation));
             }
 
             asyncContinuation = AsyncHelpers.PreventMultipleCalls(asyncContinuation);

@@ -164,7 +164,7 @@ namespace NLog
             {
                 if (messageFunc == null)
                 {
-                    throw new ArgumentNullException("messageFunc");
+                    throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(level, null, messageFunc());

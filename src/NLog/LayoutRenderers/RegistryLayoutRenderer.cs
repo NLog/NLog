@@ -128,7 +128,7 @@ namespace NLog.LayoutRenderers
         {
             object registryValue = null;
             // Value = null is necessary for querying "unnamed values"
-            string renderedValue = Value != null ? Value.Render(logEvent) : null;
+            string renderedValue = Value?.Render(logEvent);
 
             var parseResult = ParseKey(Key.Render(logEvent));
             try
@@ -271,7 +271,7 @@ namespace NLog.LayoutRenderers
                 case RegistryHive.CurrentUser:
                     return Registry.CurrentUser;
                 default:
-                    throw new ArgumentException("Only RegistryHive.LocalMachine and RegistryHive.CurrentUser are supported.", "hive");
+                    throw new ArgumentException("Only RegistryHive.LocalMachine and RegistryHive.CurrentUser are supported.", nameof(hive));
             }
         }
 #endif

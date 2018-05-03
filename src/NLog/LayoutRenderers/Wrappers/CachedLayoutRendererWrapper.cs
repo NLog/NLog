@@ -134,7 +134,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (Cached)
             {
-                var newCacheKey = CacheKey == null ? null: CacheKey.Render(logEvent);
+                var newCacheKey = CacheKey?.Render(logEvent);
                 if (_cachedValue == null || _renderedCacheKey != newCacheKey)
                 {
                     _cachedValue = base.RenderInner(logEvent);
