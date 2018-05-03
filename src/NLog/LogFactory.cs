@@ -836,7 +836,7 @@ namespace NLog
             }
         }
 #endif
-        private void GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
+        private void GetTargetsByLevelForLogger(string name, IEnumerable<LoggingRule> loggingRules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
             foreach (LoggingRule rule in loggingRules)
             {

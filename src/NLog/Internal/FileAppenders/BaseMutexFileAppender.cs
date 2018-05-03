@@ -139,8 +139,7 @@ namespace NLog.Internal.FileAppenders
 
             // The constructor will either create new mutex or open
             // an existing one, in a thread-safe manner
-            bool createdNew;
-            return new Mutex(false, name, out createdNew, mutexSecurity);
+            return new Mutex(false, name, out _, mutexSecurity);
 #else
             //Mutex with 4 args has keyword "unsafe"
             return new Mutex(false, name);

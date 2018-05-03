@@ -102,7 +102,7 @@ namespace NLog.Internal
             }
             else
             {
-                logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out var messageTemplateParameterList);
+                logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out _);
             }
         }
 

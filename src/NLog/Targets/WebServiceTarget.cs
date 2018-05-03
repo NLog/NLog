@@ -625,10 +625,10 @@ namespace NLog.Targets
 
             protected override void WriteStringContent(StringBuilder builder, object[] parameterValues)
             {
-                if (Target.Parameters.Count == 1 && string.IsNullOrEmpty(Target.Parameters[0].Name) && parameterValues[0] is string)
+                if (Target.Parameters.Count == 1 && string.IsNullOrEmpty(Target.Parameters[0].Name) && parameterValues[0] is string s)
                 {
                     // JsonPost with single nameless parameter means complex JsonLayout
-                    builder.Append((string)parameterValues[0]);
+                    builder.Append(s);
                 }
                 else
                 {

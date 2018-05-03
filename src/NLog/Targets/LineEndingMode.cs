@@ -213,7 +213,7 @@ namespace NLog.Targets
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj is LineEndingMode && Equals((LineEndingMode) obj);
+            return obj is LineEndingMode mode && Equals(mode);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
