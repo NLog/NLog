@@ -205,7 +205,7 @@ namespace NLog
                 Parent = parent;
                 Value = value;
                 CreatedTimeUtcTicks = DateTime.UtcNow.Ticks; // Low time resolution, but okay fast
-                FrameLevel = parent != null ? parent.FrameLevel + 1 : 1; 
+                FrameLevel = parent?.FrameLevel + 1 ?? 1; 
             }
 
             void IDisposable.Dispose()

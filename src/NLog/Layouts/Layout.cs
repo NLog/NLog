@@ -291,7 +291,7 @@ namespace NLog.Layouts
 
             // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
             StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IUsesStackTrace
-            StackTraceUsage = objectGraphScannerList.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(item => item == null ? StackTraceUsage.None : item.StackTraceUsage);
+            StackTraceUsage = objectGraphScannerList.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(item => item?.StackTraceUsage ?? StackTraceUsage.None);
 
             _scannedForObjects = true;
         }
