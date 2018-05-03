@@ -37,7 +37,7 @@ namespace NLog.Layouts
     using NLog.Internal;
 
     /// <summary>
-    /// JSON attribute.
+    /// XML attribute.
     /// </summary>
     [NLogConfigurationItem]
     [ThreadAgnostic]
@@ -61,7 +61,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="name">The name of the attribute.</param>
         /// <param name="layout">The layout of the attribute's value.</param>
-        /// <param name="encode">Encode value with json-encode</param>
+        /// <param name="encode">Encode value with xml-encode</param>
         public XmlAttribute(string name, Layout layout, bool encode)
         {
             Name = name;
@@ -91,7 +91,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Determines wether or not this attribute will be Json encoded.
+        /// Determines wether or not this attribute will be Xml encoded.
         /// </summary>
         /// <docgen category='XML Attribute Options' order='100' />
         public bool Encode

@@ -155,23 +155,27 @@ namespace NLog.Layouts
         private bool _propertiesElementNameHasFormat;
 
         /// <summary>
-        /// XML attribute format to use when rendering property-key
+        /// XML attribute name to use when rendering property-key
         /// </summary>
         /// <remarks>
-        /// Replaces newlines with &#13;&#10;
+        /// Attribute not included when assigned null or empty string
+        /// 
+        /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         public string PropertiesElementKeyAttribute { get; set; } = "key";
 
         /// <summary>
-        /// XML attribute format to use when rendering property-value
+        /// XML attribute name to use when rendering property-value
         /// 
         /// When null (or empty) then value is formatted as XML-element-value
         /// </summary>
         /// <remarks>
-        /// Replaces newlines with &#13;&#10;
+        /// Attribute not included when assigned null or empty string
         /// 
         /// Skips closing element tag when using attribute for value
+        ///
+        /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         public string PropertiesElementValueAttribute { get; set; }
