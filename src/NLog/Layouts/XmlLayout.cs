@@ -186,16 +186,24 @@ namespace NLog.Layouts
         protected override void InitializeLayout()
         {
             base.InitializeLayout();
+
             if (IncludeMdc)
             {
                 ThreadAgnostic = false;
             }
+
 #if !SILVERLIGHT
             if (IncludeMdlc)
             {
                 ThreadAgnostic = false;
             }
 #endif
+
+            if (IncludeAllProperties)
+            {
+                MutableUnsafe = true;
+            }
+
             if (Attributes.Count > 1)
             {
                 HashSet<string> attributeValidator = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -219,7 +227,7 @@ namespace NLog.Layouts
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
+            if (!ThreadAgnostic || MutableUnsafe) RenderAppendBuilder(logEvent, target, true);
         }
 
         /// <summary>
