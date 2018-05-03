@@ -82,12 +82,9 @@ namespace NLog
                 int originalThreadId = AsyncHelpers.GetManagedThreadId();
                 exceptionHandler = ex =>
                 {
-                    if (ex != null)
+                    if (ex != null && AsyncHelpers.GetManagedThreadId() == originalThreadId)
                     {
-                        if (AsyncHelpers.GetManagedThreadId() == originalThreadId)
-                        {
-                            throw new NLogRuntimeException("Exception occurred in NLog", ex);
-                        }
+                        throw new NLogRuntimeException("Exception occurred in NLog", ex);
                     }
                 };
             }
@@ -159,18 +156,15 @@ namespace NLog
                 if (SkipAssembly(stackFrame))
                     continue;
 
-                if (stackFrame.GetMethod()?.Name == "MoveNext")
+                if (stackFrame.GetMethod()?.Name == "MoveNext" && stackFrames.Length > i)
                 {
-                    if (stackFrames.Length > i)
+                    var nextStackFrame = stackFrames[i + 1];
+                    var declaringType = nextStackFrame.GetMethod()?.DeclaringType;
+                    if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) ||
+                        declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
                     {
-                        var nextStackFrame = stackFrames[i + 1];
-                        var declaringType = nextStackFrame.GetMethod()?.DeclaringType;
-                        if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) ||
-                            declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
-                        {
-                            //async, search futher
-                            continue;
-                        }
+                        //async, search futher
+                        continue;
                     }
                 }
 

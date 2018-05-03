@@ -252,7 +252,7 @@ namespace NLog.Config
             if (AssemblyLoading != null)
             {
                 var args = new AssemblyLoadingEventArgs(assembly);
-                AssemblyLoading.Invoke(this,args);
+                AssemblyLoading.Invoke(null, args);
                 if (args.Cancel)
                 {
                     InternalLogger.Info("Loading assembly '{0}' is canceled", assembly.FullName);
@@ -379,13 +379,10 @@ namespace NLog.Config
                     {
                         // TODO Consider to prioritize AppDomain.PrivateBinPath
                         var appDomainBaseDirectory = LogFactory.CurrentAppDomain.BaseDirectory;
-                        if (!string.IsNullOrEmpty(appDomainBaseDirectory))
+                        if (!string.IsNullOrEmpty(appDomainBaseDirectory) && !string.Equals(appDomainBaseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase))
                         {
-                            if (!string.Equals(appDomainBaseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase))
-                            {
-                                assemblyLocation = appDomainBaseDirectory;
-                                extensionDlls = GetNLogExtensionFiles(appDomainBaseDirectory);
-                            }
+                            assemblyLocation = appDomainBaseDirectory;
+                            extensionDlls = GetNLogExtensionFiles(appDomainBaseDirectory);
                         }
                     }
                 }
@@ -425,12 +422,9 @@ namespace NLog.Config
                 var allAssemblies = LogFactory.CurrentAppDomain.GetAssemblies();
                 foreach (var assembly in allAssemblies)
                 {
-                    if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase))
+                    if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
                     {
-                        if (!alreadyRegistered.Contains(assembly.FullName))
-                        {
-                            factory.RegisterItemsFromAssembly(assembly);
-                        }
+                        factory.RegisterItemsFromAssembly(assembly);
                     }
 
                     if ( assembly.FullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)

@@ -89,7 +89,7 @@ namespace NLog.Common
                             newLength = _growLimit;
                         }
 
-                        // InternalLogger.Trace("Enlarging LogEventInfoBuffer from {0} to {1}", this.buffer.Length, this.buffer.Length * 2);
+                        InternalLogger.Trace("Enlarging LogEventInfoBuffer from {0} to {1}", _buffer.Length, newLength);
                         var newBuffer = new AsyncLogEventInfo[newLength];
                         Array.Copy(_buffer, 0, newBuffer, 0, _buffer.Length);
                         _buffer = newBuffer;
@@ -129,7 +129,6 @@ namespace NLog.Common
 
                 var returnValue = new AsyncLogEventInfo[cnt];
 
-                // InternalLogger.Trace("GetEventsAndClear({0},{1},{2})", this.getPointer, this.putPointer, this.count);
                 for (int i = 0; i < cnt; ++i)
                 {
                     int p = (_getPointer + i) % _buffer.Length;

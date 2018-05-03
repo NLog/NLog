@@ -403,45 +403,42 @@ namespace NLog.LayoutRenderers
 
         private void AppendCallSite(LogEventInfo logEvent, XmlWriter xtw)
         {
-            if (IncludeCallSite || IncludeSourceInfo)
+            if ((IncludeCallSite || IncludeSourceInfo) && logEvent.CallSiteInformation != null)
             {
-                if (logEvent.CallSiteInformation != null)
+                MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
+                string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
+                string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
+
+                xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
+                if (!string.IsNullOrEmpty(callerClassName))
                 {
-                    MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
-                    string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
-                    string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
+                    xtw.WriteAttributeSafeString("class", callerClassName);
+                }
 
-                    xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
-                    if (!string.IsNullOrEmpty(callerClassName))
-                    {
-                        xtw.WriteAttributeSafeString("class", callerClassName);
-                    }
-
-                    xtw.WriteAttributeSafeString("method", callerMemberName);
+                xtw.WriteAttributeSafeString("method", callerMemberName);
 #if !SILVERLIGHT
-                    if (IncludeSourceInfo)
-                    {
-                        xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
-                        xtw.WriteAttributeSafeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
-                    }
+                if (IncludeSourceInfo)
+                {
+                    xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
+                    xtw.WriteAttributeSafeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
+                }
 #endif
+                xtw.WriteEndElement();
+
+                if (IncludeNLogData)
+                {
+                    xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
+                    xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
+                    var type = methodBase?.DeclaringType;
+                    if (type != null)
+                    {
+                        xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
+                    }
                     xtw.WriteEndElement();
 
-                    if (IncludeNLogData)
-                    {
-                        xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
-                        xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
-                        var type = methodBase?.DeclaringType;
-                        if (type != null)
-                        {
-                            xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
-                        }
-                        xtw.WriteEndElement();
-
-                        xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                        AppendProperties("nlog", xtw, logEvent);
-                        xtw.WriteEndElement();
-                    }
+                    xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
+                    AppendProperties("nlog", xtw, logEvent);
+                    xtw.WriteEndElement();
                 }
             }
         }

@@ -802,12 +802,9 @@ namespace NLog
                     //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
                     //therefor we check the InitializeSucceeded property.
 
-                    if (newConfig is XmlLoggingConfiguration xmlConfig)
+                    if (newConfig is XmlLoggingConfiguration xmlConfig && xmlConfig.InitializeSucceeded != true)
                     {
-                        if (xmlConfig.InitializeSucceeded != true)
-                        {
-                            throw new NLogConfigurationException("Configuration.Reload() failed. Invalid XML?");
-                        }
+                        throw new NLogConfigurationException("Configuration.Reload() failed. Invalid XML?");
                     }
 
                     if (newConfig != null)

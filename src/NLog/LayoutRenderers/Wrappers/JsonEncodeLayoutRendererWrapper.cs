@@ -76,14 +76,11 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="target">The text to be JSON-encoded.</param>
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (JsonEncode)
+            if (JsonEncode && RequiresJsonEncode(target))
             {
-                if (RequiresJsonEncode(target))
-                {
-                    var result = Targets.DefaultJsonSerializer.EscapeString(target.ToString(), EscapeUnicode);
-                    target.Length = 0;
-                    target.Append(result);
-                }
+                var result = Targets.DefaultJsonSerializer.EscapeString(target.ToString(), EscapeUnicode);
+                target.Length = 0;
+                target.Append(result);
             }
         }
 

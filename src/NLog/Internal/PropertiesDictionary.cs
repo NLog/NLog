@@ -169,12 +169,9 @@ namespace NLog.Internal
         {
             get
             {
-                if (!IsEmpty)
+                if (!IsEmpty && EventProperties.TryGetValue(key, out var valueItem))
                 {
-                    if (EventProperties.TryGetValue(key, out var valueItem))
-                    {
-                        return valueItem.Value;
-                    }
+                    return valueItem.Value;
                 }
 
                 throw new KeyNotFoundException();
@@ -327,13 +324,10 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public bool TryGetValue(object key, out object value)
         {
-            if (!IsEmpty)
+            if (!IsEmpty && EventProperties.TryGetValue(key, out var valueItem))
             {
-                if (EventProperties.TryGetValue(key, out var valueItem))
-                {
-                    value = valueItem.Value;
-                    return true;
-                }
+                value = valueItem.Value;
+                return true;
             }
 
             value = null;
@@ -404,20 +398,17 @@ namespace NLog.Internal
             List<MessageTemplateParameter> messagePropertiesUnique = null;
             for (int i = 0; i < messageProperties.Count; ++i)
             {
-                if (eventProperties.TryGetValue(messageProperties[i].Name, out var valueItem))
+                if (eventProperties.TryGetValue(messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
                 {
-                    if (valueItem.IsMessageProperty)
+                    if (messagePropertiesUnique == null)
                     {
-                        if (messagePropertiesUnique == null)
+                        messagePropertiesUnique = new List<MessageTemplateParameter>(messageProperties.Count);
+                        for (int j = 0; j < i; ++j)
                         {
-                            messagePropertiesUnique = new List<MessageTemplateParameter>(messageProperties.Count);
-                            for (int j = 0; j < i; ++j)
-                            {
-                                messagePropertiesUnique.Add(messageProperties[j]);
-                            }
+                            messagePropertiesUnique.Add(messageProperties[j]);
                         }
-                        continue;   // Skip already exists
                     }
+                    continue;   // Skip already exists
                 }
 
                 eventProperties[messageProperties[i].Name] = new PropertyValue(messageProperties[i].Value, true);
