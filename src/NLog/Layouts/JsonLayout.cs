@@ -168,6 +168,10 @@ namespace NLog.Layouts
                 ThreadAgnostic = false;
             }
 #endif
+            if (IncludeAllProperties)
+            {
+                MutableUnsafe = true;
+            }
         }
 
         /// <summary>
@@ -182,7 +186,7 @@ namespace NLog.Layouts
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
+            if (!ThreadAgnostic || MutableUnsafe) RenderAppendBuilder(logEvent, target, true);
         }
 
         /// <summary>

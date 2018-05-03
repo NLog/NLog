@@ -52,6 +52,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("log4jxmlevent")]
     [ThreadSafe]
+    [MutableUnsafe]
     public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace, IIncludeContext
     {
         private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
