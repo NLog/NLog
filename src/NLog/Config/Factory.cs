@@ -124,10 +124,10 @@ namespace NLog.Config
         /// Registers a single type definition.
         /// </summary>
         /// <param name="itemName">The item name.</param>
-        /// <param name="typeName">The type of the item.</param>
-        public void RegisterDefinition(string itemName, Type typeName)
+        /// <param name="itemDefinition">The type of the item.</param>
+        public void RegisterDefinition(string itemName, Type itemDefinition)
         {
-            _items[itemName] = () => typeName;
+            _items[itemName] = () => itemDefinition;
         }
 
         /// <summary>
