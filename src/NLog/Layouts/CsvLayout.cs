@@ -158,7 +158,7 @@ namespace NLog.Layouts
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!ThreadAgnostic || MutableUnsafe) RenderAppendBuilder(logEvent, target, true);
+            PrecalculateBuilderInternal(logEvent, target);
         }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace NLog.Layouts
 
             internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
             {
-                if (!ThreadAgnostic || MutableUnsafe) RenderAppendBuilder(logEvent, target, true);
+                PrecalculateBuilderInternal(logEvent, target);
             }
 
             /// <summary>

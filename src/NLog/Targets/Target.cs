@@ -195,10 +195,7 @@ namespace NLog.Targets
         {
             if (_allLayoutsAreThreadAgnostic)
             {
-                if (!_oneLayoutIsMutableUnsafe)
-                return;
-
-                if (IsLogEventMutableSafe(logEvent))
+                if (!_oneLayoutIsMutableUnsafe || IsLogEventMutableSafe(logEvent))
                     return;
             }
 
