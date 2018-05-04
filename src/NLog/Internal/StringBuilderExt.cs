@@ -247,6 +247,9 @@ namespace NLog.Internal
             builder.Append((char)(((number / 1) % 10) + '0'));
         }
 
+        /// <summary>
+        /// Apend a int type (byte, int) as string
+        /// </summary>
         internal static void AppendIntegerAsString(this StringBuilder sb, object value, TypeCode objTypeCode)
         {
             switch (objTypeCode)

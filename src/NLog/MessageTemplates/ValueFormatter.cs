@@ -190,7 +190,7 @@ namespace NLog.MessageTemplates
                             }
                             else
                             {
-                                AppendIntegerAsString(builder, value, objTypeCode);
+                                builder.AppendIntegerAsString(value, objTypeCode);
                             }
                         }
                         return true;
@@ -202,46 +202,6 @@ namespace NLog.MessageTemplates
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Apend a int type (byte, int) as string
-        /// </summary>
-        /// <param name="sb"></param>
-        /// <param name="value"></param>
-        /// <param name="objTypeCode"></param>
-        private static void AppendIntegerAsString(StringBuilder sb, object value, TypeCode objTypeCode)
-        {
-            switch (objTypeCode)
-            {
-                case TypeCode.Byte: sb.AppendInvariant((byte)value); break;
-                case TypeCode.SByte: sb.AppendInvariant((sbyte)value); break;
-                case TypeCode.Int16: sb.AppendInvariant((short)value); break;
-                case TypeCode.Int32: sb.AppendInvariant((int)value); break;
-                case TypeCode.Int64:
-                    {
-                        long int64 = (long)value;
-                        if (int64 < int.MaxValue && int64 > int.MinValue)
-                            sb.AppendInvariant((int)int64);
-                        else
-                            sb.Append(int64);
-                    }
-                    break;
-                case TypeCode.UInt16: sb.AppendInvariant((ushort)value); break;
-                case TypeCode.UInt32: sb.AppendInvariant((uint)value); break;
-                case TypeCode.UInt64:
-                    {
-                        ulong uint64 = (ulong)value;
-                        if (uint64 < uint.MaxValue)
-                            sb.AppendInvariant((uint)uint64);
-                        else
-                            sb.Append(uint64);
-                    }
-                    break;
-                default:
-                    sb.Append(XmlHelper.XmlConvertToString(value, objTypeCode));
-                    break;
-            }
         }
 
         private void AppendEnumAsString(StringBuilder sb, Enum value)
