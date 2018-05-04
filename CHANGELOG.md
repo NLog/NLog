@@ -4,6 +4,23 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### v4.5.4 (2018/05/05)
+
+#### Fixes
+
+- [#2688](https://github.com/nlog/nlog/pull/2688) Faulty invalidate of FormattedMessage when getting PropertiesDictionary (@snakefoot)
+- [#2687](https://github.com/nlog/nlog/pull/2687) Fix: NLog.config build-action and copy for non-core projects, it's now "copy if newer" (@304NotModified)
+- [#2698](https://github.com/nlog/nlog/pull/2698) FileTarget - Calculate correct archive date, when using Monthly archive (@snakefoot)
+
+#### Enhancements
+
+- [#2673](https://github.com/nlog/nlog/pull/2673) TargetWithContext - Easier to use without needing to override ContextProperties (@snakefoot)
+- [#2684](https://github.com/nlog/nlog/pull/2684) DatabaseTarget - Skip static assembly lookup for .Net Standard (@snakefoot)
+- [#2689](https://github.com/nlog/nlog/pull/2689) LogEventInfo - Structured logging parameters are not always immutable (@snakefoot)
+- [#2679](https://github.com/nlog/nlog/pull/2679) Target.WriteAsyncThreadSafe should always have exception handler (@snakefoot)
+- [#2586](https://github.com/nlog/nlog/pull/2586) Target.MergeEventProperties is now obsolete (@snakefoot)
+- Sonar warning fixes:  [#2691](https://github.com/nlog/nlog/pull/2691),  [#2694](https://github.com/nlog/nlog/pull/2694), [#2693](https://github.com/nlog/nlog/pull/2693), [#2690](https://github.com/nlog/nlog/pull/2690), [#2685](https://github.com/nlog/nlog/pull/2685), [#2683](https://github.com/nlog/nlog/pull/2683), [#2696](https://github.com/NLog/NLog/pull/2696) (@snakefoot, @304NotModified)
+
 ### v4.5.3 (2018/04/16)
 
 #### Fixes
