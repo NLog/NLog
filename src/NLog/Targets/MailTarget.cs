@@ -636,7 +636,7 @@ namespace NLog.Targets
         {
             var msg = new MailMessage();
 
-            var renderedFrom = From == null ? null : From.Render(lastEvent);
+            var renderedFrom = From?.Render(lastEvent);
 
             if (string.IsNullOrEmpty(renderedFrom))
             {

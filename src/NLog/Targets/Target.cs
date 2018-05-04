@@ -153,7 +153,7 @@ namespace NLog.Targets
         {
             if (asyncContinuation == null)
             {
-                throw new ArgumentNullException("asyncContinuation");
+                throw new ArgumentNullException(nameof(asyncContinuation));
             }
 
             asyncContinuation = AsyncHelpers.PreventMultipleCalls(asyncContinuation);
@@ -196,7 +196,7 @@ namespace NLog.Targets
             if (_allLayoutsAreThreadAgnostic)
             {
                 if (!_oneLayoutIsMutableUnsafe)
-                    return;
+                return;
 
                 if (IsLogEventMutableSafe(logEvent))
                     return;
@@ -561,7 +561,7 @@ namespace NLog.Targets
             {
                 _oneLayoutIsMutableUnsafe = _allLayouts.Any(layout => layout.MutableUnsafe);
             }
-            StackTraceUsage = _allLayouts.DefaultIfEmpty().Max(layout => layout == null ? StackTraceUsage.None : layout.StackTraceUsage);
+            StackTraceUsage = _allLayouts.DefaultIfEmpty().Max(layout => layout?.StackTraceUsage ?? StackTraceUsage.None);
             _scannedForLayouts = true;
         }
 

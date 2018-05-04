@@ -222,9 +222,9 @@ namespace NLog.Layouts
         {
             Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
 
-            if (Renderers.Count == 1 && Renderers[0] is LiteralLayoutRenderer)
+            if (Renderers.Count == 1 && Renderers[0] is LiteralLayoutRenderer renderer)
             {
-                _fixedText = ((LiteralLayoutRenderer)Renderers[0]).Text;
+                _fixedText = renderer.Text;
             }
             else
             {

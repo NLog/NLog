@@ -65,9 +65,9 @@ namespace NLog.Fluent
         public LogBuilder(ILogger logger, LogLevel logLevel)
         {
             if (logger == null)
-                throw new ArgumentNullException("logger");
+                throw new ArgumentNullException(nameof(logger));
             if (logLevel == null)
-                throw new ArgumentNullException("logLevel");
+                throw new ArgumentNullException(nameof(logLevel));
 
             _logger = logger;
             _logEvent = new LogEventInfo() { LoggerName = logger.Name, Level = logLevel };
@@ -97,7 +97,7 @@ namespace NLog.Fluent
         public LogBuilder Level(LogLevel logLevel)
         {
             if (logLevel == null)
-                throw new ArgumentNullException("logLevel");
+                throw new ArgumentNullException(nameof(logLevel));
 
             _logEvent.Level = logLevel;
             return this;
@@ -233,7 +233,7 @@ namespace NLog.Fluent
         public LogBuilder Property(object name, object value)
         {
             if (name == null)
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
 
             _logEvent.Properties[name] = value;
             return this;
@@ -247,7 +247,7 @@ namespace NLog.Fluent
         public LogBuilder Properties(IDictionary properties)
         {
             if (properties == null)
-                throw new ArgumentNullException("properties");
+                throw new ArgumentNullException(nameof(properties));
 
             foreach (var key in properties.Keys)
             {

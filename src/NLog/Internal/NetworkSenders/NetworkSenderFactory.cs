@@ -111,7 +111,7 @@ namespace NLog.Internal.NetworkSenders
             }
 #endif
 
-            throw new ArgumentException("Unrecognized network address", "url");
+            throw new ArgumentException("Unrecognized network address", nameof(url));
         }
     }
 }

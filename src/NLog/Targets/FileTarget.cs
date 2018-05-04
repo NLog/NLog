@@ -229,9 +229,7 @@ namespace NLog.Targets
         {
             get
             {
-                if (_fullFileName == null) return null;
-
-                return _fullFileName.GetLayout();
+                return _fullFileName?.GetLayout();
             }
             set
             {
@@ -1081,7 +1079,7 @@ namespace NLog.Targets
             using (var reusableStream = (OptimizeBufferReuse && logEvents.Count <= 1000) ? _reusableAsyncFileWriteStream.Allocate() : _reusableAsyncFileWriteStream.None)
             using (var allocatedStream = reusableStream.Result != null ? null : new MemoryStream())
             {
-                var ms = allocatedStream != null ? allocatedStream : reusableStream.Result;
+                var ms = allocatedStream ?? reusableStream.Result;
 
                 foreach (var bucket in buckets)
                 {

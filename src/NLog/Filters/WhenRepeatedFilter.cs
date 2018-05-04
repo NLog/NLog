@@ -298,14 +298,13 @@ namespace NLog.Filters
                 {
                     if (!string.IsNullOrEmpty(FilterCountPropertyName))
                     {
-                        object otherFilterCount;
-                        if (!logEvent.Properties.TryGetValue(FilterCountPropertyName, out otherFilterCount))
+                        if (!logEvent.Properties.TryGetValue(FilterCountPropertyName, out var otherFilterCount))
                         {
                             logEvent.Properties[FilterCountPropertyName] = filterCount;
                         }
-                        else if (otherFilterCount is int)
+                        else if (otherFilterCount is int i)
                         {
-                            filterCount = Math.Max((int)otherFilterCount, filterCount);
+                            filterCount = Math.Max(i, filterCount);
                             logEvent.Properties[FilterCountPropertyName] = filterCount;
                         }
                     }
@@ -434,7 +433,7 @@ namespace NLog.Filters
 
             public override bool Equals(object obj)
             {
-                return obj is FilterInfoKey && Equals((FilterInfoKey)obj);
+                return obj is FilterInfoKey key && Equals(key);
             }
         }
     }

@@ -467,7 +467,7 @@ namespace NLog.Config
         {
             if (installationContext == null)
             {
-                throw new ArgumentNullException("installationContext");
+                throw new ArgumentNullException(nameof(installationContext));
             }
 
             InitializeAll();
@@ -505,7 +505,7 @@ namespace NLog.Config
         {
             if (installationContext == null)
             {
-                throw new ArgumentNullException("installationContext");
+                throw new ArgumentNullException(nameof(installationContext));
             }
 
             InitializeAll();

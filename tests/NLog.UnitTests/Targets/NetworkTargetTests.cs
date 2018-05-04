@@ -615,17 +615,14 @@ namespace NLog.UnitTests.Targets
                     {
                         try
                         {
-                            // Console.WriteLine("Accepting...");
                             byte[] buffer = new byte[4096];
                             using (Socket connectedSocket = listener.EndAccept(result))
                             {
-                                // Console.WriteLine("Accepted...");
                                 int got;
                                 while ((got = connectedSocket.Receive(buffer, 0, buffer.Length, SocketFlags.None)) > 0)
                                 {
                                     resultStream.Write(buffer, 0, got);
                                 }
-                                // Console.WriteLine("Closing connection...");
                             }
                         }
                         catch (Exception ex)

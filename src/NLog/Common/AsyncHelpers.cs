@@ -367,12 +367,9 @@ namespace NLog.Common
             if (timeout != TimeSpan.Zero)
             {
                 ManualResetEvent waitHandle = new ManualResetEvent(false);
-                if (timer.Dispose(waitHandle))
+                if (timer.Dispose(waitHandle) && !waitHandle.WaitOne((int)timeout.TotalMilliseconds))
                 {
-                    if (!waitHandle.WaitOne((int)timeout.TotalMilliseconds))
-                    {
-                        return false;   // Return without waiting for timer, and without closing waitHandle (Avoid ObjectDisposedException)
-                    }
+                    return false;   // Return without waiting for timer, and without closing waitHandle (Avoid ObjectDisposedException)
                 }
 
                 waitHandle.Close();
