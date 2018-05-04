@@ -171,7 +171,8 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Renders the event info in layout to the provided target
+        /// Optimized version of <see cref="Render(LogEventInfo)"/> for internal Layouts. Works best
+        /// when override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
         /// </summary>
         /// <param name="logEvent">The event info.</param>
         /// <param name="target">Appends the string representing log event to target</param>
@@ -354,6 +355,18 @@ namespace NLog.Layouts
         {
             ConfigurationItemFactory.Default.Layouts
                 .RegisterDefinition(name, layoutType);
+        }
+
+        /// <summary>
+        /// Optimized version of <see cref="Precalculate(LogEventInfo)"/> for internal Layouts, when
+        /// override of <see cref="RenderFormattedMessage(LogEventInfo, StringBuilder)"/> is available.
+        /// </summary>
+        internal void PrecalculateBuilderInternal(LogEventInfo logEvent, StringBuilder target)
+        {
+            if (!ThreadAgnostic || MutableUnsafe)
+            {
+                RenderAppendBuilder(logEvent, target, true);
+            }
         }
 
         internal string ToStringWithNestedItems<T>(IList<T> nestedItems, Func<T, string> nextItemToString)
