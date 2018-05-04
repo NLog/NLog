@@ -89,11 +89,6 @@ namespace NLog.Targets
 
         private LineEndingMode _lineEndingMode = LineEndingMode.Default;
 
-        /// <summary>
-        /// Factory used to create the file appenders in the <see cref="FileTarget"/> instance. 
-        /// </summary>
-        /// <remarks>File appenders are stored in an instance of <see cref="FileAppenderCache"/>.</remarks>
-        private IFileAppenderFactory _appenderFactory;
 
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
@@ -922,13 +917,13 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            _appenderFactory = GetFileAppenderFactory();
+            var appenderFactory = GetFileAppenderFactory();
             if (InternalLogger.IsTraceEnabled)
             {
-                InternalLogger.Trace("FileTarget(Name={0}): Using appenderFactory: {1}", Name, _appenderFactory.GetType());
+                InternalLogger.Trace("FileTarget(Name={0}): Using appenderFactory: {1}", Name, appenderFactory.GetType());
             }
 
-            _fileAppenderCache = new FileAppenderCache(OpenFileCacheSize, _appenderFactory, this);
+            _fileAppenderCache = new FileAppenderCache(OpenFileCacheSize, appenderFactory, this);
 
             if ((OpenFileCacheSize > 0 || EnableFileDelete) && OpenFileCacheTimeout > 0)
             {
@@ -1460,15 +1455,15 @@ namespace NLog.Targets
                 {
 
                     InternalLogger.Trace("FileTarget(Name={0}): Using previous log event time (is more recent)", Name);
-                    
+
                     return previousLogEventTimestamp.Value;
-            }
+                }
 
                 if (PreviousLogOverlappedPeriod(logEvent, previousLogEventTimestamp.Value, lastWriteTimeSource.Value))
-            {
-                InternalLogger.Trace("FileTarget(Name={0}): Using previous log event time (previous log overlapped period)", Name);
+                {
+                    InternalLogger.Trace("FileTarget(Name={0}): Using previous log event time (previous log overlapped period)", Name);
                     return previousLogEventTimestamp.Value;
-            }
+                }
             }
 
             InternalLogger.Trace("FileTarget(Name={0}): Using last write time", Name);

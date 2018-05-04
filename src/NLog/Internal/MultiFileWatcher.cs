@@ -44,7 +44,7 @@ namespace NLog.Internal
     /// Watches multiple files at the same time and raises an event whenever 
     /// a single change is detected in any of those files.
     /// </summary>
-    internal class MultiFileWatcher : IDisposable
+    internal sealed class MultiFileWatcher : IDisposable
     {
         private readonly Dictionary<string, FileSystemWatcher> _watcherMap = new Dictionary<string, FileSystemWatcher>();
 

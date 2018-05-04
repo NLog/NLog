@@ -136,7 +136,7 @@ namespace NLog.LayoutRenderers
             }
             else
             {
-                //custom value;
+                //custom format string
                 formattingString = format;
             }
             return formattingString;

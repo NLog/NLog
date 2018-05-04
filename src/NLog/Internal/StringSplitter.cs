@@ -158,7 +158,6 @@ namespace NLog.Internal
                         else
                         {
                             //if prevWasEscape, always appended so length >0
-                            //if (sb.Length > 0) 
                             sb.Length--;
                             var part = sb.ToString();
                             //reset
@@ -284,7 +283,6 @@ namespace NLog.Internal
                         var part = sb.ToString();
                         //reset
                         sb.Length = 0;
-                        //  isInPart = false;
                         yield return part;
 
                         if (isLastChar)
@@ -329,7 +327,6 @@ namespace NLog.Internal
                         var part = sb.ToString();
                         //reset
                         sb.Length = 0;
-                        //  isInPart = false;
                         yield return part;
 
                         if (isLastChar)
@@ -434,7 +431,6 @@ namespace NLog.Internal
                         //skip quoteChar
                         if (sb.Length > 0)
                             sb.Length--;
-                        //isInPart = true;
                         inQuotedMode = true;
                         //todo check escape quoteChar
                     }
@@ -464,7 +460,6 @@ namespace NLog.Internal
 
                         //skip quoteChar
                         i++;
-                        //    isInPart = false;
                         inQuotedMode = false;
                         var part = sb.ToString();
                         //reset
