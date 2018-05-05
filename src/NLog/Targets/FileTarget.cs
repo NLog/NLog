@@ -1428,7 +1428,8 @@ namespace NLog.Targets
 
         private DateTime? GetArchiveDate(string fileName, LogEventInfo logEvent, bool initializedNewFile)
         {
-            var lastWriteTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, true);
+            // Using File LastModifed to handle FileArchivePeriod.Month (where file creation time is one month ago)
+            var fileLastModifiedUtc = _fileAppenderCache.GetFileLastWriteTimeUtc(fileName, true);
 
             DateTime? previousLogEventTimestamp = string.Equals(fileName, _previousLogFileName, StringComparison.OrdinalIgnoreCase) ? _previousLogEventTimestamp : null;
             if (!previousLogEventTimestamp.HasValue && !initializedNewFile)
@@ -1439,8 +1440,8 @@ namespace NLog.Targets
                 }
             }
 
-            InternalLogger.Trace("FileTarget(Name={0}): Calculating archive date. Last write time: {1}; Previous log event time: {2}", Name, lastWriteTimeSource, previousLogEventTimestamp);
-            if (!lastWriteTimeSource.HasValue)
+            InternalLogger.Trace("FileTarget(Name={0}): Calculating archive date. File-LastModifiedUtc: {1}; Previous LogEvent-TimeStamp: {2}", Name, fileLastModifiedUtc, previousLogEventTimestamp);
+            if (!fileLastModifiedUtc.HasValue)
             {
                 if (!previousLogEventTimestamp.HasValue)
                 {
@@ -1449,17 +1450,17 @@ namespace NLog.Targets
                 return previousLogEventTimestamp;
             }
 
-            if (lastWriteTimeSource.HasValue && previousLogEventTimestamp.HasValue)
+            var lastWriteTimeSource = Time.TimeSource.Current.FromSystemTime(fileLastModifiedUtc.Value);
+            if (previousLogEventTimestamp.HasValue)
             {
-                if (previousLogEventTimestamp.Value > lastWriteTimeSource.Value)
+                if (previousLogEventTimestamp.Value > lastWriteTimeSource)
                 {
-
                     InternalLogger.Trace("FileTarget(Name={0}): Using previous log event time (is more recent)", Name);
 
                     return previousLogEventTimestamp.Value;
                 }
 
-                if (PreviousLogOverlappedPeriod(logEvent, previousLogEventTimestamp.Value, lastWriteTimeSource.Value))
+                if (PreviousLogOverlappedPeriod(logEvent, previousLogEventTimestamp.Value, lastWriteTimeSource))
                 {
                     InternalLogger.Trace("FileTarget(Name={0}): Using previous log event time (previous log overlapped period)", Name);
                     return previousLogEventTimestamp.Value;
@@ -1467,7 +1468,7 @@ namespace NLog.Targets
             }
 
             InternalLogger.Trace("FileTarget(Name={0}): Using last write time", Name);
-            return lastWriteTimeSource.Value;
+            return lastWriteTimeSource;
         }
 
         private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime previousLogEventTimestamp, DateTime lastFileWrite)
@@ -1842,8 +1843,8 @@ namespace NLog.Targets
             {
                 return previousFileName;
             }
-            return null;
 
+            return null;
         }
 
         /// <summary>
@@ -1860,7 +1861,6 @@ namespace NLog.Targets
             }
 
             fileName = GetPotentialFileForArchiving(fileName);
-
             if (fileName == null)
             {
                 return null;
@@ -1886,6 +1886,7 @@ namespace NLog.Targets
                     return fileName;
                 }
             }
+
             return null;
         }
 

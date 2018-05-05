@@ -369,6 +369,81 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#if !MONO
+        [Fact]
+#else
+        [Fact(Skip="Not supported on MONO on Travis, because of File birthtime not working")]
+#endif
+        public void DatedArchiveEveryMonth()
+        {
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] FileTargetTests.DatedArchiveEveryMonth because we are running in Travis");
+                return;
+            }
+
+            var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
+
+            try
+            {
+                var fileTarget = WrapFileTarget(new FileTarget
+                {
+                    FileName = Path.Combine(tempPath, "AppName.log"),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    ArchiveNumbering = ArchiveNumberingMode.Date,
+                    ArchiveEvery = FileArchivePeriod.Month,
+                    ArchiveDateFormat = "yyyyMMdd",
+                    MaxArchiveFiles = 2,
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                logger.Debug("aaa");
+
+                // Make the file 2 months old, and lets try again
+                var files = Directory.GetFiles(tempPath);
+                Assert.Single(files);
+                File.SetCreationTime(files[0], DateTime.Now.AddMonths(-2));
+
+                var fileTarget2 = WrapFileTarget(new FileTarget
+                {
+                    FileName = Path.Combine(tempPath, "AppName.log"),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${message}",
+                    ArchiveNumbering = ArchiveNumberingMode.Date,
+                    ArchiveEvery = FileArchivePeriod.Month,
+                    ArchiveDateFormat = "yyyyMMdd",
+                    MaxArchiveFiles = 2,
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget2, LogLevel.Debug);
+                logger.Debug("bbb");
+
+                // Verify the old file has been archived, but using the last-modified-time (And not file-creation-time)
+                files = Directory.GetFiles(tempPath);
+                Assert.Equal(2, files.Length);
+                string dateName = string.Empty;
+                foreach (var fileName in files)
+                {
+                    if (string.IsNullOrEmpty(dateName))
+                    {
+                        dateName = Path.GetFileName(fileName);
+                        dateName = dateName.Replace("AppName.", "");
+                        dateName = dateName.Replace(".log", "");
+                        dateName = dateName.Replace("log", "");
+                    }
+                }
+
+                Assert.NotEmpty(dateName);
+                Assert.Equal(DateTime.Now.Month, DateTime.ParseExact(dateName, "yyyyMMdd", null).Month);
+            }
+            finally
+            {
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
         [Fact]
         public void CsvHeaderTest()
         {
