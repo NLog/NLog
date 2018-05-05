@@ -156,10 +156,10 @@ namespace NLog.Layouts
 
         /// <summary>
         /// XML attribute name to use when rendering property-key
+        ///
+        /// When null (or empty) then key-attribute is not included
         /// </summary>
         /// <remarks>
-        /// Attribute not included when assigned null or empty string
-        /// 
         /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
@@ -168,11 +168,10 @@ namespace NLog.Layouts
         /// <summary>
         /// XML attribute name to use when rendering property-value
         /// 
-        /// When null (or empty) then value is formatted as XML-element-value
+        /// When null (or empty) then value-attribute is not included and
+        /// value is formatted as XML-element-value
         /// </summary>
         /// <remarks>
-        /// Attribute not included when assigned null or empty string
-        /// 
         /// Skips closing element tag when using attribute for value
         ///
         /// Will replace newlines in attribute-value with &#13;&#10;
@@ -227,7 +226,7 @@ namespace NLog.Layouts
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!ThreadAgnostic || MutableUnsafe) RenderAppendBuilder(logEvent, target, true);
+            PrecalculateBuilderInternal(logEvent, target);
         }
 
         /// <summary>

@@ -283,7 +283,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="value">Object value</param>
         /// <param name="objTypeCode">Object TypeCode</param>
-        /// <param name="safeConversion">Object TypeCode</param>
+        /// <param name="safeConversion">Check and remove unusual unicode characters from the result string.</param>
         /// <returns>Object value converted to string</returns>
         internal static string XmlConvertToString(object value, TypeCode objTypeCode, bool safeConversion = false)
         {
