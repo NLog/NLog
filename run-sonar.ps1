@@ -30,16 +30,16 @@ if ($env:APPVEYOR_REPO_NAME -eq $github) {
 
     if ($preview) {
         Write-Output "Sonar: Running Sonar in preview mode for PR $env:APPVEYOR_PULL_REQUEST_NUMBER"
-        SonarScanner.MSBuild.exe begin /k:"$sonarQubeId" /d:"sonar.analysis.mode=preview" /d:"sonar.github.pullRequest=$env:APPVEYOR_PULL_REQUEST_NUMBER" /d:"sonar.github.repository=$github" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=$env:sonar_token" 
+        SonarScanner.MSBuild.exe begin /k:"$sonarQubeId" /d:"sonar.analysis.mode=preview" /d:"sonar.github.pullRequest=$env:APPVEYOR_PULL_REQUEST_NUMBER" /d:"sonar.github.repository=$github" /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=$env:sonar_token" 
     }
     elseif ($branchMode) {
         $branch = $env:APPVEYOR_REPO_BRANCH;
         Write-Output "Sonar: Running Sonar in branch mode for branch $branch"
-        SonarScanner.MSBuild.exe begin /k:"$sonarQubeId" /d:"sonar.branch.name=$branch" /d:"sonar.github.repository=$github" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=$env:sonar_token" 
+        SonarScanner.MSBuild.exe begin /k:"$sonarQubeId" /d:"sonar.branch.name=$branch" /d:"sonar.github.repository=$github" /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=$env:sonar_token" 
     }
     else {
         Write-Output "Sonar: Running Sonar in non-preview mode, on branch $env:APPVEYOR_REPO_BRANCH"
-        SonarScanner.MSBuild.exe begin /k:"$sonarQubeId" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=$env:sonar_token" 
+        SonarScanner.MSBuild.exe begin /k:"$sonarQubeId" /d:"sonar.host.url=https://sonarcloud.io" /d:"sonar.login=$env:sonar_token" /v:"$env:APPVEYOR_BUILD_VERSION"
     }
 
     msbuild /t:Rebuild $projectFile /p:targetFrameworks=net45 /verbosity:minimal
