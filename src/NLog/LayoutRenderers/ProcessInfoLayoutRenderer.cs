@@ -52,7 +52,6 @@ namespace NLog.LayoutRenderers
     {
         private Process _process;
 
-        private PropertyInfo _propertyInfo;
         private ReflectionHelpers.LateBoundMethod _lateBoundPropertyGet;
 
         /// <summary>
@@ -83,13 +82,13 @@ namespace NLog.LayoutRenderers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            _propertyInfo = typeof(Process).GetProperty(Property.ToString());
-            if (_propertyInfo == null)
+            var propertyInfo = typeof(Process).GetProperty(Property.ToString());
+            if (propertyInfo == null)
             {
-                throw new ArgumentException($"Property '{_propertyInfo}' not found in System.Diagnostics.Process");
+                throw new ArgumentException($"Property '{Property}' not found in System.Diagnostics.Process");
             }
 
-            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(_propertyInfo.GetGetMethod());
+            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(propertyInfo.GetGetMethod());
 
             _process = Process.GetCurrentProcess();
         }

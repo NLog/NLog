@@ -276,7 +276,7 @@ namespace NLog.MessageTemplates
                             }
                             else
                             {
-                                //done. unread the }
+                                //done. unread the '}' .
                                 _position--;
                                 //done
                                 return format;

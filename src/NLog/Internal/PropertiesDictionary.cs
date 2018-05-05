@@ -423,7 +423,7 @@ namespace NLog.Internal
             return new ParameterEnumerator(this);
         }
 
-        private class DictionaryEnumeratorBase : IDisposable
+        private abstract class DictionaryEnumeratorBase : IDisposable
         {
             private readonly PropertiesDictionary _dictionary;
             private int? _messagePropertiesEnumerator;
@@ -460,7 +460,7 @@ namespace NLog.Internal
                     }
                     if (_eventEnumeratorCreated)
                     {
-                        string parameterName = "";
+                        string parameterName;
                         try
                         {
                             parameterName = XmlHelper.XmlConvertToString(_eventEnumerator.Current.Key ?? string.Empty);

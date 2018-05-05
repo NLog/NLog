@@ -85,7 +85,7 @@ namespace NLog.LayoutRenderers
             if (Name != null)
             {
                 //don't use LogManager (locking, recursion)
-                var loggingConfiguration = LoggingConfiguration; //?? LogManager.Configuration;
+                var loggingConfiguration = LoggingConfiguration;
                 var vars = loggingConfiguration?.Variables;
                 if (vars != null && vars.TryGetValue(Name, out layout))
                 {
