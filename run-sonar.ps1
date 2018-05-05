@@ -1,5 +1,5 @@
 $projectFile = "src\NLog\NLog.csproj"
-$sonarQubeId = "nlog"
+$sonarQubeId = "nlog/nlog"
 $github = "nlog/nlog"
 $baseBranch = "master"
 
