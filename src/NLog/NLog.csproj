@@ -32,24 +32,25 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-Fixes:
+## Fixes
 
-- [#2662](https://github.com/nlog/nlog/pull/2662) FileTarget - Improve handling of archives with multiple active files (@snakefoot)
+- Faulty invalidate of FormattedMessage when getting PropertiesDictionary (@snakefoot)
+- Fix: NLog.config build-action and copy for non-core projects, it's now "copy if newer" (@304NotModified)
+- FileTarget - Calculate correct archive date, when using Monthly archive (@snakefoot)
 
-Enhancements:
+## Enhancements
 
-- [#2587](https://github.com/nlog/nlog/pull/2587) Internal Log - Include target type and target name in the log messages (@snakefoot)
-- [#2651](https://github.com/nlog/nlog/pull/2651) Searching for NLog Extension Files should handle DirectoryNotFoundException  (@snakefoot)
+- TargetWithContext - Easier to use without needing to override ContextProperties (@snakefoot)
+- DatabaseTarget - Skip static assembly lookup for .Net Standard (@snakefoot)
+- LogEventInfo - Structured logging parameters are not always immutable (@snakefoot)
+- Target.WriteAsyncThreadSafe should always have exception handler (@snakefoot)
+- Target.MergeEventProperties is now obsolete (@snakefoot)
+- Sonar warning fixes (@snakefoot, @304NotModified)
 
-Performance:
 
-- [#2653](https://github.com/nlog/nlog/pull/2653) LayoutRenderer ThreadSafe Attribute introduced to allow lock free Precalculate + other small performance improvements (@snakefoot)
+Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
-
-
-for full changelog, check https://github.com/NLog/NLog/blob/master/CHANGELOG.md
-
-for what is supported in each platform, see https://github.com/NLog/NLog/wiki/platform-support
+Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
 
     </PackageReleaseNotes>
     <PackageTags>NLog;logging;log;structured;tracing;logfiles;database;eventlog;email;wcf;console</PackageTags>
