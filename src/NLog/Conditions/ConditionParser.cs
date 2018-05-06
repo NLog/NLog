@@ -167,26 +167,12 @@ namespace NLog.Conditions
                     throw new ConditionParseException($"Number expected, got {_tokenizer.TokenType}");
                 }
 
-                string numberString = _tokenizer.TokenValue;
-                _tokenizer.GetNextToken();
-                if (numberString.IndexOf('.') >= 0)
-                {
-                    return new ConditionLiteralExpression(-double.Parse(numberString, CultureInfo.InvariantCulture));
-                }
-
-                return new ConditionLiteralExpression(-int.Parse(numberString, CultureInfo.InvariantCulture));
+                return ParseNumber(true);
             }
 
             if (_tokenizer.IsNumber())
             {
-                string numberString = _tokenizer.TokenValue;
-                _tokenizer.GetNextToken();
-                if (numberString.IndexOf('.') >= 0)
-                {
-                    return new ConditionLiteralExpression(double.Parse(numberString, CultureInfo.InvariantCulture));
-                }
-
-                return new ConditionLiteralExpression(int.Parse(numberString, CultureInfo.InvariantCulture));
+                return ParseNumber(false);
             }
 
             if (_tokenizer.TokenType == ConditionTokenType.String)
@@ -246,6 +232,22 @@ namespace NLog.Conditions
             }
 
             throw new ConditionParseException("Unexpected token: " + _tokenizer.TokenValue);
+        }
+
+
+        private ConditionExpression ParseNumber(bool negative)
+        {
+            string numberString = _tokenizer.TokenValue;
+            _tokenizer.GetNextToken();
+            if (numberString.IndexOf('.') >= 0)
+            {
+                var d = double.Parse(numberString, CultureInfo.InvariantCulture);
+                
+                return new ConditionLiteralExpression(negative ? -d : d);
+            }
+
+            var i = int.Parse(numberString, CultureInfo.InvariantCulture);
+            return new ConditionLiteralExpression(negative ? -i : i);
         }
 
         private ConditionExpression ParseBooleanRelation()
