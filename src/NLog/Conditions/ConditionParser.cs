@@ -186,40 +186,9 @@ namespace NLog.Conditions
             {
                 string keyword = _tokenizer.EatKeyword();
 
-                if (0 == string.Compare(keyword, "level", StringComparison.OrdinalIgnoreCase))
+                if (TryPlainKeywordToExpression(keyword, out var expression))
                 {
-                    return new ConditionLevelExpression();
-                }
-
-                if (0 == string.Compare(keyword, "logger", StringComparison.OrdinalIgnoreCase))
-                {
-                    return new ConditionLoggerNameExpression();
-                }
-
-                if (0 == string.Compare(keyword, "message", StringComparison.OrdinalIgnoreCase))
-                {
-                    return new ConditionMessageExpression();
-                }
-
-                if (0 == string.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
-                {
-                    _tokenizer.Expect(ConditionTokenType.Dot);
-                    return new ConditionLiteralExpression(LogLevel.FromString(_tokenizer.EatKeyword()));
-                }
-
-                if (0 == string.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
-                {
-                    return new ConditionLiteralExpression(true);
-                }
-
-                if (0 == string.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
-                {
-                    return new ConditionLiteralExpression(false);
-                }
-
-                if (0 == string.Compare(keyword, "null", StringComparison.OrdinalIgnoreCase))
-                {
-                    return new ConditionLiteralExpression(null);
+                    return expression;
                 }
 
                 if (_tokenizer.TokenType == ConditionTokenType.LeftParen)
@@ -234,7 +203,80 @@ namespace NLog.Conditions
             throw new ConditionParseException("Unexpected token: " + _tokenizer.TokenValue);
         }
 
+        /// <summary>
+        /// Try stringed keyword to <see cref="ConditionExpression"/>
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="expression"></param>
+        /// <returns>success?</returns>
+        private bool TryPlainKeywordToExpression(string keyword, out ConditionExpression expression)
+        {
+            if (0 == string.Compare(keyword, "level", StringComparison.OrdinalIgnoreCase))
+            {
+                {
+                    expression = new ConditionLevelExpression();
+                    return true;
+                }
+            }
 
+            if (0 == string.Compare(keyword, "logger", StringComparison.OrdinalIgnoreCase))
+            {
+                {
+                    expression = new ConditionLoggerNameExpression();
+                    return true;
+                }
+            }
+
+            if (0 == string.Compare(keyword, "message", StringComparison.OrdinalIgnoreCase))
+            {
+                {
+                    expression = new ConditionMessageExpression();
+                    return true;
+                }
+            }
+
+            if (0 == string.Compare(keyword, "loglevel", StringComparison.OrdinalIgnoreCase))
+            {
+                _tokenizer.Expect(ConditionTokenType.Dot);
+                {
+                    expression = new ConditionLiteralExpression(LogLevel.FromString(_tokenizer.EatKeyword()));
+                    return true;
+                }
+            }
+
+            if (0 == string.Compare(keyword, "true", StringComparison.OrdinalIgnoreCase))
+            {
+                {
+                    expression = new ConditionLiteralExpression(true);
+                    return true;
+                }
+            }
+
+            if (0 == string.Compare(keyword, "false", StringComparison.OrdinalIgnoreCase))
+            {
+                {
+                    expression = new ConditionLiteralExpression(false);
+                    return true;
+                }
+            }
+
+            if (0 == string.Compare(keyword, "null", StringComparison.OrdinalIgnoreCase))
+            {
+                {
+                    expression = new ConditionLiteralExpression(null);
+                    return true;
+                }
+            }
+
+            expression = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Parse number
+        /// </summary>
+        /// <param name="negative">negative number? minus should be parsed first.</param>
+        /// <returns></returns>
         private ConditionExpression ParseNumber(bool negative)
         {
             string numberString = _tokenizer.TokenValue;
