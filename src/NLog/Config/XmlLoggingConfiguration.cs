@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using JetBrains.Annotations;
-
 namespace NLog.Config
 {
     using System;
@@ -386,9 +384,11 @@ namespace NLog.Config
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Target is disposed elsewhere.")]
         private static Target WrapWithAsyncTargetWrapper(Target target)
         {
-            var asyncTargetWrapper = new AsyncTargetWrapper();
-            asyncTargetWrapper.WrappedTarget = target;
-            asyncTargetWrapper.Name = target.Name;
+            var asyncTargetWrapper = new AsyncTargetWrapper
+            {
+                WrappedTarget = target,
+                Name = target.Name
+            };
             target.Name = target.Name + "_wrapped";
             InternalLogger.Debug("Wrapping target '{0}' with AsyncTargetWrapper and renaming to '{1}", asyncTargetWrapper.Name, target.Name);
             target = asyncTargetWrapper;
@@ -410,7 +410,7 @@ namespace NLog.Config
                 reader.MoveToContent();
                 var content = new NLogXmlElement(reader);
                 if (fileName != null)
-                {                    
+                {
                     ParseTopLevel(content, fileName, autoReloadDefault: false);
 
                     InternalLogger.Info("Configured from an XML element in {0}...", fileName);
@@ -689,23 +689,17 @@ namespace NLog.Config
                 InternalLogger.Debug("The logger named '{0}' are disabled");
                 return;
             }
+            
+            string appendTo = loggerElement.GetOptionalAttribute("appendTo", null) ?? loggerElement.GetOptionalAttribute("writeTo", null);
 
-            var rule = new LoggingRule();
-            string appendTo = loggerElement.GetOptionalAttribute("appendTo", null);
-            if (appendTo == null)
+            var rule = new LoggingRule
             {
-                appendTo = loggerElement.GetOptionalAttribute("writeTo", null);
-            }
-
-            rule.LoggerNamePattern = namePattern;
+                LoggerNamePattern = namePattern
+            };
             if (appendTo != null)
             {
-                foreach (string t in appendTo.Split(','))
+                foreach (string targetName in StringToList(appendTo))
                 {
-                    string targetName = t.Trim();
-                    if (string.IsNullOrEmpty(targetName))
-                        continue;
-
                     Target target = FindTargetByName(targetName);
 
                     if (target != null)
@@ -744,11 +738,25 @@ namespace NLog.Config
             }
         }
 
+        /// <summary>
+        /// Split list on comma, trim items
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>no empty items</returns>
+        private static IEnumerable<string> StringToList(string text)
+        {
+            foreach (var it in text.Split(','))
+            {
+                if (!StringHelpers.IsNullOrWhiteSpace(it))
+                {
+                    yield return it.Trim();
+                }
+            }
+        }
+
         private static void ParseLevels(NLogXmlElement loggerElement, LoggingRule rule)
         {
-            string levelString;
-
-            if (loggerElement.AttributeValues.TryGetValue("level", out levelString))
+            if (loggerElement.AttributeValues.TryGetValue("level", out var levelString))
             {
                 LogLevel level = LogLevel.FromString(levelString);
                 rule.EnableLoggingForLevel(level);
@@ -771,15 +779,13 @@ namespace NLog.Config
             {
                 int minLevel = 0;
                 int maxLevel = LogLevel.MaxLevel.Ordinal;
-                string minLevelString;
-                string maxLevelString;
 
-                if (loggerElement.AttributeValues.TryGetValue("minLevel", out minLevelString))
+                if (loggerElement.AttributeValues.TryGetValue("minLevel", out var minLevelString))
                 {
                     minLevel = LogLevel.FromString(minLevelString).Ordinal;
                 }
 
-                if (loggerElement.AttributeValues.TryGetValue("maxLevel", out maxLevelString))
+                if (loggerElement.AttributeValues.TryGetValue("maxLevel", out var maxLevelString))
                 {
                     maxLevel = LogLevel.FromString(maxLevelString).Ordinal;
                 }
@@ -878,8 +884,7 @@ namespace NLog.Config
         private void ParseTargetElement(Target target, NLogXmlElement targetElement, Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters = null)
         {
             string targetType = StripOptionalNamespacePrefix(targetElement.GetRequiredAttribute("type"));
-            NLogXmlElement defaults;
-            if (typeNameToDefaultTargetParameters != null && typeNameToDefaultTargetParameters.TryGetValue(targetType, out defaults))
+            if (typeNameToDefaultTargetParameters != null && typeNameToDefaultTargetParameters.TryGetValue(targetType, out var defaults))
             {
                 ParseTargetElement(target, defaults, null);
             }
@@ -908,7 +913,7 @@ namespace NLog.Config
             }
         }
 
-        private bool ParseTargetWrapper(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement, 
+        private bool ParseTargetWrapper(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement,
             WrapperTargetBase wrapper)
         {
             if (IsTargetRefElement(name))
@@ -951,7 +956,7 @@ namespace NLog.Config
             return false;
         }
 
-        private bool ParseCompoundTarget(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement, 
+        private bool ParseCompoundTarget(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement,
             CompoundTargetBase compound)
         {
             if (IsTargetRefElement(name))
@@ -1226,7 +1231,7 @@ namespace NLog.Config
             TimeSource.Current = newTimeSource;
         }
 
-#endregion
+        #endregion
 
         private static string GetFileLookupKey(string fileName)
         {
@@ -1272,8 +1277,7 @@ namespace NLog.Config
         {
             string name = element.LocalName;
 
-            PropertyInfo propInfo;
-            if (!PropertyHelper.TryGetPropertyInfo(o, name, out propInfo))
+            if (!PropertyHelper.TryGetPropertyInfo(o, name, out var propInfo))
             {
                 return false;
             }
@@ -1324,11 +1328,10 @@ namespace NLog.Config
 
         private bool SetLayoutFromElement(object o, NLogXmlElement layoutElement)
         {
-            PropertyInfo targetPropertyInfo;
             string name = layoutElement.LocalName;
 
             // if property exists
-            if (PropertyHelper.TryGetPropertyInfo(o, name, out targetPropertyInfo))
+            if (PropertyHelper.TryGetPropertyInfo(o, name, out var targetPropertyInfo))
             {
                 Layout layout = TryCreateLayoutInstance(layoutElement, targetPropertyInfo.PropertyType);
 
@@ -1352,8 +1355,7 @@ namespace NLog.Config
 
             string name = element.LocalName;
 
-            PropertyInfo propInfo;
-            if (!PropertyHelper.TryGetPropertyInfo(o, name, out propInfo))
+            if (!PropertyHelper.TryGetPropertyInfo(o, name, out var propInfo))
             {
                 return false;
             }
