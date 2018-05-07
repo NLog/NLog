@@ -195,7 +195,7 @@ namespace NLog.Targets
         {
             if (_allLayoutsAreThreadAgnostic)
             {
-                if (!_oneLayoutIsMutableUnsafe || IsLogEventMutableSafe(logEvent))
+                if (!_oneLayoutIsMutableUnsafe || logEvent.IsLogEventMutableSafe())
                     return;
             }
 
@@ -261,36 +261,6 @@ namespace NLog.Targets
                     }
                 }
             }
-        }
-
-        private bool IsLogEventMutableSafe(LogEventInfo logEvent)
-        {
-            if (logEvent.Exception == null)
-            {
-                if (!logEvent.HasProperties)
-                    return true; // No mutable state, no need to precalculate
-
-                var properties = logEvent.CreateOrUpdatePropertiesInternal(false);
-                if (properties == null || properties.Count == 0)
-                    return true; // No mutable state, no need to precalculate
-
-                if (properties.Count <= 5)
-                {
-                    bool immutableProperties = true;
-                    foreach (var property in properties)
-                    {
-                        if (Convert.GetTypeCode(property.Value) == TypeCode.Object)
-                        {
-                            immutableProperties = false;
-                            break;
-                        }
-                    }
-                    if (immutableProperties)
-                        return true; // No mutable state, no need to precalculate
-                }
-            }
-
-            return false;
         }
 
         /// <summary>

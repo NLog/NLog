@@ -593,25 +593,16 @@ namespace NLog
                 return false;
             }
 
-            if (parameters.Length > 3)
+            if (parameters.Length > 5)
             {
                 // too many parameters, too costly to check
                 return true;
             }
 
-            if (!IsSafeToDeferFormatting(parameters[0]))
+            for (int i = 0; i < parameters.Length; ++i)
             {
-                return true;
-            }
-
-            if (parameters.Length >= 2 && !IsSafeToDeferFormatting(parameters[1]))
-            {
-                return true;
-            }
-
-            if (parameters.Length >= 3 && !IsSafeToDeferFormatting(parameters[2]))
-            {
-                return true;
+                if (!IsSafeToDeferFormatting(parameters[i]))
+                    return true;
             }
 
             return false;
@@ -619,7 +610,58 @@ namespace NLog
 
         private static bool IsSafeToDeferFormatting(object value)
         {
-            return value == null || Convert.GetTypeCode(value) != TypeCode.Object;
+            return Convert.GetTypeCode(value) != TypeCode.Object;
+        }
+
+        internal bool IsLogEventMutableSafe()
+        {
+            if (Exception == null && _formattedMessage == null)
+            {
+                if (!HasProperties)
+                    return true; // No mutable state, no need to precalculate
+
+                var properties = CreateOrUpdatePropertiesInternal(false);
+                if (properties == null || properties.Count == 0)
+                    return true; // No mutable state, no need to precalculate
+
+                if (properties.Count > 5)
+                    return false;
+
+                bool immutableProperties = true;
+                if (properties.Count == properties.MessageProperties.Count)
+                {
+                    if (properties.Count == _parameters?.Length)
+                        return true;    // Already checked formatted message, no need to do it twice
+
+                    // Skip enumerator allocation when all properties comes from the message-template
+                    for (int i = 0; i < properties.MessageProperties.Count; ++i)
+                    {
+                        var property = properties.MessageProperties[i];
+                        if (IsSafeToDeferFormatting(property.Value))
+                        {
+                            immutableProperties = false;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    // Already spent the time on allocating a Dictionary, also have time for an enumerator
+                    foreach (var property in properties)
+                    {
+                        if (IsSafeToDeferFormatting(property.Value))
+                        {
+                            immutableProperties = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (immutableProperties)
+                    return true; // No mutable state, no need to precalculate
+            }
+
+            return false;
         }
 
         private static string GetStringFormatMessageFormatter(LogEventInfo logEvent)
