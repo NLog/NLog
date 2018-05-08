@@ -70,7 +70,7 @@ namespace NLog.Internal
         /// <param name="newValue"></param>
         /// <param name="comparison"></param>
         /// <returns>The same reference of nothing has been replaced.</returns>
-        public static string Replace([NotNull] string str, [NotNull] string oldValue, string newValue, StringComparison comparison)
+        public static string Replace([NotNull] this string str, [NotNull] string oldValue, string newValue, StringComparison comparison)
         {
             if (str == null)
             {

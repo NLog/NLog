@@ -73,7 +73,7 @@ namespace NLog.UnitTests.Internal
         [InlineData("var ${VAR}", "${var}", "2", StringComparison.InvariantCultureIgnoreCase, "var 2")]
         public void ReplaceTest(string input, string search, string replace, StringComparison comparer, string result)
         {
-            Assert.Equal(result, StringHelpers.Replace(input, search, replace, comparer));
+            Assert.Equal(result, input.Replace(search, replace, comparer));
         }
 
         [Theory]
@@ -81,7 +81,7 @@ namespace NLog.UnitTests.Internal
         [InlineData("",null,"",StringComparison.InvariantCulture)]
         public void ReplaceTestThrowsNullException(string input, string search, string replace, StringComparison comparer)
         {
-            Assert.Throws<ArgumentNullException>(() => StringHelpers.Replace(input, search, replace, comparer));
+            Assert.Throws<ArgumentNullException>(() => input.Replace(search, replace, comparer));
         }
     }
 }
