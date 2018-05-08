@@ -73,7 +73,7 @@ namespace NLog.UnitTests.Config
         /// <summary>
         /// Expand of property which are not layoutable <see cref="Layout"/>, but still get expanded.
         /// </summary>
-        [Fact(Skip = "It's unclear if this is a bug of a feature. Probably this will a config setting in the feature")]
+        [Fact]
         public void VariablesTest_string_expanding()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -88,7 +88,7 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(target);
             //dont change the ${test} as it isn't a Layout
             Assert.NotEqual(typeof(Layout), target.DBProvider.GetType());
-            Assert.Equal("${test}", target.DBProvider);
+            Assert.Equal("hello", target.DBProvider);
         }
 
         [Fact]
