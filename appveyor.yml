@@ -11,6 +11,7 @@ environment:
 install:
   - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"'
 
+skip_tags: true
 build_script:
   - ps: .\build.ps1
   - ps: .\run-sonar.ps1
