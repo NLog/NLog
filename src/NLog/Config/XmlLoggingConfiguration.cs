@@ -410,7 +410,7 @@ namespace NLog.Config
                 reader.MoveToContent();
                 var content = new NLogXmlElement(reader);
                 if (fileName != null)
-                {                    
+                {
                     ParseTopLevel(content, fileName, autoReloadDefault: false);
 
                     InternalLogger.Info("Configured from an XML element in {0}...", fileName);
@@ -908,7 +908,7 @@ namespace NLog.Config
             }
         }
 
-        private bool ParseTargetWrapper(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement, 
+        private bool ParseTargetWrapper(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement,
             WrapperTargetBase wrapper)
         {
             if (IsTargetRefElement(name))
@@ -951,7 +951,7 @@ namespace NLog.Config
             return false;
         }
 
-        private bool ParseCompoundTarget(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement, 
+        private bool ParseCompoundTarget(Dictionary<string, NLogXmlElement> typeNameToDefaultTargetParameters, string name, NLogXmlElement childElement,
             CompoundTargetBase compound)
         {
             if (IsTargetRefElement(name))
@@ -1226,7 +1226,7 @@ namespace NLog.Config
             TimeSource.Current = newTimeSource;
         }
 
-#endregion
+        #endregion
 
         private static string GetFileLookupKey(string fileName)
         {
@@ -1428,14 +1428,12 @@ namespace NLog.Config
         {
             string output = input;
 
-            // TODO - make this case-insensitive, will probably require a different approach
             var variables = Variables.ToList();
             foreach (var kvp in variables)
             {
                 var layout = kvp.Value;
-                //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
 
-                if (layout != null) output = output.Replace("${" + kvp.Key + "}", layout.OriginalText);
+                if (layout != null) output = output.Replace("${" + kvp.Key + "}", layout.OriginalText, StringComparison.CurrentCultureIgnoreCase);
             }
 
             return output;

@@ -42,16 +42,19 @@ namespace NLog.UnitTests.Config
 
     public class VariableTests : NLogTestBase
     {
-        [Fact]
-        public void VariablesTest1()
+        [Theory]
+        [InlineData("${prefix}${message}${suffix}", "prefix")]
+        [InlineData("${prefix}${message}${suffix}", "Prefix")]
+        [InlineData("${PreFix}${MessAGE}${SUFFIX}", "Prefix")]
+        public void VariablesTest1(string targetLayout, string variableName1)
         {
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = CreateConfigurationFromString($@"
 <nlog throwExceptions='true'>
-    <variable name='prefix' value='[[' />
+    <variable name='{variableName1}' value='[[' />
     <variable name='suffix' value=']]' />
 
     <targets>
-        <target name='d1' type='Debug' layout='${prefix}${message}${suffix}' />
+        <target name='d1' type='Debug' layout='{targetLayout}' />
     </targets>
 </nlog>");
 
