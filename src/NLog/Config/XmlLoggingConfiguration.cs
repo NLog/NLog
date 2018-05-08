@@ -1012,26 +1012,7 @@ namespace NLog.Config
                 string type = StripOptionalNamespacePrefix(addElement.GetOptionalAttribute("type", null));
                 if (type != null)
                 {
-                    try
-                    {
-                        ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
-                    }
-                    catch (Exception exception)
-                    {
-                        if (exception.MustBeRethrownImmediately())
-                        {
-                            throw;
-                        }
-
-                        InternalLogger.Error(exception, "Error loading extensions.");
-                        NLogConfigurationException configException =
-                            new NLogConfigurationException("Error loading extensions: " + type, exception);
-
-                        if (configException.MustBeRethrown())
-                        {
-                            throw configException;
-                        }
-                    }
+                    RegistType(type, prefix);
                 }
 
 #if !NETSTANDARD1_3
@@ -1047,6 +1028,30 @@ namespace NLog.Config
                 if (assemblyName != null)
                 {
                     ParseExtensionWithAssembly(assemblyName, prefix);
+                }
+            }
+        }
+
+        private void RegistType(string type, string prefix)
+        {
+            try
+            {
+                ConfigurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error(exception, "Error loading extensions.");
+                NLogConfigurationException configException =
+                    new NLogConfigurationException("Error loading extensions: " + type, exception);
+
+                if (configException.MustBeRethrown())
+                {
+                    throw configException;
                 }
             }
         }
