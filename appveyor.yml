@@ -4,9 +4,9 @@ configuration: Release
 clone_folder: c:\projects\nlog
 environment:
   github_auth_token:
-    secure: +vzVo4DsD93fPeSkrIL12KQsq2VJrge4ZSt3KanSxtnifHsBXYmGko4Ck00sVOqD
+    secure: WYvd/k1xGCsDS+4iOhjzxA5/e36RjkxnuVOHpBR+eDtZNNjpYydCyNfd1COME9jI
   sonar_token:
-    secure: GBaeujJgXPbcDto3kyJXpwrTJdPNKNOjwzyzAGNvvKYg+X/S3anpG+8qKMBjjGFI
+    secure: OUI/jCbBF75TwKMPT+IfewdgwCgx9nQkRg3cYOEQNJeX5J2++oWS3dmpwO51XduPI
 
 install:
   - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"'
