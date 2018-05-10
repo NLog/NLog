@@ -245,24 +245,35 @@ namespace NLog.UnitTests.Targets
                 var expected = Enumerable.Range(0, numLogs).ToList();
 
                 int currentProcess = 0;
+                bool? equalsWhenReorderd = null;
                 try
                 {
                     for (; currentProcess < numProcesses; currentProcess++)
                     {
                         var recievedNumbers = recievedNumbersSet[currentProcess];
 
-                        var fastCheck = expected.SequenceEqual(recievedNumbers);
+                        var equalLength = expected.Count == recievedNumbers.Count;
+
+                        var fastCheck = equalLength && expected.SequenceEqual(recievedNumbers);
 
                         if (!fastCheck)
-                            //assert equals on two long lists in xUnit is lame. Not showing the difference.
+                        //assert equals on two long lists in xUnit is lame. Not showing the difference.
                         {
+                            if (equalLength)
+                            {
+                                var reodered = recievedNumbers.OrderBy(i => i);
+
+                                equalsWhenReorderd = expected.SequenceEqual(reodered);
+                            }
+
                             Assert.Equal(string.Join(",", expected), string.Join(",", recievedNumbers));
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new InvalidOperationException($"Error when comparing path {tempPath} for process {currentProcess}", ex);
+                    var reoderProblem = equalsWhenReorderd == null ? "Dunno" : (equalsWhenReorderd == true ? "Yes" : "No");
+                    throw new InvalidOperationException($"Error when comparing path {tempPath} for process {currentProcess}. Is this a recording problem? {reoderProblem}", ex);
                 }
 
             }
