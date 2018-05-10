@@ -32,7 +32,6 @@
 // 
 
 #if !NETSTANDARD
-
 #define DISABLE_FILE_INTERNAL_LOGGING
 
 namespace NLog.UnitTests.Targets
@@ -45,6 +44,9 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
+    using System.Collections.Generic;
+    using System.Linq;
+
     using Xunit.Extensions;
 
     public class ConcurrentFileTargetTests : NLogTestBase
@@ -168,7 +170,9 @@ namespace NLog.UnitTests.Targets
 
                 string logFile = Path.Combine(tempPath, MakeFileName(numProcesses, numLogs, mode));
                 if (File.Exists(logFile))
-                    File.Delete(logFile);
+                {
+                    throw new Exception($"file '{logFile}' already exists");
+                }
 
                 Process[] processes = new Process[numProcesses];
 
@@ -198,32 +202,33 @@ namespace NLog.UnitTests.Targets
 
                 bool verifyFileSize = files.Count > 1;
 
-                int[] maxNumber = new int[numProcesses];
+                var recievedNumbersSet = new List<int>[numProcesses];
+                for (int i = 0; i < numProcesses; i++)
+                {
+                    var recievedNumbers = new List<int>(numLogs);
+                    recievedNumbersSet[i] = recievedNumbers;
+                }
+
                 //Console.WriteLine("Verifying output file {0}", logFile);
                 foreach (var file in files)
                 {
+
                     using (StreamReader sr = File.OpenText(file))
                     {
-                        string line;
 
+                        string line;
                         while ((line = sr.ReadLine()) != null)
                         {
                             string[] tokens = line.Split(' ');
                             Assert.Equal(2, tokens.Length);
-                            try
-                            {
-                                int thread = Convert.ToInt32(tokens[0]);
-                                int number = Convert.ToInt32(tokens[1]);
-                                Assert.True(thread >= 0);
-                                Assert.True(thread < numProcesses);
-                                Assert.Equal(maxNumber[thread], number);
-                                maxNumber[thread]++;
-                            }
-                            catch (Exception ex)
-                            {
-                                throw new InvalidOperationException($"Error when parsing line '{line}' in file {file}", ex);
-                            }
+
+                            int thread = Convert.ToInt32(tokens[0]);
+                            int number = Convert.ToInt32(tokens[1]);
+                            Assert.True(thread >= 0);
+                            Assert.True(thread < numProcesses);
+                            recievedNumbersSet[thread].Add(number);
                         }
+
 
                         if (verifyFileSize)
                         {
@@ -236,6 +241,30 @@ namespace NLog.UnitTests.Targets
                         }
                     }
                 }
+
+                var expected = Enumerable.Range(0, numLogs).ToList();
+
+                int currentProcess = 0;
+                try
+                {
+                    for (; currentProcess < numProcesses; currentProcess++)
+                    {
+                        var recievedNumbers = recievedNumbersSet[currentProcess];
+
+                        var fastCheck = expected.SequenceEqual(recievedNumbers);
+
+                        if (!fastCheck)
+                            //assert equals on two long lists in xUnit is lame. Not showing the difference.
+                        {
+                            Assert.Equal(string.Join(",", expected), string.Join(",", recievedNumbers));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException($"Error when comparing path {tempPath} for process {currentProcess}", ex);
+                }
+
             }
             finally
             {
