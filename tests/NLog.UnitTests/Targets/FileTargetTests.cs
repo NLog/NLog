@@ -203,6 +203,14 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+
+        [Fact]
+        public void SimpleFileWithSpecialCharsTest()
+        {
+            var logFile  = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
+            SimpleFileWriteLogTest(logFile);
+        }
+
         private void SimpleFileWriteLogTest(string logFile)
         {
             try
