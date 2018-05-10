@@ -190,31 +190,52 @@ namespace NLog.UnitTests.Targets
         {
             if (NLog.Internal.PlatformDetector.IsWin32)
             {
-                var logFile = "c:\\nlog-test.log";
-                try
+                var dirPath = "C:\\";
+                var directoryInfo = new DirectoryInfo(dirPath);
+
+                if (directoryInfo.Exists)
                 {
-                    var fileTarget = WrapFileTarget(new FileTarget
-                    {
-                        FileName = SimpleLayout.Escape(logFile),
-                        LineEnding = LineEndingMode.LF,
-                        Layout = "${level} ${message}",
-                    });
-
-                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
-
-                    logger.Debug("aaa");
-                    logger.Info("bbb");
-                    logger.Warn("ccc");
-
-                    LogManager.Configuration = null;    // Flush
-
-                    AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+                    return;
                 }
-                finally
+
+                var logFile = dirPath + "nlog-test.log";
+                SimpleFileWriteLogTest(logFile);
+            }
+        }
+
+
+        [Fact]
+        public void SimpleFileWithSpecialCharsTest()
+        {
+            var logFile  = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
+            SimpleFileWriteLogTest(logFile);
+        }
+
+        private void SimpleFileWriteLogTest(string logFile)
+        {
+            try
+            {
+                var fileTarget = WrapFileTarget(new FileTarget
                 {
-                    if (File.Exists(logFile))
-                        File.Delete(logFile);
-                }
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                LogManager.Configuration = null; // Flush
+
+                AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
             }
         }
 
@@ -2788,7 +2809,7 @@ namespace NLog.UnitTests.Targets
 
                 var fileTarget = new FileTarget
                 {
-                    FileName = string.Format(logFile, "${logger}","${shortdate}"),
+                    FileName = string.Format(logFile, "${logger}", "${shortdate}"),
                     ArchiveAboveSize = 100,
                     LineEnding = LineEndingMode.LF,
                     Layout = "${message}",
@@ -3296,7 +3317,7 @@ namespace NLog.UnitTests.Targets
                 var app1DebugNm = "App1_Debug";
                 var app2Nm = "App2";
 
-#region Create Mock Archive Files
+                #region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1_trace archives (matches app1 config for trace target)
@@ -3337,7 +3358,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-#endregion
+                #endregion
 
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
@@ -3436,7 +3457,7 @@ namespace NLog.UnitTests.Targets
                 var app1Nm = "App1";
                 var app2Nm = "App2";
 
-#region Create Mock Archive Files
+                #region Create Mock Archive Files
                 var now = DateTime.Now;
                 var i = 0;
                 // create mock app1 archives (matches app1 config for target)
@@ -3464,7 +3485,7 @@ namespace NLog.UnitTests.Targets
                     }
                     i--;
                 }
-#endregion
+                #endregion
 
                 // Create same app1 file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(Path.Combine(logdir, app1Nm + fileExt), new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
