@@ -42,60 +42,6 @@ namespace NLog
     /// </summary>
     public partial class Logger
     {
-        /// <summary>
-        /// Gets a value indicating whether logging is enabled for the <c>Trace</c> level.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Trace</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsTraceEnabled
-        {
-            get { return _isTraceEnabled; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether logging is enabled for the <c>Debug</c> level.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Debug</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsDebugEnabled
-        {
-            get { return _isDebugEnabled; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether logging is enabled for the <c>Info</c> level.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Info</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsInfoEnabled
-        {
-            get { return _isInfoEnabled; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether logging is enabled for the <c>Warn</c> level.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsWarnEnabled
-        {
-            get { return _isWarnEnabled; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether logging is enabled for the <c>Error</c> level.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Error</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsErrorEnabled
-        {
-            get { return _isErrorEnabled; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether logging is enabled for the <c>Fatal</c> level.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Fatal</c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool IsFatalEnabled
-        {
-            get { return _isFatalEnabled; }
-        }
-
 
         #region Trace() overloads 
 
@@ -111,7 +57,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, null, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Trace, Name, null, value));
             }
         }
 
@@ -125,7 +71,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, formatProvider, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Trace, Name, formatProvider, value));
             }
         }
 
@@ -141,8 +87,7 @@ namespace NLog
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
-
-                WriteToTargets(LogLevel.Trace, null, messageFunc());
+                WriteToTargets(LogLevel.Trace, messageFunc(), null);
             }
         }
 
@@ -181,7 +126,7 @@ namespace NLog
         { 
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, null, message);
+                WriteToTargets(LogLevel.Trace, message, null);
             }
         }
 
@@ -210,7 +155,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Trace, Name, exception, null, message, null));
             }
         }
 
@@ -223,7 +168,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Trace, Name, exception, null, message, null));
             }
         }
 
@@ -238,7 +183,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, exception, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Trace, Name, exception, null, message, args));
             }
         }
 
@@ -254,7 +199,7 @@ namespace NLog
         {
             if (IsTraceEnabled)
             {
-                WriteToTargets(LogLevel.Trace, exception, formatProvider, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Trace, Name, exception, formatProvider, message, args));
             }
         }
 
@@ -288,19 +233,18 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (_configuration.ExceptionLoggingOldStyle)
+                if (LoggerConfiguration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Trace(message, exceptionCandidate);	
+                        Trace(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -398,7 +342,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, null, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Debug, Name, null, value));
             }
         }
 
@@ -412,7 +356,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, formatProvider, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Debug, Name, formatProvider, value));
             }
         }
 
@@ -428,8 +372,7 @@ namespace NLog
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
-
-                WriteToTargets(LogLevel.Debug, null, messageFunc());
+                WriteToTargets(LogLevel.Debug, messageFunc(), null);
             }
         }
 
@@ -468,7 +411,7 @@ namespace NLog
         { 
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, null, message);
+                WriteToTargets(LogLevel.Debug, message, null);
             }
         }
 
@@ -497,7 +440,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Debug, Name, exception, null, message, null));
             }
         }
 
@@ -510,7 +453,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Debug, Name, exception, null, message, null));
             }
         }
 
@@ -525,7 +468,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, exception, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Debug, Name, exception, null, message, args));
             }
         }
 
@@ -541,7 +484,7 @@ namespace NLog
         {
             if (IsDebugEnabled)
             {
-                WriteToTargets(LogLevel.Debug, exception, formatProvider, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Debug, Name, exception, formatProvider, message, args));
             }
         }
 
@@ -575,19 +518,18 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (_configuration.ExceptionLoggingOldStyle)
+                if (LoggerConfiguration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Debug(message, exceptionCandidate);	
+                        Debug(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -685,7 +627,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, null, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Info, Name, null, value));
             }
         }
 
@@ -699,7 +641,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, formatProvider, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Info, Name, formatProvider, value));
             }
         }
 
@@ -715,8 +657,7 @@ namespace NLog
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
-
-                WriteToTargets(LogLevel.Info, null, messageFunc());
+                WriteToTargets(LogLevel.Info, messageFunc(), null);
             }
         }
 
@@ -755,7 +696,7 @@ namespace NLog
         { 
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, null, message);
+                WriteToTargets(LogLevel.Info, message, null);
             }
         }
 
@@ -784,7 +725,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Info, Name, exception, null, message, null));
             }
         }
 
@@ -797,7 +738,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Info, Name, exception, null, message, null));
             }
         }
 
@@ -812,7 +753,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, exception, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Info, Name, exception, null, message, args));
             }
         }
 
@@ -828,7 +769,7 @@ namespace NLog
         {
             if (IsInfoEnabled)
             {
-                WriteToTargets(LogLevel.Info, exception, formatProvider, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Info, Name, exception, formatProvider, message, args));
             }
         }
 
@@ -862,19 +803,18 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (_configuration.ExceptionLoggingOldStyle)
+                if (LoggerConfiguration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Info(message, exceptionCandidate);	
+                        Info(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -972,7 +912,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, null, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Warn, Name, null, value));
             }
         }
 
@@ -986,7 +926,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, formatProvider, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Warn, Name, formatProvider, value));
             }
         }
 
@@ -1002,8 +942,7 @@ namespace NLog
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
-
-                WriteToTargets(LogLevel.Warn, null, messageFunc());
+                WriteToTargets(LogLevel.Warn, messageFunc(), null);
             }
         }
 
@@ -1042,7 +981,7 @@ namespace NLog
         { 
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, null, message);
+                WriteToTargets(LogLevel.Warn, message, null);
             }
         }
 
@@ -1071,7 +1010,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Warn, Name, exception, null, message, null));
             }
         }
 
@@ -1084,7 +1023,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Warn, Name, exception, null, message, null));
             }
         }
 
@@ -1099,7 +1038,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, exception, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Warn, Name, exception, null, message, args));
             }
         }
 
@@ -1115,7 +1054,7 @@ namespace NLog
         {
             if (IsWarnEnabled)
             {
-                WriteToTargets(LogLevel.Warn, exception, formatProvider, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Warn, Name, exception, formatProvider, message, args));
             }
         }
 
@@ -1149,19 +1088,18 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (_configuration.ExceptionLoggingOldStyle)
+                if (LoggerConfiguration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Warn(message, exceptionCandidate);	
+                        Warn(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -1259,7 +1197,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, null, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Error, Name, null, value));
             }
         }
 
@@ -1273,7 +1211,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, formatProvider, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Error, Name, formatProvider, value));
             }
         }
 
@@ -1289,8 +1227,7 @@ namespace NLog
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
-
-                WriteToTargets(LogLevel.Error, null, messageFunc());
+                WriteToTargets(LogLevel.Error, messageFunc(), null);
             }
         }
 
@@ -1329,7 +1266,7 @@ namespace NLog
         { 
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, null, message);
+                WriteToTargets(LogLevel.Error, message, null);
             }
         }
 
@@ -1358,7 +1295,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Error, Name, exception, null, message, null));
             }
         }
 
@@ -1371,7 +1308,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Error, Name, exception, null, message, null));
             }
         }
 
@@ -1386,7 +1323,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, exception, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Error, Name, exception, null, message, args));
             }
         }
 
@@ -1402,7 +1339,7 @@ namespace NLog
         {
             if (IsErrorEnabled)
             {
-                WriteToTargets(LogLevel.Error, exception, formatProvider, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Error, Name, exception, formatProvider, message, args));
             }
         }
 
@@ -1436,19 +1373,18 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (_configuration.ExceptionLoggingOldStyle)
+                if (LoggerConfiguration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Error(message, exceptionCandidate);	
+                        Error(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -1546,7 +1482,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, null, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Fatal, Name, null, value));
             }
         }
 
@@ -1560,7 +1496,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, formatProvider, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Fatal, Name, formatProvider, value));
             }
         }
 
@@ -1576,8 +1512,7 @@ namespace NLog
                 {
                     throw new ArgumentNullException(nameof(messageFunc));
                 }
-
-                WriteToTargets(LogLevel.Fatal, null, messageFunc());
+                WriteToTargets(LogLevel.Fatal, messageFunc(), null);
             }
         }
 
@@ -1616,7 +1551,7 @@ namespace NLog
         { 
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, null, message);
+                WriteToTargets(LogLevel.Fatal, message, null);
             }
         }
 
@@ -1645,7 +1580,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Fatal, Name, exception, null, message, null));
             }
         }
 
@@ -1658,7 +1593,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Fatal, Name, exception, null, message, null));
             }
         }
 
@@ -1673,7 +1608,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, exception, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Fatal, Name, exception, null, message, args));
             }
         }
 
@@ -1689,7 +1624,7 @@ namespace NLog
         {
             if (IsFatalEnabled)
             {
-                WriteToTargets(LogLevel.Fatal, exception, formatProvider, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.Fatal, Name, exception, formatProvider, message, args));
             }
         }
 
@@ -1723,19 +1658,18 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (_configuration.ExceptionLoggingOldStyle)
+                if (LoggerConfiguration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Fatal(message, exceptionCandidate);	
+                        Fatal(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 

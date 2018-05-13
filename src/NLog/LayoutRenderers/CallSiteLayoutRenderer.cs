@@ -131,12 +131,10 @@ namespace NLog.LayoutRenderers
             {
 #if !SILVERLIGHT
                 if (FileName)
-                {
-                    return StackTraceUsage.Max;
-                }
+                    return SkipFrames == 0 ? StackTraceUsage.WithCallSiteSource : StackTraceUsage.WithSource;
+                else
 #endif
-
-                return StackTraceUsage.WithoutSource;
+                    return SkipFrames == 0 ? StackTraceUsage.WithCallSite : StackTraceUsage.WithoutSource;
             }
         }
 

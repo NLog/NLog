@@ -463,6 +463,10 @@ namespace NLog
                 logEvent.FormatProvider = formatProvider ?? logEvent.FormatProvider;
                 return logEvent;
             }
+            else if (exception != null && (formatProvider == null || ReferenceEquals(formatProvider, CultureInfo.InvariantCulture)))
+            {
+                message = exception.Message;
+            }
             return new LogEventInfo(logLevel, loggerName, formatProvider, "{0}", new[] { message }, exception);
         }
 

@@ -294,6 +294,10 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InternalLogger-generated.cs</LastGenOutput>
     </None>
+    <None Update="LoggerCallSite-generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LoggerCallSite-generated.cs</LastGenOutput>
+    </None>
     <None Update="Internal\LayoutHelpers-generated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LayoutHelpers-generated.cs</LastGenOutput>
@@ -313,6 +317,11 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>InternalLogger-generated.tt</DependentUpon>
+    </Compile>
+    <Compile Update="LoggerCallSite-generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoggerCallSite-generated.tt</DependentUpon>
     </Compile>
     <Compile Update="Internal\LayoutHelpers-generated.cs">
       <DesignTime>True</DesignTime>

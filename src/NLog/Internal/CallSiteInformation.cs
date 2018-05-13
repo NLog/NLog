@@ -157,7 +157,7 @@ namespace NLog.Internal
             return frame?.GetFileLineNumber() ?? 0;
         }
 
-        public string CallerClassName { get; private set; }
+        public string CallerClassName { get; internal set; }
         public string CallerMemberName { get; private set; }
         public string CallerFilePath { get; private set; }
         public int? CallerLineNumber { get; private set; }

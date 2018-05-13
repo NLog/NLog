@@ -516,7 +516,7 @@ namespace NLog
         /// are not guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name)
         {
-            return GetLogger(new LoggerCacheKey(name, typeof(Logger)));
+            return GetLogger<Logger>(name, typeof(Logger), (t) => new Logger());
         }
 
         /// <summary>
@@ -526,9 +526,9 @@ namespace NLog
         /// <typeparam name="T">Type of the logger</typeparam>
         /// <returns>The logger reference with type <typeparamref name="T"/>. Multiple calls to <c>GetLogger</c> with the same argument 
         /// are not guaranteed to return the same logger reference.</returns>
-        public T GetLogger<T>(string name) where T : Logger
+        public T GetLogger<T>(string name) where T : LoggerBase, new()
         {
-            return (T)GetLogger(new LoggerCacheKey(name, typeof(T)));
+            return GetLogger<T>(name, typeof(T), (t) => new T());
         }
 
         /// <summary>
@@ -540,7 +540,7 @@ namespace NLog
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name, Type loggerType)
         {
-            return GetLogger(new LoggerCacheKey(name, loggerType));
+            return GetLogger<Logger>(name, loggerType, (t) => (Logger)CreateLogger(t));
         }
 
         /// <summary>
@@ -550,7 +550,7 @@ namespace NLog
         /// </summary>
         public void ReconfigExistingLoggers()
         {
-            List<Logger> loggers;
+            List<LoggerBase> loggers;
 
             lock (_syncRoot)
             {
@@ -1140,90 +1140,80 @@ namespace NLog
 #endif
         }
 
-        private Logger GetLogger(LoggerCacheKey cacheKey)
+        private static LoggerBase CreateLogger(Type loggerType)
         {
+            LoggerBase newLogger;
+            var fullName = loggerType.FullName;
+
+            //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
+            if (loggerType.IsStaticClass())
+            {
+                var errorMessage =
+                    $"GetLogger / GetCurrentClassLogger got '{fullName}' as loggerType which cannot be a static class and should inherit from LoggerBase";
+                InternalLogger.Error(errorMessage);
+                throw new NLogRuntimeException(errorMessage);
+            }
+            else
+            {
+                var instance = FactoryHelper.CreateInstance(loggerType);
+                newLogger = instance as LoggerBase;
+                if (newLogger == null)
+                {
+                    //well, it's not a Logger, and we should return a Logger.
+
+                    var errorMessage =
+                        $"GetLogger / GetCurrentClassLogger got '{fullName}' as loggerType which doesn't inherit from LoggerBase";
+                    InternalLogger.Error(errorMessage);
+                    throw new NLogRuntimeException(errorMessage);
+                }
+            }
+
+            return newLogger;
+        }
+
+        private T GetLogger<T>(string name, Type type, Func<Type, T> logCreator) where T : LoggerBase
+        {
+            LoggerCacheKey cacheKey = new LoggerCacheKey(name, type);
             lock (_syncRoot)
             {
-                Logger existingLogger = _loggerCache.Retrieve(cacheKey);
+                LoggerBase existingLogger = _loggerCache.Retrieve(cacheKey);
                 if (existingLogger != null)
                 {
                     // Logger is still in cache and referenced.
-                    return existingLogger;
+                    return (T)existingLogger;
                 }
 
-                Logger newLogger;
+                LoggerBase newLogger;
 
-                if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
+                try
                 {
-                    var fullName = cacheKey.ConcreteType.FullName;
-                    try
+                    newLogger = logCreator(type);
+                }
+                catch (NLogRuntimeException ex)
+                {
+                    if (ex.MustBeRethrown())
                     {
-
-                        //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
-                        if (cacheKey.ConcreteType.IsStaticClass())
-                        {
-                            var errorMessage =
-                                $"GetLogger / GetCurrentClassLogger is '{fullName}' as loggerType can be a static class and should inherit from Logger";
-                            InternalLogger.Error(errorMessage);
-                            if (ThrowExceptions)
-                            {
-                                throw new NLogRuntimeException(errorMessage);
-                            }
-                            newLogger = CreateDefaultLogger(ref cacheKey);
-                        }
-                        else
-                        {
-
-                            var instance = FactoryHelper.CreateInstance(cacheKey.ConcreteType);
-                            newLogger = instance as Logger;
-                            if (newLogger == null)
-                            {
-                                //well, it's not a Logger, and we should return a Logger.
-
-                                var errorMessage =
-                                    $"GetLogger / GetCurrentClassLogger got '{fullName}' as loggerType which doesn't inherit from Logger";
-                                InternalLogger.Error(errorMessage);
-                                if (ThrowExceptions)
-                                {
-                                    throw new NLogRuntimeException(errorMessage);
-                                }
-
-                                // Creating default instance of logger if instance of specified type cannot be created.
-                                newLogger = CreateDefaultLogger(ref cacheKey);
-
-                            }
-                        }
+                        throw;
                     }
-                    catch (Exception ex)
+
+                    // Creating default instance of logger if instance of specified type cannot be created.
+                    newLogger = CreateDefaultLogger(ref cacheKey);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", type.FullName);
+                    if (ex.MustBeRethrown())
                     {
-                        InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
-
-                        if (ex.MustBeRethrown())
-                        {
-                            throw;
-                        }
-
-                        // Creating default instance of logger if instance of specified type cannot be created.
-                        newLogger = CreateDefaultLogger(ref cacheKey);
+                        throw;
                     }
-                }
-                else
-                {
-                    newLogger = new Logger();
-                }
 
-                if (cacheKey.ConcreteType != null)
-                {
-                    newLogger.Initialize(cacheKey.Name, GetConfigurationForLogger(cacheKey.Name, Configuration), this);
+                    // Creating default instance of logger if instance of specified type cannot be created.
+                    newLogger = CreateDefaultLogger(ref cacheKey);
                 }
 
-                // TODO: Clarify what is the intention when cacheKey.ConcreteType = null.
-                //      At the moment, a logger typeof(Logger) will be created but the ConcreteType 
-                //      will remain null and inserted into the cache. 
-                //      Should we set cacheKey.ConcreteType = typeof(Logger) for default loggers?
-
+                newLogger.Initialize(cacheKey.Name, GetConfigurationForLogger(cacheKey.Name, Configuration), this);
                 _loggerCache.InsertOrUpdate(cacheKey, newLogger);
-                return newLogger;
+                return (T)newLogger;
             }
         }
 
@@ -1362,30 +1352,30 @@ namespace NLog
             /// </summary>
             /// <param name="cacheKey"></param>
             /// <param name="logger"></param>
-            public void InsertOrUpdate(LoggerCacheKey cacheKey, Logger logger)
+            public void InsertOrUpdate(LoggerCacheKey cacheKey, LoggerBase logger)
             {
                 _loggerCache[cacheKey] = new WeakReference(logger);
             }
 
-            public Logger Retrieve(LoggerCacheKey cacheKey)
+            public LoggerBase Retrieve(LoggerCacheKey cacheKey)
             {
                 if (_loggerCache.TryGetValue(cacheKey, out var loggerReference))
                 {
                     // logger in the cache and still referenced
-                    return loggerReference.Target as Logger;
+                    return loggerReference.Target as LoggerBase;
                 }
 
                 return null;
             }
 
-            public List<Logger> GetLoggers()
+            public List<LoggerBase> GetLoggers()
             {
                 // TODO: Test if loggerCache.Values.ToList<Logger>() can be used for the conversion instead.
-                List<Logger> values = new List<Logger>(_loggerCache.Count);
+                List<LoggerBase> values = new List<LoggerBase>(_loggerCache.Count);
 
                 foreach (WeakReference loggerReference in _loggerCache.Values)
                 {
-                    if (loggerReference.Target is Logger logger)
+                    if (loggerReference.Target is LoggerBase logger)
                     {
                         values.Add(logger);
                     }

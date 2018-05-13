@@ -60,19 +60,35 @@ namespace NLog
 
 #if !NETSTANDARD1_0 || NETSTANDARD1_5
             StackTraceUsage stu = targets.GetStackTraceUsage();
-            if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
+            if (stu != StackTraceUsage.None)
             {
-#if NETSTANDARD1_5
-                var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
-#elif !SILVERLIGHT
-                var stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
+                bool attemptCallSiteOptimization = targets.TryCallSiteClassNameOptimization(stu, logEvent);
+                if (attemptCallSiteOptimization && targets.TryLookupCallSiteClassName(logEvent, out string callSiteClassName))
+                {
+                    logEvent.CallSiteInformation.CallerClassName = callSiteClassName;
+                }
+                else if (!logEvent.HasStackTrace)
+                {
+#if SILVERLIGHT
+                    var stackTrace = new StackTrace();
 #else
-                var stackTrace = new StackTrace();
+                    bool includeSource = stu == StackTraceUsage.WithSource || (stu == StackTraceUsage.WithCallSiteSource && !attemptCallSiteOptimization);
+#if NETSTANDARD1_5
+                    var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { includeSource });
+#else
+                    var stackTrace = new StackTrace(StackTraceSkipMethods, includeSource);
 #endif
-                var stackFrames = stackTrace.GetFrames();
-                int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
-                int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
-                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
+#endif
+                    var stackFrames = stackTrace.GetFrames();
+                    int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
+                    int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
+                    logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
+
+                    if (attemptCallSiteOptimization)
+                    {
+                        targets.TryRememberCallSiteClassName(logEvent);
+                    }
+                }
             }
 #endif
 

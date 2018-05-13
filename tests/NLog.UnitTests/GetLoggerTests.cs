@@ -53,12 +53,10 @@ namespace NLog.UnitTests
             MyLogger l1 = (MyLogger)lf.GetLogger("AAA", typeof(MyLogger));
             MyLogger l2 = lf.GetLogger<MyLogger>("AAA");
             ILogger l3 = lf.GetLogger("AAA", typeof(Logger));
-            ILogger l4 = lf.GetLogger<Logger>("AAA");
             ILogger l5 = lf.GetLogger("AAA");
             ILogger l6 = lf.GetLogger("AAA");
 
             Assert.Same(l1, l2);
-            Assert.Same(l3, l4);
             Assert.Same(l5, l6);
             Assert.Same(l3, l5);
 

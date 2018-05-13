@@ -33,10 +33,11 @@
 
 namespace NLog.Internal
 {
+    using System;
     using System.Collections.Generic;
-    using Config;
-    using Filters;
-    using Targets;
+    using NLog.Config;
+    using NLog.Filters;
+    using NLog.Targets;
 
     /// <summary>
     /// Represents target with a chain of filters which determine
@@ -49,6 +50,115 @@ namespace NLog.Internal
         /// cached result as calculating is expensive.
         /// </summary>
         private StackTraceUsage? _stackTraceUsage;
+
+        struct CallSiteKey : IEquatable<CallSiteKey>
+        {
+            public CallSiteKey(string methodName, string fileSourceName, int fileSourceLineNumber)
+            {
+                MethodName = methodName ?? string.Empty;
+                FileSourceName = fileSourceName ?? string.Empty;
+                FileSourceLineNumber = fileSourceLineNumber;
+            }
+
+            public readonly string MethodName;
+            public readonly string FileSourceName;
+            public readonly int FileSourceLineNumber;
+
+            /// <summary>
+            /// Serves as a hash function for a particular type.
+            /// </summary>
+            /// <returns>
+            /// A hash code for the current <see cref="T:System.Object"/>.
+            /// </returns>
+            public override int GetHashCode()
+            {
+                return MethodName.GetHashCode() ^ FileSourceName.GetHashCode() ^ FileSourceLineNumber;
+            }
+
+            /// <summary>
+            /// Determines if two objects are equal in value.
+            /// </summary>
+            /// <param name="obj">Other object to compare to.</param>
+            /// <returns>True if objects are equal, false otherwise.</returns>
+            public override bool Equals(object obj)
+            {
+                return obj is CallSiteKey key && Equals(key);
+            }
+
+            /// <summary>
+            /// Determines if two objects of the same type are equal in value.
+            /// </summary>
+            /// <param name="other">Other object to compare to.</param>
+            /// <returns>True if objects are equal, false otherwise.</returns>
+            public bool Equals(CallSiteKey other)
+            {
+                return FileSourceLineNumber == other.FileSourceLineNumber
+                    && string.Equals(FileSourceName, other.FileSourceName, StringComparison.Ordinal)
+                    && string.Equals(MethodName, other.MethodName, StringComparison.Ordinal);
+            }
+        }
+
+        internal bool TryCallSiteClassNameOptimization(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
+        {
+            if (stackTraceUsage != StackTraceUsage.WithCallSite
+#if !SILVERLIGHT
+             && stackTraceUsage != StackTraceUsage.WithCallSiteSource
+#endif
+               )
+                return false;
+
+            if (logEvent.CallSiteInformation == null)
+                return false;
+
+            if (logEvent.HasStackTrace)
+                return false;
+
+            if (string.IsNullOrEmpty(logEvent.CallSiteInformation.CallerFilePath))
+                return false;
+
+            return true;
+        }
+
+        internal bool TryRememberCallSiteClassName(LogEventInfo logEvent)
+        {
+            if (logEvent.CallSiteInformation == null)
+                return false;
+
+            if (string.IsNullOrEmpty(logEvent.CallSiteInformation.CallerFilePath))
+                return false;
+
+            string className = logEvent.CallSiteInformation.GetCallerClassName(null, false, true, true);
+            if (string.IsNullOrEmpty(className))
+                return false;
+
+            if (_callSiteClassNameCache == null)
+                return false;
+
+            string internClassName = logEvent.LoggerName == className ?
+                logEvent.LoggerName :
+#if !NETSTANDARD1_0
+                string.Intern(className);
+#else
+                className;
+#endif
+            CallSiteKey callSiteKey = new CallSiteKey(logEvent.CallerMemberName, logEvent.CallerFilePath, logEvent.CallerLineNumber);
+            return _callSiteClassNameCache.TryAddValue(callSiteKey, internClassName);
+        }
+
+        internal bool TryLookupCallSiteClassName(LogEventInfo logEvent, out string callSiteClassName)
+        {
+            callSiteClassName = logEvent.CallSiteInformation?.CallerClassName;
+            if (!string.IsNullOrEmpty(callSiteClassName))
+                return true;
+
+            if (_callSiteClassNameCache == null)
+            {
+                System.Threading.Interlocked.CompareExchange(ref _callSiteClassNameCache, new MruCache<CallSiteKey, string>(1000), null);
+            }
+            CallSiteKey callSiteKey = new CallSiteKey(logEvent.CallerMemberName, logEvent.CallerFilePath, logEvent.CallerLineNumber);
+            return _callSiteClassNameCache.TryGetValue(callSiteKey, out callSiteClassName);
+        }
+        private MruCache<CallSiteKey, string> _callSiteClassNameCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetWithFilterChain" /> class.

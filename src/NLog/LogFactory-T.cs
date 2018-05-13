@@ -41,7 +41,7 @@ namespace NLog
     /// </summary>
     /// <typeparam name="T">The type of the logger to be returned. Must inherit from <see cref="Logger"/>.</typeparam>
     public class LogFactory<T> : LogFactory 
-        where T : Logger
+        where T : LoggerBase, new()
     {
         /// <summary>
         /// Gets the logger with type <typeparamref name="T"/>.
@@ -50,7 +50,7 @@ namespace NLog
         /// <returns>An instance of <typeparamref name="T"/>.</returns>
         public new T GetLogger(string name)
         {
-            return (T)GetLogger(name, typeof(T));
+            return GetLogger<T>(name);
         }
 
         /// <summary>

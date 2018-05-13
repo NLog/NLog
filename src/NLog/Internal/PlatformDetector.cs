@@ -101,7 +101,7 @@ namespace NLog.Internal
             return RuntimeOS.Unknown;
 #else
             PlatformID platformID = Environment.OSVersion.Platform;
-            if ((int)platformID == 4 || (int)platformID == 128)
+            if ((int)platformID == 4 || (int)platformID == 6 || (int)platformID == 128)
             {
                 return RuntimeOS.Unix;
             }

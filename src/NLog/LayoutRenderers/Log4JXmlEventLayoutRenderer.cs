@@ -226,17 +226,12 @@ namespace NLog.LayoutRenderers
         {
             get
             {
+#if !SILVERLIGHT
                 if (IncludeSourceInfo)
-                {
-                    return StackTraceUsage.Max;
-                }
-
-                if (IncludeCallSite)
-                {
-                    return StackTraceUsage.WithoutSource;
-                }
-
-                return StackTraceUsage.None;
+                    return StackTraceUsage.WithCallSiteSource;
+                else
+#endif
+                    return StackTraceUsage.WithCallSite;
             }
         }
 

@@ -1769,8 +1769,8 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-            var singleLogger = LogManager.GetLogger("SingleTarget");
-            var dualLogger = LogManager.GetLogger("DualTarget");
+            var singleLogger = LogManager.LogFactory.GetLogger<LoggerCallSite>("SingleTarget");
+            var dualLogger = LogManager.LogFactory.GetLogger<LoggerCallSite>("DualTarget");
 
             ConfigurationItemFactory.Default.ParseMessageTemplates = null;
 

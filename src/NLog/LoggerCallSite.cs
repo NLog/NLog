@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,48 +31,46 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Config
+namespace NLog
 {
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
-    /// Value indicating how stack trace should be captured when processing the log event.
+    /// Provides logging interface and utility functions.
     /// </summary>
-    public enum StackTraceUsage
+    public partial class LoggerCallSite : LoggerBase
     {
         /// <summary>
-        /// Stack trace should not be captured.
+        /// Initializes a new instance of the <see cref="LoggerCallSite"/> class.
         /// </summary>
-        None = 0,
+        public LoggerCallSite()
+        {
+        }
 
-        /// <summary>
-        /// Stack trace should only be captured if callsite details are missing
-        /// </summary>
-        WithCallSite = 1,
+        internal override void SetConfiguration(LoggerConfiguration newConfiguration)
+        {
+            base.SetConfiguration(newConfiguration);
 
-        /// <summary>
-        /// Stack trace should be captured without source-level information.
-        /// </summary>
-        WithoutSource = 3,
+            // pre-calculate 'callsite' flags
+            _isTraceCallSiteEnabled = IsTraceEnabled && GetStackTraceUsage(LogLevel.Trace) != StackTraceUsage.None;
+            _isDebugCallSiteEnabled = IsDebugEnabled && GetStackTraceUsage(LogLevel.Debug) != StackTraceUsage.None;
+            _isInfoCallSiteEnabled = IsInfoEnabled && GetStackTraceUsage(LogLevel.Info) != StackTraceUsage.None;
+            _isWarnCallSiteEnabled = IsWarnEnabled && GetStackTraceUsage(LogLevel.Warn) != StackTraceUsage.None;
+            _isErrorCallSiteEnabled = IsErrorEnabled && GetStackTraceUsage(LogLevel.Error) != StackTraceUsage.None;
+            _isFatalCallSiteEnabled = IsFatalEnabled && GetStackTraceUsage(LogLevel.Fatal) != StackTraceUsage.None;
+        }
 
-#if !SILVERLIGHT
-        /// <summary>
-        /// Stack trace (with source) should only be captured if callsite details are missing
-        /// </summary>
-        WithCallSiteSource = 2,
+        private bool IsCallSiteEnabled(LogLevel level)
+        {
+            return GetStackTraceUsage(level) != StackTraceUsage.None;
+        }
 
-        /// <summary>
-        /// Stack trace should be captured including source-level information such as line numbers.
-        /// </summary>
-        WithSource = 4,
-
-        /// <summary>
-        /// Capture maximum amount of the stack trace information supported on the platform.
-        /// </summary>
-        Max = 4,
-#else
-        /// <summary>
-        /// Capture maximum amount of the stack trace information supported on the platform.
-        /// </summary>
-        Max = 3,
-#endif
+        bool _isTraceCallSiteEnabled;
+        bool _isDebugCallSiteEnabled;
+        bool _isInfoCallSiteEnabled;
+        bool _isWarnCallSiteEnabled;
+        bool _isErrorCallSiteEnabled;
+        bool _isFatalCallSiteEnabled;
     }
 }

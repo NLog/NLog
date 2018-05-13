@@ -574,7 +574,7 @@ namespace NLog.Targets
 
                     if (IncludeCallSite)
                     {
-                        return StackTraceUsage.WithoutSource;
+                        return StackTraceUsage.WithCallSite;
                     }
                     return StackTraceUsage.None;
                 }

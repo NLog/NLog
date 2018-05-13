@@ -56,22 +56,6 @@ namespace NLog
 
     foreach(var level in levels)
     { 
-#>
-        /// <summary>
-        /// Gets a value indicating whether logging is enabled for the <c><#=level#></c> level.
-        /// </summary>
-        /// <returns>A value of <see langword="true" /> if logging is enabled for the <c><#=level#></c> level, otherwise it returns <see langword="false" />.</returns>
-        public bool Is<#=level#>Enabled
-        {
-            get { return _is<#=level#>Enabled; }
-        }
-
-<#
-
-    }
-
-    foreach(var level in levels)
-    { 
 
 
 #>
@@ -90,7 +74,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, null, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.<#=level#>, Name, null, value));
             }
         }
 
@@ -104,7 +88,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, formatProvider, value);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.<#=level#>, Name, formatProvider, value));
             }
         }
 
@@ -118,10 +102,9 @@ namespace NLog
             {
                 if (messageFunc == null)
                 {
-                    throw new ArgumentNullException("messageFunc");
+                    throw new ArgumentNullException(nameof(messageFunc));
                 }
-
-                WriteToTargets(LogLevel.<#=level#>, null, messageFunc());
+                WriteToTargets(LogLevel.<#=level#>, messageFunc(), null);
             }
         }
 
@@ -160,7 +143,7 @@ namespace NLog
         { 
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, null, message);
+                WriteToTargets(LogLevel.<#=level#>, message, null);
             }
         }
 
@@ -189,7 +172,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.<#=level#>, Name, exception, null, message, null));
             }
         }
 
@@ -202,7 +185,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, exception, message, null);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.<#=level#>, Name, exception, null, message, null));
             }
         }
 
@@ -217,7 +200,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, exception, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.<#=level#>, Name, exception, null, message, args));
             }
         }
 
@@ -233,7 +216,7 @@ namespace NLog
         {
             if (Is<#=level#>Enabled)
             {
-                WriteToTargets(LogLevel.<#=level#>, exception, formatProvider, message, args);
+                WriteToTargets(null, LogEventInfo.Create(LogLevel.<#=level#>, Name, exception, formatProvider, message, args));
             }
         }
 
@@ -267,19 +250,18 @@ namespace NLog
 #pragma warning disable 618
            
             //todo log also these calls as warning?
-                if (_configuration.ExceptionLoggingOldStyle)
+                if (LoggerConfiguration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        <#=level#>(message, exceptionCandidate);	
+                        <#=level#>(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
