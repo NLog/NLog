@@ -609,7 +609,7 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
         private void WriteEventToDatabase(LogEventInfo logEvent)
         {
-            //Always suppress transaction so that the caller does not rollback loggin if they are rolling back their transaction.
+            //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
             using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 EnsureConnectionOpen(BuildConnectionString(logEvent));
