@@ -888,12 +888,7 @@ Dispose()
         }
 #endif
 
-#if NETSTANDARD
-        //[Fact(Skip = "NETSTANDARD missing fully working Sqlite")]
         [Fact]
-#else
-        [Fact]
-#endif
         public void SQLite_InstallAndLogMessageProgrammatically()
         {
             SQLiteTest sqlLite = new SQLiteTest("TestLogProgram.sqlite");
@@ -969,12 +964,7 @@ Dispose()
 #endif
         }
 
-#if NETSTANDARD
-        //[Fact(Skip = "NETSTANDARD missing fully working Sqlite")]
         [Fact]
-#else
-        [Fact]
-#endif
         public void SQLite_InstallAndLogMessage()
         {
             SQLiteTest sqlLite = new SQLiteTest("TestLogXml.sqlite");
@@ -1192,12 +1182,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             Assert.Null(exRecorded);
         }
 
-#if NETSTANDARD
-        //[Fact(Skip = "NETSTANDARD missing fully working Sqlite")]
+
         [Fact]
-#else
-        [Fact]
-#endif
         public void RethrowingInstallExceptions()
         {
             SetupSqliteConfigWithInvalidInstallCommand("rethrowing_install_exceptions");
