@@ -615,53 +615,62 @@ namespace NLog
 
         internal bool IsLogEventMutableSafe()
         {
-            if (Exception == null && _formattedMessage == null)
+            if (Exception != null || _formattedMessage != null)
+                return false;
+
+            if (!HasProperties)
+                return true; // No mutable state, no need to precalculate
+
+            var properties = CreateOrUpdatePropertiesInternal(false);
+            if (properties == null || properties.Count == 0)
+                return true; // No mutable state, no need to precalculate
+
+            if (properties.Count > 5)
+                return false;
+
+            if (properties.Count == _parameters?.Length && properties.Count == properties.MessageProperties.Count)
+                return true; // Already checked formatted message, no need to do it twice
+
+            return HasImmutableProperties(properties);
+        }
+
+        private static bool HasImmutableProperties(PropertiesDictionary properties)
+        {
+            if (properties.Count == properties.MessageProperties.Count)
             {
-                if (!HasProperties)
-                    return true; // No mutable state, no need to precalculate
-
-                var properties = CreateOrUpdatePropertiesInternal(false);
-                if (properties == null || properties.Count == 0)
-                    return true; // No mutable state, no need to precalculate
-
-                if (properties.Count > 5)
-                    return false;
-
-                bool immutableProperties = true;
-                if (properties.Count == properties.MessageProperties.Count)
+                // Skip enumerator allocation when all properties comes from the message-template
+                for (int i = 0; i < properties.MessageProperties.Count; ++i)
                 {
-                    if (properties.Count == _parameters?.Length)
-                        return true;    // Already checked formatted message, no need to do it twice
-
-                    // Skip enumerator allocation when all properties comes from the message-template
-                    for (int i = 0; i < properties.MessageProperties.Count; ++i)
-                    {
-                        var property = properties.MessageProperties[i];
-                        if (IsSafeToDeferFormatting(property.Value))
-                        {
-                            immutableProperties = false;
-                            break;
-                        }
-                    }
+                    var property = properties.MessageProperties[i];
+                    if (!IsSafeToDeferFormatting(property.Value))
+                        return false;
                 }
-                else
+            }
+            else
+            {
+                // Already spent the time on allocating a Dictionary, also have time for an enumerator
+                foreach (var property in properties)
                 {
-                    // Already spent the time on allocating a Dictionary, also have time for an enumerator
-                    foreach (var property in properties)
-                    {
-                        if (IsSafeToDeferFormatting(property.Value))
-                        {
-                            immutableProperties = false;
-                            break;
-                        }
-                    }
+                    if (!IsSafeToDeferFormatting(property.Value))
+                        return false;
                 }
-
-                if (immutableProperties)
-                    return true; // No mutable state, no need to precalculate
             }
 
-            return false;
+            return true;
+        }
+
+        internal bool CanLogEventDeferMessageFormat()
+        {
+            if (_formattedMessage != null)
+                return false;   // Already formatted, cannot be deferred
+
+            if (_parameters == null || _parameters.Length == 0)
+                return false;   // No parameters to format
+
+            if (_message?.Length < 256 && ReferenceEquals(MessageFormatter, LogMessageTemplateFormatter.DefaultAuto.MessageFormatter))
+                return true;    // Not too expensive to scan for properties
+            else
+                return false;
         }
 
         private static string GetStringFormatMessageFormatter(LogEventInfo logEvent)

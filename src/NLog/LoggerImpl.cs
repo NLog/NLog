@@ -89,12 +89,9 @@ namespace NLog
                 };
             }
 
-            if (targets.NextInChain == null
-             && logEvent.Parameters != null
-             && logEvent.Parameters.Length > 0
-             && logEvent.Message?.Length < 256
-             && ReferenceEquals(logEvent.MessageFormatter, LogMessageTemplateFormatter.DefaultAuto.MessageFormatter))
+            if (targets.NextInChain == null && logEvent.CanLogEventDeferMessageFormat())
             {
+                // Change MessageFormatter so it writes directly to StringBuilder without string-allocation
                 logEvent.MessageFormatter = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
             }
 
