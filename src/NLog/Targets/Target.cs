@@ -520,13 +520,10 @@ namespace NLog.Targets
             _allLayouts = ObjectGraphScanner.FindReachableObjects<Layout>(false, this);
             InternalLogger.Trace("{0} has {1} layouts", this, _allLayouts.Count);
             _allLayoutsAreThreadAgnostic = _allLayouts.All(layout => layout.ThreadAgnostic);
-            if (!_allLayoutsAreThreadAgnostic)
+            _oneLayoutIsMutableUnsafe = _allLayoutsAreThreadAgnostic && _allLayouts.Any(layout => layout.MutableUnsafe);
+            if (!_allLayoutsAreThreadAgnostic || _oneLayoutIsMutableUnsafe)
             {
                 _allLayoutsAreThreadSafe = _allLayouts.All(layout => layout.ThreadSafe);
-            }
-            else
-            {
-                _oneLayoutIsMutableUnsafe = _allLayouts.Any(layout => layout.MutableUnsafe);
             }
             StackTraceUsage = _allLayouts.DefaultIfEmpty().Max(layout => layout?.StackTraceUsage ?? StackTraceUsage.None);
             _scannedForLayouts = true;
