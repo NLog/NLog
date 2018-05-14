@@ -618,15 +618,12 @@ namespace NLog
             if (Exception != null || _formattedMessage != null)
                 return false;
 
-            if (!HasProperties)
-                return true; // No mutable state, no need to precalculate
-
             var properties = CreateOrUpdatePropertiesInternal(false);
             if (properties == null || properties.Count == 0)
                 return true; // No mutable state, no need to precalculate
 
             if (properties.Count > 5)
-                return false;
+                return false; // too many properties, too costly to check
 
             if (properties.Count == _parameters?.Length && properties.Count == properties.MessageProperties.Count)
                 return true; // Already checked formatted message, no need to do it twice
