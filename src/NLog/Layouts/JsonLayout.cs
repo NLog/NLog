@@ -307,7 +307,7 @@ namespace NLog.Layouts
                 // Overrides MaxRecursionLimit as message-template tells us it is safe
                 JsonConverter.SerializeObjectNoLimit(propertyValue, sb);
             }
-            else if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Stringify)
+            else if (captureType == MessageTemplates.CaptureType.Stringify)
             {
                 // Overrides MaxRecursionLimit as message-template tells us it is unsafe
                 int originalStart = sb.Length;
