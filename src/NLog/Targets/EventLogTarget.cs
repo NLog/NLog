@@ -92,7 +92,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public EventLogTarget(string name) 
+        public EventLogTarget(string name)
             : this(LogFactory.CurrentAppDomain)
         {
             Name = name;
@@ -270,11 +270,19 @@ namespace NLog.Targets
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
-            int eventId = EventId.RenderInt(logEvent, 0, "EventLogTarget.EventId");
+            int eventId = 0;
+            string renderEventId = RenderLogEvent(EventId, logEvent);
+            if (!string.IsNullOrEmpty(renderEventId) && !int.TryParse(renderEventId, out eventId))
+            {
+                InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse EventId={1}", Name, renderEventId);
+            }
 
-            short category = Category.RenderShort(logEvent, 0, "EventLogTarget.Category");
-
-          
+            short category = 0;
+            string renderCategory = RenderLogEvent(Category, logEvent);
+            if (!string.IsNullOrEmpty(renderCategory) && !short.TryParse(renderCategory, out category))
+            {
+                InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse Category={1}", Name, renderCategory);
+            }
 
             // limitation of EventLog API
             if (message.Length > MaxMessageLength)
@@ -317,17 +325,15 @@ namespace NLog.Targets
         /// <returns></returns>
         private EventLogEntryType GetEntryType(LogEventInfo logEvent)
         {
-            if (EntryType != null)
+            string renderEntryType = RenderLogEvent(EntryType, logEvent);
+            if (!string.IsNullOrEmpty(renderEntryType))
             {
                 //try parse, if fail,  determine auto
-
-                var value = RenderLogEvent(EntryType, logEvent);
-
-                EventLogEntryType eventLogEntryType;
-                if (EnumHelpers.TryParse(value, true, out eventLogEntryType))
+                if (ConversionHelpers.TryParseEnum(renderEntryType, out EventLogEntryType eventLogEntryType))
                 {
                     return eventLogEntryType;
                 }
+                InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse EntryType={1}", Name, renderEntryType);
             }
 
             // determine auto
@@ -397,13 +403,11 @@ namespace NLog.Targets
         /// <param name="alwaysThrowError">always throw an Exception when there is an error</param>
         private void CreateEventSourceIfNeeded(string fixedSource, bool alwaysThrowError)
         {
-
             if (string.IsNullOrEmpty(fixedSource))
             {
                 InternalLogger.Debug("EventLogTarget(Name={0}): Skipping creation of event source because it contains layout renderers", Name);
                 //we can only create event sources if the source is fixed (no layout)
                 return;
-
             }
 
             // if we throw anywhere, we remain non-operational
@@ -437,11 +441,10 @@ namespace NLog.Targets
             catch (Exception exception)
             {
                 InternalLogger.Error(exception, "EventLogTarget(Name={0}): Error when connecting to EventLog.", Name);
-                if (alwaysThrowError || exception.MustBeRethrown())
+                if (alwaysThrowError || LogManager.ThrowExceptions)
                 {
                     throw;
                 }
-
             }
         }
     }
