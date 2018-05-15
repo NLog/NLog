@@ -95,12 +95,19 @@ namespace NLog
                 logEvent.MessageFormatter = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
             }
 
+            IList<Filter> prevFilterChain = null;
+            FilterResult prevFilterResult = FilterResult.Neutral;
             for (var t = targets; t != null; t = t.NextInChain)
             {
-                if (!WriteToTargetWithFilterChain(t, logEvent, exceptionHandler))
+                FilterResult result = ReferenceEquals(prevFilterChain, t.FilterChain) ?
+                    prevFilterResult : GetFilterResult(t.FilterChain, logEvent);
+                if (!WriteToTargetWithFilterChain(t.Target, result, logEvent, exceptionHandler))
                 {
                     break;
                 }
+
+                prevFilterResult = result;  // Cache the result, and reuse it for the next target, if it comes from the same logging-rule
+                prevFilterChain = t.FilterChain;
             }
         }
 
@@ -196,9 +203,8 @@ namespace NLog
             return isLoggerType;
         }
 
-        private static bool WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
+        private static bool WriteToTargetWithFilterChain(Targets.Target target, FilterResult result, LogEventInfo logEvent, AsyncContinuation onException)
         {
-            FilterResult result = GetFilterResult(targetListHead.FilterChain, logEvent);
             if ((result == FilterResult.Ignore) || (result == FilterResult.IgnoreFinal))
             {
                 if (InternalLogger.IsDebugEnabled)
@@ -214,7 +220,7 @@ namespace NLog
                 return true;
             }
 
-            targetListHead.Target.WriteAsyncLogEvent(logEvent.WithContinuation(onException));
+            target.WriteAsyncLogEvent(logEvent.WithContinuation(onException));
             if (result == FilterResult.LogFinal)
             {
                 return false;
