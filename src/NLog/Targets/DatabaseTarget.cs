@@ -609,7 +609,7 @@ namespace NLog.Targets
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
         private void WriteEventToDatabase(LogEventInfo logEvent)
         {
-            //Always suppress transaction so that the caller does not rollback loggin if they are rolling back their transaction.
+            //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
             using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 EnsureConnectionOpen(BuildConnectionString(logEvent));
@@ -621,38 +621,7 @@ namespace NLog.Targets
 
                     InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, command.CommandType, command.CommandText);
 
-                    for (int i = 0; i < Parameters.Count; ++i)
-                    {
-                        DatabaseParameterInfo par = Parameters[i];
-                        IDbDataParameter p = command.CreateParameter();
-                        p.Direction = ParameterDirection.Input;
-                        if (par.Name != null)
-                        {
-                            p.ParameterName = par.Name;
-                        }
-
-                        if (par.Size != 0)
-                        {
-                            p.Size = par.Size;
-                        }
-
-                        if (par.Precision != 0)
-                        {
-                            p.Precision = par.Precision;
-                        }
-
-                        if (par.Scale != 0)
-                        {
-                            p.Scale = par.Scale;
-                        }
-
-                        string stringValue = RenderLogEvent(par.Layout, logEvent);
-
-                        p.Value = stringValue;
-                        command.Parameters.Add(p);
-
-                        InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
-                    }
+                    AddParametersToCommand(command, Parameters, logEvent);
 
                     int result = command.ExecuteNonQuery();
                     InternalLogger.Trace("DatabaseTarget(Name={0}): Finished execution, result = {1}", Name, result);
@@ -773,10 +742,12 @@ namespace NLog.Targets
 
                     EnsureConnectionOpen(cs);
 
-                    using (var command = _activeConnection.CreateCommand())
+                    using (IDbCommand command = _activeConnection.CreateCommand())
                     {
                         command.CommandType = commandInfo.CommandType;
                         command.CommandText = RenderLogEvent(commandInfo.Text, logEvent);
+
+                        AddParametersToCommand(command, commandInfo.Parameters, logEvent);
 
                         try
                         {
@@ -808,6 +779,48 @@ namespace NLog.Targets
                 InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection after install.", Name);
 
                 CloseConnection();
+            }
+        }
+
+        /// <summary>
+        /// Adds the given list of DatabaseParameterInfo to the given IDbCommand after transforming them into IDbDataParameters.
+        /// </summary>
+        /// <param name="command">The IDbCommand to add parameters to</param>
+        /// <param name="databaseParameterInfos">The list of DatabaseParameterInfo to transform into IDbDataParameters and to add to the IDbCommand</param>
+        /// <param name="logEvent">The log event to base the parameter's layout rendering on.</param>
+        private void AddParametersToCommand(IDbCommand command, IList<DatabaseParameterInfo> databaseParameterInfos, LogEventInfo logEvent)
+        {
+            for(int i = 0; i < databaseParameterInfos.Count; ++i)
+            {
+                DatabaseParameterInfo par = databaseParameterInfos[i];
+                IDbDataParameter p = command.CreateParameter();
+                p.Direction = ParameterDirection.Input;
+                if (par.Name != null)
+                {
+                    p.ParameterName = par.Name;
+                }
+
+                if (par.Size != 0)
+                {
+                    p.Size = par.Size;
+                }
+
+                if (par.Precision != 0)
+                {
+                    p.Precision = par.Precision;
+                }
+
+                if (par.Scale != 0)
+                {
+                    p.Scale = par.Scale;
+                }
+
+                string stringValue = RenderLogEvent(par.Layout, logEvent);
+
+                p.Value = stringValue;
+                command.Parameters.Add(p);
+
+                InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", p.ParameterName, p.Value, p.DbType);
             }
         }
 
