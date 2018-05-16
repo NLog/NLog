@@ -1249,5 +1249,44 @@ namespace NLog.UnitTests.LayoutRenderers
                 Logger.Log(typeof(NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
             }
         }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void CallsiteTargetUsesStackTraceTest(bool includeStackTraceUsage)
+        {
+            var target = new MyTarget() { StackTraceUsage = includeStackTraceUsage ? StackTraceUsage.WithoutSource : StackTraceUsage.None };
+            SimpleConfigurator.ConfigureForTargetLogging(target);
+            var logger = LogManager.GetLogger(nameof(CallsiteTargetUsesStackTraceTest));
+            string t = null;
+            logger.Info("Testing null:{0}", t);
+            Assert.NotNull(target.LastEvent);
+            if (includeStackTraceUsage)
+                Assert.NotNull(target.LastEvent.StackTrace);
+            else
+                Assert.Null(target.LastEvent.StackTrace);
+        }
+
+        public class MyTarget : TargetWithLayout, IUsesStackTrace
+        {
+            public MyTarget()
+            {
+            }
+
+            public MyTarget(string name) : this()
+            {
+                Name = name;
+            }
+
+            public LogEventInfo LastEvent { get; private set; }
+
+            public StackTraceUsage StackTraceUsage { get; set; }
+
+            protected override void Write(LogEventInfo logEvent)
+            {
+                LastEvent = logEvent;
+                base.Write(logEvent);
+            }
+        }
     }
 }
