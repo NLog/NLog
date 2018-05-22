@@ -470,7 +470,9 @@ namespace NLog.Config
                 throw new ArgumentNullException(nameof(installationContext));
             }
 
-            InitializeAll();
+            var supportsInitializes = ValidateConfig();
+            InitializeAll(supportsInitializes);
+
             var configItemsList = GetInstallableItems();
             foreach (IInstallable installable in configItemsList)
             {
@@ -508,7 +510,8 @@ namespace NLog.Config
                 throw new ArgumentNullException(nameof(installationContext));
             }
 
-            InitializeAll();
+            var supportsInitializes = ValidateConfig();
+            InitializeAll(supportsInitializes);
 
             var configItemsList = GetInstallableItems();
             foreach (IInstallable installable in configItemsList)
@@ -543,6 +546,7 @@ namespace NLog.Config
             foreach (ISupportsInitialize initialize in supportsInitializesList)
             {
                 InternalLogger.Trace("Closing {0}", initialize);
+
                 try
                 {
                     initialize.Close();
@@ -555,8 +559,6 @@ namespace NLog.Config
                     {
                         throw;
                     }
-
-
                 }
             }
 
@@ -622,7 +624,7 @@ namespace NLog.Config
         /// <summary>
         /// Validates the configuration.
         /// </summary>
-        internal void ValidateConfig()
+        internal List<ISupportsInitialize> ValidateConfig()
         {
             var roots = new List<object>();
 
@@ -647,13 +649,12 @@ namespace NLog.Config
             {
                 PropertyHelper.CheckRequiredParameters(o);
             }
+
+            return GetSupportsInitializes(true);
         }
 
-        internal void InitializeAll()
+        internal void InitializeAll(List<ISupportsInitialize> supportsInitializes)
         {
-            ValidateConfig();
-
-            var supportsInitializes = GetSupportsInitializes(true);
             foreach (ISupportsInitialize initialize in supportsInitializes)
             {
                 InternalLogger.Trace("Initializing {0}", initialize);
@@ -675,11 +676,6 @@ namespace NLog.Config
                     }
                 }
             }
-        }
-
-        internal void EnsureInitialized()
-        {
-            InitializeAll();
         }
 
         private List<IInstallable> GetInstallableItems()

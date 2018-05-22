@@ -396,8 +396,9 @@ namespace NLog
                 lock (_syncRoot)
                 {
                     _globalThreshold = value;
-                    ReconfigExistingLoggers();
                 }
+
+                ReconfigExistingLoggers();
             }
         }
 
@@ -551,13 +552,15 @@ namespace NLog
         public void ReconfigExistingLoggers()
         {
             List<Logger> loggers;
+            List<ISupportsInitialize> supportsInitializes;
 
             lock (_syncRoot)
             {
-                _config?.InitializeAll();
-
+                supportsInitializes = _config?.ValidateConfig();
                 loggers = _loggerCache.GetLoggers();
             }
+
+            _config?.InitializeAll(supportsInitializes ?? Enumerable.Empty<ISupportsInitialize>().ToList());
 
             foreach (var logger in loggers)
             {
