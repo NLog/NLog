@@ -210,7 +210,8 @@ namespace NLog.UnitTests.Config
             Assert.Single(config.AllTargets);
             Assert.Equal(fileTarget, config.AllTargets[0]);
 
-            config.InitializeAll();
+            var supportsInitializes = config.ValidateConfig();
+            config.InitializeAll(supportsInitializes);
 
             Assert.Single(config.AllTargets);
             Assert.Equal(fileTarget, config.AllTargets[0]);
