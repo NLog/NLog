@@ -3110,6 +3110,81 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void DatedArchiveForFileTargetWithMultipleFiles()
+        {
+            var defaultTimeSource = TimeSource.Current;
+
+            var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString()) + Path.DirectorySeparatorChar;
+
+            try
+            {
+                var timeSource = new TimeSourceTests.ShiftedTimeSource(DateTimeKind.Local);
+                if (timeSource.Time.Minute == 59)
+                {
+                    // Avoid double-archive due to overflow of the hour.
+                    timeSource.AddToLocalTime(TimeSpan.FromMinutes(1));
+                    timeSource.AddToSystemTime(TimeSpan.FromMinutes(1));
+                }
+                TimeSource.Current = timeSource;
+
+                GlobalDiagnosticsContext.Set("basedir", tempPath);
+
+                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+<nlog>
+  <variable name='basedir' value='' />
+  <targets>
+      <target name='file' type='File'
+              fileName='${gdc:item=basedir}${event-properties:item=serialNo}.txt'
+              layout='${message}'
+              archiveFileName='${gdc:item=basedir}${event-properties:item=serialNo}.{#}.txt'
+              archiveNumbering='Date'
+              archiveDateFormat='yyyy-MM-dd'
+              archiveEvery='Day' />
+  </targets>
+  <rules>
+    <logger name='*' writeTo='file' />
+  </rules>
+</nlog>
+");
+
+                var fileLogger = LogManager.GetLogger(nameof(DatedArchiveForFileTargetWithMultipleFiles));
+                LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, fileLogger.Name, "Very Important Message");
+                logEvent.Properties["serialNo"] = "M91803ED2172";
+                logger.Log(logEvent);
+
+                LogEventInfo logEvent2 = LogEventInfo.Create(LogLevel.Info, fileLogger.Name, "Very Important Message");
+                logEvent2.Properties["serialNo"] = "M91803ED2137";
+                logger.Log(logEvent2);
+
+                var currentDate = timeSource.Time.Date;
+                timeSource.AddToLocalTime(TimeSpan.FromDays(5));
+
+                LogEventInfo logEvent3 = LogEventInfo.Create(LogLevel.Info, fileLogger.Name, "Very Important Message");
+                logEvent3.Properties["serialNo"] = logEvent.Properties["serialNo"];
+                logger.Log(logEvent3);
+
+                LogEventInfo logEvent4 = LogEventInfo.Create(LogLevel.Info, fileLogger.Name, "Very Important Message");
+                logEvent4.Properties["serialNo"] = logEvent2.Properties["serialNo"];
+                logger.Log(logEvent4);
+
+                var currentFiles = new DirectoryInfo(tempPath).GetFiles();
+                Assert.Equal(4, currentFiles.Length);
+                Assert.Contains(logEvent.Properties["serialNo"] + ".txt", currentFiles.Select(f => f.Name));
+                Assert.Contains(logEvent.Properties["serialNo"] + "." + currentDate.ToString("yyyy-MM-dd") + ".txt", currentFiles.Select(f => f.Name));
+                Assert.Contains(logEvent2.Properties["serialNo"] + ".txt", currentFiles.Select(f => f.Name));
+                Assert.Contains(logEvent2.Properties["serialNo"] + "." + currentDate.ToString("yyyy-MM-dd") + ".txt", currentFiles.Select(f => f.Name));
+            }
+            finally
+            {
+                TimeSource.Current = defaultTimeSource;
+
+                LogManager.Configuration = null;
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Fact]
         public void LoggingShouldNotTriggerTypeResolveEventTest()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid().ToString());
