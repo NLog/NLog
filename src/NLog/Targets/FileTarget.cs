@@ -1149,11 +1149,14 @@ namespace NLog.Targets
 
         private void ProcessLogEvent(LogEventInfo logEvent, string fileName, ArraySegment<byte> bytesToWrite)
         {
-            bool initializedNewFile = InitializeFile(fileName, logEvent);
+            DateTime previousLogEventTimestamp = InitializeFile(fileName, logEvent);
+            bool initializedNewFile = previousLogEventTimestamp == DateTime.MinValue;
+            if (initializedNewFile && fileName == _previousLogFileName && _previousLogEventTimestamp.HasValue)
+                previousLogEventTimestamp = _previousLogEventTimestamp.Value;
 
-            bool archiveOccurred = TryArchiveFile(fileName, logEvent, bytesToWrite.Count, initializedNewFile);
+            bool archiveOccurred = TryArchiveFile(fileName, logEvent, bytesToWrite.Count, previousLogEventTimestamp, initializedNewFile);
             if (archiveOccurred)
-                initializedNewFile = InitializeFile(fileName, logEvent);
+                initializedNewFile = InitializeFile(fileName, logEvent) == DateTime.MinValue;
 
             WriteToFile(fileName, bytesToWrite, initializedNewFile);
 
@@ -1426,44 +1429,35 @@ namespace NLog.Targets
             return formatString;
         }
 
-        private DateTime? GetArchiveDate(string fileName, LogEventInfo logEvent, bool initializedNewFile)
+        private DateTime? GetArchiveDate(string fileName, LogEventInfo logEvent, DateTime previousLogEventTimestamp)
         {
             // Using File LastModifed to handle FileArchivePeriod.Month (where file creation time is one month ago)
             var fileLastModifiedUtc = _fileAppenderCache.GetFileLastWriteTimeUtc(fileName, true);
 
-            DateTime? previousLogEventTimestamp = string.Equals(fileName, _previousLogFileName, StringComparison.OrdinalIgnoreCase) ? _previousLogEventTimestamp : null;
-            if (!previousLogEventTimestamp.HasValue && !initializedNewFile)
-            {
-                if (_initializedFiles.TryGetValue(fileName, out var initializedTimeSamp))
-                {
-                    previousLogEventTimestamp = initializedTimeSamp;
-                }
-            }
-
             InternalLogger.Trace("FileTarget(Name={0}): Calculating archive date. File-LastModifiedUtc: {1}; Previous LogEvent-TimeStamp: {2}", Name, fileLastModifiedUtc, previousLogEventTimestamp);
             if (!fileLastModifiedUtc.HasValue)
             {
-                if (!previousLogEventTimestamp.HasValue)
+                if (previousLogEventTimestamp == DateTime.MinValue)
                 {
                     InternalLogger.Info("FileTarget(Name={0}): Unable to acquire useful timestamp to archive file: {1}", Name, fileName);
+                    return null;
                 }
                 return previousLogEventTimestamp;
             }
 
             var lastWriteTimeSource = Time.TimeSource.Current.FromSystemTime(fileLastModifiedUtc.Value);
-            if (previousLogEventTimestamp.HasValue)
+            if (previousLogEventTimestamp != DateTime.MinValue)
             {
-                if (previousLogEventTimestamp.Value > lastWriteTimeSource)
+                if (previousLogEventTimestamp > lastWriteTimeSource)
                 {
                     InternalLogger.Trace("FileTarget(Name={0}): Using previous log event time (is more recent)", Name);
-
-                    return previousLogEventTimestamp.Value;
+                    return previousLogEventTimestamp;
                 }
 
-                if (PreviousLogOverlappedPeriod(logEvent, previousLogEventTimestamp.Value, lastWriteTimeSource))
+                if (PreviousLogOverlappedPeriod(logEvent, previousLogEventTimestamp, lastWriteTimeSource))
                 {
                     InternalLogger.Trace("FileTarget(Name={0}): Using previous log event time (previous log overlapped period)", Name);
-                    return previousLogEventTimestamp.Value;
+                    return previousLogEventTimestamp;
                 }
             }
 
@@ -1527,8 +1521,9 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to be checked and archived.</param>
         /// <param name="eventInfo">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
         /// <param name="initializedNewFile">File has just been opened.</param>
-        private void DoAutoArchive(string fileName, LogEventInfo eventInfo, bool initializedNewFile)
+        private void DoAutoArchive(string fileName, LogEventInfo eventInfo, DateTime previousLogEventTimestamp, bool initializedNewFile)
         {
             InternalLogger.Debug("FileTarget(Name={0}): Do archive file: '{1}'", Name, fileName);
             var fileInfo = new FileInfo(fileName);
@@ -1536,7 +1531,6 @@ namespace NLog.Targets
             {
                 // Close possible stale file handles
                 _fileAppenderCache.InvalidateAppender(fileName)?.Dispose();
-                _initializedFiles.Remove(fileName);
                 return;
             }
 
@@ -1571,22 +1565,17 @@ namespace NLog.Targets
                 {
                     if (string.Equals(Path.GetDirectoryName(archiveFilePattern), fileInfo.DirectoryName, StringComparison.OrdinalIgnoreCase))
                     {
-                        _initializedFiles.Remove(fileName);
                         DeleteOldArchiveFile(fileName);
                         return;
                     }
                 }
             }
 
-            DateTime? archiveDate = GetArchiveDate(fileName, eventInfo, initializedNewFile);
+            DateTime? archiveDate = GetArchiveDate(fileName, eventInfo, previousLogEventTimestamp);
             var archiveFileName = archiveDate.HasValue ? fileArchiveStyle.GenerateArchiveFileName(archiveFilePattern, archiveDate.Value, existingArchiveFiles) : null;
             if (archiveFileName != null)
             {
-                if (initializedNewFile)
-                {
-                    _initializedFiles.Remove(fileName);
-                }
-                else
+                if (!initializedNewFile)
                 {
                     FinalizeFile(fileName, isArchiving: true);
                 }
@@ -1647,9 +1636,10 @@ namespace NLog.Targets
         /// <param name="fileName">The file name to check for.</param>
         /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
+        /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
         /// <param name="initializedNewFile">File has just been opened.</param>
         /// <returns>True when archive operation of the file was completed (by this target or a concurrent target)</returns>
-        private bool TryArchiveFile(string fileName, LogEventInfo ev, int upcomingWriteSize, bool initializedNewFile)
+        private bool TryArchiveFile(string fileName, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp, bool initializedNewFile)
         {
             if (!IsArchivingEnabled)
                 return false;
@@ -1730,7 +1720,8 @@ namespace NLog.Targets
                     else
                     {
                         archiveFile = validatedArchiveFile;
-                        DoAutoArchive(archiveFile, ev, initializedNewFile);
+                        DoAutoArchive(archiveFile, ev, previousLogEventTimestamp, initializedNewFile);
+                        _initializedFiles.Remove(archiveFile);
                     }
 
                     if (_previousLogFileName == archiveFile)
@@ -2000,16 +1991,14 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
-        /// <returns><see langword="true"/> when file header should be written; <see langword="false"/> otherwise.</returns>
-        private bool InitializeFile(string fileName, LogEventInfo logEvent)
+        /// <returns>The DateTime of the previous log event for this file (DateTime.MinValue if just initialized).</returns>
+        private DateTime InitializeFile(string fileName, LogEventInfo logEvent)
         {
-            bool initializedNewFile = false;
-
             if (_initializedFiles.Count != 0 && _previousLogEventTimestamp.HasValue && _previousLogFileName == fileName)
             {
                 if (logEvent.TimeStamp == _previousLogEventTimestamp.Value)
                 {
-                    return false;
+                    return _previousLogEventTimestamp.Value;
                 }
             }
 
@@ -2027,13 +2016,14 @@ namespace NLog.Targets
                 }
 
                 _initializedFiles[fileName] = now;
-                initializedNewFile = true;
+                return DateTime.MinValue;
             }
             else if (lastTime != now)
             {
                 _initializedFiles[fileName] = now;
             }
-            return initializedNewFile;
+
+            return lastTime;
         }
 
         /// <summary>
@@ -2083,7 +2073,7 @@ namespace NLog.Targets
             {
                 try
                 {
-                    DoAutoArchive(fileName, logEvent, true);
+                    DoAutoArchive(fileName, logEvent, DateTime.MinValue, true);
                 }
                 catch (Exception exception)
                 {
