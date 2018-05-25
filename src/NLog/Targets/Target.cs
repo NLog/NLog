@@ -727,6 +727,9 @@ namespace NLog.Targets
         /// <returns>String representing log event.</returns>
         protected string RenderLogEvent(Layout layout, LogEventInfo logEvent)
         {
+            if (layout == null || logEvent == null)
+                return null;    // Signal that input was wrong
+
             if (OptimizeBufferReuse)
             {
                 SimpleLayout simpleLayout = layout as SimpleLayout;

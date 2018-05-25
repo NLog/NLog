@@ -24,6 +24,10 @@ msbuild /t:Restore,Pack .\src\NLog.Wcf\ /p:VersionPrefix=$versionPrefix /p:Versi
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
+msbuild /t:Restore,Pack .\src\NLog.WindowsEventLog\ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
+if (-Not $LastExitCode -eq 0)
+	{ exit $LastExitCode }
+
 msbuild /t:Restore,Pack .\src\NLog.WindowsIdentity\ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
