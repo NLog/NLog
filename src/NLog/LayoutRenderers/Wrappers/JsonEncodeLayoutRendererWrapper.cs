@@ -71,6 +71,23 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool EscapeUnicode { get; set; }
 
         /// <summary>
+        /// Render to local target using Inner Layout, and then transform before final append
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="logEvent"></param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            if (JsonEncode)
+            {
+                base.Append(builder, logEvent);
+            }
+            else
+            {
+                RenderFormattedMessage(logEvent, builder);
+            }
+        }
+
+        /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
         /// <param name="target">The text to be JSON-encoded.</param>
