@@ -32,21 +32,21 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-## Fixes
 
-- Faulty invalidate of FormattedMessage when getting PropertiesDictionary (@snakefoot)
-- Fix: NLog.config build-action and copy for non-core projects, it's now "copy if newer" (@304NotModified)
-- FileTarget - Calculate correct archive date, when using Monthly archive (@snakefoot)
+## Fixes
+- FileTarget - Calculate correct archive date when multiple file appenders (@snakefoot)
+
+## Features
+- WhenRepeated - Support logging rules with multiple targets (@snakefoot)
+- Support for custom targets that implements IUsesStackTrace (@snakefoot)
+- DatabaseTarget: use parameters on install (@Jejuni)
 
 ## Enhancements
+- JsonLayout - Always stringify when requested (@snakefoot)
+- Target.WriteAsyncLogEvents(IList) to public 
 
-- TargetWithContext - Easier to use without needing to override ContextProperties (@snakefoot)
-- DatabaseTarget - Skip static assembly lookup for .Net Standard (@snakefoot)
-- LogEventInfo - Structured logging parameters are not always immutable (@snakefoot)
-- Target.WriteAsyncThreadSafe should always have exception handler (@snakefoot)
-- Target.MergeEventProperties is now obsolete (@snakefoot)
-- Sonar warning fixes (@snakefoot, @304NotModified)
-
+## Performance
+- Allocation improvement in precalculating layouts (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

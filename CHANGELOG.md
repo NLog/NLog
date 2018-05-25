@@ -4,6 +4,29 @@ Date format: (year/month/day)
 
 ## Change Log
 
+
+### v4.5.5 (2018/05/25)
+
+#### Fixes
+
+- [#2736](https://github.com/NLog/NLog/pull/2736) FileTarget - Calculate correct archive date when multiple file appenders (@snakefoot)
+
+#### Features
+
+- [#2726](https://github.com/nlog/nlog/pull/2726) WhenRepeated - Support logging rules with multiple targets (@snakefoot)
+- [#2727](https://github.com/nlog/nlog/pull/2727) Support for custom targets that implements IUsesStackTrace (@snakefoot)
+- [#2719](https://github.com/nlog/nlog/pull/2719) DatabaseTarget: use parameters on install (@Jejuni)
+
+#### Enhancements
+
+- [#2718](https://github.com/nlog/nlog/pull/2718) JsonLayout - Always stringify when requested (@snakefoot)
+- [#2739](https://github.com/nlog/nlog/pull/2739) Target.WriteAsyncLogEvents(IList) to public 
+
+
+#### Performance
+
+- [#2704](https://github.com/nlog/nlog/pull/2704) Allocation improvement in precalculating layouts (@snakefoot)
+
 ### v4.5.4 (2018/05/05)
 
 #### Fixes
