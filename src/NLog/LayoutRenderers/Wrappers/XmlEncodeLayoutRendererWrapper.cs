@@ -58,6 +58,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether to apply XML encoding.
         /// </summary>
+        /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
         /// <docgen category="Transformation Options" order="10"/>
         [DefaultValue(true)]
         public bool XmlEncode { get; set; }
@@ -67,6 +68,23 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         [DefaultValue(false)]
         public bool XmlEncodeNewlines { get; set; }
+
+        /// <summary>
+        /// Render to local target using Inner Layout, and then transform before final append
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="logEvent"></param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            if (XmlEncode)
+            {
+                base.Append(builder, logEvent);
+            }
+            else
+            {
+                RenderFormattedMessage(logEvent, builder);
+            }
+        }
 
         /// <summary>
         /// Post-processes the rendered message. 

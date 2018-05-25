@@ -86,6 +86,13 @@ namespace NLog.Layouts
         private readonly LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper _elementValueWrapper = new LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper();
 
         /// <summary>
+        /// Xml Encode the value for the top level XML element
+        /// </summary>
+        /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
+        [DefaultValue(true)]
+        public bool ElementEncode { get => _elementValueWrapper.XmlEncode; set => _elementValueWrapper.XmlEncode = value; }
+
+        /// <summary>
         /// Auto indent and create new lines
         /// </summary>
         /// <docgen category='XML Options' order='10' />
