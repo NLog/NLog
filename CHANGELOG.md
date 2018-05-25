@@ -5,7 +5,7 @@ Date format: (year/month/day)
 ## Change Log
 
 
-### v4.5.5 (2018/05/24)
+### v4.5.5 (2018/05/25)
 
 #### Fixes
 
