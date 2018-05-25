@@ -78,9 +78,9 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (JsonEncode && RequiresJsonEncode(target))
             {
-                var result = Targets.DefaultJsonSerializer.EscapeString(target.ToString(), EscapeUnicode);
+                var str = target.ToString();
                 target.Length = 0;
-                target.Append(result);
+                Targets.DefaultJsonSerializer.AppendStringEscape(target, str, EscapeUnicode);
             }
         }
 

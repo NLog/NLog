@@ -100,7 +100,18 @@ namespace NLog.Targets
             }
             else if (value is string str)
             {
-                return QuoteValue(EscapeString(str, options.EscapeUnicode));
+                for (int i = 0; i < str.Length; ++i)
+                {
+                    if (RequiresJsonEscape(str[i], options.EscapeUnicode))
+                    {
+                        StringBuilder sb = new StringBuilder(str.Length + 4);
+                        sb.Append('"');
+                        AppendStringEscape(sb, str, options.EscapeUnicode);
+                        sb.Append('"');
+                        return sb.ToString();
+                    }
+                }
+                return QuoteValue(str);
             }
             else
             {
@@ -183,7 +194,9 @@ namespace NLog.Targets
             }
             else if (value is string str)
             {
-                QuoteValue(destination, EscapeString(str, options.EscapeUnicode));
+                destination.Append('"');
+                AppendStringEscape(destination, str, options.EscapeUnicode);
+                destination.Append('"');
             }
             else if (value is IDictionary dict)
             {
@@ -243,7 +256,8 @@ namespace NLog.Targets
                 else
                 {
                     //format provider passed without FormatProvider
-                    destination.Append(EscapeString(formattable.ToString("", options.FormatProvider), options.EscapeUnicode));
+                    var str = formattable.ToString("", options.FormatProvider);
+                    AppendStringEscape(destination, str, options.EscapeUnicode);
                 }
 
                 if (includeQuotes)
@@ -418,8 +432,10 @@ namespace NLog.Targets
                     {
                         try
                         {
-                            string str = EscapeString(Convert.ToString(value, CultureInfo.InvariantCulture), options.EscapeUnicode);
-                            QuoteValue(destination, str);
+                            string str = Convert.ToString(value, CultureInfo.InvariantCulture);
+                            destination.Append('"');
+                            AppendStringEscape(destination, str, options.EscapeUnicode);
+                            destination.Append('"');
                         }
                         catch
                         {
@@ -547,27 +563,22 @@ namespace NLog.Targets
         /// <summary>
         /// Checks input string if it needs JSON escaping, and makes necessary conversion
         /// </summary>
+        /// <param name="sb">Destination Builder</param>
         /// <param name="text">Input string</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <returns>JSON escaped string</returns>
-        internal static string EscapeString(string text, bool escapeUnicode)
+        internal static void AppendStringEscape(StringBuilder sb, string text, bool escapeUnicode)
         {
-            if (text == null)
-                return null;
+            if (string.IsNullOrEmpty(text))
+                return;
 
-            StringBuilder sb = null;
             for (int i = 0; i < text.Length; ++i)
             {
                 char ch = text[i];
-                if (sb == null)
+                if (!RequiresJsonEscape(ch, escapeUnicode))
                 {
-                    // Check if we need to upgrade to StringBuilder
-                    if (!RequiresJsonEscape(ch, escapeUnicode))
-                        continue; // StringBuilder not needed, yet
-
-                    // StringBuilder needed
-                    sb = new StringBuilder(text.Length + 4);
-                    sb.Append(text, 0, i);
+                    sb.Append(ch);
+                    continue;
                 }
 
                 switch (ch)
@@ -616,11 +627,6 @@ namespace NLog.Targets
                         break;
                 }
             }
-
-            if (sb != null)
-                return sb.ToString();
-            else
-                return text;
         }
 
         internal static bool RequiresJsonEscape(char ch, bool escapeUnicode)
@@ -657,7 +663,10 @@ namespace NLog.Targets
                 try
                 {
                     //no props
-                    QuoteValue(destination, EscapeString(Convert.ToString(value, CultureInfo.InvariantCulture), options.EscapeUnicode));
+                    var str = Convert.ToString(value, CultureInfo.InvariantCulture);
+                    destination.Append('"');
+                    AppendStringEscape(destination, str, options.EscapeUnicode);
+                    destination.Append('"');
                     return true;
                 }
                 catch
