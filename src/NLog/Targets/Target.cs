@@ -337,7 +337,7 @@ namespace NLog.Targets
         /// Writes the array of log events.
         /// </summary>
         /// <param name="logEvents">The log events.</param>
-        internal void WriteAsyncLogEvents(IList<AsyncLogEventInfo> logEvents)
+        public void WriteAsyncLogEvents(IList<AsyncLogEventInfo> logEvents)
         {
             if (logEvents == null || logEvents.Count == 0)
             {
