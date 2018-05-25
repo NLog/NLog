@@ -20,7 +20,7 @@ test_script:
   - msbuild /t:rebuild .\tools\CheckSourceCode\src\ /p:Configuration=Release /verbosity:minimal
   - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
   - ps: .\run-tests.ps1
-  - nuget.exe install OpenCover -ExcludeVersion
+  - nuget.exe install OpenCover -ExcludeVersion -DependencyVersion Ignore
   - OpenCover\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"\"C:\projects\nlog\tests\NLog.UnitTests\bin\debug\net452\NLog.UnitTests.dll\" -appveyor -noshadow"  -returntargetcode -filter:"+[NLog]* +[NLog.Extended]* -[NLog]JetBrains.Annotations.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
