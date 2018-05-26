@@ -357,16 +357,16 @@ namespace NLog.Layouts
 
             if (IncludeAllProperties && logEvent.HasProperties)
             {
-                var propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true) as IEnumerable<MessageTemplates.MessageTemplateParameter>;
-                foreach (var prop in propertiesList)
+                foreach (var property in logEvent.Properties)
                 {
-                    if (string.IsNullOrEmpty(prop.Name))
+                    string propertyKey = property.Key.ToString();
+                    if (string.IsNullOrEmpty(propertyKey))
                         continue;
 
-                    if (ExcludeProperties.Contains(prop.Name))
+                    if (ExcludeProperties.Contains(propertyKey))
                         continue;
 
-                    AppendXmlPropertyValue(prop.Name, prop.Value, sb, sb.Length == orgLength);
+                    AppendXmlPropertyValue(propertyKey, property.Value, sb, sb.Length == orgLength);
                 }
             }
 
