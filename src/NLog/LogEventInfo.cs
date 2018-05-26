@@ -331,7 +331,7 @@ namespace NLog
                 }
                 else
                 {
-                    return HasMessageTemplateParameters;
+                    return CreateOrUpdatePropertiesInternal(false)?.Count > 0;
                 }
             }
         }
@@ -353,11 +353,11 @@ namespace NLog
             var properties = _properties;
             if (properties == null)
             {
-                if (forceCreate || templateParameters?.Count > 0)
+                if (forceCreate || templateParameters?.Count > 0 || (templateParameters == null && HasMessageTemplateParameters))
                 {
                     properties = new PropertiesDictionary(templateParameters);
                     Interlocked.CompareExchange(ref _properties, properties, null);
-                    if (forceCreate && HasMessageTemplateParameters)
+                    if (templateParameters == null && (!forceCreate || HasMessageTemplateParameters))
                     {
                         // Trigger capture of MessageTemplateParameters from logevent-message
                         CalcFormattedMessage();
