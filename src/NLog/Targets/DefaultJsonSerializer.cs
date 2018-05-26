@@ -563,22 +563,30 @@ namespace NLog.Targets
         /// <summary>
         /// Checks input string if it needs JSON escaping, and makes necessary conversion
         /// </summary>
-        /// <param name="sb">Destination Builder</param>
+        /// <param name="destination">Destination Builder</param>
         /// <param name="text">Input string</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
         /// <returns>JSON escaped string</returns>
-        internal static void AppendStringEscape(StringBuilder sb, string text, bool escapeUnicode)
+        internal static void AppendStringEscape(StringBuilder destination, string text, bool escapeUnicode)
         {
             if (string.IsNullOrEmpty(text))
                 return;
+
+            StringBuilder sb = null;
 
             for (int i = 0; i < text.Length; ++i)
             {
                 char ch = text[i];
                 if (!RequiresJsonEscape(ch, escapeUnicode))
                 {
-                    sb.Append(ch);
+                    if (sb != null)
+                        sb.Append(ch);
                     continue;
+                }
+                else if (sb == null)
+                {
+                    sb = destination;
+                    sb.Append(text, 0, i);
                 }
 
                 switch (ch)
@@ -627,6 +635,9 @@ namespace NLog.Targets
                         break;
                 }
             }
+
+            if (sb == null)
+                destination.Append(text);   // Faster to make single Append
         }
 
         internal static bool RequiresJsonEscape(char ch, bool escapeUnicode)
