@@ -77,13 +77,24 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="logEvent"></param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (JsonEncode)
-            {
-                base.Append(builder, logEvent);
-            }
-            else
+            int orgLength = builder.Length;
+            try
             {
                 RenderFormattedMessage(logEvent, builder);
+                if (JsonEncode)
+                {
+                    if (RequiresJsonEncode(builder, orgLength))
+                    {
+                        var str = builder.ToString(orgLength, builder.Length - orgLength);
+                        builder.Length = orgLength;
+                        Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, EscapeUnicode);
+                    }
+                }
+            }
+            catch
+            {
+                builder.Length = orgLength; // Unwind/Truncate on exception
+                throw;
             }
         }
 
@@ -101,9 +112,9 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
-        private bool RequiresJsonEncode(StringBuilder target)
+        private bool RequiresJsonEncode(StringBuilder target, int startPos = 0)
         {
-            for (int i = 0; i < target.Length; ++i)
+            for (int i = startPos; i < target.Length; ++i)
             {
                 if (Targets.DefaultJsonSerializer.RequiresJsonEscape(target[i], EscapeUnicode))
                 {
