@@ -71,17 +71,26 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Renders the inner layout contents.
         /// </summary>
+        /// <param name="builder"><see cref="StringBuilder"/> for the result</param>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
-        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (When == null || true.Equals(When.Evaluate(logEvent)))
+            int orgLength = builder.Length;
+            try
             {
-                base.RenderFormattedMessage(logEvent, target);
+                if (When == null || true.Equals(When.Evaluate(logEvent)))
+                {
+                    base.RenderFormattedMessage(logEvent, builder);
+                }
+                else if (Else != null)
+                {
+                    Else.RenderAppendBuilder(logEvent, builder);
+                }
             }
-            else if (Else != null)
+            catch
             {
-                Else.RenderAppendBuilder(logEvent, target);
+                builder.Length = orgLength; // Rewind/Truncate on exception
+                throw;
             }
         }
     }
