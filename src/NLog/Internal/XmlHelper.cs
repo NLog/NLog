@@ -37,6 +37,7 @@ namespace NLog.Internal
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
+    using NLog.Internal;
 
     /// <summary>
     ///  Helper class for XML

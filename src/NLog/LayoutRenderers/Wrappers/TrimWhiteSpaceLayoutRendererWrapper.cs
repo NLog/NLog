@@ -82,7 +82,7 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private static void TransformTrimWhiteSpaces(StringBuilder builder, int startPos)
         {
-            TrimRight(builder, startPos);  // Fast
+            builder.TrimRight(startPos);  // Fast
             if (builder.Length > startPos)
             {
                 if (char.IsWhiteSpace(builder[startPos]))
@@ -92,17 +92,6 @@ namespace NLog.LayoutRenderers.Wrappers
                     builder.Append(str.Trim());
                 }
             }
-        }
-
-        private static void TrimRight(StringBuilder sb, int startPos)
-        {
-            int i = sb.Length - 1;
-            for (; i >= startPos; i--)
-                if (!char.IsWhiteSpace(sb[i]))
-                    break;
-
-            if (i < sb.Length - 1)
-                sb.Length = i + 1;
         }
     }
 }

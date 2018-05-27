@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
@@ -69,33 +70,27 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(false)]
         public bool XmlEncodeNewlines { get; set; }
 
-        /// <summary>
-        /// Render to local target using Inner Layout, and then transform before final append
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="logEvent"></param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (XmlEncode)
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (XmlEncode && RequiresXmlEncode(builder, orgLength))
             {
-                base.Append(builder, logEvent);
-            }
-            else
-            {
-                RenderFormattedMessage(logEvent, builder);
+                var str = builder.ToString(orgLength, builder.Length - orgLength);
+                builder.Length = orgLength;
+                XmlHelper.EscapeXmlString(str, XmlEncodeNewlines, builder);
             }
         }
 
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="target">The text to be post-processed.</param>
+        /// <inheritdoc/>
+        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (!XmlEncode)
-                return;
+        }
 
-            for (int i = 0; i < target.Length; ++i)
+        private bool RequiresXmlEncode(StringBuilder target, int startPos = 0)
+        {
+            for (int i = startPos; i < target.Length; ++i)
             {
                 switch (target[i])
                 {
@@ -104,21 +99,15 @@ namespace NLog.LayoutRenderers.Wrappers
                     case '&':
                     case '\'':
                     case '"':
-                        break;
+                        return true;
                     case '\r':
                     case '\n':
                         if (XmlEncodeNewlines)
-                            break;
-                        continue;
-                    default:
-                        continue;
+                            return true;
+                        break;
                 }
-
-                string escapeString = target.ToString();
-                target.Length = 0;
-                XmlHelper.EscapeXmlString(escapeString, XmlEncodeNewlines, target);
-                return;
             }
+            return false;
         }
     }
 }

@@ -339,26 +339,15 @@ namespace NLog.Internal
             }
         }
 
-        internal static void TrimRight(this StringBuilder sb)
+        public static void TrimRight(this StringBuilder sb, int startPos = 0)
         {
             int i = sb.Length - 1;
-            for (; i >= 0; i--)
+            for (; i >= startPos; i--)
                 if (!char.IsWhiteSpace(sb[i]))
                     break;
 
             if (i < sb.Length - 1)
                 sb.Length = i + 1;
-        }
-
-        internal static void TrimLeft(this StringBuilder sb)
-        {
-            int i = 0;
-            for (; i < sb.Length; i++)
-                if (!char.IsWhiteSpace(sb[i]))
-                    break;
-
-            if (i > 0)
-                sb.Remove(0, i);
         }
     }
 }
