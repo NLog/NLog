@@ -418,7 +418,7 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
-        public DateTime? GetFileCreationTimeSource(string filePath, bool fallback)
+        public DateTime? GetFileCreationTimeSource(string filePath, bool fallback, DateTime? fallbackTimeSource = null)
         {
             var appender = GetAppender(filePath);
             DateTime? result = null;
@@ -426,7 +426,7 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                    result = FileCharacteristicsHelper.ValidateFileCreationTime(appender, (f) => f.GetFileCreationTimeUtc(), (f) => f.CreationTimeUtc, (f) => f.GetFileLastWriteTimeUtc());
+                    result = FileCharacteristicsHelper.ValidateFileCreationTime(appender, (f) => f.GetFileCreationTimeUtc(), (f) => fallbackTimeSource ?? f.CreationTimeUtc, (f) => f.GetFileLastWriteTimeUtc());
                     if (result.HasValue)
                     {
                         // Check if cached value is still valid, and update if not (Will automatically update CreationTimeSource)
@@ -451,7 +451,7 @@ namespace NLog.Internal.FileAppenders
                 var fileInfo = new FileInfo(filePath);
                 if (fileInfo.Exists)
                 {
-                    result = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
+                    result = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => fallbackTimeSource, (f) => f.GetLastWriteTimeUtc()).Value;
                     return Time.TimeSource.Current.FromSystemTime(result.Value);
                 }
             }

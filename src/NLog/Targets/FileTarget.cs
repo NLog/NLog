@@ -1650,7 +1650,7 @@ namespace NLog.Targets
 
             try
             {
-                archiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize);
+                archiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp);
                 if (!string.IsNullOrEmpty(archiveFile))
                 {
                     InternalLogger.Trace("FileTarget(Name={0}): Archive attempt for file '{1}'", Name, archiveFile);
@@ -1709,7 +1709,7 @@ namespace NLog.Targets
 #endif
 
                     // Check again if archive is needed. We could have been raced by another process
-                    var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize);
+                    var validatedArchiveFile = GetArchiveFileName(fileName, ev, upcomingWriteSize, previousLogEventTimestamp);
                     if (string.IsNullOrEmpty(validatedArchiveFile))
                     {
                         InternalLogger.Trace("FileTarget(Name={0}): Archive already performed for file '{1}'", Name, archiveFile);
@@ -1758,14 +1758,15 @@ namespace NLog.Targets
         /// <param name="fileName">File name to be written.</param>
         /// <param name="ev">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
         /// <param name="upcomingWriteSize">The size in bytes of the next chunk of data to be written in the file.</param>
+        /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string GetArchiveFileName(string fileName, LogEventInfo ev, int upcomingWriteSize)
+        private string GetArchiveFileName(string fileName, LogEventInfo ev, int upcomingWriteSize, DateTime previousLogEventTimestamp)
         {
             var hasFileName = !(fileName == null && _previousLogFileName == null);
             if (hasFileName)
             {
                 return GetArchiveFileNameBasedOnFileSize(fileName, upcomingWriteSize) ??
-                       GetArchiveFileNameBasedOnTime(fileName, ev);
+                       GetArchiveFileNameBasedOnTime(fileName, ev, previousLogEventTimestamp);
             }
 
             return null;
@@ -1843,8 +1844,9 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
+        /// <param name="previousLogEventTimestamp">The DateTime of the previous log event for this file.</param>
         /// <returns>Filename to archive. If <c>null</c>, then nothing to archive.</returns>
-        private string GetArchiveFileNameBasedOnTime(string fileName, LogEventInfo logEvent)
+        private string GetArchiveFileNameBasedOnTime(string fileName, LogEventInfo logEvent, DateTime previousLogEventTimestamp)
         {
             if (ArchiveEvery == FileArchivePeriod.None)
             {
@@ -1857,10 +1859,28 @@ namespace NLog.Targets
                 return null;
             }
 
-            var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, true);
+            // Linux FileSystems doesn't always have file-birth-time, so NLog tries to provide a little help
+            DateTime? fallbackTimeSourceLinux = (previousLogEventTimestamp != DateTime.MinValue && KeepFileOpen && !ConcurrentWrites && !NetworkWrites) ? previousLogEventTimestamp : (DateTime?)null;
+            var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, true, fallbackTimeSourceLinux);
             if (creationTimeSource == null)
             {
                 return null;
+            }
+
+            if (previousLogEventTimestamp != DateTime.MinValue && previousLogEventTimestamp < creationTimeSource)
+            {
+                if (TruncateArchiveTime(previousLogEventTimestamp, FileArchivePeriod.Minute) < TruncateArchiveTime(creationTimeSource.Value, FileArchivePeriod.Minute) && PlatformDetector.IsUnix)
+                {
+                    if (KeepFileOpen && !ConcurrentWrites && !NetworkWrites)
+                    {
+                        InternalLogger.Debug("FileTarget(Name={0}): Adjusted file creation time from {1} to {2}. Linux FileSystem probably don't support file birthtime.", Name, creationTimeSource, previousLogEventTimestamp);
+                        creationTimeSource = previousLogEventTimestamp;
+                    }
+                    else
+                    {
+                        InternalLogger.Debug("FileTarget(Name={0}): File creation time {1} newer than previous file write time {2}. Linux FileSystem probably don't support file birthtime, unless multiple applications are writing to the same file. Configure FileTarget.KeepFileOpen=true AND FileTarget.ConcurrentWrites=false, so NLog can fix this.", Name, creationTimeSource, previousLogEventTimestamp);
+                    }
+                }
             }
 
             DateTime fileCreateTime = TruncateArchiveTime(creationTimeSource.Value, ArchiveEvery);
