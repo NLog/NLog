@@ -266,7 +266,10 @@ namespace NLog.Targets
 
             int nextDepth = objectsInPath.Count <= 1 ? depth : (depth + 1);
             if (nextDepth > options.MaxRecursionLimit)
+            {
+                destination.Append("{}");
                 return;
+            }
 
             int originalLength;
             destination.Append('{');
@@ -341,7 +344,10 @@ namespace NLog.Targets
 
             int nextDepth = objectsInPath.Count <= 1 ? depth : (depth + 1); // Allow serialization of list-items 
             if (nextDepth > options.MaxRecursionLimit)
+            {
+                destination.Append("[]");
                 return;
+            }
 
             int originalLength;
             destination.Append('[');
