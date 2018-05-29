@@ -7,7 +7,7 @@ Date format: (year/month/day)
 
 ### v4.5.6 (2018/05/29)
 
-### Fixes 
+#### Fixes 
 
 - [#2747](https://github.com/nlog/nlog/pull/2747) JsonSerializer - Generate valid Json when hitting the MaxRecursionLimit (@snakefoot)
 - Fixup for [NLog.WindowsEventLog package](https://www.nuget.org/packages/NLog.WindowsEventLog)
