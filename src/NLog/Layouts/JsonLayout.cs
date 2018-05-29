@@ -330,10 +330,9 @@ namespace NLog.Layouts
                 if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false))
                 {
                     var jsonEscape = sb.ToString(valueStart + 1, sb.Length - valueStart - 2);
-                    jsonEscape = Targets.DefaultJsonSerializer.EscapeString(jsonEscape, false);
                     sb.Length = valueStart;
                     sb.Append('"');
-                    sb.Append(jsonEscape);
+                    Targets.DefaultJsonSerializer.AppendStringEscape(sb, jsonEscape, false);
                     sb.Append('"');
                     break;
                 }

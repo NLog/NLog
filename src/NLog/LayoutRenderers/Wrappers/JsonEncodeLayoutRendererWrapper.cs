@@ -71,6 +71,34 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool EscapeUnicode { get; set; }
 
         /// <summary>
+        /// Render to local target using Inner Layout, and then transform before final append
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="logEvent"></param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            int orgLength = builder.Length;
+            try
+            {
+                RenderFormattedMessage(logEvent, builder);
+                if (JsonEncode)
+                {
+                    if (RequiresJsonEncode(builder, orgLength))
+                    {
+                        var str = builder.ToString(orgLength, builder.Length - orgLength);
+                        builder.Length = orgLength;
+                        Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, EscapeUnicode);
+                    }
+                }
+            }
+            catch
+            {
+                builder.Length = orgLength; // Unwind/Truncate on exception
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
         /// <param name="target">The text to be JSON-encoded.</param>
@@ -78,15 +106,15 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (JsonEncode && RequiresJsonEncode(target))
             {
-                var result = Targets.DefaultJsonSerializer.EscapeString(target.ToString(), EscapeUnicode);
+                var str = target.ToString();
                 target.Length = 0;
-                target.Append(result);
+                Targets.DefaultJsonSerializer.AppendStringEscape(target, str, EscapeUnicode);
             }
         }
 
-        private bool RequiresJsonEncode(StringBuilder target)
+        private bool RequiresJsonEncode(StringBuilder target, int startPos = 0)
         {
-            for (int i = 0; i < target.Length; ++i)
+            for (int i = startPos; i < target.Length; ++i)
             {
                 if (Targets.DefaultJsonSerializer.RequiresJsonEscape(target[i], EscapeUnicode))
                 {
