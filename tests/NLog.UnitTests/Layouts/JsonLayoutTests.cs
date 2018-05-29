@@ -440,6 +440,28 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void IncludeAllJsonPropertiesMaxRecursionLimit()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeAllProperties = true,
+                MaxRecursionLimit = 1,
+            };
+
+            LogEventInfo logEventInfo = new LogEventInfo()
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+            };
+            logEventInfo.Properties["Message"] = new
+            {
+                data = new Dictionary<int, string>() { { 42, "Hello" } }
+            };
+
+            Assert.Equal(@"{ ""Message"": {""data"":{}} }", jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
         public void IncludeMdcJsonProperties()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -628,7 +650,7 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo3);
 
-            AssertDebugLastMessage("debug", "{ \"nestedObject\": [] }");  // No support for nested collections
+            AssertDebugLastMessage("debug", "{ \"nestedObject\": [[]] }");  // No support for nested collections
         }
 
         private static LogEventInfo CreateLogEventWithExcluded()
