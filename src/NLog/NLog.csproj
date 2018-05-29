@@ -33,20 +33,19 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 
-## Fixes
-- FileTarget - Calculate correct archive date when multiple file appenders (@snakefoot)
+## Fixes 
 
-## Features
-- WhenRepeated - Support logging rules with multiple targets (@snakefoot)
-- Support for custom targets that implements IUsesStackTrace (@snakefoot)
-- DatabaseTarget: use parameters on install (@Jejuni)
+- JsonSerializer - Generate valid Json when hitting the MaxRecursionLimit (@snakefoot)
+- Fixup for NLog.WindowsEventLog package: https://www.nuget.org/packages/NLog.WindowsEventLog
 
 ## Enhancements
-- JsonLayout - Always stringify when requested (@snakefoot)
-- Target.WriteAsyncLogEvents(IList) to public 
+
+- FileTarget - Improve support for Linux FileSystem without BirthTime (@snakefoot)
 
 ## Performance
-- Allocation improvement in precalculating layouts (@snakefoot)
+
+- LogEventInfo - HasProperties should allocate PropertiesDicitonary when needed (@snakefoot)
+- JsonLayout - Reduce allocations when needing to escape string (44% time improvement) (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

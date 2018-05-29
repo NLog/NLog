@@ -5,6 +5,22 @@ Date format: (year/month/day)
 ## Change Log
 
 
+### v4.5.6 (2018/05/29)
+
+### Fixes 
+
+- [#2747](https://github.com/nlog/nlog/pull/2747) JsonSerializer - Generate valid Json when hitting the MaxRecursionLimit (@snakefoot)
+- Fixup for [NLog.WindowsEventLog package](https://www.nuget.org/packages/NLog.WindowsEventLog)
+
+#### Enhancements
+
+- [#2745](https://github.com/nlog/nlog/pull/2745) FileTarget - Improve support for Linux FileSystem without BirthTime (@snakefoot)
+
+#### Performance
+
+- [#2744](https://github.com/nlog/nlog/pull/2744) LogEventInfo - HasProperties should allocate PropertiesDicitonary when needed (@snakefoot)
+- [#2743](https://github.com/nlog/nlog/pull/2743) JsonLayout - Reduce allocations when needing to escape string (44% time improvement) (@snakefoot)
+
 ### v4.5.5 (2018/05/25)
 
 #### Fixes
