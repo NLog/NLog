@@ -653,6 +653,34 @@ namespace NLog.UnitTests.Layouts
             AssertDebugLastMessage("debug", "{ \"nestedObject\": [[]] }");  // No support for nested collections
         }
 
+        [Fact]
+        public void EncodesInvalidCharacters()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' >
+                 </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo1 = new LogEventInfo();
+
+            logEventInfo1.Properties.Add("InvalidCharacters", "|#{}%&\"~+\\/:*?<>".ToCharArray());
+
+            logger.Debug(logEventInfo1);
+
+            AssertDebugLastMessage("debug", "{ \"InvalidCharacters\": [\"|\",\"#\",\"{\",\"}\",\"%\",\"&\",\"\\\"\",\"~\",\"+\",\"\\\\\",\"\\/\",\":\",\"*\",\"?\",\"<\",\">\"] }");
+        }
+
         private static LogEventInfo CreateLogEventWithExcluded()
         {
             var logEventInfo = new LogEventInfo

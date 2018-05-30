@@ -116,7 +116,7 @@ namespace NLog.Targets
             else
             {
                 TypeCode objTypeCode = Convert.GetTypeCode(value);
-                if (objTypeCode != TypeCode.Object && StringHelpers.IsNullOrWhiteSpace(options.Format) && options.FormatProvider == null)
+                if (objTypeCode != TypeCode.Object && objTypeCode != TypeCode.Char && StringHelpers.IsNullOrWhiteSpace(options.Format) && options.FormatProvider == null)
                 {
                     Enum enumValue;
                     if (!options.EnumAsInteger && IsNumericTypeCode(objTypeCode, false) && (enumValue = value as Enum) != null)
@@ -469,7 +469,16 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        QuoteValue(destination, str);
+                        if (objTypeCode == TypeCode.Char)
+                        {
+                            destination.Append('"');
+                            AppendStringEscape(destination, str, options.EscapeUnicode);
+                            destination.Append('"');
+                        }
+                        else
+                        {
+                            QuoteValue(destination, str);
+                        }
                     }
                 }
             }
