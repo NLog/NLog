@@ -98,18 +98,6 @@ namespace NLog.Targets
             {
                 return "null";
             }
-            else if (value is char c)
-            {
-                if (RequiresJsonEscape(c, options.EscapeUnicode))
-                {
-                   StringBuilder sb = new StringBuilder(5);
-                   sb.Append('"');
-                   AppendStringEscape(sb, c.ToString(), options.EscapeUnicode);
-                   sb.Append('"');
-                   return sb.ToString();
-                }
-                return QuoteValue(c.ToString());
-            }
             else if (value is string str)
             {
                 for (int i = 0; i < str.Length; ++i)
@@ -128,7 +116,7 @@ namespace NLog.Targets
             else
             {
                 TypeCode objTypeCode = Convert.GetTypeCode(value);
-                if (objTypeCode != TypeCode.Object && StringHelpers.IsNullOrWhiteSpace(options.Format) && options.FormatProvider == null)
+                if (objTypeCode != TypeCode.Object && objTypeCode != TypeCode.Char && StringHelpers.IsNullOrWhiteSpace(options.Format) && options.FormatProvider == null)
                 {
                     Enum enumValue;
                     if (!options.EnumAsInteger && IsNumericTypeCode(objTypeCode, false) && (enumValue = value as Enum) != null)
@@ -203,12 +191,6 @@ namespace NLog.Targets
             if (value == null)
             {
                 destination.Append("null");
-            }
-            else if (value is char c)
-            {
-                destination.Append('"');
-                AppendStringEscape(destination, c.ToString(), options.EscapeUnicode);
-                destination.Append('"');
             }
             else if (value is string str)
             {
@@ -487,7 +469,16 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        QuoteValue(destination, str);
+                        if (objTypeCode == TypeCode.Char)
+                        {
+                            destination.Append('"');
+                            AppendStringEscape(destination, str, options.EscapeUnicode);
+                            destination.Append('"');
+                        }
+                        else
+                        {
+                            QuoteValue(destination, str);
+                        }
                     }
                 }
             }
