@@ -98,6 +98,18 @@ namespace NLog.Targets
             {
                 return "null";
             }
+            else if (value is char c)
+            {
+                if (RequiresJsonEscape(c, options.EscapeUnicode))
+                {
+                   StringBuilder sb = new StringBuilder(5);
+                   sb.Append('"');
+                   AppendStringEscape(sb, c.ToString(), options.EscapeUnicode);
+                   sb.Append('"');
+                   return sb.ToString();
+                }
+                return QuoteValue(c.ToString());
+            }
             else if (value is string str)
             {
                 for (int i = 0; i < str.Length; ++i)
@@ -191,6 +203,12 @@ namespace NLog.Targets
             if (value == null)
             {
                 destination.Append("null");
+            }
+            else if (value is char c)
+            {
+                destination.Append('"');
+                AppendStringEscape(destination, c.ToString(), options.EscapeUnicode);
+                destination.Append('"');
             }
             else if (value is string str)
             {
