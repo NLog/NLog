@@ -1,4 +1,38 @@
-﻿#region usings
+﻿// 
+// Copyright (c) 2004-2018 Konstantin Chernyaev <konstantin.chernyaev@list.ru>
+// 
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+// * Redistributions of source code must retain the above copyright notice, 
+//   this list of conditions and the following disclaimer. 
+// 
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution. 
+// 
+// * Neither the name of Konstantin Chernyaev nor the names of its 
+//   contributors may be used to endorse or promote products derived from this
+//   software without specific prior written permission. 
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// THE POSSIBILITY OF SUCH DAMAGE.
+// 
+
+
+#region usings
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -6,7 +40,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using NLog.Common;
 using NLog.Config;
 using NLog.Internal;
@@ -44,9 +77,13 @@ namespace NLog.Targets.Wrappers
             public int GetHashCode(AsyncLogEventInfo x)
             {
                 LogEventInfo a = x.LogEvent;
-                int noe = a.LoggerName.GetHashCode() ^ a.FormattedMessage.GetHashCode() ^
-                          a.Level.GetHashCode();
-                return a.Exception == null ? noe : noe ^ a.Exception.GetHashCode();
+                int withoutExc = a.LoggerName.GetHashCode() ^ a.FormattedMessage.GetHashCode() ^
+                                 a.Level.GetHashCode();
+                return a.Exception == null
+                    ? withoutExc
+                    : withoutExc ^ (a.Exception.Message?.GetHashCode() ?? 0) ^
+                      a.Exception.GetType().GetHashCode() ^ a.Exception.TargetSite.GetHashCode();
+                // do not use a.Exception.StackTrace - i think it is performance impact
             }
         }
 
@@ -54,18 +91,39 @@ namespace NLog.Targets.Wrappers
 
         Timer _flushTimer;
         readonly object _lockObject = new object();
+        volatile bool _isTimerOnNow;
 
 
         #region ctors
+        const int FlushTimeoutDefault = 5000;
+
+
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="DistinctlyThrottlingWrapperTarget" /> class with default values for properties.
         /// </summary>
         public DistinctlyThrottlingWrapperTarget()
-            : this(null, null, 5000) { }
+            : this(null, null, FlushTimeoutDefault) { }
 
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="DistinctlyThrottlingWrapperTarget" /> class with default values for properties.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        public DistinctlyThrottlingWrapperTarget(string name, Target wrappedTarget)
+            : this(name, wrappedTarget, FlushTimeoutDefault) { }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DistinctlyThrottlingWrapperTarget" /> class with default values for properties.
+        /// </summary>
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        public DistinctlyThrottlingWrapperTarget(Target wrappedTarget)
+            : this(null, wrappedTarget, FlushTimeoutDefault) { }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DistinctlyThrottlingWrapperTarget" /> class
         /// </summary>
         /// <param name="name"></param>
         /// <param name="wrappedTarget"></param>
@@ -76,6 +134,7 @@ namespace NLog.Targets.Wrappers
             Name = name;
             WrappedTarget = wrappedTarget;
             FlushTimeout = flushTimeout;
+            CountAppendFormat = " x{0}";
         }
         #endregion
 
@@ -84,15 +143,16 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets the timeout (in milliseconds) after which the contents of buffer will be flushed 
         /// </summary>
         [RequiredParameter]
+        [DefaultValue(5000)]
         public int FlushTimeout { get; set; }
 
 
         /// <summary>
-        /// Append count of accumulated waiting messages to the <see cref="LogEventInfo.Message"/> when this wrapper is flushed
+        /// Append count of waiting accumulated messages to the <see cref="LogEventInfo.Message"/> when this wrapper is flushed. Pattern {0} means the place for count for string.Format.
+        /// For example, " (Hits: {0})"
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(null)]
-        public string AccumulatedCountMessageAppendFormat { get; set; }
+        [DefaultValue(" x{0}")]
+        public string CountAppendFormat { get; set; }
 
 
         /// <inheritdoc />
@@ -150,9 +210,6 @@ namespace NLog.Targets.Wrappers
         }
 
 
-        volatile bool _isTimerOnNow;
-
-
         void TurnOnTimerIfOffline()
         {
             if (!_isTimerOnNow)
@@ -195,10 +252,6 @@ namespace NLog.Targets.Wrappers
                 return;
             }
 
-            //Console.WriteLine("FLUSH " + DateTime.Now);
-            //Console.WriteLine(
-            //    $"---{string.Join(",", _entriesCounts.Select(kvp => $"{kvp.Key.LogEvent.FormattedMessage}({kvp.Value})"))}");
-
             lock (_lockObject)
             {
                 ICollection<AsyncLogEventInfo> keys = _entriesCounts.Keys;
@@ -208,8 +261,8 @@ namespace NLog.Targets.Wrappers
                     if (_entriesCounts.TryRemove(e, out count) && count > 0)
                     {
                         if (count > 1 &&
-                            !string.IsNullOrWhiteSpace(AccumulatedCountMessageAppendFormat))
-                            e.LogEvent.Message += string.Format(AccumulatedCountMessageAppendFormat,
+                            !string.IsNullOrWhiteSpace(CountAppendFormat))
+                            e.LogEvent.Message += string.Format(CountAppendFormat,
                                 count);
                         WrappedTarget.WriteAsyncLogEvents(e);
                     }
