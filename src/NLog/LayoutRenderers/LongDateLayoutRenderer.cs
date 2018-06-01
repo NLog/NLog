@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.mmm.
+    /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.ffff.
     /// </summary>
     [LayoutRenderer("longdate")]
     [ThreadAgnostic]
@@ -56,7 +56,7 @@ namespace NLog.LayoutRenderers
         public bool UniversalTime { get; set; }
 
         /// <summary>
-        /// Renders the date in the long format (yyyy-MM-dd HH:mm:ss.mmm) and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the date in the long format (yyyy-MM-dd HH:mm:ss.ffff) and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
