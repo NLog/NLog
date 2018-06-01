@@ -82,7 +82,7 @@ namespace NLog.LayoutRenderers
             builder.Append(':');
             builder.Append2DigitsZeroPadded(dt.Second);
             builder.Append('.');
-            builder.Append4DigitsZeroPadded((int)(dt.Ticks % 10000000) / 1000);
+            builder.Append3DigitsZeroPadded((int)(dt.Ticks % 10000000) / 10000);
         }
     }
 }
