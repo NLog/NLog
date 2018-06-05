@@ -55,21 +55,32 @@ namespace NLog.Targets.Wrappers
     [Target("DistinctlyThrottlingWrapper")]
     public class DistinctlyThrottlingWrapperTarget : WrapperTargetBase
     {
-        readonly ConcurrentDictionary<AsyncLogEventInfo, int> _entriesCounts
-            = new ConcurrentDictionary<AsyncLogEventInfo, int>(
-                new AsyncLogEventInfoEqualityComparer());
+        ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>> _entriesCounts;
 
 
 
         class AsyncLogEventInfoEqualityComparer : IEqualityComparer<AsyncLogEventInfo>
         {
+            public AsyncLogEventInfoEqualityComparer(bool useFormattedMessage)
+            {
+                _useFormattedMessage = useFormattedMessage;
+            }
+
+
+            readonly bool _useFormattedMessage = false;
+
+
             public bool Equals(AsyncLogEventInfo x, AsyncLogEventInfo y)
             {
                 LogEventInfo a = x.LogEvent;
                 LogEventInfo b = y.LogEvent;
+
                 return a.LoggerName == b.LoggerName &&
-                       a.FormattedMessage == b.FormattedMessage &&
                        a.Level == b.Level &&
+                       (_useFormattedMessage
+                           ? a.FormattedMessage == b.FormattedMessage
+                           : a.Message == b.Message) &&
+                       // exception.ToString is very expensive so do it last
                        a.Exception?.ToString() == b.Exception?.ToString();
             }
 
@@ -77,7 +88,9 @@ namespace NLog.Targets.Wrappers
             public int GetHashCode(AsyncLogEventInfo x)
             {
                 LogEventInfo a = x.LogEvent;
-                int withoutExc = a.LoggerName.GetHashCode() ^ a.FormattedMessage.GetHashCode() ^
+                int withoutExc = a.LoggerName.GetHashCode() ^
+                                 (_useFormattedMessage ? a.FormattedMessage : a.Message)
+                                 .GetHashCode() ^
                                  a.Level.GetHashCode();
                 return a.Exception == null
                     ? withoutExc
@@ -134,7 +147,7 @@ namespace NLog.Targets.Wrappers
             Name = name;
             WrappedTarget = wrappedTarget;
             FlushTimeout = flushTimeout;
-            CountAppendFormat = " x{0}";
+            GroupByTemplate = true;
         }
         #endregion
 
@@ -144,15 +157,45 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         [RequiredParameter]
         [DefaultValue(5000)]
-        public int FlushTimeout { get; set; }
+        public int FlushTimeout { get; set; } = FlushTimeoutDefault;
+
+
+        /// <summary>
+        /// just backing field for GroupByTemplate
+        /// </summary>
+        bool _GroupByTemplate;
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [DefaultValue(true)]
+        public bool GroupByTemplate
+        {
+            get => _GroupByTemplate;
+            set
+            {
+                _GroupByTemplate = value;
+                _entriesCounts =
+                    new ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>>(
+                        new AsyncLogEventInfoEqualityComparer(!_GroupByTemplate));
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [DefaultValue("\\n")]
+        public string GroupByTemplateSeparator { get; set; } = Environment.NewLine;
 
 
         /// <summary>
         /// Append count of waiting accumulated messages to the <see cref="LogEventInfo.Message"/> when this wrapper is flushed. Pattern {0} means the place for count for string.Format.
         /// For example, " (Hits: {0})"
         /// </summary>
-        [DefaultValue(" x{0}")]
-        public string CountAppendFormat { get; set; }
+        [DefaultValue(" - {0} times:")]
+        public string CountAppendFormat { get; set; } = " - {0} times";
 
 
         /// <inheritdoc />
@@ -193,18 +236,34 @@ namespace NLog.Targets.Wrappers
         }
 
 
+        /// <inheritdoc />
         /// <summary>
         /// The first record is to log immediately, then accumulate for a time and flush by timer. Equivalence is taken into account.
         /// </summary>
-        protected override void Write(AsyncLogEventInfo logEvent)
+        protected override void Write(AsyncLogEventInfo e)
         {
-            PrecalculateVolatileLayouts(logEvent.LogEvent);
+            PrecalculateVolatileLayouts(e.LogEvent);
 
-            int count = _entriesCounts.AddOrUpdate(logEvent, 0, (k, v) => v + 1);
+            Tuple<int, StringBuilder> count = _entriesCounts.AddOrUpdate(e,
+                /*do not store first - it is logged out immediately*/
+                new Tuple<int, StringBuilder>(0,
+                    GroupByTemplate && e.LogEvent.Message.Contains("{")
+                        ? new StringBuilder()
+                        : null),
+                (k, v) =>
+                {
+                    // but store all the others
+                    if (GroupByTemplate && e.LogEvent.Message.Contains("{"))
+                    {
+                        v.Item2.Append(Escape(e.LogEvent.FormattedMessage));
+                        v.Item2.Append(this.GroupByTemplateSeparator);
+                    }
+                    return new Tuple<int, StringBuilder>(v.Item1 + 1, v.Item2);
+                });
 
-            if (count == 0)
+            if (count.Item1 == 0)
             {
-                WrappedTarget.WriteAsyncLogEvents(logEvent);
+                WrappedTarget.WriteAsyncLogEvents(e);
                 TurnOnTimerIfOffline();
             }
         }
@@ -257,17 +316,28 @@ namespace NLog.Targets.Wrappers
                 ICollection<AsyncLogEventInfo> keys = _entriesCounts.Keys;
                 foreach (AsyncLogEventInfo e in keys)
                 {
-                    int count;
-                    if (_entriesCounts.TryRemove(e, out count) && count > 0)
+                    Tuple<int, StringBuilder> count;
+                    if (_entriesCounts.TryRemove(e, out count) && count.Item1 > 0)
                     {
-                        if (count > 1 &&
-                            !string.IsNullOrWhiteSpace(CountAppendFormat))
-                            e.LogEvent.Message += string.Format(CountAppendFormat,
-                                count);
+                        if (count.Item1 > 1 && !string.IsNullOrWhiteSpace(CountAppendFormat))
+                            if (GroupByTemplate && e.LogEvent.Message.Contains("{"))
+                                // cut off the last?? it is separator - i think do not
+                                e.LogEvent.Message = Escape(e.LogEvent.Message) +
+                                                     string.Format(CountAppendFormat, count.Item1) +
+                                                     (this.GroupByTemplateSeparator ==
+                                                      Environment.NewLine
+                                                         ? Environment.NewLine
+                                                         : "") +
+                                                     count.Item2;
+                            else
+                                e.LogEvent.Message += string.Format(CountAppendFormat, count.Item1);
                         WrappedTarget.WriteAsyncLogEvents(e);
                     }
                 }
             }
         }
+
+
+        static string Escape(string s) => s.Replace("{", "{{").Replace("}", "}}");
     }
 }
