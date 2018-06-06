@@ -556,6 +556,39 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
+        [Fact]
+        public void When_NotIncludeNameSpace_Then_CleanAnonymousDelegateClassNameShouldReturnParentClassName()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:IncludeNamespace=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Fatal' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            bool done = false;
+            ThreadPool.QueueUserWorkItem(
+                state =>
+                {
+                    logger.Fatal("message");
+                    done = true;
+                },
+                null);
+
+            while (done == false)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (done == true)
+            {
+                AssertDebugLastMessage("debug", "CallSiteTests");
+            }
+        }
+
 
         [Fact]
         public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()
