@@ -31,10 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#define NET3_5
+
 
 #region usings
 using System;
+#if !NET3_5
 using System.Collections.Concurrent;
+#endif
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -55,7 +59,11 @@ namespace NLog.Targets.Wrappers
     [Target("DistinctlyThrottlingWrapper")]
     public class DistinctlyThrottlingWrapperTarget : WrapperTargetBase
     {
+#if !NET3_5
         ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>> _entriesCounts;
+#else
+        Dictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>> _entriesCounts;
+#endif
 
 
 
@@ -172,13 +180,19 @@ namespace NLog.Targets.Wrappers
         [DefaultValue(true)]
         public bool GroupByTemplate
         {
-            get => _GroupByTemplate;
+            get { return _GroupByTemplate; }
             set
             {
                 _GroupByTemplate = value;
+#if !NET3_5
                 _entriesCounts =
                     new ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>>(
                         new AsyncLogEventInfoEqualityComparer(!_GroupByTemplate));
+#else
+                _entriesCounts =
+                    new Dictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>>(
+                        new AsyncLogEventInfoEqualityComparer(!_GroupByTemplate));
+#endif
             }
         }
 
@@ -244,6 +258,7 @@ namespace NLog.Targets.Wrappers
         {
             PrecalculateVolatileLayouts(e.LogEvent);
 
+#if !NET3_5
             Tuple<int, StringBuilder> count = _entriesCounts.AddOrUpdate(e,
                 /*do not store first - it is logged out immediately*/
                 new Tuple<int, StringBuilder>(0,
@@ -260,6 +275,28 @@ namespace NLog.Targets.Wrappers
                     }
                     return new Tuple<int, StringBuilder>(v.Item1 + 1, v.Item2);
                 });
+#else
+            Tuple<int, StringBuilder> count;
+            lock (_lockObject)
+            {
+                if (_entriesCounts.TryGetValue(e, out count))
+                {
+                    if (GroupByTemplate && e.LogEvent.Message.Contains("{"))
+                    {
+                        count.Item2.Append(Escape(e.LogEvent.FormattedMessage));
+                        count.Item2.Append(this.GroupByTemplateSeparator);
+                    }
+                    count = new Tuple<int, StringBuilder>(count.Item1 + 1, count.Item2);
+                }
+                else
+                    count = new Tuple<int, StringBuilder>(0,
+                        GroupByTemplate && e.LogEvent.Message.Contains("{")
+                            ? new StringBuilder()
+                            : null);
+                _entriesCounts[e] = count;
+                //_entriesCounts.Add(e, count);
+            }
+#endif
 
             if (count.Item1 == 0)
             {
@@ -313,11 +350,20 @@ namespace NLog.Targets.Wrappers
 
             lock (_lockObject)
             {
+#if !NET3_5
                 ICollection<AsyncLogEventInfo> keys = _entriesCounts.Keys;
+#else
+                ICollection<AsyncLogEventInfo> keys = _entriesCounts.Keys.ToList();
+#endif
                 foreach (AsyncLogEventInfo e in keys)
                 {
                     Tuple<int, StringBuilder> count;
+#if !NET3_5
                     if (_entriesCounts.TryRemove(e, out count) && count.Item1 > 0)
+#else
+                    count = _entriesCounts[e];
+                    if (_entriesCounts.Remove(e))
+#endif
                     {
                         if (count.Item1 > 1 && !string.IsNullOrWhiteSpace(CountAppendFormat))
                             if (GroupByTemplate && e.LogEvent.Message.Contains("{"))
