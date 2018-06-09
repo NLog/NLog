@@ -31,10 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if NET4_5 || NET45 || NET4_0 || NET4_6
+#define USECONCURRENT
+#endif
 
 #region usings
 using System;
-#if !NET3_5
+#if USECONCURRENT
 using System.Collections.Concurrent;
 #endif
 using System.Collections.Generic;
@@ -57,7 +60,7 @@ namespace NLog.Targets.Wrappers
     [Target("DistinctlyThrottlingWrapper")]
     public class DistinctlyThrottlingWrapperTarget : WrapperTargetBase
     {
-#if !NET3_5
+#if USECONCURRENT
         ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>> _entriesCounts;
 #else
         class Tuple<T1, T2>
@@ -192,7 +195,7 @@ namespace NLog.Targets.Wrappers
             set
             {
                 _GroupByTemplate = value;
-#if !NET3_5
+#if USECONCURRENT
                 _entriesCounts =
                     new ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>>(
                         new AsyncLogEventInfoEqualityComparer(!_GroupByTemplate));
@@ -266,7 +269,7 @@ namespace NLog.Targets.Wrappers
         {
             PrecalculateVolatileLayouts(e.LogEvent);
 
-#if !NET3_5
+#if USECONCURRENT
             Tuple<int, StringBuilder> count = _entriesCounts.AddOrUpdate(e,
                 /*do not store first - it is logged out immediately*/
                 new Tuple<int, StringBuilder>(0,
@@ -358,7 +361,7 @@ namespace NLog.Targets.Wrappers
 
             lock (_lockObject)
             {
-#if !NET3_5
+#if USECONCURRENT
                 ICollection<AsyncLogEventInfo> keys = _entriesCounts.Keys;
 #else
                 ICollection<AsyncLogEventInfo> keys = _entriesCounts.Keys.ToList();
@@ -366,7 +369,7 @@ namespace NLog.Targets.Wrappers
                 foreach (AsyncLogEventInfo e in keys)
                 {
                     Tuple<int, StringBuilder> count;
-#if !NET3_5
+#if USECONCURRENT
                     if (_entriesCounts.TryRemove(e, out count) && count.Item1 > 0)
 #else
                     count = _entriesCounts[e];
