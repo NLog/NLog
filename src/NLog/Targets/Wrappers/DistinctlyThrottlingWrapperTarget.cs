@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-//#define NET3_5
-
 
 #region usings
 using System;
@@ -375,7 +373,7 @@ namespace NLog.Targets.Wrappers
                     if (_entriesCounts.Remove(e))
 #endif
                     {
-                        if (count.Item1 > 1 && !string.IsNullOrWhiteSpace(CountAppendFormat))
+                        if (count.Item1 > 1 && !string.IsNullOrEmpty(CountAppendFormat))
                             if (GroupByTemplate && e.LogEvent.Message.Contains("{"))
                                 // cut off the last?? it is separator - i think do not
                                 e.LogEvent.Message = Escape(e.LogEvent.Message) +
