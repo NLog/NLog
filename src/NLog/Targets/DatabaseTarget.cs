@@ -815,6 +815,11 @@ namespace NLog.Targets
                     p.Scale = par.Scale;
                 }
 
+                if (par.DbType != DbType.AnsiString)
+                {
+                    p.DbType = par.DbType;
+                }
+
                 string stringValue = RenderLogEvent(par.Layout, logEvent);
 
                 p.Value = stringValue;
