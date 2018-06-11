@@ -1,7 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml;
+using NLog.Internal;
+using NLog.Layouts;
+using NLog.Targets;
 
 namespace NLog.Config
 {
@@ -23,8 +31,143 @@ namespace NLog.Config
             if (writer == null)
                 throw new ArgumentNullException(nameof(writer));
 
-            throw new NotImplementedException();
+            writer.WriteStartDocument();
+            writer.WriteStartElement("nlog", @"http://www.nlog-project.org/schemas/NLog.xsd");
+            writer.WriteAttributeString("xmlns", "xsi", "", value: @"http://www.w3.org/2001/XMLSchema-instance");
+
+            WriteVariables(loggingConfiguration.Variables, writer);
+            WriteTargets(loggingConfiguration.AllTargets, writer);
+            WriteRules(loggingConfiguration.LoggingRules, writer);
+
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
         }
+
+        private static void WriteRules(IEnumerable<LoggingRule> rules, XmlWriter writer)
+        {
+            writer.WriteStartElement("rules");
+
+            foreach (LoggingRule rule in rules)
+            {
+                writer.WriteStartElement("logger");
+                writer.WriteAttributeString("name", rule.LoggerNamePattern);
+
+                if (rule.Final)
+                {
+                    writer.WriteAttributeString("final", "true");
+                }
+
+                string targets = string.Join(",", rule.Targets.Select(target => target.Name));
+                writer.WriteAttributeString("writeTo", targets);
+
+                if (rule.Levels.Count == 1)
+                {
+                    writer.WriteAttributeString("level", rule.Levels.First().Name);
+                }
+
+                else if (rule.Levels.Count >= LogLevel.AllLoggingLevels.Count())
+                {
+                }
+
+                else if (rule.Levels.AreContigous(out LogLevel min, out LogLevel max))
+                {
+                    writer.WriteAttributeString("minlevel", min.Name);
+                    writer.WriteAttributeString("maxlevel", max.Name);
+                }
+
+                else
+                {
+                    string levels = string.Join(",", rule.Levels.Select(level => level.Name));
+                    writer.WriteAttributeString("levels", min.Name);
+                }
+            }
+
+            writer.WriteEndElement();
+        }
+
+        private static bool AreContigous(this IEnumerable<LogLevel> span, out LogLevel min, out LogLevel max)
+        {
+            min = null;
+            max = null;
+            using (IEnumerator<LogLevel> ordered = span.OrderBy(level => level.Ordinal).GetEnumerator())
+            {
+                if (!ordered.MoveNext() || ordered.Current == null)
+                    return false;
+
+                min = ordered.Current;
+                int ordinal = min.Ordinal;
+                while (ordered.MoveNext())
+                {
+                    if (ordered.Current == null)
+                        return false;
+
+                    if (ordered.Current.Ordinal != ++ordinal)
+                        return false;
+                    max = ordered.Current;
+                }
+            }
+
+            return true;
+        }
+
+        private static void WriteTargets(IEnumerable<Target> targets, XmlWriter writer)
+        {
+            writer.WriteStartElement("targets");
+
+            foreach (Target target in targets)
+            {
+                writer.WriteStartElement("target");
+                writer.WriteAttributeString("type", "http://www.w3.org/2001/XMLSchema-instance",
+                    ResolveConfigurationType(target.GetType()));
+
+                WriteParameters(target, writer);
+                writer.WriteEndElement();
+            }
+
+            writer.WriteEndElement();
+        }
+
+        private static void WriteParameters(Target target, XmlWriter writer)
+        {
+            PropertyInfo[] properties = target.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                // we only care for public read/writable properties. Theese are very likely configuration
+                // properties.
+                .Where(pi => pi.GetSetMethod(false) != null && pi.GetGetMethod(false) != null)
+                .ToArray();
+
+            foreach (PropertyInfo property in properties)
+            {
+                writer.WriteAttributeString(property.Name, PropertyHelper.GetPropertyAsString(target, property));
+            }
+        }
+
+       
+
+
+        private static string ResolveConfigurationType(Type targetType)
+        {
+        
+            var targetAttribute = CustomAttributeExtensions.GetCustomAttribute<TargetAttribute>(targetType);
+
+            if (targetAttribute == null)
+                throw new InvalidOperationException(
+                    $"Target '{targetType.FullName}' does not have a 'NLog.Targets.TargetAttribute'." +
+                    "This is required for this serialization.");
+
+            return targetAttribute.Name;
+        }
+
+        private static void WriteVariables(IDictionary<string, SimpleLayout> variables, XmlWriter writer)
+        {
+            foreach (KeyValuePair<string, SimpleLayout> variable in variables)
+            {
+                writer.WriteStartElement("variable");
+                writer.WriteAttributeString("name", variable.Key);
+                writer.WriteAttributeString("value", variable.Value.OriginalText);
+                writer.WriteEndElement();
+            }
+        }
+
 
         /// <inheritdoc cref="Serialize(LoggingConfiguration,TextWriter, XmlWriterSettings)" />
         public static void Serialize(this LoggingConfiguration loggingConfiguration, TextWriter writer)
