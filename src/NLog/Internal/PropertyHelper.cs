@@ -56,6 +56,54 @@ namespace NLog.Internal
         private static Dictionary<Type, Dictionary<string, PropertyInfo>> parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
         /// <summary>
+        /// Retrives a property values as a string, that can be parsed by <see cref="SetPropertyFromString"/>
+        /// </summary>
+        /// <param name="obj">The object to retrive the value from.</param>
+        /// <param name="propertyInfo">The <see cref="PropertyInfo"/> for the property to convert.</param>
+        /// <returns>A string that represents the value of the property.</returns>
+        internal static string GetPropertyAsString(object obj, PropertyInfo propertyInfo)
+        {
+            if (obj == null)
+                throw new ArgumentNullException(nameof(obj));
+
+            if (propertyInfo == null)
+                throw new ArgumentNullException(nameof(propertyInfo));
+
+            InternalLogger.Debug("Serializing '{0}.{1}'", obj.GetType().FullName, propertyInfo.Name);
+
+            try
+            {
+                object value = propertyInfo.GetValue(obj);
+
+                Type propertyType = propertyInfo.PropertyType;
+                propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
+
+                if (!(TryNLogSpecificConversion(propertyType, value, out string stringValue)
+                      || TryGetEnumValue(propertyType, value, out stringValue, true)
+                      || TrySpecialConversion(value, out stringValue)
+                      || TryImplicitConversion(propertyType, value, out stringValue)
+                      || TryFlatListConversion(propertyType, value, out stringValue)
+                      || TryTypeConverterConversion(propertyType, value, out stringValue)))
+                    stringValue = Convert.ChangeType(value, typeof(string), CultureInfo.InvariantCulture) as string;
+
+                return stringValue ?? "null";
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Error when converting property '{0}' on '{1}' to string.", propertyInfo.Name, obj);
+
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                throw new NLogConfigurationException($"Error when convertring property '{propertyInfo.Name}' on {obj} to string", exception);
+            }
+
+
+        }
+
+        /// <summary>
         /// Set value parsed from string.
         /// </summary>
         /// <param name="obj">object instance to set with property <paramref name="propertyName"/></param>
@@ -221,6 +269,38 @@ namespace NLog.Internal
             return false;
         }
 
+        private static bool TryImplicitConversion(Type resultType, object value, out string result)
+        {
+            try
+            {
+#if !NETSTANDARD1_3
+                if (Type.GetTypeCode(resultType) != TypeCode.Object)
+#else
+                if (resultType.IsPrimitive() || resultType == typeof(string))
+#endif
+                {
+                    result = null;
+                    return false;
+                }
+
+                MethodInfo operatorImplicitMethod = resultType.GetMethod("op_Implicit", BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(string) }, null);
+                if (operatorImplicitMethod == null)
+                {
+                    result = null;
+                    return false;
+                }
+
+                result = (string)operatorImplicitMethod.Invoke(null, new[] { value });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Implicit Conversion Failed of {0} to {1}", value, resultType);
+            }
+            result = null;
+            return false;
+        }
+
         private static bool TryNLogSpecificConversion(Type propertyType, string value, out object newValue, ConfigurationItemFactory configurationItemFactory)
         {
             if (propertyType == typeof(Layout) || propertyType == typeof(SimpleLayout))
@@ -233,6 +313,22 @@ namespace NLog.Internal
             {
                 newValue = ConditionParser.ParseExpression(value, configurationItemFactory);
                 return true;
+            }
+
+            newValue = null;
+            return false;
+        }
+
+        private static bool TryNLogSpecificConversion(Type propertyType, object value, out string newValue)
+        {
+            switch (value)
+            {
+                case SimpleLayout simpleLayout:
+                    newValue = simpleLayout.OriginalText;
+                    return true;
+                case ConditionExpression expression:
+                    newValue = expression.ToString();
+                    return true;
             }
 
             newValue = null;
@@ -280,6 +376,45 @@ namespace NLog.Internal
             }
         }
 
+        private static bool TryGetEnumValue(Type resultType, object value, out string result, bool flagsEnumAllowed)
+        {
+            if (!resultType.IsEnum())
+            {
+                result = null;
+                return false;
+            }
+
+            if (flagsEnumAllowed && resultType.IsDefined(typeof(FlagsAttribute), false))
+            {
+                ulong union = (ulong)value;
+
+                Array enumValues = Enum.GetValues(resultType);
+                var setFlags = new List<ulong>(enumValues.Length);
+
+                foreach (ulong enumValue in enumValues)
+                {
+                    if ((enumValue & union) == 0) continue;
+
+                    setFlags.Add(enumValue);
+                    union &= ~enumValue;
+                }
+
+
+                if (union > 0)
+                {
+                    throw new InvalidOperationException($" {value} is not valid for Enum {resultType.Name}");
+                }
+
+                result = string.Join(", ", setFlags.Select(flag => Enum.GetName(resultType, flag)));
+                return true;
+            }
+            else
+            {
+                result = Enum.GetName(resultType, value);
+                return true;
+            }
+        }
+
         private static bool TrySpecialConversion(Type type, string value, out object newValue)
         {
             if (type == typeof(Encoding))
@@ -301,6 +436,25 @@ namespace NLog.Internal
                 value = value.Trim();
                 newValue = Type.GetType(value, true);
                 return true;
+            }
+
+            newValue = null;
+            return false;
+        }
+
+        private static bool TrySpecialConversion(object value, out string newValue)
+        {
+            switch (value)
+            {
+                case Encoding encoding:
+                    newValue = encoding.EncodingName;
+                    return true;
+                case CultureInfo cultureInfo:
+                    newValue = cultureInfo.Name;
+                    return true;
+                case Type type:
+                    newValue = type.FullName;
+                    return true;
             }
 
             newValue = null;
@@ -376,6 +530,56 @@ namespace NLog.Internal
             return false;
         }
 
+        /// <summary>
+        /// Try parse of string to (Generic) list, comma separated.
+        /// </summary>
+        /// <remarks>
+        /// If there is a comma in the value, then (single) quote the value. For single quotes, use the backslash as escape
+        /// </remarks>
+        /// <param name="type"></param>
+        /// <param name="valueRaw"></param>
+        /// <param name="newValue"></param>
+        /// <returns></returns>
+        private static bool TryFlatListConversion(Type type, object valueRaw, out string newValue)
+        {
+            if (type.IsGenericType())
+            {
+                Type propertyType = type.GetGenericArguments()[0];
+
+                if (valueRaw is IEnumerable enumerable)
+                {
+                    var sb = new StringBuilder();
+
+                    bool first = true;
+                    foreach (object item in enumerable)
+                    {
+                        if (!first)
+                            sb.Append(',');
+
+
+                        if (!(TryGetEnumValue(propertyType, item, out newValue, false)
+                              || TrySpecialConversion(item, out newValue)
+                              || TryImplicitConversion(propertyType, item, out newValue)
+                              || TryTypeConverterConversion(propertyType, item, out newValue)))
+                        {
+                            newValue = (string) Convert.ChangeType(item, typeof(string), CultureInfo.InvariantCulture);
+                        }
+
+                        newValue = newValue.Replace(@"\", @"\\").Replace("'", @"\'");
+                        sb.AppendFormat("\'{0}\'", newValue);
+
+                        first = false;
+                    }
+
+                    newValue = sb.ToString();
+                    return true;
+                }
+            }
+
+            newValue = null;
+            return false;
+        }
+
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
 #if !SILVERLIGHT && !NETSTANDARD1_3
@@ -395,6 +599,32 @@ namespace NLog.Internal
             {
                 newValue = new Uri(value);
                 return true;
+            }
+#endif
+
+            newValue = null;
+            return false;
+        }
+
+
+        private static bool TryTypeConverterConversion(Type type, object value, out string newValue)
+        {
+#if !SILVERLIGHT && !NETSTANDARD1_3
+            var converter = TypeDescriptor.GetConverter(type);
+            if (converter.CanConvertTo(typeof(string)))
+            {
+                newValue = converter.ConvertToInvariantString(value);
+                return true;
+            }
+#else
+            switch (value)
+            {
+                case LineEndingMode lineEndingMode:
+                    newValue = lineEndingMode.Name;
+                    return true;
+                case Uri uri:
+                    newValue = uri.OriginalString;
+                    return true;
             }
 #endif
 
