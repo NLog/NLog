@@ -61,19 +61,21 @@ namespace NLog.Targets.Wrappers
     public class DistinctlyThrottlingWrapperTarget : WrapperTargetBase
     {
 #if USECONCURRENT
-        ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>> _entriesCounts;
+        ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder, AsyncLogEventInfo>> _entriesCounts;
 #else
-        class Tuple<T1, T2>
+        class Tuple<T1, T2, T3>
         {
             public T1 Item1;
             public T2 Item2;
-            public Tuple(T1 item1, T2 item2)
+            public T3 Item3;
+            public Tuple(T1 item1, T2 item2, T3 item3)
             {
                 Item2 = item2;
                 Item1 = item1;
+                Item3 = item3;
             }
         }
-        Dictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>> _entriesCounts;
+        Dictionary<AsyncLogEventInfo, Tuple<int, StringBuilder, AsyncLogEventInfo>> _entriesCounts;
 #endif
 
 
@@ -197,11 +199,11 @@ namespace NLog.Targets.Wrappers
                 _GroupByTemplate = value;
 #if USECONCURRENT
                 _entriesCounts =
-                    new ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>>(
+                    new ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder, AsyncLogEventInfo>>(
                         new AsyncLogEventInfoEqualityComparer(!_GroupByTemplate));
 #else
                 _entriesCounts =
-                    new Dictionary<AsyncLogEventInfo, Tuple<int, StringBuilder>>(
+                    new Dictionary<AsyncLogEventInfo, Tuple<int, StringBuilder, AsyncLogEventInfo>>(
                         new AsyncLogEventInfoEqualityComparer(!_GroupByTemplate));
 #endif
             }
@@ -267,12 +269,13 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void Write(AsyncLogEventInfo e)
         {
+            Tuple<int, StringBuilder, AsyncLogEventInfo> count;
 #if USECONCURRENT
-            Tuple<int, StringBuilder> count = _entriesCounts.AddOrUpdate(e,
+            count = _entriesCounts.AddOrUpdate(e,
                 /*do not store first - it is logged out immediately*/
-                new Tuple<int, StringBuilder>(0, NeedsStringBuilder(e.LogEvent)
+                new Tuple<int, StringBuilder, AsyncLogEventInfo>(0, NeedsStringBuilder(e.LogEvent)
                         ? new StringBuilder()
-                        : null),
+                        : null, default(AsyncLogEventInfo)),
                 (k, v) =>
                 {
                     // but store all the others
@@ -281,10 +284,9 @@ namespace NLog.Targets.Wrappers
                         v.Item2.Append(Escape(e.LogEvent.FormattedMessage));
                         v.Item2.Append(this.GroupByTemplateSeparator);
                     }
-                    return new Tuple<int, StringBuilder>(v.Item1 + 1, v.Item2);
+                    return new Tuple<int, StringBuilder, AsyncLogEventInfo>(v.Item1 + 1, v.Item2, e/*in flush it will be the last*/);
                 });
 #else
-            Tuple<int, StringBuilder> count;
             lock (_lockObject)
             {
                 if (_entriesCounts.TryGetValue(e, out count))
@@ -294,15 +296,15 @@ namespace NLog.Targets.Wrappers
                         count.Item2.Append(Escape(e.LogEvent.FormattedMessage));
                         count.Item2.Append(this.GroupByTemplateSeparator);
                     }
-                    count = new Tuple<int, StringBuilder>(count.Item1 + 1, count.Item2);
+                    count = new Tuple<int, StringBuilder, AsyncLogEventInfo>(count.Item1 + 1, count.Item2, 
+                        e/*in flush it will be the last*/);
                 }
                 else
-                    count = new Tuple<int, StringBuilder>(0,
+                    count = new Tuple<int, StringBuilder, AsyncLogEventInfo>(0,
                         NeedsStringBuilder(e.LogEvent)
                             ? new StringBuilder()
-                            : null);
+                            : null, default(AsyncLogEventInfo));
                 _entriesCounts[e] = count;
-                //_entriesCounts.Add(e, count);
             }
 #endif
 
@@ -312,6 +314,7 @@ namespace NLog.Targets.Wrappers
                 TurnOnTimerIfOffline();
             }
         }
+
 
         bool NeedsStringBuilder(LogEventInfo e)
         {
@@ -369,29 +372,32 @@ namespace NLog.Targets.Wrappers
 #else
                 ICollection<AsyncLogEventInfo> keys = _entriesCounts.Keys.ToList();
 #endif
-                foreach (AsyncLogEventInfo e in keys)
+                foreach (AsyncLogEventInfo initialLog in keys)
                 {
-                    Tuple<int, StringBuilder> count;
+                    Tuple<int, StringBuilder, AsyncLogEventInfo> count;
 #if USECONCURRENT
-                    if (_entriesCounts.TryRemove(e, out count) && count.Item1 > 0)
+                    if (_entriesCounts.TryRemove(initialLog, out count) && count.Item1 > 0)
 #else
-                    count = _entriesCounts[e];
-                    if (_entriesCounts.Remove(e))
+                    count = _entriesCounts[initialLog];
+                    if (_entriesCounts.Remove(initialLog))
 #endif
                     {
+                        AsyncLogEventInfo lastLog = count.Item3;
                         if (count.Item1 > 1 && !string.IsNullOrEmpty(CountAppendFormat))
-                            if (NeedsStringBuilder(e.LogEvent))
+                            if (NeedsStringBuilder(lastLog.LogEvent))
                                 // cut off the last?? it is separator - i think do not
-                                e.LogEvent.Message = Escape(e.LogEvent.Message) +
-                                                     string.Format(CountAppendFormat, count.Item1) +
-                                                     (this.GroupByTemplateSeparator ==
-                                                      Environment.NewLine
-                                                         ? Environment.NewLine
-                                                         : "") +
-                                                     count.Item2;
+                                lastLog.LogEvent.Message =
+                                    Escape(lastLog.LogEvent.Message) +
+                                    string.Format(CountAppendFormat, count.Item1) +
+                                    (this.GroupByTemplateSeparator == Environment.NewLine
+                                        ? Environment.NewLine
+                                        : "") +
+                                    count.Item2;
                             else
-                                e.LogEvent.Message += string.Format(CountAppendFormat, count.Item1);
-                        WrappedTarget.WriteAsyncLogEvents(e);
+                                lastLog.LogEvent.Message +=
+                                    string.Format(CountAppendFormat, count.Item1);
+
+                        WrappedTarget.WriteAsyncLogEvents(lastLog);
                     }
                 }
             }
