@@ -35,6 +35,7 @@
 #define USECONCURRENT
 #endif
 
+
 #region usings
 using System;
 #if USECONCURRENT
@@ -61,7 +62,8 @@ namespace NLog.Targets.Wrappers
     public class DistinctlyThrottlingWrapperTarget : WrapperTargetBase
     {
 #if USECONCURRENT
-        ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder, AsyncLogEventInfo>> _entriesCounts;
+        ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder, AsyncLogEventInfo>>
+            _entriesCounts;
 #else
         class Tuple<T1, T2, T3>
         {
@@ -173,6 +175,7 @@ namespace NLog.Targets.Wrappers
         #endregion
 
 
+        #region settings
         /// <summary>
         /// Gets or sets the timeout (in milliseconds) after which the contents of buffer will be flushed 
         /// </summary>
@@ -188,7 +191,7 @@ namespace NLog.Targets.Wrappers
 
 
         /// <summary>
-        /// 
+        /// Group log messages by <see cref="LogEventInfo.Message"/> (GroupByTemplate==true) or <see cref="LogEventInfo.FormattedMessage"/> (GroupByTemplate==false). By default is true.
         /// </summary>
         [DefaultValue(true)]
         public bool GroupByTemplate
@@ -199,7 +202,8 @@ namespace NLog.Targets.Wrappers
                 _GroupByTemplate = value;
 #if USECONCURRENT
                 _entriesCounts =
-                    new ConcurrentDictionary<AsyncLogEventInfo, Tuple<int, StringBuilder, AsyncLogEventInfo>>(
+                    new ConcurrentDictionary<AsyncLogEventInfo,
+                        Tuple<int, StringBuilder, AsyncLogEventInfo>>(
                         new AsyncLogEventInfoEqualityComparer(!_GroupByTemplate));
 #else
                 _entriesCounts =
@@ -211,7 +215,7 @@ namespace NLog.Targets.Wrappers
 
 
         /// <summary>
-        /// 
+        /// Separator for messages in one group. By default is NewLine.
         /// </summary>
         [DefaultValue("\\n")]
         public string GroupByTemplateSeparator { get; set; } = Environment.NewLine;
@@ -223,6 +227,14 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         [DefaultValue(" - {0} times:")]
         public string CountAppendFormat { get; set; } = " - {0} times";
+
+
+        /// <summary>
+        /// If true so grouped accumulated message is corrected and contains (is appended by) count of accumulated messages and the messages themselves. If false so you can use Properties (IsFirst, AccumulatedCount, AccumulatedMessages) in layout.
+        /// </summary>
+        [DefaultValue(true)]
+        public bool CorrectMessageForGroup { get; set; } = true;
+        #endregion
 
 
         /// <inheritdoc />
@@ -274,8 +286,8 @@ namespace NLog.Targets.Wrappers
             count = _entriesCounts.AddOrUpdate(e,
                 /*do not store first - it is logged out immediately*/
                 new Tuple<int, StringBuilder, AsyncLogEventInfo>(0, NeedsStringBuilder(e.LogEvent)
-                        ? new StringBuilder()
-                        : null, default(AsyncLogEventInfo)),
+                    ? new StringBuilder()
+                    : null, default(AsyncLogEventInfo)),
                 (k, v) =>
                 {
                     // but store all the others
@@ -284,7 +296,8 @@ namespace NLog.Targets.Wrappers
                         v.Item2.Append(Escape(e.LogEvent.FormattedMessage));
                         v.Item2.Append(this.GroupByTemplateSeparator);
                     }
-                    return new Tuple<int, StringBuilder, AsyncLogEventInfo>(v.Item1 + 1, v.Item2, e/*in flush it will be the last*/);
+                    return new Tuple<int, StringBuilder, AsyncLogEventInfo>(v.Item1 + 1, v.Item2,
+                        e /*in flush it will be the last*/);
                 });
 #else
             lock (_lockObject)
@@ -296,7 +309,8 @@ namespace NLog.Targets.Wrappers
                         count.Item2.Append(Escape(e.LogEvent.FormattedMessage));
                         count.Item2.Append(this.GroupByTemplateSeparator);
                     }
-                    count = new Tuple<int, StringBuilder, AsyncLogEventInfo>(count.Item1 + 1, count.Item2, 
+                    count =
+ new Tuple<int, StringBuilder, AsyncLogEventInfo>(count.Item1 + 1, count.Item2, 
                         e/*in flush it will be the last*/);
                 }
                 else
@@ -310,17 +324,19 @@ namespace NLog.Targets.Wrappers
 
             if (count.Item1 == 0)
             {
+                e.LogEvent.Properties["IsFirst"] = "true";
                 WrappedTarget.WriteAsyncLogEvents(e);
                 TurnOnTimerIfOffline();
             }
         }
 
 
-        bool NeedsStringBuilder(LogEventInfo e)
-        {
-            return GroupByTemplate && e.Message.Contains("{") && e.Message != "{0}";
-            /*message=="{0}" when logger.Error(exception)*/
-        }
+        /// <summary>
+        /// When all messages are the same (no parameters or structural logging used) so StringBuilder is not needed
+        /// </summary>
+        bool NeedsStringBuilder(LogEventInfo e) =>
+            GroupByTemplate && e.Message.Contains("{") &&
+            e.Message != "{0}" /*message=="{0}" when logger.Error(exception)*/;
 
 
         void TurnOnTimerIfOffline()
@@ -383,20 +399,32 @@ namespace NLog.Targets.Wrappers
 #endif
                     {
                         AsyncLogEventInfo lastLog = count.Item3;
-                        if (count.Item1 > 1 && !string.IsNullOrEmpty(CountAppendFormat))
-                            if (NeedsStringBuilder(lastLog.LogEvent))
-                                // cut off the last?? it is separator - i think do not
-                                lastLog.LogEvent.Message =
-                                    Escape(lastLog.LogEvent.Message) +
-                                    string.Format(CountAppendFormat, count.Item1) +
-                                    (this.GroupByTemplateSeparator == Environment.NewLine
-                                        ? Environment.NewLine
-                                        : "") +
-                                    count.Item2;
-                            else
-                                lastLog.LogEvent.Message +=
-                                    string.Format(CountAppendFormat, count.Item1);
+                        if (count.Item1 > 1)
+                        {
+                            string sbString = null;
 
+                            if (NeedsStringBuilder(lastLog.LogEvent))
+                                lastLog.LogEvent.Properties["AccumulatedMessages"] =
+                                    sbString = count.Item2.ToString();
+
+                            if (CorrectMessageForGroup && !string.IsNullOrEmpty(CountAppendFormat))
+                                if (sbString != null)
+                                    lastLog.LogEvent.Message
+                                        = /*messages differ so log all of them*/
+                                        Escape(lastLog.LogEvent.Message) +
+                                        string.Format(CountAppendFormat, count.Item1) +
+                                        (this.GroupByTemplateSeparator == Environment.NewLine
+                                            ? Environment.NewLine
+                                            : "") +
+                                        sbString;
+                                else
+                                    lastLog.LogEvent.Message
+                                        += /*all messages are the same, so just append count*/
+                                        string.Format(CountAppendFormat, count.Item1);
+                        }
+
+                        lastLog.LogEvent.Properties["AccumulatedCount"] = count.Item1;
+                        lastLog.LogEvent.Properties["IsFirst"] = "false";
                         WrappedTarget.WriteAsyncLogEvents(lastLog);
                     }
                 }
