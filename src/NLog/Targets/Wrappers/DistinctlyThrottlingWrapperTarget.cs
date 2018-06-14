@@ -267,19 +267,16 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void Write(AsyncLogEventInfo e)
         {
-            PrecalculateVolatileLayouts(e.LogEvent);
-
 #if USECONCURRENT
             Tuple<int, StringBuilder> count = _entriesCounts.AddOrUpdate(e,
                 /*do not store first - it is logged out immediately*/
-                new Tuple<int, StringBuilder>(0,
-                    GroupByTemplate && e.LogEvent.Message.Contains("{")
+                new Tuple<int, StringBuilder>(0, NeedsStringBuilder(e.LogEvent)
                         ? new StringBuilder()
                         : null),
                 (k, v) =>
                 {
                     // but store all the others
-                    if (GroupByTemplate && e.LogEvent.Message.Contains("{"))
+                    if (NeedsStringBuilder(e.LogEvent))
                     {
                         v.Item2.Append(Escape(e.LogEvent.FormattedMessage));
                         v.Item2.Append(this.GroupByTemplateSeparator);
@@ -292,7 +289,7 @@ namespace NLog.Targets.Wrappers
             {
                 if (_entriesCounts.TryGetValue(e, out count))
                 {
-                    if (GroupByTemplate && e.LogEvent.Message.Contains("{"))
+                    if (NeedsStringBuilder(e.LogEvent))
                     {
                         count.Item2.Append(Escape(e.LogEvent.FormattedMessage));
                         count.Item2.Append(this.GroupByTemplateSeparator);
@@ -301,7 +298,7 @@ namespace NLog.Targets.Wrappers
                 }
                 else
                     count = new Tuple<int, StringBuilder>(0,
-                        GroupByTemplate && e.LogEvent.Message.Contains("{")
+                        NeedsStringBuilder(e.LogEvent)
                             ? new StringBuilder()
                             : null);
                 _entriesCounts[e] = count;
@@ -314,6 +311,12 @@ namespace NLog.Targets.Wrappers
                 WrappedTarget.WriteAsyncLogEvents(e);
                 TurnOnTimerIfOffline();
             }
+        }
+
+        bool NeedsStringBuilder(LogEventInfo e)
+        {
+            return GroupByTemplate && e.Message.Contains("{") && e.Message != "{0}";
+            /*message=="{0}" when logger.Error(exception)*/
         }
 
 
@@ -377,7 +380,7 @@ namespace NLog.Targets.Wrappers
 #endif
                     {
                         if (count.Item1 > 1 && !string.IsNullOrEmpty(CountAppendFormat))
-                            if (GroupByTemplate && e.LogEvent.Message.Contains("{"))
+                            if (NeedsStringBuilder(e.LogEvent))
                                 // cut off the last?? it is separator - i think do not
                                 e.LogEvent.Message = Escape(e.LogEvent.Message) +
                                                      string.Format(CountAppendFormat, count.Item1) +
