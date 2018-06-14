@@ -309,8 +309,7 @@ namespace NLog.Targets.Wrappers
                         count.Item2.Append(Escape(e.LogEvent.FormattedMessage));
                         count.Item2.Append(this.GroupByTemplateSeparator);
                     }
-                    count =
- new Tuple<int, StringBuilder, AsyncLogEventInfo>(count.Item1 + 1, count.Item2, 
+                    count = new Tuple<int, StringBuilder, AsyncLogEventInfo>(count.Item1 + 1, count.Item2, 
                         e/*in flush it will be the last*/);
                 }
                 else
@@ -343,15 +342,14 @@ namespace NLog.Targets.Wrappers
         {
             if (!_isTimerOnNow)
             {
-                _flushTimer.Change(FlushTimeout, Timeout.Infinite);
                 _isTimerOnNow = true;
+                _flushTimer.Change(FlushTimeout, Timeout.Infinite);
             }
         }
 
 
         void FlushCallback(object _)
         {
-            _isTimerOnNow = false;
             try
             {
                 lock (_lockObject)
@@ -369,6 +367,10 @@ namespace NLog.Targets.Wrappers
 
                 if (exception.MustBeRethrownImmediately())
                     throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+            }
+            finally
+            {
+                _isTimerOnNow = false;
             }
         }
 
@@ -399,6 +401,25 @@ namespace NLog.Targets.Wrappers
 #endif
                     {
                         AsyncLogEventInfo lastLog = count.Item3;
+
+                        // do not remove if count > 0 (insert it back) - on aggressive logs we should not send an extra log
+#if USECONCURRENT
+                        _entriesCounts.AddOrUpdate(initialLog,
+                            new Tuple<int, StringBuilder, AsyncLogEventInfo>(0, NeedsStringBuilder(initialLog.LogEvent) ? new StringBuilder() : null, default(AsyncLogEventInfo)),
+                            (k, v) => v/*do not change it if it is already there - situation is aggressive and first log is already sent*/);
+#else
+                        lock (_lockObject)
+                        {
+                            if (!_entriesCounts.ContainsKey(initialLog))
+                                _entriesCounts[initialLog] =
+                                    new Tuple<int, StringBuilder, AsyncLogEventInfo>(0,
+                                        NeedsStringBuilder(initialLog.LogEvent)
+                                            ? new StringBuilder()
+                                            : null, default(AsyncLogEventInfo));
+                        }
+#endif
+
+
                         if (count.Item1 > 1)
                         {
                             string sbString = null;
