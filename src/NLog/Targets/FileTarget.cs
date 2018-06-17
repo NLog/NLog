@@ -376,7 +376,6 @@ namespace NLog.Targets
         public LineEndingMode LineEnding
         {
             get => _lineEndingMode;
-
             set => _lineEndingMode = value;
         }
 
@@ -412,6 +411,13 @@ namespace NLog.Targets
         [DefaultValue(-1)]
         [Advanced]
         public int OpenFileCacheTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum number of seconds before open files are flushed. If this number is negative or zero
+        /// the files are not flushed by timer.
+        /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        public int OpenFileFlushTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets the log file buffer size in bytes.
@@ -925,14 +931,15 @@ namespace NLog.Targets
 
             _fileAppenderCache = new FileAppenderCache(OpenFileCacheSize, appenderFactory, this);
 
-            if ((OpenFileCacheSize > 0 || EnableFileDelete) && OpenFileCacheTimeout > 0)
+            if ((OpenFileCacheSize > 0 || EnableFileDelete) && (OpenFileCacheTimeout > 0 || OpenFileFlushTimeout > 0))
             {
+                int openFileAutoTimeout = Math.Min(Math.Max(OpenFileCacheTimeout,1), Math.Max(OpenFileFlushTimeout,1)) * 1000;
                 InternalLogger.Trace("FileTarget(Name={0}): Start autoClosingTimer", Name);
                 _autoClosingTimer = new Timer(
                     (state) => AutoClosingTimerCallback(this, EventArgs.Empty),
                     null,
-                    OpenFileCacheTimeout * 1000,
-                    OpenFileCacheTimeout * 1000);
+                    openFileAutoTimeout,
+                    openFileAutoTimeout);
             }
         }
 
@@ -1951,9 +1958,26 @@ namespace NLog.Targets
                         return;
                     }
 
-                    DateTime expireTime = OpenFileCacheTimeout > 0 ? DateTime.UtcNow.AddSeconds(-OpenFileCacheTimeout) : DateTime.MinValue;
-                    InternalLogger.Trace("FileTarget(Name={0}): Stop CloseAppenders", Name);
-                    _fileAppenderCache.CloseAppenders(expireTime);
+                    if (!ReferenceEquals(sender, this))
+                    {
+                        InternalLogger.Trace("FileTarget(Name={0}): Auto Close FileAppenders after archive", Name);
+                        _fileAppenderCache.CloseAppenders(DateTime.MinValue);
+                    }
+                    else
+                    {
+                        if (OpenFileCacheTimeout > 0)
+                        {
+                            DateTime expireTime = DateTime.UtcNow.AddSeconds(-OpenFileCacheTimeout);
+                            InternalLogger.Trace("FileTarget(Name={0}): Auto Close FileAppenders", Name);
+                            _fileAppenderCache.CloseAppenders(expireTime);
+                        }
+
+                        if (OpenFileFlushTimeout > 0 && !AutoFlush)
+                        {
+                            InternalLogger.Trace("FileTarget(Name={0}): Auto Flush FileAppenders", Name);
+                            _fileAppenderCache.FlushAppenders();
+                        }
+                    }
                 }
             }
             catch (Exception exception)

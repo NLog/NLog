@@ -399,7 +399,16 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                appender.Flush();
+                try
+                {
+                    appender.Flush();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Failed to flush file '{0}'.", appender.FileName);
+                    InvalidateAppender(appender.FileName)?.Dispose();
+                    throw;
+                }
             }
         }
 

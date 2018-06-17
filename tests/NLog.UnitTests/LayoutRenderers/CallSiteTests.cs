@@ -1280,7 +1280,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             public LogEventInfo LastEvent { get; private set; }
 
-            public StackTraceUsage StackTraceUsage { get; set; }
+            public new StackTraceUsage StackTraceUsage { get; set; }
 
             protected override void Write(LogEventInfo logEvent)
             {

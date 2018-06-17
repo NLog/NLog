@@ -882,6 +882,60 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Theory]
+        [InlineData(true, 0)]
+        [InlineData(false, 0)]
+        [InlineData(false, 1)]
+        public void AutoFlushTest(bool autoFlush, int autoFlushTimeout)
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var logFile = Path.Combine(tempPath, "file.txt");
+            try
+            {
+                var fileTarget = WrapFileTarget(new FileTarget
+                {
+                    FileName = logFile,
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    KeepFileOpen = true,
+                    ConcurrentWrites = false,
+                    AutoFlush = autoFlush,
+                    OpenFileFlushTimeout = autoFlushTimeout,
+                });
+
+                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
+                logger.Debug("aaa");
+                logger.Info("bbb");
+                logger.Warn("ccc");
+
+                if (autoFlush)
+                {
+                    AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+                }
+                else
+                {
+                    AssertFileContents(logFile, string.Empty, Encoding.UTF8);
+                    if (autoFlushTimeout > 0)
+                    {
+                        Thread.Sleep(TimeSpan.FromSeconds(autoFlushTimeout * 1.5));
+                        AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+                    }
+                }
+
+                LogManager.Configuration = null;    // Flush
+                AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+            }
+            finally
+            {
+                LogManager.Configuration = null;
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
+        }
+
         [Fact]
         public void SequentialArchiveTest()
         {
@@ -1081,7 +1135,6 @@ namespace NLog.UnitTests.Targets
                     Directory.Delete(tempPath, true);
             }
         }
-
 
         [Fact]
         public void DeleteArchiveFilesByDate()
@@ -1710,7 +1763,6 @@ namespace NLog.UnitTests.Targets
             }
             finally
             {
-
                 if (File.Exists(logFile))
                 {
                     File.Delete(logFile);

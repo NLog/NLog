@@ -240,13 +240,26 @@ namespace NLog.UnitTests
                 if (preamble.Length > 0)
                 {
                     //insert before
-
                     encodedBuf = preamble.Concat(encodedBuf).ToArray();
-
                 }
             }
 
-            byte[] buf = File.ReadAllBytes(fileName);
+            byte[] buf;
+            using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
+            {
+                int index = 0;
+                int count = (int)fs.Length;
+                buf = new byte[count];
+                while (count > 0)
+                {
+                    int n = fs.Read(buf, index, count);
+                    if (n == 0)
+                        break;
+                    index += n;
+                    count -= n;
+                }
+            }
+
             Assert.True(encodedBuf.Length == buf.Length,
                 $"File:{fileName} encodedBytes:{encodedBuf.Length} does not match file.content:{buf.Length}, file.length = {fi.Length}");
 
@@ -298,9 +311,8 @@ namespace NLog.UnitTests
                         Assert.False(true, "File contains '" + contentToCheck + "'");
                 }
             }
-
-            return;
         }
+
         protected string StringRepeat(int times, string s)
         {
             StringBuilder sb = new StringBuilder(s.Length * times);
