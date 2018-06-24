@@ -39,6 +39,7 @@ namespace NLog.UnitTests.Targets
     using System.Linq;
     using System.Net;
     using System.Net.Sockets;
+    using System.Security.Authentication;
     using System.Text;
     using System.Threading;
     using NLog.Common;
@@ -883,13 +884,32 @@ namespace NLog.UnitTests.Targets
             Assert.True(result.IndexOf("5: close") != -1);
         }
 
+        [Theory]
+        [InlineData("none", SslProtocols.None, false)] //we can't set it on ""
+        [InlineData("tls", SslProtocols.Tls, false)]
+        [InlineData("tls", SslProtocols.Tls, true)]
+        [InlineData("tls11", SslProtocols.Tls11, false)]
+        [InlineData("tls,tls11", SslProtocols.Tls11 | SslProtocols.Tls, false)]
+        public void SslProtocolsConfigTest(string sslOptions, SslProtocols expected, bool ignoreSslErrors)
+        {
+            var config = CreateConfigurationFromString($@"
+            <nlog>
+                <targets><target name='target1' type='network' layout='${{message}}' Address='tcp://127.0.0.1' sslProtocols='{sslOptions}' ignoreSslErrors='{ignoreSslErrors}' /></targets>
+               
+            </nlog>");
+
+            var target = config.FindTargetByName<NetworkTarget>("target1");
+            Assert.Equal(expected, target.SslProtocols);
+            Assert.Equal(ignoreSslErrors, target.IgnoreSslErrors);
+        }
+
         internal class MySenderFactory : INetworkSenderFactory
         {
             internal List<MyNetworkSender> Senders = new List<MyNetworkSender>();
             internal StringWriter Log = new StringWriter();
             private int idCounter;
 
-            public NetworkSender Create(string url, int maximumQueueSize)
+            public NetworkSender Create(string url, int maximumQueueSize, SslProtocols sslProtocols, bool ignoreSslErrors)
             {
                 var sender = new MyNetworkSender(url, ++idCounter, Log, this);
                 Senders.Add(sender);
