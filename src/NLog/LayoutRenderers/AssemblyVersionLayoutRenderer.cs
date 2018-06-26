@@ -157,6 +157,7 @@ namespace NLog.LayoutRenderers
         {
             return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(Name));
         }
+
 #else
 
         private string GetVersion()
@@ -165,7 +166,11 @@ namespace NLog.LayoutRenderers
             return GetVersion(assembly);
         }
 
-        private System.Reflection.Assembly GetAssembly()
+        /// <summary>
+        /// Gets the assembly specified by <see cref="Name"/>, or entry assembly otherwise
+        /// </summary>
+        /// <returns>Found assembly</returns>
+        protected virtual System.Reflection.Assembly GetAssembly()
         {
             if (string.IsNullOrEmpty(Name))
             {
@@ -191,6 +196,8 @@ namespace NLog.LayoutRenderers
                     return assembly?.GetName().Version?.ToString();
             }
         }
+
 #endif
+
     }
 }
