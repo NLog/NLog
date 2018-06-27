@@ -427,7 +427,7 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
-        public DateTime? GetFileCreationTimeSource(string filePath, bool fallback, DateTime? fallbackTimeSource = null)
+        public DateTime? GetFileCreationTimeSource(string filePath, DateTime? fallbackTimeSource = null)
         {
             var appender = GetAppender(filePath);
             DateTime? result = null;
@@ -435,7 +435,7 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                    result = FileCharacteristicsHelper.ValidateFileCreationTime(appender, (f) => f.GetFileCreationTimeUtc(), (f) => fallbackTimeSource ?? f.CreationTimeUtc, (f) => f.GetFileLastWriteTimeUtc());
+                    result = FileCharacteristicsHelper.ValidateFileCreationTime(appender, (f) => f.GetFileCreationTimeUtc(), f => fallbackTimeSource);
                     if (result.HasValue)
                     {
                         // Check if cached value is still valid, and update if not (Will automatically update CreationTimeSource)
@@ -455,57 +455,45 @@ namespace NLog.Internal.FileAppenders
                 }
             }
 
-            if (fallback)
+            var fileInfo = new FileInfo(filePath);
+            if (fileInfo.Exists)
             {
-                var fileInfo = new FileInfo(filePath);
-                if (fileInfo.Exists)
-                {
-                    result = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => fallbackTimeSource, (f) => f.GetLastWriteTimeUtc()).Value;
-                    return Time.TimeSource.Current.FromSystemTime(result.Value);
-                }
+                result = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => fallbackTimeSource, (f) => f.GetLastWriteTimeUtc()).Value;
+                return Time.TimeSource.Current.FromSystemTime(result.Value);
             }
 
             return result;
         }
 
-        public DateTime? GetFileLastWriteTimeUtc(string filePath, bool fallback)
+        /// <summary>
+        /// File Archive Logic uses the File-Creation-TimeStamp to detect if time to archive, and the File-LastWrite-Timestamp to name the archive-file.
+        /// </summary>
+        /// <remarks>
+        /// NLog always closes all relevant appenders during archive operation, so no need to lookup file-appender
+        /// </remarks>
+        public DateTime? GetFileLastWriteTimeUtc(string filePath)
         {
-            var appender = GetAppender(filePath);
-            DateTime? result = null;
-            if (appender != null)
+            var fileInfo = new FileInfo(filePath);
+            if (fileInfo.Exists)
             {
-                try
-                {
-                    result = appender.GetFileLastWriteTimeUtc();
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "Failed to get last write time for file '{0}'.", appender.FileName);
-                    InvalidateAppender(appender.FileName)?.Dispose();
-                    throw;
-                }
-            }
-            if (result == null && fallback)
-            {
-                var fileInfo = new FileInfo(filePath);
-                if (fileInfo.Exists)
-                {
-                    return fileInfo.GetLastWriteTimeUtc();
-                }
+                return fileInfo.GetLastWriteTimeUtc();
             }
 
-            return result;
+            return null;
         }
 
-        public long? GetFileLength(string filePath, bool fallback)
+        public long? GetFileLength(string filePath)
         {
             var appender = GetAppender(filePath);
-            long? result = null;
             if (appender != null)
             {
                 try
                 {
-                    result = appender.GetFileLength();
+                    var result = appender.GetFileLength();
+                    if (result.HasValue)
+                    {
+                        return result;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -514,16 +502,14 @@ namespace NLog.Internal.FileAppenders
                     throw;
                 }
             }
-            if (result == null && fallback)
+
+            var fileInfo = new FileInfo(filePath);
+            if (fileInfo.Exists)
             {
-                var fileInfo = new FileInfo(filePath);
-                if (fileInfo.Exists)
-                {
-                    return fileInfo.Length;
-                }
+                return fileInfo.Length;
             }
 
-            return result;
+            return null;
         }
 
         /// <summary>

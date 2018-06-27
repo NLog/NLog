@@ -126,10 +126,6 @@ namespace NLog.Internal.FileAppenders
                 _fileStream.Seek(0, SeekOrigin.End);
                 _fileStream.Write(bytes, offset, count);
                 _fileStream.Flush();
-                if (CaptureLastWriteTime)
-                {
-                    FileTouched();
-                }
             }
             finally
             {
@@ -176,8 +172,6 @@ namespace NLog.Internal.FileAppenders
             {
                 _fileStream = null;
             }
-
-            FileTouched();
         }
 
         /// <summary>
@@ -196,17 +190,6 @@ namespace NLog.Internal.FileAppenders
         public override DateTime? GetFileCreationTimeUtc()
         {
             return CreationTimeUtc; // File is kept open, so creation time is static
-        }
-
-        /// <summary>
-        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
-        /// Universal Time [UTC] standard.
-        /// </summary>
-        /// <returns>The time the file was last written to.</returns>
-        public override DateTime? GetFileLastWriteTimeUtc()
-        {
-            var fileChars = GetFileCharacteristics();
-            return fileChars.LastWriteTimeUtc;
         }
 
         /// <summary>

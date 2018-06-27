@@ -360,12 +360,6 @@ namespace NLog.Targets
         public Win32FileAttributes FileAttributes { get; set; }
 #endif
 
-        /// <summary>
-        /// Should we capture the last write time of a file?
-        /// </summary>
-        bool ICreateFileParameters.CaptureLastWriteTime => ArchiveNumbering == ArchiveNumberingMode.Date ||
-                                                           ArchiveNumbering == ArchiveNumberingMode.DateAndSequence;
-
         bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
 
         /// <summary>
@@ -1439,7 +1433,7 @@ namespace NLog.Targets
         private DateTime? GetArchiveDate(string fileName, LogEventInfo logEvent, DateTime previousLogEventTimestamp)
         {
             // Using File LastModifed to handle FileArchivePeriod.Month (where file creation time is one month ago)
-            var fileLastModifiedUtc = _fileAppenderCache.GetFileLastWriteTimeUtc(fileName, true);
+            var fileLastModifiedUtc = _fileAppenderCache.GetFileLastWriteTimeUtc(fileName);
 
             InternalLogger.Trace("FileTarget(Name={0}): Calculating archive date. File-LastModifiedUtc: {1}; Previous LogEvent-TimeStamp: {2}", Name, fileLastModifiedUtc, previousLogEventTimestamp);
             if (!fileLastModifiedUtc.HasValue)
@@ -1802,7 +1796,7 @@ namespace NLog.Targets
             }
 
             //this is an expensive call
-            var fileLength = _fileAppenderCache.GetFileLength(fileName, true);
+            var fileLength = _fileAppenderCache.GetFileLength(fileName);
             string fileToArchive = fileLength != null ? fileName : _previousLogFileName;
             return fileToArchive;
         }
@@ -1826,7 +1820,7 @@ namespace NLog.Targets
                 return null;
             }
 
-            var length = _fileAppenderCache.GetFileLength(previousFileName, true);
+            var length = _fileAppenderCache.GetFileLength(previousFileName);
             if (length == null)
             {
                 return null;
@@ -1868,7 +1862,7 @@ namespace NLog.Targets
 
             // Linux FileSystems doesn't always have file-birth-time, so NLog tries to provide a little help
             DateTime? fallbackTimeSourceLinux = (previousLogEventTimestamp != DateTime.MinValue && KeepFileOpen && !ConcurrentWrites && !NetworkWrites) ? previousLogEventTimestamp : (DateTime?)null;
-            var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, true, fallbackTimeSourceLinux);
+            var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, fallbackTimeSourceLinux);
             if (creationTimeSource == null)
             {
                 return null;

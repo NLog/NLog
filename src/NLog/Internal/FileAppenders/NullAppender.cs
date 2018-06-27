@@ -61,11 +61,6 @@ namespace NLog.Internal.FileAppenders
             return DateTime.UtcNow;
         }
 
-        public override DateTime? GetFileLastWriteTimeUtc()
-        {
-            return DateTime.UtcNow;
-        }
-
         public override long? GetFileLength()
         {
             return 0;

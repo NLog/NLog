@@ -92,11 +92,6 @@ namespace NLog.Internal.FileAppenders
 #endif
 
         /// <summary>
-        /// Should we capture the last write time of a file?
-        /// </summary>
-        bool CaptureLastWriteTime { get; }
-
-        /// <summary>
         /// Should archive mutex be created?
         /// </summary>
         bool IsArchivingEnabled { get; }

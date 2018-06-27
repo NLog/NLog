@@ -67,11 +67,6 @@ namespace NLog.Internal.FileAppenders
             {
                 fileStream.Write(bytes, offset, count);
             }
-
-            if (CaptureLastWriteTime)
-            {
-                FileTouched();
-            }
         }
 
         /// <summary>
@@ -101,21 +96,6 @@ namespace NLog.Internal.FileAppenders
             if (fileInfo.Exists)
             {
                 return fileInfo.GetCreationTimeUtc();
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
-        /// Universal Time [UTC] standard.
-        /// </summary>
-        /// <returns>The time the file was last written to.</returns>
-        public override DateTime? GetFileLastWriteTimeUtc()
-        {
-            FileInfo fileInfo = new FileInfo(FileName);
-            if (fileInfo.Exists)
-            {
-                return fileInfo.GetLastWriteTimeUtc();
             }
             return null;
         }
