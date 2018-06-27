@@ -1462,7 +1462,7 @@ namespace NLog.Targets
                 }
             }
 
-            InternalLogger.Trace("FileTarget(Name={0}): Using last write time", Name);
+            InternalLogger.Trace("FileTarget(Name={0}): Using last write time: {1}", Name, lastWriteTimeSource);
             return lastWriteTimeSource;
         }
 
@@ -1968,8 +1968,7 @@ namespace NLog.Targets
 
                         if (OpenFileFlushTimeout > 0 && !AutoFlush)
                         {
-                            InternalLogger.Trace("FileTarget(Name={0}): Auto Flush FileAppenders", Name);
-                            _fileAppenderCache.FlushAppenders();
+                            ConditionalFlushOpenFileAppenders();
                         }
                     }
                 }
@@ -1982,6 +1981,28 @@ namespace NLog.Targets
                 {
                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
+            }
+        }
+
+        private void ConditionalFlushOpenFileAppenders()
+        {
+            DateTime flushTime = Time.TimeSource.Current.Time.AddSeconds(-Math.Max(OpenFileFlushTimeout, 5) * 2);
+
+            bool flushAppenders = false;
+            foreach (var file in _initializedFiles)
+            {
+                if (file.Value > flushTime)
+                {
+                    flushAppenders = true;
+                    break;
+                }
+            }
+
+            if (flushAppenders)
+            {
+                // Only request flush of file-handles, when something has been written
+                InternalLogger.Trace("FileTarget(Name={0}): Auto Flush FileAppenders", Name);
+                _fileAppenderCache.FlushAppenders();
             }
         }
 
