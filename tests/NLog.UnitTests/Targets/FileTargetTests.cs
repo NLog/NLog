@@ -3934,7 +3934,6 @@ namespace NLog.UnitTests.Targets
                 // set log file access times the same way as when this issue comes up.
                 Directory.CreateDirectory(tempDir);
 
-
                 File.WriteAllText(logFile, "some content" + Environment.NewLine, encoding);
                 var oldTime = DateTime.Now.AddDays(-2);
                 File.SetCreationTime(logFile, oldTime);
@@ -3959,7 +3958,9 @@ namespace NLog.UnitTests.Targets
                     ArchiveFileName = archiveFileNamePattern,
                     ArchiveNumbering = ArchiveNumberingMode.Date,
                     ArchiveDateFormat = archiveDateFormat,
-                    Encoding = encoding
+                    Encoding = encoding,
+                    Layout = "${message}",
+                    WriteBom = hasBom,
                 };
 
 
@@ -3972,10 +3973,12 @@ namespace NLog.UnitTests.Targets
                 var logger = LogManager.GetLogger("HandleArchiveFileAlreadyExistsTest");
                 // write, this should append.
                 logger.Info("log to force archiving");
+                logger.Info("log to same file");
 
                 LogManager.Configuration = null;    // Flush
 
                 AssertFileContents(archiveFileName, "message already in archive" + Environment.NewLine + "some content" + Environment.NewLine, encoding, hasBom);
+                AssertFileContents(logFile, "log to force archiving" + Environment.NewLine + "log to same file" + Environment.NewLine, encoding, hasBom);
             }
             finally
             {

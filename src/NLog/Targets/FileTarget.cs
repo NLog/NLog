@@ -1295,18 +1295,39 @@ namespace NLog.Targets
                     //todo maybe needs a better filelock behaviour
 
                     //copy to archive file.
-                    using (FileStream fileStream = File.Open(fileName, FileMode.Open))
+                    var fileShare = FileShare.ReadWrite;
+                    if (EnableFileDelete)
+                    {
+                        fileShare |= FileShare.Delete;
+                    }
+
+                    using (FileStream fileStream = File.Open(fileName, FileMode.Open, FileAccess.ReadWrite, fileShare))
                     using (FileStream archiveFileStream = File.Open(archiveFileName, FileMode.Append))
                     {
                         fileStream.CopyAndSkipBom(archiveFileStream, Encoding);
                         //clear old content
                         fileStream.SetLength(0);
+
+                        if (EnableFileDelete)
+                        {
+                            // Attempt to delete file to reset File-Creation-Time (Delete under file-lock)
+                            if (!DeleteOldArchiveFile(fileName))
+                            {
+                                fileShare &= ~FileShare.Delete;  // Retry after having released file-lock
+                            }
+                        }
+
                         fileStream.Close(); // This flushes the content, too.
 #if NET3_5
                         archiveFileStream.Flush();
 #else
                         archiveFileStream.Flush(true);
 #endif
+                    }
+
+                    if ((fileShare & FileShare.Delete) == FileShare.None)
+                    {
+                        DeleteOldArchiveFile(fileName); // Attempt to delete file to reset File-Creation-Time
                     }
                 }
                 else
