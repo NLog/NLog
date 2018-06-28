@@ -111,10 +111,10 @@ namespace NLog.Targets.Wrappers
             public int GetHashCode(AsyncLogEventInfo x)
             {
                 LogEventInfo a = x.LogEvent;
-                int withoutExc = a.LoggerName.GetHashCode() ^
-                                 (_useFormattedMessage ? a.FormattedMessage : a.Message)
-                                 .GetHashCode() ^
-                                 a.Level.GetHashCode();
+                if (a == null) return 0;
+                int withoutExc = (a.LoggerName?.GetHashCode() ?? 0) ^
+                                 ((_useFormattedMessage ? a.FormattedMessage : a.Message)?.GetHashCode() ?? 0) ^
+                                 (a.Level?.GetHashCode() ?? 0);
                 return a.Exception == null
                     ? withoutExc
                     : withoutExc ^ (a.Exception.Message?.GetHashCode() ?? 0) ^
