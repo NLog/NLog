@@ -114,6 +114,24 @@ namespace NLog.Layouts
         }
 #endif
 
+        /// <summary>
+        /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
+        /// </summary>
+        public Layout LoggerName
+        {
+            get => Renderer.LoggerName;
+            set => Renderer.LoggerName = value;
+        }
+
+        /// <summary>
+        ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
+        /// </summary>
+        public bool WriteThrowableCData
+        {
+            get => Renderer.WriteThrowableCData;
+            set => Renderer.WriteThrowableCData = value;
+        }
+
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
             PrecalculateBuilderInternal(logEvent, target);

@@ -82,6 +82,7 @@ namespace NLog.Targets
             OnConnectionOverflow = NetworkTargetConnectionsOverflowAction.Block;
             MaxConnections = 16;
             NewLine = false;
+            IncludeNLogData = true;
             OptimizeBufferReuse = GetType() == typeof(NLogViewerTarget);    // Class not sealed, reduce breaking changes
         }
 

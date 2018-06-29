@@ -199,21 +199,19 @@ namespace NLog.Internal
         /// <param name="value"></param>
         public static void WriteAttributeSafeString(this XmlWriter writer, string prefix, string localName, string ns, string value)
         {
-            writer.WriteAttributeString(RemoveInvalidXmlChars(prefix), RemoveInvalidXmlChars(localName), RemoveInvalidXmlChars(ns), RemoveInvalidXmlChars(value));
+            writer.WriteAttributeString(prefix, RemoveInvalidXmlChars(localName), ns, RemoveInvalidXmlChars(value));
         }
 
         /// <summary>
         /// Safe version of WriteAttributeString
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="thread"></param>
         /// <param name="localName"></param>
-        public static void WriteAttributeSafeString(this XmlWriter writer, string thread, string localName)
+        /// <param name="value"></param>
+        public static void WriteAttributeSafeString(this XmlWriter writer, string localName, string value)
         {
-            writer.WriteAttributeString(RemoveInvalidXmlChars(thread), RemoveInvalidXmlChars(localName));
+            writer.WriteAttributeString(localName, RemoveInvalidXmlChars(value));
         }
-
-
 
         /// <summary>
         /// Safe version of WriteElementSafeString
@@ -225,18 +223,17 @@ namespace NLog.Internal
         /// <param name="value"></param>
         public static void WriteElementSafeString(this XmlWriter writer, string prefix, string localName, string ns, string value)
         {
-            writer.WriteElementString(RemoveInvalidXmlChars(prefix), RemoveInvalidXmlChars(localName), RemoveInvalidXmlChars(ns),
-                                      RemoveInvalidXmlChars(value));
+            writer.WriteElementString(prefix, RemoveInvalidXmlChars(localName), ns, RemoveInvalidXmlChars(value));
         }
 
         /// <summary>
         /// Safe version of WriteCData
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="text"></param>
-        public static void WriteSafeCData(this XmlWriter writer, string text)
+        /// <param name="value"></param>
+        public static void WriteSafeCData(this XmlWriter writer, string value)
         {
-            writer.WriteCData(RemoveInvalidXmlChars(text));
+            writer.WriteCData(RemoveInvalidXmlChars(value));
         }
     }
 }
