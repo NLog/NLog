@@ -66,7 +66,6 @@ namespace NLog.Targets
         /// </summary>
         public ChainsawTarget()
         {
-            IncludeNLogData = false;
             OptimizeBufferReuse = GetType() == typeof(ChainsawTarget);  // Class not sealed, reduce breaking changes
         }
 

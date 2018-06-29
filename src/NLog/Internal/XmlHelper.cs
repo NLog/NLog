@@ -352,7 +352,7 @@ namespace NLog.Internal
         /// <param name="value"></param>
         public static void WriteAttributeSafeString(this XmlWriter writer, string prefix, string localName, string ns, string value)
         {
-            writer.WriteAttributeString(RemoveInvalidXmlChars(prefix), RemoveInvalidXmlChars(localName), RemoveInvalidXmlChars(ns), RemoveInvalidXmlChars(value));
+            writer.WriteAttributeString(prefix, localName, ns, RemoveInvalidXmlChars(value));
         }
 
         /// <summary>
@@ -363,7 +363,7 @@ namespace NLog.Internal
         /// <param name="value"></param>
         public static void WriteAttributeSafeString(this XmlWriter writer, string localName, string value)
         {
-            writer.WriteAttributeString(RemoveInvalidXmlChars(localName), RemoveInvalidXmlChars(value));
+            writer.WriteAttributeString(localName, RemoveInvalidXmlChars(value));
         }
 
         /// <summary>
@@ -376,18 +376,17 @@ namespace NLog.Internal
         /// <param name="value"></param>
         public static void WriteElementSafeString(this XmlWriter writer, string prefix, string localName, string ns, string value)
         {
-            writer.WriteElementString(RemoveInvalidXmlChars(prefix), RemoveInvalidXmlChars(localName), RemoveInvalidXmlChars(ns),
-                                      RemoveInvalidXmlChars(value));
+            writer.WriteElementString(prefix, localName, ns, RemoveInvalidXmlChars(value));
         }
 
         /// <summary>
         /// Safe version of WriteCData
         /// </summary>
         /// <param name="writer"></param>
-        /// <param name="text"></param>
-        public static void WriteSafeCData(this XmlWriter writer, string text)
+        /// <param name="value"></param>
+        public static void WriteSafeCData(this XmlWriter writer, string value)
         {
-            writer.WriteCData(RemoveInvalidXmlChars(text));
+            writer.WriteCData(RemoveInvalidXmlChars(value));
         }
     }
 }
