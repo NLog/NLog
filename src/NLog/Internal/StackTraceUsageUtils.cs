@@ -115,6 +115,14 @@ namespace NLog.Internal
                 }
             }
 
+            if (!includeNameSpace
+                && callerClassType?.DeclaringType != null
+                && callerClassType.IsNested
+                && callerClassType.GetCustomAttribute<CompilerGeneratedAttribute>() != null)
+            {
+                return callerClassType.DeclaringType.Name;
+            }
+
             string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
 
             if (cleanAnonymousDelegates && className != null)
