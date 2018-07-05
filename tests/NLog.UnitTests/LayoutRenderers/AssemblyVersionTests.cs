@@ -68,8 +68,8 @@ namespace NLog.UnitTests.LayoutRenderers
         public void AssemblyNameVersionTypeTest()
         {
             AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=assembly}", "2.0.0.0");
-            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=file}", "2.0.0.0");
-            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=informational}", "1.0.0");
+            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=file}", "2.0.0.1");
+            AssertLayoutRendererOutput("${assembly-version:name=NLogAutoLoadExtension:type=informational}", "2.0.0.2");
         }
 
 #if !NETSTANDARD
