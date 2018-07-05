@@ -202,6 +202,8 @@ namespace NLog.Config
         public void AddTarget([NotNull] Target target)
         {
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
+            if (target.Name == null) { throw new ArgumentNullException( nameof(target) + ".Name cannot be null." ); }
+
             AddTargetThreadSafe(target.Name, target, true);
         }
 
