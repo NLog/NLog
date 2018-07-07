@@ -47,14 +47,13 @@ namespace NLog.Internal
 
         internal static object CreateInstance(Type t)
         {
-            ConstructorInfo constructor = t.GetConstructor(ArrayHelper.Empty<Type>());
-            if (constructor != null)
+            try
             {
-                return constructor.Invoke(ArrayHelper.Empty<object>());
+                return Activator.CreateInstance(t);
             }
-            else
+            catch (MissingMethodException exception)
             {
-                throw new NLogConfigurationException($"Cannot access the constructor of type: {t.FullName}. Is the required permission granted?");
+                throw new NLogConfigurationException($"Cannot access the constructor of type: {t.FullName}. Is the required permission granted?", exception);
             }
         }
     }
