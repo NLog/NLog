@@ -360,12 +360,6 @@ namespace NLog.Targets
         public Win32FileAttributes FileAttributes { get; set; }
 #endif
 
-        /// <summary>
-        /// Should we capture the last write time of a file?
-        /// </summary>
-        bool ICreateFileParameters.CaptureLastWriteTime => ArchiveNumbering == ArchiveNumberingMode.Date ||
-                                                           ArchiveNumbering == ArchiveNumberingMode.DateAndSequence;
-
         bool ICreateFileParameters.IsArchivingEnabled => IsArchivingEnabled;
 
         /// <summary>
@@ -376,7 +370,6 @@ namespace NLog.Targets
         public LineEndingMode LineEnding
         {
             get => _lineEndingMode;
-
             set => _lineEndingMode = value;
         }
 
@@ -412,6 +405,13 @@ namespace NLog.Targets
         [DefaultValue(-1)]
         [Advanced]
         public int OpenFileCacheTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum number of seconds before open files are flushed. If this number is negative or zero
+        /// the files are not flushed by timer.
+        /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        public int OpenFileFlushTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets the log file buffer size in bytes.
@@ -925,14 +925,15 @@ namespace NLog.Targets
 
             _fileAppenderCache = new FileAppenderCache(OpenFileCacheSize, appenderFactory, this);
 
-            if ((OpenFileCacheSize > 0 || EnableFileDelete) && OpenFileCacheTimeout > 0)
+            if ((OpenFileCacheSize > 0 || EnableFileDelete) && (OpenFileCacheTimeout > 0 || OpenFileFlushTimeout > 0))
             {
+                int openFileAutoTimeout = Math.Min(Math.Max(OpenFileCacheTimeout,1), Math.Max(OpenFileFlushTimeout,1)) * 1000;
                 InternalLogger.Trace("FileTarget(Name={0}): Start autoClosingTimer", Name);
                 _autoClosingTimer = new Timer(
                     (state) => AutoClosingTimerCallback(this, EventArgs.Empty),
                     null,
-                    OpenFileCacheTimeout * 1000,
-                    OpenFileCacheTimeout * 1000);
+                    openFileAutoTimeout,
+                    openFileAutoTimeout);
             }
         }
 
@@ -1294,18 +1295,39 @@ namespace NLog.Targets
                     //todo maybe needs a better filelock behaviour
 
                     //copy to archive file.
-                    using (FileStream fileStream = File.Open(fileName, FileMode.Open))
+                    var fileShare = FileShare.ReadWrite;
+                    if (EnableFileDelete)
+                    {
+                        fileShare |= FileShare.Delete;
+                    }
+
+                    using (FileStream fileStream = File.Open(fileName, FileMode.Open, FileAccess.ReadWrite, fileShare))
                     using (FileStream archiveFileStream = File.Open(archiveFileName, FileMode.Append))
                     {
                         fileStream.CopyAndSkipBom(archiveFileStream, Encoding);
                         //clear old content
                         fileStream.SetLength(0);
+
+                        if (EnableFileDelete)
+                        {
+                            // Attempt to delete file to reset File-Creation-Time (Delete under file-lock)
+                            if (!DeleteOldArchiveFile(fileName))
+                            {
+                                fileShare &= ~FileShare.Delete;  // Retry after having released file-lock
+                            }
+                        }
+
                         fileStream.Close(); // This flushes the content, too.
 #if NET3_5
                         archiveFileStream.Flush();
 #else
                         archiveFileStream.Flush(true);
 #endif
+                    }
+
+                    if ((fileShare & FileShare.Delete) == FileShare.None)
+                    {
+                        DeleteOldArchiveFile(fileName); // Attempt to delete file to reset File-Creation-Time
                     }
                 }
                 else
@@ -1432,7 +1454,7 @@ namespace NLog.Targets
         private DateTime? GetArchiveDate(string fileName, LogEventInfo logEvent, DateTime previousLogEventTimestamp)
         {
             // Using File LastModifed to handle FileArchivePeriod.Month (where file creation time is one month ago)
-            var fileLastModifiedUtc = _fileAppenderCache.GetFileLastWriteTimeUtc(fileName, true);
+            var fileLastModifiedUtc = _fileAppenderCache.GetFileLastWriteTimeUtc(fileName);
 
             InternalLogger.Trace("FileTarget(Name={0}): Calculating archive date. File-LastModifiedUtc: {1}; Previous LogEvent-TimeStamp: {2}", Name, fileLastModifiedUtc, previousLogEventTimestamp);
             if (!fileLastModifiedUtc.HasValue)
@@ -1461,7 +1483,7 @@ namespace NLog.Targets
                 }
             }
 
-            InternalLogger.Trace("FileTarget(Name={0}): Using last write time", Name);
+            InternalLogger.Trace("FileTarget(Name={0}): Using last write time: {1}", Name, lastWriteTimeSource);
             return lastWriteTimeSource;
         }
 
@@ -1795,7 +1817,7 @@ namespace NLog.Targets
             }
 
             //this is an expensive call
-            var fileLength = _fileAppenderCache.GetFileLength(fileName, true);
+            var fileLength = _fileAppenderCache.GetFileLength(fileName);
             string fileToArchive = fileLength != null ? fileName : _previousLogFileName;
             return fileToArchive;
         }
@@ -1819,7 +1841,7 @@ namespace NLog.Targets
                 return null;
             }
 
-            var length = _fileAppenderCache.GetFileLength(previousFileName, true);
+            var length = _fileAppenderCache.GetFileLength(previousFileName);
             if (length == null)
             {
                 return null;
@@ -1861,7 +1883,7 @@ namespace NLog.Targets
 
             // Linux FileSystems doesn't always have file-birth-time, so NLog tries to provide a little help
             DateTime? fallbackTimeSourceLinux = (previousLogEventTimestamp != DateTime.MinValue && KeepFileOpen && !ConcurrentWrites && !NetworkWrites) ? previousLogEventTimestamp : (DateTime?)null;
-            var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, true, fallbackTimeSourceLinux);
+            var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, fallbackTimeSourceLinux);
             if (creationTimeSource == null)
             {
                 return null;
@@ -1951,9 +1973,25 @@ namespace NLog.Targets
                         return;
                     }
 
-                    DateTime expireTime = OpenFileCacheTimeout > 0 ? DateTime.UtcNow.AddSeconds(-OpenFileCacheTimeout) : DateTime.MinValue;
-                    InternalLogger.Trace("FileTarget(Name={0}): Stop CloseAppenders", Name);
-                    _fileAppenderCache.CloseAppenders(expireTime);
+                    if (!ReferenceEquals(sender, this))
+                    {
+                        InternalLogger.Trace("FileTarget(Name={0}): Auto Close FileAppenders after archive", Name);
+                        _fileAppenderCache.CloseAppenders(DateTime.MinValue);
+                    }
+                    else
+                    {
+                        if (OpenFileCacheTimeout > 0)
+                        {
+                            DateTime expireTime = DateTime.UtcNow.AddSeconds(-OpenFileCacheTimeout);
+                            InternalLogger.Trace("FileTarget(Name={0}): Auto Close FileAppenders", Name);
+                            _fileAppenderCache.CloseAppenders(expireTime);
+                        }
+
+                        if (OpenFileFlushTimeout > 0 && !AutoFlush)
+                        {
+                            ConditionalFlushOpenFileAppenders();
+                        }
+                    }
                 }
             }
             catch (Exception exception)
@@ -1964,6 +2002,28 @@ namespace NLog.Targets
                 {
                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
+            }
+        }
+
+        private void ConditionalFlushOpenFileAppenders()
+        {
+            DateTime flushTime = Time.TimeSource.Current.Time.AddSeconds(-Math.Max(OpenFileFlushTimeout, 5) * 2);
+
+            bool flushAppenders = false;
+            foreach (var file in _initializedFiles)
+            {
+                if (file.Value > flushTime)
+                {
+                    flushAppenders = true;
+                    break;
+                }
+            }
+
+            if (flushAppenders)
+            {
+                // Only request flush of file-handles, when something has been written
+                InternalLogger.Trace("FileTarget(Name={0}): Auto Flush FileAppenders", Name);
+                _fileAppenderCache.FlushAppenders();
             }
         }
 

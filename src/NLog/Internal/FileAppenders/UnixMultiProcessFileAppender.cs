@@ -181,19 +181,6 @@ namespace NLog.Internal.FileAppenders
         }
         
         /// <summary>
-        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
-        /// Universal Time [UTC] standard.
-        /// </summary>
-        /// <returns>The time the file was last written to.</returns>
-        public override DateTime? GetFileLastWriteTimeUtc()
-        {
-            FileInfo fileInfo = new FileInfo(FileName);
-            if (!fileInfo.Exists)
-                return null;
-            return fileInfo.LastWriteTime;
-        }
-
-        /// <summary>
         /// Gets the length in bytes of the file associated with the appeander.
         /// </summary>
         /// <returns>A long value representing the length of the file in bytes.</returns>

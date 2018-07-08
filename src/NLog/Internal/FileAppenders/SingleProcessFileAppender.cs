@@ -50,6 +50,8 @@ namespace NLog.Internal.FileAppenders
 
         private FileStream _file;
 
+        private DateTime _lastWriteTimeUtc;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SingleProcessFileAppender" /> class.
         /// </summary>
@@ -57,18 +59,8 @@ namespace NLog.Internal.FileAppenders
         /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            if (CaptureLastWriteTime)
-            {
-                var fileInfo = new FileInfo(fileName);
-                if (fileInfo.Exists)
-                {
-                    FileTouched(fileInfo.GetLastWriteTimeUtc());
-                }
-                else
-                {
-                    FileTouched();
-                }
-            }
+            var fileInfo = new FileInfo(fileName);
+            _lastWriteTimeUtc = fileInfo.Exists ? fileInfo.GetLastWriteTimeUtc() : DateTime.UtcNow;
             _file = CreateFileStream(false);
         }
 
@@ -87,10 +79,7 @@ namespace NLog.Internal.FileAppenders
 
             _file.Write(bytes, offset, count);
 
-            if (CaptureLastWriteTime)
-            {
-                FileTouched();
-            }
+            _lastWriteTimeUtc = DateTime.UtcNow;
         }
 
         /// <summary>
@@ -104,7 +93,6 @@ namespace NLog.Internal.FileAppenders
             }
 
             _file.Flush();
-            FileTouched();
         }
 
         /// <summary>
@@ -142,16 +130,6 @@ namespace NLog.Internal.FileAppenders
         public override DateTime? GetFileCreationTimeUtc()
         {
             return CreationTimeUtc;
-        }
-
-        /// <summary>
-        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
-        /// Universal Time [UTC] standard.
-        /// </summary>
-        /// <returns>The time the file was last written to.</returns>
-        public override DateTime? GetFileLastWriteTimeUtc()
-        {
-            return LastWriteTimeUtc;
         }
 
         /// <summary>

@@ -161,11 +161,6 @@ namespace NLog.Internal.FileAppenders
             if (_fileStream != null)
             {
                 _fileStream.Write(bytes, offset, count);
-
-                if (CaptureLastWriteTime)
-                {
-                    FileTouched();
-                }
             }
         }
 
@@ -193,7 +188,6 @@ namespace NLog.Internal.FileAppenders
             {
                 _fileStream = null;
             }
-            FileTouched();
         }
 
         /// <summary>
@@ -207,12 +201,6 @@ namespace NLog.Internal.FileAppenders
         public override DateTime? GetFileCreationTimeUtc()
         {
             return CreationTimeUtc; // File is kept open, so creation time is static
-        }
-
-        public override DateTime? GetFileLastWriteTimeUtc()
-        {
-            var fileChars = GetFileCharacteristics();
-            return fileChars?.LastWriteTimeUtc;
         }
 
         /// <summary>
