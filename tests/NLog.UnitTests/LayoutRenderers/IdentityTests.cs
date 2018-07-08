@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #if MONO
         [Fact(Skip = "MONO on Travis not supporting WindowsIdentity")]
 #else
-        [Fact]
+        [Fact(Skip ="Broken on AppVeyor")]
 #endif
         public void WindowsIdentityTest()
         {
