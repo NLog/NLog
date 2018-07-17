@@ -1472,13 +1472,19 @@ namespace NLog.Targets
             {
                 if (previousLogEventTimestamp > lastWriteTimeSource)
                 {
-                    InternalLogger.Trace("FileTarget(Name={0}): Using previous log event time (is more recent)", Name);
+                    InternalLogger.Trace("FileTarget(Name={0}): Using previous LogEvent-TimeStamp {1}, because more recent than File-LastModified {2}", Name, previousLogEventTimestamp, lastWriteTimeSource);
                     return previousLogEventTimestamp;
                 }
 
                 if (PreviousLogOverlappedPeriod(logEvent, previousLogEventTimestamp, lastWriteTimeSource))
                 {
-                    InternalLogger.Trace("FileTarget(Name={0}): Using previous log event time (previous log overlapped period)", Name);
+                    InternalLogger.Trace("FileTarget(Name={0}): Using previous LogEvent-TimeStamp {1}, because archive period is overlapping with File-LastModified {2}", Name, previousLogEventTimestamp, lastWriteTimeSource);
+                    return previousLogEventTimestamp;
+                }
+
+                if (!AutoFlush && KeepFileOpen && !ConcurrentWrites && !NetworkWrites && previousLogEventTimestamp < lastWriteTimeSource)
+                {
+                    InternalLogger.Trace("FileTarget(Name={0}): Using previous LogEvent-TimeStamp {1}, because AutoFlush=false affects File-LastModified {2}", Name, previousLogEventTimestamp, lastWriteTimeSource);
                     return previousLogEventTimestamp;
                 }
             }

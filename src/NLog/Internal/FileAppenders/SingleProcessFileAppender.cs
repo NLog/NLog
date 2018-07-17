@@ -50,8 +50,6 @@ namespace NLog.Internal.FileAppenders
 
         private FileStream _file;
 
-        private DateTime _lastWriteTimeUtc;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SingleProcessFileAppender" /> class.
         /// </summary>
@@ -59,8 +57,6 @@ namespace NLog.Internal.FileAppenders
         /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            var fileInfo = new FileInfo(fileName);
-            _lastWriteTimeUtc = fileInfo.Exists ? fileInfo.GetLastWriteTimeUtc() : DateTime.UtcNow;
             _file = CreateFileStream(false);
         }
 
@@ -78,8 +74,6 @@ namespace NLog.Internal.FileAppenders
             }
 
             _file.Write(bytes, offset, count);
-
-            _lastWriteTimeUtc = DateTime.UtcNow;
         }
 
         /// <summary>
