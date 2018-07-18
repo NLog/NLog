@@ -43,17 +43,17 @@ using JetBrains.Annotations;
 
 namespace NLog
 {
-    /// <summary>
+    /// <content>
     /// Logging methods which only are executed when the DEBUG conditional compilation symbol is set.
-    /// </summary>
-    /// <remarks>
+    ///
+    /// Remarks:
     /// The DEBUG conditional compilation symbol is default enabled (only) in a debug build.
     /// 
     /// If the DEBUG conditional compilation symbol isn't set in the calling library, the compiler will remove all the invocations to these methods. 
     /// This could lead to better performance. 
     /// 
     /// See: https://msdn.microsoft.com/en-us/library/4xssyw96%28v=vs.90%29.aspx
-    /// </remarks>
+    /// </content>
     public partial class Logger
     {
         #region ConditionalDebug
