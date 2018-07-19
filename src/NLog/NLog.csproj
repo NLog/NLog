@@ -33,19 +33,24 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 
-## Fixes 
+## Features
+- OutputDebugStringTarget - Support Xamarin iOS and Android (@snakefoot)
+- FileTarget - Introduced OpenFileFlushTimeout to help when AutoFlush = false (@snakefoot)
 
-- JsonSerializer - Generate valid Json when hitting the MaxRecursionLimit (@snakefoot)
-- Fixup for NLog.WindowsEventLog package: https://www.nuget.org/packages/NLog.WindowsEventLog
+## Fixes 
+- ${Callsite} fix class naming when includeNamespace=false and cleanNamesOfAnonymousDelegates=true (@Azatey)
+- JSON: Fixes issue where char types are not properly escaped (#2752) (@smbecker)
 
 ## Enhancements
-
-- FileTarget - Improve support for Linux FileSystem without BirthTime (@snakefoot)
+- FileTarget - Do not trust Last File Write TimeStamp when AutoFlush=false (@snakefoot)
+- Throw better error when target name is null (@masters3d)
+- ${Assembly-version} make GetAssembly protected and virtual (@alexangas)
+- LongDateLayoutRenderer: Improve comments (@stic)
+- NLog.WindowsEventLog: Update dependency System.Diagnostics.EventLog to RTM version (@304NotModified)
 
 ## Performance
+- Better performance with Activator.CreateInstance (@tangdf)
 
-- LogEventInfo - HasProperties should allocate PropertiesDicitonary when needed (@snakefoot)
-- JsonLayout - Reduce allocations when needing to escape string (44% time improvement) (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

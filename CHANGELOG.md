@@ -4,6 +4,30 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### v4.5.7 (2018/07/19)
+
+#### Features
+
+- [#2792](https://github.com/nlog/nlog/pull/2792) OutputDebugStringTarget - Support Xamarin iOS and Android (@snakefoot)
+- [#2776](https://github.com/nlog/nlog/pull/2776) FileTarget - Introduced OpenFileFlushTimeout to help when AutoFlush = false (@snakefoot)
+
+#### Fixes 
+
+- [#2761](https://github.com/nlog/nlog/pull/2761) ${Callsite} fix class naming when includeNamespace=false and cleanNamesOfAnonymousDelegates=true (@Azatey)
+- [#2752](https://github.com/nlog/nlog/pull/2752) JSON: Fixes issue where char types are not properly escaped (#2752) (@smbecker)
+
+#### Enhancements
+
+- [#2804](https://github.com/nlog/nlog/pull/2804) FileTarget - Do not trust Last File Write TimeStamp when AutoFlush=false (@snakefoot)
+- [#2763](https://github.com/nlog/nlog/pull/2763) Throw better error when target name is null (@masters3d)
+- [#2788](https://github.com/nlog/nlog/pull/2788) ${Assembly-version} make GetAssembly protected and virtual (@alexangas)
+- [#2756](https://github.com/nlog/nlog/pull/2756) LongDateLayoutRenderer: Improve comments (@stic)
+- [#2749](https://github.com/nlog/nlog/pull/2749) NLog.WindowsEventLog: Update dependency System.Diagnostics.EventLog to RTM version (@304NotModified)
+
+#### Performance
+
+- [#2797](https://github.com/nlog/nlog/pull/2797) Better performance with Activator.CreateInstance (@tangdf)
+
 
 ### v4.5.6 (2018/05/29)
 
@@ -38,7 +62,6 @@ Date format: (year/month/day)
 - [#2718](https://github.com/nlog/nlog/pull/2718) JsonLayout - Always stringify when requested (@snakefoot)
 - [#2739](https://github.com/nlog/nlog/pull/2739) Target.WriteAsyncLogEvents(IList) to public 
 
-
 #### Performance
 
 - [#2704](https://github.com/nlog/nlog/pull/2704) Allocation improvement in precalculating layouts (@snakefoot)
@@ -65,7 +88,6 @@ Date format: (year/month/day)
 #### Fixes
 
 - [#2662](https://github.com/nlog/nlog/pull/2662) FileTarget - Improve handling of archives with multiple active files (@snakefoot)
-
 
 #### Enhancements
 
