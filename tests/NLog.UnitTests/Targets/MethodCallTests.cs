@@ -139,8 +139,20 @@ namespace NLog.UnitTests.Targets
             TestMethodCall(new MethodCallRecord("StaticAndPublicOptional", "test1", 2, "fixedValue"), "StaticAndPublicOptional", CorrectClassName);
         }
 
+        [Fact]
+        public void FluentDelegateConfiguration()
+        {
+            var configuration = new LoggingConfiguration();
 
-      
+            string expectedMessage = "Hello World";
+            string actualMessage = string.Empty;
+            configuration.AddRuleForAllLevels(new MethodCallTarget("Hello", (logEvent, parameters) => { actualMessage = logEvent.Message; }));
+            LogManager.Configuration = configuration;
+
+            LogManager.GetCurrentClassLogger().Debug(expectedMessage);
+
+            Assert.Equal(expectedMessage, actualMessage);
+        }
 
         private static void TestMethodCall(MethodCallRecord expected, string methodName, string className)
         {
