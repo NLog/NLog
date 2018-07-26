@@ -45,6 +45,7 @@ namespace NLog.Config
     using NLog.Internal;
     using NLog.Layouts;
     using NLog.Targets;
+    using NLog.Targets.Wrappers;
 
     /// <summary>
     /// Keeps logging configuration and provides simple API
@@ -64,10 +65,24 @@ namespace NLog.Config
         private readonly Dictionary<string, SimpleLayout> _variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
+        /// Gets the factory that will be configured
+        /// </summary>
+        public LogFactory LogFactory { get; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
         /// </summary>
         public LoggingConfiguration()
+            : this(LogManager.LogFactory)
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoggingConfiguration" /> class.
+        /// </summary>
+        public LoggingConfiguration(LogFactory logFactory)
+        {
+            LogFactory = logFactory;
             LoggingRules = new List<LoggingRule>();
         }
 
@@ -104,11 +119,12 @@ namespace NLog.Config
         /// </summary>
         public IList<LoggingRule> LoggingRules { get; private set; }
 
-        internal List<LoggingRule> GetLoggingRulesThreadSafe() {  lock (LoggingRules) return LoggingRules.ToList(); }
+        internal List<LoggingRule> GetLoggingRulesThreadSafe() { lock (LoggingRules) return LoggingRules.ToList(); }
         private void AddLoggingRulesThreadSafe(LoggingRule rule) { lock (LoggingRules) LoggingRules.Add(rule); }
 
         private bool TryGetTargetThreadSafe(string name, out Target target) { lock (_targets) return _targets.TryGetValue(name, out target); }
         private List<Target> GetAllTargetsThreadSafe() { lock (_targets) return _targets.Values.ToList(); }
+
         private Target RemoveTargetThreadSafe(string name)
         {
             Target target;
@@ -126,6 +142,7 @@ namespace NLog.Config
             }
             return target;
         }
+
         private void AddTargetThreadSafe(string name, Target target, bool forceOverwrite)
         {
             if (string.IsNullOrEmpty(name) && !forceOverwrite)
@@ -202,7 +219,7 @@ namespace NLog.Config
         public void AddTarget([NotNull] Target target)
         {
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
-            if (target.Name == null) { throw new ArgumentNullException( nameof(target) + ".Name cannot be null." ); }
+            if (target.Name == null) { throw new ArgumentNullException(nameof(target) + ".Name cannot be null."); }
 
             AddTargetThreadSafe(target.Name, target, true);
         }
@@ -337,7 +354,7 @@ namespace NLog.Config
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
             AddRuleForOneLevel(level, target, loggerNamePattern, false);
         }
-        
+
         /// <summary>
         /// Add a rule for one loglevel.
         /// </summary>
@@ -369,7 +386,7 @@ namespace NLog.Config
 
             AddRuleForAllLevels(target, loggerNamePattern, false);
         }
-        
+
         /// <summary>
         /// Add a rule for alle loglevels.
         /// </summary>
@@ -380,7 +397,7 @@ namespace NLog.Config
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
             AddRuleForAllLevels(target, loggerNamePattern, false);
         }
-        
+
         /// <summary>
         /// Add a rule for alle loglevels.
         /// </summary>
@@ -444,7 +461,14 @@ namespace NLog.Config
 
                 // Refresh active logger-objects, so they stop using the removed target
                 //  - Can be called even if no LoggingConfiguration is loaded (will not trigger a config load)
-                LogManager.ReconfigExistingLoggers();
+                if (LogFactory != null)
+                {
+                    LogFactory.ReconfigExistingLoggers();
+                }
+                else
+                {
+                    LogManager.ReconfigExistingLoggers();
+                }
 
                 // Perform flush and close after having stopped logger-objects from using the target
                 ManualResetEvent flushCompleted = new ManualResetEvent(false);
@@ -709,6 +733,82 @@ namespace NLog.Config
             {
                 Variables[variable.Key] = variable.Value;
             }
+        }
+
+        /// <summary>
+        /// Replace a simple variable with a value. The orginal value is removed and thus we cannot redo this in a later stage.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        internal string ExpandSimpleVariables(string input)
+        {
+            string output = input;
+
+            // TODO - make this case-insensitive, will probably require a different approach
+            var variables = Variables.ToList();
+            foreach (var kvp in variables)
+            {
+                var layout = kvp.Value;
+                //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
+                if (layout != null) output = output.Replace(string.Concat("${", kvp.Key, "}"), layout.OriginalText);
+            }
+
+            return output;
+        }
+
+        /// <summary>
+        /// Checks whether unused targets exist. If found any, just write an internal log at Warn level.
+        /// <remarks>If initializing not started or failed, then checking process will be canceled</remarks>
+        /// </summary>
+        internal void CheckUnusedTargets()
+        {
+            ReadOnlyCollection<Target> configuredNamedTargets = ConfiguredNamedTargets; //assign to variable because `ConfiguredNamedTargets` computes a new list every time.
+            InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", LoggingRules.Count, configuredNamedTargets.Count);
+
+            HashSet<string> targetNamesAtRules = new HashSet<string>(GetLoggingRulesThreadSafe().SelectMany(r => r.Targets).Select(t => t.Name));
+            var wrappedTargets = configuredNamedTargets.OfType<WrapperTargetBase>().ToLookup(wt => wt.WrappedTarget, wt => wt);
+            var compoundTargets = configuredNamedTargets.OfType<CompoundTargetBase>().SelectMany(wt => wt.Targets.Select(t => new KeyValuePair<Target, Target>(t, wt))).ToLookup(p => p.Key, p => p.Value);
+
+            int unusedCount = configuredNamedTargets.Count((target) =>
+            {
+                if (targetNamesAtRules.Contains(target.Name))
+                    return false;
+
+                if (wrappedTargets.Contains(target))
+                {
+                    foreach (var wrapperTarget in wrappedTargets[target])
+                    {
+                        if (targetNamesAtRules.Contains(wrapperTarget.Name))
+                            return false;
+
+                        if (wrappedTargets.Contains(wrapperTarget))
+                            return false;   // Double nested targets are too complicated
+
+                        if (compoundTargets.Contains(wrapperTarget))
+                            return false;   // Double nested targets are too complicated
+                    }
+                }
+
+                if (compoundTargets.Contains(target))
+                {
+                    foreach (var wrapperTarget in compoundTargets[target])
+                    {
+                        if (targetNamesAtRules.Contains(wrapperTarget.Name))
+                            return false;
+
+                        if (wrappedTargets.Contains(wrapperTarget))
+                            return false;   // Double nested targets are too complicated
+
+                        if (compoundTargets.Contains(wrapperTarget))
+                            return false;   // Double nested targets are too complicated
+                    }
+                }
+
+                InternalLogger.Warn("Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
+                return true;
+            });
+
+            InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
         }
     }
 }

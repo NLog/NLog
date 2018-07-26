@@ -81,7 +81,6 @@ namespace NLog.Config
 
         private string _originalFileName;
 
-        private readonly LogFactory _logFactory;
 
         private ConfigurationItemFactory ConfigurationItemFactory => ConfigurationItemFactory.Default;
 
@@ -122,9 +121,8 @@ namespace NLog.Config
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         public XmlLoggingConfiguration(string fileName, bool ignoreErrors, LogFactory logFactory)
+            : base(logFactory)
         {
-            _logFactory = logFactory;
-
             using (XmlReader reader = CreateFileReader(fileName))
             {
                 Initialize(reader, fileName, ignoreErrors);
@@ -193,8 +191,8 @@ namespace NLog.Config
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         public XmlLoggingConfiguration(XmlReader reader, string fileName, bool ignoreErrors, LogFactory logFactory)
+            : base(logFactory)
         {
-            _logFactory = logFactory;
             Initialize(reader, fileName, ignoreErrors);
         }
 
@@ -206,8 +204,6 @@ namespace NLog.Config
         /// <param name="fileName">Name of the XML file.</param>
         internal XmlLoggingConfiguration(XmlElement element, string fileName)
         {
-            _logFactory = LogManager.LogFactory;
-
             using (var stringReader = new StringReader(element.OuterXml))
             {
                 XmlReader reader = XmlReader.Create(stringReader);
@@ -224,8 +220,6 @@ namespace NLog.Config
         /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
         internal XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
         {
-            _logFactory = LogManager.LogFactory;
-
             using (var stringReader = new StringReader(element.OuterXml))
             {
                 XmlReader reader = XmlReader.Create(stringReader);
@@ -470,43 +464,6 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Checks whether unused targets exist. If found any, just write an internal log at Warn level.
-        /// <remarks>If initializing not started or failed, then checking process will be canceled</remarks>
-        /// </summary>
-        private void CheckUnusedTargets()
-        {
-            if (InitializeSucceeded == null)
-            {
-                InternalLogger.Warn("Unused target checking is canceled -> initialize not started yet.");
-                return;
-            }
-            if (!InitializeSucceeded.Value)
-            {
-                InternalLogger.Warn("Unused target checking is canceled -> initialize not succeeded.");
-                return;
-            }
-
-            ReadOnlyCollection<Target> configuredNamedTargets = ConfiguredNamedTargets; //assign to variable because `ConfiguredNamedTargets` computes a new list every time.
-            InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", LoggingRules.Count, configuredNamedTargets.Count);
-
-            HashSet<string> targetNamesAtRules = new HashSet<string>(GetLoggingRulesThreadSafe().SelectMany(r => r.Targets).Select(t => t.Name));
-            HashSet<string> wrappedTargetNames = new HashSet<string>(configuredNamedTargets.OfType<WrapperTargetBase>().Select(wt => wt.WrappedTarget.Name));
-
-
-            int unusedCount = 0;
-            configuredNamedTargets.ToList().ForEach((target) =>
-            {
-                if (!targetNamesAtRules.Contains(target.Name) && !wrappedTargetNames.Contains(target.Name))
-                {
-                    InternalLogger.Warn("Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
-                    unusedCount++;
-                }
-            });
-
-            InternalLogger.Debug("Unused target checking is completed. Total Rule Count: {0}, Total Target Count: {1}, Unused Target Count: {2}", LoggingRules.Count, configuredNamedTargets.Count, unusedCount);
-        }
-
-        /// <summary>
         /// Add a file with configuration. Check if not already included.
         /// </summary>
         /// <param name="fileName"></param>
@@ -586,9 +543,9 @@ namespace NLog.Config
             if (filePath != null)
                 _fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
 
-            _logFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", _logFactory.ThrowExceptions);
-            _logFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", _logFactory.ThrowConfigExceptions);
-            _logFactory.KeepVariablesOnReload = nlogElement.GetOptionalBooleanAttribute("keepVariablesOnReload", _logFactory.KeepVariablesOnReload);
+            LogFactory.ThrowExceptions = nlogElement.GetOptionalBooleanAttribute("throwExceptions", LogFactory.ThrowExceptions);
+            LogFactory.ThrowConfigExceptions = nlogElement.GetOptionalBooleanAttribute("throwConfigExceptions", LogFactory.ThrowConfigExceptions);
+            LogFactory.KeepVariablesOnReload = nlogElement.GetOptionalBooleanAttribute("keepVariablesOnReload", LogFactory.KeepVariablesOnReload);
             InternalLogger.LogToConsole = nlogElement.GetOptionalBooleanAttribute("internalLogToConsole", InternalLogger.LogToConsole);
             InternalLogger.LogToConsoleError = nlogElement.GetOptionalBooleanAttribute("internalLogToConsoleError", InternalLogger.LogToConsoleError);
             InternalLogger.LogFile = nlogElement.GetOptionalAttribute("internalLogFile", InternalLogger.LogFile);
@@ -600,7 +557,7 @@ namespace NLog.Config
             InternalLogger.LogToTrace = nlogElement.GetOptionalBooleanAttribute("internalLogToTrace", InternalLogger.LogToTrace);
 #endif
             InternalLogger.IncludeTimestamp = nlogElement.GetOptionalBooleanAttribute("internalLogIncludeTimestamp", InternalLogger.IncludeTimestamp);
-            _logFactory.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", _logFactory.GlobalThreshold.Name));
+            LogFactory.GlobalThreshold = LogLevel.FromString(nlogElement.GetOptionalAttribute("globalThreshold", LogFactory.GlobalThreshold.Name));
 
             var children = nlogElement.Children.ToList();
 
@@ -1422,30 +1379,6 @@ namespace NLog.Config
                 return null;
 
             return ConfigurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
-        }
-
-        /// <summary>
-        /// Replace a simple variable with a value. The orginal value is removed and thus we cannot redo this in a later stage.
-        /// 
-        /// Use for that: <see cref="VariableLayoutRenderer"/>
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        private string ExpandSimpleVariables(string input)
-        {
-            string output = input;
-
-            // TODO - make this case-insensitive, will probably require a different approach
-            var variables = Variables.ToList();
-            foreach (var kvp in variables)
-            {
-                var layout = kvp.Value;
-                //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
-
-                if (layout != null) output = output.Replace("${" + kvp.Key + "}", layout.OriginalText);
-            }
-
-            return output;
         }
     }
 }

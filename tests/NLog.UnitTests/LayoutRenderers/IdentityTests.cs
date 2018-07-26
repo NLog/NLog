@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #if MONO
         [Fact(Skip = "MONO on Travis not supporting WindowsIdentity")]
 #else
-        [Fact(Skip ="Broken on AppVeyor")]
+        [Fact]
 #endif
         public void WindowsIdentityTest()
         {
@@ -200,7 +200,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
             }
 
-        #region Overrides of GenericIdentity
+#region Overrides of GenericIdentity
 
             /// <summary>
             /// Gets a value indicating whether the user has been authenticated.
@@ -210,7 +210,7 @@ namespace NLog.UnitTests.LayoutRenderers
             /// </returns>
             public override bool IsAuthenticated => false;
 
-            #endregion
+#endregion
         }
     }
 }
