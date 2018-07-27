@@ -104,8 +104,8 @@ namespace NLog.Targets
         /// Gets or sets the database parameter type.
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
-        [DefaultValue(DbType.AnsiString)]
-        public DbType DbType { get; set; }
+        [DefaultValue(null)]
+        public DbType? DbType { get; set; }
     }
 }
 
