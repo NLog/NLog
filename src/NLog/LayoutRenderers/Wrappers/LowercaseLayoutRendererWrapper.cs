@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Globalization;
+    using System.Text;
     using NLog.Config;
 
     /// <summary>
@@ -70,35 +71,63 @@ namespace NLog.LayoutRenderers.Wrappers
         public CultureInfo Culture { get; set; }
 
         /// <summary>
+        /// Render to local target using Inner Layout, and then transform before final append
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="logEvent"></param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            int orgLength = builder.Length;
+            try
+            {
+                RenderFormattedMessage(logEvent, builder);
+                if (Lowercase)
+                {
+                    TransformToLowerCase(builder, orgLength);
+                }
+            }
+            catch
+            {
+                builder.Length = orgLength; // Unwind/Truncate on exception
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
         /// <param name="target">Output to be post-processed.</param>
-        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (Lowercase)
+            if (Lowercase && target?.Length > 0)
             {
-                CultureInfo culture = Culture;
+                TransformToLowerCase(target, 0);
+            }
+        }
+
+        private void TransformToLowerCase(StringBuilder target, int startPos)
+        {
+            CultureInfo culture = Culture;
 
 #if NETSTANDARD1_0
-                string stringToLower = null;
-                if (culture != null && culture != CultureInfo.InvariantCulture)
-                {
-                    stringToLower = target.ToString();
-                    stringToLower = culture.TextInfo.ToLower(stringToLower);
-                }
+            string stringToLower = null;
+            if (culture != null && culture != CultureInfo.InvariantCulture)
+            {
+                stringToLower = target.ToString(startPos, target.Length - startPos);
+                stringToLower = culture.TextInfo.ToLower(stringToLower);
+            }
 #endif
 
-                for (int i = 0; i < target.Length; ++i)
-                {
+            for (int i = startPos; i < target.Length; ++i)
+            {
 #if NETSTANDARD1_0
-                    if (stringToLower != null)
-                        target[i] = stringToLower[i];    //no char.ToLower with culture
-                    else
-                        target[i] = char.ToLowerInvariant(target[i]);
+                if (stringToLower != null)
+                    target[i] = stringToLower[i];    //no char.ToLower with culture
+                else
+                    target[i] = char.ToLowerInvariant(target[i]);
 #else
-                    target[i] = char.ToLower(target[i], culture);
+                target[i] = char.ToLower(target[i], culture);
 #endif
-                }
             }
         }
     }

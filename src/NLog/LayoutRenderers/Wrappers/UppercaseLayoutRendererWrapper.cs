@@ -35,6 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Globalization;
+    using System.Text;
     using NLog.Config;
 
     /// <summary>
@@ -75,35 +76,63 @@ namespace NLog.LayoutRenderers.Wrappers
         public CultureInfo Culture { get; set; }
 
         /// <summary>
+        /// Render to local target using Inner Layout, and then transform before final append
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="logEvent"></param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            int orgLength = builder.Length;
+            try
+            {
+                RenderFormattedMessage(logEvent, builder);
+                if (Uppercase)
+                {
+                    TransformToUpperCase(builder, orgLength);
+                }
+            }
+            catch
+            {
+                builder.Length = orgLength; // Unwind/Truncate on exception
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Post-processes the rendered message. 
         /// </summary>
         /// <param name="target">Output to be post-processed.</param>
-        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (Uppercase)
+            if (Uppercase && target?.Length > 0)
             {
-                CultureInfo culture = Culture;
+                TransformToUpperCase(target, 0);
+            }
+        }
+
+        private void TransformToUpperCase(StringBuilder target, int startPos)
+        {
+            CultureInfo culture = Culture;
 
 #if NETSTANDARD1_0
-                string stringToUpper = null;
-                if (culture != null && culture != CultureInfo.InvariantCulture)
-                {
-                    stringToUpper = target.ToString();
-                    stringToUpper = culture.TextInfo.ToUpper(stringToUpper);
-                }
+            string stringToUpper = null;
+            if (culture != null && culture != CultureInfo.InvariantCulture)
+            {
+                stringToUpper = target.ToString(startPos, target.Length - startPos);
+                stringToUpper = culture.TextInfo.ToUpper(stringToUpper);
+            }
 #endif
 
-                for (int i = 0; i < target.Length; ++i)
-                {
+            for (int i = startPos; i < target.Length; ++i)
+            {
 #if NETSTANDARD1_0
-                    if (stringToUpper != null)
-                        target[i] = stringToUpper[i];    //no char.ToUpper with culture
-                    else
-                        target[i] = char.ToUpperInvariant(target[i]);                      
+                if (stringToUpper != null)
+                    target[i] = stringToUpper[i];    //no char.ToUpper with culture
+                else
+                    target[i] = char.ToUpperInvariant(target[i]);
 #else
-                    target[i] = char.ToUpper(target[i], culture);
+                target[i] = char.ToUpper(target[i], culture);
 #endif
-                }
             }
         }
     }

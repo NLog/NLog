@@ -63,20 +63,48 @@ namespace NLog.LayoutRenderers.Wrappers
         public bool FSNormalize { get; set; }
 
         /// <summary>
+        /// Render to local target using Inner Layout, and replaces all non-safe characters with underscore to make valid filepath
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="logEvent"></param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            int orgLength = builder.Length;
+            try
+            {
+                RenderFormattedMessage(logEvent, builder);
+                if (FSNormalize)
+                {
+                    TransformFileSystemNormalize(builder, orgLength);
+                }
+            }
+            catch
+            {
+                builder.Length = orgLength; // Unwind/Truncate on exception
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Replaces all non-safe characters with underscore to make valid filepath
         /// </summary>
         /// <param name="target">Output to be transformed.</param>
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (FSNormalize)
+            if (FSNormalize && target?.Length > 0)
             {
-                for (int i = 0; i < target.Length; i++)
+                TransformFileSystemNormalize(target, 0);
+            }
+        }
+
+        private static void TransformFileSystemNormalize(StringBuilder builder, int startPos)
+        {
+            for (int i = startPos; i < builder.Length; i++)
+            {
+                char c = builder[i];
+                if (!IsSafeCharacter(c))
                 {
-                    char c = target[i];
-                    if (!IsSafeCharacter(c))
-                    {
-                        target[i] = '_';
-                    }
+                    builder[i] = '_';
                 }
             }
         }

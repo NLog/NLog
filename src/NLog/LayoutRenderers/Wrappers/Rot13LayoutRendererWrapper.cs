@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Text;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -67,26 +68,29 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Encoded/Decoded text.</returns>
         public static string DecodeRot13(string encodedValue)
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder(encodedValue.Length);
+            var sb = new StringBuilder(encodedValue.Length);
             sb.Append(encodedValue);
-            DecodeRot13(sb);
+            DecodeRot13(sb, 0);
             return sb.ToString();
         }
 
         /// <summary>
-        /// Encodes/Decodes ROT-13-encoded string.
+        /// Render to local target using Inner Layout, and transforms into ROT-13-encoded string
         /// </summary>
-        /// <param name="encodedValue">The string to be encoded/decoded.</param>
-        internal static void DecodeRot13(System.Text.StringBuilder encodedValue)
+        /// <param name="builder"></param>
+        /// <param name="logEvent"></param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (encodedValue == null)
+            int orgLength = builder.Length;
+            try
             {
-                return;
+                RenderFormattedMessage(logEvent, builder);
+                DecodeRot13(builder, orgLength);
             }
-
-            for (int i = 0; i < encodedValue.Length; ++i)
+            catch
             {
-                encodedValue[i] = DecodeRot13Char(encodedValue[i]);
+                builder.Length = orgLength; // Unwind/Truncate on exception
+                throw;
             }
         }
 
@@ -94,9 +98,27 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Post-processes the rendered message. 
         /// </summary>
         /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            DecodeRot13(target);
+            DecodeRot13(target, 0);
+        }
+
+        /// <summary>
+        /// Encodes/Decodes ROT-13-encoded string.
+        /// </summary>
+        /// <param name="encodedValue">The string to be encoded/decoded.</param>
+        /// <param name="startPos">The string to be encoded/decoded.</param>
+        internal static void DecodeRot13(StringBuilder encodedValue, int startPos)
+        {
+            if (encodedValue == null)
+            {
+                return;
+            }
+
+            for (int i = startPos; i < encodedValue.Length; ++i)
+            {
+                encodedValue[i] = DecodeRot13Char(encodedValue[i]);
+            }
         }
 
         private static char DecodeRot13Char(char c)

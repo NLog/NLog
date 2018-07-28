@@ -35,7 +35,9 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
     using System.ComponentModel;
+    using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Replaces newline characters from the result of another layout renderer with spaces.
@@ -60,6 +62,38 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Transformation Options' order='10' />
         [DefaultValue(" ")]
         public string Replacement { get; set; }
+
+        /// <summary>
+        /// Render to local target using Inner Layout, and then transform before final append
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="logEvent"></param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            int orgLength = builder.Length;
+            try
+            {
+                RenderFormattedMessage(logEvent, builder);
+                if (builder.Length > orgLength)
+                {
+                    string newLine = Environment.NewLine;
+                    if (!string.IsNullOrEmpty(newLine) && builder.IndexOf(newLine[newLine.Length - 1], orgLength) >= 0)
+                    {
+                        string str = builder.ToString(orgLength, builder.Length - orgLength);
+                        str = str.Replace(newLine, Replacement);
+                        if (newLine != "\n" && !(Replacement?.IndexOf('\n') >= 0) && str.IndexOf('\n') >= 0)
+                            str = str.Replace("\n", Replacement);   // Recognize Unix-Newline on Windows-platform
+                        builder.Length = orgLength;
+                        builder.Append(str);
+                    }
+                }
+            }
+            catch
+            {
+                builder.Length = orgLength; // Unwind/Truncate on exception
+                throw;
+            }
+        }
 
         /// <summary>
         /// Post-processes the rendered message. 

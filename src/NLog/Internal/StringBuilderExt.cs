@@ -224,6 +224,21 @@ namespace NLog.Internal
         }
 
         /// <summary>
+        /// Scans the StringBuilder for the position of needle character
+        /// </summary>
+        /// <param name="builder">StringBuilder source</param>
+        /// <param name="needle">needle character to search for</param>
+        /// <param name="startPos"></param>
+        /// <returns>Index of the first occurrence (Else -1)</returns>
+        public static int IndexOf(this StringBuilder builder, char needle, int startPos = 0)
+        {
+            for (int i = startPos; i < builder.Length; ++i)
+                if (builder[i] == needle)
+                    return i;
+            return -1;
+        }
+
+        /// <summary>
         /// Append a number and pad with 0 to 2 digits
         /// </summary>
         /// <param name="builder">append to this</param>
