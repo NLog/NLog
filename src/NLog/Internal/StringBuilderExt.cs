@@ -34,7 +34,6 @@
 using System;
 using System.IO;
 using System.Text;
-using NLog.Config;
 using NLog.MessageTemplates;
 
 namespace NLog.Internal
@@ -236,6 +235,47 @@ namespace NLog.Internal
                 if (builder[i] == needle)
                     return i;
             return -1;
+        }
+
+        /// <summary>
+        /// Compares the contents of two StringBuilders
+        /// </summary>
+        /// <remarks>
+        /// Correct implementation of <see cref="StringBuilder.Equals(StringBuilder)" /> that also works when <see cref="StringBuilder.Capacity"/> is not the same
+        /// </remarks>
+        /// <returns>True when content is the same</returns>
+        public static bool EqualTo(this StringBuilder builder, StringBuilder other)
+        {
+            if (builder.Length != other.Length)
+                return false;
+
+            for (int x = 0; x < builder.Length; ++x)
+            {
+                if (builder[x] != other[x])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Compares the contents of a StringBuilder and a String
+        /// </summary>
+        /// <returns>True when content is the same</returns>
+        public static bool EqualTo(this StringBuilder builder, string other)
+        {
+            if (builder.Length != other.Length)
+                return false;
+
+            for (int i = 0; i < other.Length; ++i)
+            {
+                if (builder[i] != other[i])
+                    return false;
+            }
+
+            return true;
         }
 
         /// <summary>
