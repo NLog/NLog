@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System.Text;
     using NLog.Config;
 
     /// <summary>
@@ -43,6 +44,28 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadSafe]
     public sealed class OnExceptionLayoutRendererWrapper : WrapperLayoutRendererBase
     {
+        /// <summary>
+        /// Renders the inner layout contents.
+        /// </summary>
+        /// <param name="builder"><see cref="StringBuilder"/> for the result</param>
+        /// <param name="logEvent">The log event.</param>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            int orgLength = builder.Length;
+            try
+            {
+                if (logEvent.Exception != null)
+                {
+                    Inner.RenderAppendBuilder(logEvent, builder);
+                }
+            }
+            catch
+            {
+                builder.Length = orgLength; // Rewind/Truncate on exception
+                throw;
+            }
+        }
+
         /// <summary>
         /// Transforms the output of another layout.
         /// </summary>
