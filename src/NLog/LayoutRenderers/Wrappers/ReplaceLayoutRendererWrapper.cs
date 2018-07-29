@@ -132,11 +132,15 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Post-processed text.</returns>
         protected override string Transform(string text)
         {
-            var replacer = new Replacer(text, ReplaceGroupName, ReplaceWith);
-
-            return string.IsNullOrEmpty(ReplaceGroupName) ?
-                _regex.Replace(text, ReplaceWith)
-                : _regex.Replace(text, replacer.EvaluateMatch);
+            if (string.IsNullOrEmpty(ReplaceGroupName))
+            {
+                return _regex.Replace(text, ReplaceWith);
+            }
+            else
+            {
+                var replacer = new Replacer(text, ReplaceGroupName, ReplaceWith);
+                return _regex.Replace(text, replacer.EvaluateMatch);
+            }
         }
 
         /// <summary>
