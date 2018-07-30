@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
@@ -62,39 +63,20 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(true)]
         public bool TrimWhiteSpace { get; set; }
 
-        /// <summary>
-        /// Render to local target using Inner Layout, and then transform before final append
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="logEvent"></param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            int orgLength = builder.Length;
-            try
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (TrimWhiteSpace && builder.Length > orgLength)
             {
-                RenderFormattedMessage(logEvent, builder);
-                if (TrimWhiteSpace)
-                {
-                    TransformTrimWhiteSpaces(builder, orgLength);
-                }
-            }
-            catch
-            {
-                builder.Length = orgLength; // Unwind/Truncate on exception
-                throw;
+                TransformTrimWhiteSpaces(builder, orgLength);
             }
         }
 
-        /// <summary>
-        /// Removes white-spaces from both sides of the provided target
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
+        /// <inheritdoc/>
+        [Obsolete("Replaced by override of RenderInnerAndTransform().")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (TrimWhiteSpace && target?.Length > 0)
-            {
-                TransformTrimWhiteSpaces(target, 0);
-            }
         }
 
         private static void TransformTrimWhiteSpaces(StringBuilder builder, int startPos)

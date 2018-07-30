@@ -44,25 +44,12 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadSafe]
     public sealed class OnExceptionLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="builder"><see cref="StringBuilder"/> for the result</param>
-        /// <param name="logEvent">The log event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            int orgLength = builder.Length;
-            try
+            if (logEvent.Exception != null)
             {
-                if (logEvent.Exception != null)
-                {
-                    Inner.RenderAppendBuilder(logEvent, builder);
-                }
-            }
-            catch
-            {
-                builder.Length = orgLength; // Rewind/Truncate on exception
-                throw;
+                Inner.RenderAppendBuilder(logEvent, builder);
             }
         }
 
@@ -74,23 +61,6 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override string Transform(string text)
         {
             return text;
-        }
-
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <returns>
-        /// Contents of inner layout.
-        /// </returns>
-        protected override string RenderInner(LogEventInfo logEvent)
-        {
-            if (logEvent.Exception != null)
-            {
-                return base.RenderInner(logEvent);
-            }
-
-            return string.Empty;
         }
     }
 }

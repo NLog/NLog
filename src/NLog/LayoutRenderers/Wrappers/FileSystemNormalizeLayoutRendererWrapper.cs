@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
@@ -62,39 +63,20 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(true)]
         public bool FSNormalize { get; set; }
 
-        /// <summary>
-        /// Render to local target using Inner Layout, and replaces all non-safe characters with underscore to make valid filepath
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="logEvent"></param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            int orgLength = builder.Length;
-            try
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (FSNormalize && builder.Length > orgLength)
             {
-                RenderFormattedMessage(logEvent, builder);
-                if (FSNormalize)
-                {
-                    TransformFileSystemNormalize(builder, orgLength);
-                }
-            }
-            catch
-            {
-                builder.Length = orgLength; // Unwind/Truncate on exception
-                throw;
+                TransformFileSystemNormalize(builder, orgLength);
             }
         }
 
-        /// <summary>
-        /// Replaces all non-safe characters with underscore to make valid filepath
-        /// </summary>
-        /// <param name="target">Output to be transformed.</param>
+        /// <inheritdoc/>
+        [Obsolete("Replaced by override of RenderInnerAndTransform().")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (FSNormalize && target?.Length > 0)
-            {
-                TransformFileSystemNormalize(target, 0);
-            }
         }
 
         private static void TransformFileSystemNormalize(StringBuilder builder, int startPos)

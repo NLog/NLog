@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
@@ -75,39 +76,20 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Transformation Options' order='10' />
         public CultureInfo Culture { get; set; }
 
-        /// <summary>
-        /// Render to local target using Inner Layout, and then transform before final append
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="logEvent"></param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            int orgLength = builder.Length;
-            try
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (Uppercase && builder.Length > orgLength)
             {
-                RenderFormattedMessage(logEvent, builder);
-                if (Uppercase)
-                {
-                    TransformToUpperCase(builder, orgLength);
-                }
-            }
-            catch
-            {
-                builder.Length = orgLength; // Unwind/Truncate on exception
-                throw;
+                TransformToUpperCase(builder, orgLength);
             }
         }
 
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="target">Output to be post-processed.</param>
+        /// <inheritdoc/>
+        [Obsolete("Replaced by override of RenderInnerAndTransform().")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (Uppercase && target?.Length > 0)
-            {
-                TransformToUpperCase(target, 0);
-            }
         }
 
         private void TransformToUpperCase(StringBuilder target, int startPos)

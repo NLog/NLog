@@ -70,46 +70,25 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(true)]
         public bool EscapeUnicode { get; set; }
 
-        /// <summary>
-        /// Render to local target using Inner Layout, and then transform before final append
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="logEvent"></param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            int orgLength = builder.Length;
-            try
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (JsonEncode && builder.Length > orgLength)
             {
-                RenderFormattedMessage(logEvent, builder);
-                if (JsonEncode)
+                if (RequiresJsonEncode(builder, orgLength))
                 {
-                    if (RequiresJsonEncode(builder, orgLength))
-                    {
-                        var str = builder.ToString(orgLength, builder.Length - orgLength);
-                        builder.Length = orgLength;
-                        Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, EscapeUnicode);
-                    }
+                    var str = builder.ToString(orgLength, builder.Length - orgLength);
+                    builder.Length = orgLength;
+                    Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, EscapeUnicode);
                 }
-            }
-            catch
-            {
-                builder.Length = orgLength; // Unwind/Truncate on exception
-                throw;
             }
         }
 
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="target">The text to be JSON-encoded.</param>
+        /// <inheritdoc/>
+        [Obsolete("Replaced by override of RenderInnerAndTransform().")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (JsonEncode && RequiresJsonEncode(target))
-            {
-                var str = target.ToString();
-                target.Length = 0;
-                Targets.DefaultJsonSerializer.AppendStringEscape(target, str, EscapeUnicode);
-            }
         }
 
         private bool RequiresJsonEncode(StringBuilder target, int startPos = 0)

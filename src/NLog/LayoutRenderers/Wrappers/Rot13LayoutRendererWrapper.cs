@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.Text;
     using NLog.Config;
     using NLog.Layouts;
@@ -74,40 +75,25 @@ namespace NLog.LayoutRenderers.Wrappers
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Render to local target using Inner Layout, and transforms into ROT-13-encoded string
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="logEvent"></param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            int orgLength = builder.Length;
-            try
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (builder.Length > orgLength)
             {
-                RenderFormattedMessage(logEvent, builder);
                 DecodeRot13(builder, orgLength);
-            }
-            catch
-            {
-                builder.Length = orgLength; // Unwind/Truncate on exception
-                throw;
             }
         }
 
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
+        /// <inheritdoc/>
+        [Obsolete("Replaced by override of RenderInnerAndTransform().")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            DecodeRot13(target, 0);
         }
 
         /// <summary>
         /// Encodes/Decodes ROT-13-encoded string.
         /// </summary>
-        /// <param name="encodedValue">The string to be encoded/decoded.</param>
-        /// <param name="startPos">The string to be encoded/decoded.</param>
         internal static void DecodeRot13(StringBuilder encodedValue, int startPos)
         {
             if (encodedValue == null)
