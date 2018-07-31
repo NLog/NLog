@@ -60,6 +60,7 @@ namespace NLog.LayoutRenderers
         public AssemblyVersionLayoutRenderer()
         {
             Type = AssemblyVersionType.Assembly;
+            Format = DefaultFormat;
         }
 
         /// <summary>
@@ -80,6 +81,15 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(nameof(AssemblyVersionType.Assembly))]
         public AssemblyVersionType Type { get; set; }
+
+        private const string DefaultFormat = "major.minor.build.revision";
+
+        /// <summary>
+        /// Gets or sets the custom format of the assembly version output.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(DefaultFormat)]
+        public string Format { get; set; }
 
         /// <summary>
         /// Initializes the layout renderer.
@@ -108,7 +118,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var version = _assemblyVersion ?? (_assemblyVersion = GetVersion());
+            var version = _assemblyVersion ?? (_assemblyVersion = ApplyFormatToVersion(GetVersion()));
 
             if (string.IsNullOrEmpty(version))
             {
@@ -116,6 +126,24 @@ namespace NLog.LayoutRenderers
             }
 
             builder.Append(version);
+        }
+
+        private string ApplyFormatToVersion(string version)
+        {
+            var lowerFormat = Format.ToLowerInvariant();
+
+            if (lowerFormat == DefaultFormat || string.IsNullOrEmpty(version))
+            {
+                return version;
+            }
+
+            var versionParts = version.Split('.');
+            version = lowerFormat.Replace("major", versionParts[0])
+                .Replace("minor", versionParts.Length > 1 ? versionParts[1] : "0")
+                .Replace("build", versionParts.Length > 2 ? versionParts[2] : "0")
+                .Replace("revision", versionParts.Length > 3 ? versionParts[3] : "0");
+
+            return version;
         }
 
 #if SILVERLIGHT
