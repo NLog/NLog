@@ -82,7 +82,6 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
-        [Obsolete("Replaced by override of RenderInnerAndTransform().")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
         }
