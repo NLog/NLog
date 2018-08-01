@@ -78,13 +78,15 @@ namespace NLog.LayoutRenderers
 
                 if (!string.IsNullOrEmpty(environmentVariable))
                 {
-                    if (string.CompareOrdinal(_cachedValue.Key, environmentVariable) != 0)
+                    var cachedValue = _cachedValue;
+                    if (string.CompareOrdinal(cachedValue.Key, environmentVariable) != 0)
                     {
-                        _cachedValue = new System.Collections.Generic.KeyValuePair<string, SimpleLayout>(environmentVariable,
+                        cachedValue = new System.Collections.Generic.KeyValuePair<string, SimpleLayout>(environmentVariable,
                             new SimpleLayout(environmentVariable));
+                        _cachedValue = cachedValue;
                     }
 
-                    _cachedValue.Value.RenderAppendBuilder(logEvent, builder);
+                    cachedValue.Value.RenderAppendBuilder(logEvent, builder);
                 }
             }
         }
