@@ -366,23 +366,26 @@ namespace NLog.Config
             try
             {
                 var assemblyLocation = GetAssemblyFileLocation(nlogAssembly);
-                var extensionDlls = GetNLogExtensionFiles(assemblyLocation);
+                var extensionDlls = GetNLogExtensionFiles(assemblyLocation, "NLog Assembly Location");
                 if (extensionDlls.Length==0)
                 {
                     var entryLocation = GetAssemblyFileLocation(Assembly.GetEntryAssembly());
-                    if (!string.IsNullOrEmpty(entryLocation) && !string.Equals(entryLocation, assemblyLocation, StringComparison.OrdinalIgnoreCase))
+                    if (string.IsNullOrEmpty(entryLocation) || !string.Equals(entryLocation, assemblyLocation, StringComparison.OrdinalIgnoreCase))
                     {
-                        assemblyLocation = entryLocation;
-                        extensionDlls = GetNLogExtensionFiles(entryLocation);
+                        extensionDlls = GetNLogExtensionFiles(entryLocation, "Entry Assembly Location");
+                        if (extensionDlls.Length > 0 || string.IsNullOrEmpty(assemblyLocation))
+                            assemblyLocation = entryLocation;
                     }
-                    else
-                    {
+
+                    if (extensionDlls.Length==0)
+                    { 
                         // TODO Consider to prioritize AppDomain.PrivateBinPath
                         var appDomainBaseDirectory = LogFactory.CurrentAppDomain.BaseDirectory;
-                        if (!string.IsNullOrEmpty(appDomainBaseDirectory) && !string.Equals(appDomainBaseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase))
+                        if (string.IsNullOrEmpty(appDomainBaseDirectory) || (!string.Equals(appDomainBaseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase) && !string.Equals(appDomainBaseDirectory, entryLocation, StringComparison.OrdinalIgnoreCase)))
                         {
-                            assemblyLocation = appDomainBaseDirectory;
-                            extensionDlls = GetNLogExtensionFiles(appDomainBaseDirectory);
+                            extensionDlls = GetNLogExtensionFiles(appDomainBaseDirectory, "AppDomain BaseDirectory");
+                            if (extensionDlls.Length > 0 || string.IsNullOrEmpty(assemblyLocation))
+                                assemblyLocation = appDomainBaseDirectory;
                         }
                     }
                 }
@@ -504,7 +507,7 @@ namespace NLog.Config
                     return string.Empty;
                 }
 
-                return string.Empty;
+                return assemblyLocation;
             }
             catch (System.PlatformNotSupportedException ex)
             {
@@ -535,16 +538,16 @@ namespace NLog.Config
             }
         }
 
-        private static string[] GetNLogExtensionFiles(string assemblyLocation)
+        private static string[] GetNLogExtensionFiles(string assemblyLocation, string locationDescription)
         {
             try
             {
+                InternalLogger.Debug("Search for auto loading files in {0}, location: {1}", locationDescription, assemblyLocation);
                 if (string.IsNullOrEmpty(assemblyLocation))
                 {
                     return ArrayHelper.Empty<string>();
                 }
 
-                InternalLogger.Debug("Search for auto loading files, location: {0}", assemblyLocation);
                 var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
                 .Select(Path.GetFileName)
                 .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
