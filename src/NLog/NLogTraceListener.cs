@@ -75,8 +75,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _logFactory = value;
+                _attributesLoaded = true;                
             }
         }
 
@@ -93,8 +93,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _defaultLogLevel = value;
+                _attributesLoaded = true;
             }
         }
 
@@ -111,8 +111,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _forceLogLevel = value;
+                _attributesLoaded = true;
             }
         }
 
@@ -129,8 +129,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _disableFlush = value;
+                _attributesLoaded = true;
             }
         }
 
@@ -154,8 +154,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _autoLoggerName = value;
+                _attributesLoaded = true;
             }
         }
 
