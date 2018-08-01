@@ -1990,6 +1990,8 @@ namespace NLog.UnitTests
                 logger.Error("message{a}{b}{c}", 1, 2, 3);
                 if (enabled == 1) AssertDebugLastMessage("debug", "message123");
 
+                logger.Error("message{a,2}{b,-2}{c,1}{d,-1}{f,1}", 1, 2, 3, 4, "");
+                if (enabled == 1) AssertDebugLastMessage("debug", "message 12 34\"\"");
 
                 //todo other tests
 
