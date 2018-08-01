@@ -93,7 +93,7 @@ namespace NLog.Internal.FileAppenders
             }
             catch (Exception ex)
             {
-                if (ex is SecurityException || ex is NotSupportedException || ex is NotImplementedException)
+                if (ex is SecurityException || ex is UnauthorizedAccessException || ex is NotSupportedException || ex is NotImplementedException || ex is PlatformNotSupportedException)
                 {
                     InternalLogger.Warn(ex, "Failed to create global archive mutex: {0}", FileName);
                     return new Mutex();
