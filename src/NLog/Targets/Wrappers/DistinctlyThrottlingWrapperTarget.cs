@@ -118,7 +118,11 @@ namespace NLog.Targets.Wrappers
                 return a.Exception == null
                     ? withoutExc
                     : withoutExc ^ (a.Exception.Message?.GetHashCode() ?? 0) ^
-                      a.Exception.GetType().GetHashCode() ^ a.Exception.TargetSite.GetHashCode();
+                      a.Exception.GetType().GetHashCode()
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+                      ^ a.Exception.TargetSite.GetHashCode()
+#endif
+                      ;
                 // do not use a.Exception.StackTrace - i think it is performance impact
             }
         }
