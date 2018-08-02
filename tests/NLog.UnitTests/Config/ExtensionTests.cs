@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using NLog.Common;
@@ -384,7 +385,10 @@ namespace NLog.UnitTests.Config
         {
             try
             {
-
+                var fileLocations = ConfigurationItemFactory.GetAutoLoadingFileLocations().ToArray();
+                Assert.NotEmpty(fileLocations);
+                Assert.NotNull(fileLocations[0].Key);
+                Assert.NotNull(fileLocations[0].Value); // Primary search location is NLog-assembly
 
                 var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
