@@ -365,28 +365,22 @@ namespace NLog.Config
 #if !SILVERLIGHT && !NETSTANDARD1_3
             try
             {
-                var assemblyLocation = GetAssemblyFileLocation(nlogAssembly);
-                var extensionDlls = GetNLogExtensionFiles(assemblyLocation, "NLog Assembly Location");
-                if (extensionDlls.Length==0)
+                var assemblyLocation = string.Empty;
+                var extensionDlls = ArrayHelper.Empty<string>();
+                var fileLocations = GetAutoLoadingFileLocations();
+                foreach (var fileLocation in fileLocations)
                 {
-                    var entryLocation = GetAssemblyFileLocation(Assembly.GetEntryAssembly());
-                    if (string.IsNullOrEmpty(entryLocation) || !string.Equals(entryLocation, assemblyLocation, StringComparison.OrdinalIgnoreCase))
-                    {
-                        extensionDlls = GetNLogExtensionFiles(entryLocation, "Entry Assembly Location");
-                        if (extensionDlls.Length > 0 || string.IsNullOrEmpty(assemblyLocation))
-                            assemblyLocation = entryLocation;
-                    }
+                    if (string.IsNullOrEmpty(fileLocation.Key))
+                        continue;
 
-                    if (extensionDlls.Length==0)
-                    { 
-                        // TODO Consider to prioritize AppDomain.PrivateBinPath
-                        var appDomainBaseDirectory = LogFactory.CurrentAppDomain.BaseDirectory;
-                        if (string.IsNullOrEmpty(appDomainBaseDirectory) || (!string.Equals(appDomainBaseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase) && !string.Equals(appDomainBaseDirectory, entryLocation, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            extensionDlls = GetNLogExtensionFiles(appDomainBaseDirectory, "AppDomain BaseDirectory");
-                            if (extensionDlls.Length > 0 || string.IsNullOrEmpty(assemblyLocation))
-                                assemblyLocation = appDomainBaseDirectory;
-                        }
+                    if (string.IsNullOrEmpty(assemblyLocation))
+                        assemblyLocation = fileLocation.Key;
+
+                    extensionDlls = GetNLogExtensionFiles(fileLocation.Key);
+                    if (extensionDlls.Length != 0)
+                    {
+                        assemblyLocation = fileLocation.Key;
+                        break;
                     }
                 }
 
@@ -465,6 +459,26 @@ namespace NLog.Config
         }
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
+        internal static IEnumerable<KeyValuePair<string, Assembly>> GetAutoLoadingFileLocations()
+        {
+            var nlogAssembly = typeof(ILogger).GetAssembly();
+            var assemblyLocation = GetAssemblyFileLocation(nlogAssembly);
+            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", assemblyLocation);
+            if (!string.IsNullOrEmpty(assemblyLocation))
+                yield return new KeyValuePair<string, Assembly>(assemblyLocation, nlogAssembly);
+
+            var entryAssembly = Assembly.GetEntryAssembly();
+            var entryLocation = GetAssemblyFileLocation(Assembly.GetEntryAssembly());
+            InternalLogger.Debug("Auto loading based on Entry-Assembly found location: {0}", entryLocation);
+            if (!string.IsNullOrEmpty(entryLocation))
+                yield return new KeyValuePair<string, Assembly>(entryLocation, entryAssembly);
+
+            // TODO Consider to prioritize AppDomain.PrivateBinPath
+            var baseDirectory = LogFactory.CurrentAppDomain.BaseDirectory;
+            InternalLogger.Debug("Auto loading based on AppDomain-BaseDirectory found location: {0}", baseDirectory);
+            yield return new KeyValuePair<string, Assembly>(baseDirectory, null);
+        }
+
         private static string GetAssemblyFileLocation(Assembly assembly)
         {
             string fullName = string.Empty;
@@ -538,11 +552,11 @@ namespace NLog.Config
             }
         }
 
-        private static string[] GetNLogExtensionFiles(string assemblyLocation, string locationDescription)
+        private static string[] GetNLogExtensionFiles(string assemblyLocation)
         {
             try
             {
-                InternalLogger.Debug("Search for auto loading files in {0}, location: {1}", locationDescription, assemblyLocation);
+                InternalLogger.Debug("Search for auto loading files in location: {0}", assemblyLocation);
                 if (string.IsNullOrEmpty(assemblyLocation))
                 {
                     return ArrayHelper.Empty<string>();
