@@ -55,8 +55,9 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(Guid.Empty.Equals(Trace.CorrelationManager.ActivityId) ?
-                string.Empty : Trace.CorrelationManager.ActivityId.ToString("D", CultureInfo.InvariantCulture));
+            var activityId = Trace.CorrelationManager.ActivityId;
+            builder.Append(Guid.Empty.Equals(activityId) ?
+                string.Empty : activityId.ToString("D", CultureInfo.InvariantCulture));
         }
     }
 }

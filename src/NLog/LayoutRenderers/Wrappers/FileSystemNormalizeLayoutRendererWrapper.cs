@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
@@ -62,21 +63,29 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(true)]
         public bool FSNormalize { get; set; }
 
-        /// <summary>
-        /// Replaces all non-safe characters with underscore to make valid filepath
-        /// </summary>
-        /// <param name="target">Output to be transformed.</param>
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
+        {
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (FSNormalize && builder.Length > orgLength)
+            {
+                TransformFileSystemNormalize(builder, orgLength);
+            }
+        }
+
+        /// <inheritdoc/>
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (FSNormalize)
+        }
+
+        private static void TransformFileSystemNormalize(StringBuilder builder, int startPos)
+        {
+            for (int i = startPos; i < builder.Length; i++)
             {
-                for (int i = 0; i < target.Length; i++)
+                char c = builder[i];
+                if (!IsSafeCharacter(c))
                 {
-                    char c = target[i];
-                    if (!IsSafeCharacter(c))
-                    {
-                        target[i] = '_';
-                    }
+                    builder[i] = '_';
                 }
             }
         }

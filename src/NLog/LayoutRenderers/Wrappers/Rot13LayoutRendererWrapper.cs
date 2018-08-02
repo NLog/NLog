@@ -33,6 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
+    using System.Text;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -67,36 +69,41 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Encoded/Decoded text.</returns>
         public static string DecodeRot13(string encodedValue)
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder(encodedValue.Length);
+            var sb = new StringBuilder(encodedValue.Length);
             sb.Append(encodedValue);
-            DecodeRot13(sb);
+            DecodeRot13(sb, 0);
             return sb.ToString();
+        }
+
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
+        {
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (builder.Length > orgLength)
+            {
+                DecodeRot13(builder, orgLength);
+            }
+        }
+
+        /// <inheritdoc/>
+        protected override void TransformFormattedMesssage(StringBuilder target)
+        {
         }
 
         /// <summary>
         /// Encodes/Decodes ROT-13-encoded string.
         /// </summary>
-        /// <param name="encodedValue">The string to be encoded/decoded.</param>
-        internal static void DecodeRot13(System.Text.StringBuilder encodedValue)
+        internal static void DecodeRot13(StringBuilder encodedValue, int startPos)
         {
             if (encodedValue == null)
             {
                 return;
             }
 
-            for (int i = 0; i < encodedValue.Length; ++i)
+            for (int i = startPos; i < encodedValue.Length; ++i)
             {
                 encodedValue[i] = DecodeRot13Char(encodedValue[i]);
             }
-        }
-
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
-        {
-            DecodeRot13(target);
         }
 
         private static char DecodeRot13Char(char c)

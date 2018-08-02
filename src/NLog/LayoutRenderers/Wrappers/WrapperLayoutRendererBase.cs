@@ -64,6 +64,26 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            int orgLength = builder.Length;
+            try
+            {
+                RenderInnerAndTransform(logEvent, builder, orgLength);
+            }
+            catch
+            {
+                builder.Length = orgLength; // Rewind/Truncate on exception
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Appends the rendered output from <see cref="Inner"/>-layout and transforms the added output (when necessary)
+        /// </summary>
+        /// <param name="logEvent">Logging event.</param>
+        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="orgLength">Start position for any necessary transformation of <see cref="StringBuilder"/>.</param>
+        protected virtual void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
+        {
             string msg = RenderInner(logEvent);
             builder.Append(Transform(logEvent, msg));
         }

@@ -33,8 +33,10 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
     using System.Globalization;
+    using System.Text;
     using NLog.Config;
 
     /// <summary>
@@ -74,36 +76,44 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Transformation Options' order='10' />
         public CultureInfo Culture { get; set; }
 
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="target">Output to be post-processed.</param>
-        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (Uppercase)
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (Uppercase && builder.Length > orgLength)
             {
-                CultureInfo culture = Culture;
+                TransformToUpperCase(builder, orgLength);
+            }
+        }
+
+        /// <inheritdoc/>
+        protected override void TransformFormattedMesssage(StringBuilder target)
+        {
+        }
+
+        private void TransformToUpperCase(StringBuilder target, int startPos)
+        {
+            CultureInfo culture = Culture;
 
 #if NETSTANDARD1_0
-                string stringToUpper = null;
-                if (culture != null && culture != CultureInfo.InvariantCulture)
-                {
-                    stringToUpper = target.ToString();
-                    stringToUpper = culture.TextInfo.ToUpper(stringToUpper);
-                }
+            string stringToUpper = null;
+            if (culture != null && culture != CultureInfo.InvariantCulture)
+            {
+                stringToUpper = target.ToString(startPos, target.Length - startPos);
+                stringToUpper = culture.TextInfo.ToUpper(stringToUpper);
+            }
 #endif
 
-                for (int i = 0; i < target.Length; ++i)
-                {
+            for (int i = startPos; i < target.Length; ++i)
+            {
 #if NETSTANDARD1_0
-                    if (stringToUpper != null)
-                        target[i] = stringToUpper[i];    //no char.ToUpper with culture
-                    else
-                        target[i] = char.ToUpperInvariant(target[i]);                      
+                if (stringToUpper != null)
+                    target[i] = stringToUpper[i];    //no char.ToUpper with culture
+                else
+                    target[i] = char.ToUpperInvariant(target[i]);
 #else
-                    target[i] = char.ToUpper(target[i], culture);
+                target[i] = char.ToUpper(target[i], culture);
 #endif
-                }
             }
         }
     }

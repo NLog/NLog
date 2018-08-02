@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.Text;
     using NLog.Config;
     using NLog.Layouts;
@@ -53,36 +54,20 @@ namespace NLog.LayoutRenderers.Wrappers
         [RequiredParameter]
         public Layout WhenEmpty { get; set; }
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (builder.Length > orgLength)
+                return;
+
+            // render WhenEmpty when the inner layout was empty
+            WhenEmpty.RenderAppendBuilder(logEvent, builder);
         }
 
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="builder"><see cref="StringBuilder"/> for the result</param>
-        /// <param name="logEvent">The log event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            int orgLength = builder.Length;
-            try
-            {
-                base.RenderFormattedMessage(logEvent, builder);
-                if (builder.Length > orgLength)
-                    return;
-
-                // render WhenEmpty when the inner layout was empty
-                WhenEmpty.RenderAppendBuilder(logEvent, builder);
-            }
-            catch
-            {
-                builder.Length = orgLength; // Rewind/Truncate on exception
-                throw;
-            }
         }
     }
 }

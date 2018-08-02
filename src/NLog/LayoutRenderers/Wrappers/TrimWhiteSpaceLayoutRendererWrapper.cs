@@ -33,7 +33,9 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
+    using System.Text;
     using NLog.Config;
 
     /// <summary>
@@ -61,43 +63,44 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(true)]
         public bool TrimWhiteSpace { get; set; }
 
-        /// <summary>
-        /// Removes white-spaces from both sides of the provided target
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (target == null || target.Length == 0)
-                return;
-
-            if (TrimWhiteSpace)
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (TrimWhiteSpace && builder.Length > orgLength)
             {
-                TrimRight(target);  // Fast
-                if (target.Length > 0)
-                    TrimLeft(target);   // Slower
+                TransformTrimWhiteSpaces(builder, orgLength);
             }
         }
 
-        private void TrimRight(System.Text.StringBuilder sb)
+        /// <inheritdoc/>
+        protected override void TransformFormattedMesssage(StringBuilder target)
+        {
+        }
+
+        private static void TransformTrimWhiteSpaces(StringBuilder builder, int startPos)
+        {
+            TrimRight(builder, startPos);  // Fast
+            if (builder.Length > startPos)
+            {
+                if (char.IsWhiteSpace(builder[startPos]))
+                {
+                    var str = builder.ToString(startPos, builder.Length - startPos);
+                    builder.Length = startPos;
+                    builder.Append(str.Trim());
+                }
+            }
+        }
+
+        private static void TrimRight(StringBuilder sb, int startPos)
         {
             int i = sb.Length - 1;
-            for (; i >= 0; i--)
+            for (; i >= startPos; i--)
                 if (!char.IsWhiteSpace(sb[i]))
                     break;
 
             if (i < sb.Length - 1)
                 sb.Length = i + 1;
-        }
-
-        private void TrimLeft(System.Text.StringBuilder sb)
-        {
-            int i = 0;
-            for (; i < sb.Length; i++)
-                if (!char.IsWhiteSpace(sb[i]))
-                    break;
-
-            if (i > 0)
-                sb.Remove(0, i);
         }
     }
 }

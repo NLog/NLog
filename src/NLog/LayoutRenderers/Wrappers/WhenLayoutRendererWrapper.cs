@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.Text;
     using NLog.Conditions;
     using NLog.Config;
@@ -60,38 +61,22 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category="Transformation Options" order="10"/>
         public Layout Else { get; set; }
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
+            if (When == null || true.Equals(When.Evaluate(logEvent)))
+            {
+                Inner.RenderAppendBuilder(logEvent, builder);
+            }
+            else if (Else != null)
+            {
+                Else.RenderAppendBuilder(logEvent, builder);
+            }
         }
 
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="builder"><see cref="StringBuilder"/> for the result</param>
-        /// <param name="logEvent">The log event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        /// <inheritdoc/>
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            int orgLength = builder.Length;
-            try
-            {
-                if (When == null || true.Equals(When.Evaluate(logEvent)))
-                {
-                    base.RenderFormattedMessage(logEvent, builder);
-                }
-                else if (Else != null)
-                {
-                    Else.RenderAppendBuilder(logEvent, builder);
-                }
-            }
-            catch
-            {
-                builder.Length = orgLength; // Rewind/Truncate on exception
-                throw;
-            }
         }
     }
 }
