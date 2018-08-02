@@ -470,13 +470,14 @@ namespace NLog.Config
             var entryAssembly = Assembly.GetEntryAssembly();
             var entryLocation = GetAssemblyFileLocation(Assembly.GetEntryAssembly());
             InternalLogger.Debug("Auto loading based on Entry-Assembly found location: {0}", entryLocation);
-            if (!string.IsNullOrEmpty(entryLocation))
+            if (!string.IsNullOrEmpty(entryLocation) && !string.Equals(entryLocation, assemblyLocation, StringComparison.OrdinalIgnoreCase))
                 yield return new KeyValuePair<string, Assembly>(entryLocation, entryAssembly);
 
             // TODO Consider to prioritize AppDomain.PrivateBinPath
             var baseDirectory = LogFactory.CurrentAppDomain.BaseDirectory;
             InternalLogger.Debug("Auto loading based on AppDomain-BaseDirectory found location: {0}", baseDirectory);
-            yield return new KeyValuePair<string, Assembly>(baseDirectory, null);
+            if (!string.IsNullOrEmpty(baseDirectory) && !string.Equals(baseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase))
+                yield return new KeyValuePair<string, Assembly>(baseDirectory, null);
         }
 
         private static string GetAssemblyFileLocation(Assembly assembly)
