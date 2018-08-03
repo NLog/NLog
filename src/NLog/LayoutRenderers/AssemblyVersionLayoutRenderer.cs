@@ -34,6 +34,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
@@ -84,12 +85,24 @@ namespace NLog.LayoutRenderers
 
         private const string DefaultFormat = "major.minor.build.revision";
 
+        private string _format;
+
         /// <summary>
         /// Gets or sets the custom format of the assembly version output.
         /// </summary>
+        /// <remarks>
+        /// Supported placeholders are 'major', 'minor', 'build' and 'revision'.
+        /// The default .NET template for version numbers is 'major.minor.build.revision'. See
+        /// https://docs.microsoft.com/en-gb/dotnet/api/system.version?view=netframework-4.7.2#remarks
+        /// for details.
+        /// </remarks>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(DefaultFormat)]
-        public string Format { get; set; }
+        public string Format
+        {
+            get => _format;
+            set => _format = value?.ToLowerInvariant();
+        }
 
         /// <summary>
         /// Initializes the layout renderer.
@@ -130,15 +143,13 @@ namespace NLog.LayoutRenderers
 
         private string ApplyFormatToVersion(string version)
         {
-            var lowerFormat = Format.ToLowerInvariant();
-
-            if (lowerFormat == DefaultFormat || string.IsNullOrEmpty(version))
+            if (Format.Equals(DefaultFormat, StringComparison.OrdinalIgnoreCase) || string.IsNullOrEmpty(version))
             {
                 return version;
             }
 
             var versionParts = version.Split('.');
-            version = lowerFormat.Replace("major", versionParts[0])
+            version = Format.Replace("major", versionParts[0])
                 .Replace("minor", versionParts.Length > 1 ? versionParts[1] : "0")
                 .Replace("build", versionParts.Length > 2 ? versionParts[2] : "0")
                 .Replace("revision", versionParts.Length > 3 ? versionParts[3] : "0");
