@@ -389,6 +389,7 @@ namespace NLog.UnitTests.Config
                 Assert.NotEmpty(fileLocations);
                 Assert.NotNull(fileLocations[0].Key);
                 Assert.NotNull(fileLocations[0].Value); // Primary search location is NLog-assembly
+                Assert.Equal(fileLocations.Length, fileLocations.Select(f => f.Key).Distinct().Count());
 
                 var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
