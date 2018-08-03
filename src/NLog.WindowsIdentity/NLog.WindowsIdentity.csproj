@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -37,12 +37,12 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.5' ">
     <Title>NLog.WindowsIdentity for NetStandard 1.5</Title>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <DefineConstants>$(DefineConstants);NETSTANDARD1_5</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD1_5;WindowsIdentityPackage</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog.WindowsIdentity for NetStandard 2.0</Title>
-    <DefineConstants>$(DefineConstants);NETSTANDARD2_0</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD2_0;WindowsIdentityPackage</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
