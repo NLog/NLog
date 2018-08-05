@@ -92,6 +92,53 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void VariablesTest_minLevel_expanding()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+   <variable name='test' value='debug'/>
+    <rules>
+      <logger minLevel='${test}'/>
+    </rules>
+</nlog>");
+
+            var rule = configuration.LoggingRules[0];
+            Assert.NotNull(rule);
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Trace));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Info));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Warn));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
+
+        }        
+        
+        /// <summary>
+        /// Expand of level attributes
+        /// </summary>
+        [Fact]
+        public void VariablesTest_Level_expanding()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+   <variable name='test' value='debug'/>
+    <rules>
+      <logger level='${test}'/>
+    </rules>
+</nlog>");
+
+            var rule = configuration.LoggingRules[0];
+            Assert.NotNull(rule);
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Trace));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Info));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Warn));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
+
+        }
+
+        [Fact]
         public void Xml_configuration_returns_defined_variables()
         {
             var configuration = CreateConfigurationFromString(@"
