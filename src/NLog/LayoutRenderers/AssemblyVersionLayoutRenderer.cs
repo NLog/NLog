@@ -34,6 +34,7 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
@@ -60,6 +61,7 @@ namespace NLog.LayoutRenderers
         public AssemblyVersionLayoutRenderer()
         {
             Type = AssemblyVersionType.Assembly;
+            Format = DefaultFormat;
         }
 
         /// <summary>
@@ -80,6 +82,27 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(nameof(AssemblyVersionType.Assembly))]
         public AssemblyVersionType Type { get; set; }
+
+        private const string DefaultFormat = "major.minor.build.revision";
+
+        private string _format;
+
+        /// <summary>
+        /// Gets or sets the custom format of the assembly version output.
+        /// </summary>
+        /// <remarks>
+        /// Supported placeholders are 'major', 'minor', 'build' and 'revision'.
+        /// The default .NET template for version numbers is 'major.minor.build.revision'. See
+        /// https://docs.microsoft.com/en-gb/dotnet/api/system.version?view=netframework-4.7.2#remarks
+        /// for details.
+        /// </remarks>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(DefaultFormat)]
+        public string Format
+        {
+            get => _format;
+            set => _format = value?.ToLowerInvariant();
+        }
 
         /// <summary>
         /// Initializes the layout renderer.
@@ -108,7 +131,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var version = _assemblyVersion ?? (_assemblyVersion = GetVersion());
+            var version = _assemblyVersion ?? (_assemblyVersion = ApplyFormatToVersion(GetVersion()));
 
             if (string.IsNullOrEmpty(version))
             {
@@ -116,6 +139,22 @@ namespace NLog.LayoutRenderers
             }
 
             builder.Append(version);
+        }
+
+        private string ApplyFormatToVersion(string version)
+        {
+            if (Format.Equals(DefaultFormat, StringComparison.OrdinalIgnoreCase) || string.IsNullOrEmpty(version))
+            {
+                return version;
+            }
+
+            var versionParts = version.Split('.');
+            version = Format.Replace("major", versionParts[0])
+                .Replace("minor", versionParts.Length > 1 ? versionParts[1] : "0")
+                .Replace("build", versionParts.Length > 2 ? versionParts[2] : "0")
+                .Replace("revision", versionParts.Length > 3 ? versionParts[3] : "0");
+
+            return version;
         }
 
 #if SILVERLIGHT
