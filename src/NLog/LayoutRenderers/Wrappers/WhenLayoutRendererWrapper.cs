@@ -75,6 +75,7 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
+        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
         }
