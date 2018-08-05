@@ -90,28 +90,63 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="target">change this one</param>
         internal void TransformMessage(StringBuilder target)
         {
-            if (Length <= 0 || Start >= target.Length)
+            var currentLength = target.Length;
+            if (Length <= 0)
             {
-                //clear everything - no .Clear on .NET 3.5
-                target.Length = 0;
+                Clear(target);
                 return;
             }
 
-            //start <0, then from end
-            if (Start < 0)
+            var start = CalcStart(currentLength);
+
+            if (start >= currentLength)
             {
-                Start = (target.Length + Start);
+                Clear(target);
+                return;
             }
 
-            if (Start > 0)
-            {
-                target.Remove(0, Start);
-            }
+            // init full length
+            var length = CalcLength(currentLength, start);
 
-            if (Length.HasValue && target.Length > Length.Value)
-            {
-                target.Remove(Length.Value, target.Length - Length.Value);
-            }
+            //more efficient than target.Remove
+            var substring = target.ToString(start, length);
+            Clear(target);
+            target.Append(substring);
         }
+
+        private static void Clear(StringBuilder target)
+        {
+            // No clear on .NET 3.5, also .Clear is just doing Length = 0
+            target.Length = 0;
+        }
+
+        private int CalcStart(int currentLength)
+        {
+            var start = Start;
+            //start <0, then from end
+            if (start < 0)
+            {
+                start = (currentLength + start);
+            }
+
+            if (start < 0)
+            {
+                start = 0;
+            }
+            return start;
+        }
+
+        private int CalcLength(int currentLength, int start)
+        {
+            var length = currentLength - start;
+
+            if (Length.HasValue && currentLength > Length.Value + start)
+            {
+                length = Length.Value;
+            }
+            return length;
+        }
+
+
     }
 }
