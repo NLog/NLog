@@ -42,13 +42,13 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Substring the result
     /// </summary>
     /// <example>
-    /// ${substring:${level}:start=2:length=2} 
-    /// ${substring:${level}:start=-2:length=2} 
-    /// ${substring:Inner=${level}:start=2:length=2} 
+    /// ${substring:${level}:start=2:length=2}
+    /// ${substring:${level}:start=-2:length=2}
+    /// ${substring:Inner=${level}:start=2:length=2}
     /// </example>
     [LayoutRenderer("substring")]
     [ThreadAgnostic]
-    public class SubstringLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public class SubstringLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
@@ -75,58 +75,74 @@ namespace NLog.LayoutRenderers.Wrappers
         [RequiredParameter]
         public int? Length { get; set; }
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        /// <inheritdoc />
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            TransformMessage(target);
+            DoSubstring(logEvent, builder);
         }
 
         /// <summary>
-        /// Change the <paramref name="target"/> for the formatting
+        /// Apply substring transformation
         /// </summary>
-        /// <param name="target">change this one</param>
-        internal void TransformMessage(StringBuilder target)
+        internal void DoSubstring(LogEventInfo logEvent, StringBuilder builder)
         {
-            var currentLength = target.Length;
             if (Length <= 0)
             {
-                Clear(target);
+                Clear(builder);
                 return;
             }
+            var text = RenderInner(logEvent);
 
-            var start = CalcStart(currentLength);
-
-            if (start >= currentLength)
+            var substring = Transform(text);
+            Clear(builder);
+            if (substring != null)
             {
-                Clear(target);
-                return;
+                builder.Append(substring);
+            }
+        }
+
+        /// <inheritdoc />
+        protected override string Transform(string text)
+        {
+            return DoTransform(text);
+        }
+
+        internal string DoTransform(string text)
+        {
+            var textLength = text.Length;
+
+            var start = CalcStart(textLength);
+
+            if (start >= textLength)
+            {
+                return null;
             }
 
             // init full length
-            var length = CalcLength(currentLength, start);
+            var length = CalcLength(textLength, start);
 
             //more efficient than target.Remove
-            var substring = target.ToString(start, length);
-            Clear(target);
-            target.Append(substring);
+            var substring = text.Substring(start, length);
+            return substring;
         }
 
-        private static void Clear(StringBuilder target)
+        private static void Clear(StringBuilder builder)
         {
             // No clear on .NET 3.5, also .Clear is just doing Length = 0
-            target.Length = 0;
+            builder.Length = 0;
         }
 
-        private int CalcStart(int currentLength)
+        /// <summary>
+        /// Calculate start position
+        /// </summary>
+        /// <returns>0 or positive number</returns>
+        private int CalcStart(int textLength)
         {
             var start = Start;
             //start <0, then from end
             if (start < 0)
             {
-                start = (currentLength + start);
+                start = (textLength + start);
             }
 
             if (start < 0)
@@ -136,11 +152,15 @@ namespace NLog.LayoutRenderers.Wrappers
             return start;
         }
 
-        private int CalcLength(int currentLength, int start)
+        /// <summary>
+        /// Calculate needed length
+        /// </summary>
+        /// <returns>0 or positive number</returns>
+        private int CalcLength(int textLength, int start)
         {
-            var length = currentLength - start;
+            var length = textLength - start;
 
-            if (Length.HasValue && currentLength > Length.Value + start)
+            if (Length.HasValue && textLength > Length.Value + start)
             {
                 length = Length.Value;
             }

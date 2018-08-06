@@ -41,16 +41,16 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("left")]
     [ThreadAgnostic]
-    public class LeftLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public class LeftLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private SubstringLayoutRendererWrapper substringWrapper;
+        private readonly SubstringLayoutRendererWrapper _substringWrapper;
 
         /// <summary>
         /// New wrapper
         /// </summary>
         public LeftLayoutRendererWrapper()
         {
-            substringWrapper = new SubstringLayoutRendererWrapper();
+            _substringWrapper = new SubstringLayoutRendererWrapper();
         }
 
         /// <summary>
@@ -61,22 +61,22 @@ namespace NLog.LayoutRenderers.Wrappers
         [RequiredParameter]
         public int Length
         {
-            get { return substringWrapper.Length ?? 0; }
-            set { substringWrapper.Length = value; }
+            get { return _substringWrapper.Length ?? 0; }
+            set { _substringWrapper.Length = value; }
         }
 
-
-        #region Overrides of WrapperLayoutRendererBuilderBase
-
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        /// <inheritdoc />
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            substringWrapper.TransformMessage(target);
+            _substringWrapper.Inner = Inner;
+            _substringWrapper.DoSubstring(logEvent, builder);
         }
 
-        #endregion
+        /// <inheritdoc />
+        protected override string Transform(string text)
+        {
+            _substringWrapper.Inner = Inner;
+            return _substringWrapper.DoTransform(text);
+        }
     }
 }

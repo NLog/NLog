@@ -41,16 +41,16 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("right")]
     [ThreadAgnostic]
-    public class RightLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public class RightLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private SubstringLayoutRendererWrapper substringWrapper;
+        private readonly SubstringLayoutRendererWrapper _substringWrapper;
 
         /// <summary>
         /// New wrapper
         /// </summary>
         public RightLayoutRendererWrapper()
         {
-            substringWrapper = new SubstringLayoutRendererWrapper();
+            _substringWrapper = new SubstringLayoutRendererWrapper();
         }
 
         /// <summary>
@@ -61,26 +61,27 @@ namespace NLog.LayoutRenderers.Wrappers
         [RequiredParameter]
         public int Length
         {
-            get { return substringWrapper.Length ?? 0; }
+            get { return _substringWrapper.Length ?? 0; }
             set
             {
-                substringWrapper.Length = value;
-                substringWrapper.Start = -value;
+                _substringWrapper.Length = value;
+                _substringWrapper.Start = -value;
             }
         }
 
 
-        #region Overrides of WrapperLayoutRendererBuilderBase
-
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        /// <inheritdoc />
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            substringWrapper.TransformMessage(target);
+            _substringWrapper.Inner = Inner;
+            _substringWrapper.DoSubstring(logEvent, builder);
         }
 
-        #endregion
+        /// <inheritdoc />
+        protected override string Transform(string text)
+        {
+            _substringWrapper.Inner = Inner;
+            return _substringWrapper.DoTransform(text);
+        }
     }
 }
