@@ -57,5 +57,20 @@ namespace NLog.Internal
             }
             return path;
         }
+
+        /// <summary>
+        /// Cached directory separator char array to avoid memory allocation on each method call.
+        /// </summary>
+        private static readonly char[] DirectorySeparatorChars = new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
+
+        /// <summary>
+        /// Trims directory separators from the path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string TrimDirectorySeparators(string path)
+        {
+            return path?.TrimEnd(DirectorySeparatorChars) ?? string.Empty;
+        }
     }
 }

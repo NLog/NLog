@@ -462,95 +462,20 @@ namespace NLog.Config
         internal static IEnumerable<KeyValuePair<string, Assembly>> GetAutoLoadingFileLocations()
         {
             var nlogAssembly = typeof(ILogger).GetAssembly();
-            var assemblyLocation = GetAssemblyFileLocation(nlogAssembly);
-            InternalLogger.Debug("Auto loading based on NLog-Assembly found location: {0}", assemblyLocation);
+            var assemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
             if (!string.IsNullOrEmpty(assemblyLocation))
                 yield return new KeyValuePair<string, Assembly>(assemblyLocation, nlogAssembly);
 
             var entryAssembly = Assembly.GetEntryAssembly();
-            var entryLocation = GetAssemblyFileLocation(Assembly.GetEntryAssembly());
-            InternalLogger.Debug("Auto loading based on Entry-Assembly found location: {0}", entryLocation);
+            var entryLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(Assembly.GetEntryAssembly()));
             if (!string.IsNullOrEmpty(entryLocation) && !string.Equals(entryLocation, assemblyLocation, StringComparison.OrdinalIgnoreCase))
                 yield return new KeyValuePair<string, Assembly>(entryLocation, entryAssembly);
 
             // TODO Consider to prioritize AppDomain.PrivateBinPath
-            var baseDirectory = LogFactory.CurrentAppDomain.BaseDirectory;
+            var baseDirectory = PathHelpers.TrimDirectorySeparators(LogFactory.CurrentAppDomain.BaseDirectory);
             InternalLogger.Debug("Auto loading based on AppDomain-BaseDirectory found location: {0}", baseDirectory);
             if (!string.IsNullOrEmpty(baseDirectory) && !string.Equals(baseDirectory, assemblyLocation, StringComparison.OrdinalIgnoreCase))
                 yield return new KeyValuePair<string, Assembly>(baseDirectory, null);
-        }
-
-        private static string GetAssemblyFileLocation(Assembly assembly)
-        {
-            string fullName = string.Empty;
-
-            try
-            {
-                if (assembly == null)
-                {
-                    return string.Empty;
-                }
-
-                fullName = assembly.FullName;
-
-#if NETSTANDARD
-                if (string.IsNullOrEmpty(assembly.Location))
-                {
-                    // Assembly with no actual location should be skipped (Avoid PlatformNotSupportedException)
-                    InternalLogger.Warn("Skipping auto loading location because location is empty: {0}", fullName);
-                    return string.Empty;
-                }
-#endif
-
-                Uri assemblyCodeBase;
-                if (!Uri.TryCreate(assembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
-                {
-                    InternalLogger.Warn("Skipping auto loading location because code base is unknown: '{0}' ({1})", assembly.CodeBase, fullName);
-                    return string.Empty;
-                }
-
-                var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
-                if (string.IsNullOrEmpty(assemblyLocation))
-                {
-                    InternalLogger.Warn("Skipping auto loading location because it is not a valid directory: '{0}' ({1})", assemblyCodeBase.LocalPath, fullName);
-                    return string.Empty;
-                }
-
-                if (!Directory.Exists(assemblyLocation))
-                {
-                    InternalLogger.Warn("Skipping auto loading location because directory doesn't exists: '{0}' ({1})", assemblyLocation, fullName);
-                    return string.Empty;
-                }
-
-                return assemblyLocation;
-            }
-            catch (System.PlatformNotSupportedException ex)
-            {
-                InternalLogger.Warn(ex, "Skipping auto loading location because assembly lookup is not supported: {0}", fullName);
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-                return string.Empty;
-            }
-            catch (System.Security.SecurityException ex)
-            {
-                InternalLogger.Warn(ex, "Skipping auto loading location because assembly lookup is not allowed: {0}", fullName);
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-                return string.Empty;
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                InternalLogger.Warn(ex, "Skipping auto loading location because assembly lookup is not allowed: {0}", fullName);
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-                return string.Empty;
-            }
         }
 
         private static string[] GetNLogExtensionFiles(string assemblyLocation)
