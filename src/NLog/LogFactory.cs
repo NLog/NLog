@@ -1112,25 +1112,6 @@ namespace NLog
                         yield return Path.Combine(entryAssemblyLocation, "nlog.config");
                 }
             }
-
-            var nlogAssembly = typeof(LogFactory).GetAssembly();
-            if (!string.IsNullOrEmpty(nlogAssembly?.Location))
-            {
-#if !NETSTANDARD1_0
-                if (!nlogAssembly.GlobalAssemblyCache)
-#endif
-                {
-                    var nlogAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(nlogAssembly));
-                    if (!string.IsNullOrEmpty(nlogAssemblyLocation)
-                        && !string.Equals(nlogAssemblyLocation, baseDirectory, StringComparison.OrdinalIgnoreCase)
-                        && !string.Equals(nlogAssemblyLocation, entryAssemblyLocation, StringComparison.OrdinalIgnoreCase))
-                    {
-                        yield return Path.Combine(nlogAssemblyLocation, "NLog.config");
-                        if (!platformFileSystemCaseInsensitive)
-                            yield return Path.Combine(nlogAssemblyLocation, "nlog.config");
-                    }
-                }
-            }
 #endif
 
             if (string.IsNullOrEmpty(baseDirectory))
@@ -1168,16 +1149,12 @@ namespace NLog
                 }
             }
 
-#if !SILVERLIGHT && !NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD1_0
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
-            if (!string.IsNullOrEmpty(nlogAssembly?.Location))
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
+            if (!string.IsNullOrEmpty(nlogAssembly?.Location) && !nlogAssembly.GlobalAssemblyCache)
             {
-#if !NETSTANDARD1_0
-                if (!nlogAssembly.GlobalAssemblyCache)
-#endif
-                {
-                    yield return nlogAssembly.Location + ".nlog";
-                }
+                yield return nlogAssembly.Location + ".nlog";
             }
 #endif
         }
