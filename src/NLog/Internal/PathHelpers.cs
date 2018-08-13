@@ -66,8 +66,8 @@ namespace NLog.Internal
         /// <summary>
         /// Trims directory separators from the path
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
+        /// <param name="path">path, could be null</param>
+        /// <returns>never null</returns>
         public static string TrimDirectorySeparators(string path)
         {
             return path?.TrimEnd(DirectorySeparatorChars) ?? string.Empty;
