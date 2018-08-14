@@ -34,20 +34,21 @@
 using System;
 using System.Text;
 using NLog.Config;
+using NLog.Internal;
 
 namespace NLog.LayoutRenderers
 {
     /// <summary>
     /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
-    public class FuncLayoutRenderer : LayoutRenderer
+    public class FuncLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Create a new.
         /// </summary>
         /// <param name="layoutRendererName">Name without ${}.</param>
         /// <param name="renderMethod">Method that renders the layout.</param>
-        public FuncLayoutRenderer( string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
+        public FuncLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
         {
             RenderMethod = renderMethod;
             LayoutRendererName = layoutRendererName;
@@ -72,13 +73,25 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (RenderMethod != null)
+            var value = GetValue(logEvent);
+            if (value != null)
             {
-                builder.Append(RenderMethod(logEvent, LoggingConfiguration));
+                builder.Append(value);
             }
+        }
 
+        private object GetValue(LogEventInfo logEvent)
+        {
+            var renderMethod = RenderMethod?.Invoke(logEvent, LoggingConfiguration);
+            return renderMethod;
         }
 
         #endregion
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue(logEvent);
+        }
     }
 }

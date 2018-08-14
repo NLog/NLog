@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// High precision timer, based on the value returned from QueryPerformanceCounter() optionally converted to seconds.
     /// </summary>
     [LayoutRenderer("qpc")]
-    public class QueryPerformanceCounterLayoutRenderer : LayoutRenderer
+    public class QueryPerformanceCounterLayoutRenderer : LayoutRenderer, IRawValue
     {
         private bool raw;
         private ulong firstQpcValue;
@@ -138,11 +138,62 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            ulong qpcValue;
+            var qpcValue = GetValue();
 
-            if (!NativeMethods.QueryPerformanceCounter(out qpcValue))
+            if (qpcValue != null)
             {
-                return;
+                string stringValue;
+
+                if (Seconds)
+                {
+                    var val = ToSeconds(qpcValue.Value);
+
+                    stringValue = Convert.ToString(val, CultureInfo.InvariantCulture);
+                    if (AlignDecimalPoint)
+                    {
+                        int p = stringValue.IndexOf('.');
+                        if (p == -1)
+                        {
+                            stringValue += "." + new string('0', Precision);
+                        }
+                        else
+                        {
+                            stringValue += new string('0', Precision - (stringValue.Length - 1 - p));
+                        }
+                    }
+                }
+                else
+                {
+                    stringValue = Convert.ToString(qpcValue, CultureInfo.InvariantCulture);
+                }
+
+                builder.Append(stringValue);
+            }
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            var value = GetValue();
+            if (value.HasValue && Seconds)
+            {
+                return ToSeconds(value.Value);
+            }
+
+            return value;
+        }
+
+        private double ToSeconds(ulong qpcValue)
+        {
+            double val = Math.Round(qpcValue / frequency, Precision);
+            return val;
+        }
+
+        private ulong? GetValue()
+        {
+            if (!NativeMethods.QueryPerformanceCounter(out var qpcValue))
+            {
+                return null;
             }
 
             ulong v = qpcValue;
@@ -157,34 +208,10 @@ namespace NLog.LayoutRenderers
             }
 
             lastQpcValue = v;
-
-            string stringValue;
-
-            if (Seconds)
-            {
-                double val = Math.Round(qpcValue / frequency, Precision);
-
-                stringValue = Convert.ToString(val, CultureInfo.InvariantCulture);
-                if (AlignDecimalPoint)
-                {
-                    int p = stringValue.IndexOf('.');
-                    if (p == -1)
-                    {
-                        stringValue += "." + new string('0', Precision);
-                    }
-                    else
-                    {
-                        stringValue += new string('0', Precision - (stringValue.Length - 1 - p));
-                    }
-                }
-            }
-            else
-            {
-                stringValue = Convert.ToString(qpcValue, CultureInfo.InvariantCulture);
-            }
-
-            builder.Append(stringValue);
+            return qpcValue;
         }
+
+  
     }
 }
 

@@ -77,7 +77,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
+            var currentIdentity = GetValue();
             if (currentIdentity != null)
             {
                 string output = string.Empty;
@@ -125,6 +125,12 @@ namespace NLog.LayoutRenderers
 
                 builder.Append(output);
             }
+        }
+
+        private static WindowsIdentity GetValue()
+        {
+            WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
+            return currentIdentity;
         }
     }
 }

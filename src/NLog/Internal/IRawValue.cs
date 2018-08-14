@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,41 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+namespace NLog.Internal
 {
-    using System.Globalization;
-    using System.Text;
-    using NLog.Config;
-	using NLog.Internal;
-
     /// <summary>
-    /// The Ticks value of current date and time.
+    /// Get the Raw, unformatted and unstrinyfied, value
     /// </summary>
-    [LayoutRenderer("ticks")]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public class TicksLayoutRenderer : LayoutRenderer, IRawValue
+    internal interface IRawValue
     {
         /// <summary>
-        /// Renders the ticks value of current time and appends it to the specified <see cref="StringBuilder" />.
+        /// Get the raw value
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            //no culture expected here
-            builder.Append(GetValue(logEvent).ToString(CultureInfo.InvariantCulture));
-        }
+        /// <param name="logEvent"></param>
+        /// <returns>null if not possible or unknown</returns>
+        object GetRawValue(LogEventInfo logEvent);
 
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue(logEvent);
-        }
-
-        private static long GetValue(LogEventInfo logEvent)
-        {
-            return logEvent.TimeStamp.Ticks;
-        }
     }
 }

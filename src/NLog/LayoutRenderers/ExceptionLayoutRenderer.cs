@@ -49,7 +49,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("exception")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class ExceptionLayoutRenderer : LayoutRenderer
+    public class ExceptionLayoutRenderer : LayoutRenderer, IRawValue
     {
         private string _format;
         private string _innerFormat = string.Empty;
@@ -177,6 +177,11 @@ namespace NLog.LayoutRenderers
             get;
             private set;
         }
+
+        /// <summary>
+        /// Get raw value, updates the sequence
+        /// </summary>
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => logEvent.Exception;
 
         /// <summary>
         /// Renders the specified exception information and appends it to the specified <see cref="StringBuilder" />.
