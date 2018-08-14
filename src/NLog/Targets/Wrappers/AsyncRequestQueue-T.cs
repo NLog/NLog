@@ -35,12 +35,12 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Asynchronous request queue.
     /// </summary>
-	internal class AsyncRequestQueue
+	internal class AsyncRequestQueue : IAsyncRequestQueue
     {
         private readonly Queue<AsyncLogEventInfo> _logEventInfoQueue = new Queue<AsyncLogEventInfo>();
 
@@ -79,6 +79,8 @@ namespace NLog.Targets.Wrappers
                 }
             }
         }
+
+        public bool IsEmpty => RequestCount == 0;
 
         /// <summary>
         /// Enqueues another item. If the queue is overflown the appropriate

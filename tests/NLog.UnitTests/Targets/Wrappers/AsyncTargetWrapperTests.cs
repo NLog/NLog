@@ -69,11 +69,22 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(200, targetWrapper.BatchSize);
         }
 
+        [Fact]
+        public void AsyncTargetWrapperSyncTest_WithLock_WhenTimeToSleepBetweenBatchesIsEqualToZero()
+        {
+            AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(true);
+        }
+
+        [Fact]
+        public void AsyncTargetWrapperSyncTest_NoLock_WhenTimeToSleepBetweenBatchesIsEqualToZero()
+        {
+            AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(false);
+        }
+
         /// <summary>
         /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>
-        [Fact]
-        public void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero()
+        private void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue)
         {
             LogManager.ThrowConfigExceptions = true;
 
@@ -81,8 +92,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             var targetWrapper = new AsyncTargetWrapper() {
                 WrappedTarget = myTarget,
                 TimeToSleepBetweenBatches = 0,
-                BatchSize = 4,
-                QueueLimit = 2, // Will make it "sleep" between every second write
+#if NET4_5
+                ForceLockingQueue = forceLockingQueue,
+                OptimizeBufferReuse = !forceLockingQueue,
+#endif
+                BatchSize = 3,
+                QueueLimit = 5, // Will make it "sleep" between every second write
                 OverflowAction = AsyncTargetWrapperOverflowAction.Block
             };
             targetWrapper.Initialize(null);
