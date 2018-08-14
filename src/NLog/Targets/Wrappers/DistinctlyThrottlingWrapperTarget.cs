@@ -119,7 +119,7 @@ namespace NLog.Targets.Wrappers
                     ? withoutExc
                     : withoutExc ^ (a.Exception.Message?.GetHashCode() ?? 0) ^
                       a.Exception.GetType().GetHashCode()
-#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5 && !SILVERLIGHT && !__ANDROID__ && !__IOS__
                       ^ a.Exception.TargetSite.GetHashCode()
 #endif
                       ;
