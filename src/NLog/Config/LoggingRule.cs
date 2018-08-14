@@ -220,6 +220,10 @@ namespace NLog.Config
                 return levels.AsReadOnly();
             }
         }
+        /// <summary>
+        /// Default action if all filters won't match
+        /// </summary>
+        public FilterResult DefaultFilterResult { get; set; } = FilterResult.Neutral;
 
         /// <summary>
         /// Enables logging for a particular level.
