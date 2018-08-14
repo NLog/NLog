@@ -1078,6 +1078,7 @@ namespace NLog
                 _candidateConfigFilePaths.AddRange(filePaths);
             }
         }
+
         /// <summary>
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
@@ -1092,15 +1093,32 @@ namespace NLog
         private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {
             // NLog.config from application directory
-            if (CurrentAppDomain?.BaseDirectory != null)
+            string baseDirectory = PathHelpers.TrimDirectorySeparators(CurrentAppDomain?.BaseDirectory);
+            if (!string.IsNullOrEmpty(baseDirectory))
+                yield return Path.Combine(baseDirectory, "NLog.config");
+
+            bool platformFileSystemCaseInsensitive = PlatformDetector.IsWin32;
+            if (!platformFileSystemCaseInsensitive && !string.IsNullOrEmpty(baseDirectory))
+                yield return Path.Combine(baseDirectory, "nlog.config");
+
+#if !SILVERLIGHT && !NETSTANDARD1_3
+            var entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly()));
+            if (!string.IsNullOrEmpty(entryAssemblyLocation))
             {
-                yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
-                yield return Path.Combine(CurrentAppDomain.BaseDirectory, "nlog.config");
+                if (!string.Equals(entryAssemblyLocation, baseDirectory, StringComparison.OrdinalIgnoreCase))
+                {
+                    yield return Path.Combine(entryAssemblyLocation, "NLog.config");
+                    if (!platformFileSystemCaseInsensitive)
+                        yield return Path.Combine(entryAssemblyLocation, "nlog.config");
+                }
             }
-            else
+#endif
+
+            if (string.IsNullOrEmpty(baseDirectory))
             {
                 yield return "NLog.config";
-                yield return "nlog.config";
+                if (!platformFileSystemCaseInsensitive)
+                    yield return "nlog.config";
             }
 
             // Current config file with .config renamed to .nlog
@@ -1124,7 +1142,8 @@ namespace NLog
                         if (path != null)
                         {
                             yield return Path.Combine(path, "NLog.config");
-                            yield return Path.Combine(path, "nlog.config");
+                            if (!platformFileSystemCaseInsensitive)
+                                yield return Path.Combine(path, "nlog.config");
                         }
                     }
                 }
@@ -1132,8 +1151,8 @@ namespace NLog
 
 #if !SILVERLIGHT && !NETSTANDARD1_0
             // Get path to NLog.dll.nlog only if the assembly is not in the GAC
-            var nlogAssembly = typeof(LogFactory).Assembly;
-            if (!nlogAssembly.GlobalAssemblyCache && !string.IsNullOrEmpty(nlogAssembly.Location))
+            var nlogAssembly = typeof(LogFactory).GetAssembly();
+            if (!string.IsNullOrEmpty(nlogAssembly?.Location) && !nlogAssembly.GlobalAssemblyCache)
             {
                 yield return nlogAssembly.Location + ".nlog";
             }
