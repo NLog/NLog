@@ -141,10 +141,20 @@ namespace NLog.Targets
         /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
         protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent)
         {
-            IDictionary<string, object> combinedProperties = null;
+            return GetContextProperties(logEvent, null);
+        }
+
+        /// <summary>
+        /// Checks if any context properties, and if any returns them as a single dictionary
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="combinedProperties">Optional prefilled dictionary</param>
+        /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
+        protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        {
             if (IncludeGdc)
             {
-                combinedProperties = CaptureContextGdc(logEvent, null);
+                combinedProperties = CaptureContextGdc(logEvent, combinedProperties);
             }
 
             if (IncludeMdc)
@@ -192,7 +202,18 @@ namespace NLog.Targets
         /// <returns>Dictionary with all collected properties for logEvent</returns>
         protected IDictionary<string, object> GetAllProperties(LogEventInfo logEvent)
         {
-            IDictionary<string, object> combinedPropties = GetContextProperties(logEvent);
+            return GetAllProperties(logEvent, null);
+        }
+
+        /// <summary>
+        /// Creates combined dictionary of all configured properties for logEvent
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="combinedProperties">Optional prefilled dictionary</param>
+        /// <returns>Dictionary with all collected properties for logEvent</returns>
+        protected IDictionary<string, object> GetAllProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        {
+            IDictionary<string, object> combinedPropties = GetContextProperties(logEvent, combinedProperties);
             if (IncludeEventProperties && logEvent.HasProperties)
             {
                 // TODO Make Dictionary-adapter for PropertiesDictionary to skip extra Dictionary-allocation
