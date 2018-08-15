@@ -39,9 +39,9 @@ namespace NLog
     using System.Collections;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Reflection;
     using System.Text;
     using System.Xml;
+    using NLog.Internal;
 
     /// <summary>
     /// TraceListener which routes all messages through NLog.
@@ -257,7 +257,7 @@ namespace NLog
                 }
                 else
                 {
-                    var sb = new StringBuilder();
+                    var sb = new StringBuilder(data.Length * 5 - 2);
                     for (int i = 0; i < data.Length; ++i)
                     {
                         if (i > 0)
@@ -265,9 +265,9 @@ namespace NLog
                             sb.Append(", ");
                         }
 
-                        sb.Append("{");
-                        sb.Append(i);
-                        sb.Append("}");
+                        sb.Append('{');
+                        sb.AppendInvariant(i);
+                        sb.Append('}');
                     }
                     message = sb.ToString();
                 }
