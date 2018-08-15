@@ -39,9 +39,9 @@ namespace NLog
     using System.Collections;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Reflection;
     using System.Text;
     using System.Xml;
+    using NLog.Internal;
 
     /// <summary>
     /// TraceListener which routes all messages through NLog.
@@ -232,9 +232,6 @@ namespace NLog
         /// <param name="data">The trace data to emit.</param>
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data)
         {
-            if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, string.Empty, null, data, null))
-                return;
-
             TraceData(eventCache, source, eventType, id, new object[] { data });
         }
 
@@ -251,20 +248,32 @@ namespace NLog
             if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, string.Empty, null, null, data))
                 return;
 
-            var sb = new StringBuilder();
-            for (int i = 0; i < data.Length; ++i)
+            string message = string.Empty;
+            if (data?.Length > 0)
             {
-                if (i > 0)
+                if (data.Length == 1)
                 {
-                    sb.Append(", ");
+                    message = "{0}";
                 }
+                else
+                {
+                    var sb = new StringBuilder(data.Length * 5 - 2);
+                    for (int i = 0; i < data.Length; ++i)
+                    {
+                        if (i > 0)
+                        {
+                            sb.Append(", ");
+                        }
 
-                sb.Append("{");
-                sb.Append(i);
-                sb.Append("}");
+                        sb.Append('{');
+                        sb.AppendInvariant(i);
+                        sb.Append('}');
+                    }
+                    message = sb.ToString();
+                }
             }
 
-            ProcessLogEventInfo(TranslateLogLevel(eventType), source, sb.ToString(), data, id, eventType, null);
+            ProcessLogEventInfo(TranslateLogLevel(eventType), source, message, data, id, eventType, null);
         }
 
         /// <summary>
