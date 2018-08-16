@@ -55,23 +55,30 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="target">The target.</param>
         /// <param name="filterChain">The filter chain.</param>
-        public TargetWithFilterChain(Target target, IList<Filter> filterChain)
+        /// <param name="defaultResult">Default action if none of the filters match.</param>
+        public TargetWithFilterChain(Target target, IList<Filter> filterChain, FilterResult defaultResult)
         {
             Target = target;
             FilterChain = filterChain;
+            DefaultResult = defaultResult;
         }
 
         /// <summary>
         /// Gets the target.
         /// </summary>
         /// <value>The target.</value>
-        public Target Target { get; private set; }
+        public Target Target { get; }
 
         /// <summary>
         /// Gets the filter chain.
         /// </summary>
         /// <value>The filter chain.</value>
-        public IList<Filter> FilterChain { get; private set; }
+        public IList<Filter> FilterChain { get;  }
+
+        /// <summary>
+        /// Default action if none of the filters match.
+        /// </summary>
+        public FilterResult DefaultResult { get; }
 
         /// <summary>
         /// Gets or sets the next <see cref="TargetWithFilterChain"/> item in the chain.
