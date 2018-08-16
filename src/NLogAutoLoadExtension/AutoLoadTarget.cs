@@ -34,6 +34,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 
 namespace NLogAutloadExtension
@@ -90,9 +91,12 @@ namespace LoaderTestPrivateNested
         [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private class NLogPackageLoader
         {
-            public static void Preload()
+            public static void Preload(ConfigurationItemFactory fact)
             {
-
+                if (fact == null)
+                {
+                    throw new ArgumentNullException(nameof(fact));
+                }
             }
         }
     }
