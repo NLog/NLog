@@ -291,7 +291,7 @@ namespace NLog.Config
         /// Call the Preload method for <paramref name="type"/>. The Preload method must be static.
         /// </summary>
         /// <param name="type"></param>
-        private static void CallPreload(Type type)
+        private void CallPreload(Type type)
         {
             if (type != null)
             {
@@ -306,12 +306,19 @@ namespace NLog.Config
                         //only static, so first param null
                         try
                         {
-                            preloadMethod.Invoke(null, null);
+                            var firstParam = preloadMethod.GetParameters().FirstOrDefault();
+                            object[] parameters = null;
+                            if (firstParam?.ParameterType == typeof(ConfigurationItemFactory))
+                            {
+                                parameters = new object[] { this };
+                            }
+                            
+                            preloadMethod.Invoke(null, parameters);
                             InternalLogger.Debug("Preload succesfully invoked for '{0}'", type.FullName);
                         }
                         catch (Exception e)
                         {
-                            InternalLogger.Warn(e,"Invoking Preload for '{0}' failed", type.FullName);
+                            InternalLogger.Warn(e, "Invoking Preload for '{0}' failed", type.FullName);
                         }
                     }
                     else
@@ -382,7 +389,7 @@ namespace NLog.Config
                         assemblyLocation = fileLocation.Key;
                         break;
                     }
-                }
+                            }
 
                 InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
                 HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -421,10 +428,10 @@ namespace NLog.Config
                 {
                     if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
                     {
-                        factory.RegisterItemsFromAssembly(assembly);
-                    }
+                            factory.RegisterItemsFromAssembly(assembly);
+                        }
 
-                    if ( assembly.FullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
+                    if (assembly.FullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
                       || assembly.FullName.StartsWith("NLog.Web,", StringComparison.OrdinalIgnoreCase)
                       || assembly.FullName.StartsWith("NLog.Web.AspNetCore,", StringComparison.OrdinalIgnoreCase)
                       || assembly.FullName.StartsWith("Microsoft.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
