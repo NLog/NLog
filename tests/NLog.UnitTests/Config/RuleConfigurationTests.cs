@@ -74,6 +74,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
             Assert.Equal("*", rule.LoggerNamePattern);
+            Assert.Equal(FilterResult.Neutral, rule.DefaultFilterResult);
             Assert.Equal(4, rule.Levels.Count);
             Assert.Contains(LogLevel.Info, rule.Levels);
             Assert.Contains(LogLevel.Warn, rule.Levels);
@@ -397,6 +398,59 @@ namespace NLog.UnitTests.Config
             logger.Warn("x-mass");
             AssertDebugLastMessage("d1", "test 1");
             AssertDebugLastMessage("d2", "x-mass");
+
+        }
+
+        [Fact]
+        public void FiltersTest_defaultFilterAction()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='*' level='Warn' writeTo='d1'>
+                        <filters defaultAction='Ignore'>
+                            <when condition=""starts-with(message, 't')"" action='Log' />
+                      
+                        </filters>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = c;
+            var logger = LogManager.GetLogger("logger1");
+            logger.Warn("test 1");
+            AssertDebugLastMessage("d1", "test 1");
+
+            logger.Warn("x-mass");
+            AssertDebugLastMessage("d1", "test 1");
+        }
+
+        [Fact]
+        public void FiltersTest_defaultFilterAction_noRules()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+
+                <rules>
+                    <logger name='*' level='Warn' writeTo='d1'>
+                        <filters defaultAction='Ignore'>
+                      
+                        </filters>
+                    </logger>
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = c;
+            var logger = LogManager.GetLogger("logger1");
+            logger.Warn("test 1");
+            AssertDebugLastMessage("d1", "");
 
         }
 

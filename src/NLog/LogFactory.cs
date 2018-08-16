@@ -842,7 +842,7 @@ namespace NLog
 
                     foreach (Target target in rule.GetTargetsThreadSafe())
                     {
-                        var awf = new TargetWithFilterChain(target, rule.Filters);
+                        var awf = new TargetWithFilterChain(target, rule.Filters, rule.DefaultFilterResult);
                         if (lastTargetsByLevel[i] != null)
                         {
                             lastTargetsByLevel[i].NextInChain = awf;

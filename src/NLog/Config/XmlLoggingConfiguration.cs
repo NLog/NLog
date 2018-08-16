@@ -764,6 +764,13 @@ namespace NLog.Config
         {
             filtersElement.AssertName("filters");
 
+            var defaultActionResult = filtersElement.GetOptionalAttribute("defaultAction", null);
+
+            if (defaultActionResult != null)
+            {
+                PropertyHelper.SetPropertyFromString(rule, nameof(rule.DefaultFilterResult), defaultActionResult, ConfigurationItemFactory);
+            }
+
             var children = filtersElement.Children.ToList();
             foreach (var filterElement in children)
             {
@@ -1386,5 +1393,5 @@ namespace NLog.Config
 
             return ConfigurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
         }
-            }
-        }
+    }
+}
