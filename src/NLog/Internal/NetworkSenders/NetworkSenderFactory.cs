@@ -48,7 +48,7 @@ namespace NLog.Internal.NetworkSenders
 
 #if !SILVERLIGHT
         /// <inheritdoc />
-        public NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols, bool ignoreSslErrors)
+        public NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols)
 #else
         /// <inheritdoc />
         public NetworkSender Create(string url, int maxQueueSize)
@@ -71,7 +71,6 @@ namespace NLog.Internal.NetworkSenders
                     MaxQueueSize = maxQueueSize,
 #if !SILVERLIGHT
                     SslProtocols = sslProtocols,
-                    IgnoreSslErrors = ignoreSslErrors,
 #endif
                 };
             }
@@ -83,7 +82,6 @@ namespace NLog.Internal.NetworkSenders
                     MaxQueueSize = maxQueueSize,
 #if !SILVERLIGHT
                     SslProtocols = sslProtocols,
-                    IgnoreSslErrors = ignoreSslErrors,
 #endif
                 };
             }
@@ -95,7 +93,6 @@ namespace NLog.Internal.NetworkSenders
                     MaxQueueSize = maxQueueSize,
 #if !SILVERLIGHT
                     SslProtocols = sslProtocols,
-                    IgnoreSslErrors = ignoreSslErrors,
 #endif
                 };
             }

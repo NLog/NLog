@@ -512,7 +512,7 @@ namespace NLog.Targets
         private NetworkSender CreateNetworkSender(string address)
         {
 #if !SILVERLIGHT
-            var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols, IgnoreSslErrors);
+            var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols);
 #else
             var sender = SenderFactory.Create(address, MaxQueueSize);
 #endif

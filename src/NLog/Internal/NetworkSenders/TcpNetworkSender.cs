@@ -87,7 +87,7 @@ namespace NLog.Internal.NetworkSenders
 #if !NETSTANDARD1_0 && !SILVERLIGHT
             if (SslProtocols != System.Security.Authentication.SslProtocols.None)
             {
-                return new SslSocketProxy(host, SslProtocols, IgnoreSslErrors, socketProxy);
+                return new SslSocketProxy(host, SslProtocols, socketProxy);
             }
 #endif
             return socketProxy;

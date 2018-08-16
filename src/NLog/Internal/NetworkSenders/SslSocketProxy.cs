@@ -45,15 +45,13 @@ namespace NLog.Internal.NetworkSenders
         readonly SocketProxy _socketProxy;
         readonly string _host;
         readonly SslProtocols _sslProtocol;
-        readonly bool _ignoreSslErrors;
         SslStream _sslStream;
 
-        public SslSocketProxy(string host, SslProtocols sslProtocol, bool ignoreSslErrors, SocketProxy socketProxy)
+        public SslSocketProxy(string host, SslProtocols sslProtocol, SocketProxy socketProxy)
         {
             _socketProxy = socketProxy;
             _host = host;
             _sslProtocol = sslProtocol;
-            _ignoreSslErrors = ignoreSslErrors;
             _sendCompleted = (ar) => SocketProxySendCompleted(ar);
         }
 
@@ -122,10 +120,7 @@ namespace NLog.Internal.NetworkSenders
             {
                 try
                 {
-                    if (_ignoreSslErrors)
-                        _sslStream = new SslStream(new NetworkStream(_socketProxy.UnderlyingSocket), false, (s,cert,chain,err) => true);
-                    else
-                        _sslStream = new SslStream(new NetworkStream(_socketProxy.UnderlyingSocket));
+                    _sslStream = new SslStream(new NetworkStream(_socketProxy.UnderlyingSocket), false, UserCertificateValidationCallback);
                     _sslStream.ReadTimeout = 20000; // Wait 20 secs before giving up on SSL-handshake
                     if (_sslProtocol != SslProtocols.Default)
                         _sslStream.AuthenticateAsClient(_host, null, _sslProtocol, false);
@@ -152,6 +147,15 @@ namespace NLog.Internal.NetworkSenders
                     proxyArgs?.RaiseCompleted();
                 }
             }
+        }
+
+        private static bool UserCertificateValidationCallback(object sender, object certificate, object chain, SslPolicyErrors sslPolicyErrors)
+        {
+            if (sslPolicyErrors == SslPolicyErrors.None)
+                return true;
+
+            Common.InternalLogger.Debug("SSL certificate errors were encountered when establishing connection to the server: {0}, Certificate: {1}", sslPolicyErrors, certificate);
+            return false;
         }
 
         public bool SendAsync(SocketAsyncEventArgs args)

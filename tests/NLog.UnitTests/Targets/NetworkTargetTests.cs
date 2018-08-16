@@ -909,7 +909,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int idCounter;
 
-            public NetworkSender Create(string url, int maximumQueueSize, SslProtocols sslProtocols, bool ignoreSslErrors)
+            public NetworkSender Create(string url, int maximumQueueSize, SslProtocols sslProtocols)
             {
                 var sender = new MyNetworkSender(url, ++idCounter, Log, this);
                 Senders.Add(sender);
