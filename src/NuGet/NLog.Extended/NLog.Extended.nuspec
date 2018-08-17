@@ -12,6 +12,7 @@
     <language>en-US</language>
     <iconUrl>http://nlog-project.org/N.png</iconUrl>
     <projectUrl>http://nlog-project.org/</projectUrl>
+    <repository type="git" url="https://github.com/NLog/NLog.git" />
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
     <dependencies>
       <dependency id="NLog" version="4.0" />
