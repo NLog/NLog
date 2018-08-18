@@ -55,7 +55,7 @@ Getting started
 
 More detailed tutorial can be found [here](https://github.com/NLog/NLog/wiki/Tutorial).
 
-For the possible options in the config, check the [Target list](https://github.com/NLog/NLog/wiki/Targets) and the [layout renderer list](https://github.com/NLog/NLog/wiki/Layout-Renderers)
+For the possible options in the config, check the [Options list](http://nlog-project.org/config/)
 
 Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)
 
