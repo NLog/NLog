@@ -15,6 +15,7 @@ Note: extensions to NLog will report XSD errors. Those can be ignored safely.  <
     <language>en-US</language>
     <iconUrl>http://nlog-project.org/NConfig.png</iconUrl>
     <projectUrl>http://nlog-project.org/</projectUrl>
+    <repository type="git" url="https://github.com/NLog/NLog.git" />
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
     <tags>nlog, intellisense, xsd</tags>
       <contentFiles>
