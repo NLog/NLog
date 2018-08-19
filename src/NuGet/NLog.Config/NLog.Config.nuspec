@@ -15,6 +15,7 @@
     <language>en-US</language>
     <iconUrl>http://nlog-project.org/NConfig.png</iconUrl>
     <projectUrl>http://nlog-project.org/</projectUrl>
+    <repository type="git" url="https://github.com/NLog/NLog.git" />
     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
     <releaseNotes>NLog $BuildVersion$</releaseNotes>
     <dependencies>
