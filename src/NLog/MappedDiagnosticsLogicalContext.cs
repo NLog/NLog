@@ -51,9 +51,7 @@ namespace NLog
     /// </remarks>
     public static class MappedDiagnosticsLogicalContext
     {
-        /// <summary>
-        /// 
-        /// </summary>
+
         private class ItemRemover : IDisposable
         {
             private readonly string _item;
@@ -69,8 +67,13 @@ namespace NLog
             {
                 if (Interlocked.Exchange(ref _disposed, 1) == 0)
                 {
-                    Remove(_item); 
+                    Remove(_item);
                 }
+            }
+
+            public override string ToString()
+            {
+                return _item?.ToString() ?? base.ToString();
             }
         }
 
@@ -129,9 +132,17 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            object value;
-            GetLogicalThreadDictionary().TryGetValue(item, out value);
+            if (!GetLogicalThreadDictionary().TryGetValue(item, out var value))
+                return null;
+
+#if NET4_6 || NETSTANDARD
             return value;
+#else
+            if (value is System.Runtime.Remoting.ObjectHandle objectHandle)
+                return objectHandle.Unwrap();
+            else
+                return value;
+#endif
         }
 
         /// <summary>
@@ -142,8 +153,7 @@ namespace NLog
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
         public static IDisposable SetScoped(string item, string value)
         {
-            Set(item, value);
-            return new ItemRemover(item);
+            return SetScoped<string>(item, value);
         }
 
         /// <summary>
@@ -154,7 +164,18 @@ namespace NLog
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
         public static IDisposable SetScoped(string item, object value)
         {
-            Set(item, value);
+            return SetScoped<object>(item, value);
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        public static IDisposable SetScoped<T>(string item, T value)
+        {
+            Set<T>(item, value);
             return new ItemRemover(item);
         }
 
@@ -165,7 +186,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            GetLogicalThreadDictionary(true)[item] = value;
+            Set<string>(item, value);
         }
 
         /// <summary>
@@ -175,7 +196,25 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            GetLogicalThreadDictionary(true)[item] = value;
+            Set<object>(item, value);
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        public static void Set<T>(string item, T value)
+        {
+            var logicalContext = GetLogicalThreadDictionary(true);
+#if NET4_6 || NETSTANDARD
+            logicalContext[item] = value;
+#else
+            if (typeof(T).IsValueType || Convert.GetTypeCode(value) != TypeCode.Object)
+                logicalContext[item] = value;
+            else
+                logicalContext[item] = new System.Runtime.Remoting.ObjectHandle(value);
+#endif
         }
 
         /// <summary>

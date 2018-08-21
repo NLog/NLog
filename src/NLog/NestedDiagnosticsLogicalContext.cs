@@ -53,9 +53,19 @@ namespace NLog
         public static IDisposable Push<T>(T value)
         {
             var parent = GetThreadLocal();
-            var current = new NestedContext<T>(parent, value);
+            var current = NestedContext<T>.CreateNestedContext(parent, value);
             SetThreadLocal(current);
             return current;
+        }
+
+        /// <summary>
+        /// Pushes the specified value on current stack
+        /// </summary>
+        /// <param name="value">The value to be pushed.</param>
+        /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
+        public static IDisposable PushObject(object value)
+        {
+            return Push(value);
         }
 
         /// <summary>
@@ -195,17 +205,43 @@ namespace NLog
         {
             public INestedContext Parent { get; }
             public T Value { get; }
-            object INestedContext.Value => Value;
             public long CreatedTimeUtcTicks { get; }
             public int FrameLevel { get; }
             private int _disposed;
-            
+
+            public static INestedContext CreateNestedContext(INestedContext parent, T value)
+            {
+#if NET4_6 || NETSTANDARD
+                return new NestedContext<T>(parent, value);
+#else
+                if (typeof(T).IsValueType || Convert.GetTypeCode(value) != TypeCode.Object)
+                    return new NestedContext<T>(parent, value);
+                else
+                    return new NestedContext<System.Runtime.Remoting.ObjectHandle>(parent, new System.Runtime.Remoting.ObjectHandle(value));
+#endif
+            }
+
+            object INestedContext.Value
+            {
+                get
+                {
+#if NET4_6 || NETSTANDARD
+                    return Value;
+#else
+                    if (Value is System.Runtime.Remoting.IObjectHandle objectHandle)
+                        return objectHandle.Unwrap();
+                    else
+                        return Value;
+#endif
+                }
+            }
+
             public NestedContext(INestedContext parent, T value)
             {
                 Parent = parent;
                 Value = value;
                 CreatedTimeUtcTicks = DateTime.UtcNow.Ticks; // Low time resolution, but okay fast
-                FrameLevel = parent?.FrameLevel + 1 ?? 1; 
+                FrameLevel = parent?.FrameLevel + 1 ?? 1;
             }
 
             void IDisposable.Dispose()
