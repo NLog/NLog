@@ -1088,16 +1088,18 @@ namespace NLog
         /// <summary>
         /// Get default file paths (including filename) for possible NLog config files. 
         /// </summary>
-        private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
+        private static IEnumerable<string> GetDefaultCandidateConfigFilePaths(string fileName = null)
         {
             // NLog.config from application directory
+            string nlogConfigFile = fileName ?? "NLog.config";
             string baseDirectory = PathHelpers.TrimDirectorySeparators(CurrentAppDomain?.BaseDirectory);
             if (!string.IsNullOrEmpty(baseDirectory))
-                yield return Path.Combine(baseDirectory, "NLog.config");
+                yield return Path.Combine(baseDirectory, nlogConfigFile);
 
-            bool platformFileSystemCaseInsensitive = PlatformDetector.IsWin32;
+            string nLogConfigFileLowerCase = nlogConfigFile.ToLower();
+            bool platformFileSystemCaseInsensitive = nlogConfigFile == nLogConfigFileLowerCase || PlatformDetector.IsWin32;
             if (!platformFileSystemCaseInsensitive && !string.IsNullOrEmpty(baseDirectory))
-                yield return Path.Combine(baseDirectory, "nlog.config");
+                yield return Path.Combine(baseDirectory, nLogConfigFileLowerCase);
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
             var entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly()));
@@ -1105,54 +1107,61 @@ namespace NLog
             {
                 if (!string.Equals(entryAssemblyLocation, baseDirectory, StringComparison.OrdinalIgnoreCase))
                 {
-                    yield return Path.Combine(entryAssemblyLocation, "NLog.config");
+                    yield return Path.Combine(entryAssemblyLocation, nlogConfigFile);
                     if (!platformFileSystemCaseInsensitive)
-                        yield return Path.Combine(entryAssemblyLocation, "nlog.config");
+                        yield return Path.Combine(entryAssemblyLocation, nLogConfigFileLowerCase);
                 }
             }
 #endif
 
             if (string.IsNullOrEmpty(baseDirectory))
             {
-                yield return "NLog.config";
+                yield return nlogConfigFile;
                 if (!platformFileSystemCaseInsensitive)
-                    yield return "nlog.config";
+                    yield return nLogConfigFileLowerCase;
             }
 
-            // Current config file with .config renamed to .nlog
-            string configurationFile = CurrentAppDomain?.ConfigurationFile;
-            if (!string.IsNullOrEmpty(configurationFile))
+            if (fileName == null)
             {
-                yield return Path.ChangeExtension(configurationFile, ".nlog");
-
-                // .nlog file based on the non-vshost version of the current config file
-                const string vshostSubStr = ".vshost.";
-                if (configurationFile.Contains(vshostSubStr))
+                // Current config file with .config renamed to .nlog
+                string configurationFile = CurrentAppDomain?.ConfigurationFile;
+                if (!StringHelpers.IsNullOrWhiteSpace(configurationFile))
                 {
-                    yield return Path.ChangeExtension(configurationFile.Replace(vshostSubStr, "."), ".nlog");
-                }
+                    yield return Path.ChangeExtension(configurationFile, ".nlog");
 
-                IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
-                if (privateBinPaths != null)
-                {
-                    foreach (var path in privateBinPaths)
+                    // .nlog file based on the non-vshost version of the current config file
+                    const string vshostSubStr = ".vshost.";
+                    if (configurationFile.Contains(vshostSubStr))
                     {
-                        if (!string.IsNullOrEmpty(path))
-                        {
-                            yield return Path.Combine(path, "NLog.config");
-                            if (!platformFileSystemCaseInsensitive)
-                                yield return Path.Combine(path, "nlog.config");
-                        }
+                        yield return Path.ChangeExtension(configurationFile.Replace(vshostSubStr, "."), ".nlog");
+                    }
+                }
+            }
+
+            IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
+            if (privateBinPaths != null)
+            {
+                foreach (var privatePath in privateBinPaths)
+                {
+                    var path = PathHelpers.TrimDirectorySeparators(privatePath);
+                    if (!StringHelpers.IsNullOrWhiteSpace(path) && !string.Equals(path, baseDirectory, StringComparison.OrdinalIgnoreCase))
+                    {
+                        yield return Path.Combine(path, nlogConfigFile);
+                        if (!platformFileSystemCaseInsensitive)
+                            yield return Path.Combine(path, nLogConfigFileLowerCase);
                     }
                 }
             }
 
 #if !SILVERLIGHT && !NETSTANDARD1_0
-            // Get path to NLog.dll.nlog only if the assembly is not in the GAC
-            var nlogAssembly = typeof(LogFactory).GetAssembly();
-            if (!string.IsNullOrEmpty(nlogAssembly?.Location) && !nlogAssembly.GlobalAssemblyCache)
+            if (fileName == null)
             {
-                yield return nlogAssembly.Location + ".nlog";
+                // Get path to NLog.dll.nlog only if the assembly is not in the GAC
+                var nlogAssembly = typeof(LogFactory).GetAssembly();
+                if (!string.IsNullOrEmpty(nlogAssembly?.Location) && !nlogAssembly.GlobalAssemblyCache)
+                {
+                    yield return nlogAssembly.Location + ".nlog";
+                }
             }
 #endif
         }
@@ -1261,7 +1270,14 @@ namespace NLog
         {
             if (FilePathLayout.DetectFilePathKind(configFile) == FilePathKind.Relative)
             {
-                configFile = Path.Combine(CurrentAppDomain.BaseDirectory, configFile);
+                foreach (var path in GetDefaultCandidateConfigFilePaths(configFile))
+                {
+                    if (File.Exists(path))
+                    {
+                        configFile = path;
+                        break;
+                    }
+                }
             }
 
             Configuration = LoadXmlLoggingConfiguration(configFile);
