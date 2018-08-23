@@ -89,6 +89,10 @@ namespace NLog
         /// </summary>
         private List<string> _candidateConfigFilePaths;
 
+        private static readonly FileWrapper DefaultFileWrapper = new FileWrapper();
+
+        private readonly IFile _file = DefaultFileWrapper;
+
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
@@ -135,6 +139,17 @@ namespace NLog
         {
             Configuration = config;
         }
+
+        /// <summary>
+        ///  Initializes a new instance of the <see cref="LogFactory" /> class with mocks
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="file"></param>
+        internal LogFactory(LoggingConfiguration config, IFile file) : this(config)
+        {
+            _file = file;
+        }
+
 
         /// <summary>
         /// Gets the current <see cref="IAppDomain"/>.
@@ -929,6 +944,8 @@ namespace NLog
         /// </summary>
         private bool _isDisposing;
 
+ 
+
         private void Close(TimeSpan flushTimeout)
         {
             if (_isDisposing)
@@ -1268,11 +1285,19 @@ namespace NLog
         /// <returns>LogFactory instance for fluent interface</returns>
         public LogFactory LoadConfiguration(string configFile)
         {
+            configFile = GetConfigFile(configFile);
+
+            Configuration = TryLoadLoggingConfiguration(configFile);
+            return this;
+        }
+
+        internal string GetConfigFile(string configFile)
+        {
             if (FilePathLayout.DetectFilePathKind(configFile) == FilePathKind.Relative)
             {
                 foreach (var path in GetDefaultCandidateConfigFilePaths(configFile))
                 {
-                    if (File.Exists(path))
+                    if (_file.Exists(path))
                     {
                         configFile = path;
                         break;
@@ -1280,8 +1305,7 @@ namespace NLog
                 }
             }
 
-            Configuration = LoadXmlLoggingConfiguration(configFile);
-            return this;
+            return configFile;
         }
 
         private LoggingConfiguration LoadXmlLoggingConfiguration(string configFile)
