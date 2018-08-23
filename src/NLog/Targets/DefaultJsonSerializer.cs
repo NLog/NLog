@@ -126,7 +126,7 @@ namespace NLog.Targets
                     else
                     {
                         string xmlStr = XmlHelper.XmlConvertToString(value, objTypeCode);
-                        if (SkipQuotes(objTypeCode))
+                        if (SkipQuotes(value, objTypeCode))
                         {
                             return xmlStr;
                         }
@@ -242,7 +242,7 @@ namespace NLog.Targets
             try
             {
                 TypeCode objTypeCode = Convert.GetTypeCode(value);
-                bool includeQuotes = !SkipQuotes(objTypeCode);
+                bool includeQuotes = !SkipQuotes(value, objTypeCode);
                 if (includeQuotes)
                 {
                     destination.Append('"');
@@ -463,7 +463,7 @@ namespace NLog.Targets
                     {
                         return false;
                     }
-                    if (SkipQuotes(objTypeCode))
+                    if (SkipQuotes(value, objTypeCode))
                     {
                         destination.Append(str);
                     }
@@ -539,13 +539,32 @@ namespace NLog.Targets
         /// <summary>
         /// No quotes needed for this type?
         /// </summary>
-        /// <param name="objTypeCode"></param>
-        /// <returns></returns>
-        private static bool SkipQuotes(TypeCode objTypeCode)
+        private static bool SkipQuotes(object value, TypeCode objTypeCode)
         {
-            return objTypeCode != TypeCode.String && (objTypeCode == TypeCode.Empty  // Don't put quotes around null values
-                || objTypeCode == TypeCode.Boolean
-                || IsNumericTypeCode(objTypeCode, true));
+            if (objTypeCode != TypeCode.String)
+            {
+                if (objTypeCode == TypeCode.Empty || objTypeCode == TypeCode.Boolean)
+                    return true;    // Don't put quotes around null values
+
+                if (IsNumericTypeCode(objTypeCode, false) || objTypeCode == TypeCode.Decimal)
+                    return true;
+
+                if (objTypeCode == TypeCode.Double)
+                {
+                    double dblValue = (double)value;
+                    if (!double.IsNaN(dblValue) && !double.IsInfinity(dblValue))
+                        return true;
+                }
+
+                if (objTypeCode == TypeCode.Single)
+                {
+                    float floatValue = (float)value;
+                    if (!float.IsNaN(floatValue) && !float.IsInfinity(floatValue))
+                        return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>

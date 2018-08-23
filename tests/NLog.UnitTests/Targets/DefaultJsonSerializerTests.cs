@@ -181,8 +181,10 @@ namespace NLog.UnitTests.Targets
         [InlineData((ulong)32711520331, "32711520331")]
         [InlineData(3.14159265, "3.14159265")]
         [InlineData(2776145.7743, "2776145.7743")]
-        [InlineData(double.NaN, "NaN")]
-        [InlineData(double.PositiveInfinity, "Infinity")]
+        [InlineData(double.NaN, "\"NaN\"")]
+        [InlineData(double.PositiveInfinity, "\"Infinity\"")]
+        [InlineData(float.NaN, "\"NaN\"")]
+        [InlineData(float.PositiveInfinity, "\"Infinity\"")]
         public void SerializeNumber_Test(object o, string expected)
         {
             var actual = _serializer.SerializeObject(o);
