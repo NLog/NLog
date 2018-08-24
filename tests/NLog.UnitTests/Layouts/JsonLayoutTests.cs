@@ -559,9 +559,9 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo);
 
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
-        }     
-        
-        
+        }
+
+
         /// <summary>
         /// Serialize object deep
         /// </summary>
@@ -679,6 +679,39 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo1);
 
             AssertDebugLastMessage("debug", "{ \"InvalidCharacters\": [\"|\",\"#\",\"{\",\"}\",\"%\",\"&\",\"\\\"\",\"~\",\"+\",\"\\\\\",\"\\/\",\":\",\"*\",\"?\",\"<\",\">\"] }");
+        }
+
+        [Fact]
+        public void EncodesInvalidDoubles()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' >
+                 </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo1 = new LogEventInfo();
+
+            logEventInfo1.Properties.Add("DoubleNaN", double.NaN);
+            logEventInfo1.Properties.Add("DoubleInfPositive", double.PositiveInfinity);
+            logEventInfo1.Properties.Add("DoubleInfNegative", double.NegativeInfinity);
+            logEventInfo1.Properties.Add("FloatNaN", float.NaN);
+            logEventInfo1.Properties.Add("FloatInfPositive", float.PositiveInfinity);
+            logEventInfo1.Properties.Add("FloatInfNegative", float.NegativeInfinity);
+
+            logger.Debug(logEventInfo1);
+
+            AssertDebugLastMessage("debug", "{ \"DoubleNaN\": \"NaN\", \"DoubleInfPositive\": \"Infinity\", \"DoubleInfNegative\": \"-Infinity\", \"FloatNaN\": \"NaN\", \"FloatInfPositive\": \"Infinity\", \"FloatInfNegative\": \"-Infinity\" }");
         }
 
         private static LogEventInfo CreateLogEventWithExcluded()

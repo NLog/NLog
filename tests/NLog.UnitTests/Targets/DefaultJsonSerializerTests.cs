@@ -159,7 +159,7 @@ namespace NLog.UnitTests.Targets
             var actual = _serializer.SerializeObject(d);
 
             var cnt = Regex.Matches(actual, "\\[\"alpha\",\"bravo\"\\]").Count;
-            Assert.Equal(10, cnt);   
+            Assert.Equal(10, cnt);
         }
 
         [Fact]
@@ -181,8 +181,10 @@ namespace NLog.UnitTests.Targets
         [InlineData((ulong)32711520331, "32711520331")]
         [InlineData(3.14159265, "3.14159265")]
         [InlineData(2776145.7743, "2776145.7743")]
-        [InlineData(double.NaN, "NaN")]
-        [InlineData(double.PositiveInfinity, "Infinity")]
+        [InlineData(double.NaN, "\"NaN\"")]
+        [InlineData(double.PositiveInfinity, "\"Infinity\"")]
+        [InlineData(float.NaN, "\"NaN\"")]
+        [InlineData(float.PositiveInfinity, "\"Infinity\"")]
         public void SerializeNumber_Test(object o, string expected)
         {
             var actual = _serializer.SerializeObject(o);
@@ -501,7 +503,7 @@ namespace NLog.UnitTests.Targets
         {
             private string something = "something";
 
-#region Overrides of Object
+            #region Overrides of Object
 
             /// <summary>Returns a string that represents the current object.</summary>
             /// <returns>A string that represents the current object.</returns>
@@ -510,7 +512,7 @@ namespace NLog.UnitTests.Targets
                 return something;
             }
 
-#endregion
+            #endregion
         }
 
         private class ObjectWithExceptionAndPrivateSetter
