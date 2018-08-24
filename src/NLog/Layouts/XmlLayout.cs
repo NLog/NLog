@@ -432,7 +432,6 @@ namespace NLog.Layouts
 
             if (RenderAttribute(sb, PropertiesElementValueAttribute, xmlValueString))
             {
-
                 sb.Append("/>");
             }
             else
@@ -440,10 +439,8 @@ namespace NLog.Layouts
                 sb.Append('>');
                 XmlHelper.EscapeXmlString(xmlValueString, false, sb);
                 sb.Append("</");
-                if (_propertiesElementNameHasFormat)
-                    sb.AppendFormat(PropertiesElementName, propNameElement);
-                else
-                    sb.AppendFormat(PropertiesElementName, PropertiesElementName);
+                var value = _propertiesElementNameHasFormat ? propNameElement : PropertiesElementName;
+                sb.AppendFormat(PropertiesElementName, value);
                 sb.Append('>');
             }
             if (IndentXml)
