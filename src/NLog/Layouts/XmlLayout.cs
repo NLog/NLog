@@ -257,11 +257,10 @@ namespace NLog.Layouts
             RenderXmlFormattedMessage(logEvent, target);
             if (target.Length == orgLength && IncludeEmptyValue && !string.IsNullOrEmpty(ElementName))
             {
-                target.Append('<');
-                target.Append(ElementName);
-                target.Append("/>");
+                RenderSelfClosingElement(target, ElementName);
             }
         }
+
 
         /// <summary>
         /// Formats the log event as a XML document for writing.
@@ -415,23 +414,13 @@ namespace NLog.Layouts
                 sb.Append(PropertiesElementName);
             }
 
-            if (!string.IsNullOrEmpty(PropertiesElementKeyAttribute))
-            {
-                sb.Append(' ');
-                sb.Append(PropertiesElementKeyAttribute);
-                sb.Append("=\"");
-                XmlHelper.EscapeXmlString(propName, true, sb);
-                sb.Append('\"');
-            }
+            RenderAttribute(sb, PropertiesElementKeyAttribute, propName);
 
             string xmlValueString = XmlHelper.XmlConvertToStringSafe(propertyValue);
-            if (!string.IsNullOrEmpty(PropertiesElementValueAttribute))
+
+            if (RenderAttribute(sb, PropertiesElementValueAttribute, xmlValueString))
             {
-                sb.Append(' ');
-                sb.Append(PropertiesElementValueAttribute);
-                sb.Append("=\"");
-                XmlHelper.EscapeXmlString(xmlValueString, true, sb);
-                sb.Append('\"');
+
                 sb.Append("/>");
             }
             else
@@ -447,6 +436,28 @@ namespace NLog.Layouts
             }
             if (IndentXml)
                 sb.AppendLine();
+        }
+
+        /// <summary>
+        /// write attribute, only if <paramref name="attributeName"/> is not empty
+        /// </summary>
+        /// <param name="sb"></param>
+        /// <param name="attributeName"></param>
+        /// <param name="value"></param>
+        /// <returns>rendered</returns>
+        private static bool RenderAttribute(StringBuilder sb, string attributeName, string value)
+        {
+            if (!string.IsNullOrEmpty(attributeName))
+            {
+                sb.Append(' ');
+                sb.Append(attributeName);
+                sb.Append("=\"");
+                XmlHelper.EscapeXmlString(value, true, sb);
+                sb.Append('\"');
+                return true;
+            }
+
+            return false;
         }
 
         private bool RenderAppendXmlElementValue(XmlLayout xmlElement, LogEventInfo logEvent, StringBuilder sb, bool beginXmlDocument)
@@ -500,18 +511,15 @@ namespace NLog.Layouts
 
         private void BeginXmlDocument(StringBuilder sb, string elementName)
         {
-            sb.Append('<');
-            sb.Append(elementName);
-            sb.Append('>');
+            RenderStartElement(sb, elementName);
             if (IndentXml)
                 sb.AppendLine();
         }
 
+
         private void EndXmlDocument(StringBuilder sb, string elementName)
         {
-            sb.Append("</");
-            sb.Append(elementName);
-            sb.Append('>');
+            RenderEndElement(sb, elementName);
         }
 
         /// <summary>
@@ -528,6 +536,28 @@ namespace NLog.Layouts
                 return ToStringWithNestedItems(new[] { this }, n => "Element:" + n.ElementName);
             else
                 return GetType().Name;
+        }
+
+
+        private static void RenderSelfClosingElement(StringBuilder target, string elementName)
+        {
+            target.Append('<');
+            target.Append(elementName);
+            target.Append("/>");
+        }
+
+        private static void RenderStartElement(StringBuilder sb, string elementName)
+        {
+            sb.Append('<');
+            sb.Append(elementName);
+            sb.Append('>');
+        }
+
+        private static void RenderEndElement(StringBuilder sb, string elementName)
+        {
+            sb.Append("</");
+            sb.Append(elementName);
+            sb.Append('>');
         }
     }
 }
