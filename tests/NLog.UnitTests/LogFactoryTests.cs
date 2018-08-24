@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.UnitTests.Mocks;
+
 namespace NLog.UnitTests
 {
     using System;

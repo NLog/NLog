@@ -34,7 +34,7 @@
 using System;
 using NLog.Internal.Fakeables;
 
-namespace NLog.UnitTests
+namespace NLog.UnitTests.Mocks
 {
     public class FileMock : IFile
     {

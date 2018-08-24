@@ -36,7 +36,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using NLog.Internal.Fakeables;
 
-namespace NLog.UnitTests
+namespace NLog.UnitTests.Mocks
 {
     public class AppDomainMock : IAppDomain
     {
