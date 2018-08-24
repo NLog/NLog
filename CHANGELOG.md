@@ -4,6 +4,13 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### v4.5.9 (2018/08/24)
+
+#### Fixes
+- [#2865](https://github.com/NLog/NLog/pull/2865) JSON encoding should create valid JSON for special double values (hotfix) (@snakefoot)
+
+#### Enhancements
+- [#2846](https://github.com/NLog/NLog/pull/2846) Include Entry Assembly File Location when loading candidate NLog.config (#2846) (@snakefoot)
 
 ### v4.5.8 (2018/08/05)
 
