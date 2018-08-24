@@ -45,13 +45,10 @@ namespace NLog.Internal
     {
         // found on http://stackoverflow.com/questions/397250/unicode-regex-invalid-xml-characters/961504#961504
         // filters control characters but allows only properly-formed surrogate sequences
-#if !SILVERLIGHT
+#if NET3_5 || NETSTANDARD1_0
         private static readonly Regex InvalidXmlChars = new Regex(
             @"(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\uFEFF\uFFFE\uFFFF]",
             RegexOptions.Compiled);
-#else
-		private static readonly Regex InvalidXmlChars = new Regex(
-			@"(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\uFEFF\uFFFE\uFFFF]");
 #endif
 
         /// <summary>
