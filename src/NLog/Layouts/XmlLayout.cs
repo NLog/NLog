@@ -37,8 +37,8 @@ namespace NLog.Layouts
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// A specialized layout that renders XML-formatted events.
@@ -48,11 +48,17 @@ namespace NLog.Layouts
     [ThreadSafe]
     public class XmlLayout : Layout
     {
+        private const string DefaultTopElementName = "logevent";
+        private const string DefaultElementName = "element";
+        private const string DefaultAttributeName = "attribute";
+        private const string DefaultPropertyName = "property";
+        private const string DefaultPropertyKeyAttribute = "key";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLayout"/> class.
         /// </summary>
         public XmlLayout()
-            : this("logevent", null)
+            : this(DefaultTopElementName, null)
         {
         }
 
@@ -74,7 +80,7 @@ namespace NLog.Layouts
         /// Name of the top level XML element
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [DefaultValue("logevent")]
+        [DefaultValue(DefaultTopElementName)]
         public string ElementName { get => _elementName; set => _elementName = XmlHelper.XmlConvertToElementName(value?.Trim(), true); }
         private string _elementName;
 
@@ -102,14 +108,14 @@ namespace NLog.Layouts
         /// Gets the array of xml 'elements' configurations.
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [ArrayParameter(typeof(XmlLayout), "element")]
+        [ArrayParameter(typeof(XmlLayout), DefaultElementName)]
         public IList<XmlLayout> Elements { get; private set; }
 
         /// <summary>
         /// Gets the array of 'attributes' configurations for the <see cref="ElementName"/>
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [ArrayParameter(typeof(XmlAttribute), "attribute")]
+        [ArrayParameter(typeof(XmlAttribute), DefaultAttributeName)]
         public IList<XmlAttribute> Attributes { get; private set; }
 
         /// <summary>
@@ -157,8 +163,12 @@ namespace NLog.Layouts
         /// Skips closing element tag when having configured <see cref="PropertiesElementValueAttribute"/>
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        public string PropertiesElementName { get { return _propertiesElementName; } set { _propertiesElementName = value; _propertiesElementNameHasFormat = value?.IndexOf('{') >= 0; } }
-        private string _propertiesElementName = "property";
+        public string PropertiesElementName
+        {
+            get => _propertiesElementName;
+            set { _propertiesElementName = value; _propertiesElementNameHasFormat = value?.IndexOf('{') >= 0; }
+        }
+        private string _propertiesElementName = DefaultPropertyName;
         private bool _propertiesElementNameHasFormat;
 
         /// <summary>
@@ -170,7 +180,7 @@ namespace NLog.Layouts
         /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        public string PropertiesElementKeyAttribute { get; set; } = "key";
+        public string PropertiesElementKeyAttribute { get; set; } = DefaultPropertyKeyAttribute;
 
         /// <summary>
         /// XML attribute name to use when rendering property-value
@@ -272,17 +282,17 @@ namespace NLog.Layouts
             {
                 for (int i = 0; i < Attributes.Count; i++)
                 {
-                    var attrib = Attributes[i];
-                    int beforeAttribLength = sb.Length;
-                    if (!RenderAppendXmlAttributeValue(attrib, logEvent, sb, sb.Length == orgLength))
+                    var attribute = Attributes[i];
+                    int beforeAttributeLength = sb.Length;
+                    if (!RenderAppendXmlAttributeValue(attribute, logEvent, sb, sb.Length == orgLength))
                     {
-                        sb.Length = beforeAttribLength;
+                        sb.Length = beforeAttributeLength;
                     }
                 }
 
                 if (sb.Length != orgLength)
                 {
-                    bool hasElements = 
+                    bool hasElements =
                         ElementValue != null ||
                         Elements.Count > 0 ||
                         IncludeMdc ||
@@ -324,10 +334,10 @@ namespace NLog.Layouts
             for (int i = 0; i < Elements.Count; i++)
             {
                 var element = Elements[i];
-                int beforeAttribLength = sb.Length;
+                int beforeAttributeLength = sb.Length;
                 if (!RenderAppendXmlElementValue(element, logEvent, sb, sb.Length == orgLength))
                 {
-                    sb.Length = beforeAttribLength;
+                    sb.Length = beforeAttributeLength;
                 }
             }
 
@@ -454,7 +464,7 @@ namespace NLog.Layouts
                 sb.Append("  ");
 
             int beforeValueLength = sb.Length;
-            xmlElement.RenderAppendBuilder(logEvent, sb, false);
+            xmlElement.RenderAppendBuilder(logEvent, sb);
             if (sb.Length == beforeValueLength && !xmlElement.IncludeEmptyValue)
                 return false;
 
