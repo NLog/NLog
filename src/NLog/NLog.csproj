@@ -33,19 +33,11 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 
-## Features
-- MethodCallTarget - Support for Lamba method (@snakefoot)
-- MessageTemplates - Support rendering of alignment + padding (@snakefoot)
-
-## Fixes  
-- FileTarget - Failing to CreateArchiveMutex should not stop logging (@snakefoot)
-- Auto loading of assemblies was broken in some cases (@snakefoot)
+## Fixes
+- [#2865](https://github.com/NLog/NLog/pull/2865) JSON encoding should create valid JSON for special double values (hotfix) (@snakefoot)
 
 ## Enhancements
-- LoggingConfiguration - Improves CheckUnusedTargets to handle target wrappers (@snakefoot)
-
-## Performance
-- Optimize LayoutRendererWrappers to reduce string allocations (#2817) (@snakefoot)
+- [#2846](https://github.com/NLog/NLog/pull/2846) Include Entry Assembly File Location when loading candidate NLog.config (#2846) (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
