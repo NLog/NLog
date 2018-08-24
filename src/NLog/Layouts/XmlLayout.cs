@@ -340,6 +340,21 @@ namespace NLog.Layouts
                 }
             }
 
+            var props = GetPropertiesToRender(logEvent.HasProperties, logEvent.Properties);
+
+            foreach (var prop in props)
+            {
+                AppendXmlPropertyValue(prop.Key, prop.Value, sb, sb.Length == orgLength);
+            }
+
+            if (sb.Length > orgLength && !string.IsNullOrEmpty(ElementName))
+            {
+                EndXmlDocument(sb, ElementName);
+            }
+        }
+
+        private IEnumerable<KeyValuePair<string, object>> GetPropertiesToRender(bool hasProperties, IDictionary<object, object> logEventProperties)
+        {
             if (IncludeMdc)
             {
                 foreach (string key in MappedDiagnosticsContext.GetNames())
@@ -347,7 +362,7 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsContext.GetObject(key);
-                    AppendXmlPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
+                    yield return new KeyValuePair<string, object>(key, propertyValue);
                 }
             }
 
@@ -359,29 +374,26 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
-                    AppendXmlPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
+                    yield return new KeyValuePair<string, object>(key, propertyValue);
                 }
             }
 #endif
 
-            if (IncludeAllProperties && logEvent.HasProperties)
+            if (IncludeAllProperties && hasProperties)
             {
-                foreach (var property in logEvent.Properties)
+                foreach (var property in logEventProperties)
                 {
-                    string propertyKey = property.Key.ToString();
-                    if (string.IsNullOrEmpty(propertyKey))
+                    string key = property.Key.ToString();
+                    if (string.IsNullOrEmpty(key))
                         continue;
 
-                    if (ExcludeProperties.Contains(propertyKey))
+                    if (ExcludeProperties.Contains(key))
                         continue;
 
-                    AppendXmlPropertyValue(propertyKey, property.Value, sb, sb.Length == orgLength);
+                    var propertyValue = property.Value;
+                    yield return new KeyValuePair<string, object>(key, propertyValue);
+
                 }
-            }
-
-            if (sb.Length > orgLength && !string.IsNullOrEmpty(ElementName))
-            {
-                EndXmlDocument(sb, ElementName);
             }
         }
 
