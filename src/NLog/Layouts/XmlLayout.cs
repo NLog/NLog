@@ -496,9 +496,9 @@ namespace NLog.Layouts
             return true;
         }
 
-        private bool RenderAppendXmlAttributeValue(XmlAttribute attrib, LogEventInfo logEvent, StringBuilder sb, bool beginXmlDocument)
+        private bool RenderAppendXmlAttributeValue(XmlAttribute attributes, LogEventInfo logEvent, StringBuilder sb, bool beginXmlDocument)
         {
-            string xmlKeyString = attrib.Name;
+            string xmlKeyString = attributes.Name;
             if (string.IsNullOrEmpty(xmlKeyString))
                 return false;
 
@@ -513,8 +513,8 @@ namespace NLog.Layouts
             sb.Append("=\"");
 
             int beforeValueLength = sb.Length;
-            attrib.LayoutWrapper.RenderAppendBuilder(logEvent, sb);
-            if (sb.Length == beforeValueLength && !attrib.IncludeEmptyValue)
+            attributes.LayoutWrapper.RenderAppendBuilder(logEvent, sb);
+            if (sb.Length == beforeValueLength && !attributes.IncludeEmptyValue)
                 return false;
 
             sb.Append('\"');
@@ -543,7 +543,7 @@ namespace NLog.Layouts
             if (Elements.Count > 0)
                 return ToStringWithNestedItems(Elements, l => l.ToString());
             else if (Attributes.Count > 0)
-                return ToStringWithNestedItems(Attributes, a => "Attrib:" + a.Name);
+                return ToStringWithNestedItems(Attributes, a => "Attributes:" + a.Name);
             else if (ElementName != null)
                 return ToStringWithNestedItems(new[] { this }, n => "Element:" + n.ElementName);
             else
