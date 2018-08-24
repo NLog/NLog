@@ -4,6 +4,23 @@ Date format: (year/month/day)
 
 ## Change Log
 
+
+### v4.5.8 (2018/08/05)
+
+#### Features
+- [#2809](https://github.com/NLog/NLog/pull/2809) MethodCallTarget - Support for Lamba method (@snakefoot)
+- [#2816](https://github.com/NLog/NLog/pull/2816) MessageTemplates - Support rendering of alignment + padding (@snakefoot)
+
+#### Fixes  
+- [#2827](https://github.com/NLog/NLog/pull/2827) FileTarget - Failing to CreateArchiveMutex should not stop logging (@snakefoot)
+- [#2830](https://github.com/NLog/NLog/pull/2830) Auto loading of assemblies was broken in some cases (@snakefoot)
+
+#### Enhancements
+- [#2814](https://github.com/NLog/NLog/pull/2814) LoggingConfiguration - Improves CheckUnusedTargets to handle target wrappers (@snakefoot)
+
+#### Performance
+- [#2817](https://github.com/NLog/NLog/pull/2817) Optimize LayoutRendererWrappers to reduce string allocations (#2817) (@snakefoot)
+
 ### v4.5.7 (2018/07/19)
 
 #### Features
