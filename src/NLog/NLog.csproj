@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -29,7 +29,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
-    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
 
@@ -45,11 +45,11 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
 
     </PackageReleaseNotes>
     <PackageTags>NLog;logging;log;structured;tracing;logfiles;database;eventlog;email;wcf;console</PackageTags>
-    <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
-    <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
+    <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
+    <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
+    <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
 
     <SignAssembly>true</SignAssembly>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
