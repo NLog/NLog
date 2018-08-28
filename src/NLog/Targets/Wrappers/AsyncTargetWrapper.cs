@@ -181,13 +181,13 @@ namespace NLog.Targets.Wrappers
         [DefaultValue(5)]
         public int FullBatchSizeWriteLimit { get; set; }
 
-#if NET4_5 || NET4_0
         /// <summary>
         /// Gets or sets whether to use the locking queue, instead of a lock-free concurrent queue
         /// The locking queue is less concurrent when many logger threads, but reduces memory allocation
         /// </summary>
-        public bool ForceLockingQueue { get; set; }
-#endif
+        [DefaultValue(false)]
+        public bool ForceLockingQueue { get => _forceLockingQueue ?? false; set => _forceLockingQueue = value; }
+        private bool? _forceLockingQueue;
 
         /// <summary>
         /// Gets the queue of lazy writer thread requests.
@@ -216,21 +216,19 @@ namespace NLog.Targets.Wrappers
             if (!OptimizeBufferReuse && WrappedTarget != null && WrappedTarget.OptimizeBufferReuse)
             {
                 OptimizeBufferReuse = GetType() == typeof(AsyncTargetWrapper); // Class not sealed, reduce breaking changes
-#if NET4_5 || NET4_0
                 if (!OptimizeBufferReuse && !ForceLockingQueue)
                 {
                     ForceLockingQueue = true;   // Avoid too much allocation, when wrapping a legacy target
                 }
-#endif
             }
 
-#if NET4_5 || NET4_0
             if (!ForceLockingQueue && OverflowAction == AsyncTargetWrapperOverflowAction.Block && BatchSize * 1.5m > QueueLimit)
             {
                 ForceLockingQueue = true;   // ConcurrentQueue does not perform well if constantly hitting QueueLimit
             }
 
-            if (ForceLockingQueue != (_requestQueue is AsyncRequestQueue))
+#if NET4_5 || NET4_0
+            if (_forceLockingQueue.HasValue && _forceLockingQueue.Value != (_requestQueue is AsyncRequestQueue))
             {
                 _requestQueue = ForceLockingQueue ? (IAsyncRequestQueue)new AsyncRequestQueue(QueueLimit, OverflowAction) : new ConcurrentRequestQueue(QueueLimit, OverflowAction);
             }
