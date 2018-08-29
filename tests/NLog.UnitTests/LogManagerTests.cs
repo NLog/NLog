@@ -618,6 +618,8 @@ namespace NLog.UnitTests
             Assert.Equal("B | Goodbye World", targetB.Logs.LastOrDefault());
         }
 
+
+
         /// <summary>
         /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
         /// </summary>
