@@ -347,20 +347,12 @@ namespace NLog
             var configFileNames = GetCandidateConfigFilePaths();
             foreach (string configFile in configFileNames)
             {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                Uri configFileUri = new Uri(configFile, UriKind.Relative);
-                if (Application.GetResourceStream(configFileUri) != null)
+
+                if (TryLoadLoggingConfiguration(configFile, out var config))
                 {
-                    _config = TryLoadLoggingConfiguration(configFile);
+                    _config = config;
                     break;
                 }
-#else
-                if (File.Exists(configFile))
-                {
-                    _config = TryLoadLoggingConfiguration(configFile);
-                    break;
-                }
-#endif
             }
         }
 
@@ -1266,21 +1258,40 @@ namespace NLog
                 configFile = Path.Combine(CurrentAppDomain.BaseDirectory, configFile);
             }
 
-            Configuration = TryLoadLoggingConfiguration(configFile);
+            TryLoadLoggingConfiguration(configFile, out var config);
+            Configuration = config;
             return this;
         }
 
-        private LoggingConfiguration TryLoadLoggingConfiguration(string configFile)
+        private bool TryLoadLoggingConfiguration(string configFile, out LoggingConfiguration loggingConfiguration)
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
-            var xmlConfig = new XmlLoggingConfiguration(configFile, this);
+            XmlLoggingConfiguration xmlConfig;
+            try
+            {
+                xmlConfig = new XmlLoggingConfiguration(configFile, this);
+            }
+            catch (Exception ex)
+            {
+                var throwExceptions = ThrowConfigExceptions ?? ThrowExceptions;
+                if (throwExceptions) //todo or ex.MustBeRethrown?
+                {
+                    throw;
+                }
+
+                loggingConfiguration = null;
+                InternalLogger.Warn(ex, "Failed loading config from {0}.", configFile);
+                return false;
+            }
+            loggingConfiguration = xmlConfig;
             //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
             //therefor we check the InitializeSucceeded property.
             if (xmlConfig.InitializeSucceeded != true)
             {
                 InternalLogger.Warn("Failed loading config from {0}. Invalid XML?", configFile);
+                return false;
             }
-            return xmlConfig;
+            return true;
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3

@@ -164,7 +164,7 @@ namespace NLog.UnitTests
                 if (testChanged != null)
                     LogManager.LogFactory.ConfigurationChanged -= testChanged;
             }
-       }
+        }
 
         private class ReloadNullConfiguration : LoggingConfiguration
         {
@@ -321,6 +321,34 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.ResumeLogging();
             Assert.True(factory.IsLoggingEnabled());
+        }
+
+        [Fact]
+        public void LogManager_TryLoadLoggingConfiguration_WhenFileDoesNotExist_ThenDoesNotThrowException()
+        {
+            // Arrange
+            string filename = $"{Guid.NewGuid()}.config";
+            LogFactory factory = new LogFactory();
+
+            // Act
+            factory.LoadConfiguration(filename);
+        }
+
+        [Theory]
+        [InlineData(true, false)]
+        [InlineData(true, true)]
+        [InlineData(null, true)]
+        public void LogManager_TryLoadLoggingConfiguration_WhenFileDoesNotExist_shouldThrowIfEnabled(bool? throwConfigExceptions, bool throwExceptions)
+        {
+            // Arrange
+            string filename = $"{Guid.NewGuid()}.config";
+            LogFactory factory = new LogFactory();
+            factory.ThrowConfigExceptions = throwConfigExceptions;
+            factory.ThrowExceptions = throwExceptions;
+
+            // Act
+            Assert.Throws<FileNotFoundException>(() => factory.LoadConfiguration(filename));
+
         }
     }
 }
