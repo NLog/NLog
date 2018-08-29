@@ -13,10 +13,10 @@
 Note: extensions to NLog will report XSD errors. Those can be ignored safely.  </description>
     <releaseNotes>NLog $BuildVersion$</releaseNotes>
     <language>en-US</language>
-    <iconUrl>http://nlog-project.org/NConfig.png</iconUrl>
-    <projectUrl>http://nlog-project.org/</projectUrl>
+    <iconUrl>https://nlog-project.org/NConfig.png</iconUrl>
+    <projectUrl>https://nlog-project.org/</projectUrl>
     <repository type="git" url="https://github.com/NLog/NLog.git" />
-    <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+    <licenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</licenseUrl>
     <tags>nlog, intellisense, xsd</tags>
       <contentFiles>
       <files include="**/*.*" buildAction="None" copyToOutput="false" flatten="true" />
