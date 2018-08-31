@@ -42,7 +42,7 @@ namespace NLog.Targets.Wrappers
     /// </summary>
 	internal class AsyncRequestQueue : IAsyncRequestQueue
     {
-        private readonly Queue<AsyncLogEventInfo> _logEventInfoQueue = new Queue<AsyncLogEventInfo>();
+        private readonly Queue<AsyncLogEventInfo> _logEventInfoQueue = new Queue<AsyncLogEventInfo>(1000);
 
         /// <summary>
         /// Initializes a new instance of the AsyncRequestQueue class.

@@ -50,7 +50,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var targetWrapper = new AsyncTargetWrapper(myTarget, 300, AsyncTargetWrapperOverflowAction.Grow);
             Assert.Equal(AsyncTargetWrapperOverflowAction.Grow, targetWrapper.OverflowAction);
             Assert.Equal(300, targetWrapper.QueueLimit);
-            Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
+            Assert.Equal(1, targetWrapper.TimeToSleepBetweenBatches);
             Assert.Equal(200, targetWrapper.BatchSize);
         }
 
@@ -65,7 +65,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             Assert.Equal(AsyncTargetWrapperOverflowAction.Discard, targetWrapper.OverflowAction);
             Assert.Equal(10000, targetWrapper.QueueLimit);
-            Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
+            Assert.Equal(1, targetWrapper.TimeToSleepBetweenBatches);
             Assert.Equal(200, targetWrapper.BatchSize);
         }
 
@@ -142,7 +142,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 #if NET4_5
                 if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
 #endif
-                    Assert.True(elapsedMilliseconds < 950);
+                    Assert.InRange(elapsedMilliseconds, 0, 950);
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)

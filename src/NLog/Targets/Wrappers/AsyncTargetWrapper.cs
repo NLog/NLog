@@ -127,7 +127,7 @@ namespace NLog.Targets.Wrappers
 #else
             _requestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
 #endif
-            TimeToSleepBetweenBatches = 50;
+            TimeToSleepBetweenBatches = 1;
             BatchSize = 200;
             FullBatchSizeWriteLimit = 5;
             WrappedTarget = wrappedTarget;
@@ -144,10 +144,10 @@ namespace NLog.Targets.Wrappers
         public int BatchSize { get; set; }
 
         /// <summary>
-        /// Gets or sets the time in milliseconds to sleep between batches.
+        /// Gets or sets the time in milliseconds to sleep between batches. (1 or less means trigger on new activity)
         /// </summary>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(50)]
+        [DefaultValue(1)]
         public int TimeToSleepBetweenBatches { get; set; }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace NLog.Targets.Wrappers
             }
 #endif
 
-            if (BatchSize > QueueLimit && TimeToSleepBetweenBatches <= 0)
+            if (BatchSize > QueueLimit && TimeToSleepBetweenBatches <= 1)
             {
                 BatchSize = QueueLimit;     // Avoid too much throttling 
             }
@@ -275,7 +275,7 @@ namespace NLog.Targets.Wrappers
             {
                 if (_lazyWriterTimer != null)
                 {
-                    if (TimeToSleepBetweenBatches <= 0)
+                    if (TimeToSleepBetweenBatches <= 1)
                     {
                         InternalLogger.Trace("AsyncWrapper(Name={0}): Throttled timer scheduled", Name);
                         _lazyWriterTimer.Change(1, Timeout.Infinite);
@@ -354,8 +354,13 @@ namespace NLog.Targets.Wrappers
         {
             PrecalculateVolatileLayouts(logEvent.LogEvent);
             bool queueWasEmpty = _requestQueue.Enqueue(logEvent);
-            if (queueWasEmpty && TimeToSleepBetweenBatches <= 0)
-                StartInstantWriterTimer();
+            if (queueWasEmpty)
+            {
+                if (TimeToSleepBetweenBatches == 0)
+                    StartInstantWriterTimer();
+                else if (TimeToSleepBetweenBatches <= 1)
+                    StartLazyWriterTimer();
+            }
         }
 
         /// <summary>
@@ -394,7 +399,7 @@ namespace NLog.Targets.Wrappers
                     if (count == BatchSize)
                         wroteFullBatchSize = true;
 
-                    if (wroteFullBatchSize && TimeToSleepBetweenBatches <= 0)
+                    if (wroteFullBatchSize && TimeToSleepBetweenBatches <= 1)
                         StartInstantWriterTimer(); // Found full batch, fast schedule to take next batch (within lock to avoid pile up)
                 }
             }
@@ -411,7 +416,7 @@ namespace NLog.Targets.Wrappers
             }
             finally
             {
-                if (TimeToSleepBetweenBatches <= 0)
+                if (TimeToSleepBetweenBatches <= 1)
                 {
                     if (!wroteFullBatchSize && !_requestQueue.IsEmpty)
                     {
@@ -441,7 +446,7 @@ namespace NLog.Targets.Wrappers
                     if (asyncContinuation != null)
                         base.FlushAsync(asyncContinuation);
                 }
-                if (TimeToSleepBetweenBatches <= 0 && !_requestQueue.IsEmpty)
+                if (TimeToSleepBetweenBatches <= 1 && !_requestQueue.IsEmpty)
                     StartLazyWriterTimer();    // Queue was checked as empty, but now we have more
             }
             catch (Exception exception)
