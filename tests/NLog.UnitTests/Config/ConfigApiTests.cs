@@ -290,5 +290,19 @@ namespace NLog.UnitTests.Config
             rule.DisableLoggingForLevels(LogLevel.Warn, LogLevel.Fatal);
             Assert.Equal(rule.Levels, new[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info });
         }
+
+        [Fact]
+        public void ConfigLogRuleWithName()
+        {
+            var config = new LoggingConfiguration();
+            var rule = new LoggingRule("hello");
+            config.LoggingRules.Add(rule);
+            var ruleLookup = config.FindRuleByName("hello");
+            Assert.Same(rule, ruleLookup);
+            Assert.True(config.RemoveRuleByName("hello"));
+            ruleLookup = config.FindRuleByName("hello");
+            Assert.Same(null, ruleLookup);
+            Assert.False(config.RemoveRuleByName("hello"));
+        }
     }
 }

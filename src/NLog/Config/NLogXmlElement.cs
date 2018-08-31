@@ -45,7 +45,7 @@ namespace NLog.Config
     /// <summary>
     /// Represents simple XML element with case-insensitive attribute semantics.
     /// </summary>
-    internal class NLogXmlElement
+    internal class NLogXmlElement : ILoggingConfigurationElement
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogXmlElement"/> class.
@@ -100,6 +100,27 @@ namespace NLog.Config
         /// Gets the value of the element.
         /// </summary>
         public string Value { get; private set; }
+
+        public string Name => LocalName;
+
+        public IEnumerable<KeyValuePair<string, string>> Values
+        {
+            get
+            {
+                if (Children.Count > 0)
+                {
+                    for (int i = 0; i < Children.Count; ++i)
+                    {
+                        var child = Children[i];
+                        if (child.Children.Count == 0 && child.AttributeValues.Count == 0 && child.Value != null)
+                            return Children.Where(item => item.Children.Count == 0 && item.AttributeValues.Count == 0 && item.Value != null).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)).Concat(AttributeValues);
+                    }
+                }
+                return AttributeValues;
+            }
+        }
+
+        IEnumerable<ILoggingConfigurationElement> ILoggingConfigurationElement.Children => Children.Where(item => item.Children.Count > 0 || item.AttributeValues.Count > 0).Cast<ILoggingConfigurationElement>();
 
         /// <summary>
         /// Last error occured during configuration read
