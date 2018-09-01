@@ -821,8 +821,10 @@ namespace NLog
             }
         }
 #endif
-        private void GetTargetsByLevelForLogger(string name, IEnumerable<LoggingRule> loggingRules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
+
+        private bool GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
+            bool targetsFound = false;
             foreach (LoggingRule rule in loggingRules)
             {
                 if (!rule.NameMatches(name))
@@ -842,6 +844,7 @@ namespace NLog
 
                     foreach (Target target in rule.GetTargetsThreadSafe())
                     {
+                        targetsFound = true;
                         var awf = new TargetWithFilterChain(target, rule.Filters, rule.DefaultFilterResult);
                         if (lastTargetsByLevel[i] != null)
                         {
@@ -859,7 +862,7 @@ namespace NLog
                 // Recursively analyze the child rules.
                 if (rule.ChildRules.Count != 0)
                 {
-                    GetTargetsByLevelForLogger(name, rule.GetChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels);
+                    targetsFound = GetTargetsByLevelForLogger(name, rule.GetChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
                 }
             }
 
@@ -871,6 +874,8 @@ namespace NLog
                     tfc.PrecalculateStackTraceUsage();
                 }
             }
+
+            return targetsFound;
         }
 
         internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
@@ -879,30 +884,38 @@ namespace NLog
             TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
+            bool targetsFound = false;
             if (configuration != null && IsLoggingEnabled())
             {
                 //no "System.InvalidOperationException: Collection was modified"
                 var loggingRules = configuration.GetLoggingRulesThreadSafe();
-                GetTargetsByLevelForLogger(name, loggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
+                targetsFound = GetTargetsByLevelForLogger(name, loggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             }
 
             if (InternalLogger.IsDebugEnabled)
             {
-                InternalLogger.Debug("Targets for {0} by level:", name);
-                for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+                if (targetsFound)
                 {
-                    StringBuilder sb = new StringBuilder();
-                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
-                    for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
+                    InternalLogger.Debug("Targets for {0} by level:", name);
+                    for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
                     {
-                        sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
-                        if (afc.FilterChain.Count > 0)
+                        StringBuilder sb = new StringBuilder();
+                        sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                        for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
                         {
-                            sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                            sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
+                            if (afc.FilterChain.Count > 0)
+                            {
+                                sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                            }
                         }
-                    }
 
-                    InternalLogger.Debug(sb.ToString());
+                        InternalLogger.Debug(sb.ToString());
+                    }
+                }
+                else
+                {
+                    InternalLogger.Debug("Targets not configured for logger: {0}", name);
                 }
             }
 
