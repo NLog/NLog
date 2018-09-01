@@ -219,13 +219,7 @@ namespace NLog.LayoutRenderers
         /// <returns></returns>
         protected IFormatProvider GetFormatProvider(LogEventInfo logEvent, IFormatProvider layoutCulture = null)
         {
-            var culture = logEvent.FormatProvider ?? layoutCulture;
-
-            if (culture == null && LoggingConfiguration != null)
-            {
-                culture = LoggingConfiguration.DefaultCultureInfo;
-            }
-            return culture;
+            return logEvent.FormatProvider ?? layoutCulture ?? LoggingConfiguration?.DefaultCultureInfo;
         }
 
         /// <summary>

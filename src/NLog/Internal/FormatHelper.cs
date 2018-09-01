@@ -34,6 +34,7 @@
 namespace NLog.Internal
 {
     using System;
+    using NLog.Config;
 
     internal static class FormatHelper
     {
@@ -49,8 +50,11 @@ namespace NLog.Internal
         internal static string ConvertToString(object o, IFormatProvider formatProvider)
         {
             // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
-            if (formatProvider == null && !(o is string))
+            if (formatProvider == null)
             {
+                if (!ObjectSupportsFormatProvider(o))
+                    return o?.ToString() ?? string.Empty;
+
                 //variable so only 1 lock is needed
                 //TODO this locks the configuration, which can lead to deadlocks.
                 var loggingConfiguration = LogManager.Configuration;
@@ -59,7 +63,17 @@ namespace NLog.Internal
             }
 
             return Convert.ToString(o, formatProvider);
+        }
 
+        internal static bool ObjectSupportsFormatProvider(object o)
+        {
+            switch (Convert.GetTypeCode(o))
+            {
+                case TypeCode.String:   return false;
+                case TypeCode.Empty:    return false;
+                case TypeCode.Object:   return o is IFormattable;
+                default:                return true;
+            }
         }
     }
 }
