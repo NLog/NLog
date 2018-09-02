@@ -60,7 +60,7 @@ namespace NLog.UnitTests.Layouts
         {
             ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
             configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
-            
+
             SimpleLayout l = new SimpleLayout("xx${throwsException}yy", configurationItemFactory);
             string output = l.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal("xxyy", output);
@@ -90,7 +90,7 @@ namespace NLog.UnitTests.Layouts
         public void LayoutRendererThrows2()
         {
             string internalLogOutput = RunAndCaptureInternalLog(
-                () => 
+                () =>
                     {
                         ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
                         configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
@@ -98,7 +98,7 @@ namespace NLog.UnitTests.Layouts
                         SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", configurationItemFactory);
                         string output = l.Render(LogEventInfo.CreateNullEvent());
                         Assert.Equal("xxyyzz", output);
-                    }, 
+                    },
                     LogLevel.Warn);
 
             Assert.True(internalLogOutput.IndexOf("msg1") >= 0, internalLogOutput);
@@ -151,6 +151,38 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(1, lr.InitCount);
             Assert.Equal(1, lr.CloseCount);
         }
+
+        [Fact]
+        public void TryGetRawValue_SingleLayoutRender_ShouldGiveRawValue()
+        {
+            // Arrange
+            SimpleLayout l = "${threadid}";
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<int>(value);
+            Assert.True((int)value >= 0, "(int)value >= 0");
+        }
+        [Fact]
+        public void TryGetRawValue_MultipleLayoutRender_ShouldGiveNullRawValue()
+        {
+            // Arrange
+            SimpleLayout l = "${threadid} ";
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.False(success);
+            Assert.Null(value);
+        }
+
+
 
         public class ThrowsExceptionRenderer : LayoutRenderer
         {
