@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("gc")]
     [ThreadSafe]
-    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer
+    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GarbageCollectorInfoLayoutRenderer" /> class.
@@ -77,6 +77,22 @@ namespace NLog.LayoutRenderers
                 formatProvider = null;
             }
 
+            var value = GetValue();
+
+            if (formatProvider == null && value >= 0 && value < uint.MaxValue)
+                builder.AppendInvariant((uint)value);
+            else
+                builder.Append(Convert.ToString(value, formatProvider ?? CultureInfo.InvariantCulture));
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue();
+        }
+
+        private long GetValue()
+        {
             long value = 0;
 
             switch (Property)
@@ -102,17 +118,16 @@ namespace NLog.LayoutRenderers
                     value = GC.CollectionCount(2);
                     break;
 #endif
-                
+
                 case GarbageCollectorProperty.MaxGeneration:
                     value = GC.MaxGeneration;
                     break;
             }
 
-            if (formatProvider == null && value >= 0 && value < uint.MaxValue)
-                builder.AppendInvariant((uint)value);
-            else
-                builder.Append(Convert.ToString(value, formatProvider ?? CultureInfo.InvariantCulture));
+            return value;
         }
+
+      
     }
 }
 

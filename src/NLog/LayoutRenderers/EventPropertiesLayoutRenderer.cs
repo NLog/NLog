@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     [ThreadSafe]
     [MutableUnsafe]
-    public class EventPropertiesLayoutRenderer : LayoutRenderer
+    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         ///  Log event context data with default options.
@@ -83,12 +83,26 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            object value;
-            if (logEvent.HasProperties && logEvent.Properties.TryGetValue(Item, out value))
+            if (GetValue(logEvent, out var value))
             {
                 var formatProvider = GetFormatProvider(logEvent, Culture);
                 builder.AppendFormattedValue(value, Format, formatProvider);
             }
+        }
+
+        private bool GetValue(LogEventInfo logEvent, out object value)
+        {
+            value = null;
+            return logEvent.HasProperties && logEvent.Properties.TryGetValue(Item, out value);
+        }
+
+        /// <summary>
+        /// Get raw value, updates the sequence
+        /// </summary>
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            GetValue(logEvent, out var value);
+            return value;
         }
     }
 }

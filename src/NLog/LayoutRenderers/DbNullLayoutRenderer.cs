@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,41 +31,37 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+using System;
+using System.Text;
+using NLog.Config;
+using NLog.Internal;
+
 namespace NLog.LayoutRenderers
 {
-    using System.Globalization;
-    using System.Text;
-    using NLog.Config;
-	using NLog.Internal;
-
     /// <summary>
-    /// The Ticks value of current date and time.
+    /// DB null for a database
     /// </summary>
-    [LayoutRenderer("ticks")]
-    [ThreadAgnostic]
+    [LayoutRenderer("db-null")]
     [ThreadSafe]
-    public class TicksLayoutRenderer : LayoutRenderer, IRawValue
+    [ThreadAgnostic]
+    public class DbNullLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
-        /// Renders the ticks value of current time and appends it to the specified <see cref="StringBuilder" />.
+        /// Empty append
         /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <param name="builder"></param>
+        /// <param name="logEvent"></param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            //no culture expected here
-            builder.Append(GetValue(logEvent).ToString(CultureInfo.InvariantCulture));
+            
         }
+
 
         /// <inheritdoc />
         object IRawValue.GetRawValue(LogEventInfo logEvent)
         {
-            return GetValue(logEvent);
-        }
-
-        private static long GetValue(LogEventInfo logEvent)
-        {
-            return logEvent.TimeStamp.Ticks;
+            return DBNull.Value;
         }
     }
 }
