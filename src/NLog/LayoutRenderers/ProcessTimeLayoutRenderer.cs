@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processtime")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class ProcessTimeLayoutRenderer : LayoutRenderer
+    public class ProcessTimeLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets a value indicating whether to output in culture invariant format
@@ -62,11 +62,17 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            TimeSpan ts = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
+            var ts = GetValue(logEvent);
             var culture = Invariant ? null : GetCulture(logEvent);
             WritetTimestamp(builder, ts, culture);
         }
 
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue(logEvent);
+        }
+        
         /// <summary>
         /// Write timestamp to builder with format hh:mm:ss:fff
         /// </summary>
@@ -110,6 +116,12 @@ namespace NLog.LayoutRenderers
             }
 
             builder.AppendInvariant(milliseconds);
+        }
+
+        private static TimeSpan GetValue(LogEventInfo logEvent)
+        {
+            TimeSpan ts = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
+            return ts;
         }
     }
 }

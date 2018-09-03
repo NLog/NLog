@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("gdc")]
     [ThreadSafe]
-    public class GdcLayoutRenderer : LayoutRenderer
+    public class GdcLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets the name of the item.
@@ -66,10 +66,20 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            //don't use GlobalDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
-            var value = GlobalDiagnosticsContext.GetObject(Item);
+            object value = GetValue();
             var formatProvider = GetFormatProvider(logEvent, null);
             builder.AppendFormattedValue(value, Format, formatProvider);
+        }
+
+        /// <summary>
+        /// Get raw value.
+        /// </summary>
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
+
+        private object GetValue()
+        {
+            //don't use GlobalDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
+            return GlobalDiagnosticsContext.GetObject(Item);
         }
     }
 }

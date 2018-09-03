@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("time")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class TimeLayoutRenderer : LayoutRenderer
+    public class TimeLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
@@ -68,11 +68,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            DateTime dt = logEvent.TimeStamp;
-            if (UniversalTime)
-            {
-                dt = dt.ToUniversalTime();
-            }
+            var dt = GetValue(logEvent);
 
             string timeSeparator = ":";
             string ticksSeparator = ".";
@@ -95,6 +91,23 @@ namespace NLog.LayoutRenderers
             builder.Append2DigitsZeroPadded(dt.Second);
             builder.Append(ticksSeparator);
             builder.Append4DigitsZeroPadded((int)(dt.Ticks % 10000000) / 1000);
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue(logEvent);
+        }
+
+        private DateTime GetValue(LogEventInfo logEvent)
+        {
+            DateTime dt = logEvent.TimeStamp;
+            if (UniversalTime)
+            {
+                dt = dt.ToUniversalTime();
+            }
+
+            return dt;
         }
     }
 }

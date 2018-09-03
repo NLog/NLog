@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("threadid")]
     [ThreadSafe]
-    public class ThreadIdLayoutRenderer : LayoutRenderer
+    public class ThreadIdLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Renders the current thread identifier and appends it to the specified <see cref="StringBuilder" />.
@@ -53,7 +53,18 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture needed for ints
-            builder.AppendInvariant(AsyncHelpers.GetManagedThreadId());
+            builder.AppendInvariant(GetValue());
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue();
+        }
+
+        private static int GetValue()
+        {
+            return AsyncHelpers.GetManagedThreadId();
         }
     }
 }

@@ -37,13 +37,14 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
+	using NLog.Internal;
 
     /// <summary>
     /// Globally-unique identifier (GUID).
     /// </summary>
     [LayoutRenderer("guid")]
     [ThreadSafe]
-    public class GuidLayoutRenderer : LayoutRenderer
+    public class GuidLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GuidLayoutRenderer" /> class.
@@ -68,12 +69,25 @@ namespace NLog.LayoutRenderers
         public bool GeneratedFromLogEvent { get; set; }
 
         /// <summary>
+        /// Get raw value
+        /// </summary>
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+
+        /// <summary>
         /// Renders a newly generated GUID string and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            Guid guid;
+            guid = GetValue(logEvent);
+            builder.Append(guid.ToString(Format));
+        }
+
+        private Guid GetValue(LogEventInfo logEvent)
+        {
+            Guid guid;
             if (GeneratedFromLogEvent)
             {
                 int hashCode = logEvent.GetHashCode();
@@ -88,12 +102,15 @@ namespace NLog.LayoutRenderers
                 byte i = (byte)((zeroDateTicks >> 16) & 0xFF);
                 byte j = (byte)((zeroDateTicks >> 8) & 0xFF);
                 byte k = (byte)(zeroDateTicks & 0XFF);
-                builder.Append(new Guid(logEvent.SequenceID, b, c, d, e, f, g, h, i, j, k).ToString(Format));
+                guid = new Guid(logEvent.SequenceID, b, c, d, e, f, g, h, i, j, k);
+
             }
             else
             {
-                builder.Append(Guid.NewGuid().ToString(Format));
+                guid = Guid.NewGuid();
             }
+
+            return guid;
         }
     }
 }

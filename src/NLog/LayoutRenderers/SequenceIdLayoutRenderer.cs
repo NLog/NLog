@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("sequenceid")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class SequenceIdLayoutRenderer : LayoutRenderer
+    public class SequenceIdLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Renders the current log sequence ID and appends it to the specified <see cref="StringBuilder"/>.
@@ -52,7 +52,18 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.AppendInvariant(logEvent.SequenceID);
+            builder.AppendInvariant(GetValue(logEvent));
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue(logEvent);
+        }
+
+        private static int GetValue(LogEventInfo logEvent)
+        {
+            return logEvent.SequenceID;
         }
     }
 }
