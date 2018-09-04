@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -30,6 +30,10 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
+#if !NETSTANDARD
+
+#define DISABLE_FILE_INTERNAL_LOGGING
 
 namespace NLog.UnitTests.Targets
 {
@@ -90,7 +94,9 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+#pragma warning disable xUnit1013 // Needed for test
         public void Process(string processIndex, string fileName, string numLogsString, string mode)
+#pragma warning restore xUnit1013 
         {
             Thread.CurrentThread.Name = processIndex;
 
@@ -99,18 +105,23 @@ namespace NLog.UnitTests.Targets
 
             ConfigureSharedFile(mode, fileName);
 
-            // Having the internal logger enabled would just slow things down, reducing the 
-            // likelyhood for uncovering racing conditions.
-            //var logWriter = new StringWriter { NewLine = Environment.NewLine };
-            //NLog.Common.InternalLogger.LogLevel = LogLevel.Trace;
-            //NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
-            //NLog.Common.InternalLogger.LogWriter = logWriter;
-            //NLog.Common.InternalLogger.LogToConsole = true;
-
             string format = processIndex + " {0}";
 
+            // Having the internal logger enabled would just slow things down, reducing the 
+            // likelyhood for uncovering racing conditions. Uncomment #define DISABLE_FILE_INTERNAL_LOGGING
+
+#if !DISABLE_FILE_INTERNAL_LOGGING
+            var logWriter = new StringWriter { NewLine = Environment.NewLine };
+            NLog.Common.InternalLogger.LogLevel = LogLevel.Trace;
+            NLog.Common.InternalLogger.LogFile = Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex));
+            NLog.Common.InternalLogger.LogWriter = logWriter;
+            NLog.Common.InternalLogger.LogToConsole = true;
+
             try
+#endif
             {
+
+
                 Thread.Sleep(Math.Max((10 - idxProcess), 1) * 5);  // Delay to wait for the other processes
 
                 for (int i = 0; i < numLogs; ++i)
@@ -119,27 +130,30 @@ namespace NLog.UnitTests.Targets
                 }
 
                 LogManager.Configuration = null;     // Flush + Close
+
             }
+#if !DISABLE_FILE_INTERNAL_LOGGING
             catch (Exception ex)
             {
-                //using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
-                //{
-                //    textWriter.WriteLine(ex.ToString());
-                //    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
-                //}
+                using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
+                {
+                    textWriter.WriteLine(ex.ToString());
+                    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
+                }
                 throw;
             }
 
-            //using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
-            //{
-            //    textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
-            //}
+            using (var textWriter = File.AppendText(Path.Combine(Path.GetDirectoryName(fileName), string.Format("Internal_{0}.txt", processIndex))))
+            {
+                textWriter.WriteLine(logWriter.GetStringBuilder().ToString());
+            }
+#endif
         }
 
         private string MakeFileName(int numProcesses, int numLogs, string mode)
         {
             // Having separate filenames for the various tests makes debugging easier.
-            return string.Format("test_{0}_{1}_{2}.txt", numProcesses, numLogs, mode.Replace('|', '_'));
+            return $"test_{numProcesses}_{numLogs}_{mode.Replace('|', '_')}.txt";
         }
 
         private void DoConcurrentTest(int numProcesses, int numLogs, string mode)
@@ -161,7 +175,7 @@ namespace NLog.UnitTests.Targets
                 for (int i = 0; i < numProcesses; ++i)
                 {
                     processes[i] = ProcessRunner.SpawnMethod(
-                        this.GetType(),
+                        GetType(),
                         "Process",
                         i.ToString(),
                         logFile,
@@ -185,7 +199,7 @@ namespace NLog.UnitTests.Targets
                 bool verifyFileSize = files.Count > 1;
 
                 int[] maxNumber = new int[numProcesses];
-                Console.WriteLine("Verifying output file {0}", logFile);
+                //Console.WriteLine("Verifying output file {0}", logFile);
                 foreach (var file in files)
                 {
                     using (StreamReader sr = File.OpenText(file))
@@ -207,16 +221,18 @@ namespace NLog.UnitTests.Targets
                             }
                             catch (Exception ex)
                             {
-                                throw new InvalidOperationException(string.Format("Error when parsing line '{0}' in file {1}", line, file), ex);
+                                throw new InvalidOperationException($"Error when parsing line '{line}' in file {file}", ex);
                             }
                         }
 
                         if (verifyFileSize)
                         {
                             if (sr.BaseStream.Length > 100)
-                                throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too large", file, sr.BaseStream.Length));
+                                throw new InvalidOperationException(
+                                    $"Error when reading file {file}, size {sr.BaseStream.Length} is too large");
                             else if (sr.BaseStream.Length < 35 && files[files.Count - 1] != file)
-                                throw new InvalidOperationException(string.Format("Error when reading file {0}, size {1} is too small", file, sr.BaseStream.Length));
+                                throw new InvalidOperationException(
+                                    $"Error when reading file {file}, size {sr.BaseStream.Length} is too small");
                         }
                     }
                 }
@@ -284,3 +300,5 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+
+#endif

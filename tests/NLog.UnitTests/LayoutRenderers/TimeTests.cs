@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -73,10 +73,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
-            Assert.Equal(date.Length, 13);
-            Assert.Equal(date[2], ':');
-            Assert.Equal(date[5], ':');
-            Assert.Equal(date[8], '.');
+            Assert.Equal(13, date.Length);
+            Assert.Equal(':', date[2]);
+            Assert.Equal(':', date[5]);
+            Assert.Equal('.', date[8]);
         }
 
         [Fact]
@@ -93,7 +93,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
-            Assert.Equal(date[4], '-');
+            Assert.Equal('-', date[4]);
         }
 
         [Fact]
@@ -110,7 +110,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
-            Assert.Equal(date[0], '.');
+            Assert.Equal('.', date[0]);
         }
 
         [Fact]
@@ -127,7 +127,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
-            Assert.Equal(date[4], '-');
+            Assert.Equal('-', date[4]);
         }
 
         [Fact]
@@ -144,7 +144,7 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.GetLogger("d").Debug("zzz");
             string date = GetDebugLastMessage("debug");
             Assert.Equal(5, date.Length);
-            Assert.Equal(date[0], '.');
+            Assert.Equal('.', date[0]);
         }
     }
 }

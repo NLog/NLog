@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,7 +34,8 @@
 namespace NLog.Time
 {
     using System;
-    using NLog.Config;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Defines source of current time.
@@ -57,8 +58,8 @@ namespace NLog.Time
         /// </remarks>
         public static TimeSource Current
         {
-            get { return currentSource; }
-            set { currentSource = value; }
+            get => currentSource;
+            set => currentSource = value;
         }
 
         /// <summary>
@@ -69,13 +70,13 @@ namespace NLog.Time
         /// </returns>
         public override string ToString()
         {
-            var targetAttribute = (TimeSourceAttribute)Attribute.GetCustomAttribute(this.GetType(), typeof(TimeSourceAttribute));
+            var targetAttribute = GetType().GetCustomAttribute<TimeSourceAttribute>();
             if (targetAttribute != null)
             {
                 return targetAttribute.Name + " (time source)";
             }
 
-            return this.GetType().Name;
+            return GetType().Name;
         }
 
         /// <summary>

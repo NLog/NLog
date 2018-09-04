@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,11 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NLog.Config;
 using NLog.Targets;
 using Xunit;
@@ -47,6 +44,8 @@ namespace NLog.UnitTests.Targets
         private const string CorrectClassName = "NLog.UnitTests.Targets.MethodCallTests, NLog.UnitTests";
 
         #region ToBeCalled Methods
+
+#pragma warning disable xUnit1013 //we need public methods here
 
         private static MethodCallRecord LastCallTest = null;
         public static void StaticAndPublic(string param1, int param2)
@@ -84,6 +83,9 @@ namespace NLog.UnitTests.Targets
         {
             LastCallTest = new MethodCallRecord("StaticAndPrivate");
         }
+
+#pragma warning restore xUnit1013
+
 
         #endregion
 
@@ -193,7 +195,7 @@ namespace NLog.UnitTests.Targets
             {
                 if (ReferenceEquals(null, obj)) return false;
                 if (ReferenceEquals(this, obj)) return true;
-                if (obj.GetType() != this.GetType()) return false;
+                if (obj.GetType() != GetType()) return false;
                 return Equals((MethodCallRecord)obj);
             }
 

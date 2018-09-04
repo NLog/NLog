@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,7 +35,7 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System.ComponentModel;
     using System.Globalization;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Converts the result of another layout output to lower case.
@@ -50,8 +50,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public LowercaseLayoutRendererWrapper()
         {
-            this.Culture = CultureInfo.InvariantCulture;
-            this.Lowercase = true;
+            Culture = CultureInfo.InvariantCulture;
+            Lowercase = true;
         }
 
         /// <summary>
@@ -74,11 +74,30 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="target">Output to be post-processed.</param>
         protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
         {
-            if (this.Lowercase)
+            if (Lowercase)
             {
-                CultureInfo culture = this.Culture;
+                CultureInfo culture = Culture;
+
+#if NETSTANDARD1_5
+                string stringToLower = null;
+                if (culture != null && culture != CultureInfo.InvariantCulture)
+                {
+                    stringToLower = target.ToString();
+                    stringToLower = culture.TextInfo.ToLower(stringToLower);
+                }
+#endif
+
                 for (int i = 0; i < target.Length; ++i)
+                {
+#if NETSTANDARD1_5
+                    if (stringToLower != null)
+                        target[i] = stringToLower[i];    //no char.ToLower with culture
+                    else
+                        target[i] = char.ToLowerInvariant(target[i]);
+#else
                     target[i] = char.ToLower(target[i], culture);
+#endif
+                }
             }
         }
     }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,8 +35,8 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Threading;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Distributes log events to targets in a round-robin fashion.
@@ -60,8 +60,8 @@ namespace NLog.Targets.Wrappers
     [Target("RoundRobinGroup", IsCompound = true)]
     public class RoundRobinGroupTarget : CompoundTargetBase
     {
-        private int currentTarget = 0;
-        private object lockObject = new object();
+        private int _currentTarget = 0;
+        private object _lockObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoundRobinGroupTarget" /> class.
@@ -79,7 +79,7 @@ namespace NLog.Targets.Wrappers
         public RoundRobinGroupTarget(string name, params Target[] targets)
              : this(targets)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace NLog.Targets.Wrappers
         public RoundRobinGroupTarget(params Target[] targets)
             : base(targets)
         {
-            this.OptimizeBufferReuse = GetType() == typeof(RoundRobinGroupTarget);
+            OptimizeBufferReuse = GetType() == typeof(RoundRobinGroupTarget);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace NLog.Targets.Wrappers
         /// </remarks>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (this.Targets.Count == 0)
+            if (Targets.Count == 0)
             {
                 logEvent.Continuation(null);
                 return;
@@ -114,13 +114,13 @@ namespace NLog.Targets.Wrappers
 
             int selectedTarget;
 
-            lock (this.lockObject)
+            lock (_lockObject)
             {
-                selectedTarget = this.currentTarget;
-                this.currentTarget = (this.currentTarget + 1) % this.Targets.Count;
+                selectedTarget = _currentTarget;
+                _currentTarget = (_currentTarget + 1) % Targets.Count;
             }
 
-            this.Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
+            Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
         }
     }
 }

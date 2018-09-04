@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -87,9 +87,9 @@ namespace NLog.Internal
             }
         }
 
-        public int Count { get { return _hashset != null ? _hashset.Count : (EqualityComparer<T>.Default.Equals(_singleItem, default(T)) ? 0 : 1); } }
+        public int Count => _hashset != null ? _hashset.Count : (EqualityComparer<T>.Default.Equals(_singleItem, default(T)) ? 0 : 1);
 
-        public bool IsReadOnly { get { return false; } }
+        public bool IsReadOnly => false;
 
         public SingleItemOptimizedHashSet(T singleItem, SingleItemOptimizedHashSet<T> existing)
         {

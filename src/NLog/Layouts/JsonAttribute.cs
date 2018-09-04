@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,7 +33,7 @@
 
 namespace NLog.Layouts
 {
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// JSON attribute.
@@ -62,9 +62,9 @@ namespace NLog.Layouts
         /// <param name="encode">Encode value with json-encode</param>
         public JsonAttribute(string name, Layout layout, bool encode)
         {
-            this.Name = name;
-            this.Layout = layout;
-            this.Encode = encode;
+            Name = name;
+            Layout = layout;
+            Encode = encode;
         }
 
         /// <summary>
@@ -77,17 +77,23 @@ namespace NLog.Layouts
         /// Gets or sets the layout that will be rendered as the attribute's value.
         /// </summary>
         [RequiredParameter]
-        public Layout Layout { get { return LayoutWrapper.Inner; } set { LayoutWrapper.Inner = value; } }
+        public Layout Layout { get => LayoutWrapper.Inner;
+            set => LayoutWrapper.Inner = value;
+        }
 
         /// <summary>
         /// Determines wether or not this attribute will be Json encoded.
         /// </summary>
-        public bool Encode { get { return LayoutWrapper.JsonEncode; } set { LayoutWrapper.JsonEncode = value; } }
+        public bool Encode { get => LayoutWrapper.JsonEncode;
+            set => LayoutWrapper.JsonEncode = value;
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to escape non-ascii characters
         /// </summary>
-        public bool EscapeUnicode { get { return LayoutWrapper.EscapeUnicode; } set { LayoutWrapper.EscapeUnicode = value; } }
+        public bool EscapeUnicode { get => LayoutWrapper.EscapeUnicode;
+            set => LayoutWrapper.EscapeUnicode = value;
+        }
 
         internal readonly LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper LayoutWrapper = new LayoutRenderers.Wrappers.JsonEncodeLayoutRendererWrapper();
     }

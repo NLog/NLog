@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -74,7 +74,7 @@ namespace NLog.LayoutRenderers
 
         /// <summary>
         /// Format string. Possible values: "Short", "Long" or custom like {0} {1}. Default "Long"
-        /// The first parameter is the  <see cref="AppDomain.Id"/>, the second the second the  <see cref="AppDomain.FriendlyName"/>
+        /// The first parameter is the  <see cref="IAppDomain.Id"/>, the second the second the  <see cref="IAppDomain.FriendlyName"/>
         /// This string is used in <see cref="string.Format(string,object[])"/>
         /// </summary>
         [DefaultParameter]

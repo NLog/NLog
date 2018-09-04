@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,7 +34,7 @@
 namespace NLog.Layouts
 {
     using System;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Marks class as a layout renderer and assigns a format string to it.

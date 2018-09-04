@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -43,24 +43,38 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggingConfigurationChangedEventArgs" /> class.
         /// </summary>
-        /// <param name="oldConfiguration">The old configuration.</param>
-        /// <param name="newConfiguration">The new configuration.</param>
-        public LoggingConfigurationChangedEventArgs(LoggingConfiguration oldConfiguration, LoggingConfiguration newConfiguration)
+        /// <param name="activatedConfiguration">The new configuration.</param>
+        /// <param name="deactivatedConfiguration">The old configuration.</param>
+        public LoggingConfigurationChangedEventArgs(LoggingConfiguration activatedConfiguration, LoggingConfiguration deactivatedConfiguration)
         {
-            this.OldConfiguration = oldConfiguration;
-            this.NewConfiguration = newConfiguration;
+            ActivatedConfiguration = activatedConfiguration;
+            DeactivatedConfiguration = deactivatedConfiguration;
         }
 
         /// <summary>
         /// Gets the old configuration.
         /// </summary>
         /// <value>The old configuration.</value>
-        public LoggingConfiguration OldConfiguration { get; private set; }
+        public LoggingConfiguration DeactivatedConfiguration { get; private set; }
 
         /// <summary>
         /// Gets the new configuration.
         /// </summary>
         /// <value>The new configuration.</value>
-        public LoggingConfiguration NewConfiguration { get; private set; }
+        public LoggingConfiguration ActivatedConfiguration { get; private set; }
+
+        /// <summary>
+        /// Gets the new configuration
+        /// </summary>
+        /// <value>The new configuration.</value>
+        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
+        public LoggingConfiguration OldConfiguration => ActivatedConfiguration;
+
+        /// <summary>
+        /// Gets the old configuration
+        /// </summary>
+        /// <value>The old configuration.</value>
+        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
+        public LoggingConfiguration NewConfiguration => DeactivatedConfiguration;
     }
 }

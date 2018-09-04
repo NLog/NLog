@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -43,7 +43,7 @@ namespace NLog.Targets
         public static bool IsConsoleAvailable(out string reason)
         {
             reason = string.Empty;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !MONO && !NETSTANDARD1_5
             try
             {
                 if (!Environment.UserInteractive)
@@ -62,7 +62,7 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                reason = string.Format("Unexpected exception: {0}:{1}", ex.GetType().Name, ex.Message);
+                reason = $"Unexpected exception: {ex.GetType().Name}:{ex.Message}";
                 InternalLogger.Warn(ex, "Failed to detect whether console is available.");
                 return false;
             }
@@ -78,8 +78,11 @@ namespace NLog.Targets
                 return currentEncoding;
             else if ((isInitialized && !pauseLogging) || IsConsoleAvailable(out reason))
                 return Console.OutputEncoding;
-            else
-                return Encoding.Default;    // No console available
+#if !NETSTANDARD1_5
+            return Encoding.Default;
+#else
+            return currentEncoding;
+#endif
 #else
             return currentEncoding;
 #endif

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,7 +36,7 @@ using System.Collections.Generic;
 namespace NLog
 {
     using System;
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// Defines available log levels.
@@ -95,17 +95,17 @@ namespace NLog
         /// <summary>
         /// Gets all the availiable log levels (Trace, Debug, Info, Warn, Error, Fatal, Off).
         /// </summary>
-        public static IEnumerable<LogLevel> AllLevels { get { return allLevels; } }
+        public static IEnumerable<LogLevel> AllLevels => allLevels;
 
         /// <summary>
         ///  Gets all the log levels that can be used to log events (Trace, Debug, Info, Warn, Error, Fatal) 
         ///  i.e <c>LogLevel.Off</c> is excluded.
         /// </summary>
-        public static IEnumerable<LogLevel> AllLoggingLevels { get { return allLoggingLevels; } }
+        public static IEnumerable<LogLevel> AllLoggingLevels => allLoggingLevels;
 
 
-        private readonly int ordinal;
-        private readonly string name;
+        private readonly int _ordinal;
+        private readonly string _name;
 
         /// <summary>
         /// Initializes a new instance of <see cref="LogLevel"/>.
@@ -114,35 +114,23 @@ namespace NLog
         /// <param name="ordinal">The log level ordinal number.</param>
         private LogLevel(string name, int ordinal)
         {
-            this.name = name;
-            this.ordinal = ordinal;
+            _name = name;
+            _ordinal = ordinal;
         }
 
         /// <summary>
         /// Gets the name of the log level.
         /// </summary>
-        public string Name
-        {
-            get { return this.name; }
-        }
+        public string Name => _name;
 
-        internal static LogLevel MaxLevel
-        {
-            get { return Fatal; }
-        }
+        internal static LogLevel MaxLevel => Fatal;
 
-        internal static LogLevel MinLevel
-        {
-            get { return Trace; }
-        }
+        internal static LogLevel MinLevel => Trace;
 
         /// <summary>
         /// Gets the ordinal of the log level.
         /// </summary>
-        public int Ordinal
-        {
-            get { return this.ordinal; }
-        }
+        public int Ordinal => _ordinal;
 
         /// <summary>
         /// Compares two <see cref="LogLevel"/> objects 
@@ -339,7 +327,7 @@ namespace NLog
         /// <returns>Log level name.</returns>
         public override string ToString()
         {
-            return this.Name;
+            return Name;
         }
 
         /// <summary>
@@ -350,7 +338,7 @@ namespace NLog
         /// </returns>
         public override int GetHashCode()
         {
-            return this.Ordinal;
+            return Ordinal;
         }
 
         /// <summary>
@@ -367,7 +355,7 @@ namespace NLog
                 return false;
             }
 
-            return this.Ordinal == other.Ordinal;
+            return Ordinal == other.Ordinal;
         }
 
         /// <summary>
@@ -378,7 +366,7 @@ namespace NLog
         /// this instance; otherwise, <c>false</c>.</returns>
         public bool Equals(LogLevel other)
         {
-            return other != null && this.Ordinal == other.Ordinal;
+            return other != null && Ordinal == other.Ordinal;
         }
 
         /// <summary>
@@ -405,7 +393,7 @@ namespace NLog
             // is impossible to create a invalid instance.
 
             LogLevel level = (LogLevel)obj;
-            return this.Ordinal - level.Ordinal;
+            return Ordinal - level.Ordinal;
         }
     }
 }

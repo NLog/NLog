@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,8 +33,8 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using NLog.Conditions;
-    using NLog.Config;
+    using Conditions;
+    using Config;
 
     /// <summary>
     /// Filtering rule for <see cref="PostFilteringTargetWrapper"/>.
@@ -57,8 +57,8 @@ namespace NLog.Targets.Wrappers
         /// <param name="filterToApply">Filter to apply to all log events when the first condition matches any of them.</param>
         public FilteringRule(ConditionExpression whenExistsExpression, ConditionExpression filterToApply)
         {
-            this.Exists = whenExistsExpression;
-            this.Filter = filterToApply;
+            Exists = whenExistsExpression;
+            Filter = filterToApply;
         }
 
         /// <summary>

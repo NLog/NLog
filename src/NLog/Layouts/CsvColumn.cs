@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,7 +33,7 @@
 
 namespace NLog.Layouts
 {
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// A column in the CSV.
@@ -57,8 +57,8 @@ namespace NLog.Layouts
         /// <param name="layout">The layout of the column.</param>
         public CsvColumn(string name, Layout layout)
         {
-            this.Name = name;
-            this.Layout = layout;
+            Name = name;
+            Layout = layout;
         }
 
         /// <summary>

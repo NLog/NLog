@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public GarbageCollectorInfoLayoutRenderer()
         {
-            this.Property = GarbageCollectorProperty.TotalMemory;
+            Property = GarbageCollectorProperty.TotalMemory;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers
         {
             object value = null;
 
-            switch (this.Property)
+            switch (Property)
             {
                 case GarbageCollectorProperty.TotalMemory:
                     value = GC.GetTotalMemory(false);

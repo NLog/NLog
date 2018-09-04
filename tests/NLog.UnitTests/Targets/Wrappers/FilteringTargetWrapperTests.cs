@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -141,7 +141,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             continuationHit.WaitOne();
             Assert.NotNull(lastException);
-            Assert.IsType(typeof(InvalidOperationException), lastException);
+            Assert.IsType<InvalidOperationException>(lastException);
 
             Assert.Equal(1, myTarget.WriteCount);
             Assert.Equal(1, myMockCondition.CallCount);
@@ -151,7 +151,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             wrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
             continuationHit.WaitOne();
             Assert.NotNull(lastException);
-            Assert.IsType(typeof(InvalidOperationException), lastException);
+            Assert.IsType<InvalidOperationException>(lastException);
             Assert.Equal(2, myTarget.WriteCount);
             Assert.Equal(2, myMockCondition.CallCount);
         }
@@ -278,11 +278,11 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                this.WriteCount++;
+                WriteCount++;
                 ThreadPool.QueueUserWorkItem(
                     s =>
                         {
-                            if (this.ThrowExceptions)
+                            if (ThrowExceptions)
                             {
                                 logEvent.Continuation(new InvalidOperationException("Some problem!"));
                                 logEvent.Continuation(new InvalidOperationException("Some problem!"));
@@ -304,7 +304,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                this.WriteCount++;
+                WriteCount++;
             }
         }
 
@@ -321,8 +321,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override object EvaluateNode(LogEventInfo context)
             {
-                this.CallCount++;
-                return this.result;
+                CallCount++;
+                return result;
             }
 
             public override string ToString()

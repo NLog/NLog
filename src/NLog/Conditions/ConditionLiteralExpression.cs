@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -47,7 +47,7 @@ namespace NLog.Conditions
         /// <param name="literalValue">Literal value.</param>
         public ConditionLiteralExpression(object literalValue)
         {
-            this.LiteralValue = literalValue;
+            LiteralValue = literalValue;
         }
 
         /// <summary>
@@ -62,12 +62,12 @@ namespace NLog.Conditions
         /// <returns>The literal value.</returns>
         public override string ToString()
         {
-            if (this.LiteralValue == null)
+            if (LiteralValue == null)
             {
                 return "null";
             }
 
-            return Convert.ToString(this.LiteralValue, CultureInfo.InvariantCulture);
+            return Convert.ToString(LiteralValue, CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace NLog.Conditions
         /// <returns>The literal value as passed in the constructor.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            return this.LiteralValue;
+            return LiteralValue;
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -161,9 +161,9 @@ namespace NLog.UnitTests
 
             public void LogWithEventID(int eventID, string message, object[] par)
             {
-                LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, this.Name, null, message, par);
+                LogEventInfo lei = LogEventInfo.Create(LogLevel.Info, Name, null, message, par);
                 lei.Properties["EventId"] = eventID;
-                base.Log(typeof(MyLogger), lei);
+                Log(typeof(MyLogger), lei);
             }
         }
     }

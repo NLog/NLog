@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -93,10 +93,7 @@ namespace NLog.Targets
         /// <remarks>Has side effect</remarks>
         public Encoding Encoding
         {
-            get
-            {
-                return ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
-            }
+            get => ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
             set
             {
                 if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, IsInitialized, _pauseLogging))
@@ -123,8 +120,8 @@ namespace NLog.Targets
         public ConsoleTarget() : base()
         {
             _pauseLogging = false;
-            this.DetectConsoleAvailable = false;
-            this.OptimizeBufferReuse = true;
+            DetectConsoleAvailable = false;
+            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -137,7 +134,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public ConsoleTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -160,9 +157,9 @@ namespace NLog.Targets
                 Console.OutputEncoding = _encoding;
 #endif
             base.InitializeTarget();
-            if (this.Header != null)
+            if (Header != null)
             {
-                this.WriteToOutput(base.RenderLogEvent(this.Header, LogEventInfo.CreateNullEvent()));
+                WriteToOutput(RenderLogEvent(Header, LogEventInfo.CreateNullEvent()));
             }
         }
 
@@ -171,9 +168,9 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            if (this.Footer != null)
+            if (Footer != null)
             {
-                this.WriteToOutput(base.RenderLogEvent(this.Footer, LogEventInfo.CreateNullEvent()));
+                WriteToOutput(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
             }
 
             base.CloseTarget();
@@ -195,7 +192,7 @@ namespace NLog.Targets
                 return;
             }
 
-            this.WriteToOutput(base.RenderLogEvent(this.Layout, logEvent));
+            WriteToOutput(RenderLogEvent(Layout, logEvent));
         }
 
         /// <summary>
@@ -222,11 +219,18 @@ namespace NLog.Targets
                 InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
                                         "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
             }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                //this is a bug and therefor stopping logging. For docs, see PauseLogging property
+                _pauseLogging = true;
+                InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+            }
         }
 
         private TextWriter GetOutput()
         {
-            return this.Error ? Console.Error : Console.Out;
+            return Error ? Console.Error : Console.Out;
         }
     }
 }

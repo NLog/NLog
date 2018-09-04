@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -113,7 +113,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         public event EventHandler<AsyncCompletedEventArgs> CloseCompleted;
 
-#if !NET4_0 && !NET3_5
+#if !NET4_0 && !NET3_5 && !NETSTANDARD
 
         /// <summary>
         /// Gets or sets the cookie container.
@@ -123,7 +123,7 @@ namespace NLog.LogReceiverService
         {
             get
             {
-                var httpCookieContainerManager = this.InnerChannel.GetProperty<IHttpCookieContainerManager>();
+                var httpCookieContainerManager = InnerChannel.GetProperty<IHttpCookieContainerManager>();
                 if (httpCookieContainerManager != null)
                 {
                     return httpCookieContainerManager.CookieContainer;
@@ -133,7 +133,7 @@ namespace NLog.LogReceiverService
             }
             set
             {
-                var httpCookieContainerManager = this.InnerChannel.GetProperty<IHttpCookieContainerManager>();
+                var httpCookieContainerManager = InnerChannel.GetProperty<IHttpCookieContainerManager>();
                 if (httpCookieContainerManager != null)
                 {
                     httpCookieContainerManager.CookieContainer = value;
@@ -152,7 +152,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         public void OpenAsync()
         {
-            this.OpenAsync(null);
+            OpenAsync(null);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace NLog.LogReceiverService
         /// <param name="userState">User-specific state.</param>
         public void OpenAsync(object userState)
         {
-            this.InvokeAsync(this.OnBeginOpen, null, this.OnEndOpen, this.OnOpenCompleted, userState);
+            InvokeAsync(OnBeginOpen, null, OnEndOpen, OnOpenCompleted, userState);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace NLog.LogReceiverService
         /// </summary>
         public void CloseAsync()
         {
-            this.CloseAsync(null);
+            CloseAsync(null);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace NLog.LogReceiverService
         /// <param name="userState">User-specific state.</param>
         public void CloseAsync(object userState)
         {
-            this.InvokeAsync(this.OnBeginClose, null, this.OnEndClose, this.OnCloseCompleted, userState);
+            InvokeAsync(OnBeginClose, null, OnEndClose, OnCloseCompleted, userState);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace NLog.LogReceiverService
         /// <param name="events">The events to send.</param>
         public void ProcessLogMessagesAsync(NLogEvents events)
         {
-            this.ProcessLogMessagesAsync(events, null);
+            ProcessLogMessagesAsync(events, null);
         }
 
         /// <summary>
@@ -197,11 +197,11 @@ namespace NLog.LogReceiverService
         /// <param name="userState">User-specific state.</param>
         public void ProcessLogMessagesAsync(NLogEvents events, object userState)
         {
-            this.InvokeAsync(
-                this.OnBeginProcessLogMessages,
+            InvokeAsync(
+                OnBeginProcessLogMessages,
                 new object[] { events },
-                this.OnEndProcessLogMessages,
-                this.OnProcessLogMessagesCompleted,
+                OnEndProcessLogMessages,
+                OnProcessLogMessagesCompleted,
                 userState);
         }
 
@@ -225,22 +225,22 @@ namespace NLog.LogReceiverService
         private IAsyncResult OnBeginProcessLogMessages(object[] inValues, AsyncCallback callback, object asyncState)
         {
             var events = (NLogEvents)inValues[0];
-            return this.BeginProcessLogMessages(events, callback, asyncState);
+            return BeginProcessLogMessages(events, callback, asyncState);
         }
 
         private object[] OnEndProcessLogMessages(IAsyncResult result)
         {
-            this.EndProcessLogMessages(result);
+            EndProcessLogMessages(result);
             return null;
         }
 
         private void OnProcessLogMessagesCompleted(object state)
         {
-            if (this.ProcessLogMessagesCompleted != null)
+            if (ProcessLogMessagesCompleted != null)
             {
                 var e = (InvokeAsyncCompletedEventArgs)state;
 
-                this.ProcessLogMessagesCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                ProcessLogMessagesCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
             }
         }
 
@@ -257,11 +257,11 @@ namespace NLog.LogReceiverService
 
         private void OnOpenCompleted(object state)
         {
-            if (this.OpenCompleted != null)
+            if (OpenCompleted != null)
             {
                 var e = (InvokeAsyncCompletedEventArgs)state;
 
-                this.OpenCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                OpenCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
             }
         }
 
@@ -278,11 +278,11 @@ namespace NLog.LogReceiverService
 
         private void OnCloseCompleted(object state)
         {
-            if (this.CloseCompleted != null)
+            if (CloseCompleted != null)
             {
                 var e = (InvokeAsyncCompletedEventArgs)state;
 
-                this.CloseCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                CloseCompleted(this, new AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
             }
         }
     }

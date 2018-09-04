@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,8 +36,8 @@ using NLog.Layouts;
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
-    using NLog.Conditions;
-    using NLog.Config;
+    using Conditions;
+    using Config;
 
     /// <summary>
     /// Only outputs the inner layout when the specified condition has been met.
@@ -73,10 +73,10 @@ namespace NLog.LayoutRenderers.Wrappers
         /// Renders the inner layout contents.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            if (this.When == null || true.Equals(this.When.Evaluate(logEvent)))
+            if (When == null || true.Equals(When.Evaluate(logEvent)))
             {
                 base.RenderFormattedMessage(logEvent, target);
             }

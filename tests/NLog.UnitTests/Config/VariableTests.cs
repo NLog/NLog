@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -70,7 +70,6 @@ namespace NLog.UnitTests.Config
             Assert.Equal("]]", lr3.Text);
         }
 
-
         /// <summary>
         /// Expand of property which are not layoutable <see cref="Layout"/>, but still get expanded.
         /// </summary>
@@ -81,15 +80,15 @@ namespace NLog.UnitTests.Config
 <nlog throwExceptions='true'>
   <variable name='test' value='hello'/>
   <targets>
-    <target type='EventLog'  name='test'  source='${test}'/>
+    <target type='DataBase'  name='test' DBProvider='${test}'/>
   </targets>
 </nlog>");
 
-            var target = configuration.FindTargetByName("test") as EventLogTarget;
+            var target = configuration.FindTargetByName("test") as DatabaseTarget;
             Assert.NotNull(target);
             //dont change the ${test} as it isn't a Layout
-            Assert.Equal("${test}", target.Source);
-
+            Assert.NotEqual(typeof(Layout), target.DBProvider.GetType());
+            Assert.Equal("${test}", target.DBProvider);
         }
 
         [Fact]

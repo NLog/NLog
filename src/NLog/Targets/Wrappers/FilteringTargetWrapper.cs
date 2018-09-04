@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,10 +34,10 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using NLog.Common;
-    using NLog.Conditions;
-    using NLog.Config;
-    using NLog.Internal;
+    using Common;
+    using Conditions;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Filters log entries based on a condition.
@@ -78,7 +78,7 @@ namespace NLog.Targets.Wrappers
         public FilteringTargetWrapper(string name, Target wrappedTarget, ConditionExpression condition)
             : this(wrappedTarget, condition)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -88,9 +88,9 @@ namespace NLog.Targets.Wrappers
         /// <param name="condition">The condition.</param>
         public FilteringTargetWrapper(Target wrappedTarget, ConditionExpression condition)
         {
-            this.WrappedTarget = wrappedTarget;
-            this.Condition = condition;
-            this.OptimizeBufferReuse = GetType() == typeof(FilteringTargetWrapper);
+            WrappedTarget = wrappedTarget;
+            Condition = condition;
+            OptimizeBufferReuse = GetType() == typeof(FilteringTargetWrapper);
         }
 
         /// <summary>
@@ -109,10 +109,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            object v = this.Condition.Evaluate(logEvent.LogEvent);
+            object v = Condition.Evaluate(logEvent.LogEvent);
             if (boxedBooleanTrue.Equals(v))
             {
-                this.WrappedTarget.WriteAsyncLogEvent(logEvent);
+                WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
             else
             {

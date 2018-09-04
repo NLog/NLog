@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,7 +35,7 @@ using NLog.Layouts;
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using NLog.Config;
+    using Config;
     using System;
     using System.ComponentModel;
 
@@ -65,16 +65,16 @@ namespace NLog.LayoutRenderers.Wrappers
             OnClose = 2
         }
 
-        private string cachedValue = null;
-        private string renderedCacheKey = null;
+        private string _cachedValue = null;
+        private string _renderedCacheKey = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CachedLayoutRendererWrapper"/> class.
         /// </summary>
         public CachedLayoutRendererWrapper()
         {
-            this.Cached = true;
-            this.ClearCache = ClearCacheOption.OnInit | ClearCacheOption.OnClose;
+            Cached = true;
+            ClearCache = ClearCacheOption.OnInit | ClearCacheOption.OnClose;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             base.InitializeLayoutRenderer();
             if ((ClearCache & ClearCacheOption.OnInit) == ClearCacheOption.OnInit)
-                this.cachedValue = null;
+                _cachedValue = null;
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             base.CloseLayoutRenderer();
             if ((ClearCache & ClearCacheOption.OnClose) == ClearCacheOption.OnClose)
-                this.cachedValue = null;
+                _cachedValue = null;
         }
 
         /// <summary>
@@ -131,16 +131,16 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Contents of inner layout.</returns>
         protected override string RenderInner(LogEventInfo logEvent)
         {
-            if (this.Cached)
+            if (Cached)
             {
                 var newCacheKey = CacheKey == null ? null: CacheKey.Render(logEvent);
-                if (this.cachedValue == null || this.renderedCacheKey != newCacheKey)
+                if (_cachedValue == null || _renderedCacheKey != newCacheKey)
                 {
-                    this.cachedValue = base.RenderInner(logEvent);
-                    this.renderedCacheKey = newCacheKey;
+                    _cachedValue = base.RenderInner(logEvent);
+                    _renderedCacheKey = newCacheKey;
                 }
 
-                return this.cachedValue;
+                return _cachedValue;
             }
             else
             {

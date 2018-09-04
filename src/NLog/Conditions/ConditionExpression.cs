@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,8 +36,8 @@ using NLog.Common;
 namespace NLog.Conditions
 {
     using System;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Base class for representing nodes in condition expression trees.
@@ -65,7 +65,7 @@ namespace NLog.Conditions
         {
             try
             {
-                return this.EvaluateNode(context);
+                return EvaluateNode(context);
             }
             catch (Exception exception)
             {

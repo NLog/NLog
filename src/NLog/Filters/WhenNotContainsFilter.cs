@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,7 +35,7 @@ namespace NLog.Filters
 {
     using System;
     using System.ComponentModel;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Matches when the calculated layout does NOT contain the specified substring.
@@ -69,14 +69,14 @@ namespace NLog.Filters
         /// .</returns>
         protected override FilterResult Check(LogEventInfo logEvent)
         {
-            StringComparison comparison = this.IgnoreCase
+            StringComparison comparison = IgnoreCase
                                               ? StringComparison.OrdinalIgnoreCase
                                               : StringComparison.Ordinal;
-            string result = this.Layout.Render(logEvent);
+            string result = Layout.Render(logEvent);
 
-            if (result.IndexOf(this.Substring, comparison) < 0)
+            if (result.IndexOf(Substring, comparison) < 0)
             {
-                return this.Action;
+                return Action;
             }
 
             return FilterResult.Neutral;

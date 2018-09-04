@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Text;
 
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The time in a 24-hour, sortable format HH:mm:ss.mmm.
@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             DateTime dt = logEvent.TimeStamp;
-            if (this.UniversalTime)
+            if (UniversalTime)
             {
                 dt = dt.ToUniversalTime();
             }
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers
             string ticksSeparator;
             if (culture != null)
             {
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_5
                 timeSeparator = culture.DateTimeFormat.TimeSeparator;
 #else
                 timeSeparator = ":";

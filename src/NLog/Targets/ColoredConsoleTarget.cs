@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -42,7 +42,7 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
@@ -66,7 +66,7 @@ namespace NLog.Targets
         ///   TextWriter's Synchronized methods.This also applies to classes like StreamWriter and StreamReader.
         /// 
         /// </remarks>
-        private bool pauseLogging;
+        private bool _pauseLogging;
 
         private static readonly IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
         {
@@ -86,12 +86,12 @@ namespace NLog.Targets
         /// </remarks>
         public ColoredConsoleTarget()
         {
-            this.WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
-            this.RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
-            this.UseDefaultRowHighlightingRules = true;
-            this.pauseLogging = false;
-            this.DetectConsoleAvailable = false;
-            this.OptimizeBufferReuse = true;
+            WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
+            RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
+            UseDefaultRowHighlightingRules = true;
+            _pauseLogging = false;
+            DetectConsoleAvailable = false;
+            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public ColoredConsoleTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -167,17 +167,14 @@ namespace NLog.Targets
         /// <remarks>Has side effect</remarks>
         public Encoding Encoding
         {
-            get
-            {
-                return ConsoleTargetHelper.GetConsoleOutputEncoding(this.encoding, this.IsInitialized, this.pauseLogging);
-            }
+            get => ConsoleTargetHelper.GetConsoleOutputEncoding(_encoding, IsInitialized, _pauseLogging);
             set
             {
-                if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, this.IsInitialized, this.pauseLogging))
-                    encoding = value;
+                if (ConsoleTargetHelper.SetConsoleOutputEncoding(value, IsInitialized, _pauseLogging))
+                    _encoding = value;
             }
         }
-        private Encoding encoding;
+        private Encoding _encoding;
 #endif
 
         /// <summary>
@@ -207,25 +204,25 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-            this.pauseLogging = false;
+            _pauseLogging = false;
             if (DetectConsoleAvailable)
             {
                 string reason;
-                pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
-                if (pauseLogging)
+                _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
+                if (_pauseLogging)
                 {
                     InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
             }
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            if (this.encoding != null && !this.pauseLogging)
-                Console.OutputEncoding = this.encoding;
+            if (_encoding != null && !_pauseLogging)
+                Console.OutputEncoding = _encoding;
 #endif
             base.InitializeTarget();
-            if (this.Header != null)
+            if (Header != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.WriteToOutput(lei, base.RenderLogEvent(this.Header, lei));
+                WriteToOutput(lei, RenderLogEvent(Header, lei));
             }
         }
 
@@ -234,10 +231,10 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            if (this.Footer != null)
+            if (Footer != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
-                this.WriteToOutput(lei, base.RenderLogEvent(this.Footer, lei));
+                WriteToOutput(lei, RenderLogEvent(Footer, lei));
             }
 
             base.CloseTarget();
@@ -250,12 +247,12 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (pauseLogging)
+            if (_pauseLogging)
             {
                 //check early for performance
                 return;
             }
-            this.WriteToOutput(logEvent, base.RenderLogEvent(this.Layout, logEvent));
+            WriteToOutput(logEvent, RenderLogEvent(Layout, logEvent));
         }
 
         private void WriteToOutput(LogEventInfo logEvent, string message)
@@ -279,15 +276,15 @@ namespace NLog.Targets
 
                 try
                 {
-                    var consoleStream = this.ErrorStream ? Console.Error : Console.Out;
-                    if (this.WordHighlightingRules.Count == 0)
+                    var consoleStream = ErrorStream ? Console.Error : Console.Out;
+                    if (WordHighlightingRules.Count == 0)
                     {
                         consoleStream.WriteLine(message);
                     }
                     else
                     {
                         message = message.Replace("\a", "\a\a");
-                        foreach (ConsoleWordHighlightingRule hl in this.WordHighlightingRules)
+                        foreach (ConsoleWordHighlightingRule hl in WordHighlightingRules)
                         {
                             message = hl.ReplaceWithEscapeSequences(message);
                         }
@@ -301,8 +298,15 @@ namespace NLog.Targets
                 catch (IndexOutOfRangeException ex)
                 {
                     //this is a bug and therefor stopping logging. For docs, see PauseLogging property
-                    pauseLogging = true;
+                    _pauseLogging = true;
                     InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
+                                            "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    //this is a bug and therefor stopping logging. For docs, see PauseLogging property
+                    _pauseLogging = true;
+                    InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
                                             "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
                 }
             }
@@ -317,13 +321,13 @@ namespace NLog.Targets
 
         private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
         {
-            foreach (ConsoleRowHighlightingRule rule in this.RowHighlightingRules)
+            foreach (ConsoleRowHighlightingRule rule in RowHighlightingRules)
             {
                 if (rule.CheckCondition(logEvent))
                     return rule;
             }
 
-            if (this.UseDefaultRowHighlightingRules)
+            if (UseDefaultRowHighlightingRules)
             {
                 foreach (ConsoleRowHighlightingRule rule in DefaultConsoleRowHighlightingRules)
                 {
@@ -443,24 +447,18 @@ namespace NLog.Targets
         /// </summary>
         internal struct ColorPair
         {
-            private readonly ConsoleColor foregroundColor;
-            private readonly ConsoleColor backgroundColor;
+            private readonly ConsoleColor _foregroundColor;
+            private readonly ConsoleColor _backgroundColor;
 
             internal ColorPair(ConsoleColor foregroundColor, ConsoleColor backgroundColor)
             {
-                this.foregroundColor = foregroundColor;
-                this.backgroundColor = backgroundColor;
+                _foregroundColor = foregroundColor;
+                _backgroundColor = backgroundColor;
             }
 
-            internal ConsoleColor BackgroundColor
-            {
-                get { return this.backgroundColor; }
-            }
+            internal ConsoleColor BackgroundColor => _backgroundColor;
 
-            internal ConsoleColor ForegroundColor
-            {
-                get { return this.foregroundColor; }
-            }
+            internal ConsoleColor ForegroundColor => _foregroundColor;
         }
     }
 }

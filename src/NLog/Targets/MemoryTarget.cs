@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -65,8 +65,8 @@ namespace NLog.Targets
         /// </remarks>
         public MemoryTarget()
         {
-            this.Logs = new List<string>();
-            this.OptimizeBufferReuse = true;
+            Logs = new List<string>();
+            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public MemoryTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            this.Logs.Add(base.RenderLogEvent(this.Layout, logEvent));
+            Logs.Add(RenderLogEvent(Layout, logEvent));
         }
     }
 }

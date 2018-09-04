@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,10 +36,10 @@ namespace NLog.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Layouts;
+    using Common;
+    using Config;
+    using Internal;
+    using Layouts;
 
     /// <summary>
     /// Renders contents of the specified file.
@@ -47,20 +47,20 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("file-contents")]
     public class FileContentsLayoutRenderer : LayoutRenderer
     {
-        private string lastFileName;
-        private string currentFileContents;
+        private string _lastFileName;
+        private string _currentFileContents;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileContentsLayoutRenderer" /> class.
         /// </summary>
         public FileContentsLayoutRenderer()
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || NETSTANDARD1_5
             this.Encoding = Encoding.UTF8;
 #else
-            this.Encoding = Encoding.Default;
+            Encoding = Encoding.Default;
 #endif
-            this.lastFileName = string.Empty;
+            _lastFileName = string.Empty;
         }
 
         /// <summary>
@@ -86,26 +86,30 @@ namespace NLog.LayoutRenderers
         {
             lock (this)
             {
-                string fileName = this.FileName.Render(logEvent);
+                string fileName = FileName.Render(logEvent);
 
-                if (fileName != this.lastFileName)
+                if (fileName != _lastFileName)
                 {
-                    this.currentFileContents = this.ReadFileContents(fileName);
-                    this.lastFileName = fileName;
+                    _currentFileContents = ReadFileContents(fileName);
+                    _lastFileName = fileName;
                 }
             }
 
-            builder.Append(this.currentFileContents);
+            builder.Append(_currentFileContents);
         }
 
         private string ReadFileContents(string fileName)
         {
             try
             {
-                using (var reader = new StreamReader(fileName, this.Encoding))
+#if NETSTANDARD1_5
+                return File.ReadAllText(fileName, Encoding);
+#else
+                using (var reader = new StreamReader(fileName, Encoding))
                 {
                     return reader.ReadToEnd();
                 }
+#endif
             }
             catch (Exception exception)
             {

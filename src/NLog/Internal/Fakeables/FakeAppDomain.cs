@@ -1,0 +1,137 @@
+﻿// 
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+// * Redistributions of source code must retain the above copyright notice, 
+//   this list of conditions and the following disclaimer. 
+// 
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution. 
+// 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   contributors may be used to endorse or promote products derived from this
+//   software without specific prior written permission. 
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// THE POSSIBILITY OF SUCH DAMAGE.
+// 
+
+#if NETSTANDARD1_5
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace NLog.Internal.Fakeables
+{
+    internal class FakeAppDomain : IAppDomain
+    {
+        System.Runtime.Loader.AssemblyLoadContext _defaultContext;
+
+        /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+        public FakeAppDomain()
+        {
+            BaseDirectory = AppContext.BaseDirectory;
+            _defaultContext = System.Runtime.Loader.AssemblyLoadContext.Default;
+        }
+
+        #region Implementation of IAppDomain
+
+        /// <summary>
+        /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
+        /// </summary>
+        public string BaseDirectory { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the name of the configuration file for an application domain.
+        /// </summary>
+        public string ConfigurationFile { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of directories under the application base directory that are probed for private assemblies.
+        /// </summary>
+        public IEnumerable<string> PrivateBinPath { get; set; }
+
+        /// <summary>
+        /// Gets or set the friendly name.
+        /// </summary>
+        public string FriendlyName { get; set; }
+
+        /// <summary>
+        /// Gets an integer that uniquely identifies the application domain within the process. 
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Process exit event.
+        /// </summary>
+        public event EventHandler<EventArgs> ProcessExit
+        {
+            add
+            {
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading += OnContextUnloading;
+                _contextUnloadingEvent += value;
+            }
+            remove
+            {
+                _contextUnloadingEvent -= value;
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading -= OnContextUnloading;
+            }
+        }
+
+        /// <summary>
+        /// Domain unloaded event.
+        /// </summary>
+        public event EventHandler<EventArgs> DomainUnload
+        {
+            add
+            {
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading += OnContextUnloading;
+                _contextUnloadingEvent += value;
+            }
+            remove
+            {
+                _contextUnloadingEvent -= value;
+                if (_contextUnloadingEvent == null && _defaultContext != null)
+                    _defaultContext.Unloading -= OnContextUnloading;
+            }
+        }
+
+        private event EventHandler<EventArgs> _contextUnloadingEvent;
+
+        private void OnContextUnloading(System.Runtime.Loader.AssemblyLoadContext context)
+        {
+            var handler = _contextUnloadingEvent;
+            if (handler != null) handler.Invoke(context, EventArgs.Empty);
+        }
+        #endregion
+    }
+
+    static class ExtensionMethods
+    {
+        public static void Close(this IDisposable disposable)
+        {
+            disposable.Dispose();
+        }
+    }
+}
+
+#endif

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,8 +34,8 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Sends log messages to a randomly selected target.
@@ -59,7 +59,7 @@ namespace NLog.Targets.Wrappers
     [Target("RandomizeGroup", IsCompound = true)]
     public class RandomizeGroupTarget : CompoundTargetBase
     {
-        private readonly Random random = new Random();
+        private readonly Random _random = new Random();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.
@@ -77,7 +77,7 @@ namespace NLog.Targets.Wrappers
         public RandomizeGroupTarget(string name, params Target[] targets)
              : this(targets)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace NLog.Targets.Wrappers
         public RandomizeGroupTarget(params Target[] targets)
             : base(targets)
         {
-            this.OptimizeBufferReuse = GetType() == typeof(RandomizeGroupTarget);
+            OptimizeBufferReuse = GetType() == typeof(RandomizeGroupTarget);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">The log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (this.Targets.Count == 0)
+            if (Targets.Count == 0)
             {
                 logEvent.Continuation(null);
                 return;
@@ -105,12 +105,12 @@ namespace NLog.Targets.Wrappers
 
             int selectedTarget;
 
-            lock (this.random)
+            lock (_random)
             {
-                selectedTarget = this.random.Next(this.Targets.Count);
+                selectedTarget = _random.Next(Targets.Count);
             }
 
-            this.Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
+            Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
         }
     }
 }

@@ -10,16 +10,13 @@ namespace NLog.SourceCodeTests
     {
         static int Main(string[] args)
         {
-
             var tests = new SourceCodeTests();
             var success = tests.VerifyDefaultValues();
             success = success & tests.VerifyFileHeaders();
             success = success & tests.VerifyNamespacesAndClassNames();
-            success = success & tests.VerifyProjectsInSync();
-
+            //success = success & tests.VerifyProjectsInSync();
 
             var noInteractive = args.FirstOrDefault() == "no-interactive";
-
 
             if (success)
             {
@@ -31,7 +28,6 @@ namespace NLog.SourceCodeTests
                 Console.WriteLine("press any key");
                 Console.ReadKey();
             }
-
 
             if (success)
             {

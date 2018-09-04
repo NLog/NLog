@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -44,7 +44,7 @@ namespace NLog.Internal
     /// <typeparam name="TValue">The type of the value.</typeparam>
     internal class DictionaryAdapter<TKey, TValue> : IDictionary
     {
-        private readonly IDictionary<TKey, TValue> implementation;
+        private readonly IDictionary<TKey, TValue> _implementation;
 
         /// <summary>
         /// Initializes a new instance of the DictionaryAdapter class.
@@ -52,7 +52,7 @@ namespace NLog.Internal
         /// <param name="implementation">The implementation.</param>
         public DictionaryAdapter(IDictionary<TKey, TValue> implementation)
         {
-            this.implementation = implementation;
+            _implementation = implementation;
         }
 
         /// <summary>
@@ -62,10 +62,7 @@ namespace NLog.Internal
         /// <returns>
         /// An <see cref="T:System.Collections.ICollection"/> object containing the values in the <see cref="T:System.Collections.IDictionary"/> object.
         /// </returns>
-        public ICollection Values
-        {
-            get { return new List<TValue>(this.implementation.Values); }
-        }
+        public ICollection Values => new List<TValue>(_implementation.Values);
 
         /// <summary>
         /// Gets the number of elements contained in the <see cref="T:System.Collections.ICollection"/>.
@@ -74,10 +71,7 @@ namespace NLog.Internal
         /// <returns>
         /// The number of elements contained in the <see cref="T:System.Collections.ICollection"/>.
         /// </returns>
-        public int Count
-        {
-            get { return this.implementation.Count; }
-        }
+        public int Count => _implementation.Count;
 
         /// <summary>
         /// Gets a value indicating whether access to the <see cref="T:System.Collections.ICollection"/> is synchronized (thread safe).
@@ -85,10 +79,7 @@ namespace NLog.Internal
         /// <value></value>
         /// <returns>true if access to the <see cref="T:System.Collections.ICollection"/> is synchronized (thread safe); otherwise, false.
         /// </returns>
-        public bool IsSynchronized
-        {
-            get { return false; }
-        }
+        public bool IsSynchronized => false;
 
         /// <summary>
         /// Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
@@ -97,10 +88,7 @@ namespace NLog.Internal
         /// <returns>
         /// An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
         /// </returns>
-        public object SyncRoot
-        {
-            get { return this.implementation; }
-        }
+        public object SyncRoot => _implementation;
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="T:System.Collections.IDictionary"/> object has a fixed size.
@@ -108,10 +96,7 @@ namespace NLog.Internal
         /// <value></value>
         /// <returns>true if the <see cref="T:System.Collections.IDictionary"/> object has a fixed size; otherwise, false.
         /// </returns>
-        public bool IsFixedSize
-        {
-            get { return false; }
-        }
+        public bool IsFixedSize => false;
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="T:System.Collections.IDictionary"/> object is read-only.
@@ -119,10 +104,7 @@ namespace NLog.Internal
         /// <value></value>
         /// <returns>true if the <see cref="T:System.Collections.IDictionary"/> object is read-only; otherwise, false.
         /// </returns>
-        public bool IsReadOnly
-        {
-            get { return this.implementation.IsReadOnly; }
-        }
+        public bool IsReadOnly => _implementation.IsReadOnly;
 
         /// <summary>
         /// Gets an <see cref="T:System.Collections.ICollection"/> object containing the keys of the <see cref="T:System.Collections.IDictionary"/> object.
@@ -131,10 +113,7 @@ namespace NLog.Internal
         /// <returns>
         /// An <see cref="T:System.Collections.ICollection"/> object containing the keys of the <see cref="T:System.Collections.IDictionary"/> object.
         /// </returns>
-        public ICollection Keys
-        {
-            get { return new List<TKey>(this.implementation.Keys); }
-        }
+        public ICollection Keys => new List<TKey>(_implementation.Keys);
 
         /// <summary>
         /// Gets or sets the <see cref="System.Object"/> with the specified key.
@@ -147,7 +126,7 @@ namespace NLog.Internal
             {
                 TValue value;
 
-                if (this.implementation.TryGetValue((TKey)key, out value))
+                if (_implementation.TryGetValue((TKey)key, out value))
                 {
                     return value;
                 }
@@ -157,10 +136,7 @@ namespace NLog.Internal
                 }
             }
 
-            set
-            {
-                this.implementation[(TKey)key] = (TValue)value;
-            }
+            set => _implementation[(TKey)key] = (TValue)value;
         }
 
         /// <summary>
@@ -170,7 +146,7 @@ namespace NLog.Internal
         /// <param name="value">The <see cref="T:System.Object"/> to use as the value of the element to add.</param>
         public void Add(object key, object value)
         {
-            this.implementation.Add((TKey)key, (TValue)value);
+            _implementation.Add((TKey)key, (TValue)value);
         }
 
         /// <summary>
@@ -178,7 +154,7 @@ namespace NLog.Internal
         /// </summary>
         public void Clear()
         {
-            this.implementation.Clear();
+            _implementation.Clear();
         }
 
         /// <summary>
@@ -190,7 +166,7 @@ namespace NLog.Internal
         /// </returns>
         public bool Contains(object key)
         {
-            return this.implementation.ContainsKey((TKey)key);
+            return _implementation.ContainsKey((TKey)key);
         }
 
         /// <summary>
@@ -201,7 +177,7 @@ namespace NLog.Internal
         /// </returns>
         public IDictionaryEnumerator GetEnumerator()
         {
-            return new MyEnumerator(this.implementation.GetEnumerator());
+            return new MyEnumerator(_implementation.GetEnumerator());
         }
 
         /// <summary>
@@ -210,7 +186,7 @@ namespace NLog.Internal
         /// <param name="key">The key of the element to remove.</param>
         public void Remove(object key)
         {
-            this.implementation.Remove((TKey)key);
+            _implementation.Remove((TKey)key);
         }
 
         /// <summary>
@@ -231,7 +207,7 @@ namespace NLog.Internal
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         /// <summary>
@@ -239,7 +215,7 @@ namespace NLog.Internal
         /// </summary>
         private class MyEnumerator : IDictionaryEnumerator
         {
-            private IEnumerator<KeyValuePair<TKey, TValue>> wrapped;
+            private IEnumerator<KeyValuePair<TKey, TValue>> _wrapped;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="MyEnumerator" /> class.
@@ -247,7 +223,7 @@ namespace NLog.Internal
             /// <param name="wrapped">The wrapped.</param>
             public MyEnumerator(IEnumerator<KeyValuePair<TKey, TValue>> wrapped)
             {
-                this.wrapped = wrapped;
+                _wrapped = wrapped;
             }
 
             /// <summary>
@@ -257,10 +233,7 @@ namespace NLog.Internal
             /// <returns>
             /// A <see cref="T:System.Collections.DictionaryEntry"/> containing both the key and the value of the current dictionary entry.
             /// </returns>
-            public DictionaryEntry Entry
-            {
-                get { return new DictionaryEntry(this.wrapped.Current.Key, this.wrapped.Current.Value); }
-            }
+            public DictionaryEntry Entry => new DictionaryEntry(_wrapped.Current.Key, _wrapped.Current.Value);
 
             /// <summary>
             /// Gets the key of the current dictionary entry.
@@ -269,10 +242,7 @@ namespace NLog.Internal
             /// <returns>
             /// The key of the current element of the enumeration.
             /// </returns>
-            public object Key
-            {
-                get { return this.wrapped.Current.Key; }
-            }
+            public object Key => _wrapped.Current.Key;
 
             /// <summary>
             /// Gets the value of the current dictionary entry.
@@ -281,10 +251,7 @@ namespace NLog.Internal
             /// <returns>
             /// The value of the current element of the enumeration.
             /// </returns>
-            public object Value
-            {
-                get { return this.wrapped.Current.Value; }
-            }
+            public object Value => _wrapped.Current.Value;
 
             /// <summary>
             /// Gets the current element in the collection.
@@ -293,10 +260,7 @@ namespace NLog.Internal
             /// <returns>
             /// The current element in the collection.
             /// </returns>
-            public object Current
-            {
-                get { return this.Entry; }
-            }
+            public object Current => Entry;
 
             /// <summary>
             /// Advances the enumerator to the next element of the collection.
@@ -306,7 +270,7 @@ namespace NLog.Internal
             /// </returns>
             public bool MoveNext()
             {
-                return this.wrapped.MoveNext();
+                return _wrapped.MoveNext();
             }
 
             /// <summary>
@@ -314,7 +278,7 @@ namespace NLog.Internal
             /// </summary>
             public void Reset()
             {
-                this.wrapped.Reset();
+                _wrapped.Reset();
             }
         }
     }

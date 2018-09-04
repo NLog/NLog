@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -42,7 +42,7 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal sealed class SocketProxy : ISocket, IDisposable
     {
-        private readonly Socket socket;
+        private readonly Socket _socket;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SocketProxy"/> class.
@@ -52,26 +52,20 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="protocolType">Type of the protocol.</param>
         internal SocketProxy(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
-            this.socket = new Socket(addressFamily, socketType, protocolType);
+            _socket = new Socket(addressFamily, socketType, protocolType);
         }
 
         /// <summary>
         /// Gets underlying socket instance.
         /// </summary>
-        public Socket UnderlyingSocket
-        {
-            get
-            {
-                return this.socket;
-            }
-        }
+        public Socket UnderlyingSocket => _socket;
 
         /// <summary>
         /// Closes the wrapped socket.
         /// </summary>
         public void Close()
         {
-            this.socket.Close();
+            _socket.Close();
         }
 
 #if USE_LEGACY_ASYNC_API
@@ -117,7 +111,7 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>Result of original method.</returns>
         public bool ConnectAsync(SocketAsyncEventArgs args)
         {
-            return this.socket.ConnectAsync(args);
+            return _socket.ConnectAsync(args);
         }
 
         /// <summary>
@@ -127,7 +121,7 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>Result of original method.</returns>
         public bool SendAsync(SocketAsyncEventArgs args)
         {
-            return this.socket.SendAsync(args);
+            return _socket.SendAsync(args);
         }
 
 #if !SILVERLIGHT
@@ -138,7 +132,7 @@ namespace NLog.Internal.NetworkSenders
         /// <returns>Result of original method.</returns>
         public bool SendToAsync(SocketAsyncEventArgs args)
         {
-            return this.socket.SendToAsync(args);
+            return _socket.SendToAsync(args);
         }
 #endif
 
@@ -149,7 +143,7 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         public void Dispose()
         {
-            ((IDisposable)this.socket).Dispose();
+            ((IDisposable)_socket).Dispose();
         }
     }
 }

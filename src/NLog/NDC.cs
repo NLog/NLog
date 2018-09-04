@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -46,19 +46,13 @@ namespace NLog
         /// Gets the top NDC message but doesn't remove it.
         /// </summary>
         /// <returns>The top message. .</returns>
-        public static string TopMessage
-        {
-            get { return NestedDiagnosticsContext.TopMessage; }
-        }
+        public static string TopMessage => NestedDiagnosticsContext.TopMessage;
 
         /// <summary>
         /// Gets the top NDC object but doesn't remove it.
         /// </summary>
         /// <returns>The object from the top of the NDC stack, if defined; otherwise <c>null</c>.</returns>
-        public static object TopObject 
-        {
-            get { return NestedDiagnosticsContext.TopObject; }
-        }
+        public static object TopObject => NestedDiagnosticsContext.TopObject;
 
         /// <summary>
         /// Pushes the specified text on current thread NDC.

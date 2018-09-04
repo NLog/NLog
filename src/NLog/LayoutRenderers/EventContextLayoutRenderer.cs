@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Globalization;
     using System.Text;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Log event context data.
@@ -63,7 +63,7 @@ namespace NLog.LayoutRenderers
         {
             object value;
 
-            if (logEvent.HasProperties && logEvent.Properties.TryGetValue(this.Item, out value))
+            if (logEvent.HasProperties && logEvent.Properties.TryGetValue(Item, out value))
             {
                 var formatProvider = GetFormatProvider(logEvent);
                 builder.Append(Convert.ToString(value, formatProvider));

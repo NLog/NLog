@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,25 +45,23 @@ namespace NLog.Targets
     /// Default class for serialization of values to JSON format.
     /// </summary>
 #pragma warning disable 618
-    public class DefaultJsonSerializer : IJsonConverter, NLog.Targets.IJsonSerializer
+    public class DefaultJsonSerializer : IJsonConverter, IJsonSerializer
 #pragma warning restore 618
     {
         private readonly MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>> _propsCache = new MruCache<Type, KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>>(10000);
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(10000);
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
         private readonly JsonSerializeOptions _serializeOptions = new JsonSerializeOptions();
         private readonly IFormatProvider _defaultFormatProvider = CreateFormatProvider();
 
         private const int MaxRecursionDepth = 10;
+        private const int MaxJsonLength = 512 * 1024;
 
         private static readonly DefaultJsonSerializer instance;
 
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
-        public static DefaultJsonSerializer Instance
-        {
-            get { return instance; }
-        }
+        public static DefaultJsonSerializer Instance => instance;
 
         static DefaultJsonSerializer()
         {
@@ -281,6 +279,11 @@ namespace NLog.Targets
             foreach (DictionaryEntry de in value)
             {
                 originalLength = destination.Length;
+                if (originalLength > MaxJsonLength)
+                {
+                    break;
+                }
+
                 if (!first)
                 {
                     destination.Append(',');
@@ -316,6 +319,11 @@ namespace NLog.Targets
             foreach (var val in value)
             {
                 originalLength = destination.Length;
+                if (originalLength > MaxJsonLength)
+                {
+                    break;
+                }
+
                 if (!first)
                 {
                     destination.Append(',');
@@ -338,18 +346,23 @@ namespace NLog.Targets
             TypeCode objTypeCode = Convert.GetTypeCode(value);
             if (objTypeCode == TypeCode.Object)
             {
-                if (value is Guid || value is TimeSpan)
+                if (value is Guid || value is TimeSpan || value is MemberInfo || value is Assembly)
                 {
                     //object without property, to string
                     QuoteValue(destination, Convert.ToString(value, CultureInfo.InvariantCulture));
                 }
                 else if (value is DateTimeOffset)
                 {
-                    QuoteValue(destination, string.Format("{0:yyyy-MM-dd HH:mm:ss zzz}", value));
+                    QuoteValue(destination, $"{value:yyyy-MM-dd HH:mm:ss zzz}");
                 }
                 else
                 {
                     int originalLength = destination.Length;
+                    if (originalLength > MaxJsonLength)
+                    {
+                        return false;
+                    }
+
                     try
                     {
                         using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
@@ -402,7 +415,7 @@ namespace NLog.Targets
 
         private static CultureInfo CreateFormatProvider()
         {
-#if SILVERLIGHT
+#if SILVERLIGHT || NETSTANDARD1_5
             var culture = new CultureInfo("en-US");
 #else
             var culture = new CultureInfo("en-US", false);
@@ -526,19 +539,8 @@ namespace NLog.Targets
                 if (sb == null)
                 {
                     // Check if we need to upgrade to StringBuilder
-                    if (!EscapeChar(ch, escapeUnicode))
-                    {
-                        switch (ch)
-                        {
-                            case '"':
-                            case '\\':
-                            case '/':
-                                break;
-
-                            default:
-                                continue; // StringBuilder not needed, yet
-                        }
-                    }
+                    if (!RequiresJsonEscape(ch, escapeUnicode))
+                        continue; // StringBuilder not needed, yet
 
                     // StringBuilder needed
                     sb = new StringBuilder(text.Length + 4);
@@ -596,6 +598,23 @@ namespace NLog.Targets
                 return sb.ToString();
             else
                 return text;
+        }
+
+        internal static bool RequiresJsonEscape(char ch, bool escapeUnicode)
+        {
+            if (!EscapeChar(ch, escapeUnicode))
+            {
+                switch (ch)
+                {
+                    case '"':
+                    case '\\':
+                    case '/':
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+            return true;
         }
 
         private static bool EscapeChar(char ch, bool escapeUnicode)
@@ -704,16 +723,16 @@ namespace NLog.Targets
 
             try
             {
-                properties = GetPropertyInfosNoCache(type);
-                if (properties == null)
-                {
-                    properties = ArrayHelper.Empty<PropertyInfo>();
-                }
+                properties = type.GetProperties(PublicProperties);
             }
             catch (Exception ex)
             {
-                properties = ArrayHelper.Empty<PropertyInfo>();
-                NLog.Common.InternalLogger.Warn(ex, "Failed to get JSON properties for type: {0}", type);
+                Common.InternalLogger.Warn(ex, "Failed to get JSON properties for type: {0}", type);
+            }
+            finally
+            {
+                if (properties == null)
+                    properties = ArrayHelper.Empty<PropertyInfo>();
             }
 
             props = new KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]>(properties, ArrayHelper.Empty<ReflectionHelpers.LateBoundMethod>());
@@ -721,16 +740,6 @@ namespace NLog.Targets
             return props;
         }
 
-        private static PropertyInfo[] GetPropertyInfosNoCache(Type type)
-        {
-#if NETSTANDARD
-            var props = type.GetRuntimeProperties().ToArray();
-#else
-            var props = type.GetProperties();
-#endif
-            return props;
-        }
-
-
+        private const BindingFlags PublicProperties = BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
     }
 }

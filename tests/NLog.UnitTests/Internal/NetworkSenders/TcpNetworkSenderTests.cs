@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -138,7 +138,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         {
             var sender = new TcpNetworkSender("tcp://foo:1234", AddressFamily.Unspecified);
             var socket = sender.CreateSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Assert.IsType(typeof(SocketProxy), socket);
+            Assert.IsType<SocketProxy>(socket);
         }
 
         [Fact]
@@ -261,7 +261,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             public MyTcpNetworkSender(string url, AddressFamily addressFamily)
                 : base(url, addressFamily)
             {
-                this.Log = new StringWriter();
+                Log = new StringWriter();
             }
 
             protected internal override ISocket CreateSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
@@ -271,7 +271,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 
             protected override EndPoint ParseEndpointAddress(Uri uri, AddressFamily addressFamily)
             {
-                this.Log.WriteLine("Parse endpoint address {0} {1}", uri, addressFamily);
+                Log.WriteLine("Parse endpoint address {0} {1}", uri, addressFamily);
                 return new MockEndPoint(uri);
             }
 
@@ -291,22 +291,22 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             public MockSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, MyTcpNetworkSender sender)
             {
                 this.sender = sender;
-                this.log = sender.Log;
-                this.log.WriteLine("create socket {0} {1} {2}", addressFamily, socketType, protocolType);
+                log = sender.Log;
+                log.WriteLine("create socket {0} {1} {2}", addressFamily, socketType, protocolType);
             }
 
             public bool ConnectAsync(SocketAsyncEventArgs args)
             {
-                this.log.WriteLine("connect async to {0}", args.RemoteEndPoint);
+                log.WriteLine("connect async to {0}", args.RemoteEndPoint);
 
                 lock (this)
                 {
-                    if (this.sender.ConnectFailure > 0)
+                    if (sender.ConnectFailure > 0)
                     {
-                        this.sender.ConnectFailure--;
-                        this.faulted = true;
+                        sender.ConnectFailure--;
+                        faulted = true;
                         args.SocketError = SocketError.SocketError;
-                        this.log.WriteLine("failed");
+                        log.WriteLine("failed");
                     }
                 }
 
@@ -319,7 +319,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                 {
                     var args2 = args as TcpNetworkSender.MySocketAsyncEventArgs;
 
-                    if (this.sender.Async)
+                    if (sender.Async)
                     {
                         ThreadPool.QueueUserWorkItem(s =>
                             {
@@ -340,7 +340,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             {
                 lock (this)
                 {
-                    this.log.WriteLine("close");
+                    log.WriteLine("close");
                 }
             }
 
@@ -348,19 +348,19 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             {
                 lock (this)
                 {
-                    this.log.WriteLine("send async {0} {1} '{2}'", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count));
-                    if (this.sender.SendFailureIn > 0)
+                    log.WriteLine("send async {0} {1} '{2}'", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count));
+                    if (sender.SendFailureIn > 0)
                     {
-                        this.sender.SendFailureIn--;
-                        if (this.sender.SendFailureIn == 0)
+                        sender.SendFailureIn--;
+                        if (sender.SendFailureIn == 0)
                         {
-                            this.faulted = true;
+                            faulted = true;
                         }
                     }
 
-                    if (this.faulted)
+                    if (faulted)
                     {
-                        this.log.WriteLine("failed");
+                        log.WriteLine("failed");
                         args.SocketError = SocketError.SocketError;
                     }
                 }
@@ -372,7 +372,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             {
                 lock (this)
                 {
-                    this.log.WriteLine("sendto async {0} {1} '{2}' {3}", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count), args.RemoteEndPoint);
+                    log.WriteLine("sendto async {0} {1} '{2}' {3}", args.Offset, args.Count, Encoding.UTF8.GetString(args.Buffer, args.Offset, args.Count), args.RemoteEndPoint);
                     return InvokeCallback(args);
                 }
             }
@@ -387,17 +387,11 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                 this.uri = uri;
             }
 
-            public override AddressFamily AddressFamily
-            {
-                get
-                {
-                    return (System.Net.Sockets.AddressFamily)10000;
-                }
-            }
+            public override AddressFamily AddressFamily => (AddressFamily)10000;
 
             public override string ToString()
             {
-                return "{mock end point: " + this.uri + "}";
+                return "{mock end point: " + uri + "}";
             }
         }
     }

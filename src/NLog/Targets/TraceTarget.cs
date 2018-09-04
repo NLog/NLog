@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,6 +37,7 @@
 
 namespace NLog.Targets
 {
+    using System.ComponentModel;
     using System.Diagnostics;
 
     /// <summary>
@@ -62,6 +63,12 @@ namespace NLog.Targets
     public sealed class TraceTarget : TargetWithLayout
     {
         /// <summary>
+        /// Always use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
+        /// </summary>
+        [DefaultValue(false)]
+        public bool RawWrite { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TraceTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -69,7 +76,7 @@ namespace NLog.Targets
         /// </remarks>
         public TraceTarget() : base()
         {
-            this.OptimizeBufferReuse = true;
+            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -81,20 +88,26 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public TraceTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
         /// Writes the specified logging event to the <see cref="System.Diagnostics.Trace"/> facility.
-        /// If the log level is greater than or equal to <see cref="LogLevel.Error"/> it uses the
-        /// <see cref="System.Diagnostics.Trace.Fail(string)"/> method, otherwise it uses
-        /// <see cref="System.Diagnostics.Trace.Write(string)" /> method.
+        /// 
+        /// Redirects the log message depending on <see cref="LogLevel"/> and  <see cref="RawWrite"/>. 
+        /// When <see cref="RawWrite"/> is <c>false</c>:
+        ///  - <see cref="LogLevel.Fatal"/> writes to <see cref="Trace.Fail(string)" />
+        ///  - <see cref="LogLevel.Error"/> writes to <see cref="Trace.TraceError(string)" />
+        ///  - <see cref="LogLevel.Warn"/> writes to <see cref="Trace.TraceWarning(string)" />
+        ///  - <see cref="LogLevel.Info"/> writes to <see cref="Trace.TraceInformation(string)" />
+        ///  - <see cref="LogLevel.Debug"/> writes to <see cref="Trace.WriteLine(string)" />
+        ///  - <see cref="LogLevel.Trace"/> writes to <see cref="Trace.WriteLine(string)" />
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string logMessage = base.RenderLogEvent(this.Layout, logEvent);
-            if (logEvent.Level <= LogLevel.Debug)
+            string logMessage = RenderLogEvent(Layout, logEvent);
+            if (RawWrite || logEvent.Level <= LogLevel.Debug)
             {
                 Trace.WriteLine(logMessage);
             }

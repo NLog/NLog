@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -49,8 +49,7 @@ namespace NLog.UnitTests
     using System.Xml.Linq;
     using System.Xml;
     using System.IO.Compression;
-    using System.Security.Permissions;
-#if NET3_5 || NET4_0 || NET4_5
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
     using Ionic.Zip;
 #endif
 
@@ -74,8 +73,8 @@ namespace NLog.UnitTests
             InternalLogger.Reset();
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
-#if !SILVERLIGHT
             System.Diagnostics.Trace.Listeners.Clear();
+#if !NETSTANDARD
             System.Diagnostics.Debug.Listeners.Clear();
 #endif
         }
@@ -94,7 +93,7 @@ namespace NLog.UnitTests
         {
             string debugLastMessage = GetDebugLastMessage(targetName);
             Assert.True(debugLastMessage.Contains(msg),
-                string.Format("Expected to find '{0}' in last message value on '{1}', but found '{2}'", msg, targetName, debugLastMessage));
+                $"Expected to find '{msg}' in last message value on '{targetName}', but found '{debugLastMessage}'");
         }
 
         protected string GetDebugLastMessage(string targetName)
@@ -107,14 +106,14 @@ namespace NLog.UnitTests
             return GetDebugTarget(targetName, configuration).LastMessage;
         }
 
-        public NLog.Targets.DebugTarget GetDebugTarget(string targetName)
+        public DebugTarget GetDebugTarget(string targetName)
         {
             return GetDebugTarget(targetName, LogManager.Configuration);
         }
 
-        protected NLog.Targets.DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
+        protected DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
         {
-            var debugTarget = (NLog.Targets.DebugTarget)configuration.FindTargetByName(targetName);
+            var debugTarget = (DebugTarget)configuration.FindTargetByName(targetName);
             Assert.NotNull(debugTarget);
             return debugTarget;
         }
@@ -128,12 +127,14 @@ namespace NLog.UnitTests
             byte[] encodedBuf = encoding.GetBytes(contents);
 
             byte[] buf = File.ReadAllBytes(fileName);
-            Assert.True(encodedBuf.Length <= buf.Length, string.Format("File:{0} encodedBytes:{1} does not match file.content:{2}, file.length = {3}", fileName, encodedBuf.Length, buf.Length, fi.Length));
+            Assert.True(encodedBuf.Length <= buf.Length,
+                $"File:{fileName} encodedBytes:{encodedBuf.Length} does not match file.content:{buf.Length}, file.length = {fi.Length}");
 
             for (int i = 0; i < encodedBuf.Length; ++i)
             {
                 if (encodedBuf[i] != buf[i])
-                    Assert.True(encodedBuf[i] == buf[i], string.Format("File:{0} content mismatch {1} <> {2} at index {3}", fileName, (int)encodedBuf[i], (int)buf[i], i));
+                    Assert.True(encodedBuf[i] == buf[i],
+                        $"File:{fileName} content mismatch {(int) encodedBuf[i]} <> {(int) buf[i]} at index {i}");
             }
         }
 
@@ -151,8 +152,8 @@ namespace NLog.UnitTests
         {
             public void CompressFile(string fileName, string archiveFileName)
             {
-#if NET3_5 || NET4_0 || NET4_5
-                using (ZipFile zip = new ZipFile())
+#if (NET3_5 || NET4_0 || NET4_5) && !NETSTANDARD
+                using (var zip = new Ionic.Zip.ZipFile())
                 {
                     zip.AddFile(fileName);
                     zip.Save(archiveFileName);
@@ -169,7 +170,7 @@ namespace NLog.UnitTests
 
             byte[] encodedBuf = encoding.GetBytes(contents);
             
-            using (var zip = new ZipFile(fileName))
+            using (var zip = new Ionic.Zip.ZipFile(fileName))
             {
                 Assert.Equal(1, zip.Count);
                 Assert.Equal(encodedBuf.Length, zip[0].UncompressedSize);
@@ -197,7 +198,7 @@ namespace NLog.UnitTests
             using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
             {
-                Assert.Equal(1, zip.Entries.Count);
+                Assert.Single(zip.Entries);
                 Assert.Equal(encodedBuf.Length, zip.Entries[0].Length);
 
                 byte[] buf = new byte[(int)zip.Entries[0].Length];
@@ -246,12 +247,14 @@ namespace NLog.UnitTests
             }
 
             byte[] buf = File.ReadAllBytes(fileName);
-            Assert.True(encodedBuf.Length == buf.Length, string.Format("File:{0} encodedBytes:{1} does not match file.content:{2}, file.length = {3}", fileName, encodedBuf.Length, buf.Length, fi.Length));
+            Assert.True(encodedBuf.Length == buf.Length,
+                $"File:{fileName} encodedBytes:{encodedBuf.Length} does not match file.content:{buf.Length}, file.length = {fi.Length}");
 
             for (int i = 0; i < buf.Length; ++i)
             {
                 if (encodedBuf[i] != buf[i])
-                    Assert.True(encodedBuf[i] == buf[i], string.Format("File:{0} content mismatch {1} <> {2} at index {3}", fileName, (int)encodedBuf[i], (int)buf[i], i));
+                    Assert.True(encodedBuf[i] == buf[i],
+                        $"File:{fileName} content mismatch {(int) encodedBuf[i]} <> {(int) buf[i]} at index {i}");
             }
         }
 
@@ -277,6 +280,27 @@ namespace NLog.UnitTests
             Assert.True(false, "File doesn't contains '" + contentToCheck + "'");
         }
 
+        protected void AssertFileNotContains(string fileName, string contentToCheck, Encoding encoding)
+        {
+            if (contentToCheck.Contains(Environment.NewLine))
+                Assert.True(false, "Please use only single line string to check.");
+
+            FileInfo fi = new FileInfo(fileName);
+            if (!fi.Exists)
+                Assert.True(false, "File '" + fileName + "' doesn't exist.");
+
+            using (TextReader fs = new StreamReader(fileName, encoding))
+            {
+                string line;
+                while ((line = fs.ReadLine()) != null)
+                {
+                    if (line.Contains(contentToCheck))
+                        Assert.False(true, "File contains '" + contentToCheck + "'");
+                }
+            }
+
+            return;
+        }
         protected string StringRepeat(int times, string s)
         {
             StringBuilder sb = new StringBuilder(s.Length * times);
@@ -306,7 +330,7 @@ namespace NLog.UnitTests
             Assert.Equal(expected, actual);
         }
 
-#if MONO || NET4_5
+#if NET4_5
         /// <summary>
         /// Get line number of previous line.
         /// </summary>
@@ -323,7 +347,6 @@ namespace NLog.UnitTests
             //fixed value set with #line 100000
             return 100001;
         }
-
 #endif
 
         public static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
@@ -369,35 +392,39 @@ namespace NLog.UnitTests
         {
             private readonly StringWriter writer = new StringWriter();
 
-            public override Encoding Encoding
-            {
-                get
-                {
-                    return this.writer.Encoding;
-                }
-            }
+            public override Encoding Encoding => writer.Encoding;
 
-            public override void Write(string value)
+#if NETSTANDARD1_5
+            public override void Write(char value)
             {
                 lock (this.writer)
                 {
                     this.writer.Write(value);
                 }
             }
+#endif
+
+            public override void Write(string value)
+            {
+                lock (writer)
+                {
+                    writer.Write(value);
+                }
+            }
 
             public override void WriteLine(string value)
             {
-                lock (this.writer)
+                lock (writer)
                 {
-                    this.writer.WriteLine(value);
+                    writer.WriteLine(value);
                 }
             }
 
             public override string ToString()
             {
-                lock (this.writer)
+                lock (writer)
                 {
-                    return this.writer.ToString();
+                    return writer.ToString();
                 }
             }
         }
@@ -416,32 +443,91 @@ namespace NLog.UnitTests
             return new CultureInfo(cultureName, false);
         }
 
+        /// <summary>
+        /// Are we running on Travis?
+        /// </summary>
+        /// <returns></returns>
+        protected static bool IsTravis()
+        {
+            var val = Environment.GetEnvironmentVariable("TRAVIS");
+            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Are we running on AppVeyor?
+        /// </summary>
+        /// <returns></returns>
+        protected static bool IsAppVeyor()
+        {
+            var val = Environment.GetEnvironmentVariable("APPVEYOR");
+            return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
+        }
+
         public delegate void SyncAction();
 
         public class InternalLoggerScope : IDisposable
         {
+            private readonly TextWriter oldConsoleOutputWriter;
+            public StringWriter ConsoleOutputWriter { get; private set; }
+            private readonly TextWriter oldConsoleErrorWriter;
+            public StringWriter ConsoleErrorWriter { get; private set; }
             private readonly LogLevel globalThreshold;
             private readonly bool throwExceptions;
             private readonly bool? throwConfigExceptions;
 
-            public InternalLoggerScope()
+            public InternalLoggerScope(bool redirectConsole = false)
             {
-                this.globalThreshold = LogManager.GlobalThreshold;
-                this.throwExceptions = LogManager.ThrowExceptions;
-                this.throwConfigExceptions = LogManager.ThrowConfigExceptions;
+                if (redirectConsole)
+                {
+                    ConsoleOutputWriter = new StringWriter() { NewLine = "\n" };
+                    ConsoleErrorWriter = new StringWriter() { NewLine = "\n" };
+
+                    oldConsoleOutputWriter = Console.Out;
+                    oldConsoleErrorWriter = Console.Error;
+
+                    Console.SetOut(ConsoleOutputWriter);
+                    Console.SetError(ConsoleErrorWriter);
+                }
+
+                globalThreshold = LogManager.GlobalThreshold;
+                throwExceptions = LogManager.ThrowExceptions;
+                throwConfigExceptions = LogManager.ThrowConfigExceptions;
+            }
+
+            public void SetConsoleError(StringWriter consoleErrorWriter)
+            {
+                if (ConsoleOutputWriter == null || consoleErrorWriter == null)
+                    throw new InvalidOperationException("Initialize with redirectConsole=true");
+
+                ConsoleErrorWriter = consoleErrorWriter;
+                Console.SetError(consoleErrorWriter);
+            }
+
+            public void SetConsoleOutput(StringWriter consoleOutputWriter)
+            {
+                if (ConsoleOutputWriter == null || consoleOutputWriter == null)
+                    throw new InvalidOperationException("Initialize with redirectConsole=true");
+
+                ConsoleOutputWriter = consoleOutputWriter;
+                Console.SetOut(consoleOutputWriter);
             }
 
             public void Dispose()
             {
+                InternalLogger.Reset();
+
+                if (ConsoleOutputWriter != null)
+                    Console.SetOut(oldConsoleOutputWriter);
+                if (ConsoleErrorWriter != null)
+                    Console.SetError(oldConsoleErrorWriter);
+
                 if (File.Exists(InternalLogger.LogFile))
                     File.Delete(InternalLogger.LogFile);
 
-                InternalLogger.Reset();
-
                 //restore logmanager
-                LogManager.GlobalThreshold = this.globalThreshold;
-                LogManager.ThrowExceptions = this.throwExceptions;
-                LogManager.ThrowConfigExceptions = this.throwConfigExceptions;
+                LogManager.GlobalThreshold = globalThreshold;
+                LogManager.ThrowExceptions = throwExceptions;
+                LogManager.ThrowConfigExceptions = throwConfigExceptions;
             }
         }
     }

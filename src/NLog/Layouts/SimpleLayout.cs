@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,10 +36,10 @@ namespace NLog.Layouts
     using System;
     using System.Collections.ObjectModel;
     using System.Text;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.LayoutRenderers;
+    using Common;
+    using Config;
+    using Internal;
+    using LayoutRenderers;
 
     /// <summary>
     /// Represents a string with embedded placeholders that can render contextual information.
@@ -53,9 +53,9 @@ namespace NLog.Layouts
     [AppDomainFixedOutput]
     public class SimpleLayout : Layout, IUsesStackTrace
     {
-        private string fixedText;
-        private string layoutText;
-        private ConfigurationItemFactory configurationItemFactory;
+        private string _fixedText;
+        private string _layoutText;
+        private ConfigurationItemFactory _configurationItemFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
@@ -81,14 +81,14 @@ namespace NLog.Layouts
         /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
         public SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory)
         {
-            this.configurationItemFactory = configurationItemFactory;
-            this.Text = txt;
+            _configurationItemFactory = configurationItemFactory;
+            Text = txt;
         }
 
         internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
         {
-            this.configurationItemFactory = configurationItemFactory;
-            this.SetRenderers(renderers, text);
+            _configurationItemFactory = configurationItemFactory;
+            SetRenderers(renderers, text);
         }
 
         /// <summary>
@@ -102,10 +102,7 @@ namespace NLog.Layouts
         /// <docgen category='Layout Options' order='10' />
         public string Text
         {
-            get
-            {
-                return this.layoutText;
-            }
+            get => _layoutText;
 
             set
             {
@@ -121,30 +118,24 @@ namespace NLog.Layouts
                 else
                 {
                     renderers = LayoutParser.CompileLayout(
-                       this.configurationItemFactory,
+                       _configurationItemFactory,
                        new SimpleStringReader(value),
                        false,
                        out txt);
                 }
 
-                this.SetRenderers(renderers, txt);
+                SetRenderers(renderers, txt);
             }
         }
         /// <summary>
         /// Is the message fixed? (no Layout renderers used)
         /// </summary>
-        public bool IsFixedText
-        {
-            get { return this.fixedText != null; }
-        }
+        public bool IsFixedText => _fixedText != null;
 
         /// <summary>
         /// Get the fixed text. Only set when <see cref="IsFixedText"/> is <c>true</c>
         /// </summary>
-        public string FixedText
-        {
-            get { return fixedText; }
-        }
+        public string FixedText => _fixedText;
 
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
@@ -154,7 +145,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the level of stack trace information required for rendering.
         /// </summary>
-        public new StackTraceUsage StackTraceUsage { get { return base.StackTraceUsage; } }
+        public new StackTraceUsage StackTraceUsage => base.StackTraceUsage;
 
         /// <summary>
         /// Converts a text to a simple layout.
@@ -218,26 +209,26 @@ namespace NLog.Layouts
         /// </returns>
         public override string ToString()
         {
-            return "'" + this.Text + "'";
+            return "'" + Text + "'";
         }
 
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
         {
-            this.Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
+            Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
 
-            if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
+            if (Renderers.Count == 1 && Renderers[0] is LiteralLayoutRenderer)
             {
-                this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
+                _fixedText = ((LiteralLayoutRenderer)Renderers[0]).Text;
             }
             else
             {
                 //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
-                this.fixedText = null;
+                _fixedText = null;
             }
 
-            this.layoutText = text;
+            _layoutText = text;
 
-            if (this.LoggingConfiguration != null)
+            if (LoggingConfiguration != null)
             {
                 PerformObjectScanning();
             }
@@ -248,9 +239,9 @@ namespace NLog.Layouts
         /// </summary>
         protected override void InitializeLayout()
         {
-            for (int i = 0; i < this.Renderers.Count; i++)
+            for (int i = 0; i < Renderers.Count; i++)
             {
-                LayoutRenderer renderer = this.Renderers[i];
+                LayoutRenderer renderer = Renderers[i];
                 try
                 {
                     renderer.Initialize(LoggingConfiguration);
@@ -285,7 +276,7 @@ namespace NLog.Layouts
         {
             if (IsFixedText)
             {
-                return this.fixedText;
+                return _fixedText;
             }
 
             return RenderAllocateBuilder(logEvent);
@@ -295,9 +286,9 @@ namespace NLog.Layouts
         {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < this.Renderers.Count; i++)
+            for (int i = 0; i < Renderers.Count; i++)
             {
-                LayoutRenderer renderer = this.Renderers[i];
+                LayoutRenderer renderer = Renderers[i];
                 try
                 {
                     renderer.RenderAppendBuilder(logEvent, target);
@@ -325,12 +316,12 @@ namespace NLog.Layouts
         /// that make up the event.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="target">Initially empty <see cref="StringBuilder"/> for the result</param>
+        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             if (IsFixedText)
             {
-                target.Append(this.fixedText);
+                target.Append(_fixedText);
                 return;
             }
 

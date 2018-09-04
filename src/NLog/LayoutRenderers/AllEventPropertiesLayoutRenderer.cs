@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -50,15 +50,15 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class AllEventPropertiesLayoutRenderer : LayoutRenderer
     {
-        private string format;
+        private string _format;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AllEventPropertiesLayoutRenderer"/> class.
         /// </summary>
         public AllEventPropertiesLayoutRenderer()
         {
-            this.Separator = ", ";
-            this.Format = "[key]=[value]";
+            Separator = ", ";
+            Format = "[key]=[value]";
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public string Format
         {
-            get { return format; }
+            get => _format;
             set
             {
                 if (!value.Contains("[key]"))
@@ -95,7 +95,7 @@ namespace NLog.LayoutRenderers
                 if (!value.Contains("[value]"))
                     throw new ArgumentException("Invalid format: [value] placeholder is missing.");
 
-                format = value;
+                _format = value;
             }
         }
 
@@ -154,7 +154,7 @@ namespace NLog.LayoutRenderers
         {
 #if NET4_5
 
-            if (this.IncludeCallerInformation)
+            if (IncludeCallerInformation)
             {
                 return logEvent.Properties;
             }

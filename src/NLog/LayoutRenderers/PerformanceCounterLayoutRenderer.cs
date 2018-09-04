@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,14 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
 namespace NLog.LayoutRenderers
 {
     using System.Diagnostics;
     using System.Globalization;
     using System.Text;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// The performance counter.
@@ -81,13 +81,13 @@ namespace NLog.LayoutRenderers
         {
             base.InitializeLayoutRenderer();
 
-            if (this.MachineName != null)
+            if (MachineName != null)
             {
-                this.perfCounter = new PerformanceCounter(this.Category, this.Counter, this.Instance, this.MachineName);
+                perfCounter = new PerformanceCounter(Category, Counter, Instance, MachineName);
             }
             else
             {
-                this.perfCounter = new PerformanceCounter(this.Category, this.Counter, this.Instance, true);
+                perfCounter = new PerformanceCounter(Category, Counter, Instance, true);
             }
         }
 
@@ -97,10 +97,10 @@ namespace NLog.LayoutRenderers
         protected override void CloseLayoutRenderer()
         {
             base.CloseLayoutRenderer();
-            if (this.perfCounter != null)
+            if (perfCounter != null)
             {
-                this.perfCounter.Close();
-                this.perfCounter = null;
+                perfCounter.Close();
+                perfCounter = null;
             }
         }
 
@@ -112,7 +112,7 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var formatProvider = GetFormatProvider(logEvent);
-            builder.Append(this.perfCounter.NextValue().ToString(formatProvider));
+            builder.Append(perfCounter.NextValue().ToString(formatProvider));
         }
     }
 }

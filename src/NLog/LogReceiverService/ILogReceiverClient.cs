@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -30,6 +30,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
+#if !NETSTANDARD || WCF_SUPPORTED
 
 namespace NLog.LogReceiverService
 {
@@ -68,3 +70,5 @@ namespace NLog.LogReceiverService
         void EndProcessLogMessages(IAsyncResult result);
     }
 }
+
+#endif

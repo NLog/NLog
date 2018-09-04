@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,7 +34,7 @@
 namespace NLog.UnitTests
 {
     using System;
-    using NLog.Time;
+    using Time;
     using Xunit;
 
     public class TimeSourceTests : NLogTestBase, IDisposable
@@ -76,13 +76,7 @@ namespace NLog.UnitTests
 
         class CustomTimeSource : TimeSource
         {
-            public override DateTime Time
-            {
-                get
-                {
-                    return FromSystemTime(DateTime.UtcNow);
-                }
-            }
+            public override DateTime Time => FromSystemTime(DateTime.UtcNow);
 
             public override DateTime FromSystemTime(DateTime systemTime)
             {
@@ -103,9 +97,9 @@ namespace NLog.UnitTests
                 systemTimeDelta = TimeSpan.Zero;
             }
 
-            public override DateTime Time { get { return ConvertToKind(sourceTime); } }
+            public override DateTime Time => ConvertToKind(sourceTime);
 
-            public DateTime SystemTime { get { return ConvertToKind(sourceTime - systemTimeDelta); } }
+            public DateTime SystemTime => ConvertToKind(sourceTime - systemTimeDelta);
 
             public override DateTime FromSystemTime(DateTime systemTime)
             {
@@ -132,7 +126,7 @@ namespace NLog.UnitTests
 
         void TestTimeSource(TimeSource source, DateTime expected, DateTimeKind kind)
         {
-            Assert.IsType(typeof(FastLocalTimeSource), TimeSource.Current);
+            Assert.IsType<FastLocalTimeSource>(TimeSource.Current);
             TimeSource.Current = source;
             Assert.Same(source, TimeSource.Current);
             var evt = new LogEventInfo(LogLevel.Info, "logger", "msg");

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -40,10 +40,10 @@ namespace NLog
     using System.Reflection;
     using System.Threading;
     using JetBrains.Annotations;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Filters;
-    using NLog.Internal;
+    using Common;
+    using Config;
+    using Filters;
+    using Internal;
 
     /// <summary>
     /// Implementation of logging engine.
@@ -51,9 +51,9 @@ namespace NLog
     internal static class LoggerImpl
     {
         private const int StackTraceSkipMethods = 0;
-        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).Assembly;
-        private static readonly Assembly mscorlibAssembly = typeof(string).Assembly;
-        private static readonly Assembly systemAssembly = typeof(Debug).Assembly;
+        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).GetAssembly();
+        private static readonly Assembly mscorlibAssembly = typeof(string).GetAssembly();
+        private static readonly Assembly systemAssembly = typeof(Debug).GetAssembly();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
         internal static void Write([NotNull] Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
@@ -68,7 +68,9 @@ namespace NLog
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
                 StackTrace stackTrace;
-#if !SILVERLIGHT
+#if NETSTANDARD1_5
+                stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
+#elif !SILVERLIGHT
                 stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 #else
                 stackTrace = new StackTrace();
@@ -151,8 +153,7 @@ namespace NLog
 
             if (last != null)
             {
-#if ASYNC_SUPPORTED
-
+#if NET4_5
                 //movenext and then AsyncTaskMethodBuilder (method start)? this is a generated MoveNext by async.
                 if (last.StackFrame.GetMethod().Name == "MoveNext")
                 {
@@ -185,7 +186,7 @@ namespace NLog
         private static bool SkipAssembly(StackFrame frame)
         {
             var method = frame.GetMethod();
-            var assembly = method.DeclaringType != null ? method.DeclaringType.Assembly : method.Module.Assembly;
+            var assembly = method.DeclaringType != null ? method.DeclaringType.GetAssembly() : method.Module.Assembly;
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
             var skipAssembly = SkipAssembly(assembly);
             return skipAssembly;
@@ -201,7 +202,7 @@ namespace NLog
         {
             var method = frame.GetMethod();
             Type declaringType = method.DeclaringType;
-            var isLoggerType = declaringType != null && loggerType == declaringType;
+            var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || declaringType.IsSubclassOf(typeof(ILogger)));
             return isLoggerType;
         }
 

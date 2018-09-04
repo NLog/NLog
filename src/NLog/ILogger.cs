@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,10 +36,6 @@ namespace NLog
     using System;
     using System.ComponentModel;
     using JetBrains.Annotations;
-    using NLog.Internal;
-#if ASYNC_SUPPORTED
-    using System.Threading.Tasks;
-#endif
 
     /// <summary>
     /// Provides logging interface and utility functions.

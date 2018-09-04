@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -75,10 +75,10 @@ namespace NLog.UnitTests.Config
             var rule = c.LoggingRules[0];
             Assert.Equal("*", rule.LoggerNamePattern);
             Assert.Equal(4, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Info));
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
-            Assert.True(rule.Levels.Contains(LogLevel.Error));
-            Assert.True(rule.Levels.Contains(LogLevel.Fatal));
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
+            Assert.Contains(LogLevel.Error, rule.Levels);
+            Assert.Contains(LogLevel.Fatal, rule.Levels);
             Assert.Equal(1, rule.Targets.Count);
             Assert.Same(c.FindTargetByName("d1"), rule.Targets[0]);
             Assert.False(rule.Final);
@@ -101,8 +101,8 @@ namespace NLog.UnitTests.Config
 
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
-            Assert.Equal(1, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
+            Assert.Single(rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
         }
 
         [Fact]
@@ -122,8 +122,8 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
             Assert.Equal(2, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Info));
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
         }
 
         [Fact]
@@ -143,12 +143,12 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
             Assert.Equal(6, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Trace));
-            Assert.True(rule.Levels.Contains(LogLevel.Debug));
-            Assert.True(rule.Levels.Contains(LogLevel.Info));
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
-            Assert.True(rule.Levels.Contains(LogLevel.Error));
-            Assert.True(rule.Levels.Contains(LogLevel.Fatal));
+            Assert.Contains(LogLevel.Trace, rule.Levels);
+            Assert.Contains(LogLevel.Debug, rule.Levels);
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
+            Assert.Contains(LogLevel.Error, rule.Levels);
+            Assert.Contains(LogLevel.Fatal, rule.Levels);
         }
 
         [Fact]
@@ -168,9 +168,9 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
             Assert.Equal(3, rule.Levels.Count);
-            Assert.True(rule.Levels.Contains(LogLevel.Trace));
-            Assert.True(rule.Levels.Contains(LogLevel.Info));
-            Assert.True(rule.Levels.Contains(LogLevel.Warn));
+            Assert.Contains(LogLevel.Trace, rule.Levels);
+            Assert.Contains(LogLevel.Info, rule.Levels);
+            Assert.Contains(LogLevel.Warn, rule.Levels);
         }
 
         [Fact]
@@ -230,10 +230,10 @@ namespace NLog.UnitTests.Config
             var logger = LogManager.GetLogger("BBB");
             logger.Warn("test1234");
 
-            this.AssertDebugLastMessage("d1", "test1234");
-            this.AssertDebugLastMessage("d2", "test1234");
-            this.AssertDebugLastMessage("d3", "test1234");
-            this.AssertDebugLastMessage("d4", string.Empty);
+            AssertDebugLastMessage("d1", "test1234");
+            AssertDebugLastMessage("d2", "test1234");
+            AssertDebugLastMessage("d3", "test1234");
+            AssertDebugLastMessage("d4", string.Empty);
         }
 
         [Fact]
@@ -457,13 +457,61 @@ namespace NLog.UnitTests.Config
             }
             finally
             {
+                NLog.Common.InternalLogger.Reset();
                 if (File.Exists(tempFileName))
                 {
                     File.Delete(tempFileName);
                 }
             }
         }
+
+        [Fact]
+        public void UnusedTargetsShouldBeLoggedToInternalLogger_PermitWrapped()
+        {
+            string tempFileName = Path.GetTempFileName();
+
+            try
+            {
+                CreateConfigurationFromString(
+                "<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
+                    <extensions>
+                        <add assembly='NLog.UnitTests'/> 
+                    </extensions>
+                    <targets>
+                        <target name='d1' type='Debug' />
+                        <target name='d2' type='MockWrapper'>
+                            <target name='d3' type='Debug' />
+                        </target>
+                        <target name='d4' type='Debug' />
+                        <target name='d5' type='Debug' />
+                    </targets>
+
+                    <rules>
+                           <logger name='*' level='Debug' writeTo='d1' />
+                           <logger name='*' level='Debug' writeTo='d1,d2,d4' />
+                    </rules>
+                </nlog>");
+
                 
+                AssertFileNotContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d2", Encoding.UTF8);
+
+                AssertFileNotContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d3", Encoding.UTF8);
+
+                AssertFileNotContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d4", Encoding.UTF8);
+
+                AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d5", Encoding.UTF8);
+            }
+
+            finally
+            {
+                NLog.Common.InternalLogger.Reset();
+                if (File.Exists(tempFileName))
+                {
+                    File.Delete(tempFileName);
+                }
+            }
+        }
+
         [Fact]
         public void LoggingRule_LevelOff_NotSetAsActualLogLevel()
         {

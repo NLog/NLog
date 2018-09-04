@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
 namespace NLog.Targets
 {
@@ -41,10 +41,10 @@ namespace NLog.Targets
     using System.Globalization;
     using System.Security;
     using Internal.Fakeables;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Layouts;
+    using Common;
+    using Config;
+    using Internal;
+    using Layouts;
 
     /// <summary>
     /// Writes log message to the Event Log.
@@ -83,11 +83,11 @@ namespace NLog.Targets
         /// </summary>
         public EventLogTarget(IAppDomain appDomain)
         {
-            this.Source = appDomain.FriendlyName;
-            this.Log = "Application";
-            this.MachineName = ".";
-            this.MaxMessageLength = 16384;
-            this.OptimizeBufferReuse = GetType() == typeof(EventLogTarget);
+            Source = appDomain.FriendlyName;
+            Log = "Application";
+            MachineName = ".";
+            MaxMessageLength = 16384;
+            OptimizeBufferReuse = GetType() == typeof(EventLogTarget);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace NLog.Targets
         public EventLogTarget(string name) 
             : this(LogFactory.CurrentAppDomain)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace NLog.Targets
         public Layout Category { get; set; }
 
         /// <summary>
-        /// Optional entrytype. When not set, or when not convertable to <see cref="LogLevel"/> then determined by <see cref="NLog.LogLevel"/>
+        /// Optional entrytype. When not set, or when not convertable to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
         public Layout EntryType { get; set; }
 
@@ -150,13 +150,13 @@ namespace NLog.Targets
         [DefaultValue(16384)]
         public int MaxMessageLength
         {
-            get { return this.maxMessageLength; }
+            get => maxMessageLength;
             set
             {
                 if (value <= 0)
                     throw new ArgumentException("MaxMessageLength cannot be zero or negative.");
 
-                this.maxMessageLength = value;
+                maxMessageLength = value;
             }
         }
 
@@ -174,12 +174,12 @@ namespace NLog.Targets
         [DefaultValue(null)]
         public long? MaxKilobytes
         {
-            get { return this.maxKilobytes; }
+            get => maxKilobytes;
             set
             {   //Event log API restriction
                 if (value != null && (value < 64 || value > 4194240 || (value % 64 != 0)))
                     throw new ArgumentException("MaxKilobytes must be a multitude of 64, and between 64 and 4194240");
-                this.maxKilobytes = value;
+                maxKilobytes = value;
             }
         }
 
@@ -216,7 +216,7 @@ namespace NLog.Targets
             }
             else
             {
-                EventLog.DeleteEventSource(fixedSource, this.MachineName);
+                EventLog.DeleteEventSource(fixedSource, MachineName);
             }
         }
 
@@ -233,7 +233,7 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(fixedSource))
             {
-                return EventLog.SourceExists(fixedSource, this.MachineName);
+                return EventLog.SourceExists(fixedSource, MachineName);
             }
             InternalLogger.Debug("Unclear if event source exists because it contains layout renderers");
             return null; //unclear! 
@@ -254,10 +254,10 @@ namespace NLog.Targets
             }
             else
             {
-                var currentSourceName = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
-                if (!currentSourceName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
+                var currentSourceName = EventLog.LogNameFromSourceName(fixedSource, MachineName);
+                if (!currentSourceName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
                 {
-                    this.CreateEventSourceIfNeeded(fixedSource, false);
+                    CreateEventSourceIfNeeded(fixedSource, false);
                 }
             }
         }
@@ -268,30 +268,30 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            string message = base.RenderLogEvent(this.Layout, logEvent);
+            string message = RenderLogEvent(Layout, logEvent);
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
-            int eventId = this.EventId.RenderInt(logEvent, 0, "EventLogTarget.EventId");
+            int eventId = EventId.RenderInt(logEvent, 0, "EventLogTarget.EventId");
 
-            short category = this.Category.RenderShort(logEvent, 0, "EventLogTarget.Category");
+            short category = Category.RenderShort(logEvent, 0, "EventLogTarget.Category");
 
-            EventLog eventLog = GetEventLog(logEvent);
+          
 
             // limitation of EventLog API
-            if (message.Length > this.MaxMessageLength)
+            if (message.Length > MaxMessageLength)
             {
                 if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
-                    message = message.Substring(0, this.MaxMessageLength);
-                    eventLog.WriteEntry(message, entryType, eventId, category);
+                    message = message.Substring(0, MaxMessageLength);
+                    WriteEntry(logEvent, message, entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
-                    for (int offset = 0; offset < message.Length; offset += this.MaxMessageLength)
+                    for (int offset = 0; offset < message.Length; offset += MaxMessageLength)
                     {
-                        string chunk = message.Substring(offset, Math.Min(this.MaxMessageLength, (message.Length - offset)));
-                        eventLog.WriteEntry(chunk, entryType, eventId, category);
+                        string chunk = message.Substring(offset, Math.Min(MaxMessageLength, (message.Length - offset)));
+                        WriteEntry(logEvent, chunk, entryType, eventId, category);
                     }
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
@@ -302,8 +302,14 @@ namespace NLog.Targets
             }
             else
             {
-                eventLog.WriteEntry(message, entryType, eventId, category);
+                WriteEntry(logEvent, message, entryType, eventId, category);
             }
+        }
+
+        internal virtual void WriteEntry(LogEventInfo logEventInfo, string message, EventLogEntryType entryType, int eventId, short category)
+        {
+            var eventLog = GetEventLog(logEventInfo);
+            eventLog.WriteEntry(message, entryType, eventId, category);
         }
 
         /// <summary>
@@ -313,11 +319,11 @@ namespace NLog.Targets
         /// <returns></returns>
         private EventLogEntryType GetEntryType(LogEventInfo logEvent)
         {
-            if (this.EntryType != null)
+            if (EntryType != null)
             {
                 //try parse, if fail,  determine auto
 
-                var value = base.RenderLogEvent(this.EntryType, logEvent);
+                var value = RenderLogEvent(EntryType, logEvent);
 
                 EventLogEntryType eventLogEntryType;
                 if (EnumHelpers.TryParse(value, true, out eventLogEntryType))
@@ -346,7 +352,7 @@ namespace NLog.Targets
         /// <remarks>Internal for unit tests</remarks>
         internal string GetFixedSource()
         {
-            if (this.Source == null)
+            if (Source == null)
             {
                 return null;
             }
@@ -365,20 +371,25 @@ namespace NLog.Targets
         /// <returns></returns>
         private EventLog GetEventLog(LogEventInfo logEvent)
         {
-            var renderedSource = this.Source != null ? base.RenderLogEvent(this.Source, logEvent) : null;
+            var renderedSource = RenderSource(logEvent);
             var isCacheUpToDate = eventLogInstance != null && renderedSource == eventLogInstance.Source &&
-                                   eventLogInstance.Log == this.Log && eventLogInstance.MachineName == this.MachineName;
+                                   eventLogInstance.Log == Log && eventLogInstance.MachineName == MachineName;
 
             if (!isCacheUpToDate)
             {
-                eventLogInstance = new EventLog(this.Log, this.MachineName, renderedSource);
+                eventLogInstance = new EventLog(Log, MachineName, renderedSource);
             }
-            if (this.MaxKilobytes.HasValue)
+            if (MaxKilobytes.HasValue)
             {
                 //you need more permissions to set, so don't set by default
-                eventLogInstance.MaximumKilobytes = this.MaxKilobytes.Value;
+                eventLogInstance.MaximumKilobytes = MaxKilobytes.Value;
             }
             return eventLogInstance;
+        }
+
+        internal string RenderSource(LogEventInfo logEvent)
+        {
+            return Source != null ? RenderLogEvent(Source, logEvent) : null;
         }
 
         /// <summary>
@@ -400,16 +411,16 @@ namespace NLog.Targets
             // if we throw anywhere, we remain non-operational
             try
             {
-                if (EventLog.SourceExists(fixedSource, this.MachineName))
+                if (EventLog.SourceExists(fixedSource, MachineName))
                 {
-                    string currentLogName = EventLog.LogNameFromSourceName(fixedSource, this.MachineName);
-                    if (!currentLogName.Equals(this.Log, StringComparison.CurrentCultureIgnoreCase))
+                    string currentLogName = EventLog.LogNameFromSourceName(fixedSource, MachineName);
+                    if (!currentLogName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
                     {
                         // re-create the association between Log and Source
-                        EventLog.DeleteEventSource(fixedSource, this.MachineName);
-                        var eventSourceCreationData = new EventSourceCreationData(fixedSource, this.Log)
+                        EventLog.DeleteEventSource(fixedSource, MachineName);
+                        var eventSourceCreationData = new EventSourceCreationData(fixedSource, Log)
                         {
-                            MachineName = this.MachineName
+                            MachineName = MachineName
                         };
 
                         EventLog.CreateEventSource(eventSourceCreationData);
@@ -417,9 +428,9 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    var eventSourceCreationData = new EventSourceCreationData(fixedSource, this.Log)
+                    var eventSourceCreationData = new EventSourceCreationData(fixedSource, Log)
                     {
-                        MachineName = this.MachineName
+                        MachineName = MachineName
                     };
 
                     EventLog.CreateEventSource(eventSourceCreationData);

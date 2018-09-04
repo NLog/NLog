@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
-using NLog.Config;
-using NLog.Layouts;
-using NLog.Targets;
-
 namespace NLog.UnitTests.Targets
 {
-#if !NET3_5 && !NET4_0
+#if !NET3_5
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Xunit;
+    using NLog.Config;
+    using NLog.Layouts;
+    using NLog.Targets;
+
     public class AsyncTaskTargetTest : NLogTestBase
     {
         class AsyncTaskTestTarget : AsyncTaskTarget
@@ -83,14 +83,14 @@ namespace NLog.UnitTests.Targets
             logger.Warn("WWW");
             logger.Error("EEE");
             logger.Fatal("FFF");
-            System.Threading.Thread.Sleep(50);
+            Thread.Sleep(50);
             Assert.True(asyncTarget.Logs.Count != 0);
             LogManager.Flush();
             Assert.True(asyncTarget.Logs.Count == 6);
             while (asyncTarget.Logs.Count > 0)
             {
                 string logEventMessage = asyncTarget.Logs.Dequeue();
-                Assert.Equal(0, logEventMessage.IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+                Assert.Equal(0, logEventMessage.IndexOf(Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
             }
 
             LogManager.Configuration = null;
@@ -112,7 +112,7 @@ namespace NLog.UnitTests.Targets
             logger.Warn("WWW");
             logger.Error("EEE");
             logger.Fatal("FFF");
-            System.Threading.Thread.Sleep(50);
+            Thread.Sleep(50);
             Assert.True(asyncTarget.Logs.Count != 0);
             LogManager.Flush();
             Assert.True(asyncTarget.Logs.Count == 5);
@@ -120,7 +120,7 @@ namespace NLog.UnitTests.Targets
             {
                 string logEventMessage = asyncTarget.Logs.Dequeue();
                 Assert.Equal(-1, logEventMessage.IndexOf("|Debug|"));
-                Assert.Equal(0, logEventMessage.IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+                Assert.Equal(0, logEventMessage.IndexOf(Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
             }
 
             LogManager.Configuration = null;
@@ -143,7 +143,7 @@ namespace NLog.UnitTests.Targets
             logger.Warn("WWW");
             logger.Error("EEE");
             logger.Fatal("FFF");
-            System.Threading.Thread.Sleep(50);
+            Thread.Sleep(50);
             Assert.True(asyncTarget.Logs.Count != 0);
             LogManager.Flush();
             Assert.True(asyncTarget.Logs.Count == 5);
@@ -151,7 +151,7 @@ namespace NLog.UnitTests.Targets
             {
                 string logEventMessage = asyncTarget.Logs.Dequeue();
                 Assert.Equal(-1, logEventMessage.IndexOf("|Debug|"));
-                Assert.Equal(0, logEventMessage.IndexOf(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+                Assert.Equal(0, logEventMessage.IndexOf(Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
             }
 
             LogManager.Configuration = null;

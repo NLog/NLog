@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,8 +33,8 @@
 
 namespace NLog.Layouts
 {
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// A specialized layout that supports header and footer.
@@ -68,17 +68,17 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return this.Layout.Render(logEvent);
+            return Layout.Render(logEvent);
         }
 
         /// <summary>
         /// Renders the layout for the specified logging event by invoking layout renderers.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
-        /// <param name="target">Initially empty <see cref="System.Text.StringBuilder"/> for the result</param>
+        /// <param name="target"><see cref="System.Text.StringBuilder"/> for the result.</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, System.Text.StringBuilder target)
         {
-            this.Layout.RenderAppendBuilder(logEvent, target);
+            Layout.RenderAppendBuilder(logEvent, target);
         }
     }
 }

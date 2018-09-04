@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,12 +36,12 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using NLog.Conditions;
-    using NLog.Filters;
-    using NLog.Internal;
-    using NLog.LayoutRenderers;
-    using NLog.Layouts;
-    using NLog.Targets;
+    using Conditions;
+    using Filters;
+    using Internal;
+    using LayoutRenderers;
+    using Layouts;
+    using Targets;
 
     /// <summary>
     /// Constructs a new instance the configuration item (target, layout, layout renderer, etc.) given its type.

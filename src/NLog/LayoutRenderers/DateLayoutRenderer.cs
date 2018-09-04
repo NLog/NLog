@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Current date and time.
@@ -52,8 +52,8 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public DateLayoutRenderer()
         {
-            this.Format = "yyyy/MM/dd HH:mm:ss.fff";
-            this.Culture = CultureInfo.InvariantCulture;
+            Format = "yyyy/MM/dd HH:mm:ss.fff";
+            Culture = CultureInfo.InvariantCulture;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace NLog.LayoutRenderers
         [DefaultParameter]
         public string Format
         {
-            get { return _format; }
+            get => _format;
             set
             {
                 _format = value;
@@ -94,9 +94,9 @@ namespace NLog.LayoutRenderers
         private const string _lowTimeResolutionChars = "YyMDdHh";
 
         /// <summary>Cache-key (Last DateTime.UtcNow) + Cache-Value (DateTime.Format result)</summary>
-        private KeyValuePair<DateTime, string> _cachedUtcTime = new System.Collections.Generic.KeyValuePair<DateTime, string>();
+        private KeyValuePair<DateTime, string> _cachedUtcTime = new KeyValuePair<DateTime, string>();
         /// <summary>Cache-key (Last DateTime.Now) + Cache-Value (DateTime.Format result)</summary>
-        private KeyValuePair<DateTime, string> _cachedLocalTime = new System.Collections.Generic.KeyValuePair<DateTime, string>();
+        private KeyValuePair<DateTime, string> _cachedLocalTime = new KeyValuePair<DateTime, string>();
 
         /// <summary>
         /// Renders the current date and appends it to the specified <see cref="StringBuilder" />.
@@ -108,7 +108,7 @@ namespace NLog.LayoutRenderers
             var formatProvider = GetFormatProvider(logEvent, Culture);
 
             var ts = logEvent.TimeStamp;
-            if (this.UniversalTime)
+            if (UniversalTime)
             {
                 ts = ts.ToUniversalTime();
                 AppendDateLayout(builder, formatProvider, ts, ref _cachedUtcTime);

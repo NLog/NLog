@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -112,7 +112,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 targetWrapper.Flush(flushHandler);
 
                 for (int i = 0; i < itemPrepareList.Count * 2 && itemWrittenList.Count != itemPrepareList.Count; ++i)
-                    System.Threading.Thread.Sleep(1);
+                    Thread.Sleep(1);
 
                 long elapsedMilliseconds = Environment.TickCount - startTicks;
 
@@ -124,13 +124,12 @@ namespace NLog.UnitTests.Targets.Wrappers
                     prevSequenceID = itemWrittenList[i];
                 }
 
-#if MONO || NET3_5 
-                Assert.True(elapsedMilliseconds < 750);    // Skip timing test when running within OpenCover.Console.exe
-#endif
+                if (!IsAppVeyor())
+                    Assert.True(elapsedMilliseconds < 750);    // Skip timing test when running within OpenCover.Console.exe
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)
-                    System.Threading.Thread.Sleep(1);
+                    Thread.Sleep(1);
                 Assert.Equal(2, flushCounter);
             }
             finally
@@ -254,7 +253,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 Assert.True(continuationHit.WaitOne());
                 Assert.NotNull(lastException);
-                Assert.IsType(typeof(InvalidOperationException), lastException);
+                Assert.IsType<InvalidOperationException>(lastException);
 
                 // no flush on exception
                 Assert.Equal(0, myTarget.FlushCount);
@@ -265,7 +264,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(continuation));
                 continuationHit.WaitOne();
                 Assert.NotNull(lastException);
-                Assert.IsType(typeof(InvalidOperationException), lastException);
+                Assert.IsType<InvalidOperationException>(lastException);
                 Assert.Equal(0, myTarget.FlushCount);
                 Assert.Equal(2, myTarget.WriteCount);
             }
@@ -464,7 +463,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
+                Assert.True(FlushCount <= WriteCount);
 
                 pendingWriteCounter.BeginOperation();
                 ThreadPool.QueueUserWorkItem(
@@ -472,8 +471,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                         {
                             try
                             {
-                                Interlocked.Increment(ref this.WriteCount);
-                                if (this.ThrowExceptions)
+                                Interlocked.Increment(ref WriteCount);
+                                if (ThrowExceptions)
                                 {
                                     logEvent.Continuation(new InvalidOperationException("Some problem!"));
                                     logEvent.Continuation(new InvalidOperationException("Some problem!"));
@@ -493,7 +492,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                Interlocked.Increment(ref this.FlushCount);
+                Interlocked.Increment(ref FlushCount);
                 var wrappedContinuation = pendingWriteCounter.RegisterCompletionNotification(asyncContinuation);
                 ThreadPool.QueueUserWorkItem(
                     s =>
@@ -512,13 +511,13 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
-                this.WriteCount++;
+                Assert.True(FlushCount <= WriteCount);
+                WriteCount++;
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                FlushCount++;
                 asyncContinuation(null);
             }
         }

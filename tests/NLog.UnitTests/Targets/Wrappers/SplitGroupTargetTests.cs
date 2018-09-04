@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -209,7 +209,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             public MyAsyncTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             protected override void Write(LogEventInfo logEvent)
@@ -219,12 +219,12 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
-                this.WriteCount++;
+                Assert.True(FlushCount <= WriteCount);
+                WriteCount++;
                 ThreadPool.QueueUserWorkItem(
                     s =>
                         {
-                            if (this.ThrowExceptions)
+                            if (ThrowExceptions)
                             {
                                 logEvent.Continuation(new InvalidOperationException("Some problem!"));
                                 logEvent.Continuation(new InvalidOperationException("Some problem!"));
@@ -239,7 +239,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                FlushCount++;
                 ThreadPool.QueueUserWorkItem(
                     s => asyncContinuation(null));
             }
@@ -251,12 +251,12 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             public MyTarget()
             {
-                this.WrittenEvents = new List<LogEventInfo>();
+                WrittenEvents = new List<LogEventInfo>();
             }
 
             public MyTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             public int FlushCount { get; set; }
@@ -266,23 +266,23 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.True(this.FlushCount <= this.WriteCount);
+                Assert.True(FlushCount <= WriteCount);
                 lock (this)
                 {
-                    this.WriteCount++;
-                    this.WrittenEvents.Add(logEvent);
+                    WriteCount++;
+                    WrittenEvents.Add(logEvent);
                 }
 
-                if (this.FailCounter > 0)
+                if (FailCounter > 0)
                 {
-                    this.FailCounter--;
+                    FailCounter--;
                     throw new InvalidOperationException("Some failure.");
                 }
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                this.FlushCount++;
+                FlushCount++;
                 asyncContinuation(null);
             }
         }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,15 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using NLog.Common;
 using NLog.Internal;
 using Xunit;
@@ -50,23 +45,28 @@ namespace NLog.UnitTests.Internal
     public class ExceptionHelperTests : NLogTestBase
     {
         [Theory]
+#if !NETSTANDARD1_5
         [InlineData(typeof(StackOverflowException), true)]
+        [InlineData(typeof(ThreadAbortException), true)]
+#endif
         [InlineData(typeof(NLogConfigurationException), false)]
         [InlineData(typeof(Exception), false)]
         [InlineData(typeof(ArgumentException), false)]
         [InlineData(typeof(NullReferenceException), false)]
-        [InlineData(typeof(ThreadAbortException), true)]
         [InlineData(typeof(OutOfMemoryException), true)]
         public void TestMustBeRethrowImmediately(Type t, bool result)
         {
             var ex = CreateException(t);
             Assert.Equal(result, ex.MustBeRethrownImmediately());
-
         }
 
         [Theory]
+#if !NETSTANDARD1_5
         [InlineData(typeof(StackOverflowException), true, false, false)]
         [InlineData(typeof(StackOverflowException), true, true, false)]
+        [InlineData(typeof(ThreadAbortException), true, false, false)]
+        [InlineData(typeof(ThreadAbortException), true, true, false)]
+#endif
         [InlineData(typeof(NLogConfigurationException), true, true, true)]
         [InlineData(typeof(NLogConfigurationException), false, true, false)]
         [InlineData(typeof(NLogConfigurationException), true, true, null)]
@@ -87,8 +87,6 @@ namespace NLog.UnitTests.Internal
         [InlineData(typeof(ArgumentException), true, true, null)]
         [InlineData(typeof(NullReferenceException), false, false, false)]
         [InlineData(typeof(NullReferenceException), true, true, false)]
-        [InlineData(typeof(ThreadAbortException), true, false, false)]
-        [InlineData(typeof(ThreadAbortException), true, true, false)]
         [InlineData(typeof(OutOfMemoryException), true, false, false)]
         [InlineData(typeof(OutOfMemoryException), true, true, false)]
         public void MustBeRethrown(Type exceptionType, bool result, bool throwExceptions, bool? throwConfigException)
@@ -109,7 +107,6 @@ namespace NLog.UnitTests.Internal
         [InlineData("Error has been raised.", typeof(NLogConfigurationException), true, "Warn")]
         [InlineData("", typeof(ArgumentException), true, "Warn")]
         [InlineData("", typeof(NLogConfigurationException), true, "Warn")]
-
         public void MustBeRethrown_ShouldLog_exception_and_only_once(string text, Type exceptionType, bool logFirst, string levelText)
         {
             using (new InternalLoggerScope())
@@ -117,7 +114,10 @@ namespace NLog.UnitTests.Internal
 
                 var level = LogLevel.FromString(levelText);
                 InternalLogger.LogLevel = LogLevel.Trace;
-                InternalLogger.LogToConsole = true;
+
+                var stringWriter = new StringWriter();
+                InternalLogger.LogWriter = stringWriter;
+
                 InternalLogger.IncludeTimestamp = false;
 
                 var ex1 = CreateException(exceptionType);
@@ -128,14 +128,6 @@ namespace NLog.UnitTests.Internal
                 string expected =
                     levelText + " " + text + prefix + ex1 + Environment.NewLine;
 
-                StringWriter consoleOutWriter = new StringWriter()
-                {
-                    NewLine = Environment.NewLine
-                };
-
-                // Redirect the console output to a StringWriter.
-                Console.SetOut(consoleOutWriter);
-
                 // Named (based on LogLevel) public methods.
 
                 if (logFirst)
@@ -143,8 +135,8 @@ namespace NLog.UnitTests.Internal
 
                 ex1.MustBeRethrown();
 
-                consoleOutWriter.Flush();
-                var actual = consoleOutWriter.ToString();
+                stringWriter.Flush();
+                var actual = stringWriter.ToString();
                 Assert.Equal(expected, actual);
             }
 

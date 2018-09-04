@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,28 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-
-
 namespace NLog.UnitTests.LogReceiverService
 {
-
     using System.Collections.Generic;
-
     using System.Linq;
-
     using System.Threading;
-
     using System;
     using System.IO;
     using Xunit;
-#if WCF_SUPPORTED
-        using System.Data;
+    using System.Data;
     using System.Runtime.Serialization;
-
-        using System.ServiceModel;
+    using System.ServiceModel;
     using System.ServiceModel.Description;
-#endif
     using System.Xml;
     using System.Xml.Serialization;
     using NLog.Layouts;
@@ -231,9 +221,7 @@ namespace NLog.UnitTests.LogReceiverService
             Assert.Equal(xml1, xml2);
         }
 
-
-#if WCF_SUPPORTED
-
+#if !NETSTANDARD
 #if MONO
         [Fact(Skip="Not working under MONO - not sure if unit test is wrong, or the code")]
 #else
@@ -268,15 +256,15 @@ namespace NLog.UnitTests.LogReceiverService
 
         private void RealTestLogReciever(bool useOneWayContract, bool binaryEncode)
         {
-            LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
+            LogManager.Configuration = CreateConfigurationFromString($@"
           <nlog throwExceptions='true'>
                 <targets>
                    <target type='LogReceiverService'
                           name='s1'
                
-                          endpointAddress='{0}'
-                          useOneWayContract='{1}'
-                          useBinaryEncoding='{2}'
+                          endpointAddress='{logRecieverUrl}'
+                          useOneWayContract='{useOneWayContract.ToString().ToLower()}'
+                          useBinaryEncoding='{binaryEncode.ToString().ToLower()}'
                   
                           includeEventProperties='false'>
                   <!--  <parameter name='key1' layout='testparam1'  type='String'/> -->
@@ -288,10 +276,10 @@ namespace NLog.UnitTests.LogReceiverService
                     <logger name='logger1' minlevel='Trace' writeTo='s1' />
               
                 </rules>
-            </nlog>", logRecieverUrl, useOneWayContract.ToString().ToLower(), binaryEncode.ToString().ToLower()));
+            </nlog>");
 
 
-
+     
             ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
 
         }
@@ -302,7 +290,7 @@ namespace NLog.UnitTests.LogReceiverService
         /// <param name="logFunc">function for logging the messages</param>
         /// <param name="logCheckFunc">function for checking the received messsages</param>
         /// <param name="messageCount">message count for wait for listen and checking</param>
-        public void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount)
+        private void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount)
         {
 
             Uri baseAddress = new Uri(logRecieverUrl);
@@ -397,7 +385,6 @@ namespace NLog.UnitTests.LogReceiverService
                 CountdownEvent.Signal();
             }
         }
-
-#endif
+#endif // !NETSTANDARD
     }
 }

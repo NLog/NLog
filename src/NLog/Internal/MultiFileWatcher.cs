@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,7 +38,7 @@ namespace NLog.Internal
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Watches multiple files at the same time and raises an event whenever 
@@ -46,7 +46,7 @@ namespace NLog.Internal
     /// </summary>
     internal class MultiFileWatcher : IDisposable
     {
-        private readonly Dictionary<string, FileSystemWatcher> watcherMap = new Dictionary<string, FileSystemWatcher>();
+        private readonly Dictionary<string, FileSystemWatcher> _watcherMap = new Dictionary<string, FileSystemWatcher>();
 
         /// <summary>
         /// The types of changes to watch for.
@@ -71,8 +71,8 @@ namespace NLog.Internal
         /// </summary>
         public void Dispose()
         {
-            this.FileChanged = null;   // Release event listeners
-            this.StopWatching();
+            FileChanged = null;   // Release event listeners
+            StopWatching();
             GC.SuppressFinalize(this);
         }
 
@@ -83,11 +83,11 @@ namespace NLog.Internal
         {
             lock (this)
             {
-                foreach (FileSystemWatcher watcher in watcherMap.Values)
+                foreach (FileSystemWatcher watcher in _watcherMap.Values)
                 {
                     StopWatching(watcher);
                 }
-                this.watcherMap.Clear();
+                _watcherMap.Clear();
             }
         }
 
@@ -100,10 +100,10 @@ namespace NLog.Internal
             lock (this)
             {
                 FileSystemWatcher watcher;
-                if (this.watcherMap.TryGetValue(fileName, out watcher))
+                if (_watcherMap.TryGetValue(fileName, out watcher))
                 {
                     StopWatching(watcher);
-                    this.watcherMap.Remove(fileName);
+                    _watcherMap.Remove(fileName);
                 }
             }
         }
@@ -128,7 +128,7 @@ namespace NLog.Internal
 
             foreach (string s in fileNames)
             {
-                this.Watch(s);
+                Watch(s);
             }
         }
 
@@ -144,7 +144,7 @@ namespace NLog.Internal
 
             lock (this)
             {
-                if (this.watcherMap.ContainsKey(fileName))
+                if (_watcherMap.ContainsKey(fileName))
                     return;
 
                 var watcher = new FileSystemWatcher
@@ -163,7 +163,7 @@ namespace NLog.Internal
 
                 InternalLogger.Debug("Watching path '{0}' filter '{1}' for changes.", watcher.Path, watcher.Filter);
                 
-                this.watcherMap.Add(fileName, watcher);
+                _watcherMap.Add(fileName, watcher);
             }
         }
 

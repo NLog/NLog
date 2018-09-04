@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -46,27 +46,24 @@ namespace NLog.Internal
     {
         private const string UnknownProcessName = "<unknown>";
 
-        private readonly int currentProcessID;
+        private readonly int _currentProcessId;
 
-        private string currentProcessName;
-        private string currentProcessBaseName;
+        private string _currentProcessName;
+        private string _currentProcessBaseName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PortableThreadIDHelper" /> class.
         /// </summary>
         public PortableThreadIDHelper()
         {
-            this.currentProcessID = Process.GetCurrentProcess().Id;
+            _currentProcessId = Process.GetCurrentProcess().Id;
         }
 
         /// <summary>
         /// Gets current process ID.
         /// </summary>
         /// <value></value>
-        public override int CurrentProcessID
-        {
-            get { return this.currentProcessID; }
-        }
+        public override int CurrentProcessID => _currentProcessId;
 
         /// <summary>
         /// Gets current process name.
@@ -76,8 +73,8 @@ namespace NLog.Internal
         {
             get
             {
-                this.GetProcessName();
-                return this.currentProcessName;
+                GetProcessName();
+                return _currentProcessName;
             }
         }
 
@@ -89,8 +86,8 @@ namespace NLog.Internal
         {
             get
             {
-                this.GetProcessName();
-                return this.currentProcessBaseName;
+                GetProcessName();
+                return _currentProcessBaseName;
             }
         }
 
@@ -99,11 +96,11 @@ namespace NLog.Internal
         /// </summary>
         private void GetProcessName()
         {
-            if (this.currentProcessName == null)
+            if (_currentProcessName == null)
             {
                 try
                 {
-                    this.currentProcessName = Process.GetCurrentProcess().MainModule.FileName;
+                    _currentProcessName = Process.GetCurrentProcess().MainModule.FileName;
                 }
                 catch (Exception exception)
                 {
@@ -112,10 +109,10 @@ namespace NLog.Internal
                         throw;
                     }
 
-                    this.currentProcessName = UnknownProcessName;
+                    _currentProcessName = UnknownProcessName;
                 }
 
-                this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
+                _currentProcessBaseName = Path.GetFileNameWithoutExtension(_currentProcessName);
             }
         }
     }

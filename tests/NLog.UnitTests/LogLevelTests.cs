@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -176,12 +176,12 @@ namespace NLog.UnitTests
         [Trait("Component", "Core")]
         public void ToStringTest()
         {
-            Assert.Equal(LogLevel.Trace.ToString(), "Trace");
-            Assert.Equal(LogLevel.Debug.ToString(), "Debug");
-            Assert.Equal(LogLevel.Info.ToString(), "Info");
-            Assert.Equal(LogLevel.Warn.ToString(), "Warn");
-            Assert.Equal(LogLevel.Error.ToString(), "Error");
-            Assert.Equal(LogLevel.Fatal.ToString(), "Fatal");
+            Assert.Equal("Trace", LogLevel.Trace.ToString());
+            Assert.Equal("Debug", LogLevel.Debug.ToString());
+            Assert.Equal("Info", LogLevel.Info.ToString());
+            Assert.Equal("Warn", LogLevel.Warn.ToString());
+            Assert.Equal("Error", LogLevel.Error.ToString());
+            Assert.Equal("Fatal", LogLevel.Fatal.ToString());
         }
 
         [Fact]
@@ -206,35 +206,35 @@ namespace NLog.UnitTests
             Assert.Equal(LogLevel.Error.CompareTo(levelFatal), -1);
             Assert.Equal(LogLevel.Fatal.CompareTo(levelOff), -1);
 
-            Assert.Equal(LogLevel.Debug.CompareTo(levelTrace), 1);
-            Assert.Equal(LogLevel.Info.CompareTo(levelDebug), 1);
-            Assert.Equal(LogLevel.Warn.CompareTo(levelInfo), 1);
-            Assert.Equal(LogLevel.Error.CompareTo(levelWarn), 1);
-            Assert.Equal(LogLevel.Fatal.CompareTo(levelError), 1);
-            Assert.Equal(LogLevel.Off.CompareTo(levelFatal), 1);
+            Assert.Equal(1, LogLevel.Debug.CompareTo(levelTrace));
+            Assert.Equal(1, LogLevel.Info.CompareTo(levelDebug));
+            Assert.Equal(1, LogLevel.Warn.CompareTo(levelInfo));
+            Assert.Equal(1, LogLevel.Error.CompareTo(levelWarn));
+            Assert.Equal(1, LogLevel.Fatal.CompareTo(levelError));
+            Assert.Equal(1, LogLevel.Off.CompareTo(levelFatal));
 
-            Assert.Equal(LogLevel.Debug.CompareTo(levelDebug), 0);
-            Assert.Equal(LogLevel.Info.CompareTo(levelInfo), 0);
-            Assert.Equal(LogLevel.Warn.CompareTo(levelWarn), 0);
-            Assert.Equal(LogLevel.Error.CompareTo(levelError), 0);
-            Assert.Equal(LogLevel.Fatal.CompareTo(levelFatal), 0);
-            Assert.Equal(LogLevel.Off.CompareTo(levelOff), 0);
+            Assert.Equal(0, LogLevel.Debug.CompareTo(levelDebug));
+            Assert.Equal(0, LogLevel.Info.CompareTo(levelInfo));
+            Assert.Equal(0, LogLevel.Warn.CompareTo(levelWarn));
+            Assert.Equal(0, LogLevel.Error.CompareTo(levelError));
+            Assert.Equal(0, LogLevel.Fatal.CompareTo(levelFatal));
+            Assert.Equal(0, LogLevel.Off.CompareTo(levelOff));
 
-            Assert.Equal(LogLevel.Trace.CompareTo(levelMin), 0);
-            Assert.Equal(LogLevel.Debug.CompareTo(levelMin), 1);
-            Assert.Equal(LogLevel.Info.CompareTo(levelMin), 2);
-            Assert.Equal(LogLevel.Warn.CompareTo(levelMin), 3);
-            Assert.Equal(LogLevel.Error.CompareTo(levelMin), 4);
-            Assert.Equal(LogLevel.Fatal.CompareTo(levelMin), 5);
-            Assert.Equal(LogLevel.Off.CompareTo(levelMin), 6);
+            Assert.Equal(0, LogLevel.Trace.CompareTo(levelMin));
+            Assert.Equal(1, LogLevel.Debug.CompareTo(levelMin));
+            Assert.Equal(2, LogLevel.Info.CompareTo(levelMin));
+            Assert.Equal(3, LogLevel.Warn.CompareTo(levelMin));
+            Assert.Equal(4, LogLevel.Error.CompareTo(levelMin));
+            Assert.Equal(5, LogLevel.Fatal.CompareTo(levelMin));
+            Assert.Equal(6, LogLevel.Off.CompareTo(levelMin));
 
             Assert.Equal(LogLevel.Trace.CompareTo(levelMax), -5);
             Assert.Equal(LogLevel.Debug.CompareTo(levelMax), -4);
             Assert.Equal(LogLevel.Info.CompareTo(levelMax), -3);
             Assert.Equal(LogLevel.Warn.CompareTo(levelMax), -2);
             Assert.Equal(LogLevel.Error.CompareTo(levelMax), -1);
-            Assert.Equal(LogLevel.Fatal.CompareTo(levelMax), 0);
-            Assert.Equal(LogLevel.Off.CompareTo(levelMax), 1);
+            Assert.Equal(0, LogLevel.Fatal.CompareTo(levelMax));
+            Assert.Equal(1, LogLevel.Off.CompareTo(levelMax));
         }
 
         [Fact]
@@ -259,13 +259,13 @@ namespace NLog.UnitTests
         [Trait("Component", "Core")]
         public void LogLevelGetHashCode()
         {
-            Assert.Equal(LogLevel.Trace.GetHashCode(), 0);
-            Assert.Equal(LogLevel.Debug.GetHashCode(), 1);
-            Assert.Equal(LogLevel.Info.GetHashCode(), 2);
-            Assert.Equal(LogLevel.Warn.GetHashCode(), 3);
-            Assert.Equal(LogLevel.Error.GetHashCode(), 4);
-            Assert.Equal(LogLevel.Fatal.GetHashCode(), 5);
-            Assert.Equal(LogLevel.Off.GetHashCode(), 6);
+            Assert.Equal(0, LogLevel.Trace.GetHashCode());
+            Assert.Equal(1, LogLevel.Debug.GetHashCode());
+            Assert.Equal(2, LogLevel.Info.GetHashCode());
+            Assert.Equal(3, LogLevel.Warn.GetHashCode());
+            Assert.Equal(4, LogLevel.Error.GetHashCode());
+            Assert.Equal(5, LogLevel.Fatal.GetHashCode());
+            Assert.Equal(6, LogLevel.Off.GetHashCode());
         }
 
         [Fact]

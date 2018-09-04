@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -79,18 +79,18 @@ namespace NLog.UnitTests.LayoutRenderers
 #pragma warning restore 0618
             AssertDebugLastMessage("debug1", exceptionMessage);
             AssertDebugLastMessage("debug2", ex.StackTrace);
-            AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
-            AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
+            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
-            var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            var debug7Target = (DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
 
-            AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
@@ -122,18 +122,18 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", exceptionMessage);
             AssertDebugLastMessage("debug2", ex.StackTrace);
-            AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
-            AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
+            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
-            var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            var debug7Target = (DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
 
-            AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(CustomArgumentException).Name);
         }
 
         /// <summary>
@@ -168,18 +168,18 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Error(ex);
             AssertDebugLastMessage("debug1", exceptionMessage);
             AssertDebugLastMessage("debug2", ex.StackTrace);
-            AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
-            AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
+            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
-            var debug7Target = (NLog.Targets.DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
+            var debug7Target = (DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
             Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
 
-            AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(CustomArgumentException).Name);
         }
 
 
@@ -215,12 +215,12 @@ namespace NLog.UnitTests.LayoutRenderers
 #pragma warning restore 0618
             AssertDebugLastMessage("debug1", exceptionMessage);
             AssertDebugLastMessage("debug2", "");
-            AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
-            AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
+            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug7", "");
-            AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
@@ -253,12 +253,12 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", exceptionMessage);
             AssertDebugLastMessage("debug2", "");
-            AssertDebugLastMessage("debug3", typeof(InvalidOperationException).FullName);
-            AssertDebugLastMessage("debug4", typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
+            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug7", "");
-            AssertDebugLastMessage("debug8", "Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
@@ -281,11 +281,11 @@ namespace NLog.UnitTests.LayoutRenderers
 #pragma warning disable 0618
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
-            AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(CustomArgumentException).Name);
 #pragma warning restore 0618
 
             logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
@@ -295,10 +295,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Log(LogLevel.Error, ex, "msg");
-            AssertDebugLastMessage("debug1", "ERROR*msg*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "ERROR*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
             logger.Log(LogLevel.Error, ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "ERROR*msg func*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "ERROR*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
@@ -308,10 +308,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Trace(ex, "msg");
-            AssertDebugLastMessage("debug1", "TRACE*msg*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "TRACE*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
             logger.Trace(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "TRACE*msg func*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "TRACE*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
@@ -321,10 +321,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Debug(ex, "msg");
-            AssertDebugLastMessage("debug1", "DEBUG*msg*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "DEBUG*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
             logger.Debug(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "DEBUG*msg func*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "DEBUG*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
@@ -334,10 +334,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Info(ex, "msg");
-            AssertDebugLastMessage("debug1", "INFO*msg*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "INFO*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
             logger.Info(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "INFO*msg func*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "INFO*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
@@ -347,10 +347,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Warn(ex, "msg");
-            AssertDebugLastMessage("debug1", "WARN*msg*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "WARN*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
             logger.Warn(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "WARN*msg func*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "WARN*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
@@ -360,10 +360,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", "ERROR*msg*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "ERROR*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
             logger.Error(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "ERROR*msg func*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "ERROR*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
@@ -373,10 +373,10 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             logger.Fatal(ex, "msg");
-            AssertDebugLastMessage("debug1", "FATAL*msg*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "FATAL*msg*Test exception*" + typeof(CustomArgumentException).Name);
 
             logger.Fatal(ex, () => "msg func");
-            AssertDebugLastMessage("debug1", "FATAL*msg func*Test exception*" + typeof(InvalidOperationException).Name);
+            AssertDebugLastMessage("debug1", "FATAL*msg func*Test exception*" + typeof(CustomArgumentException).Name);
         }
 
         [Fact]
@@ -400,13 +400,46 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
                                              "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Test exception");
+                                             "CustomArgumentException Test exception");
 #pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
                                              "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Test exception");
+                                             "CustomArgumentException Test exception");
+        }
+
+        [Fact]
+        public void InnerExceptionTest_Serialize()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=@}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            string exceptionMessage = "Test exception";
+            Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
+
+#pragma warning disable 0618
+            // Obsolete method requires testing until completely removed.
+            logger.ErrorException("msg", ex);
+            var lastMessage1 = GetDebugLastMessage("debug1");
+            Assert.StartsWith("{\"Message\":\"Wrapper2\"", lastMessage1);
+            Assert.Contains("\"InnerException\":{\"Message\":\"Wrapper1\"", lastMessage1);
+            Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage1);
+
+#pragma warning restore 0618
+
+            logger.Error(ex, "msg");
+            var lastMessage2 = GetDebugLastMessage("debug1");
+            Assert.StartsWith("{\"Message\":\"Wrapper2\"", lastMessage2);
+            Assert.Contains("\"InnerException\":{\"Message\":\"Wrapper1\"", lastMessage2);
+            Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage2);
         }
 
         [Fact]
@@ -492,15 +525,33 @@ namespace NLog.UnitTests.LayoutRenderers
             </nlog>");
 
             var ex = new ExceptionWithBrokenMessagePropertyException();
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            Assert.ThrowsDelegate action = () => logger.ErrorException("msg", ex);
-#pragma warning restore 0618
-            Assert.DoesNotThrow(action);
+            var exRecorded = Record.Exception(() => logger.Error(ex, "msg"));
+            Assert.Null(exRecorded);
         }
 
-#if !NET3_5
         [Fact]
+        public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception_serialize()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=@}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            var ex = new ExceptionWithBrokenMessagePropertyException();
+            var exRecorded = Record.Exception(() => logger.Error(ex, "msg"));
+            Assert.Null(exRecorded);
+        }
+
+#if NET3_5
+        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#else
+        [Fact]
+#endif
         public void AggregateExceptionTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -518,29 +569,33 @@ namespace NLog.UnitTests.LayoutRenderers
             var task2 = System.Threading.Tasks.Task.Factory.StartNew(() => { throw new Exception("Test exception 2", new Exception("Test Inner 2")); },
                 System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
 
+            var aggregateExceptionMessage = "nothing thrown!";
             try
             {
                 System.Threading.Tasks.Task.WaitAll(new[] { task1, task2 });
             }
-            catch (Exception ex)
+            catch (AggregateException ex)
             {
+                aggregateExceptionMessage = ex.ToString();
                 logger.Error(ex, "msg");
             }
 
-            AssertDebugLastMessage("debug1", "AggregateException One or more errors occurred." + EnvironmentHelper.NewLine +
-                                             "Exception Test exception 1" + EnvironmentHelper.NewLine +
-                                             "Exception Test Inner 1" + EnvironmentHelper.NewLine +
-                                             "Exception Test exception 2" + EnvironmentHelper.NewLine +
-                                             "Exception Test Inner 2");
+            Assert.Contains("Test exception 1", aggregateExceptionMessage);
+            Assert.Contains("Test exception 2", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 1", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 2", aggregateExceptionMessage);
+
+            AssertDebugLastMessageContains("debug1", "AggregateException");
+            AssertDebugLastMessageContains("debug1", "One or more errors occurred");
+            AssertDebugLastMessageContains("debug1", "Test exception 1");
+            AssertDebugLastMessageContains("debug1", "Test exception 2");
+            AssertDebugLastMessageContains("debug1", "Test Inner 1");
+            AssertDebugLastMessageContains("debug1", "Test Inner 2");
         }
-#endif
 
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
         {
-            public override string Message
-            {
-                get { throw new Exception("Exception from Message property"); }
-            }
+            public override string Message => throw new Exception("Exception from Message property");
         }
 
         private void SetConfigurationForExceptionUsingRootMethodTests()
@@ -604,7 +659,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private Exception GetExceptionWithoutStackTrace(string exceptionMessage)
         {
-            return new InvalidOperationException(exceptionMessage);
+            return new CustomArgumentException(exceptionMessage, "exceptionMessage");
         }
 
         private class GenericClass<TA, TB, TC>
@@ -617,8 +672,19 @@ namespace NLog.UnitTests.LayoutRenderers
 
             internal static int Method2<T1, T2, T3>(T1 aaa, T2 b, T3 o, int i, DateTime now, Nullable<int> gfff, List<int>[] something, string exceptionMessage)
             {
-                throw new InvalidOperationException(exceptionMessage);
+                throw new CustomArgumentException(exceptionMessage, "exceptionMessage");
             }
+        }
+
+        public class CustomArgumentException : InvalidOperationException
+        {
+            public CustomArgumentException(string message, string paramName)
+                :base(message)
+            {
+                ParamName = paramName;
+            }
+
+            public string ParamName { get; }
         }
 
         [Fact]
@@ -643,13 +709,13 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
                                              "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Test exception");
+                                             "CustomArgumentException Test exception");
 #pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
                                              "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Test exception");
+                                             "CustomArgumentException Test exception");
 
             var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
             var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
@@ -801,6 +867,54 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
             AssertDebugLastMessage("debug2", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
             AssertDebugLastMessage("debug3", string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) + "\r\n----DATA----\r\n" + string.Format(ExceptionDataFormat, exceptionDataKey2, exceptionDataValue2));
+        }
+
+
+        [Fact]
+        public void ExceptionWithSeparatorForExistingRender()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>                                        
+                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            const string exceptionMessage = "message for exception";
+            const string exceptionDataKey1 = "testkey1";
+            const string exceptionDataValue1 = "testvalue1";
+
+            Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
+            ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
+
+            logger.Error(ex);
+
+            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) + "\r\nXXX" + string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1));
+        }
+
+        [Fact]
+        public void ExceptionWithoutSeparatorForNoRender()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>                                        
+                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            const string exceptionMessage = "message for exception";
+
+            Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
+
+            logger.Error(ex);
+
+            AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage));
         }
     }
 

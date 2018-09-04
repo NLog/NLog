@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,10 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
-
 namespace NLog.UnitTests.LogReceiverService
 {
+#if !NETSTANDARD1_5
     using System;
     using NLog.LogReceiverService;
     using Xunit;
@@ -90,13 +89,12 @@ namespace NLog.UnitTests.LogReceiverService
             };
 
             service.ProcessLogMessages(events);
-            this.AssertDebugCounter("debug1", 1);
-            this.AssertDebugCounter("debug2", 0);
-            this.AssertDebugCounter("debug3", 1);
-            this.AssertDebugLastMessage("debug1", "message1 logger1 logger2 logger3");
-            this.AssertDebugLastMessage("debug3", "message1 logger1 logger2 zzz");
+            AssertDebugCounter("debug1", 1);
+            AssertDebugCounter("debug2", 0);
+            AssertDebugCounter("debug3", 1);
+            AssertDebugLastMessage("debug1", "message1 logger1 logger2 logger3");
+            AssertDebugLastMessage("debug3", "message1 logger1 logger2 zzz");
         }
     }
-}
-
 #endif
+}

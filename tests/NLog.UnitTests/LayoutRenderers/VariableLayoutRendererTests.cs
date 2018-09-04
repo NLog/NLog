@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -99,16 +99,16 @@ namespace NLog.UnitTests.LayoutRenderers
 			string folderPath = Path.GetTempPath();
 			string logFilePath = Path.Combine(folderPath, "test.log");
 
-            LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
+            LogManager.Configuration = CreateConfigurationFromString($@"
             <nlog>
-                <variable name='dir' value='{0}' />
+                <variable name='dir' value='{folderPath}' />
                 <targets>
                     <target name='f' type='file' fileName='${{var:dir}}/test.log' layout='${{message}}' lineEnding='LF' />
                 </targets>
                 <rules>
                     <logger name='*' writeTo='f' />
                 </rules>
-            </nlog>", folderPath));
+            </nlog>");
             try
             {
                 LogManager.GetLogger("A").Debug("msg");
@@ -267,7 +267,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void null_should_be_ok()
         {
             Layout l = "${var:var1}";
-            var config = new NLog.Config.LoggingConfiguration();
+            var config = new LoggingConfiguration();
             config.Variables["var1"] = null;
             l.Initialize(config);
             var result = l.Render(LogEventInfo.CreateNullEvent());
@@ -278,7 +278,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void null_should_not_use_default()
         {
             Layout l = "${var:var1:default=x}";
-            var config = new NLog.Config.LoggingConfiguration();
+            var config = new LoggingConfiguration();
             config.Variables["var1"] = null;
             l.Initialize(config);
             var result = l.Render(LogEventInfo.CreateNullEvent());
@@ -289,7 +289,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void notset_should_use_default()
         {
             Layout l = "${var:var1:default=x}";
-            var config = new NLog.Config.LoggingConfiguration();
+            var config = new LoggingConfiguration();
             l.Initialize(config);
             var result = l.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal("x", result);
@@ -326,12 +326,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             private static readonly LogFactory _instance = new LogFactory(_mockConfig);
 
-            public static LogFactory Instance
-            {
-                get { return _instance; }
-            }
-
-
+            public static LogFactory Instance => _instance;
         }
 
 

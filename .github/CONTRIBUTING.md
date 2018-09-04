@@ -1,4 +1,4 @@
-Support & contributing guidelines (December 10, 2016)
+Support & contributing guidelines (September 19, 2017)
 ===
 Do you have feature requests, questions or would you like to report a bug? Please follow these guidelines when posting on the [issue list](https://github.com/NLog/NLog/issues). The issues are labeled with the [following guideline](/issue-labeling.md). 
 
@@ -36,25 +36,12 @@ Please provide the following information:
 
 Pull requests
 ----
-Unit tests are really appreciated! Also please [Sync all the projects](#Sync projects) 
+Unit tests are really appreciated! 
 
 Please document any public method and property. Document **why** and not how. At least required: 
 
 * Method: Summary, param and return.
 * Property: Summary
-
-Sync projects  (csproj files)
-===
-Adding or removing files to the project? Please keep all project files in sync, otherwise AppVeyor will complain.
-The following Msbuild command can be used:
-```
-NLog\src>msbuild NLog.proj /t:SyncProjectItems
-```
-
-MSbuild is located in:
-```
-"C:\Windows\Microsoft.NET\Framework\v...\MSBuild.exe"
-```
 
 
 Multiple .NET versions

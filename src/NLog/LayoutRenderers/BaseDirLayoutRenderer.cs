@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,8 +37,8 @@ namespace NLog.LayoutRenderers
     using System.IO;
     using System.Text;
     using Internal.Fakeables;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// The current application domain's base directory.
@@ -48,14 +48,14 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class BaseDirLayoutRenderer : LayoutRenderer
     {
-        private string baseDir;
+        private string _baseDir;
 
 #if !SILVERLIGHT
 
         /// <summary>
         /// cached
         /// </summary>
-        private string processDir;
+        private string _processDir;
 
         /// <summary>
         /// Use base dir of current process.
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public BaseDirLayoutRenderer(IAppDomain appDomain)
         {
-            this.baseDir = appDomain.BaseDirectory;
+            _baseDir = appDomain.BaseDirectory;
         }
 
         /// <summary>
@@ -99,17 +99,17 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
 
-            var dir = baseDir;
+            var dir = _baseDir;
 #if !SILVERLIGHT
             if (ProcessDir)
             {
-                dir = processDir ?? (processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+                dir = _processDir ?? (_processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
             }
 #endif
 
             if (dir != null)
             {
-                var path = PathHelpers.CombinePaths(dir, this.Dir, this.File);
+                var path = PathHelpers.CombinePaths(dir, Dir, File);
                 builder.Append(path);
             }
         }

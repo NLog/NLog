@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,7 +38,7 @@ namespace NLog.Conditions
     /// <summary>
     /// Exception during parsing of condition expression.
     /// </summary>
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_5
     [Serializable]
 #endif
     public class ConditionParseException : Exception 
@@ -69,7 +69,7 @@ namespace NLog.Conditions
         {
         }
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_5
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionParseException" /> class.
         /// </summary>

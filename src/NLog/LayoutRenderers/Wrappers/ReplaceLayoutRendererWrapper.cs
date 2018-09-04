@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    using NLog.Config;
+    using Config;
 
     /// <summary>
     /// Replaces a string in the output of another layout with another string.
@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class ReplaceLayoutRendererWrapper : WrapperLayoutRendererBase
     {
-        private Regex regex;
+        private Regex _regex;
 
         /// <summary>
         /// Gets or sets the text to search for.
@@ -99,9 +99,9 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            string regexString = this.SearchFor;
+            string regexString = SearchFor;
 
-            if (!this.Regex)
+            if (!Regex)
             {
                 regexString = System.Text.RegularExpressions.Regex.Escape(regexString);
             }
@@ -111,17 +111,17 @@ namespace NLog.LayoutRenderers.Wrappers
 #else
             RegexOptions regexOptions = RegexOptions.Compiled;
 #endif
-            if (this.IgnoreCase)
+            if (IgnoreCase)
             {
                 regexOptions |= RegexOptions.IgnoreCase;
             }
 
-            if (this.WholeWords)
+            if (WholeWords)
             {
                 regexString = "\\b" + regexString + "\\b";
             }
 
-            this.regex = new Regex(regexString, regexOptions);
+            _regex = new Regex(regexString, regexOptions);
         }
 
         /// <summary>
@@ -131,11 +131,11 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Post-processed text.</returns>
         protected override string Transform(string text)
         {
-            var replacer = new Replacer(text, this.ReplaceGroupName, this.ReplaceWith);
+            var replacer = new Replacer(text, ReplaceGroupName, ReplaceWith);
 
-            return string.IsNullOrEmpty(this.ReplaceGroupName) ?
-                this.regex.Replace(text, this.ReplaceWith)
-                : this.regex.Replace(text, replacer.EvaluateMatch);
+            return string.IsNullOrEmpty(ReplaceGroupName) ?
+                _regex.Replace(text, ReplaceWith)
+                : _regex.Replace(text, replacer.EvaluateMatch);
         }
 
         /// <summary>
@@ -144,20 +144,20 @@ namespace NLog.LayoutRenderers.Wrappers
         [ThreadAgnostic]
         public class Replacer
         {
-            private readonly string text;
-            private readonly string replaceGroupName;
-            private readonly string replaceWith;
+            private readonly string _text;
+            private readonly string _replaceGroupName;
+            private readonly string _replaceWith;
 
             internal Replacer(string text, string replaceGroupName, string replaceWith)
             {
-                this.text = text;
-                this.replaceGroupName = replaceGroupName;
-                this.replaceWith = replaceWith;
+                _text = text;
+                _replaceGroupName = replaceGroupName;
+                _replaceWith = replaceWith;
             }
 
             internal string EvaluateMatch(Match match)
             {
-                return ReplaceNamedGroup(text, replaceGroupName, replaceWith, match);
+                return ReplaceNamedGroup(_text, _replaceGroupName, _replaceWith, match);
             }
         }
 

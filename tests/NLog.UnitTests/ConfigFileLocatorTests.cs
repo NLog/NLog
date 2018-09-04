@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -39,6 +39,7 @@ using System.Xml;
 using NLog.Config;
 using NLog.UnitTests.LayoutRenderers;
 
+#if !NETSTANDARD
 
 namespace NLog.UnitTests
 {
@@ -238,7 +239,7 @@ namespace NLog.UnitTests
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
             </nlog>");
-            
+
             var logger = LogManager.GetCurrentClassLogger();
             logger.Debug("test1");
             AssertDebugLastMessage("debug", "42");
@@ -283,10 +284,10 @@ namespace NLog.UnitTests
         {
             var list = new List<string> { "c:\\global\\temp.config" };
             XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
-            Assert.Equal(1, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
+            Assert.Single(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
             //no side effects
             list.Add("c:\\global\\temp2.config");
-            Assert.Equal(1, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
+            Assert.Single(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
 
         }
 
@@ -297,7 +298,7 @@ namespace NLog.UnitTests
             var countBefore = XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count();
             var list = new List<string> { "c:\\global\\temp.config" };
             XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
-            Assert.Equal(1, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
+            Assert.Single(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
             XmlLoggingConfiguration.ResetCandidateConfigFilePath();
             Assert.Equal(countBefore, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
 
@@ -377,3 +378,4 @@ class C1
     }
 }
 
+#endif

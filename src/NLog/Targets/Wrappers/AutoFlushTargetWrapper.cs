@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,9 +33,9 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using NLog.Common;
-    using NLog.Conditions;
-    using NLog.Internal;
+    using Common;
+    using Conditions;
+    using Internal;
 
     /// <summary>
     /// Causes a flush on a wrapped target if LogEvent statisfies the <see cref="Condition"/>.
@@ -66,7 +66,9 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Delay the flush until the LogEvent has been confirmed as written
         /// </summary>
-        public bool AsyncFlush { get { return _asyncFlush ?? true; } set { _asyncFlush = value; } }
+        public bool AsyncFlush { get => _asyncFlush ?? true;
+            set => _asyncFlush = value;
+        }
         private bool? _asyncFlush;
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();

@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -174,7 +174,7 @@ namespace NLog.Targets.FileArchiveModes
             /// </summary>
             public int EndAt { get; private set; }
 
-            private bool FoundPattern { get { return BeginAt != -1 && EndAt != -1; } }
+            private bool FoundPattern => BeginAt != -1 && EndAt != -1;
 
             public FileNameTemplate(string template)
             {
@@ -191,7 +191,7 @@ namespace NLog.Targets.FileArchiveModes
             /// <returns></returns>
             public string ReplacePattern(string replacementValue)
             {
-                return !FoundPattern || String.IsNullOrEmpty(replacementValue) ? this.Template : Template.Substring(0, this.BeginAt) + replacementValue + Template.Substring(this.EndAt);
+                return !FoundPattern || String.IsNullOrEmpty(replacementValue) ? Template : Template.Substring(0, BeginAt) + replacementValue + Template.Substring(EndAt);
             }
         }
     }

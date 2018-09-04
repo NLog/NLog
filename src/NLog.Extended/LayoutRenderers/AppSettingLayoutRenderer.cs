@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -68,8 +68,8 @@ namespace NLog.LayoutRenderers
 
 		internal IConfigurationManager ConfigurationManager
 		{
-			get { return configurationManager; }
-			set { configurationManager = value; }
+			get => configurationManager;
+		    set => configurationManager = value;
 		}
 
 		/// <summary>

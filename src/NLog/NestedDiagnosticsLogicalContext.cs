@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 namespace NLog
 {
-#if NET4_0 || NET4_5
+#if !SILVERLIGHT
     using System;
-    using NLog.Internal;
+    using Internal;
+	using System.Linq;
 
     /// <summary>
     /// Async version of <see cref="NestedDiagnosticsContext" /> - a logical context structure that keeps a stack
@@ -57,10 +59,29 @@ namespace NLog
         }
 
         /// <summary>
+        /// Pops the top message off the NDLC stack.
+        /// </summary>
+        /// <returns>The top message which is no longer on the stack.</returns>
+        public static string Pop()
+        {
+            return Pop(null);
+        }
+
+        /// <summary>
+        /// Pops the top message from the NDLC stack.
+        /// </summary>
+        /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting the value to a string.</param>
+        /// <returns>The top message, which is removed from the stack, as a string value.</returns>
+        public static string Pop(IFormatProvider formatProvider)
+        {
+            return FormatHelper.ConvertToString(PopObject(), formatProvider);
+        }
+
+        /// <summary>
         /// Pops the top message off the current stack
         /// </summary>
         /// <returns>The top message which is no longer on the stack.</returns>
-        public static object Pop()
+        public static object PopObject()
         {
             var current = GetThreadLocal();
             if (current != null)
@@ -74,6 +95,25 @@ namespace NLog
         public static void Clear()
         {
             SetThreadLocal(null);
+        }
+
+        /// <summary>
+        /// Gets all messages on the stack.
+        /// </summary>
+        /// <returns>Array of strings on the stack.</returns>
+        public static string[] GetAllMessages()
+        {
+            return GetAllMessages(null);
+        }
+
+        /// <summary>
+        /// Gets all messages from the stack, without removing them.
+        /// </summary>
+        /// <param name="formatProvider">The <see cref="IFormatProvider"/> to use when converting a value to a string.</param>
+        /// <returns>Array of strings.</returns>
+        public static string[] GetAllMessages(IFormatProvider formatProvider)
+        {
+            return GetAllObjects().Select((o) => FormatHelper.ConvertToString(o, formatProvider)).ToArray();
         }
 
         /// <summary>
@@ -103,11 +143,14 @@ namespace NLog
             object Value { get; }
         }
 
+#if !NETSTANDARD1_5
+        [Serializable]
+#endif
         class NestedContext<T> : INestedContext
         {
             public INestedContext Parent { get; private set; }
             public T Value { get; private set; }
-            object INestedContext.Value { get { return Value; } }
+            object INestedContext.Value => Value;
             public int FrameLevel { get; private set; }
 
             public NestedContext(INestedContext parent, T value)
@@ -119,7 +162,7 @@ namespace NLog
 
             void IDisposable.Dispose()
             {
-                Pop();
+                PopObject();
             }
 
             public override string ToString()
@@ -131,7 +174,7 @@ namespace NLog
 
         private static void SetThreadLocal(INestedContext newValue)
         {
-#if NET4_6 || NETSTANDARD1_3
+#if NET4_6 || NETSTANDARD
             AsyncNestedDiagnosticsContext.Value = newValue;
 #else
             if (newValue == null)
@@ -143,15 +186,15 @@ namespace NLog
 
         private static INestedContext GetThreadLocal()
         {
-#if NET4_6 || NETSTANDARD1_3
+#if NET4_6 || NETSTANDARD
             return AsyncNestedDiagnosticsContext.Value;
 #else
             return System.Runtime.Remoting.Messaging.CallContext.LogicalGetData(NestedDiagnosticsContextKey) as INestedContext;
 #endif
         }
 
-#if NET4_6 || NETSTANDARD1_3
-        private static readonly System.Threading.AsyncLocal<INestedScope> AsyncNestedDiagnosticsContext = new System.Threading.AsyncLocal<INestedScope>();
+#if NET4_6 || NETSTANDARD
+        private static readonly System.Threading.AsyncLocal<INestedContext> AsyncNestedDiagnosticsContext = new System.Threading.AsyncLocal<INestedContext>();
 #else
         private const string NestedDiagnosticsContextKey = "NLog.AsyncableNestedDiagnosticsContext";
 #endif

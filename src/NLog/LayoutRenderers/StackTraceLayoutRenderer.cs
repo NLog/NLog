@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,8 +36,8 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Stack trace renderer.
@@ -51,9 +51,9 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public StackTraceLayoutRenderer()
         {
-            this.Separator = " => ";
-            this.TopFrames = 3;
-            this.Format = StackTraceFormat.Flat;
+            Separator = " => ";
+            TopFrames = 3;
+            Format = StackTraceFormat.Flat;
         }
 
         /// <summary>
@@ -88,10 +88,7 @@ namespace NLog.LayoutRenderers
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
         /// <value></value>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage
-        {
-            get { return (Format == StackTraceFormat.Raw) ? StackTraceUsage.Max : StackTraceUsage.WithoutSource; }
-        }
+        StackTraceUsage IUsesStackTrace.StackTraceUsage => (Format == StackTraceFormat.Raw) ? StackTraceUsage.Max : StackTraceUsage.WithoutSource;
 
         /// <summary>
         /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.
@@ -100,15 +97,18 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            if (logEvent.StackTrace == null)
+                return;
+
             bool first = true;
-            int startingFrame = logEvent.UserStackFrameNumber + this.TopFrames - 1;
-            if (startingFrame >= logEvent.StackTrace.FrameCount)
+            int startingFrame = logEvent.UserStackFrameNumber + TopFrames - 1;
+            if (startingFrame >= logEvent.StackTrace.GetFrameCount())
             {
-                startingFrame = logEvent.StackTrace.FrameCount - 1;
+                startingFrame = logEvent.StackTrace.GetFrameCount() - 1;
             }
 
             int endingFrame = logEvent.UserStackFrameNumber + SkipFrames;
-            switch (this.Format)
+            switch (Format)
             {
                 case StackTraceFormat.Raw:
                     for (int i = startingFrame; i >= endingFrame; --i)
@@ -124,7 +124,7 @@ namespace NLog.LayoutRenderers
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
                         {
-                            builder.Append(this.Separator);
+                            builder.Append(Separator);
                         }
 
                         var type = f.GetMethod().DeclaringType;
@@ -150,7 +150,7 @@ namespace NLog.LayoutRenderers
                         StackFrame f = logEvent.StackTrace.GetFrame(i);
                         if (!first)
                         {
-                            builder.Append(this.Separator);
+                            builder.Append(Separator);
                         }
 
                         builder.Append("[");

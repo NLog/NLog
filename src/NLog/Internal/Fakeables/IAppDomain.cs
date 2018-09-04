@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,7 +37,7 @@ namespace NLog.Internal.Fakeables
     using System.Collections.Generic;
 
     /// <summary>
-    /// Interface for fakeable the current <see cref="AppDomain"/>. Not fully implemented, please methods/properties as necessary.
+    /// Interface for fakeable the current <see cref="LogFactory.CurrentAppDomain"/>. Not fully implemented, please methods/properties as necessary.
     /// </summary>
     public interface IAppDomain
     {

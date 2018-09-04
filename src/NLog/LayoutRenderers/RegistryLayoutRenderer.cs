@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -40,11 +41,11 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using Microsoft.Win32;
     using NLog;
-    using NLog.Common;
-    using NLog.Internal;
-    using NLog.Config;
+    using Common;
+    using Internal;
+    using Config;
     using System.ComponentModel;
-    using NLog.Layouts;
+    using Layouts;
 
     /// <summary>
     /// A value from the Registry.
@@ -126,9 +127,9 @@ namespace NLog.LayoutRenderers
         {
             Object registryValue = null;
             // Value = null is necessary for querying "unnamed values"
-            string renderedValue = this.Value != null ? this.Value.Render(logEvent) : null;
+            string renderedValue = Value != null ? Value.Render(logEvent) : null;
 
-            var parseResult = ParseKey(this.Key.Render(logEvent));
+            var parseResult = ParseKey(Key.Render(logEvent));
             try
             {
 #if !NET3_5
@@ -167,9 +168,9 @@ namespace NLog.LayoutRenderers
             {
                 value = Convert.ToString(registryValue, CultureInfo.InvariantCulture);
             }
-            else if (this.DefaultValue != null)
+            else if (DefaultValue != null)
             {
-                value = this.DefaultValue.Render(logEvent);
+                value = DefaultValue.Render(logEvent);
 
                 if (RequireEscapingSlashesInDefaultValue)
                 {
@@ -189,10 +190,7 @@ namespace NLog.LayoutRenderers
             /// <summary>
             /// Has <see cref="SubKey"/>?
             /// </summary>
-            public bool HasSubKey
-            {
-                get { return !string.IsNullOrEmpty(SubKey); }
-            }
+            public bool HasSubKey => !string.IsNullOrEmpty(SubKey);
         }
 
         /// <summary>
@@ -259,7 +257,7 @@ namespace NLog.LayoutRenderers
             }
 
             //ArgumentException is consistent
-            throw new ArgumentException(string.Format("Key name is not supported. Root hive '{0}' not recognized.", hiveName));
+            throw new ArgumentException($"Key name is not supported. Root hive '{hiveName}' not recognized.");
         }
 
 #if NET3_5

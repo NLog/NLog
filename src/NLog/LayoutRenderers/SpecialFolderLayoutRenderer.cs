@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,14 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
+#if !NETSTANDARD1_5
 
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.IO;
     using System.Text;
-    using NLog.Config;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// System special folder path (includes My Documents, My Music, Program Files, Desktop, and more).
@@ -86,11 +87,13 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            string basePath = Environment.GetFolderPath(this.Folder);
+            string basePath = Environment.GetFolderPath(Folder);
 
-            var path = PathHelpers.CombinePaths(basePath, this.Dir, this.File);
+            var path = PathHelpers.CombinePaths(basePath, Dir, File);
    
             builder.Append(path);
         }
     }
 }
+
+#endif

@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -56,7 +56,7 @@ namespace NLog.UnitTests.Config
             var logger = LogManager.GetLogger("A");
             string expectedMesssage = "some message";
             logger.Info(expectedMesssage);
-            var actualMessage = this.GetDebugLastMessage("debug");
+            var actualMessage = GetDebugLastMessage("debug");
             Assert.Equal(expectedMesssage, actualMessage);
         }
 

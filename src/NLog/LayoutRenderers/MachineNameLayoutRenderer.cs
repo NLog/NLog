@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,9 +37,9 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
+    using Common;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// The machine name that the process is running on.
@@ -59,7 +59,7 @@ namespace NLog.LayoutRenderers
             base.InitializeLayoutRenderer();
             try
             {
-                this.MachineName = Environment.MachineName;
+                MachineName = Environment.MachineName;
             }
             catch (Exception exception)
             {
@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers
                     throw;
                 }
 
-                this.MachineName = string.Empty;
+                MachineName = string.Empty;
             }
         }
 
@@ -81,7 +81,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(this.MachineName);
+            builder.Append(MachineName);
         }
     }
 }

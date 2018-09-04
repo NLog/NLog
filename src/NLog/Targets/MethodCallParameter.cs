@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,8 +34,8 @@
 namespace NLog.Targets
 {
     using System;
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// A parameter to MethodCall.
@@ -48,7 +48,7 @@ namespace NLog.Targets
         /// </summary>
         public MethodCallParameter()
         {
-            this.ParameterType = typeof(string);
+            ParameterType = typeof(string);
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace NLog.Targets
         /// <param name="layout">The layout to use for parameter value.</param>
         public MethodCallParameter(Layout layout)
         {
-            this.ParameterType = typeof(string);
-            this.Layout = layout;
+            ParameterType = typeof(string);
+            Layout = layout;
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace NLog.Targets
         /// <param name="layout">The layout.</param>
         public MethodCallParameter(string parameterName, Layout layout)
         {
-            this.ParameterType = typeof(string);
-            this.Name = parameterName;
-            this.Layout = layout;
+            ParameterType = typeof(string);
+            Name = parameterName;
+            Layout = layout;
         }
 
         /// <summary>
@@ -81,9 +81,9 @@ namespace NLog.Targets
         /// <param name="type">The type of the parameter.</param>
         public MethodCallParameter(string name, Layout layout, Type type)
         {
-            this.ParameterType = type;
-            this.Name = name;
-            this.Layout = layout;
+            ParameterType = type;
+            Name = name;
+            Layout = layout;
         }
 
         /// <summary>
@@ -97,7 +97,9 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Backwards compatibility")]
-        public Type Type { get { return ParameterType; } set { ParameterType = value; } }
+        public Type Type { get => ParameterType;
+            set => ParameterType = value;
+        }
 
         /// <summary>
         /// Gets or sets the type of the parameter.
@@ -111,5 +113,25 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
+
+        /// <summary>
+        /// Parameter can combine multiple LogEvents into a single parameter value
+        /// </summary>
+        public bool EnableGroupLayout { get; set; }
+
+        /// <summary>
+        /// Group Header when combining multiple LogEvents into a single parameter value (<see cref="EnableGroupLayout"/>)
+        /// </summary>
+        public Layout GroupHeaderLayout { get; set; }
+
+        /// <summary>
+        /// Group Item Separator when combining multiple LogEvents into a single parameter value (<see cref="EnableGroupLayout"/>)
+        /// </summary>
+        public Layout GroupItemSeparatorLayout { get; set; }
+
+        /// <summary>
+        /// Group Footer when combining multiple LogEvents into a single parameter value (<see cref="EnableGroupLayout"/>)
+        /// </summary>
+        public Layout GroupFooterLayout { get; set; }
     }
 }

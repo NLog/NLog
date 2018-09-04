@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETSTANDARD1_5
 
 namespace NLog.LayoutRenderers
 {
@@ -51,10 +51,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public IdentityLayoutRenderer()
         {
-            this.Name = true;
-            this.AuthType = true;
-            this.IsAuthenticated = true;
-            this.Separator = ":";
+            Name = true;
+            AuthType = true;
+            IsAuthenticated = true;
+            Separator = ":";
         }
 
         /// <summary>
@@ -101,10 +101,10 @@ namespace NLog.LayoutRenderers
                 {
                     string separator = string.Empty;
 
-                    if (this.IsAuthenticated)
+                    if (IsAuthenticated)
                     {
                         builder.Append(separator);
-                        separator = this.Separator;
+                        separator = Separator;
 
                         if (identity.IsAuthenticated)
                         {
@@ -116,14 +116,14 @@ namespace NLog.LayoutRenderers
                         }
                     }
 
-                    if (this.AuthType)
+                    if (AuthType)
                     {
                         builder.Append(separator);
-                        separator = this.Separator;
+                        separator = Separator;
                         builder.Append(identity.AuthenticationType);
                     }
 
-                    if (this.Name)
+                    if (Name)
                     {
                         builder.Append(separator);
                         builder.Append(identity.Name);

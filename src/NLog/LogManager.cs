@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -42,17 +42,20 @@ namespace NLog
     using System.Runtime.CompilerServices;
     using System.Threading;
 
-    using NLog.Common;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.Internal.Fakeables;
+    using Common;
+    using Config;
+    using Internal;
+    using Internal.Fakeables;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
     public static class LogManager
     {
-        private static readonly LogFactory factory = new LogFactory();
+        /// <remarks>
+        /// Internal for unit tests
+        /// </remarks>
+        internal static readonly LogFactory factory = new LogFactory();
         private static ICollection<Assembly> _hiddenAssemblies;
 
         private static readonly object lockObject = new object();
@@ -66,20 +69,18 @@ namespace NLog
         public delegate CultureInfo GetCultureInfo();
 
         /// <summary>
-        /// Gets the default <see cref="NLog.LogFactory" /> instance.
+        /// Gets the <see cref="NLog.LogFactory" /> instance used in the <see cref="LogManager"/>.
         /// </summary>
-        internal static LogFactory LogFactory
-        {
-            get { return factory; }
-        }
+        /// <remarks>Could be used to pass the to other methods</remarks>
+        public static LogFactory LogFactory => factory;
 
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
         /// </summary>
         public static event EventHandler<LoggingConfigurationChangedEventArgs> ConfigurationChanged
         {
-            add { factory.ConfigurationChanged += value; }
-            remove { factory.ConfigurationChanged -= value; }
+            add => factory.ConfigurationChanged += value;
+            remove => factory.ConfigurationChanged -= value;
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
@@ -88,8 +89,8 @@ namespace NLog
         /// </summary>
         public static event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded
         {
-            add { factory.ConfigurationReloaded += value; }
-            remove { factory.ConfigurationReloaded -= value; }
+            add => factory.ConfigurationReloaded += value;
+            remove => factory.ConfigurationReloaded -= value;
         }
 #endif
         /// <summary>
@@ -98,8 +99,8 @@ namespace NLog
         /// </summary>
         public static bool ThrowExceptions
         {
-            get { return factory.ThrowExceptions; }
-            set { factory.ThrowExceptions = value; }
+            get => factory.ThrowExceptions;
+            set => factory.ThrowExceptions = value;
         }
 
         /// <summary>
@@ -113,8 +114,8 @@ namespace NLog
         /// </remarks>
         public static bool? ThrowConfigExceptions
         {
-            get { return factory.ThrowConfigExceptions; }
-            set { factory.ThrowConfigExceptions = value; }
+            get => factory.ThrowConfigExceptions;
+            set => factory.ThrowConfigExceptions = value;
         }
 
         /// <summary>
@@ -123,8 +124,8 @@ namespace NLog
         /// </summary>
         public static bool KeepVariablesOnReload
         {
-            get { return factory.KeepVariablesOnReload; }
-            set { factory.KeepVariablesOnReload = value; }
+            get => factory.KeepVariablesOnReload;
+            set => factory.KeepVariablesOnReload = value;
         }
 
 
@@ -134,8 +135,8 @@ namespace NLog
         /// </summary>
         public static LoggingConfiguration Configuration
         {
-            get { return factory.Configuration; }
-            set { factory.Configuration = value; }
+            get => factory.Configuration;
+            set => factory.Configuration = value;
         }
 
         /// <summary>
@@ -143,8 +144,8 @@ namespace NLog
         /// </summary>
         public static LogLevel GlobalThreshold
         {
-            get { return factory.GlobalThreshold; }
-            set { factory.GlobalThreshold = value; }
+            get => factory.GlobalThreshold;
+            set => factory.GlobalThreshold = value;
         }
 
         /// <summary>
@@ -155,7 +156,7 @@ namespace NLog
         public static GetCultureInfo DefaultCultureInfo
         {
             get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
-            set { throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo."); }
+            set => throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo.");
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger()
         {
-            return factory.GetLogger(GetClassFullName());
+            return factory.GetLogger(StackTraceUsageUtils.GetClassFullName());
         }
 
         internal static bool IsHiddenAssembly(Assembly assembly)
@@ -207,7 +208,7 @@ namespace NLog
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static Logger GetCurrentClassLogger(Type loggerType)
         {
-            return factory.GetLogger(GetClassFullName(), loggerType);
+            return factory.GetLogger(StackTraceUsageUtils.GetClassFullName(), loggerType);
         }
 
         /// <summary>
@@ -351,38 +352,6 @@ namespace NLog
         public static void Shutdown()
         {
             factory.Shutdown();
-        }
-
-        /// <summary>
-        /// Gets the fully qualified name of the class invoking the LogManager, including the 
-        /// namespace but not the assembly.    
-        /// </summary>
-        private static string GetClassFullName()
-        {
-            string className;
-            Type declaringType;
-            int framesToSkip = 2;
-
-            do
-            {
-#if SILVERLIGHT
-                StackFrame frame = new StackTrace().GetFrame(framesToSkip);
-#else
-                StackFrame frame = new StackFrame(framesToSkip, false);
-#endif
-                MethodBase method = frame.GetMethod();
-                declaringType = method.DeclaringType;
-                if (declaringType == null)
-                {
-                    className = method.Name;
-                    break;
-                }
-
-                framesToSkip++;
-                className = declaringType.FullName;
-            } while (declaringType.Module.Name.Equals("mscorlib.dll", StringComparison.OrdinalIgnoreCase));
-
-            return className;
         }
     }
 }

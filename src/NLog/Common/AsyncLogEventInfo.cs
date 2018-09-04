@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -46,8 +46,8 @@ namespace NLog.Common
         public AsyncLogEventInfo(LogEventInfo logEvent, AsyncContinuation continuation)
             : this()
         {
-            this.LogEvent = logEvent;
-            this.Continuation = continuation;
+            LogEvent = logEvent;
+            Continuation = continuation;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace NLog.Common
         /// </returns>
         public override int GetHashCode()
         {
-            return this.LogEvent.GetHashCode() ^ this.Continuation.GetHashCode();
+            return LogEvent.GetHashCode() ^ Continuation.GetHashCode();
         }
     }
 }

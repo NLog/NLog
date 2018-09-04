@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -39,7 +39,7 @@ namespace NLog.Targets
 
 #if !NET3_5 && !SILVERLIGHT4
     using System.Threading.Tasks;
-    using NLog.Common;
+    using Common;
     using System.ComponentModel;
 
     /// <summary>
@@ -64,7 +64,7 @@ namespace NLog.Targets
         /// <summary>
         /// Task Scheduler used for processing async Tasks
         /// </summary>
-        protected virtual TaskScheduler TaskScheduler { get { return TaskScheduler.Default; } }
+        protected virtual TaskScheduler TaskScheduler => TaskScheduler.Default;
 
         /// <summary>
         /// Constructor
@@ -76,7 +76,7 @@ namespace NLog.Targets
             _taskStartNext = () => TaskStartNext(null);
             _taskCompletion = TaskCompletion;
             _taskCancelledToken = TaskCancelledToken;
-            _taskTimeoutTimer = new Timer(TaskTimeout);
+            _taskTimeoutTimer = new Timer(TaskTimeout, null, Timeout.Infinite, Timeout.Infinite);
             _cancelTokenSource = new CancellationTokenSource();
             _cancelTokenSource.Token.Register(_taskCancelledToken);
             _requestQueue = new Queue<AsyncLogEventInfo>(10000);
@@ -115,8 +115,8 @@ namespace NLog.Targets
                 return;
             }
 
-            this.MergeEventProperties(logEvent.LogEvent);
-            this.PrecalculateVolatileLayouts(logEvent.LogEvent);
+            MergeEventProperties(logEvent.LogEvent);
+            PrecalculateVolatileLayouts(logEvent.LogEvent);
 
             _requestQueue.Enqueue(logEvent);
             if (_previousTask == null)
@@ -133,12 +133,12 @@ namespace NLog.Targets
         {
             if (_previousTask == null)
             {
-                InternalLogger.Debug("{0} Flushing Nothing", this.Name);
+                InternalLogger.Debug("{0} Flushing Nothing", Name);
                 asyncContinuation(null);
             }
             else
             {
-                InternalLogger.Debug("{0} Flushing {1} items", this.Name, _requestQueue.Count + 1);
+                InternalLogger.Debug("{0} Flushing {1} items", Name, _requestQueue.Count + 1);
                 _requestQueue.Enqueue(new AsyncLogEventInfo(null, asyncContinuation));
             }
         }
@@ -165,7 +165,7 @@ namespace NLog.Targets
             if (disposing)
             {
                 _cancelTokenSource.Dispose();
-                _taskTimeoutTimer.Dispose();
+                _taskTimeoutTimer.WaitForDispose(TimeSpan.Zero);
             }
         }
 
@@ -178,7 +178,7 @@ namespace NLog.Targets
             AsyncLogEventInfo logEvent;
             do
             {
-                lock (this.SyncRoot)
+                lock (SyncRoot)
                 {
                     if (!IsInitialized)
                         break;
@@ -214,7 +214,7 @@ namespace NLog.Targets
 
                 if (logEvent.LogEvent == null)
                 {
-                    InternalLogger.Debug("{0} Flush Completed", this.Name);
+                    InternalLogger.Debug("{0} Flush Completed", Name);
                     logEvent.Continuation(null);
                     return false;
                 }
@@ -222,11 +222,11 @@ namespace NLog.Targets
                 var newTask = WriteAsyncTask(logEvent.LogEvent, _cancelTokenSource.Token);
                 if (newTask == null)
                 {
-                    InternalLogger.Debug("{0} WriteAsyncTask returned null", this.Name);
+                    InternalLogger.Debug("{0} WriteAsyncTask returned null", Name);
                 }
                 else
                 {
-                    lock (this.SyncRoot)
+                    lock (SyncRoot)
                     {
                         _previousTask = newTask;
 
@@ -250,7 +250,7 @@ namespace NLog.Targets
             {
                 try
                 {
-                    InternalLogger.Error(ex, "{0} WriteAsyncTask failed on creation", this.Name);
+                    InternalLogger.Error(ex, "{0} WriteAsyncTask failed on creation", Name);
                     logEvent.Continuation(ex);
                 }
                 catch
@@ -286,13 +286,13 @@ namespace NLog.Targets
                 if (completedTask.IsCanceled)
                 {
                     if (completedTask.Exception != null)
-                        InternalLogger.Warn(completedTask.Exception, "{0} WriteAsyncTask was cancelled", this.Name);
+                        InternalLogger.Warn(completedTask.Exception, "{0} WriteAsyncTask was cancelled", Name);
                     else
-                        InternalLogger.Info("{0} WriteAsyncTask was cancelled", this.Name);
+                        InternalLogger.Info("{0} WriteAsyncTask was cancelled", Name);
                 }
                 else if (completedTask.Exception != null)
                 {
-                    InternalLogger.Warn(completedTask.Exception, "{0} WriteAsyncTask failed on completion", this.Name);
+                    InternalLogger.Warn(completedTask.Exception, "{0} WriteAsyncTask failed on completion", Name);
                 }
 
                 var asyncContinuation = (AsyncContinuation)continuation;
@@ -315,12 +315,12 @@ namespace NLog.Targets
                 if (!IsInitialized)
                     return;
 
-                InternalLogger.Warn("{0} WriteAsyncTask had timeout. Task will be cancelled.", this.Name);
+                InternalLogger.Warn("{0} WriteAsyncTask had timeout. Task will be cancelled.", Name);
 
                 var previousTask = _previousTask;
                 try
                 {
-                    lock (this.SyncRoot)
+                    lock (SyncRoot)
                     {
                         if (previousTask != null && ReferenceEquals(previousTask, _previousTask))
                         {
@@ -341,14 +341,14 @@ namespace NLog.Targets
                         {
                             if (!previousTask.Wait(100))
                             {
-                                InternalLogger.Debug("{0} WriteAsyncTask had timeout. Task did not cancel properly: {1}.", this.Name, previousTask.Status);
+                                InternalLogger.Debug("{0} WriteAsyncTask had timeout. Task did not cancel properly: {1}.", Name, previousTask.Status);
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Debug(ex, "{0} WriteAsyncTask had timeout. Task failed to cancel properly.", this.Name);
+                    InternalLogger.Debug(ex, "{0} WriteAsyncTask had timeout. Task failed to cancel properly.", Name);
                 }
 
                 if (previousTask != null)
@@ -358,13 +358,13 @@ namespace NLog.Targets
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "{0} WriteAsyncTask failed on timeout", this.Name);
+                InternalLogger.Error(ex, "{0} WriteAsyncTask failed on timeout", Name);
             }
         }
 
         private void TaskCancelledToken()
         {
-            lock (this.SyncRoot)
+            lock (SyncRoot)
             {
                 if (!IsInitialized)
                     return;

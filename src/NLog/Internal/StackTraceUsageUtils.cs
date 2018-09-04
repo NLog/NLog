@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,8 +34,10 @@
 namespace NLog.Internal
 {
     using System;
-    using NLog.Config;
+    using Config;
     using System.Diagnostics;
+    using System.Reflection;
+    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// Utilities for dealing with <see cref="StackTraceUsage"/> values.
@@ -47,6 +49,7 @@ namespace NLog.Internal
             return (StackTraceUsage)Math.Max((int)u1, (int)u2);
         }
 
+#if !NETSTANDARD1_5
         /// <summary>
         /// Get this stacktrace for inline unit test
         /// </summary>
@@ -55,6 +58,74 @@ namespace NLog.Internal
         internal static StackTrace GetWriteStackTrace(Type loggerType)
         {
             return new StackTrace();
+        }
+#endif
+
+        public static int GetFrameCount(this StackTrace strackTrace)
+        {
+#if !NETSTANDARD1_5
+            return strackTrace.FrameCount;
+#else
+            return strackTrace.GetFrames().Length;
+#endif
+        }
+
+        /// <summary>
+        /// Gets the fully qualified name of the class invoking the calling method, including the 
+        /// namespace but not the assembly.    
+        /// </summary>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static string GetClassFullName()
+        {
+            int framesToSkip = 2;
+
+            string className = string.Empty;
+#if !NETSTANDARD1_5
+            Type declaringType;
+
+            do
+            {
+#if SILVERLIGHT
+                StackFrame frame = new StackTrace().GetFrame(framesToSkip);
+#else
+                StackFrame frame = new StackFrame(framesToSkip, false);
+#endif
+                MethodBase method = frame.GetMethod();
+                declaringType = method.DeclaringType;
+                if (declaringType == null)
+                {
+                    className = method.Name;
+                    break;
+                }
+
+                framesToSkip++;
+                className = declaringType.FullName;
+            } while (className.StartsWith("System.", StringComparison.Ordinal));
+#else
+            var stackTrace = Environment.StackTrace;
+            var stackTraceLines = stackTrace.Replace("\r", "").Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < stackTraceLines.Length; ++i)
+            {
+                var callingClassAndMethod = stackTraceLines[i].Split(new[] { " ", "<>", "(", ")" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                int methodStartIndex = callingClassAndMethod.LastIndexOf(".", StringComparison.Ordinal);
+                if (methodStartIndex > 0)
+                {
+                    // Trim method name. 
+                    var callingClass = callingClassAndMethod.Substring(0, methodStartIndex);
+                    // Needed because of extra dot, for example if method was .ctor()
+                    className = callingClass.TrimEnd('.');
+                    if (!className.StartsWith("System.Environment") && framesToSkip != 0)
+                    {
+                        i += framesToSkip - 1;
+                        framesToSkip = 0;
+                        continue;
+                    }
+                    if (!className.StartsWith("System."))
+                        break;
+                }
+            }
+#endif
+            return className;
         }
     }
 }

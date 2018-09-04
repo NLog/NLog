@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -241,7 +241,7 @@ namespace NLog.UnitTests.Targets
             DateTime utcNow = DateTime.UtcNow;
             utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
             var actual = _serializer.SerializeObject(utcNow);
-            Assert.Equal("\"" + utcNow.ToString("yyyy-MM-ddTHH:mm:ssZ", System.Globalization.CultureInfo.InvariantCulture) + "\"", actual);
+            Assert.Equal("\"" + utcNow.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture) + "\"", actual);
         }
 
         [Fact]
@@ -266,7 +266,7 @@ namespace NLog.UnitTests.Targets
             DateTime utcNow = DateTime.UtcNow;
             utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
             var actual = _serializer.SerializeObject(utcNow, new JsonSerializeOptions { Format = "dddd d M" });
-            Assert.Equal("\"" + utcNow.ToString("dddd d M", System.Globalization.CultureInfo.InvariantCulture) + "\"", actual);
+            Assert.Equal("\"" + utcNow.ToString("dddd d M", CultureInfo.InvariantCulture) + "\"", actual);
         }
 
         [Fact]
@@ -441,18 +441,18 @@ namespace NLog.UnitTests.Targets
         public void SingleItemOptimizedHashSetTest()
         {
             var hashSet = default(NLog.Internal.SingleItemOptimizedHashSet<object>);
-            Assert.Equal(0, hashSet.Count);
-            Assert.Equal(false, hashSet.Contains(new object()));
+            Assert.Empty(hashSet);
+            Assert.DoesNotContain(new object(), hashSet);
             foreach (var obj in hashSet)
                 throw new Exception("Wrong");
             hashSet.Clear();
-            Assert.Equal(0, hashSet.Count);
+            Assert.Empty(hashSet);
             hashSet.Add(new object());
-            Assert.Equal(1, hashSet.Count);
+            Assert.Single(hashSet);
             hashSet.Add(new object());
             Assert.Equal(2, hashSet.Count);
             foreach (var obj in hashSet)
-                Assert.Equal(true, hashSet.Contains(obj));
+                Assert.Contains(obj, hashSet);
             object[] objArray = new object[2];
             hashSet.CopyTo(objArray, 0);
             foreach (var obj in objArray)
@@ -460,9 +460,9 @@ namespace NLog.UnitTests.Targets
                 Assert.NotNull(obj);
                 hashSet.Remove(obj);
             }
-            Assert.Equal(0, hashSet.Count);
+            Assert.Empty(hashSet);
             hashSet.Clear();
-            Assert.Equal(0, hashSet.Count);
+            Assert.Empty(hashSet);
         }
 
         private class TestObject
@@ -506,13 +506,7 @@ namespace NLog.UnitTests.Targets
 
             public string SetOnly { private get; set; }
 
-            public object Ex
-            {
-                get
-                {
-                    throw new Exception("oops");
-                }
-            }
+            public object Ex => throw new Exception("oops");
         }
 
 
@@ -530,7 +524,7 @@ namespace NLog.UnitTests.Targets
 
             IEnumerator IEnumerable.GetEnumerator()
             {
-                return this.GetEnumerator();
+                return GetEnumerator();
             }
         }
     }

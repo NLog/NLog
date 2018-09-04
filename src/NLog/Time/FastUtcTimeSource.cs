@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -44,7 +44,7 @@ namespace NLog.Time
         /// <summary>
         /// Gets uncached UTC time directly from DateTime.UtcNow.
         /// </summary>
-        protected override DateTime FreshTime { get { return DateTime.UtcNow; } }
+        protected override DateTime FreshTime => DateTime.UtcNow;
 
         /// <summary>
         ///  Converts the specified system time to the same form as the time value originated from this time source.

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -43,7 +43,7 @@ namespace NLog.LogReceiverService
     /// </summary>
     public abstract class BaseLogReceiverForwardingService
     {
-        private readonly LogFactory logFactory;
+        private readonly LogFactory _logFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseLogReceiverForwardingService"/> class.
@@ -59,7 +59,7 @@ namespace NLog.LogReceiverService
         /// <param name="logFactory">The log factory.</param>
         protected BaseLogReceiverForwardingService(LogFactory logFactory)
         {
-            this.logFactory = logFactory;
+            _logFactory = logFactory;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace NLog.LogReceiverService
                 logEvents[j] = logEventInfo;
             }
 
-            this.ProcessLogMessages(logEvents);
+            ProcessLogMessages(logEvents);
         }
 
         /// <summary>
@@ -108,9 +108,9 @@ namespace NLog.LogReceiverService
             {
                 if (ev.LoggerName != lastLoggerName)
                 {
-                    if (this.logFactory != null)
+                    if (_logFactory != null)
                     {
-                        logger = this.logFactory.GetLogger(ev.LoggerName);
+                        logger = _logFactory.GetLogger(ev.LoggerName);
                     }
                     else
                     {

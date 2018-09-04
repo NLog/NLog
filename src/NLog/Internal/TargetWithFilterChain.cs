@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,9 +34,9 @@
 namespace NLog.Internal
 {
     using System.Collections.Generic;
-    using NLog.Config;
-    using NLog.Filters;
-    using NLog.Targets;
+    using Config;
+    using Filters;
+    using Targets;
 
     /// <summary>
     /// Represents target with a chain of filters which determine
@@ -57,8 +57,8 @@ namespace NLog.Internal
         /// <param name="filterChain">The filter chain.</param>
         public TargetWithFilterChain(Target target, IList<Filter> filterChain)
         {
-            this.Target = target;
-            this.FilterChain = filterChain;
+            Target = target;
+            FilterChain = filterChain;
         }
 
         /// <summary>

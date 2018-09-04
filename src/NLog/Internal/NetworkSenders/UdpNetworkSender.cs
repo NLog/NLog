@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -39,15 +39,15 @@ namespace NLog.Internal.NetworkSenders
     using System.IO;
     using System.Net;
     using System.Net.Sockets;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Sends messages over the network as UDP datagrams.
     /// </summary>
     internal class UdpNetworkSender : NetworkSender
     {
-        private ISocket socket;
-        private EndPoint endpoint;
+        private ISocket _socket;
+        private EndPoint _endpoint;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UdpNetworkSender"/> class.
@@ -57,7 +57,7 @@ namespace NLog.Internal.NetworkSenders
         public UdpNetworkSender(string url, AddressFamily addressFamily)
             : base(url)
         {
-            this.AddressFamily = addressFamily;
+            AddressFamily = addressFamily;
         }
 
         internal AddressFamily AddressFamily { get; set; }
@@ -75,8 +75,8 @@ namespace NLog.Internal.NetworkSenders
             var proxy = new SocketProxy(addressFamily, socketType, protocolType);
 
             Uri uri;
-            if (Uri.TryCreate(this.Address, UriKind.Absolute, out uri)
-                && uri.Host.Equals(IPAddress.Broadcast.ToString(), StringComparison.InvariantCultureIgnoreCase))
+            if (Uri.TryCreate(Address, UriKind.Absolute, out uri)
+                && uri.Host.Equals(IPAddress.Broadcast.ToString(), StringComparison.OrdinalIgnoreCase))
             {
                 proxy.UnderlyingSocket.EnableBroadcast = true;
             }
@@ -89,8 +89,8 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         protected override void DoInitialize()
         {
-            this.endpoint = this.ParseEndpointAddress(new Uri(this.Address), this.AddressFamily);
-            this.socket = this.CreateSocket(this.endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+            _endpoint = ParseEndpointAddress(new Uri(Address), AddressFamily);
+            _socket = CreateSocket(_endpoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace NLog.Internal.NetworkSenders
         {
             lock (this)
             {
-                this.CloseSocket(continuation);
+                CloseSocket(continuation);
             }
         }
 
@@ -109,8 +109,8 @@ namespace NLog.Internal.NetworkSenders
         {
             try
             {
-                var sock = this.socket;
-                this.socket = null;
+                var sock = _socket;
+                _socket = null;
 
                 if (sock != null)
                 {
@@ -146,12 +146,12 @@ namespace NLog.Internal.NetworkSenders
                 var args = new SocketAsyncEventArgs();
                 args.SetBuffer(bytes, offset, length);
                 args.UserToken = asyncContinuation;
-                args.Completed += this.SocketOperationCompleted;
-                args.RemoteEndPoint = this.endpoint;
+                args.Completed += SocketOperationCompleted;
+                args.RemoteEndPoint = _endpoint;
 
-                if (!this.socket.SendToAsync(args))
+                if (!_socket.SendToAsync(args))
                 {
-                    this.SocketOperationCompleted(this.socket, args);
+                    SocketOperationCompleted(_socket, args);
                 }
             }
         }
@@ -177,7 +177,7 @@ namespace NLog.Internal.NetworkSenders
 
         public override void CheckSocket()
         {
-            if (socket == null)
+            if (_socket == null)
             {
                 DoInitialize();
             }

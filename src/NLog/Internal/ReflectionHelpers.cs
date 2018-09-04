@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,9 +35,10 @@ namespace NLog.Internal
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Reflection helpers.
@@ -52,13 +53,11 @@ namespace NLog.Internal
         /// <remarks>Types which cannot be loaded are skipped.</remarks>
         public static Type[] SafeGetTypes(this Assembly assembly)
         {
-#if SILVERLIGHT && !WINDOWS_PHONE
-            return assembly.GetTypes();
-#else
             try
             {
                 return assembly.GetTypes();
             }
+#if !SILVERLIGHT || WINDOWS_PHONE
             catch (ReflectionTypeLoadException typeLoadException)
             {
                 foreach (var ex in typeLoadException.LoaderExceptions)
@@ -78,6 +77,11 @@ namespace NLog.Internal
                 return loadedTypes.ToArray();
             }
 #endif
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "Type load exception.");
+                return ArrayHelper.Empty<Type>();
+            }
         }
 
         /// <summary>
@@ -90,7 +94,7 @@ namespace NLog.Internal
         /// </remarks>
         public static bool IsStaticClass(this Type type)
         {
-            return type.IsClass && type.IsAbstract && type.IsSealed;
+            return type.IsClass() && type.IsAbstract() && type.IsSealed();
         }
 
         /// <summary>
@@ -158,6 +162,98 @@ namespace NLog.Internal
                 return lambda.Compile();
             }
         }
-    }
 
+        public static bool IsEnum(this Type type)
+        {
+#if NETSTANDARD1_5
+            return type.GetTypeInfo().IsEnum;
+#else
+            return type.IsEnum;
+#endif
+        }
+
+        public static bool IsPrimitive(this Type type)
+        {
+#if NETSTANDARD1_5
+            return type.GetTypeInfo().IsPrimitive;
+#else
+            return type.IsPrimitive;
+#endif
+        }
+
+        public static bool IsSealed(this Type type)
+        {
+#if NETSTANDARD1_5
+            return type.GetTypeInfo().IsSealed;
+#else
+            return type.IsSealed;
+#endif
+        }
+
+        public static bool IsAbstract(this Type type)
+        {
+#if NETSTANDARD1_5
+            return type.GetTypeInfo().IsAbstract;
+#else
+            return type.IsAbstract;
+#endif
+        }
+
+        public static bool IsClass(this Type type)
+        {
+#if NETSTANDARD1_5
+            return type.GetTypeInfo().IsClass;
+#else
+            return type.IsClass;
+#endif
+        }
+
+        public static bool IsGenericType(this Type type)
+        {
+#if NETSTANDARD1_5
+            return type.GetTypeInfo().IsGenericType;
+#else
+            return type.IsGenericType;
+#endif
+        }
+
+        public static TAttr GetCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
+        {
+#if NETSTANDARD1_5
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.GetCustomAttribute<TAttr>();
+#else
+            return (TAttr)Attribute.GetCustomAttribute(type, typeof(TAttr));
+#endif
+        }
+
+        public static TAttr GetCustomAttribute<TAttr>(this PropertyInfo info)
+             where TAttr : Attribute
+        {
+#if NETSTANDARD1_5
+            return info.GetCustomAttributes(typeof(TAttr), false).FirstOrDefault() as TAttr;
+#else
+            return (TAttr)Attribute.GetCustomAttribute(info, typeof(TAttr));
+#endif
+        }
+
+        public static IEnumerable<TAttr> GetCustomAttributes<TAttr>(this Type type, bool inherit) where TAttr : Attribute
+        {
+#if NETSTANDARD1_5
+            return type.GetTypeInfo().GetCustomAttributes<TAttr>(inherit);
+#else
+            return (TAttr[])type.GetCustomAttributes(typeof(TAttr), inherit);
+#endif
+        }
+
+        public static Assembly GetAssembly(this Type type)
+        {
+#if NETSTANDARD1_5
+            var typeInfo = type.GetTypeInfo();
+            return typeInfo.Assembly;
+#else
+            return type.Assembly;
+#endif
+        }
+    }
 }

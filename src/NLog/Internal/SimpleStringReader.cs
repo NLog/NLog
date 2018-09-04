@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -44,7 +44,7 @@ namespace NLog.Internal
 #endif
 	internal class SimpleStringReader
 	{
-        private readonly string text;
+        private readonly string _text;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleStringReader" /> class.
@@ -52,8 +52,8 @@ namespace NLog.Internal
         /// <param name="text">The text to be tokenized.</param>
         public SimpleStringReader(string text)
         {
-            this.text = text;
-            this.Position = 0;
+            _text = text;
+            Position = 0;
         }
 
         /// <summary>
@@ -64,10 +64,7 @@ namespace NLog.Internal
         /// <summary>
         /// Full text to be parsed
         /// </summary>
-        internal string Text
-        {
-            get { return this.text; }
-        }
+        internal string Text => _text;
 
 #if DEBUG
         string CurrentState
@@ -76,8 +73,8 @@ namespace NLog.Internal
             {
                 var current = (char)Peek();
                 var done = Substring(0, Position - 1);
-                var todo = ((Position > text.Length) ? Text.Substring(Position + 1) : "");
-                return string.Format("done: '{0}'.   current: '{1}'.   todo: '{2}'", done, current, todo);
+                var todo = ((Position > _text.Length) ? Text.Substring(Position + 1) : "");
+                return $"done: '{done}'.   current: '{current}'.   todo: '{todo}'";
             }
         }
 #endif
@@ -88,9 +85,9 @@ namespace NLog.Internal
         /// <returns></returns>
         internal int Peek()
         {
-            if (this.Position < this.text.Length)
+            if (Position < _text.Length)
             {
-                return this.text[this.Position];
+                return _text[Position];
             }
 
             return -1;
@@ -102,9 +99,9 @@ namespace NLog.Internal
         /// <returns></returns>
         internal int Read()
         {
-            if (this.Position < this.text.Length)
+            if (Position < _text.Length)
             {
-                return this.text[this.Position++];
+                return _text[Position++];
             }
 
             return -1;
@@ -118,7 +115,7 @@ namespace NLog.Internal
         /// <returns></returns>
         internal string Substring(int startIndex, int endIndex)
         {
-            return this.text.Substring(startIndex, endIndex - startIndex);
+            return _text.Substring(startIndex, endIndex - startIndex);
         }
     }
 }

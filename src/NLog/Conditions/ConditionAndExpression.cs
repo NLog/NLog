@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,8 +48,8 @@ namespace NLog.Conditions
         /// <param name="right">Right hand side of the AND expression.</param>
         public ConditionAndExpression(ConditionExpression left, ConditionExpression right)
         {
-            this.Left = left;
-            this.Right = right;
+            Left = left;
+            Right = right;
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace NLog.Conditions
         /// <returns>A concatenated '(Left) and (Right)' string.</returns>
         public override string ToString()
         {
-            return "(" + this.Left + " and " + this.Right + ")";
+            return "(" + Left + " and " + Right + ")";
         }
 
         /// <summary>
@@ -78,13 +78,13 @@ namespace NLog.Conditions
         /// <returns>The value of the conjunction operator.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
-            var bval1 = (bool)this.Left.Evaluate(context);
+            var bval1 = (bool)Left.Evaluate(context);
             if (!bval1)
             {
                 return boxedFalse;
             }
 
-            var bval2 = (bool)this.Right.Evaluate(context);
+            var bval2 = (bool)Right.Evaluate(context);
             if (!bval2)
             {
                 return boxedFalse;

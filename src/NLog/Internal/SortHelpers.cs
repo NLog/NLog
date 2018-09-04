@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,7 +36,7 @@ namespace NLog.Internal
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Provides helpers to sort log events and associated continuations.
@@ -94,10 +94,25 @@ namespace NLog.Internal
         /// </returns>
         public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector)
         {
+            return BucketSort(inputs, keySelector, EqualityComparer<TKey>.Default);
+        }
+
+        /// <summary>
+        /// Performs bucket sort (group by) on an array of items and returns a dictionary for easy traversal of the result set.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <param name="inputs">The inputs.</param>
+        /// <param name="keySelector">The key selector function.</param>
+        /// <param name="keyComparer">The key comparer function.</param>
+        /// <returns>
+        /// Dictionary where keys are unique input keys, and values are lists of <see cref="AsyncLogEventInfo"/>.
+        /// </returns>
+        public static ReadOnlySingleBucketDictionary<TKey, IList<TValue>> BucketSort<TValue, TKey>(this IList<TValue> inputs, KeySelector<TValue, TKey> keySelector, IEqualityComparer<TKey> keyComparer)
+        {
             Dictionary<TKey, IList<TValue>> buckets = null;
             bool singleBucketFirstKey = false;
             TKey singleBucketKey = default(TKey);
-            EqualityComparer<TKey> c = EqualityComparer<TKey>.Default;
             for (int i = 0; i < inputs.Count; i++)
             {
                 TKey keyValue = keySelector(inputs[i]);
@@ -108,10 +123,10 @@ namespace NLog.Internal
                 }
                 else if (buckets == null)
                 {
-                    if (!c.Equals(singleBucketKey, keyValue))
+                    if (!keyComparer.Equals(singleBucketKey, keyValue))
                     {
                         // Multiple buckets needed, allocate full dictionary
-                        buckets = new Dictionary<TKey, IList<TValue>>();
+                        buckets = new Dictionary<TKey, IList<TValue>>(keyComparer);
                         var bucket = new List<TValue>(i);
                         for (int j = 0; j < i; j++)
                         {
@@ -137,11 +152,11 @@ namespace NLog.Internal
 
             if (buckets != null)
             {
-                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(buckets);
+                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(buckets, keyComparer);
             }
             else
             {
-                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs));
+                return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs), keyComparer);
             }
         }
 
@@ -157,7 +172,7 @@ namespace NLog.Internal
             readonly KeyValuePair<TKey, TValue>? _singleBucket;
             readonly Dictionary<TKey, TValue> _multiBucket;
             readonly IEqualityComparer<TKey> _comparer;
-            public IEqualityComparer<TKey> Comparer { get { return _comparer; } }
+            public IEqualityComparer<TKey> Comparer => _comparer;
 
             public ReadOnlySingleBucketDictionary(KeyValuePair<TKey, TValue> singleBucket)
                 : this(singleBucket, EqualityComparer<TKey>.Default)
@@ -215,7 +230,7 @@ namespace NLog.Internal
             }
 
             /// <inheritDoc/>
-            public bool IsReadOnly { get { return true; } }
+            public bool IsReadOnly => true;
 
             /// <summary>
             /// Allows direct lookup of existing keys. If trying to access non-existing key exception is thrown.
@@ -232,12 +247,9 @@ namespace NLog.Internal
                     else if (_singleBucket.HasValue && _comparer.Equals(_singleBucket.Value.Key, key))
                         return _singleBucket.Value.Value;
                     else
-                        throw new System.Collections.Generic.KeyNotFoundException();
+                        throw new KeyNotFoundException();
                 }
-                set
-                {
-                    throw new NotSupportedException("Readonly");
-                }
+                set => throw new NotSupportedException("Readonly");
             }
 
             /// <summary>
@@ -274,7 +286,7 @@ namespace NLog.Internal
                     }
                 }
 
-                object IEnumerator.Current { get { return Current; } }
+                object IEnumerator.Current => Current;
 
                 public void Dispose()
                 {

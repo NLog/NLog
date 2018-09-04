@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -30,6 +30,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
+#if !NETSTANDARD
 
 namespace NLog.UnitTests.Targets
 {
@@ -62,7 +64,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal("message", payload.LayoutNames[0]);
             Assert.Equal("lvl", payload.LayoutNames[1]);
             Assert.Equal(3, payload.Strings.Count);
-            Assert.Equal(1, payload.Events.Length);
+            Assert.Single(payload.Events);
             Assert.Equal("message text", payload.Strings[payload.Events[0].ValueIndexes[0]]);
             Assert.Equal("Info", payload.Strings[payload.Events[0].ValueIndexes[1]]);
             Assert.Equal("loggerName", payload.Strings[payload.Events[0].LoggerOrdinal]);
@@ -219,8 +221,8 @@ namespace NLog.UnitTests.Targets
 
             protected internal override bool OnSend(NLogEvents events, IEnumerable<AsyncLogEventInfo> asyncContinuations)
             {
-                this.LastPayload = events;
-                ++this.SendCount;
+                LastPayload = events;
+                ++SendCount;
 
                 foreach (var ac in asyncContinuations)
                 {
@@ -232,3 +234,5 @@ namespace NLog.UnitTests.Targets
         }
     }
 }
+
+#endif

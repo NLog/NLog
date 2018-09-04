@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,8 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Decodes text "encrypted" with ROT-13.
@@ -55,8 +55,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Transformation Options' order='10' />
         public Layout Text
         {
-            get { return this.Inner; }
-            set { this.Inner = value; }
+            get => Inner;
+            set => Inner = value;
         }
 
         /// <summary>

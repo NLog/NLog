@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,8 +36,8 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Factory for locating methods.
@@ -48,7 +48,7 @@ namespace NLog.Config
         where TClassAttributeType : Attribute
         where TMethodAttributeType : NameBaseAttribute
     {
-        private readonly Dictionary<string, MethodInfo> nameToMethodInfo = new Dictionary<string, MethodInfo>();
+        private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>();
 
         /// <summary>
         /// Gets a collection of all registered items in the factory.
@@ -58,10 +58,7 @@ namespace NLog.Config
         /// of the item and value is the <see cref="MethodInfo"/> of
         /// the item.
         /// </returns>
-        public IDictionary<string, MethodInfo> AllRegisteredItems
-        {
-            get { return this.nameToMethodInfo; }
-        }
+        public IDictionary<string, MethodInfo> AllRegisteredItems => _nameToMethodInfo;
 
         /// <summary>
         /// Scans the assembly for classes marked with <typeparamref name="TClassAttributeType"/>
@@ -76,7 +73,7 @@ namespace NLog.Config
             {
                 try
                 {
-                    this.RegisterType(t, prefix);
+                    RegisterType(t, prefix);
                 }
                 catch (Exception exception)
                 {
@@ -106,7 +103,7 @@ namespace NLog.Config
                     var methodAttributes = (TMethodAttributeType[])mi.GetCustomAttributes(typeof(TMethodAttributeType), false);
                     foreach (TMethodAttributeType attr in methodAttributes)
                     {
-                        this.RegisterDefinition(itemNamePrefix + attr.Name, mi);
+                        RegisterDefinition(itemNamePrefix + attr.Name, mi);
                     }
                 }
             }
@@ -117,7 +114,7 @@ namespace NLog.Config
         /// </summary>
         public void Clear()
         {
-            this.nameToMethodInfo.Clear();
+            _nameToMethodInfo.Clear();
         }
 
         /// <summary>
@@ -127,7 +124,7 @@ namespace NLog.Config
         /// <param name="methodInfo">The method info.</param>
         public void RegisterDefinition(string name, MethodInfo methodInfo)
         {
-            this.nameToMethodInfo[name] = methodInfo;
+            _nameToMethodInfo[name] = methodInfo;
         }
 
         /// <summary>
@@ -138,7 +135,7 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryCreateInstance(string name, out MethodInfo result)
         {
-            return this.nameToMethodInfo.TryGetValue(name, out result);
+            return _nameToMethodInfo.TryGetValue(name, out result);
         }
 
         /// <summary>
@@ -150,7 +147,7 @@ namespace NLog.Config
         {
             MethodInfo result;
 
-            if (this.TryCreateInstance(name, out result))
+            if (TryCreateInstance(name, out result))
             {
                 return result;
             }
@@ -166,7 +163,7 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryGetDefinition(string name, out MethodInfo result)
         {
-            return this.nameToMethodInfo.TryGetValue(name, out result);
+            return _nameToMethodInfo.TryGetValue(name, out result);
         }
     }
 }

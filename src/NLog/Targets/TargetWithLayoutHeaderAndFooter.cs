@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,8 +33,8 @@
 
 namespace NLog.Targets
 {
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Represents target that supports string formatting using layouts.
@@ -58,10 +58,7 @@ namespace NLog.Targets
         [RequiredParameter]
         public override Layout Layout
         {
-            get
-            {
-                return this.LHF.Layout;
-            }
+            get => LHF.Layout;
 
             set
             {
@@ -69,16 +66,16 @@ namespace NLog.Targets
                 {
                     base.Layout = value;
                 }
-                else if (this.LHF == null)
+                else if (LHF == null)
                 {
-                    this.LHF = new LayoutWithHeaderAndFooter()
+                    LHF = new LayoutWithHeaderAndFooter()
                     {
                         Layout = value
                     };
                 }
                 else
                 {
-                    this.LHF.Layout = value;
+                    LHF.Layout = value;
                 }
             }
         }
@@ -89,8 +86,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='3' />
         public Layout Footer
         {
-            get { return this.LHF.Footer; }
-            set { this.LHF.Footer = value; }
+            get => LHF.Footer;
+            set => LHF.Footer = value;
         }
 
         /// <summary>
@@ -99,8 +96,8 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='2' />
         public Layout Header
         {
-            get { return this.LHF.Header; }
-            set { this.LHF.Header = value; }
+            get => LHF.Header;
+            set => LHF.Header = value;
         }
 
         /// <summary>
@@ -109,8 +106,8 @@ namespace NLog.Targets
         /// <value>The layout with header and footer.</value>
         private LayoutWithHeaderAndFooter LHF
         {
-            get { return (LayoutWithHeaderAndFooter)base.Layout; }
-            set { base.Layout = value; }
+            get => (LayoutWithHeaderAndFooter)base.Layout;
+            set => base.Layout = value;
         }
    }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,8 +33,8 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using NLog.Config;
-    using NLog.Internal;
+    using Config;
+    using Internal;
 
     /// <summary>
     /// Encodes the result of another layout output for use with URLs.
@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         public UrlEncodeLayoutRendererWrapper()
         {
-            this.SpaceAsPlus = true;
+            SpaceAsPlus = true;
         }
 
         /// <summary>

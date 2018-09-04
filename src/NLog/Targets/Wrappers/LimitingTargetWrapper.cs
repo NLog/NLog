@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,8 +35,8 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.ComponentModel;
-    using NLog.Common;
-    using NLog.Time;
+    using Common;
+    using Time;
 
 
     /// <summary>
@@ -45,7 +45,7 @@ namespace NLog.Targets.Wrappers
     [Target("LimitingWrapper", IsWrapper = true)]
     public class LimitingTargetWrapper : WrapperTargetBase
     {
-        private DateTime firstWriteInInterval;
+        private DateTime _firstWriteInInterval;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LimitingTargetWrapper" /> class.
@@ -63,7 +63,7 @@ namespace NLog.Targets.Wrappers
         public LimitingTargetWrapper(string name, Target wrappedTarget) 
             : this(wrappedTarget, 1000, TimeSpan.FromHours(1))
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -83,10 +83,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="interval">Interval in which the maximum number of messages can be written.</param>
         public LimitingTargetWrapper(Target wrappedTarget, int messageLimit, TimeSpan interval)
         {
-            this.MessageLimit = messageLimit;
-            this.Interval = interval;
-            this.WrappedTarget = wrappedTarget;
-            this.OptimizeBufferReuse = GetType() == typeof(LimitingTargetWrapper);
+            MessageLimit = messageLimit;
+            Interval = interval;
+            WrappedTarget = wrappedTarget;
+            OptimizeBufferReuse = GetType() == typeof(LimitingTargetWrapper);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the <c>DateTime</c> when the current <see cref="Interval"/> will be reset.
         /// </summary>
-        public DateTime IntervalResetsAt { get { return firstWriteInInterval + Interval; } }
+        public DateTime IntervalResetsAt => _firstWriteInInterval + Interval;
 
         /// <summary>
         /// Gets the number of <see cref="AsyncLogEventInfo"/> written in the current <see cref="Interval"/>.
@@ -122,9 +122,9 @@ namespace NLog.Targets.Wrappers
         ///  </summary>
         protected override void InitializeTarget()
         {
-            if(this.MessageLimit<=0)
+            if(MessageLimit<=0)
                 throw new NLogConfigurationException("The LimitingTargetWrapper\'s MessageLimit property must be > 0.");
-            if(this.Interval<=TimeSpan.Zero)
+            if(Interval<=TimeSpan.Zero)
                 throw new NLogConfigurationException("The LimitingTargetWrapper\'s property Interval must be > 0.");
 
             base.InitializeTarget();
@@ -149,7 +149,7 @@ namespace NLog.Targets.Wrappers
 
             if (MessagesWrittenCount < MessageLimit)
             {
-                this.WrappedTarget.WriteAsyncLogEvent(logEvent);
+                WrappedTarget.WriteAsyncLogEvent(logEvent);
                 MessagesWrittenCount++;
             }
             else
@@ -161,13 +161,13 @@ namespace NLog.Targets.Wrappers
 
         private void ResetInterval()
         {
-            firstWriteInInterval = TimeSource.Current.Time;
+            _firstWriteInInterval = TimeSource.Current.Time;
             MessagesWrittenCount = 0;
         }
 
         private bool IsIntervalExpired()
         {
-            return TimeSource.Current.Time - firstWriteInInterval > Interval;
+            return TimeSource.Current.Time - _firstWriteInInterval > Interval;
         }
 
     }

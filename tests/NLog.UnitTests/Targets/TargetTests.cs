@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -176,7 +176,8 @@ namespace NLog.UnitTests.Targets
                 catch (Exception ex)
                 {
                     var constructionFailed = true;
-                    string failureMessage = String.Format("Error testing constructors for '{0}.{1}`\n{2}", targetType, lastPropertyName, ex.ToString());
+                    string failureMessage =
+                        $"Error testing constructors for '{targetType}.{lastPropertyName}`\n{ex.ToString()}";
                     Assert.False(constructionFailed, failureMessage);
                 }
             }
@@ -320,7 +321,7 @@ namespace NLog.UnitTests.Targets
             var exceptions = new List<Exception>();
             target.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             Assert.Equal(0, target.WriteCount);
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.NotNull(exceptions[0]);
             Assert.Equal("Target " + target + " failed to initialize.", exceptions[0].Message);
             Assert.Equal("Init error.", exceptions[0].InnerException.Message);
@@ -417,7 +418,7 @@ namespace NLog.UnitTests.Targets
             // flush was called
             Assert.Equal(1, target.FlushCount);
             Assert.Equal(2, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             exceptions.ForEach(Assert.Null);
         }
 
@@ -428,7 +429,7 @@ namespace NLog.UnitTests.Targets
             List<Exception> exceptions = new List<Exception>();
             target.Flush(exceptions.Add);
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             exceptions.ForEach(Assert.Null);
 
             // flush was not called
@@ -447,7 +448,7 @@ namespace NLog.UnitTests.Targets
             List<Exception> exceptions = new List<Exception>();
             target.Flush(exceptions.Add);
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             exceptions.ForEach(Assert.Null);
 
             // flush was not called
@@ -547,62 +548,62 @@ namespace NLog.UnitTests.Targets
 
             public MyTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             protected override void InitializeTarget()
             {
-                if (this.ThrowOnInitialize)
+                if (ThrowOnInitialize)
                 {
                     throw new InvalidOperationException("Init error.");
                 }
 
-                Assert.Equal(0, this.inBlockingOperation);
-                this.InitializeCount++;
+                Assert.Equal(0, inBlockingOperation);
+                InitializeCount++;
                 base.InitializeTarget();
             }
 
             protected override void CloseTarget()
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.CloseCount++;
+                Assert.Equal(0, inBlockingOperation);
+                CloseCount++;
                 base.CloseTarget();
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.FlushCount++;
+                Assert.Equal(0, inBlockingOperation);
+                FlushCount++;
                 base.FlushAsync(asyncContinuation);
             }
 
             protected override void Write(LogEventInfo logEvent)
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.WriteCount++;
+                Assert.Equal(0, inBlockingOperation);
+                WriteCount++;
             }
 
             protected override void Write(AsyncLogEventInfo logEvent)
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.WriteCount2++;
+                Assert.Equal(0, inBlockingOperation);
+                WriteCount2++;
                 base.Write(logEvent);
             }
 
             protected override void Write(IList<AsyncLogEventInfo> logEvents)
             {
-                Assert.Equal(0, this.inBlockingOperation);
-                this.WriteCount3++;
+                Assert.Equal(0, inBlockingOperation);
+                WriteCount3++;
                 base.Write(logEvents);
             }
 
             public void BlockingOperation(int millisecondsTimeout)
             {
-                lock (this.SyncRoot)
+                lock (SyncRoot)
                 {
-                    this.inBlockingOperation++;
+                    inBlockingOperation++;
                     Thread.Sleep(millisecondsTimeout);
-                    this.inBlockingOperation--;
+                    inBlockingOperation--;
                 }
             }
         }
@@ -626,7 +627,7 @@ namespace NLog.UnitTests.Targets
 
             public WrongMyTarget(string name) : this()
             {
-                this.Name = name;
+                Name = name;
             }
 
             /// <summary>

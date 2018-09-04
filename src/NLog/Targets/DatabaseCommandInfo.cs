@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,8 +38,8 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
-    using NLog.Config;
-    using NLog.Layouts;
+    using Config;
+    using Layouts;
 
     /// <summary>
     /// Information about database command + parameters.
@@ -52,8 +52,8 @@ namespace NLog.Targets
         /// </summary>
         public DatabaseCommandInfo()
         {
-            this.Parameters = new List<DatabaseParameterInfo>();
-            this.CommandType = CommandType.Text;
+            Parameters = new List<DatabaseParameterInfo>();
+            CommandType = CommandType.Text;
         }
 
         /// <summary>

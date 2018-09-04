@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,8 +37,8 @@ namespace NLog.Targets.Wrappers
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Threading;
-    using NLog.Common;
-    using NLog.Internal;
+    using Common;
+    using Internal;
 
     /// <summary>
     /// Retries in case of write error.
@@ -79,7 +79,7 @@ namespace NLog.Targets.Wrappers
         public RetryingTargetWrapper(string name, Target wrappedTarget, int retryCount, int retryDelayMilliseconds)
             : this(wrappedTarget, retryCount, retryDelayMilliseconds)
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -90,10 +90,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="retryDelayMilliseconds">The retry delay milliseconds.</param>
         public RetryingTargetWrapper(Target wrappedTarget, int retryCount, int retryDelayMilliseconds)
         {
-            this.WrappedTarget = wrappedTarget;
-            this.RetryCount = retryCount;
-            this.RetryDelayMilliseconds = retryDelayMilliseconds;
-            this.OptimizeBufferReuse = GetType() == typeof(RetryingTargetWrapper);
+            WrappedTarget = wrappedTarget;
+            RetryCount = retryCount;
+            RetryDelayMilliseconds = retryDelayMilliseconds;
+            OptimizeBufferReuse = GetType() == typeof(RetryingTargetWrapper);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Special SyncObject to allow closing down Target while busy retrying
         /// </summary>
-        private readonly object RetrySyncObject = new object();
+        private readonly object _retrySyncObject = new object();
 
         /// <summary>
         /// Writes the specified log event to the wrapped target, retrying and pausing in case of an error.
@@ -121,28 +121,27 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">The log event.</param>
         protected override void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)
         {
-            lock (this.RetrySyncObject)
+            lock (_retrySyncObject)
             {
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
-                    if (!this.IsInitialized)
+                    if (!IsInitialized)
                         logEvents[i].Continuation(null);
                     else 
-                        this.WriteAsyncThreadSafe(logEvents[i]);
+                        WriteAsyncThreadSafe(logEvents[i]);
                 }
             }
         }
 
         /// <summary>
         /// Writes the specified log event to the wrapped target in a thread-safe manner.
-        /// Uses <see cref="RetrySyncObject"/> instead of <see cref="Target.SyncRoot" />
-        /// to allow closing target while doing sleep and retry.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
         {
-            lock (this.RetrySyncObject)
+            lock (_retrySyncObject)
             {
+                // Uses RetrySyncObject instead of Target.SyncRoot to allow closing target while doing sleep and retry.
                 Write(logEvent);
             }
         }
@@ -165,10 +164,10 @@ namespace NLog.Targets.Wrappers
                 }
 
                 int retryNumber = Interlocked.Increment(ref counter);
-                InternalLogger.Warn("Error while writing to '{0}': {1}. Try {2}/{3}", this.WrappedTarget, ex, retryNumber, this.RetryCount);
+                InternalLogger.Warn("Error while writing to '{0}': {1}. Try {2}/{3}", WrappedTarget, ex, retryNumber, RetryCount);
 
                 // exceeded retry count
-                if (retryNumber >= this.RetryCount)
+                if (retryNumber >= RetryCount)
                 {
                     InternalLogger.Warn("Too many retries. Aborting.");
                     logEvent.Continuation(ex);
@@ -176,9 +175,9 @@ namespace NLog.Targets.Wrappers
                 }
 
                 // sleep and try again (Check every 100 ms if target have been closed)
-                for (int i = 0; i < this.RetryDelayMilliseconds;)
+                for (int i = 0; i < RetryDelayMilliseconds;)
                 {
-                    int retryDelay = Math.Min(100, this.RetryDelayMilliseconds - i);
+                    int retryDelay = Math.Min(100, RetryDelayMilliseconds - i);
                     Thread.Sleep(retryDelay);
                     i += retryDelay;
                     if (!IsInitialized)
@@ -189,10 +188,10 @@ namespace NLog.Targets.Wrappers
                     }
                 }
 
-                this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+                WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
             };
 
-            this.WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
+            WrappedTarget.WriteAsyncLogEvent(logEvent.LogEvent.WithContinuation(continuation));
         }
     }
 }

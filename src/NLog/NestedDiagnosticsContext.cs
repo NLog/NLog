@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,7 +37,7 @@ namespace NLog
     using System.Collections.Generic;
     using System.Linq;
 
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// Nested Diagnostics Context - a thread-local structure that keeps a stack
@@ -52,13 +52,7 @@ namespace NLog
         /// Gets the top NDC message but doesn't remove it.
         /// </summary>
         /// <returns>The top message. .</returns>
-        public static string TopMessage
-        {
-            get
-            {
-                return FormatHelper.ConvertToString(TopObject, null);
-            }
-        }
+        public static string TopMessage => FormatHelper.ConvertToString(TopObject, null);
 
         /// <summary>
         /// Gets the top NDC object but doesn't remove it.
@@ -73,10 +67,7 @@ namespace NLog
             }
         }
 
-        private static Stack<object> ThreadStack
-        {
-            get { return ThreadLocalStorageHelper.GetDataForSlot<Stack<object>>(dataSlot); }
-        }
+        private static Stack<object> ThreadStack => ThreadLocalStorageHelper.GetDataForSlot<Stack<object>>(dataSlot);
 
         /// <summary>
         /// Pushes the specified text on current thread NDC.
@@ -171,8 +162,8 @@ namespace NLog
         /// </summary>
         private class StackPopper : IDisposable
         {
-            private Stack<object> stack;
-            private int previousCount;
+            private Stack<object> _stack;
+            private int _previousCount;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="StackPopper" /> class.
@@ -181,8 +172,8 @@ namespace NLog
             /// <param name="previousCount">The previous count.</param>
             public StackPopper(Stack<object> stack, int previousCount)
             {
-                this.stack = stack;
-                this.previousCount = previousCount;
+                _stack = stack;
+                _previousCount = previousCount;
             }
 
             /// <summary>
@@ -190,9 +181,9 @@ namespace NLog
             /// </summary>
             void IDisposable.Dispose()
             {
-                while (this.stack.Count > this.previousCount)
+                while (_stack.Count > _previousCount)
                 {
-                    this.stack.Pop();
+                    _stack.Pop();
                 }
             }
         }

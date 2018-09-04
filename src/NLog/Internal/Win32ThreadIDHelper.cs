@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
 namespace NLog.Internal
 {
@@ -57,7 +57,7 @@ namespace NLog.Internal
         /// </summary>
         public Win32ThreadIDHelper()
         {
-            this.currentProcessID = NativeMethods.GetCurrentProcessId();
+            currentProcessID = NativeMethods.GetCurrentProcessId();
 
             var sb = new StringBuilder(512);
             if (0 == NativeMethods.GetModuleFileName(IntPtr.Zero, sb, sb.Capacity))
@@ -65,36 +65,27 @@ namespace NLog.Internal
                 throw new InvalidOperationException("Cannot determine program name.");
             }
 
-            this.currentProcessName = sb.ToString();
-            this.currentProcessBaseName = Path.GetFileNameWithoutExtension(this.currentProcessName);
+            currentProcessName = sb.ToString();
+            currentProcessBaseName = Path.GetFileNameWithoutExtension(currentProcessName);
         }
 
         /// <summary>
         /// Gets current process ID.
         /// </summary>
         /// <value></value>
-        public override int CurrentProcessID
-        {
-            get { return this.currentProcessID; }
-        }
+        public override int CurrentProcessID => currentProcessID;
 
         /// <summary>
         /// Gets current process name.
         /// </summary>
         /// <value></value>
-        public override string CurrentProcessName
-        {
-            get { return this.currentProcessName; }
-        }
+        public override string CurrentProcessName => currentProcessName;
 
         /// <summary>
         /// Gets current process name (excluding filename extension, if any).
         /// </summary>
         /// <value></value>
-        public override string CurrentProcessBaseName
-        {
-            get { return this.currentProcessBaseName; }
-        }
+        public override string CurrentProcessBaseName => currentProcessBaseName;
     }
 }
 

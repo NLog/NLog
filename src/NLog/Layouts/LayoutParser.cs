@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,12 +38,12 @@ namespace NLog.Layouts
     using System.Diagnostics;
     using System.Reflection;
     using System.Text;
-    using NLog.Common;
-    using NLog.Conditions;
-    using NLog.Config;
-    using NLog.Internal;
-    using NLog.LayoutRenderers;
-    using NLog.LayoutRenderers.Wrappers;
+    using Common;
+    using Conditions;
+    using Config;
+    using Internal;
+    using LayoutRenderers;
+    using LayoutRenderers.Wrappers;
 
     /// <summary>
     /// Parses layout strings.

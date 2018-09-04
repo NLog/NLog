@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -66,11 +66,11 @@ namespace NLog.UnitTests
 
                 if (type.IsEnum || type.IsInterface)
                 {
-                    this.typeUsageCount[type] = 0;
+                    typeUsageCount[type] = 0;
                 }
             }
 
-            this.typeUsageCount[typeof(IInstallable)] = 1;
+            typeUsageCount[typeof(IInstallable)] = 1;
 
             foreach (Type type in allTypes)
             {
@@ -81,12 +81,12 @@ namespace NLog.UnitTests
 
                 if (type.BaseType != null)
                 {
-                    this.IncrementUsageCount(type.BaseType);
+                    IncrementUsageCount(type.BaseType);
                 }
 
                 foreach (var iface in type.GetInterfaces())
                 {
-                    this.IncrementUsageCount(iface);
+                    IncrementUsageCount(iface);
                 }
 
                 foreach (var method in type.GetMethods())
@@ -99,11 +99,11 @@ namespace NLog.UnitTests
                     // Console.WriteLine("  {0}", method.Name);
                     try
                     {
-                        this.IncrementUsageCount(method.ReturnType);
+                        IncrementUsageCount(method.ReturnType);
 
                         foreach (var p in method.GetParameters())
                         {
-                            this.IncrementUsageCount(p.ParameterType);
+                            IncrementUsageCount(p.ParameterType);
                         }
                     }
                     catch (Exception ex)
@@ -117,7 +117,7 @@ namespace NLog.UnitTests
             var unusedTypes = new List<Type>();
             StringBuilder sb = new StringBuilder();
 
-            foreach (var kvp in this.typeUsageCount)
+            foreach (var kvp in typeUsageCount)
             {
                 if (kvp.Value == 0)
                 {
@@ -127,7 +127,7 @@ namespace NLog.UnitTests
                 }
             }
 
-            Assert.Equal(0, unusedTypes.Count);
+            Assert.Empty(unusedTypes);
         }
 
         private void IncrementUsageCount(Type type)
@@ -139,10 +139,10 @@ namespace NLog.UnitTests
 
             if (type.IsGenericType && !type.IsGenericTypeDefinition)
             {
-                this.IncrementUsageCount(type.GetGenericTypeDefinition());
+                IncrementUsageCount(type.GetGenericTypeDefinition());
                 foreach (var parm in type.GetGenericArguments())
                 {
-                    this.IncrementUsageCount(parm);
+                    IncrementUsageCount(parm);
                 }
                 return;
             }

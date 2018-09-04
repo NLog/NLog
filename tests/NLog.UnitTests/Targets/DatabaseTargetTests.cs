@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,7 +36,9 @@ namespace NLog.UnitTests.Targets
     using System;
     using System.Collections;
     using System.Collections.Generic;
+#if !NETSTANDARD
     using System.Configuration;
+#endif
     using System.Data;
     using System.Data.Common;
     using System.Globalization;
@@ -49,16 +51,17 @@ namespace NLog.UnitTests.Targets
     using Xunit.Extensions;
     using System.Data.SqlClient;
 
-
 #if MONO 
     using Mono.Data.Sqlite;
+#elif NETSTANDARD
+    using Microsoft.Data.Sqlite;
 #else
     using System.Data.SQLite;
 #endif
 
     public class DatabaseTargetTests : NLogTestBase
     {
-#if !MONO
+#if !MONO && !NETSTANDARD
         static DatabaseTargetTests()
         {
             var data = (DataSet)ConfigurationManager.GetSection("system.data");
@@ -598,28 +601,110 @@ Dispose()
         }
 
         [Fact]
+        public void EmptyParameterDbTypePropertyNameAndParameterConverterTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='dt' type='Database'>
+                        <DBProvider>MockDb</DBProvider>
+                        <ConnectionString>FooBar</ConnectionString>
+                        <CommandText>INSERT INTO FooBar VALUES(@message)</CommandText>
+                        <parameter name='@message' layout='${message}'/>
+                    </target>
+                </targets>
+            </nlog>");
+
+            DatabaseTarget dt = c.FindTargetByName("dt") as DatabaseTarget;
+            Assert.NotNull(dt);
+            dt.Initialize(c);
+            Assert.Equal("DbType", dt.ParameterDbTypePropertyName);
+            Assert.Equal(typeof(DatabaseParameterConverter), dt.ParameterConverterType);
+        }
+
+        [Fact]
+        public void ParameterDbTypePropertyNameTest()
+        {
+            MockDbConnection.ClearLog();
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='dt' type='Database'>
+                        <DBProvider>MockDb</DBProvider>
+                        <ConnectionString>FooBar</ConnectionString>
+                        <CommandText>INSERT INTO FooBar VALUES(@message,@level,@date)</CommandText>
+                        <ParameterDbTypePropertyName>MockDbType</ParameterDbTypePropertyName>
+                        <ParameterConverterType>NLog.UnitTests.Targets.DatabaseTargetTests+MockDatabaseParameterConverter, NLog.UnitTests</ParameterConverterType>
+                        <parameter name='@message' layout='${message}'/>
+                        <parameter name='@level' dbType='Int32' layout='${level:format=Ordinal}'/>
+                        <parameter name='@date' dbType='DateTime' format='yyyy-MM-dd HH:mm:ss.fff' layout='${date:format=yyyy-MM-dd HH\:mm\:ss.fff}'/>
+                    </target>
+                </targets>
+            </nlog>");
+
+            DatabaseTarget dt = c.FindTargetByName("dt") as DatabaseTarget;
+            Assert.NotNull(dt);
+            Assert.Equal("MockDbType", dt.ParameterDbTypePropertyName);
+            Assert.Equal(typeof(MockDatabaseParameterConverter), dt.ParameterConverterType);
+            dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            dt.Initialize(c);
+            List<Exception> exceptions = new List<Exception>();
+            var alogEvent = new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add);
+            dt.WriteAsyncLogEvent(alogEvent);
+            foreach (var ex in exceptions)
+            {
+                Assert.Null(ex);
+            }
+
+            string expectedLog = @"Open('FooBar').
+CreateParameter(0)
+Parameter #0 Direction=Input
+Parameter #0 Name=@message
+Parameter #0 Value=msg1
+Add Parameter Parameter #0
+CreateParameter(1)
+Parameter #1 Direction=Input
+Parameter #1 Name=@level
+Parameter #1 MockDbType=Int32
+Parameter #1 Value={0}
+Add Parameter Parameter #1
+CreateParameter(2)
+Parameter #2 Direction=Input
+Parameter #2 Name=@date
+Parameter #2 MockDbType=DateTime
+Parameter #2 Value={1}
+Add Parameter Parameter #2
+ExecuteNonQuery: INSERT INTO FooBar VALUES(@message,@level,@date)
+Close()
+Dispose()
+";
+            expectedLog = string.Format(expectedLog, LogLevel.Info.Ordinal.ToString(), alogEvent.LogEvent.TimeStamp.ToString(CultureInfo.InvariantCulture));
+            AssertLog(expectedLog);
+        }
+
+        [Fact]
         public void ConnectionStringBuilderTest1()
         {
             DatabaseTarget dt;
 
             dt = new DatabaseTarget();
-            Assert.Equal("Server=.;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
+            Assert.Equal("Server=.;Trusted_Connection=SSPI;", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.DBHost = "${logger}";
-            Assert.Equal("Server=Logger1;Trusted_Connection=SSPI;", this.GetConnectionString(dt));
+            Assert.Equal("Server=Logger1;Trusted_Connection=SSPI;", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
-            Assert.Equal("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", this.GetConnectionString(dt));
+            Assert.Equal("Server=HOST1;Trusted_Connection=SSPI;Database=Logger1", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.DBHost = "HOST1";
             dt.DBDatabase = "${logger}";
             dt.DBUserName = "user1";
             dt.DBPassword = "password1";
-            Assert.Equal("Server=HOST1;User id=user1;Password=password1;Database=Logger1", this.GetConnectionString(dt));
+            Assert.Equal("Server=HOST1;User id=user1;Password=password1;Database=Logger1", GetConnectionString(dt));
 
             dt = new DatabaseTarget();
             dt.ConnectionString = "customConnectionString42";
@@ -627,7 +712,7 @@ Dispose()
             dt.DBDatabase = "${logger}";
             dt.DBUserName = "user1";
             dt.DBPassword = "password1";
-            Assert.Equal("customConnectionString42", this.GetConnectionString(dt));
+            Assert.Equal("customConnectionString42", GetConnectionString(dt));
         }
 
         [Fact]
@@ -644,7 +729,7 @@ Dispose()
             db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
             db.Close();
 
-            Assert.Equal(1, exceptions.Count);
+            Assert.Single(exceptions);
             Assert.NotNull(exceptions[0]);
             Assert.Equal("Cannot open fake database.", exceptions[0].Message);
             Assert.Equal("Open('cannotconnect').\r\n", MockDbConnection.Log);
@@ -733,6 +818,7 @@ Dispose()
             AssertLog(expectedLog);
         }
 
+#if !MONO && !NETSTANDARD
         [Fact]
         public void ConnectionStringNameInitTest()
         {
@@ -789,6 +875,7 @@ Dispose()
             Assert.Equal(1, MockDbConnection2.OpenCount);
             Assert.Equal("myConnectionString", MockDbConnection2.LastOpenConnectionString);
         }
+#endif
 
         [Fact]
         public void SqlServerShorthandNotationTest()
@@ -804,10 +891,15 @@ Dispose()
                 };
 
                 dt.Initialize(null);
-                Assert.Equal(typeof(System.Data.SqlClient.SqlConnection), dt.ConnectionType);
+#if !NETSTANDARD
+                Assert.Equal(typeof(SqlConnection), dt.ConnectionType);
+#else
+                Assert.NotNull(dt.ConnectionType);
+#endif
             }
         }
 
+#if !NETSTANDARD
         [Fact]
         public void OleDbShorthandNotationTest()
         {
@@ -837,8 +929,13 @@ Dispose()
             dt.Initialize(null);
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
+#endif
 
+#if NETSTANDARD
+        [Fact(Skip = "NETSTANDARD missing fully working Sqlite")]
+#else
         [Fact]
+#endif
         public void SQLite_InstallAndLogMessageProgrammatically()
         {
             SQLiteTest sqlLite = new SQLiteTest("TestLogProgram.sqlite");
@@ -855,17 +952,11 @@ Dispose()
 
                 DatabaseTarget testTarget = new DatabaseTarget("TestSqliteTarget");
                 testTarget.ConnectionString = connectionString;
-                string dbProvider = "";
-#if MONO 
-                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
-#else
-                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
-#endif
-                testTarget.DBProvider = dbProvider;
+                testTarget.DBProvider = GetSQLiteDbProvider();
 
                 testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
                 {
-                    CommandType = System.Data.CommandType.Text,
+                    CommandType = CommandType.Text,
                     Text = $@"
                     CREATE TABLE NLogTestTable (
                         Id int PRIMARY KEY,
@@ -909,7 +1000,22 @@ Dispose()
             }
         }
 
+        private string GetSQLiteDbProvider()
+        {
+#if MONO
+            return "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
+#elif NETSTANDARD
+            return "Microsoft.Data.Sqlite.SqliteConnection, Microsoft.Data.Sqlite";
+#else
+            return "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
+#endif
+        }
+
+#if NETSTANDARD
+        [Fact(Skip = "NETSTANDARD missing fully working Sqlite")]
+#else
         [Fact]
+#endif
         public void SQLite_InstallAndLogMessage()
         {
             SQLiteTest sqlLite = new SQLiteTest("TestLogXml.sqlite");
@@ -923,12 +1029,8 @@ Dispose()
                 sqlLite.CreateDatabase();
 
                 var connectionString = sqlLite.GetConnectionString();
-                string dbProvider = "";
-#if MONO 
-                dbProvider = "Mono.Data.Sqlite.SqliteConnection, Mono.Data.Sqlite";
-#else
-                dbProvider = "System.Data.SQLite.SQLiteConnection, System.Data.SQLite";
-#endif
+                string dbProvider = GetSQLiteDbProvider();
+
                 // Create log with xml config
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
@@ -974,29 +1076,95 @@ Dispose()
             }
         }
 
+        private void SetupSqliteConfigWithInvalidInstallCommand(string databaseName)
+        {
+            var nlogXmlConfig = @"
+            <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+                  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='false'>
+                <targets>
+                    <target name='database' xsi:type='Database' dbProvider='{0}' connectionstring='{1}' 
+                        commandText='insert into RethrowingInstallExceptionsTable (Message) values (@message);'>
+                        <parameter name='@message' layout='${{message}}' />
+                        <install-command text='THIS IS NOT VALID SQL;' />
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='database' />
+                </rules>
+            </nlog>";
+
+            // Use an in memory SQLite database
+            // See https://www.sqlite.org/inmemorydb.html
+            var connectionString = "Uri=file::memory:;Version=3";
+
+            LogManager.Configuration = CreateConfigurationFromString(
+                String.Format(nlogXmlConfig, GetSQLiteDbProvider(), connectionString)
+            );
+        }
+
+        [Fact]
+        public void NotRethrowingInstallExceptions()
+        {
+            SetupSqliteConfigWithInvalidInstallCommand("not_rethrowing_install_exceptions");
+
+            // Default InstallationContext should not rethrow exceptions
+            InstallationContext context = new InstallationContext();
+
+            Assert.False(context.IgnoreFailures, "Failures should not be ignored by default");
+            Assert.False(context.ThrowExceptions, "Exceptions should not be thrown by default");
+
+            var exRecorded = Record.Exception(() => LogManager.Configuration.Install(context));
+            Assert.Null(exRecorded);
+        }
+
+#if NETSTANDARD
+        [Fact(Skip = "NETSTANDARD missing fully working Sqlite")]
+#else
+        [Fact]
+#endif
+        public void RethrowingInstallExceptions()
+        {
+            SetupSqliteConfigWithInvalidInstallCommand("rethrowing_install_exceptions");
+
+            InstallationContext context = new InstallationContext()
+            {
+                ThrowExceptions = true
+            };
+
+            Assert.True(context.ThrowExceptions);  // Sanity check
+
+#if MONO || NETSTANDARD
+            Assert.Throws<SqliteException>(() => LogManager.Configuration.Install(context));
+#else
+            Assert.Throws<SQLiteException>(() => LogManager.Configuration.Install(context));
+#endif
+
+        }
+
         [Fact]
         public void SqlServer_NoTargetInstallException()
         {
-            if (SqlServerTest.IsTravis())
+            if (IsTravis())
             {
                 Console.WriteLine("skipping test SqlServer_NoTargetInstallException because we are running in Travis");
                 return;
             }
 
-            SqlServerTest.TryDropDatabase();
+            bool isAppVeyor = IsAppVeyor();
+            SqlServerTest.TryDropDatabase(isAppVeyor);
 
             try
             {
-                SqlServerTest.CreateDatabase();
+                SqlServerTest.CreateDatabase(isAppVeyor);
 
-                var connectionString = SqlServerTest.GetConnectionString();
+                var connectionString = SqlServerTest.GetConnectionString(isAppVeyor);
 
                 DatabaseTarget testTarget = new DatabaseTarget("TestDbTarget");
                 testTarget.ConnectionString = connectionString;
 
                 testTarget.InstallDdlCommands.Add(new DatabaseCommandInfo()
                 {
-                    CommandType = System.Data.CommandType.Text,
+                    CommandType = CommandType.Text,
                     Text = $@"
                     IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'NLogTestTable')
                         RETURN
@@ -1005,13 +1173,13 @@ Dispose()
                         [ID] [int] IDENTITY(1,1) NOT NULL,
                         [MachineName] [nvarchar](200) NULL)"
                 });
-                
+
                 using (var context = new InstallationContext())
                 {
                     testTarget.Install(context);
                 }
 
-                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES 
+                var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_NAME FROM NLogTest.INFORMATION_SCHEMA.TABLES 
                     WHERE TABLE_TYPE = 'BASE TABLE'
                     AND  TABLE_NAME = 'NLogTestTable'
                 ");
@@ -1021,27 +1189,27 @@ Dispose()
             }
             finally
             {
-                SqlServerTest.TryDropDatabase();
+                SqlServerTest.TryDropDatabase(isAppVeyor);
             }
         }
 
         [Fact]
         public void SqlServer_InstallAndLogMessage()
         {
-
-            if (SqlServerTest.IsTravis())
+            if (IsTravis())
             {
                 Console.WriteLine("skipping test SqlServer_InstallAndLogMessage because we are running in Travis");
                 return;
             }
 
-            SqlServerTest.TryDropDatabase();
+            bool isAppVeyor = IsAppVeyor();
+            SqlServerTest.TryDropDatabase(isAppVeyor);
 
             try
             {
-                SqlServerTest.CreateDatabase();
+                SqlServerTest.CreateDatabase(isAppVeyor);
 
-                var connectionString = SqlServerTest.GetConnectionString();
+                var connectionString = SqlServerTest.GetConnectionString(IsAppVeyor());
                 LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
@@ -1066,7 +1234,7 @@ Dispose()
                 InstallationContext context = new InstallationContext();
                 LogManager.Configuration.Install(context);
 
-                var tableCatalog = SqlServerTest.IssueScalarQuery(@"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
+                var tableCatalog = SqlServerTest.IssueScalarQuery(isAppVeyor, @"SELECT TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLES
                  WHERE TABLE_SCHEMA = 'Dbo'
                  AND  TABLE_NAME = 'NLogSqlServerTest'");
 
@@ -1081,21 +1249,23 @@ Dispose()
                 logEvent.Properties["uid"] = uid;
                 logger.Log(logEvent);
 
-                var count = SqlServerTest.IssueScalarQuery("SELECT count(1) FROM dbo.NLogSqlServerTest");
+                var count = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT count(1) FROM dbo.NLogSqlServerTest");
 
                 Assert.Equal(1, count);
 
-                var result = SqlServerTest.IssueScalarQuery("SELECT Uid FROM dbo.NLogSqlServerTest");
+                var result = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT Uid FROM dbo.NLogSqlServerTest");
 
                 Assert.Equal(uid, result);
             }
             finally
             {
-                SqlServerTest.TryDropDatabase();
+                SqlServerTest.TryDropDatabase(isAppVeyor);
             }
 
         }
 
+#if !NETSTANDARD
+        [Fact]
         public void GetProviderNameFromAppConfig()
         {
             LogManager.ThrowExceptions = true;
@@ -1114,7 +1284,7 @@ Dispose()
 
             databaseTarget.Initialize(null);
             Assert.NotNull(databaseTarget.ProviderFactory);
-            Assert.Equal(typeof(System.Data.SqlClient.SqlClientFactory), databaseTarget.ProviderFactory.GetType());
+            Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
         }
 
         [Fact]
@@ -1138,8 +1308,9 @@ Dispose()
 
             databaseTarget.Initialize(null);
             Assert.NotNull(databaseTarget.ProviderFactory);
-            Assert.Equal(typeof(System.Data.SqlClient.SqlClientFactory), databaseTarget.ProviderFactory.GetType());
+            Assert.Equal(typeof(SqlClientFactory), databaseTarget.ProviderFactory.GetType());
         }
+#endif
 
         [Theory]
         [InlineData("usetransactions='false'", true)]
@@ -1147,17 +1318,17 @@ Dispose()
         [InlineData("", false)]
         public void WarningForObsoleteUseTransactions(string property, bool printWarning)
         {
-            LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"
+            LoggingConfiguration c = CreateConfigurationFromString($@"
             <nlog ThrowExceptions='true'>
                 <targets>
-                    <target type='database' {0} name='t1' commandtext='fake sql' connectionstring='somewhere' />
+                    <target type='database' {property} name='t1' commandtext='fake sql' connectionstring='somewhere' />
                 </targets>
                 <rules>
                       <logger name='*' writeTo='t1'>
                        
                       </logger>
                     </rules>
-            </nlog>", property));
+            </nlog>");
 
             StringWriter writer1 = new StringWriter()
             {
@@ -1170,17 +1341,14 @@ Dispose()
 
             if (printWarning)
             {
-                Assert.Contains("obsolete", internalLog, StringComparison.InvariantCultureIgnoreCase);
-                Assert.Contains("usetransactions", internalLog, StringComparison.InvariantCultureIgnoreCase);
+                Assert.Contains("obsolete", internalLog, StringComparison.OrdinalIgnoreCase);
+                Assert.Contains("usetransactions", internalLog, StringComparison.OrdinalIgnoreCase);
             }
             else
             {
-                Assert.DoesNotContain("obsolete", internalLog, StringComparison.InvariantCultureIgnoreCase);
-                Assert.DoesNotContain("usetransactions", internalLog, StringComparison.InvariantCultureIgnoreCase);
+                Assert.DoesNotContain("obsolete", internalLog, StringComparison.OrdinalIgnoreCase);
+                Assert.DoesNotContain("usetransactions", internalLog, StringComparison.OrdinalIgnoreCase);
             }
-
-
-
         }
 
         private static void AssertLog(string expectedLog)
@@ -1213,7 +1381,7 @@ Dispose()
 
             public MockDbConnection(string connectionString)
             {
-                this.ConnectionString = connectionString;
+                ConnectionString = connectionString;
             }
 
             public IDbTransaction BeginTransaction(IsolationLevel il)
@@ -1238,35 +1406,26 @@ Dispose()
 
             public string ConnectionString { get; set; }
 
-            public int ConnectionTimeout
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public int ConnectionTimeout => throw new NotImplementedException();
 
             public IDbCommand CreateCommand()
             {
                 return new MockDbCommand() { Connection = this };
             }
 
-            public string Database
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public string Database => throw new NotImplementedException();
 
             public void Open()
             {
-                LastConnectionString = this.ConnectionString;
-                AddToLog("Open('{0}').", this.ConnectionString);
-                if (this.ConnectionString == "cannotconnect")
+                LastConnectionString = ConnectionString;
+                AddToLog("Open('{0}').", ConnectionString);
+                if (ConnectionString == "cannotconnect")
                 {
                     throw new InvalidOperationException("Cannot open fake database.");
                 }
             }
 
-            public ConnectionState State
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public ConnectionState State => throw new NotImplementedException();
 
             public void Dispose()
             {
@@ -1296,7 +1455,7 @@ Dispose()
 
             public MockDbCommand()
             {
-                this.parameters = new MockParameterCollection(this);
+                parameters = new MockParameterCollection(this);
             }
 
             public void Cancel()
@@ -1314,14 +1473,14 @@ Dispose()
 
             public IDbDataParameter CreateParameter()
             {
-                ((MockDbConnection)this.Connection).AddToLog("CreateParameter({0})", this.paramCount);
+                ((MockDbConnection)Connection).AddToLog("CreateParameter({0})", paramCount);
                 return new MockDbParameter(this, paramCount++);
             }
 
             public int ExecuteNonQuery()
             {
-                ((MockDbConnection)this.Connection).AddToLog("ExecuteNonQuery: {0}", this.CommandText);
-                if (this.Connection.ConnectionString == "cannotexecute")
+                ((MockDbConnection)Connection).AddToLog("ExecuteNonQuery: {0}", CommandText);
+                if (Connection.ConnectionString == "cannotexecute")
                 {
                     throw new InvalidOperationException("Failure during ExecuteNonQuery");
                 }
@@ -1344,10 +1503,7 @@ Dispose()
                 throw new NotImplementedException();
             }
 
-            public IDataParameterCollection Parameters
-            {
-                get { return parameters; }
-            }
+            public IDataParameterCollection Parameters => parameters;
 
             public void Prepare()
             {
@@ -1358,8 +1514,8 @@ Dispose()
 
             public UpdateRowSource UpdatedRowSource
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
 
             public void Dispose()
@@ -1385,88 +1541,86 @@ Dispose()
 
             public DbType DbType
             {
-                get { return this.parameterType; }
-                set { this.parameterType = value; }
+                get { return parameterType; }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} DbType={1}", paramId, value);
+                    parameterType = value;
+                }
+            }
+            public DbType MockDbType
+            {
+                get { return parameterType; }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} MockDbType={1}", paramId, value);
+                    parameterType = value;
+                }
             }
 
             public ParameterDirection Direction
             {
-                get { throw new NotImplementedException(); }
-                set
-                {
-                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Direction={1}", paramId,
-                        value);
-                }
+                get => throw new NotImplementedException();
+                set => ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Direction={1}", paramId,
+                    value);
             }
 
-            public bool IsNullable
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public bool IsNullable => throw new NotImplementedException();
 
             public string ParameterName
             {
-                get { return this.parameterName; }
+                get => parameterName;
                 set
                 {
                     ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Name={1}", paramId, value);
-                    this.parameterName = value;
+                    parameterName = value;
                 }
             }
 
             public string SourceColumn
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
 
             public DataRowVersion SourceVersion
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
 
             public object Value
             {
-                get { return this.parameterValue; }
+                get => parameterValue;
                 set
                 {
                     ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Value={1}", paramId, value);
-                    this.parameterValue = value;
+                    parameterValue = value;
                 }
             }
 
             public byte Precision
             {
-                get { throw new NotImplementedException(); }
-                set
-                {
-                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Precision={1}", paramId,
-                        value);
-                }
+                get => throw new NotImplementedException();
+                set => ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Precision={1}", paramId,
+                    value);
             }
 
             public byte Scale
             {
-                get { throw new NotImplementedException(); }
-                set
-                {
-                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Scale={1}", paramId, value);
-                }
+                get => throw new NotImplementedException();
+                set => ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Scale={1}", paramId, value);
             }
 
             public int Size
             {
-                get { throw new NotImplementedException(); }
-                set
-                {
-                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Size={1}", paramId, value);
-                }
+                get => throw new NotImplementedException();
+                set => ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Size={1}", paramId, value);
             }
 
             public override string ToString()
             {
-                return "Parameter #" + this.paramId;
+                return "Parameter #" + paramId;
             }
         }
 
@@ -1489,20 +1643,11 @@ Dispose()
                 throw new NotImplementedException();
             }
 
-            public int Count
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public int Count => throw new NotImplementedException();
 
-            public object SyncRoot
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public object SyncRoot => throw new NotImplementedException();
 
-            public bool IsSynchronized
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public bool IsSynchronized => throw new NotImplementedException();
 
             public int Add(object value)
             {
@@ -1542,19 +1687,13 @@ Dispose()
 
             object IList.this[int index]
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
 
-            public bool IsReadOnly
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public bool IsReadOnly => throw new NotImplementedException();
 
-            public bool IsFixedSize
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public bool IsFixedSize => throw new NotImplementedException();
 
             public bool Contains(string parameterName)
             {
@@ -1573,8 +1712,8 @@ Dispose()
 
             object IDataParameterCollection.this[string parameterName]
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get => throw new NotImplementedException();
+                set => throw new NotImplementedException();
             }
         }
 
@@ -1616,31 +1755,23 @@ Dispose()
                 throw new NotImplementedException();
             }
 
-            public override string DataSource
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public override string DataSource => throw new NotImplementedException();
 
-            public override string Database
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public override string Database => throw new NotImplementedException();
 
             public override void Open()
             {
-                LastOpenConnectionString = this.ConnectionString;
+                LastOpenConnectionString = ConnectionString;
                 OpenCount++;
             }
 
-            public override string ServerVersion
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public override string ServerVersion => throw new NotImplementedException();
 
-            public override ConnectionState State
-            {
-                get { throw new NotImplementedException(); }
-            }
+            public override ConnectionState State => throw new NotImplementedException();
+        }
+
+        public class MockDatabaseParameterConverter : DatabaseParameterConverter
+        {
         }
 
         private class SQLiteTest
@@ -1718,8 +1849,9 @@ Dispose()
         {
             public static void CreateDatabase(string dbName)
             {
-
-#if MONO 
+#if NETSTANDARD
+                // Using ConnectionString Mode=ReadWriteCreate
+#elif MONO
                 SqliteConnection.CreateFile(dbName);
 #else
                 SQLiteConnection.CreateFile(dbName);
@@ -1728,7 +1860,9 @@ Dispose()
 
             public static DbConnection GetConnection(string connectionString)
             {
-#if MONO 
+#if NETSTANDARD
+                return new SqliteConnection(connectionString + ";Mode=ReadWriteCreate;");
+#elif MONO
                 return new SqliteConnection(connectionString); 
 #else
                 return new SQLiteConnection(connectionString);
@@ -1737,7 +1871,7 @@ Dispose()
 
             public static DbCommand CreateCommand(string commandString, DbConnection connection)
             {
-#if MONO 
+#if MONO || NETSTANDARD
                 return new SqliteCommand(commandString, (SqliteConnection)connection);
 #else
                 return new SQLiteCommand(commandString, (SQLiteConnection)connection);
@@ -1747,30 +1881,31 @@ Dispose()
 
         private static class SqlServerTest
         {
-
-
             static SqlServerTest()
             {
             }
 
-            public static string GetConnectionString()
+            public static string GetConnectionString(bool isAppVeyor)
             {
-                var connectionString = ConfigurationManager.AppSettings["SqlServerTestConnectionString"];
+                string connectionString = string.Empty;
+#if !NETSTANDARD
+                connectionString = ConfigurationManager.AppSettings["SqlServerTestConnectionString"];
+#endif
                 if (String.IsNullOrWhiteSpace(connectionString))
                 {
-                    connectionString = IsAppVeyor() ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
+                    connectionString = isAppVeyor ? AppVeyorConnectionStringNLogTest : LocalConnectionStringNLogTest;
                 }
                 return connectionString;
             }
 
             /// <summary>
-            /// AppVeyor connectionstring for SQL 2012, see https://www.appveyor.com/docs/services-databases/
+            /// AppVeyor connectionstring for SQL 2016, see https://www.appveyor.com/docs/services-databases/
             /// </summary>
             private const string AppVeyorConnectionStringMaster =
-                @"Server=(local)\SQL2012SP1;Database=master;User ID=sa;Password=Password12!";
+                @"Server=(local)\SQL2016;Database=master;User ID=sa;Password=Password12!";
 
             private const string AppVeyorConnectionStringNLogTest =
-                @"Server=(local)\SQL2012SP1;Database=NLogTest;User ID=sa;Password=Password12!";
+                @"Server=(local)\SQL2016;Database=NLogTest;User ID=sa;Password=Password12!";
 
             private const string LocalConnectionStringMaster =
                 @"Data Source=(localdb)\MSSQLLocalDB; Database=master; Integrated Security=True;";
@@ -1778,48 +1913,28 @@ Dispose()
             private const string LocalConnectionStringNLogTest =
                 @"Data Source=(localdb)\MSSQLLocalDB; Database=NLogTest; Integrated Security=True;";
 
-            public static void CreateDatabase()
+            public static void CreateDatabase(bool isAppVeyor)
             {
-                var connectionString = GetMasterConnectionString();
-                IssueCommand("CREATE DATABASE NLogTest", connectionString);
+                var connectionString = GetMasterConnectionString(isAppVeyor);
+                IssueCommand(IsAppVeyor(), "CREATE DATABASE NLogTest", connectionString);
             }
 
-            public static bool NLogTestDatabaseExists()
+            public static bool NLogTestDatabaseExists(bool isAppVeyor)
             {
-                var connectionString = GetMasterConnectionString();
-                var dbId = IssueScalarQuery("select db_id('NLogTest')", connectionString);
+                var connectionString = GetMasterConnectionString(isAppVeyor);
+                var dbId = IssueScalarQuery(IsAppVeyor(), "select db_id('NLogTest')", connectionString);
                 return dbId != null && dbId != DBNull.Value;
 
             }
 
-            private static string GetMasterConnectionString()
+            private static string GetMasterConnectionString(bool isAppVeyor)
             {
-                return IsAppVeyor() ? AppVeyorConnectionStringMaster : LocalConnectionStringMaster;
+                return isAppVeyor ? AppVeyorConnectionStringMaster : LocalConnectionStringMaster;
             }
 
-            /// <summary>
-            /// Are we running on AppVeyor?
-            /// </summary>
-            /// <returns></returns>
-            private static bool IsAppVeyor()
+            public static void IssueCommand(bool isAppVeyor, string commandString, string connectionString = null)
             {
-                var val = Environment.GetEnvironmentVariable("APPVEYOR");
-                return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
-            }
-
-            /// <summary>
-            /// Are we running on Travis?
-            /// </summary>
-            /// <returns></returns>
-            public static bool IsTravis()
-            {
-                var val = Environment.GetEnvironmentVariable("TRAVIS");
-                return val != null && val.Equals("true", StringComparison.OrdinalIgnoreCase);
-            }
-
-            public static void IssueCommand(string commandString, string connectionString = null)
-            {
-                using (var connection = new SqlConnection(connectionString ?? GetConnectionString()))
+                using (var connection = new SqlConnection(connectionString ?? GetConnectionString(isAppVeyor)))
                 {
                     connection.Open();
                     if (connectionString == null)
@@ -1831,9 +1946,9 @@ Dispose()
                 }
             }
 
-            public static object IssueScalarQuery(string commandString, string connectionString = null)
+            public static object IssueScalarQuery(bool isAppVeyor, string commandString, string connectionString = null)
             {
-                using (var connection = new SqlConnection(connectionString ?? GetConnectionString()))
+                using (var connection = new SqlConnection(connectionString ?? GetConnectionString(isAppVeyor)))
                 {
                     connection.Open();
                     if (connectionString == null)
@@ -1849,14 +1964,14 @@ Dispose()
             /// <summary>
             /// Try dropping. IF fail, not exception
             /// </summary>
-            public static bool TryDropDatabase()
+            public static bool TryDropDatabase(bool isAppVeyor)
             {
                 try
                 {
-                    if (NLogTestDatabaseExists())
+                    if (NLogTestDatabaseExists(isAppVeyor))
                     {
-                        var connectionString = GetMasterConnectionString();
-                        IssueCommand(
+                        var connectionString = GetMasterConnectionString(isAppVeyor);
+                        IssueCommand(isAppVeyor,
                             "ALTER DATABASE [NLogTest] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; DROP DATABASE NLogTest;",
                             connectionString);
                         return true;

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,21 +33,18 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
-#if NET4_0 || NET4_5
     using System.Xml.Linq;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Targets;
     using Xunit;
 
-    public class MdlcLayoutRendererTests
+    public class MdlcLayoutRendererTests : NLogTestBase
     {
-        private static DebugTarget _target;
+        private DebugTarget _target;
 
         public MdlcLayoutRendererTests()
         {
-            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("mdlc", typeof(MdlcLayoutRenderer));
-
             const string configXml = @"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${mdlc:Item=myitem}${message}' /></targets>
@@ -86,5 +83,4 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(item + message, _target.LastMessage);
         }
     }
-#endif
 }

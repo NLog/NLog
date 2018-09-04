@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -52,19 +52,19 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void HappyPathDefaultsTest()
         {
-            this.HappyPathTest(false, LineEndingMode.CRLF, "msg1", "msg2", "msg3");
+            HappyPathTest(false, LineEndingMode.CRLF, "msg1", "msg2", "msg3");
         }
 
         [Fact]
         public void HappyPathCRLFTest()
         {
-            this.HappyPathTest(true, LineEndingMode.CRLF, "msg1", "msg2", "msg3");
+            HappyPathTest(true, LineEndingMode.CRLF, "msg1", "msg2", "msg3");
         }
 
         [Fact]
         public void HappyPathLFTest()
         {
-            this.HappyPathTest(true, LineEndingMode.LF, "msg1", "msg2", "msg3");
+            HappyPathTest(true, LineEndingMode.LF, "msg1", "msg2", "msg3");
         }
 
         private void HappyPathTest(bool newLine, LineEndingMode lineEnding, params string[] messages)
@@ -107,7 +107,7 @@ namespace NLog.UnitTests.Targets
                 }
             }
 
-            Assert.Equal(1, senderFactory.Senders.Count);
+            Assert.Single(senderFactory.Senders);
 
             var sender = senderFactory.Senders[0];
             target.Close();
@@ -125,7 +125,7 @@ namespace NLog.UnitTests.Targets
             Assert.True(actual.IndexOf("1: connect tcp://someaddress/") != -1);
             foreach (var message in messages)
             {
-                Assert.True(actual.IndexOf(string.Format("1: send 0 {0}", message.Length + eolLength)) != -1);
+                Assert.True(actual.IndexOf($"1: send 0 {message.Length + eolLength}") != -1);
             }
             Assert.True(actual.IndexOf("1: close") != -1);
         }
@@ -650,7 +650,7 @@ namespace NLog.UnitTests.Targets
                     {
                         lock (exceptions)
                         {
-                            Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
+                            // Console.WriteLine("{0} Write finished {1}", pendingWrites, ex);
                             exceptions.Add(ex);
                             pendingWrites--;
                             if (pendingWrites == 0)
@@ -894,8 +894,8 @@ namespace NLog.UnitTests.Targets
 
             public NetworkSender Create(string url, int maximumQueueSize)
             {
-                var sender = new MyNetworkSender(url, ++this.idCounter, this.Log, this);
-                this.Senders.Add(sender);
+                var sender = new MyNetworkSender(url, ++idCounter, Log, this);
+                Senders.Add(sender);
                 return sender;
             }
 
@@ -915,34 +915,34 @@ namespace NLog.UnitTests.Targets
                 this.id = id;
                 this.log = log;
                 this.senderFactory = senderFactory;
-                this.MemoryStream = new MemoryStream();
+                MemoryStream = new MemoryStream();
             }
             protected override void DoInitialize()
             {
                 base.DoInitialize();
-                this.log.WriteLine("{0}: connect {1}", this.id, this.Address);
+                log.WriteLine("{0}: connect {1}", id, Address);
             }
 
             protected override void DoFlush(AsyncContinuation continuation)
             {
-                this.log.WriteLine("{0}: flush", this.id);
+                log.WriteLine("{0}: flush", id);
                 continuation(null);
             }
 
             protected override void DoClose(AsyncContinuation continuation)
             {
-                this.log.WriteLine("{0}: close", this.id);
+                log.WriteLine("{0}: close", id);
                 continuation(null);
             }
 
             protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
             {
-                this.log.WriteLine("{0}: send {1} {2}", this.id, offset, length);
-                this.MemoryStream.Write(bytes, offset, length);
-                if (this.senderFactory.FailCounter > 0)
+                log.WriteLine("{0}: send {1} {2}", id, offset, length);
+                MemoryStream.Write(bytes, offset, length);
+                if (senderFactory.FailCounter > 0)
                 {
-                    this.log.WriteLine("{0}: failed", this.id);
-                    this.senderFactory.FailCounter--;
+                    log.WriteLine("{0}: failed", id);
+                    senderFactory.FailCounter--;
                     asyncContinuation(new IOException("some IO error has occured"));
                 }
                 else

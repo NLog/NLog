@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD1_5
+
 namespace NLog.Internal.Fakeables
 {
     using System;
@@ -43,7 +45,7 @@ namespace NLog.Internal.Fakeables
     public class AppDomainWrapper : IAppDomain
     {
 #if !SILVERLIGHT
-        private readonly AppDomain currentAppDomain;
+        private readonly AppDomain _currentAppDomain;
 #endif
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace NLog.Internal.Fakeables
         public AppDomainWrapper(AppDomain appDomain)
         {
 #if !SILVERLIGHT
-            currentAppDomain = appDomain;
+            _currentAppDomain = appDomain;
             try
             {
                 BaseDirectory = appDomain.BaseDirectory;
@@ -63,6 +65,7 @@ namespace NLog.Internal.Fakeables
                 InternalLogger.Warn(ex, "AppDomain.BaseDirectory Failed");
                 BaseDirectory = string.Empty;
             }
+#if !NETSTANDARD
             try
             {
                 ConfigurationFile = appDomain.SetupInformation.ConfigurationFile;
@@ -78,15 +81,19 @@ namespace NLog.Internal.Fakeables
                                  ? ArrayHelper.Empty<string>()
                                  : appDomain.SetupInformation.PrivateBinPath.Split(new[] {';'},
                                                                                    StringSplitOptions.RemoveEmptyEntries);
+#else
+            PrivateBinPath = ArrayHelper.Empty<string>();
+            ConfigurationFile = string.Empty;
+#endif
             FriendlyName = appDomain.FriendlyName;
             Id = appDomain.Id;
 #endif
         }
 
         /// <summary>
-        /// Gets a the current <see cref="AppDomain"/> wrappered in a <see cref="AppDomainWrapper"/>.
+        /// Creates an AppDomainWrapper for the current <see cref="AppDomain"/>
         /// </summary>
-        public static AppDomainWrapper CurrentDomain { get { return new AppDomainWrapper(AppDomain.CurrentDomain); } }
+        public static AppDomainWrapper CurrentDomain => new AppDomainWrapper(AppDomain.CurrentDomain);
 
         /// <summary>
         /// Gets or sets the base directory that the assembly resolver uses to probe for assemblies.
@@ -121,17 +128,17 @@ namespace NLog.Internal.Fakeables
             add
             {
 #if !SILVERLIGHT
-                if (this.processExitEvent == null && this.currentAppDomain != null)
-                    this.currentAppDomain.ProcessExit += OnProcessExit;
+                if (processExitEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.ProcessExit += OnProcessExit;
 #endif
-                this.processExitEvent += value;
+                processExitEvent += value;
             }
             remove
             {
-                this.processExitEvent -= value;
+                processExitEvent -= value;
 #if !SILVERLIGHT
-                if (this.processExitEvent == null && this.currentAppDomain != null)
-                    this.currentAppDomain.ProcessExit -= OnProcessExit;
+                if (processExitEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.ProcessExit -= OnProcessExit;
 #endif
             }
         }
@@ -145,18 +152,18 @@ namespace NLog.Internal.Fakeables
             add
             {
 #if !SILVERLIGHT
-                if (this.domainUnloadEvent == null && this.currentAppDomain != null)
-                    this.currentAppDomain.DomainUnload += OnDomainUnload;
+                if (domainUnloadEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.DomainUnload += OnDomainUnload;
 #endif
-                this.domainUnloadEvent += value;
+                domainUnloadEvent += value;
 
             }
             remove
             {
-                this.domainUnloadEvent -= value;
+                domainUnloadEvent -= value;
 #if !SILVERLIGHT
-                if (this.domainUnloadEvent == null && this.currentAppDomain != null)
-                    this.currentAppDomain.DomainUnload -= OnDomainUnload;
+                if (domainUnloadEvent == null && _currentAppDomain != null)
+                    _currentAppDomain.DomainUnload -= OnDomainUnload;
 #endif
             }
         }
@@ -175,3 +182,5 @@ namespace NLog.Internal.Fakeables
         }
     }
 }
+
+#endif

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,11 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if NETSTANDARD
+#define DEBUG   // System.Diagnostics.Debug.WriteLine
+#endif
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
-    using NLog.Internal;
+    using Internal;
 
     /// <summary>
     /// Outputs log messages through the <c>OutputDebugString()</c> Win32 API.
@@ -67,7 +71,7 @@ namespace NLog.Targets
         /// </remarks>
         public OutputDebugStringTarget() : base()
         {
-            this.OptimizeBufferReuse = true;
+            OptimizeBufferReuse = true;
         }
 
         /// <summary>
@@ -79,7 +83,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public OutputDebugStringTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -88,7 +92,11 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            NativeMethods.OutputDebugString(base.RenderLogEvent(this.Layout, logEvent));
+#if NETSTANDARD
+            System.Diagnostics.Debug.WriteLine(base.RenderLogEvent(this.Layout, logEvent));
+#else
+            NativeMethods.OutputDebugString(RenderLogEvent(Layout, logEvent));
+#endif
         }
     }
 }

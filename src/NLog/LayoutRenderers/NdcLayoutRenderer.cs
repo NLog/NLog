@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -47,9 +47,9 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public NdcLayoutRenderer()
         {
-            this.Separator = " ";
-            this.BottomFrames = -1;
-            this.TopFrames = -1;
+            Separator = " ";
+            BottomFrames = -1;
+            TopFrames = -1;
         }
 
         /// <summary>
@@ -82,13 +82,13 @@ namespace NLog.LayoutRenderers
             int startPos = 0;
             int endPos = messages.Length;
 
-            if (this.TopFrames != -1)
+            if (TopFrames != -1)
             {
-                endPos = Math.Min(this.TopFrames, messages.Length);
+                endPos = Math.Min(TopFrames, messages.Length);
             }
-            else if (this.BottomFrames != -1)
+            else if (BottomFrames != -1)
             {
-                startPos = messages.Length - Math.Min(this.BottomFrames, messages.Length);
+                startPos = messages.Length - Math.Min(BottomFrames, messages.Length);
             }
 
             string currentSeparator = string.Empty;
@@ -97,7 +97,7 @@ namespace NLog.LayoutRenderers
                 var stringValue = Internal.FormatHelper.ConvertToString(messages[i], logEvent.FormatProvider);
                 builder.Append(currentSeparator);
                 builder.Append(stringValue);
-                currentSeparator = this.Separator;
+                currentSeparator = Separator;
             }
         }
     }

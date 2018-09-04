@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -40,7 +40,7 @@ namespace NLog.Config
     /// default in generated documentation.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-#if NET4_0 || NET4_5
+#if NET4_0 || NET4_5 && !NETSTANDARD1_5
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 #endif
     public sealed class AdvancedAttribute : Attribute

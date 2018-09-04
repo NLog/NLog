@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -71,6 +71,10 @@ namespace NLog.Config
         /// <summary>
         /// Appends the contents of an Exception's Data property to the specified target.
         /// </summary>
-        Data = 6
+        Data = 6,
+        /// <summary>
+        /// Destructure the exception (usually into JSON)
+        /// </summary>
+        Serialize = 7,
     }
 }

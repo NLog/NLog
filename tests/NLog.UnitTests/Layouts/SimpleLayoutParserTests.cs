@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -57,8 +57,8 @@ namespace NLog.UnitTests.Layouts
         public void SimpleTest()
         {
             SimpleLayout l = "${message}";
-            Assert.Equal(1, l.Renderers.Count);
-            Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+            Assert.Single(l.Renderers);
+            Assert.IsType<MessageLayoutRenderer>(l.Renderers[0]);
         }
 
         [Fact]
@@ -71,7 +71,7 @@ namespace NLog.UnitTests.Layouts
         public void SingleParamTest()
         {
             SimpleLayout l = "${mdc:item=AAA}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.NotNull(mdc);
             Assert.Equal("AAA", mdc.Item);
@@ -81,7 +81,7 @@ namespace NLog.UnitTests.Layouts
         public void ValueWithColonTest()
         {
             SimpleLayout l = "${mdc:item=AAA\\:}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.NotNull(mdc);
             Assert.Equal("AAA:", mdc.Item);
@@ -112,8 +112,8 @@ namespace NLog.UnitTests.Layouts
         public void DefaultValueWithBracketTest()
         {
             SimpleLayout l = "${mdc:AAA\\}\\:}";
-            Assert.Equal(l.Text, "${mdc:AAA\\}\\:}");
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Equal("${mdc:AAA\\}\\:}", l.Text);
+            Assert.Single(l.Renderers);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.NotNull(mdc);
             Assert.Equal("AAA}:", mdc.Item);
@@ -123,7 +123,7 @@ namespace NLog.UnitTests.Layouts
         public void DefaultValueWithOtherParametersTest()
         {
             SimpleLayout l = "${exception:message,type:separator=x}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             ExceptionLayoutRenderer elr = l.Renderers[0] as ExceptionLayoutRenderer;
             Assert.NotNull(elr);
             Assert.Equal("message,type", elr.Format);
@@ -134,7 +134,7 @@ namespace NLog.UnitTests.Layouts
         public void EmptyValueTest()
         {
             SimpleLayout l = "${mdc:item=}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             MdcLayoutRenderer mdc = l.Renderers[0] as MdcLayoutRenderer;
             Assert.NotNull(mdc);
             Assert.Equal("", mdc.Item);
@@ -144,13 +144,13 @@ namespace NLog.UnitTests.Layouts
         public void NestedLayoutTest()
         {
             SimpleLayout l = "${rot13:inner=${ndc:topFrames=3:separator=x}}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
             Assert.NotNull(lr);
             var nestedLayout = lr.Inner as SimpleLayout;
             Assert.NotNull(nestedLayout);
             Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
-            Assert.Equal(1, nestedLayout.Renderers.Count);
+            Assert.Single(nestedLayout.Renderers);
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
             Assert.NotNull(ndcLayoutRenderer);
             Assert.Equal(3, ndcLayoutRenderer.TopFrames);
@@ -161,7 +161,7 @@ namespace NLog.UnitTests.Layouts
         public void DoubleNestedLayoutTest()
         {
             SimpleLayout l = "${rot13:inner=${rot13:inner=${ndc:topFrames=3:separator=x}}}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
             Assert.NotNull(lr);
             var nestedLayout0 = lr.Inner as SimpleLayout;
@@ -171,7 +171,7 @@ namespace NLog.UnitTests.Layouts
             var nestedLayout = innerRot13.Inner as SimpleLayout;
             Assert.NotNull(nestedLayout);
             Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
-            Assert.Equal(1, nestedLayout.Renderers.Count);
+            Assert.Single(nestedLayout.Renderers);
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
             Assert.NotNull(ndcLayoutRenderer);
             Assert.Equal(3, ndcLayoutRenderer.TopFrames);
@@ -182,7 +182,7 @@ namespace NLog.UnitTests.Layouts
         public void DoubleNestedLayoutWithDefaultLayoutParametersTest()
         {
             SimpleLayout l = "${rot13:${rot13:${ndc:topFrames=3:separator=x}}}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             var lr = l.Renderers[0] as Rot13LayoutRendererWrapper;
             Assert.NotNull(lr);
             var nestedLayout0 = lr.Inner as SimpleLayout;
@@ -192,7 +192,7 @@ namespace NLog.UnitTests.Layouts
             var nestedLayout = innerRot13.Inner as SimpleLayout;
             Assert.NotNull(nestedLayout);
             Assert.Equal("${ndc:topFrames=3:separator=x}", nestedLayout.Text);
-            Assert.Equal(1, nestedLayout.Renderers.Count);
+            Assert.Single(nestedLayout.Renderers);
             var ndcLayoutRenderer = nestedLayout.Renderers[0] as NdcLayoutRenderer;
             Assert.NotNull(ndcLayoutRenderer);
             Assert.Equal(3, ndcLayoutRenderer.TopFrames);
@@ -203,7 +203,7 @@ namespace NLog.UnitTests.Layouts
         public void AmbientPropertyTest()
         {
             SimpleLayout l = "${message:padding=10}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             var pad = l.Renderers[0] as PaddingLayoutRendererWrapper;
             Assert.NotNull(pad);
             var message = ((SimpleLayout)pad.Inner).Renderers[0] as MessageLayoutRenderer;
@@ -224,7 +224,7 @@ namespace NLog.UnitTests.Layouts
         public void DoubleAmbientPropertyTest()
         {
             SimpleLayout l = "${message:uppercase=true:padding=10}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             var upperCase = l.Renderers[0] as UppercaseLayoutRendererWrapper;
             Assert.NotNull(upperCase);
             var pad = ((SimpleLayout)upperCase.Inner).Renderers[0] as PaddingLayoutRendererWrapper;
@@ -237,7 +237,7 @@ namespace NLog.UnitTests.Layouts
         public void ReverseDoubleAmbientPropertyTest()
         {
             SimpleLayout l = "${message:padding=10:uppercase=true}";
-            Assert.Equal(1, l.Renderers.Count);
+            Assert.Single(l.Renderers);
             var pad = ((SimpleLayout)l).Renderers[0] as PaddingLayoutRendererWrapper;
             Assert.NotNull(pad);
             var upperCase = ((SimpleLayout)pad.Inner).Renderers[0] as UppercaseLayoutRendererWrapper;
@@ -316,8 +316,8 @@ namespace NLog.UnitTests.Layouts
             var l1 = layout.Renderers[0] as ReplaceLayoutRendererWrapper;
 
             Assert.NotNull(l1);
-            Assert.Equal(true, l1.Regex);
-            Assert.Equal(true, l1.IgnoreCase);
+            Assert.True(l1.Regex);
+            Assert.True(l1.IgnoreCase);
             Assert.Equal(@"::", l1.ReplaceWith);
             Assert.Equal(@"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![ -]\d))", l1.SearchFor);
         }
@@ -355,14 +355,11 @@ namespace NLog.UnitTests.Layouts
             var l1 = layout.Renderers[0] as ReplaceLayoutRendererWrapper;
 
             Assert.NotNull(l1);
-            Assert.Equal(true, l1.Regex);
-            Assert.Equal(true, l1.IgnoreCase);
+            Assert.True(l1.Regex);
+            Assert.True(l1.IgnoreCase);
             Assert.Equal(@"::", l1.ReplaceWith);
             Assert.Equal(@"(?<!\d[ -]*)(?:(?<digits>\d)[ -]*){8,16}(?=(\d[ -]*){3}(\d)(?![ -]\d))", l1.SearchFor);
         }
-
-
-
 
         [Fact]
         public void InnerLayoutWithColonTest_with_workaround()
@@ -547,7 +544,6 @@ namespace NLog.UnitTests.Layouts
         /// <param name="expected"></param>
         [Theory]
         [InlineData("2,3,4", "numbers", "2-3-4")]
-
         [InlineData("a,b,c", "Strings", "a-b-c")]
         [InlineData("a,b,c", "Objects", "a-b-c")]
         [InlineData("a,,b,c", "Strings", "a--b-c")]
@@ -557,30 +553,25 @@ namespace NLog.UnitTests.Layouts
         [InlineData("2.0,3.0,4.0", "doubles", "2-3-4")]
         [InlineData("2.1,3.2,4.3", "doubles", "2.1-3.2-4.3")]
         [InlineData("Ignore,Neutral,Ignore", "enums", "Ignore-Neutral-Ignore")]
-        [InlineData("ASCII,ISO-8859-1, UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
-        [InlineData("ASCII,ISO-8859-1,UTF-8", "encodings", "System.Text.ASCIIEncoding-System.Text.Latin1Encoding-System.Text.UTF8Encoding")]
+        [InlineData("ASCII,ISO-8859-1, UTF-8", "encodings", "us-ascii-iso-8859-1-utf-8")]
+        [InlineData("ASCII,ISO-8859-1,UTF-8", "encodings", "us-ascii-iso-8859-1-utf-8")]
         [InlineData("Value1,Value3,Value2", "FlagEnums", "Value1-Value3-Value2")]
         [InlineData("2,3,4", "IEnumerableNumber", "2-3-4")]
         [InlineData("2,3,4", "IListNumber", "2-3-4")]
         [InlineData("2,3,4", "HashsetNumber", "2-3-4")]
 #if !NET3_5
         [InlineData("2,3,4", "ISetNumber", "2-3-4")]
-        
 #endif
         [InlineData("a,b,c", "IEnumerableString", "a-b-c")]
         [InlineData("a,b,c", "IListString", "a-b-c")]
         [InlineData("a,b,c", "HashSetString", "a-b-c")]
 #if !NET3_5
         [InlineData("a,b,c", "ISetString", "a-b-c")]
-        
 #endif
-
-
-
         public void LayoutWithListParamTest(string input, string propname, string expected)
         {
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
-            SimpleLayout l = string.Format(@"${{layoutrenderer-with-list:{0}={1}}}", propname, input);
+            SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             var actual = l.Render(le);
@@ -588,7 +579,7 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Theory]
-        [InlineData("2,3,4", "numbers")]
+        [InlineData("2,,3,4", "numbers")]
         [InlineData("a,bc", "numbers")]
         [InlineData("value1,value10", "FlagEnums")]
         public void LayoutWithListParamTest_incorrect(string input, string propname)
@@ -599,13 +590,10 @@ namespace NLog.UnitTests.Layouts
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("layoutrenderer-with-list", typeof(LayoutRendererWithListParam));
             Assert.Throws<NLogConfigurationException>(() =>
             {
-                SimpleLayout l = @"${layoutrenderer-with-list:numbers=2,,3,4}";
+                SimpleLayout l = $@"${{layoutrenderer-with-list:{propname}={input}}}";
+               
             });
-
-
         }
-
-
 
         private class LayoutRendererWithListParam : LayoutRenderer
         {
@@ -654,7 +642,7 @@ namespace NLog.UnitTests.Layouts
                 AppendFormattable(builder, Enums);
                 AppendFormattable(builder, FlagEnums);
                 AppendFormattable(builder, Doubles);
-                Append(builder, Encodings);
+                Append(builder, Encodings?.Select(e => e.BodyName).ToList());
                 Append(builder, Objects);
                 Append(builder, IEnumerableString);
                 AppendFormattable(builder, IEnumerableNumber);
@@ -667,9 +655,6 @@ namespace NLog.UnitTests.Layouts
 #endif
                 Append(builder, HashSetString);
                 AppendFormattable(builder, HashSetNumber);
-
-
-
             }
 
             private void Append<T>(StringBuilder builder, IEnumerable<T> items)
@@ -682,10 +667,6 @@ namespace NLog.UnitTests.Layouts
             {
                 if (items != null) builder.Append(string.Join("-", items.Select(it => it.ToString(null, CultureInfo.InvariantCulture)).ToArray()));
             }
-
         }
-
     }
-
-
 }

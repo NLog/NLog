@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,15 +35,15 @@ namespace NLog.Internal
 {
     using System;
     using System.Threading;
-    using NLog.Common;
+    using Common;
 
     /// <summary>
     /// Wraps <see cref="AsyncContinuation"/> with a timeout.
     /// </summary>
     internal class TimeoutContinuation : IDisposable
     {
-        private AsyncContinuation asyncContinuation;
-        private Timer timeoutTimer;
+        private AsyncContinuation _asyncContinuation;
+        private Timer _timeoutTimer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeoutContinuation"/> class.
@@ -52,8 +52,8 @@ namespace NLog.Internal
         /// <param name="timeout">The timeout.</param>
         public TimeoutContinuation(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
-            this.asyncContinuation = asyncContinuation;
-            this.timeoutTimer = new Timer(this.TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
+            _asyncContinuation = asyncContinuation;
+            _timeoutTimer = new Timer(TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
         }
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace NLog.Internal
         {
             try
             {
-                this.StopTimer();
+                StopTimer();
 
-                var cont = Interlocked.Exchange(ref this.asyncContinuation, null);
+                var cont = Interlocked.Exchange(ref _asyncContinuation, null);
                 if (cont != null)
                 {
                     cont(exception);
@@ -87,7 +87,7 @@ namespace NLog.Internal
         /// </summary>
         public void Dispose()
         {
-            this.StopTimer();
+            StopTimer();
             GC.SuppressFinalize(this);
         }
 
@@ -95,17 +95,18 @@ namespace NLog.Internal
         {
             lock (this)
             {
-                if (this.timeoutTimer != null)
+                var currentTimer = _timeoutTimer;
+                if (currentTimer != null)
                 {
-                    this.timeoutTimer.Dispose();
-                    this.timeoutTimer = null;
+                    _timeoutTimer = null;
+                    currentTimer.WaitForDispose(TimeSpan.Zero);
                 }
             }
         }
 
         private void TimerElapsed(object state)
         {
-            this.Function(new TimeoutException("Timeout."));
+            Function(new TimeoutException("Timeout."));
         }
     }
 }

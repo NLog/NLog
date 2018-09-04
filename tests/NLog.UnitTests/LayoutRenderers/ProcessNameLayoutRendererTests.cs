@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__
-
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -58,9 +56,10 @@ namespace NLog.UnitTests.LayoutRenderers
             var lower = actual.ToLower();
 
             //lowercase
-            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen"};
-            
-            Assert.True(allowedProcessNames.Any(p => lower.Contains(p)), string.Format("validating processname failed. Please add (if correct) '{0}' to 'allowedProcessNames'", actual));
+            var allowedProcessNames = new List<string> {"vstest.executionengine", "xunit", "mono-sgen", "dotnet", "testhost.x86", "testhost.x64" };
+
+            Assert.True(allowedProcessNames.Any(p => lower.Contains(p)),
+                $"validating processname failed. Please add (if correct) '{actual}' to 'allowedProcessNames'");
         }
 
         [Fact]
@@ -79,4 +78,3 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 }
-#endif

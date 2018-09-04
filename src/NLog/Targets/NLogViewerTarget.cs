@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2017 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,9 +35,9 @@ namespace NLog.Targets
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Config;
-    using NLog.LayoutRenderers;
-    using NLog.Layouts;
+    using Config;
+    using LayoutRenderers;
+    using Layouts;
 
     /// <summary>
     /// Sends log messages to the remote instance of NLog Viewer. 
@@ -65,9 +65,9 @@ namespace NLog.Targets
     /// </p>
     /// </example>
     [Target("NLogViewer")]
-    public class NLogViewerTarget : NetworkTarget
+    public class NLogViewerTarget : NetworkTarget, IIncludeContext
     {
-        private readonly Log4JXmlEventLayout layout = new Log4JXmlEventLayout();
+        private readonly Log4JXmlEventLayout _layout = new Log4JXmlEventLayout();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogViewerTarget" /> class.
@@ -77,8 +77,8 @@ namespace NLog.Targets
         /// </remarks>
         public NLogViewerTarget()
         {
-            this.Parameters = new List<NLogViewerParameterInfo>();
-            this.Renderer.Parameters = this.Parameters;
+            Parameters = new List<NLogViewerParameterInfo>();
+            Renderer.Parameters = Parameters;
             NewLine = false;
         }
 
@@ -91,7 +91,7 @@ namespace NLog.Targets
         /// <param name="name">Name of the target.</param>
         public NLogViewerTarget(string name) : this()
         {
-            this.Name = name;
+            Name = name;
         }
 
         /// <summary>
@@ -100,8 +100,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNLogData
         {
-            get { return this.Renderer.IncludeNLogData; }
-            set { this.Renderer.IncludeNLogData = value; }
+            get => Renderer.IncludeNLogData;
+            set => Renderer.IncludeNLogData = value;
         }
 
         /// <summary>
@@ -110,8 +110,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public string AppInfo
         {
-            get { return this.Renderer.AppInfo; }
-            set { this.Renderer.AppInfo = value; }
+            get => Renderer.AppInfo;
+            set => Renderer.AppInfo = value;
         }
 
         /// <summary>
@@ -120,8 +120,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeCallSite
         {
-            get { return this.Renderer.IncludeCallSite; }
-            set { this.Renderer.IncludeCallSite = value; }
+            get => Renderer.IncludeCallSite;
+            set => Renderer.IncludeCallSite = value;
         }
 
 #if !SILVERLIGHT
@@ -131,8 +131,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeSourceInfo
         {
-            get { return this.Renderer.IncludeSourceInfo; }
-            set { this.Renderer.IncludeSourceInfo = value; }
+            get => Renderer.IncludeSourceInfo;
+            set => Renderer.IncludeSourceInfo = value;
         }
 #endif
 
@@ -142,21 +142,9 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeMdc
         {
-            get { return this.Renderer.IncludeMdc; }
-            set { this.Renderer.IncludeMdc = value; }
+            get => Renderer.IncludeMdc;
+            set => Renderer.IncludeMdc = value;
         }
-
-#if NET4_0 || NET4_5
-        /// <summary>
-        /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
-        /// </summary>
-        /// <docgen category='Payload Options' order='10' />
-        public bool IncludeMdlc
-        {
-            get { return this.Renderer.IncludeMdlc; }
-            set { this.Renderer.IncludeMdlc = value; }
-        }
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether to include <see cref="NestedDiagnosticsContext"/> stack contents.
@@ -164,8 +152,42 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public bool IncludeNdc
         {
-            get { return this.Renderer.IncludeNdc; }
-            set { this.Renderer.IncludeNdc = value; }
+            get => Renderer.IncludeNdc;
+            set => Renderer.IncludeNdc = value;
+        }
+
+#if !SILVERLIGHT
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include <see cref="MappedDiagnosticsLogicalContext"/> dictionary contents.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeMdlc
+        {
+            get => Renderer.IncludeMdlc;
+            set => Renderer.IncludeMdlc = value;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="NestedDiagnosticsLogicalContext"/> stack.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeNdlc
+        {
+            get => Renderer.IncludeNdlc;
+            set => Renderer.IncludeNdlc = value;
+        }
+
+#endif
+
+        /// <summary>
+        /// Gets or sets the option to include all properties from the log events
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeAllProperties
+        {
+            get => Renderer.IncludeAllProperties;
+            set => Renderer.IncludeAllProperties = value;
         }
 
         /// <summary>
@@ -174,8 +196,8 @@ namespace NLog.Targets
         /// <docgen category='Payload Options' order='10' />
         public string NdcItemSeparator
         {
-            get { return this.Renderer.NdcItemSeparator; }
-            set { this.Renderer.NdcItemSeparator = value; }
+            get => Renderer.NdcItemSeparator;
+            set => Renderer.NdcItemSeparator = value;
         }
 
         /// <summary>
@@ -189,10 +211,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the layout renderer which produces Log4j-compatible XML events.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer Renderer
-        {
-            get { return this.layout.Renderer; }
-        }
+        public Log4JXmlEventLayoutRenderer Renderer => _layout.Renderer;
 
         /// <summary>
         /// Gets or sets the instance of <see cref="Log4JXmlEventLayout"/> that is used to format log messages.
@@ -202,7 +221,7 @@ namespace NLog.Targets
         {
             get
             {
-                return this.layout;
+                return _layout;
             }
 
             set
