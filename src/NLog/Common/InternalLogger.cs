@@ -95,7 +95,8 @@ namespace NLog.Common
         /// Gets or sets the minimal internal log level. 
         /// </summary>
         /// <example>If set to <see cref="NLog.LogLevel.Info"/>, then messages of the levels <see cref="NLog.LogLevel.Info"/>, <see cref="NLog.LogLevel.Error"/> and <see cref="NLog.LogLevel.Fatal"/> will be written.</example>
-        public static LogLevel LogLevel { get; set; }
+        public static LogLevel LogLevel { get => _logLevel; set => _logLevel = value ?? LogLevel.Info; }
+        private static LogLevel _logLevel;
 
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the console output stream.
@@ -185,7 +186,7 @@ namespace NLog.Common
         /// <param name="messageFunc">Function that returns the log message.</param>
         public static void Log(LogLevel level, [Localizable(false)] Func<string> messageFunc)
         {
-            if (level >= LogLevel)
+            if (!IsLogLevelDisabled(level))
             {
                 Write(null, level, messageFunc(), null);
             }
@@ -198,10 +199,9 @@ namespace NLog.Common
         /// <param name="ex">Exception to be logged.</param>
         /// <param name="level">Log level.</param>
         /// <param name="messageFunc">Function that returns the log message.</param>
-        [StringFormatMethod("message")]
         public static void Log(Exception ex, LogLevel level, [Localizable(false)] Func<string> messageFunc)
         {
-            if (level >= LogLevel)
+            if (!IsLogLevelDisabled(level))
             {
                 Write(ex, level, messageFunc(), null);
             }
@@ -240,13 +240,18 @@ namespace NLog.Common
         /// <param name="args">optional args for <paramref name="message"/></param>
         private static void Write([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
         {
+            if (IsLogLevelDisabled(level))
+            {
+                return;
+            }
+
             if (IsSeriousException(ex))
             {
                 //no logging!
                 return;
             }
 
-            if (!IsLoggingEnabled(level))
+            if (!HasActiveLoggers())
             {
                 return;
             }
@@ -323,17 +328,21 @@ namespace NLog.Common
         }
 
         /// <summary>
-        /// Determine if logging is enabled.
+        /// Determine if logging is enabled for given LogLevel
         /// </summary>
         /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
-        private static bool IsLoggingEnabled(LogLevel logLevel)
+        private static bool IsLogLevelDisabled(LogLevel logLevel)
         {
-            if (logLevel == LogLevel.Off || logLevel < LogLevel)
-            {
-                return false;
-            }
+            return ReferenceEquals(_logLevel, LogLevel.Off) || logLevel < _logLevel;
+        }
 
+        /// <summary>
+        /// Determine if logging is enabled.
+        /// </summary>
+        /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
+        private static bool HasActiveLoggers()
+        {
             return !string.IsNullOrEmpty(LogFile) ||
                    LogToConsole ||
                    LogToConsoleError ||
@@ -428,7 +437,6 @@ namespace NLog.Common
             {
                 return;
             }
-
 
             lock (LockObject)
             {
