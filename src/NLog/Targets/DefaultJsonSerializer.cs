@@ -34,6 +34,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+#if DYNAMIC_OBJECT
+using System.Dynamic;
+#endif
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -138,6 +141,12 @@ namespace NLog.Targets
                 }
                 else
                 {
+#if DYNAMIC_OBJECT
+                    if (value is DynamicObject d)
+                    {
+                        value = DynamicObjectToDict(d);
+                    }
+#endif
                     StringBuilder sb = new StringBuilder();
                     if (!SerializeObject(value, sb, options))
                     {
@@ -147,6 +156,44 @@ namespace NLog.Targets
                 }
             }
         }
+#if DYNAMIC_OBJECT
+        private static Dictionary<string, object> DynamicObjectToDict(DynamicObject d)
+        {
+            var propNames = d.GetDynamicMemberNames().ToList();
+
+            var newVal = new Dictionary<string, object>(propNames.Count);
+            foreach (var propName in propNames)
+            {
+                if (d.TryGetMember(new GetBinderAdapter(propName), out var result))
+                {
+                    newVal[propName] = result;
+                }
+            }
+
+            return newVal;
+        }
+
+        /// <summary>
+        /// Binder for retrieving value of <see cref="DynamicObject"/>
+        /// </summary>
+        private sealed class GetBinderAdapter : GetMemberBinder
+        {
+            internal GetBinderAdapter(string name)
+                : base(name, false)
+            {
+            }
+
+            #region Overrides of GetMemberBinder
+
+            /// <inheritdoc />
+            public override DynamicMetaObject FallbackGetMember(DynamicMetaObject target, DynamicMetaObject errorSuggestion)
+            {
+                return target;
+            }
+
+            #endregion
+        }
+#endif
 
         /// <summary>
         /// Serialization of the object in JSON format to the destination StringBuilder
@@ -779,13 +826,13 @@ namespace NLog.Targets
         private KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]> GetProps(object value)
         {
             var type = value.GetType();
-            KeyValuePair<PropertyInfo[],ReflectionHelpers.LateBoundMethod[]> props;
+            KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]> props;
             if (_propsCache.TryGetValue(type, out props))
             {
                 if (props.Key.Length != 0 && props.Value.Length == 0)
                 {
                     var lateBoundMethods = new ReflectionHelpers.LateBoundMethod[props.Key.Length];
-                    for(int i = 0; i < props.Key.Length; i++)
+                    for (int i = 0; i < props.Key.Length; i++)
                     {
                         lateBoundMethods[i] = ReflectionHelpers.CreateLateBoundMethod(props.Key[i].GetGetMethod());
                     }

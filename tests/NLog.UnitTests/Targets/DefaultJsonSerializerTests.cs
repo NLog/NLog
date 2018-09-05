@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Dynamic;
 using System.Globalization;
 using NLog.Config;
 using UrlHelper = NLog.Internal.UrlHelper;
@@ -457,6 +458,39 @@ namespace NLog.UnitTests.Targets
             var actual = _serializer.SerializeObject(object1);
             Assert.Equal("{\"Name\":\"test name\"}", actual);
         }
+
+        #if DYNAMIC_OBJECT
+
+        [Fact]
+        public void SerializeDynamicObject_Test()
+        {
+            var object1 = new MyDynamicClass();
+            var actual = _serializer.SerializeObject(object1);
+            Assert.Equal("{\"Id\":123}", actual);
+        }
+
+        private class MyDynamicClass : DynamicObject
+        {
+            private int _id = 123;
+            public override bool TryGetMember(GetMemberBinder binder,
+                out object result)
+            {
+                result = _id;
+                return true;
+            }
+
+            public override bool TrySetMember(SetMemberBinder binder, object value)
+            {
+                _id = (int) value;
+                return true;
+            }
+            public override IEnumerable<string> GetDynamicMemberNames()
+            {
+                return new List<string>() { "Id" };
+            }
+        }
+
+        #endif
 
         [Fact]
         public void SingleItemOptimizedHashSetTest()
