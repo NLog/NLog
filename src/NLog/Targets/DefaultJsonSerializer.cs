@@ -241,14 +241,14 @@ namespace NLog.Targets
             }
             else if (value is IDictionary dict)
             {
-                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dict, ref objectsInPath, true))
+                using (StartScope(ref objectsInPath, dict))
                 {
                     SerializeDictionaryObject(dict, destination, options, objectsInPath, depth);
                 }
             }
             else if (value is IEnumerable enumerable)
             {
-                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true))
+                using (StartScope(ref objectsInPath, value))
                 {
                     SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
                 }
@@ -257,7 +257,7 @@ namespace NLog.Targets
             else if (value is DynamicObject d)
             {
                 var dict2 = DynamicObjectToDict(d);
-                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dict2, ref objectsInPath, true))
+                using (StartScope(ref objectsInPath, dict2))
                 {
                     SerializeDictionaryObject(dict2, destination, options, objectsInPath, depth);
                 }
@@ -284,6 +284,11 @@ namespace NLog.Targets
             }
 
             return true;
+        }
+
+        private static SingleItemOptimizedHashSet<object>.SingleItemScopedInsert StartScope(ref SingleItemOptimizedHashSet<object> objectsInPath, object value)
+        {
+            return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true);
         }
 
         private bool SerializeWithFormatProvider(object value, StringBuilder destination, JsonSerializeOptions options, IFormattable formattable, string format, bool hasFormat)
