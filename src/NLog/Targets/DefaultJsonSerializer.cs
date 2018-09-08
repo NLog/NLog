@@ -141,12 +141,6 @@ namespace NLog.Targets
                 }
                 else
                 {
-#if DYNAMIC_OBJECT
-                    if (value is DynamicObject d)
-                    {
-                        value = DynamicObjectToDict(d);
-                    }
-#endif
                     StringBuilder sb = new StringBuilder();
                     if (!SerializeObject(value, sb, options))
                     {
@@ -259,6 +253,16 @@ namespace NLog.Targets
                     SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
                 }
             }
+#if DYNAMIC_OBJECT
+            else if (value is DynamicObject d)
+            {
+                var dict2 = DynamicObjectToDict(d);
+                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dict2, ref objectsInPath, true))
+                {
+                    SerializeDictionaryObject(dict2, destination, options, objectsInPath, depth);
+                }
+            }
+#endif
             else
             {
                 var format = options.Format;
