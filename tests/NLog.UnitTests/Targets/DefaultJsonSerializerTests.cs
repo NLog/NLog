@@ -33,6 +33,7 @@
 
 using System.Dynamic;
 using System.Globalization;
+using System.Text;
 using NLog.Config;
 using UrlHelper = NLog.Internal.UrlHelper;
 
@@ -49,10 +50,30 @@ namespace NLog.UnitTests.Targets
     public class DefaultJsonSerializerTests : NLogTestBase
     {
         private DefaultJsonSerializer _serializer;
+        private IJsonConverter _serializer2;
 
         public DefaultJsonSerializerTests()
         {
             _serializer = DefaultJsonSerializer.Instance;
+            _serializer2 = DefaultJsonSerializer.Instance;
+        }
+
+        private string SerializeObject2(object o, JsonSerializeOptions options = null)
+        {
+            if (options != null)
+            {
+                return _serializer.SerializeObject(o, options);
+            }
+
+            //todo legacy
+            var sb = new StringBuilder();
+            _serializer2.SerializeObject(o, sb);
+            var result = sb.ToString();
+
+            //test legacy
+            //var legacyResult = _serializer.SerializeObject(o);
+            //Assert.Equal(result,legacyResult);
+            return result;
         }
 
         [Fact]
@@ -61,9 +82,11 @@ namespace NLog.UnitTests.Targets
             var text = "This is, sort of, surprising the 1. time you see that test-result.";
             var expected = "\"This is, sort of, surprising the 1. time you see that test-result.\"";
 
-            var actual = _serializer.SerializeObject(text);
+            var actual = SerializeObject2(text);
             Assert.Equal(expected, actual);
         }
+
+
 
         [Fact]
         public void MultiLineString_Test()
@@ -71,7 +94,7 @@ namespace NLog.UnitTests.Targets
             var text = "First line followed by Windows line break\r\nNow this is second with UNIX\nand third at last";
             var expected = "\"First line followed by Windows line break\\r\\nNow this is second with UNIX\\nand third at last\"";
 
-            var actual = _serializer.SerializeObject(text);
+            var actual = SerializeObject2(text);
             Assert.Equal(expected, actual);
         }
 
@@ -82,7 +105,7 @@ namespace NLog.UnitTests.Targets
             var text = "A tab\tis followed by a feed\fand finally cancel last character\b";
             var expected = "\"A tab\\tis followed by a feed\\fand finally cancel last character\\b\"";
 
-            var actual = _serializer.SerializeObject(text);
+            var actual = SerializeObject2(text);
             Assert.Equal(expected, actual);
         }
 
@@ -93,14 +116,14 @@ namespace NLog.UnitTests.Targets
             var text = "This sentence/text is \"normal\", we think.";
             var expected = "\"This sentence\\/text is \\\"normal\\\", we think.\"";
 
-            var actual = _serializer.SerializeObject(text);
+            var actual = SerializeObject2(text);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void SerializeUnicode_test()
         {
-            var actual = _serializer.SerializeObject("©");
+            var actual = SerializeObject2("©");
             Assert.Equal("\"©\"", actual);
         }
 
@@ -112,7 +135,7 @@ namespace NLog.UnitTests.Targets
                 text = "©"
             };
 
-            var actual = _serializer.SerializeObject(item);
+            var actual = SerializeObject2(item);
             Assert.Equal("{\"text\":\"©\"}", actual);
         }
 
@@ -129,7 +152,7 @@ namespace NLog.UnitTests.Targets
             };
 
             var expected = "{\"Name\":\"TestObject\",\"Assets\":{\"First\":17}}";
-            var actual = _serializer.SerializeObject(target);
+            var actual = SerializeObject2(target);
 
             Assert.Equal(expected, actual);
         }
@@ -148,7 +171,7 @@ namespace NLog.UnitTests.Targets
             };
 
             var expected = "[\"TestObject\",[17,3.14]]";
-            var actual = _serializer.SerializeObject(target);
+            var actual = SerializeObject2(target);
 
             Assert.Equal(expected, actual);
         }
@@ -157,7 +180,7 @@ namespace NLog.UnitTests.Targets
         public void InfiniteLoop_Test()
         {
             var d = new TestList();
-            var actual = _serializer.SerializeObject(d);
+            var actual = SerializeObject2(d);
 
             var cnt = Regex.Matches(actual, "\\[\"alpha\",\"bravo\"\\]").Count;
             Assert.Equal(10, cnt);
@@ -169,7 +192,7 @@ namespace NLog.UnitTests.Targets
             var text = "First\\Second\tand" + (char)3 + "for" + (char)0x1f + "with" + (char)0x10 + "but" + (char)0x0d + "and no" + (char)0x20;
             var expected = "\"First\\\\Second\\tand\\u0003for\\u001fwith\\u0010but\\rand no \"";
 
-            var actual = _serializer.SerializeObject(text);
+            var actual = SerializeObject2(text);
             Assert.Equal(expected, actual);
         }
 
@@ -188,12 +211,11 @@ namespace NLog.UnitTests.Targets
         [InlineData(float.PositiveInfinity, "\"Infinity\"")]
         public void SerializeNumber_Test(object o, string expected)
         {
-            var actual = _serializer.SerializeObject(o);
+            var actual = SerializeObject2(o);
             Assert.Equal(expected, actual);
 
-            var sb = new System.Text.StringBuilder();
-            _serializer.SerializeObject(o, sb);
-            Assert.Equal(expected, sb.ToString());
+           var result =  SerializeObject2(o);
+            Assert.Equal(expected, result);
         }
 
         [Theory]
@@ -203,7 +225,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(2776145.7743, "2776145.77")]
         public void SerializeNumber_format_Test(object o, string expected)
         {
-            var actual = _serializer.SerializeObject(o, new JsonSerializeOptions() { Format = "N2" });
+            var actual = SerializeObject2(o, new JsonSerializeOptions() { Format = "N2" });
             Assert.Equal(expected, actual);
         }
 
@@ -214,7 +236,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(2776145.7743, "2776145,7743")]
         public void SerializeNumber_nl_Test(object o, string expected)
         {
-            var actual = _serializer.SerializeObject(o, new JsonSerializeOptions() { FormatProvider = new CultureInfo("nl-nl") });
+            var actual = SerializeObject2(o, new JsonSerializeOptions() { FormatProvider = new CultureInfo("nl-nl") });
             Assert.Equal(expected, actual);
         }
 
@@ -225,16 +247,16 @@ namespace NLog.UnitTests.Targets
         [InlineData(2776145.7743, "2.776.145,77")]
         public void SerializeNumber_formatNL_Test(object o, string expected)
         {
-            var actual = _serializer.SerializeObject(o, new JsonSerializeOptions() { Format = "N2", FormatProvider = new CultureInfo("nl-nl") });
+            var actual = SerializeObject2(o, new JsonSerializeOptions() { Format = "N2", FormatProvider = new CultureInfo("nl-nl") });
             Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void SerializeBool_Test()
         {
-            var actual = _serializer.SerializeObject(true);
+            var actual = SerializeObject2(true);
             Assert.Equal("true", actual);
-            actual = _serializer.SerializeObject(false);
+            actual = SerializeObject2(false);
             Assert.Equal("false", actual);
         }
 
@@ -243,7 +265,7 @@ namespace NLog.UnitTests.Targets
         {
             DateTime utcNow = DateTime.UtcNow;
             utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
-            var actual = _serializer.SerializeObject(utcNow);
+            var actual = SerializeObject2(utcNow);
             Assert.Equal("\"" + utcNow.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture) + "\"", actual);
         }
 
@@ -251,7 +273,7 @@ namespace NLog.UnitTests.Targets
         public void SerializeDateTime_Test2()
         {
             var val = new DateTime(2016, 12, 31);
-            var actual = _serializer.SerializeObject(val);
+            var actual = SerializeObject2(val);
             Assert.Equal("\"" + "2016-12-31T00:00:00Z" + "\"", actual);
         }
 
@@ -259,7 +281,7 @@ namespace NLog.UnitTests.Targets
         public void SerializeDateTime_isoformat_Test()
         {
             var val = new DateTime(2016, 12, 31);
-            var actual = _serializer.SerializeObject(val, new JsonSerializeOptions { Format = "O" });
+            var actual = SerializeObject2(val, new JsonSerializeOptions { Format = "O" });
             Assert.Equal("\"2016-12-31T00:00:00.0000000\"", actual);
         }
 
@@ -268,7 +290,7 @@ namespace NLog.UnitTests.Targets
         {
             DateTime utcNow = DateTime.UtcNow;
             utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
-            var actual = _serializer.SerializeObject(utcNow, new JsonSerializeOptions { Format = "dddd d M" });
+            var actual = SerializeObject2(utcNow, new JsonSerializeOptions { Format = "dddd d M" });
             Assert.Equal("\"" + utcNow.ToString("dddd d M", CultureInfo.InvariantCulture) + "\"", actual);
         }
 
@@ -277,7 +299,7 @@ namespace NLog.UnitTests.Targets
         {
             DateTime utcNow = DateTime.UtcNow;
             utcNow = utcNow.AddTicks(-utcNow.Ticks % TimeSpan.TicksPerSecond);
-            var actual = _serializer.SerializeObject(utcNow, new JsonSerializeOptions { Format = "dddd d M", FormatProvider = new CultureInfo("nl-nl") });
+            var actual = SerializeObject2(utcNow, new JsonSerializeOptions { Format = "dddd d M", FormatProvider = new CultureInfo("nl-nl") });
             Assert.Equal("\"" + utcNow.ToString("dddd d M", new CultureInfo("nl-nl")) + "\"", actual);
         }
 
@@ -285,35 +307,35 @@ namespace NLog.UnitTests.Targets
         public void SerializeDateTimeOffset_Test()
         {
             var val = new DateTimeOffset(new DateTime(2016, 12, 31, 2, 30, 59), new TimeSpan(4, 30, 0));
-            var actual = _serializer.SerializeObject(val);
+            var actual = SerializeObject2(val);
             Assert.Equal("\"" + "2016-12-31 02:30:59 +04:30" + "\"", actual);
         }
 
         [Fact]
         public void SerializeTime_Test()
         {
-            var actual = _serializer.SerializeObject(new TimeSpan(1, 2, 3, 4));
+            var actual = SerializeObject2(new TimeSpan(1, 2, 3, 4));
             Assert.Equal("\"1.02:03:04\"", actual);
         }
 
         [Fact]
         public void SerializeTime2_Test()
         {
-            var actual = _serializer.SerializeObject(new TimeSpan(0, 2, 3, 4));
+            var actual = SerializeObject2(new TimeSpan(0, 2, 3, 4));
             Assert.Equal("\"02:03:04\"", actual);
         }
 
         [Fact]
         public void SerializeTime3_Test()
         {
-            var actual = _serializer.SerializeObject(new TimeSpan(0, 0, 2, 3, 4));
+            var actual = SerializeObject2(new TimeSpan(0, 0, 2, 3, 4));
             Assert.Equal("\"00:02:03.0040000\"", actual);
         }
 
         [Fact]
         public void SerializeEmptyDict_Test()
         {
-            var actual = _serializer.SerializeObject(new Dictionary<string, int>());
+            var actual = SerializeObject2(new Dictionary<string, int>());
             Assert.Equal("{}", actual);
         }
 
@@ -323,14 +345,14 @@ namespace NLog.UnitTests.Targets
             var dictionary = new Dictionary<string, object>();
             dictionary.Add("key1", 13);
             dictionary.Add("key 2", 1.3m);
-            var actual = _serializer.SerializeObject(dictionary);
+            var actual = SerializeObject2(dictionary);
             Assert.Equal("{\"key1\":13,\"key 2\":1.3}", actual);
         }
 
         [Fact]
         public void SerializeNull_Test()
         {
-            var actual = _serializer.SerializeObject(null);
+            var actual = SerializeObject2(null);
             Assert.Equal("null", actual);
         }
 
@@ -338,7 +360,7 @@ namespace NLog.UnitTests.Targets
         public void SerializeGuid_Test()
         {
             Guid newGuid = Guid.NewGuid();
-            var actual = _serializer.SerializeObject(newGuid);
+            var actual = SerializeObject2(newGuid);
             Assert.Equal("\"" + newGuid.ToString() + "\"", actual);
         }
 
@@ -347,36 +369,24 @@ namespace NLog.UnitTests.Targets
         public void SerializeEnum_Test()
         {
             var val = ExceptionRenderingFormat.Method;
-            var actual = _serializer.SerializeObject(val);
+            var actual = SerializeObject2(val);
             Assert.Equal("\"Method\"", actual);
-
-            var sb = new System.Text.StringBuilder();
-            _serializer.SerializeObject(val, sb);
-            Assert.Equal("\"Method\"", sb.ToString());
         }
 
         [Fact]
         public void SerializeEnumInt_Test()
         {
             var val = ExceptionRenderingFormat.Method;
-            var actual = _serializer.SerializeObject(val, new JsonSerializeOptions() { EnumAsInteger = true });
+            var actual = SerializeObject2(val, new JsonSerializeOptions() { EnumAsInteger = true });
             Assert.Equal("4", actual);
-
-            var sb = new System.Text.StringBuilder();
-            _serializer.SerializeObject(val, sb, new JsonSerializeOptions() { EnumAsInteger = true });
-            Assert.Equal("4", sb.ToString());
         }
 
         [Fact]
         public void SerializeFlagEnum_Test()
         {
             var val = UrlHelper.EscapeEncodingFlag.LegacyRfc2396 | UrlHelper.EscapeEncodingFlag.LowerCaseHex;
-            var actual = _serializer.SerializeObject(val);
+            var actual = SerializeObject2(val);
             Assert.Equal("\"LegacyRfc2396, LowerCaseHex\"", actual);
-
-            var sb = new System.Text.StringBuilder();
-            _serializer.SerializeObject(val, sb);
-            Assert.Equal("\"LegacyRfc2396, LowerCaseHex\"", sb.ToString());
         }
 
         [Fact]
@@ -386,7 +396,7 @@ namespace NLog.UnitTests.Targets
             var object2 = new TestObject("object2");
 
             object1.Linked = object2;
-            var actual = _serializer.SerializeObject(object1);
+            var actual = SerializeObject2(object1);
             Assert.Equal("{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}}", actual);
         }
 
@@ -397,7 +407,7 @@ namespace NLog.UnitTests.Targets
             var object2 = new TestObject("object2");
 
             object1.Linked = object2;
-            var actual = _serializer.SerializeObject(object1, new JsonSerializeOptions { QuoteKeys = false });
+            var actual = SerializeObject2(object1, new JsonSerializeOptions { QuoteKeys = false });
             Assert.Equal("{Name:\"object1\", Linked:{Name:\"object2\"}}", actual);
         }
 
@@ -407,7 +417,7 @@ namespace NLog.UnitTests.Targets
             var object1 = new TestObject("object1");
 
             object1.Linked = object1;
-            var actual = _serializer.SerializeObject(object1);
+            var actual = SerializeObject2(object1);
             Assert.Equal("{\"Name\":\"object1\"}", actual);
         }
 
@@ -420,7 +430,7 @@ namespace NLog.UnitTests.Targets
 
             var list = new[] { object1, object2 };
 
-            var actual = _serializer.SerializeObject(list);
+            var actual = SerializeObject2(list);
             Assert.Equal("[{\"Name\":\"object1\", \"Linked\":{\"Name\":\"object2\"}},{\"Name\":\"object2\"}]", actual);
         }
 
@@ -428,7 +438,7 @@ namespace NLog.UnitTests.Targets
         public void SerializeNoPropsObject_Test()
         {
             var object1 = new NoPropsObject();
-            var actual = _serializer.SerializeObject(object1);
+            var actual = SerializeObject2(object1);
             Assert.Equal("\"something\"", actual);
         }
 
@@ -436,7 +446,7 @@ namespace NLog.UnitTests.Targets
         public void SerializeObjectWithExceptionAndPrivateSetter_Test()
         {
             var object1 = new ObjectWithExceptionAndPrivateSetter("test name");
-            var actual = _serializer.SerializeObject(object1);
+            var actual = SerializeObject2(object1);
             Assert.Equal("{\"Name\":\"test name\"}", actual);
         }
 
@@ -447,7 +457,7 @@ namespace NLog.UnitTests.Targets
             // Could perform reflection on fields, but one have to lookup TupleElementNamesAttribute to get names
             // ValueTuples are for internal usage, better to use AnonymousObject for key/value-pairs
             var object1 = (Name: "test name", Id: 1);
-            var actual = _serializer.SerializeObject(object1);
+            var actual = SerializeObject2(object1);
             Assert.Equal("\"(test name, 1)\"", actual);
         }
 #endif
@@ -455,17 +465,17 @@ namespace NLog.UnitTests.Targets
         public void SerializeAnonymousObject_Test()
         {
             var object1 = new { Name = "test name" };
-            var actual = _serializer.SerializeObject(object1);
+            var actual = SerializeObject2(object1);
             Assert.Equal("{\"Name\":\"test name\"}", actual);
         }
 
-        #if DYNAMIC_OBJECT
+#if DYNAMIC_OBJECT
 
         [Fact]
         public void SerializeDynamicObject_Test()
         {
             var object1 = new MyDynamicClass();
-            var actual = _serializer.SerializeObject(object1);
+            var actual = SerializeObject2(object1);
             Assert.Equal("{\"Id\":123}", actual);
         }
 
@@ -481,7 +491,7 @@ namespace NLog.UnitTests.Targets
 
             public override bool TrySetMember(SetMemberBinder binder, object value)
             {
-                _id = (int) value;
+                _id = (int)value;
                 return true;
             }
             public override IEnumerable<string> GetDynamicMemberNames()
@@ -490,7 +500,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        #endif
+#endif
 
         [Fact]
         public void SingleItemOptimizedHashSetTest()
