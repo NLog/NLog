@@ -47,33 +47,58 @@ namespace NLog.UnitTests.Targets
     using System.Collections;
     using System.Text.RegularExpressions;
 
-    public class DefaultJsonSerializerTests : NLogTestBase
+
+    public class DefaultJsonSerializerTests_JsonConverter : DefaultJsonSerializerTests
+    {
+
+        private IJsonConverter _serializer2;
+
+        public DefaultJsonSerializerTests_JsonConverter()
+        {
+            _serializer2 = DefaultJsonSerializer.Instance;
+        }
+        protected override string SerializeObject2(object o)
+        {
+            var sb = new StringBuilder();
+            _serializer2.SerializeObject(o, sb);
+            var result = sb.ToString();
+            return result;
+        }
+    }
+
+    public class DefaultJsonSerializerTests_legacy_IJsonSerializer : DefaultJsonSerializerTests
+    {
+
+        private DefaultJsonSerializer _serializer2;
+
+        public DefaultJsonSerializerTests_legacy_IJsonSerializer()
+        {
+            _serializer2 = DefaultJsonSerializer.Instance;
+        }
+        protected override string SerializeObject2(object o)
+        {
+            return _serializer2.SerializeObject(o);
+        }
+    }
+
+
+
+    public abstract class DefaultJsonSerializerTests : NLogTestBase
     {
         private DefaultJsonSerializer _serializer;
-        private IJsonConverter _serializer2;
 
         public DefaultJsonSerializerTests()
         {
             _serializer = DefaultJsonSerializer.Instance;
-            _serializer2 = DefaultJsonSerializer.Instance;
         }
 
-        private string SerializeObject2(object o, JsonSerializeOptions options = null)
+        protected abstract string SerializeObject2(object o);
+
+        private string SerializeObject2(object o, JsonSerializeOptions options)
         {
-            if (options != null)
-            {
-                return _serializer.SerializeObject(o, options);
-            }
 
-            //todo legacy
-            var sb = new StringBuilder();
-            _serializer2.SerializeObject(o, sb);
-            var result = sb.ToString();
+            return _serializer.SerializeObject(o, options); //calls IJsonSerializer
 
-            //test legacy
-            //var legacyResult = _serializer.SerializeObject(o);
-            //Assert.Equal(result,legacyResult);
-            return result;
         }
 
         [Fact]
@@ -214,7 +239,7 @@ namespace NLog.UnitTests.Targets
             var actual = SerializeObject2(o);
             Assert.Equal(expected, actual);
 
-           var result =  SerializeObject2(o);
+            var result = SerializeObject2(o);
             Assert.Equal(expected, result);
         }
 
