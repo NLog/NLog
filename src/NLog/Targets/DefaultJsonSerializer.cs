@@ -61,7 +61,7 @@ namespace NLog.Targets
 
         private const int MaxJsonLength = 512 * 1024;
 
-        private static readonly DefaultJsonSerializer instance;
+        private static readonly DefaultJsonSerializer instance = new DefaultJsonSerializer();
 
         /// <summary>
         /// Singleton instance of the serializer.
@@ -70,7 +70,6 @@ namespace NLog.Targets
 
         static DefaultJsonSerializer()
         {
-            instance = new DefaultJsonSerializer();
         }
 
         /// <summary>
