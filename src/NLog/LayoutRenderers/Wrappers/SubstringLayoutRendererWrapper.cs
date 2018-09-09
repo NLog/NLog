@@ -93,6 +93,11 @@ namespace NLog.LayoutRenderers.Wrappers
             }
             var text = RenderInner(logEvent);
 
+            if (text.Length == 0)
+            {
+                return;
+            }
+
             var substring = Transform(text);
             Clear(builder);
             if (substring != null)
