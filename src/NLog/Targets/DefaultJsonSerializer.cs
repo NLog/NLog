@@ -34,6 +34,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+#if DYNAMIC_OBJECT
+using System.Dynamic;
+#endif
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -58,7 +61,7 @@ namespace NLog.Targets
 
         private const int MaxJsonLength = 512 * 1024;
 
-        private static readonly DefaultJsonSerializer instance;
+        private static readonly DefaultJsonSerializer instance = new DefaultJsonSerializer();
 
         /// <summary>
         /// Singleton instance of the serializer.
@@ -67,7 +70,6 @@ namespace NLog.Targets
 
         static DefaultJsonSerializer()
         {
-            instance = new DefaultJsonSerializer();
         }
 
         /// <summary>
@@ -147,6 +149,44 @@ namespace NLog.Targets
                 }
             }
         }
+#if DYNAMIC_OBJECT
+        private static Dictionary<string, object> DynamicObjectToDict(DynamicObject d)
+        {
+            var propNames = d.GetDynamicMemberNames().ToList();
+
+            var newVal = new Dictionary<string, object>(propNames.Count);
+            foreach (var propName in propNames)
+            {
+                if (d.TryGetMember(new GetBinderAdapter(propName), out var result))
+                {
+                    newVal[propName] = result;
+                }
+            }
+
+            return newVal;
+        }
+
+        /// <summary>
+        /// Binder for retrieving value of <see cref="DynamicObject"/>
+        /// </summary>
+        private sealed class GetBinderAdapter : GetMemberBinder
+        {
+            internal GetBinderAdapter(string name)
+                : base(name, false)
+            {
+            }
+
+            #region Overrides of GetMemberBinder
+
+            /// <inheritdoc />
+            public override DynamicMetaObject FallbackGetMember(DynamicMetaObject target, DynamicMetaObject errorSuggestion)
+            {
+                return target;
+            }
+
+            #endregion
+        }
+#endif
 
         /// <summary>
         /// Serialization of the object in JSON format to the destination StringBuilder
@@ -200,18 +240,28 @@ namespace NLog.Targets
             }
             else if (value is IDictionary dict)
             {
-                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dict, ref objectsInPath, true))
+                using (StartScope(ref objectsInPath, dict))
                 {
                     SerializeDictionaryObject(dict, destination, options, objectsInPath, depth);
                 }
             }
             else if (value is IEnumerable enumerable)
             {
-                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true))
+                using (StartScope(ref objectsInPath, value))
                 {
                     SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
                 }
             }
+#if DYNAMIC_OBJECT
+            else if (value is DynamicObject d)
+            {
+                var dict2 = DynamicObjectToDict(d);
+                using (StartScope(ref objectsInPath, dict2))
+                {
+                    SerializeDictionaryObject(dict2, destination, options, objectsInPath, depth);
+                }
+            }
+#endif
             else
             {
                 var format = options.Format;
@@ -233,6 +283,11 @@ namespace NLog.Targets
             }
 
             return true;
+        }
+
+        private static SingleItemOptimizedHashSet<object>.SingleItemScopedInsert StartScope(ref SingleItemOptimizedHashSet<object> objectsInPath, object value)
+        {
+            return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true);
         }
 
         private bool SerializeWithFormatProvider(object value, StringBuilder destination, JsonSerializeOptions options, IFormattable formattable, string format, bool hasFormat)
@@ -779,13 +834,13 @@ namespace NLog.Targets
         private KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]> GetProps(object value)
         {
             var type = value.GetType();
-            KeyValuePair<PropertyInfo[],ReflectionHelpers.LateBoundMethod[]> props;
+            KeyValuePair<PropertyInfo[], ReflectionHelpers.LateBoundMethod[]> props;
             if (_propsCache.TryGetValue(type, out props))
             {
                 if (props.Key.Length != 0 && props.Value.Length == 0)
                 {
                     var lateBoundMethods = new ReflectionHelpers.LateBoundMethod[props.Key.Length];
-                    for(int i = 0; i < props.Key.Length; i++)
+                    for (int i = 0; i < props.Key.Length; i++)
                     {
                         lateBoundMethods[i] = ReflectionHelpers.CreateLateBoundMethod(props.Key[i].GetGetMethod());
                     }
