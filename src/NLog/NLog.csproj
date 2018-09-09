@@ -63,7 +63,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
@@ -72,7 +72,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <DefineConstants>$(DefineConstants);NET4_0;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_0;WCF_SUPPORTED;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
@@ -95,7 +95,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog for NetStandard 2.0</Title>
-    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD2_0;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
