@@ -81,7 +81,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <param name="logEvent">Logging event.</param>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="orgLength">Start position for any necessary transformation of <see cref="StringBuilder"/>.</param>
+        /// <param name="orgLength">Start position for any necessary transformation of <see cref="StringBuilder"/>.
+        /// Don't change in the <paramref name="builder"/> before this position! That will has effect on others renderers.</param>
         protected virtual void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             string msg = RenderInner(logEvent);
