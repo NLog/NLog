@@ -88,22 +88,14 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (Length <= 0)
             {
-                Clear(builder, orgLength);
                 return;
             }
             var text = RenderInner(logEvent);
-
             if (text.Length == 0)
             {
                 return;
             }
-
-            var substring = Transform(text);
-            Clear(builder, orgLength);
-            if (substring != null)
-            {
-                builder.Append(substring);
-            }
+            SubstringAndAppend(text, builder);
         }
 
         /// <inheritdoc />
@@ -114,27 +106,27 @@ namespace NLog.LayoutRenderers.Wrappers
 
         internal string DoTransform(string text)
         {
+            var sb = new StringBuilder();
+            SubstringAndAppend(text, sb);
+            return sb.ToString();
+        }
+
+        private void SubstringAndAppend(string text, StringBuilder sb)
+        {
             var textLength = text.Length;
 
             var start = CalcStart(textLength);
 
             if (start >= textLength)
             {
-                return null;
+                return;
             }
 
             // init full length
             var length = CalcLength(textLength, start);
 
             //more efficient than target.Remove
-            var substring = text.Substring(start, length);
-            return substring;
-        }
-
-        private static void Clear(StringBuilder builder, int orgLength)
-        {
-            // No clear on .NET 3.5, also .Clear is just doing Length = 0
-            builder.Length = orgLength;
+            sb.Append(text, start, length);
         }
 
         /// <summary>
