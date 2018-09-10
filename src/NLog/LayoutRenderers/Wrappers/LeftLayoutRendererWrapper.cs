@@ -69,7 +69,7 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             _substringWrapper.Inner = Inner;
-            _substringWrapper.DoSubstring(logEvent, builder);
+            _substringWrapper.DoSubstring(logEvent, builder, orgLength);
         }
 
         /// <inheritdoc />

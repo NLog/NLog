@@ -42,6 +42,8 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
         [Theory]
         [InlineData(":length=2", "12")]
+        [InlineData(":length=3", "before123", "before")]
+        [InlineData(":length=3", "before123end", "before", "end")]
         [InlineData(":length=2:start=1", "23")]
         [InlineData(":length=2:start=100", "")]
         [InlineData(":length=100", "1234567890")]
@@ -51,12 +53,11 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [InlineData(":start=-2", "90")]
         [InlineData(":start=-1:length=2", "0")] //won't take chars from start after starting at end.
         [InlineData(":length=-1", "")]
-        public void SubstringWrapperTest(string options, string expected)
+        public void SubstringWrapperTest(string options, string expected, string prefixText = null, string afterText = null)
         {
-            SimpleLayout l = $"${{substring:${{message}}{options}}}";
+            SimpleLayout l = $"{prefixText}${{substring:${{message}}{options}}}{afterText}";
             var result = l.Render(LogEventInfo.Create(LogLevel.Debug, "substringTest", "1234567890"));
             Assert.Equal(expected, result);
         }
-
     }
 }

@@ -78,17 +78,17 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc />
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            DoSubstring(logEvent, builder);
+            DoSubstring(logEvent, builder, orgLength);
         }
 
         /// <summary>
         /// Apply substring transformation
         /// </summary>
-        internal void DoSubstring(LogEventInfo logEvent, StringBuilder builder)
+        internal void DoSubstring(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             if (Length <= 0)
             {
-                Clear(builder);
+                Clear(builder, orgLength);
                 return;
             }
             var text = RenderInner(logEvent);
@@ -99,7 +99,7 @@ namespace NLog.LayoutRenderers.Wrappers
             }
 
             var substring = Transform(text);
-            Clear(builder);
+            Clear(builder, orgLength);
             if (substring != null)
             {
                 builder.Append(substring);
@@ -131,10 +131,10 @@ namespace NLog.LayoutRenderers.Wrappers
             return substring;
         }
 
-        private static void Clear(StringBuilder builder)
+        private static void Clear(StringBuilder builder, int orgLength)
         {
             // No clear on .NET 3.5, also .Clear is just doing Length = 0
-            builder.Length = 0;
+            builder.Length = orgLength;
         }
 
         /// <summary>
