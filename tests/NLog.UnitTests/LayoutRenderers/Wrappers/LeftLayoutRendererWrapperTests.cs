@@ -31,46 +31,23 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
+using NLog.Layouts;
+using Xunit;
+
+namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
-    using System;
-    using System.Text;
-    using NLog.Config;
-
-    /// <summary>
-    /// Right part of a text
-    /// </summary>
-    [LayoutRenderer("right")]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public sealed class RightLayoutRendererWrapper : WrapperLayoutRendererBase
+    public class LeftLayoutRendererWrapperTests
     {
-        /// <summary>
-        /// Gets or sets the length in characters. 
-        /// </summary>
-        /// <docgen category="Transformation Options" order="10"/>
-        [RequiredParameter]
-        public int Length { get; set; }
-
-        /// <inheritdoc/>
-        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
+        [Theory]
+        [InlineData(":length=2", "12")]
+        [InlineData(":length=1000", "1234567890")]
+        [InlineData(":length=-1", "")]
+        [InlineData(":length=0", "")]
+        public void LeftWrapperTest(string options, string expected)
         {
-            if (Length > 0)
-            {
-                Inner.RenderAppendBuilder(logEvent, builder);
-                if (builder.Length - orgLength > Length)
-                {
-                    var str = builder.ToString(orgLength, builder.Length - orgLength);
-                    builder.Length = orgLength;
-                    builder.Append(str.Substring(str.Length - Length, Length));
-                }
-            }
-        }
-
-        /// <inheritdoc/>
-        protected override string Transform(string text)
-        {
-            throw new NotImplementedException();
+            SimpleLayout l = $"${{left:${{message}}{options}}}";
+            var result = l.Render(LogEventInfo.Create(LogLevel.Debug, "substringTest", "1234567890"));
+            Assert.Equal(expected, result);
         }
     }
 }
