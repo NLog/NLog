@@ -37,8 +37,8 @@ namespace NLog.Layouts
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A specialized layout that renders XML-formatted events.
@@ -340,12 +340,7 @@ namespace NLog.Layouts
                 }
             }
 
-            var props = GetPropertiesToRender(logEvent.HasProperties, logEvent.Properties);
-
-            foreach (var prop in props)
-            {
-                AppendXmlPropertyValue(prop.Key, prop.Value, sb, sb.Length == orgLength);
-            }
+            AppendLogEventXmlProperties(logEvent, sb, orgLength);
 
             if (sb.Length > orgLength && !string.IsNullOrEmpty(ElementName))
             {
@@ -353,7 +348,7 @@ namespace NLog.Layouts
             }
         }
 
-        private IEnumerable<KeyValuePair<string, object>> GetPropertiesToRender(bool hasProperties, IDictionary<object, object> logEventProperties)
+        private void AppendLogEventXmlProperties(LogEventInfo logEventInfo, StringBuilder sb, int orgLength)
         {
             if (IncludeMdc)
             {
@@ -362,7 +357,7 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsContext.GetObject(key);
-                    yield return new KeyValuePair<string, object>(key, propertyValue);
+                    AppendXmlPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
                 }
             }
 
@@ -374,14 +369,14 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
-                    yield return new KeyValuePair<string, object>(key, propertyValue);
+                    AppendXmlPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
                 }
             }
 #endif
 
-            if (IncludeAllProperties && hasProperties)
+            if (IncludeAllProperties && logEventInfo.HasProperties)
             {
-                foreach (var property in logEventProperties)
+                foreach (var property in logEventInfo.Properties)
                 {
                     string key = property.Key.ToString();
                     if (string.IsNullOrEmpty(key))
@@ -391,8 +386,7 @@ namespace NLog.Layouts
                         continue;
 
                     var propertyValue = property.Value;
-                    yield return new KeyValuePair<string, object>(key, propertyValue);
-
+                    AppendXmlPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
                 }
             }
         }
@@ -493,9 +487,9 @@ namespace NLog.Layouts
             return true;
         }
 
-        private bool RenderAppendXmlAttributeValue(XmlAttribute attributes, LogEventInfo logEvent, StringBuilder sb, bool beginXmlDocument)
+        private bool RenderAppendXmlAttributeValue(XmlAttribute xmlAttribute, LogEventInfo logEvent, StringBuilder sb, bool beginXmlDocument)
         {
-            string xmlKeyString = attributes.Name;
+            string xmlKeyString = xmlAttribute.Name;
             if (string.IsNullOrEmpty(xmlKeyString))
                 return false;
 
@@ -510,8 +504,8 @@ namespace NLog.Layouts
             sb.Append("=\"");
 
             int beforeValueLength = sb.Length;
-            attributes.LayoutWrapper.RenderAppendBuilder(logEvent, sb);
-            if (sb.Length == beforeValueLength && !attributes.IncludeEmptyValue)
+            xmlAttribute.LayoutWrapper.RenderAppendBuilder(logEvent, sb);
+            if (sb.Length == beforeValueLength && !xmlAttribute.IncludeEmptyValue)
                 return false;
 
             sb.Append('\"');
