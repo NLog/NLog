@@ -64,5 +64,14 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             var le2 = LogEventInfo.Create(LogLevel.Info, "mylogger", "");
             Assert.Equal("mylogger emitted empty message", l.Render(le2));
         }
+
+        [Fact]
+        public void WhenEmpty_MissingInner_ShouldNotThrow()
+        {
+            LogManager.ThrowExceptions = true;
+            SimpleLayout l = @"${whenEmpty:whenEmpty=${literal:text=c:\logs\}:inner=${environment:LOG_DIR_XXX}}api.log";
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+            Assert.Equal("api.log", l.Render(le));
+        }
     }
 }
