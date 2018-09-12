@@ -217,7 +217,7 @@ namespace NLog
                 if (typeof(T).IsValueType || Convert.GetTypeCode(value) != TypeCode.Object)
                     return new NestedContext<T>(parent, value);
                 else
-                    return new NestedContext<System.Runtime.Remoting.ObjectHandle>(parent, new System.Runtime.Remoting.ObjectHandle(value));
+                    return new NestedContext<ObjectHandleSerializer>(parent, new ObjectHandleSerializer(value));
 #endif
             }
 
@@ -228,10 +228,12 @@ namespace NLog
 #if NET4_6 || NETSTANDARD
                     return Value;
 #else
-                    if (Value is System.Runtime.Remoting.IObjectHandle objectHandle)
+                    object value = Value;
+                    if (value is ObjectHandleSerializer objectHandle)
+                    {
                         return objectHandle.Unwrap();
-                    else
-                        return Value;
+                    }
+                    return value;
 #endif
                 }
             }
