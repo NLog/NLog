@@ -138,10 +138,11 @@ namespace NLog
 #if NET4_6 || NETSTANDARD
             return value;
 #else
-            if (value is System.Runtime.Remoting.ObjectHandle objectHandle)
+            if (value is ObjectHandleSerializer objectHandle)
+            {
                 return objectHandle.Unwrap();
-            else
-                return value;
+            }
+            return value;
 #endif
         }
 
@@ -212,8 +213,9 @@ namespace NLog
 #else
             if (typeof(T).IsValueType || Convert.GetTypeCode(value) != TypeCode.Object)
                 logicalContext[item] = value;
-            else
-                logicalContext[item] = new System.Runtime.Remoting.ObjectHandle(value);
+            else 
+
+                logicalContext[item] = new ObjectHandleSerializer(value);
 #endif
         }
 
@@ -301,3 +303,4 @@ namespace NLog
 }
 
 #endif
+
