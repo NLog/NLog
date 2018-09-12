@@ -104,5 +104,25 @@ namespace NLog.UnitTests.Layouts
             var target = LogManager.Configuration.FindTargetByName<NLog.Targets.DebugTarget>("debug");
             Assert.Equal(@"<log4j:event logger=""A"" level=""DEBUG""><log4j:message>some message</log4j:message><log4j:locationInfo class=""NLog.UnitTests.Layouts.XmlLayoutTests""/><log4j:data name=""foo1"" value=""bar1""/><log4j:data name=""foo2"" value=""bar2""/><log4j:data name=""foo3"" value=""bar3""/><log4j:data name=""nlogPropertyKey"" value=""&lt;nlog&#13;&#10;PropertyValue&gt;""/></log4j:event>", target.LastMessage);
         }
+
+        [Fact]
+        public void XmlLayout_IncludeEmptyValue_RenderEmptyValue()
+        {
+        }
+
+        [Fact]
+        public void XmlLayout_ExcludeProperties_RenderNotProperty()
+        {
+        }
+
+        [Fact]
+        public void XmlLayout_OnlyLogEventProperties_RenderRootCorrect()
+        {
+        }
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyName()
+        {
+        }
     }
 }
