@@ -60,9 +60,9 @@ namespace NLog.LayoutRenderers.Wrappers
                 Inner.RenderAppendBuilder(logEvent, builder);
                 if (builder.Length - orgLength > Length)
                 {
-                    var str = builder.ToString(orgLength, builder.Length - orgLength);
+                    var rightStr = builder.ToString(builder.Length - Length, Length);
                     builder.Length = orgLength;
-                    builder.Append(str.Substring(str.Length - Length, Length));
+                    builder.Append(rightStr);
                 }
             }
         }
