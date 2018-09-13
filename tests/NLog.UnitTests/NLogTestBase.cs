@@ -71,6 +71,7 @@ namespace NLog.UnitTests
 
             LogManager.Configuration = null;
             InternalLogger.Reset();
+            InternalLogger.LogLevel = LogLevel.Off;
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
             System.Diagnostics.Trace.Listeners.Clear();

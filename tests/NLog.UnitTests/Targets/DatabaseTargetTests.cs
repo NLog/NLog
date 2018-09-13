@@ -1405,7 +1405,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         public void WarningForObsoleteUseTransactions(string property, bool printWarning)
         {
             LoggingConfiguration c = CreateConfigurationFromString($@"
-            <nlog ThrowExceptions='true'>
+            <nlog ThrowExceptions='true' internalLogLevel='Info'>
                 <targets>
                     <target type='database' {property} name='t1' commandtext='fake sql' connectionstring='somewhere' />
                 </targets>
