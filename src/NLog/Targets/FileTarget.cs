@@ -1289,81 +1289,91 @@ namespace NLog.Targets
                 InternalLogger.Info("FileTarget(Name={0}): Archiving {1} to {2}", Name, fileName, archiveFileName);
                 if (File.Exists(archiveFileName))
                 {
-                    //todo handle double footer
-                    InternalLogger.Info("FileTarget(Name={0}): Already exists, append to {1}", Name, archiveFileName);
-
-                    //todo maybe needs a better filelock behaviour
-
-                    //copy to archive file.
-                    var fileShare = FileShare.ReadWrite;
-                    if (EnableFileDelete)
-                    {
-                        fileShare |= FileShare.Delete;
-                    }
-
-                    using (FileStream fileStream = File.Open(fileName, FileMode.Open, FileAccess.ReadWrite, fileShare))
-                    using (FileStream archiveFileStream = File.Open(archiveFileName, FileMode.Append))
-                    {
-                        fileStream.CopyAndSkipBom(archiveFileStream, Encoding);
-                        //clear old content
-                        fileStream.SetLength(0);
-
-                        if (EnableFileDelete)
-                        {
-                            // Attempt to delete file to reset File-Creation-Time (Delete under file-lock)
-                            if (!DeleteOldArchiveFile(fileName))
-                            {
-                                fileShare &= ~FileShare.Delete;  // Retry after having released file-lock
-                            }
-                        }
-
-                        fileStream.Close(); // This flushes the content, too.
-#if NET3_5
-                        archiveFileStream.Flush();
-#else
-                        archiveFileStream.Flush(true);
-#endif
-                    }
-
-                    if ((fileShare & FileShare.Delete) == FileShare.None)
-                    {
-                        DeleteOldArchiveFile(fileName); // Attempt to delete file to reset File-Creation-Time
-                    }
+                    ArchiveFileAppendExisting(fileName, archiveFileName);
                 }
                 else
                 {
-                    try
+                    ArchiveFileMove(fileName, archiveFileName);
+                }
+            }
+        }
+
+        private void ArchiveFileAppendExisting(string fileName, string archiveFileName)
+        {
+            //todo handle double footer
+            InternalLogger.Info("FileTarget(Name={0}): Already exists, append to {1}", Name, archiveFileName);
+
+            //todo maybe needs a better filelock behaviour
+
+            //copy to archive file.
+            var fileShare = FileShare.ReadWrite;
+            if (EnableFileDelete)
+            {
+                fileShare |= FileShare.Delete;
+            }
+
+            using (FileStream fileStream = File.Open(fileName, FileMode.Open, FileAccess.ReadWrite, fileShare))
+            using (FileStream archiveFileStream = File.Open(archiveFileName, FileMode.Append))
+            {
+                fileStream.CopyAndSkipBom(archiveFileStream, Encoding);
+                //clear old content
+                fileStream.SetLength(0);
+
+                if (EnableFileDelete)
+                {
+                    // Attempt to delete file to reset File-Creation-Time (Delete under file-lock)
+                    if (!DeleteOldArchiveFile(fileName))
                     {
-                        InternalLogger.Debug("FileTarget(Name={0}): Move file from '{1}' to '{2}'", Name, fileName, archiveFileName);
-                        File.Move(fileName, archiveFileName);
-                    }
-                    catch (IOException ex)
-                    {
-                        if (KeepFileOpen && !ConcurrentWrites)
-                            throw;  // No need to retry, when only single process access
-
-                        if (!EnableFileDelete && KeepFileOpen)
-                            throw;  // No need to retry when file delete has been disabled
-
-                        if (!PlatformDetector.SupportsSharableMutex)
-                            throw;  // No need to retry when not having a real archive mutex to protect us
-
-                        // It is possible to move a file while other processes has open file-handles.
-                        // Unless the other process is actively writing, then the file move might fail.
-                        // We are already holding the archive-mutex, so lets retry if things are stable
-                        InternalLogger.Warn(ex, "FileTarget(Name={0}): Archiving failed. Checking for retry move of {1} to {2}.", Name, fileName, archiveFileName);
-                        if (!File.Exists(fileName) || File.Exists(archiveFileName))
-                            throw;
-
-                        AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(50));
-
-                        if (!File.Exists(fileName) || File.Exists(archiveFileName))
-                            throw;
-
-                        InternalLogger.Debug("FileTarget(Name={0}): Archiving retrying move of {1} to {2}.", Name, fileName, archiveFileName);
-                        File.Move(fileName, archiveFileName);
+                        fileShare &= ~FileShare.Delete;  // Retry after having released file-lock
                     }
                 }
+
+                fileStream.Close(); // This flushes the content, too.
+#if NET3_5
+                archiveFileStream.Flush();
+#else
+                archiveFileStream.Flush(true);
+#endif
+            }
+
+            if ((fileShare & FileShare.Delete) == FileShare.None)
+            {
+                DeleteOldArchiveFile(fileName); // Attempt to delete file to reset File-Creation-Time
+            }
+        }
+
+        private void ArchiveFileMove(string fileName, string archiveFileName)
+        {
+            try
+            {
+                InternalLogger.Debug("FileTarget(Name={0}): Move file from '{1}' to '{2}'", Name, fileName, archiveFileName);
+                File.Move(fileName, archiveFileName);
+            }
+            catch (IOException ex)
+            {
+                if (KeepFileOpen && !ConcurrentWrites)
+                    throw;  // No need to retry, when only single process access
+
+                if (!EnableFileDelete && KeepFileOpen)
+                    throw;  // No need to retry when file delete has been disabled
+
+                if (!PlatformDetector.SupportsSharableMutex)
+                    throw;  // No need to retry when not having a real archive mutex to protect us
+
+                // It is possible to move a file while other processes has open file-handles.
+                // Unless the other process is actively writing, then the file move might fail.
+                // We are already holding the archive-mutex, so lets retry if things are stable
+                InternalLogger.Warn(ex, "FileTarget(Name={0}): Archiving failed. Checking for retry move of {1} to {2}.", Name, fileName, archiveFileName);
+                if (!File.Exists(fileName) || File.Exists(archiveFileName))
+                    throw;
+
+                AsyncHelpers.WaitForDelay(TimeSpan.FromMilliseconds(50));
+
+                if (!File.Exists(fileName) || File.Exists(archiveFileName))
+                    throw;
+
+                InternalLogger.Debug("FileTarget(Name={0}): Archiving retrying move of {1} to {2}.", Name, fileName, archiveFileName);
+                File.Move(fileName, archiveFileName);
             }
         }
 
