@@ -102,6 +102,8 @@ namespace NLog
         {
             if (IsEnabled(logEvent.Level))
             {
+                if (logEvent.LoggerName == null)
+                    logEvent.LoggerName = Name;
                 WriteToTargets(logEvent);
             }
         }
@@ -115,6 +117,8 @@ namespace NLog
         {
             if (IsEnabled(logEvent.Level))
             {
+                if (logEvent.LoggerName == null)
+                    logEvent.LoggerName = Name;
                 WriteToTargets(wrapperType, logEvent);
             }
         }
