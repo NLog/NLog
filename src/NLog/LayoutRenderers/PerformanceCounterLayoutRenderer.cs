@@ -35,11 +35,13 @@
 
 namespace NLog.LayoutRenderers
 {
+    using System;
     using System.Diagnostics;
     using System.Globalization;
     using System.Text;
+    using NLog.Common;
     using NLog.Config;
-	using NLog.Internal;
+    using NLog.Internal;
 
     /// <summary>
     /// The performance counter.
@@ -47,7 +49,9 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("performancecounter")]
     public class PerformanceCounterLayoutRenderer : LayoutRenderer, IRawValue
     {
-        private PerformanceCounter perfCounter;
+        private PerformanceCounter _perfCounter;
+        private CounterSample _prevSample = CounterSample.Empty;
+        private CounterSample _nextSample = CounterSample.Empty;
 
         /// <summary>
         /// Gets or sets the name of the counter category.
@@ -76,20 +80,78 @@ namespace NLog.LayoutRenderers
         public string MachineName { get; set; }
 
         /// <summary>
+        /// Format string for conversion from float to string.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='50' />
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='100' />
+        public CultureInfo Culture { get; set; }
+
+        /// <summary>
         /// Initializes the layout renderer.
         /// </summary>
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
 
+            _prevSample = CounterSample.Empty;
+            _nextSample = CounterSample.Empty;
+
             if (MachineName != null)
             {
-                perfCounter = new PerformanceCounter(Category, Counter, Instance, MachineName);
+                _perfCounter = new PerformanceCounter(Category, Counter, Instance ?? string.Empty, MachineName);
             }
             else
             {
-                perfCounter = new PerformanceCounter(Category, Counter, Instance, true);
+                string instance = Instance;
+                if (string.IsNullOrEmpty(instance) && string.Equals(Category, "Process", StringComparison.OrdinalIgnoreCase))
+                {
+                    instance = GetCurrentProcessInstanceName(Category);
+                }
+
+                _perfCounter = new PerformanceCounter(Category, Counter, instance ?? string.Empty, true);
+                GetValue(); // Prepare Performance Counter for CounterSample.Calculate
             }
+        }
+
+        /// <summary>
+        /// If having multiple instances with the same process-name, then they will get different instance names
+        /// </summary>
+        private static string GetCurrentProcessInstanceName(string category)
+        {
+            try
+            {
+                using (Process proc = Process.GetCurrentProcess())
+                {
+                    int pid = proc.Id;
+                    PerformanceCounterCategory cat = new PerformanceCounterCategory(category);
+                    foreach (string instanceValue in cat.GetInstanceNames())
+                    {
+                        using (PerformanceCounter cnt = new PerformanceCounter(category, "ID Process", instanceValue, true))
+                        {
+                            int val = (int)cnt.RawValue;
+                            if (val == pid)
+                            {
+                                return instanceValue;
+                            }
+                        }
+                    }
+
+                    InternalLogger.Debug("PerformanceCounter - Failed to auto detect current process instance. ProcessId={0}", pid);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrown())
+                    throw;
+
+                InternalLogger.Warn(ex, "PerformanceCounter - Failed to auto detect current process instance.");
+            }
+            return string.Empty;
         }
 
         /// <summary>
@@ -98,11 +160,13 @@ namespace NLog.LayoutRenderers
         protected override void CloseLayoutRenderer()
         {
             base.CloseLayoutRenderer();
-            if (perfCounter != null)
+            if (_perfCounter != null)
             {
-                perfCounter.Close();
-                perfCounter = null;
+                _perfCounter.Close();
+                _perfCounter = null;
             }
+            _prevSample = CounterSample.Empty;
+            _nextSample = CounterSample.Empty;
         }
 
         /// <summary>
@@ -112,8 +176,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var formatProvider = GetFormatProvider(logEvent);
-            builder.Append(GetValue().ToString(formatProvider));
+            var formatProvider = GetFormatProvider(logEvent, Culture);
+            builder.Append(GetValue().ToString(Format, formatProvider));
         }
 
         /// <inheritdoc />
@@ -124,7 +188,26 @@ namespace NLog.LayoutRenderers
 
         private float GetValue()
         {
-            return perfCounter.NextValue();
+            CounterSample currentSample = _perfCounter.NextSample();
+            if (currentSample.SystemFrequency != 0)
+            {
+                // The recommended delay time between calls to the NextSample method is one second, to allow the counter to perform the next incremental read.
+                float timeDifferenceSecs = (currentSample.TimeStamp - _nextSample.TimeStamp) / (float)currentSample.SystemFrequency;
+                if (timeDifferenceSecs > 0.5F || timeDifferenceSecs < -0.5F)
+                {
+                    _prevSample = _nextSample;
+                    _nextSample = currentSample;
+                    if (_prevSample.Equals(CounterSample.Empty))
+                        _prevSample = currentSample;
+                }
+            }
+            else
+            {
+                _prevSample = _nextSample;
+                _nextSample = currentSample;
+            }
+            float sampleValue = CounterSample.Calculate(_prevSample, currentSample);
+            return sampleValue;
         }
     }
 }
