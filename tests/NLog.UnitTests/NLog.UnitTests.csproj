@@ -66,6 +66,10 @@
     <ProjectReference Include="..\..\src\NLog.WindowsIdentity\NLog.WindowsIdentity.csproj">
       <Private>true</Private>
     </ProjectReference>
+
+    <ProjectReference Include="..\..\src\NLog.AppConfig\NLog.AppConfig.csproj">
+      <Private>true</Private>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">

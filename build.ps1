@@ -39,6 +39,10 @@ msbuild /t:Restore,Pack .\src\NLog.WindowsIdentity\ /p:VersionPrefix=$versionPre
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
+msbuild /t:Restore,Pack .\src\NLog.AppConfig\ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
+if (-Not $LastExitCode -eq 0)
+	{ exit $LastExitCode }
+
 msbuild /t:xsd /t:NuGetSchemaPackage /t:NuGetConfigPackage .\src\NLog.proj /p:Configuration=Release /p:BuildNetFX45=true /p:BuildVersion=$versionProduct /p:Configuration=Release /p:BuildLabelOverride=NONE /verbosity:minimal
 
 exit $LastExitCode

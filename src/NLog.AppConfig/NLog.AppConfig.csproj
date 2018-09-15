@@ -1,0 +1,86 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net45;net40-client;net35;netstandard2.0</TargetFrameworks>
+
+    <Title>NLog.AppConfig</Title>
+    <Company>NLog</Company>
+    <Description>Wiki: https://github.com/nlog/nlog/wiki/AppSetting-Layout-Renderer
+    
+For appsettings.json etc. in ASP.NET core, use https://www.nuget.org/packages/NLog.Extensions.Configuration
+    </Description>
+    <Product>NLog.AppConfig v$(ProductVersion)</Product>
+    <InformationalVersion>$(ProductVersion)</InformationalVersion>
+    <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
+    
+    <PackageReleaseNotes>
+      Wiki:
+      https://github.com/NLog/NLog/wiki/AppSetting-Layout-Renderer
+    </PackageReleaseNotes>
+    <PackageTags>NLog;AppConfig;WebConfig;AppSettings;logging;log</PackageTags>
+    <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
+    <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
+
+    <SignAssembly>true</SignAssembly>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Title>NLog.AppConfig for .NET Framework 4.5</Title>
+    <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
+    <Title>NLog.AppConfig for .NET Framework 4</Title>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Title>NLog.AppConfig for .NET Framework 3.5</Title>
+    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <Title>NLog.AppConfig for NetStandard 2.0</Title>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(monobuild)' != '' ">
+    <Title>$(Title) - Mono</Title>
+    <DefineConstants>$(DefineConstants)MONO</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\NLog\Resources\NLog.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NLog\NLog.csproj" />
+  </ItemGroup>
+
+</Project>

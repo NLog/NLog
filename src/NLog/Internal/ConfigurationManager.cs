@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_0
 
 namespace NLog.Internal
 {
@@ -47,7 +47,11 @@ namespace NLog.Internal
         /// <summary>
         /// Gets the wrapper around ConfigurationManager.AppSettings.
         /// </summary>
+#if NETSTANDARD2_0
+        public NameValueCollection AppSettings { get; } = new NameValueCollection();
+#else
         public NameValueCollection AppSettings => System.Configuration.ConfigurationManager.AppSettings;
+#endif
     }
 }
 
