@@ -36,10 +36,8 @@ namespace NLog.UnitTests
     using System;
     using System.IO;
     using System.Threading;
-    using System.Reflection;
     using NLog.Config;
     using Xunit;
-
 
     public class LogFactoryTests : NLogTestBase
     {
@@ -94,6 +92,78 @@ namespace NLog.UnitTests
             }
 
             Assert.True(ExceptionThrown);
+        }
+
+        [Fact]
+        public void Configuration_InaccessibleNLog_doesNotThrowException()
+        {
+            string tempDirectory = null;
+
+            try
+            {
+                // Arrange
+                var logFactory = CreateEmptyNLogFile(out tempDirectory, out var configFile);
+                using (OpenStream(configFile))
+                {
+                    // Act
+                    var loggingConfig = logFactory.Configuration;
+
+                    // Assert
+                    Assert.Null(loggingConfig);
+                }
+
+                // Assert
+                Assert.NotNull(logFactory.Configuration);
+            }
+            finally
+            {
+                if (tempDirectory != null && Directory.Exists(tempDirectory))
+                    Directory.Delete(tempDirectory, true);
+            }
+        }
+
+        [Fact]
+        public void LoadConfiguration_InaccessibleNLog_throwException()
+        {
+            string tempDirectory = null;
+
+            try
+            {
+                // Arrange
+                var logFactory = CreateEmptyNLogFile(out tempDirectory, out var configFile);
+                using (OpenStream(configFile))
+                {
+                    // Act
+                    var ex = Record.Exception(() => logFactory.LoadConfiguration(configFile));
+
+                    // Assert
+                    Assert.IsType<IOException>(ex);
+                }
+
+                // Assert
+                Assert.NotNull(logFactory.LoadConfiguration(configFile).Configuration);
+            }
+            finally
+            {
+                if (tempDirectory != null && Directory.Exists(tempDirectory))
+                    Directory.Delete(tempDirectory, true);
+            }
+        }
+
+        private static FileStream OpenStream(string configFile)
+        {
+            return new FileStream(configFile, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+        }
+
+        private static LogFactory CreateEmptyNLogFile(out string tempDirectory, out string filePath)
+        {
+            tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+            filePath = Path.Combine(tempDirectory, "NLog.config");
+            Directory.CreateDirectory(tempDirectory);
+            File.WriteAllText(filePath, "<nlog />");
+            LogFactory logFactory = new LogFactory();
+            logFactory.SetCandidateConfigFilePaths(new[] { filePath });
+            return logFactory;
         }
 
         [Fact]
@@ -164,7 +234,7 @@ namespace NLog.UnitTests
                 if (testChanged != null)
                     LogManager.LogFactory.ConfigurationChanged -= testChanged;
             }
-       }
+        }
 
         private class ReloadNullConfiguration : LoggingConfiguration
         {
