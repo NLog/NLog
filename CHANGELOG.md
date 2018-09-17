@@ -7,13 +7,12 @@ Date format: (year/month/day)
 ### V4.5.10 (2018/09/17)
 
 #### Fixes
-- [#2883](https://github.com/NLog/NLog/pull/2883) Fix LoadConfiguration for not found config file (@snakefoot, 304NotModified)
-
+- [#2883](https://github.com/NLog/NLog/pull/2883) Fix LoadConfiguration for not found config file (@snakefoot, @304NotModified)
 
 ### v4.5.9 (2018/08/24)
 
 #### Fixes
-- [#2865](https://github.com/NLog/NLog/pull/2865) JSON encoding should create valid JSON for special double values (hotfix) (@snakefoot)
+- [#2865](https://github.com/NLog/NLog/pull/2865) JSON encoding should create valid JSON for special double values (@snakefoot)
 
 #### Enhancements
 - [#2846](https://github.com/NLog/NLog/pull/2846) Include Entry Assembly File Location when loading candidate NLog.config (@snakefoot)
