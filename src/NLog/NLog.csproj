@@ -34,10 +34,8 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 
 ## Fixes
-- [#2865](https://github.com/NLog/NLog/pull/2865) JSON encoding should create valid JSON for special double values (hotfix) (@snakefoot)
 
-## Enhancements
-- [#2846](https://github.com/NLog/NLog/pull/2846) Include Entry Assembly File Location when loading candidate NLog.config (#2846) (@snakefoot)
+-  Fix LoadConfiguration for not found config file (@snakefoot, 304NotModified)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
