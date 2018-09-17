@@ -217,13 +217,6 @@ namespace NLog
                         TryLoadFromFilePaths();
                     }
 
-#if __ANDROID__
-                    if (_config == null)
-                    {
-                        TryLoadFromAndroidAssets();
-                    }
-#endif
-
                     if (_config != null)
                     {
                         try
@@ -330,7 +323,7 @@ namespace NLog
                 {
                     if (stream != null)
                     {
-                        _config = TryLoadLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
+                        _config = LoadXmlLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
                     }
                 }
             }
@@ -347,21 +340,13 @@ namespace NLog
             var configFileNames = GetCandidateConfigFilePaths();
             foreach (string configFile in configFileNames)
             {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                Uri configFileUri = new Uri(configFile, UriKind.Relative);
-                if (Application.GetResourceStream(configFileUri) != null)
-                {
-                    _config = TryLoadLoggingConfiguration(configFile);
-                    break;
-                }
-#else
-                if (File.Exists(configFile))
-                {
-                    _config = TryLoadLoggingConfiguration(configFile);
-                    break;
-                }
-#endif
+                if (TryLoadLoggingConfiguration(configFile, out _config))
+                    return;
             }
+
+#if __ANDROID__
+            TryLoadFromAndroidAssets();
+#endif
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
@@ -1136,7 +1121,7 @@ namespace NLog
 
             // Current config file with .config renamed to .nlog
             string configurationFile = CurrentAppDomain?.ConfigurationFile;
-            if (configurationFile != null)
+            if (!string.IsNullOrEmpty(configurationFile))
             {
                 yield return Path.ChangeExtension(configurationFile, ".nlog");
 
@@ -1152,7 +1137,7 @@ namespace NLog
                 {
                     foreach (var path in privateBinPaths)
                     {
-                        if (path != null)
+                        if (!string.IsNullOrEmpty(path))
                         {
                             yield return Path.Combine(path, "NLog.config");
                             if (!platformFileSystemCaseInsensitive)
@@ -1279,11 +1264,11 @@ namespace NLog
                 configFile = Path.Combine(CurrentAppDomain.BaseDirectory, configFile);
             }
 
-            Configuration = TryLoadLoggingConfiguration(configFile);
+            Configuration = LoadXmlLoggingConfiguration(configFile);
             return this;
         }
 
-        private LoggingConfiguration TryLoadLoggingConfiguration(string configFile)
+        private LoggingConfiguration LoadXmlLoggingConfiguration(string configFile)
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
             var xmlConfig = new XmlLoggingConfiguration(configFile, this);
@@ -1294,6 +1279,48 @@ namespace NLog
                 InternalLogger.Warn("Failed loading config from {0}. Invalid XML?", configFile);
             }
             return xmlConfig;
+        }
+
+        private bool TryLoadLoggingConfiguration(string configFile, out LoggingConfiguration config)
+        {
+            try
+            {
+#if SILVERLIGHT && !WINDOWS_PHONE
+                Uri configFileUri = new Uri(configFile, UriKind.Relative);
+                if (Application.GetResourceStream(configFileUri) != null)
+                {
+                    config = LoadXmlLoggingConfiguration(configFile);
+                    return true;    // File exists, and maybe the config is valid, stop search
+                }
+#else
+                if (File.Exists(configFile))
+                {
+                    config = LoadXmlLoggingConfiguration(configFile);
+                    return true;    // File exists, and maybe the config is valid, stop search
+                }
+#endif
+            }
+            catch (IOException ex)
+            {
+                InternalLogger.Warn(ex, "Skipping invalid config file location: {0}", configFile);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                InternalLogger.Warn(ex, "Skipping inaccessible config file location: {0}", configFile);
+            }
+            catch (SecurityException ex)
+            {
+                InternalLogger.Warn(ex, "Skipping inaccessible config file location: {0}", configFile);
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Failed loading from config file location: {0}", configFile);
+                if (ex.MustBeRethrown())
+                    throw;
+            }
+
+            config = null;
+            return false;   // No valid file found
         }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3

@@ -31,29 +31,25 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections;
-using System.Linq;
-using System.Threading;
-using NLog.LayoutRenderers;
-using System.Xml;
-using NLog.Config;
-using NLog.UnitTests.LayoutRenderers;
-
 #if !NETSTANDARD
 
 namespace NLog.UnitTests
 {
     using System;
     using System.CodeDom.Compiler;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using Microsoft.CSharp;
     using Xunit;
+    using NLog.Config;
     using NLog.Layouts;
-    using System.Collections.Generic;
+    using NLog.LayoutRenderers;
 
-    public class ConfigFileLocatorTests : NLogTestBase
+    public class ConfigFileLocatorTests : NLogTestBase, IDisposable
     {
         private string appConfigContents = @"
 <configuration>
@@ -116,6 +112,12 @@ namespace NLog.UnitTests
         {
             _tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
             Directory.CreateDirectory(_tempDirectory);
+        }
+
+        void IDisposable.Dispose()
+        {
+            if (Directory.Exists(_tempDirectory))
+                Directory.Delete(_tempDirectory, true);
         }
 
         [Fact]
