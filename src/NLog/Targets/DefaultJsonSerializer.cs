@@ -454,90 +454,103 @@ namespace NLog.Targets
                 {
                     //object without property, to string
                     QuoteValue(destination, Convert.ToString(value, CultureInfo.InvariantCulture));
+                    return true;
                 }
                 else if (value is DateTimeOffset)
                 {
                     QuoteValue(destination, $"{value:yyyy-MM-dd HH:mm:ss zzz}");
+                    return true;
                 }
                 else
                 {
-                    int originalLength = destination.Length;
-                    if (originalLength > MaxJsonLength)
-                    {
-                        return false;
-                    }
-
-                    if (depth < options.MaxRecursionLimit)
-                    {
-                        try
-                        {
-                            if (value is Exception && ReferenceEquals(options, instance._serializeOptions))
-                            {
-                                // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
-                                options = instance._exceptionSerializeOptions;
-                            }
-
-                            using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
-                            {
-                                return SerializeProperties(value, destination, options, objectsInPath, depth);
-                            }
-                        }
-                        catch
-                        {
-                            //nothing to add, so return is OK
-                            destination.Length = originalLength;
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        try
-                        {
-                            string str = Convert.ToString(value, CultureInfo.InvariantCulture);
-                            destination.Append('"');
-                            AppendStringEscape(destination, str, options.EscapeUnicode);
-                            destination.Append('"');
-                        }
-                        catch
-                        {
-                            return false;
-                        }
-                    }
+                    return SerializeObjectWithProperties(value, destination, options, ref objectsInPath, depth);
                 }
             }
             else
             {
-                if (IsNumericTypeCode(objTypeCode, false))
+                return SerializeSimpleTypeCodeValue(value, objTypeCode, destination, options);
+            }
+        }
+
+        private bool SerializeObjectWithProperties(object value, StringBuilder destination, JsonSerializeOptions options, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        {
+            int originalLength = destination.Length;
+            if (originalLength > MaxJsonLength)
+            {
+                return false;
+            }
+
+            if (depth < options.MaxRecursionLimit)
+            {
+                try
                 {
-                    SerializeNumber(value, destination, options, objTypeCode);
+                    if (value is Exception && ReferenceEquals(options, instance._serializeOptions))
+                    {
+                        // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
+                        options = instance._exceptionSerializeOptions;
+                    }
+
+                    using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
+                    {
+                        return SerializeProperties(value, destination, options, objectsInPath, depth);
+                    }
+                }
+                catch
+                {
+                    //nothing to add, so return is OK
+                    destination.Length = originalLength;
+                    return false;
+                }
+            }
+            else
+            {
+                try
+                {
+                    string str = Convert.ToString(value, CultureInfo.InvariantCulture);
+                    destination.Append('"');
+                    AppendStringEscape(destination, str, options.EscapeUnicode);
+                    destination.Append('"');
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
+        private bool SerializeSimpleTypeCodeValue(object value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options)
+        {
+            if (IsNumericTypeCode(objTypeCode, false))
+            {
+                SerializeNumber(value, destination, options, objTypeCode);
+            }
+            else
+            {
+                string str = XmlHelper.XmlConvertToString(value, objTypeCode);
+                if (str == null)
+                {
+                    return false;
+                }
+
+                if (SkipQuotes(value, objTypeCode))
+                {
+                    destination.Append(str);
                 }
                 else
                 {
-                    string str = XmlHelper.XmlConvertToString(value, objTypeCode);
-                    if (str == null)
+                    if (objTypeCode == TypeCode.Char)
                     {
-                        return false;
-                    }
-                    if (SkipQuotes(value, objTypeCode))
-                    {
-                        destination.Append(str);
+                        destination.Append('"');
+                        AppendStringEscape(destination, str, options.EscapeUnicode);
+                        destination.Append('"');
                     }
                     else
                     {
-                        if (objTypeCode == TypeCode.Char)
-                        {
-                            destination.Append('"');
-                            AppendStringEscape(destination, str, options.EscapeUnicode);
-                            destination.Append('"');
-                        }
-                        else
-                        {
-                            QuoteValue(destination, str);
-                        }
+                        QuoteValue(destination, str);
                     }
                 }
             }
-
             return true;
         }
 
@@ -596,30 +609,25 @@ namespace NLog.Targets
         /// </summary>
         private static bool SkipQuotes(object value, TypeCode objTypeCode)
         {
-            if (objTypeCode != TypeCode.String)
+            switch (objTypeCode)
             {
-                if (objTypeCode == TypeCode.Empty || objTypeCode == TypeCode.Boolean)
-                    return true;    // Don't put quotes around null values
-
-                if (IsNumericTypeCode(objTypeCode, false) || objTypeCode == TypeCode.Decimal)
-                    return true;
-
-                if (objTypeCode == TypeCode.Double)
-                {
-                    double dblValue = (double)value;
-                    if (!double.IsNaN(dblValue) && !double.IsInfinity(dblValue))
-                        return true;
-                }
-
-                if (objTypeCode == TypeCode.Single)
-                {
-                    float floatValue = (float)value;
-                    if (!float.IsNaN(floatValue) && !float.IsInfinity(floatValue))
-                        return true;
-                }
+                case TypeCode.String: return false;
+                case TypeCode.Empty: return true;
+                case TypeCode.Boolean: return true;
+                case TypeCode.Decimal: return true;
+                case TypeCode.Double:
+                    {
+                        double dblValue = (double)value;
+                        return !double.IsNaN(dblValue) && !double.IsInfinity(dblValue);
+                    }
+                case TypeCode.Single:
+                    {
+                        float floatValue = (float)value;
+                        return !float.IsNaN(floatValue) && !float.IsInfinity(floatValue);
+                    }
+                default:
+                    return IsNumericTypeCode(objTypeCode, false);
             }
-
-            return false;
         }
 
         /// <summary>

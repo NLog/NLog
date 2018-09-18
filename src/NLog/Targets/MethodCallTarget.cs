@@ -122,23 +122,7 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        var neededParameters = methodInfo.GetParameters().Length;
-                        _logEventAction = (logEvent, parameters) =>
-                        {
-                            var missingParameters = neededParameters - parameters.Length;
-                            if (missingParameters > 0)
-                            {
-                                //fill missing parameters with Type.Missing
-                                var newParams = new object[neededParameters];
-                                for (int i = 0; i < parameters.Length; ++i)
-                                    newParams[i] = parameters[i];
-                                for (int i = parameters.Length; i < neededParameters; ++i)
-                                    newParams[i] = Type.Missing;
-                                parameters = newParams;
-                            }
-
-                            methodInfo.Invoke(null, parameters);
-                        };
+                        _logEventAction = BuildLogEventAction(methodInfo);
                     }
                 }
                 else
@@ -146,6 +130,27 @@ namespace NLog.Targets
                     InternalLogger.Warn("Initialize MethodCallTarget, class '{0}' not found", ClassName);
                 }
             }
+        }
+
+        private static Action<LogEventInfo, object[]> BuildLogEventAction(MethodInfo methodInfo)
+        {
+            var neededParameters = methodInfo.GetParameters().Length;
+            return (logEvent, parameters) =>
+            {
+                var missingParameters = neededParameters - parameters.Length;
+                if (missingParameters > 0)
+                {
+                    //fill missing parameters with Type.Missing
+                    var newParams = new object[neededParameters];
+                    for (int i = 0; i < parameters.Length; ++i)
+                        newParams[i] = parameters[i];
+                    for (int i = parameters.Length; i < neededParameters; ++i)
+                        newParams[i] = Type.Missing;
+                    parameters = newParams;
+                }
+
+                methodInfo.Invoke(null, parameters);
+            };
         }
 
         /// <summary>

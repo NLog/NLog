@@ -312,7 +312,7 @@ namespace NLog.Config
                             {
                                 parameters = new object[] { this };
                             }
-                            
+
                             preloadMethod.Invoke(null, parameters);
                             InternalLogger.Debug("Preload succesfully invoked for '{0}'", type.FullName);
                         }
@@ -389,60 +389,10 @@ namespace NLog.Config
                         assemblyLocation = fileLocation.Key;
                         break;
                     }
-                            }
+                }
 
                 InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
-                HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                alreadyRegistered.Add(nlogAssembly.FullName);
-                foreach (var extensionDll in extensionDlls)
-                {
-                    InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
-                    var success = false;
-                    try
-                    {
-                        var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
-                        InternalLogger.LogAssemblyVersion(extensionAssembly);
-                        factory.RegisterItemsFromAssembly(extensionAssembly);
-                        alreadyRegistered.Add(extensionAssembly.FullName);
-                        success = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        if (ex.MustBeRethrownImmediately())
-                        {
-                            throw;
-                        }
-
-                        InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
-                        //TODO NLog 5, check MustBeRethrown()
-                    }
-                    if (success)
-                    {
-                        InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
-                    }
-                }
-
-#if !NETSTANDARD1_0
-                var allAssemblies = LogFactory.CurrentAppDomain.GetAssemblies();
-                foreach (var assembly in allAssemblies)
-                {
-                    if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
-                    {
-                            factory.RegisterItemsFromAssembly(assembly);
-                        }
-
-                    if (assembly.FullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
-                      || assembly.FullName.StartsWith("NLog.Web,", StringComparison.OrdinalIgnoreCase)
-                      || assembly.FullName.StartsWith("NLog.Web.AspNetCore,", StringComparison.OrdinalIgnoreCase)
-                      || assembly.FullName.StartsWith("Microsoft.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
-                      || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Abstractions,", StringComparison.OrdinalIgnoreCase)
-                      || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Filter,", StringComparison.OrdinalIgnoreCase)
-                      || assembly.FullName.StartsWith("Microsoft.Logging,", StringComparison.OrdinalIgnoreCase))
-                    {
-                        LogManager.AddHiddenAssembly(assembly);
-                    }
-                }
-#endif
+                LoadNLogExtensionAssemblies(factory, nlogAssembly, extensionDlls);
             }
             catch (System.Security.SecurityException ex)
             {
@@ -466,6 +416,62 @@ namespace NLog.Config
         }
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
+        private static void LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
+        {
+            HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            alreadyRegistered.Add(nlogAssembly.FullName);
+
+            foreach (var extensionDll in extensionDlls)
+            {
+                InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
+                var success = false;
+                try
+                {
+                    var extensionAssembly = AssemblyHelpers.LoadFromPath(extensionDll);
+                    InternalLogger.LogAssemblyVersion(extensionAssembly);
+                    factory.RegisterItemsFromAssembly(extensionAssembly);
+                    alreadyRegistered.Add(extensionAssembly.FullName);
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrownImmediately())
+                    {
+                        throw;
+                    }
+
+                    InternalLogger.Warn(ex, "Auto loading assembly file: {0} failed! Skipping this file.", extensionDll);
+                    //TODO NLog 5, check MustBeRethrown()
+                }
+                if (success)
+                {
+                    InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
+                }
+            }
+
+#if !NETSTANDARD1_0
+            var allAssemblies = LogFactory.CurrentAppDomain.GetAssemblies();
+            foreach (var assembly in allAssemblies)
+            {
+                if (assembly.FullName.StartsWith("NLog.", StringComparison.OrdinalIgnoreCase) && !alreadyRegistered.Contains(assembly.FullName))
+                {
+                    factory.RegisterItemsFromAssembly(assembly);
+                }
+
+                if (assembly.FullName.StartsWith("NLog.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
+                  || assembly.FullName.StartsWith("NLog.Web,", StringComparison.OrdinalIgnoreCase)
+                  || assembly.FullName.StartsWith("NLog.Web.AspNetCore,", StringComparison.OrdinalIgnoreCase)
+                  || assembly.FullName.StartsWith("Microsoft.Extensions.Logging,", StringComparison.OrdinalIgnoreCase)
+                  || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Abstractions,", StringComparison.OrdinalIgnoreCase)
+                  || assembly.FullName.StartsWith("Microsoft.Extensions.Logging.Filter,", StringComparison.OrdinalIgnoreCase)
+                  || assembly.FullName.StartsWith("Microsoft.Logging,", StringComparison.OrdinalIgnoreCase))
+                {
+                    LogManager.AddHiddenAssembly(assembly);
+                }
+            }
+#endif
+        }
+
         internal static IEnumerable<KeyValuePair<string, Assembly>> GetAutoLoadingFileLocations()
         {
             var nlogAssembly = typeof(ILogger).GetAssembly();
