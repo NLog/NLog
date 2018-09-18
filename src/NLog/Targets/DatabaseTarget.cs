@@ -815,6 +815,11 @@ namespace NLog.Targets
                     p.Scale = par.Scale;
                 }
 
+                if (par.DbType.HasValue)
+                {
+                    p.DbType = par.DbType.Value;
+                }
+
                 string stringValue = RenderLogEvent(par.Layout, logEvent);
 
                 p.Value = stringValue;

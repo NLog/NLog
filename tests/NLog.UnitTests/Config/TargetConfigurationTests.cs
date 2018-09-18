@@ -42,6 +42,7 @@ namespace NLog.UnitTests.Config
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using System;
+    using System.Data;
     using System.Globalization;
     using System.Text;
     using Xunit;
@@ -141,6 +142,29 @@ namespace NLog.UnitTests.Config
 
             Assert.Equal("p3", t.Parameters[2].Name);
             Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
+        }
+
+        [Fact]
+        public void DatabaseParameterTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target type='database' name='dbt'>
+                        <parameter name='p1' layout='${message}' size='1' precision='2' scale='3' dbtype='time' />
+                    </target>
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("dbt") as DatabaseTarget;
+            Assert.NotNull(t);
+            Assert.Equal(1, t.Parameters.Count);
+            Assert.Equal("p1", t.Parameters[0].Name);
+            Assert.Equal("'${message}'", t.Parameters[0].Layout.ToString());
+            Assert.Equal(1, t.Parameters[0].Size);
+            Assert.Equal(2, t.Parameters[0].Precision);
+            Assert.Equal(3, t.Parameters[0].Scale);
+            Assert.Equal(DbType.Time, t.Parameters[0].DbType);
         }
 
         [Fact]

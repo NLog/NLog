@@ -546,7 +546,7 @@ Dispose()
             MockDbConnection.ClearLog();
             DatabaseTarget dt = new DatabaseTarget()
             {
-                CommandText = "INSERT INTO FooBar VALUES(@msg, @lvl, @lg)",
+                CommandText = "INSERT INTO FooBar VALUES(@msg, @lvl, @lg, @date)",
                 DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
                 KeepConnection = true,
                 Parameters =
@@ -565,12 +565,18 @@ Dispose()
                     {
                         Precision = 0
                     },
+                    new DatabaseParameterInfo("date", "${date:universalTime=true:format=yyyy-MM-dd}")
+                    {
+                        DbType = DbType.Time
+                    },
                 }
             };
 
             dt.Initialize(null);
 
             Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
+
+            string expectedDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
             // when we pass multiple log events in an array, the target will bucket-sort them by
             // connection string and group all commands for the same connection string together
@@ -612,7 +618,13 @@ Parameter #2 Direction=Input
 Parameter #2 Name=lg
 Parameter #2 Value=MyLogger
 Add Parameter Parameter #2
-ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
+CreateParameter(3)
+Parameter #3 Direction=Input
+Parameter #3 Name=date
+Parameter #3 DbType=Time
+Parameter #3 Value=" + expectedDate + @"
+Add Parameter Parameter #3
+ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg, @date)
 CreateParameter(0)
 Parameter #0 Direction=Input
 Parameter #0 Name=msg
@@ -632,7 +644,13 @@ Parameter #2 Direction=Input
 Parameter #2 Name=lg
 Parameter #2 Value=MyLogger2
 Add Parameter Parameter #2
-ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
+CreateParameter(3)
+Parameter #3 Direction=Input
+Parameter #3 Name=date
+Parameter #3 DbType=Time
+Parameter #3 Value=" + expectedDate + @"
+Add Parameter Parameter #3
+ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg, @date)
 Close()
 Dispose()
 ";
@@ -1628,7 +1646,11 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             public DbType DbType
             {
                 get => parameterType;
-                set => parameterType = value;
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} DbType={1}", paramId, value);
+                    parameterType = value;
+                }
             }
 
             public ParameterDirection Direction
