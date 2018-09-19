@@ -12,6 +12,11 @@ $versionProduct = $versionPrefix;
 if (-Not $versionSuffix.Equals(""))
 	{ $versionProduct = $versionProduct + "-" + $versionSuffix }
 
+if ($env:APPVEYOR_PULL_REQUEST_NUMBER)
+{
+   $versionPrefix = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
+   $versionSuffix = "PR" + $env:APPVEYOR_PULL_REQUEST_NUMBER
+}
 
 # download nuget.exe
 
