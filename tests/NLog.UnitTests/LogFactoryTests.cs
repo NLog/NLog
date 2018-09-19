@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
 using NLog.UnitTests.Mocks;
 
 namespace NLog.UnitTests
@@ -397,10 +398,8 @@ namespace NLog.UnitTests
 
 
         [Theory]
-        [InlineData("d:\\configfile", "d:\\configfile", "d:\\configfile")]
-        [InlineData("nlog.config", "c:\\temp\\nlog.config", "c:\\temp\\nlog.config")] //exists
-        [InlineData("nlog.config", "c:\\temp\\nlog2.config", "nlog.config")] //not existing, fallback
-        public void GetConfigFile_absolutePath_loads(string filename, string accepts, string expected, string baseDir = "c:\\temp")
+        [MemberData(nameof(GetConfigFile_absolutePath_loads_testData))]
+        public void GetConfigFile_absolutePath_loads(string filename, string accepts, string expected, string baseDir)
         {
             // Arrange
             var fileMock = new FileMock(f => f == accepts);
@@ -423,6 +422,16 @@ namespace NLog.UnitTests
                 LogFactory.CurrentAppDomain = appDomain;
             }
 
+        }
+
+        public static IEnumerable<object[]> GetConfigFile_absolutePath_loads_testData()
+        {
+            var d = Path.DirectorySeparatorChar;
+            var baseDir = Path.GetTempPath();
+            var dirInBaseDir = $"{baseDir}dir1";
+            yield return new object[] { $"{baseDir}configfile", $"{baseDir}configfile", $"{baseDir}configfile", dirInBaseDir };
+            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog.config", $"{baseDir}dir1{d}nlog.config", dirInBaseDir }; //exists
+            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog2.config", "nlog.config", dirInBaseDir}; //not existing, fallback
         }
     }
 }
