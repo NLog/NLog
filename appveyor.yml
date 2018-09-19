@@ -33,6 +33,9 @@ cache:
 services:
   - mssql2016
 
+nuget:
+  disable_publish_on_pr: true
+
 artifacts:
   - path: 'artifacts\*.nupkg'
 
