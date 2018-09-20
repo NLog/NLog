@@ -31,15 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-
 namespace NLog.Internal.FileAppenders
 {
+    using System;
+    using System.Security;
+
     /// <summary>
     /// Appender used to discard data for the FileTarget.
     /// Used mostly for testing entire stack except the actual writing to disk.
     /// Throws away all data.
     /// </summary>
+    [SecuritySafeCritical]
     internal class NullAppender : BaseFileAppender
     {
         public static readonly IFileAppenderFactory TheFactory = new Factory();
