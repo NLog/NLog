@@ -123,7 +123,7 @@ A good way to get started (flow)
 1. Create a new branch in you current repos from the 'master' branch.
 1. 'Check out' the code with Git or [GitHub Desktop](https://desktop.github.com/)
 1. Check [contributing.md](.github/CONTRIBUTING.md#sync-projects)
-1. push commits and create a Pull Request (PR) to NLog
+1. Push commits and create a Pull Request (PR) to NLog
 
 
 License
@@ -141,5 +141,5 @@ For building in the cloud we use:
 - Travis for Mono builds.
 - CodeCov for code coverage
 
-Trying to build your fork in the could? Check [this how-to](howto-build-your-fork.md)
+Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
 
