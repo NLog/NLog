@@ -98,7 +98,7 @@ namespace NLog.UnitTests.Config
 <nlog throwExceptions='true'>
    <variable name='test' value='debug'/>
     <rules>
-      <logger minLevel='${test}'/>
+      <logger minLevel='${test}' final='true' />
     </rules>
 </nlog>");
 
@@ -123,7 +123,7 @@ namespace NLog.UnitTests.Config
 <nlog throwExceptions='true'>
    <variable name='test' value='debug'/>
     <rules>
-      <logger level='${test}'/>
+      <logger level='${test}' final='true' />
     </rules>
 </nlog>");
 
