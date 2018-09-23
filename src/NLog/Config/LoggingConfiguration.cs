@@ -414,6 +414,64 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Finds the logging rule with the specified name.
+        /// </summary>
+        /// <param name="ruleName">The name of the logging rule to be found.</param>
+        /// <returns>Found logging rule or <see langword="null"/> when not found.</returns>
+        public LoggingRule FindRuleByName(string ruleName)
+        {
+            if (ruleName == null)
+                return null;
+
+            var loggingRules = GetLoggingRulesThreadSafe();
+            for (int i = loggingRules.Count - 1; i >= 0; i--)
+            {
+                if (string.Equals(loggingRules[i].RuleName, ruleName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return loggingRules[i];
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Removes the specified named logging rule.
+        /// </summary>
+        /// <param name="ruleName">The name of the logging rule to be removed.</param>
+        /// <returns>Found one or more logging rule to remove, or <see langword="false"/> when not found.</returns>
+        public bool RemoveRuleByName(string ruleName)
+        {
+            if (ruleName == null)
+                return false;
+
+            HashSet<LoggingRule> removedRules = new HashSet<LoggingRule>();
+            var loggingRules = GetLoggingRulesThreadSafe();
+            foreach (var loggingRule in loggingRules)
+            {
+                if (string.Equals(loggingRule.RuleName, ruleName, StringComparison.OrdinalIgnoreCase))
+                {
+                    removedRules.Add(loggingRule);
+                }
+            }
+
+            if (removedRules.Count > 0)
+            {
+                lock (LoggingRules)
+                {
+                    for (int i = LoggingRules.Count - 1; i >= 0; i--)
+                    {
+                        if (removedRules.Contains(LoggingRules[i]))
+                        {
+                            LoggingRules.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+
+            return removedRules.Count > 0;
+        }
+
+        /// <summary>
         /// Called by LogManager when one of the log configuration files changes.
         /// </summary>
         /// <returns>
