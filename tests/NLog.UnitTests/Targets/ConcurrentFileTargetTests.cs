@@ -306,8 +306,11 @@ namespace NLog.UnitTests.Targets
 #endif
         public void SimpleConcurrentTest(int numProcesses, int numLogs, string mode)
         {
-            DoConcurrentTest(numProcesses, numLogs, mode);
+            RetryingIntegrationTest(3, () => DoConcurrentTest(numProcesses, numLogs, mode));
         }
+
+
+
 
         [Theory]
         [InlineData("async")]
