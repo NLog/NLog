@@ -115,11 +115,12 @@ namespace NLog.Layouts
         /// </summary>
         protected override void InitializeLayout()
         {
-            base.InitializeLayout();
             if (!WithHeader)
             {
                 Header = null;
             }
+
+            base.InitializeLayout();
 
             switch (Delimiter)
             {
@@ -274,9 +275,12 @@ namespace NLog.Layouts
         /// Header with column names for CSV layout.
         /// </summary>
         [ThreadAgnostic]
+        [ThreadSafe]
+        [AppDomainFixedOutput]
         private class CsvHeaderLayout : Layout
         {
             private readonly CsvLayout _parent;
+            private string _headerOutput;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="CsvHeaderLayout"/> class.
@@ -287,9 +291,27 @@ namespace NLog.Layouts
                 _parent = parent;
             }
 
+            protected override void InitializeLayout()
+            {
+                _headerOutput = null;
+                base.InitializeLayout();
+            }
+
+            private string GetHeaderOutput()
+            {
+                return _headerOutput ?? (_headerOutput = BuilderHeaderOutput());
+            }
+
+            private string BuilderHeaderOutput()
+            {
+                StringBuilder sb = new StringBuilder();
+                _parent.RenderHeader(sb);
+                return sb.ToString();
+            }
+
             internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
             {
-                PrecalculateBuilderInternal(logEvent, target);
+                // Precalculation and caching is not needed
             }
 
             /// <summary>
@@ -299,7 +321,7 @@ namespace NLog.Layouts
             /// <returns>The rendered layout.</returns>
             protected override string GetFormattedMessage(LogEventInfo logEvent)
             {
-                return RenderAllocateBuilder(logEvent);
+                return GetHeaderOutput();
             }
 
             /// <summary>
@@ -309,7 +331,7 @@ namespace NLog.Layouts
             /// <param name="target"><see cref="StringBuilder"/> for the result</param>
             protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
             {
-                _parent.RenderHeader(target);
+                target.Append(GetHeaderOutput());
             }
         }
 
