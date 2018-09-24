@@ -140,6 +140,42 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(expected, result);
         }
 
+        
+        [Fact]
+        public void XmlLayout_NoIndent_RendersOneLine()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements =
+                {
+                    new XmlLayout("level", "${level}"),
+                    new XmlLayout("message", "${message}"),
+                },
+                IndentXml = false,
+                IncludeAllProperties = true,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "message 1",
+                Level =  LogLevel.Debug
+            };
+
+            logEventInfo.Properties["prop1"] = "a";
+            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop3"] = "c";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected =
+                @"<logevent><level>Debug</level><message>message 1</message><property key=""prop1"">a</property><property key=""prop2"">b</property><property key=""prop3"">c</property></logevent>";
+
+            Assert.Equal(expected, result);
+        }
+
         [Fact]
         public void XmlLayout_ExcludeProperties_RenderNotProperty()
         {
