@@ -108,6 +108,34 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void XmlLayout_IncludeEmptyValue_RenderEmptyValue()
         {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements =
+                {
+                    new XmlLayout("message", "${message}"),
+                },
+                IndentXml = true,
+                IncludeAllProperties = true,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = ""
+            };
+            logEventInfo.Properties["nlogPropertyKey"] = null;
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected =
+ @"<logevent>
+  <message></message>
+  <property key=""nlogPropertyKey"">null</property>
+</logevent>";
+
+            Assert.Equal(expected, result);
         }
 
         [Fact]
@@ -122,6 +150,11 @@ namespace NLog.UnitTests.Layouts
 
         [Fact]
         public void XmlLayout_PropertiesElementNameFormat_RenderPropertyName()
+        {
+        }
+
+        [Fact]
+        public void XmlLayout_DoubleNestElements_RendersAllElements()
         {
         }
     }
