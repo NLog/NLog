@@ -180,6 +180,33 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void XmlLayout_OnlyLogEventProperties_RenderRootCorrect()
         {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                IndentXml = true,
+                IncludeAllProperties = true
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "message 1"
+            };
+            logEventInfo.Properties["prop1"] = "a";
+            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop3"] = "c";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected =
+@"<logevent>
+  <property key=""prop1"">a</property>
+  <property key=""prop2"">b</property>
+  <property key=""prop3"">c</property>
+</logevent>";
+
+            Assert.Equal(expected, result);
         }
 
         [Fact]
