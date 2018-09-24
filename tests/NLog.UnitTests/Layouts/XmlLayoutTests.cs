@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+
 namespace NLog.UnitTests.Layouts
 {
     using System;
@@ -141,6 +143,38 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void XmlLayout_ExcludeProperties_RenderNotProperty()
         {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements =
+                {
+                    new XmlLayout("message", "${message}"),
+                },
+                IndentXml = true,
+                IncludeAllProperties = true,
+                ExcludeProperties = new HashSet<string>{"prop2"}
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "message 1"
+            };
+            logEventInfo.Properties["prop1"] = "a";
+            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop3"] = "c";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected =
+ @"<logevent>
+  <message>message 1</message>
+  <property key=""prop1"">a</property>
+  <property key=""prop3"">c</property>
+</logevent>";
+
+            Assert.Equal(expected, result);
         }
 
         [Fact]
