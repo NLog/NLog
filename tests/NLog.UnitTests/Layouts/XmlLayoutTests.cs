@@ -152,7 +152,7 @@ namespace NLog.UnitTests.Layouts
                 },
                 IndentXml = true,
                 IncludeAllProperties = true,
-                ExcludeProperties = new HashSet<string>{"prop2"}
+                ExcludeProperties = new HashSet<string> { "prop2" }
             };
 
             var logEventInfo = new LogEventInfo
@@ -216,7 +216,7 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 IndentXml = true,
-                IncludeAllProperties = true, 
+                IncludeAllProperties = true,
                 PropertiesElementName = "p",
                 PropertiesElementKeyAttribute = "k",
                 PropertiesElementValueAttribute = "v",
@@ -243,8 +243,48 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void XmlLayout_DoubleNestElements_RendersAllElements()
+        public void XmlLayout_DoubleNestedElements_RendersAllElements()
         {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements =
+                {
+                    new XmlLayout("message", "${message}")
+                    {
+                        Elements =
+                        {
+                            new XmlLayout("level", "${level}")
+                        },
+                        IncludeAllProperties = true,
+                        IndentXml = true
+                    }
+
+                },
+                IndentXml = true
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Level = LogLevel.Debug,
+                Message = "message 1"
+            };
+            logEventInfo.Properties["prop1"] = "a";
+            logEventInfo.Properties["prop2"] = "b";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected =
+@"<logevent>
+  <message>message 1<level>Debug</level>
+    <property key=""prop1"">a</property>
+    <property key=""prop2"">b</property>
+    </message>
+</logevent>";
+
+            Assert.Equal(expected, result);
         }
     }
 }
