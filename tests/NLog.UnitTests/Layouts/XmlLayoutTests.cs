@@ -212,6 +212,34 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void XmlLayout_PropertiesElementNameFormat_RenderPropertyName()
         {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                IndentXml = true,
+                IncludeAllProperties = true, 
+                PropertiesElementName = "p",
+                PropertiesElementKeyAttribute = "k",
+                PropertiesElementValueAttribute = "v",
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "message 1"
+            };
+            logEventInfo.Properties["prop1"] = "a";
+            logEventInfo.Properties["prop2"] = "b";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected =
+                @"<logevent>
+  <p k=""prop1"" v=""a""></p>
+  <p k=""prop2"" v=""b""></p>
+</logevent>";
+
+            Assert.Equal(expected, result);
         }
 
         [Fact]
