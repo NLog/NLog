@@ -135,7 +135,7 @@ namespace NLog.UnitTests
             {
                 if (encodedBuf[i] != buf[i])
                     Assert.True(encodedBuf[i] == buf[i],
-                        $"File:{fileName} content mismatch {(int) encodedBuf[i]} <> {(int) buf[i]} at index {i}");
+                        $"File:{fileName} content mismatch {(int)encodedBuf[i]} <> {(int)buf[i]} at index {i}");
             }
         }
 
@@ -268,7 +268,7 @@ namespace NLog.UnitTests
             {
                 if (encodedBuf[i] != buf[i])
                     Assert.True(encodedBuf[i] == buf[i],
-                        $"File:{fileName} content mismatch {(int) encodedBuf[i]} <> {(int) buf[i]} at index {i}");
+                        $"File:{fileName} content mismatch {(int)encodedBuf[i]} <> {(int)buf[i]} at index {i}");
             }
         }
 
@@ -391,6 +391,32 @@ namespace NLog.UnitTests
             action();
 
             return stringWriter.ToString();
+        }
+        /// <summary>
+        /// To handle unstable integration tests, retry if failed
+        /// </summary>
+        /// <param name="tries"></param>
+        /// <param name="action"></param>
+        protected void RetryingIntegrationTest(int tries, Action action)
+        {
+            int tried = 0;
+            while (tried < tries)
+            {
+                try
+                {
+                    tried++;
+                    action();
+                    return; //success
+                }
+                catch (Exception)
+                {
+                    if (tried >= tries)
+                    {
+                        throw;
+                    }
+                }
+               
+            }
         }
 
         /// <summary>

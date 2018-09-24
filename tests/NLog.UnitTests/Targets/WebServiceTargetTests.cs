@@ -452,32 +452,34 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             LogManager.Configuration = configuration;
             var logger = LogManager.GetCurrentClassLogger();
 
-
-
-            const int messageCount = 1000;
-            var createdMessages = new List<string>(messageCount);
-
-            for (int i = 0; i < messageCount; i++)
+            RetryingIntegrationTest(3, () =>
             {
-                var message = "message " + i;
-                createdMessages.Add(message);
 
-            }
+                const int messageCount = 1000;
+                var createdMessages = new List<string>(messageCount);
 
-            //reset
-            LogMeController.ResetState(messageCount);
-
-            StartOwinTest(() =>
-            {
-                foreach (var createdMessage in createdMessages)
+                for (int i = 0; i < messageCount; i++)
                 {
-                    logger.Info(createdMessage);
-                }
-            });
+                    var message = "message " + i;
+                    createdMessages.Add(message);
 
-            Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
-            Assert.Equal(createdMessages.Count, LogMeController.RecievedLogsPostParam1.Count);
-            //Assert.Equal(createdMessages, ValuesController.RecievedLogsPostParam1);
+                }
+
+                //reset
+                LogMeController.ResetState(messageCount);
+
+                StartOwinTest(() =>
+                {
+                    foreach (var createdMessage in createdMessages)
+                    {
+                        logger.Info(createdMessage);
+                    }
+                });
+
+                Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
+                Assert.Equal(createdMessages.Count, LogMeController.RecievedLogsPostParam1.Count);
+                //Assert.Equal(createdMessages, ValuesController.RecievedLogsPostParam1);
+            });
         }
 
         /// <summary>
@@ -896,7 +898,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
                 public DateTime ExpectedParam4 { get; }
 
-                public TestContext(int portOffset, int expectedMessages, bool xmlInsteadOfJson, Dictionary<string,string> expectedHeaders, string expected1, string expected2, bool expected3, DateTime expected4)
+                public TestContext(int portOffset, int expectedMessages, bool xmlInsteadOfJson, Dictionary<string, string> expectedHeaders, string expected1, string expected2, bool expected3, DateTime expected4)
                 {
                     CountdownEvent = new CountdownEvent(expectedMessages);
                     PortOffset = portOffset;
