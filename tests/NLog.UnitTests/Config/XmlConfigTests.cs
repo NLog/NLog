@@ -89,7 +89,7 @@ namespace NLog.UnitTests.Config
         [InlineData("000:0000:000:001", 1)]
         [InlineData("0:0:1:1", 61)]
         [InlineData("1:0:0", 3600)] // 1 hour
-        [InlineData("2:3:4", 7384)] 
+        [InlineData("2:3:4", 7384)]
         [InlineData("1:0:0:0", 86400)] //1 day
         public void SetTimeSpanFromXmlTest(string interval, int seconds)
         {
@@ -111,5 +111,49 @@ namespace NLog.UnitTests.Config
 
         }
 
+        [Fact]
+        public void InvalidInternalLogLevel_shouldNotSetLevel()
+        {
+            using (new InternalLoggerScope(true))
+            {
+                // Arrange
+                InternalLogger.LogLevel = LogLevel.Error;
+                var xml = @"<nlog  internalLogLevel='none' >
+                    </nlog>";
+
+                // Act
+                CreateConfigurationFromString(xml);
+
+                // Assert
+                Assert.Equal(LogLevel.Error, InternalLogger.LogLevel);
+            }
+        }
+
+        [Fact]
+        public void InvalidNLogAttributeValues_shouldNotBreakLogging()
+        {
+            using (new InternalLoggerScope(true))
+            {
+                // Arrange
+                var xml = @"<nlog internalLogLevel='oops' autoreload='woops' globalThreshold='noooos'>
+                        <targets>
+                            <target name='debug' type='Debug' layout='${message}' />
+                        </targets>
+                        <rules>
+                            <logger name='*' minlevel='debug' appendto='debug' />
+                         </rules>
+                    </nlog>";
+                var config = CreateConfigurationFromString(xml);
+                LogManager.Configuration = config;
+                var logger = LogManager.GetLogger("InvalidInternalLogLevel_shouldNotBreakLogging");
+
+                // Act
+                logger.Debug("message 1");
+
+                // Assert
+                var message = GetDebugLastMessage("debug");
+                Assert.Equal("message 1", message);
+            }
+        }
     }
 }
