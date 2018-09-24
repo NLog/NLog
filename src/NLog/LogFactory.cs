@@ -1286,8 +1286,7 @@ namespace NLog
         public LogFactory LoadConfiguration(string configFile)
         {
             configFile = GetConfigFile(configFile);
-
-            Configuration = TryLoadLoggingConfiguration(configFile);
+            Configuration = LoadXmlLoggingConfiguration(configFile);
             return this;
         }
 

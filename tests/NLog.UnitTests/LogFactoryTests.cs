@@ -31,15 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.UnitTests.Mocks;
-
 namespace NLog.UnitTests
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading;
     using NLog.Config;
+    using NLog.UnitTests.Mocks;
     using Xunit;
 
     public class LogFactoryTests : NLogTestBase
