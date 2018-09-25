@@ -93,7 +93,12 @@ namespace NLog.Internal
         {
             if (stringBuilder.Length > _maxBuilderCapacity)
             {
-                stringBuilder = new StringBuilder(_maxBuilderCapacity / 2);
+                // Avoid high memory usage by not keeping huge StringBuilders alive (Except one StringBuilder)
+                int maxBuilderCapacity = poolIndex == -1 ? _maxBuilderCapacity * 10 : _maxBuilderCapacity;
+                if (stringBuilder.Length > maxBuilderCapacity)
+                {
+                    stringBuilder = new StringBuilder(maxBuilderCapacity / 2);
+                }
             } 
             else
             {
