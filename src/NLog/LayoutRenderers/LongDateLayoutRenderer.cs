@@ -31,22 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Text;
-
-    using Config;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
-    /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.mmm.
+    /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.ffff.
     /// </summary>
     [LayoutRenderer("longdate")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class LongDateLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -57,7 +56,7 @@ namespace NLog.LayoutRenderers
         public bool UniversalTime { get; set; }
 
         /// <summary>
-        /// Renders the date in the long format (yyyy-MM-dd HH:mm:ss.mmm) and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the date in the long format (yyyy-MM-dd HH:mm:ss.ffff) and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>

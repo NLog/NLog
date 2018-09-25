@@ -40,6 +40,7 @@ namespace NLog.LayoutRenderers
     using System.Reflection;
     using System.Text;
     using System.Xml;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Internal.Fakeables;
@@ -50,6 +51,8 @@ namespace NLog.LayoutRenderers
     /// XML event description compatible with log4j, Chainsaw and NLogViewer.
     /// </summary>
     [LayoutRenderer("log4jxmlevent")]
+    [ThreadSafe]
+    [MutableUnsafe]
     public class Log4JXmlEventLayoutRenderer : LayoutRenderer, IUsesStackTrace, IIncludeContext
     {
         private static readonly DateTime log4jDateBase = new DateTime(1970, 1, 1);
@@ -80,15 +83,15 @@ namespace NLog.LayoutRenderers
 
 #if SILVERLIGHT
             AppInfo = "Silverlight Application";
-#elif WINDOWS_UWP
-            AppInfo = "UWP Application";
+#elif NETSTANDARD1_3
+            AppInfo = "NetCore Application";
 #elif __IOS__
             AppInfo = "MonoTouch Application";
 #else
             AppInfo = string.Format(
                 CultureInfo.InvariantCulture,
-                "{0}({1})", 
-                appDomain.FriendlyName, 
+                "{0}({1})",
+                appDomain.FriendlyName,
                 ThreadIDHelper.Instance.CurrentProcessID);
 #endif
 
@@ -96,16 +99,20 @@ namespace NLog.LayoutRenderers
 
             try
             {
-#if SILVERLIGHT
-                _machineName = "silverlight";
-#elif WINDOWS_UWP
-                _machineName = "uwp";
-#else
-                _machineName = Environment.MachineName;
-#endif
+                _machineName = EnvironmentHelper.GetMachineName();
+                if (string.IsNullOrEmpty(_machineName))
+                {
+                    InternalLogger.Info("MachineName is not available.");
+                }
             }
-            catch (System.Security.SecurityException)
+            catch (Exception exception)
             {
+                InternalLogger.Error(exception, "Error getting machine name.");
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+
                 _machineName = string.Empty;
             }
         }
@@ -255,7 +262,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeSafeString("logger", LoggerName != null ? LoggerName.Render(logEvent) : logEvent.LoggerName);
                 xtw.WriteAttributeSafeString("level", logEvent.Level.Name.ToUpperInvariant());
                 xtw.WriteAttributeSafeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
-                xtw.WriteAttributeSafeString("thread", Common.AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeSafeString("thread", AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
 
                 xtw.WriteElementSafeString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
                 if (logEvent.Exception != null)
@@ -330,6 +337,7 @@ namespace NLog.LayoutRenderers
             {
                 ndcContent = string.Join(NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages());
             }
+
 #if !SILVERLIGHT
             if (IncludeNdlc)
             {
@@ -395,45 +403,42 @@ namespace NLog.LayoutRenderers
 
         private void AppendCallSite(LogEventInfo logEvent, XmlWriter xtw)
         {
-            if (IncludeCallSite || IncludeSourceInfo)
+            if ((IncludeCallSite || IncludeSourceInfo) && logEvent.CallSiteInformation != null)
             {
-                if (logEvent.CallSiteInformation != null)
+                MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
+                string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
+                string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
+
+                xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
+                if (!string.IsNullOrEmpty(callerClassName))
                 {
-                    MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
-                    string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
-                    string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
+                    xtw.WriteAttributeSafeString("class", callerClassName);
+                }
 
-                    xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
-                    if (!string.IsNullOrEmpty(callerClassName))
-                    {
-                        xtw.WriteAttributeSafeString("class", callerClassName);
-                    }
-
-                    xtw.WriteAttributeSafeString("method", callerMemberName);
+                xtw.WriteAttributeSafeString("method", callerMemberName);
 #if !SILVERLIGHT
-                    if (IncludeSourceInfo)
-                    {
-                        xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
-                        xtw.WriteAttributeSafeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
-                    }
+                if (IncludeSourceInfo)
+                {
+                    xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
+                    xtw.WriteAttributeSafeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
+                }
 #endif
+                xtw.WriteEndElement();
+
+                if (IncludeNLogData)
+                {
+                    xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
+                    xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
+                    var type = methodBase?.DeclaringType;
+                    if (type != null)
+                    {
+                        xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
+                    }
                     xtw.WriteEndElement();
 
-                    if (IncludeNLogData)
-                    {
-                        xtw.WriteElementSafeString("nlog", "eventSequenceNumber", dummyNLogNamespace, logEvent.SequenceID.ToString(CultureInfo.InvariantCulture));
-                        xtw.WriteStartElement("nlog", "locationInfo", dummyNLogNamespace);
-                        var type = methodBase?.DeclaringType;
-                        if (type != null)
-                        {
-                            xtw.WriteAttributeSafeString("assembly", type.GetAssembly().FullName);
-                        }
-                        xtw.WriteEndElement();
-
-                        xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
-                        AppendProperties("nlog", xtw, logEvent);
-                        xtw.WriteEndElement();
-                    }
+                    xtw.WriteStartElement("nlog", "properties", dummyNLogNamespace);
+                    AppendProperties("nlog", xtw, logEvent);
+                    xtw.WriteEndElement();
                 }
             }
         }

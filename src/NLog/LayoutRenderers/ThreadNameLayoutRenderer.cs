@@ -34,11 +34,13 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// The name of the current thread.
     /// </summary>
     [LayoutRenderer("threadname")]
+    [ThreadSafe]
     public class ThreadNameLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -48,7 +50,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
             builder.Append(System.Threading.Thread.CurrentThread.Name);
 #endif
         }

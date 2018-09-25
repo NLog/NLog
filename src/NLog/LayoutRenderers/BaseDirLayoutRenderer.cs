@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.IO;
     using System.Text;
-    using Internal.Fakeables;
+    using NLog.Internal.Fakeables;
     using NLog.Config;
     using NLog.Internal;
 
@@ -46,11 +46,12 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("basedir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class BaseDirLayoutRenderer : LayoutRenderer
     {
         private readonly string _baseDir;
 
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
 
         /// <summary>
         /// cached
@@ -101,7 +102,7 @@ namespace NLog.LayoutRenderers
         {
 
             var dir = _baseDir;
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
             if (ProcessDir)
             {
                 dir = _processDir ?? (_processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));

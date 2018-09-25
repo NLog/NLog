@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("callsite")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class CallSiteLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>
@@ -200,7 +201,7 @@ namespace NLog.LayoutRenderers
             }
 
             builder.Append(":");
-            builder.Append(lineNumber);
+            builder.AppendInvariant(lineNumber);
             builder.Append(")");
         }
 #endif

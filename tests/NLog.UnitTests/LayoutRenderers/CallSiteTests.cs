@@ -556,6 +556,39 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
+        [Fact]
+        public void When_NotIncludeNameSpace_Then_CleanAnonymousDelegateClassNameShouldReturnParentClassName()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:IncludeNamespace=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Fatal' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            bool done = false;
+            ThreadPool.QueueUserWorkItem(
+                state =>
+                {
+                    logger.Fatal("message");
+                    done = true;
+                },
+                null);
+
+            while (done == false)
+            {
+                Thread.Sleep(10);
+            }
+
+            if (done == true)
+            {
+                AssertDebugLastMessage("debug", "CallSiteTests");
+            }
+        }
+
 
         [Fact]
         public void When_Wrapped_Ignore_Wrapper_Methods_In_Callstack()
@@ -846,7 +879,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
 #if !NETSTANDARD1_5
             Type loggerType = typeof(Logger);
-            var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
+            var stacktrace = new System.Diagnostics.StackTrace();
             var stackFrames = stacktrace.GetFrames();
             var index = LoggerImpl.FindCallingMethodOnStackTrace(stackFrames, loggerType) ?? 0;
             int? indexLegacy = LoggerImpl.SkipToUserStackFrameLegacy(stackFrames, index);
@@ -939,11 +972,10 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#endregion
+        #endregion
 
         private class MyLogger : Logger
         {
-
         }
 
         [Fact]
@@ -1042,12 +1074,25 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Flush();
             logMessage = target.Logs[2];
             Assert.Contains("ThreadId=" + Thread.CurrentThread.ManagedThreadId.ToString(), logMessage);
+
+            // See that interface logging also works (Improve support for Microsoft.Extension.Logging.ILogger replacement)
+            INLogLogger ilogger = logger;
+            WriteLogMessage(ilogger);
+            LogManager.Flush();
+            logMessage = target.Logs[3];
+            Assert.Contains("CallSiteTests.WriteLogMessage", logMessage);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         private void WriteLogMessage(NLogLogger logger)
         {
             logger.Debug("something");
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void WriteLogMessage(INLogLogger logger)
+        {
+            logger.Log(LogLevel.Debug, "something");
         }
 
         /// <summary>
@@ -1093,7 +1138,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
             Type loggerType = typeof(Logger);
-            var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
+            var stacktrace = new System.Diagnostics.StackTrace();
             var stackFrames = stacktrace.GetFrames();
             var index = LoggerImpl.FindCallingMethodOnStackTrace(stackFrames, loggerType) ?? 0;
             int? indexLegacy = LoggerImpl.SkipToUserStackFrameLegacy(stackFrames, index);
@@ -1176,13 +1221,28 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private async Task AMinimalAsyncMethod()
         {
-            await Task.Run(() => { });
+            await Task.Delay(1);    // Ensure it always becomes async, and it is not inlined
+        }
+
+        public interface INLogLogger
+        {
+            void Log(LogLevel logLevel, string message);
+        }
+
+        public abstract class NLogLoggerBase : INLogLogger
+        {
+            protected abstract Logger Logger { get; }
+
+            void INLogLogger.Log(LogLevel logLevel, string message)
+            {
+                Logger.Log(typeof(INLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
+            }
         }
 
         /// <summary>
         ///   Implementation of <see cref="ILogger" /> for NLog.
         /// </summary>
-        public class NLogLogger
+        public class NLogLogger : NLogLoggerBase
         {
             /// <summary>
             ///   Initializes a new instance of the <see cref="NLogLogger" /> class.
@@ -1197,7 +1257,7 @@ namespace NLog.UnitTests.LayoutRenderers
             ///   Gets or sets the logger.
             /// </summary>
             /// <value> The logger. </value>
-            protected internal Logger Logger { get; set; }
+            protected override Logger Logger { get; }
 
             /// <summary>
             ///   Returns a <see cref="string" /> that represents this instance.
@@ -1220,6 +1280,45 @@ namespace NLog.UnitTests.LayoutRenderers
             public void Log(LogLevel logLevel, string message)
             {
                 Logger.Log(typeof(NLogLogger), new LogEventInfo(logLevel, Logger.Name, message));
+            }
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void CallsiteTargetUsesStackTraceTest(bool includeStackTraceUsage)
+        {
+            var target = new MyTarget() { StackTraceUsage = includeStackTraceUsage ? StackTraceUsage.WithoutSource : StackTraceUsage.None };
+            SimpleConfigurator.ConfigureForTargetLogging(target);
+            var logger = LogManager.GetLogger(nameof(CallsiteTargetUsesStackTraceTest));
+            string t = null;
+            logger.Info("Testing null:{0}", t);
+            Assert.NotNull(target.LastEvent);
+            if (includeStackTraceUsage)
+                Assert.NotNull(target.LastEvent.StackTrace);
+            else
+                Assert.Null(target.LastEvent.StackTrace);
+        }
+
+        public class MyTarget : TargetWithLayout, IUsesStackTrace
+        {
+            public MyTarget()
+            {
+            }
+
+            public MyTarget(string name) : this()
+            {
+                Name = name;
+            }
+
+            public LogEventInfo LastEvent { get; private set; }
+
+            public new StackTraceUsage StackTraceUsage { get; set; }
+
+            protected override void Write(LogEventInfo logEvent)
+            {
+                LastEvent = logEvent;
+                base.Write(logEvent);
             }
         }
     }

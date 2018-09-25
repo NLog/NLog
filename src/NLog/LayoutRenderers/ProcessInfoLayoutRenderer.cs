@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
 
 namespace NLog.LayoutRenderers
 {
@@ -47,11 +47,11 @@ namespace NLog.LayoutRenderers
     /// The information about the running process.
     /// </summary>
     [LayoutRenderer("processinfo")]
-    public class ProcessInfoLayoutRenderer : LayoutRenderer
+    [ThreadSafe]
+    public class ProcessInfoLayoutRenderer : LayoutRenderer, IRawValue
     {
         private Process _process;
 
-        private PropertyInfo _propertyInfo;
         private ReflectionHelpers.LateBoundMethod _lateBoundPropertyGet;
 
         /// <summary>
@@ -82,13 +82,13 @@ namespace NLog.LayoutRenderers
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
-            _propertyInfo = typeof(Process).GetProperty(Property.ToString());
-            if (_propertyInfo == null)
+            var propertyInfo = typeof(Process).GetProperty(Property.ToString());
+            if (propertyInfo == null)
             {
-                throw new ArgumentException($"Property '{_propertyInfo}' not found in System.Diagnostics.Process");
+                throw new ArgumentException($"Property '{Property}' not found in System.Diagnostics.Process");
             }
 
-            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(_propertyInfo.GetGetMethod());
+            _lateBoundPropertyGet = ReflectionHelpers.CreateLateBoundMethod(propertyInfo.GetGetMethod());
 
             _process = Process.GetCurrentProcess();
         }
@@ -114,12 +114,25 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (_lateBoundPropertyGet != null)
+            var value = GetValue();
+
+            if (value != null)
             {
                 var formatProvider = GetFormatProvider(logEvent);
-                var value = _lateBoundPropertyGet(_process, null);
                 builder.AppendFormattedValue(value, Format, formatProvider);
             }
+
+        }
+
+        private object GetValue()
+        {
+            return _lateBoundPropertyGet?.Invoke(_process, null);
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue();
         }
     }
 }

@@ -60,8 +60,7 @@ namespace NLog.Targets.Wrappers
     [Target("RoundRobinGroup", IsCompound = true)]
     public class RoundRobinGroupTarget : CompoundTargetBase
     {
-        private int _currentTarget = 0;
-        private readonly object _lockObject = new object();
+        private int _currentTarget = -1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoundRobinGroupTarget" /> class.
@@ -93,6 +92,15 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
+        /// Ensures forwarding happens without holding lock
+        /// </summary>
+        /// <param name="logEvent"></param>
+        protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+        {
+            Write(logEvent);
+        }
+
+        /// <summary>
         /// Forwards the write to one of the targets from
         /// the <see cref="Targets"/> collection.
         /// </summary>
@@ -112,14 +120,7 @@ namespace NLog.Targets.Wrappers
                 return;
             }
 
-            int selectedTarget;
-
-            lock (_lockObject)
-            {
-                selectedTarget = _currentTarget;
-                _currentTarget = (_currentTarget + 1) % Targets.Count;
-            }
-
+            int selectedTarget = (int)((uint)Interlocked.Increment(ref _currentTarget) % Targets.Count);
             Targets[selectedTarget].WriteAsyncLogEvent(logEvent);
         }
     }

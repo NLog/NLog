@@ -31,18 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !SILVERLIGHT && (!NETSTANDARD || WindowsIdentityPackage)
 
 namespace NLog.LayoutRenderers
 {
     using System.ComponentModel;
     using System.Security.Principal;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// Thread Windows identity information (username).
     /// </summary>
     [LayoutRenderer("windows-identity")]
+    [ThreadSafe]
     public class WindowsIdentityLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -75,7 +77,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
+            var currentIdentity = GetValue();
             if (currentIdentity != null)
             {
                 string output = string.Empty;
@@ -123,6 +125,12 @@ namespace NLog.LayoutRenderers
 
                 builder.Append(output);
             }
+        }
+
+        private static WindowsIdentity GetValue()
+        {
+            WindowsIdentity currentIdentity = WindowsIdentity.GetCurrent();
+            return currentIdentity;
         }
     }
 }

@@ -95,6 +95,7 @@ namespace NLog.UnitTests.Config
                 var sb = new StringBuilder();
                 var stringWriter = new StringWriter(sb);
                 InternalLogger.LogWriter = stringWriter;
+                InternalLogger.LogLevel = LogLevel.Info;
                 string wrongFileName = "WRONG/***[]???////WRONG";
                 LogManager.Configuration = CreateConfigurationFromString($@"<?xml version='1.0' encoding='utf-8' ?>
     <nlog internalLogFile='{wrongFileName}'

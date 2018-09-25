@@ -34,7 +34,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NLog.Internal;
+using NLog.Common;
 using Xunit;
 
 namespace NLog.UnitTests.Internal
@@ -112,7 +112,7 @@ namespace NLog.UnitTests.Internal
         public void EnumParse_ArgumentException()
         {
             double result;
-            Assert.Throws<ArgumentException>(() => EnumHelpers.TryParse("not enum", out result));
+            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse("not enum", out result));
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace NLog.UnitTests.Internal
         {
             //even with null, first ArgumentException
             double result;
-            Assert.Throws<ArgumentException>(() => EnumHelpers.TryParse(null, out result));
+            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse(null, out result));
         }
 
         #endregion
@@ -191,14 +191,14 @@ namespace NLog.UnitTests.Internal
         public void EnumParse_ArgumentException_ignoreCaseFalse()
         {
             double result;
-            Assert.Throws<ArgumentException>(() => EnumHelpers.TryParse("not enum", false, out result));
+            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse("not enum", false, out result));
         }
         [Fact]
         public void EnumParse_null_ArgumentException_ignoreCaseFalse()
         {
             //even with null, first ArgumentException
             double result;
-            Assert.Throws<ArgumentException>(() => EnumHelpers.TryParse(null, false, out result));
+            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse(null, false, out result));
         }
 
         #endregion
@@ -266,7 +266,7 @@ namespace NLog.UnitTests.Internal
         public void EnumParse_ArgumentException_ignoreCaseTrue()
         {
             double result;
-            Assert.Throws<ArgumentException>(() => EnumHelpers.TryParse("not enum", true, out result));
+            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse("not enum", true, out result));
         }
 
         [Fact]
@@ -274,7 +274,7 @@ namespace NLog.UnitTests.Internal
         {
             //even with null, first ArgumentException
             double result;
-            Assert.Throws<ArgumentException>(() => EnumHelpers.TryParse(null, true, out result));
+            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse(null, true, out result));
         }
 
         #endregion
@@ -286,7 +286,7 @@ namespace NLog.UnitTests.Internal
         {
             TestEnum result;
 
-            var returnResult = EnumHelpers.TryParse(value, out result);
+            var returnResult = ConversionHelpers.TryParse(value, out result);
 
             Assert.Equal(expected, result);
             Assert.Equal(expectedReturn, returnResult);
@@ -296,7 +296,7 @@ namespace NLog.UnitTests.Internal
         {
             TestEnum result;
 
-            var returnResult = EnumHelpers.TryParse(value, ignoreCase, out result);
+            var returnResult = ConversionHelpers.TryParse(value, ignoreCase, out result);
 
             Assert.Equal(expected, result);
             Assert.Equal(expectedReturn, returnResult);

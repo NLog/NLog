@@ -67,8 +67,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            object[] parameters = new object[Parameters.Count];
-
+            object[] parameters = Parameters.Count > 0 ? new object[Parameters.Count] : ArrayHelper.Empty<object>();
             for (int i = 0; i < parameters.Length; ++i)
             {
                 var param = Parameters[i];

@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
 // Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
 #define SupportsMutex
 #endif
@@ -51,7 +51,7 @@ namespace NLog.Internal.FileAppenders
         private readonly BaseFileAppender[] _appenders;
         private Timer _autoClosingTimer;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         private string _archiveFilePatternToWatch = null;
         private readonly MultiFileWatcher _externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.DirectoryName | NotifyFilters.FileName);
         private bool _logFileWasArchived = false;
@@ -88,12 +88,12 @@ namespace NLog.Internal.FileAppenders
 
             _autoClosingTimer = new Timer(AutoClosingTimerCallback, null, Timeout.Infinite, Timeout.Infinite);
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             _externalFileArchivingWatcher.FileChanged += ExternalFileArchivingWatcher_OnFileChanged;
 #endif
         }
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
         private void ExternalFileArchivingWatcher_OnFileChanged(object sender, FileSystemEventArgs e)
         {
             if (_logFileWasArchived || CheckCloseAppenders == null || _autoClosingTimer == null)
@@ -296,7 +296,7 @@ namespace NLog.Internal.FileAppenders
 
                 if (CheckCloseAppenders != null)
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
                     if (freeSpot == 0)
                         _logFileWasArchived = false;
                     if (!string.IsNullOrEmpty(_archiveFilePatternToWatch))
@@ -347,7 +347,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="expireTime">The time which prior the appenders considered expired</param>
         public void CloseAppenders(DateTime expireTime)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             if (_logFileWasArchived)
             {
                 _logFileWasArchived = false;
@@ -399,7 +399,16 @@ namespace NLog.Internal.FileAppenders
                     break;
                 }
 
-                appender.Flush();
+                try
+                {
+                    appender.Flush();
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Failed to flush file '{0}'.", appender.FileName);
+                    InvalidateAppender(appender.FileName)?.Dispose();
+                    throw;
+                }
             }
         }
 
@@ -418,7 +427,7 @@ namespace NLog.Internal.FileAppenders
             return null;
         }
 
-        public DateTime? GetFileCreationTimeSource(string filePath, bool fallback)
+        public DateTime? GetFileCreationTimeSource(string filePath, DateTime? fallbackTimeSource = null)
         {
             var appender = GetAppender(filePath);
             DateTime? result = null;
@@ -426,7 +435,7 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                    result = FileCharacteristicsHelper.ValidateFileCreationTime(appender, (f) => f.GetFileCreationTimeUtc(), (f) => f.CreationTimeUtc, (f) => f.GetFileLastWriteTimeUtc());
+                    result = FileCharacteristicsHelper.ValidateFileCreationTime(appender, (f) => f.GetFileCreationTimeUtc(), f => fallbackTimeSource);
                     if (result.HasValue)
                     {
                         // Check if cached value is still valid, and update if not (Will automatically update CreationTimeSource)
@@ -441,79 +450,66 @@ namespace NLog.Internal.FileAppenders
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "Failed to get file creation time for file '{0}'.", appender.FileName);
-                    InvalidateAppender(appender.FileName);
+                    InvalidateAppender(appender.FileName)?.Dispose();
                     throw;
                 }
             }
-            if (result == null && fallback)
+
+            var fileInfo = new FileInfo(filePath);
+            if (fileInfo.Exists)
             {
-                var fileInfo = new FileInfo(filePath);
-                if (fileInfo.Exists)
-                {
-                    result = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
-                    return Time.TimeSource.Current.FromSystemTime(result.Value);
-                }
+                result = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => fallbackTimeSource, (f) => f.GetLastWriteTimeUtc()).Value;
+                return Time.TimeSource.Current.FromSystemTime(result.Value);
             }
 
             return result;
         }
 
-        public DateTime? GetFileLastWriteTimeUtc(string filePath, bool fallback)
+        /// <summary>
+        /// File Archive Logic uses the File-Creation-TimeStamp to detect if time to archive, and the File-LastWrite-Timestamp to name the archive-file.
+        /// </summary>
+        /// <remarks>
+        /// NLog always closes all relevant appenders during archive operation, so no need to lookup file-appender
+        /// </remarks>
+        public DateTime? GetFileLastWriteTimeUtc(string filePath)
         {
-            var appender = GetAppender(filePath);
-            DateTime? result = null;
-            if (appender != null)
+            var fileInfo = new FileInfo(filePath);
+            if (fileInfo.Exists)
             {
-                try
-                {
-                    result = appender.GetFileLastWriteTimeUtc();
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "Failed to get last write time for file '{0}'.", appender.FileName);
-                    InvalidateAppender(appender.FileName);
-                    throw;
-                }
-            }
-            if (result == null && fallback)
-            {
-                var fileInfo = new FileInfo(filePath);
-                if (fileInfo.Exists)
-                {
-                    return fileInfo.GetLastWriteTimeUtc();
-                }
+                return fileInfo.GetLastWriteTimeUtc();
             }
 
-            return result;
+            return null;
         }
 
-        public long? GetFileLength(string filePath, bool fallback)
+        public long? GetFileLength(string filePath)
         {
             var appender = GetAppender(filePath);
-            long? result = null;
             if (appender != null)
             {
                 try
                 {
-                    result = appender.GetFileLength();
+                    var result = appender.GetFileLength();
+                    if (result.HasValue)
+                    {
+                        return result;
+                    }
                 }
                 catch (Exception ex)
                 {
                     InternalLogger.Error(ex, "Failed to get length for file '{0}'.", appender.FileName);
-                    InvalidateAppender(appender.FileName);
+                    InvalidateAppender(appender.FileName)?.Dispose();
                     throw;
                 }
             }
-            if (result == null && fallback)
+
+            var fileInfo = new FileInfo(filePath);
+            if (fileInfo.Exists)
             {
-                var fileInfo = new FileInfo(filePath);
-                if (fileInfo.Exists)
-                {
-                    return fileInfo.Length;
-                }
+                return fileInfo.Length;
             }
 
-            return result;
+            return null;
         }
 
         /// <summary>
@@ -554,7 +550,7 @@ namespace NLog.Internal.FileAppenders
                 // No active appenders, deactivate background tasks
                 _autoClosingTimer.Change(Timeout.Infinite, Timeout.Infinite);
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
                 _externalFileArchivingWatcher.StopWatching();
                 _logFileWasArchived = false;
             }
@@ -571,7 +567,7 @@ namespace NLog.Internal.FileAppenders
         {
             CheckCloseAppenders = null;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             _externalFileArchivingWatcher.Dispose();
             _logFileWasArchived = false;
 #endif

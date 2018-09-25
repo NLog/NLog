@@ -53,9 +53,19 @@ namespace NLog
         public static IDisposable Push<T>(T value)
         {
             var parent = GetThreadLocal();
-            var current = new NestedContext<T>(parent, value);
+            var current = NestedContext<T>.CreateNestedContext(parent, value);
             SetThreadLocal(current);
             return current;
+        }
+
+        /// <summary>
+        /// Pushes the specified value on current stack
+        /// </summary>
+        /// <param name="value">The value to be pushed.</param>
+        /// <returns>An instance of the object that implements IDisposable that returns the stack to the previous level when IDisposable.Dispose() is called. To be used with C# using() statement.</returns>
+        public static IDisposable PushObject(object value)
+        {
+            return Push(value);
         }
 
         /// <summary>
@@ -106,7 +116,7 @@ namespace NLog
         /// <returns>Scope Creation Time</returns>
         internal static DateTime PeekTopScopeBeginTime()
         {
-            return PeekContext(false)?.CreatedTime ?? DateTime.MinValue;
+            return new DateTime(PeekContext(false)?.CreatedTimeUtcTicks ?? DateTime.MinValue.Ticks, DateTimeKind.Utc);
         }
 
         /// <summary>
@@ -115,7 +125,7 @@ namespace NLog
         /// <returns>Scope Creation Time</returns>
         internal static DateTime PeekBottomScopeBeginTime()
         {
-            return PeekContext(true)?.CreatedTime ?? DateTime.MinValue;
+            return new DateTime(PeekContext(true)?.CreatedTimeUtcTicks ?? DateTime.MinValue.Ticks, DateTimeKind.Utc);
         }
 
         private static INestedContext PeekContext(bool bottomScope)
@@ -185,7 +195,7 @@ namespace NLog
             INestedContext Parent { get; }
             int FrameLevel { get; }
             object Value { get; }
-            DateTime CreatedTime { get; }
+            long CreatedTimeUtcTicks { get; }
         }
 
 #if !NETSTANDARD1_0
@@ -193,24 +203,52 @@ namespace NLog
 #endif
         class NestedContext<T> : INestedContext
         {
-            public INestedContext Parent { get; private set; }
-            public T Value { get; private set; }
-            object INestedContext.Value => Value;
-            public DateTime CreatedTime { get; private set; }
-            public int FrameLevel => _frameLevel;
-            private int _frameLevel;
+            public INestedContext Parent { get; }
+            public T Value { get; }
+            public long CreatedTimeUtcTicks { get; }
+            public int FrameLevel { get; }
+            private int _disposed;
+
+            public static INestedContext CreateNestedContext(INestedContext parent, T value)
+            {
+#if NET4_6 || NETSTANDARD
+                return new NestedContext<T>(parent, value);
+#else
+                if (typeof(T).IsValueType || Convert.GetTypeCode(value) != TypeCode.Object)
+                    return new NestedContext<T>(parent, value);
+                else
+                    return new NestedContext<ObjectHandleSerializer>(parent, new ObjectHandleSerializer(value));
+#endif
+            }
+
+            object INestedContext.Value
+            {
+                get
+                {
+#if NET4_6 || NETSTANDARD
+                    return Value;
+#else
+                    object value = Value;
+                    if (value is ObjectHandleSerializer objectHandle)
+                    {
+                        return objectHandle.Unwrap();
+                    }
+                    return value;
+#endif
+                }
+            }
 
             public NestedContext(INestedContext parent, T value)
             {
                 Parent = parent;
                 Value = value;
-                CreatedTime = DateTime.UtcNow; // Low time resolution, but okay fast
-                _frameLevel = parent != null ? parent.FrameLevel + 1 : 1; 
+                CreatedTimeUtcTicks = DateTime.UtcNow.Ticks; // Low time resolution, but okay fast
+                FrameLevel = parent?.FrameLevel + 1 ?? 1;
             }
 
             void IDisposable.Dispose()
             {
-                if (System.Threading.Interlocked.Exchange(ref _frameLevel, 0) != 0)
+                if (System.Threading.Interlocked.Exchange(ref _disposed, 1) != 1)
                 {
                     PopObject();
                 }

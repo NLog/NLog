@@ -88,8 +88,8 @@ namespace NLog.Internal
 
                 if (!(TryNLogSpecificConversion(propertyType, value, out newValue, configurationItemFactory)
                     || TryGetEnumValue(propertyType, value, out newValue, true)
-                    || TryImplicitConversion(propertyType, value, out newValue)
                     || TrySpecialConversion(propertyType, value, out newValue)
+                    || TryImplicitConversion(propertyType, value, out newValue)
                     || TryFlatListConversion(propertyType, value, out newValue)
                     || TryTypeConverterConversion(propertyType, value, out newValue)))
                     newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
@@ -193,7 +193,11 @@ namespace NLog.Internal
         {
             try
             {
-                if (string.Equals(resultType.Namespace, "System", StringComparison.Ordinal))
+#if !NETSTANDARD1_3
+                if (Type.GetTypeCode(resultType) != TypeCode.Object)
+#else
+                if (resultType.IsPrimitive() || resultType == typeof(string))
+#endif
                 {
                     result = null;
                     return false;
@@ -317,51 +321,21 @@ namespace NLog.Internal
         {
             if (type.IsGenericType())
             {
-                var typeDefinition = type.GetGenericTypeDefinition();
-#if NET3_5
-                var isSet = typeDefinition == typeof(HashSet<>);
-#else
-                var isSet = typeDefinition == typeof(ISet<>) || typeDefinition == typeof(HashSet<>);
-#endif
-                //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
-                if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
+                if (TryCreateCollectionObject(type, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
                 {
-                    //note: type.GenericTypeArguments is .NET 4.5+ 
-                    var propertyType = type.GetGenericArguments()[0];
-
-                    var listType = isSet ? typeof(HashSet<>) : typeof(List<>);
-                    var genericArgs = propertyType;
-                    var concreteType = listType.MakeGenericType(genericArgs);
-                    var newList = Activator.CreateInstance(concreteType);
-                    //no support for array
-                    if (newList == null)
-                    {
-                        throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", type.ToString(), valueRaw);
-                    }
-
                     var values = valueRaw.SplitQuoted(',', '\'', '\\');
-
-                    var collectionAddMethod = concreteType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-
-                    if (collectionAddMethod == null)
-                    {
-                        throw new NLogConfigurationException("Add method on type {0} for value {1} not found", type.ToString(), valueRaw);
-                    }
-
                     foreach (var value in values)
                     {
                         if (!(TryGetEnumValue(propertyType, value, out newValue, false)
-                               || TryImplicitConversion(propertyType, value, out newValue)
                                || TrySpecialConversion(propertyType, value, out newValue)
+                               || TryImplicitConversion(propertyType, value, out newValue)
                                || TryTypeConverterConversion(propertyType, value, out newValue)))
                         {
                             newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
                         }
 
                         collectionAddMethod.Invoke(newList, new object[] { newValue });
-
                     }
-
 
                     newValue = newList;
                     return true;
@@ -372,9 +346,48 @@ namespace NLog.Internal
             return false;
         }
 
+        private static bool TryCreateCollectionObject(Type collectionType, string valueRaw, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        {
+            var typeDefinition = collectionType.GetGenericTypeDefinition();
+#if NET3_5
+            var isSet = typeDefinition == typeof(HashSet<>);
+#else
+            var isSet = typeDefinition == typeof(ISet<>) || typeDefinition == typeof(HashSet<>);
+#endif
+            //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
+            if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
+            {
+                //note: type.GenericTypeArguments is .NET 4.5+ 
+                collectionItemType = collectionType.GetGenericArguments()[0];
+
+                var listType = isSet ? typeof(HashSet<>) : typeof(List<>);
+                var genericArgs = collectionItemType;
+                var concreteType = listType.MakeGenericType(genericArgs);
+                collectionObject = Activator.CreateInstance(concreteType);
+                //no support for array
+                if (collectionObject == null)
+                {
+                    throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", collectionType.ToString(), valueRaw);
+                }
+
+                collectionAddMethod = concreteType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                if (collectionAddMethod == null)
+                {
+                    throw new NLogConfigurationException("Add method on type {0} for value {1} not found", collectionType.ToString(), valueRaw);
+                }
+
+                return true;
+            }
+
+            collectionObject = null;
+            collectionAddMethod = null;
+            collectionItemType = null;
+            return false;
+        }
+
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
             var converter = TypeDescriptor.GetConverter(type);
             if (converter.CanConvertFrom(typeof(string)))
             {

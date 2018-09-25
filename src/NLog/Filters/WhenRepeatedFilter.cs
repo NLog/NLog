@@ -298,14 +298,13 @@ namespace NLog.Filters
                 {
                     if (!string.IsNullOrEmpty(FilterCountPropertyName))
                     {
-                        object otherFilterCount;
-                        if (!logEvent.Properties.TryGetValue(FilterCountPropertyName, out otherFilterCount))
+                        if (!logEvent.Properties.TryGetValue(FilterCountPropertyName, out var otherFilterCount))
                         {
                             logEvent.Properties[FilterCountPropertyName] = filterCount;
                         }
-                        else if (otherFilterCount is int)
+                        else if (otherFilterCount is int i)
                         {
-                            filterCount = Math.Max((int)otherFilterCount, filterCount);
+                            filterCount = Math.Max(i, filterCount);
                             logEvent.Properties[FilterCountPropertyName] = filterCount;
                         }
                     }
@@ -414,27 +413,16 @@ namespace NLog.Filters
                     // StringBuilder.Equals only works when StringBuilder.Capacity is the same
                     if (_stringBuffer.Capacity != other._stringBuffer.Capacity)
                     {
-                        if (_stringBuffer.Length != other._stringBuffer.Length)
-                            return false;
-
-                        for (int x = 0; x < _stringBuffer.Length; ++x)
-                        {
-                            if (_stringBuffer[x] != other._stringBuffer[x])
-                            {
-                                return false;
-                            }
-                        }
-
-                        return true;
+                        return _stringBuffer.EqualTo(other._stringBuffer);
                     }
                     return _stringBuffer.Equals(other._stringBuffer);
                 }
                 return ReferenceEquals(_stringBuffer, other._stringBuffer) && ReferenceEquals(StringValue, other.StringValue);
             }
 
-            public override bool Equals(object other)
+            public override bool Equals(object obj)
             {
-                return other is FilterInfoKey && Equals((FilterInfoKey)other);
+                return obj is FilterInfoKey key && Equals(key);
             }
         }
     }

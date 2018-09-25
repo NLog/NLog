@@ -39,16 +39,15 @@ namespace NLog
     using System.Collections;
     using System.ComponentModel;
     using System.Diagnostics;
-    using System.Reflection;
     using System.Text;
     using System.Xml;
+    using NLog.Internal;
 
     /// <summary>
     /// TraceListener which routes all messages through NLog.
     /// </summary>
     public class NLogTraceListener : TraceListener
     {
-        private static readonly Assembly systemAssembly = typeof(Trace).Assembly;
         private LogFactory _logFactory;
         private LogLevel _defaultLogLevel = LogLevel.Debug;
         private bool _attributesLoaded;
@@ -76,8 +75,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _logFactory = value;
+                _attributesLoaded = true;                
             }
         }
 
@@ -94,8 +93,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _defaultLogLevel = value;
+                _attributesLoaded = true;
             }
         }
 
@@ -112,8 +111,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _forceLogLevel = value;
+                _attributesLoaded = true;
             }
         }
 
@@ -130,8 +129,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _disableFlush = value;
+                _attributesLoaded = true;
             }
         }
 
@@ -155,8 +154,8 @@ namespace NLog
 
             set
             {
-                _attributesLoaded = true;
                 _autoLoggerName = value;
+                _attributesLoaded = true;
             }
         }
 
@@ -233,9 +232,6 @@ namespace NLog
         /// <param name="data">The trace data to emit.</param>
         public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data)
         {
-            if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, string.Empty, null, data, null))
-                return;
-
             TraceData(eventCache, source, eventType, id, new object[] { data });
         }
 
@@ -252,20 +248,32 @@ namespace NLog
             if (Filter != null && !Filter.ShouldTrace(eventCache, source, eventType, id, string.Empty, null, null, data))
                 return;
 
-            var sb = new StringBuilder();
-            for (int i = 0; i < data.Length; ++i)
+            string message = string.Empty;
+            if (data?.Length > 0)
             {
-                if (i > 0)
+                if (data.Length == 1)
                 {
-                    sb.Append(", ");
+                    message = "{0}";
                 }
+                else
+                {
+                    var sb = new StringBuilder(data.Length * 5 - 2);
+                    for (int i = 0; i < data.Length; ++i)
+                    {
+                        if (i > 0)
+                        {
+                            sb.Append(", ");
+                        }
 
-                sb.Append("{");
-                sb.Append(i);
-                sb.Append("}");
+                        sb.Append('{');
+                        sb.AppendInvariant(i);
+                        sb.Append('}');
+                    }
+                    message = sb.ToString();
+                }
             }
 
-            ProcessLogEventInfo(TranslateLogLevel(eventType), source, sb.ToString(), data, id, eventType, null);
+            ProcessLogEventInfo(TranslateLogLevel(eventType), source, message, data, id, eventType, null);
         }
 
         /// <summary>
@@ -391,35 +399,14 @@ namespace NLog
             if (AutoLoggerName)
             {
                 stackTrace = new StackTrace();
-                MethodBase userMethod = null;
-
                 for (int i = 0; i < stackTrace.FrameCount; ++i)
                 {
                     var frame = stackTrace.GetFrame(i);
-                    var method = frame.GetMethod();
-
-                    if (method.DeclaringType == GetType())
+                    loggerName = Internal.StackTraceUsageUtils.LookupClassNameFromStackFrame(frame);
+                    if (!string.IsNullOrEmpty(loggerName))
                     {
-                        // skip all methods of this type
-                        continue;
-                    }
-
-                    if (method.DeclaringType != null && method.DeclaringType.Assembly == systemAssembly)
-                    {
-                        // skip all methods from System.dll
-                        continue;
-                    }
-
-                    userFrameIndex = i;
-                    userMethod = method;
-                    break;
-                }
-
-                if (userFrameIndex >= 0)
-                {
-                    if (userMethod != null && userMethod.DeclaringType != null)
-                    {
-                        loggerName = userMethod.DeclaringType.FullName;
+                        userFrameIndex = i;
+                        break;
                     }
                 }
             }

@@ -31,20 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers
 {
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Globalization;
     using System.Text;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// A counter value (increases on each layout rendering).
     /// </summary>
     [LayoutRenderer("counter")]
-    public class CounterLayoutRenderer : LayoutRenderer
+    public class CounterLayoutRenderer : LayoutRenderer, IRawValue
     {
         private static Dictionary<string, int> sequences = new Dictionary<string, int>();
 
@@ -84,6 +83,18 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            int v = GetNextValue(logEvent);
+
+            builder.AppendInvariant(v);
+        }
+
+        /// <summary>
+        /// Get raw value, updates the sequence
+        /// </summary>
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetNextValue(logEvent);
+
+        private int GetNextValue(LogEventInfo logEvent)
+        {
             int v;
 
             if (Sequence != null)
@@ -96,7 +107,7 @@ namespace NLog.LayoutRenderers
                 Value += Increment;
             }
 
-            Internal.StringBuilderExt.AppendInvariant(builder, v);
+            return v;
         }
 
         private static int GetNextSequenceValue(string sequenceName, int defaultValue, int increment)

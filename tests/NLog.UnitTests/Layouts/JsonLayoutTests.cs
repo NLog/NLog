@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Targets;
-
 namespace NLog.UnitTests.Layouts
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using NLog.Layouts;
+    using NLog.Targets;
     using Xunit;
 
     public class JsonLayoutTests : NLogTestBase
@@ -212,8 +212,8 @@ namespace NLog.UnitTests.Layouts
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog throwExceptions='true'>
-            <targets>
-                <target name='debug' type='Debug'  >
+            <targets async='true'>
+                <target name='debug' type='Debug'>
                  <layout type='JsonLayout'>
                     <attribute name='type' layout='${exception:format=Type}'/>
                     <attribute name='message' layout='${exception:format=Message}'/>
@@ -232,7 +232,10 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo);
 
-            var message = GetDebugLastMessage("debug");
+            var target = LogManager.Configuration.AllTargets.OfType<DebugTarget>().First();
+            LogManager.Configuration = null;    // Flush
+
+            var message = target.LastMessage;
             Assert.Contains(System.Threading.Thread.CurrentThread.ManagedThreadId.ToString(), message);
         }
 
@@ -437,6 +440,28 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void IncludeAllJsonPropertiesMaxRecursionLimit()
+        {
+            var jsonLayout = new JsonLayout()
+            {
+                IncludeAllProperties = true,
+                MaxRecursionLimit = 1,
+            };
+
+            LogEventInfo logEventInfo = new LogEventInfo()
+            {
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56),
+                Level = LogLevel.Info,
+            };
+            logEventInfo.Properties["Message"] = new
+            {
+                data = new Dictionary<int, string>() { { 42, "Hello" } }
+            };
+
+            Assert.Equal(@"{ ""Message"": {""data"":{}} }", jsonLayout.Render(logEventInfo));
+        }
+
+        [Fact]
         public void IncludeMdcJsonProperties()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -534,9 +559,9 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo);
 
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
-        }     
-        
-        
+        }
+
+
         /// <summary>
         /// Serialize object deep
         /// </summary>
@@ -625,7 +650,68 @@ namespace NLog.UnitTests.Layouts
 
             logger.Debug(logEventInfo3);
 
-            AssertDebugLastMessage("debug", "{ \"nestedObject\": [] }");  // No support for nested collections
+            AssertDebugLastMessage("debug", "{ \"nestedObject\": [[]] }");  // No support for nested collections
+        }
+
+        [Fact]
+        public void EncodesInvalidCharacters()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' >
+                 </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo1 = new LogEventInfo();
+
+            logEventInfo1.Properties.Add("InvalidCharacters", "|#{}%&\"~+\\/:*?<>".ToCharArray());
+
+            logger.Debug(logEventInfo1);
+
+            AssertDebugLastMessage("debug", "{ \"InvalidCharacters\": [\"|\",\"#\",\"{\",\"}\",\"%\",\"&\",\"\\\"\",\"~\",\"+\",\"\\\\\",\"\\/\",\":\",\"*\",\"?\",\"<\",\">\"] }");
+        }
+
+        [Fact]
+        public void EncodesInvalidDoubles()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                 <layout type=""JsonLayout"" IncludeAllProperties='true' >
+                 </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo1 = new LogEventInfo();
+
+            logEventInfo1.Properties.Add("DoubleNaN", double.NaN);
+            logEventInfo1.Properties.Add("DoubleInfPositive", double.PositiveInfinity);
+            logEventInfo1.Properties.Add("DoubleInfNegative", double.NegativeInfinity);
+            logEventInfo1.Properties.Add("FloatNaN", float.NaN);
+            logEventInfo1.Properties.Add("FloatInfPositive", float.PositiveInfinity);
+            logEventInfo1.Properties.Add("FloatInfNegative", float.NegativeInfinity);
+
+            logger.Debug(logEventInfo1);
+
+            AssertDebugLastMessage("debug", "{ \"DoubleNaN\": \"NaN\", \"DoubleInfPositive\": \"Infinity\", \"DoubleInfNegative\": \"-Infinity\", \"FloatNaN\": \"NaN\", \"FloatInfPositive\": \"Infinity\", \"FloatInfNegative\": \"-Infinity\" }");
         }
 
         private static LogEventInfo CreateLogEventWithExcluded()

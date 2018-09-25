@@ -58,7 +58,16 @@ namespace NLog.Config
         /// Create an empty <see cref="LoggingRule" />.
         /// </summary>
         public LoggingRule()
+            :this(null)
         {
+        }
+
+        /// <summary>
+        /// Create an empty <see cref="LoggingRule" />.
+        /// </summary>
+        public LoggingRule(string ruleName)
+        {
+            RuleName = ruleName;
             Filters = new List<Filter>();
             ChildRules = new List<LoggingRule>();
             Targets = new List<Target>();
@@ -78,8 +87,6 @@ namespace NLog.Config
             Targets.Add(target);
             EnableLoggingForLevels(minLevel, maxLevel);
         }
-
-
 
         /// <summary>
         /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> which writes to <paramref name="target"/>.
@@ -116,6 +123,11 @@ namespace NLog.Config
             EndsWith,
             Contains,
         }
+
+        /// <summary>
+        /// Rule identifier to allow rule lookup
+        /// </summary>
+        public string RuleName { get; }
 
         /// <summary>
         /// Gets a collection of targets that should be written to when this rule matches.
@@ -220,6 +232,10 @@ namespace NLog.Config
                 return levels.AsReadOnly();
             }
         }
+        /// <summary>
+        /// Default action if all filters won't match
+        /// </summary>
+        public FilterResult DefaultFilterResult { get; set; } = FilterResult.Neutral;
 
         /// <summary>
         /// Enables logging for a particular level.

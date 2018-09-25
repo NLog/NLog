@@ -34,8 +34,7 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// A string literal.
@@ -46,6 +45,7 @@ namespace NLog.LayoutRenderers
     /// </remarks>
     [LayoutRenderer("literal")]
     [ThreadAgnostic]
+    [ThreadSafe]
     [AppDomainFixedOutput]
     public class LiteralLayoutRenderer : LayoutRenderer
     {

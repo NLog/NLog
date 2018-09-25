@@ -73,7 +73,7 @@ namespace NLog.UnitTests.Config
         /// <summary>
         /// Expand of property which are not layoutable <see cref="Layout"/>, but still get expanded.
         /// </summary>
-        [Fact(Skip = "It's unclear if this is a bug of a feature. Probably this will a config setting in the feature")]
+        [Fact]
         public void VariablesTest_string_expanding()
         {
             var configuration = CreateConfigurationFromString(@"
@@ -88,7 +88,54 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(target);
             //dont change the ${test} as it isn't a Layout
             Assert.NotEqual(typeof(Layout), target.DBProvider.GetType());
-            Assert.Equal("${test}", target.DBProvider);
+            Assert.Equal("hello", target.DBProvider);
+        }
+
+        [Fact]
+        public void VariablesTest_minLevel_expanding()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+   <variable name='test' value='debug'/>
+    <rules>
+      <logger minLevel='${test}' final='true' />
+    </rules>
+</nlog>");
+
+            var rule = configuration.LoggingRules[0];
+            Assert.NotNull(rule);
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Trace));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Info));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Warn));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
+
+        }        
+        
+        /// <summary>
+        /// Expand of level attributes
+        /// </summary>
+        [Fact]
+        public void VariablesTest_Level_expanding()
+        {
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+   <variable name='test' value='debug'/>
+    <rules>
+      <logger level='${test}' final='true' />
+    </rules>
+</nlog>");
+
+            var rule = configuration.LoggingRules[0];
+            Assert.NotNull(rule);
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Trace));
+            Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Debug));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Info));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Warn));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Error));
+            Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
+
         }
 
         [Fact]

@@ -71,6 +71,7 @@ namespace NLog.UnitTests
 
             LogManager.Configuration = null;
             InternalLogger.Reset();
+            InternalLogger.LogLevel = LogLevel.Off;
             LogManager.ThrowExceptions = false;
             LogManager.ThrowConfigExceptions = null;
             System.Diagnostics.Trace.Listeners.Clear();
@@ -134,7 +135,7 @@ namespace NLog.UnitTests
             {
                 if (encodedBuf[i] != buf[i])
                     Assert.True(encodedBuf[i] == buf[i],
-                        $"File:{fileName} content mismatch {(int) encodedBuf[i]} <> {(int) buf[i]} at index {i}");
+                        $"File:{fileName} content mismatch {(int)encodedBuf[i]} <> {(int)buf[i]} at index {i}");
             }
         }
 
@@ -240,13 +241,26 @@ namespace NLog.UnitTests
                 if (preamble.Length > 0)
                 {
                     //insert before
-
                     encodedBuf = preamble.Concat(encodedBuf).ToArray();
-
                 }
             }
 
-            byte[] buf = File.ReadAllBytes(fileName);
+            byte[] buf;
+            using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
+            {
+                int index = 0;
+                int count = (int)fs.Length;
+                buf = new byte[count];
+                while (count > 0)
+                {
+                    int n = fs.Read(buf, index, count);
+                    if (n == 0)
+                        break;
+                    index += n;
+                    count -= n;
+                }
+            }
+
             Assert.True(encodedBuf.Length == buf.Length,
                 $"File:{fileName} encodedBytes:{encodedBuf.Length} does not match file.content:{buf.Length}, file.length = {fi.Length}");
 
@@ -254,7 +268,7 @@ namespace NLog.UnitTests
             {
                 if (encodedBuf[i] != buf[i])
                     Assert.True(encodedBuf[i] == buf[i],
-                        $"File:{fileName} content mismatch {(int) encodedBuf[i]} <> {(int) buf[i]} at index {i}");
+                        $"File:{fileName} content mismatch {(int)encodedBuf[i]} <> {(int)buf[i]} at index {i}");
             }
         }
 
@@ -298,9 +312,8 @@ namespace NLog.UnitTests
                         Assert.False(true, "File contains '" + contentToCheck + "'");
                 }
             }
-
-            return;
         }
+
         protected string StringRepeat(int times, string s)
         {
             StringBuilder sb = new StringBuilder(s.Length * times);
@@ -378,6 +391,32 @@ namespace NLog.UnitTests
             action();
 
             return stringWriter.ToString();
+        }
+        /// <summary>
+        /// To handle unstable integration tests, retry if failed
+        /// </summary>
+        /// <param name="tries"></param>
+        /// <param name="action"></param>
+        protected void RetryingIntegrationTest(int tries, Action action)
+        {
+            int tried = 0;
+            while (tried < tries)
+            {
+                try
+                {
+                    tried++;
+                    action();
+                    return; //success
+                }
+                catch (Exception)
+                {
+                    if (tried >= tries)
+                    {
+                        throw;
+                    }
+                }
+               
+            }
         }
 
         /// <summary>

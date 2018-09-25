@@ -200,15 +200,15 @@ namespace NLog.UnitTests.Internal.FileAppenders
         {
             // Invoke GetFileCharacteristics() on an Empty FileAppenderCache.
             FileAppenderCache emptyCache = FileAppenderCache.Empty;
-            Assert.Null(emptyCache.GetFileCreationTimeSource("file.txt", false));
-            Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt", false));
-            Assert.Null(emptyCache.GetFileLength("file.txt", false));
+            Assert.Null(emptyCache.GetFileCreationTimeSource("file.txt"));
+            Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt"));
+            Assert.Null(emptyCache.GetFileLength("file.txt"));
           
             FileAppenderCache cache = new FileAppenderCache(3, appenderFactory, fileParameters);
             // Invoke GetFileCharacteristics() on non-empty FileAppenderCache - Before allocating any appenders. 
-            Assert.Null(emptyCache.GetFileCreationTimeSource("file.txt", false));
-            Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt", false));
-            Assert.Null(emptyCache.GetFileLength("file.txt", false));
+            Assert.Null(emptyCache.GetFileCreationTimeSource("file.txt"));
+            Assert.Null(emptyCache.GetFileLastWriteTimeUtc("file.txt"));
+            Assert.Null(emptyCache.GetFileLength("file.txt"));
 
 
             String tempFile = Path.Combine(
@@ -227,15 +227,15 @@ namespace NLog.UnitTests.Internal.FileAppenders
 
             // File information should be returned.
 
-            var fileCreationTimeUtc = cache.GetFileCreationTimeSource(tempFile, false);
+            var fileCreationTimeUtc = cache.GetFileCreationTimeSource(tempFile);
             Assert.NotNull(fileCreationTimeUtc);
             Assert.True(fileCreationTimeUtc > Time.TimeSource.Current.FromSystemTime(DateTime.UtcNow.AddMinutes(-2)),"creationtime is wrong");
 
-            var fileLastWriteTimeUtc = cache.GetFileLastWriteTimeUtc(tempFile, false);
+            var fileLastWriteTimeUtc = cache.GetFileLastWriteTimeUtc(tempFile);
             Assert.NotNull(fileLastWriteTimeUtc);
             Assert.True(fileLastWriteTimeUtc > DateTime.UtcNow.AddMinutes(-2), "lastwrite is wrong");
 
-            Assert.Equal(34, cache.GetFileLength(tempFile, false));
+            Assert.Equal(34, cache.GetFileLength(tempFile));
 
             // Clean up.
             appender.Flush();

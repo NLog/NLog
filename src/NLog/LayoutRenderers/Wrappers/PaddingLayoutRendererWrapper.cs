@@ -46,6 +46,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("FixedLength")]
     [AmbientProperty("AlignmentOnTruncation")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class PaddingLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>

@@ -43,6 +43,7 @@ namespace NLog.Layouts
     /// </summary>
     [Layout("CompoundLayout")]
     [ThreadAgnostic]
+    [ThreadSafe]
     [AppDomainFixedOutput]
     public class CompoundLayout : Layout
     {
@@ -73,7 +74,7 @@ namespace NLog.Layouts
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
+            PrecalculateBuilderInternal(logEvent, target);
         }
 
         /// <summary>

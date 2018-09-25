@@ -33,6 +33,7 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.Text;
     using NLog.Conditions;
     using NLog.Config;
@@ -44,6 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("when")]
     [AmbientProperty("When")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
@@ -59,29 +61,32 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category="Transformation Options" order="10"/>
         public Layout Else { get; set; }
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        /// <inheritdoc/>
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            int orgLength = builder.Length;
+            try
+            {
+                if (When == null || true.Equals(When.Evaluate(logEvent)))
+                {
+                    Inner?.RenderAppendBuilder(logEvent, builder);
+                }
+                else if (Else != null)
+                {
+                    Else.RenderAppendBuilder(logEvent, builder);
+                }
+            }
+            catch
+            {
+                builder.Length = orgLength; // Rewind/Truncate on exception
+                throw;
+            }
         }
 
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
-        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
+        /// <inheritdoc/>
+        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
+        protected override void TransformFormattedMesssage(StringBuilder target)
         {
-            if (When == null || true.Equals(When.Evaluate(logEvent)))
-            {
-                base.RenderFormattedMessage(logEvent, target);
-            }
-            else if (Else != null)
-            {
-                Else.RenderAppendBuilder(logEvent, target);
-            }
         }
     }
 }

@@ -109,9 +109,9 @@ namespace NLog.Conditions
         private static object Compare(object leftValue, object rightValue, ConditionRelationalOperator relationalOperator)
         {
 #if !NETSTANDARD1_0
-            StringComparer comparer = StringComparer.InvariantCulture;
+            System.Collections.IComparer comparer = StringComparer.InvariantCulture;
 #else
-            var comparer = new System.Collections.Comparer(CultureInfo.InvariantCulture);
+            System.Collections.IComparer comparer = StringComparer.Ordinal;
 #endif
             PromoteTypes(ref leftValue, ref rightValue);
             switch (relationalOperator)

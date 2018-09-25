@@ -119,7 +119,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            InternalLogger.Trace("Writing {0} events", logEvents.Count);
+            InternalLogger.Trace("SplitGroup(Name={0}): Writing {1} events", Name, logEvents.Count);
 
             for (int i = 0; i < logEvents.Count; ++i)
             {
@@ -129,7 +129,7 @@ namespace NLog.Targets.Wrappers
 
             for (int i = 0; i < Targets.Count; ++i)
             {
-                InternalLogger.Trace("Sending {0} events to {1}", logEvents.Count, Targets[i]);
+                InternalLogger.Trace("SplitGroup(Name={0}): Sending {1} events to {2}", Name, logEvents.Count, Targets[i]);
 
                 var targetLogEvents = logEvents;
                 if (i < Targets.Count - 1)

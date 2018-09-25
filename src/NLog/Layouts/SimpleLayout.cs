@@ -50,12 +50,13 @@ namespace NLog.Layouts
     /// </remarks>
     [Layout("SimpleLayout")]
     [ThreadAgnostic]
+    [ThreadSafe]
     [AppDomainFixedOutput]
     public class SimpleLayout : Layout, IUsesStackTrace
     {
         private string _fixedText;
         private string _layoutText;
-        private ConfigurationItemFactory _configurationItemFactory;
+        private readonly ConfigurationItemFactory _configurationItemFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleLayout" /> class.
@@ -221,9 +222,9 @@ namespace NLog.Layouts
         {
             Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
 
-            if (Renderers.Count == 1 && Renderers[0] is LiteralLayoutRenderer)
+            if (Renderers.Count == 1 && Renderers[0] is LiteralLayoutRenderer renderer)
             {
-                _fixedText = ((LiteralLayoutRenderer)Renderers[0]).Text;
+                _fixedText = renderer.Text;
             }
             else
             {
@@ -238,6 +239,20 @@ namespace NLog.Layouts
                 PerformObjectScanning();
             }
         }
+
+        /// <inheritdoc />
+        public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        {
+            if (Renderers.Count == 1 && Renderers[0] is IRawValue rawValueLayoutRenderer)
+            {
+                rawValue =  rawValueLayoutRenderer.GetRawValue(logEvent);
+                return true;
+            }
+
+            rawValue = null;
+            return false;
+        }
+
 
         /// <summary>
         /// Initializes the layout.
@@ -273,7 +288,7 @@ namespace NLog.Layouts
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
+            PrecalculateBuilderInternal(logEvent, target);
         }
 
         /// <summary>

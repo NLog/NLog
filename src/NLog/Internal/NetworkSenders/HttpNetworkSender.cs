@@ -35,13 +35,15 @@ namespace NLog.Internal.NetworkSenders
 {
     using System;
     using System.Net;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Network sender which uses HTTP or HTTPS POST.
     /// </summary>
     internal class HttpNetworkSender : NetworkSender
     {
+        readonly Uri _addressUri;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpNetworkSender"/> class.
         /// </summary>
@@ -49,6 +51,7 @@ namespace NLog.Internal.NetworkSenders
         public HttpNetworkSender(string url)
             : base(url)
         {
+            _addressUri = new Uri(Address);
         }
 
         /// <summary>
@@ -61,7 +64,7 @@ namespace NLog.Internal.NetworkSenders
         /// <remarks>To be overridden in inheriting classes.</remarks>
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            var webRequest = WebRequest.Create(new Uri(Address));
+            var webRequest = WebRequest.Create(_addressUri);
             webRequest.Method = "POST";
 
             AsyncCallback onResponse =
@@ -78,9 +81,9 @@ namespace NLog.Internal.NetworkSenders
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustBeRethrown())
+                        if (ex.MustBeRethrownImmediately())
                         {
-                            throw;
+                            throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
 
                         asyncContinuation(ex);

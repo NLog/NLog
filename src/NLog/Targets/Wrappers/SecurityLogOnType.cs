@@ -39,7 +39,7 @@ namespace NLog.Targets.Wrappers
     /// Logon type.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue", Justification = "Valid security logon type is required.")]
-    public enum SecurityLogOnType : int
+    public enum SecurityLogOnType
     {
         /// <summary>
         /// Interactive Logon.

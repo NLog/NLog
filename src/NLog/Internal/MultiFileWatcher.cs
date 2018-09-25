@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
 
 namespace NLog.Internal
 {
@@ -44,7 +44,7 @@ namespace NLog.Internal
     /// Watches multiple files at the same time and raises an event whenever 
     /// a single change is detected in any of those files.
     /// </summary>
-    internal class MultiFileWatcher : IDisposable
+    internal sealed class MultiFileWatcher : IDisposable
     {
         private readonly Dictionary<string, FileSystemWatcher> _watcherMap = new Dictionary<string, FileSystemWatcher>();
 

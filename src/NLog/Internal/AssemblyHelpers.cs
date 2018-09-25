@@ -46,7 +46,7 @@ using System.Windows;
     /// </summary>
     internal static class AssemblyHelpers
     {
-#if !WINDOWS_UWP
+#if !NETSTANDARD1_3
         /// <summary>
         /// Load from url
         /// </summary>
@@ -107,5 +107,81 @@ using System.Windows;
 #endif
         }
 
+#if !SILVERLIGHT && !NETSTANDARD1_3
+        public static string GetAssemblyFileLocation(Assembly assembly)
+        {
+            string fullName = string.Empty;
+
+            try
+            {
+                if (assembly == null)
+                {
+                    return string.Empty;
+                }
+
+                fullName = assembly.FullName;
+
+#if NETSTANDARD
+                if (string.IsNullOrEmpty(assembly.Location))
+                {
+                    // Assembly with no actual location should be skipped (Avoid PlatformNotSupportedException)
+                    InternalLogger.Warn("Ignoring assembly location because location is empty: {0}", fullName);
+                    return string.Empty;
+                }
+#endif
+
+                Uri assemblyCodeBase;
+                if (!Uri.TryCreate(assembly.CodeBase, UriKind.RelativeOrAbsolute, out assemblyCodeBase))
+                {
+                    InternalLogger.Warn("Ignoring assembly location because code base is unknown: '{0}' ({1})", assembly.CodeBase, fullName);
+                    return string.Empty;
+                }
+
+                var assemblyLocation = Path.GetDirectoryName(assemblyCodeBase.LocalPath);
+                if (string.IsNullOrEmpty(assemblyLocation))
+                {
+                    InternalLogger.Warn("Ignoring assembly location because it is not a valid directory: '{0}' ({1})", assemblyCodeBase.LocalPath, fullName);
+                    return string.Empty;
+                }
+
+                DirectoryInfo directoryInfo = new DirectoryInfo(assemblyLocation);
+                if (!directoryInfo.Exists)
+                {
+                    InternalLogger.Warn("Ignoring assembly location because directory doesn't exists: '{0}' ({1})", assemblyLocation, fullName);
+                    return string.Empty;
+                }
+
+                InternalLogger.Debug("Found assembly location directory: '{0}' ({1})", directoryInfo.FullName, fullName);
+                return directoryInfo.FullName;
+            }
+            catch (System.PlatformNotSupportedException ex)
+            {
+                InternalLogger.Warn(ex, "Ignoring assembly location because assembly lookup is not supported: {0}", fullName);
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                return string.Empty;
+            }
+            catch (System.Security.SecurityException ex)
+            {
+                InternalLogger.Warn(ex, "Ignoring assembly location because assembly lookup is not allowed: {0}", fullName);
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                return string.Empty;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                InternalLogger.Warn(ex, "Ignoring assembly location because assembly lookup is not allowed: {0}", fullName);
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
+                return string.Empty;
+            }
+        }
+#endif
     }
 }

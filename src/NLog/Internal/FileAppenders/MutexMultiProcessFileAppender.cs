@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
 // Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) so the BaseFileAppender class now throws an exception in the constructor.
 #define SupportsMutex
 #endif
@@ -126,10 +126,6 @@ namespace NLog.Internal.FileAppenders
                 _fileStream.Seek(0, SeekOrigin.End);
                 _fileStream.Write(bytes, offset, count);
                 _fileStream.Flush();
-                if (CaptureLastWriteTime)
-                {
-                    FileTouched();
-                }
             }
             finally
             {
@@ -176,8 +172,6 @@ namespace NLog.Internal.FileAppenders
             {
                 _fileStream = null;
             }
-
-            FileTouched();
         }
 
         /// <summary>
@@ -196,17 +190,6 @@ namespace NLog.Internal.FileAppenders
         public override DateTime? GetFileCreationTimeUtc()
         {
             return CreationTimeUtc; // File is kept open, so creation time is static
-        }
-
-        /// <summary>
-        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
-        /// Universal Time [UTC] standard.
-        /// </summary>
-        /// <returns>The time the file was last written to.</returns>
-        public override DateTime? GetFileLastWriteTimeUtc()
-        {
-            var fileChars = GetFileCharacteristics();
-            return fileChars.LastWriteTimeUtc;
         }
 
         /// <summary>

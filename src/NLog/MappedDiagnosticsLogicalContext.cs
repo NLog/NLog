@@ -37,6 +37,7 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
     using Internal;
 
     /// <summary>
@@ -50,6 +51,32 @@ namespace NLog
     /// </remarks>
     public static class MappedDiagnosticsLogicalContext
     {
+
+        private class ItemRemover : IDisposable
+        {
+            private readonly string _item;
+            //boolean as int to allow the use of Interlocked.Exchange
+            private int _disposed = 0;
+
+            public ItemRemover(string item)
+            {
+                _item = item;
+            }
+
+            public void Dispose()
+            {
+                if (Interlocked.Exchange(ref _disposed, 1) == 0)
+                {
+                    Remove(_item);
+                }
+            }
+
+            public override string ToString()
+            {
+                return _item?.ToString() ?? base.ToString();
+            }
+        }
+
         /// <summary>
         /// Simulate ImmutableDictionary behavior (which is not yet part of all .NET frameworks).
         /// In future the real ImmutableDictionary could be used here to minimize memory usage and copying time.
@@ -105,9 +132,52 @@ namespace NLog
         /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            object value;
-            GetLogicalThreadDictionary().TryGetValue(item, out value);
+            if (!GetLogicalThreadDictionary().TryGetValue(item, out var value))
+                return null;
+
+#if NET4_6 || NETSTANDARD
             return value;
+#else
+            if (value is ObjectHandleSerializer objectHandle)
+            {
+                return objectHandle.Unwrap();
+            }
+            return value;
+#endif
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        public static IDisposable SetScoped(string item, string value)
+        {
+            return SetScoped<string>(item, value);
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        public static IDisposable SetScoped(string item, object value)
+        {
+            return SetScoped<object>(item, value);
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        public static IDisposable SetScoped<T>(string item, T value)
+        {
+            Set<T>(item, value);
+            return new ItemRemover(item);
         }
 
         /// <summary>
@@ -117,7 +187,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            GetLogicalThreadDictionary(true)[item] = value;
+            Set<string>(item, value);
         }
 
         /// <summary>
@@ -127,7 +197,26 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            GetLogicalThreadDictionary(true)[item] = value;
+            Set<object>(item, value);
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        public static void Set<T>(string item, T value)
+        {
+            var logicalContext = GetLogicalThreadDictionary(true);
+#if NET4_6 || NETSTANDARD
+            logicalContext[item] = value;
+#else
+            if (typeof(T).IsValueType || Convert.GetTypeCode(value) != TypeCode.Object)
+                logicalContext[item] = value;
+            else 
+
+                logicalContext[item] = new ObjectHandleSerializer(value);
+#endif
         }
 
         /// <summary>
@@ -214,3 +303,4 @@ namespace NLog
 }
 
 #endif
+

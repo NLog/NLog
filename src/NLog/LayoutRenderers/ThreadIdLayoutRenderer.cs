@@ -34,12 +34,16 @@
 namespace NLog.LayoutRenderers
 {
     using System.Text;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The identifier of the current thread.
     /// </summary>
     [LayoutRenderer("threadid")]
-    public class ThreadIdLayoutRenderer : LayoutRenderer
+    [ThreadSafe]
+    public class ThreadIdLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Renders the current thread identifier and appends it to the specified <see cref="StringBuilder" />.
@@ -49,7 +53,18 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture needed for ints
-            Internal.StringBuilderExt.AppendInvariant(builder, Common.AsyncHelpers.GetManagedThreadId());
+            builder.AppendInvariant(GetValue());
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue();
+        }
+
+        private static int GetValue()
+        {
+            return AsyncHelpers.GetManagedThreadId();
         }
     }
 }

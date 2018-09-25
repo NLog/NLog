@@ -35,7 +35,9 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
     using System.ComponentModel;
+    using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Replaces newline characters from the result of another layout renderer with spaces.
@@ -43,6 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("replace-newlines")]
     [AmbientProperty("ReplaceNewLines")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
@@ -60,13 +63,29 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(" ")]
         public string Replacement { get; set; }
 
-        /// <summary>
-        /// Post-processes the rendered message. 
-        /// </summary>
-        /// <param name="target">Output to be post-processed.</param>
-        protected override void TransformFormattedMesssage(System.Text.StringBuilder target)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            target.Replace(Environment.NewLine, Replacement);
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (builder.Length > orgLength)
+            {
+                string newLine = Environment.NewLine;
+                if (!string.IsNullOrEmpty(newLine) && builder.IndexOf(newLine[newLine.Length - 1], orgLength) >= 0)
+                {
+                    string str = builder.ToString(orgLength, builder.Length - orgLength);
+                    str = str.Replace(newLine, Replacement);
+                    if (newLine != "\n" && !(Replacement?.IndexOf('\n') >= 0) && str.IndexOf('\n') >= 0)
+                        str = str.Replace("\n", Replacement);   // Recognize Unix-Newline on Windows-platform
+                    builder.Length = orgLength;
+                    builder.Append(str);
+                }
+            }
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
+        protected override void TransformFormattedMesssage(StringBuilder target)
+        {
         }
     }
 }

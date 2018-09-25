@@ -45,7 +45,8 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("callsite-linenumber")]
     [ThreadAgnostic]
-    public class CallSiteLineNumberLayoutRenderer : LayoutRenderer, IUsesStackTrace
+    [ThreadSafe]
+    public class CallSiteLineNumberLayoutRenderer : LayoutRenderer, IUsesStackTrace, IRawValue
     {
         /// <summary>
         /// Gets or sets the number of frames to skip.
@@ -66,11 +67,26 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (logEvent.CallSiteInformation != null)
+            var lineNumber = GetLineNumber(logEvent);
+            if (lineNumber.HasValue)
+                builder.AppendInvariant(lineNumber.Value);
+        }
+
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetLineNumber(logEvent);
+        }
+
+        private int? GetLineNumber(LogEventInfo logEvent)
+        {
+            if (logEvent.CallSiteInformation == null)
             {
-                int linenumber = logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
-                builder.Append(linenumber);
+                return null;
             }
+
+            return logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
         }
     }
 }

@@ -39,12 +39,15 @@ namespace NLog.LayoutRenderers
     using System.Diagnostics;
     using System.Globalization;
     using System.Text;
+    using NLog.Config;
+	using NLog.Internal;
 
     /// <summary>
     /// A renderer that puts into log a System.Diagnostics trace correlation id.
     /// </summary>
     [LayoutRenderer("activityid")]
-    public class TraceActivityIdLayoutRenderer : LayoutRenderer
+    [ThreadSafe]
+    public class TraceActivityIdLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Renders the current trace activity ID.
@@ -53,8 +56,22 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(Guid.Empty.Equals(Trace.CorrelationManager.ActivityId) ?
-                string.Empty : Trace.CorrelationManager.ActivityId.ToString("D", CultureInfo.InvariantCulture));
+            var activityId = GetValue();
+            if (!Guid.Empty.Equals(activityId))
+            {
+                builder.Append(activityId.ToString("D", CultureInfo.InvariantCulture));
+            }
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue();
+        }
+
+        private static Guid GetValue()
+        {
+            return Trace.CorrelationManager.ActivityId;
         }
     }
 }

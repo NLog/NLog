@@ -36,3 +36,4 @@ build/
 *.vshost.*
 /.vs
 /src/.vs
+.cr

@@ -39,12 +39,15 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Security.Principal;
     using System.Text;
+    using NLog.Config;
+	using NLog.Internal;
 
     /// <summary>
     /// Thread identity information (name and authentication information).
     /// </summary>
     [LayoutRenderer("identity")]
-    public class IdentityLayoutRenderer : LayoutRenderer
+    [ThreadSafe]
+    public class IdentityLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IdentityLayoutRenderer" /> class.
@@ -93,36 +96,45 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            IPrincipal principal = System.Threading.Thread.CurrentPrincipal;
-            if (principal != null)
+            IIdentity identity = GetValue();
+            if (identity != null)
             {
-                IIdentity identity = principal.Identity;
-                if (identity != null)
+                string separator = string.Empty;
+
+                if (IsAuthenticated)
                 {
-                    string separator = string.Empty;
+                    builder.Append(separator);
+                    separator = Separator;
 
-                    if (IsAuthenticated)
-                    {
-                        builder.Append(separator);
-                        separator = Separator;
+                    builder.Append(identity.IsAuthenticated ? "auth" : "notauth");
+                }
 
-                        builder.Append(identity.IsAuthenticated ? "auth" : "notauth");
-                    }
+                if (AuthType)
+                {
+                    builder.Append(separator);
+                    separator = Separator;
+                    builder.Append(identity.AuthenticationType);
+                }
 
-                    if (AuthType)
-                    {
-                        builder.Append(separator);
-                        separator = Separator;
-                        builder.Append(identity.AuthenticationType);
-                    }
-
-                    if (Name)
-                    {
-                        builder.Append(separator);
-                        builder.Append(identity.Name);
-                    }
+                if (Name)
+                {
+                    builder.Append(separator);
+                    builder.Append(identity.Name);
                 }
             }
+
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue();
+        }
+
+        private static IIdentity GetValue()
+        {
+            var currentPrincipal = System.Threading.Thread.CurrentPrincipal;
+            return currentPrincipal?.Identity;
         }
     }
 }

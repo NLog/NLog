@@ -44,7 +44,9 @@ namespace NLog.LayoutRenderers
     /// <summary>
     ///  Used to render the application domain name.
     ///  </summary>
-    [ThreadAgnostic, LayoutRenderer("appdomain")]
+    [LayoutRenderer("appdomain")]
+    [ThreadAgnostic]
+    [ThreadSafe]
     public class AppDomainLayoutRenderer : LayoutRenderer
     {
         private const string ShortFormat = "{0:00}";
@@ -82,14 +84,38 @@ namespace NLog.LayoutRenderers
         public string Format { get; set; }
 
         /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        protected override void InitializeLayoutRenderer()
+        {
+            _assemblyName = null;
+            base.InitializeLayoutRenderer();
+        }
+
+        /// <summary>
+        /// Closes the layout renderer.
+        /// </summary>
+        protected override void CloseLayoutRenderer()
+        {
+            _assemblyName = null;
+            base.CloseLayoutRenderer();
+        }
+
+        private string _assemblyName;
+
+        /// <summary>
         /// Render the layout
         /// </summary>
         /// <param name="builder"></param>
         /// <param name="logEvent"></param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var formattingString = GetFormattingString(Format);
-            builder.Append(string.Format(formattingString, _currentDomain.Id, _currentDomain.FriendlyName));
+            if (_assemblyName == null)
+            {
+                var formattingString = GetFormattingString(Format);
+                _assemblyName = string.Format(formattingString, _currentDomain.Id, _currentDomain.FriendlyName);
+            }
+            builder.Append(_assemblyName);
         }
 
         /// <summary>
@@ -110,7 +136,7 @@ namespace NLog.LayoutRenderers
             }
             else
             {
-                //custom value;
+                //custom format string
                 formattingString = format;
             }
             return formattingString;

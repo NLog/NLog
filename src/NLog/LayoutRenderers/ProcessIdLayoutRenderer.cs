@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD1_3
 
 namespace NLog.LayoutRenderers
 {
@@ -45,7 +45,8 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processid")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
-    public class ProcessIdLayoutRenderer : LayoutRenderer
+    [ThreadSafe]
+    public class ProcessIdLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Renders the current process ID.
@@ -54,7 +55,18 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.AppendInvariant(ThreadIDHelper.Instance.CurrentProcessID);
+            builder.AppendInvariant(GetValue());
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue();
+        }
+
+        private static int GetValue()
+        {
+            return ThreadIDHelper.Instance.CurrentProcessID;
         }
     }
 }

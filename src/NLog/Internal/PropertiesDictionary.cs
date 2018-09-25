@@ -127,39 +127,41 @@ namespace NLog.Internal
         public IList<MessageTemplateParameter> MessageProperties
         {
             get => _messageProperties ?? ArrayHelper.Empty<MessageTemplateParameter>();
-            internal set
+            internal set => _messageProperties = SetMessageProperties(value, _messageProperties);
+        }
+
+        private IList<MessageTemplateParameter> SetMessageProperties(IList<MessageTemplateParameter> newMessageProperties, IList<MessageTemplateParameter> oldMessageProperties)
+        {
+            if (_eventProperties == null && VerifyUniqueMessageTemplateParametersFast(newMessageProperties))
             {
-                if (_eventProperties == null && VerifyUniqueMessageTemplateParametersFast(value))
+                return newMessageProperties;
+            }
+            else
+            {
+                if (_eventProperties == null)
                 {
-                    _messageProperties = value;
+                    _eventProperties = new Dictionary<object, PropertyValue>(newMessageProperties.Count);
+                }
+
+                if (oldMessageProperties != null && _eventProperties.Count > 0)
+                {
+                    PropertyValue propertyValue;
+                    for (int i = 0; i < oldMessageProperties.Count; ++i)
+                    {
+                        if (_eventProperties.TryGetValue(oldMessageProperties[i].Name, out propertyValue) && propertyValue.IsMessageProperty)
+                        {
+                            _eventProperties.Remove(oldMessageProperties[i].Name);
+                        }
+                    }
+                }
+
+                if (newMessageProperties != null && (_eventProperties.Count > 0 || !InsertMessagePropertiesIntoEmptyDictionary(newMessageProperties, _eventProperties)))
+                {
+                    return CreateUniqueMessagePropertiesListSlow(newMessageProperties, _eventProperties);
                 }
                 else
                 {
-                    if (_eventProperties == null)
-                    {
-                        _eventProperties = new Dictionary<object, PropertyValue>(value.Count);
-                    }
-
-                    if (_messageProperties != null && _eventProperties.Count > 0)
-                    {
-                        PropertyValue propertyValue;
-                        for (int i = 0; i < _messageProperties.Count; ++i)
-                        {
-                            if (_eventProperties.TryGetValue(_messageProperties[i].Name, out propertyValue) && propertyValue.IsMessageProperty)
-                            {
-                                _eventProperties.Remove(_messageProperties[i].Name);
-                            }
-                        }
-                    }
-
-                    if (value != null && (_eventProperties.Count > 0 || !InsertMessagePropertiesIntoEmptyDictionary(value, _eventProperties)))
-                    {
-                        _messageProperties = CreateUniqueMessagePropertiesListSlow(value, _eventProperties);
-                    }
-                    else
-                    {
-                        _messageProperties = value;
-                    }
+                    return newMessageProperties;
                 }
             }
         }
@@ -169,12 +171,9 @@ namespace NLog.Internal
         {
             get
             {
-                if (!IsEmpty)
+                if (!IsEmpty && EventProperties.TryGetValue(key, out var valueItem))
                 {
-                    if (EventProperties.TryGetValue(key, out var valueItem))
-                    {
-                        return valueItem.Value;
-                    }
+                    return valueItem.Value;
                 }
 
                 throw new KeyNotFoundException();
@@ -327,13 +326,10 @@ namespace NLog.Internal
         /// <inheritDoc/>
         public bool TryGetValue(object key, out object value)
         {
-            if (!IsEmpty)
+            if (!IsEmpty && EventProperties.TryGetValue(key, out var valueItem))
             {
-                if (EventProperties.TryGetValue(key, out var valueItem))
-                {
-                    value = valueItem.Value;
-                    return true;
-                }
+                value = valueItem.Value;
+                return true;
             }
 
             value = null;
@@ -404,20 +400,17 @@ namespace NLog.Internal
             List<MessageTemplateParameter> messagePropertiesUnique = null;
             for (int i = 0; i < messageProperties.Count; ++i)
             {
-                if (eventProperties.TryGetValue(messageProperties[i].Name, out var valueItem))
+                if (eventProperties.TryGetValue(messageProperties[i].Name, out var valueItem) && valueItem.IsMessageProperty)
                 {
-                    if (valueItem.IsMessageProperty)
+                    if (messagePropertiesUnique == null)
                     {
-                        if (messagePropertiesUnique == null)
+                        messagePropertiesUnique = new List<MessageTemplateParameter>(messageProperties.Count);
+                        for (int j = 0; j < i; ++j)
                         {
-                            messagePropertiesUnique = new List<MessageTemplateParameter>(messageProperties.Count);
-                            for (int j = 0; j < i; ++j)
-                            {
-                                messagePropertiesUnique.Add(messageProperties[j]);
-                            }
+                            messagePropertiesUnique.Add(messageProperties[j]);
                         }
-                        continue;   // Skip already exists
                     }
+                    continue;   // Skip already exists
                 }
 
                 eventProperties[messageProperties[i].Name] = new PropertyValue(messageProperties[i].Value, true);
@@ -432,7 +425,7 @@ namespace NLog.Internal
             return new ParameterEnumerator(this);
         }
 
-        private class DictionaryEnumeratorBase : IDisposable
+        private abstract class DictionaryEnumeratorBase : IDisposable
         {
             private readonly PropertiesDictionary _dictionary;
             private int? _messagePropertiesEnumerator;
@@ -469,7 +462,7 @@ namespace NLog.Internal
                     }
                     if (_eventEnumeratorCreated)
                     {
-                        string parameterName = "";
+                        string parameterName;
                         try
                         {
                             parameterName = XmlHelper.XmlConvertToString(_eventEnumerator.Current.Key ?? string.Empty);

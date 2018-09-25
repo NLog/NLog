@@ -33,9 +33,10 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.ComponentModel;
     using System.Text;
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// Filters characters not allowed in the file names by replacing them with safe character.
@@ -43,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("filesystem-normalize")]
     [AmbientProperty("FSNormalize")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class FileSystemNormalizeLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
@@ -61,21 +63,30 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(true)]
         public bool FSNormalize { get; set; }
 
-        /// <summary>
-        /// Replaces all non-safe characters with underscore to make valid filepath
-        /// </summary>
-        /// <param name="builder">Output to be transformed.</param>
-        protected override void TransformFormattedMesssage(StringBuilder builder)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (FSNormalize)
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (FSNormalize && builder.Length > orgLength)
             {
-                for (int i = 0; i < builder.Length; i++)
+                TransformFileSystemNormalize(builder, orgLength);
+            }
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
+        protected override void TransformFormattedMesssage(StringBuilder target)
+        {
+        }
+
+        private static void TransformFileSystemNormalize(StringBuilder builder, int startPos)
+        {
+            for (int i = startPos; i < builder.Length; i++)
+            {
+                char c = builder[i];
+                if (!IsSafeCharacter(c))
                 {
-                    char c = builder[i];
-                    if (!IsSafeCharacter(c))
-                    {
-                        builder[i] = '_';
-                    }
+                    builder[i] = '_';
                 }
             }
         }

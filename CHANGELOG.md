@@ -1,5 +1,413 @@
 See also [releases](https://github.com/NLog/NLog/releases) and [milestones](https://github.com/NLog/NLog/milestones).
 
+Date format: (year/month/day)
+
+## Change Log
+
+### V4.5.10 (2018/09/17)
+
+#### Fixes
+- [#2883](https://github.com/NLog/NLog/pull/2883) Fix LoadConfiguration for not found config file (@snakefoot, @304NotModified)
+
+### v4.5.9 (2018/08/24)
+
+#### Fixes
+- [#2865](https://github.com/NLog/NLog/pull/2865) JSON encoding should create valid JSON for special double values (@snakefoot)
+
+#### Enhancements
+- [#2846](https://github.com/NLog/NLog/pull/2846) Include Entry Assembly File Location when loading candidate NLog.config (@snakefoot)
+
+### v4.5.8 (2018/08/05)
+
+#### Features
+- [#2809](https://github.com/NLog/NLog/pull/2809) MethodCallTarget - Support for Lamba method (@snakefoot)
+- [#2816](https://github.com/NLog/NLog/pull/2816) MessageTemplates - Support rendering of alignment + padding (@snakefoot)
+
+#### Fixes  
+- [#2827](https://github.com/NLog/NLog/pull/2827) FileTarget - Failing to CreateArchiveMutex should not stop logging (@snakefoot)
+- [#2830](https://github.com/NLog/NLog/pull/2830) Auto loading of assemblies was broken in some cases (@snakefoot)
+
+#### Enhancements
+- [#2814](https://github.com/NLog/NLog/pull/2814) LoggingConfiguration - Improves CheckUnusedTargets to handle target wrappers (@snakefoot)
+
+#### Performance
+- [#2817](https://github.com/NLog/NLog/pull/2817) Optimize LayoutRendererWrappers to reduce string allocations (#2817) (@snakefoot)
+
+### v4.5.7 (2018/07/19)
+
+#### Features
+
+- [#2792](https://github.com/nlog/nlog/pull/2792) OutputDebugStringTarget - Support Xamarin iOS and Android (@snakefoot)
+- [#2776](https://github.com/nlog/nlog/pull/2776) FileTarget - Introduced OpenFileFlushTimeout to help when AutoFlush = false (@snakefoot)
+
+#### Fixes 
+
+- [#2761](https://github.com/nlog/nlog/pull/2761) ${Callsite} fix class naming when includeNamespace=false and cleanNamesOfAnonymousDelegates=true (@Azatey)
+- [#2752](https://github.com/nlog/nlog/pull/2752) JSON: Fixes issue where char types are not properly escaped (#2752) (@smbecker)
+
+#### Enhancements
+
+- [#2804](https://github.com/nlog/nlog/pull/2804) FileTarget - Do not trust Last File Write TimeStamp when AutoFlush=false (@snakefoot)
+- [#2763](https://github.com/nlog/nlog/pull/2763) Throw better error when target name is null (@masters3d)
+- [#2788](https://github.com/nlog/nlog/pull/2788) ${Assembly-version} make GetAssembly protected and virtual (@alexangas)
+- [#2756](https://github.com/nlog/nlog/pull/2756) LongDateLayoutRenderer: Improve comments (@stic)
+- [#2749](https://github.com/nlog/nlog/pull/2749) NLog.WindowsEventLog: Update dependency System.Diagnostics.EventLog to RTM version (@304NotModified)
+
+#### Performance
+
+- [#2797](https://github.com/nlog/nlog/pull/2797) Better performance with Activator.CreateInstance (@tangdf)
+
+
+### v4.5.6 (2018/05/29)
+
+#### Fixes 
+
+- [#2747](https://github.com/nlog/nlog/pull/2747) JsonSerializer - Generate valid Json when hitting the MaxRecursionLimit (@snakefoot)
+- Fixup for [NLog.WindowsEventLog package](https://www.nuget.org/packages/NLog.WindowsEventLog)
+
+#### Enhancements
+
+- [#2745](https://github.com/nlog/nlog/pull/2745) FileTarget - Improve support for Linux FileSystem without BirthTime (@snakefoot)
+
+#### Performance
+
+- [#2744](https://github.com/nlog/nlog/pull/2744) LogEventInfo - HasProperties should allocate PropertiesDicitonary when needed (@snakefoot)
+- [#2743](https://github.com/nlog/nlog/pull/2743) JsonLayout - Reduce allocations when needing to escape string (44% time improvement) (@snakefoot)
+
+### v4.5.5 (2018/05/25)
+
+#### Fixes
+
+- [#2736](https://github.com/NLog/NLog/pull/2736) FileTarget - Calculate correct archive date when multiple file appenders (@snakefoot)
+
+#### Features
+
+- [#2726](https://github.com/nlog/nlog/pull/2726) WhenRepeated - Support logging rules with multiple targets (@snakefoot)
+- [#2727](https://github.com/nlog/nlog/pull/2727) Support for custom targets that implements IUsesStackTrace (@snakefoot)
+- [#2719](https://github.com/nlog/nlog/pull/2719) DatabaseTarget: use parameters on install (@Jejuni)
+
+#### Enhancements
+
+- [#2718](https://github.com/nlog/nlog/pull/2718) JsonLayout - Always stringify when requested (@snakefoot)
+- [#2739](https://github.com/nlog/nlog/pull/2739) Target.WriteAsyncLogEvents(IList) to public 
+
+#### Performance
+
+- [#2704](https://github.com/nlog/nlog/pull/2704) Allocation improvement in precalculating layouts (@snakefoot)
+
+### v4.5.4 (2018/05/05)
+
+#### Fixes
+
+- [#2688](https://github.com/nlog/nlog/pull/2688) Faulty invalidate of FormattedMessage when getting PropertiesDictionary (@snakefoot)
+- [#2687](https://github.com/nlog/nlog/pull/2687) Fix: NLog.config build-action and copy for non-core projects, it's now "copy if newer" (@304NotModified)
+- [#2698](https://github.com/nlog/nlog/pull/2698) FileTarget - Calculate correct archive date, when using Monthly archive (@snakefoot)
+
+#### Enhancements
+
+- [#2673](https://github.com/nlog/nlog/pull/2673) TargetWithContext - Easier to use without needing to override ContextProperties (@snakefoot)
+- [#2684](https://github.com/nlog/nlog/pull/2684) DatabaseTarget - Skip static assembly lookup for .Net Standard (@snakefoot)
+- [#2689](https://github.com/nlog/nlog/pull/2689) LogEventInfo - Structured logging parameters are not always immutable (@snakefoot)
+- [#2679](https://github.com/nlog/nlog/pull/2679) Target.WriteAsyncThreadSafe should always have exception handler (@snakefoot)
+- [#2586](https://github.com/nlog/nlog/pull/2586) Target.MergeEventProperties is now obsolete (@snakefoot)
+- Sonar warning fixes:  [#2691](https://github.com/nlog/nlog/pull/2691),  [#2694](https://github.com/nlog/nlog/pull/2694), [#2693](https://github.com/nlog/nlog/pull/2693), [#2690](https://github.com/nlog/nlog/pull/2690), [#2685](https://github.com/nlog/nlog/pull/2685), [#2683](https://github.com/nlog/nlog/pull/2683), [#2696](https://github.com/NLog/NLog/pull/2696) (@snakefoot, @304NotModified)
+
+### v4.5.3 (2018/04/16)
+
+#### Fixes
+
+- [#2662](https://github.com/nlog/nlog/pull/2662) FileTarget - Improve handling of archives with multiple active files (@snakefoot)
+
+#### Enhancements
+
+- [#2587](https://github.com/nlog/nlog/pull/2587) Internal Log - Include target type and target name in the log messages (@snakefoot)
+- [#2651](https://github.com/nlog/nlog/pull/2651) Searching for NLog Extension Files should handle DirectoryNotFoundException  (@snakefoot)
+
+#### Performance
+
+- [#2653](https://github.com/nlog/nlog/pull/2653) LayoutRenderer ThreadSafe Attribute introduced to allow lock free Precalculate + other small performance improvements (@snakefoot)
+
+### v4.5.2 (2018/04/06)
+
+#### Features
+
+- [#2648](https://github.com/nlog/nlog/pull/2648) ${processtime} and ${time} added invariant option (@snakefoot)
+
+#### Fixes
+
+- [#2643](https://github.com/nlog/nlog/pull/2643) UWP with NetStandard2 on Net Native does not support Assembly.CodeBase + Handle native methods in StackTrace (#2643) (@snakefoot)
+- [#2644](https://github.com/nlog/nlog/pull/2644) FallbackGroupTarget: handle async state on fallback correctly (@snakefoot)
+
+#### Performance
+
+- [#2645](https://github.com/nlog/nlog/pull/2645) Minor performance optimization of some layoutrenderers (@snakefoot)
+- [#2642](https://github.com/nlog/nlog/pull/2642) FileTarget - InitializeFile should skip dictionary lookup when same file (@snakefoot)
+
+
+### v4.5.1 (2018/04/03)
+
+#### Fixes
+
+- [#2637](https://github.com/nlog/nlog/pull/2637) Fix IndexOutOfRangeException in NestedDiagnosticsLogicalContext (@snakefoot)
+- [#2638](https://github.com/nlog/nlog/pull/2638) Handle null values correctly in LogReceiverSecureService (@304NotModified)
+
+#### Performance
+
+- [#2639](https://github.com/nlog/nlog/pull/2639) MessageTemplates - Optimize ParseHole for positional templates (@snakefoot)
+- [#2640](https://github.com/nlog/nlog/pull/2640) FileTarget - InitializeFile no longer need justData parameter + dispose fileapenders earlier (@snakefoot)
+- [#2628](https://github.com/nlog/nlog/pull/2628) RoundRobinGroupTarget - Replaced lock with Interlocked for performance (@snakefoot)
+
+
+
+
+### v4.5 RTM (2018/03/25)
+
+NLog 4.5 adds structured logging and .NET Standard support/UPW without breaking changes! Also a lot features has been added!
+
+
+List of important changes in NLog 4.5
+
+#### Features
+
+- Support for .Net Standard 2.0 [#2263](https://github.com/nlog/nlog/pull/2263) + [#2402](https://github.com/nlog/nlog/pull/2402) (@snakefoot)
+- Support for .Net Standard 1.5 [#2341](https://github.com/nlog/nlog/pull/2341) (@snakefoot)
+- Support for .Net Standard 1.3 (and UWP) [#2441](https://github.com/nlog/nlog/pull/2441) + [#2597](https://github.com/nlog/nlog/pull/2597) (Remember to manually flush on app suspend). (@snakefoot)
+- Introduced Structured logging [#2208](https://github.com/nlog/nlog/pull/2208) + [#2262](https://github.com/nlog/nlog/pull/2262) + [#2244](https://github.com/nlog/nlog/pull/2244) + [#2544](https://github.com/nlog/nlog/pull/2544) (@snakefoot, @304NotModified, @jods4, @nblumhardt) - see https://github.com/NLog/NLog/wiki/How-to-use-structured-logging
+- Json conversion also supports object properties [#2179](https://github.com/nlog/nlog/pull/2179),  [#2555](https://github.com/nlog/nlog/pull/2555) (@snakefoot, @304NotModified)
+- event-properties layout-renderer can now render objects as json [#2241](https://github.com/nlog/nlog/pull/2241) (@snakefoot, @304NotModified)
+- exception layout-renderer can now render exceptions as json [#2357](https://github.com/nlog/nlog/pull/2357) (@snakefoot)
+- Default file archive logic is now easier to use [#1993](https://github.com/nlog/nlog/pull/1993) (@snakefoot)
+- Introduced InstallationContext.ThrowExceptions [#2214](https://github.com/nlog/nlog/pull/2214) (@rbarillec)
+- WebServiceTarget - Allow configuration of proxy address [#2375](https://github.com/nlog/nlog/pull/2375) (@snakefoot)
+- WebServiceTarget - JsonPost with JsonLayout without being wrapped in parameter [#2590](https://github.com/nlog/nlog/pull/2590) (@snakefoot)
+- ${guid}, added GeneratedFromLogEvent [#2226](https://github.com/nlog/nlog/pull/2226) (@snakefoot)
+- TraceTarget RawWrite to always perform Trace.WriteLine independent of LogLevel [#1968](https://github.com/nlog/nlog/pull/1968) (@snakefoot)
+- Adding OverflowAction options to BufferingTargetWrapper [#2276](https://github.com/nlog/nlog/pull/2276) (@mikegron)
+- WhenRepeatedFilter - Filtering of identical LogEvents  [#2123](https://github.com/nlog/nlog/pull/2123) + [#2297](https://github.com/nlog/nlog/pull/2297) (@snakefoot) 
+- ${callsite} added CleanNamesOfAsyncContinuations option [#2292](https://github.com/nlog/nlog/pull/2292) (@tkhaugen, @304NotModified)
+- ${ndlctiming} allows timing of ndlc-scopes [#2377](https://github.com/nlog/nlog/pull/2377) (@snakefoot)
+- NLogViewerTarget - Enable override of the Logger-name [#2390](https://github.com/nlog/nlog/pull/2390) (@snakefoot)
+- ${sequenceid} added [#2411](https://github.com/nlog/nlog/pull/2411) (@MikeFH)  
+- Added "regex-matches" for filtering [#2437](https://github.com/nlog/nlog/pull/2437) (@MikeFH)
+- ${gdc}, ${mdc} & {mdlc} - Support Format parameter [#2500](https://github.com/nlog/nlog/pull/2500) (@snakefoot)
+- ${currentDir} added [#2491](https://github.com/nlog/nlog/pull/2491) (@UgurAldanmaz)
+- ${AssemblyVersion}: add type (File, Assembly, Informational) option [#2487](https://github.com/nlog/nlog/pull/2487) (@alexangas)
+- FileTarget: Support byte order mark [#2456](https://github.com/nlog/nlog/pull/2456) (@KYegres)
+- TargetWithContext - Easier to create custom NLog targets with support for MDLC and NDLC [#2467](https://github.com/nlog/nlog/pull/2467) (@snakefoot)
+- ${callname-filename} - Without line number [#2591](https://github.com/nlog/nlog/pull/2591) (@brunotag)
+- MDC + MDLC with SetScoped property support  [#2592](https://github.com/nlog/nlog/pull/2592) (@MikeFH)
+- LoggingConfiguration AddRule includes final-parameter [#2612](https://github.com/nlog/nlog/pull/2612) (@893949088)
+
+#### Fixes 
+- Improve archive stability during concurrent file access [#1889](https://github.com/nlog/nlog/pull/1889) (@snakefoot)
+- FallbackGroup could lose log events [#2265](https://github.com/nlog/nlog/pull/2265) (@frabar666)
+- ${exception} - only include separator when items are available [#2257](https://github.com/nlog/nlog/pull/2257) (@jojosardez)
+- LogFactory - Fixes broken EventArgs for ConfigurationChanged [#1897](https://github.com/nlog/nlog/pull/1897) (@snakefoot)
+- Do not report wrapped targets as unused targets [#2290](https://github.com/nlog/nlog/pull/2290) (@thesmallbang)
+- Added IIncludeContext, implemented missing properties [#2117](https://github.com/nlog/nlog/pull/2117) (@304NotModified)
+- Improve logging of callsite linenumber for async-methods [#2386](https://github.com/nlog/nlog/pull/2386) (@snakefoot)
+- NLogTraceListener - DisableFlush is enabled by default when AutoFlush=true [#2407](https://github.com/nlog/nlog/pull/2407) (@snakefoot)
+- NLogViewer - Better defaults for connection limits [#2404](https://github.com/nlog/nlog/pull/2404) (@304NotModified)
+- LoggingConfiguration.LoggingRules is not thread safe [#2393](https://github.com/nlog/nlog/pull/2393), [#2418](https://github.com/nlog/nlog/pull/2418)
+- Fix XmlLoggingConfiguration reloading [#2475](https://github.com/nlog/nlog/pull/2475) (@snakefoot)
+- Database Target now supports EntityFramework ConnectionStrings [#2510](https://github.com/nlog/nlog/pull/2510) (@Misiu, @snakefoot)
+- LoggingConfiguration.RemoveTarget now works while actively logging [#2549](https://github.com/nlog/nlog/pull/2549) (@jojosardez, @snakefoot)
+- FileTarget does not fail on platforms without global mutex support [#2604](https://github.com/nlog/nlog/pull/2604) (@snakefoot)
+- LoggingConfiguration does not fail when AutoReload is not possible on the platforms without FileWatcher [#2603](https://github.com/nlog/nlog/pull/2603)  (@snakefoot)
+
+#### Performance 
+- More targets has OptimizeBufferReuse enabled by default [#1913](https://github.com/nlog/nlog/pull/1913) + [#1923](https://github.com/nlog/nlog/pull/1923) + [#1912](https://github.com/nlog/nlog/pull/1912) + [#1911](https://github.com/nlog/nlog/pull/1911) + [#1910](https://github.com/nlog/nlog/pull/1910) + [#1909](https://github.com/nlog/nlog/pull/1909) + [#1908](https://github.com/nlog/nlog/pull/1908) + [#1907](https://github.com/nlog/nlog/pull/1907) + [#2560](https://github.com/nlog/nlog/pull/2560)   (@snakefoot)
+- StringBuilderPool - Improved Layout Render Performance by reusing StringBuilders [#2208](https://github.com/nlog/nlog/pull/2208)   (@snakefoot)
+- JsonLayout - Improved Layout Performance, by optimizing use of StringBuilder [#2208](https://github.com/nlog/nlog/pull/2208)   (@snakefoot)
+- FileTarget - Faster byte-encoding of log messsages, by using crude Encoding.GetMaxByteCount() instead of exact Encoding.GetByteCount() [#2208](https://github.com/nlog/nlog/pull/2208) (@snakefoot)
+- Target - Precalculate Layout should ignore sub-layouts for complex layout (Ex Json) [#2378](https://github.com/nlog/nlog/pull/2378)  (@snakefoot)
+- MessageLayoutRenderer - Skip `string.Format` allocation (for caching) when writing to a single target, instead format directly into output buffer. [#2507](https://github.com/nlog/nlog/pull/2507)  (@snakefoot)
+
+
+
+
+Changes since rc 07:
+- [#2621](https://github.com/nlog/nlog/pull/2621) Single Target optimization logic refactored to reuse optimization approval (@snakefoot)
+- [#2622](https://github.com/nlog/nlog/pull/2622) NetworkTarget - Http / Https should not throw on async error response (@snakefoot)
+- [#2619](https://github.com/nlog/nlog/pull/2619) NetworkTarget - Reduce allocation when buffer is less than MaxMessageSize (@snakefoot)
+- [#2616](https://github.com/nlog/nlog/pull/2616) LogManager.Shutdown - Should disable file watcher and avoid auto reload (@snakefoot)
+- [#2620](https://github.com/nlog/nlog/pull/2620) Single Target optimization should only be done when parseMessageTemplate = null (@snakefoot)
+
+### v4.5-rc07 (2018/03/07)
+- [#2614](https://github.com/nlog/nlog/pull/2614) NLog 4.5 RC7 changelog & version (@304NotModified)
+- [#2612](https://github.com/nlog/nlog/pull/2612) add final param to `AddRule` Methods (#2612) (@893949088)
+- [#2590](https://github.com/nlog/nlog/pull/2590) WebServiceTarget - JsonPost with support for single nameless parameter (@snakefoot)
+- [#2604](https://github.com/nlog/nlog/pull/2604) FileTarget - Failing to CreateArchiveMutex should not stop logging (#2604) (@snakefoot)
+- [#2592](https://github.com/nlog/nlog/pull/2592) Make Set methods of MDC and MDLC return IDisposable (#2592) (@MikeFH)
+- [#2591](https://github.com/nlog/nlog/pull/2591) callsite-filename renderer (#2591) (@brunotag)
+- [#2597](https://github.com/nlog/nlog/pull/2597) Replace WINDOWS_UWP with NETSTANDARD1_3 to support UWP10 shared libraries (@snakefoot)
+- [#2599](https://github.com/nlog/nlog/pull/2599) TryImplicitConversion should only check object types (@snakefoot)
+- [#2595](https://github.com/nlog/nlog/pull/2595) IsSafeToDeferFormatting - Convert.GetTypeCode is faster and better (@snakefoot)
+- [#2609](https://github.com/nlog/nlog/pull/2609) NLog - Fix Callsite when wrapping ILogger in Microsoft Extension Logging (@snakefoot)
+- [#2613](https://github.com/nlog/nlog/pull/2613) Attempt to make some unit-tests more stable (@snakefoot)
+- [#2603](https://github.com/nlog/nlog/pull/2603) MultiFileWatcher - Improve error handling if FileSystemWatcher fails (@snakefoot)
+
+### v4.5-rc06 (2018/02/20)
+- [#2585](https://github.com/nlog/nlog/pull/2585) NLog 4.5 rc6 version and changelog (#2585) (@304NotModified)
+- [#2581](https://github.com/nlog/nlog/pull/2581) MessageTemplateParameter(s)  ctors to internal (@304NotModified)
+- [#2576](https://github.com/nlog/nlog/pull/2576) Fix possible infinite loop in message template parser + better handling incorrect templates (@304NotModified)
+- [#2580](https://github.com/nlog/nlog/pull/2580) ColoredConsoleTarget.cs: Fix typo (@perlun)
+
+### v4.5-rc05 (2018/02/13)
+- [#2571](https://github.com/nlog/nlog/pull/2571) 4.5 rc5 version and release notes (@304NotModified)
+- [#2572](https://github.com/nlog/nlog/pull/2572) copyright 2018 (@304NotModified)
+- [#2570](https://github.com/nlog/nlog/pull/2570) Update nuspec NLog.Config and NLog.Schema (@304NotModified)
+- [#2542](https://github.com/nlog/nlog/pull/2542) Added TooManyStructuredParametersShouldKeepBeInParamList testcase (@304NotModified)
+- [#2467](https://github.com/nlog/nlog/pull/2467) TargetWithContext - Easier to capture snapshot of MDLC and NDLC context (#2467) (@snakefoot)
+- [#2555](https://github.com/nlog/nlog/pull/2555) JsonLayout - Added MaxRecursionLimit and set default to 0 (@snakefoot)
+- [#2568](https://github.com/nlog/nlog/pull/2568) WebServiceTarget - Rollback added Group-Layout (@snakefoot)
+- [#2544](https://github.com/nlog/nlog/pull/2544) MessageTemplate renderer with support for mixed mode templates (@snakefoot)
+- [#2538](https://github.com/nlog/nlog/pull/2538) Renamed ValueSerializer to ValueFormatter (@snakefoot)
+- [#2554](https://github.com/nlog/nlog/pull/2554) LogBuilder - Check level before allocation of Properties-dictionary (@snakefoot)
+- [#2550](https://github.com/nlog/nlog/pull/2550) DefaultJsonSerializer - Reflection should skip index-item-properties (@snakefoot)
+- [#2549](https://github.com/nlog/nlog/pull/2549) LoggingConfiguration - FindTargetByName should also find target + fix for logging on a target even after removed (@snakefoot)
+- [#2548](https://github.com/nlog/nlog/pull/2548) IAppDomain.FriendlyName should also work on NetStandard15 (@snakefoot)
+- [#2563](https://github.com/nlog/nlog/pull/2563) WebService-Target fails internally with PlatformNotSupportedException on NetCore (@snakefoot)
+- [#2560](https://github.com/nlog/nlog/pull/2560) Network/NLogViewer/Chainsaw Target - Enabled OptimizeBufferReuse by default, but not for sub classes (@snakefoot)
+- [#2551](https://github.com/nlog/nlog/pull/2551) Blackhole LoggingRule without targets (@snakefoot)
+- [#2534](https://github.com/nlog/nlog/pull/2534) Docs for DefaultJsonSerializer/(i)ValueSerializer (#2534) (@304NotModified)
+- [#2519](https://github.com/nlog/nlog/pull/2519) RegisterItemsFromAssembly - Include assemblies from nuget packages (Strict) (@304NotModified, @snakefoot)
+- [#2524](https://github.com/nlog/nlog/pull/2524) FileTarget - Dynamic archive mode with more strict file-mask for cleanup (@snakefoot)
+- [#2518](https://github.com/nlog/nlog/pull/2518) DatabaseTarget - Added DbProvider System.Data.SqlClient for NetStandard (@snakefoot)
+- [#2514](https://github.com/nlog/nlog/pull/2514) Added missing docgen for different options (Less noise in appveyor) (@snakefoot)
+
+### v4.5-rc04 (2018/01/15)
+- [#2490](https://github.com/nlog/nlog/pull/2490) LogEventInfo.MessageTemplateParameters as class instead of interface (#2490) (@snakefoot)
+- [#2510](https://github.com/nlog/nlog/pull/2510) Database target entity framework connection string (@snakefoot)
+- [#2513](https://github.com/nlog/nlog/pull/2513) Update docs for [AppDomainFixedOutput], remove [AppDomainFixedOutput] on ${currentDir} (@NLog)
+- [#2512](https://github.com/nlog/nlog/pull/2512) LogManager.LoadConfiguration - Support relative paths by default (@snakefoot)
+- [#2507](https://github.com/nlog/nlog/pull/2507) Reduce string allocations for logevents with single target destination (@snakefoot)
+- [#2491](https://github.com/nlog/nlog/pull/2491) Added ${currentDir} (#2491) (@UgurAldanmaz)
+- [#2500](https://github.com/nlog/nlog/pull/2500) ${gdc}, ${mdc} & {mdlc} - Support Format parameter (@snakefoot)
+- [#2497](https://github.com/nlog/nlog/pull/2497) RegisterItemsFromAssembly - Include assemblies from nuget packages (Fix) (@snakefoot)
+- [#2472](https://github.com/nlog/nlog/pull/2472) LogManager.LoadConfiguration - Prepare for custom config file readers (@snakefoot)
+- [#2486](https://github.com/nlog/nlog/pull/2486) JsonConverter- Sanitize Exception.Data dictionary keys option (on by default) (@snakefoot)
+- [#2495](https://github.com/nlog/nlog/pull/2495) MultiFileWatcher - Detach from FileSystemWatcher before disposing (@snakefoot)
+- [#2493](https://github.com/nlog/nlog/pull/2493) RegisterItemsFromAssembly - Include assemblies from nuget packages (@snakefoot)
+- [#2487](https://github.com/nlog/nlog/pull/2487) Adds version types to AssemblyVersion layout renderer  (#2487) (@alexangas)
+- [#2464](https://github.com/nlog/nlog/pull/2464) Add methods to enabling/disabling LogLevels (@MikeFH)
+- [#2477](https://github.com/nlog/nlog/pull/2477) fix typo (@heldersepu)
+- [#2485](https://github.com/nlog/nlog/pull/2485) FileTarget - Dispose Archive-Mutex after completing file-archive (@snakefoot)
+- [#2475](https://github.com/nlog/nlog/pull/2475) Fix XmlLoggingConfiguration reloading (@MikeFH)
+- [#2471](https://github.com/nlog/nlog/pull/2471) TreatWarningsAsErrors = true (@snakefoot)
+- [#2462](https://github.com/nlog/nlog/pull/2462) AsyncLogEventInfo - Removed private setter (@snakefoot)
+
+### v4.5-rc03 (2017/12/11)
+- [#2460](https://github.com/nlog/nlog/pull/2460) NLog 4.5 rc3 version and changelog (@304NotModified)
+- [#2459](https://github.com/nlog/nlog/pull/2459) StringBuilderExt.CopyToStream - Optimize MemoryStream allocation (@snakefoot)
+- [#2456](https://github.com/nlog/nlog/pull/2456) FileTarget: Support byte order mark (optional) (#2456) (@KYegres)
+- [#2453](https://github.com/nlog/nlog/pull/2453) NestedDiagnosticsContext - Only allocate Stack-object on Write (@snakefoot)
+- [#2458](https://github.com/nlog/nlog/pull/2458) Document and (minor) refactor on MruCache class (@ie-zero)
+- [#2452](https://github.com/nlog/nlog/pull/2452) ThreadLocalStorageHelper - NetStandard only allocate when needed (@snakefoot)
+
+### v4.5-rc02 (2017/12/04)
+- [#2444](https://github.com/nlog/nlog/pull/2444) NLog 4.5 RC2 version and changelog (@304NotModified)
+- [#2450](https://github.com/nlog/nlog/pull/2450) No need to call  type(T) (@304NotModified)
+- [#2451](https://github.com/nlog/nlog/pull/2451) FileTarget - Improved and less internal logging (@snakefoot)
+- [#2449](https://github.com/nlog/nlog/pull/2449) Refactor: fix comment, remove unused, cleanup, String -> string etc (#2449) (@304NotModified)
+- [#2447](https://github.com/nlog/nlog/pull/2447) CallSiteInformation - Prepare for fast classname lookup from filename and linenumber (@snakefoot)
+- [#2446](https://github.com/nlog/nlog/pull/2446) Refactor - split methodes, remove duplicates (#2446) (@304NotModified)
+- [#2437](https://github.com/nlog/nlog/pull/2437) Create regex-matches condition method (#2437) (@MikeFH)
+- [#2441](https://github.com/nlog/nlog/pull/2441) Support for UWP platform (@snakefoot)
+- [#2439](https://github.com/nlog/nlog/pull/2439) Better config Better Code Hub (@304NotModified)
+- [#2431](https://github.com/nlog/nlog/pull/2431) NetCoreApp - Improve auto loading of NLog extension dlls (@snakefoot)
+- [#2418](https://github.com/nlog/nlog/pull/2418) LoggingConfiguration - Modify and clone LoggingRules under lock (@snakefoot)
+- [#2422](https://github.com/nlog/nlog/pull/2422) Avoid unnecessary string-allocation, skip unnecessary lock (@snakefoot)
+- [#2419](https://github.com/nlog/nlog/pull/2419) Logger - Added missing MessageTemplateFormatMethodAttribute + removed obsolete internal method (@snakefoot)
+- [#2421](https://github.com/nlog/nlog/pull/2421) Changed IIncludeContext to internal interface until someone needs it (@snakefoot)
+- [#2417](https://github.com/nlog/nlog/pull/2417) IsMono - Cache Type.GetType to avoid constant AppDomain.TypeResolve events (@snakefoot)
+- [#2420](https://github.com/nlog/nlog/pull/2420) Merged CallSite Test from PR1812 (@snakefoot)
+
+### v4.5-rc01 (2017/11/23)
+- [#2414](https://github.com/nlog/nlog/pull/2414) Revert breaking change of NestedDiagnosticsLogicalContext.Pop() (@304NotModified)
+- [#2415](https://github.com/nlog/nlog/pull/2415) NetStandard15 - Moved dependency System.Xml.XmlSerializer to NLog.Wcf (@snakefoot)
+- [#2413](https://github.com/nlog/nlog/pull/2413) NestedDiagnosticsLogicalContext - Protect against double dispose (@snakefoot)
+- [#2412](https://github.com/nlog/nlog/pull/2412) MessageTemplate - Render test of DateTime, TimeSpan, DateTimeOffset (@snakefoot)
+- [#2411](https://github.com/nlog/nlog/pull/2411) Create SequenceIdLayoutRenderer (@MikeFH)
+- [#2409](https://github.com/nlog/nlog/pull/2409) Revert "Avoid struct copy on readonly field access" (@snakefoot)
+- [#2403](https://github.com/nlog/nlog/pull/2403) NLog 4.5 beta 8 (@304NotModified)
+- [#2406](https://github.com/nlog/nlog/pull/2406) From [StringFormatMethod] to [MessageTemplateFormatMethod] (@304NotModified)
+- [#2402](https://github.com/nlog/nlog/pull/2402) Introduced NLog.Wcf and Nlog.WindowsIdentity for .NET standard (@snakefoot)
+- [#2404](https://github.com/nlog/nlog/pull/2404) Updated NLog viewer target defaults (@304NotModified)
+- [#2405](https://github.com/nlog/nlog/pull/2405) Added unit test for JsonLayout - serialize of objects (@304NotModified)
+- [#2407](https://github.com/nlog/nlog/pull/2407) NLogTraceListener - set DisableFlush true by default (@snakefoot)
+- [#2401](https://github.com/nlog/nlog/pull/2401) MailTarget is supported by NetStandard2.0 (but without SmtpSection) (@snakefoot)
+- [#2398](https://github.com/nlog/nlog/pull/2398) Log4JXml - Fixed initalization of XmlWriterSettings for IndentXml (@snakefoot)
+- [#2386](https://github.com/nlog/nlog/pull/2386) LogEventInfo.StackTrace moved into CallSiteInformation (@snakefoot)
+- [#2399](https://github.com/nlog/nlog/pull/2399) Avoid struct copy on readonly field access (@snakefoot)
+- [#2389](https://github.com/nlog/nlog/pull/2389) Fixed Sonar Lint code analysis warnings (@snakefoot)
+- [#2396](https://github.com/nlog/nlog/pull/2396) Update xunit and Microsoft.NET.Test.Sdk (@304NotModified)
+- [#2387](https://github.com/nlog/nlog/pull/2387) JsonConverter - Do not include static properties by default (@snakefoot)
+- [#2392](https://github.com/nlog/nlog/pull/2392) Removed unneeded default references like System.Drawing for NetFramework (@snakefoot)
+- [#2390](https://github.com/nlog/nlog/pull/2390) NLogViewerTarget - Enable override of the Logger-name (@snakefoot)
+- [#2385](https://github.com/nlog/nlog/pull/2385) FileTarget - ArchiveMutex only created when needed (@snakefoot)
+- [#2378](https://github.com/nlog/nlog/pull/2378) Target - Precalculate Layout should ignore sub-layouts for complex layouts (@snakefoot)
+- [#2388](https://github.com/nlog/nlog/pull/2388) PropertiesDictionary - Removed obsolete (private) method (@snakefoot)
+- [#2384](https://github.com/nlog/nlog/pull/2384) InternalLogger should work when NetCore loads NetFramework DLL (@snakefoot)
+- [#2377](https://github.com/nlog/nlog/pull/2377) NDLC - Perform low resolution scope timing (@snakefoot)
+- [#2372](https://github.com/nlog/nlog/pull/2372) Log4JXmlEventLayoutRenderer - Minor platform fixes for IncludeNdlc (@snakefoot)
+- [#2371](https://github.com/nlog/nlog/pull/2371) FileTarget - Enable archive mutex for Unix File Appender (if available) (@snakefoot)
+- [#2375](https://github.com/nlog/nlog/pull/2375) WebServiceTarget - Allow configuration of proxy address (@snakefoot)
+- [#2362](https://github.com/nlog/nlog/pull/2362) NLog - NETSTANDARD1_5 (Cleanup package references) (@snakefoot)
+- [#2361](https://github.com/nlog/nlog/pull/2361) Use expression-bodied members (@c0shea)
+
+### v4.5-beta07 (2017/10/15)
+- [#2359](https://github.com/nlog/nlog/pull/2359) WrapperLayoutRendererBase - Transform with access to LogEventInfo (@snakefoot)
+- [#2357](https://github.com/nlog/nlog/pull/2357) ExceptionLayoutRenderer - Support Serialize Format (@snakefoot)
+- [#2358](https://github.com/nlog/nlog/pull/2358) WrapperLayoutRendererBuilderBase - Transform with access to LogEventInfo (@snakefoot)
+- [#2314](https://github.com/nlog/nlog/pull/2314) Refactor InternalLogger class (@304NotModified, @ie-zero)
+- [#2356](https://github.com/nlog/nlog/pull/2356) NLog - MessageTemplates - Renamed config to parseMessageTemplates (@snakefoot)
+- [#2353](https://github.com/nlog/nlog/pull/2353) remove old package.config (@304NotModified)
+- [#2354](https://github.com/nlog/nlog/pull/2354) NLog - NETSTANDARD1_5 (revert breaking change) (@snakefoot)
+- [#2342](https://github.com/nlog/nlog/pull/2342) Remove redundant qualifiers (#2342) (@c0shea)
+- [#2349](https://github.com/nlog/nlog/pull/2349) NLog - NETSTANDARD1_5 (Fix uppercase with culture) (@snakefoot)
+- [#2341](https://github.com/nlog/nlog/pull/2341) NLog - NETSTANDARD1_5 (@snakefoot)
+
+### v4.5-beta06 (2017/10/12)
+- [#2346](https://github.com/nlog/nlog/pull/2346) Add messageTemplateParser to XSD (@304NotModified)
+- [#2348](https://github.com/nlog/nlog/pull/2348) NLog MessageTemplateParameter with CaptureType (@snakefoot)
+
+### v4.5-beta05 (2017/10/12)
+- [#2340](https://github.com/nlog/nlog/pull/2340) NLog - MessageTemplateParameters - Always parse when IsPositional (@304NotModified, @snakefoot)
+- [#2337](https://github.com/nlog/nlog/pull/2337) Use string interpolation (@c0shea)
+- [#2327](https://github.com/nlog/nlog/pull/2327) Naming: consistent private fields (@304NotModified)
+
+### v4.5-beta04 (2017/10/10)
+- [#2318](https://github.com/nlog/nlog/pull/2318) NLog 4.5 beta 4 (@304NotModified)
+- [#2326](https://github.com/nlog/nlog/pull/2326) NLog - ValueSerializer - Faster integer and enum (@snakefoot)
+- [#2328](https://github.com/nlog/nlog/pull/2328) fix xunit warning (@304NotModified)
+- [#2117](https://github.com/nlog/nlog/pull/2117) Added IIncludeContext, implemented missing properties, added includeNdlc, sync NDLC and NDC (@304NotModified)
+- [#2317](https://github.com/nlog/nlog/pull/2317) More explicit side effect (@304NotModified)
+- [#2290](https://github.com/nlog/nlog/pull/2290) Do not report wrapped targets as unused targets (#2290) (@thesmallbang)
+- [#2319](https://github.com/nlog/nlog/pull/2319) NLog - MessageTemplateParameter - IsReservedFormat (@snakefoot)
+- [#2316](https://github.com/nlog/nlog/pull/2316) LogManager.LogFactory public (@304NotModified)
+- [#2208](https://github.com/nlog/nlog/pull/2208) Added Structured events / Message Templates (@snakefoot)
+- [#2312](https://github.com/nlog/nlog/pull/2312) Improve stability of unstable test on Travis: BufferingTargetWrapperA… (@304NotModified)
+- [#2309](https://github.com/nlog/nlog/pull/2309) 2017 copyright in T4 files (@304NotModified)
+- [#2292](https://github.com/nlog/nlog/pull/2292) ${callsite} added CleanNamesOfAsyncContinuations  option (#2292) (@304NotModified)
+- [#2310](https://github.com/nlog/nlog/pull/2310) Upgrade xUnit to 2.3.0 RTM (@304NotModified)
+- [#2313](https://github.com/nlog/nlog/pull/2313) Removal of old package.config files (@304NotModified)
+- [#1872](https://github.com/nlog/nlog/pull/1872) FileTarget: more internal logging (@304NotModified)
+- [#1897](https://github.com/nlog/nlog/pull/1897) LogFactory - Fixed EventArgs for ConfigurationChanged (@snakefoot)
+- [#2301](https://github.com/nlog/nlog/pull/2301) Docs, rename and refactor of PropertiesDictionary/MessageTemplateParameters (@304NotModified)
+- [#2302](https://github.com/nlog/nlog/pull/2302) Copyright to 2017 (@304NotModified)
+- [#2262](https://github.com/nlog/nlog/pull/2262) LogEventInfo.MessageTemplate - Subset of LogEventInfo.Properties (@snakefoot)
+- [#2300](https://github.com/nlog/nlog/pull/2300) Fixed title (@304NotModified)
+
+### v4.5-beta03 (2017/09/30)
+- [#2298](https://github.com/nlog/nlog/pull/2298) Search also for lowercase nlog.config (@304NotModified)
+- [#2297](https://github.com/nlog/nlog/pull/2297) WhenRepeatedFilter - Log after timeout (@snakefoot)
+
+
+### v4.5-beta01 (2017/09/16)
+- [#2263](https://github.com/nlog/nlog/pull/2263) Support .NET Standard 2.0 and move to VS 2017 (@snakefoot)
+
+
 ### v4.4.13 (2018/02/28)
 
 #### Fixes
@@ -156,7 +564,7 @@ See also [releases](https://github.com/NLog/NLog/releases) and [milestones](http
 - [#1893](https://github.com/nlog/nlog/pull/1893) FileTarget - MONO doesn't like using the native Win32 API (@snakefoot)
 - [#1883](https://github.com/nlog/nlog/pull/1883) LogFactory.Dispose - Should always close down created targets (@snakefoot)
 
-### V4.4.1 (2016/12/24)
+### v4.4.1 (2016/12/24)
 
 Summary:
 
@@ -188,7 +596,7 @@ Detail:
 - [#1844](https://github.com/nlog/nlog/pull/1844) FileTarget - Mono2 runtime detection to skip using named archive-mutex (@snakefoot)
 
 
-### V4.4  (2016/12/14)
+### v4.4  (2016/12/14)
 
 #### Features
 
@@ -285,7 +693,7 @@ Detail:
 - [#1635](https://github.com/nlog/nlog/pull/1635) Fix ${tempdir} and ${nlogdir} if both have dir and file. (@304NotModified)
 
 
-### V4.3.8 (2016/09/05)
+### v4.3.8 (2016/09/05)
 
 #### Features
 - [#1619](https://github.com/NLog/NLog/pull/1619) NetworkTarget: Added option to specify EOL (@kevindaub)
@@ -298,7 +706,7 @@ Detail:
 #### Fixes
 - [#1616](https://github.com/nlog/nlog/pull/1616) FileTarget: Don't throw an exception if a dir is missing when deleting old files on startup (@304NotModified)
 
-### V4.3.7 (2016/08/06)
+### v4.3.7 (2016/08/06)
 
 #### Features
 - [#1469](https://github.com/nlog/nlog/pull/1469) Allow overwriting possible nlog configuration file paths (@304NotModified)
@@ -313,7 +721,7 @@ Detail:
 - [#1556](https://github.com/nlog/nlog/pull/1556) Bugfix: Use the culture when rendering the layout (@304NotModified)
  
 
-### V4.3.6 (2016/07/24)
+### v4.3.6 (2016/07/24)
 
 #### Features
 - [#1531](https://github.com/nlog/nlog/pull/1531) Support Android 4.4 (@304NotModified)
@@ -325,7 +733,7 @@ Detail:
 - [#1547](https://github.com/nlog/nlog/pull/1547) LogReceiverWebServiceTarget is leaking communication channels (@MartinTherriault)
 
 
-### V4.3.5 (2016/06/13)
+### v4.3.5 (2016/06/13)
 
 #### Features
 - [#1471](https://github.com/nlog/nlog/pull/1471) Add else option to ${when} (@304NotModified)
@@ -335,7 +743,7 @@ Detail:
 
 - [#1504](https://github.com/nlog/nlog/pull/1504) Fix ${callsite} with async method with return value (@PELNZ)
 
-### V4.3.4 (2016/05/16)
+### v4.3.4 (2016/05/16)
 
 #### Features
 - [#1423](https://github.com/nlog/nlog/pull/1423) Injection of zip-compressor for fileTarget (@AndreGleichner)

@@ -57,18 +57,6 @@ namespace NLog.Internal.FileAppenders
         /// <param name="parameters">The parameters.</param>
         public SingleProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            if (CaptureLastWriteTime)
-            {
-                var fileInfo = new FileInfo(fileName);
-                if (fileInfo.Exists)
-                {
-                    FileTouched(fileInfo.GetLastWriteTimeUtc());
-                }
-                else
-                {
-                    FileTouched();
-                }
-            }
             _file = CreateFileStream(false);
         }
 
@@ -86,11 +74,6 @@ namespace NLog.Internal.FileAppenders
             }
 
             _file.Write(bytes, offset, count);
-
-            if (CaptureLastWriteTime)
-            {
-                FileTouched();
-            }
         }
 
         /// <summary>
@@ -104,7 +87,6 @@ namespace NLog.Internal.FileAppenders
             }
 
             _file.Flush();
-            FileTouched();
         }
 
         /// <summary>
@@ -142,16 +124,6 @@ namespace NLog.Internal.FileAppenders
         public override DateTime? GetFileCreationTimeUtc()
         {
             return CreationTimeUtc;
-        }
-
-        /// <summary>
-        /// Gets the last time the file associated with the appeander is written. The time returned is in Coordinated 
-        /// Universal Time [UTC] standard.
-        /// </summary>
-        /// <returns>The time the file was last written to.</returns>
-        public override DateTime? GetFileLastWriteTimeUtc()
-        {
-            return LastWriteTimeUtc;
         }
 
         /// <summary>

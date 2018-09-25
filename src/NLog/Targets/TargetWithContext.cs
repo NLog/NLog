@@ -108,7 +108,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
-        public virtual IList<TargetPropertyWithContext> ContextProperties { get; }
+        public virtual IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
 
         /// <summary>
         /// Constructor
@@ -141,10 +141,20 @@ namespace NLog.Targets
         /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
         protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent)
         {
-            IDictionary<string, object> combinedProperties = null;
+            return GetContextProperties(logEvent, null);
+        }
+
+        /// <summary>
+        /// Checks if any context properties, and if any returns them as a single dictionary
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="combinedProperties">Optional prefilled dictionary</param>
+        /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
+        protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        {
             if (IncludeGdc)
             {
-                combinedProperties = CaptureContextGdc(logEvent, null);
+                combinedProperties = CaptureContextGdc(logEvent, combinedProperties);
             }
 
             if (IncludeMdc)
@@ -192,7 +202,18 @@ namespace NLog.Targets
         /// <returns>Dictionary with all collected properties for logEvent</returns>
         protected IDictionary<string, object> GetAllProperties(LogEventInfo logEvent)
         {
-            IDictionary<string, object> combinedPropties = GetContextProperties(logEvent);
+            return GetAllProperties(logEvent, null);
+        }
+
+        /// <summary>
+        /// Creates combined dictionary of all configured properties for logEvent
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="combinedProperties">Optional prefilled dictionary</param>
+        /// <returns>Dictionary with all collected properties for logEvent</returns>
+        protected IDictionary<string, object> GetAllProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        {
+            IDictionary<string, object> combinedPropties = GetContextProperties(logEvent, combinedProperties);
             if (IncludeEventProperties && logEvent.HasProperties)
             {
                 // TODO Make Dictionary-adapter for PropertiesDictionary to skip extra Dictionary-allocation
@@ -529,6 +550,8 @@ namespace NLog.Targets
             return true;
         }
 
+        [ThreadSafe]
+        [ThreadAgnostic]
         private class TargetWithContextLayout : Layout, IIncludeContext, IUsesStackTrace
         {
             public Layout TargetLayout { get => _targetLayout; set => _targetLayout = ReferenceEquals(this, value) ? _targetLayout : value; }
@@ -593,13 +616,14 @@ namespace NLog.Targets
             protected override void InitializeLayout()
             {
                 base.InitializeLayout();
-                ThreadAgnostic = IncludeMdc
-                    || IncludeNdc
+                if (IncludeMdc || IncludeNdc)
+                    ThreadAgnostic = false;
 #if !SILVERLIGHT
-                    || IncludeMdlc
-                    || IncludeNdlc
+                if (IncludeMdlc || IncludeNdlc)
+                    ThreadAgnostic = false;
 #endif
-                    ;
+                if (IncludeAllProperties)
+                    MutableUnsafe = true;   // TODO Need to convert Properties to an immutable state
             }
 
             public override string ToString()
@@ -609,7 +633,7 @@ namespace NLog.Targets
 
             public override void Precalculate(LogEventInfo logEvent)
             {
-                if (!(TargetLayout?.ThreadAgnostic ?? true))
+                if (!(TargetLayout?.ThreadAgnostic ?? true) || (TargetLayout?.MutableUnsafe ?? false))
                 {
                     TargetLayout.Precalculate(logEvent);
                     if (logEvent.TryGetCachedLayoutValue(TargetLayout, out var cachedLayout))
@@ -624,7 +648,7 @@ namespace NLog.Targets
 
             internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
             {
-                if (!(TargetLayout?.ThreadAgnostic ?? true))
+                if (!(TargetLayout?.ThreadAgnostic ?? true) || (TargetLayout?.MutableUnsafe ?? false))
                 {
                     TargetLayout.PrecalculateBuilder(logEvent, target);
                     if (logEvent.TryGetCachedLayoutValue(TargetLayout, out var cachedLayout))
@@ -661,6 +685,7 @@ namespace NLog.Targets
                 TargetLayout?.RenderAppendBuilder(logEvent, target, false);
             }
 
+            [ThreadSafe]
             public class LayoutContextMdc : Layout
             {
                 private readonly TargetWithContext _owner;
@@ -694,6 +719,7 @@ namespace NLog.Targets
             }
 
 #if !SILVERLIGHT
+            [ThreadSafe]
             public class LayoutContextMdlc : Layout
             {
                 private readonly TargetWithContext _owner;
@@ -726,7 +752,7 @@ namespace NLog.Targets
                 }
             }
 #endif
-
+            [ThreadSafe]
             public class LayoutContextNdc : Layout
             {
                 private readonly TargetWithContext _owner;
@@ -760,6 +786,7 @@ namespace NLog.Targets
             }
 
 #if !SILVERLIGHT
+            [ThreadSafe]
             public class LayoutContextNdlc : Layout
             {
                 private readonly TargetWithContext _owner;

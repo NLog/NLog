@@ -41,7 +41,8 @@ namespace NLog.LayoutRenderers
     /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("mdc")]
-    public class MdcLayoutRenderer : LayoutRenderer
+    [ThreadSafe]
+    public class MdcLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets the name of the item.
@@ -65,9 +66,22 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //don't use MappedDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
-            var value = MappedDiagnosticsContext.GetObject(Item);
+            var value = GetValue();
             var formatProvider = GetFormatProvider(logEvent, null);
             builder.AppendFormattedValue(value, Format, formatProvider);
         }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue();
+        }
+
+        private object GetValue()
+        {
+            return MappedDiagnosticsContext.GetObject(Item);
+        }
+
+       
     }
 }

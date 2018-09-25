@@ -36,14 +36,15 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Text;
-    using Config;
-    using Internal;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Stack trace renderer.
     /// </summary>
     [LayoutRenderer("stacktrace")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class StackTraceLayoutRenderer : LayoutRenderer, IUsesStackTrace
     {
         /// <summary>
@@ -143,8 +144,13 @@ namespace NLog.LayoutRenderers
                     builder.Append(Separator);
                 }
 
-                var type = f.GetMethod().DeclaringType;
+                var method = f.GetMethod();
+                if (method == null)
+                {
+                    continue;   // Net Native can have StackFrames without managed methods
+                }
 
+                var type = method.DeclaringType;
                 if (type != null)
                 {
                     builder.Append(type.Name);
@@ -155,7 +161,7 @@ namespace NLog.LayoutRenderers
                 }
 
                 builder.Append(".");
-                builder.Append(f.GetMethod().Name);
+                builder.Append(method.Name);
                 first = false;
             }
         }
@@ -166,13 +172,18 @@ namespace NLog.LayoutRenderers
             for (int i = startingFrame; i >= endingFrame; --i)
             {
                 StackFrame f = logEvent.StackTrace.GetFrame(i);
+                var method = f.GetMethod();
+                if (method == null)
+                {
+                    continue;   // Net Native can have StackFrames without managed methods
+                }
+
                 if (!first)
                 {
                     builder.Append(Separator);
                 }
-
                 builder.Append("[");
-                builder.Append(f.GetMethod());
+                builder.Append(method);
                 builder.Append("]");
                 first = false;
             }

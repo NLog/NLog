@@ -35,10 +35,8 @@ namespace NLog.Targets
 {
     using System;
     using System.Reflection;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Calls the specified static method on each log message and passes contextual parameters to it.
@@ -77,9 +75,7 @@ namespace NLog.Targets
         /// <docgen category='Invocation Options' order='10' />
         public string MethodName { get; set; }
 
-        private MethodInfo Method { get; set; }
-
-        private int NeededParameters { get; set; }
+        Action<LogEventInfo, object[]> _logEventAction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodCallTarget" /> class.
@@ -92,9 +88,19 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="MethodCallTarget" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public MethodCallTarget(string name) : this()
+        public MethodCallTarget(string name) : this(name, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MethodCallTarget" /> class.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        /// <param name="logEventAction">Method to call on logevent.</param>
+        public MethodCallTarget(string name, Action<LogEventInfo, object[]> logEventAction) : this()
         {
             Name = name;
+            _logEventAction = logEventAction;
         }
 
         /// <summary>
@@ -106,50 +112,84 @@ namespace NLog.Targets
 
             if (ClassName != null && MethodName != null)
             {
-                Type targetType = Type.GetType(ClassName);
-
+                var targetType = Type.GetType(ClassName);
                 if (targetType != null)
                 {
-                    Method = targetType.GetMethod(MethodName);
-                    if (Method == null)
+                    var methodInfo = targetType.GetMethod(MethodName);
+                    if (methodInfo == null)
                     {
                         InternalLogger.Warn("Initialize MethodCallTarget, method '{0}' in class '{1}' not found - it should be static", MethodName, ClassName);
                     }
                     else
                     {
-                        NeededParameters = Method.GetParameters().Length;
+                        _logEventAction = BuildLogEventAction(methodInfo);
                     }
                 }
                 else
-                {
+                { 
                     InternalLogger.Warn("Initialize MethodCallTarget, class '{0}' not found", ClassName);
-                    Method = null;
                 }
             }
-            else
+        }
+
+        private static Action<LogEventInfo, object[]> BuildLogEventAction(MethodInfo methodInfo)
+        {
+            var neededParameters = methodInfo.GetParameters().Length;
+            return (logEvent, parameters) =>
             {
-                Method = null;
-            }
+                var missingParameters = neededParameters - parameters.Length;
+                if (missingParameters > 0)
+                {
+                    //fill missing parameters with Type.Missing
+                    var newParams = new object[neededParameters];
+                    for (int i = 0; i < parameters.Length; ++i)
+                        newParams[i] = parameters[i];
+                    for (int i = parameters.Length; i < neededParameters; ++i)
+                        newParams[i] = Type.Missing;
+                    parameters = newParams;
+                }
+
+                methodInfo.Invoke(null, parameters);
+            };
         }
 
         /// <summary>
         /// Calls the specified Method.
         /// </summary>
         /// <param name="parameters">Method parameters.</param>
-        protected override void DoInvoke(object[] parameters)
+        /// <param name="logEvent">The logging event.</param>
+        protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
         {
-            if (Method != null)
+            try
             {
-                var missingParameters = NeededParameters - parameters.Length;
-                if (missingParameters > 0)
+                ExecuteLogMethod(parameters, logEvent.LogEvent);
+                logEvent.Continuation(null);
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrown())
                 {
-                    //fill missing parameters with Type.Missing
-                    var newParams = new List<object>(parameters);
-                    newParams.AddRange(Enumerable.Repeat(Type.Missing, missingParameters));
-                    parameters = newParams.ToArray();
+                    throw;
                 }
 
-                Method.Invoke(null, parameters);
+                logEvent.Continuation(ex);
+            }
+        }
+
+        /// <summary>
+        /// Calls the specified Method. 
+        /// </summary>
+        /// <param name="parameters">Method parameters.</param>
+        protected override void DoInvoke(object[] parameters)
+        {
+            ExecuteLogMethod(parameters, null);
+        }
+
+        private void ExecuteLogMethod(object[] parameters, LogEventInfo logEvent)
+        {
+            if (_logEventAction != null)
+            {
+                _logEventAction.Invoke(logEvent, parameters);
             }
             else
             {

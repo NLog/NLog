@@ -48,7 +48,8 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("exception")]
     [ThreadAgnostic]
-    public class ExceptionLayoutRenderer : LayoutRenderer
+    [ThreadSafe]
+    public class ExceptionLayoutRenderer : LayoutRenderer, IRawValue
     {
         private string _format;
         private string _innerFormat = string.Empty;
@@ -178,6 +179,11 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Get raw value, updates the sequence
+        /// </summary>
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => logEvent.Exception;
+
+        /// <summary>
         /// Renders the specified exception information and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -252,7 +258,7 @@ namespace NLog.LayoutRenderers
             AppendException(currentException, InnerFormats ?? Formats, builder);
         }
 
-        private void AppendException(Exception currentException, List<ExceptionRenderingFormat> renderFormats, StringBuilder builder)
+        private void AppendException(Exception currentException, IEnumerable<ExceptionRenderingFormat> renderFormats, StringBuilder builder)
         {
             int orgLength = builder.Length;
             foreach (ExceptionRenderingFormat renderingFormat in renderFormats)

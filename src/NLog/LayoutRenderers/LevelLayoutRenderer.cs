@@ -37,13 +37,15 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The log level.
     /// </summary>
     [LayoutRenderer("level")]
     [ThreadAgnostic]
-    public class LevelLayoutRenderer : LayoutRenderer
+    [ThreadSafe]
+    public class LevelLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets a value indicating the output format of the level.
@@ -53,24 +55,36 @@ namespace NLog.LayoutRenderers
         public LevelFormat Format { get; set; }
 
         /// <summary>
+        /// Get the raw value.
+        /// </summary>
+        /// <returns></returns>
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+
+        /// <summary>
         /// Renders the current log level and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            LogLevel level = GetValue(logEvent);
             switch (Format)
             {
                 case LevelFormat.Name:
-                    builder.Append(logEvent.Level.ToString());
+                    builder.Append(level.ToString());
                     break;
                 case LevelFormat.FirstCharacter:
-                    builder.Append(logEvent.Level.ToString()[0]);
+                    builder.Append(level.ToString()[0]);
                     break;
                 case LevelFormat.Ordinal:
-                    builder.Append(logEvent.Level.Ordinal);
+                    builder.AppendInvariant(level.Ordinal);
                     break;
             }
+        }
+
+        private static LogLevel GetValue(LogEventInfo logEvent)
+        {
+            return logEvent.Level;
         }
     }
 }

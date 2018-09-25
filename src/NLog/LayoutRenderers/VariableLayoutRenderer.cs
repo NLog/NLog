@@ -31,18 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Layouts;
-
 namespace NLog.LayoutRenderers
 {
     using System.Text;
-    using Config;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Render a NLog variable (xml or config)
     /// </summary>
     [LayoutRenderer("var")]
+    [ThreadSafe]
     public class VariableLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -65,12 +65,15 @@ namespace NLog.LayoutRenderers
         /// </summary>
         protected override void InitializeLayoutRenderer()
         {
-
             SimpleLayout layout;
             if (TryGetLayout(out layout) && layout != null)
             {
                 //pass loggingConfiguration to layout
                 layout.Initialize(LoggingConfiguration);
+                if (!layout.ThreadSafe)
+                {
+                    InternalLogger.Warn("${{var={0}}} should be declared as <variable name=\"var_{0}\" value=\"...\" /> and used like this ${var_{{0}}}. Because of unsafe Layout={1}", Name, layout);
+                }
             }
 
             base.InitializeLayoutRenderer();
@@ -83,18 +86,15 @@ namespace NLog.LayoutRenderers
         /// <returns></returns>
         private bool TryGetLayout(out SimpleLayout layout)
         {
+            layout = null;
             if (Name != null)
             {
                 //don't use LogManager (locking, recursion)
-                var loggingConfiguration = LoggingConfiguration; //?? LogManager.Configuration;
-                var vars = loggingConfiguration?.Variables;
-                if (vars != null && vars.TryGetValue(Name, out layout))
+                if (LoggingConfiguration?.Variables?.TryGetValue(Name, out layout) == true)
                 {
                     return true;
                 }
-
             }
-            layout = null;
             return false;
         }
 
@@ -113,10 +113,9 @@ namespace NLog.LayoutRenderers
                 {
                     //todo in later stage also layout as values?
                     //ignore NULL, but it set, so don't use default.
-
                     if (layout != null)
-                    {
-                        builder.Append(layout.Render(logEvent));
+                    { 
+                        layout.RenderAppendBuilder(logEvent, builder);
                     }
                 }
                 else if (Default != null)

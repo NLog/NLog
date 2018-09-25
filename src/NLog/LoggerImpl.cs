@@ -49,9 +49,6 @@ namespace NLog
     internal static class LoggerImpl
     {
         private const int StackTraceSkipMethods = 0;
-        private static readonly Assembly nlogAssembly = typeof(LoggerImpl).GetAssembly();
-        private static readonly Assembly mscorlibAssembly = typeof(string).GetAssembly();
-        private static readonly Assembly systemAssembly = typeof(Debug).GetAssembly();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
         internal static void Write([NotNull] Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
@@ -61,28 +58,23 @@ namespace NLog
                 return;
             }
 
+#if !NETSTANDARD1_0 || NETSTANDARD1_5
             StackTraceUsage stu = targets.GetStackTraceUsage();
-
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
-                StackTrace stackTrace;
-#if WINDOWS_UWP
-                stackTrace = null;
-#elif NETSTANDARD1_5
-                stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
+#if NETSTANDARD1_5
+                var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
 #elif !SILVERLIGHT
-                stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
+                var stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
 #else
-                stackTrace = new StackTrace();
+                var stackTrace = new StackTrace();
 #endif
-                if (stackTrace != null)
-                {
-                    var stackFrames = stackTrace.GetFrames();
-                    int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
-                    int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
-                    logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
-                }
+                var stackFrames = stackTrace.GetFrames();
+                int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
+                int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
+                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
             }
+#endif
 
             AsyncContinuation exceptionHandler = (ex) => { };
             if (factory.ThrowExceptions)
@@ -90,35 +82,32 @@ namespace NLog
                 int originalThreadId = AsyncHelpers.GetManagedThreadId();
                 exceptionHandler = ex =>
                 {
-                    if (ex != null)
+                    if (ex != null && AsyncHelpers.GetManagedThreadId() == originalThreadId)
                     {
-                        if (AsyncHelpers.GetManagedThreadId() == originalThreadId)
-                        {
-                            throw new NLogRuntimeException("Exception occurred in NLog", ex);
-                        }
+                        throw new NLogRuntimeException("Exception occurred in NLog", ex);
                     }
                 };
             }
 
-            if (targets.NextInChain == null
-             && logEvent.Parameters != null
-             && logEvent.Parameters.Length > 0
-             && logEvent.Message?.Length < 128
-             && ReferenceEquals(logEvent.MessageFormatter, LogEventInfo.DefaultMessageFormatter))
+            if (targets.NextInChain == null && logEvent.CanLogEventDeferMessageFormat())
             {
-                // Signal MessageLayoutRenderer to skip string allocation of LogEventInfo.FormattedMessage
-                if (!ReferenceEquals(logEvent.MessageFormatter, LogEventInfo.StringFormatMessageFormatter))
-                {
-                    logEvent.MessageFormatter = LogEventInfo.DefaultMessageFormatterSingleTarget;
-                }
+                // Change MessageFormatter so it writes directly to StringBuilder without string-allocation
+                logEvent.MessageFormatter = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
             }
 
+            IList<Filter> prevFilterChain = null;
+            FilterResult prevFilterResult = FilterResult.Neutral;
             for (var t = targets; t != null; t = t.NextInChain)
             {
-                if (!WriteToTargetWithFilterChain(t, logEvent, exceptionHandler))
+                FilterResult result = ReferenceEquals(prevFilterChain, t.FilterChain) ?
+                    prevFilterResult : GetFilterResult(t.FilterChain, logEvent, t.DefaultResult);
+                if (!WriteToTargetWithFilterChain(t.Target, result, logEvent, exceptionHandler))
                 {
                     break;
                 }
+
+                prevFilterResult = result;  // Cache the result, and reuse it for the next target, if it comes from the same logging-rule
+                prevFilterChain = t.FilterChain;
             }
         }
 
@@ -171,18 +160,15 @@ namespace NLog
                 if (SkipAssembly(stackFrame))
                     continue;
 
-                if (stackFrame.GetMethod().Name == "MoveNext")
+                if (stackFrame.GetMethod()?.Name == "MoveNext" && stackFrames.Length > i)
                 {
-                    if (stackFrames.Length > i)
+                    var nextStackFrame = stackFrames[i + 1];
+                    var declaringType = nextStackFrame.GetMethod()?.DeclaringType;
+                    if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) ||
+                        declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
                     {
-                        var nextStackFrame = stackFrames[i + 1];
-                        var declaringType = nextStackFrame.GetMethod().DeclaringType;
-                        if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) ||
-                            declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
-                        {
-                            //async, search futher
-                            continue;
-                        }
+                        //async, search futher
+                        continue;
                     }
                 }
 
@@ -199,11 +185,8 @@ namespace NLog
         /// <returns><c>true</c>, we should skip.</returns>
         private static bool SkipAssembly(StackFrame frame)
         {
-            var method = frame.GetMethod();
-            var assembly = method.DeclaringType != null ? method.DeclaringType.GetAssembly() : method.Module.Assembly;
-            // skip stack frame if the method declaring type assembly is from hidden assemblies list
-            var skipAssembly = SkipAssembly(assembly);
-            return skipAssembly;
+            var assembly = StackTraceUsageUtils.LookupAssemblyFromStackFrame(frame);
+            return assembly == null || LogManager.IsHiddenAssembly(assembly);
         }
 
         /// <summary>
@@ -215,39 +198,13 @@ namespace NLog
         private static bool IsLoggerType(StackFrame frame, Type loggerType)
         {
             var method = frame.GetMethod();
-            Type declaringType = method.DeclaringType;
-            var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || declaringType.IsSubclassOf(typeof(ILogger)));
+            Type declaringType = method?.DeclaringType;
+            var isLoggerType = declaringType != null && (loggerType == declaringType || declaringType.IsSubclassOf(loggerType) || loggerType.IsAssignableFrom(declaringType));
             return isLoggerType;
         }
 
-        private static bool SkipAssembly(Assembly assembly)
+        private static bool WriteToTargetWithFilterChain(Targets.Target target, FilterResult result, LogEventInfo logEvent, AsyncContinuation onException)
         {
-            if (assembly == nlogAssembly)
-            {
-                return true;
-            }
-
-            if (assembly == mscorlibAssembly)
-            {
-                return true;
-            }
-
-            if (assembly == systemAssembly)
-            {
-                return true;
-            }
-
-            if (LogManager.IsHiddenAssembly(assembly))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private static bool WriteToTargetWithFilterChain(TargetWithFilterChain targetListHead, LogEventInfo logEvent, AsyncContinuation onException)
-        {
-            FilterResult result = GetFilterResult(targetListHead.FilterChain, logEvent);
             if ((result == FilterResult.Ignore) || (result == FilterResult.IgnoreFinal))
             {
                 if (InternalLogger.IsDebugEnabled)
@@ -263,7 +220,7 @@ namespace NLog
                 return true;
             }
 
-            targetListHead.Target.WriteAsyncLogEvent(logEvent.WithContinuation(onException));
+            target.WriteAsyncLogEvent(logEvent.WithContinuation(onException));
             if (result == FilterResult.LogFinal)
             {
                 return false;
@@ -277,10 +234,11 @@ namespace NLog
         /// </summary>
         /// <param name="filterChain">The filter chain.</param>
         /// <param name="logEvent">The log event.</param>
+        /// <param name="defaultFilterResult">default result if there are no filters, or none of the filters decides.</param>
         /// <returns>The result of the filter.</returns>
-        private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent)
+        private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent, FilterResult defaultFilterResult)
         {
-            FilterResult result = FilterResult.Neutral;
+            FilterResult result = defaultFilterResult; 
 
             if (filterChain == null || filterChain.Count == 0)
                 return result;
@@ -295,11 +253,11 @@ namespace NLog
                     result = f.GetFilterResult(logEvent);
                     if (result != FilterResult.Neutral)
                     {
-                        break;
+                        return result;
                     }
                 }
 
-                return result;
+                return defaultFilterResult;
             }
             catch (Exception exception)
             {

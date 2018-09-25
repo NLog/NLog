@@ -1,3 +1,9 @@
+---
+name: Bug report
+about: Create a report to help us improve
+
+---
+
 Hi! Thanks for reporting this feature/bug/question! 
 
 Please keep / fill in the relevant info from this template so that we can help you as best as possible.
@@ -6,16 +12,9 @@ QUESTIONS are preferred on StackOverflow. You could expect a faster response the
 
 For .NET Core users, please check the platform support: https://github.com/NLog/NLog/wiki/platform-support
 
-**Type** (choose one):
+**NLog version**: (e.g. 4.4.13)
 
-- Bug
-- Feature request
-- Question
-
-
-**NLog version**: (e.g. 4.2.3)
-
-**Platform**: .Net 3.5 / .Net 4.0 / .Net 4.5 / Mono 4 / Silverlight 4 / Silverlight 5 / Xamarin Android / Xamarin iOs / .NET Core 
+**Platform**: .Net 3.5 / .Net 4.0 / .Net 4.5 / Mono 4 / Silverlight 4 / Silverlight 5 / Xamarin Android / Xamarin iOs / .NET Core 1 / .NET Core 2
 
 **Current NLog config** (xml or C#, if relevant)
 
@@ -29,8 +28,6 @@ For .NET Core users, please check the platform support: https://github.com/NLog/
 
 ```
 
-In case of a BUG:
-
 - What is the current result?
 - What is the expected result?
 - Did you checked the [Internal log](https://github.com/NLog/NLog/wiki/Internal-Logging)?
@@ -38,11 +35,3 @@ In case of a BUG:
 - Are there any workarounds? yes/no
 - Is there a version in which it did work? 
 - Can you help us by writing an unit test?
-
-
-In case of a FEATURE REQUEST:
- 
- - Why do we need it?
- - An example of the XML config, if relevant. 
-
-

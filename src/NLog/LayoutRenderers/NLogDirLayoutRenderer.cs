@@ -33,7 +33,7 @@
 
 using NLog.Internal;
 
-#if !SILVERLIGHT && !WINDOWS_UWP
+#if !SILVERLIGHT && !NETSTANDARD1_3
 
 namespace NLog.LayoutRenderers
 {
@@ -49,6 +49,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("nlogdir")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class NLogDirLayoutRenderer : LayoutRenderer
     {
         /// <summary>
@@ -77,6 +78,26 @@ namespace NLog.LayoutRenderers
 
         private static string NLogDir { get; set; }
 
+        private string _nlogCombinedPath;
+
+        /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        protected override void InitializeLayoutRenderer()
+        {
+            _nlogCombinedPath = null;
+            base.InitializeLayoutRenderer();
+        }
+
+        /// <summary>
+        /// Closes the layout renderer.
+        /// </summary>
+        protected override void CloseLayoutRenderer()
+        {
+            _nlogCombinedPath = null;
+            base.CloseLayoutRenderer();
+        }
+
         /// <summary>
         /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -84,7 +105,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var path = PathHelpers.CombinePaths(NLogDir, Dir, File);
+            var path = _nlogCombinedPath ?? (_nlogCombinedPath = PathHelpers.CombinePaths(NLogDir, Dir, File));
             builder.Append(path);
         }
     }

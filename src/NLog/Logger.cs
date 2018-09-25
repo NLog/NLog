@@ -102,6 +102,8 @@ namespace NLog
         {
             if (IsEnabled(logEvent.Level))
             {
+                if (logEvent.LoggerName == null)
+                    logEvent.LoggerName = Name;
                 WriteToTargets(logEvent);
             }
         }
@@ -115,6 +117,8 @@ namespace NLog
         {
             if (IsEnabled(logEvent.Level))
             {
+                if (logEvent.LoggerName == null)
+                    logEvent.LoggerName = Name;
                 WriteToTargets(wrapperType, logEvent);
             }
         }
@@ -164,7 +168,7 @@ namespace NLog
             {
                 if (messageFunc == null)
                 {
-                    throw new ArgumentNullException("messageFunc");
+                    throw new ArgumentNullException(nameof(messageFunc));
                 }
 
                 WriteToTargets(level, null, messageFunc());
@@ -569,12 +573,6 @@ namespace NLog
         private void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
         {
             var logEvent = PrepareLogEventInfo(LogEventInfo.Create(level, Name, formatProvider, value));
-            var ex = value as Exception;
-            if (ex != null)
-            {
-                //also record exception
-                logEvent.Exception = ex;
-            }
             LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logEvent, Factory);
         }
 

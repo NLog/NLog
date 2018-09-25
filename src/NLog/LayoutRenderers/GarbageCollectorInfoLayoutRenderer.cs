@@ -39,12 +39,15 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Globalization;
     using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The information about the garbage collector.
     /// </summary>
     [LayoutRenderer("gc")]
-    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer
+    [ThreadSafe]
+    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GarbageCollectorInfoLayoutRenderer" /> class.
@@ -68,7 +71,29 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            object value = null;
+            var formatProvider = GetFormatProvider(logEvent);
+            if (ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))
+            {
+                formatProvider = null;
+            }
+
+            var value = GetValue();
+
+            if (formatProvider == null && value >= 0 && value < uint.MaxValue)
+                builder.AppendInvariant((uint)value);
+            else
+                builder.Append(Convert.ToString(value, formatProvider ?? CultureInfo.InvariantCulture));
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue();
+        }
+
+        private long GetValue()
+        {
+            long value = 0;
 
             switch (Property)
             {
@@ -92,17 +117,17 @@ namespace NLog.LayoutRenderers
                 case GarbageCollectorProperty.CollectionCount2:
                     value = GC.CollectionCount(2);
                     break;
-
 #endif
-                
+
                 case GarbageCollectorProperty.MaxGeneration:
                     value = GC.MaxGeneration;
                     break;
             }
-            var formatProvider = GetFormatProvider(logEvent);
 
-            builder.Append(Convert.ToString(value, formatProvider));
+            return value;
         }
+
+      
     }
 }
 

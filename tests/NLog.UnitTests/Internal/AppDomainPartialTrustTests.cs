@@ -64,7 +64,8 @@ namespace NLog.UnitTests.Internal
                     AppDomain partialTrusted;
                     var classUnderTest = MediumTrustContext.Create<ClassUnderTest>(fileWritePath, out partialTrusted);
 #if NET4_0 || NET4_5
-                    using (NestedDiagnosticsLogicalContext.Push("PartialTrust"))
+                    MappedDiagnosticsLogicalContext.Set("Winner", new { Hero = "Zero" });
+                    using (NestedDiagnosticsLogicalContext.Push(new { Hello = "World" }))
 #endif
                     {
                         classUnderTest.PartialTrustSuccess(times, fileWritePath);

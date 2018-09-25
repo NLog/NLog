@@ -43,7 +43,7 @@ namespace NLog.Layouts
     /// </summary>
     [Layout("JsonLayout")]
     [ThreadAgnostic]
-    [AppDomainFixedOutput]
+    [ThreadSafe]
     public class JsonLayout : Layout
     {
         private LimitRecursionJsonConvert JsonConverter
@@ -168,6 +168,10 @@ namespace NLog.Layouts
                 ThreadAgnostic = false;
             }
 #endif
+            if (IncludeAllProperties)
+            {
+                MutableUnsafe = true;
+            }
         }
 
         /// <summary>
@@ -182,7 +186,7 @@ namespace NLog.Layouts
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
-            if (!ThreadAgnostic) RenderAppendBuilder(logEvent, target, true);
+            PrecalculateBuilderInternal(logEvent, target);
         }
 
         /// <summary>
@@ -303,7 +307,7 @@ namespace NLog.Layouts
                 // Overrides MaxRecursionLimit as message-template tells us it is safe
                 JsonConverter.SerializeObjectNoLimit(propertyValue, sb);
             }
-            else if (MaxRecursionLimit <= 1 && captureType == MessageTemplates.CaptureType.Stringify)
+            else if (captureType == MessageTemplates.CaptureType.Stringify)
             {
                 // Overrides MaxRecursionLimit as message-template tells us it is unsafe
                 int originalStart = sb.Length;
@@ -326,10 +330,9 @@ namespace NLog.Layouts
                 if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false))
                 {
                     var jsonEscape = sb.ToString(valueStart + 1, sb.Length - valueStart - 2);
-                    jsonEscape = Targets.DefaultJsonSerializer.EscapeString(jsonEscape, false);
                     sb.Length = valueStart;
                     sb.Append('"');
-                    sb.Append(jsonEscape);
+                    Targets.DefaultJsonSerializer.AppendStringEscape(sb, jsonEscape, false);
                     sb.Append('"');
                     break;
                 }

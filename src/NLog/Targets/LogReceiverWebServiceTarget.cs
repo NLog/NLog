@@ -203,14 +203,24 @@ namespace NLog.Targets
             SendBufferedEvents(asyncContinuation);
         }
 
+        /// <summary>
+        /// Add value to the <see cref="NLogEvents.Strings"/>, returns ordinal in <see cref="NLogEvents.Strings"/>
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="stringTable">lookup so only unique items will be added to <see cref="NLogEvents.Strings"/></param>
+        /// <param name="value">value to add</param>
+        /// <returns></returns>
         private static int AddValueAndGetStringOrdinal(NLogEvents context, Dictionary<string, int> stringTable, string value)
         {
-            int stringIndex;
 
-            if (!stringTable.TryGetValue(value, out stringIndex))
+            if (value == null || !stringTable.TryGetValue(value, out var stringIndex))
             {
                 stringIndex = context.Strings.Count;
-                stringTable.Add(value, stringIndex);
+                if (value != null)
+                {
+					//don't add null to the string table, that would crash
+                    stringTable.Add(value, stringIndex);
+                }
                 context.Strings.Add(value);
             }
 
@@ -221,7 +231,7 @@ namespace NLog.Targets
         {
             if (logEvents.Count == 0 && !LogManager.ThrowExceptions)
             {
-                InternalLogger.Error("LogEvents array is empty, sending empty event...");
+                InternalLogger.Error("LogReceiverServiceTarget(Name={0}): LogEvents array is empty, sending empty event...", Name);
                 return new NLogEvents();
             }
 
@@ -251,7 +261,6 @@ namespace NLog.Targets
                 for (int i = 0; i < logEvents.Count; ++i)
                 {
                     var ev = logEvents[i].LogEvent;
-                    MergeEventProperties(ev);
 
                     if (ev.HasProperties)
                     {
@@ -297,7 +306,7 @@ namespace NLog.Targets
             client.ProcessLogMessagesCompleted += (sender, e) =>
             {
                 if (e.Error != null)
-                    InternalLogger.Error(e.Error, "Error in send for LogReceiver: {0}", Name);
+                    InternalLogger.Error(e.Error, "LogReceiverServiceTarget(Name={0}): Error while sending", Name);
 
                 // report error to the callers
                 for (int i = 0; i < asyncContinuations.Count; ++i)
@@ -340,7 +349,7 @@ namespace NLog.Targets
                         }
                         catch (Exception ex)
                         {
-                            InternalLogger.Error(ex, "Error in send for LogReceiver: {0}", this.Name);
+                            InternalLogger.Error(ex, "LogReceiverServiceTarget(Name={0}): Error while sending", Name);
                             if (ex.MustBeRethrownImmediately())
                             {
                                 throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -465,7 +474,7 @@ namespace NLog.Targets
             {
                 if (flushContinuation != null)
                 {
-                    InternalLogger.Error(exception, "Error in flush async for LogReceiver: {0}", Name);
+                    InternalLogger.Error(exception, "LogReceiverServiceTarget(Name={0}): Error in flush async", Name);
 #if !NETSTANDARD
                     if (exception.MustBeRethrown())
                         throw;
@@ -474,7 +483,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    InternalLogger.Error(exception, "Error in send async for LogReceiver: {0}", Name);
+                    InternalLogger.Error(exception, "LogReceiverServiceTarget(Name={0}): Error in send async", Name);
 #if !NETSTANDARD
                     if (exception.MustBeRethrownImmediately())
                     {
@@ -485,7 +494,7 @@ namespace NLog.Targets
             }
         }
 
-        private NLogEvent TranslateEvent(LogEventInfo eventInfo, NLogEvents context, Dictionary<string, int> stringTable)
+        internal NLogEvent TranslateEvent(LogEventInfo eventInfo, NLogEvents context, Dictionary<string, int> stringTable)
         {
             var nlogEvent = new NLogEvent();
             nlogEvent.Id = eventInfo.SequenceID;

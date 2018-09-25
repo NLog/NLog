@@ -148,6 +148,41 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void TargetWithContextAsyncPropertyTest()
+        {
+            Target.Register("contexttarget", typeof(CustomTargetWithContext));
+
+            LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
+                        <target name='debug' type='contexttarget' includeCallSite='true' includeEventProperties='true' />
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Error' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            var target = LogManager.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Error, logger.Name, "Hello");
+            logEvent.Properties["name"] = "Kenny";
+            logger.Error(logEvent);
+            LogManager.Flush();
+            Assert.NotEqual(0, target.LastMessage.Length);
+            var lastCombinedProperties = target.LastCombinedProperties;
+            Assert.NotEmpty(lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("name", "Kenny"), lastCombinedProperties);
+
+            logger.Error("Hello {name}", "Cartman");
+            LogManager.Flush();
+            lastCombinedProperties = target.LastCombinedProperties;
+            Assert.NotEmpty(lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("name", "Cartman"), lastCombinedProperties);
+        }
+
+        [Fact]
         public void TargetWithContextJsonTest()
         {
             Target.Register("contexttarget", typeof(CustomTargetWithContext));

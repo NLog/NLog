@@ -140,7 +140,7 @@ namespace NLog.Targets.Wrappers
         {
             ConditionExpression resultFilter = null;
 
-            InternalLogger.Trace("Running {0} on {1} events", this, logEvents.Count);
+            InternalLogger.Trace("PostFilteringWrapper(Name={0}): Running on {1} events", Name, logEvents.Count);
 
             // evaluate all the rules to get the filtering condition
             for (int i = 0; i < logEvents.Count; ++i)
@@ -151,7 +151,7 @@ namespace NLog.Targets.Wrappers
 
                     if (boxedTrue.Equals(v))
                     {
-                        InternalLogger.Trace("Rule matched: {0}", rule.Exists);
+                        InternalLogger.Trace("PostFilteringWrapper(Name={0}): Rule matched: {1}", Name, rule.Exists);
 
                         resultFilter = rule.Filter;
                         break;
@@ -175,7 +175,7 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
-                InternalLogger.Trace("Filter to apply: {0}", resultFilter);
+                InternalLogger.Trace("PostFilteringWrapper(Name={0}): Filter to apply: {1}", Name, resultFilter);
 
                 // apply the condition to the buffer
                 var resultBuffer = new List<AsyncLogEventInfo>();
@@ -194,10 +194,10 @@ namespace NLog.Targets.Wrappers
                     }
                 }
 
-                InternalLogger.Trace("After filtering: {0} events.", resultBuffer.Count);
+                InternalLogger.Trace("PostFilteringWrapper(Name={0}): After filtering: {1} events.", Name, resultBuffer.Count);
                 if (resultBuffer.Count > 0)
                 {
-                    InternalLogger.Trace("Sending to {0}", WrappedTarget);
+                    InternalLogger.Trace("PostFilteringWrapper(Name={0}): Sending to {1}", Name, WrappedTarget);
                     WrappedTarget.WriteAsyncLogEvents(resultBuffer);
                 }
             }

@@ -181,9 +181,18 @@ namespace NLog.MessageTemplates
         {
             int start = _position;
             string name = ParseName(out var position);
-            int alignment = Peek() == ',' ? ParseAlignment() : 0;
-            string format = Peek() == ':' ? ParseFormat() : null;
-            Skip('}');
+            int alignment = 0;
+            string format = null;
+            if (Peek() != '}')
+            {
+                alignment = Peek() == ',' ? ParseAlignment() : 0;
+                format = Peek() == ':' ? ParseFormat() : null;
+                Skip('}');
+            }
+            else
+            {
+                _position++;
+            }
 
             int literalSkip = _position - start + (type == CaptureType.Normal ? 1 : 2);     // Account for skipped '{', '{$' or '{@'
             _current = new LiteralHole(new Literal { Print = _literalLength, Skip = (short)literalSkip }, new Hole(
@@ -267,7 +276,7 @@ namespace NLog.MessageTemplates
                             }
                             else
                             {
-                                //done. unread the }
+                                //done. unread the '}' .
                                 _position--;
                                 //done
                                 return format;
@@ -301,6 +310,7 @@ namespace NLog.MessageTemplates
         private int ParseAlignment()
         {
             Skip(',');
+            SkipSpaces();
             int i = ReadInt();
             SkipSpaces();
             char next = Peek();
@@ -342,31 +352,32 @@ namespace NLog.MessageTemplates
 
         private int ReadInt()
         {
-            SkipSpaces();
-
             bool negative = false;
-            if (Peek() == '-')
-            {
-                negative = true;
-                _position++;
-            }
-
             int i = 0;
-            bool hasDigits = false;
-            while (true)
+            for (int x = 0; x < 12; ++x)
             {
-                // Can be out of bounds, but never in correct use (inside a hole).
                 char c = Peek();
+
                 int digit = c - '0';
-                if (digit < 0 || digit > 9) break;
-                hasDigits = true;
+                if (digit < 0 || digit > 9)
+                {
+                    if (x > 0 && !negative || x > 1)
+                        return negative ? -i : i;  // Found one or more digits
+
+                    if (x == 0 && c == '-')
+                    {
+                        negative = true;
+                        _position++;
+                        continue;
+                    }
+                    break;
+                }
+
                 _position++;
                 i = i * 10 + digit;
             }
-            if (!hasDigits)
-                throw new TemplateParserException("An integer is expected", _position, _template);
 
-            return negative ? -i : i;
+            throw new TemplateParserException("An integer is expected", _position, _template);
         }
 
         private string ReadUntil(char[] search, bool required = true)

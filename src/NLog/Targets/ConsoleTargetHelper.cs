@@ -72,11 +72,10 @@ namespace NLog.Targets
 
         public static Encoding GetConsoleOutputEncoding(Encoding currentEncoding, bool isInitialized, bool pauseLogging)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
-            string reason;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             if (currentEncoding != null)
                 return currentEncoding;
-            else if ((isInitialized && !pauseLogging) || IsConsoleAvailable(out reason))
+            else if ((isInitialized && !pauseLogging) || IsConsoleAvailable(out _))
                 return Console.OutputEncoding;
 #if !NETSTANDARD1_0
             return Encoding.Default;
@@ -90,7 +89,7 @@ namespace NLog.Targets
 
         public static bool SetConsoleOutputEncoding(Encoding newEncoding, bool isInitialized, bool pauseLogging)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             if (!isInitialized)
             {
                 return true;    // Waiting for console target to be initialized

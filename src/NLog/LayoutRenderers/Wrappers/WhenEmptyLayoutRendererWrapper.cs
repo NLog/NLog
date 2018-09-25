@@ -33,9 +33,10 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
+    using System;
     using System.Text;
-    using Config;
-    using Layouts;
+    using NLog.Config;
+    using NLog.Layouts;
 
     /// <summary>
     /// Outputs alternative layout when the inner layout produces empty result.
@@ -43,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("whenEmpty")]
     [AmbientProperty("WhenEmpty")]
     [ThreadAgnostic]
+    [ThreadSafe]
     public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
     {
         /// <summary>
@@ -52,28 +54,21 @@ namespace NLog.LayoutRenderers.Wrappers
         [RequiredParameter]
         public Layout WhenEmpty { get; set; }
 
-        /// <summary>
-        /// Transforms the output of another layout.
-        /// </summary>
-        /// <param name="target">Output to be transform.</param>
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-        }
-
-        /// <summary>
-        /// Renders the inner layout contents.
-        /// </summary>
-        /// <param name="logEvent">The log event.</param>
-        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
-        protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
-        {
-            int orgLength = target.Length;
-            base.RenderFormattedMessage(logEvent, target);
-            if (target.Length > orgLength)
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (builder.Length > orgLength)
                 return;
 
             // render WhenEmpty when the inner layout was empty
-            WhenEmpty.RenderAppendBuilder(logEvent, target);
+            WhenEmpty.RenderAppendBuilder(logEvent, builder);
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
+        protected override void TransformFormattedMesssage(StringBuilder target)
+        {
         }
     }
 }

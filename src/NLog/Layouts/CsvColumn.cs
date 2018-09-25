@@ -33,13 +33,14 @@
 
 namespace NLog.Layouts
 {
-    using Config;
+    using NLog.Config;
 
     /// <summary>
     /// A column in the CSV.
     /// </summary>
     [NLogConfigurationItem]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class CsvColumn 
     {
         /// <summary>

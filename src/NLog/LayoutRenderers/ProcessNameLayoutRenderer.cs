@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !WINDOWS_UWP
+#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD1_3
 
 namespace NLog.LayoutRenderers
 {
@@ -46,6 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processname")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
+    [ThreadSafe]
     public class ProcessNameLayoutRenderer : LayoutRenderer
     {
         /// <summary>

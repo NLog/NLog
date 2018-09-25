@@ -46,7 +46,7 @@ namespace NLog.Common
     {
         internal static int GetManagedThreadId()
         {
-#if WINDOWS_UWP
+#if NETSTANDARD1_3
             return System.Environment.CurrentManagedThreadId;
 #else
             return Thread.CurrentThread.ManagedThreadId;
@@ -64,7 +64,7 @@ namespace NLog.Common
 
         internal static void WaitForDelay(TimeSpan delay)
         {
-#if WINDOWS_UWP
+#if NETSTANDARD1_3
             System.Threading.Tasks.Task.Delay(delay).Wait();
 #else
             Thread.Sleep(delay);
@@ -367,12 +367,9 @@ namespace NLog.Common
             if (timeout != TimeSpan.Zero)
             {
                 ManualResetEvent waitHandle = new ManualResetEvent(false);
-                if (timer.Dispose(waitHandle))
+                if (timer.Dispose(waitHandle) && !waitHandle.WaitOne((int)timeout.TotalMilliseconds))
                 {
-                    if (!waitHandle.WaitOne((int)timeout.TotalMilliseconds))
-                    {
-                        return false;   // Return without waiting for timer, and without closing waitHandle (Avoid ObjectDisposedException)
-                    }
+                    return false;   // Return without waiting for timer, and without closing waitHandle (Avoid ObjectDisposedException)
                 }
 
                 waitHandle.Close();

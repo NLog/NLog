@@ -42,7 +42,7 @@ namespace NLog.Config
     {
         void Clear();
 
-        void ScanTypes(Type[] type, string prefix);
+        void ScanTypes(Type[] types, string prefix);
 
         void RegisterType(Type type, string itemNamePrefix);
     }

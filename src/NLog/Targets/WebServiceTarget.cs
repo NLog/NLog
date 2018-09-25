@@ -323,7 +323,7 @@ namespace NLog.Targets
             DoInvoke(parameters, continuation, request, begin, getStream);
         }
 
-        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc, 
+        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc,
             Func<IAsyncResult, Stream> getStreamFunc)
         {
             Stream postPayload = null;
@@ -370,7 +370,7 @@ namespace NLog.Targets
                                 }
                                 catch (Exception ex2)
                                 {
-                                    InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", Name);
+                                    InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error sending request", Name);
                                     if (ex2.MustBeRethrownImmediately())
                                     {
                                         throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -383,7 +383,7 @@ namespace NLog.Targets
                     }
                     catch (Exception ex2)
                     {
-                        InternalLogger.Error(ex2, "Error when sending to Webservice: {0}", Name);
+                        InternalLogger.Error(ex2, "WebServiceTarget(Name={0}): Error starting request", Name);
                         if (ex2.MustBeRethrown())
                         {
                             throw;
@@ -420,7 +420,7 @@ namespace NLog.Targets
                             }
                             catch (Exception ex)
                             {
-                                InternalLogger.Error(ex, "Error when sending to Webservice: {0}", Name);
+                                InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error sending post data", Name);
                                 if (ex.MustBeRethrownImmediately())
                                 {
                                     throw; // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
@@ -433,7 +433,7 @@ namespace NLog.Targets
                 }
                 catch (Exception ex)
                 {
-                    InternalLogger.Error(ex, "Error when sending to Webservice: {0}", Name);
+                    InternalLogger.Error(ex, "WebServiceTarget(Name={0}): Error starting post data", Name);
                     if (ex.MustBeRethrown())
                     {
                         throw;
@@ -490,7 +490,8 @@ namespace NLog.Targets
             using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
-                BuildWebServiceQueryParameters(parameterValues, sb);
+                UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
+                BuildWebServiceQueryParameters(parameterValues, sb, encodingFlags);
                 queryParameters = sb.ToString();
             }
 
@@ -509,10 +510,8 @@ namespace NLog.Targets
             return builder.Uri;
         }
 
-        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb)
+        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb, UrlHelper.EscapeEncodingFlag encodingFlags)
         {
-            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
-
             string separator = string.Empty;
             for (int i = 0; i < Parameters.Count; i++)
             {
@@ -607,18 +606,9 @@ namespace NLog.Targets
 
             protected override string ContentType => "application/x-www-form-urlencoded";
 
-            protected override string Separator => "&";
-
-            protected override void AppendFormattedParameter(StringBuilder builder, MethodCallParameter parameter, object value)
+            protected override void WriteStringContent(StringBuilder builder, object[] parameterValues)
             {
-                builder.Append(parameter.Name);
-                builder.Append('=');
-
-                string parameterValue = XmlHelper.XmlConvertToString(value);
-                if (!string.IsNullOrEmpty(parameterValue))
-                {
-                    UrlHelper.EscapeDataEncode(parameterValue, builder, _encodingFlags);
-                }
+                Target.BuildWebServiceQueryParameters(parameterValues, builder, _encodingFlags);
             }
         }
 
@@ -633,24 +623,29 @@ namespace NLog.Targets
 
             protected override string ContentType => "application/json";
 
-            protected override string Separator => ",";
-
-            protected override void BeginFormattedMessage(StringBuilder builder)
+            protected override void WriteStringContent(StringBuilder builder, object[] parameterValues)
             {
-                builder.Append('{');
-            }
-
-            protected override void EndFormattedMessage(StringBuilder builder)
-            {
-                builder.Append('}');
-            }
-
-            protected override void AppendFormattedParameter(StringBuilder builder, MethodCallParameter parameter, object value)
-            {
-                builder.Append('"');
-                builder.Append(parameter.Name);
-                builder.Append("\":");
-                JsonConverter.SerializeObject(value, builder);
+                if (Target.Parameters.Count == 1 && string.IsNullOrEmpty(Target.Parameters[0].Name) && parameterValues[0] is string s)
+                {
+                    // JsonPost with single nameless parameter means complex JsonLayout
+                    builder.Append(s);
+                }
+                else
+                {
+                    builder.Append("{");
+                    string separator = string.Empty;
+                    for (int i = 0; i < Target.Parameters.Count; ++i)
+                    {
+                        var parameter = Target.Parameters[i];
+                        builder.Append(separator);
+                        builder.Append('"');
+                        builder.Append(parameter.Name);
+                        builder.Append("\":");
+                        JsonConverter.SerializeObject(parameterValues[i], builder);
+                        separator = ",";
+                    }
+                    builder.Append('}');
+                }
             }
         }
 
@@ -733,35 +728,13 @@ namespace NLog.Targets
                 _encodingPreamble = target.Encoding.GetPreamble();
             }
 
-            protected abstract string Separator { get; }
-
-            protected virtual void BeginFormattedMessage(StringBuilder builder)
-            {
-            }
-
-            protected abstract void AppendFormattedParameter(StringBuilder builder, MethodCallParameter parameter, object value);
-
-            protected virtual void EndFormattedMessage(StringBuilder builder)
-            {
-            }
-
             protected override void WriteContent(MemoryStream ms, object[] parameterValues)
             {
                 lock (_reusableStringBuilder)
                 {
                     using (var targetBuilder = _reusableStringBuilder.Allocate())
                     {
-                        bool first = true;
-                        BeginFormattedMessage(targetBuilder.Result);
-                        for (int i = 0; i < Target.Parameters.Count; i++)
-                        {
-                            if (!first)
-                                targetBuilder.Result.Append(Separator);
-                            else
-                                first = false;
-                            AppendFormattedParameter(targetBuilder.Result, Target.Parameters[i], parameterValues[i]);
-                        }
-                        EndFormattedMessage(targetBuilder.Result);
+                        WriteStringContent(targetBuilder.Result, parameterValues);
 
                         using (var transformBuffer = _reusableEncodingBuffer.Allocate())
                         {
@@ -772,6 +745,8 @@ namespace NLog.Targets
                     }
                 }
             }
+
+            protected abstract void WriteStringContent(StringBuilder builder, object[] parameterValues);
         }
 
         private class HttpPostXmlDocumentFormatter : HttpPostXmlFormatterBase

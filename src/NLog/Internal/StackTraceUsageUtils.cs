@@ -44,22 +44,14 @@ namespace NLog.Internal
     /// </summary>
     internal static class StackTraceUsageUtils
     {
+        private static readonly Assembly nlogAssembly = typeof(StackTraceUsageUtils).GetAssembly();
+        private static readonly Assembly mscorlibAssembly = typeof(string).GetAssembly();
+        private static readonly Assembly systemAssembly = typeof(Debug).GetAssembly();
+
         internal static StackTraceUsage Max(StackTraceUsage u1, StackTraceUsage u2)
         {
             return (StackTraceUsage)Math.Max((int)u1, (int)u2);
         }
-
-#if !NETSTANDARD1_0
-        /// <summary>
-        /// Get this stacktrace for inline unit test
-        /// </summary>
-        /// <param name="loggerType"></param>
-        /// <returns></returns>
-        internal static StackTrace GetWriteStackTrace(Type loggerType)
-        {
-            return new StackTrace();
-        }
-#endif
 
         public static int GetFrameCount(this StackTrace strackTrace)
         {
@@ -123,6 +115,14 @@ namespace NLog.Internal
                 }
             }
 
+            if (!includeNameSpace
+                && callerClassType?.DeclaringType != null
+                && callerClassType.IsNested
+                && callerClassType.GetCustomAttribute<CompilerGeneratedAttribute>() != null)
+            {
+                return callerClassType.DeclaringType.Name;
+            }
+
             string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
 
             if (cleanAnonymousDelegates && className != null)
@@ -148,27 +148,12 @@ namespace NLog.Internal
             int framesToSkip = 2;
 
             string className = string.Empty;
-#if !NETSTANDARD1_0
-            Type declaringType;
-
-            do
-            {
 #if SILVERLIGHT
-                StackFrame frame = new StackTrace().GetFrame(framesToSkip);
-#else
-                StackFrame frame = new StackFrame(framesToSkip, false);
-#endif
-                MethodBase method = frame.GetMethod();
-                declaringType = method.DeclaringType;
-                if (declaringType == null)
-                {
-                    className = method.Name;
-                    break;
-                }
-
-                framesToSkip++;
-                className = declaringType.FullName;
-            } while (className.StartsWith("System.", StringComparison.Ordinal));
+            var stackFrame = new StackFrame(framesToSkip);
+            className = GetClassFullName(stackFrame);
+#elif !NETSTANDARD1_0
+            var stackFrame = new StackFrame(framesToSkip, false);
+            className = GetClassFullName(stackFrame);
 #else
             var stackTrace = Environment.StackTrace;
             var stackTraceLines = stackTrace.Replace("\r", "").Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -194,6 +179,94 @@ namespace NLog.Internal
             }
 #endif
             return className;
+        }
+
+#if !NETSTANDARD1_0
+        /// <summary>
+        /// Gets the fully qualified name of the class invoking the calling method, including the 
+        /// namespace but not the assembly.    
+        /// </summary>
+        /// <param name="stackFrame">StackFrame from the calling method</param>
+        /// <returns>Fully qualified class name</returns>
+        public static string GetClassFullName(StackFrame stackFrame)
+        {
+            string className = LookupClassNameFromStackFrame(stackFrame);
+            if (string.IsNullOrEmpty(className))
+            {
+#if SILVERLIGHT
+                var stackTrace = new StackTrace();
+#else
+                var stackTrace = new StackTrace(false);
+#endif
+                className = GetClassFullName(stackTrace);
+            }
+            return className;
+        }
+#endif
+
+        private static string GetClassFullName(StackTrace stackTrace)
+        {
+            foreach (StackFrame frame in stackTrace.GetFrames())
+            {
+                string className = LookupClassNameFromStackFrame(frame);
+                if (!string.IsNullOrEmpty(className))
+                {
+                    return className;
+                }
+            }
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Returns the assembly from the provided StackFrame (If not internal assembly)
+        /// </summary>
+        /// <returns>Valid asssembly, or null if assembly was internal</returns>
+        public static Assembly LookupAssemblyFromStackFrame(StackFrame stackFrame)
+        {
+            var method = stackFrame.GetMethod();
+            if (method == null)
+            {
+                return null;
+            }
+
+            var assembly = method.DeclaringType?.GetAssembly() ?? method.Module?.Assembly;
+            // skip stack frame if the method declaring type assembly is from hidden assemblies list
+            if (assembly == nlogAssembly)
+            {
+                return null;
+            }
+
+            if (assembly == mscorlibAssembly)
+            {
+                return null;
+            }
+
+            if (assembly == systemAssembly)
+            {
+                return null;
+            }
+
+            return assembly;
+        }
+
+        /// <summary>
+        /// Returns the classname from the provided StackFrame (If not from internal assembly)
+        /// </summary>
+        /// <param name="stackFrame"></param>
+        /// <returns>Valid class name, or empty string if assembly was internal</returns>
+        public static string LookupClassNameFromStackFrame(StackFrame stackFrame)
+        {
+            var method = stackFrame.GetMethod();
+            if (method != null && LookupAssemblyFromStackFrame(stackFrame) != null)
+            {
+                string className = GetStackFrameMethodClassName(method, true, true, true) ?? method.Name;
+                if (!string.IsNullOrEmpty(className) && !className.StartsWith("System.", StringComparison.Ordinal))
+                {
+                    return className;
+                }
+            }
+
+            return string.Empty;
         }
     }
 }
