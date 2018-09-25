@@ -221,10 +221,10 @@ namespace NLog.UnitTests.Layouts
                 var ev = new LogEventInfo();
                 ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
                 ev.Level = LogLevel.Info;
-                ev.Message = "hello, world";
+                ev.Message = string.Concat(csvLayout.QuoteChar, "hello, world", csvLayout.QuoteChar);
 
                 string sep = delim.Value;
-                Assert.Equal("2010-01-01 12:34:56.0000" + sep + "Info" + sep + "hello, world", csvLayout.Render(ev));
+                Assert.Equal("2010-01-01 12:34:56.0000" + sep + "Info" + sep + "\"hello, world\"", csvLayout.Render(ev));
                 Assert.Equal("date" + sep + "level" + sep + "message;text", csvLayout.Header.Render(ev));
             }
         }
@@ -262,10 +262,10 @@ namespace NLog.UnitTests.Layouts
                 var ev = new LogEventInfo();
                 ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
                 ev.Level = LogLevel.Info;
-                ev.Message = "hello, world";
+                ev.Message = string.Concat(csvLayout.QuoteChar, "hello, world", csvLayout.QuoteChar);
 
                 string sep = delim.Value;
-                Assert.Equal("'2010-01-01 12:34:56.0000'" + sep + "'Info'" + sep + "'hello, world'", csvLayout.Render(ev));
+                Assert.Equal("'2010-01-01 12:34:56.0000'" + sep + "'Info'" + sep + "'''hello, world'''", csvLayout.Render(ev));
                 Assert.Equal("'date'" + sep + "'level'" + sep + "'message;text'", csvLayout.Header.Render(ev));
             }
         }

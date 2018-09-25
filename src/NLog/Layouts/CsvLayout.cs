@@ -39,6 +39,7 @@ namespace NLog.Layouts
     using System.Globalization;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A specialized layout that renders CSV-formatted events.
@@ -172,19 +173,6 @@ namespace NLog.Layouts
             return RenderAllocateBuilder(logEvent);
         }
 
-        private void RenderAllColumns(LogEventInfo logEvent, StringBuilder sb)
-        {
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < Columns.Count; i++)
-            {
-                CsvColumn col = Columns[i];
-                string text = col.Layout.Render(logEvent);
-
-                RenderCol(sb, i, text);
-            }
-        }
-
         /// <summary>
         /// Formats the log event for write.
         /// </summary>
@@ -192,7 +180,47 @@ namespace NLog.Layouts
         /// <param name="target"><see cref="StringBuilder"/> for the result</param>
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
-            RenderAllColumns(logEvent, target);
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < Columns.Count; i++)
+            {
+                Layout columnLayout = Columns[i].Layout;
+                RenderColumnLayout(logEvent, columnLayout, target, i);
+            }
+        }
+
+        private void RenderColumnLayout(LogEventInfo logEvent, Layout columnLayout, StringBuilder target, int i)
+        {
+            if (i != 0)
+            {
+                target.Append(_actualColumnDelimiter);
+            }
+
+            if (Quoting == CsvQuotingMode.All)
+            {
+                target.Append(QuoteChar);
+            }
+
+            int orgLength = target.Length;
+            columnLayout.RenderAppendBuilder(logEvent, target);
+            if (orgLength != target.Length && ColumnValueRequiresQuotes(target, orgLength))
+            {
+                string columnValue = target.ToString(orgLength, target.Length - orgLength);
+                target.Length = orgLength;
+                if (Quoting != CsvQuotingMode.All)
+                {
+                    target.Append(QuoteChar);
+                }
+                target.Append(columnValue.Replace(QuoteChar, _doubleQuoteChar));
+                target.Append(QuoteChar);
+            }
+            else
+            {
+                if (Quoting == CsvQuotingMode.All)
+                {
+                    target.Append(QuoteChar);
+                }
+            }
         }
 
         /// <summary>
@@ -201,73 +229,35 @@ namespace NLog.Layouts
         /// <returns></returns>
         private void RenderHeader(StringBuilder sb)
         {
+            LogEventInfo logEvent = LogEventInfo.CreateNullEvent();
+
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < Columns.Count; i++)
             {
                 CsvColumn col = Columns[i];
-                string text = col.Name;
-
-                RenderCol(sb, i, text);
+                var columnLayout = new SimpleLayout(new LayoutRenderers.LayoutRenderer[] { new LayoutRenderers.LiteralLayoutRenderer(col.Name) }, col.Name, ConfigurationItemFactory.Default);
+                columnLayout.Initialize(LoggingConfiguration);
+                RenderColumnLayout(logEvent, columnLayout, sb, i);
             }
         }
 
-        /// <summary>
-        /// Render 1 columnvalue (text or header) to <paramref name="sb"/>
-        /// </summary>
-        /// <param name="sb">write-to</param>
-        /// <param name="columnIndex">current col index</param>
-        /// <param name="columnValue">col text</param>
-        private void RenderCol(StringBuilder sb, int columnIndex, string columnValue)
+        private bool ColumnValueRequiresQuotes(StringBuilder sb, int startPosition)
         {
-            if (columnIndex != 0)
-            {
-                sb.Append(_actualColumnDelimiter);
-            }
-
-            bool useQuoting;
-
             switch (Quoting)
             {
                 case CsvQuotingMode.Nothing:
-                    useQuoting = false;
-                    break;
+                    return false;
 
                 case CsvQuotingMode.All:
-                    useQuoting = true;
-                    break;
-
-                default:
-                case CsvQuotingMode.Auto:
-                    if (columnValue.IndexOfAny(_quotableCharacters) >= 0)
-                    {
-                        useQuoting = true;
-                    }
+                    if (QuoteChar.Length == 1)
+                        return sb.IndexOf(QuoteChar[0], startPosition) >= 0;
                     else
-                    {
-                        useQuoting = false;
-                    }
+                        return sb.IndexOfAny(_quotableCharacters, startPosition) >= 0;
 
-                    break;
-            }
-
-            if (useQuoting)
-            {
-                sb.Append(QuoteChar);
-            }
-
-            if (useQuoting)
-            {
-                sb.Append(columnValue.Replace(QuoteChar, _doubleQuoteChar));
-            }
-            else
-            {
-                sb.Append(columnValue);
-            }
-
-            if (useQuoting)
-            {
-                sb.Append(QuoteChar);
+                case CsvQuotingMode.Auto:
+                default:
+                    return sb.IndexOfAny(_quotableCharacters, startPosition) >= 0;
             }
         }
 

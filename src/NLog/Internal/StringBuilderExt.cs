@@ -238,6 +238,34 @@ namespace NLog.Internal
         }
 
         /// <summary>
+        /// Scans the StringBuilder for the position of needle character
+        /// </summary>
+        /// <param name="builder">StringBuilder source</param>
+        /// <param name="needles">needle characters to search for</param>
+        /// <param name="startPos"></param>
+        /// <returns>Index of the first occurrence (Else -1)</returns>
+        public static int IndexOfAny(this StringBuilder builder, char[] needles, int startPos = 0)
+        {
+            for (int i = startPos; i < builder.Length; ++i)
+            {
+                if (CharArrayContains(builder[i], needles))
+                    return i;
+            }
+            return -1;
+        }
+
+        private static bool CharArrayContains(char searchChar, char[] needles)
+        {
+            for (int i = 0; i < needles.Length; ++i)
+            {
+                if (needles[i] == searchChar)
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Compares the contents of two StringBuilders
         /// </summary>
         /// <remarks>
