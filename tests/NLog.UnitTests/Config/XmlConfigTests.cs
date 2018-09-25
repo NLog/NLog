@@ -57,6 +57,7 @@ namespace NLog.UnitTests.Config
                 Assert.False(InternalLogger.LogToConsole);
                 Assert.False(InternalLogger.LogToConsoleError);
                 Assert.Null(InternalLogger.LogWriter);
+                Assert.Equal(LogLevel.Off, InternalLogger.LogLevel);
             }
         }
 
@@ -75,6 +76,7 @@ namespace NLog.UnitTests.Config
                 Assert.True(InternalLogger.LogToConsole);
                 Assert.True(InternalLogger.LogToConsoleError);
                 Assert.Null(InternalLogger.LogWriter);
+                Assert.Equal(LogLevel.Info, InternalLogger.LogLevel);
             }
         }
 

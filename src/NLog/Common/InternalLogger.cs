@@ -341,7 +341,7 @@ namespace NLog.Common
         /// Determine if logging is enabled.
         /// </summary>
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
-        private static bool HasActiveLoggers()
+        internal static bool HasActiveLoggers()
         {
             return !string.IsNullOrEmpty(LogFile) ||
                    LogToConsole ||
