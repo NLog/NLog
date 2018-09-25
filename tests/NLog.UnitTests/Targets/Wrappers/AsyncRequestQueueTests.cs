@@ -206,5 +206,47 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(0, result);
             Assert.Equal(0, queue.RequestCount);
         }
+
+	    [Fact]
+	    public void RaiseEventLogEventQueueGrow_OnLogItems()
+	    {
+	        int requestsLimit = 2;
+	        int eventsCount = 5;
+	        int countOfGrovingTimes = 0;
+	        int ExpectedCountOfGrovingTimes = 2;
+
+	        AsyncRequestQueue requestQueue = new AsyncRequestQueue(requestsLimit, AsyncTargetWrapperOverflowAction.Grow);
+
+	        requestQueue.LogEventQueueGrow += (o, e) => { countOfGrovingTimes++; };
+
+	        for (int i = 0; i < eventsCount; i++)
+	        {
+	            requestQueue.Enqueue(new AsyncLogEventInfo());
+	        }
+
+            Assert.Equal(ExpectedCountOfGrovingTimes, countOfGrovingTimes);
+	    }
+
+	    [Fact]
+	    public void LogEventQueueGrow_OnLogItems()
+	    {
+	        int requestsLimit = 2;
+	        int eventsCount = 5;
+	        int countOfGrovingTimes = 0;
+	        int expectedFinalSize = 8;
+	        int ExpectedCountOfGrovingTimes = 2;
+
+	        AsyncRequestQueue requestQueue = new AsyncRequestQueue(requestsLimit, AsyncTargetWrapperOverflowAction.Grow);
+
+	        requestQueue.LogEventQueueGrow += (o, e) => { countOfGrovingTimes++; };
+
+	        for (int i = 0; i < eventsCount; i++)
+	        {
+	            requestQueue.Enqueue(new AsyncLogEventInfo());
+	        }
+
+	        Assert.Equal(ExpectedCountOfGrovingTimes, countOfGrovingTimes);
+            Assert.Equal(expectedFinalSize, requestQueue.RequestLimit);
+	    }
     }
 }

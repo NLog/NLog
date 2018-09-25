@@ -449,7 +449,160 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        class MyAsyncTarget : Target
+        [Fact]
+        public void LogEventDropped_OnRequestqueueOverflow()
+        {
+            int queueLimit = 2;
+            int loggedEventCount = 5;
+            int eventsCounter = 0;
+            var myTarget = new MyTarget();
+
+            var targetWrapper = new AsyncTargetWrapper()
+            {
+                WrappedTarget = myTarget,
+                QueueLimit = queueLimit,
+                OverflowAction = AsyncTargetWrapperOverflowAction.Discard
+            };
+
+            try
+            {
+                targetWrapper.Initialize(null);
+                myTarget.Initialize(null);
+
+                AsyncLogEventInfo loginfo = new AsyncLogEventInfo(new LogEventInfo(), null);
+
+                targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
+
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    targetWrapper.RequestQueue.Enqueue(loginfo);
+                }
+                
+                Assert.Equal(loggedEventCount - queueLimit, eventsCounter);
+            }
+            finally
+            {
+                myTarget.Close();
+                targetWrapper.Close();
+            }
+        }
+
+        [Fact]
+        public void LogEventNotDropped_IfOverflowActionBlock()
+        {
+            int queueLimit = 2;
+            int loggedEventCount = 5;
+            int eventsCounter = 0;
+            var myTarget = new MyTarget();
+
+            var targetWrapper = new AsyncTargetWrapper()
+            {
+                WrappedTarget = myTarget,
+                QueueLimit = queueLimit,
+                OverflowAction = AsyncTargetWrapperOverflowAction.Block
+            };
+
+            try
+            {
+                targetWrapper.Initialize(null);
+                myTarget.Initialize(null);
+
+                AsyncLogEventInfo loginfo = new AsyncLogEventInfo(new LogEventInfo(), null);
+
+                targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
+
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    targetWrapper.RequestQueue.Enqueue(loginfo);
+                }
+                
+                Assert.Equal(0, eventsCounter);
+            }
+            finally
+            {
+                myTarget.Close();
+                targetWrapper.Close();
+            }
+        }
+
+        [Fact]
+        public void LogEventNotDropped_IfOverflowActionGrow()
+        {
+            int queueLimit = 2;
+            int loggedEventCount = 5;
+            int eventsCounter = 0;
+            var myTarget = new MyTarget();
+
+            var targetWrapper = new AsyncTargetWrapper()
+            {
+                WrappedTarget = myTarget,
+                QueueLimit = queueLimit,
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow
+            };
+
+            try
+            {
+                targetWrapper.Initialize(null);
+                myTarget.Initialize(null);
+
+                AsyncLogEventInfo loginfo = new AsyncLogEventInfo(new LogEventInfo(), null);
+
+                targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
+
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    targetWrapper.RequestQueue.Enqueue(loginfo);
+                }
+                
+                Assert.Equal(0, eventsCounter);
+            }
+            finally
+            {
+                myTarget.Close();
+                targetWrapper.Close();
+            }
+        }
+
+        [Fact]
+        public void EventQueueGrow_OnQueueGrow()
+        {
+            int queueLimit = 2;
+            int loggedEventCount = 5;
+            int expectedGrowingNumber = 2;
+            int eventsCounter = 0;
+            var myTarget = new MyTarget();
+
+            var targetWrapper = new AsyncTargetWrapper()
+            {
+                WrappedTarget = myTarget,
+                QueueLimit = queueLimit,
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow
+            };
+
+            try
+            {
+                targetWrapper.Initialize(null);
+                myTarget.Initialize(null);
+
+                AsyncLogEventInfo loginfo = new AsyncLogEventInfo(new LogEventInfo(), null);
+
+                targetWrapper.EventQueueGrow += (o, e) => { eventsCounter++; };
+
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    targetWrapper.RequestQueue.Enqueue(loginfo);
+                }
+                
+                Assert.Equal(expectedGrowingNumber, eventsCounter);
+            }
+            finally
+            {
+                myTarget.Close();
+                targetWrapper.Close();
+            }
+        }
+
+        private class MyAsyncTarget : Target
         {
             private readonly NLog.Internal.AsyncOperationCounter pendingWriteCounter = new NLog.Internal.AsyncOperationCounter();
 
