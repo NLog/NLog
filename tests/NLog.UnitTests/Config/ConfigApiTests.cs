@@ -301,7 +301,7 @@ namespace NLog.UnitTests.Config
             Assert.Same(rule, ruleLookup);
             Assert.True(config.RemoveRuleByName("hello"));
             ruleLookup = config.FindRuleByName("hello");
-            Assert.Same(null, ruleLookup);
+            Assert.Null(ruleLookup);
             Assert.False(config.RemoveRuleByName("hello"));
         }
     }
