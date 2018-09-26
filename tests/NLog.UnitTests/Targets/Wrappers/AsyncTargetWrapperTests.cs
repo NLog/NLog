@@ -584,8 +584,16 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void EventQueueGrow_OnQueueGrow()
         {
             int queueLimit = 2;
-            int loggedEventCount = 5;
-            int expectedGrowingNumber = 2;
+            int loggedEventCount = 10;
+
+            int expectedGrowingNumber = 0;
+
+        #if NETCOREAPP2_0
+            expectedGrowingNumber = loggedEventCount - queueLimit;
+        #else
+            expectedGrowingNumber = 3;
+        #endif
+
             int eventsCounter = 0;
             var myTarget = new MyTarget();
 
