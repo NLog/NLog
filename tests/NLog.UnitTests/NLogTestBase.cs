@@ -516,6 +516,8 @@ namespace NLog.UnitTests
 
             public InternalLoggerScope(bool redirectConsole = false)
             {
+                InternalLogger.LogLevel = LogLevel.Info;
+
                 if (redirectConsole)
                 {
                     ConsoleOutputWriter = new StringWriter() { NewLine = "\n" };
