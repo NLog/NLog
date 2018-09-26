@@ -210,43 +210,43 @@ namespace NLog.UnitTests.Targets.Wrappers
 	    [Fact]
 	    public void RaiseEventLogEventQueueGrow_OnLogItems()
 	    {
-	        int requestsLimit = 2;
-	        int eventsCount = 5;
-	        int countOfGrovingTimes = 0;
-	        int ExpectedCountOfGrovingTimes = 2;
+	        const int RequestsLimit = 2;
+	        const int EventsCount = 5;
+	        const int ExpectedCountOfGrovingTimes = 2;
+	        const int ExpectedFinalSize = 8;
+	        int grovingItemsCount = 0;
 
-	        AsyncRequestQueue requestQueue = new AsyncRequestQueue(requestsLimit, AsyncTargetWrapperOverflowAction.Grow);
+	        AsyncRequestQueue requestQueue = new AsyncRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Grow);
 
-	        requestQueue.LogEventQueueGrow += (o, e) => { countOfGrovingTimes++; };
+	        requestQueue.LogEventQueueGrow += (o, e) => { grovingItemsCount++; };
 
-	        for (int i = 0; i < eventsCount; i++)
+	        for (int i = 0; i < EventsCount; i++)
 	        {
 	            requestQueue.Enqueue(new AsyncLogEventInfo());
 	        }
 
-            Assert.Equal(ExpectedCountOfGrovingTimes, countOfGrovingTimes);
+            Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
+	        Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
 	    }
 
 	    [Fact]
-	    public void LogEventQueueGrow_OnLogItems()
+	    public void RaiseEventLogEventDropped_OnLogItems()
 	    {
-	        int requestsLimit = 2;
-	        int eventsCount = 5;
-	        int countOfGrovingTimes = 0;
-	        int expectedFinalSize = 8;
-	        int ExpectedCountOfGrovingTimes = 2;
+	        const int RequestsLimit = 2;
+	        const int EventsCount = 5;
+	        int discardedItemsCount = 0;
+	        
+	        int ExpectedDiscardedItemsCount = EventsCount - RequestsLimit;
+	        AsyncRequestQueue requestQueue = new AsyncRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Discard);
 
-	        AsyncRequestQueue requestQueue = new AsyncRequestQueue(requestsLimit, AsyncTargetWrapperOverflowAction.Grow);
+	        requestQueue.LogEventDropped+= (o, e) => { discardedItemsCount++; };
 
-	        requestQueue.LogEventQueueGrow += (o, e) => { countOfGrovingTimes++; };
-
-	        for (int i = 0; i < eventsCount; i++)
+	        for (int i = 0; i < EventsCount; i++)
 	        {
 	            requestQueue.Enqueue(new AsyncLogEventInfo());
 	        }
 
-	        Assert.Equal(ExpectedCountOfGrovingTimes, countOfGrovingTimes);
-            Assert.Equal(expectedFinalSize, requestQueue.RequestLimit);
+	        Assert.Equal(ExpectedDiscardedItemsCount, discardedItemsCount);
 	    }
     }
 }

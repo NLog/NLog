@@ -474,7 +474,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventsCounter = 0;
             var myTarget = new MyTarget();
 
-            var targetWrapper = new AsyncTargetWrapper()
+            var targetWrapper = new AsyncTargetWrapperForEventTests()
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
@@ -492,7 +492,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 for (int i = 0; i < loggedEventCount; i++)
                 {
-                    targetWrapper.RequestQueue.Enqueue(loginfo);
+                    targetWrapper.WriteEvent(loginfo);
                 }
                 
                 Assert.Equal(loggedEventCount - queueLimit, eventsCounter);
@@ -512,7 +512,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventsCounter = 0;
             var myTarget = new MyTarget();
 
-            var targetWrapper = new AsyncTargetWrapper()
+            var targetWrapper = new AsyncTargetWrapperForEventTests()
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
@@ -530,7 +530,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 for (int i = 0; i < loggedEventCount; i++)
                 {
-                    targetWrapper.RequestQueue.Enqueue(loginfo);
+                    targetWrapper.WriteEvent(loginfo);
                 }
                 
                 Assert.Equal(0, eventsCounter);
@@ -550,7 +550,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventsCounter = 0;
             var myTarget = new MyTarget();
 
-            var targetWrapper = new AsyncTargetWrapper()
+            var targetWrapper = new AsyncTargetWrapperForEventTests()
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
@@ -568,7 +568,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 for (int i = 0; i < loggedEventCount; i++)
                 {
-                    targetWrapper.RequestQueue.Enqueue(loginfo);
+                    targetWrapper.WriteEvent(loginfo);
                 }
                 
                 Assert.Equal(0, eventsCounter);
@@ -589,7 +589,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventsCounter = 0;
             var myTarget = new MyTarget();
 
-            var targetWrapper = new AsyncTargetWrapper()
+            var targetWrapper = new AsyncTargetWrapperForEventTests()
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
@@ -607,7 +607,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 for (int i = 0; i < loggedEventCount; i++)
                 {
-                    targetWrapper.RequestQueue.Enqueue(loginfo);
+                    targetWrapper.WriteEvent(loginfo);
                 }
                 
                 Assert.Equal(expectedGrowingNumber, eventsCounter);
@@ -616,6 +616,14 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 myTarget.Close();
                 targetWrapper.Close();
+            }
+        }
+
+        private class AsyncTargetWrapperForEventTests : AsyncTargetWrapper
+        {
+            public void WriteEvent(AsyncLogEventInfo logEventInfo)
+            {
+                Write(logEventInfo);
             }
         }
 
@@ -674,7 +682,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             public bool ThrowExceptions { get; set; }
         }
 
-        class MyTarget : Target
+        private class MyTarget : Target
         {
             public int FlushCount { get; set; }
             public int WriteCount { get; set; }

@@ -38,7 +38,7 @@ namespace NLog.Targets.Wrappers
     /// <summary> 
     /// Raises by  <see cref="AsyncRequestQueue"/> when 
     /// queue is full
-    /// and <see cref="AsyncRequestQueue.OnOverflow"/> setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
+    /// and <see cref="AsyncRequestQueueBase.OnOverflow"/> setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
     /// By default queue doubles it size.
     /// </summary>
     public class LogEventQueueGrowEventArgs : EventArgs
@@ -48,7 +48,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="newQueueSize">Required queue size</param>
         /// <param name="requestsCount">Current queue size</param>
-        public LogEventQueueGrowEventArgs(int newQueueSize, int requestsCount)
+        public LogEventQueueGrowEventArgs(long newQueueSize, long requestsCount)
         {
             NewQueueSize = newQueueSize;
             RequestsCount = requestsCount;
@@ -57,11 +57,11 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// New queue size
         /// </summary>
-        public int NewQueueSize { get; }
+        public long NewQueueSize { get; }
 
         /// <summary>
         /// Current requests count
         /// </summary>
-        public int RequestsCount { get; }
+        public long RequestsCount { get; }
     }
 }

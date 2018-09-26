@@ -50,7 +50,7 @@ namespace NLog.Targets
     {
         private readonly Timer _taskTimeoutTimer;
         private CancellationTokenSource _cancelTokenSource;
-        IAsyncRequestQueue _requestQueue;
+        AsyncRequestQueueBase _requestQueue;
         private readonly Action _taskCancelledToken;
         private readonly Action<Task, object> _taskCompletion;
         private Task _previousTask;
@@ -176,7 +176,7 @@ namespace NLog.Targets
 #if NET4_5 || NET4_0
             if (_forceLockingQueue.HasValue && _forceLockingQueue.Value != (_requestQueue is AsyncRequestQueue))
             {
-                _requestQueue = ForceLockingQueue ? (IAsyncRequestQueue)new AsyncRequestQueue(QueueLimit, OverflowAction) : new ConcurrentRequestQueue(QueueLimit, OverflowAction);
+                _requestQueue = ForceLockingQueue ? (AsyncRequestQueueBase)new AsyncRequestQueue(QueueLimit, OverflowAction) : new ConcurrentRequestQueue(QueueLimit, OverflowAction);
             }
 #endif
 

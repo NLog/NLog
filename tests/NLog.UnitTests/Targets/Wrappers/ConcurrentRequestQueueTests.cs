@@ -31,20 +31,53 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Targets.Wrappers
+using NLog.Common;
+using NLog.Targets.Wrappers;
+
+using Xunit;
+
+namespace NLog.UnitTests.Targets.Wrappers
 {
-    using System.Collections.Generic;
-    using NLog.Common;
-
-    internal interface IAsyncRequestQueue
+    public class ConcurrentRequestQueueTests : NLogTestBase
     {
-        bool IsEmpty { get; }
-        int RequestLimit { get; set; }
-        AsyncTargetWrapperOverflowAction OnOverflow { get; set; }
+        [Fact]
+        public void RaiseEventLogEventQueueGrow_OnLogItems()
+        {
+            const int RequestsLimit = 2;
+            const int EventsCount = 5;
+            const int ExpectedCountOfGrovingTimes = EventsCount - RequestsLimit;
+            int grovingItemsCount = 0;
 
-        bool Enqueue(AsyncLogEventInfo logEventInfo);
-        AsyncLogEventInfo[] DequeueBatch(int count);
-        void DequeueBatch(int count, IList<AsyncLogEventInfo> result);
-        void Clear();
+            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Grow);
+
+            requestQueue.LogEventQueueGrow += (o, e) => { grovingItemsCount++; };
+
+            for (int i = 0; i < EventsCount; i++)
+            {
+                requestQueue.Enqueue(new AsyncLogEventInfo());
+            }
+
+            Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
+        }
+
+        [Fact]
+        public void RaiseEventLogEventDropped_OnLogItems()
+        {
+            const int RequestsLimit = 2;
+            const int EventsCount = 5;
+            int discardedItemsCount = 0;
+	        
+            int ExpectedDiscardedItemsCount = EventsCount - RequestsLimit;
+            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Discard);
+
+            requestQueue.LogEventDropped+= (o, e) => { discardedItemsCount++; };
+
+            for (int i = 0; i < EventsCount; i++)
+            {
+                requestQueue.Enqueue(new AsyncLogEventInfo());
+            }
+
+            Assert.Equal(ExpectedDiscardedItemsCount, discardedItemsCount);
+        }
     }
 }

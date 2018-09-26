@@ -40,7 +40,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Asynchronous request queue.
     /// </summary>
-	internal class AsyncRequestQueue : IAsyncRequestQueue
+	internal class AsyncRequestQueue : AsyncRequestQueueBase
     {
         private readonly Queue<AsyncLogEventInfo> _logEventInfoQueue = new Queue<AsyncLogEventInfo>(1000);
 
@@ -56,27 +56,6 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Gets or sets the request limit.
-        /// </summary>
-        public int RequestLimit { get; set; }
-
-        /// <summary>
-        /// Gets or sets the action to be taken when there's no more room in
-        /// the queue and another request is enqueued.
-        /// </summary>
-        public AsyncTargetWrapperOverflowAction OnOverflow { get; set; }
-
-        /// <summary>
-        /// Notifies about log event that was dropped when <see cref="OnOverflow"/> setted to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
-        /// </summary>
-        public event EventHandler<LogEventDroppedEventArgs> LogEventDropped;
-
-        /// <summary>
-        /// Notifies when queue size is growing over <see cref="RequestLimit"/>
-        /// </summary>
-        public event EventHandler<LogEventQueueGrowEventArgs> LogEventQueueGrow;
-
-        /// <summary>
         /// Gets the number of requests currently in the queue.
         /// </summary>
         public int RequestCount
@@ -90,15 +69,15 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        public bool IsEmpty => RequestCount == 0;
+        public override bool IsEmpty => RequestCount == 0;
 
         /// <summary>
         /// Enqueues another item. If the queue is overflown the appropriate
-        /// action is taken as specified by <see cref="OnOverflow"/>.
+        /// action is taken as specified by <see cref="AsyncRequestQueueBase.OnOverflow"/>.
         /// </summary>
         /// <param name="logEventInfo">The log event info.</param>
         /// <returns>Queue was empty before enqueue</returns>
-        public bool Enqueue(AsyncLogEventInfo logEventInfo)
+        public override bool Enqueue(AsyncLogEventInfo logEventInfo)
         {
             lock (this)
             {
@@ -143,7 +122,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued (-1 means everything).</param>
         /// <returns>The array of log events.</returns>
-        public AsyncLogEventInfo[] DequeueBatch(int count)
+        public override AsyncLogEventInfo[] DequeueBatch(int count)
         {
             AsyncLogEventInfo[] resultEvents;
 
@@ -175,7 +154,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued</param>
         /// <param name="result">Preallocated list</param>
-        public void DequeueBatch(int count, IList<AsyncLogEventInfo> result)
+        public override void DequeueBatch(int count, IList<AsyncLogEventInfo> result)
         {
             lock (this)
             {
@@ -193,24 +172,12 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Clears the queue.
         /// </summary>
-        public void Clear()
+        public override void Clear()
         {
             lock (this)
             {
                 _logEventInfoQueue.Clear();
             }
         }
-
-        /// <summary>
-        /// Raise event when queued element was dropped because of queue overflow
-        /// </summary>
-        /// <param name="logEventInfo">Dropped queue item</param>
-        private void OnLogEventDropped(LogEventInfo logEventInfo) => LogEventDropped?.Invoke(this, new LogEventDroppedEventArgs(logEventInfo));
-
-        /// <summary>
-        /// Raise event when <see cref="RequestCount"/> overflow <see cref="RequestLimit"/>
-        /// </summary>
-        /// <param name="requestsCount"> current requests count</param>
-        private void OnLogEventQueueGrows(int requestsCount) => LogEventQueueGrow?.Invoke(this, new LogEventQueueGrowEventArgs(RequestLimit, requestsCount));
     }
 }

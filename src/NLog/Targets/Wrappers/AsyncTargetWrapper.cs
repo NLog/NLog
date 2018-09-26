@@ -161,9 +161,9 @@ namespace NLog.Targets.Wrappers
         {
             add
             {
-                if (_logEventDroppedEvent == null && RequestQueue != null )
+                if (_logEventDroppedEvent == null && _requestQueue != null )
                 {
-                    RequestQueue.LogEventDropped += OnRequestQueueDropItem;
+                    _requestQueue.LogEventDropped += OnRequestQueueDropItem;
                 }
 
                 _logEventDroppedEvent += value;
@@ -172,9 +172,9 @@ namespace NLog.Targets.Wrappers
             {
                 _logEventDroppedEvent -= value;
 
-                if (_logEventDroppedEvent == null && RequestQueue != null)
+                if (_logEventDroppedEvent == null && _requestQueue != null)
                 {
-                    RequestQueue.LogEventDropped -= OnRequestQueueDropItem;
+                    _requestQueue.LogEventDropped -= OnRequestQueueDropItem;
                 }
             }
         }
@@ -187,9 +187,9 @@ namespace NLog.Targets.Wrappers
         {
             add
             {
-                if (_eventQueueGrowEvent == null && RequestQueue != null)
+                if (_eventQueueGrowEvent == null && _requestQueue != null)
                 {
-                    RequestQueue.LogEventQueueGrow += OnRequestQueueGrow;
+                    _requestQueue.LogEventQueueGrow += OnRequestQueueGrow;
                 }
 
                 _eventQueueGrowEvent += value;
@@ -198,9 +198,9 @@ namespace NLog.Targets.Wrappers
             {
                 _eventQueueGrowEvent -= value;
 
-                if (_eventQueueGrowEvent == null && RequestQueue != null)
+                if (_eventQueueGrowEvent == null && _requestQueue != null)
                 {
-                    RequestQueue.LogEventQueueGrow -= OnRequestQueueGrow;
+                    _requestQueue.LogEventQueueGrow -= OnRequestQueueGrow;
                 }
             }
         }
@@ -247,7 +247,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the queue of lazy writer thread requests.
         /// </summary>
-        IAsyncRequestQueue _requestQueue;
+        AsyncRequestQueueBase _requestQueue;
 
         /// <summary>
         /// Schedules a flush of pending events in the queue (if any), followed by flushing the WrappedTarget.
@@ -259,6 +259,7 @@ namespace NLog.Targets.Wrappers
                 _flushEventsInQueueDelegate = FlushEventsInQueue;
             AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate, asyncContinuation);
         }
+        
         private Action<object> _flushEventsInQueueDelegate;
 
         /// <summary>
@@ -285,7 +286,7 @@ namespace NLog.Targets.Wrappers
 #if NET4_5 || NET4_0
             if (_forceLockingQueue.HasValue && _forceLockingQueue.Value != (_requestQueue is AsyncRequestQueue))
             {
-                _requestQueue = ForceLockingQueue ? (IAsyncRequestQueue)new AsyncRequestQueue(QueueLimit, OverflowAction) : new ConcurrentRequestQueue(QueueLimit, OverflowAction);
+                _requestQueue = ForceLockingQueue ? (AsyncRequestQueueBase)new AsyncRequestQueue(QueueLimit, OverflowAction) : new ConcurrentRequestQueue(QueueLimit, OverflowAction);
             }
 #endif
 

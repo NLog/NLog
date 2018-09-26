@@ -89,8 +89,7 @@ namespace NLog.UnitTests.Targets
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
 
-            var asyncTarget = new AsyncTaskTestTarget();
-            asyncTarget.Layout = "${threadid}|${level}|${message}";
+            var asyncTarget = new AsyncTaskTestTarget { Layout = "${threadid}|${level}|${message}" };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
             NLog.Common.InternalLogger.LogLevel = LogLevel.Off;
@@ -120,9 +119,11 @@ namespace NLog.UnitTests.Targets
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
 
-            var asyncTarget = new AsyncTaskTestTarget();
-            asyncTarget.Layout = "${level}";
-            asyncTarget.RetryDelayMilliseconds = 50;
+            var asyncTarget = new AsyncTaskTestTarget
+            {
+                Layout = "${level}",
+                RetryDelayMilliseconds = 50
+            };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
             Assert.True(asyncTarget.Logs.Count == 0);
@@ -155,9 +156,11 @@ namespace NLog.UnitTests.Targets
             {
                 ILogger logger = LogManager.GetCurrentClassLogger();
 
-                var asyncTarget = new AsyncTaskTestTarget();
-                asyncTarget.Layout = "${level}";
-                asyncTarget.TaskTimeoutSeconds = 1;
+                var asyncTarget = new AsyncTaskTestTarget
+                {
+                    Layout = "${level}",
+                    TaskTimeoutSeconds = 1
+                };
 
                 SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
                 Assert.True(asyncTarget.Logs.Count == 0);
@@ -186,10 +189,12 @@ namespace NLog.UnitTests.Targets
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
 
-            var asyncTarget = new AsyncTaskTestTarget();
-            asyncTarget.Layout = "${level}";
-            asyncTarget.RetryDelayMilliseconds = 10;
-            asyncTarget.RetryCount = 3;
+            var asyncTarget = new AsyncTaskTestTarget
+            {
+                Layout = "${level}",
+                RetryDelayMilliseconds = 10,
+                RetryCount = 3
+            };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
             Assert.True(asyncTarget.Logs.Count == 0);
@@ -221,10 +226,12 @@ namespace NLog.UnitTests.Targets
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
 
-            var asyncTarget = new AsyncTaskTestTarget();
-            asyncTarget.Layout = "${level}";
-            asyncTarget.RetryDelayMilliseconds = 10;
-            asyncTarget.RetryCount = 3;
+            var asyncTarget = new AsyncTaskTestTarget
+            {
+                Layout = "${level}",
+                RetryDelayMilliseconds = 10,
+                RetryCount = 3
+            };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
             Assert.True(asyncTarget.Logs.Count == 0);
@@ -256,10 +263,12 @@ namespace NLog.UnitTests.Targets
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
 
-            var asyncTarget = new AsyncTaskBatchTestTarget();
-            asyncTarget.Layout = "${level}";
-            asyncTarget.BatchSize = 3;
-            asyncTarget.TaskDelayMilliseconds = 10;
+            var asyncTarget = new AsyncTaskBatchTestTarget
+            {
+                Layout = "${level}",
+                BatchSize = 3,
+                TaskDelayMilliseconds = 10
+            };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
             Assert.True(asyncTarget.Logs.Count == 0);
@@ -288,10 +297,12 @@ namespace NLog.UnitTests.Targets
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
 
-            var asyncTarget = new AsyncTaskTestTarget();
-            asyncTarget.Layout = "${level}";
-            asyncTarget.BatchSize = 3;
-            asyncTarget.TaskDelayMilliseconds = 10;
+            var asyncTarget = new AsyncTaskTestTarget
+            {
+                Layout = "${level}",
+                BatchSize = 3,
+                TaskDelayMilliseconds = 10
+            };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
             Assert.True(asyncTarget.Logs.Count == 0);
