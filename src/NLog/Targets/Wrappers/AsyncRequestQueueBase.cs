@@ -40,7 +40,7 @@ namespace NLog.Targets.Wrappers
 
     internal abstract class AsyncRequestQueueBase
     {
-        public virtual bool IsEmpty { get; }
+        public abstract bool IsEmpty { get; }
 
         /// <summary>
         /// Gets or sets the request limit.
