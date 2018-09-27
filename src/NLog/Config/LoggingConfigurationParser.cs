@@ -87,6 +87,8 @@ namespace NLog.Config
                 }
             }
 
+            bool internalLoggerEnabled = false;
+
             //check first exception throwing and internal logging, so that erros in this section could be handled correctly
             {
                 if (dict.TryGetValue("THROWEXCEPTIONS", out var val))
@@ -97,7 +99,7 @@ namespace NLog.Config
             {
                 if (dict.TryGetValue("THROWCONFIGEXCEPTIONS", out var val))
                 {
-                    LogFactory.ThrowConfigExceptions = string.IsNullOrEmpty(val)
+                    LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(val)
                         ? (bool?)null
                         : ParseBooleanValue("ThrowConfigExceptions", val, false);
                 }
@@ -107,12 +109,13 @@ namespace NLog.Config
                 {
                     // expanding variables not possible here, they are created later
                     InternalLogger.LogLevel = ParseLogLevelSafe("InternalLogLevel", val, InternalLogger.LogLevel);
+                    internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
                 }
             }
 
             foreach (var configItem in dict)
             {
-                switch (configItem.Key?.Trim().ToUpperInvariant())
+                switch (configItem.Key.ToUpperInvariant())
                 {
                     case "USEINVARIANTCULTURE":
                         if (ParseBooleanValue(configItem.Key, configItem.Value, false))
@@ -158,11 +161,19 @@ namespace NLog.Config
                             ? (bool?)null
                             : ParseBooleanValue(configItem.Key, configItem.Value, true);
                         break;
+                    default:
+                        InternalLogger.Warn("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
+                        break;
                 }
             }
 
             if (internalLogFile != null)
                 InternalLogger.LogFile = internalLogFile;
+
+            if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())
+            {
+                InternalLogger.LogLevel = LogLevel.Off; // Reduce overhead of the InternalLogger when not configured
+            }
 
             _configurationItemFactory = ConfigurationItemFactory.Default;
             _configurationItemFactory.ParseMessageTemplates = parseMessageTemplates;
@@ -213,7 +224,7 @@ namespace NLog.Config
         {
             try
             {
-                var internalLogLevel = LogLevel.FromString(attributeValue);
+                var internalLogLevel = LogLevel.FromString(attributeValue?.Trim());
                 return internalLogLevel;
             }
             catch (Exception e)
@@ -1089,7 +1100,7 @@ namespace NLog.Config
         {
             try
             {
-                return Convert.ToBoolean(value, CultureInfo.InvariantCulture);
+                return Convert.ToBoolean(value?.Trim(), CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {

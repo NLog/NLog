@@ -34,9 +34,11 @@
 namespace NLog.UnitTests
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading;
     using NLog.Config;
+    using NLog.UnitTests.Mocks;
     using Xunit;
 
     public class LogFactoryTests : NLogTestBase
@@ -391,6 +393,44 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.ResumeLogging();
             Assert.True(factory.IsLoggingEnabled());
+        }
+
+
+        [Theory]
+        [MemberData(nameof(GetConfigFile_absolutePath_loads_testData))]
+        public void GetConfigFile_absolutePath_loads(string filename, string accepts, string expected, string baseDir)
+        {
+            // Arrange
+            var fileMock = new FileMock(f => f == accepts);
+            var factory = new LogFactory(null, fileMock);
+            var appDomain = LogFactory.CurrentAppDomain;
+
+            try
+            {
+                LogFactory.CurrentAppDomain = new AppDomainMock(baseDir);
+
+                // Act
+                var result = factory.GetConfigFile(filename);
+
+                // Assert
+                Assert.Equal(expected, result);
+            }
+            finally
+            {
+                //restore
+                LogFactory.CurrentAppDomain = appDomain;
+            }
+
+        }
+
+        public static IEnumerable<object[]> GetConfigFile_absolutePath_loads_testData()
+        {
+            var d = Path.DirectorySeparatorChar;
+            var baseDir = Path.GetTempPath();
+            var dirInBaseDir = $"{baseDir}dir1";
+            yield return new object[] { $"{baseDir}configfile", $"{baseDir}configfile", $"{baseDir}configfile", dirInBaseDir };
+            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog.config", $"{baseDir}dir1{d}nlog.config", dirInBaseDir }; //exists
+            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog2.config", "nlog.config", dirInBaseDir}; //not existing, fallback
         }
     }
 }
