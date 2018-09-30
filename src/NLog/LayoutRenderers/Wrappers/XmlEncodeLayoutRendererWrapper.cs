@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("XmlEncode")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlEncodeLayoutRendererWrapper" /> class.
@@ -83,9 +83,13 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
-        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
-        protected override void TransformFormattedMesssage(StringBuilder target)
+        protected override string Transform(string text)
         {
+            if (XmlEncode)
+            {
+                return XmlHelper.EscapeXmlString(text, XmlEncodeNewlines);
+            }
+            return text;
         }
 
         private bool RequiresXmlEncode(StringBuilder target, int startPos = 0)

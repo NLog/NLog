@@ -227,6 +227,34 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void XmlLayout_InvalidXmlPropertyName_RenderNameCorrect()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                IncludeAllProperties = true,
+                PropertiesElementName = "{0}",
+                PropertiesElementKeyAttribute = "",
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "message 1"
+            };
+            logEventInfo.Properties["1prop"] = "a";
+            logEventInfo.Properties["_2prop"] = "b";
+            logEventInfo.Properties[" 3prop"] = "c";
+            logEventInfo.Properties["_4 prop"] = "d";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><_1prop>a</_1prop><_2prop>b</_2prop><_3prop>c</_3prop><_4_prop>d</_4_prop></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
         public void XmlLayout_PropertiesAttributeNames_RenderPropertyName()
         {
             // Arrange

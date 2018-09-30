@@ -171,7 +171,13 @@ namespace NLog.Layouts
         public string PropertiesElementName
         {
             get => _propertiesElementName;
-            set { _propertiesElementName = value; _propertiesElementNameHasFormat = value?.IndexOf('{') >= 0; }
+            set
+            {
+                _propertiesElementName = value;
+                _propertiesElementNameHasFormat = value?.IndexOf('{') >= 0;
+                if (!_propertiesElementNameHasFormat)
+                    _propertiesElementName = XmlHelper.XmlConvertToElementName(value?.Trim(), true);
+            }
         }
         private string _propertiesElementName = DefaultPropertyName;
         private bool _propertiesElementNameHasFormat;
@@ -418,7 +424,7 @@ namespace NLog.Layouts
             string propNameElement = null;
             if (_propertiesElementNameHasFormat)
             {
-                propNameElement = XmlHelper.XmlConvertToStringSafe(propName);
+                propNameElement = XmlHelper.XmlConvertToElementName(propName, true);
                 sb.AppendFormat(PropertiesElementName, propNameElement);
             }
             else
