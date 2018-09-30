@@ -115,10 +115,10 @@ namespace NLog.UnitTests.Layouts
             {
                 Elements =
                 {
-                    new XmlLayout("message", "${message}"),
+                    new XmlLayout("message", "${message}") { IncludeEmptyValue = true },
                 },
-                IndentXml = true,
                 IncludeAllProperties = true,
+                IncludeEmptyValue = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -131,16 +131,11 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected =
- @"<logevent>
-  <message></message>
-  <property key=""nlogPropertyKey"">null</property>
-</logevent>";
-
+            const string expected = @"<logevent><message></message><property key=""nlogPropertyKey"">null</property></logevent>";
             Assert.Equal(expected, result);
         }
 
-        
+
         [Fact]
         public void XmlLayout_NoIndent_RendersOneLine()
         {
@@ -159,7 +154,7 @@ namespace NLog.UnitTests.Layouts
             var logEventInfo = new LogEventInfo
             {
                 Message = "message 1",
-                Level =  LogLevel.Debug
+                Level = LogLevel.Debug
             };
 
             logEventInfo.Properties["prop1"] = "a";
@@ -186,7 +181,6 @@ namespace NLog.UnitTests.Layouts
                 {
                     new XmlLayout("message", "${message}"),
                 },
-                IndentXml = true,
                 IncludeAllProperties = true,
                 ExcludeProperties = new HashSet<string> { "prop2" }
             };
@@ -203,13 +197,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected =
- @"<logevent>
-  <message>message 1</message>
-  <property key=""prop1"">a</property>
-  <property key=""prop3"">c</property>
-</logevent>";
-
+            const string expected = @"<logevent><message>message 1</message><property key=""prop1"">a</property><property key=""prop3"">c</property></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -219,8 +207,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IndentXml = true,
-                IncludeAllProperties = true
+                IncludeAllProperties = true,
             };
 
             var logEventInfo = new LogEventInfo
@@ -235,23 +222,16 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected =
-@"<logevent>
-  <property key=""prop1"">a</property>
-  <property key=""prop2"">b</property>
-  <property key=""prop3"">c</property>
-</logevent>";
-
+            const string expected = @"<logevent><property key=""prop1"">a</property><property key=""prop2"">b</property><property key=""prop3"">c</property></logevent>";
             Assert.Equal(expected, result);
         }
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyName()
+        public void XmlLayout_PropertiesAttributeNames_RenderPropertyName()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                IndentXml = true,
                 IncludeAllProperties = true,
                 PropertiesElementName = "p",
                 PropertiesElementKeyAttribute = "k",
@@ -269,12 +249,34 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected =
-                @"<logevent>
-  <p k=""prop1"" v=""a""></p>
-  <p k=""prop2"" v=""b""></p>
-</logevent>";
+            const string expected = @"<logevent><p k=""prop1"" v=""a""/><p k=""prop2"" v=""b""/></logevent>";
+            Assert.Equal(expected, result);
+        }
 
+        [Fact]
+        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyName()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                IncludeAllProperties = true,
+                PropertiesElementName = "{0}",
+                PropertiesElementKeyAttribute = "",
+                PropertiesElementValueAttribute = "v",
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "message 1"
+            };
+            logEventInfo.Properties["prop1"] = "a";
+            logEventInfo.Properties["prop2"] = "b";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><prop1 v=""a""/><prop2 v=""b""/></logevent>";
             Assert.Equal(expected, result);
         }
 
@@ -293,11 +295,9 @@ namespace NLog.UnitTests.Layouts
                             new XmlLayout("level", "${level}")
                         },
                         IncludeAllProperties = true,
-                        IndentXml = true
                     }
 
                 },
-                IndentXml = true
             };
 
             var logEventInfo = new LogEventInfo
@@ -312,14 +312,7 @@ namespace NLog.UnitTests.Layouts
             var result = xmlLayout.Render(logEventInfo);
 
             // Assert
-            const string expected =
-@"<logevent>
-  <message>message 1<level>Debug</level>
-    <property key=""prop1"">a</property>
-    <property key=""prop2"">b</property>
-    </message>
-</logevent>";
-
+            string expected = @"<logevent><message>message 1<level>Debug</level><property key=""prop1"">a</property><property key=""prop2"">b</property></message></logevent>";
             Assert.Equal(expected, result);
         }
     }

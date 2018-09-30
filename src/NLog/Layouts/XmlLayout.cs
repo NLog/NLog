@@ -102,6 +102,7 @@ namespace NLog.Layouts
         /// Auto indent and create new lines
         /// </summary>
         /// <docgen category='XML Options' order='10' />
+        [DefaultValue(false)]
         public bool IndentXml { get; set; }
 
         /// <summary>
@@ -122,12 +123,14 @@ namespace NLog.Layouts
         /// Gets or sets whether a ElementValue with empty value should be included in the output
         /// </summary>
         /// <docgen category='XML Options' order='10' />
+        [DefaultValue(false)]
         public bool IncludeEmptyValue { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
+        [DefaultValue(false)]
         public bool IncludeMdc { get; set; }
 
 #if !SILVERLIGHT
@@ -135,6 +138,7 @@ namespace NLog.Layouts
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
+        [DefaultValue(false)]
         public bool IncludeMdlc { get; set; }
 #endif
 
@@ -142,6 +146,7 @@ namespace NLog.Layouts
         /// Gets or sets the option to include all properties from the log event (as XML)
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
+        [DefaultValue(false)]
         public bool IncludeAllProperties { get; set; }
 
         /// <summary>
@@ -307,8 +312,6 @@ namespace NLog.Layouts
                     else
                     {
                         sb.Append('>');
-                        if (IndentXml)
-                            sb.AppendLine();
                     }
                 }
 
@@ -317,7 +320,7 @@ namespace NLog.Layouts
                     int beforeElementLength = sb.Length;
                     if (sb.Length == orgLength)
                     {
-                        BeginXmlDocument(sb, ElementName);
+                        RenderStartElement(sb, ElementName);
                     }
                     int beforeValueLength = sb.Length;
                     ElementValue.RenderAppendBuilder(logEvent, sb);
@@ -326,6 +329,9 @@ namespace NLog.Layouts
                         sb.Length = beforeElementLength;
                     }
                 }
+
+                if (IndentXml && sb.Length != orgLength)
+                    sb.AppendLine();
             }
 
             //Memory profiling pointed out that using a foreach-loop was allocating
