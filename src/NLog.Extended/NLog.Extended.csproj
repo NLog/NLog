@@ -41,8 +41,9 @@
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5 Extended Profile</Title>
-    <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType>pdbonly</DebugType>
+    <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
@@ -50,14 +51,16 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType>pdbonly</DebugType>
+    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5 Extended Profile</Title>
-    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType>pdbonly</DebugType>
+    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
