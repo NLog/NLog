@@ -185,29 +185,29 @@ namespace NLog.Layouts
             for (int i = 0; i < Columns.Count; i++)
             {
                 Layout columnLayout = Columns[i].Layout;
-                RenderColumnLayout(logEvent, columnLayout, target, i);
+                RenderColumnLayout(logEvent, columnLayout, Columns[i]._quoting ?? Quoting, target, i);
             }
         }
 
-        private void RenderColumnLayout(LogEventInfo logEvent, Layout columnLayout, StringBuilder target, int i)
+        private void RenderColumnLayout(LogEventInfo logEvent, Layout columnLayout, CsvQuotingMode quoting, StringBuilder target, int i)
         {
             if (i != 0)
             {
                 target.Append(_actualColumnDelimiter);
             }
 
-            if (Quoting == CsvQuotingMode.All)
+            if (quoting == CsvQuotingMode.All)
             {
                 target.Append(QuoteChar);
             }
 
             int orgLength = target.Length;
             columnLayout.RenderAppendBuilder(logEvent, target);
-            if (orgLength != target.Length && ColumnValueRequiresQuotes(target, orgLength))
+            if (orgLength != target.Length && ColumnValueRequiresQuotes(quoting, target, orgLength))
             {
                 string columnValue = target.ToString(orgLength, target.Length - orgLength);
                 target.Length = orgLength;
-                if (Quoting != CsvQuotingMode.All)
+                if (quoting != CsvQuotingMode.All)
                 {
                     target.Append(QuoteChar);
                 }
@@ -216,7 +216,7 @@ namespace NLog.Layouts
             }
             else
             {
-                if (Quoting == CsvQuotingMode.All)
+                if (quoting == CsvQuotingMode.All)
                 {
                     target.Append(QuoteChar);
                 }
@@ -238,13 +238,13 @@ namespace NLog.Layouts
                 CsvColumn col = Columns[i];
                 var columnLayout = new SimpleLayout(new LayoutRenderers.LayoutRenderer[] { new LayoutRenderers.LiteralLayoutRenderer(col.Name) }, col.Name, ConfigurationItemFactory.Default);
                 columnLayout.Initialize(LoggingConfiguration);
-                RenderColumnLayout(logEvent, columnLayout, sb, i);
+                RenderColumnLayout(logEvent, columnLayout, col._quoting ?? Quoting, sb, i);
             }
         }
 
-        private bool ColumnValueRequiresQuotes(StringBuilder sb, int startPosition)
+        private bool ColumnValueRequiresQuotes(CsvQuotingMode quoting, StringBuilder sb, int startPosition)
         {
-            switch (Quoting)
+            switch (quoting)
             {
                 case CsvQuotingMode.Nothing:
                     return false;
