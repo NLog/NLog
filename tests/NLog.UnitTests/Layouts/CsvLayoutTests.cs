@@ -108,7 +108,7 @@ namespace NLog.UnitTests.Layouts
                   <target name='f' type='File' fileName='" + tempFile + @"'>
                     <layout type='CSVLayout'>
                       <header>headertest</header>
-                      <column name='level' layout='${level}' />
+                      <column name='level' layout='${level}' quoting='Nothing' />
                       <column name='message' layout='${message}' />
                       <column name='counter' layout='${counter}' />
                       <delimiter>Comma</delimiter>
@@ -221,10 +221,10 @@ namespace NLog.UnitTests.Layouts
                 var ev = new LogEventInfo();
                 ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
                 ev.Level = LogLevel.Info;
-                ev.Message = "hello, world";
+                ev.Message = string.Concat(csvLayout.QuoteChar, "hello, world", csvLayout.QuoteChar);
 
                 string sep = delim.Value;
-                Assert.Equal("2010-01-01 12:34:56.0000" + sep + "Info" + sep + "hello, world", csvLayout.Render(ev));
+                Assert.Equal("2010-01-01 12:34:56.0000" + sep + "Info" + sep + "\"hello, world\"", csvLayout.Render(ev));
                 Assert.Equal("date" + sep + "level" + sep + "message;text", csvLayout.Header.Render(ev));
             }
         }
@@ -262,10 +262,10 @@ namespace NLog.UnitTests.Layouts
                 var ev = new LogEventInfo();
                 ev.TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56);
                 ev.Level = LogLevel.Info;
-                ev.Message = "hello, world";
+                ev.Message = string.Concat(csvLayout.QuoteChar, "hello, world", csvLayout.QuoteChar);
 
                 string sep = delim.Value;
-                Assert.Equal("'2010-01-01 12:34:56.0000'" + sep + "'Info'" + sep + "'hello, world'", csvLayout.Render(ev));
+                Assert.Equal("'2010-01-01 12:34:56.0000'" + sep + "'Info'" + sep + "'''hello, world'''", csvLayout.Render(ev));
                 Assert.Equal("'date'" + sep + "'level'" + sep + "'message;text'", csvLayout.Header.Render(ev));
             }
         }
@@ -366,7 +366,9 @@ namespace NLog.UnitTests.Layouts
             var r22 = csvLayout.Render(e2);
 
             var h11 = csvLayout.Header.Render(e1);
+            var h12 = csvLayout.Header.Render(e1);
             var h21 = csvLayout.Header.Render(e2);
+            var h22 = csvLayout.Header.Render(e2);
 
             Assert.Same(r11, r12);
             Assert.Same(r21, r22);
@@ -374,8 +376,9 @@ namespace NLog.UnitTests.Layouts
             Assert.NotSame(r11, r21);
             Assert.NotSame(r12, r22);
 
-            Assert.NotSame(h11, h21);
             Assert.Equal(h11, h21);
+            Assert.Same(h11, h12);
+            Assert.Same(h21, h22);
         }
     }
 }
