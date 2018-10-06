@@ -39,18 +39,17 @@ namespace NLog.Layouts
     public enum CsvQuotingMode
     {
         /// <summary>
-        /// Quote all column.
+        /// Quote all column (Fast)
         /// </summary>
         All,
 
         /// <summary>
-        /// Quote nothing.
+        /// Quote nothing (Very fast)
         /// </summary>
         Nothing,
 
         /// <summary>
-        /// Quote only whose values contain the quote symbol or
-        /// the separator.
+        /// Quote only whose values contain the quote symbol or the separator (Slow)
         /// </summary>
         Auto
     }

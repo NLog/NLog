@@ -108,7 +108,7 @@ namespace NLog.UnitTests.Layouts
                   <target name='f' type='File' fileName='" + tempFile + @"'>
                     <layout type='CSVLayout'>
                       <header>headertest</header>
-                      <column name='level' layout='${level}' />
+                      <column name='level' layout='${level}' quoting='Nothing' />
                       <column name='message' layout='${message}' />
                       <column name='counter' layout='${counter}' />
                       <delimiter>Comma</delimiter>
