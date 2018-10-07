@@ -293,6 +293,16 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeBadStringKeyDict_Test()
+        {
+            var dictionary = new Dictionary<string, string>();
+            dictionary.Add("\t", "Tab");
+            dictionary.Add("\n", "Newline");
+            var actual = SerializeObject(dictionary);
+            Assert.Equal("{\"\\t\":\"Tab\",\"\\n\":\"Newline\"}", actual);
+        }
+
+        [Fact]
         public void SerializeNull_Test()
         {
             var actual = SerializeObject(null);
