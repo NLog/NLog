@@ -522,10 +522,15 @@ namespace NLog.Targets
 
         private bool SerializeSimpleTypeCodeValue(object value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, bool forceQuotes = false)
         {
-            if (IsNumericTypeCode(objTypeCode, false))
+            if (objTypeCode == TypeCode.String || objTypeCode == TypeCode.Char)
             {
-                Enum enumValue;
-                if (!options.EnumAsInteger && (enumValue = value as Enum) != null)
+                destination.Append('"');
+                AppendStringEscape(destination, value.ToString(), options.EscapeUnicode);
+                destination.Append('"');
+            }
+            else if (IsNumericTypeCode(objTypeCode, false))
+            {
+                if (!options.EnumAsInteger && value is Enum enumValue)
                 {
                     QuoteValue(destination, EnumAsString(enumValue));
                 }
@@ -552,16 +557,7 @@ namespace NLog.Targets
                 }
                 else
                 {
-                    if (objTypeCode == TypeCode.Char)
-                    {
-                        destination.Append('"');
-                        AppendStringEscape(destination, str, options.EscapeUnicode);
-                        destination.Append('"');
-                    }
-                    else
-                    {
-                        QuoteValue(destination, str);
-                    }
+                    QuoteValue(destination, str);
                 }
             }
             return true;
