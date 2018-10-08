@@ -51,29 +51,106 @@ namespace NLog
     /// </remarks>
     public static class MappedDiagnosticsLogicalContext
     {
-
         private class ItemRemover : IDisposable
         {
-            private readonly string _item;
+            private readonly string _item1;
+#if NET4_5
+            // Optimized for HostingLogScope with 3 properties
+            private readonly string _item2;
+            private readonly string _item3;
+            private readonly string[] _itemArray;
+#endif
             //boolean as int to allow the use of Interlocked.Exchange
             private int _disposed = 0;
+            private readonly bool _wasEmpty = false;
 
-            public ItemRemover(string item)
+            public ItemRemover(string item, bool wasEmpty)
             {
-                _item = item;
+                _item1 = item;
+                _wasEmpty = wasEmpty;
             }
+
+#if NET4_5
+            public ItemRemover(IReadOnlyList<KeyValuePair<string,object>> items, bool wasEmpty)
+            {
+                int itemCount = items.Count;
+                if (itemCount > 2)
+                {
+                    _item1 = items[0].Key;
+                    _item2 = items[1].Key;
+                    _item3 = items[2].Key;
+                    for (int i = 3; i < itemCount; ++i)
+                    {
+                        _itemArray = _itemArray ?? new string[itemCount - 3];
+                        _itemArray[i - 3] = items[i].Key;
+                    }
+                }
+                else if (itemCount > 1)
+                {
+                    _item1 = items[0].Key;
+                    _item2 = items[1].Key;
+                }
+                else
+                {
+                    _item1 = items[0].Key;
+                }
+                _wasEmpty = wasEmpty;
+            }
+#endif
 
             public void Dispose()
             {
                 if (Interlocked.Exchange(ref _disposed, 1) == 0)
                 {
-                    Remove(_item);
+                    if (_wasEmpty)
+                    {
+#if NET4_5
+                        if (_itemArray == null)
+                        {
+                            var immutableDict = GetLogicalThreadDictionary(false);
+                            if ((immutableDict.Count == 1 && ReferenceEquals(_item2, null) && immutableDict.ContainsKey(_item1))
+                              || (immutableDict.Count == 2 && !ReferenceEquals(_item2, null) && ReferenceEquals(_item3, null) && immutableDict.ContainsKey(_item1) && immutableDict.ContainsKey(_item2) && !_item1.Equals(_item2))
+                              || (immutableDict.Count == 3 && !ReferenceEquals(_item3, null) && immutableDict.ContainsKey(_item1) && immutableDict.ContainsKey(_item2) && immutableDict.ContainsKey(_item3) && !_item1.Equals(_item2) && !_item1.Equals(_item3) && !_item2.Equals(_item3))
+                              )
+                            {
+                                Clear(true);
+                                return;
+                            }
+                        }
+#else
+                        var immutableDict = GetLogicalThreadDictionary(false);
+                        if (immutableDict.Count == 1 && immutableDict.ContainsKey(_item1))
+                        {
+                            Clear(true);
+                            return;
+                        }
+#endif
+                    }
+
+                    var dictionary = GetLogicalThreadDictionary(true);
+                    dictionary.Remove(_item1);
+#if NET4_5
+                    if (_item2 != null)
+                    {
+                        dictionary.Remove(_item2);
+                        if (_item3 != null)
+                            dictionary.Remove(_item3);
+                        if (_itemArray != null)
+                        {
+                            for (int i = 0; i < _itemArray.Length; ++i)
+                            {
+                                if (_itemArray[i] != null)
+                                    dictionary.Remove(_itemArray[i]);
+                            }
+                        }
+                    }
+#endif
                 }
             }
 
             public override string ToString()
             {
-                return _item?.ToString() ?? base.ToString();
+                return _item1?.ToString() ?? base.ToString();
             }
         }
 
@@ -82,8 +159,9 @@ namespace NLog
         /// In future the real ImmutableDictionary could be used here to minimize memory usage and copying time.
         /// </summary>
         /// <param name="clone">Must be true for any subsequent dictionary modification operation</param>
+        /// <param name="initialCapacity">Prepare dictionary for additional inserts</param>
         /// <returns></returns>
-        private static IDictionary<string, object> GetLogicalThreadDictionary(bool clone = false)
+        private static IDictionary<string, object> GetLogicalThreadDictionary(bool clone = false, int initialCapacity = 0)
         {
             var dictionary = GetThreadLocal();
             if (dictionary == null)
@@ -91,13 +169,16 @@ namespace NLog
                 if (!clone)
                     return EmptyDefaultDictionary;
 
-                dictionary = new Dictionary<string, object>();
+                dictionary = new Dictionary<string, object>(initialCapacity);
                 SetThreadLocal(dictionary);
             }
             else if (clone)
             {
-                dictionary = new Dictionary<string, object>(dictionary);
-                SetThreadLocal(dictionary);
+                var newDictionary = new Dictionary<string, object>(dictionary.Count + initialCapacity);
+                foreach (var keyValue in dictionary)
+                    newDictionary[keyValue.Key] = keyValue.Value;
+                SetThreadLocal(newDictionary);
+                return newDictionary;
             }
             return dictionary;
         }
@@ -176,10 +257,34 @@ namespace NLog
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
         public static IDisposable SetScoped<T>(string item, T value)
         {
-            Set<T>(item, value);
-            return new ItemRemover(item);
+            var logicalContext = GetLogicalThreadDictionary(true, 1);
+            bool wasEmpty = logicalContext.Count == 0;
+            SetItemValue(item, value, logicalContext);
+            return new ItemRemover(item, wasEmpty);
         }
 
+#if NET4_5
+        /// <summary>
+        /// Updates the current logical context with multiple items in single operation
+        /// </summary>
+        /// <param name="items">.</param>
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context (null if no items).</returns>
+        public static IDisposable SetScoped(IReadOnlyList<KeyValuePair<string,object>> items)
+        {
+            if (items?.Count > 0)
+            {
+                var logicalContext = GetLogicalThreadDictionary(true, items.Count);
+                bool wasEmpty = logicalContext.Count == 0;
+                for (int i = 0; i < items.Count; ++i)
+                {
+                    SetItemValue(items[i].Key, items[i].Value, logicalContext);
+                }
+                return new ItemRemover(items, wasEmpty);
+            }
+
+            return null;
+        }
+#endif
         /// <summary>
         /// Sets the current logical context item to the specified value.
         /// </summary>
@@ -207,14 +312,18 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set<T>(string item, T value)
         {
-            var logicalContext = GetLogicalThreadDictionary(true);
+            var logicalContext = GetLogicalThreadDictionary(true, 1);
+            SetItemValue(item, value, logicalContext);
+        }
+
+        private static void SetItemValue<T>(string item, T value, IDictionary<string, object> logicalContext)
+        {
 #if NET4_6 || NETSTANDARD
             logicalContext[item] = value;
 #else
             if (typeof(T).IsValueType || Convert.GetTypeCode(value) != TypeCode.Object)
                 logicalContext[item] = value;
-            else 
-
+            else
                 logicalContext[item] = new ObjectHandleSerializer(value);
 #endif
         }
@@ -252,7 +361,7 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            Clear(false);
+            Clear(true);
         }
 
         /// <summary>
@@ -271,7 +380,7 @@ namespace NLog
             }
         }
 
-        private static void SetThreadLocal(IDictionary<string, object> newValue)
+        private static void SetThreadLocal(Dictionary<string, object> newValue)
         {
 #if NET4_6 || NETSTANDARD
             AsyncLocalDictionary.Value = newValue;
@@ -283,7 +392,7 @@ namespace NLog
 #endif
         }
 
-        private static IDictionary<string, object> GetThreadLocal()
+        private static Dictionary<string, object> GetThreadLocal()
         {
 #if NET4_6 || NETSTANDARD
             return AsyncLocalDictionary.Value;
@@ -293,7 +402,7 @@ namespace NLog
         }
 
 #if NET4_6 || NETSTANDARD
-        private static readonly System.Threading.AsyncLocal<IDictionary<string, object>> AsyncLocalDictionary = new System.Threading.AsyncLocal<IDictionary<string, object>>();
+        private static readonly System.Threading.AsyncLocal<Dictionary<string, object>> AsyncLocalDictionary = new System.Threading.AsyncLocal<Dictionary<string, object>>();
 #else
         private const string LogicalThreadDictionaryKey = "NLog.AsyncableMappedDiagnosticsContext";
 #endif
