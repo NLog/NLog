@@ -154,6 +154,21 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(expectedMessage, actualMessage);
         }
 
+        [Fact]
+        public void FluentDelegateLayoutConfiguration()
+        {
+            var configuration = new LoggingConfiguration();
+
+            string expectedMessage = "Hello World";
+            string actualMessage = string.Empty;
+            configuration.AddRuleForAllLevels(new MethodCallTarget("Hello", (logEvent, parameters) => { actualMessage = string.Concat(parameters[0],"|",logEvent.Message); }, "${callsite:MethodName=false:IncludeNamespace=false}"));
+            LogManager.Configuration = configuration;
+
+            LogManager.GetCurrentClassLogger().Debug(expectedMessage);
+
+            Assert.Equal(string.Concat(nameof(MethodCallTests), "|", expectedMessage), actualMessage);
+        }
+
         private static void TestMethodCall(MethodCallRecord expected, string methodName, string className)
         {
             var target = new MethodCallTarget

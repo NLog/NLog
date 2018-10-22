@@ -104,6 +104,23 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="MethodCallTarget" /> class.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        /// <param name="logEventAction">Method to call on logevent.</param>
+        /// <param name="layouts">Layouts to render on logevent, render-result is returned to the method.</param>
+        public MethodCallTarget(string name, Action<LogEventInfo, object[]> logEventAction, params Layouts.Layout[] layouts) : this()
+        {
+            Name = name;
+            _logEventAction = logEventAction;
+            for (int i = 0; i < layouts?.Length; ++i)
+            {
+                var methodParam = new MethodCallParameter(string.Concat("Param", i.ToString()), layouts[i]);
+                Parameters.Add(methodParam);
+            }
+        }
+
+        /// <summary>
         /// Initializes the target.
         /// </summary>
         protected override void InitializeTarget()
