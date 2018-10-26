@@ -367,7 +367,10 @@ namespace NLog.Config
         {
             var nlogAssembly = typeof(ILogger).GetAssembly();
             var factory = new ConfigurationItemFactory(nlogAssembly);
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             factory.RegisterExtendedItems();
+#endif
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
             try
@@ -384,7 +387,7 @@ namespace NLog.Config
                         assemblyLocation = fileLocation.Key;
 
                     extensionDlls = GetNLogExtensionFiles(fileLocation.Key);
-                    if (extensionDlls.Length != 0)
+                    if (extensionDlls.Length > 0)
                     {
                         assemblyLocation = fileLocation.Key;
                         break;
@@ -539,6 +542,7 @@ namespace NLog.Config
         }
 #endif
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         /// <summary>
         /// Registers items in NLog.Extended.dll using late-bound types, so that we don't need a reference to NLog.Extended.dll.
         /// </summary>
@@ -569,5 +573,6 @@ namespace NLog.Config
                 _layoutRenderers.RegisterNamedType("aspnet-user-identity", layoutRenderersNamespace + ".AspNetUserIdentityLayoutRenderer" + suffix);
             }
         }
+#endif
     }
 }
