@@ -45,11 +45,7 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class SequenceIdLayoutRenderer : LayoutRenderer, IRawValue
     {
-        /// <summary>
-        /// Renders the current log sequence ID and appends it to the specified <see cref="StringBuilder"/>.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.AppendInvariant(GetValue(logEvent));

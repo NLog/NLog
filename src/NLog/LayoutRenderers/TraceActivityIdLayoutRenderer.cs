@@ -40,33 +40,35 @@ namespace NLog.LayoutRenderers
     using System.Globalization;
     using System.Text;
     using NLog.Config;
-	using NLog.Internal;
+    using NLog.Internal;
 
     /// <summary>
     /// A renderer that puts into log a System.Diagnostics trace correlation id.
     /// </summary>
     [LayoutRenderer("activityid")]
     [ThreadSafe]
-    public class TraceActivityIdLayoutRenderer : LayoutRenderer, IRawValue
+    public class TraceActivityIdLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
     {
-        /// <summary>
-        /// Renders the current trace activity ID.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            builder.Append(GetStringValue());
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
+
+        /// <inheritdoc />
+        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
+
+        private static string GetStringValue()
         {
             var activityId = GetValue();
             if (!Guid.Empty.Equals(activityId))
             {
-                builder.Append(activityId.ToString("D", CultureInfo.InvariantCulture));
+                return activityId.ToString("D", CultureInfo.InvariantCulture);
             }
-        }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue();
+            return string.Empty;
         }
 
         private static Guid GetValue()

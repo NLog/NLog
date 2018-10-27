@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("mdc")]
     [ThreadSafe]
-    public class MdcLayoutRenderer : LayoutRenderer, IRawValue
+    public class MdcLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
     {
         /// <summary>
         /// Gets or sets the name of the item.
@@ -58,30 +58,35 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='50' />
         public string Format { get; set; }
 
-        /// <summary>
-        /// Renders the specified MDC item and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            //don't use MappedDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
             var value = GetValue();
             var formatProvider = GetFormatProvider(logEvent, null);
             builder.AppendFormattedValue(value, Format, formatProvider);
         }
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
+
+        /// <inheritdoc/>
+        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+
+        private string GetStringValue(LogEventInfo logEvent)
         {
-            return GetValue();
+            if (Format != "@")
+            {
+                object value = GetValue();
+                string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, null));
+                return stringValue;
+            }
+            return null;
         }
 
         private object GetValue()
         {
+            //don't use MappedDiagnosticsContext.Get to ensure we are not locking the Factory (indirect by LogManager.Configuration).
             return MappedDiagnosticsContext.GetObject(Item);
         }
-
-       
     }
 }

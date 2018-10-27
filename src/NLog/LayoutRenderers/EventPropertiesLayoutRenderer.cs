@@ -46,16 +46,8 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     [ThreadSafe]
     [MutableUnsafe]
-    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue
+    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
     {
-        /// <summary>
-        ///  Log event context data with default options.
-        /// </summary>
-        public EventPropertiesLayoutRenderer()
-        {
-            Culture = CultureInfo.InvariantCulture;
-        }
-
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
@@ -74,13 +66,9 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the culture used for rendering. 
         /// </summary>
         /// <docgen category='Rendering Options' order='100' />
-        public CultureInfo Culture { get; set; }
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
-        /// <summary>
-        /// Renders the specified log event context item and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (GetValue(logEvent, out var value))
@@ -90,19 +78,34 @@ namespace NLog.LayoutRenderers
             }
         }
 
+        /// <inheritdoc/>
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            GetValue(logEvent, out var value);
+            return value;
+        }
+
+        /// <inheritdoc/>
+        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+
         private bool GetValue(LogEventInfo logEvent, out object value)
         {
             value = null;
             return logEvent.HasProperties && logEvent.Properties.TryGetValue(Item, out value);
         }
 
-        /// <summary>
-        /// Get raw value, updates the sequence
-        /// </summary>
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        private string GetStringValue(LogEventInfo logEvent)
         {
-            GetValue(logEvent, out var value);
-            return value;
+            if (Format != "@")
+            {
+                if (GetValue(logEvent, out var value))
+                {
+                    string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
+                    return stringValue;
+                }
+                return string.Empty;
+            }
+            return null;
         }
     }
 }

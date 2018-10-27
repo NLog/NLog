@@ -49,17 +49,21 @@ namespace NLog.Internal
         /// </remarks>
         internal static string ConvertToString(object o, IFormatProvider formatProvider)
         {
+
             // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
             if (formatProvider == null)
             {
                 if (!ObjectSupportsFormatProvider(o))
                     return o?.ToString() ?? string.Empty;
 
-                //variable so only 1 lock is needed
-                //TODO this locks the configuration, which can lead to deadlocks.
-                var loggingConfiguration = LogManager.Configuration;
-                if (loggingConfiguration != null)
-                    formatProvider = loggingConfiguration.DefaultCultureInfo;
+                if (o is IFormattable)
+                {
+                    //variable so only 1 lock is needed
+                    //TODO this locks the configuration, which can lead to deadlocks.
+                    var loggingConfiguration = LogManager.Configuration;
+                    if (loggingConfiguration != null)
+                        formatProvider = loggingConfiguration.DefaultCultureInfo;
+                }
             }
 
             return Convert.ToString(o, formatProvider);
@@ -71,8 +75,26 @@ namespace NLog.Internal
             {
                 case TypeCode.String:   return false;
                 case TypeCode.Empty:    return false;
-                case TypeCode.Object:   return o is IFormattable;
                 default:                return true;
+            }
+        }
+
+        internal static string TryFormatToString(object value, string format, IFormatProvider formatProvider)
+        {
+            if (!ObjectSupportsFormatProvider(value))
+                return value?.ToString() ?? string.Empty;
+
+            if (value is IFormattable formattable)
+            {
+                return formattable.ToString(format, formatProvider);
+            }
+            else if (value is System.Collections.IEnumerable)
+            {
+                return null;
+            }
+            else
+            {
+                return value.ToString() ?? string.Empty;
             }
         }
     }

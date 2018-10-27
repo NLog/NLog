@@ -31,13 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
@@ -64,13 +64,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public Func<LogEventInfo, LoggingConfiguration, object> RenderMethod { get; private set; }
 
-        #region Overrides of LayoutRenderer
-
-        /// <summary>
-        /// Renders the specified environmental information and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var value = GetValue(logEvent);
@@ -80,18 +74,13 @@ namespace NLog.LayoutRenderers
             }
         }
 
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+
         private object GetValue(LogEventInfo logEvent)
         {
             var renderMethod = RenderMethod?.Invoke(logEvent, LoggingConfiguration);
             return renderMethod;
-        }
-
-        #endregion
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue(logEvent);
         }
     }
 }

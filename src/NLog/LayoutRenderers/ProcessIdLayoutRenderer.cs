@@ -48,21 +48,14 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class ProcessIdLayoutRenderer : LayoutRenderer, IRawValue
     {
-        /// <summary>
-        /// Renders the current process ID.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.AppendInvariant(GetValue());
         }
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue();
-        }
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
 
         private static int GetValue()
         {

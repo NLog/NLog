@@ -55,11 +55,7 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool Invariant { get; set; }
 
-        /// <summary>
-        /// Renders the current process running time and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var ts = GetValue(logEvent);
@@ -68,17 +64,11 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue(logEvent);
-        }
-        
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+
         /// <summary>
         /// Write timestamp to builder with format hh:mm:ss:fff
         /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="ts"></param>
-        /// <param name="culture"></param>
         internal static void WritetTimestamp(StringBuilder builder, TimeSpan ts, CultureInfo culture)
         {
             string timeSeparator = ":";

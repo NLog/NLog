@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,56 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers
+namespace NLog.Internal
 {
-    using System;
-    using System.ComponentModel;
-    using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
-
     /// <summary>
-    /// The log level.
+    /// Supports rendering of string value without allocation (or seldom)
     /// </summary>
-    [LayoutRenderer("level")]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public class LevelLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
+    interface IRenderString
     {
         /// <summary>
-        /// Gets or sets a value indicating the output format of the level.
+        /// Renders the value of layout renderer in the context of the specified log event
         /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(LevelFormat.Name)]
-        public LevelFormat Format { get; set; }
-
-        /// <inheritdoc/>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            LogLevel level = GetValue(logEvent);
-            switch (Format)
-            {
-                case LevelFormat.Name:
-                    builder.Append(level.ToString());
-                    break;
-                case LevelFormat.FirstCharacter:
-                    builder.Append(level.ToString()[0]);
-                    break;
-                case LevelFormat.Ordinal:
-                    builder.AppendInvariant(level.Ordinal);
-                    break;
-            }
-        }
-
-        /// <inheritdoc/>
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
-
-        /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => Format == LevelFormat.Name ? GetValue(logEvent).ToString() : null;
-
-        private static LogLevel GetValue(LogEventInfo logEvent)
-        {
-            return logEvent.Level;
-        }
+        /// <param name="logEvent"></param>
+        /// <returns>null if not possible or unknown</returns>
+        string GetFormattedString(LogEventInfo logEvent);
     }
 }

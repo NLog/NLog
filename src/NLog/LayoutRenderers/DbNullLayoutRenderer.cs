@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-using System;
-using System.Text;
-using NLog.Config;
-using NLog.Internal;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// DB null for a database
     /// </summary>
@@ -47,21 +46,12 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     public class DbNullLayoutRenderer : LayoutRenderer, IRawValue
     {
-        /// <summary>
-        /// Empty append
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="logEvent"></param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            
         }
-
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return DBNull.Value;
-        }
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => DBNull.Value;
     }
 }
