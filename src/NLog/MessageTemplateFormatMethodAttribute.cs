@@ -35,7 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NLog
+namespace JetBrains.Annotations
 {
     /// <summary>
     /// Mark a parameter of a method for message templating

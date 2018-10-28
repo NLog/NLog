@@ -30,6 +30,7 @@ using System;
 // ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable InconsistentNaming
 
+// ReSharper disable once CheckNamespace
 namespace JetBrains.Annotations
 {
     /// <summary>
@@ -100,12 +101,12 @@ namespace JetBrains.Annotations
     [AttributeUsage(
       AttributeTargets.Constructor | AttributeTargets.Method |
       AttributeTargets.Property | AttributeTargets.Delegate)]
-    internal sealed class StringFormatMethodAttribute : Attribute
+    internal sealed class StringFormatMethodAttribute2 : Attribute
     {
         /// <param name="formatParameterName">
         /// Specifies which parameter of an annotated method should be treated as format-string
         /// </param>
-        public StringFormatMethodAttribute([NotNull] string formatParameterName)
+        public StringFormatMethodAttribute2([NotNull] string formatParameterName)
         {
             FormatParameterName = formatParameterName;
         }
