@@ -193,7 +193,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         { 
             if (IsEnabled(level))
@@ -221,7 +221,7 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log(LogLevel level, [Localizable(false)] string message, params object[] args) 
         { 
             if (IsEnabled(level))
@@ -253,7 +253,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="args">Arguments to format.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args)
         {
             if (IsEnabled(level))
@@ -270,7 +270,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> to be written.</param>
         /// <param name="args">Arguments to format.</param>
         /// <param name="exception">An exception to be logged.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log(LogLevel level, Exception exception, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
         {
             if (IsEnabled(level))
@@ -287,7 +287,7 @@ namespace NLog
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
         { 
             if (IsEnabled(level))
@@ -303,7 +303,7 @@ namespace NLog
         /// <param name="level">The log level.</param>
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument">The argument to format.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, [Localizable(false)] string message, TArgument argument)
         {
             if (IsEnabled(level))
@@ -322,7 +322,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
         { 
             if (IsEnabled(level))
@@ -340,7 +340,7 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing one format item.</param>
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log<TArgument1, TArgument2>(LogLevel level, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
         { 
             if (IsEnabled(level))
@@ -361,7 +361,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
         { 
             if (IsEnabled(level))
@@ -381,7 +381,7 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
-        [MessageTemplateFormatMethod("message")]
+        [StringFormatMethod("message")]
         public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
         { 
             if (IsEnabled(level))
