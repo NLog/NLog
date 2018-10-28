@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Config
 {
     using System;
@@ -39,6 +41,7 @@ namespace NLog.Config
     /// Attribute used to mark the default parameters for layout renderers.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
+    [MeansImplicitUse]
     public sealed class DefaultParameterAttribute : Attribute
     {
         /// <summary>
