@@ -250,6 +250,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
             logger.Debug(ex, "Foo");
             AssertDebugLastMessage("debug", "Foo," + ex.ToString());
+
+            logger.Debug(ex);
+            AssertDebugLastMessage("debug", ex.ToString());
         }
     }
 }

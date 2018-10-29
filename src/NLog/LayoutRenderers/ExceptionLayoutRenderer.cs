@@ -193,20 +193,31 @@ namespace NLog.LayoutRenderers
             Exception primaryException = logEvent.Exception;
             if (primaryException != null)
             {
-                AppendException(primaryException, Formats, builder);
-
                 int currentLevel = 0;
-                if (currentLevel < MaxInnerExceptionLevel)
-                {
-                    currentLevel = AppendInnerExceptionTree(primaryException, currentLevel, builder);
 
 #if !NET3_5 && !SILVERLIGHT4
-                    AggregateException asyncException = primaryException as AggregateException;
-                    if (asyncException != null)
+                if (logEvent.Exception is AggregateException aggregateException)
+                {
+                    aggregateException = aggregateException.Flatten();
+                    primaryException = aggregateException.InnerExceptions.Count == 1 ? aggregateException.InnerExceptions[0] : aggregateException;
+                    AppendException(primaryException, Formats, builder);
+                    if (currentLevel < MaxInnerExceptionLevel)
                     {
-                        AppendAggregateException(asyncException, currentLevel, builder);
+                        currentLevel = AppendInnerExceptionTree(primaryException, currentLevel, builder);
+                        if (currentLevel < MaxInnerExceptionLevel && aggregateException.InnerExceptions?.Count > 1)
+                        {
+                            AppendAggregateException(aggregateException, currentLevel, builder);
+                        }
                     }
+                }
+                else
 #endif
+                {
+                    AppendException(primaryException, Formats, builder);
+                    if (currentLevel < MaxInnerExceptionLevel)
+                    {
+                        AppendInnerExceptionTree(primaryException, currentLevel, builder);
+                    }
                 }
             }
         }
