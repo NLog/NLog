@@ -554,7 +554,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #else
         [Fact]
 #endif
-        public void AggregateExceptionTest()
+        public void AggregateExceptionMultiTest()
         {
             LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog>
@@ -593,6 +593,46 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug1", "Test exception 2");
             AssertDebugLastMessageContains("debug1", "Test Inner 1");
             AssertDebugLastMessageContains("debug1", "Test Inner 2");
+        }
+
+#if NET3_5
+        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#else
+        [Fact]
+#endif
+        public void AggregateExceptionSingleTest()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=message,shorttype:maxInnerExceptionLevel=5}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            var task1 = System.Threading.Tasks.Task.Factory.StartNew(() => { throw new Exception("Test exception 1", new Exception("Test Inner 1")); },
+                System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+
+            var aggregateExceptionMessage = "nothing thrown!";
+            try
+            {
+                System.Threading.Tasks.Task.WaitAll(new[] { task1 });
+            }
+            catch (AggregateException ex)
+            {
+                aggregateExceptionMessage = ex.ToString();
+                logger.Error(ex, "msg");
+            }
+
+            Assert.Contains(typeof(AggregateException).Name, aggregateExceptionMessage);
+            Assert.Contains("Test exception 1", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 1", aggregateExceptionMessage);
+
+            var lastMessage = GetDebugLastMessage("debug1");
+            Assert.StartsWith("Test exception 1", lastMessage);
+            Assert.Contains("Test Inner 1", lastMessage);
         }
 
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
