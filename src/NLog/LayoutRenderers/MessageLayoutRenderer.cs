@@ -79,11 +79,13 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            bool exceptionOnly = logEvent.Exception != null && WithException && logEvent.Parameters?.Length == 1 && ReferenceEquals(logEvent.Parameters[0], logEvent.Exception) && logEvent.Message == "{0}";
+
             if (Raw)
             {
                 builder.Append(logEvent.Message);
             }
-            else
+            else if (!exceptionOnly)
             {
                 if (ReferenceEquals(logEvent.MessageFormatter, LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter))
                 {
@@ -95,10 +97,20 @@ namespace NLog.LayoutRenderers
                     builder.Append(logEvent.FormattedMessage);
                 }
             }
+
             if (WithException && logEvent.Exception != null)
             {
-                builder.Append(ExceptionSeparator);
-                builder.Append(logEvent.Exception.ToString());
+                var primaryException = logEvent.Exception;
+#if !NET3_5 && !SILVERLIGHT4
+                if (logEvent.Exception is AggregateException aggregateException)
+                {
+                    aggregateException = aggregateException.Flatten();
+                    primaryException = aggregateException.InnerExceptions.Count == 1 ? aggregateException.InnerExceptions[0] : aggregateException;
+                }
+#endif
+                if (!exceptionOnly)
+                    builder.Append(ExceptionSeparator);
+                builder.Append(primaryException.ToString());
             }
         }
     }
