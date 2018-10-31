@@ -461,12 +461,11 @@ namespace NLog.Targets
                 case "MSSQL":
                 case "MICROSOFT":
                 case "MSDE":
-#if NETSTANDARD
                 case "SYSTEM.DATA.SQLCLIENT":
                     {
+#if NETSTANDARD
                         var assembly = Assembly.Load(new AssemblyName("System.Data.SqlClient"));
 #else
-                    {
                         var assembly = typeof(IDbConnection).GetAssembly();
 #endif
                         ConnectionType = assembly.GetType("System.Data.SqlClient.SqlConnection", true, true);
@@ -479,14 +478,18 @@ namespace NLog.Targets
                         ConnectionType = assembly.GetType("System.Data.OleDb.OleDbConnection", true, true);
                         break;
                     }
-
+#endif
                 case "ODBC":
+                case "SYSTEM.DATA.ODBC":
                     {
+#if NETSTANDARD
+                        var assembly = Assembly.Load(new AssemblyName("System.Data.Odbc"));
+#else
                         var assembly = typeof(IDbConnection).GetAssembly();
+#endif
                         ConnectionType = assembly.GetType("System.Data.Odbc.OdbcConnection", true, true);
                         break;
                     }
-#endif
                 default:
                     ConnectionType = Type.GetType(DBProvider, true, true);
                     break;
@@ -617,7 +620,10 @@ namespace NLog.Targets
                 using (IDbCommand command = _activeConnection.CreateCommand())
                 {
                     command.CommandText = RenderLogEvent(CommandText, logEvent);
-                    command.CommandType = CommandType;
+                    if (command.CommandType != CommandType)
+                    {
+                        command.CommandType = CommandType;  // Some DbProviders will throw when trying to modify CommandType
+                    }
 
                     InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, command.CommandType, command.CommandText);
 
