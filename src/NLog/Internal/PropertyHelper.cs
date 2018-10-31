@@ -55,6 +55,15 @@ namespace NLog.Internal
     {
         private static Dictionary<Type, Dictionary<string, PropertyInfo>> parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
+#pragma warning disable S1144 // Unused private types or members should be removed. BUT they help CoreRT to provide config through reflection
+        private static readonly RequiredParameterAttribute _requiredParameterAttribute = new RequiredParameterAttribute();
+        private static readonly ArrayParameterAttribute _arrayParameterAttribute = new ArrayParameterAttribute(null, string.Empty);
+        private static readonly DefaultValueAttribute _defaultValueAttribute = new DefaultValueAttribute(string.Empty);
+        private static readonly AdvancedAttribute _advancedAttribute = new AdvancedAttribute();
+        private static readonly DefaultParameterAttribute _defaultParameterAttribute = new DefaultParameterAttribute();
+        private static readonly FlagsAttribute _flagsAttribute = new FlagsAttribute();
+#pragma warning restore S1144 // Unused private types or members should be removed
+
         /// <summary>
         /// Set value parsed from string.
         /// </summary>
@@ -75,7 +84,7 @@ namespace NLog.Internal
 
             try
             {
-                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
+                if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
                 {
                     throw new NotSupportedException($"Parameter {propertyName} of {obj.GetType().Name} is an array and cannot be assigned a scalar value.");
                 }
@@ -128,7 +137,7 @@ namespace NLog.Internal
                 throw new NotSupportedException($"Parameter {propertyName} not supported on {t.Name}");
             }
 
-            return propInfo.IsDefined(typeof(ArrayParameterAttribute), false);
+            return propInfo.IsDefined(_arrayParameterAttribute.GetType(), false);
         }
 
         /// <summary>
@@ -177,7 +186,7 @@ namespace NLog.Internal
         {
             foreach (PropertyInfo propInfo in GetAllReadableProperties(o.GetType()))
             {
-                if (propInfo.IsDefined(typeof(RequiredParameterAttribute), false))
+                if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
                 {
                     object value = propInfo.GetValue(o, null);
                     if (value == null)
@@ -247,7 +256,7 @@ namespace NLog.Internal
                 return false;
             }
 
-            if (flagsEnumAllowed && resultType.IsDefined(typeof(FlagsAttribute), false))
+            if (flagsEnumAllowed && resultType.IsDefined(_flagsAttribute.GetType(), false))
             {
                 ulong union = 0;
 
@@ -454,7 +463,7 @@ namespace NLog.Internal
                     retVal[propInfo.Name] = propInfo;
                 }
 
-                if (propInfo.IsDefined(typeof(DefaultParameterAttribute), false))
+                if (propInfo.IsDefined(_defaultParameterAttribute.GetType(), false))
                 {
                     // define a property with empty name
                     retVal[string.Empty] = propInfo;
