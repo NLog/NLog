@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Config
 {
     using System;
@@ -40,6 +42,7 @@ namespace NLog.Config
     /// Specifies the mapping between XML elements and .NET types.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
+    [MeansImplicitUse]
     public sealed class ArrayParameterAttribute : Attribute
     {
         /// <summary>

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Config
 {
     using System;
@@ -42,6 +44,7 @@ namespace NLog.Config
     /// Attaches a simple name to an item (such as <see cref="Target"/>, 
     /// <see cref="LayoutRenderer"/>, <see cref="Layout"/>, etc.).
     /// </summary>
+    [MeansImplicitUse]
     public abstract class NameBaseAttribute : Attribute
     {
         /// <summary>
