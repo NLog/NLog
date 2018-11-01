@@ -55,15 +55,18 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (Length > 0)
+            if (Length <= 0)
             {
-                Inner.RenderAppendBuilder(logEvent, builder);
-                if (builder.Length - orgLength > Length)
-                {
-                    var rightStr = builder.ToString(builder.Length - Length, Length);
-                    builder.Length = orgLength;
-                    builder.Append(rightStr);
-                }
+                return;
+            }
+
+            Inner.RenderAppendBuilder(logEvent, builder);
+            var renderedLength = builder.Length - orgLength;
+            if (renderedLength > Length)
+            {
+                var rightStr = builder.ToString(builder.Length - Length, Length);
+                builder.Length = orgLength;
+                builder.Append(rightStr);
             }
         }
 
