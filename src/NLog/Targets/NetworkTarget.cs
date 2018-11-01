@@ -213,10 +213,6 @@ namespace NLog.Targets
         /// </summary>
         public System.Security.Authentication.SslProtocols SslProtocols { get; set; } = System.Security.Authentication.SslProtocols.None;
 
-        /// <summary>
-        /// Ignore SSL errors, such as expired or self-signed certificate errors.
-        /// </summary>
-        public bool IgnoreSslErrors { get; set; }
 #endif
 
         internal INetworkSenderFactory SenderFactory { get; set; }

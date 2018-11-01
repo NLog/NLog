@@ -69,7 +69,6 @@ namespace NLog.Internal.NetworkSenders
 
 #if !SILVERLIGHT
         internal System.Security.Authentication.SslProtocols SslProtocols { get; set; }
-        internal bool IgnoreSslErrors { get; set; }
 #endif
 
         /// <summary>
