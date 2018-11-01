@@ -70,7 +70,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc/>
         protected override string Transform(string text)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }
