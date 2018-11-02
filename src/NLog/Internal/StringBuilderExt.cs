@@ -342,29 +342,40 @@ namespace NLog.Internal
                 case TypeCode.Int16: sb.AppendInvariant((short)value); break;
                 case TypeCode.Int32: sb.AppendInvariant((int)value); break;
                 case TypeCode.Int64:
-                {
-                    long int64 = (long)value;
-                    if (int64 < int.MaxValue && int64 > int.MinValue)
-                        sb.AppendInvariant((int)int64);
-                    else
-                        sb.Append(int64);
-                }
+                    {
+                        long int64 = (long)value;
+                        if (int64 < int.MaxValue && int64 > int.MinValue)
+                            sb.AppendInvariant((int)int64);
+                        else
+                            sb.Append(int64);
+                    }
                     break;
                 case TypeCode.UInt16: sb.AppendInvariant((ushort)value); break;
                 case TypeCode.UInt32: sb.AppendInvariant((uint)value); break;
                 case TypeCode.UInt64:
-                {
-                    ulong uint64 = (ulong)value;
-                    if (uint64 < uint.MaxValue)
-                        sb.AppendInvariant((uint)uint64);
-                    else
-                        sb.Append(uint64);
-                }
+                    {
+                        ulong uint64 = (ulong)value;
+                        if (uint64 < uint.MaxValue)
+                            sb.AppendInvariant((uint)uint64);
+                        else
+                            sb.Append(uint64);
+                    }
                     break;
                 default:
                     sb.Append(XmlHelper.XmlConvertToString(value, objTypeCode));
                     break;
             }
+        }
+
+        public static void TrimRight(this StringBuilder sb, int startPos = 0)
+        {
+            int i = sb.Length - 1;
+            for (; i >= startPos; i--)
+                if (!char.IsWhiteSpace(sb[i]))
+                    break;
+
+            if (i < sb.Length - 1)
+                sb.Length = i + 1;
         }
     }
 }
