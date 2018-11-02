@@ -327,6 +327,46 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeIntegerKeyDict_Test()
+        {
+            var dictionary = new Dictionary<int, string>();
+            dictionary.Add(1, "One");
+            dictionary.Add(2, "Two");
+            var actual = _serializer.SerializeObject(dictionary);
+            Assert.Equal("{\"1\":\"One\",\"2\":\"Two\"}", actual);
+        }
+
+        [Fact]
+        public void SerializeEnumKeyDict_Test()
+        {
+            var dictionary = new Dictionary<ExceptionRenderingFormat, int>();
+            dictionary.Add(ExceptionRenderingFormat.Method, 4);
+            dictionary.Add(ExceptionRenderingFormat.StackTrace, 5);
+            var actual = _serializer.SerializeObject(dictionary);
+            Assert.Equal("{\"Method\":4,\"StackTrace\":5}", actual);
+        }
+
+        [Fact]
+        public void SerializeObjectKeyDict_Test()
+        {
+            var dictionary = new Dictionary<object, string>();
+            dictionary.Add(new { Name = "Hello" }, "World");
+            dictionary.Add(new { Name = "Goodbye" }, "Money");
+            var actual = _serializer.SerializeObject(dictionary);
+            Assert.Equal("{\"{ Name = Hello }\":\"World\",\"{ Name = Goodbye }\":\"Money\"}", actual);
+        }
+
+        [Fact]
+        public void SerializeBadStringKeyDict_Test()
+        {
+            var dictionary = new Dictionary<string, string>();
+            dictionary.Add("\t", "Tab");
+            dictionary.Add("\n", "Newline");
+            var actual = _serializer.SerializeObject(dictionary);
+            Assert.Equal("{\"\\t\":\"Tab\",\"\\n\":\"Newline\"}", actual);
+        }
+
+        [Fact]
         public void SerializeNull_Test()
         {
             var actual = _serializer.SerializeObject(null);
