@@ -447,7 +447,10 @@
                         writer.WriteStartElement("elementType");
                         writer.WriteAttributeString("name", GetTypeName(elementType));
                         writer.WriteAttributeString("elementTag", elementTag);
-                        this.DumpTypeMembers(writer, elementType);
+                        if (elementType != type)
+                        {
+                            this.DumpTypeMembers(writer, elementType);
+                        }
                         writer.WriteEndElement();
                     }
                     else
