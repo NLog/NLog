@@ -207,6 +207,14 @@ namespace NLog.Targets
         [DefaultValue("utf-8")]
         public Encoding Encoding { get; set; }
 
+#if !SILVERLIGHT
+        /// <summary>
+        /// Get or set the SSL/TLS protocols. Default no SSL/TLS is used. Currently only implemented for TCP.
+        /// </summary>
+        public System.Security.Authentication.SslProtocols SslProtocols { get; set; } = System.Security.Authentication.SslProtocols.None;
+
+#endif
+
         internal INetworkSenderFactory SenderFactory { get; set; }
 
         /// <summary>
@@ -279,7 +287,16 @@ namespace NLog.Targets
 
             if (KeepConnection)
             {
-                var senderNode = GetCachedNetworkSender(address);
+                LinkedListNode<NetworkSender> senderNode;
+                try
+                {
+                    senderNode = GetCachedNetworkSender(address);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "NetworkTarget(Name={0}): Failed to create sender to address: '{1}'", Name, address);
+                    throw;
+                }
 
                 ChunkedSend(
                     senderNode.Value,
@@ -297,7 +314,6 @@ namespace NLog.Targets
             }
             else
             {
-
                 NetworkSender sender;
                 LinkedListNode<NetworkSender> linkedListNode;
 
@@ -332,8 +348,15 @@ namespace NLog.Targets
                         }
                     }
 
-                    sender = SenderFactory.Create(address, MaxQueueSize);
-                    sender.Initialize();
+                    try
+                    {
+                        sender = CreateNetworkSender(address);
+                    }
+                    catch (Exception ex)
+                    {
+                        InternalLogger.Error(ex, "NetworkTarget(Name={0}): Failed to create sender to address: '{1}'", Name, address);
+                        throw;
+                    }
 
                     linkedListNode = _openNetworkSenders.AddLast(sender);
                 }
@@ -471,8 +494,7 @@ namespace NLog.Targets
                     }
                 }
 
-                var sender = SenderFactory.Create(address, MaxQueueSize);
-                sender.Initialize();
+                NetworkSender sender = CreateNetworkSender(address);
                 lock (_openNetworkSenders)
                 {
                     senderNode = _openNetworkSenders.AddLast(sender);
@@ -481,6 +503,18 @@ namespace NLog.Targets
                 _currentSenderCache.Add(address, senderNode);
                 return senderNode;
             }
+        }
+
+        private NetworkSender CreateNetworkSender(string address)
+        {
+#if !SILVERLIGHT
+            var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols);
+#else
+            var sender = SenderFactory.Create(address, MaxQueueSize);
+#endif
+            sender.Initialize();
+
+            return sender;
         }
 
         private void ReleaseCachedConnection(LinkedListNode<NetworkSender> senderNode)

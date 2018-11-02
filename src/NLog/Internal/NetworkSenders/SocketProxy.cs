@@ -35,7 +35,6 @@ namespace NLog.Internal.NetworkSenders
 {
     using System;
     using System.Net.Sockets;
-    using System.Security;
 
     /// <summary>
     /// Socket proxy for mocking Socket code.
@@ -68,42 +67,6 @@ namespace NLog.Internal.NetworkSenders
             _socket.Close();
         }
 
-#if USE_LEGACY_ASYNC_API
-        // emulate missing .NET CF behavior
-
-        /// <summary>
-        /// Invokes ConnectAsync method on the wrapped socket.
-        /// </summary>
-        /// <param name="args">The <see cref="SocketAsyncEventArgs"/> instance containing the event data.</param>
-        /// <returns>Result of original method.</returns>
-        public bool ConnectAsync(SocketAsyncEventArgs args)
-        {
-            this.socket.BeginConnect(args.RemoteEndPoint, args.EndConnect, this.socket);
-            return true;
-        }
-
-        /// <summary>
-        /// Invokes SendAsync method on the wrapped socket.
-        /// </summary>
-        /// <param name="args">The <see cref="SocketAsyncEventArgs"/> instance containing the event data.</param>
-        /// <returns>Result of original method.</returns>
-        public bool SendAsync(SocketAsyncEventArgs args)
-        {
-            this.socket.BeginSend(args.Buffer, args.Offset, args.Count, args.SocketFlags, args.EndSend, this.socket);
-            return true;
-        }
-
-        /// <summary>
-        /// Invokes SendToAsync method on the wrapped socket.
-        /// </summary>
-        /// <param name="args">The <see cref="SocketAsyncEventArgs"/> instance containing the event data.</param>
-        /// <returns>Result of original method.</returns>
-        public bool SendToAsync(SocketAsyncEventArgs args)
-        {
-            this.socket.BeginSendTo(args.Buffer, args.Offset, args.Count, args.SocketFlags, args.RemoteEndPoint, args.EndSendTo, this.socket);
-            return true;
-        }
-#else
         /// <summary>
         /// Invokes ConnectAsync method on the wrapped socket.
         /// </summary>
@@ -134,8 +97,6 @@ namespace NLog.Internal.NetworkSenders
         {
             return _socket.SendToAsync(args);
         }
-#endif
-
 #endif
 
         /// <summary>

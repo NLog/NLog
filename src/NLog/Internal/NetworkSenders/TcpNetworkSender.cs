@@ -67,17 +67,29 @@ namespace NLog.Internal.NetworkSenders
 
         internal int MaxQueueSize { get; set; }
 
+#if !SILVERLIGHT
+        internal System.Security.Authentication.SslProtocols SslProtocols { get; set; }
+#endif
+
         /// <summary>
         /// Creates the socket with given parameters. 
         /// </summary>
+        /// <param name="host">The host address.</param>
         /// <param name="addressFamily">The address family.</param>
         /// <param name="socketType">Type of the socket.</param>
         /// <param name="protocolType">Type of the protocol.</param>
         /// <returns>Instance of <see cref="ISocket" /> which represents the socket.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method")]
-        protected internal virtual ISocket CreateSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
+        protected internal virtual ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
-            return new SocketProxy(addressFamily, socketType, protocolType);
+            var socketProxy = new SocketProxy(addressFamily, socketType, protocolType);
+#if !NETSTANDARD1_0 && !SILVERLIGHT
+            if (SslProtocols != System.Security.Authentication.SslProtocols.None)
+            {
+                return new SslSocketProxy(host, SslProtocols, socketProxy);
+            }
+#endif
+            return socketProxy;
         }
 
         /// <summary>
@@ -86,15 +98,33 @@ namespace NLog.Internal.NetworkSenders
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Object is disposed in the event handler.")]
         protected override void DoInitialize()
         {
+            var uri = new Uri(Address);
             var args = new MySocketAsyncEventArgs();
             args.RemoteEndPoint = ParseEndpointAddress(new Uri(Address), AddressFamily);
             args.Completed += SocketOperationCompleted;
             args.UserToken = null;
 
-            _socket = CreateSocket(args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            _socket = CreateSocket(uri.Host, args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             _asyncOperationInProgress = true;
 
-            if (!_socket.ConnectAsync(args))
+            bool asyncOperation = false;
+            try
+            {
+                asyncOperation = _socket.ConnectAsync(args);
+            }
+            catch (SocketException ex)
+            {
+                args.SocketError = ex.SocketErrorCode;
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException is SocketException socketException)
+                    args.SocketError = socketException.SocketErrorCode;
+                else
+                    args.SocketError = SocketError.OperationAborted;
+            }
+
+            if (!asyncOperation)
             {
                 SocketOperationCompleted(_socket, args);
             }
@@ -264,7 +294,25 @@ namespace NLog.Internal.NetworkSenders
                 args = _pendingRequests.Dequeue();
 
                 _asyncOperationInProgress = true;
-                if (!_socket.SendAsync(args))
+
+                bool asyncOperation = false;
+                try
+                {
+                    asyncOperation = _socket.SendAsync(args);
+                }
+                catch (SocketException ex)
+                {
+                    args.SocketError = ex.SocketErrorCode;
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException is SocketException socketException)
+                        args.SocketError = socketException.SocketErrorCode;
+                    else
+                        args.SocketError = SocketError.OperationAborted;
+                }
+
+                if (!asyncOperation)
                 {
                     SocketOperationCompleted(_socket, args);
                 }
