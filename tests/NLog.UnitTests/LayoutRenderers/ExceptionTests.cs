@@ -399,13 +399,13 @@ namespace NLog.UnitTests.LayoutRenderers
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
 #pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
         }
 
@@ -429,8 +429,8 @@ namespace NLog.UnitTests.LayoutRenderers
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
             var lastMessage1 = GetDebugLastMessage("debug1");
-            Assert.StartsWith("{\"Message\":\"Wrapper2\"", lastMessage1);
-            Assert.Contains("\"InnerException\":{\"Message\":\"Wrapper1\"", lastMessage1);
+            Assert.StartsWith("{\"Type\":\"System.InvalidOperationException\", \"Message\":\"Wrapper2\"", lastMessage1);
+            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage1);
             Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage1);
             Assert.Contains("1Really_Bad_Boy_", lastMessage1);
 
@@ -438,8 +438,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
             logger.Error(ex, "msg");
             var lastMessage2 = GetDebugLastMessage("debug1");
-            Assert.StartsWith("{\"Message\":\"Wrapper2\"", lastMessage2);
-            Assert.Contains("\"InnerException\":{\"Message\":\"Wrapper1\"", lastMessage2);
+            Assert.StartsWith("{\"Type\":\"System.InvalidOperationException\", \"Message\":\"Wrapper2\"", lastMessage2);
+            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage2);
             Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage2);
             Assert.Contains("1Really_Bad_Boy_", lastMessage1);
         }
@@ -474,10 +474,10 @@ namespace NLog.UnitTests.LayoutRenderers
 #pragma warning restore 0618
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" +
                                              "\r\n----INNER----\r\n" +
-                                             "System.InvalidOperationException Wrapper1");
+                                             "System.ArgumentException Wrapper1");
             AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" +
                                                            "\r\n----INNER----\r\n" +
-                                                           "System.InvalidOperationException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
+                                                           "System.ArgumentException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
         [Fact]
@@ -507,10 +507,10 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" +
                                              "\r\n----INNER----\r\n" +
-                                             "System.InvalidOperationException Wrapper1");
+                                             "System.ArgumentException Wrapper1");
             AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" +
                                                            "\r\n----INNER----\r\n" +
-                                                           "System.InvalidOperationException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
+                                                           "System.ArgumentException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
         [Fact]
@@ -683,7 +683,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     }
                     catch (Exception exception)
                     {
-                        throw new InvalidOperationException("Wrapper1", exception);
+                        throw new System.ArgumentException("Wrapper1", exception);
                     }
                 }
                 catch (Exception exception)
@@ -754,13 +754,13 @@ namespace NLog.UnitTests.LayoutRenderers
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
 #pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
 
             var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
@@ -839,10 +839,10 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + "\r\ncustom-exception-renderer" +
                                              "\r\n----INNER----\r\n" +
-                                             "System.InvalidOperationException Wrapper1" + "\r\ncustom-exception-renderer");
+                                             "System.ArgumentException Wrapper1" + "\r\ncustom-exception-renderer");
             AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" + "\r\ncustom-exception-renderer" +
                                                            "\r\n----INNER----\r\n" +
-                                                           "System.InvalidOperationException Wrapper1" + "\r\ncustom-exception-renderer " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue + "\r\ncustom-exception-renderer-data"));
+                                                           "System.ArgumentException Wrapper1" + "\r\ncustom-exception-renderer " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue + "\r\ncustom-exception-renderer-data"));
         }
 
         [Fact]
