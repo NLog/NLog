@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using NLog.Config;
 using NLog.Internal;
@@ -50,13 +51,14 @@ namespace NLog.MessageTemplates
             set => _instance = value ?? new ValueFormatter();
         }
         private static IValueFormatter _instance;
+        private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 
         /// <summary>Singleton</summary>
         private ValueFormatter()
         {
         }
 
-        private const int MaxRecursionDepth = 10;
+        private const int MaxRecursionDepth = 2;
         private const int MaxValueLength = 512 * 1024;
         private const string LiteralFormatSymbol = "l";
 
@@ -230,13 +232,13 @@ namespace NLog.MessageTemplates
             IDictionary dictionary = collection as IDictionary;
             if (dictionary != null)
             {
-                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dictionary, ref objectsInPath, true))
+                using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(dictionary, ref objectsInPath, true, _referenceEqualsComparer))
                 {
                     return SerializeDictionaryObject(dictionary, format, formatProvider, builder, objectsInPath, depth);
                 }
             }
 
-            using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(collection, ref objectsInPath, true))
+            using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(collection, ref objectsInPath, true, _referenceEqualsComparer))
             {
                 return SerializeCollectionObject(collection, format, formatProvider, builder, objectsInPath, depth);
             }

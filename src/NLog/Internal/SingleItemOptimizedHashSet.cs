@@ -45,6 +45,9 @@ namespace NLog.Internal
     {
         private readonly T _singleItem;
         private HashSet<T> _hashset;
+        private readonly IEqualityComparer<T> _comparer;
+
+        private IEqualityComparer<T> Comparer => _comparer ?? EqualityComparer<T>.Default;
 
         public struct SingleItemScopedInsert : IDisposable
         {
@@ -57,7 +60,8 @@ namespace NLog.Internal
             /// <param name="singleItem">Item to insert in scope</param>
             /// <param name="existing">Existing hashset to update</param>
             /// <param name="forceHashSet">Force allocation of real hashset-container</param>
-            public SingleItemScopedInsert(T singleItem, ref SingleItemOptimizedHashSet<T> existing, bool forceHashSet)
+            /// <param name="comparer">HashSet EqualityComparer</param>
+            public SingleItemScopedInsert(T singleItem, ref SingleItemOptimizedHashSet<T> existing, bool forceHashSet, IEqualityComparer<T> comparer)
             {
                 _singleItem = singleItem;
                 if (existing._hashset != null)
@@ -67,13 +71,13 @@ namespace NLog.Internal
                 }
                 else if (forceHashSet)
                 {
-                    existing = new SingleItemOptimizedHashSet<T>(singleItem, existing);
+                    existing = new SingleItemOptimizedHashSet<T>(singleItem, existing, comparer);
                     existing.Add(singleItem);
                     _hashset = existing._hashset;
                 }
                 else
                 {
-                    existing = new SingleItemOptimizedHashSet<T>(singleItem, existing);
+                    existing = new SingleItemOptimizedHashSet<T>(singleItem, existing, comparer);
                     _hashset = null;
                 }
             }
@@ -87,21 +91,22 @@ namespace NLog.Internal
             }
         }
 
-        public int Count => _hashset?.Count ?? (EqualityComparer<T>.Default.Equals(_singleItem, default(T)) ? 0 : 1);
+        public int Count => _hashset?.Count ?? (EqualityComparer<T>.Default.Equals(_singleItem, default(T)) ? 0 : 1);   // Object Equals to default value
 
         public bool IsReadOnly => false;
 
-        public SingleItemOptimizedHashSet(T singleItem, SingleItemOptimizedHashSet<T> existing)
+        public SingleItemOptimizedHashSet(T singleItem, SingleItemOptimizedHashSet<T> existing, IEqualityComparer<T> comparer = null)
         {
+            _comparer = existing._comparer ?? comparer ?? EqualityComparer<T>.Default;
             if (existing._hashset != null)
             {
-                _hashset = new HashSet<T>(existing._hashset);
+                _hashset = new HashSet<T>(existing._hashset, _comparer);
                 _hashset.Add(singleItem);
                 _singleItem = default(T);
             }
             else if (existing.Count == 1)
             {
-                _hashset = new HashSet<T>();
+                _hashset = new HashSet<T>(_comparer);
                 _hashset.Add(existing._singleItem);
                 _hashset.Add(singleItem);
                 _singleItem = default(T);
@@ -125,7 +130,7 @@ namespace NLog.Internal
             }
             else
             {
-                var hashset = new HashSet<T>();
+                var hashset = new HashSet<T>(Comparer);
                 if (Count != 0)
                 {
                     hashset.Add(_singleItem);
@@ -146,7 +151,7 @@ namespace NLog.Internal
             }
             else
             {
-                _hashset = new HashSet<T>();
+                _hashset = new HashSet<T>(Comparer);
             }
         }
 
@@ -163,8 +168,7 @@ namespace NLog.Internal
             }
             else
             {
-                return EqualityComparer<T>.Default.Equals(_singleItem, item)
-                    && Count == 1;
+                return Count == 1 && Comparer.Equals(_singleItem, item);
             }
         }
 
@@ -181,8 +185,8 @@ namespace NLog.Internal
             }
             else
             {
-                _hashset = new HashSet<T>();
-                return EqualityComparer<T>.Default.Equals(_singleItem, item);
+                _hashset = new HashSet<T>(Comparer);
+                return Comparer.Equals(_singleItem, item);
             }
         }
 
@@ -228,6 +232,21 @@ namespace NLog.Internal
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public sealed class ReferenceEqualityComparer : IEqualityComparer<T>
+        {
+            public static readonly ReferenceEqualityComparer Default = new ReferenceEqualityComparer();
+
+            bool IEqualityComparer<T>.Equals(T x, T y)
+            {
+                return ReferenceEquals(x, y);
+            }
+
+            int IEqualityComparer<T>.GetHashCode(T obj)
+            {
+                return System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(obj);
+            }
         }
     }
 }

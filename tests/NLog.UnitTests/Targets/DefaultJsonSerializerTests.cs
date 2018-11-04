@@ -587,6 +587,16 @@ namespace NLog.UnitTests.Targets
             {
                 return GetEnumerator();
             }
+
+            public override bool Equals(object obj)
+            {
+                throw new Exception("object.Equals should never be called");
+            }
+
+            public override int GetHashCode()
+            {
+                throw new Exception("GetHashCode should never be called");
+            }
         }
     }
 }
