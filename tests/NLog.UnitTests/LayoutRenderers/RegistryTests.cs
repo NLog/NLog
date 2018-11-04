@@ -50,7 +50,6 @@ namespace NLog.UnitTests.LayoutRenderers
             key.SetValue(null, "UnnamedValue");
 
 #if !NET3_5
-
             //different keys because in 32bit the 64bits uses the 32
             RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry32).CreateSubKey("Software\\NLogTest").SetValue("view32", "reg32");
             RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64).CreateSubKey("Software\\NLogTest").SetValue("view64", "reg64");
@@ -59,9 +58,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         public void Dispose()
         {
-
 #if !NET3_5
-
             //different keys because in 32bit the 64bits uses the 32
             try
             {
@@ -234,34 +231,46 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void RegistryDefaultValueTest()
         {
-            //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=logdefaultvalue}",
+            using (new NoThrowNLogExceptions())
+            {
+                //example: 0003: NLog.UnitTests
+                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=logdefaultvalue}",
                 "logdefaultvalue");
+            }
         }
 
         [Fact]
         public void RegistryDefaultValueTest_with_colon()
         {
-            //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\:temp}",
+            using (new NoThrowNLogExceptions())
+            {
+                //example: 0003: NLog.UnitTests
+                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\:temp}",
                 "C:temp");
+            }
         }
 
 
         [Fact]
         public void RegistryDefaultValueTest_with_slash()
         {
-            //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C/temp}",
+            using (new NoThrowNLogExceptions())
+            {
+                //example: 0003: NLog.UnitTests
+                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C/temp}",
                 "C/temp");
+            }
         }
 
         [Fact]
         public void RegistryDefaultValueTest_with_foward_slash()
         {
-            //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\\\temp}",
+            using (new NoThrowNLogExceptions())
+            {
+                //example: 0003: NLog.UnitTests
+                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\\\temp}",
                 "C\\temp");
+            }
         }
 
 
@@ -269,30 +278,40 @@ namespace NLog.UnitTests.LayoutRenderers
         public void RegistryDefaultValueTest_with_foward_slash2()
         {
             //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\temp:requireEscapingSlashesInDefaultValue=false}",
+            using (new NoThrowNLogExceptions())
+            {
+                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT:defaultValue=C\\temp:requireEscapingSlashesInDefaultValue=false}",
                 "C\\temp");
+            }
         }
 
         [Fact]
         public void Registry_nosubky()
         {
-            //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${registry:key=HKEY_CURRENT_CONFIG}", "");
+            using (new NoThrowNLogExceptions())
+            {
+                //example: 0003: NLog.UnitTests
+                AssertLayoutRendererOutput("${registry:key=HKEY_CURRENT_CONFIG}", "");
+            }
         }
 
         [Fact]
         public void RegistryDefaultValueNull()
         {
-            //example: 0003: NLog.UnitTests
-            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT}", "");
+            using (new NoThrowNLogExceptions())
+            {
+                //example: 0003: NLog.UnitTests
+                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=HKLM/NOT_EXISTENT}", "");
+            }
         }
 
         [Fact]
         public void RegistryTestWrongKey_no_ex()
         {
-            LogManager.ThrowExceptions = false;
-
-            AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", "");
+            using (new NoThrowNLogExceptions())
+            {
+                AssertLayoutRendererOutput("${registry:value=NOT_EXISTENT:key=garabageHKLM/NOT_EXISTENT:defaultValue=empty}", "");
+            }
         }
 
         [Fact]

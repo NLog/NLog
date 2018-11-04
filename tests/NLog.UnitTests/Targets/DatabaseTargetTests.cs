@@ -678,13 +678,16 @@ Dispose()
             MockDbConnection.ClearLog();
             var exceptions = new List<Exception>();
 
-            var db = new DatabaseTarget();
-            db.CommandText = "not important";
-            db.ConnectionString = "cannotconnect";
-            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
-            db.Initialize(null);
-            db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            db.Close();
+            using (new NoThrowNLogExceptions())
+            {
+                var db = new DatabaseTarget();
+                db.CommandText = "not important";
+                db.ConnectionString = "cannotconnect";
+                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+                db.Initialize(null);
+                db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+                db.Close();
+            }
 
             Assert.Single(exceptions);
             Assert.NotNull(exceptions[0]);
@@ -698,16 +701,19 @@ Dispose()
             MockDbConnection.ClearLog();
             var exceptions = new List<Exception>();
 
-            var db = new DatabaseTarget();
-            db.CommandText = "not important";
-            db.ConnectionString = "cannotexecute";
-            db.KeepConnection = true;
-            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
-            db.Initialize(null);
-            db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            db.Close();
+            using (new NoThrowNLogExceptions())
+            {
+                var db = new DatabaseTarget();
+                db.CommandText = "not important";
+                db.ConnectionString = "cannotexecute";
+                db.KeepConnection = true;
+                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+                db.Initialize(null);
+                db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+                db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+                db.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+                db.Close();
+            }
 
             Assert.Equal(3, exceptions.Count);
             Assert.NotNull(exceptions[0]);
@@ -739,17 +745,20 @@ Dispose()
             MockDbConnection.ClearLog();
             var exceptions = new List<Exception>();
 
-            var db = new DatabaseTarget();
-            db.CommandText = "not important";
-            db.ConnectionString = "cannotexecute";
-            db.KeepConnection = true;
-            db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
-            db.Initialize(null);
-            db.WriteAsyncLogEvents(
-                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
-                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
-                LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
-            db.Close();
+            using (new NoThrowNLogExceptions())
+            {
+                var db = new DatabaseTarget();
+                db.CommandText = "not important";
+                db.ConnectionString = "cannotexecute";
+                db.KeepConnection = true;
+                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+                db.Initialize(null);
+                db.WriteAsyncLogEvents(
+                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add));
+                db.Close();
+            }
 
             Assert.Equal(3, exceptions.Count);
             Assert.NotNull(exceptions[0]);
@@ -1170,37 +1179,42 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         [Fact]
         public void NotRethrowingInstallExceptions()
         {
-            SetupSqliteConfigWithInvalidInstallCommand("not_rethrowing_install_exceptions");
+            using (new NoThrowNLogExceptions())
+            {
+                SetupSqliteConfigWithInvalidInstallCommand("not_rethrowing_install_exceptions");
 
-            // Default InstallationContext should not rethrow exceptions
-            InstallationContext context = new InstallationContext();
+                // Default InstallationContext should not rethrow exceptions
+                InstallationContext context = new InstallationContext();
 
-            Assert.False(context.IgnoreFailures, "Failures should not be ignored by default");
-            Assert.False(context.ThrowExceptions, "Exceptions should not be thrown by default");
+                Assert.False(context.IgnoreFailures, "Failures should not be ignored by default");
+                Assert.False(context.ThrowExceptions, "Exceptions should not be thrown by default");
 
-            var exRecorded = Record.Exception(() => LogManager.Configuration.Install(context));
-            Assert.Null(exRecorded);
+                var exRecorded = Record.Exception(() => LogManager.Configuration.Install(context));
+                Assert.Null(exRecorded);
+            }
         }
 
 
         [Fact]
         public void RethrowingInstallExceptions()
         {
-            SetupSqliteConfigWithInvalidInstallCommand("rethrowing_install_exceptions");
-
-            InstallationContext context = new InstallationContext()
+            using (new NoThrowNLogExceptions())
             {
-                ThrowExceptions = true
-            };
+                SetupSqliteConfigWithInvalidInstallCommand("rethrowing_install_exceptions");
 
-            Assert.True(context.ThrowExceptions);  // Sanity check
+                InstallationContext context = new InstallationContext()
+                {
+                    ThrowExceptions = true
+                };
+
+                Assert.True(context.ThrowExceptions);  // Sanity check
 
 #if MONO || NETSTANDARD
-            Assert.Throws<SqliteException>(() => LogManager.Configuration.Install(context));
+                Assert.Throws<SqliteException>(() => LogManager.Configuration.Install(context));
 #else
-            Assert.Throws<SQLiteException>(() => LogManager.Configuration.Install(context));
+                Assert.Throws<SQLiteException>(() => LogManager.Configuration.Install(context));
 #endif
-
+            }
         }
 
         [Fact]

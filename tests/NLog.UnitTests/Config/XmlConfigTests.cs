@@ -117,6 +117,7 @@ namespace NLog.UnitTests.Config
         public void InvalidInternalLogLevel_shouldNotSetLevel()
         {
             using (new InternalLoggerScope(true))
+            using (new NoThrowNLogExceptions())
             {
                 // Arrange
                 InternalLogger.LogLevel = LogLevel.Error;
@@ -135,6 +136,7 @@ namespace NLog.UnitTests.Config
         public void InvalidNLogAttributeValues_shouldNotBreakLogging()
         {
             using (new InternalLoggerScope(true))
+            using (new NoThrowNLogExceptions())
             {
                 // Arrange
                 var xml = @"<nlog internalLogLevel='oops' autoreload='woops' globalThreshold='noooos'>

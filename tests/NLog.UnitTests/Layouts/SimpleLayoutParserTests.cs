@@ -513,10 +513,13 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void InvalidLayoutWillParsePartly()
         {
-            SimpleLayout l = @"aaa ${iDontExist} bbb";
+            using (new NoThrowNLogExceptions())
+            {
+                SimpleLayout l = @"aaa ${iDontExist} bbb";
 
-            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
-            Assert.Equal("aaa  bbb", l.Render(le));
+                var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+                Assert.Equal("aaa  bbb", l.Render(le));
+            }
         }
 
         [Fact]

@@ -578,16 +578,20 @@ namespace NLog.UnitTests.Config
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
-            try {
-                var nlogConfigFile = Path.Combine(tempPath, "NLog.config");
-                WriteConfigFile(nlogConfigFile, invalidXmlConfig);
+            try
+            {
+                using (new NoThrowNLogExceptions())
+                {
+                    var nlogConfigFile = Path.Combine(tempPath, "NLog.config");
+                    WriteConfigFile(nlogConfigFile, invalidXmlConfig);
 
-                var invalidConfiguration = new XmlLoggingConfiguration(nlogConfigFile);
-                Assert.False(invalidConfiguration.InitializeSucceeded);
+                    var invalidConfiguration = new XmlLoggingConfiguration(nlogConfigFile);
+                    Assert.False(invalidConfiguration.InitializeSucceeded);
 
-                WriteConfigFile(nlogConfigFile, validXmlConfig);
-                var validReloadedConfiguration = (XmlLoggingConfiguration)invalidConfiguration.Reload();
-                Assert.True(validReloadedConfiguration.InitializeSucceeded);                
+                    WriteConfigFile(nlogConfigFile, validXmlConfig);
+                    var validReloadedConfiguration = (XmlLoggingConfiguration)invalidConfiguration.Reload();
+                    Assert.True(validReloadedConfiguration.InitializeSucceeded);
+                }
             }
             finally
             {

@@ -185,22 +185,25 @@ namespace NLog.UnitTests.Targets.Wrappers
                         continuationHit[eventNumber] = true;
                     };
 
-            // write 9 events - they will all be buffered and no final continuation will be reached
-            var eventCounter = 0;
-            for (var i = 0; i < 9; ++i)
+            using (new NoThrowNLogExceptions())
             {
+                // write 9 events - they will all be buffered and no final continuation will be reached
+                var eventCounter = 0;
+                for (var i = 0; i < 9; ++i)
+                {
+                    targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+                }
+
+                Assert.Equal(0, myTarget.WriteCount);
+
+                // write one more event - everything will be flushed
                 targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
+                Assert.Equal(1, myTarget.WriteCount);
+                Assert.Equal(10, myTarget2.WriteCount);
+
+                targetWrapper.Close();
+                myTarget.Close();
             }
-
-            Assert.Equal(0, myTarget.WriteCount);
-
-            // write one more event - everything will be flushed
-            targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(eventCounter++)));
-            Assert.Equal(1, myTarget.WriteCount);
-            Assert.Equal(10, myTarget2.WriteCount);
-
-            targetWrapper.Close();
-            myTarget.Close();
         }
 
         [Fact]
@@ -505,21 +508,24 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void WhenWrappedTargetThrowsExceptionThisIsHandled()
         {
-            var myTarget = new MyTarget { ThrowException = true };
-            var bufferingTargetWrapper = new BufferingTargetWrapper
+            using (new NoThrowNLogExceptions())
             {
-                WrappedTarget = myTarget,
-                FlushTimeout = -1
-            };
+                var myTarget = new MyTarget { ThrowException = true };
+                var bufferingTargetWrapper = new BufferingTargetWrapper
+                {
+                    WrappedTarget = myTarget,
+                    FlushTimeout = -1
+                };
 
-            InitializeTargets(myTarget, bufferingTargetWrapper);
-            bufferingTargetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
+                InitializeTargets(myTarget, bufferingTargetWrapper);
+                bufferingTargetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(_ => { }));
 
-            var flushHit = new ManualResetEvent(false);
-            bufferingTargetWrapper.Flush(ex => flushHit.Set());
-            flushHit.WaitOne();
+                var flushHit = new ManualResetEvent(false);
+                bufferingTargetWrapper.Flush(ex => flushHit.Set());
+                flushHit.WaitOne();
 
-            Assert.Equal(1, myTarget.FlushCount);
+                Assert.Equal(1, myTarget.FlushCount);
+            }
         }
 
         [Fact]
