@@ -23,7 +23,6 @@ Supported platforms:
 
 For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
-    
     </Description>
     <Product>NLog v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
@@ -56,13 +55,13 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'netstandard2.0' ">true</TreatWarningsAsErrors>
-
-    <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net45' ">Full</DebugType>
+    <PublishRepositoryUrl Condition=" '$(TRAVIS)' != 'true' ">true</PublishRepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(TRAVIS)' != 'true' ">pdbonly</DebugType>
     <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
 
@@ -72,12 +71,14 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType>pdbonly</DebugType>
     <DefineConstants>$(DefineConstants);NET4_0;WCF_SUPPORTED;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType>pdbonly</DebugType>
     <DefineConstants>$(DefineConstants);NET3_5;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
   
@@ -111,6 +112,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType>pdbonly</DebugType>
     <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT4;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
@@ -122,6 +124,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType>pdbonly</DebugType>
     <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT5;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
@@ -133,6 +136,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType>pdbonly</DebugType>
     <DefineConstants>$(DefineConstants);SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
   </PropertyGroup>
 
