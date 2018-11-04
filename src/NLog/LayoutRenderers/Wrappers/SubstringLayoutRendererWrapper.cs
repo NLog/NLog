@@ -111,15 +111,15 @@ namespace NLog.LayoutRenderers.Wrappers
         private int CalcStart(int textLength)
         {
             var start = Start;
-            //start <0, then from end
+            if (start > textLength)
+            {
+                start = textLength;
+            }
             if (start < 0)
             {
                 start = (textLength + start);
-            }
-
-            if (start < 0)
-            {
-                start = 0;
+                if (start < 0)
+                    start = 0;
             }
             return start;
         }
@@ -135,6 +135,10 @@ namespace NLog.LayoutRenderers.Wrappers
             if (Length.HasValue && textLength > Length.Value + start)
             {
                 length = Length.Value;
+            }
+            if (length < 0)
+            {
+                length = 0;
             }
             return length;
         }
