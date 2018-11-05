@@ -63,6 +63,8 @@ namespace NLog.Targets
 
         private static readonly DefaultJsonSerializer instance = new DefaultJsonSerializer();
 
+        private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
+
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
@@ -287,7 +289,7 @@ namespace NLog.Targets
 
         private static SingleItemOptimizedHashSet<object>.SingleItemScopedInsert StartScope(ref SingleItemOptimizedHashSet<object> objectsInPath, object value)
         {
-            return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true);
+            return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true, _referenceEqualsComparer);
         }
 
         private bool SerializeWithFormatProvider(object value, StringBuilder destination, JsonSerializeOptions options, IFormattable formattable, string format, bool hasFormat)
@@ -502,7 +504,7 @@ namespace NLog.Targets
                         options = instance._exceptionSerializeOptions;
                     }
 
-                    using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false))
+                    using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false, _referenceEqualsComparer))
                     {
                         return SerializeProperties(value, destination, options, objectsInPath, depth);
                     }

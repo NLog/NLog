@@ -493,6 +493,15 @@ namespace NLog.UnitTests.Fluent
             AssertDebugLastMessage("t2", "Message with 4,1 4,001 31-12-2016 00:00:00 True");
         }
 
+        [Fact]
+        public void LogBuilder_Structured_Logging_Test()
+        {
+            var logEvent = _logger.Info().Property("Property1Key", "Property1Value").Message("{@message}", "My custom message").LogEventInfo;
+            Assert.NotEmpty(logEvent.Properties);
+            Assert.Contains("message", logEvent.Properties.Keys);
+            Assert.Contains("Property1Key", logEvent.Properties.Keys);
+        }
+
         ///<remarks>
         /// func because 1 logbuilder creates 1 message
         /// 

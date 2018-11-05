@@ -737,9 +737,10 @@ namespace NLog
 
         private bool ResetMessageTemplateParameters()
         {
-            if (_properties != null && HasMessageTemplateParameters)
+            if (_properties != null)
             {
-                _properties.MessageProperties = null;
+                if (HasMessageTemplateParameters)
+                    _properties.MessageProperties = null;
                 return true;
             }
             return false;
