@@ -46,30 +46,36 @@ namespace NLog.UnitTests
         [Fact]
         public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog throwExceptions='false'>
-                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeto='test'></logger>
-                </rules>
-            </nlog>");
+            using (new NoThrowNLogExceptions())
+            {
+                LogManager.ThrowExceptions = true;
 
-            ILogger logger = LogManager.GetCurrentClassLogger();
-            logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
+                LogManager.Configuration = CreateConfigurationFromString(@"
+                <nlog throwExceptions='false'>
+                    <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeto='test'></logger>
+                    </rules>
+                </nlog>");
+
+                ILogger logger = LogManager.GetCurrentClassLogger();
+                logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
+            }
         }
 
         [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {
-            LogManager.ThrowExceptions = false;
-
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            using (new NoThrowNLogExceptions())
+            {
+                LogManager.Configuration = CreateConfigurationFromString(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
             </nlog>");
+            }
         }
 
         [Fact]

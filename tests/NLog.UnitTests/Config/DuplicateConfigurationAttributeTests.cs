@@ -41,23 +41,26 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ShouldWriteLogsOnDuplicateAttributeTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-                <nlog>
-                    <targets><target name='debug' type='debug' layout='${message}' /></targets>
-                    <rules>
-                        <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
-                            <filters>
-                                <whencontains layout='${message}' substring='msg' action='ignore' />
-                            </filters>
-                        </logger>
-                    </rules>
-                </nlog>");
+            using (new NoThrowNLogExceptions())
+            {
+                LogManager.Configuration = CreateConfigurationFromString(@"
+                    <nlog>
+                        <targets><target name='debug' type='debug' layout='${message}' /></targets>
+                        <rules>
+                            <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
+                                <filters>
+                                    <whencontains layout='${message}' substring='msg' action='ignore' />
+                                </filters>
+                            </logger>
+                        </rules>
+                    </nlog>");
 
-            var logger = LogManager.GetLogger("A");
-            string expectedMesssage = "some message";
-            logger.Info(expectedMesssage);
-            var actualMessage = GetDebugLastMessage("debug");
-            Assert.Equal(expectedMesssage, actualMessage);
+                var logger = LogManager.GetLogger("A");
+                string expectedMesssage = "some message";
+                logger.Info(expectedMesssage);
+                var actualMessage = GetDebugLastMessage("debug");
+                Assert.Equal(expectedMesssage, actualMessage);
+            }
         }
 
         [Fact]
@@ -65,17 +68,20 @@ namespace NLog.UnitTests.Config
         {
             var internalLog = RunAndCaptureInternalLog(() =>
             {
-                LogManager.Configuration = CreateConfigurationFromString(@"
-                <nlog>
-                    <targets><target name='debug' type='debug' layout='${message}' /></targets>
-                    <rules>
-                        <logger name='*' minlevel='info' minLevel='trace' appendto='debug'>
-                            <filters>
-                                <whencontains layout='${message}' substring='msg' Substring='msg1' action='ignore' />
-                            </filters>
-                        </logger>
-                    </rules>
-                </nlog>");
+                using (new NoThrowNLogExceptions())
+                {
+                    LogManager.Configuration = CreateConfigurationFromString(@"
+                    <nlog>
+                        <targets><target name='debug' type='debug' layout='${message}' /></targets>
+                        <rules>
+                            <logger name='*' minlevel='info' minLevel='trace' appendto='debug'>
+                                <filters>
+                                    <whencontains layout='${message}' substring='msg' Substring='msg1' action='ignore' />
+                                </filters>
+                            </logger>
+                        </rules>
+                    </nlog>");
+                }
             }, LogLevel.Error);
 
             Assert.True(internalLog.Contains("Duplicate attribute detected. Attribute name: [minLevel]. Duplicate value:[trace], Current value:[info]"), internalLog);

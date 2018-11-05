@@ -77,13 +77,16 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void WrapperTargetDefaultWriteTest()
         {
-            Exception lastException = null;
-            var wrapper = new MyWrapper();
-            wrapper.WrappedTarget = new MyWrappedTarget();
-            wrapper.Initialize(null);
-            wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => lastException = ex));
-            Assert.NotNull(lastException);
-            Assert.IsType<NotSupportedException>(lastException);
+            using (new NoThrowNLogExceptions())
+            {
+                Exception lastException = null;
+                var wrapper = new MyWrapper();
+                wrapper.WrappedTarget = new MyWrappedTarget();
+                wrapper.Initialize(null);
+                wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => lastException = ex));
+                Assert.NotNull(lastException);
+                Assert.IsType<NotSupportedException>(lastException);
+            }
         }
 
         public class MyWrapper : WrapperTargetBase

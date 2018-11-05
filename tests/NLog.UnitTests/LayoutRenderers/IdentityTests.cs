@@ -54,6 +54,11 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void WindowsIdentityTest()
         {
+#if NETSTANDARD
+            if (IsTravis())
+                return; // NetCore on Travis not supporting WindowsIdentity
+#endif
+
             var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
             var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
             if (!string.IsNullOrEmpty(userDomainName))

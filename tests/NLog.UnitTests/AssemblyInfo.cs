@@ -32,6 +32,8 @@
 // 
 
 using System.Reflection;
+using Xunit.Abstractions;
+using Xunit.Sdk;
 
 //
 // General Information about an assembly is controlled through the following 
@@ -49,3 +51,14 @@ using System.Reflection;
 [assembly: AssemblyVersion("1.0.0.0")]
 
 [assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
+
+[assembly: Xunit.TestFramework("NLogThrowExceptionsDefault", "NLog.UnitTests")]
+
+public class NLogThrowExceptionsDefault : XunitTestFramework
+{
+    public NLogThrowExceptionsDefault(IMessageSink messageSink)
+        :base(messageSink)
+    {
+        NLog.LogManager.ThrowExceptions = true; // Ensure exceptions are thrown by default during unit-testing
+    }
+}

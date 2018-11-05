@@ -611,11 +611,13 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WrongMyTargetShouldNotThrowExceptionWhenThrowExceptionsIsFalse()
         {
-            var target = new WrongMyTarget();
-            LogManager.ThrowExceptions = false;
-            SimpleConfigurator.ConfigureForTargetLogging(target);
-            var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
-            logger.Info("Testing");
+            using (new NoThrowNLogExceptions())
+            {
+                var target = new WrongMyTarget();
+                SimpleConfigurator.ConfigureForTargetLogging(target);
+                var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
+                logger.Info("Testing");
+            }
         }
 
 

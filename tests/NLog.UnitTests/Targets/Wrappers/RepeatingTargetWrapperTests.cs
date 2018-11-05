@@ -82,39 +82,42 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void RepeatingTargetWrapperTest2()
         {
-            var target = new MyTarget();
-            target.ThrowExceptions = true;
-            var wrapper = new RepeatingTargetWrapper()
+            using (new NoThrowNLogExceptions())
             {
-                WrappedTarget = target,
-                RepeatCount = 3,
-            };
-            wrapper.Initialize(null);
-            target.Initialize(null);
+                var target = new MyTarget();
+                target.ThrowExceptions = true;
+                var wrapper = new RepeatingTargetWrapper()
+                {
+                    WrappedTarget = target,
+                    RepeatCount = 3,
+                };
+                wrapper.Initialize(null);
+                target.Initialize(null);
 
-            var exceptions = new List<Exception>();
+                var exceptions = new List<Exception>();
 
-            var events = new []
-            {
-                new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "Logger2", "Hello").WithContinuation(exceptions.Add),
-            };
+                var events = new[]
+                {
+                    new LogEventInfo(LogLevel.Debug, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "Logger1", "Hello").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "Logger2", "Hello").WithContinuation(exceptions.Add),
+                };
 
-            wrapper.WriteAsyncLogEvents(events);
+                wrapper.WriteAsyncLogEvents(events);
 
-            // make sure all events went through but were registered only once
-            // since repeating target wrapper will not repeat in case of exception.
-            Assert.Equal(3, target.Events.Count);
-            Assert.Same(events[0].LogEvent, target.Events[0]);
-            Assert.Same(events[1].LogEvent, target.Events[1]);
-            Assert.Same(events[2].LogEvent, target.Events[2]);
+                // make sure all events went through but were registered only once
+                // since repeating target wrapper will not repeat in case of exception.
+                Assert.Equal(3, target.Events.Count);
+                Assert.Same(events[0].LogEvent, target.Events[0]);
+                Assert.Same(events[1].LogEvent, target.Events[1]);
+                Assert.Same(events[2].LogEvent, target.Events[2]);
 
-            Assert.Equal(events.Length, exceptions.Count);
-            foreach (var exception in exceptions)
-            {
-                Assert.NotNull(exception);
-                Assert.Equal("Some exception has occurred.", exception.Message);
+                Assert.Equal(events.Length, exceptions.Count);
+                foreach (var exception in exceptions)
+                {
+                    Assert.NotNull(exception);
+                    Assert.Equal("Some exception has occurred.", exception.Message);
+                }
             }
         }
 

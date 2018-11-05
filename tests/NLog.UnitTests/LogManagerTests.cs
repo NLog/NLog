@@ -98,19 +98,21 @@ namespace NLog.UnitTests
             FileTarget ft = new FileTarget();
             ft.FileName = ""; // invalid file name
             SimpleConfigurator.ConfigureForTargetLogging(ft);
-            LogManager.ThrowExceptions = false;
-            LogManager.GetLogger("A").Info("a");
-            LogManager.ThrowExceptions = true;
-            try
+
+            using (new NoThrowNLogExceptions())
             {
                 LogManager.GetLogger("A").Info("a");
-                Assert.True(false, "Should not be reached.");
+                LogManager.ThrowExceptions = true;
+                try
+                {
+                    LogManager.GetLogger("A").Info("a");
+                    Assert.True(false, "Should not be reached.");
+                }
+                catch
+                {
+                    Assert.True(true);
+                }
             }
-            catch
-            {
-                Assert.True(true);
-            }
-            LogManager.ThrowExceptions = false;
         }
 
         [Fact(Skip="Side effects to other unit tests.")]
@@ -469,8 +471,11 @@ namespace NLog.UnitTests
         [Fact]
         public void GetLogger_wrong_loggertype_should_continue()
         {
-            var instance = LogManager.GetLogger("a", typeof(ImNotALogger));
-            Assert.NotNull(instance);
+            using (new NoThrowNLogExceptions())
+            {
+                var instance = LogManager.GetLogger("a", typeof(ImNotALogger));
+                Assert.NotNull(instance);
+            }
         }
 
         /// <summary>
@@ -479,8 +484,11 @@ namespace NLog.UnitTests
         [Fact]
         public void GetLogger_wrong_loggertype_should_continue_even_if_class_is_static()
         {
-            var instance = LogManager.GetLogger("a", typeof(ImAStaticClass));
-            Assert.NotNull(instance);
+            using (new NoThrowNLogExceptions())
+            {
+                var instance = LogManager.GetLogger("a", typeof(ImAStaticClass));
+                Assert.NotNull(instance);
+            }
         }
 
         [Fact]

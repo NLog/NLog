@@ -407,22 +407,23 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Name = "AsyncTargetWrapperExceptionTest_Wrapper"
             };
 
-            LogManager.ThrowExceptions = false;
+            using (new NoThrowNLogExceptions())
+            {
+                targetWrapper.Initialize(null);
 
-            targetWrapper.Initialize(null);
+                // null out wrapped target - will cause exception on the timer thread
+                targetWrapper.WrappedTarget = null;
 
-            // null out wrapped target - will cause exception on the timer thread
-            targetWrapper.WrappedTarget = null;
+                string internalLog = RunAndCaptureInternalLog(
+                    () =>
+                    {
+                        targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+                        targetWrapper.Close();
+                    },
+                    LogLevel.Trace);
 
-            string internalLog = RunAndCaptureInternalLog(
-                () =>
-                {
-                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
-                    targetWrapper.Close();
-                },
-                LogLevel.Trace);
-
-            Assert.True(internalLog.Contains("WrappedTarget is NULL"), internalLog);
+                Assert.True(internalLog.Contains("WrappedTarget is NULL"), internalLog);
+            }
         }
 
         [Fact]

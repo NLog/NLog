@@ -370,13 +370,16 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageLengthWithOverflowDiscard_TheMessageIsNotWritten()
         {
-            const int maxMessageLength = 16384;
-            string messagePart1 = string.Join("", Enumerable.Repeat("a", maxMessageLength));
-            string messagePart2 = "b";
-            string testMessage = messagePart1 + messagePart2;
-            bool wasWritten = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Discard, maxMessageLength).Any();
+            using (new NoThrowNLogExceptions())
+            {
+                const int maxMessageLength = 16384;
+                string messagePart1 = string.Join("", Enumerable.Repeat("a", maxMessageLength));
+                string messagePart2 = "b";
+                string testMessage = messagePart1 + messagePart2;
+                bool wasWritten = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Discard, maxMessageLength).Any();
 
-            Assert.False(wasWritten);
+                Assert.False(wasWritten);
+            }
         }
 
 

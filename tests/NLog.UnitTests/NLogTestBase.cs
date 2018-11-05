@@ -72,7 +72,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
             InternalLogger.Reset();
             InternalLogger.LogLevel = LogLevel.Off;
-            LogManager.ThrowExceptions = false;
+            LogManager.ThrowExceptions = true;  // Ensure exceptions are thrown by default during unit-testing
             LogManager.ThrowConfigExceptions = null;
             System.Diagnostics.Trace.Listeners.Clear();
 #if !NETSTANDARD
@@ -377,8 +377,6 @@ namespace NLog.UnitTests
                 //ignore   
             }
 
-
-
             return new XmlLoggingConfiguration(doc.DocumentElement, currentDirectory);
         }
 
@@ -503,6 +501,22 @@ namespace NLog.UnitTests
         }
 
         public delegate void SyncAction();
+
+        public class NoThrowNLogExceptions : IDisposable
+        {
+            private readonly bool throwExceptions;
+
+            public NoThrowNLogExceptions()
+            {
+                throwExceptions = LogManager.ThrowExceptions;
+                LogManager.ThrowExceptions = false;
+            }
+
+            public void Dispose()
+            {
+                LogManager.ThrowExceptions = throwExceptions;
+            }
+        }
 
         public class InternalLoggerScope : IDisposable
         {

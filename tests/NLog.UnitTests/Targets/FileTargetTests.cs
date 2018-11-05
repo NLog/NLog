@@ -288,27 +288,30 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var fileTarget = WrapFileTarget(new FileTarget
+                using (new NoThrowNLogExceptions())
                 {
-                    FileName = logFile,
-                    Layout = "${level} ${message}",
-                    ConcurrentWrites = concurrentWrites,
-                    KeepFileOpen = keepFileOpen,
-                    NetworkWrites = networkWrites,
-                    ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                });
+                    var fileTarget = WrapFileTarget(new FileTarget
+                    {
+                        FileName = logFile,
+                        Layout = "${level} ${message}",
+                        ConcurrentWrites = concurrentWrites,
+                        KeepFileOpen = keepFileOpen,
+                        NetworkWrites = networkWrites,
+                        ForceManaged = forceManaged,
+                        ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                    });
 
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-                for (int i = 0; i < 300; i++)
-                {
-                    logger.Debug("aaa");
+                    for (int i = 0; i < 300; i++)
+                    {
+                        logger.Debug("aaa");
+                    }
+
+                    LogManager.Configuration = null;    // Flush
+
+                    Assert.True(DateTime.UtcNow - start < TimeSpan.FromSeconds(5));
                 }
-
-                LogManager.Configuration = null;    // Flush
-
-                Assert.True(DateTime.UtcNow - start < TimeSpan.FromSeconds(5));
             }
             finally
             {
@@ -813,32 +816,32 @@ namespace NLog.UnitTests.Targets
         [InlineData(false)]
         public void ReplaceFileContentsOnEachWrite_CreateDirs(bool createDirs)
         {
-
-            LogManager.ThrowExceptions = false;
-
             var tempPath = Path.Combine(Path.GetTempPath(), "dir_" + Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempPath, "log.log");
 
             try
             {
-                var target = new FileTarget
+                using (new NoThrowNLogExceptions())
                 {
-                    FileName = logfile,
-                    ReplaceFileContentsOnEachWrite = true,
-                    CreateDirs = createDirs
-                };
-                var config = new LoggingConfiguration();
+                    var target = new FileTarget
+                    {
+                        FileName = logfile,
+                        ReplaceFileContentsOnEachWrite = true,
+                        CreateDirs = createDirs
+                    };
+                    var config = new LoggingConfiguration();
 
-                config.AddTarget("logfile", target);
+                    config.AddTarget("logfile", target);
 
-                config.AddRuleForAllLevels(target);
+                    config.AddRuleForAllLevels(target);
 
-                LogManager.Configuration = config;
+                    LogManager.Configuration = config;
 
-                ILogger logger = LogManager.GetLogger("A");
-                logger.Info("a");
+                    ILogger logger = LogManager.GetLogger("A");
+                    logger.Info("a");
 
-                Assert.Equal(createDirs, Directory.Exists(tempPath));
+                    Assert.Equal(createDirs, Directory.Exists(tempPath));
+                }
             }
             finally
             {
@@ -3883,27 +3886,30 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void BatchErrorHandlingTest()
         {
-            var fileTarget = WrapFileTarget(new FileTarget { FileName = "${logger}", Layout = "${message}" });
-            fileTarget.Initialize(null);
-
-            // make sure that when file names get sorted, the asynchronous continuations are sorted with them as well
-            var exceptions = new List<Exception>();
-            var events = new[]
+            using (new NoThrowNLogExceptions())
             {
-                new LogEventInfo(LogLevel.Info, "file99.txt", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "", "msg2").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "", "msg3").WithContinuation(exceptions.Add)
-            };
+                var fileTarget = WrapFileTarget(new FileTarget { FileName = "${logger}", Layout = "${message}" });
+                fileTarget.Initialize(null);
 
-            fileTarget.WriteAsyncLogEvents(events);
-            LogManager.Flush();
+                // make sure that when file names get sorted, the asynchronous continuations are sorted with them as well
+                var exceptions = new List<Exception>();
+                var events = new[]
+                {
+                    new LogEventInfo(LogLevel.Info, "file99.txt", "msg1").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "", "msg1").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "", "msg2").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "", "msg3").WithContinuation(exceptions.Add)
+                };
 
-            Assert.Equal(4, exceptions.Count);
-            Assert.Null(exceptions[0]);
-            Assert.NotNull(exceptions[1]);
-            Assert.NotNull(exceptions[2]);
-            Assert.NotNull(exceptions[3]);
+                fileTarget.WriteAsyncLogEvents(events);
+                LogManager.Flush();
+
+                Assert.Equal(4, exceptions.Count);
+                Assert.Null(exceptions[0]);
+                Assert.NotNull(exceptions[1]);
+                Assert.NotNull(exceptions[2]);
+                Assert.NotNull(exceptions[3]);
+            }
         }
 
         [Fact]

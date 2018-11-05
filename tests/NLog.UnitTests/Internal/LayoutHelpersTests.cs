@@ -138,7 +138,7 @@ namespace NLog.UnitTests.Internal
 
         private static LogEventInfo CreateLogEvent(string input)
         {
-            var logEvent = new LogEventInfo();
+            var logEvent = LogEventInfo.CreateNullEvent();
             logEvent.Properties["val"] = input;
             return logEvent;
         }

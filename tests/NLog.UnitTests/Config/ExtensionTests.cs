@@ -432,7 +432,11 @@ namespace NLog.UnitTests.Config
                 ConfigurationItemFactory.Default = null; //build new factory next time
                 ConfigurationItemFactory.AssemblyLoading += onAssemblyLoading;
 
-                var configuration = CreateConfigurationFromString(@"
+                using(new NoThrowNLogExceptions())
+                {
+                    LogManager.ThrowExceptions = true;
+
+                    var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='false'>
     <targets>
         <target name='t' type='AutoLoadTarget' />
@@ -444,15 +448,16 @@ namespace NLog.UnitTests.Config
     </rules>
 </nlog>");
 
-                var autoLoadedTarget = configuration.FindTargetByName("t");
+                    var autoLoadedTarget = configuration.FindTargetByName("t");
 
-                if (cancel)
-                {
-                    Assert.Null(autoLoadedTarget);
-                }
-                else
-                {
-                    Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+                    if (cancel)
+                    {
+                        Assert.Null(autoLoadedTarget);
+                    }
+                    else
+                    {
+                        Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+                    }
                 }
             }
             finally
@@ -461,7 +466,6 @@ namespace NLog.UnitTests.Config
                 ConfigurationItemFactory.AssemblyLoading -= onAssemblyLoading;
                 ConfigurationItemFactory.Default.Clear();
                 ConfigurationItemFactory.Default = null; //build new factory next time
-
             }
         }
 

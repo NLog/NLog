@@ -96,8 +96,6 @@ namespace NLog.UnitTests.Internal
 
             var ex = CreateException(exceptionType);
             Assert.Equal(result, ex.MustBeRethrown());
-
-
         }
 
         [Theory]
