@@ -741,7 +741,8 @@ namespace NLog
             {
                 if (HasMessageTemplateParameters)
                     _properties.MessageProperties = null;
-                return true;
+
+                return _properties.MessageProperties.Count == 0;
             }
             return false;
         }
