@@ -4,6 +4,19 @@ Date format: (year/month/day)
 
 ## Change Log
 
+
+### V4.5.11 (2018/11/06)
+
+#### Enhancements
+
+- [#2985](https://github.com/NLog/NLog/pull/2985) LogBuilder - Support fluent assignment of message-template after properties (@snakefoot)
+- [#2983](https://github.com/NLog/NLog/pull/2983) JsonSerializer - Use ReferenceEquals instead of object.Equals when checking for cyclic object loops (#2983) (@snakefoot)
+- [#2988](https://github.com/NLog/NLog/pull/2988) NullAppender - Added missing SecuritySafeCritical (@snakefoot)
+
+#### Fixes
+
+- [#2987](https://github.com/NLog/NLog/pull/2987) JSON encoding should create valid JSON for non-string dictionary-keys (@snakefoot)
+
 ### V4.5.10 (2018/09/17)
 
 #### Fixes
