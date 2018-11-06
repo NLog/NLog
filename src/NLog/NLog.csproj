@@ -32,9 +32,15 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 
+## Enhancements
+
+- LogBuilder - Support fluent assignment of message-template after properties (@snakefoot)
+- JsonSerializer - Use ReferenceEquals instead of object.Equals when checking for cyclic object loops (#2983) (@snakefoot)
+- NullAppender - Added missing SecuritySafeCritical (@snakefoot)
+
 ## Fixes
 
--  Fix LoadConfiguration for not found config file (@snakefoot, 304NotModified)
+- JSON encoding should create valid JSON for non-string dictionary-keys (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
