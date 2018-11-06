@@ -565,6 +565,23 @@ namespace NLog
             }
         }
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+
+        /// <summary>
+        /// Configure the logmanager which will be reapplied after config reload
+        /// </summary>
+        /// <param name="configure">Alter the configuration.</param>
+        /// <returns>LogFactory instance for fluent interface</returns>
+        public void Configure([NotNull] Action<LoggingConfiguration> configure)
+        {
+            if (configure == null) throw new ArgumentNullException(nameof(configure));
+            configure(Configuration);
+
+            LogManager.ConfigurationReloaded += (sender, e) => configure(Configuration);
+        }
+
+#endif
+
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
         /// </summary>
@@ -944,7 +961,7 @@ namespace NLog
         /// </summary>
         private bool _isDisposing;
 
- 
+
 
         private void Close(TimeSpan flushTimeout)
         {
@@ -1587,5 +1604,7 @@ namespace NLog
                 InternalLogger.Error(ex, "Logger failed to shut down properly.");
             }
         }
+
+
     }
 }

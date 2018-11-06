@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog
 {
     using System;
@@ -145,6 +147,23 @@ namespace NLog
             factory.LoadConfiguration(configFile);
             return factory;
         }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+
+        /// <summary>
+        /// Configure the logmanager which will be reapplied after config reload
+        /// </summary>
+        /// <param name="configure">Alter the configuration.</param>
+        /// <returns>LogFactory instance for fluent interface</returns>
+        public static LogFactory Configure([NotNull] Action<LoggingConfiguration> configure)
+        {
+            if (configure == null) throw new ArgumentNullException(nameof(configure));
+
+            factory.Configure(configure);
+            return factory;
+        }
+
+#endif
 
         /// <summary>
         /// Gets or sets the global log threshold. Log events below this threshold are not logged.

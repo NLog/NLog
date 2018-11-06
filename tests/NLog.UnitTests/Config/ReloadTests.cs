@@ -33,6 +33,7 @@
 
 using System.Security;
 using System.Xml;
+using NLog.Targets;
 
 #if !MONO
 
@@ -558,9 +559,49 @@ namespace NLog.UnitTests.Config
             LogManager.Configuration = XmlLoggingConfigurationMock.CreateFromXml(config);
             LogManager.Configuration.Variables["var1"] = "new_value";
             LogManager.Configuration.Variables["var3"] = "new_value3";
-            LogManager.Configuration =  LogManager.Configuration.Reload();
+            LogManager.Configuration = LogManager.Configuration.Reload();
             Assert.Equal("", LogManager.Configuration.Variables["var1"].OriginalText);
             Assert.Equal("keep_value", LogManager.Configuration.Variables["var2"].OriginalText);
+
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void ConfigureShouldBeAppliedAfterReload(bool sameContent)
+        {
+            string config1 = @"<nlog autoReload='true'>
+                    <targets><target name='target1' type='Debug' layout='${message}' /></targets>
+                </nlog>";
+            string config2 = @"<nlog autoReload='true'>
+                     <targets><target name='target1' type='Debug' layout='${message}' /></targets>
+                </nlog>";
+
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempPath);
+
+            string configFilePath = Path.Combine(tempPath, "config.nlog");
+            WriteConfigFile(configFilePath, config1);
+
+            try
+            {
+                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+
+                // Act
+                LogManager.Configure(c => c.AddTarget(new FileTarget("target3")));
+                var newConfig = sameContent ? config1 : config2;
+                ChangeAndReloadConfigFile(configFilePath, newConfig, assertDidReload: true);
+
+                // Assert
+                Assert.NotNull(LogManager.Configuration.FindTargetByName<FileTarget>("target3"));
+
+
+            }
+            finally
+            {
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+            }
 
         }
 
@@ -670,12 +711,12 @@ namespace NLog.UnitTests.Config
             _xmlElement = element;
             _fileName = fileName;
 
-            
+
         }
 
-     
+
         private bool _reloading;
-      
+
 
         #region Overrides of XmlLoggingConfiguration
 
