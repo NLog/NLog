@@ -41,6 +41,7 @@ namespace NLog.Config
     using NLog.Common;
     using NLog.Internal;
     using NLog.Layouts;
+    using JetBrains.Annotations;
 #if SILVERLIGHT
 // ReSharper disable once RedundantUsingDirective
     using System.Windows;
@@ -213,6 +214,21 @@ namespace NLog.Config
                 Initialize(reader, fileName, ignoreErrors);
             }
         }
+
+
+        /// <summary>
+        /// Parse XML string as NLog configuration
+        /// </summary>
+        /// <param name="xml">NLog configuration</param>
+        /// <param name="baseDirectory">Base path for relative paths</param>
+        /// <returns></returns>
+        public static XmlLoggingConfiguration CreateFromXmlString(string xml, string baseDirectory = null)
+        {
+            var doc = new XmlDocument();
+            doc.LoadXml(xml);
+            
+            return new XmlLoggingConfiguration(doc.DocumentElement, baseDirectory);
+        }
 #endif
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
@@ -307,7 +323,7 @@ namespace NLog.Config
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        private void Initialize(XmlReader reader, string fileName, bool ignoreErrors)
+        private void Initialize([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors)
         {
             try
             {

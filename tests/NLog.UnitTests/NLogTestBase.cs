@@ -364,9 +364,6 @@ namespace NLog.UnitTests
 
         public static XmlLoggingConfiguration CreateConfigurationFromString(string configXml)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(configXml);
-
             string currentDirectory = null;
             try
             {
@@ -377,7 +374,7 @@ namespace NLog.UnitTests
                 //ignore   
             }
 
-            return new XmlLoggingConfiguration(doc.DocumentElement, currentDirectory);
+            return XmlLoggingConfiguration.CreateFromXmlString(configXml, currentDirectory);
         }
 
         protected string RunAndCaptureInternalLog(SyncAction action, LogLevel internalLogLevel)
@@ -413,7 +410,7 @@ namespace NLog.UnitTests
                         throw;
                     }
                 }
-               
+
             }
         }
 
