@@ -229,7 +229,7 @@ namespace NLog
                     // Retest the condition as we might have loaded a config.
                     if (_config == null)
                     {
-                        TryLoadFromFilePaths();
+                        TryLoadFromFilePaths(out _config);
                     }
 
                     if (_config != null)
@@ -328,7 +328,7 @@ namespace NLog
 
 #if __ANDROID__
 
-        private void TryLoadFromAndroidAssets()
+        private bool TryLoadFromAndroidAssets(out LoggingConfiguration config)
         {
 //try nlog.config in assets folder
             const string nlogConfigFilename = "NLog.config";
@@ -338,7 +338,8 @@ namespace NLog
                 {
                     if (stream != null)
                     {
-                        _config = LoadXmlLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
+                        config = LoadXmlLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
+                        return true;
                     }
                 }
             }
@@ -346,21 +347,26 @@ namespace NLog
             {
                 InternalLogger.Trace(e, "no {0} in assets folder", nlogConfigFilename);
             }
+            config = null;
+            return false;
         }
 
 #endif
 
-        private void TryLoadFromFilePaths()
+        internal bool TryLoadFromFilePaths(out LoggingConfiguration config)
         {
             var configFileNames = GetCandidateConfigFilePaths();
             foreach (string configFile in configFileNames)
             {
-                if (TryLoadLoggingConfiguration(configFile, out _config))
-                    return;
+                if (TryLoadLoggingConfiguration(configFile, out config))
+                    return true;
             }
 
 #if __ANDROID__
-            TryLoadFromAndroidAssets();
+            return TryLoadFromAndroidAssets(out config);
+#else
+            config = null;
+            return false;
 #endif
         }
 
@@ -383,6 +389,30 @@ namespace NLog
             }
         }
 #endif
+
+        /// <summary>
+        /// Support for 
+        /// </summary>
+        public LogFactory BuildConfig(Action<ConfigurationBuilder> buildAction)
+        {
+            var configLoaded = _configLoaded;
+            var configBuilder = new ConfigurationBuilder(this, configLoaded ? Configuration : null);
+            buildAction(configBuilder);
+            var configuration = configBuilder.Build();
+            if (configuration != null)
+            {
+                if (configLoaded && ReferenceEquals(configuration, _config))
+                {
+                    Configuration.Reload();
+                    ReconfigExistingLoggers();
+                }
+                else
+                {
+                    Configuration = configuration;
+                }
+            }
+            return this;
+        }
 
         /// <summary>
         /// Gets or sets the global log level threshold. Log events below this threshold are not logged.
