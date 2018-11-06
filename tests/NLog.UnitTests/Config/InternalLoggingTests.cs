@@ -34,6 +34,7 @@
 using System;
 using System.IO;
 using System.Text;
+using NLog.Config;
 
 namespace NLog.UnitTests.Config
 {
@@ -73,7 +74,7 @@ namespace NLog.UnitTests.Config
                 LogManager.ThrowConfigExceptions = null;
                 InternalLogger.LogToTrace = true;
 
-                CreateConfigurationFromString(@"
+                XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog>
 </nlog>");
 
@@ -97,7 +98,7 @@ namespace NLog.UnitTests.Config
                 InternalLogger.LogWriter = stringWriter;
                 InternalLogger.LogLevel = LogLevel.Info;
                 string wrongFileName = "WRONG/***[]???////WRONG";
-                LogManager.Configuration = CreateConfigurationFromString($@"<?xml version='1.0' encoding='utf-8' ?>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"<?xml version='1.0' encoding='utf-8' ?>
     <nlog internalLogFile='{wrongFileName}'
           internalLogLevel='Off'
           throwExceptions='true' >
@@ -130,7 +131,7 @@ namespace NLog.UnitTests.Config
 
             using (new InternalLoggerScope(true))
             {
-                CreateConfigurationFromString($@"
+                XmlLoggingConfiguration.CreateFromXmlString($@"
 <nlog internalLogFile='{file}' internalLogLevel='{logLevelString}' internalLogToConsole='{
                         internalLogToConsoleString
                     }' internalLogToConsoleError='{internalLogToConsoleErrorString}' globalThreshold='{

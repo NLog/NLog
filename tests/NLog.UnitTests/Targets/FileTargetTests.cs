@@ -611,7 +611,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void DeleteFileOnStartTest_noExceptionWhenMissing()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
     <targets>
       <target name='file1' encoding='UTF-8' type='File'  deleteOldFileOnStartup='true' fileName='c://temp2/logs/i-dont-exist.log' layout='${message} ' />
     </targets>
@@ -3115,7 +3115,7 @@ namespace NLog.UnitTests.Targets
         {
             try
             {
-                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
  
@@ -3147,7 +3147,7 @@ namespace NLog.UnitTests.Targets
         {
             try
             {
-                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
  
@@ -3192,7 +3192,7 @@ namespace NLog.UnitTests.Targets
 
                 GlobalDiagnosticsContext.Set("basedir", tempPath);
 
-                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog>
   <variable name='basedir' value='' />
   <targets>
@@ -3257,7 +3257,7 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                LogManager.Configuration = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                         <targets>
                             <target name='file1' encoding='UTF-8' type='File' fileName='" + logFile + @"'>
                                 <layout type='JsonLayout'>
@@ -3367,7 +3367,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 //create config with archiving
-                var configuration = CreateConfigurationFromString(@"
+                var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true' >
                     <targets>
                        <target name='fileAll' type='File' 
@@ -3501,7 +3501,7 @@ namespace NLog.UnitTests.Targets
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
 
-                var app1Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                var app1Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='traceFile' type='File' 
                                         fileName='" + Path.Combine(logdir, app1TraceNm + fileExt) + @"'
@@ -3526,7 +3526,7 @@ namespace NLog.UnitTests.Targets
                                     </rules>
                                   </nlog>");
 
-                var app2Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                var app2Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
                                         fileName='" + Path.Combine(logdir, app2Nm + fileExt) + @"'
@@ -3628,7 +3628,7 @@ namespace NLog.UnitTests.Targets
                 // Create same app1 file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(Path.Combine(logdir, app1Nm + fileExt), new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
 
-                var app1Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                var app1Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
                                         fileName='" + Path.Combine(logdir, app1Nm + fileExt) + @"'
@@ -3644,7 +3644,7 @@ namespace NLog.UnitTests.Targets
                                     </rules>
                                   </nlog>");
 
-                var app2Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                var app2Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
                                         fileName='" + Path.Combine(logdir, app2Nm + fileExt) + @"'

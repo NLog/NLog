@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.Config
 {
     using Xunit;
@@ -40,7 +42,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void LowerCaseTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='debug' layout='${message}' /></targets>
                 <rules>
@@ -77,7 +79,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void UpperCaseTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
                 <TARGETS><TARGET NAME='DEBUG' TYPE='DEBUG' LAYOUT='${MESSAGE}' /></TARGETS>
                 <RULES>

@@ -84,7 +84,7 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.False(results.Errors.HasErrors, "Compiler errors: " + string.Join(";", results.Errors));
 
             // create nlog configuration
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
                 <rules>
@@ -125,7 +125,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void LineNumberTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:filename=true} ${message}' /></targets>
                 <rules>
@@ -151,7 +151,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MethodNameTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
                 <rules>
@@ -168,7 +168,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MethodNameInChainTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug' type='Debug' layout='${message}' />
@@ -188,7 +188,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ClassNameTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false} ${message}' /></targets>
                 <rules>
@@ -204,7 +204,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ClassNameTestWithoutNamespace()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:includeNamespace=false} ${message}' /></targets>
                 <rules>
@@ -220,7 +220,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ClassNameTestWithOverride()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:includeNamespace=false} ${message}' /></targets>
                 <rules>
@@ -238,7 +238,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignLeftTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true} ${message}' /></targets>
                 <rules>
@@ -255,7 +255,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ClassNameWithPaddingTestPadLeftAlignRightTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
                 <rules>
@@ -273,7 +273,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ClassNameWithPaddingTestPadRightAlignLeftTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
                 <rules>
@@ -290,7 +290,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ClassNameWithPaddingTestPadRightAlignRightTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=false:padding=-3:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
                 <rules>
@@ -308,7 +308,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MethodNameWithPaddingTestPadLeftAlignLeftTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true} ${message}' /></targets>
                 <rules>
@@ -324,7 +324,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MethodNameWithPaddingTestPadLeftAlignRightTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
                 <rules>
@@ -340,7 +340,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MethodNameWithPaddingTestPadRightAlignLeftTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=left} ${message}' /></targets>
                 <rules>
@@ -356,7 +356,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MethodNameWithPaddingTestPadRightAlignRightTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=false:methodname=true:padding=-16:fixedlength=true:alignmentOnTruncation=right} ${message}' /></targets>
                 <rules>
@@ -372,7 +372,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void GivenSkipFrameNotDefined_WhenLogging_ThenLogFirstUserStackFrame()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite} ${message}' /></targets>
                 <rules>
@@ -392,7 +392,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:skipframes=1} ${message}' /></targets>
                 <rules>
@@ -413,7 +413,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void CleanMethodNamesOfAnonymousDelegatesTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
                     <rules>
@@ -450,7 +450,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void DontCleanMethodNamesOfAnonymousDelegatesTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=false:CleanNamesOfAnonymousDelegates=false}' /></targets>
                     <rules>
@@ -488,7 +488,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void CleanClassNamesOfAnonymousDelegatesTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
                     <rules>
@@ -525,7 +525,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void DontCleanClassNamesOfAnonymousDelegatesTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:CleanNamesOfAnonymousDelegates=false}' /></targets>
                     <rules>
@@ -559,7 +559,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void When_NotIncludeNameSpace_Then_CleanAnonymousDelegateClassNameShouldReturnParentClassName()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:ClassName=true:MethodName=false:IncludeNamespace=false:CleanNamesOfAnonymousDelegates=true}' /></targets>
                     <rules>
@@ -596,7 +596,7 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.When_Wrapped_Ignore_Wrapper_Methods_In_Callstack";
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                <nlog>
                    <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                    <rules>
@@ -616,7 +616,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CheckStackTraceUsageForTwoRules()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug' type='Debug' layout='${message}' />
@@ -637,7 +637,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CheckStackTraceUsageForTwoRules_chained()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug' type='Debug' layout='${message}' />
@@ -658,7 +658,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CheckStackTraceUsageForMultipleRules()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug' type='Debug' layout='${message}' />
@@ -686,7 +686,7 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.When_WrappedInCompsition_Ignore_Wrapper_Methods_In_Callstack";
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
@@ -713,7 +713,7 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod";
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
@@ -742,7 +742,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void Show_correct_filename_with_async()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite:className=False:fileName=True:includeSourcePath=False:methodName=False}|${message}' /></targets>
                <rules>
@@ -765,7 +765,7 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod2b";
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
@@ -803,7 +803,7 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod3b";
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
@@ -849,7 +849,7 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod4";
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
@@ -901,7 +901,7 @@ namespace NLog.UnitTests.LayoutRenderers
             //namespace en name of current method
             const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.MoveNext";
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
            <nlog>
                <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
                <rules>
@@ -981,7 +981,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CallsiteBySubclass_interface()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
                 <rules>
@@ -999,7 +999,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CallsiteBySubclass_mylogger()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
                 <rules>
@@ -1017,7 +1017,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CallsiteBySubclass_logger()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite:classname=true:methodname=true} ${message}' /></targets>
                 <rules>
@@ -1155,7 +1155,7 @@ namespace NLog.UnitTests.LayoutRenderers
             // name of the logging method
             const string callsiteMethodName = "AsyncMethod5";
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:classname=false:cleannamesofasynccontinuations=true}' /></targets>
                     <rules>
@@ -1174,7 +1174,7 @@ namespace NLog.UnitTests.LayoutRenderers
             // full name of the logging method
             const string callsiteMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5";
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:classname=true:includenamespace=true:cleannamesofasynccontinuations=true}' /></targets>
                     <rules>
@@ -1190,7 +1190,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
                     <rules>

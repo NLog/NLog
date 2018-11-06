@@ -32,6 +32,7 @@
 // 
 
 using System.Collections.Generic;
+using NLog.Config;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
@@ -49,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Log4JXmlTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
                 <targets>
         <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}}' />

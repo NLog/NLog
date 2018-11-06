@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.Config
 {
     using System;
@@ -48,7 +50,7 @@ namespace NLog.UnitTests.Config
         public void DefaultTimeSourceTest()
         {
             Assert.IsType<FastLocalTimeSource>(TimeSource.Current);
-            CreateConfigurationFromString("<nlog />");
+            XmlLoggingConfiguration.CreateFromXmlString("<nlog />");
             Assert.IsType<FastLocalTimeSource>(TimeSource.Current);
         }
 
@@ -80,7 +82,7 @@ namespace NLog.UnitTests.Config
             where T : TimeSource
         {
             Assert.IsType<FastLocalTimeSource>(TimeSource.Current);
-            CreateConfigurationFromString(@"
+            XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <time type='" + type + @"' />
                 </nlog>");

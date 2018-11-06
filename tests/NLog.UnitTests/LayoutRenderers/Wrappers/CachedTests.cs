@@ -90,7 +90,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void CacheKeyTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='debug' layout='${cached:${guid}:cached=true:cachekey=${var:var1}}' /></targets>
                 <rules>

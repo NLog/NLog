@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -41,7 +43,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DefaultCounterTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message} ${counter} ${counter}' /></targets>
                 <rules>
@@ -64,7 +66,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LayoutCounterTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
            
                 <targets><target name='debug' type='Debug' layout='${message} ${counter:sequence=${event-context:item=context1}} ${counter}' /></targets>
@@ -90,7 +92,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void PresetCounterTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message} ${counter:value=1:increment=3} ${counter}' /></targets>
                 <rules>
@@ -113,7 +115,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NamedCounterTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message} ${counter:sequence=aaa}' />

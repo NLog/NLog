@@ -33,6 +33,8 @@
 
 #define DEBUG
 
+using NLog.Config;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -62,7 +64,7 @@ namespace NLog.UnitTests
         [Fact]
         public void TraceWriteTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message}' /></targets>
                     <rules>
@@ -89,7 +91,7 @@ namespace NLog.UnitTests
         [Fact]
         public void TraceWriteLineTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message}' /></targets>
                     <rules>
@@ -116,7 +118,7 @@ namespace NLog.UnitTests
         [Fact]
         public void TraceWriteNonDefaultLevelTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message}' /></targets>
                     <rules>
@@ -149,7 +151,7 @@ namespace NLog.UnitTests
         [Fact]
         public void TraceFailTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message}' /></targets>
                     <rules>
@@ -170,7 +172,7 @@ namespace NLog.UnitTests
         [Fact]
         public void AutoLoggerNameTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message}' /></targets>
                     <rules>
@@ -188,7 +190,7 @@ namespace NLog.UnitTests
         [Fact]
         public void TraceDataTests()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message} ${event-context:EventID}' /></targets>
                     <rules>
@@ -213,7 +215,7 @@ namespace NLog.UnitTests
 #endif
         public void LogInformationTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message} ${event-context:EventID}' /></targets>
                     <rules>
@@ -234,7 +236,7 @@ namespace NLog.UnitTests
         [Fact]
         public void TraceEventTests()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message} ${event-context:EventID}' /></targets>
                     <rules>
@@ -277,7 +279,7 @@ namespace NLog.UnitTests
 #endif
         public void ForceLogLevelTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message} ${event-context:EventID}' /></targets>
                     <rules>
@@ -299,7 +301,7 @@ namespace NLog.UnitTests
         [Fact]
         public void FilterTraceTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets><target name='debug' type='Debug' layout='${logger} ${level} ${message} ${event-context:EventID}' /></targets>
                     <rules>
@@ -322,7 +324,7 @@ namespace NLog.UnitTests
         [Fact]
         public void TraceTargetWriteLineTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets>
                         <target name='trace' type='Trace' layout='${logger} ${level} ${message}' rawWrite='true' />

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -40,7 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MDCTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${mdc:item=myitem} ${message}' /></targets>
                 <rules>
@@ -65,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MDCFormatTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${mdc:item=myitem:format=@} ${message}' /></targets>
                 <rules>

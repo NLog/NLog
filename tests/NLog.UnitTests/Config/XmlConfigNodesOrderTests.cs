@@ -41,7 +41,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void RulesBeforeTargetsTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <rules>
                     <logger name='*' minLevel='Info' writeTo='d1' />

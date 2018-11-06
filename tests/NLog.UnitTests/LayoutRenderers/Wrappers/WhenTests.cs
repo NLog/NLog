@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
@@ -148,7 +150,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WhenLogLevelConditionTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>

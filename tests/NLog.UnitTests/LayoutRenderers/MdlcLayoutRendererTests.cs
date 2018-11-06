@@ -65,7 +65,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MdlcLayoutFormatTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${mdlc:item=myitem:format=@} ${message}' /></targets>
                 <rules>

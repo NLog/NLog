@@ -232,7 +232,7 @@ namespace NLog.UnitTests
         {
             LayoutRenderer.Register("the-answer", (info) => "42");
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
             
                 <targets>

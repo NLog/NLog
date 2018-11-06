@@ -56,7 +56,7 @@ namespace NLog.UnitTests.Targets
         public void MaxMessageLengthShouldBe16384_WhenNotSpecifyAnyOption()
         {
             const int expectedMaxMessageLength = 16384;
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog ThrowExceptions='true'>
                 <targets>
                     <target type='EventLog' name='eventLog1' layout='${message}' />
@@ -75,7 +75,7 @@ namespace NLog.UnitTests.Targets
         public void MaxMessageLengthShouldBeAsSpecifiedOption()
         {
             const int expectedMaxMessageLength = 1000;
-            LoggingConfiguration c = CreateConfigurationFromString($@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog ThrowExceptions='true'>
                 <targets>
                     <target type='EventLog' name='eventLog1' layout='${{message}}' maxmessagelength='{
@@ -110,7 +110,7 @@ namespace NLog.UnitTests.Targets
                     </rules>
             </nlog>";
 
-            NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configrationText));
+            NLogConfigurationException ex = Assert.Throws<NLogConfigurationException>(() => XmlLoggingConfiguration.CreateFromXmlString(configrationText));
             Assert.Equal("MaxMessageLength cannot be zero or negative.", ex.InnerException.InnerException.Message);
         }
 

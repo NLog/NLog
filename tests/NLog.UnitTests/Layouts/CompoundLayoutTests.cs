@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
 using NLog.Targets;
 
 namespace NLog.UnitTests.Layouts
@@ -100,7 +101,7 @@ namespace NLog.UnitTests.Layouts
 </nlog>
 ";
 
-            var config = CreateConfigurationFromString(configXml);
+            var config = XmlLoggingConfiguration.CreateFromXmlString(configXml);
 
             Assert.NotNull(config);
             var target = config.FindTargetByName<FileTarget>("compoundFile");

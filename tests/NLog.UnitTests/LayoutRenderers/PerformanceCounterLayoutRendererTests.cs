@@ -34,6 +34,7 @@
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
+    using NLog.Config;
 
 #if !MONO && !NETSTANDARD
 
@@ -42,7 +43,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void PerformanceCounterLayoutRendererTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${performancecounter:category=Process:counter=Working Set:format=F0}' /></targets>
                 <rules>

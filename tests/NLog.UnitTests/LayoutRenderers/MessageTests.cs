@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -42,7 +44,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageWithoutPaddingTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -64,7 +66,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageRightPaddingTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3}' /></targets>
                 <rules>
@@ -87,7 +89,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageFixedLengthRightPaddingLeftAlignmentTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3:fixedlength=true}' /></targets>
                 <rules>
@@ -109,7 +111,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageFixedLengthRightPaddingRightAlignmentTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=3:fixedlength=true:alignmentOnTruncation=right}' /></targets>
                 <rules>
@@ -131,7 +133,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageLeftPaddingTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x}' /></targets>
                 <rules>
@@ -153,7 +155,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageFixedLengthLeftPaddingLeftAlignmentTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true}' /></targets>
                 <rules>
@@ -175,7 +177,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageFixedLengthLeftPaddingRightAlignmentTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:padding=-3:padcharacter=x:fixedlength=true:alignmentOnTruncation=right}' /></targets>
                 <rules>
@@ -197,7 +199,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageWithExceptionTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog exceptionLoggingOldStyle='true'>
                 <targets><target name='debug' type='Debug' layout='${message:withException=true}' /></targets>
                 <rules>
@@ -229,7 +231,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void MessageWithExceptionAndCustomSeparatorTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message:withException=true:exceptionSeparator=,}' /></targets>
                 <rules>

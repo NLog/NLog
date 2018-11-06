@@ -49,7 +49,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void WhenInvariantCultureDefinedThenDefaultCultureIsInvariantCulture()
         {
-            var configuration = CreateConfigurationFromString("<nlog useInvariantCulture='true'></nlog>");
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString("<nlog useInvariantCulture='true'></nlog>");
 
             Assert.Equal(CultureInfo.InvariantCulture, configuration.DefaultCultureInfo);
         }
@@ -74,11 +74,11 @@ namespace NLog.UnitTests.Config
 
 
                 // configuration with current culture
-                var configuration1 = CreateConfigurationFromString(string.Format(configurationTemplate, false));
+                var configuration1 = XmlLoggingConfiguration.CreateFromXmlString(string.Format(configurationTemplate, false));
                 Assert.Null(configuration1.DefaultCultureInfo);
 
                 // configuration with invariant culture
-                var configuration2 = CreateConfigurationFromString(string.Format(configurationTemplate, true));
+                var configuration2 = XmlLoggingConfiguration.CreateFromXmlString(string.Format(configurationTemplate, true));
                 Assert.Equal(CultureInfo.InvariantCulture, configuration2.DefaultCultureInfo);
 
                 Assert.NotEqual(configuration1.DefaultCultureInfo, configuration2.DefaultCultureInfo);

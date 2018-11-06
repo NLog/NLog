@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -188,8 +190,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void AutoFlushConditionConfigurationTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(
-                @"<nlog>
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog>
                     <targets>
                         <target type='AutoFlushWrapper' condition='level >= LogLevel.Debug' name='FlushOnError'>
                     <target name='d2' type='Debug' />
