@@ -400,39 +400,71 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeAnonymousObject_Test()
         {
-            var object1 = new { Name = "test name" };
+            var object1 = new { Id = 123, Name = "test name" };
             var actual = SerializeObject(object1);
-            Assert.Equal("{\"Name\":\"test name\"}", actual);
+            Assert.Equal("{\"Id\":123, \"Name\":\"test name\"}", actual);
         }
 
 #if DYNAMIC_OBJECT
+
+        [Fact]
+        public void SerializeExpandoObject_Test()
+        {
+            dynamic object1 = new ExpandoObject();
+            object1.Id = 123;
+            object1.Name = "test name";
+            var actual = SerializeObject(object1);
+            Assert.Equal("{\"Id\":123, \"Name\":\"test name\"}", actual);
+        }
 
         [Fact]
         public void SerializeDynamicObject_Test()
         {
             var object1 = new MyDynamicClass();
             var actual = SerializeObject(object1);
-            Assert.Equal("{\"Id\":123}", actual);
+            Assert.Equal("{\"Id\":123, \"Name\":\"test name\"}", actual);
         }
 
         private class MyDynamicClass : DynamicObject
         {
             private int _id = 123;
+            private string _name = "test name";
+
             public override bool TryGetMember(GetMemberBinder binder,
                 out object result)
             {
-                result = _id;
-                return true;
+                if (binder.Name == "Id")
+                {
+                    result = _id;
+                    return true;
+                }
+                if (binder.Name == "Name")
+                {
+                    result = _name;
+                    return true;
+                }
+                result = null;
+                return false;
             }
 
             public override bool TrySetMember(SetMemberBinder binder, object value)
             {
-                _id = (int)value;
-                return true;
+                if (binder.Name == "Id")
+                {
+                    _id = (int)value;
+                    return true;
+                }
+                if (binder.Name == "Name")
+                {
+                    _name = (string)value;
+                    return true;
+                }
+                return false;
             }
+
             public override IEnumerable<string> GetDynamicMemberNames()
             {
-                return new List<string>() { "Id" };
+                return new List<string>() { "Id", "Name" };
             }
         }
 
@@ -526,6 +558,16 @@ namespace NLog.UnitTests.Targets
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return GetEnumerator();
+            }
+
+            public override bool Equals(object obj)
+            {
+                throw new Exception("object.Equals should never be called");
+            }
+
+            public override int GetHashCode()
+            {
+                throw new Exception("GetHashCode should never be called");
             }
         }
     }
