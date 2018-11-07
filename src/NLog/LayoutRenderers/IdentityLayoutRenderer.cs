@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("identity")]
     [ThreadSafe]
-    public class IdentityLayoutRenderer : LayoutRenderer, IRawValue
+    public class IdentityLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Gets or sets the separator to be used when concatenating 
@@ -108,12 +108,6 @@ namespace NLog.LayoutRenderers
                 }
             }
 
-        }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue();
         }
 
         private static IIdentity GetValue()

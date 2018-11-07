@@ -57,7 +57,7 @@ namespace NLog.Layouts
         private string _fixedText;
         private string _layoutText;
         private IRawValue _rawValueRenderer;
-        private IRenderString _stringValueRenderer;
+        private IStringValueRenderer _stringValueRenderer;
         private readonly ConfigurationItemFactory _configurationItemFactory;
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Is the message a simple formatted string? (Can skip StringBuilder)
         /// </summary>
-        internal bool IsSimpleString => _stringValueRenderer != null;
+        internal bool IsSimpleStringText => _stringValueRenderer != null;
 
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
@@ -247,7 +247,7 @@ namespace NLog.Layouts
                     {
                         _rawValueRenderer = rawValueRendrer;
                     }
-                    if (Renderers[0] is IRenderString stringValueRendrer)
+                    if (Renderers[0] is IStringValueRenderer stringValueRendrer)
                     {
                         _stringValueRenderer = stringValueRendrer;
                     }
@@ -260,55 +260,6 @@ namespace NLog.Layouts
             {
                 PerformObjectScanning();
             }
-        }
-
-        /// <inheritdoc />
-        public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
-        {
-            if (!ThreadAgnostic || MutableUnsafe)
-            {
-                object cachedValue;
-                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
-                {
-                    rawValue = cachedValue?.ToString() ?? string.Empty;
-                    return true;
-                }
-            }
-
-            try
-            {
-                if (_rawValueRenderer != null)
-                {
-                    rawValue = _rawValueRenderer.GetRawValue(logEvent);
-                    return true;
-                }
-
-                if (_stringValueRenderer != null)
-                {
-                    rawValue = _stringValueRenderer.GetFormattedString(logEvent);
-                    if (rawValue != null)
-                        return true;
-                    _stringValueRenderer = null;    // Optimization is not possible
-                }
-            }
-            catch (Exception exception)
-            {
-                //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
-
-                //check for performance
-                if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
-                {
-                    InternalLogger.Warn(exception, "Exception in '{0}.InitializeLayout()'", Renderers.Count > 0 ? Renderers[0].GetType().FullName : null);
-                }
-
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
-
-            rawValue = null;
-            return false;
         }
 
         /// <inheritdoc />
@@ -341,9 +292,77 @@ namespace NLog.Layouts
             base.InitializeLayout();
         }
 
+        /// <inheritdoc />
+        public override void Precalculate(LogEventInfo logEvent)
+        {
+            if (_rawValueRenderer != null)
+            {
+                if (!_isInitialized)
+                {
+                    Initialize(LoggingConfiguration);
+                }
+
+                if (ThreadAgnostic && MutableUnsafe)
+                {
+                    // If raw value doesn't have the ability to mutate, then we can skip precalculate
+                    var value = _rawValueRenderer.GetRawValue(logEvent);
+                    if (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType())
+                        return;
+                }
+            }
+
+            base.Precalculate(logEvent);
+
+        }
+
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
             PrecalculateBuilderInternal(logEvent, target);
+        }
+
+        /// <inheritdoc />
+        public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        {
+            if (!_isInitialized)
+            {
+                Initialize(LoggingConfiguration);
+            }
+
+            try
+            {
+                if (_rawValueRenderer != null)
+                {
+                    if (!ThreadAgnostic || MutableUnsafe)
+                    {
+                        if (logEvent.TryGetCachedLayoutValue(this, out _))
+                        {
+                            rawValue = null;
+                            return false;    // Raw-Value has been precalculated, so not available
+                        }
+                    }
+
+                    rawValue = _rawValueRenderer.GetRawValue(logEvent);
+                    return true;
+                }
+            }
+            catch (Exception exception)
+            {
+                //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+
+                //check for performance
+                if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                {
+                    InternalLogger.Warn(exception, "Exception in '{0}.InitializeLayout()'", Renderers.Count > 0 ? Renderers[0].GetType().FullName : null);
+                }
+
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
+
+            rawValue = null;
+            return false;
         }
 
         /// <inheritdoc />

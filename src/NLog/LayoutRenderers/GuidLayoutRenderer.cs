@@ -44,7 +44,8 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("guid")]
     [ThreadSafe]
-    public class GuidLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
+    [ThreadAgnostic]
+    public class GuidLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets the GUID format as accepted by Guid.ToString() method.
@@ -70,7 +71,7 @@ namespace NLog.LayoutRenderers
         object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
 
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
         private string GetStringValue(LogEventInfo logEvent)
         {

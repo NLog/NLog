@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// High precision timer, based on the value returned from QueryPerformanceCounter() optionally converted to seconds.
     /// </summary>
     [LayoutRenderer("qpc")]
-    public class QueryPerformanceCounterLayoutRenderer : LayoutRenderer, IRawValue
+    public class QueryPerformanceCounterLayoutRenderer : LayoutRenderer
     {
         private bool raw;
         private ulong firstQpcValue;
@@ -152,18 +152,6 @@ namespace NLog.LayoutRenderers
 
                 builder.Append(stringValue);
             }
-        }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            var value = GetValue();
-            if (value.HasValue && Seconds)
-            {
-                return ToSeconds(value.Value);
-            }
-
-            return value;
         }
 
         private double ToSeconds(ulong qpcValue)

@@ -746,7 +746,7 @@ namespace NLog.Targets
                     }
                 }
 
-                if (simpleLayout != null && simpleLayout.IsSimpleString)
+                if (simpleLayout != null && simpleLayout.IsSimpleStringText)
                 {
                     return simpleLayout.Render(logEvent);
                 }

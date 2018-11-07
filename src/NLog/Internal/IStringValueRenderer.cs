@@ -34,9 +34,9 @@
 namespace NLog.Internal
 {
     /// <summary>
-    /// Supports rendering of string value without allocation (or seldom)
+    /// Supports rendering as string value with limited or no allocations (preferred)
     /// </summary>
-    interface IRenderString
+    interface IStringValueRenderer
     {
         /// <summary>
         /// Renders the value of layout renderer in the context of the specified log event

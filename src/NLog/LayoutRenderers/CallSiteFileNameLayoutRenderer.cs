@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("callsite-filename")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class CallSiteFileNameLayoutRenderer : LayoutRenderer, IUsesStackTrace, IRenderString
+    public class CallSiteFileNameLayoutRenderer : LayoutRenderer, IUsesStackTrace, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets a value indicating whether to include source file path.
@@ -74,7 +74,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
         private string GetStringValue(LogEventInfo logEvent)
         {

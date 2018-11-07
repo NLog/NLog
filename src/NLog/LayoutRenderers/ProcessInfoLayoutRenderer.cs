@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("processinfo")]
     [ThreadSafe]
-    public class ProcessInfoLayoutRenderer : LayoutRenderer, IRawValue
+    public class ProcessInfoLayoutRenderer : LayoutRenderer
     {
         private Process _process;
         private ReflectionHelpers.LateBoundMethod _lateBoundPropertyGet;
@@ -104,9 +104,6 @@ namespace NLog.LayoutRenderers
                 builder.AppendFormattedValue(value, Format, formatProvider);
             }
         }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
 
         private object GetValue()
         {

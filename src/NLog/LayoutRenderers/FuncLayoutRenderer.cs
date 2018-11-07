@@ -41,7 +41,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
-    public class FuncLayoutRenderer : LayoutRenderer, IRawValue
+    public class FuncLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Create a new.
@@ -73,9 +73,6 @@ namespace NLog.LayoutRenderers
                 builder.Append(value);
             }
         }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
 
         private object GetValue(LogEventInfo logEvent)
         {

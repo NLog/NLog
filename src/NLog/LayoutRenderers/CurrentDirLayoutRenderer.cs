@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("currentdir")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class CurrentDirLayoutRenderer : LayoutRenderer, IRenderString
+    public class CurrentDirLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with the current directory.
@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
 
         private string GetStringValue()
         {

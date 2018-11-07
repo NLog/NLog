@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("level")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class LevelLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
+    public class LevelLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets a value indicating the output format of the level.
@@ -76,7 +76,7 @@ namespace NLog.LayoutRenderers
         object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
 
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => Format == LevelFormat.Name ? GetValue(logEvent).ToString() : null;
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Format == LevelFormat.Name ? GetValue(logEvent).ToString() : null;
 
         private static LogLevel GetValue(LogEventInfo logEvent)
         {

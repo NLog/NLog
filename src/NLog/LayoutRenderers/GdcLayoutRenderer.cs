@@ -42,8 +42,9 @@ namespace NLog.LayoutRenderers
     /// Global Diagnostics Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("gdc")]
+    [ThreadAgnostic]
     [ThreadSafe]
-    public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
+    public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets the name of the item.
@@ -71,11 +72,11 @@ namespace NLog.LayoutRenderers
         object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
 
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
         private string GetStringValue(LogEventInfo logEvent)
         {
-            if (Format != "@")
+            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
             {
                 object value = GetValue();
                 string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, null));

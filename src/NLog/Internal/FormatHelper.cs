@@ -49,11 +49,10 @@ namespace NLog.Internal
         /// </remarks>
         internal static string ConvertToString(object o, IFormatProvider formatProvider)
         {
-
             // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
             if (formatProvider == null)
             {
-                if (!ObjectSupportsFormatProvider(o))
+                if (SkipFormattableToString(o))
                     return o?.ToString() ?? string.Empty;
 
                 if (o is IFormattable)
@@ -69,19 +68,19 @@ namespace NLog.Internal
             return Convert.ToString(o, formatProvider);
         }
 
-        internal static bool ObjectSupportsFormatProvider(object o)
+        private static bool SkipFormattableToString(object o)
         {
             switch (Convert.GetTypeCode(o))
             {
-                case TypeCode.String:   return false;
-                case TypeCode.Empty:    return false;
-                default:                return true;
+                case TypeCode.String:   return true;
+                case TypeCode.Empty:    return true;
+                default:                return false;
             }
         }
 
         internal static string TryFormatToString(object value, string format, IFormatProvider formatProvider)
         {
-            if (!ObjectSupportsFormatProvider(value))
+            if (SkipFormattableToString(value))
                 return value?.ToString() ?? string.Empty;
 
             if (value is IFormattable formattable)

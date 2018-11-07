@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// A counter value (increases on each layout rendering).
     /// </summary>
     [LayoutRenderer("counter")]
-    public class CounterLayoutRenderer : LayoutRenderer, IRawValue
+    public class CounterLayoutRenderer : LayoutRenderer
     {
         private static Dictionary<string, int> sequences = new Dictionary<string, int>();
 
@@ -73,9 +73,6 @@ namespace NLog.LayoutRenderers
             int v = GetNextValue(logEvent);
             builder.AppendInvariant(v);
         }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetNextValue(logEvent);
 
         private int GetNextValue(LogEventInfo logEvent)
         {

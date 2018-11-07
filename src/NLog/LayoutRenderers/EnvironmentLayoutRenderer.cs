@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("environment")]
     [ThreadSafe]
-    public class EnvironmentLayoutRenderer : LayoutRenderer, IRenderString
+    public class EnvironmentLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets the name of the environment variable.
@@ -70,12 +70,12 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent)
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             var simpleLayout = GetSimpleLayout();
             if (simpleLayout == null)
                 return string.Empty;
-            if (simpleLayout.IsFixedText || simpleLayout.IsSimpleString)
+            if (simpleLayout.IsFixedText || simpleLayout.IsSimpleStringText)
                 return simpleLayout.Render(logEvent);
             return null;
         } 

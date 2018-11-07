@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("activityid")]
     [ThreadSafe]
-    public class TraceActivityIdLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
+    public class TraceActivityIdLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -56,10 +56,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
-
-        /// <inheritdoc />
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
 
         private static string GetStringValue()
         {

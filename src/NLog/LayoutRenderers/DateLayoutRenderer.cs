@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("date")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class DateLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
+    public class DateLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DateLayoutRenderer" /> class.
@@ -103,7 +103,7 @@ namespace NLog.LayoutRenderers
         object IRawValue.GetRawValue(LogEventInfo logEvent) => GetDate(logEvent);
 
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
         private string GetStringValue(LogEventInfo logEvent)
         {

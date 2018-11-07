@@ -43,7 +43,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("threadid")]
     [ThreadSafe]
-    public class ThreadIdLayoutRenderer : LayoutRenderer, IRawValue
+    public class ThreadIdLayoutRenderer : LayoutRenderer
     {
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -51,9 +51,6 @@ namespace NLog.LayoutRenderers
             //no culture needed for ints
             builder.AppendInvariant(GetValue());
         }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
 
         private static int GetValue()
         {

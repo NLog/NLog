@@ -57,7 +57,7 @@ namespace NLog.Internal
             {
                 builder.Append(value);  // Avoid automatic quotes
             }
-            else if (format == "@")
+            else if (format == MessageTemplates.ValueFormatter.FormatAsJson)
             {
                 ValueFormatter.Instance.FormatValue(value, null, CaptureType.Serialize, formatProvider, builder);
             }

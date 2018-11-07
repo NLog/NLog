@@ -64,6 +64,9 @@ namespace NLog.MessageTemplates
 
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
 
+        public const string FormatAsJson = "@";
+        public const string FormatAsString = "$";
+
         /// <summary>
         /// Serialization of an object, e.g. JSON and append to <paramref name="builder"/>
         /// </summary>

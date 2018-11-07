@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("logger")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class LoggerNameLayoutRenderer : LayoutRenderer, IRenderString
+    public class LoggerNameLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets a value indicating whether to render short logger name (the part after the trailing dot character).
@@ -58,7 +58,7 @@ namespace NLog.LayoutRenderers
         {
             if (ShortName)
             {
-                int lastDot = logEvent.LoggerName?.LastIndexOf('.') ?? -1;
+                int lastDot = TryGetLastDotForShortName(logEvent);
                 if (lastDot >= 0)
                 {
                     builder.Append(logEvent.LoggerName, lastDot + 1, logEvent.LoggerName.Length - lastDot - 1);
@@ -69,17 +69,22 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent)
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
         {
             if (ShortName)
             {
-                int lastDot = logEvent.LoggerName?.LastIndexOf('.') ?? -1;
+                int lastDot = TryGetLastDotForShortName(logEvent);
                 if (lastDot >= 0)
                 {
                     return logEvent.LoggerName.Substring(lastDot + 1);
                 }
             }
             return logEvent.LoggerName ?? string.Empty;
+        }
+
+        private int TryGetLastDotForShortName(LogEventInfo logEvent)
+        {
+            return logEvent.LoggerName?.LastIndexOf('.') ?? -1;
         }
     }
 }

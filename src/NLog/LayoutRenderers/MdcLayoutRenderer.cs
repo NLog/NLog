@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("mdc")]
     [ThreadSafe]
-    public class MdcLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
+    public class MdcLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets the name of the item.
@@ -66,15 +66,12 @@ namespace NLog.LayoutRenderers
             builder.AppendFormattedValue(value, Format, formatProvider);
         }
 
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
-
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
         private string GetStringValue(LogEventInfo logEvent)
         {
-            if (Format != "@")
+            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
             {
                 object value = GetValue();
                 string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, null));

@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("gc")]
     [ThreadSafe]
-    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer, IRawValue
+    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Gets or sets the property to retrieve.
@@ -63,12 +63,6 @@ namespace NLog.LayoutRenderers
                 builder.AppendInvariant((uint)value);
             else
                 builder.Append(value.ToString());
-        }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue();
         }
 
         private long GetValue()

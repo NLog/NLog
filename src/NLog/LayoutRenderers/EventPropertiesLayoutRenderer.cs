@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     [ThreadSafe]
     [MutableUnsafe]
-    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IRenderString
+    public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets the name of the item.
@@ -86,7 +86,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
-        string IRenderString.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
         private bool GetValue(LogEventInfo logEvent, out object value)
         {
@@ -96,7 +96,7 @@ namespace NLog.LayoutRenderers
 
         private string GetStringValue(LogEventInfo logEvent)
         {
-            if (Format != "@")
+            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
             {
                 if (GetValue(logEvent, out var value))
                 {
