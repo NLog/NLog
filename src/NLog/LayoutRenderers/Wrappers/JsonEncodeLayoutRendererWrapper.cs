@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Targets;
+
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
@@ -70,9 +72,22 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(true)]
         public bool EscapeUnicode { get; set; }
 
+        /// <summary>
+        /// Render with use of the Raw value, if possible.
+        /// </summary>
+        public bool Raw { get; set; }
+
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
+            if (Raw && Inner.TryGetRawValue(logEvent, out var rawValue))
+            {
+                ConfigurationItemFactory.Default.JsonConverter.SerializeObject(rawValue, builder); //todo missing EscapeUnicode
+                return;
+            }
+
+
+
             Inner.RenderAppendBuilder(logEvent, builder);
             if (JsonEncode && builder.Length > orgLength)
             {

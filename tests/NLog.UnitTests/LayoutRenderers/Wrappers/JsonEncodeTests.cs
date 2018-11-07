@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
@@ -42,11 +44,47 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void JsonEncodeTest1()
         {
-            MappedDiagnosticsContext.Clear();
-            MappedDiagnosticsContext.Set("foo", " abc\"\n\b\r\f\t/\u1234\u5432\\xyz ");
-            SimpleLayout l = "${json-encode:${mdc:foo}}";
+            // Arrange
+            var logEvent = new LogEventInfo();
+            logEvent.Properties["foo"] = " abc\"\n\b\r\f\t/\u1234\u5432\\xyz ";
 
-            Assert.Equal(@" abc\""\n\b\r\f\t\/\u1234\u5432\\xyz ", l.Render(LogEventInfo.CreateNullEvent()));
+            // Act   
+            SimpleLayout l = "${json-encode:${event-properties:foo}}";
+            var result = l.Render(logEvent);
+
+            // Assert
+            Assert.Equal(@" abc\""\n\b\r\f\t\/\u1234\u5432\\xyz ", result);
+        }
+
+        [Fact]
+        public void JsonEncodeExceptionTest1()
+        {
+            // Arrange
+            var logEvent = new LogEventInfo { Exception = new NullReferenceException { HelpLink = "google.com" } };
+            logEvent.Properties["foo"] = 1;
+
+            // Act   
+            SimpleLayout l = "${json-encode:${exception}}";
+            var result = l.Render(logEvent);
+
+            // Assert
+            Assert.Equal(@"Object reference not set to an instance of an object.", result);
+        }    
+        
+        [Fact]
+        public void JsonEncodeRawExceptionTest1()
+        {
+            // Arrange
+            var logEvent = new LogEventInfo { Exception = new NullReferenceException { HelpLink = "google.com" } };
+            logEvent.Properties["foo"] = 1;
+
+            // Act   
+            SimpleLayout l = "${json-encode:${exception}:raw=true}";
+            var result = l.Render(logEvent);
+
+            // Assert
+            var expected = @"{""Type"":""System.NullReferenceException"", ""Message"":""Object reference not set to an instance of an object."", ""Data"":{}, ""HelpLink"":""google.com"", ""HResult"":-2147467261}";
+            Assert.Equal(expected, result);
         }
     }
 }
