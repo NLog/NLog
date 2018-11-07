@@ -50,7 +50,7 @@ namespace NLog.UnitTests
             {
                 LogManager.ThrowExceptions = true;
 
-                LogManager.Configuration = CreateConfigurationFromString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='false'>
                     <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                     <rules>
@@ -68,7 +68,7 @@ namespace NLog.UnitTests
         {
             using (new NoThrowNLogExceptions())
             {
-                LogManager.Configuration = CreateConfigurationFromString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
@@ -86,7 +86,7 @@ namespace NLog.UnitTests
             {
                 LogManager.ThrowExceptions = true;
 
-                LogManager.Configuration = CreateConfigurationFromString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
@@ -311,7 +311,7 @@ namespace NLog.UnitTests
         [Fact]
         public void NewAttrOnNLogLevelShouldNotThrowError()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true' imAnewAttribute='noError'>
                 <targets><target type='file' name='f1' filename='test.log' /></targets>
                 <rules>

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.Layouts;
@@ -79,7 +81,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Test5()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
                     <targets>
                         <target name='debug' type='Debug' layout='${rot13:${mdc:A}}' />

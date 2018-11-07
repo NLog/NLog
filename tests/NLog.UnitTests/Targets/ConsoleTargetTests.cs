@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -191,7 +193,7 @@ namespace NLog.UnitTests.Targets
 
         internal static void ConsoleRaceCondtionIgnoreInnerTest(string configXml)
         {
-            LogManager.Configuration = CreateConfigurationFromString(configXml);
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml);
 
             //   Console.Out.Writeline / Console.Error.Writeline could throw 'IndexOutOfRangeException', which is a bug. 
             // See http://stackoverflow.com/questions/33915790/console-out-and-console-error-race-condition-error-in-a-windows-service-written

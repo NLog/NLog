@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests
 {
     using System.Collections.Generic;
@@ -57,7 +59,7 @@ namespace NLog.UnitTests
                 return logEvent.Message;
             };
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='Debug'  >
@@ -94,7 +96,7 @@ namespace NLog.UnitTests
                 "BestApplicationEver"
             });
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='Debug'  >
@@ -130,7 +132,7 @@ namespace NLog.UnitTests
                 "BestApplicationEver"
             });
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='Debug'  >

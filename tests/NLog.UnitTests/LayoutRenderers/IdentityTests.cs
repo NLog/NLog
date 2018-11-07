@@ -105,7 +105,7 @@ namespace NLog.UnitTests.LayoutRenderers
                             .RegisterDefinition("CSharpEventTarget", typeof(CSharpEventTarget));
 
 
-                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
  

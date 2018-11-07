@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -40,7 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LoggerNameTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${logger} ${message}' /></targets>
                 <rules>
@@ -57,7 +59,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LoggerShortNameTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${logger:ShortName=true} ${message}' /></targets>
                 <rules>
@@ -73,7 +75,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LoggerShortNameTest2()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${logger:ShortName=true} ${message}' /></targets>
                 <rules>
@@ -91,7 +93,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LoggerShortNameTest_false()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${logger:ShortName=false} ${message}' /></targets>
                 <rules>

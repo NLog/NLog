@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -40,7 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LogLevelTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${level} ${message}' /></targets>
                 <rules>
@@ -64,7 +66,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LogLevelSingleCharacterTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${level:format=FirstCharacter} ${message}' /></targets>
                 <rules>
@@ -90,7 +92,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void LogLevelOrdinalTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${level:format=Ordinal} ${message}' /></targets>
                 <rules>

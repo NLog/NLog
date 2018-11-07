@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LogReceiverService
 {
     using System;
@@ -42,7 +44,7 @@ namespace NLog.UnitTests.LogReceiverService
         [Fact]
         public void ToLogEventInfoTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message} ${event-context:foo} ${event-context:bar} ${event-context:baz}' />

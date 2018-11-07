@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 #if  !MONO && !NETSTANDARD
 
 namespace NLog.UnitTests.Targets
@@ -126,7 +128,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void MessageQueueTarget_CheckIfQueueExists_setting_should_work()
         {
-            var configuration = CreateConfigurationFromString(string.Format(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(string.Format(@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='MSMQ'

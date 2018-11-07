@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithStackTrace_ObsoleteMethodTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -96,7 +96,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithStackTraceTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -142,7 +142,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutMessageParam()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -186,7 +186,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutStackTrace_ObsoleteMethodTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -227,7 +227,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutStackTraceTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -265,7 +265,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionNewLineSeparatorTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=message,shorttype:separator=&#13;&#10;}' />
@@ -382,7 +382,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void InnerExceptionTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3}' />
@@ -412,7 +412,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void InnerExceptionTest_Serialize()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=@}' />
@@ -447,7 +447,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CustomInnerException_ObsoleteMethodTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
@@ -483,7 +483,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CustomInnerExceptionTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
@@ -516,7 +516,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -534,7 +534,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception_serialize()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=@}' />
@@ -556,7 +556,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void AggregateExceptionMultiTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=5}' />
@@ -602,7 +602,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void AggregateExceptionSingleTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=message,shorttype:maxInnerExceptionLevel=5}' />
@@ -642,7 +642,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private void SetConfigurationForExceptionUsingRootMethodTests()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${level:uppercase=true}*${message}*${exception:format=message,shorttype:separator=*}' />
@@ -774,7 +774,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void InnerExceptionTestAPI()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3:innerFormat=message}' />
@@ -815,7 +815,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("exception-custom", typeof(CustomExceptionLayoutRendrer));
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception-custom:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
@@ -848,7 +848,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionDataWithDifferentSeparators()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>                    
                     <target name='debug1' type='Debug' layout='${exception:format=data}' />
@@ -886,7 +886,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionDataWithNewLineSeparator()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>                                        
                     <target name='debug1' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=\r\n}' />
@@ -919,7 +919,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithSeparatorForExistingRender()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>                                        
                     <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
@@ -944,7 +944,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutSeparatorForNoRender()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>                                        
                     <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />

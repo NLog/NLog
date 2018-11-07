@@ -891,7 +891,7 @@ namespace NLog.UnitTests.Targets
         [InlineData("tls,tls11", SslProtocols.Tls11 | SslProtocols.Tls)]
         public void SslProtocolsConfigTest(string sslOptions, SslProtocols expected)
         {
-            var config = CreateConfigurationFromString($@"
+            var config = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog>
                 <targets><target name='target1' type='network' layout='${{message}}' Address='tcp://127.0.0.1' sslProtocols='{sslOptions}' /></targets>
                

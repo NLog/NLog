@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.Layouts
 {
     using System;
@@ -210,7 +212,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void JsonAttributeThreadAgnosticTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
             <targets async='true'>
                 <target name='debug' type='Debug'>
@@ -242,7 +244,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void JsonAttributeStackTraceUsageTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -393,7 +395,7 @@ namespace NLog.UnitTests.Layouts
 </nlog>
 ";
 
-            var config = CreateConfigurationFromString(configXml);
+            var config = XmlLoggingConfiguration.CreateFromXmlString(configXml);
 
             Assert.NotNull(config);
             var target = config.FindTargetByName<FileTarget>("jsonFile");
@@ -464,7 +466,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void IncludeMdcJsonProperties()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
@@ -499,7 +501,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void IncludeMdlcJsonProperties()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
@@ -537,7 +539,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void IncludeAllJsonPropertiesXml()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -568,7 +570,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void SerializeObjectRecursionSingle()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -612,7 +614,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void SerializeObjectRecursionZero()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -656,7 +658,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void EncodesInvalidCharacters()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >
@@ -684,7 +686,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void EncodesInvalidDoubles()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
             <targets>
                 <target name='debug' type='Debug'  >

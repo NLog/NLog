@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
@@ -43,7 +45,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void DefaultDateTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${date}' /></targets>
                 <rules>
@@ -109,7 +111,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void FormattedDateTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${date:format=yyyy-MM-dd}' /></targets>
                 <rules>

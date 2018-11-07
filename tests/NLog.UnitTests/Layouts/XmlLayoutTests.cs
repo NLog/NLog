@@ -32,6 +32,7 @@
 // 
 
 using System.Collections.Generic;
+using NLog.Config;
 
 namespace NLog.UnitTests.Layouts
 {
@@ -70,7 +71,7 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void XmlLayoutLog4j()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='debug'>

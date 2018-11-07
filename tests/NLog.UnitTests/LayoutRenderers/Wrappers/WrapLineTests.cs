@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
@@ -146,7 +148,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineFromConfig()
         {
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <targets>
         <target name='d1' type='Debug' layout='${message:wrapline=3}' />

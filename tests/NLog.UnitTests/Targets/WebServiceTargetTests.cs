@@ -42,7 +42,7 @@ using NLog.Internal;
 using NLog.Targets;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-
+using NLog.Config;
 #if !NETSTANDARD
 using System.Collections.Concurrent;
 using System.Web.Http;
@@ -109,7 +109,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         private void WebserviceTest_httppost_utf8(string bomAttr, bool includeBom)
         {
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
 <targets>
     <target type='WebService'
@@ -255,7 +255,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost()
         {
-            var configuration = CreateConfigurationFromString($@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -378,7 +378,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
         private static Logger SetUpHttpGetWebservice(string relativeUrl)
         {
-            var configuration = CreateConfigurationFromString($@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='WebService'
@@ -427,7 +427,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_httppost_checkingLost()
         {
-            var configuration = CreateConfigurationFromString($@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -488,7 +488,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_json()
         {
-            var configuration = CreateConfigurationFromString($@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'
@@ -535,7 +535,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
         [Fact]
         public void WebserviceTest_restapi_xml()
         {
-            var configuration = CreateConfigurationFromString($@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
                 <nlog throwExceptions='true'>
                     <targets>
                         <target type='WebService'

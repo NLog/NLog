@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.Layouts
 {
     using System;
@@ -50,7 +52,7 @@ namespace NLog.UnitTests.Layouts
             try
             {
                 tempFile = Path.GetTempFileName();
-                LogManager.Configuration = CreateConfigurationFromString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                   <target name='f' type='File' fileName='" + tempFile + @"'>
@@ -102,7 +104,7 @@ namespace NLog.UnitTests.Layouts
             try
             {
                 tempFile = Path.GetTempFileName();
-                LogManager.Configuration = CreateConfigurationFromString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                   <target name='f' type='File' fileName='" + tempFile + @"'>
@@ -151,7 +153,7 @@ namespace NLog.UnitTests.Layouts
             try
             {
                 tempFile = Path.GetTempFileName();
-                LogManager.Configuration = CreateConfigurationFromString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                   <target name='f' type='File' fileName='" + tempFile + @"'>

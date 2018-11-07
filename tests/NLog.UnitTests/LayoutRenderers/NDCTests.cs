@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -40,7 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NDCTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc} ${message}' /></targets>
                 <rules>
@@ -84,7 +86,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NDCTopTestTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc:topframes=2} ${message}' /></targets>
                 <rules>
@@ -129,7 +131,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NDCTop1TestTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc:topframes=1} ${message}' /></targets>
                 <rules>
@@ -179,7 +181,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NDCBottomTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc:bottomframes=2} ${message}' /></targets>
                 <rules>
@@ -223,7 +225,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NDCSeparatorTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${ndc:separator=\:} ${message}' /></targets>
                 <rules>

@@ -34,6 +34,7 @@
 
 using System;
 using NLog.Common;
+using NLog.Config;
 using NLog.Targets.Wrappers;
 using Xunit;
 using Xunit.Extensions;
@@ -48,7 +49,7 @@ namespace NLog.UnitTests.Config
             using (new InternalLoggerScope())
             {
                 var xml = "<nlog></nlog>";
-                var config = CreateConfigurationFromString(xml);
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml, Environment.CurrentDirectory);
 
                 Assert.False(config.AutoReload);
                 Assert.True(config.InitializeSucceeded);
@@ -67,7 +68,7 @@ namespace NLog.UnitTests.Config
             using (new InternalLoggerScope(true))
             {
                 var xml = "<nlog autoreload='true' logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
-                var config = CreateConfigurationFromString(xml);
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
                 Assert.True(config.AutoReload);
                 Assert.True(config.InitializeSucceeded);
@@ -95,7 +96,7 @@ namespace NLog.UnitTests.Config
         [InlineData("1:0:0:0", 86400)] //1 day
         public void SetTimeSpanFromXmlTest(string interval, int seconds)
         {
-            var config = CreateConfigurationFromString($@"
+            var config = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog throwExceptions='true'>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'  interval='{interval}'>
@@ -125,7 +126,7 @@ namespace NLog.UnitTests.Config
                     </nlog>";
 
                 // Act
-                CreateConfigurationFromString(xml);
+                XmlLoggingConfiguration.CreateFromXmlString(xml);
 
                 // Assert
                 Assert.Equal(LogLevel.Error, InternalLogger.LogLevel);
@@ -147,7 +148,7 @@ namespace NLog.UnitTests.Config
                             <logger name='*' minlevel='debug' appendto='debug' />
                          </rules>
                     </nlog>";
-                var config = CreateConfigurationFromString(xml);
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 LogManager.Configuration = config;
                 var logger = LogManager.GetLogger("InvalidInternalLogLevel_shouldNotBreakLogging");
 

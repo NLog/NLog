@@ -33,6 +33,8 @@
 
 #define DEBUG
 
+using NLog.Config;
+
 namespace NLog.UnitTests.Common
 {
 
@@ -263,7 +265,7 @@ namespace NLog.UnitTests.Common
 
             var xmlConfiguration = string.Format(XmlConfigurationFormat, logLevel, internalLogToTraceAttribute);
 
-            LogManager.Configuration = CreateConfigurationFromString(xmlConfiguration);
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(xmlConfiguration);
 
             InternalLogger.IncludeTimestamp = false;
 
