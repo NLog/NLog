@@ -48,6 +48,18 @@ namespace NLog.UnitTests.LayoutRenderers
             LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "prop1", "bbb");
             // empty
             Assert.Equal("", layout.Render(logEvent));
+        } 
+        
+        /// <summary>
+        /// Todo better place
+        /// </summary>
+        [Fact]
+        public void TestAlias1()
+        {
+            Layout layout = "${event-property:prop1}";
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "prop1", "bbb");
+            // empty
+            Assert.Equal("", layout.Render(logEvent));
         }
 
         [Fact]

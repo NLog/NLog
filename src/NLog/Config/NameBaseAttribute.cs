@@ -60,6 +60,14 @@ namespace NLog.Config
         /// Gets the name of the item.
         /// </summary>
         /// <value>The name of the item.</value>
-        public string Name { get; private set; }
+        public string Name { get; }
+
+        /// <summary>
+        /// Optional name aliases, separated by ,
+        /// </summary>
+        /// <remarks>
+        /// Arrays as attribute arguments is not CLS-complian
+        /// </remarks>
+        public string Aliases { get; set; }
     }
 }

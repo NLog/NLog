@@ -98,6 +98,17 @@ namespace NLog.Config
                 foreach (TAttributeType attr in attributes)
                 {
                     RegisterDefinition(itemNamePrefix + attr.Name, type);
+
+                    if (!string.IsNullOrEmpty(attr.Aliases))
+                    {
+                        var aliases = attr.Aliases.Split(',');
+                        for (int i = 0; i < aliases.Length; i++)
+                        {
+                            var alias = aliases[i];
+                            RegisterDefinition(itemNamePrefix + alias, type);
+                        }
+                    }
+
                 }
             }
         }
