@@ -95,7 +95,7 @@ namespace NLog.Config
             IEnumerable<TAttributeType> attributes = type.GetCustomAttributes<TAttributeType>(false);
             if (attributes != null)
             {
-                foreach (TAttributeType attr in attributes)
+                foreach (var attr in attributes)
                 {
                     RegisterDefinition(itemNamePrefix + attr.Name, type);
                 }

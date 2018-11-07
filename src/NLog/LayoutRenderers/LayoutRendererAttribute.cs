@@ -40,7 +40,7 @@ namespace NLog.LayoutRenderers
     /// Marks class as a layout renderer and assigns a name to it.
     /// </summary>
     /// <remarks>This attribute is not required when registering the layout in the API.</remarks>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class LayoutRendererAttribute : NameBaseAttribute
     {
         /// <summary>

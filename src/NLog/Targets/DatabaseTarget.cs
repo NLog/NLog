@@ -82,6 +82,7 @@ namespace NLog.Targets
     /// <code lang="C#" source="examples/targets/Configuration API/Database/MSSQL/Example.cs" height="630" />
     /// </example>
     [Target("Database")]
+    [Target("DB")]
     public class DatabaseTarget : Target, IInstallable
     {
         private IDbConnection _activeConnection;

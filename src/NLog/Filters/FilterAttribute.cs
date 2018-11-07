@@ -39,7 +39,7 @@ namespace NLog.Filters
     /// <summary>
     /// Marks class as a layout renderer and assigns a name to it.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class FilterAttribute : NameBaseAttribute
     {
         /// <summary>

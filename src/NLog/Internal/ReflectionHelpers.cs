@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Internal
 {
     using System;
@@ -226,33 +228,36 @@ namespace NLog.Internal
 #endif
         }
 
-        public static TAttr GetCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
+        [CanBeNull]
+        public static TAttr GetFirstCustomAttribute<TAttr>(this Type type) where TAttr : Attribute
         {
 #if NETSTANDARD1_0
             var typeInfo = type.GetTypeInfo();
-            return typeInfo.GetCustomAttribute<TAttr>();
+            return typeInfo.GetCustomAttributes<TAttr>().FirstOrDefault();
 #else
-            return (TAttr)Attribute.GetCustomAttribute(type, typeof(TAttr));
+            return Attribute.GetCustomAttributes(type, typeof(TAttr)).FirstOrDefault() as TAttr;
 #endif
         }
 
-        public static TAttr GetCustomAttribute<TAttr>(this PropertyInfo info)
+        [CanBeNull]
+        public static TAttr GetFirstCustomAttribute<TAttr>(this PropertyInfo info)
              where TAttr : Attribute
         {
 #if NETSTANDARD1_0
             return info.GetCustomAttributes(typeof(TAttr), false).FirstOrDefault() as TAttr;
 #else
-            return (TAttr)Attribute.GetCustomAttribute(info, typeof(TAttr));
+            return Attribute.GetCustomAttributes(info, typeof(TAttr)).FirstOrDefault() as TAttr;
 #endif
         }
 
-        public static TAttr GetCustomAttribute<TAttr>(this Assembly assembly)
+        [CanBeNull]
+        public static TAttr GetFirstCustomAttribute<TAttr>(this Assembly assembly)
             where TAttr : Attribute
         {
 #if NETSTANDARD1_0
             return assembly.GetCustomAttributes(typeof(TAttr)).FirstOrDefault() as TAttr;
 #else
-            return (TAttr)Attribute.GetCustomAttribute(assembly, typeof(TAttr));
+            return Attribute.GetCustomAttributes(assembly, typeof(TAttr)).FirstOrDefault() as TAttr;
 #endif
         }
 
