@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,48 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !SILVERLIGHT4 && !NETSTANDARD1_0
-
-namespace NLog.LayoutRenderers
+namespace NLog.Internal
 {
-    using System;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
-
     /// <summary>
-    /// A renderer that puts into log a System.Diagnostics trace correlation id.
+    /// Supports rendering as string value with limited or no allocations (preferred)
     /// </summary>
-    [LayoutRenderer("activityid")]
-    [ThreadSafe]
-    public class TraceActivityIdLayoutRenderer : LayoutRenderer, IStringValueRenderer
+    interface IStringValueRenderer
     {
-        /// <inheritdoc />
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            builder.Append(GetStringValue());
-        }
-
-        /// <inheritdoc />
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
-
-        private static string GetStringValue()
-        {
-            var activityId = GetValue();
-            if (!Guid.Empty.Equals(activityId))
-            {
-                return activityId.ToString("D", CultureInfo.InvariantCulture);
-            }
-            return string.Empty;
-        }
-
-        private static Guid GetValue()
-        {
-            return Trace.CorrelationManager.ActivityId;
-        }
+        /// <summary>
+        /// Renders the value of layout renderer in the context of the specified log event
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <returns>null if not possible or unknown</returns>
+        string GetFormattedString(LogEventInfo logEvent);
     }
 }
-
-#endif

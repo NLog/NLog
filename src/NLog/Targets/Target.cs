@@ -734,7 +734,9 @@ namespace NLog.Targets
             {
                 SimpleLayout simpleLayout = layout as SimpleLayout;
                 if (simpleLayout != null && simpleLayout.IsFixedText)
+                {
                     return simpleLayout.Render(logEvent);
+                }
 
                 if (!layout.ThreadAgnostic || layout.MutableUnsafe)
                 {
@@ -742,6 +744,11 @@ namespace NLog.Targets
                     {
                         return value?.ToString() ?? string.Empty;
                     }
+                }
+
+                if (simpleLayout != null && simpleLayout.IsSimpleStringText)
+                {
+                    return simpleLayout.Render(logEvent);
                 }
 
                 using (var localTarget = ReusableLayoutBuilder.Allocate())

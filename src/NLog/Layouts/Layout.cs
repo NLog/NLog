@@ -54,7 +54,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
         /// </summary>
-        private bool _isInitialized;
+        internal bool _isInitialized;
         private bool _scannedForObjects;
 
         /// <summary>

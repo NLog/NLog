@@ -181,6 +181,15 @@ namespace NLog.Internal
 #endif
         }
 
+        public static bool IsValueType(this Type type)
+        {
+#if NETSTANDARD1_0
+            return type.GetTypeInfo().IsValueType;
+#else
+            return type.IsValueType;
+#endif
+        }
+
         public static bool IsSealed(this Type type)
         {
 #if NETSTANDARD1_0

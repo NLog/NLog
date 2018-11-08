@@ -44,22 +44,15 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("guid")]
     [ThreadSafe]
-    public class GuidLayoutRenderer : LayoutRenderer, IRawValue
+    [ThreadAgnostic]
+    public class GuidLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GuidLayoutRenderer" /> class.
-        /// </summary>
-        public GuidLayoutRenderer()
-        {
-            Format = "N";
-        }
-
         /// <summary>
         /// Gets or sets the GUID format as accepted by Guid.ToString() method.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue("N")]
-        public string Format { get; set; }
+        public string Format { get; set; } = "N";
 
         /// <summary>
         /// Generate the Guid from the NLog LogEvent (Will be the same for all targets)
@@ -68,21 +61,21 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool GeneratedFromLogEvent { get; set; }
 
-        /// <summary>
-        /// Get raw value
-        /// </summary>
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
-
-        /// <summary>
-        /// Renders a newly generated GUID string and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            Guid guid;
-            guid = GetValue(logEvent);
-            builder.Append(guid.ToString(Format));
+            builder.Append(GetStringValue(logEvent));
+        }
+
+        /// <inheritdoc/>
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+
+        private string GetStringValue(LogEventInfo logEvent)
+        {
+            return GetValue(logEvent).ToString(Format);
         }
 
         private Guid GetValue(LogEventInfo logEvent)
@@ -103,7 +96,6 @@ namespace NLog.LayoutRenderers
                 byte j = (byte)((zeroDateTicks >> 8) & 0xFF);
                 byte k = (byte)(zeroDateTicks & 0XFF);
                 guid = new Guid(logEvent.SequenceID, b, c, d, e, f, g, h, i, j, k);
-
             }
             else
             {

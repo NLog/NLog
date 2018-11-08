@@ -43,23 +43,13 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("threadid")]
     [ThreadSafe]
-    public class ThreadIdLayoutRenderer : LayoutRenderer, IRawValue
+    public class ThreadIdLayoutRenderer : LayoutRenderer
     {
-        /// <summary>
-        /// Renders the current thread identifier and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture needed for ints
             builder.AppendInvariant(GetValue());
-        }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue();
         }
 
         private static int GetValue()

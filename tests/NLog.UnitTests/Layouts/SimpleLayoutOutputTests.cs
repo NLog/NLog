@@ -162,7 +162,7 @@ namespace NLog.UnitTests.Layouts
         public void TryGetRawValue_SingleLayoutRender_ShouldGiveRawValue()
         {
             // Arrange
-            SimpleLayout l = "${threadid}";
+            SimpleLayout l = "${sequenceid}";
             var logEventInfo = LogEventInfo.CreateNullEvent();
 
             // Act
@@ -173,11 +173,12 @@ namespace NLog.UnitTests.Layouts
             Assert.IsType<int>(value);
             Assert.True((int)value >= 0, "(int)value >= 0");
         }
+
         [Fact]
         public void TryGetRawValue_MultipleLayoutRender_ShouldGiveNullRawValue()
         {
             // Arrange
-            SimpleLayout l = "${threadid} ";
+            SimpleLayout l = "${sequenceid} ";
             var logEventInfo = LogEventInfo.CreateNullEvent();
 
             // Act
@@ -188,7 +189,41 @@ namespace NLog.UnitTests.Layouts
             Assert.Null(value);
         }
 
+        [Fact]
+        public void TryGetRawValue_MutableLayoutRender_ShouldGiveNullRawValue()
+        {
+            // Arrange
+            SimpleLayout l = "${event-properties:builder}";
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["builder"] = new StringBuilder("mybuilder");
+            l.Precalculate(logEventInfo);
 
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.False(success);
+            Assert.Null(value);
+        }
+
+        [Fact]
+        public void TryGetRawValue_ImmutableLayoutRender_ShouldGiveRawValue()
+        {
+            // Arrange
+            SimpleLayout l = "${event-properties:correlationid}";
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            var correlationId = Guid.NewGuid();
+            logEventInfo.Properties["correlationid"] = correlationId;
+            l.Precalculate(logEventInfo);
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<Guid>(value);
+            Assert.Equal(correlationId, value);
+        }
 
         public class ThrowsExceptionRenderer : LayoutRenderer
         {

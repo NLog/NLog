@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// High precision timer, based on the value returned from QueryPerformanceCounter() optionally converted to seconds.
     /// </summary>
     [LayoutRenderer("qpc")]
-    public class QueryPerformanceCounterLayoutRenderer : LayoutRenderer, IRawValue
+    public class QueryPerformanceCounterLayoutRenderer : LayoutRenderer
     {
         private bool raw;
         private ulong firstQpcValue;
@@ -53,23 +53,12 @@ namespace NLog.LayoutRenderers
         private double frequency = 1;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="QueryPerformanceCounterLayoutRenderer" /> class.
-        /// </summary>
-        public QueryPerformanceCounterLayoutRenderer()
-        {
-            Normalize = true;
-            Difference = false;
-            Precision = 4;
-            AlignDecimalPoint = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to normalize the result by subtracting 
         /// it from the result of the first call (so that it's effectively zero-based).
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
-        public bool Normalize { get; set; }
+        public bool Normalize { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to output the difference between the result 
@@ -96,18 +85,16 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(4)]
-        public int Precision { get; set; }
+        public int Precision { get; set; } = 4;
 
         /// <summary>
         /// Gets or sets a value indicating whether to align decimal point (emit non-significant zeros).
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
-        public bool AlignDecimalPoint { get; set; }
+        public bool AlignDecimalPoint { get; set; } = true;
 
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
+        /// <inheritdoc />
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
@@ -131,11 +118,7 @@ namespace NLog.LayoutRenderers
             lastQpcValue = qpcValue;
         }
 
-        /// <summary>
-        /// Renders the ticks value of current time and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var qpcValue = GetValue();
@@ -169,18 +152,6 @@ namespace NLog.LayoutRenderers
 
                 builder.Append(stringValue);
             }
-        }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            var value = GetValue();
-            if (value.HasValue && Seconds)
-            {
-                return ToSeconds(value.Value);
-            }
-
-            return value;
         }
 
         private double ToSeconds(ulong qpcValue)

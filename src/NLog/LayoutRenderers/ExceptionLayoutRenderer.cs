@@ -38,7 +38,6 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
     using NLog.Common;
-    using NLog.Conditions;
     using NLog.Config;
     using NLog.Internal;
 
@@ -178,16 +177,10 @@ namespace NLog.LayoutRenderers
             private set;
         }
 
-        /// <summary>
-        /// Get raw value, updates the sequence
-        /// </summary>
+        /// <inheritdoc />
         object IRawValue.GetRawValue(LogEventInfo logEvent) => logEvent.Exception;
 
-        /// <summary>
-        /// Renders the specified exception information and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             Exception primaryException = logEvent.Exception;

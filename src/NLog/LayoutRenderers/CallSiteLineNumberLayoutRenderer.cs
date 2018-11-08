@@ -60,11 +60,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsage.WithSource;
 
-        /// <summary>
-        /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var lineNumber = GetLineNumber(logEvent);
@@ -72,12 +68,8 @@ namespace NLog.LayoutRenderers
                 builder.AppendInvariant(lineNumber.Value);
         }
 
-
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetLineNumber(logEvent);
-        }
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetLineNumber(logEvent);
 
         private int? GetLineNumber(LogEventInfo logEvent)
         {

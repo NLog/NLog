@@ -35,24 +35,30 @@ namespace NLog.LayoutRenderers
 {
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The name of the current thread.
     /// </summary>
     [LayoutRenderer("threadname")]
     [ThreadSafe]
-    public class ThreadNameLayoutRenderer : LayoutRenderer
+    public class ThreadNameLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
-        /// <summary>
-        /// Renders the current thread name and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            builder.Append(GetStringValue());
+        }
+
+        private static string GetStringValue()
+        {
 #if !NETSTANDARD1_3
-            builder.Append(System.Threading.Thread.CurrentThread.Name);
+            return System.Threading.Thread.CurrentThread.Name;
+#else
+            return string.Empty;
 #endif
         }
+
+        string IStringValueRenderer.GetFormattedString(LogEventInfo _) => GetStringValue();
     }
 }

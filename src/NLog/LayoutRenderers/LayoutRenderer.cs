@@ -151,7 +151,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Renders the the value of layout renderer in the context of the specified log event.
+        /// Renders the value of layout renderer in the context of the specified log event.
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <param name="builder">The layout render output is appended to builder</param>
@@ -179,7 +179,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Renders the specified environmental information and appends it to the specified <see cref="StringBuilder" />.
+        /// Renders the value of layout renderer in the context of the specified log event into <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
         /// <param name="logEvent">Logging event.</param>

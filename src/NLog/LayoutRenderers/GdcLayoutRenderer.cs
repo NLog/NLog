@@ -42,8 +42,9 @@ namespace NLog.LayoutRenderers
     /// Global Diagnostics Context item. Provided for compatibility with log4net.
     /// </summary>
     [LayoutRenderer("gdc")]
+    [ThreadAgnostic]
     [ThreadSafe]
-    public class GdcLayoutRenderer : LayoutRenderer, IRawValue
+    public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets the name of the item.
@@ -59,11 +60,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='50' />
         public string Format { get; set; }
 
-        /// <summary>
-        /// Renders the specified Global Diagnostics Context item and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             object value = GetValue();
@@ -71,10 +68,22 @@ namespace NLog.LayoutRenderers
             builder.AppendFormattedValue(value, Format, formatProvider);
         }
 
-        /// <summary>
-        /// Get raw value.
-        /// </summary>
+        /// <inheritdoc/>
         object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+
+        private string GetStringValue(LogEventInfo logEvent)
+        {
+            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
+            {
+                object value = GetValue();
+                string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, null));
+                return stringValue;
+            }
+            return null;
+        }
 
         private object GetValue()
         {

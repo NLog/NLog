@@ -61,11 +61,7 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool Invariant { get; set; }
 
-        /// <summary>
-        /// Renders time in the 24-h format (HH:mm:ss.mmm) and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var dt = GetValue(logEvent);

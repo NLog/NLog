@@ -55,6 +55,13 @@ namespace NLog.LayoutRenderers.Wrappers
         public Layout WhenEmpty { get; set; }
 
         /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+            WhenEmpty?.Initialize(LoggingConfiguration);
+        }
+
+        /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             Inner.RenderAppendBuilder(logEvent, builder);

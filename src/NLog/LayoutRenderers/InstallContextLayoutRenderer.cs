@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("install-context")]
     [ThreadSafe]
-    public class InstallContextLayoutRenderer : LayoutRenderer, IRawValue
+    public class InstallContextLayoutRenderer : LayoutRenderer
     {
         /// <summary>
         /// Gets or sets the name of the parameter.
@@ -72,12 +72,6 @@ namespace NLog.LayoutRenderers
         private object GetValue(LogEventInfo logEvent)
         {
             return !logEvent.Properties.TryGetValue(Parameter, out var value) ? null : value;
-        }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue(logEvent);
         }
     }
 }

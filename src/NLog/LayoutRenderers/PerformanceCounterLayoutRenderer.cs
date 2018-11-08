@@ -47,7 +47,7 @@ namespace NLog.LayoutRenderers
     /// The performance counter.
     /// </summary>
     [LayoutRenderer("performancecounter")]
-    public class PerformanceCounterLayoutRenderer : LayoutRenderer, IRawValue
+    public class PerformanceCounterLayoutRenderer : LayoutRenderer
     {
         private PerformanceCounter _perfCounter;
         private CounterSample _prevSample = CounterSample.Empty;
@@ -91,9 +91,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='100' />
         public CultureInfo Culture { get; set; }
 
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
+        /// <inheritdoc />
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
@@ -154,9 +152,7 @@ namespace NLog.LayoutRenderers
             return string.Empty;
         }
 
-        /// <summary>
-        /// Closes the layout renderer.
-        /// </summary>
+        /// <inheritdoc />
         protected override void CloseLayoutRenderer()
         {
             base.CloseLayoutRenderer();
@@ -169,21 +165,11 @@ namespace NLog.LayoutRenderers
             _nextSample = CounterSample.Empty;
         }
 
-        /// <summary>
-        /// Renders the specified environment variable and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var formatProvider = GetFormatProvider(logEvent, Culture);
             builder.Append(GetValue().ToString(Format, formatProvider));
-        }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue();
         }
 
         private float GetValue()

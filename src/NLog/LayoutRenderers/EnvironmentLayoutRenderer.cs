@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("environment")]
     [ThreadSafe]
-    public class EnvironmentLayoutRenderer : LayoutRenderer
+    public class EnvironmentLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets the name of the environment variable.
@@ -63,12 +63,24 @@ namespace NLog.LayoutRenderers
 
         private System.Collections.Generic.KeyValuePair<string, SimpleLayout> _cachedValue;
 
-        /// <summary>
-        /// Renders the specified environment variable and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            GetSimpleLayout()?.RenderAppendBuilder(logEvent, builder);
+        }
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        {
+            var simpleLayout = GetSimpleLayout();
+            if (simpleLayout == null)
+                return string.Empty;
+            if (simpleLayout.IsFixedText || simpleLayout.IsSimpleStringText)
+                return simpleLayout.Render(logEvent);
+            return null;
+        } 
+
+        private SimpleLayout GetSimpleLayout()
         {
             if (Variable != null)
             {
@@ -86,9 +98,11 @@ namespace NLog.LayoutRenderers
                         _cachedValue = cachedValue;
                     }
 
-                    cachedValue.Value.RenderAppendBuilder(logEvent, builder);
+                    return cachedValue.Value;
                 }
             }
+
+            return null;
         }
     }
 }

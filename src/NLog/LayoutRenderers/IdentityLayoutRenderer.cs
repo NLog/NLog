@@ -47,53 +47,38 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("identity")]
     [ThreadSafe]
-    public class IdentityLayoutRenderer : LayoutRenderer, IRawValue
+    public class IdentityLayoutRenderer : LayoutRenderer
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IdentityLayoutRenderer" /> class.
-        /// </summary>
-        public IdentityLayoutRenderer()
-        {
-            Name = true;
-            AuthType = true;
-            IsAuthenticated = true;
-            Separator = ":";
-        }
-
         /// <summary>
         /// Gets or sets the separator to be used when concatenating 
         /// parts of identity information.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(":")]
-        public string Separator { get; set; }
+        public string Separator { get; set; } = ":";
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.Name.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
-        public bool Name { get; set; }
+        public bool Name { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.AuthenticationType.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
-        public bool AuthType { get; set; }
+        public bool AuthType { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to render Thread.CurrentPrincipal.Identity.IsAuthenticated.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
-        public bool IsAuthenticated { get; set; }
+        public bool IsAuthenticated { get; set; } = true;
 
-        /// <summary>
-        /// Renders the specified identity information and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             IIdentity identity = GetValue();
@@ -123,12 +108,6 @@ namespace NLog.LayoutRenderers
                 }
             }
 
-        }
-
-        /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
-        {
-            return GetValue();
         }
 
         private static IIdentity GetValue()

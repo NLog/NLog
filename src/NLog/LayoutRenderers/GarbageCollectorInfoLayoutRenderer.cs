@@ -37,7 +37,6 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.ComponentModel;
-    using System.Globalization;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -47,48 +46,23 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("gc")]
     [ThreadSafe]
-    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer, IRawValue
+    public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GarbageCollectorInfoLayoutRenderer" /> class.
-        /// </summary>
-        public GarbageCollectorInfoLayoutRenderer()
-        {
-            Property = GarbageCollectorProperty.TotalMemory;
-        }
-
         /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue("TotalMemory")]
-        public GarbageCollectorProperty Property { get; set; }
-        
-        /// <summary>
-        /// Renders the selected process information.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            var formatProvider = GetFormatProvider(logEvent);
-            if (ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))
-            {
-                formatProvider = null;
-            }
-
-            var value = GetValue();
-
-            if (formatProvider == null && value >= 0 && value < uint.MaxValue)
-                builder.AppendInvariant((uint)value);
-            else
-                builder.Append(Convert.ToString(value, formatProvider ?? CultureInfo.InvariantCulture));
-        }
+        public GarbageCollectorProperty Property { get; set; } = GarbageCollectorProperty.TotalMemory;
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            return GetValue();
+            var value = GetValue();
+            if (value >= 0 && value < uint.MaxValue)
+                builder.AppendInvariant((uint)value);
+            else
+                builder.Append(value.ToString());
         }
 
         private long GetValue()
@@ -126,8 +100,6 @@ namespace NLog.LayoutRenderers
 
             return value;
         }
-
-      
     }
 }
 
