@@ -919,9 +919,9 @@ namespace NLog.Config
                     PropertyHelper.SetPropertyFromString(targetObject, childName, ExpandSimpleVariables(childValue),
                         _configurationItemFactory);
                 }
-                catch (NLogConfigurationException)
+                catch (Exception ex)
                 {
-                    InternalLogger.Warn("Error when setting '{0}' on attibute '{1}'", childValue, childName);
+                    InternalLogger.Warn(ex, "Error when setting '{0}' on attibute '{1}'", childValue, childName);
                     throw;
                 }
             }
