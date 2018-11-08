@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System;
     using System.ComponentModel;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -48,7 +49,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("Cached")]
     [AmbientProperty("ClearCache")] 
     [ThreadAgnostic]
-    public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase, IStringValueRenderer
     {
         /// <summary>
         /// A value indicating when the cache is cleared.
@@ -148,5 +149,8 @@ namespace NLog.LayoutRenderers.Wrappers
                 return base.RenderInner(logEvent);
             }
         }
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Cached ? RenderInner(logEvent) : null;
     }
 }

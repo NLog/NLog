@@ -58,6 +58,13 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultParameter]
         public Layout Inner { get; set; }
 
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+            Inner?.Initialize(LoggingConfiguration);
+        }
+
         /// <summary>
         /// Renders the inner message, processes it and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
