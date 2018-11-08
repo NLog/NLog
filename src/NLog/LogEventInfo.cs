@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog
 {
     using System;
@@ -168,7 +170,9 @@ namespace NLog
         /// </summary>
         public LogLevel Level { get; set; }
 
-        internal CallSiteInformation CallSiteInformation { get; private set; }
+        [CanBeNull] internal CallSiteInformation CallSiteInformation { get; private set; }
+
+        [NotNull]
         internal CallSiteInformation GetCallSiteInformationInternal() { return CallSiteInformation ?? (CallSiteInformation = new CallSiteInformation()); }
 
         /// <summary>
@@ -215,11 +219,13 @@ namespace NLog
         /// <summary>
         /// Gets or sets the exception information.
         /// </summary>
+        [CanBeNull]
         public Exception Exception { get; set; }
 
         /// <summary>
         /// Gets or sets the logger name.
         /// </summary>
+        [CanBeNull]
         public string LoggerName { get; set; }
 
         /// <summary>
@@ -232,6 +238,8 @@ namespace NLog
             // NOTE: This property is not referenced by NLog code anymore. 
             get
             {
+                if (LoggerName == null) return LoggerName;
+
                 int lastDot = LoggerName.LastIndexOf('.');
                 if (lastDot >= 0)
                 {
