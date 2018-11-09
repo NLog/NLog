@@ -617,7 +617,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// <summary>
             /// Countdown event for keeping WS alive.
             /// </summary>
-            public static CountdownEvent CountdownEvent = null;
+            public static CountdownEvent CountdownEvent;
 
 
             /// <summary>
@@ -886,7 +886,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
                 public int PortOffset { get; }
 
-                public bool XmlInsteadOfJson { get; } = false;
+                public bool XmlInsteadOfJson { get; }
 
                 public Dictionary<string, string> ExpectedHeaders { get; }
 

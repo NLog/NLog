@@ -286,7 +286,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         {
             private readonly MyTcpNetworkSender sender;
             private readonly StringWriter log;
-            private bool faulted = false;
+            private bool faulted;
 
             public MockSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, MyTcpNetworkSender sender)
             {

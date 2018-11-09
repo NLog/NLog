@@ -146,7 +146,7 @@ namespace NLog.Targets
             get => _activeProtocol.Key;
             set => _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(value, null);
         }
-        private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>();
+        private KeyValuePair<WebServiceProtocol, HttpPostFormatterBase> _activeProtocol;
 
 #if !SILVERLIGHT
         /// <summary>
@@ -159,7 +159,7 @@ namespace NLog.Targets
             get => _activeProxy.Key;
             set => _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(value, null);
         }
-        private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>();
+        private KeyValuePair<WebServiceProxyType, IWebProxy> _activeProxy;
 #endif
 
         /// <summary>
@@ -615,7 +615,7 @@ namespace NLog.Targets
         private class HttpPostJsonFormatter : HttpPostTextFormatterBase
         {
             private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter);
-            private IJsonConverter _jsonConverter = null;
+            private IJsonConverter _jsonConverter;
 
             public HttpPostJsonFormatter(WebServiceTarget target) : base(target)
             {

@@ -83,7 +83,7 @@ namespace NLog.Targets
     [Target("Database")]
     public class DatabaseTarget : Target, IInstallable
     {
-        private IDbConnection _activeConnection = null;
+        private IDbConnection _activeConnection;
         private string _activeConnectionString;
 
         /// <summary>

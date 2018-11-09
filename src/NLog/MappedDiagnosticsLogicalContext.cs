@@ -61,8 +61,8 @@ namespace NLog
             private readonly string[] _itemArray;
 #endif
             //boolean as int to allow the use of Interlocked.Exchange
-            private int _disposed = 0;
-            private readonly bool _wasEmpty = false;
+            private int _disposed;
+            private readonly bool _wasEmpty;
 
             public ItemRemover(string item, bool wasEmpty)
             {

@@ -52,9 +52,9 @@ namespace NLog.Internal.FileAppenders
         private Timer _autoClosingTimer;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-        private string _archiveFilePatternToWatch = null;
+        private string _archiveFilePatternToWatch;
         private readonly MultiFileWatcher _externalFileArchivingWatcher = new MultiFileWatcher(NotifyFilters.DirectoryName | NotifyFilters.FileName);
-        private bool _logFileWasArchived = false;
+        private bool _logFileWasArchived;
 #endif
 
         /// <summary>

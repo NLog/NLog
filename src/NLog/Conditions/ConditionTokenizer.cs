@@ -42,7 +42,7 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionTokenizer
     {
-        private static readonly ConditionTokenType[] charIndexToTokenType = BuildCharIndexToTokenType();
+        private static readonly ConditionTokenType[] CharIndexToTokenType = BuildCharIndexToTokenType();
         private readonly SimpleStringReader _stringReader;
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace NLog.Conditions
 
             if (ch >= 32 && ch < 128)
             {
-                ConditionTokenType tt = charIndexToTokenType[ch];
+                ConditionTokenType tt = CharIndexToTokenType[ch];
 
                 if (tt != ConditionTokenType.Invalid)
                 {
@@ -385,7 +385,7 @@ namespace NLog.Conditions
 
             foreach (CharToTokenType cht in charToTokenType)
             {
-                result[(int)cht.Character] = cht.TokenType;
+                result[cht.Character] = cht.TokenType;
             }
 
             return result;
@@ -409,7 +409,7 @@ namespace NLog.Conditions
 
                 if (ch == '\'')
                 {
-                    if (PeekChar() == (int)'\'')
+                    if (PeekChar() == '\'')
                     {
                         sb.Append('\'');
                         ReadChar();

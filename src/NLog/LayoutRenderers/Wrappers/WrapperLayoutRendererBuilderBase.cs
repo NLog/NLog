@@ -44,12 +44,6 @@ namespace NLog.LayoutRenderers.Wrappers
     public abstract class WrapperLayoutRendererBuilderBase : WrapperLayoutRendererBase
     {
         /// <inheritdoc/>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            base.Append(builder, logEvent);
-        }
-
-        /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             using (var localTarget = new Internal.AppendBuilderCreator(builder, true))

@@ -105,10 +105,7 @@ namespace NLog
         {
             lock (dict)
             {
-                object o;
-                if (!dict.TryGetValue(item, out o))
-                    o = null;
-
+                dict.TryGetValue(item, out var o);
                 return o;
             }
         }

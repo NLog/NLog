@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.LayoutRenderers;
-
 namespace NLog.Layouts
 {
     using System;
@@ -54,7 +52,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
         /// </summary>
-        internal bool _isInitialized;
+        internal bool IsInitialized;
         private bool _scannedForObjects;
 
         /// <summary>
@@ -143,7 +141,7 @@ namespace NLog.Layouts
         /// <returns>String representing log event.</returns>
         public string Render(LogEventInfo logEvent)
         {
-            if (!_isInitialized)
+            if (!IsInitialized)
             {
                 Initialize(LoggingConfiguration);
             }
@@ -181,7 +179,7 @@ namespace NLog.Layouts
         /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
         internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target, bool cacheLayoutResult = false)
         {
-            if (!_isInitialized)
+            if (!IsInitialized)
             {
                 Initialize(LoggingConfiguration);
             }
@@ -265,10 +263,10 @@ namespace NLog.Layouts
         /// <param name="configuration">The configuration.</param>
         internal void Initialize(LoggingConfiguration configuration)
         {
-            if (!_isInitialized)
+            if (!IsInitialized)
             {
                 LoggingConfiguration = configuration;
-                _isInitialized = true;
+                IsInitialized = true;
                 _scannedForObjects = false;
 
                 InitializeLayout();
@@ -304,10 +302,10 @@ namespace NLog.Layouts
         /// </summary>
         internal void Close()
         {
-            if (_isInitialized)
+            if (IsInitialized)
             {
                 LoggingConfiguration = null;
-                _isInitialized = false;
+                IsInitialized = false;
                 CloseLayout();
             }
         }

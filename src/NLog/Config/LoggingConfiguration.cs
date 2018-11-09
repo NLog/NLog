@@ -798,6 +798,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [NotNull]
         internal string ExpandSimpleVariables(string input)
         {
             string output = input;

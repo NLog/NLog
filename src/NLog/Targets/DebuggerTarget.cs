@@ -114,7 +114,7 @@ namespace NLog.Targets
         {
             if (Debugger.IsLogging())
             {
-                string logMessage = string.Empty;
+                string logMessage;
                 if (OptimizeBufferReuse)
                 {
                     using (var localTarget = ReusableLayoutBuilder.Allocate())
