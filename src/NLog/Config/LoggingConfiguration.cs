@@ -802,16 +802,19 @@ namespace NLog.Config
         {
             string output = input;
 
-            // TODO - make this case-insensitive, will probably require a different approach
-            var variables = Variables.ToList();
-            foreach (var kvp in variables)
+            if (Variables.Count > 0 && output?.IndexOf("${") >= 0)
             {
-                var layout = kvp.Value;
-                //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
-                if (layout != null) output = output.Replace(string.Concat("${", kvp.Key, "}"), layout.OriginalText);
+                // TODO - make this case-insensitive, will probably require a different approach
+                var variables = Variables.ToList();
+                foreach (var kvp in variables)
+                {
+                    var layout = kvp.Value;
+                    //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
+                    if (layout != null) output = output.Replace(string.Concat("${", kvp.Key, "}"), layout.OriginalText);
+                }
             }
 
-            return output;
+            return output ?? string.Empty;
         }
 
         /// <summary>
