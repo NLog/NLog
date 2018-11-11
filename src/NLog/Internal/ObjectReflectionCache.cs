@@ -182,7 +182,6 @@ namespace NLog.Internal
             }
             foreach (var prop in properties)
             {
-                var propertyName = prop.Name;
                 var getterMethod = prop.GetGetMethod();
                 Type propertyType = getterMethod.ReturnType;
                 ReflectionHelpers.LateBoundMethod valueLookup = ReflectionHelpers.CreateLateBoundMethod(getterMethod);
@@ -194,11 +193,6 @@ namespace NLog.Internal
                 fastLookup[fastAccessIndex++] = new FastPropertyLookup(prop.Name, typeCode, valueLookup);
             }
             return fastLookup;
-        }
-
-        private static KeyValuePair<string, object> FastLookupObjectProperty(object o, string propertyName, ReflectionHelpers.LateBoundMethod valueLookup)
-        {
-            return new KeyValuePair<string, object>(propertyName, valueLookup(o, null));
         }
 
         private const BindingFlags PublicProperties = BindingFlags.Instance | BindingFlags.Public;

@@ -389,7 +389,7 @@ namespace NLog.Layouts
                     //check for performance
                     if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
                     {
-                        InternalLogger.Warn(exception, "Exception in '{0}.Append()'", _stringValueRenderer.GetType().FullName);
+                        InternalLogger.Warn(exception, "Exception in '{0}.Append()'", _stringValueRenderer?.GetType().FullName);
                     }
 
                     if (exception.MustBeRethrown())

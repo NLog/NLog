@@ -470,20 +470,20 @@ namespace NLog.Config
         /// <summary>
         /// Parses a single config section within the NLog-config
         /// </summary>
-        /// <param name="section"></param>
+        /// <param name="configSection"></param>
         /// <returns>Section was recognized</returns>
-        protected override bool ParseNLogSection(ILoggingConfigurationElement section)
+        protected override bool ParseNLogSection(ILoggingConfigurationElement configSection)
         {
-            if (section.MatchesName("include"))
+            if (configSection.MatchesName("include"))
             {
                 string filePath = _currentFilePath.Peek();
-                bool autoLoad = filePath != null ? _fileMustAutoReloadLookup[GetFileLookupKey(filePath)] : false;
-                ParseIncludeElement(section, filePath != null ? Path.GetDirectoryName(filePath) : null, autoLoad);
+                bool autoLoad = filePath != null && _fileMustAutoReloadLookup[GetFileLookupKey(filePath)];
+                ParseIncludeElement(configSection, filePath != null ? Path.GetDirectoryName(filePath) : null, autoLoad);
                 return true;
             }
             else
             {
-                return base.ParseNLogSection(section);
+                return base.ParseNLogSection(configSection);
             }
         }
 
