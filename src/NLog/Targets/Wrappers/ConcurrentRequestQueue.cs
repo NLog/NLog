@@ -150,14 +150,14 @@ namespace NLog.Targets.Wrappers
                     if (!lockTaken)
                     {
                         InternalLogger.Debug("Blocking because the overflow action is Block...");
-                        Monitor.Enter(this);
+                        Monitor.Enter(_logEventInfoQueue);
                         lockTaken = true;
                         InternalLogger.Trace("Entered critical section.");
                     }
                     else
                     {
                         InternalLogger.Debug("Blocking because the overflow action is Block...");
-                        if (!Monitor.Wait(this, 100))
+                        if (!Monitor.Wait(_logEventInfoQueue, 100))
                             lockTaken = false;
                         else
                             InternalLogger.Trace("Entered critical section.");
@@ -167,13 +167,13 @@ namespace NLog.Targets.Wrappers
 
                 if (lockTaken)
                 {
-                    Monitor.PulseAll(this);
+                    Monitor.PulseAll(_logEventInfoQueue);
                 }
             }
             finally
             {
                 if (lockTaken)
-                    Monitor.Exit(this);
+                    Monitor.Exit(_logEventInfoQueue);
             }
 
             return currentCount;
@@ -228,18 +228,18 @@ namespace NLog.Targets.Wrappers
 
             if (dequeueBatch)
             {
-                bool lockTaken = Monitor.TryEnter(this);    // Try to throttle
+                bool lockTaken = Monitor.TryEnter(_logEventInfoQueue);    // Try to throttle
                 try
                 {
                     for (int i = 0; i < result.Count; ++i)
                         Interlocked.Decrement(ref _count);
                     if (lockTaken)
-                        Monitor.PulseAll(this);
+                        Monitor.PulseAll(_logEventInfoQueue);
                 }
                 finally
                 {
                     if (lockTaken)
-                        Monitor.Exit(this);
+                        Monitor.Exit(_logEventInfoQueue);
                 }
             }
         }

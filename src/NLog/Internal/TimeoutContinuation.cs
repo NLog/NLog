@@ -35,7 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Threading;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Wraps <see cref="AsyncContinuation"/> with a timeout.
@@ -53,7 +53,7 @@ namespace NLog.Internal
         public TimeoutContinuation(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
             _asyncContinuation = asyncContinuation;
-            _timeoutTimer = new Timer(TimerElapsed, null, timeout, TimeSpan.FromMilliseconds(-1));
+            _timeoutTimer = new Timer(TimerElapsed, null, (int)timeout.TotalMilliseconds, Timeout.Infinite);
         }
 
         /// <summary>
@@ -64,9 +64,8 @@ namespace NLog.Internal
         {
             try
             {
-                StopTimer();
-
                 var cont = Interlocked.Exchange(ref _asyncContinuation, null);
+                StopTimer();
                 if (cont != null)
                 {
                     cont(exception);
@@ -93,14 +92,10 @@ namespace NLog.Internal
 
         private void StopTimer()
         {
-            lock (this)
+            var currentTimer = Interlocked.Exchange(ref _timeoutTimer, null);
+            if (currentTimer != null)
             {
-                var currentTimer = _timeoutTimer;
-                if (currentTimer != null)
-                {
-                    _timeoutTimer = null;
-                    currentTimer.WaitForDispose(TimeSpan.Zero);
-                }
+                currentTimer.WaitForDispose(TimeSpan.Zero);
             }
         }
 

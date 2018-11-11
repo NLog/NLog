@@ -34,8 +34,8 @@
 namespace NLog.Targets.Wrappers
 {
     using System;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Sends log messages to a randomly selected target.
@@ -59,7 +59,9 @@ namespace NLog.Targets.Wrappers
     [Target("RandomizeGroup", IsCompound = true)]
     public class RandomizeGroupTarget : CompoundTargetBase
     {
+#pragma warning disable S2245   // Make sure that using this pseudorandom number generator is safe here (Not security sensitive)
         private readonly Random _random = new Random();
+#pragma warning restore S2245   // Make sure that using this pseudorandom number generator is safe here
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomizeGroupTarget" /> class.

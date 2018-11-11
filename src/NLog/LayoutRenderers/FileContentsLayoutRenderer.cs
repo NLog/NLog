@@ -47,6 +47,8 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("file-contents")]
     public class FileContentsLayoutRenderer : LayoutRenderer
     {
+        private readonly object _lockObject = new object();
+
         private string _lastFileName;
         private string _currentFileContents;
 
@@ -84,7 +86,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            lock (this)
+            lock (_lockObject)
             {
                 string fileName = FileName.Render(logEvent);
 

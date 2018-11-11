@@ -37,7 +37,7 @@ namespace NLog.Internal.NetworkSenders
     using System.Collections.Generic;
     using System.IO;
     using System.Net.Sockets;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Sends messages over a TCP network connection.
@@ -136,7 +136,7 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="continuation">The continuation.</param>
         protected override void DoClose(AsyncContinuation continuation)
         {
-            lock (this)
+            lock (_pendingRequests)
             {
                 if (_asyncOperationInProgress)
                 {
@@ -155,7 +155,7 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="continuation">The continuation.</param>
         protected override void DoFlush(AsyncContinuation continuation)
         {
-            lock (this)
+            lock (_pendingRequests)
             {
                 if (!_asyncOperationInProgress && _pendingRequests.Count == 0)
                 {
@@ -184,7 +184,7 @@ namespace NLog.Internal.NetworkSenders
             args.UserToken = asyncContinuation;
             args.Completed += SocketOperationCompleted;
 
-            lock (this)
+            lock (_pendingRequests)
             {
                 if (MaxQueueSize != 0 && _pendingRequests.Count >= MaxQueueSize)
                 {
@@ -229,14 +229,14 @@ namespace NLog.Internal.NetworkSenders
 
         private void SocketOperationCompleted(object sender, SocketAsyncEventArgs e)
         {
-            lock (this)
+            lock (_pendingRequests)
             {
                 _asyncOperationInProgress = false;
                 var asyncContinuation = e.UserToken as AsyncContinuation;
 
                 if (e.SocketError != SocketError.Success)
                 {
-                    _pendingError = new IOException("Error: " + e.SocketError);
+                    _pendingError = new IOException($"Error: " + e.SocketError);
                 }
 
                 e.Dispose();
@@ -254,7 +254,7 @@ namespace NLog.Internal.NetworkSenders
         {
             SocketAsyncEventArgs args;
 
-            lock (this)
+            lock (_pendingRequests)
             {
                 if (_asyncOperationInProgress)
                 {
