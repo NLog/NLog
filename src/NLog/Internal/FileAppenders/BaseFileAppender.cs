@@ -47,7 +47,9 @@ namespace NLog.Internal.FileAppenders
     [SecuritySafeCritical]
     internal abstract class BaseFileAppender : IDisposable
     {
+#pragma warning disable S2245   // Make sure that using this pseudorandom number generator is safe here (Not security sensitive)
         private readonly Random _random = new Random();
+#pragma warning restore S2245   // Make sure that using this pseudorandom number generator is safe here
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseFileAppender" /> class.

@@ -73,7 +73,7 @@ namespace NLog.Targets.Wrappers
         {
             get
             {
-                lock (this)
+                lock (_logEventInfoQueue)
                 {
                     return _logEventInfoQueue.Count;
                 }
@@ -90,7 +90,7 @@ namespace NLog.Targets.Wrappers
         /// <returns>Queue was empty before enqueue</returns>
         public bool Enqueue(AsyncLogEventInfo logEventInfo)
         {
-            lock (this)
+            lock (_logEventInfoQueue)
             {
                 if (_logEventInfoQueue.Count >= RequestLimit)
                 {
@@ -110,7 +110,7 @@ namespace NLog.Targets.Wrappers
                             while (_logEventInfoQueue.Count >= RequestLimit)
                             {
                                 InternalLogger.Debug("Blocking because the overflow action is Block...");
-                                System.Threading.Monitor.Wait(this);
+                                System.Threading.Monitor.Wait(_logEventInfoQueue);
                                 InternalLogger.Trace("Entered critical section.");
                             }
 
@@ -134,7 +134,7 @@ namespace NLog.Targets.Wrappers
         {
             AsyncLogEventInfo[] resultEvents;
 
-            lock (this)
+            lock (_logEventInfoQueue)
             {
                 if (_logEventInfoQueue.Count < count)
                     count = _logEventInfoQueue.Count;
@@ -150,7 +150,7 @@ namespace NLog.Targets.Wrappers
 
                 if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
                 {
-                    System.Threading.Monitor.PulseAll(this);
+                    System.Threading.Monitor.PulseAll(_logEventInfoQueue);
                 }
             }
 
@@ -164,7 +164,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="result">Preallocated list</param>
         public void DequeueBatch(int count, IList<AsyncLogEventInfo> result)
         {
-            lock (this)
+            lock (_logEventInfoQueue)
             {
                 if (_logEventInfoQueue.Count < count)
                     count = _logEventInfoQueue.Count;
@@ -172,7 +172,7 @@ namespace NLog.Targets.Wrappers
                     result.Add(_logEventInfoQueue.Dequeue());
                 if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
                 {
-                    System.Threading.Monitor.PulseAll(this);
+                    System.Threading.Monitor.PulseAll(_logEventInfoQueue);
                 }
             }
         }
@@ -182,7 +182,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         public void Clear()
         {
-            lock (this)
+            lock (_logEventInfoQueue)
             {
                 _logEventInfoQueue.Clear();
             }

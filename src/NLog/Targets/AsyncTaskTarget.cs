@@ -54,7 +54,7 @@ namespace NLog.Targets
         private readonly Action _taskCancelledToken;
         private readonly Action<Task, object> _taskCompletion;
         private Task _previousTask;
-        private Timer _lazyWriterTimer;
+        private readonly Timer _lazyWriterTimer;
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
         private System.Tuple<List<LogEventInfo>, List<AsyncContinuation>> _reusableLogEvents;
 

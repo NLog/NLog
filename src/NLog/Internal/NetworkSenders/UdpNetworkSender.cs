@@ -39,13 +39,15 @@ namespace NLog.Internal.NetworkSenders
     using System.IO;
     using System.Net;
     using System.Net.Sockets;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Sends messages over the network as UDP datagrams.
     /// </summary>
     internal class UdpNetworkSender : NetworkSender
     {
+        private readonly object _lockObject = new object();
+
         private ISocket _socket;
         private EndPoint _endpoint;
 
@@ -99,7 +101,7 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="continuation">The continuation.</param>
         protected override void DoClose(AsyncContinuation continuation)
         {
-            lock (this)
+            lock (_lockObject)
             {
                 CloseSocket(continuation);
             }
@@ -141,7 +143,7 @@ namespace NLog.Internal.NetworkSenders
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Dispose() is called in the event handler.")]
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            lock (this)
+            lock (_lockObject)
             {
                 var args = new SocketAsyncEventArgs();
                 args.SetBuffer(bytes, offset, length);

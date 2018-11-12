@@ -432,26 +432,6 @@ namespace NLog.Targets
             destination.Append(']');
         }
 
-        private bool SerializeTypeCodeValue(object value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
-        {
-            if (objTypeCode == TypeCode.Object)
-            {
-                if (value is DateTimeOffset)
-                {
-                    QuoteValue(destination, $"{value:yyyy-MM-dd HH:mm:ss zzz}");
-                    return true;
-                }
-                else
-                {
-                    return SerializeObjectWithProperties(value, destination, options, ref objectsInPath, depth);
-                }
-            }
-            else
-            {
-                return SerializeSimpleTypeCodeValue(value, objTypeCode, destination, options);
-            }
-        }
-
         private bool SerializeObjectWithProperties(object value, StringBuilder destination, JsonSerializeOptions options, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             int originalLength = destination.Length;
