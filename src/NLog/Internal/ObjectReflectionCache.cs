@@ -260,7 +260,7 @@ namespace NLog.Internal
             {
                 private readonly object _owner;
                 private readonly PropertyInfo[] _properties;
-                private readonly ObjectReflectionCache.FastPropertyLookup[] _fastLookup;
+                private readonly FastPropertyLookup[] _fastLookup;
                 private readonly IEnumerator<KeyValuePair<string, object>> _enumerator;
                 private int _index;
 

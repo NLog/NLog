@@ -344,5 +344,247 @@ namespace NLog.UnitTests.Layouts
             string expected = @"<logevent><message>message 1<level>Debug</level><property key=""prop1"">a</property><property key=""prop2"">b</property></message></logevent>";
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyDictionary()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlLayout("message", "${message}") },
+                IncludeAllProperties = true,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster massage"
+            };
+            logEventInfo.Properties["nlogPropertyKey"] = new Dictionary<string, object> { { "Hello", "World" } };
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><property key=""Hello"">World</property></property></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyDictionary()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlLayout("message", "${message}") },
+                PropertiesElementName = "{0}",
+                PropertiesElementKeyAttribute = "",
+                IncludeAllProperties = true,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster massage"
+            };
+            logEventInfo.Properties["nlogPropertyKey"] = new Dictionary<string, object> { { "Hello", "World" } };
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><Hello>World</Hello></nlogPropertyKey></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyList()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlLayout("message", "${message}") },
+                IncludeAllProperties = true,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster massage"
+            };
+            logEventInfo.Properties["nlogPropertyKey"] = new [] { "Hello", "World" };
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><item>Hello</item><item>World</item></property></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyList()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlLayout("message", "${message}") },
+                PropertiesElementName = "{0}",
+                PropertiesElementKeyAttribute = "",
+                IncludeAllProperties = true,
+                PropertiesCollectionItemName = "node",
+                PropertiesElementValueAttribute = "value",
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster massage"
+            };
+            logEventInfo.Properties["nlogPropertyKey"] = new[] { "Hello", "World" };
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><node value=""Hello""/><node value=""World""/></nlogPropertyKey></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyObject()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlLayout("message", "${message}") },
+                IncludeAllProperties = true,
+            };
+
+            var guid = Guid.NewGuid();
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster massage"
+            };
+            logEventInfo.Properties["nlogPropertyKey"] = new { Id = guid, Name = "Hello World", Elements = new[] { "Earth", "Wind", "Fire" } };
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><property key=""Id"">" + guid.ToString() + @"</property><property key=""Name"">Hello World</property><property key=""Elements""><item>Earth</item><item>Wind</item><item>Fire</item></property></property></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyObject()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlLayout("message", "${message}") },
+                PropertiesElementName = "{0}",
+                PropertiesElementKeyAttribute = "",
+                IncludeAllProperties = true,
+            };
+
+            var guid = Guid.NewGuid();
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster massage"
+            };
+            logEventInfo.Properties["nlogPropertyKey"] = new { Id = guid, Name = "Hello World", Elements = new[] { "Earth", "Wind", "Fire" } };
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><Id>" + guid.ToString() + @"</Id><Name>Hello World</Name><Elements><item>Earth</item><item>Wind</item><item>Fire</item></Elements></nlogPropertyKey></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+#if DYNAMIC_OBJECT
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyExpando()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlLayout("message", "${message}") },
+                IncludeAllProperties = true,
+            };
+
+            dynamic object1 = new System.Dynamic.ExpandoObject();
+            object1.Id = 123;
+            object1.Name = "test name";
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster massage"
+            };
+            logEventInfo.Properties["nlogPropertyKey"] = object1;
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>Monster massage</message><property key=""nlogPropertyKey""><property key=""Id"">123</property><property key=""Name"">test name</property></property></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+#endif
+
+        [Fact]
+        public void XmlLayout_PropertiesElementNameFormat_RenderInfiniteLoop()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlLayout("message", "${message}") },
+                PropertiesElementName = "{0}",
+                PropertiesElementKeyAttribute = "",
+                IncludeAllProperties = true,
+                MaxRecursionLimit = 10,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster massage"
+            };
+            logEventInfo.Properties["nlogPropertyKey"] = new TestList();
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            var cnt = System.Text.RegularExpressions.Regex.Matches(result, "<item>alpha</item><item>bravo</item>").Count;
+            Assert.Equal(10, cnt);
+        }
+
+        private class TestList : IEnumerable<System.Collections.IEnumerable>
+        {
+            static List<int> _list1 = new List<int> { 17, 3 };
+            static List<string> _list2 = new List<string> { "alpha", "bravo" };
+
+            public IEnumerator<System.Collections.IEnumerable> GetEnumerator()
+            {
+                yield return _list1;
+                yield return _list2;
+                yield return new TestList();
+            }
+
+            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
+
+            public override bool Equals(object obj)
+            {
+                throw new Exception("object.Equals should never be called");
+            }
+
+            public override int GetHashCode()
+            {
+                throw new Exception("GetHashCode should never be called");
+            }
+        }
     }
 }
