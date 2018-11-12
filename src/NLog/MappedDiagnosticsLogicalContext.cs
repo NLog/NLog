@@ -102,29 +102,10 @@ namespace NLog
             {
                 if (Interlocked.Exchange(ref _disposed, 1) == 0)
                 {
-                    if (_wasEmpty)
+                    if (_wasEmpty && RemoveScopeWillClearContext())
                     {
-#if NET4_5
-                        if (_itemArray == null)
-                        {
-                            var immutableDict = GetLogicalThreadDictionary(false);
-                            if ((immutableDict.Count == 1 && ReferenceEquals(_item2, null) && immutableDict.ContainsKey(_item1))
-                              || (immutableDict.Count == 2 && !ReferenceEquals(_item2, null) && ReferenceEquals(_item3, null) && immutableDict.ContainsKey(_item1) && immutableDict.ContainsKey(_item2) && !_item1.Equals(_item2))
-                              || (immutableDict.Count == 3 && !ReferenceEquals(_item3, null) && immutableDict.ContainsKey(_item1) && immutableDict.ContainsKey(_item2) && immutableDict.ContainsKey(_item3) && !_item1.Equals(_item2) && !_item1.Equals(_item3) && !_item2.Equals(_item3))
-                              )
-                            {
-                                Clear(true);
-                                return;
-                            }
-                        }
-#else
-                        var immutableDict = GetLogicalThreadDictionary(false);
-                        if (immutableDict.Count == 1 && immutableDict.ContainsKey(_item1))
-                        {
-                            Clear(true);
-                            return;
-                        }
-#endif
+                        Clear(true);
+                        return;
                     }
 
                     var dictionary = GetLogicalThreadDictionary(true);
@@ -146,6 +127,30 @@ namespace NLog
                     }
 #endif
                 }
+            }
+
+            private bool RemoveScopeWillClearContext()
+            {
+#if NET4_5
+                if (_itemArray == null)
+                {
+                    var immutableDict = GetLogicalThreadDictionary(false);
+                    if ((immutableDict.Count == 1 && ReferenceEquals(_item2, null) && immutableDict.ContainsKey(_item1))
+                      || (immutableDict.Count == 2 && !ReferenceEquals(_item2, null) && ReferenceEquals(_item3, null) && immutableDict.ContainsKey(_item1) && immutableDict.ContainsKey(_item2) && !_item1.Equals(_item2))
+                      || (immutableDict.Count == 3 && !ReferenceEquals(_item3, null) && immutableDict.ContainsKey(_item1) && immutableDict.ContainsKey(_item2) && immutableDict.ContainsKey(_item3) && !_item1.Equals(_item2) && !_item1.Equals(_item3) && !_item2.Equals(_item3))
+                      )
+                    {
+                        return true;
+                    }
+                }
+#else
+                var immutableDict = GetLogicalThreadDictionary(false);
+                if (immutableDict.Count == 1 && immutableDict.ContainsKey(_item1))
+                {
+                    return true;
+                }
+#endif
+                return false;
             }
 
             public override string ToString()
