@@ -194,10 +194,8 @@ namespace NLog.Targets
         /// <param name="installationContext">The installation context.</param>
         public void Install(InstallationContext installationContext)
         {
-            var fixedSource = GetFixedSource();
-
-            //always throw error to keep backwardscomp behavior.
-            CreateEventSourceIfNeeded(fixedSource, true);
+            // always throw error to keep backwards compatible behavior.
+            CreateEventSourceIfNeeded(GetFixedSource(), true);
         }
 
         /// <summary>
@@ -244,20 +242,7 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            var fixedSource = GetFixedSource();
-
-            if (string.IsNullOrEmpty(fixedSource))
-            {
-                InternalLogger.Debug("EventLogTarget(Name={0}): Skipping creation of event source because it contains layout renderers", Name);
-            }
-            else
-            {
-                var currentSourceName = EventLog.LogNameFromSourceName(fixedSource, MachineName);
-                if (!currentSourceName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
-                {
-                    CreateEventSourceIfNeeded(fixedSource, false);
-                }
-            }
+            CreateEventSourceIfNeeded(GetFixedSource(), false);
         }
 
         /// <summary>
@@ -383,11 +368,7 @@ namespace NLog.Targets
             {
                 eventLogInstance = new EventLog(Log, MachineName, renderedSource);
             }
-            if (MaxKilobytes.HasValue)
-            {
-                //you need more permissions to set, so don't set by default
-                eventLogInstance.MaximumKilobytes = MaxKilobytes.Value;
-            }
+
             return eventLogInstance;
         }
 
@@ -399,7 +380,7 @@ namespace NLog.Targets
         /// <summary>
         /// (re-)create a event source, if it isn't there. Works only with fixed sourcenames.
         /// </summary>
-        /// <param name="fixedSource">sourcenaam. If source is not fixed (see <see cref="SimpleLayout.IsFixedText"/>, then pass <c>null</c> or emptystring.</param>
+        /// <param name="fixedSource">sourcename. If source is not fixed (see <see cref="SimpleLayout.IsFixedText"/>, then pass <c>null</c> or emptystring.</param>
         /// <param name="alwaysThrowError">always throw an Exception when there is an error</param>
         private void CreateEventSourceIfNeeded(string fixedSource, bool alwaysThrowError)
         {
@@ -420,11 +401,11 @@ namespace NLog.Targets
                     {
                         // re-create the association between Log and Source
                         EventLog.DeleteEventSource(fixedSource, MachineName);
+
                         var eventSourceCreationData = new EventSourceCreationData(fixedSource, Log)
                         {
                             MachineName = MachineName
                         };
-
                         EventLog.CreateEventSource(eventSourceCreationData);
                     }
                 }
@@ -434,8 +415,12 @@ namespace NLog.Targets
                     {
                         MachineName = MachineName
                     };
-
                     EventLog.CreateEventSource(eventSourceCreationData);
+                }
+
+                if (MaxKilobytes.HasValue && GetEventLog(null).MaximumKilobytes < MaxKilobytes)
+                {
+                    eventLogInstance.MaximumKilobytes = MaxKilobytes.Value;
                 }
             }
             catch (Exception exception)
