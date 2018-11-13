@@ -238,7 +238,7 @@ namespace NLog.Targets
         /// <param name="itemName">Duplicate item name</param>
         /// <param name="itemValue">Item Value</param>
         /// <param name="combinedProperties">Dictionary of context values</param>
-        /// <returns>New unique value (or null to skip value)</returns>
+        /// <returns>New (unique) value (or null to skip value). If the same value is used then the item will be overwritten</returns>
         protected virtual string GenerateUniqueItemName(LogEventInfo logEvent, string itemName, object itemValue, IDictionary<string, object> combinedProperties)
         {
             itemName = itemName ?? string.Empty;
