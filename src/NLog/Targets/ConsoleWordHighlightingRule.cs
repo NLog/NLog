@@ -37,7 +37,6 @@ namespace NLog.Targets
 {
     using System;
     using System.ComponentModel;
-    using System.Text;
     using System.Text.RegularExpressions;
     using NLog.Config;
 
@@ -177,38 +176,18 @@ namespace NLog.Targets
             return regexpression;
         }
 
-        /// <summary>
-        /// Replace regex result
-        /// </summary>
-        /// <param name="m"></param>
-        /// <returns></returns>
-        private string MatchEvaluator(Match m)
-        {
-            StringBuilder result = new StringBuilder(m.Value.Length + 5);
-
-            result.Append('\a');
-            result.Append((char)((int)ForegroundColor + 'A'));
-            result.Append((char)((int)BackgroundColor + 'A'));
-            result.Append(m.Value);
-            result.Append('\a');
-            result.Append('X');
-
-            return result.ToString();
-        }
-
-
-        internal string ReplaceWithEscapeSequences(string message)
+        internal MatchCollection Matches(string message)
         {
             if (CompileRegex)
             {
                 var regex = CompiledRegex;
                 if (regex == null)
                 {
-                    //empty regex so nothing todo
-                    return message;
+                    //empty regex so we are done
+                    return null;
                 }
 
-                return regex.Replace(message, MatchEvaluator);
+                return regex.Matches(message);
             }
             //use regex cache
             var expression = GetRegexExpression();
@@ -216,9 +195,9 @@ namespace NLog.Targets
             {
                 RegexOptions regexOptions = GetRegexOptions(RegexOptions.None);
                 //the static methods of Regex will cache the regex
-                return System.Text.RegularExpressions.Regex.Replace(message, expression, MatchEvaluator, regexOptions);
+                return System.Text.RegularExpressions.Regex.Matches(message, expression, regexOptions);
             }
-            return message;
+            return null;
         }
     }
 }
