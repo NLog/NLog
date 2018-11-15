@@ -203,7 +203,7 @@ namespace NLog.Targets
             }
             else if (value is IDictionary dict)
             {
-                using (StartScope(ref objectsInPath, dict))
+                using (StartCollectionScope(ref objectsInPath, dict))
                 {
                     SerializeDictionaryObject(dict, destination, options, objectsInPath, depth);
                 }
@@ -211,14 +211,14 @@ namespace NLog.Targets
             else if (value is IDictionary<string, object> expando)
             {
                 // Special case for Expando-objects
-                using (StartScope(ref objectsInPath, expando))
+                using (StartCollectionScope(ref objectsInPath, expando))
                 {
                     return SerializeObjectProperties(new ObjectReflectionCache.ObjectPropertyList(expando), destination, options, objectsInPath, depth);
                 }
             }
             else if (value is IEnumerable enumerable)
             {
-                using (StartScope(ref objectsInPath, value))
+                using (StartCollectionScope(ref objectsInPath, value))
                 {
                     SerializeCollectionObject(enumerable, destination, options, objectsInPath, depth);
                 }
@@ -258,7 +258,7 @@ namespace NLog.Targets
             }
         }
 
-        private static SingleItemOptimizedHashSet<object>.SingleItemScopedInsert StartScope(ref SingleItemOptimizedHashSet<object> objectsInPath, object value)
+        private static SingleItemOptimizedHashSet<object>.SingleItemScopedInsert StartCollectionScope(ref SingleItemOptimizedHashSet<object> objectsInPath, object value)
         {
             return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true, _referenceEqualsComparer);
         }

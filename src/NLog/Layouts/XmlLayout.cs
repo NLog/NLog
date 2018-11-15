@@ -49,10 +49,9 @@ namespace NLog.Layouts
     public class XmlLayout : Layout
     {
         private const string DefaultTopElementName = "logevent";
-        private const string DefaultElementName = "element";
-        private const string DefaultAttributeName = "attribute";
         private const string DefaultPropertyName = "property";
         private const string DefaultPropertyKeyAttribute = "key";
+        private const string DefaultCollectionItemName = "item";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLayout"/> class.
@@ -109,14 +108,14 @@ namespace NLog.Layouts
         /// Gets the array of xml 'elements' configurations.
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [ArrayParameter(typeof(XmlLayout), DefaultElementName)]
+        [ArrayParameter(typeof(XmlLayout), "element")]
         public IList<XmlLayout> Elements { get; private set; }
 
         /// <summary>
         /// Gets the array of 'attributes' configurations for the <see cref="ElementName"/>
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [ArrayParameter(typeof(XmlAttribute), DefaultAttributeName)]
+        [ArrayParameter(typeof(XmlAttribute), "attribute")]
         public IList<XmlAttribute> Attributes { get; private set; }
 
         /// <summary>
@@ -206,6 +205,21 @@ namespace NLog.Layouts
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         public string PropertiesElementValueAttribute { get; set; }
+
+        /// <summary>
+        /// XML elment name to use for rendering IList-collections items
+        /// </summary>
+        /// <docgen category='LogEvent Properties XML Options' order='10' />
+        public string PropertiesCollectionItemName { get; set; } = DefaultCollectionItemName;
+
+        /// <summary>
+        /// How far should the XML serializer follow object references before backing off
+        /// </summary>
+        public int MaxRecursionLimit { get; set; } = 1;
+
+        private readonly ObjectReflectionCache _objectReflectionCache = new ObjectReflectionCache();
+        private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
+        private const int MaxXmlLength = 512 * 1024;
 
         /// <summary>
         /// Initializes the layout.
@@ -369,7 +383,7 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsContext.GetObject(key);
-                    AppendXmlPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
+                    AppendXmlPropertyValue(key, propertyValue, Convert.GetTypeCode(propertyValue), sb, orgLength);
                 }
             }
 
@@ -381,38 +395,178 @@ namespace NLog.Layouts
                     if (string.IsNullOrEmpty(key))
                         continue;
                     object propertyValue = MappedDiagnosticsLogicalContext.GetObject(key);
-                    AppendXmlPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
+                    AppendXmlPropertyValue(key, propertyValue, Convert.GetTypeCode(propertyValue), sb, orgLength);
                 }
             }
 #endif
 
             if (IncludeAllProperties && logEventInfo.HasProperties)
             {
-                foreach (var property in logEventInfo.Properties)
+                IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEventInfo.CreateOrUpdatePropertiesInternal(true);
+                foreach (var prop in propertiesList)
                 {
-                    string key = property.Key.ToString();
-                    if (string.IsNullOrEmpty(key))
+                    if (string.IsNullOrEmpty(prop.Name))
                         continue;
 
-                    if (ExcludeProperties.Contains(key))
+                    if (ExcludeProperties.Contains(prop.Name))
                         continue;
 
-                    var propertyValue = property.Value;
-                    AppendXmlPropertyValue(key, propertyValue, sb, sb.Length == orgLength);
+                    var propertyValue = prop.Value;
+                    if (!string.IsNullOrEmpty(prop.Format) && propertyValue is IFormattable formattedProperty)
+                        propertyValue = formattedProperty.ToString(prop.Format, logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+                    else if (prop.CaptureType == MessageTemplates.CaptureType.Stringify)
+                        propertyValue = Convert.ToString(prop.Value ?? string.Empty, logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+
+                    AppendXmlPropertyObjectValue(prop.Name, propertyValue, Convert.GetTypeCode(propertyValue), sb, orgLength, default(SingleItemOptimizedHashSet<object>), 0);
                 }
             }
         }
 
-        private void AppendXmlPropertyValue(string propName, object propertyValue, StringBuilder sb, bool beginXmlDocument)
+        private bool AppendXmlPropertyObjectValue(string propName, object propertyValue, TypeCode objTypeCode, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName = false)
+        {
+            if (propertyValue == null)
+                objTypeCode = TypeCode.Empty;
+
+            if (objTypeCode != TypeCode.Object)
+            {
+                AppendXmlPropertyValue(propName, propertyValue, objTypeCode, sb, orgLength, false, ignorePropertiesElementName);
+            }
+            else
+            {
+                int beforeValueLength = sb.Length;
+                if (beforeValueLength > MaxXmlLength)
+                {
+                    return false;
+                }
+
+                int nextDepth = objectsInPath.Count == 0 ? depth : (depth + 1); // Allow serialization of list-items 
+                if (nextDepth > MaxRecursionLimit)
+                {
+                    return false;
+                }
+
+                if (objectsInPath.Contains(propertyValue))
+                {
+                    return false;
+                }
+
+                if (propertyValue is System.Collections.IDictionary dict)
+                {
+                    using (StartCollectionScope(ref objectsInPath, dict))
+                    {
+                        AppendXmlDictionaryObject(propName, dict, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesElementName);
+                    }
+                }
+                else if (propertyValue is IDictionary<string, object> expando)
+                {
+                    using (StartCollectionScope(ref objectsInPath, expando))
+                    {
+                        var propertyValues = new ObjectReflectionCache.ObjectPropertyList(expando);
+                        AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesElementName);
+                    }
+                }
+                else if (propertyValue is System.Collections.IEnumerable collection)
+                {
+                    using (StartCollectionScope(ref objectsInPath, collection))
+                    {
+                        AppendXmlCollectionObject(propName, collection, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesElementName);
+                    }
+                }
+                else
+                {
+                    using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(propertyValue, ref objectsInPath, false, _referenceEqualsComparer))
+                    {
+                        var propertyValues = _objectReflectionCache.LookupObjectProperties(propertyValue);
+                        AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesElementName);
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private static SingleItemOptimizedHashSet<object>.SingleItemScopedInsert StartCollectionScope(ref SingleItemOptimizedHashSet<object> objectsInPath, object value)
+        {
+            return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true, _referenceEqualsComparer);
+        }
+
+        private void AppendXmlCollectionObject(string propName, System.Collections.IEnumerable collection, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName)
+        {
+            string propNameElement = AppendXmlPropertyValue(propName, null, TypeCode.Empty, sb, orgLength, true);
+            if (!string.IsNullOrEmpty(propNameElement))
+            {
+                foreach (var item in collection)
+                {
+                    int beforeValueLength = sb.Length;
+                    if (beforeValueLength > MaxXmlLength)
+                        break;
+
+                    if (!AppendXmlPropertyObjectValue(PropertiesCollectionItemName, item, Convert.GetTypeCode(item), sb, orgLength, objectsInPath, depth, true))
+                    {
+                        sb.Length = beforeValueLength;
+                    }
+                }
+                AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
+            }
+        }
+
+        private void AppendXmlDictionaryObject(string propName, System.Collections.IDictionary dict, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName)
+        {
+            string propNameElement = AppendXmlPropertyValue(propName, null, TypeCode.Empty, sb, orgLength, true, ignorePropertiesElementName);
+            if (!string.IsNullOrEmpty(propNameElement))
+            {
+                foreach (System.Collections.DictionaryEntry entry in dict)
+                {
+                    int beforeValueLength = sb.Length;
+                    if (beforeValueLength > MaxXmlLength)
+                        break;
+
+                    if (!AppendXmlPropertyObjectValue(entry.Key?.ToString(), entry.Value, Convert.GetTypeCode(entry.Value), sb, orgLength, objectsInPath, depth))
+                    {
+                        sb.Length = beforeValueLength;
+                    }
+                }
+                AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
+            }
+        }
+
+        private void AppendXmlObjectPropertyValues(string propName, ref ObjectReflectionCache.ObjectPropertyList propertyValues, StringBuilder sb, int orgLength, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName = false)
+        {
+            if (propertyValues.Count == 0)
+            {
+                AppendXmlPropertyValue(propName, propertyValues.ToString(), TypeCode.String, sb, orgLength, false, ignorePropertiesElementName);
+            }
+            else
+            {
+                string propNameElement = AppendXmlPropertyValue(propName, null, TypeCode.Empty, sb, orgLength, true, ignorePropertiesElementName);
+                if (!string.IsNullOrEmpty(propNameElement))
+                {
+                    foreach (var property in propertyValues)
+                    {
+                        int beforeValueLength = sb.Length;
+                        if (beforeValueLength > MaxXmlLength)
+                            break;
+
+                        if (!AppendXmlPropertyObjectValue(property.Name, property.Value, property.TypeCode, sb, orgLength, objectsInPath, depth))
+                        {
+                            sb.Length = beforeValueLength;
+                        }
+                    }
+                    AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
+                }
+            }
+        }
+
+        private string AppendXmlPropertyValue(string propName, object propertyValue, TypeCode objTypeCode, StringBuilder sb, int orgLength, bool ignoreValue = false, bool ignorePropertiesElementName = false)
         {
             if (string.IsNullOrEmpty(PropertiesElementName))
-                return; // Not supported
+                return string.Empty; // Not supported 
 
             propName = propName?.Trim();
             if (string.IsNullOrEmpty(propName))
-                return; // Not supported
+                return string.Empty; // Not supported
 
-            if (beginXmlDocument && !string.IsNullOrEmpty(ElementName))
+            if (sb.Length == orgLength && !string.IsNullOrEmpty(ElementName))
             {
                 BeginXmlDocument(sb, ElementName);
             }
@@ -422,33 +576,61 @@ namespace NLog.Layouts
 
             sb.Append('<');
             string propNameElement = null;
-            if (_propertiesElementNameHasFormat)
+            if (ignorePropertiesElementName)
             {
                 propNameElement = XmlHelper.XmlConvertToElementName(propName, true);
+                sb.Append(propNameElement);
+            }
+            else
+            {
+                if (_propertiesElementNameHasFormat)
+                {
+                    propNameElement = XmlHelper.XmlConvertToElementName(propName, true);
+                    sb.AppendFormat(PropertiesElementName, propNameElement);
+                }
+                else
+                {
+                    propNameElement = PropertiesElementName;
+                    sb.Append(PropertiesElementName);
+                }
+
+                RenderAttribute(sb, PropertiesElementKeyAttribute, propName);
+            }
+
+            if (!ignoreValue)
+            {
+                string xmlValueString = XmlHelper.XmlConvertToString(propertyValue, objTypeCode, true);
+                if (RenderAttribute(sb, PropertiesElementValueAttribute, xmlValueString))
+                {
+                    sb.Append("/>");
+                    if (IndentXml)
+                        sb.AppendLine();
+                }
+                else
+                {
+                    sb.Append('>');
+                    XmlHelper.EscapeXmlString(xmlValueString, false, sb);
+                    AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
+                }
+            }
+            else
+            {
+                sb.Append('>');
+                if (IndentXml)
+                    sb.AppendLine();
+            }
+
+            return propNameElement;
+        }
+
+        private void AppendClosingPropertyTag(string propNameElement, StringBuilder sb, bool ignorePropertiesElementName = false)
+        {
+            sb.Append("</");
+            if (ignorePropertiesElementName)
+                sb.Append(propNameElement);
+            else
                 sb.AppendFormat(PropertiesElementName, propNameElement);
-            }
-            else
-            {
-                sb.Append(PropertiesElementName);
-            }
-
-            RenderAttribute(sb, PropertiesElementKeyAttribute, propName);
-
-            string xmlValueString = XmlHelper.XmlConvertToStringSafe(propertyValue);
-
-            if (RenderAttribute(sb, PropertiesElementValueAttribute, xmlValueString))
-            {
-                sb.Append("/>");
-            }
-            else
-            {
-                sb.Append('>');
-                XmlHelper.EscapeXmlString(xmlValueString, false, sb);
-                sb.Append("</");
-                var value = _propertiesElementNameHasFormat ? propNameElement : PropertiesElementName;
-                sb.AppendFormat(PropertiesElementName, value);
-                sb.Append('>');
-            }
+            sb.Append('>');
             if (IndentXml)
                 sb.AppendLine();
         }

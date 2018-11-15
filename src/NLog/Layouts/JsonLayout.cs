@@ -256,7 +256,7 @@ namespace NLog.Layouts
 
             if (IncludeAllProperties && logEvent.HasProperties)
             {
-                var propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true) as IEnumerable<MessageTemplates.MessageTemplateParameter>;
+                IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true);
                 foreach (var prop in propertiesList)
                 {
                     if (string.IsNullOrEmpty(prop.Name))
