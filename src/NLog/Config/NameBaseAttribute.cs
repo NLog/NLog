@@ -66,7 +66,7 @@ namespace NLog.Config
         /// Optional name aliases, separated by ,
         /// </summary>
         /// <remarks>
-        /// Arrays as attribute arguments is not CLS-complian
+        /// Arrays as attribute arguments is not CLS-compliant
         /// </remarks>
         public string Aliases { get; set; }
     }
