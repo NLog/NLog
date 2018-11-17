@@ -34,6 +34,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace NLog.Internal
 {
@@ -47,6 +48,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [ContractAnnotation("value:null => true")]
         internal static bool IsNullOrWhiteSpace(string value)
         {
 

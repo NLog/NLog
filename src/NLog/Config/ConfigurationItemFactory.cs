@@ -55,7 +55,7 @@ namespace NLog.Config
     /// </summary>
     public class ConfigurationItemFactory
     {
-        private static ConfigurationItemFactory defaultInstance;
+        private static ConfigurationItemFactory _defaultInstance;
 
         private readonly IList<object> _allFactories;
         private readonly Factory<Target, TargetAttribute> _targets;
@@ -113,8 +113,8 @@ namespace NLog.Config
         /// </remarks>
         public static ConfigurationItemFactory Default
         {
-            get => defaultInstance ?? (defaultInstance = BuildDefaultFactory());
-            set => defaultInstance = value;
+            get => _defaultInstance ?? (_defaultInstance = BuildDefaultFactory());
+            set => _defaultInstance = value;
         }
 
         /// <summary>
@@ -421,8 +421,10 @@ namespace NLog.Config
 #if !SILVERLIGHT && !NETSTANDARD1_3
         private static void LoadNLogExtensionAssemblies(ConfigurationItemFactory factory, Assembly nlogAssembly, string[] extensionDlls)
         {
-            HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            alreadyRegistered.Add(nlogAssembly.FullName);
+            HashSet<string> alreadyRegistered = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    nlogAssembly.FullName
+                };
 
             foreach (var extensionDll in extensionDlls)
             {
@@ -512,7 +514,7 @@ namespace NLog.Config
                 .Select(x => Path.Combine(assemblyLocation, x));
                 return extensionDlls.ToArray();
             }
-            catch (System.IO.DirectoryNotFoundException ex)
+            catch (DirectoryNotFoundException ex)
             {
                 InternalLogger.Warn(ex, "Skipping auto loading location because assembly directory does not exist: {0}", assemblyLocation);
                 if (ex.MustBeRethrown())
@@ -551,10 +553,10 @@ namespace NLog.Config
             string suffix = typeof(ILogger).AssemblyQualifiedName;
             string myAssemblyName = "NLog,";
             string extendedAssemblyName = "NLog.Extended,";
-            int p = suffix.IndexOf(myAssemblyName, StringComparison.OrdinalIgnoreCase);
+            var p = suffix?.IndexOf(myAssemblyName, StringComparison.OrdinalIgnoreCase);
             if (p >= 0)
             {
-                suffix = ", " + extendedAssemblyName + suffix.Substring(p + myAssemblyName.Length);
+                suffix = ", " + extendedAssemblyName + suffix.Substring(p.Value + myAssemblyName.Length);
 
                 // register types
                 string targetsNamespace = typeof(DebugTarget).Namespace;

@@ -297,7 +297,7 @@ namespace NLog.Layouts
         {
             if (_rawValueRenderer != null)
             {
-                if (!_isInitialized)
+                if (!IsInitialized)
                 {
                     Initialize(LoggingConfiguration);
                 }
@@ -323,7 +323,7 @@ namespace NLog.Layouts
         /// <inheritdoc />
         public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
-            if (!_isInitialized)
+            if (!IsInitialized)
             {
                 Initialize(LoggingConfiguration);
             }

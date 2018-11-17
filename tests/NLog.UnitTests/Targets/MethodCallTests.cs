@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Targets
 
 #pragma warning disable xUnit1013 //we need public methods here
 
-        private static MethodCallRecord LastCallTest = null;
+        private static MethodCallRecord LastCallTest;
         public static void StaticAndPublic(string param1, int param2)
         {
             LastCallTest = new MethodCallRecord("StaticAndPublic", param1, param2);

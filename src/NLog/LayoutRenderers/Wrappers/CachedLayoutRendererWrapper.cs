@@ -65,8 +65,8 @@ namespace NLog.LayoutRenderers.Wrappers
             OnClose = 2
         }
 
-        private string _cachedValue = null;
-        private string _renderedCacheKey = null;
+        private string _cachedValue;
+        private string _renderedCacheKey;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CachedLayoutRendererWrapper"/> class.

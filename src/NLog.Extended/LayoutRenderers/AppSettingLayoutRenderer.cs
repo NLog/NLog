@@ -90,8 +90,8 @@ namespace NLog.LayoutRenderers
 				builder.Append(value);
 		}
 
-		private bool _cachedAppSettingValue = false;
-		private string _appSettingValue = null;
+		private bool _cachedAppSettingValue;
+		private string _appSettingValue;
 		
 		private string AppSettingValue
 		{

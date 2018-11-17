@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using NLog.Common;
 using NLog.Filters;
 using NLog.Internal;
@@ -199,7 +200,7 @@ namespace NLog.Config
                 }
                 else if (child.MatchesName("extensions"))
                 {
-                    continue; //already parsed
+                    //already parsed
                 }
                 else if (!ParseNLogSection(child))
                 {
@@ -458,16 +459,16 @@ namespace NLog.Config
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
             TimeSource.Current = newTimeSource;
         }
-
-        private bool AssertNotNullValue(string value, string propertyName, string elementName, string sectionName)
+        [ContractAnnotation("value:notnull => true")]
+        private static bool AssertNotNullValue(string value, string propertyName, string elementName, string sectionName)
         {
             if (value != null)
                 return true;
 
             return AssertNonEmptyValue(string.Empty, propertyName, elementName, sectionName);
         }
-
-        private bool AssertNonEmptyValue(string value, string propertyName, string elementName, string sectionName)
+        [ContractAnnotation("value:null => false")]
+        private static bool AssertNonEmptyValue(string value, string propertyName, string elementName, string sectionName)
         {
             if (!StringHelpers.IsNullOrWhiteSpace(value))
                 return true;

@@ -51,13 +51,13 @@ namespace NLog.Layouts
             get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, ConfigurationItemFactory.Default.JsonConverter));
             set => _jsonConverter = value;
         }
-        private LimitRecursionJsonConvert _jsonConverter = null;
+        private LimitRecursionJsonConvert _jsonConverter;
         private IValueFormatter ValueFormatter
         {
             get => _valueFormatter ?? (_valueFormatter = ConfigurationItemFactory.Default.ValueFormatter);
             set => _valueFormatter = value;
         }
-        private IValueFormatter _valueFormatter = null;
+        private IValueFormatter _valueFormatter;
 
         class LimitRecursionJsonConvert : IJsonConverter
         {

@@ -259,7 +259,7 @@ namespace NLog.UnitTests
             LogManager.Configuration = null;
         }
 
-        private int _reloadCounter = 0;
+        private int _reloadCounter;
 
         private void WaitForConfigReload(int counter)
         {

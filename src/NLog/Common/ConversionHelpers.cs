@@ -34,7 +34,6 @@
 namespace NLog.Common
 {
     using System;
-    using System.Globalization;
     using NLog.Internal;
 
     /// <summary>
@@ -57,7 +56,7 @@ namespace NLog.Common
                 return true;
             }
 
-            if (!TryParse<TEnum>(inputValue, true, out resultValue))
+            if (!TryParse(inputValue, true, out resultValue))
             {
                 resultValue = defaultValue;
                 return false;

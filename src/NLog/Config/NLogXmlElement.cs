@@ -32,8 +32,6 @@
 // 
 
 using System.Linq;
-using System.Text;
-using NLog.Common;
 
 namespace NLog.Config
 {

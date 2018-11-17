@@ -156,7 +156,7 @@ namespace NLog.Targets
             _maxArchiveFiles = 0;
             ConcurrentWriteAttemptDelay = 1;
             ArchiveEvery = FileArchivePeriod.None;
-            ArchiveAboveSize = FileTarget.ArchiveAboveSizeDisabled;
+            ArchiveAboveSize = ArchiveAboveSizeDisabled;
             ConcurrentWriteAttempts = 10;
             ConcurrentWrites = true;
 #if SILVERLIGHT || NETSTANDARD1_0

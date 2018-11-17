@@ -34,7 +34,6 @@
 namespace NLog.Config
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Constructs a new instance the configuration item (target, layout, layout renderer, etc.) given its type.

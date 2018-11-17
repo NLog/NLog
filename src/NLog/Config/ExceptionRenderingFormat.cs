@@ -31,11 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace NLog.Config
 {
     /// <summary>

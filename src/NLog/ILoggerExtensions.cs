@@ -34,10 +34,12 @@
 namespace NLog
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Extensions for NLog <see cref="ILogger"/>.
     /// </summary>
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public static class ILoggerExtensions
     {
         /// <summary>

@@ -33,7 +33,6 @@
 
 namespace NLog.Config
 {
-    using System.Collections.Generic;
     using System.Reflection;
 
     /// <summary>

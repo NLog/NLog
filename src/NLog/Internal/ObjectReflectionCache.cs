@@ -49,7 +49,7 @@ namespace NLog.Internal
     internal class ObjectReflectionCache
     {
         readonly MruCache<Type, ObjectPropertyInfos> _objectTypeCache = new MruCache<Type, ObjectPropertyInfos>(10000);
-        readonly static Dictionary<Type, Func<object, IDictionary<string,object>>> _objectTypeOverride = new Dictionary<Type, Func<object, IDictionary<string, object>>>();
+        static readonly Dictionary<Type, Func<object, IDictionary<string,object>>> _objectTypeOverride = new Dictionary<Type, Func<object, IDictionary<string, object>>>();
 
         public ObjectPropertyList LookupObjectProperties(object value)
         {

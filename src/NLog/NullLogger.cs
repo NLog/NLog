@@ -31,11 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 namespace NLog
 {
     using Internal;
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// It works as a normal <see cref="T:NLog.Logger" /> but it discards all messages which an application requests 
@@ -46,6 +46,7 @@ namespace NLog
     public sealed class NullLogger : Logger
     {
         // Hides the default constructor of this class.
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private NullLogger() { }
 
         /// <summary>

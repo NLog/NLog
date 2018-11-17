@@ -286,30 +286,30 @@ namespace NLog.Common
 
         private static string FormatMessage([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
         {
-            const string TimeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
-            const string FieldSeparator = " ";
+            const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
+            const string fieldSeparator = " ";
 
             var formattedMessage =
                 (args == null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
 
-            var builder = new StringBuilder(formattedMessage.Length + TimeStampFormat.Length + (ex?.ToString()?.Length ?? 0) + 25);
+            var builder = new StringBuilder(formattedMessage.Length + timeStampFormat.Length + (ex?.ToString().Length ?? 0) + 25);
             if (IncludeTimestamp)
             {
                 builder
-                    .Append(TimeSource.Current.Time.ToString(TimeStampFormat, CultureInfo.InvariantCulture))
-                    .Append(FieldSeparator);
+                    .Append(TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture))
+                    .Append(fieldSeparator);
             }
 
             builder
                 .Append(level)
-                .Append(FieldSeparator)
+                .Append(fieldSeparator)
                 .Append(formattedMessage);
 
             if (ex != null)
             {
                 ex.MarkAsLoggedToInternalLogger();
                 builder
-                    .Append(FieldSeparator)
+                    .Append(fieldSeparator)
                     .Append("Exception: ")
                     .Append(ex);
             }
