@@ -41,6 +41,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Left part of a text
     /// </summary>
     [LayoutRenderer("left")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class LeftLayoutRendererWrapper : WrapperLayoutRendererBase

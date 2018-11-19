@@ -43,6 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("json-encode")]
     [AmbientProperty("JsonEncode")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class JsonEncodeLayoutRendererWrapper : WrapperLayoutRendererBuilderBase

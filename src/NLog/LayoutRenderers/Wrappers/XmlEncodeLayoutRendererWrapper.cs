@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("xml-encode")]
     [AmbientProperty("XmlEncode")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase

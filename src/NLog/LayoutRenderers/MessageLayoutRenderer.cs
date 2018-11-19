@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("message")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class MessageLayoutRenderer : LayoutRenderer
+    public class MessageLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageLayoutRenderer" /> class.
@@ -72,11 +72,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Layout Options' order='10' />
         public bool Raw { get; set; }
 
-        /// <summary>
-        /// Renders the log message including any positional parameters and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             bool exceptionOnly = logEvent.Exception != null && WithException && logEvent.Parameters?.Length == 1 && ReferenceEquals(logEvent.Parameters[0], logEvent.Exception) && logEvent.Message == "{0}";
@@ -112,6 +108,15 @@ namespace NLog.LayoutRenderers
                     builder.Append(ExceptionSeparator);
                 builder.Append(primaryException.ToString());
             }
+        }
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        {
+            if (WithException)
+                return null;
+            else
+                return (Raw ? logEvent.Message : logEvent.FormattedMessage) ?? string.Empty;
         }
     }
 }

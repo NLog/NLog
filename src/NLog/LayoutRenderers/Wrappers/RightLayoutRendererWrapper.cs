@@ -41,6 +41,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Right part of a text
     /// </summary>
     [LayoutRenderer("right")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class RightLayoutRendererWrapper : WrapperLayoutRendererBase

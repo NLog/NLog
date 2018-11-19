@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// ${replace:searchFor=\\n+:replaceWith=-:regex=true:inner=${message}}
     /// </example>
     [LayoutRenderer("replace")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class ReplaceLayoutRendererWrapper : WrapperLayoutRendererBase

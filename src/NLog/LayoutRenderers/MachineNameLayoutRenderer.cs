@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class MachineNameLayoutRenderer : LayoutRenderer, IStringValueRenderer
+    public class MachineNameLayoutRenderer : LayoutRenderer
     {
         internal string MachineName { get; private set; }
 
@@ -81,9 +81,6 @@ namespace NLog.LayoutRenderers
         {
             builder.Append(MachineName);
         }
-
-        /// <inheritdoc/>
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => MachineName;
     }
 }
 

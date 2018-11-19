@@ -35,8 +35,8 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
     using System.ComponentModel;
-    using NLog.Config;
     using System.Text;
+    using NLog.Config;
 
     /// <summary>
     /// Substring the result
@@ -47,8 +47,10 @@ namespace NLog.LayoutRenderers.Wrappers
     /// ${substring:Inner=${level}:start=2:length=2}
     /// </example>
     [LayoutRenderer("substring")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
-    public class SubstringLayoutRendererWrapper : WrapperLayoutRendererBase
+    [ThreadSafe]
+    public sealed class SubstringLayoutRendererWrapper : WrapperLayoutRendererBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
