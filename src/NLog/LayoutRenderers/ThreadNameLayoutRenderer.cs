@@ -59,6 +59,6 @@ namespace NLog.LayoutRenderers
 #endif
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo _) => GetStringValue();
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
     }
 }

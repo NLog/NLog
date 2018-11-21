@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("replace-newlines")]
     [AmbientProperty("ReplaceNewLines")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class ReplaceNewLinesLayoutRendererWrapper : WrapperLayoutRendererBuilderBase

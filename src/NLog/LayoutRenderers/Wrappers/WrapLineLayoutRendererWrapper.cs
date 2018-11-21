@@ -43,6 +43,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("wrapline")]
     [AmbientProperty("WrapLine")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class WrapLineLayoutRendererWrapper : WrapperLayoutRendererBase
