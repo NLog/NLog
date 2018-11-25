@@ -163,15 +163,17 @@ namespace NLog.UnitTests.Targets
                     new string[] { "The \x1B[31mbig big\x1B[0m \x1B[31mbig big\x1B[0m warning message\x1B[0m" });
         }
 
-        [Fact]
-        public void ColoredConsoleAnsi_RowColor_VerificationTest()
+        [Theory]
+        [InlineData("The big warning message", "\x1B[42mThe big warning message\x1B[0m")]
+        [InlineData("The big\r\nwarning message", "\x1B[42mThe big\x1B[0m\r\n\x1B[42mwarning message\x1B[0m")]
+        public void ColoredConsoleAnsi_RowColor_VerificationTest(string inputText, string expectedResult)
         {
             var target = new ColoredConsoleTarget { Layout = "${message}", EnableAnsiOutput = true };
             target.UseDefaultRowHighlightingRules = false;
             target.RowHighlightingRules.Add(new ConsoleRowHighlightingRule() { BackgroundColor = ConsoleOutputColor.DarkGreen });
 
-            AssertOutput(target, "The big warning message",
-                    new string[] { "\x1B[42mThe big warning message\x1B[0m" },
+            AssertOutput(target, inputText,
+                    new string[] { expectedResult },
                     string.Empty);
         }
 

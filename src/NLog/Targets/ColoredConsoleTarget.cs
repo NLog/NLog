@@ -274,7 +274,7 @@ namespace NLog.Targets
         {
             var matchingRule = GetMatchingRowHighlightingRule(logEvent);
 
-            string colorMessage = message;
+            string colorMessage = message ?? string.Empty;
             if (WordHighlightingRules.Count > 0)
             {
                 colorMessage = GenerateColorEscapeSequences(message);
@@ -301,7 +301,7 @@ namespace NLog.Targets
 
                         try
                         {
-                            if (!ReferenceEquals(colorMessage, message))
+                            if (!ReferenceEquals(colorMessage, message) || message.IndexOf('\n') >= 0)
                             {
                                 oldForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
                                 oldBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
