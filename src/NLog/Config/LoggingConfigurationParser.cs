@@ -169,7 +169,10 @@ namespace NLog.Config
             }
 
             if (internalLogFile != null)
+            {
+                internalLogFile = ExpandFilePathVariables(internalLogFile);
                 InternalLogger.LogFile = internalLogFile;
+            }
 
             if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())
             {
@@ -211,6 +214,30 @@ namespace NLog.Config
             foreach (var ruleChild in rulesList)
             {
                 ParseRulesElement(ruleChild, LoggingRules);
+            }
+        }
+
+        private static string ExpandFilePathVariables(string internalLogFile)
+        {
+            try
+            {
+#if !SILVERLIGHT
+                const string currentDir = "${currentdir}";
+                int currentDirPos = internalLogFile.IndexOf(currentDir, StringComparison.OrdinalIgnoreCase);
+                if (currentDirPos >= 0)
+                    internalLogFile = internalLogFile.Replace(internalLogFile.Substring(currentDirPos, currentDir.Length), System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar.ToString());
+                const string baseDir = "${basedir}";
+                int baseDirPos = internalLogFile.IndexOf(baseDir, StringComparison.OrdinalIgnoreCase);
+                if (baseDirPos >= 0)
+                    internalLogFile = internalLogFile.Replace(internalLogFile.Substring(baseDirPos, baseDir.Length), LogFactory.CurrentAppDomain.BaseDirectory + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (internalLogFile.IndexOf("%", StringComparison.OrdinalIgnoreCase) >= 0)
+                    internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
+#endif
+                return internalLogFile;
+            }
+            catch
+            {
+                return internalLogFile;
             }
         }
 
