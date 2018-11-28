@@ -81,8 +81,6 @@ namespace NLog.UnitTests.Config
             }
         }
 
-
-
         [Theory]
         [InlineData("0:0:0:1", 1)]
         [InlineData("0:0:1", 1)]
@@ -111,7 +109,6 @@ namespace NLog.UnitTests.Config
             var target = config.FindTargetByName<LimitingTargetWrapper>("limiting");
             Assert.NotNull(target);
             Assert.Equal(TimeSpan.FromSeconds(seconds), target.Interval);
-
         }
 
         [Fact]
@@ -159,6 +156,24 @@ namespace NLog.UnitTests.Config
                 var message = GetDebugLastMessage("debug");
                 Assert.Equal("message 1", message);
             }
+        }
+
+        [Fact]
+        public void XmlConfig_ParseUtf8Encoding_WithoutHyphen()
+        {
+            // Arrange
+            var xml = @"<nlog>
+                    <targets>
+                        <target name='file' type='File' encoding='utf8' layout='${message}' />
+                    </targets>
+                    <rules>
+                        <logger name='*' minlevel='debug' appendto='file' />
+                    </rules>
+                </nlog>";
+            var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+
+            Assert.Single(config.AllTargets);
+            Assert.Equal(System.Text.Encoding.UTF8, (config.AllTargets[0] as NLog.Targets.FileTarget)?.Encoding);
         }
     }
 }

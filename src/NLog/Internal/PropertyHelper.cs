@@ -294,6 +294,8 @@ namespace NLog.Internal
             if (type == typeof(Encoding))
             {
                 value = value.Trim();
+                if (string.Equals(value, nameof(Encoding.UTF8), StringComparison.OrdinalIgnoreCase))
+                    value = Encoding.UTF8.WebName;  // Support utf8 without hyphen (And not just Utf-8)
                 newValue = Encoding.GetEncoding(value);
                 return true;
             }
