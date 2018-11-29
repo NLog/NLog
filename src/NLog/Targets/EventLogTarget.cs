@@ -505,29 +505,21 @@ namespace NLog.Targets
         /// The implementation of <see cref="IEventLogStaticWrapper"/>, that uses Windows event log through <see cref="EventLog"/> static methods.
         /// </summary>
         /// <remarks>
-        /// <c>System.Lazy{T}</c> is not present in .net35, so using a nested constructor for the singleton implementation.
+        /// Details on the singleton implementation: http://csharpindepth.com/Articles/General/Singleton.aspx#cctor.
         /// </remarks>
         protected internal sealed class EventLogStaticWrapper : IEventLogStaticWrapper
         {
             #region Singleton implementation
+
+            // Explicit static constructor to tell C# compiler not to mark type as beforefieldinit.
+            static EventLogStaticWrapper() { }
 
             private EventLogStaticWrapper() { }
 
             /// <summary>
             /// Gets the singleton instance of <see cref="EventLogStaticWrapper"/>.
             /// </summary>
-            public static EventLogStaticWrapper Instance => Nested.Instance;
-
-            // ReSharper disable once ClassNeverInstantiated.Local
-            private class Nested
-            {
-                // Explicit static constructor to tell C# compiler not to mark type as beforefieldinit
-                static Nested()
-                {
-                }
-
-                internal static readonly EventLogStaticWrapper Instance = new EventLogStaticWrapper();
-            }
+            public static EventLogStaticWrapper Instance { get; } = new EventLogStaticWrapper();
 
             #endregion Singleton implementation
 
