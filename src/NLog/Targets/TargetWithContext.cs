@@ -154,7 +154,7 @@ namespace NLog.Targets
         {
             if (ContextProperties?.Count > 0)
             {
-                combinedProperties = combinedProperties ?? new Dictionary<string, object>();
+                combinedProperties = combinedProperties ?? CreateNewDictionary(ContextProperties.Count);
                 for (int i = 0; i < ContextProperties.Count; ++i)
                 {
                     var attrib = ContextProperties[i];
@@ -215,8 +215,8 @@ namespace NLog.Targets
         {
             if (IncludeEventProperties && logEvent.HasProperties)
             {
-                // TODO Make Dictionary-adapter for PropertiesDictionary to skip extra Dictionary-allocation
-                combinedProperties = combinedProperties ?? new Dictionary<string, object>();
+                // TODO Make Dictionary-Lazy-adapter for PropertiesDictionary to skip extra Dictionary-allocation
+                combinedProperties = combinedProperties ?? CreateNewDictionary(logEvent.Properties.Count + (ContextProperties?.Count ?? 0));
                 bool checkForDuplicates = combinedProperties.Count > 0;
                 foreach (var property in logEvent.Properties)
                 {
@@ -229,6 +229,11 @@ namespace NLog.Targets
             }
             combinedProperties = GetContextProperties(logEvent, combinedProperties);
             return combinedProperties ?? new Dictionary<string, object>();
+        }
+
+        private static IDictionary<string, object> CreateNewDictionary(int initialCapacity)
+        {
+            return new Dictionary<string, object>(Math.Max(initialCapacity, 3));
         }
 
         /// <summary>
@@ -363,7 +368,7 @@ namespace NLog.Targets
             if (globalNames.Count == 0)
                 return contextProperties;
 
-            contextProperties = contextProperties ?? new Dictionary<string, object>();
+            contextProperties = contextProperties ?? CreateNewDictionary(globalNames.Count);
             bool checkForDuplicates = contextProperties.Count > 0;
             foreach (string propertyName in globalNames)
             {
@@ -389,7 +394,7 @@ namespace NLog.Targets
             if (names.Count == 0)
                 return contextProperties;
 
-            contextProperties = contextProperties ?? new Dictionary<string, object>();
+            contextProperties = contextProperties ?? CreateNewDictionary(names.Count);
             bool checkForDuplicates = contextProperties.Count > 0;
             foreach (var name in names)
             {
@@ -434,7 +439,7 @@ namespace NLog.Targets
             if (names.Count == 0)
                 return contextProperties;
 
-            contextProperties = contextProperties ?? new Dictionary<string, object>();
+            contextProperties = contextProperties ?? CreateNewDictionary(names.Count);
             bool checkForDuplicates = contextProperties.Count > 0;
             foreach (var name in names)
             {
