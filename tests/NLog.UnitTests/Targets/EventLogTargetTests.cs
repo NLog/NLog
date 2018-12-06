@@ -52,10 +52,11 @@ namespace NLog.UnitTests.Targets
 
     public class EventLogTargetTests : NLogTestBase
     {
+        private const int MaxMessageLength = EventLogTarget.EventLogMaxMessageLength;
+
         [Fact]
         public void MaxMessageLengthShouldBe16384_WhenNotSpecifyAnyOption()
         {
-            const int expectedMaxMessageLength = 16384;
             LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog ThrowExceptions='true'>
                 <targets>
@@ -68,7 +69,7 @@ namespace NLog.UnitTests.Targets
             </nlog>");
 
             var eventLog1 = c.FindTargetByName<EventLogTarget>("eventLog1");
-            Assert.Equal(expectedMaxMessageLength, eventLog1.MaxMessageLength);
+            Assert.Equal(MaxMessageLength, eventLog1.MaxMessageLength);
         }
 
         [Fact]
@@ -191,27 +192,30 @@ namespace NLog.UnitTests.Targets
         [Theory]
         [InlineData(32768, 16384, 32768)] // Should set MaxKilobytes when value is set and valid
         [InlineData(16384, 32768, 32768)] // Should not change MaxKilobytes when initial MaximumKilobytes is bigger
-        [InlineData(null, EventLogInstanceStub.MaxKBytesDefValue, EventLogInstanceStub.MaxKBytesDefValue)] // Should not change MaxKilobytes when the value is null
+        [InlineData(null, EventLogTarget.EventLogDefaultMaxKilobytes, EventLogTarget.EventLogDefaultMaxKilobytes)] // Should not change MaxKilobytes when the value is null
         public void ShouldSetMaxKilobytes_WhenNeeded(long? newValue, long initialValue, long expectedValue)
         {
-            var target = CreateEventLogTarget<EventLogTarget>("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 16384);
-            var eventLogInstanceStub = new EventLogInstanceStub(target.Log, target.MachineName, target.GetFixedSource()) { MaximumKilobytes = initialValue };
-            var eventLogStaticMock = new EventLogStaticMock(
-                sourceExistsFunction: (source, machineName) => false,
+            string targetLog = "application"; // The Log to write to is intentionally lower case!!
+            var eventLogMock = new EventLogMock(
                 deleteEventSourceFunction: (source, machineName) => { },
-                logNameFromSourceNameFunction: (source, machineName) => target.Log,
-                createEventSourceFunction: (sourceData) => { },
-                eventLogInstances: new Dictionary<string, EventLogTarget.IEventLogInstanceWrapper>
-                {
-                    {target.Log, eventLogInstanceStub}
-                });
+                sourceExistsFunction: (source, machineName) => false,
+                logNameFromSourceNameFunction: (source, machineName) => targetLog,
+                createEventSourceFunction: (sourceData) => { })
+            { MaximumKilobytes = initialValue };
+            var target = new EventLogTarget(eventLogMock)
+            {
+                Log = targetLog,
+                Source = "NLog.UnitTests" + Guid.NewGuid().ToString("N"), // set the source explicitly to prevent random AppDomain name being used as the source name
+                Layout = new SimpleLayout("${message}"), // Be able to check message length and content, the Layout is intentionally only ${message}.
+                OnOverflow = EventLogTargetOverflowAction.Truncate,
+                MaxMessageLength = MaxMessageLength,
+                MaxKilobytes = newValue,
+            };
+            eventLogMock.AssociateNewEventLog(target.Log, target.MachineName, target.GetFixedSource());
 
-            target.EventLogStaticMethods = eventLogStaticMock;
-
-            target.MaxKilobytes = newValue;
             target.Install(new InstallationContext());
 
-            Assert.Equal(expectedValue, eventLogInstanceStub.MaximumKilobytes);
+            Assert.Equal(expectedValue, eventLogMock.MaximumKilobytes);
         }
 
         [Theory]
@@ -245,7 +249,7 @@ namespace NLog.UnitTests.Targets
             LogLevel logLevel = LogLevel.FromOrdinal(logLevelOrdinal);
             Layout entryTypeLayout = layoutString != null ? new SimpleLayout(layoutString) : null;
 
-            var eventRecords = WriteWithMock(logLevel, expectedEventLogEntryType, expectedMessage, entryTypeLayout, EventLogTargetOverflowAction.Truncate).ToList();
+            var eventRecords = WriteWithMock(logLevel, expectedEventLogEntryType, expectedMessage, entryTypeLayout).ToList();
 
             Assert.Single(eventRecords);
             AssertWrittenMessage(eventRecords, expectedMessage);
@@ -267,12 +271,11 @@ namespace NLog.UnitTests.Targets
             LogLevel logLevel = LogLevel.FromOrdinal(logLevelOrdinal);
             Layout entryTypeLayout = layoutString != null ? new SimpleLayout(layoutString) : null;
 
-            const int maxMessageLength = 16384;
             const int expectedEntryCount = 2;
-            string messagePart1 = string.Join("", Enumerable.Repeat("l", maxMessageLength));
+            string messagePart1 = string.Join("", Enumerable.Repeat("l", MaxMessageLength));
             string messagePart2 = "this part must be split";
             string testMessage = messagePart1 + messagePart2;
-            var entries = WriteWithMock(logLevel, expectedEventLogEntryType, testMessage, entryTypeLayout, EventLogTargetOverflowAction.Split, maxMessageLength).ToList();
+            var entries = WriteWithMock(logLevel, expectedEventLogEntryType, testMessage, entryTypeLayout, EventLogTargetOverflowAction.Split).ToList();
 
             Assert.Equal(expectedEntryCount, entries.Count);
         }
@@ -280,12 +283,11 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageLengthWithOverflowTruncate_TruncatesTheMessage()
         {
-            const int maxMessageLength = 16384;
-            string expectedMessage = string.Join("", Enumerable.Repeat("t", maxMessageLength));
+            string expectedMessage = string.Join("", Enumerable.Repeat("t", MaxMessageLength));
             string expectedToTruncateMessage = " this part will be truncated";
             string testMessage = expectedMessage + expectedToTruncateMessage;
 
-            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Truncate, maxMessageLength).ToList();
+            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage).ToList();
 
             Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
@@ -294,9 +296,8 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowTruncate_TheMessageIsNotTruncated()
         {
-            const int maxMessageLength = 16384;
-            string expectedMessage = string.Join("", Enumerable.Repeat("t", maxMessageLength));
-            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Truncate, maxMessageLength).ToList();
+            string expectedMessage = string.Join("", Enumerable.Repeat("t", MaxMessageLength));
+            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, expectedMessage).ToList();
 
             Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
@@ -305,16 +306,15 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageLengthWithOverflowSplitEntries_TheMessageShouldBeSplit()
         {
-            const int maxMessageLength = 16384;
             const int expectedEntryCount = 5;
-            string messagePart1 = string.Join("", Enumerable.Repeat("a", maxMessageLength));
-            string messagePart2 = string.Join("", Enumerable.Repeat("b", maxMessageLength));
-            string messagePart3 = string.Join("", Enumerable.Repeat("c", maxMessageLength));
-            string messagePart4 = string.Join("", Enumerable.Repeat("d", maxMessageLength));
+            string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageLength));
+            string messagePart2 = string.Join("", Enumerable.Repeat("b", MaxMessageLength));
+            string messagePart3 = string.Join("", Enumerable.Repeat("c", MaxMessageLength));
+            string messagePart4 = string.Join("", Enumerable.Repeat("d", MaxMessageLength));
             string messagePart5 = "this part must be split too";
             string testMessage = messagePart1 + messagePart2 + messagePart3 + messagePart4 + messagePart5;
 
-            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split, maxMessageLength).ToList();
+            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split).ToList();
 
             Assert.Equal(expectedEntryCount, entries.Count);
 
@@ -328,13 +328,12 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowSplitEntries_TheMessageShouldBeSplitInTwoChunks()
         {
-            const int maxMessageLength = 16384;
             const int expectedEntryCount = 2;
-            string messagePart1 = string.Join("", Enumerable.Repeat("a", maxMessageLength));
-            string messagePart2 = string.Join("", Enumerable.Repeat("b", maxMessageLength));
+            string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageLength));
+            string messagePart2 = string.Join("", Enumerable.Repeat("b", MaxMessageLength));
             string testMessage = messagePart1 + messagePart2;
 
-            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split, maxMessageLength).ToList();
+            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Split).ToList();
 
             Assert.Equal(expectedEntryCount, entries.Count);
 
@@ -346,9 +345,8 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowSplitEntries_TheMessageIsNotSplit()
         {
-            const int maxMessageLength = 16384;
-            string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
-            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Split, maxMessageLength).ToList();
+            string expectedMessage = string.Join("", Enumerable.Repeat("a", MaxMessageLength));
+            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Split).ToList();
 
             Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
@@ -357,9 +355,8 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryEqualToMaxMessageLengthWithOverflowDiscard_TheMessageIsWritten()
         {
-            const int maxMessageLength = 16384;
-            string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
-            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Discard, maxMessageLength).ToList();
+            string expectedMessage = string.Join("", Enumerable.Repeat("a", MaxMessageLength));
+            var entries = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, expectedMessage, null, EventLogTargetOverflowAction.Discard).ToList();
 
             Assert.Single(entries);
             AssertWrittenMessage(entries, expectedMessage);
@@ -370,11 +367,10 @@ namespace NLog.UnitTests.Targets
         {
             using (new NoThrowNLogExceptions())
             {
-                const int maxMessageLength = 16384;
-                string messagePart1 = string.Join("", Enumerable.Repeat("a", maxMessageLength));
+                string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageLength));
                 string messagePart2 = "b";
                 string testMessage = messagePart1 + messagePart2;
-                bool wasWritten = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Discard, maxMessageLength).Any();
+                bool wasWritten = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Discard).Any();
 
                 Assert.False(wasWritten);
             }
@@ -472,7 +468,7 @@ namespace NLog.UnitTests.Targets
         }
 
         private static IEnumerable<EventRecord> WriteWithMock(LogLevel logLevel, EventLogEntryType expectedEventLogEntryType,
-            string logMessage, Layout entryType = null, EventLogTargetOverflowAction overflowAction = EventLogTargetOverflowAction.Truncate, int maxMessageLength = 16384)
+            string logMessage, Layout entryType = null, EventLogTargetOverflowAction overflowAction = EventLogTargetOverflowAction.Truncate, int maxMessageLength = MaxMessageLength)
         {
             var target = CreateEventLogTarget<EventLogTargetMock>("NLog.UnitTests" + Guid.NewGuid().ToString("N"), overflowAction, maxMessageLength, entryType);
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
@@ -762,33 +758,57 @@ namespace NLog.UnitTests.Targets
             return false;
         }
 
-        private class EventLogStaticMock : EventLogTarget.IEventLogStaticWrapper
+        private class EventLogMock : EventLogTarget.IEventLogWrapper
         {
-            public EventLogStaticMock(
-                Func<string, string, bool> sourceExistsFunction,
+            public EventLogMock(
                 Action<string, string> deleteEventSourceFunction,
+                Func<string, string, bool> sourceExistsFunction,
                 Func<string, string, string> logNameFromSourceNameFunction,
-                Action<EventSourceCreationData> createEventSourceFunction,
-                IDictionary<string, EventLogTarget.IEventLogInstanceWrapper> eventLogInstances)
+                Action<EventSourceCreationData> createEventSourceFunction)
             {
-                SourceExistsFunction = sourceExistsFunction ?? throw new ArgumentNullException(nameof(sourceExistsFunction));
                 DeleteEventSourceFunction = deleteEventSourceFunction ?? throw new ArgumentNullException(nameof(deleteEventSourceFunction));
+                SourceExistsFunction = sourceExistsFunction ?? throw new ArgumentNullException(nameof(sourceExistsFunction));
                 LogNameFromSourceNameFunction = logNameFromSourceNameFunction ?? throw new ArgumentNullException(nameof(logNameFromSourceNameFunction));
                 CreateEventSourceFunction = createEventSourceFunction ?? throw new ArgumentNullException(nameof(createEventSourceFunction));
-                EventLogInstances = eventLogInstances;
             }
 
-            internal IDictionary<string, EventLogTarget.IEventLogInstanceWrapper> EventLogInstances { get; }
-
-            private Func<string, string, bool> SourceExistsFunction { get; }
             private Action<string, string> DeleteEventSourceFunction { get; }
+            private Func<string, string, bool> SourceExistsFunction { get; }
             private Func<string, string, string> LogNameFromSourceNameFunction { get; }
             private Action<EventSourceCreationData> CreateEventSourceFunction { get; }
 
+            internal List<EventRecordMock> WrittenEntries { get; } = new List<EventRecordMock>();
+
             /// <inheritdoc />
-            public EventLogTarget.IEventLogInstanceWrapper CreateEventLogInstanceWrapper(string logName, string machineName, string source)
+            public string Source { get; set; }
+
+            /// <inheritdoc />
+            public string Log { get; set; }
+
+            /// <inheritdoc />
+            public string MachineName { get; set; }
+
+            /// <inheritdoc />
+            public long MaximumKilobytes { get; set; } = EventLogTarget.EventLogDefaultMaxKilobytes;
+
+            /// <inheritdoc />
+            public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category) =>
+                WrittenEntries.Add(new EventRecordMock(eventId, Log, Source, entryType, message, category));
+
+            /// <inheritdoc />
+            public bool IsEventLogAssociated { get; private set; }
+
+            /// <inheritdoc />
+            public void AssociateNewEventLog(string logName, string machineName, string source)
             {
-                return EventLogInstances[logName];
+                Log = logName;
+                MachineName = machineName;
+                Source = source;
+
+                if (!IsEventLogAssociated)
+                {
+                    IsEventLogAssociated = true;
+                }
             }
 
             /// <inheritdoc />
@@ -802,38 +822,6 @@ namespace NLog.UnitTests.Targets
 
             /// <inheritdoc />
             public void CreateEventSource(EventSourceCreationData sourceData) => CreateEventSourceFunction(sourceData);
-        }
-
-        private class EventLogInstanceStub : EventLogTarget.IEventLogInstanceWrapper
-        {
-            public const long MaxKBytesDefValue = 512;
-
-            public EventLogInstanceStub(string logName, string machineName, string source)
-            {
-                Log = logName;
-                MachineName = machineName;
-                Source = source;
-            }
-
-            /// <inheritdoc />
-            public string Log { get; set; }
-
-            /// <inheritdoc />
-            public string MachineName { get; set; }
-
-            /// <inheritdoc />
-            public string Source { get; }
-
-            /// <inheritdoc />
-            public long MaximumKilobytes { get; set; } = MaxKBytesDefValue;
-
-            internal List<EventRecordMock> WrittenEntries { get; } = new List<EventRecordMock>();
-
-            /// <inheritdoc />
-            public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category)
-            {
-                WrittenEntries.Add(new EventRecordMock(eventId, Log, Source, entryType, message, category));
-            }
         }
     }
 }
