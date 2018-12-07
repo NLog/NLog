@@ -76,13 +76,13 @@ namespace NLog.Targets
         /// </summary>
         public const int EventLogDefaultMaxKilobytes = 512;
 
-        private readonly IEventLogWrapper eventLogWrapper;
+        private readonly IEventLogWrapper _eventLogWrapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         public EventLogTarget()
-            : this(new EventLogWrapper())
+            : this(null, null)
         {
         }
 
@@ -91,7 +91,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="name">Name of the target.</param>
         public EventLogTarget(string name)
-            : this(new EventLogWrapper())
+            : this(null, null)
         {
             Name = name;
         }
@@ -99,19 +99,16 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
-        public EventLogTarget(IAppDomain appDomain)
+        internal EventLogTarget(IEventLogWrapper eventLogWrapper, IAppDomain appDomain)
         {
+            _eventLogWrapper = eventLogWrapper ?? new EventLogWrapper();
+            appDomain = appDomain ?? LogFactory.CurrentAppDomain;
+
             Source = appDomain.FriendlyName;
             Log = "Application";
             MachineName = ".";
             MaxMessageLength = EventLogMaxMessageLength;
             OptimizeBufferReuse = GetType() == typeof(EventLogTarget);  // Class not sealed, reduce breaking changes
-        }
-
-        internal EventLogTarget(IEventLogWrapper eventLogWrapper)
-            :this(LogFactory.CurrentAppDomain)
-        {
-            this.eventLogWrapper = eventLogWrapper;
         }
 
         /// <summary>
@@ -227,7 +224,7 @@ namespace NLog.Targets
             }
             else
             {
-                eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
+                _eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
             }
         }
 
@@ -244,7 +241,7 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(fixedSource))
             {
-                return eventLogWrapper.SourceExists(fixedSource, MachineName);
+                return _eventLogWrapper.SourceExists(fixedSource, MachineName);
             }
             InternalLogger.Debug("EventLogTarget(Name={0}): Unclear if event source exists because it contains layout renderers", Name);
             return null; //unclear! 
@@ -376,17 +373,17 @@ namespace NLog.Targets
         private IEventLogWrapper GetEventLog(LogEventInfo logEvent)
         {
             var renderedSource = RenderSource(logEvent);
-            var isCacheUpToDate = eventLogWrapper.IsEventLogAssociated &&
-                                  eventLogWrapper.Log == Log &&
-                                  eventLogWrapper.MachineName == MachineName &&
-                                  eventLogWrapper.Source == renderedSource;
+            var isCacheUpToDate = _eventLogWrapper.IsEventLogAssociated &&
+                                  _eventLogWrapper.Log == Log &&
+                                  _eventLogWrapper.MachineName == MachineName &&
+                                  _eventLogWrapper.Source == renderedSource;
 
             if (!isCacheUpToDate)
             {
-                eventLogWrapper.AssociateNewEventLog(Log, MachineName, renderedSource);
+                _eventLogWrapper.AssociateNewEventLog(Log, MachineName, renderedSource);
             }
 
-            return eventLogWrapper;
+            return _eventLogWrapper;
         }
 
         internal string RenderSource(LogEventInfo logEvent)
@@ -411,19 +408,19 @@ namespace NLog.Targets
             // if we throw anywhere, we remain non-operational
             try
             {
-                if (eventLogWrapper.SourceExists(fixedSource, MachineName))
+                if (_eventLogWrapper.SourceExists(fixedSource, MachineName))
                 {
-                    string currentLogName = eventLogWrapper.LogNameFromSourceName(fixedSource, MachineName);
+                    string currentLogName = _eventLogWrapper.LogNameFromSourceName(fixedSource, MachineName);
                     if (!currentLogName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
                     {
                         // re-create the association between Log and Source
-                        eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
+                        _eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
 
                         var eventSourceCreationData = new EventSourceCreationData(fixedSource, Log)
                         {
                             MachineName = MachineName
                         };
-                        eventLogWrapper.CreateEventSource(eventSourceCreationData);
+                        _eventLogWrapper.CreateEventSource(eventSourceCreationData);
                     }
                 }
                 else
@@ -432,7 +429,7 @@ namespace NLog.Targets
                     {
                         MachineName = MachineName
                     };
-                    eventLogWrapper.CreateEventSource(eventSourceCreationData);
+                    _eventLogWrapper.CreateEventSource(eventSourceCreationData);
                 }
 
                 if (MaxKilobytes.HasValue && GetEventLog(null).MaximumKilobytes < MaxKilobytes)

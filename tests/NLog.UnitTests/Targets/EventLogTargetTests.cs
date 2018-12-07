@@ -202,7 +202,7 @@ namespace NLog.UnitTests.Targets
                 logNameFromSourceNameFunction: (source, machineName) => targetLog,
                 createEventSourceFunction: (sourceData) => { })
             { MaximumKilobytes = initialValue };
-            var target = new EventLogTarget(eventLogMock)
+            var target = new EventLogTarget(eventLogMock, null)
             {
                 Log = targetLog,
                 Source = "NLog.UnitTests" + Guid.NewGuid().ToString("N"), // set the source explicitly to prevent random AppDomain name being used as the source name
