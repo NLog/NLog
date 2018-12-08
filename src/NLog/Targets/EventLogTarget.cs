@@ -99,6 +99,16 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
+        /// <param name="appDomain"><see cref="IAppDomain"/>.<see cref="IAppDomain.FriendlyName"/> to be used as Source.</param>
+        [Obsolete("This constructor will be removed in NLog 5. Marked obsolete on NLog 4.6")]
+        public EventLogTarget(IAppDomain appDomain)
+            : this(null, appDomain)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
+        /// </summary>
         internal EventLogTarget(IEventLogWrapper eventLogWrapper, IAppDomain appDomain)
         {
             _eventLogWrapper = eventLogWrapper ?? new EventLogWrapper();
