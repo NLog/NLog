@@ -169,7 +169,10 @@ namespace NLog.Config
             }
 
             if (internalLogFile != null)
+            {
+                internalLogFile = ExpandFilePathVariables(internalLogFile);
                 InternalLogger.LogFile = internalLogFile;
+            }
 
             if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())
             {
@@ -212,6 +215,33 @@ namespace NLog.Config
             {
                 ParseRulesElement(ruleChild, LoggingRules);
             }
+        }
+
+        private static string ExpandFilePathVariables(string internalLogFile)
+        {
+            try
+            {
+#if !SILVERLIGHT
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${currentdir}", out string currentDirToken))
+                    internalLogFile = internalLogFile.Replace(currentDirToken, System.IO.Directory.GetCurrentDirectory() + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (ContainsSubStringIgnoreCase(internalLogFile, "${basedir}", out string baseDirToken))
+                    internalLogFile = internalLogFile.Replace(baseDirToken, LogFactory.CurrentAppDomain.BaseDirectory + System.IO.Path.DirectorySeparatorChar.ToString());
+                if (internalLogFile.IndexOf("%", StringComparison.OrdinalIgnoreCase) >= 0)
+                    internalLogFile = Environment.ExpandEnvironmentVariables(internalLogFile);
+#endif
+                return internalLogFile;
+            }
+            catch
+            {
+                return internalLogFile;
+            }
+        }
+
+        private static bool ContainsSubStringIgnoreCase(string haystack, string needle, out string result)
+        {
+            int needlePos = haystack.IndexOf(needle, StringComparison.OrdinalIgnoreCase);
+            result = needlePos >= 0 ? haystack.Substring(needlePos, needle.Length) : null;
+            return result != null;
         }
 
         /// <summary>

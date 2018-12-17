@@ -81,6 +81,33 @@ namespace NLog.UnitTests.Config
             }
         }
 
+        [Fact]
+        public void ParseNLogInternalLoggerPathTest()
+        {
+            using (new InternalLoggerScope(true))
+            {
+                var xml = "<nlog autoreload='true' internalLogFile='${CurrentDir}test.txt'></nlog>";
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+                Assert.Contains(System.IO.Directory.GetCurrentDirectory(), InternalLogger.LogFile);
+            }
+
+            using (new InternalLoggerScope(true))
+            {
+                var xml = "<nlog autoreload='true' internalLogFile='${BaseDir}test.txt'></nlog>";
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+                Assert.Contains(AppDomain.CurrentDomain.BaseDirectory, InternalLogger.LogFile);
+            }
+
+            using (new InternalLoggerScope(true))
+            {
+                var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
+                var xml = "<nlog autoreload='true' internalLogFile='%USERNAME%_test.txt'></nlog>";
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+                if (!string.IsNullOrEmpty(userName))
+                    Assert.Contains(userName, InternalLogger.LogFile);
+            }
+        }
+
         [Theory]
         [InlineData("0:0:0:1", 1)]
         [InlineData("0:0:1", 1)]
