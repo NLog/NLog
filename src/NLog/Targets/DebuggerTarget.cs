@@ -36,6 +36,7 @@
 namespace NLog.Targets
 {
     using System.Diagnostics;
+    using NLog.Common;
 
     /// <summary>
     /// Writes log messages to the attached managed debugger.
@@ -87,6 +88,11 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+            if (!Debugger.IsLogging())
+            {
+                InternalLogger.Debug("Debugger(Name={0}): System.Diagnostics.Debugger.IsLogging()==false. Output has been disabled.", Name);
+            }
+
             if (Header != null)
             {
                 Debugger.Log(LogLevel.Off.Ordinal, string.Empty, RenderLogEvent(Header, LogEventInfo.CreateNullEvent()) + "\n");
