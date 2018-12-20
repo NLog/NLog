@@ -448,11 +448,11 @@ namespace NLog.Targets
         {
             get
             {
-#if SupportsMutex
+#if SupportsMutex && !NETSTANDARD
 
                 return _concurrentWrites ?? PlatformDetector.SupportsSharableMutex;
 #else
-                return _concurrentWrites ?? false;  // Better user experience for mobile platforms
+                return _concurrentWrites ?? false;  // Better user experience for UWP- / mobile-platforms
 #endif
             }
             set
