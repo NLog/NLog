@@ -994,6 +994,11 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             var logFileName = GetFullFileName(logEvent);
+            if (string.IsNullOrEmpty(logFileName))
+            {
+                throw new ArgumentException("The path is not of a legal form.");
+            }
+
             if (OptimizeBufferReuse)
             {
                 using (var targetStream = _reusableFileWriteStream.Allocate())
@@ -1079,14 +1084,23 @@ namespace NLog.Targets
 
                 foreach (var bucket in buckets)
                 {
+                    int bucketCount = bucket.Value.Count;
+
                     string fileName = bucket.Key;
+                    if (string.IsNullOrEmpty(fileName))
+                    {
+                        var emptyPathException = new ArgumentException("The path is not of a legal form.");
+                        for (int i = 0; i < bucketCount; ++i)
+                        {
+                            bucket.Value[i].Continuation(emptyPathException);
+                        }
+                        continue;
+                    }
 
                     ms.SetLength(0);
                     ms.Position = 0;
 
                     LogEventInfo firstLogEvent = null;
-
-                    int bucketCount = bucket.Value.Count;
 
                     using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
                     using (var targetBuffer = OptimizeBufferReuse ? _reusableEncodingBuffer.Allocate() : _reusableEncodingBuffer.None)
