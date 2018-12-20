@@ -746,10 +746,10 @@ namespace NLog.Targets
         {
             if (_fileAppenderCache != null)
             {
-                _fileAppenderCache.CheckCloseAppenders -= AutoClosingTimerCallback;
+                _fileAppenderCache.CheckCloseAppenders -= AutoCloseAppendersAfterArchive;
 
                 if (KeepFileOpen)
-                    _fileAppenderCache.CheckCloseAppenders += AutoClosingTimerCallback;
+                    _fileAppenderCache.CheckCloseAppenders += AutoCloseAppendersAfterArchive;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
                 bool mustWatchArchiving = IsArchivingEnabled && ConcurrentWrites && KeepFileOpen;
@@ -927,13 +927,13 @@ namespace NLog.Targets
 
             if ((OpenFileCacheSize > 0 || EnableFileDelete) && (OpenFileCacheTimeout > 0 || OpenFileFlushTimeout > 0))
             {
-                int openFileAutoTimeout = Math.Min(Math.Max(OpenFileCacheTimeout,1), Math.Max(OpenFileFlushTimeout,1)) * 1000;
+                int openFileAutoTimeoutSecs = (OpenFileCacheTimeout >= 0 && OpenFileFlushTimeout >= 0) ? Math.Min(OpenFileCacheTimeout, OpenFileFlushTimeout) : Math.Max(OpenFileCacheTimeout, OpenFileFlushTimeout);
                 InternalLogger.Trace("FileTarget(Name={0}): Start autoClosingTimer", Name);
                 _autoClosingTimer = new Timer(
                     (state) => AutoClosingTimerCallback(this, EventArgs.Empty),
                     null,
-                    openFileAutoTimeout,
-                    openFileAutoTimeout);
+                    openFileAutoTimeoutSecs * 1000,
+                    openFileAutoTimeoutSecs * 1000);
             }
         }
 
@@ -994,6 +994,11 @@ namespace NLog.Targets
         protected override void Write(LogEventInfo logEvent)
         {
             var logFileName = GetFullFileName(logEvent);
+            if (string.IsNullOrEmpty(logFileName))
+            {
+                throw new ArgumentException("The path is not of a legal form.");
+            }
+
             if (OptimizeBufferReuse)
             {
                 using (var targetStream = _reusableFileWriteStream.Allocate())
@@ -1079,14 +1084,23 @@ namespace NLog.Targets
 
                 foreach (var bucket in buckets)
                 {
+                    int bucketCount = bucket.Value.Count;
+
                     string fileName = bucket.Key;
+                    if (string.IsNullOrEmpty(fileName))
+                    {
+                        var emptyPathException = new ArgumentException("The path is not of a legal form.");
+                        for (int i = 0; i < bucketCount; ++i)
+                        {
+                            bucket.Value[i].Continuation(emptyPathException);
+                        }
+                        continue;
+                    }
 
                     ms.SetLength(0);
                     ms.Position = 0;
 
                     LogEventInfo firstLogEvent = null;
-
-                    int bucketCount = bucket.Value.Count;
 
                     using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
                     using (var targetBuffer = OptimizeBufferReuse ? _reusableEncodingBuffer.Allocate() : _reusableEncodingBuffer.None)
@@ -1978,36 +1992,60 @@ namespace NLog.Targets
             }
         }
 
-        private void AutoClosingTimerCallback(object sender, EventArgs state)
+        private void AutoCloseAppendersAfterArchive(object sender, EventArgs state)
         {
+            bool lockTaken = Monitor.TryEnter(SyncRoot, TimeSpan.FromSeconds(2));
+            if (!lockTaken)
+                return; // Archive events triggered by FileWatcher are important, but not life critical
+
             try
             {
-                lock (SyncRoot)
+                if (!IsInitialized)
                 {
-                    if (!IsInitialized)
-                    {
-                        return;
-                    }
+                    return;
+                }
 
-                    if (!ReferenceEquals(sender, this))
-                    {
-                        InternalLogger.Trace("FileTarget(Name={0}): Auto Close FileAppenders after archive", Name);
-                        _fileAppenderCache.CloseAppenders(DateTime.MinValue);
-                    }
-                    else
-                    {
-                        if (OpenFileCacheTimeout > 0)
-                        {
-                            DateTime expireTime = DateTime.UtcNow.AddSeconds(-OpenFileCacheTimeout);
-                            InternalLogger.Trace("FileTarget(Name={0}): Auto Close FileAppenders", Name);
-                            _fileAppenderCache.CloseAppenders(expireTime);
-                        }
+                InternalLogger.Trace("FileTarget(Name={0}): Auto Close FileAppenders after archive", Name);
+                _fileAppenderCache.CloseAppenders(DateTime.MinValue);
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "FileTarget(Name={0}): Exception in AutoCloseAppendersAfterArchive", Name);
 
-                        if (OpenFileFlushTimeout > 0 && !AutoFlush)
-                        {
-                            ConditionalFlushOpenFileAppenders();
-                        }
-                    }
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                }
+            }
+            finally
+            {
+                Monitor.Exit(SyncRoot);
+            }
+        }
+
+        private void AutoClosingTimerCallback(object sender, EventArgs state)
+        {
+            bool lockTaken = Monitor.TryEnter(SyncRoot, TimeSpan.FromSeconds(0.5));
+            if (!lockTaken)
+                return; // Timer will trigger again, no need for timers to queue up
+
+            try
+            {
+                if (!IsInitialized)
+                {
+                    return;
+                }
+
+                if (OpenFileCacheTimeout > 0)
+                {
+                    DateTime expireTime = DateTime.UtcNow.AddSeconds(-OpenFileCacheTimeout);
+                    InternalLogger.Trace("FileTarget(Name={0}): Auto Close FileAppenders", Name);
+                    _fileAppenderCache.CloseAppenders(expireTime);
+                }
+
+                if (OpenFileFlushTimeout > 0 && !AutoFlush)
+                {
+                    ConditionalFlushOpenFileAppenders();
                 }
             }
             catch (Exception exception)
@@ -2018,6 +2056,10 @@ namespace NLog.Targets
                 {
                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                 }
+            }
+            finally
+            {
+                Monitor.Exit(SyncRoot);
             }
         }
 
