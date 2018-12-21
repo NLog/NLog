@@ -118,6 +118,12 @@ namespace NLog.Layouts
         public bool RenderEmptyObject { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='JSON Options' order='10' />
+        public bool IncludeGdc { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='JSON Options' order='10' />
@@ -227,6 +233,17 @@ namespace NLog.Layouts
                 if (!RenderAppendJsonPropertyValue(attrib, logEvent, sb, sb.Length == orgLength))
                 {
                     sb.Length = beforeAttribLength;
+                }
+            }
+
+            if(IncludeGdc)
+            {
+                foreach (string key in GlobalDiagnosticsContext.GetNames())
+                {
+                    if (string.IsNullOrEmpty(key))
+                        continue;
+                    object propertyValue = GlobalDiagnosticsContext.GetObject(key);
+                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
                 }
             }
 
