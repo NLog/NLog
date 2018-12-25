@@ -48,7 +48,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var configurationManager = new MockConfigurationManager();
             const string expected = "appSettingTestValue";
             configurationManager.AppSettings["appSettingTestKey"] = expected;
-            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
             {
                 ConfigurationManager = configurationManager,
                 Name = "appSettingTestKey",
@@ -65,7 +65,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var configurationManager = new MockConfigurationManager();
             const string expected = "appSettingTestValue";
             configurationManager.AppSettings["appSettingTestKey"] = expected;
-            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
             {
                 ConfigurationManager = configurationManager,
                 Name = "appSettingTestKey",
@@ -82,7 +82,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var configurationManager = new MockConfigurationManager();
             const string expected = "UseDefault";
-            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
             {
                 ConfigurationManager = configurationManager,
                 Name = "notFound",
@@ -98,7 +98,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void NoAppSettingTest()
         {
             var configurationManager = new MockConfigurationManager();
-            var appSettingLayoutRenderer = new AppSettingLayoutRenderer
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
             {
                 ConfigurationManager = configurationManager,
                 Name = "notFound",
