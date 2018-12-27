@@ -320,22 +320,21 @@ namespace NLog.UnitTests
         [Fact]
         public void NewAttrOnNLogLevelShouldNotThrowError()
         {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true' imAnewAttribute='noError'>
                 <targets><target type='file' name='f1' filename='test.log' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='f1'></logger>
                 </rules>
             </nlog>");
+
+            var LogFactory = new LogFactory(config);
         }
 
         [Fact]
         public void ValueWithVariableMustNotCauseInfiniteRecursion()
         {
-            LogManager.Configuration = null;
-
-            var filename = "NLog.config";
-            File.WriteAllText(filename, @"
+            var configXml = @"
             <nlog>
                 <variable name='dir' value='c:\mylogs' />
                 <targets>
@@ -344,16 +343,16 @@ namespace NLog.UnitTests
                 <rules>
                     <logger name='*' writeTo='f' />
                 </rules>
-            </nlog>");
+            </nlog>";
+
+
             try
             {
-                var x = LogManager.Configuration;
-                //2nd call
-                var config = new XmlLoggingConfiguration(filename);
+                var config = XmlLoggingConfiguration.CreateFromXmlString(configXml);
+                var LogFactory = new LogFactory(config);
             }
             finally
             {
-                File.Delete(filename);
             }
         }
 
