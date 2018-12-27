@@ -48,9 +48,7 @@ namespace NLog.UnitTests
         {
             using (new NoThrowNLogExceptions())
             {
-                LogManager.ThrowExceptions = true;
-
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                var config = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='false'>
                     <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                     <rules>
@@ -58,7 +56,11 @@ namespace NLog.UnitTests
                     </rules>
                 </nlog>");
 
-                ILogger logger = LogManager.GetCurrentClassLogger();
+                var LogFactory = new LogFactory(config);
+
+                LogFactory.ThrowExceptions = true;
+
+                ILogger logger = LogFactory.GetCurrentClassLogger();
                 logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
             }
         }
@@ -68,13 +70,18 @@ namespace NLog.UnitTests
         {
             using (new NoThrowNLogExceptions())
             {
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                var config = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
             </nlog>");
+
+                var LogFactory = new LogFactory(config);
+
+                ILogger logger = LogFactory.GetCurrentClassLogger();
+                logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
             }
         }
 
@@ -84,15 +91,17 @@ namespace NLog.UnitTests
             Boolean ExceptionThrown = false;
             try
             {
-                LogManager.ThrowExceptions = true;
-
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                var config = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
             </nlog>");
+
+                var LogFactory = new LogFactory(config);
+
+                LogFactory.ThrowExceptions = true;
             }
             catch (Exception)
             {
@@ -182,7 +191,7 @@ namespace NLog.UnitTests
             {
                 bool threadTerminated;
 
-                var primaryLogFactory = LogManager.factory;
+                var primaryLogFactory = LogManager.factory;//QUESTION should this be new LogFactory()._syncRoot test instead???
                 var primaryLogFactoryLock = primaryLogFactory._syncRoot;
                 // Simulate a potential deadlock. 
                 // If the creation of the new LogFactory takes the lock of the global LogFactory, the thread will deadlock.
