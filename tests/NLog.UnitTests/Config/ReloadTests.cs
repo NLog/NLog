@@ -31,17 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Security;
-using System.Xml;
 
 #if !MONO
 
 namespace NLog.UnitTests.Config
 {
-    using NLog.Config;
     using System;
     using System.IO;
     using System.Threading;
+    using System.Xml;
+    using NLog.Config;
     using Xunit;
 
     public class ReloadTests : NLogTestBase
@@ -537,13 +536,16 @@ namespace NLog.UnitTests.Config
                                 <variable name='var2' value='keep_value' />
                             </nlog>";
 
-            LogManager.Configuration = XmlLoggingConfigurationMock.CreateFromXml(config);
-            LogManager.Configuration.Variables["var1"] = "new_value";
-            LogManager.Configuration.Variables["var3"] = "new_value3";
-            LogManager.Configuration = LogManager.Configuration.Reload();
-            Assert.Equal("new_value", LogManager.Configuration.Variables["var1"].OriginalText);
-            Assert.Equal("keep_value", LogManager.Configuration.Variables["var2"].OriginalText);
-            Assert.Equal("new_value3", LogManager.Configuration.Variables["var3"].OriginalText);
+            var configLoader = new LoggingConfigurationFileReloader();
+            var logFactory = new LogFactory(configLoader);
+            var configuration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config);
+            logFactory.Configuration = configuration;
+            logFactory.Configuration.Variables["var1"] = "new_value";
+            logFactory.Configuration.Variables["var3"] = "new_value3";
+            configLoader.ReloadConfigOnTimer(configuration);
+            Assert.Equal("new_value", logFactory.Configuration.Variables["var1"].OriginalText);
+            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
+            Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].OriginalText);
         }
 
         [Fact]
@@ -554,14 +556,15 @@ namespace NLog.UnitTests.Config
                                 <variable name='var2' value='keep_value' />
                             </nlog>";
 
-
-            LogManager.Configuration = XmlLoggingConfigurationMock.CreateFromXml(config);
-            LogManager.Configuration.Variables["var1"] = "new_value";
-            LogManager.Configuration.Variables["var3"] = "new_value3";
-            LogManager.Configuration =  LogManager.Configuration.Reload();
-            Assert.Equal("", LogManager.Configuration.Variables["var1"].OriginalText);
-            Assert.Equal("keep_value", LogManager.Configuration.Variables["var2"].OriginalText);
-
+            var configLoader = new LoggingConfigurationFileReloader();
+            var logFactory = new LogFactory(configLoader);
+            var configuration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, config);
+            logFactory.Configuration = configuration;
+            logFactory.Configuration.Variables["var1"] = "new_value";
+            logFactory.Configuration.Variables["var3"] = "new_value3";
+            configLoader.ReloadConfigOnTimer(configuration);
+            Assert.Equal("", logFactory.Configuration.Variables["var1"].OriginalText);
+            Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
         }
 
         [Fact]
@@ -657,70 +660,24 @@ namespace NLog.UnitTests.Config
     /// </summary>
     public class XmlLoggingConfigurationMock : XmlLoggingConfiguration
     {
-        private XmlElement _xmlElement;
-        private string _fileName;
+        private string _configXml;
+        private LogFactory _logFactory;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
-        /// </summary>
-        /// <param name="element">The XML element.</param>
-        /// <param name="fileName">Name of the XML file.</param>
-        internal XmlLoggingConfigurationMock(XmlElement element, string fileName) : base(element, fileName)
+        private XmlLoggingConfigurationMock(LogFactory logFactory, string configXml) : base(XmlReader.Create(new StringReader(configXml)), null, logFactory)
         {
-            _xmlElement = element;
-            _fileName = fileName;
-
-            
+            _logFactory = logFactory;
+            _configXml = configXml;
         }
-
-     
-        private bool _reloading;
-      
-
-        #region Overrides of XmlLoggingConfiguration
 
         public override LoggingConfiguration Reload()
         {
-            if (_reloading)
-            {
-                return new XmlLoggingConfigurationMock(_xmlElement, _fileName);
-            }
-            _reloading = true;
-            var factory = LogManager.LogFactory;
-
-            //reloadTimer should be set for ReloadConfigOnTimer
-            factory._reloadTimer = new Timer((a) => { });
-            factory.ReloadConfigOnTimer(this);
-            _reloading = false;
-            return factory.Configuration;
+            return new XmlLoggingConfigurationMock(_logFactory, _configXml);
         }
 
-        #endregion
-
-
-        public static XmlLoggingConfigurationMock CreateFromXml(string configXml)
+        public static XmlLoggingConfigurationMock CreateFromXml(LogFactory logFactory, string configXml)
         {
-
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(configXml);
-
-            string currentDirectory = null;
-            try
-            {
-                currentDirectory = Environment.CurrentDirectory;
-            }
-            catch (SecurityException)
-            {
-                //ignore   
-            }
-
-            return new XmlLoggingConfigurationMock(doc.DocumentElement, currentDirectory);
-
-
+            return new XmlLoggingConfigurationMock(logFactory, configXml);
         }
-
-
-
     }
 }
 #endif
