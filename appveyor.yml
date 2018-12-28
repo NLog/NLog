@@ -38,6 +38,7 @@ nuget:
 
 artifacts:
   - path: 'artifacts\*.nupkg'
+  - path: 'artifacts\*.snupkg'
 
 deploy:
 - provider: NuGet
