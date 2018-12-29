@@ -192,7 +192,7 @@ namespace NLog.UnitTests.Targets
             Target.Register("contexttarget", typeof(CustomTargetWithContext));
 
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog throwExceptions='true' optimizeBufferReuse='false'>
+                <nlog throwExceptions='true'>
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
                         <target name='debug' type='contexttarget' includeCallSite='true' optimizeBufferReuse='false'>
@@ -228,6 +228,41 @@ namespace NLog.UnitTests.Targets
             Assert.Contains(System.Environment.CurrentManagedThreadId.ToString(), target.LastMessage);
             var lastCombinedProperties = target.LastCombinedProperties;
             Assert.Empty(lastCombinedProperties);
+        }
+
+        [Fact]
+        public void TargetWithContextPropertyTypeTest()
+        {
+            Target.Register("contexttarget", typeof(CustomTargetWithContext));
+
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
+                        <target name='debug' type='contexttarget' includeCallSite='true'>
+                            <contextproperty name='threadid' layout='${threadid}' propertyType='System.Int32' />
+                            <contextproperty name='processid' layout='${processid}' propertyType='System.Int32' />
+                            <contextproperty name='timestamp' layout='${date}' propertyType='System.DateTime' />
+                        </target>
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='Error' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            MappedDiagnosticsLogicalContext.Clear();
+
+            var logEvent = new LogEventInfo() { Message = "log message" };
+            logger.Error(logEvent);
+            LogManager.Flush();
+            var target = LogManager.Configuration.AllTargets.OfType<CustomTargetWithContext>().FirstOrDefault();
+            Assert.NotEqual(0, target.LastMessage.Length);
+            var lastCombinedProperties = target.LastCombinedProperties;
+            Assert.NotEmpty(lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("processid", System.Diagnostics.Process.GetCurrentProcess().Id), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("timestamp", logEvent.TimeStamp), lastCombinedProperties);
         }
     }
 }

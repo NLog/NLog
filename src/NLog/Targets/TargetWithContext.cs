@@ -154,19 +154,7 @@ namespace NLog.Targets
         {
             if (ContextProperties?.Count > 0)
             {
-                combinedProperties = combinedProperties ?? CreateNewDictionary(ContextProperties.Count);
-                for (int i = 0; i < ContextProperties.Count; ++i)
-                {
-                    var attrib = ContextProperties[i];
-                    if (string.IsNullOrEmpty(attrib?.Name) || attrib.Layout == null)
-                        continue;
-
-                    var attribValue = RenderLogEvent(attrib.Layout, logEvent);
-                    if (!attrib.IncludeEmptyValue && string.IsNullOrEmpty(attribValue))
-                        continue;
-
-                    combinedProperties[attrib.Name] = attribValue;
-                }
+                combinedProperties = CaptureContextProperties(logEvent, combinedProperties);
             }
 
 #if !SILVERLIGHT
@@ -355,6 +343,51 @@ namespace NLog.Targets
             return CaptureContextNdlc(logEvent);
         }
 #endif
+
+        private IDictionary<string, object> CaptureContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        {
+            combinedProperties = combinedProperties ?? CreateNewDictionary(ContextProperties.Count);
+            for (int i = 0; i < ContextProperties.Count; ++i)
+            {
+                var attrib = ContextProperties[i];
+                if (string.IsNullOrEmpty(attrib?.Name) || attrib.Layout == null)
+                    continue;
+
+                var attribType = attrib.PropertyType ?? typeof(string);
+
+                try
+                {
+
+                    if (attribType != typeof(string))
+                    {
+                        if (attrib.Layout.TryGetRawValue(logEvent, out object rawValue))
+                        {
+                            if (rawValue?.GetType() == attribType || attribType == typeof(object))
+                            {
+                                combinedProperties[attrib.Name] = rawValue;
+                                continue;
+                            }
+                        }
+                    }
+
+                    var attribStringValue = RenderLogEvent(attrib.Layout, logEvent);
+                    if (!attrib.IncludeEmptyValue && string.IsNullOrEmpty(attribStringValue))
+                        continue;
+
+                    combinedProperties[attrib.Name] = attribType == typeof(string)
+                        ? attribStringValue : Convert.ChangeType(attribStringValue, attribType, CultureInfo.InvariantCulture);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrownImmediately())
+                        throw;
+
+                    Common.InternalLogger.Warn(ex, "{0}(Name={1}): Failed to add context property {2}", GetType(), Name, attrib.Name);
+                }
+            }
+
+            return combinedProperties;
+        }
 
         /// <summary>
         /// Takes snapshot of <see cref="GlobalDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
