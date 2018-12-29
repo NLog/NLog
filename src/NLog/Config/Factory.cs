@@ -187,24 +187,22 @@ namespace NLog.Config
         /// <summary>
         /// Creates an item instance.
         /// </summary>
-        /// <param name="name">The name of the item.</param>
+        /// <param name="itemName">The name of the item.</param>
         /// <returns>Created item.</returns>
-        public virtual TBaseType CreateInstance(string name)
+        public virtual TBaseType CreateInstance(string itemName)
         {
-            TBaseType result;
-
-            if (TryCreateInstance(name, out result))
+            if (TryCreateInstance(itemName, out TBaseType result))
             {
                 return result;
             }
-            var message = typeof(TBaseType).Name + " cannot be found: '" + name + "'";
-            if (name != null && (name.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
-                                 name.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
+
+            var message = typeof(TBaseType).Name + " cannot be found: '" + itemName + "'";
+            if (itemName != null && (itemName.StartsWith("aspnet", StringComparison.OrdinalIgnoreCase) ||
+                                 itemName.StartsWith("iis", StringComparison.OrdinalIgnoreCase)))
             {
                 //common mistake and probably missing NLog.Web
                 message += ". Is NLog.Web not included?";
             }
-
 
             throw new ArgumentException(message);
         }
