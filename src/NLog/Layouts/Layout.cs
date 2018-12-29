@@ -385,7 +385,7 @@ namespace NLog.Layouts
         /// <param name="logEvent"></param>
         /// <param name="rawValue">rawValue if return result is true</param>
         /// <returns>false if we could not determine the rawValue</returns>
-        public virtual bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        internal virtual bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
             rawValue = null;
             return false;
