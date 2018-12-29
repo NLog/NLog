@@ -48,7 +48,7 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class TempDirLayoutRenderer : LayoutRenderer
     {
-        private static string tempDir = Path.GetTempPath();
+        private static string tempDir;
 
         /// <summary>
         /// Gets or sets the name of the file to be Path.Combine()'d with the directory name.
@@ -61,6 +61,17 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Advanced Options' order='10' />
         public string Dir { get; set; }
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            if (tempDir == null)
+            {
+                tempDir = Path.GetTempPath();   // Can throw exception
+            }
+
+            base.InitializeLayoutRenderer();
+        }
 
         /// <summary>
         /// Renders the directory where NLog is located and appends it to the specified <see cref="StringBuilder" />.
