@@ -10,15 +10,15 @@ dotnet restore .\tests\SampleExtensions\
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Build /p:Configuration=Release .\src\NLogAutoLoadExtension\ /verbosity:minimal
+msbuild /t:Build /p:Configuration=Release /p:DebugType=Full .\src\NLogAutoLoadExtension\ /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Build /p:Configuration=Release .\tests\SampleExtensions\ /verbosity:minimal
+msbuild /t:Build /p:Configuration=Release /p:DebugType=Full .\tests\SampleExtensions\ /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Restore,Build /p:Configuration=Release .\tests\NLog.UnitTests\ /verbosity:minimal
+msbuild /t:Restore,Build /p:Configuration=Release /p:DebugType=Full .\tests\NLog.UnitTests\ /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -26,7 +26,7 @@ dotnet test .\tests\NLog.UnitTests\  --configuration release --framework netcore
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Build /p:targetFramework=net452 .\tests\NLog.UnitTests\ /p:Configuration=Release /p:TestTargetFramework=net35 /p:OutputPath=.\bin\release\net35 /verbosity:minimal
+msbuild /t:Build /p:targetFramework=net452 .\tests\NLog.UnitTests\ /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=net35 /p:OutputPath=.\bin\release\net35 /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -34,7 +34,7 @@ if (-Not $LastExitCode -eq 0)
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Build /p:targetFramework=net452 .\tests\NLog.UnitTests\ /p:Configuration=Release /p:TestTargetFramework=net40-client /p:OutputPath=.\bin\release\net40 /verbosity:minimal
+msbuild /t:Build /p:targetFramework=net452 .\tests\NLog.UnitTests\ /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=net40-client /p:OutputPath=.\bin\release\net40 /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -42,6 +42,6 @@ if (-Not $LastExitCode -eq 0)
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Build /p:Configuration=Debug .\tests\NLog.UnitTests\ /verbosity:minimal
+msbuild /t:Build /p:Configuration=Debug /p:DebugType=Full .\tests\NLog.UnitTests\ /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }

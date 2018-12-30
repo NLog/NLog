@@ -36,13 +36,12 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-    <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net45' ">Full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5 Extended Profile</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <DebugType>pdbonly</DebugType>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
     <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
   </PropertyGroup>
 
@@ -52,14 +51,14 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <DebugType>pdbonly</DebugType>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
     <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5 Extended Profile</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <DebugType>pdbonly</DebugType>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
     <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
   </PropertyGroup>
 
