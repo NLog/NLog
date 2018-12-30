@@ -127,23 +127,48 @@ namespace NLog.Internal.FileAppenders
         protected Mutex CreateSharableMutex(string mutexNamePrefix)
         {
             if (!PlatformDetector.SupportsSharableMutex)
+            {
                 return new Mutex();
+            }
 
             var name = GetMutexName(mutexNamePrefix);
 
-#if !NETSTANDARD
-            // Creates a mutex sharable by more than one process
-            var mutexSecurity = new MutexSecurity();
-            var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
-            mutexSecurity.AddAccessRule(new MutexAccessRule(everyoneSid, MutexRights.FullControl, AccessControlType.Allow));
+            var mutex = TryCreateMultiProcessSharableMutex(name);
+            if (mutex == null)
+            {
+                return new Mutex();
+            }
 
-            // The constructor will either create new mutex or open
-            // an existing one, in a thread-safe manner
-            return new Mutex(false, name, out _, mutexSecurity);
+            return mutex;
+        }
+
+        /// <summary>
+        /// Try to creates a mutex sharable by more than one process
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>null if failed</returns>
+        private static Mutex TryCreateMultiProcessSharableMutex(string name)
+        {
+            try
+            {
+#if !NETSTANDARD
+                var mutexSecurity = new MutexSecurity();
+                var everyoneSid = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+                mutexSecurity.AddAccessRule(new MutexAccessRule(everyoneSid, MutexRights.FullControl, AccessControlType.Allow));
+
+                // The constructor will either create new mutex or open
+                // an existing one, in a thread-safe manner
+                return new Mutex(false, name, out _, mutexSecurity);
 #else
-            //Mutex with 4 args has keyword "unsafe"
-            return new Mutex(false, name);
+                //Mutex with 4 args has keyword "unsafe"
+                return new Mutex(false, name);
 #endif
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                InternalLogger.Debug(ex, "Failed to create sharable over multiple processes");
+                return null;
+            }
         }
 
         private string GetMutexName(string mutexNamePrefix)
