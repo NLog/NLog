@@ -46,6 +46,9 @@ namespace NLog.Config
     using System.Windows;
 #endif
 
+    /// <summary>
+    /// Enables loading of NLog configuration from a file
+    /// </summary>
     internal class LoggingConfigurationFileLoader : ILoggingConfigurationLoader
     {
         private static readonly FileWrapper DefaultFileWrapper = new FileWrapper();
@@ -70,6 +73,11 @@ namespace NLog.Config
         public virtual LoggingConfiguration Load(LogFactory logFactory)
         {
             return TryLoadFromFilePaths(logFactory);
+        }
+
+        public virtual void Activated(LogFactory logFactory, LoggingConfiguration config)
+        {
+            // Nothing to do
         }
 
         internal string GetConfigFile(string configFile)

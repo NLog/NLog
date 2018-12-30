@@ -107,9 +107,9 @@ namespace NLog
         /// </summary>
         public LogFactory()
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-            :this(new LoggingConfigurationFileReloader())
+            : this(new LoggingConfigurationFileReloader())
 #else
-            :this(new LoggingConfigurationFileLoader())
+            : this(new LoggingConfigurationFileLoader())
 #endif
         {
         }
@@ -132,11 +132,6 @@ namespace NLog
         {
             _configLoader = configLoader;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-            if (configLoader is LoggingConfigurationFileReloader configFileReloader)
-            {
-                configFileReloader.LogFactory = this;
-                configFileReloader.ConfigurationReloaded += (sender, args) => OnConfigurationReloaded(args);
-            }
             LoggerShutdown += OnStopLogging;
 #endif
         }
@@ -243,11 +238,15 @@ namespace NLog
                     _config = value;
 
                     if (_config == null)
+                    {
                         _configLoaded = false;
+                        _configLoader.Activated(this, _config);
+                    }
                     else
                     {
                         try
                         {
+                            _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
                         }
@@ -256,7 +255,6 @@ namespace NLog
                             _configLoaded = true;
                         }
                     }
-
                     OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
                 }
             }
@@ -638,6 +636,11 @@ namespace NLog
         protected virtual void OnConfigurationReloaded(LoggingConfigurationReloadedEventArgs e)
         {
             ConfigurationReloaded?.Invoke(this, e);
+        }
+
+        internal void NotifyConfigurationReloaded(LoggingConfigurationReloadedEventArgs eventArgs)
+        {
+            OnConfigurationReloaded(eventArgs);
         }
 #endif
 

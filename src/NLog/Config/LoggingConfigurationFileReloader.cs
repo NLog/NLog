@@ -41,53 +41,38 @@ namespace NLog.Config
     using NLog.Common;
     using NLog.Internal;
 
+    /// <summary>
+    /// Enables FileWatcher for the currently loaded NLog Configuration File,
+    /// and supports automatic reload on file modification.
+    /// </summary>
     internal class LoggingConfigurationFileReloader : LoggingConfigurationFileLoader
     {
         private const int ReconfigAfterFileChangedTimeout = 1000;
         private Timer _reloadTimer;
         private MultiFileWatcher _watcher;
         private bool _isDisposing;
-        public LogFactory LogFactory
-        {
-            get { return _logFactory; }
-            internal set
-            {
-                // Perform file-watching if necessary
-                if (_logFactory != null)
-                    _logFactory.ConfigurationChanged -= LogFactory_ConfigurationChanged;
-                _logFactory = value;
-                if (_logFactory != null)
-                    _logFactory.ConfigurationChanged += LogFactory_ConfigurationChanged;
-            }
-        }
         private LogFactory _logFactory;
-
-        public event EventHandler<LoggingConfigurationReloadedEventArgs> ConfigurationReloaded;
-
-        private void LogFactory_ConfigurationChanged(object sender, LoggingConfigurationChangedEventArgs e)
-        {
-            TryUnwatchConfigFile();
-            if (e.ActivatedConfiguration != null)
-                TryWachtingConfigFile(e.ActivatedConfiguration);
-        }
 
         public override LoggingConfiguration Load(LogFactory logFactory)
         {
 #if !NETSTANDARD
-            {
-                var config = TryLoadFromAppConfig();
-                if (config != null)
-                    return config;
-            }
+            var config = TryLoadFromAppConfig();
+            if (config != null)
+                return config;
 #endif
 
+            return base.Load(logFactory);
+        }
+
+        public override void Activated(LogFactory logFactory, LoggingConfiguration config)
+        {
+            _logFactory = logFactory;
+
+            TryUnwatchConfigFile();
+
+            if (config != null)
             {
-                var config = base.Load(logFactory);
-                if (config != null)
-                {
-                    TryWachtingConfigFile(config);
-                }
-                return config;
+                TryWachtingConfigFile(config);
             }
         }
 
@@ -96,8 +81,6 @@ namespace NLog.Config
             if (disposing)
             {
                 _isDisposing = true;
-
-                ConfigurationReloaded = null;
 
                 if (_watcher != null)
                 {
@@ -192,7 +175,7 @@ namespace NLog.Config
                     }
 
                     InternalLogger.Warn(exception, "NLog configuration failed to reload");
-                    OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
+                    _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
                     return;
                 }
 
@@ -207,9 +190,9 @@ namespace NLog.Config
                             newConfig.CopyVariables(_logFactory._config.Variables);
                         }
 
-                        _logFactory.Configuration = newConfig;  // Triggers LogFactory-ConfigurationChanged-event and adds file-watch 
+                        _logFactory.Configuration = newConfig;  // Triggers LogFactory to call Activated(...) that adds file-watch again
 
-                        OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
+                        _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
                     }
                 }
                 catch (Exception exception)
@@ -221,14 +204,9 @@ namespace NLog.Config
 
                     InternalLogger.Warn(exception, "NLog configuration reloaded, failed to be assigned");
                     _watcher.Watch(oldConfig.FileNamesToWatch);
-                    OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
+                    _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
                 }
             }
-        }
-
-        private void OnConfigurationReloaded(LoggingConfigurationReloadedEventArgs e)
-        {
-            ConfigurationReloaded?.Invoke(this, e);
         }
 
         private void ConfigFileChanged(object sender, EventArgs args)

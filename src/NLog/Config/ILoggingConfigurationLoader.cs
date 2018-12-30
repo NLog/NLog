@@ -46,5 +46,12 @@ namespace NLog.Config
         /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
         /// <returns>NLog configuration (or null if none found)</returns>
         LoggingConfiguration Load(LogFactory logFactory);
+
+        /// <summary>
+        /// Notifies when LoggingConfiguration has been successfully applied
+        /// </summary>
+        /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
+        /// <param name="config">NLog Config</param>
+        void Activated(LogFactory logFactory, LoggingConfiguration config);
     }
 }
