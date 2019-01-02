@@ -838,7 +838,7 @@ namespace NLog
 
         internal void Shutdown()
         {
-            InternalLogger.Info("Logger closing down...");
+            InternalLogger.Info("Shutdown() called. Logger closing...");
             if (!_isDisposing && _configLoaded)
             {
                 lock (_syncRoot)
@@ -1179,7 +1179,7 @@ namespace NLog
                 //stop timer on domain unload, otherwise: 
                 //Exception: System.AppDomainUnloadedException
                 //Message: Attempted to access an unloaded AppDomain.
-                InternalLogger.Info("Shutting down logging...");
+                InternalLogger.Info("AppDomain Shutting down. Logger closing...");
                 // Finalizer thread has about 2 secs, before being terminated
                 Close(TimeSpan.FromMilliseconds(1500));
                 InternalLogger.Info("Logger has been shut down.");
