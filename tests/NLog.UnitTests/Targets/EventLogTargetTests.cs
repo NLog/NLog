@@ -192,7 +192,7 @@ namespace NLog.UnitTests.Targets
         [Theory]
         [InlineData(32768, 16384, 32768)] // Should set MaxKilobytes when value is set and valid
         [InlineData(16384, 32768, 32768)] // Should not change MaxKilobytes when initial MaximumKilobytes is bigger
-        [InlineData(null, EventLogTarget.EventLogDefaultMaxKilobytes, EventLogTarget.EventLogDefaultMaxKilobytes)] // Should not change MaxKilobytes when the value is null
+        [InlineData(null, EventLogMock.EventLogDefaultMaxKilobytes, EventLogMock.EventLogDefaultMaxKilobytes)]      // Should not change MaxKilobytes when the value is null
         public void ShouldSetMaxKilobytes_WhenNeeded(long? newValue, long initialValue, long expectedValue)
         {
             string targetLog = "application"; // The Log to write to is intentionally lower case!!
@@ -760,6 +760,8 @@ namespace NLog.UnitTests.Targets
 
         private class EventLogMock : EventLogTarget.IEventLogWrapper
         {
+            public const int EventLogDefaultMaxKilobytes = 512;
+
             public EventLogMock(
                 Action<string, string> deleteEventSourceFunction,
                 Func<string, string, bool> sourceExistsFunction,
@@ -789,7 +791,7 @@ namespace NLog.UnitTests.Targets
             public string MachineName { get; set; }
 
             /// <inheritdoc />
-            public long MaximumKilobytes { get; set; } = EventLogTarget.EventLogDefaultMaxKilobytes;
+            public long MaximumKilobytes { get; set; } = EventLogDefaultMaxKilobytes;
 
             /// <inheritdoc />
             public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category) =>

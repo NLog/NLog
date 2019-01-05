@@ -18,7 +18,7 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 
-    <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net452' ">Full</DebugType>
+    <DebugType Condition=" '$(TargetFramework)' == 'net452' ">Full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == '' ">
