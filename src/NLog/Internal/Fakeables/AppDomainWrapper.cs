@@ -60,7 +60,7 @@ namespace NLog.Internal.Fakeables
 #endif
             try
             {
-                BaseDirectory = LookupBaseDirectory(appDomain);
+                BaseDirectory = LookupBaseDirectory(appDomain) ?? string.Empty;
             }
             catch (Exception ex)
             {
