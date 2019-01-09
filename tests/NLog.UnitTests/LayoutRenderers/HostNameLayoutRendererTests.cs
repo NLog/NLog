@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 </rules>
             </nlog>");
 
-            Environment.SetEnvironmentVariable("HOSTNAME", "myhostname.example.com");
+            Environment.SetEnvironmentVariable("HOSTNAME", "myhost.example.com");
             
             LogManager.GetLogger("A").Debug("a log message");
             AssertDebugLastMessage("debug", "myhostname.example.com" + " a log message");
