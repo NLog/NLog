@@ -35,6 +35,7 @@ using NLog.Config;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
     using Xunit;
 
     public class HostNameLayoutRendererTests : NLogTestBase
