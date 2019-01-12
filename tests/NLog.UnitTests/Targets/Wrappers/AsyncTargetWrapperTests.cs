@@ -482,26 +482,26 @@ namespace NLog.UnitTests.Targets.Wrappers
                 OverflowAction = AsyncTargetWrapperOverflowAction.Discard
             };
 
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
             try
             {
-                targetWrapper.Initialize(null);
-                myTarget.Initialize(null);
-
-                AsyncLogEventInfo loginfo = new AsyncLogEventInfo(new LogEventInfo(), null);
-
                 targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
 
                 for (int i = 0; i < loggedEventCount; i++)
                 {
-                    targetWrapper.WriteEvent(loginfo);
+                    logger.Info("Hello");
                 }
                 
                 Assert.Equal(loggedEventCount - queueLimit, eventsCounter);
             }
             finally
             {
-                myTarget.Close();
-                targetWrapper.Close();
+                logFactory.Configuration = null;
             }
         }
 
@@ -520,26 +520,26 @@ namespace NLog.UnitTests.Targets.Wrappers
                 OverflowAction = AsyncTargetWrapperOverflowAction.Block
             };
 
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
             try
             {
-                targetWrapper.Initialize(null);
-                myTarget.Initialize(null);
-
-                AsyncLogEventInfo loginfo = new AsyncLogEventInfo(new LogEventInfo(), null);
-
                 targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
 
                 for (int i = 0; i < loggedEventCount; i++)
                 {
-                    targetWrapper.WriteEvent(loginfo);
+                    logger.Info("Hello");
                 }
                 
                 Assert.Equal(0, eventsCounter);
             }
             finally
             {
-                myTarget.Close();
-                targetWrapper.Close();
+                logFactory.Configuration = null;
             }
         }
 
@@ -558,26 +558,26 @@ namespace NLog.UnitTests.Targets.Wrappers
                 OverflowAction = AsyncTargetWrapperOverflowAction.Grow
             };
 
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
             try
             {
-                targetWrapper.Initialize(null);
-                myTarget.Initialize(null);
-
-                AsyncLogEventInfo loginfo = new AsyncLogEventInfo(new LogEventInfo(), null);
-
                 targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
 
                 for (int i = 0; i < loggedEventCount; i++)
                 {
-                    targetWrapper.WriteEvent(loginfo);
+                    logger.Info("Hello");
                 }
                 
                 Assert.Equal(0, eventsCounter);
             }
             finally
             {
-                myTarget.Close();
-                targetWrapper.Close();
+                logFactory.Configuration = null;
             }
         }
 
@@ -605,26 +605,26 @@ namespace NLog.UnitTests.Targets.Wrappers
                 OverflowAction = AsyncTargetWrapperOverflowAction.Grow
             };
 
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
             try
             {
-                targetWrapper.Initialize(null);
-                myTarget.Initialize(null);
-
-                AsyncLogEventInfo loginfo = new AsyncLogEventInfo(new LogEventInfo(), null);
-
                 targetWrapper.EventQueueGrow += (o, e) => { eventsCounter++; };
 
                 for (int i = 0; i < loggedEventCount; i++)
                 {
-                    targetWrapper.WriteEvent(loginfo);
+                    logger.Info("Hello");
                 }
                 
                 Assert.Equal(expectedGrowingNumber, eventsCounter);
             }
             finally
             {
-                myTarget.Close();
-                targetWrapper.Close();
+                logFactory.Configuration = null;
             }
         }
 
