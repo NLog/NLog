@@ -190,11 +190,17 @@ namespace NLog.Config
             }
             return xmlConfig;
         }
+        
+        /// <inheritdoc/>
+        public IEnumerable<string> GetDefaultCandidateConfigFilePaths()
+        {
+            return GetDefaultCandidateConfigFilePaths(null);
+        }
 
         /// <summary>
         /// Get default file paths (including filename) for possible NLog config files. 
         /// </summary>
-        public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string fileName = null)
+        public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string fileName)
         {
             // NLog.config from application directory
             string nlogConfigFile = fileName ?? "NLog.config";

@@ -34,6 +34,7 @@
 namespace NLog.Config
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Interface for loading NLog <see cref="LoggingConfiguration"/>
@@ -53,5 +54,11 @@ namespace NLog.Config
         /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
         /// <param name="config">NLog Config</param>
         void Activated(LogFactory logFactory, LoggingConfiguration config);
+
+        /// <summary>
+        /// Get file paths (including filename) for the possible NLog config files. 
+        /// </summary>
+        /// <returns>The filepaths to the possible config file</returns>
+        IEnumerable<string> GetDefaultCandidateConfigFilePaths();
     }
 }

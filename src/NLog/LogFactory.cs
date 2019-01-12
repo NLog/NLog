@@ -107,7 +107,7 @@ namespace NLog
         /// </summary>
         public LogFactory()
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-            : this(new LoggingConfigurationFileReloader())
+            : this(new LoggingConfigurationWatchableFileLoader())
 #else
             : this(new LoggingConfigurationFileLoader())
 #endif
@@ -865,12 +865,7 @@ namespace NLog
                 return _candidateConfigFilePaths.AsReadOnly();
             }
 
-            if (_configLoader is LoggingConfigurationFileLoader configFileLoader)
-            {
-                return configFileLoader.GetDefaultCandidateConfigFilePaths();
-            }
-
-            return ArrayHelper.Empty<string>();
+            return _configLoader.GetDefaultCandidateConfigFilePaths();
         }
 
         /// <summary>
@@ -997,6 +992,7 @@ namespace NLog
         /// <returns>LogFactory instance for fluent interface</returns>
         public LogFactory LoadConfiguration(string configFile)
         {
+            // TODO Remove explicit File-loading logic from LogFactory (Should handle environment without files)
             if (_configLoader is LoggingConfigurationFileLoader configFileLoader)
             {
                 Configuration = configFileLoader.Load(this, configFile);

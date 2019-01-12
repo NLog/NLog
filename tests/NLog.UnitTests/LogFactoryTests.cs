@@ -220,7 +220,7 @@ namespace NLog.UnitTests
                 var loggingConfiguration = new LoggingConfiguration();
                 LogManager.Configuration = loggingConfiguration;
 
-                var configLoader = new LoggingConfigurationFileReloader();
+                var configLoader = new LoggingConfigurationWatchableFileLoader();
                 var logFactory = new LogFactory(configLoader);
                 logFactory.Configuration = loggingConfiguration;
 
@@ -261,7 +261,7 @@ namespace NLog.UnitTests
         {
             var loggingConfiguration = new ReloadNullConfiguration();
             LogManager.Configuration = loggingConfiguration;
-            var configLoader = new LoggingConfigurationFileReloader();
+            var configLoader = new LoggingConfigurationWatchableFileLoader();
             var logFactory = new LogFactory(configLoader);
             logFactory.Configuration = loggingConfiguration;
 
@@ -277,7 +277,7 @@ namespace NLog.UnitTests
             object calledBy = null;
             var loggingConfiguration = new LoggingConfiguration();
             LogManager.Configuration = loggingConfiguration;
-            var configLoader = new LoggingConfigurationFileReloader();
+            var configLoader = new LoggingConfigurationWatchableFileLoader();
             var logFactory = new LogFactory(configLoader);
             logFactory.Configuration = loggingConfiguration;
             logFactory.ConfigurationReloaded += (sender, args) => { called = true; calledBy = sender; arguments = args; };
