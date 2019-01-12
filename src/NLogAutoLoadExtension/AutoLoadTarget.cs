@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using NLog;
 using NLog.Config;
@@ -123,6 +124,7 @@ namespace LoaderTestWrong1
 {
     public class NLogPackageLoader
     {
+        [DebuggerStepThrough]
         public static void Preload()
         {
             throw new Exception("ow noos");
