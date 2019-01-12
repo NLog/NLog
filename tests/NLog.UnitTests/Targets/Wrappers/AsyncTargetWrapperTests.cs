@@ -479,7 +479,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
-                OverflowAction = AsyncTargetWrapperOverflowAction.Discard
+                TimeToSleepBetweenBatches = 500,    // Make it slow
+                OverflowAction = AsyncTargetWrapperOverflowAction.Discard,
             };
 
             var logFactory = new LogFactory();
@@ -496,7 +497,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 {
                     logger.Info("Hello");
                 }
-                
+
                 Assert.Equal(loggedEventCount - queueLimit, eventsCounter);
             }
             finally
@@ -602,7 +603,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
-                OverflowAction = AsyncTargetWrapperOverflowAction.Grow
+                TimeToSleepBetweenBatches = 500,    // Make it slow
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
             };
 
             var logFactory = new LogFactory();
