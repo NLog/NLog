@@ -350,7 +350,7 @@ namespace NLog.Targets
                 {
                     for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        logEvents[i].Continuation(null);
+                        logEvents[i].Continuation?.Invoke(null);
                     }
                 }
                 return;
@@ -362,7 +362,7 @@ namespace NLog.Targets
                 {
                     for (int i = 0; i < logEvents.Count; ++i)
                     {
-                        logEvents[i].Continuation(CreateInitException());
+                        logEvents[i].Continuation?.Invoke(CreateInitException());
                     }
                 }
                 return;
@@ -402,7 +402,7 @@ namespace NLog.Targets
                 // in case of synchronous failure, assume that nothing is running asynchronously
                 for (int i = 0; i < wrappedEvents.Count; ++i)
                 {
-                    wrappedEvents[i].Continuation(exception);
+                    wrappedEvents[i].Continuation?.Invoke(exception);
                 }
             }
         }
