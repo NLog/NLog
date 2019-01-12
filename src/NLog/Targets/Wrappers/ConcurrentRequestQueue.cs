@@ -44,7 +44,7 @@ namespace NLog.Targets.Wrappers
     /// <summary>
     /// Concurrent Asynchronous request queue based on <see cref="ConcurrentQueue{T}"/>
     /// </summary>
-	internal class ConcurrentRequestQueue : IAsyncRequestQueue
+	internal class ConcurrentRequestQueue : AsyncRequestQueueBase
     {
         private readonly ConcurrentQueue<AsyncLogEventInfo> _logEventInfoQueue = new ConcurrentQueue<AsyncLogEventInfo>();
 
@@ -59,18 +59,7 @@ namespace NLog.Targets.Wrappers
             OnOverflow = overflowAction;
         }
 
-        /// <summary>
-        /// Gets or sets the request limit.
-        /// </summary>
-        public int RequestLimit { get; set; }
-
-        /// <summary>
-        /// Gets or sets the action to be taken when there's no more room in
-        /// the queue and another request is enqueued.
-        /// </summary>
-        public AsyncTargetWrapperOverflowAction OnOverflow { get; set; }
-
-        public bool IsEmpty => _logEventInfoQueue.IsEmpty && Interlocked.Read(ref _count) == 0;
+        public override bool IsEmpty => _logEventInfoQueue.IsEmpty && Interlocked.Read(ref _count) == 0;
 
         /// <summary>
         /// Gets the number of requests currently in the queue.
@@ -83,11 +72,11 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Enqueues another item. If the queue is overflown the appropriate
-        /// action is taken as specified by <see cref="OnOverflow"/>.
+        /// action is taken as specified by <see cref="AsyncRequestQueueBase.OnOverflow"/>.
         /// </summary>
         /// <param name="logEventInfo">The log event info.</param>
         /// <returns>Queue was empty before enqueue</returns>
-        public bool Enqueue(AsyncLogEventInfo logEventInfo)
+        public override bool Enqueue(AsyncLogEventInfo logEventInfo)
         {
             long currentCount = Interlocked.Increment(ref _count);
             if (currentCount > RequestLimit)
@@ -99,11 +88,12 @@ namespace NLog.Targets.Wrappers
                         {
                             do
                             {
-                                if (_logEventInfoQueue.TryDequeue(out var _))
+                                if (_logEventInfoQueue.TryDequeue(out var lostItem))
                                 {
                                     InternalLogger.Debug("Discarding one element from queue");
                                     currentCount = Interlocked.Decrement(ref _count);
-                                    break;
+                                    OnLogEventDropped(lostItem.LogEvent);
+                                break;
                                 }
                                 currentCount = Interlocked.Read(ref _count);
                             } while (currentCount > RequestLimit);
@@ -112,6 +102,11 @@ namespace NLog.Targets.Wrappers
                     case AsyncTargetWrapperOverflowAction.Block:
                         {
                             currentCount = WaitForBelowRequestLimit();
+                        }
+                        break;
+                    case AsyncTargetWrapperOverflowAction.Grow:
+                        {
+                            OnLogEventQueueGrows(currentCount);
                         }
                         break;
                 }
@@ -185,7 +180,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued (-1 means everything).</param>
         /// <returns>The array of log events.</returns>
-        public AsyncLogEventInfo[] DequeueBatch(int count)
+        public override AsyncLogEventInfo[] DequeueBatch(int count)
         {
             if (_logEventInfoQueue.IsEmpty)
                 return Internal.ArrayHelper.Empty<AsyncLogEventInfo>();
@@ -208,7 +203,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued</param>
         /// <param name="result">Preallocated list</param>
-        public void DequeueBatch(int count, IList<AsyncLogEventInfo> result)
+        public override void DequeueBatch(int count, IList<AsyncLogEventInfo> result)
         {
             bool dequeueBatch = OnOverflow == AsyncTargetWrapperOverflowAction.Block;
 
@@ -247,7 +242,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Clears the queue.
         /// </summary>
-        public void Clear()
+        public override void Clear()
         {
             while (!_logEventInfoQueue.IsEmpty)
                 _logEventInfoQueue.TryDequeue(out var _);

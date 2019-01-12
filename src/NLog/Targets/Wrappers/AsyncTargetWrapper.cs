@@ -81,6 +81,8 @@ namespace NLog.Targets.Wrappers
         private readonly object _timerLockObject = new object();
         private Timer _lazyWriterTimer;
         private readonly ReusableAsyncLogEventList _reusableAsyncLogEventList = new ReusableAsyncLogEventList(200);
+        private event EventHandler<LogEventDroppedEventArgs> _logEventDroppedEvent;
+        private event EventHandler<LogEventQueueGrowEventArgs> _eventQueueGrowEvent;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncTargetWrapper" /> class.
@@ -150,6 +152,59 @@ namespace NLog.Targets.Wrappers
         [DefaultValue(1)]
         public int TimeToSleepBetweenBatches { get; set; }
 
+        
+        /// <summary>
+        /// Raise event when Target cannot store LogEvent.
+        /// Event arg contains losed LogEvent
+        /// </summary>
+        public event EventHandler<LogEventDroppedEventArgs> LogEventDropped
+        {
+            add
+            {
+                if (_logEventDroppedEvent == null && _requestQueue != null )
+                {
+                    _requestQueue.LogEventDropped += OnRequestQueueDropItem;
+                }
+
+                _logEventDroppedEvent += value;
+            }
+            remove
+            {
+                _logEventDroppedEvent -= value;
+
+                if (_logEventDroppedEvent == null && _requestQueue != null)
+                {
+                    _requestQueue.LogEventDropped -= OnRequestQueueDropItem;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Raises when event queue grow. 
+        /// Queue can grow when <see cref="OverflowAction"/> was setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
+        /// </summary>
+        public event EventHandler<LogEventQueueGrowEventArgs> EventQueueGrow
+        {
+            add
+            {
+                if (_eventQueueGrowEvent == null && _requestQueue != null)
+                {
+                    _requestQueue.LogEventQueueGrow += OnRequestQueueGrow;
+                }
+
+                _eventQueueGrowEvent += value;
+            }
+            remove
+            {
+                _eventQueueGrowEvent -= value;
+
+                if (_eventQueueGrowEvent == null && _requestQueue != null)
+                {
+                    _requestQueue.LogEventQueueGrow -= OnRequestQueueGrow;
+                }
+            }
+        }
+        
         /// <summary>
         /// Gets or sets the action to be taken when the lazy writer thread request queue count
         /// exceeds the set limit.
@@ -192,7 +247,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Gets the queue of lazy writer thread requests.
         /// </summary>
-        IAsyncRequestQueue _requestQueue;
+        AsyncRequestQueueBase _requestQueue;
 
         /// <summary>
         /// Schedules a flush of pending events in the queue (if any), followed by flushing the WrappedTarget.
@@ -204,6 +259,7 @@ namespace NLog.Targets.Wrappers
                 _flushEventsInQueueDelegate = FlushEventsInQueue;
             AsyncHelpers.StartAsyncTask(_flushEventsInQueueDelegate, asyncContinuation);
         }
+        
         private Action<object> _flushEventsInQueueDelegate;
 
         /// <summary>
@@ -230,7 +286,7 @@ namespace NLog.Targets.Wrappers
 #if NET4_5 || NET4_0
             if (_forceLockingQueue.HasValue && _forceLockingQueue.Value != (_requestQueue is AsyncRequestQueue))
             {
-                _requestQueue = ForceLockingQueue ? (IAsyncRequestQueue)new AsyncRequestQueue(QueueLimit, OverflowAction) : new ConcurrentRequestQueue(QueueLimit, OverflowAction);
+                _requestQueue = ForceLockingQueue ? (AsyncRequestQueueBase)new AsyncRequestQueue(QueueLimit, OverflowAction) : new ConcurrentRequestQueue(QueueLimit, OverflowAction);
             }
 #endif
 
@@ -501,6 +557,16 @@ namespace NLog.Targets.Wrappers
                     break;
             }
             return count;
+        }
+
+        private void OnRequestQueueDropItem(object sender, LogEventDroppedEventArgs logEventDroppedEventArgs) 
+        {
+            _logEventDroppedEvent?.Invoke(this, logEventDroppedEventArgs);
+        }
+
+        private void OnRequestQueueGrow(object sender, LogEventQueueGrowEventArgs logEventQueueGrowEventArgs) 
+        {
+            _eventQueueGrowEvent?.Invoke(this, logEventQueueGrowEventArgs);
         }
     }
 }

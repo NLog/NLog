@@ -33,18 +33,35 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using System.Collections.Generic;
-    using NLog.Common;
+    using System;
 
-    internal interface IAsyncRequestQueue
+    /// <summary> 
+    /// Raises by  <see cref="AsyncRequestQueue"/> when 
+    /// queue is full
+    /// and <see cref="AsyncRequestQueueBase.OnOverflow"/> setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
+    /// By default queue doubles it size.
+    /// </summary>
+    public class LogEventQueueGrowEventArgs : EventArgs
     {
-        bool IsEmpty { get; }
-        int RequestLimit { get; set; }
-        AsyncTargetWrapperOverflowAction OnOverflow { get; set; }
+        /// <summary>
+        /// Contains <see cref="AsyncRequestQueue"/> items count and new queue size.
+        /// </summary>
+        /// <param name="newQueueSize">Required queue size</param>
+        /// <param name="requestsCount">Current queue size</param>
+        public LogEventQueueGrowEventArgs(long newQueueSize, long requestsCount)
+        {
+            NewQueueSize = newQueueSize;
+            RequestsCount = requestsCount;
+        }
 
-        bool Enqueue(AsyncLogEventInfo logEventInfo);
-        AsyncLogEventInfo[] DequeueBatch(int count);
-        void DequeueBatch(int count, IList<AsyncLogEventInfo> result);
-        void Clear();
+        /// <summary>
+        /// New queue size
+        /// </summary>
+        public long NewQueueSize { get; }
+
+        /// <summary>
+        /// Current requests count
+        /// </summary>
+        public long RequestsCount { get; }
     }
 }
