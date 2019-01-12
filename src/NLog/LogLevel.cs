@@ -40,7 +40,7 @@ namespace NLog
     /// <summary>
     /// Defines available log levels.
     /// </summary>
-    public sealed class LogLevel : IComparable, IEquatable<LogLevel>
+    public sealed class LogLevel : IComparable, IEquatable<LogLevel>, IConvertible
     {
         /// <summary>
         /// Trace log level.
@@ -89,7 +89,7 @@ namespace NLog
         private static readonly IList<LogLevel> allLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal, Off }.AsReadOnly();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
-        private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> {Trace, Debug, Info, Warn, Error, Fatal}.AsReadOnly();
+        private static readonly IList<LogLevel> allLoggingLevels = new List<LogLevel> { Trace, Debug, Info, Warn, Error, Fatal }.AsReadOnly();
 
         /// <summary>
         /// Gets all the available log levels (Trace, Debug, Info, Warn, Error, Fatal, Off).
@@ -394,5 +394,94 @@ namespace NLog
             LogLevel level = (LogLevel)obj;
             return Ordinal - level.Ordinal;
         }
+
+        #region Implementation of IConvertible
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.UInt16;
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_ordinal);
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException();
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            return Convert.ToChar(_ordinal);
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException();
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_ordinal);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return _ordinal;
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_ordinal);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_ordinal);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_ordinal);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_ordinal);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_ordinal);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return _name;
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            return Convert.ChangeType(_ordinal, conversionType, provider);
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_ordinal);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_ordinal);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_ordinal);
+        }
+
+        #endregion
     }
 }
