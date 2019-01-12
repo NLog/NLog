@@ -88,13 +88,13 @@ namespace NLog.UnitTests.Config
         {
             var layoutRenderers = ConfigurationItemFactory.Default.LayoutRenderers;
 
-            AssertInstance(layoutRenderers, "appsetting", "AppSettingLayoutRenderer");
+            AssertInstance(layoutRenderers, "appsetting", "AppSettingLayoutRenderer", "AppSettingLayoutRenderer2");
         }
 
-        private static void AssertInstance<T1, T2>(INamedItemFactory<T1, T2> targets, string itemName, string expectedTypeName)
+        private static void AssertInstance<T1, T2>(INamedItemFactory<T1, T2> targets, string itemName, params string[] expectedTypeNames)
             where T1 : class
         {
-            Assert.Equal(expectedTypeName, targets.CreateInstance(itemName).GetType().Name);
+            Assert.Contains(targets.CreateInstance(itemName).GetType().Name, expectedTypeNames);
         }
 #endif
     }

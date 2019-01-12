@@ -188,14 +188,8 @@ namespace NLog.Config
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
         internal XmlLoggingConfiguration(XmlElement element, string fileName)
-            : base(LogManager.LogFactory)
+            : this(element, fileName, false)
         {
-            using (var stringReader = new StringReader(element.OuterXml))
-            {
-                XmlReader reader = XmlReader.Create(stringReader);
-
-                Initialize(reader, fileName, false);
-            }
         }
 
         /// <summary>
@@ -205,29 +199,36 @@ namespace NLog.Config
         /// <param name="fileName">Name of the XML file.</param>
         /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
         internal XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
-            : base(LogManager.LogFactory)
+            : this(element.OuterXml, fileName, ignoreErrors)
         {
-            using (var stringReader = new StringReader(element.OuterXml))
-            {
-                XmlReader reader = XmlReader.Create(stringReader);
-
-                Initialize(reader, fileName, ignoreErrors);
-            }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="xmlContents">The XML contents.</param>
+        /// <param name="fileName">Name of the XML file.</param>
+        /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
+        internal XmlLoggingConfiguration(string xmlContents, string fileName, bool ignoreErrors)
+            : base(LogManager.LogFactory)
+        {
+            using (var stringReader = new StringReader(xmlContents))
+            {
+                using (XmlReader reader = XmlReader.Create(stringReader))
+                {
+                    Initialize(reader, fileName, ignoreErrors);
+                }
+            }
+        }
 
         /// <summary>
         /// Parse XML string as NLog configuration
         /// </summary>
         /// <param name="xml">NLog configuration</param>
-        /// <param name="baseDirectory">Base path for relative paths</param>
         /// <returns></returns>
-        public static XmlLoggingConfiguration CreateFromXmlString(string xml, string baseDirectory = null)
+        public static XmlLoggingConfiguration CreateFromXmlString(string xml)
         {
-            var doc = new XmlDocument();
-            doc.LoadXml(xml);
-            
-            return new XmlLoggingConfiguration(doc.DocumentElement, baseDirectory);
+            return new XmlLoggingConfiguration(xml, null, false);
         }
 #endif
 
@@ -259,7 +260,10 @@ namespace NLog.Config
         {
             get
             {
-                return _fileMustAutoReloadLookup.Values.All(mustAutoReload => mustAutoReload);
+                if (_fileMustAutoReloadLookup.Count == 0)
+                    return false;
+                else
+                    return _fileMustAutoReloadLookup.Values.All(mustAutoReload => mustAutoReload);
             }
             set
             {
@@ -288,7 +292,10 @@ namespace NLog.Config
         /// <returns>The new <see cref="XmlLoggingConfiguration" /> object.</returns>
         public override LoggingConfiguration Reload()
         {
-            return new XmlLoggingConfiguration(_originalFileName);
+            if (!string.IsNullOrEmpty(_originalFileName))
+                return new XmlLoggingConfiguration(_originalFileName);
+            else
+                return base.Reload();
         }
 
         /// <summary>
@@ -331,11 +338,10 @@ namespace NLog.Config
                 _originalFileName = fileName;
                 reader.MoveToContent();
                 var content = new NLogXmlElement(reader);
-                if (fileName != null)
+                if (!string.IsNullOrEmpty(fileName))
                 {
+                    InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
                     ParseTopLevel(content, fileName, autoReloadDefault: false);
-
-                    InternalLogger.Info("Configured from an XML element in {0}...", fileName);
                 }
                 else
                 {
@@ -529,7 +535,6 @@ namespace NLog.Config
                         {
                             //quick stop for performances
                             InternalLogger.Debug("Skipping included file '{0}' as it can't be found", fullNewFileName);
-
                             return;
                         }
 

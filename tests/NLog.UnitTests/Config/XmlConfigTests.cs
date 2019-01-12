@@ -49,7 +49,7 @@ namespace NLog.UnitTests.Config
             using (new InternalLoggerScope())
             {
                 var xml = "<nlog></nlog>";
-                var config = XmlLoggingConfiguration.CreateFromXmlString(xml, Environment.CurrentDirectory);
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
                 Assert.False(config.AutoReload);
                 Assert.True(config.InitializeSucceeded);
@@ -67,10 +67,10 @@ namespace NLog.UnitTests.Config
         {
             using (new InternalLoggerScope(true))
             {
-                var xml = "<nlog autoreload='true' logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
+                var xml = "<nlog logfile='test.txt' internalLogIncludeTimestamp='false' internalLogToConsole='true' internalLogToConsoleError='true'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
 
-                Assert.True(config.AutoReload);
+                Assert.False(config.AutoReload);
                 Assert.True(config.InitializeSucceeded);
                 Assert.Equal("", InternalLogger.LogFile);
                 Assert.False(InternalLogger.IncludeTimestamp);
@@ -86,14 +86,14 @@ namespace NLog.UnitTests.Config
         {
             using (new InternalLoggerScope(true))
             {
-                var xml = "<nlog autoreload='true' internalLogFile='${CurrentDir}test.txt'></nlog>";
+                var xml = "<nlog internalLogFile='${CurrentDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 Assert.Contains(System.IO.Directory.GetCurrentDirectory(), InternalLogger.LogFile);
             }
 
             using (new InternalLoggerScope(true))
             {
-                var xml = "<nlog autoreload='true' internalLogFile='${BaseDir}test.txt'></nlog>";
+                var xml = "<nlog internalLogFile='${BaseDir}test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 Assert.Contains(AppDomain.CurrentDomain.BaseDirectory, InternalLogger.LogFile);
             }
@@ -101,7 +101,7 @@ namespace NLog.UnitTests.Config
             using (new InternalLoggerScope(true))
             {
                 var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
-                var xml = "<nlog autoreload='true' internalLogFile='%USERNAME%_test.txt'></nlog>";
+                var xml = "<nlog internalLogFile='%USERNAME%_test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
                 if (!string.IsNullOrEmpty(userName))
                     Assert.Contains(userName, InternalLogger.LogFile);
@@ -164,7 +164,7 @@ namespace NLog.UnitTests.Config
             using (new NoThrowNLogExceptions())
             {
                 // Arrange
-                var xml = @"<nlog internalLogLevel='oops' autoreload='woops' globalThreshold='noooos'>
+                var xml = @"<nlog internalLogLevel='oops' globalThreshold='noooos'>
                         <targets>
                             <target name='debug' type='Debug' layout='${message}' />
                         </targets>
