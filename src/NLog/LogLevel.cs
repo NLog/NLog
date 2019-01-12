@@ -399,7 +399,7 @@ namespace NLog
 
         TypeCode IConvertible.GetTypeCode()
         {
-            return TypeCode.UInt16;
+            return TypeCode.Object;
         }
 
         byte IConvertible.ToByte(IFormatProvider provider)
