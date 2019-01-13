@@ -131,6 +131,11 @@ namespace NLog.Internal.FileAppenders
 
             var name = GetMutexName(mutexNamePrefix);
 
+            return ForceCreateSharableMutex(name);
+        }
+
+        internal static Mutex ForceCreateSharableMutex(string name)
+        {
 #if !NETSTANDARD
             // Creates a mutex sharable by more than one process
             var mutexSecurity = new MutexSecurity();

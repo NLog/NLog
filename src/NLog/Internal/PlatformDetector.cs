@@ -31,6 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
+// Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
+#define SupportsMutex
+#endif
+
+using System.Security;
+using NLog.Common;
+using NLog.Internal.FileAppenders;
+
 namespace NLog.Internal
 {
     using System;
@@ -41,7 +50,7 @@ namespace NLog.Internal
     internal static class PlatformDetector
     {
         private static RuntimeOS currentOS = GetCurrentRuntimeOS();
-        
+
         /// <summary>
         /// Gets the current runtime OS.
         /// </summary>
@@ -76,18 +85,59 @@ namespace NLog.Internal
             get
             {
 #if NETSTANDARD1_5
-                return true;
+                return RunTimeSupportsSharableMutex;
 #elif !SILVERLIGHT && !__ANDROID__ && !__IOS__ && !NETSTANDARD1_3
                 // Unfortunately, Xamarin Android and Xamarin iOS don't support mutexes (see https://github.com/mono/mono/blob/3a9e18e5405b5772be88bfc45739d6a350560111/mcs/class/corlib/System.Threading/Mutex.cs#L167) 
                 if (IsMono && Environment.Version.Major < 4)
                     return false;   // MONO ver. 4 is needed for named Mutex to work
                 else
-                    return true;
+                    return RunTimeSupportsSharableMutex;
 #else
                 return false;
 #endif
             }
         }
+
+        /// <summary>
+        ///  Will creating a mutex succeed runtime?
+        /// "Cached" detection
+        /// </summary>
+        private static bool? runTimeSupportsSharableMutex;
+
+        /// <summary>
+        /// Will creating a mutex succeed runtime?
+        /// </summary>
+        private static bool RunTimeSupportsSharableMutex
+        {
+            get
+            {
+                if (runTimeSupportsSharableMutex.HasValue)
+                {
+                    return runTimeSupportsSharableMutex.Value;
+                }
+
+
+                try
+                {
+#if SupportsMutex
+                    var mutex = BaseMutexFileAppender.ForceCreateSharableMutex("NLogMutexTester");
+                    mutex.Dispose();
+
+                    runTimeSupportsSharableMutex = true;
+#else
+                    _RunTimeSupportsSharableMutex = false;
+#endif
+                }
+                catch (Exception ex) 
+                {
+                    InternalLogger.Debug(ex, "Failed to create sharable mutex processes");
+                    runTimeSupportsSharableMutex = false;
+                }
+
+                return runTimeSupportsSharableMutex.Value;
+                }
+
+            }
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {
