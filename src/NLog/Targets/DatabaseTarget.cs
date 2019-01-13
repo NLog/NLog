@@ -41,8 +41,9 @@ namespace NLog.Targets
 
     using System.Data;
     using System.Data.Common;
-    using System.Globalization;
+#if NETSTANDARD
     using System.Reflection;
+#endif
     using System.Text;
 #if !NETSTANDARD1_0
     using System.Transactions;
@@ -416,7 +417,7 @@ namespace NLog.Targets
                         InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
                     else
 #endif
-                        InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
+                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
                 }
             }
 
@@ -661,25 +662,25 @@ namespace NLog.Targets
             }
         }
 
-
         /// <summary>
-        /// Resolve Parameter DbType And Value Converter
+        /// Ensure that the <see cref="_parameterTypeSetter"/> is set
         /// </summary>
-        private void EnsureResolveParameterInfo(IDbCommand command, IDbDataParameter dbParameter)
+        private void EnsureParameterSetter(IDbDataParameter dbParameter)
         {
-            if (this._parameterTypeSetter == null)
+            if (_parameterTypeSetter == null)
             {
-                lock (this.SyncRoot)
+                lock (SyncRoot)
                 {
-                    if (this._parameterTypeSetter == null)
+                    if (_parameterTypeSetter == null)
                     {
                         var converter = new DatabaseParameterTypeSetter();
-                        converter.Resolve(dbParameter, this.ParameterDbTypePropertyName, this.Parameters);
-                        this._parameterTypeSetter = converter;
+                        converter.Resolve(dbParameter, ParameterDbTypePropertyName, Parameters);
+                        _parameterTypeSetter = converter;
                     }
                 }
             }
         }
+
         /// <summary>
         /// Build the connectionstring from the properties. 
         /// </summary>
@@ -725,13 +726,10 @@ namespace NLog.Targets
 
         private void EnsureConnectionOpen(string connectionString)
         {
-            if (_activeConnection != null)
+            if (_activeConnection != null && _activeConnectionString != connectionString)
             {
-                if (_activeConnectionString != connectionString)
-                {
-                    InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of opening new.", Name);
-                    CloseConnection();
-                }
+                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of opening new.", Name);
+                CloseConnection();
             }
 
             if (_activeConnection != null)
@@ -858,7 +856,7 @@ namespace NLog.Targets
         protected IDbDataParameter CreateDatabaseParameter(IDbCommand command, DatabaseParameterInfo parameterInfo, LogEventInfo logEvent)
         {
             IDbDataParameter dbParameter = command.CreateParameter();
-            EnsureResolveParameterInfo(command, dbParameter);
+            EnsureParameterSetter(dbParameter);
             dbParameter.Direction = ParameterDirection.Input;
             if (parameterInfo.Name != null)
             {

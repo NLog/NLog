@@ -79,8 +79,9 @@ namespace NLog.Targets
         public Layout Layout { get; set; }
 
         /// <summary>
-        /// Use raw value.
-        /// If null, then use the rawValue when the dbtype isn't a string-like (that's:
+        /// Use raw value
+        ///
+        /// If null, then rawValue will be used when the dbtype isn't a string-like (that's:
         /// <see cref="System.Data.DbType.String"/>
         /// <see cref="System.Data.DbType.AnsiString"/>
         /// <see cref="System.Data.DbType.StringFixedLength"/>
