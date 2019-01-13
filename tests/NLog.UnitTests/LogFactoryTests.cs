@@ -219,7 +219,11 @@ namespace NLog.UnitTests
 
                 var loggingConfiguration = new LoggingConfiguration();
                 LogManager.Configuration = loggingConfiguration;
-                var logFactory = new LogFactory(loggingConfiguration);
+
+                var configLoader = new LoggingConfigurationWatchableFileLoader();
+                var logFactory = new LogFactory(configLoader);
+                logFactory.Configuration = loggingConfiguration;
+
                 var differentConfiguration = new LoggingConfiguration();
 
                 // Verify that the random configuration change is ignored (Only the final reset is reacted upon)
@@ -228,7 +232,7 @@ namespace NLog.UnitTests
                 testChanged = (s, e) => { called = true; oldConfiguration = e.DeactivatedConfiguration; newConfiguration = e.ActivatedConfiguration; };
                 LogManager.LogFactory.ConfigurationChanged += testChanged;
 
-                var exRecorded = Record.Exception(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
+                var exRecorded = Record.Exception(() => configLoader.ReloadConfigOnTimer(differentConfiguration));
                 Assert.Null(exRecorded);
 
                 // Final reset clears the configuration, so it is changed to null
@@ -257,51 +261,31 @@ namespace NLog.UnitTests
         {
             var loggingConfiguration = new ReloadNullConfiguration();
             LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
+            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var logFactory = new LogFactory(configLoader);
+            logFactory.Configuration = loggingConfiguration;
 
-            var exRecorded = Record.Exception(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
+            var exRecorded = Record.Exception(() => configLoader.ReloadConfigOnTimer(loggingConfiguration));
             Assert.Null(exRecorded);
         }
 
         [Fact]
-        public void ReloadConfigOnTimer_Raises_ConfigurationReloadedEvent()
+        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent()
         {
             var called = false;
-            var loggingConfiguration = new LoggingConfiguration();
-            LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
-            logFactory.ConfigurationReloaded += (sender, args) => { called = true; };
-
-            logFactory.ReloadConfigOnTimer(loggingConfiguration);
-
-            Assert.True(called);
-        }
-
-        [Fact]
-        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent_With_Correct_Sender()
-        {
+            LoggingConfigurationReloadedEventArgs arguments = null;
             object calledBy = null;
             var loggingConfiguration = new LoggingConfiguration();
             LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
-            logFactory.ConfigurationReloaded += (sender, args) => { calledBy = sender; };
+            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var logFactory = new LogFactory(configLoader);
+            logFactory.Configuration = loggingConfiguration;
+            logFactory.ConfigurationReloaded += (sender, args) => { called = true; calledBy = sender; arguments = args; };
 
-            logFactory.ReloadConfigOnTimer(loggingConfiguration);
+            configLoader.ReloadConfigOnTimer(loggingConfiguration);
 
+            Assert.True(called);
             Assert.Same(calledBy, logFactory);
-        }
-
-        [Fact]
-        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent_With_Argument_Indicating_Success()
-        {
-            LoggingConfigurationReloadedEventArgs arguments = null;
-            var loggingConfiguration = new LoggingConfiguration();
-            LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
-            logFactory.ConfigurationReloaded += (sender, args) => { arguments = args; };
-
-            logFactory.ReloadConfigOnTimer(loggingConfiguration);
-
             Assert.True(arguments.Succeeded);
         }
 
@@ -408,7 +392,7 @@ namespace NLog.UnitTests
         {
             // Arrange
             var fileMock = new FileMock(f => f == accepts);
-            var factory = new LogFactory(null, fileMock);
+            var fileLoader = new LoggingConfigurationFileLoader(fileMock);
             var appDomain = LogFactory.CurrentAppDomain;
 
             try
@@ -416,7 +400,7 @@ namespace NLog.UnitTests
                 LogFactory.CurrentAppDomain = new AppDomainMock(baseDir);
 
                 // Act
-                var result = factory.GetConfigFile(filename);
+                var result = fileLoader.GetConfigFile(filename);
 
                 // Assert
                 Assert.Equal(expected, result);

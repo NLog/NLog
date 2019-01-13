@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,32 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using NLog.Internal.Fakeables;
-
-namespace NLog.UnitTests.Mocks
+namespace NLog.Config
 {
-    public class AppDomainMock : IAppDomain
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Interface for loading NLog <see cref="LoggingConfiguration"/>
+    /// </summary>
+    internal interface ILoggingConfigurationLoader : IDisposable
     {
-        public AppDomainMock(string baseDirectory)
-        {
-            BaseDirectory = baseDirectory;
-        }
+        /// <summary>
+        /// Finds and loads the NLog configuration
+        /// </summary>
+        /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
+        /// <returns>NLog configuration (or null if none found)</returns>
+        LoggingConfiguration Load(LogFactory logFactory);
 
+        /// <summary>
+        /// Notifies when LoggingConfiguration has been successfully applied
+        /// </summary>
+        /// <param name="logFactory">LogFactory that owns the NLog configuration</param>
+        /// <param name="config">NLog Config</param>
+        void Activated(LogFactory logFactory, LoggingConfiguration config);
 
-        public string BaseDirectory { get; set; }
-        public string ConfigurationFile { get; set; }
-        public IEnumerable<string> PrivateBinPath { get; set; }
-        public string FriendlyName { get; set; }
-        public int Id { get; set; }
-        public IEnumerable<Assembly> GetAssemblies()
-        {
-            throw new NotImplementedException();
-        }
-
-        event EventHandler<EventArgs> IAppDomain.ProcessExit { add { /* Nothing */ } remove { /* Nothing */ } }
-        event EventHandler<EventArgs> IAppDomain.DomainUnload { add { /* Nothing */ } remove { /* Nothing */ } }
+        /// <summary>
+        /// Get file paths (including filename) for the possible NLog config files. 
+        /// </summary>
+        /// <returns>The filepaths to the possible config file</returns>
+        IEnumerable<string> GetDefaultCandidateConfigFilePaths();
     }
 }
