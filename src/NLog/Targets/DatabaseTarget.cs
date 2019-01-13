@@ -665,7 +665,7 @@ namespace NLog.Targets
         /// <summary>
         /// Resolve Parameter DbType And Value Converter
         /// </summary>
-        protected void EnsureResolveParameterInfo(IDbCommand command, IDbDataParameter dbParameter)
+        private void EnsureResolveParameterInfo(IDbCommand command, IDbDataParameter dbParameter)
         {
             if (this._parameterTypeSetter == null)
             {
@@ -842,52 +842,62 @@ namespace NLog.Targets
             for (int i = 0; i < databaseParameterInfos.Count; ++i)
             {
                 DatabaseParameterInfo par = databaseParameterInfos[i];
-                IDbDataParameter dbParameter = command.CreateParameter();
-                EnsureResolveParameterInfo(command, dbParameter);
-                dbParameter.Direction = ParameterDirection.Input;
-                if (par.Name != null)
-                {
-                    dbParameter.ParameterName = par.Name;
-                }
-
-                if (par.Size != 0)
-                {
-                    dbParameter.Size = par.Size;
-                }
-
-                if (par.Precision != 0)
-                {
-                    dbParameter.Precision = par.Precision;
-                }
-
-                if (par.Scale != 0)
-                {
-                    dbParameter.Scale = par.Scale;
-                }
-
-                _parameterTypeSetter.SetParameterDbType(dbParameter, par);
-                object value;
-
-                try
-                {
-                    value = GetParameterValue(logEvent, par, dbParameter.ParameterName, dbParameter.DbType);
-                }
-                catch (Exception exception)
-                {
-                    // enhance context. Already checked for must-rethrow 
-                    exception.Data["parameter"] = dbParameter;
-                    throw;
-                }
-
-
-                dbParameter.Value = value;
-                InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, value, dbParameter.DbType);
+                var dbParameter = CreateDatabaseParameter(command, par, logEvent);
+                InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, dbParameter.Value, dbParameter.DbType);
                 command.Parameters.Add(dbParameter);
-
-
             }
         }
 
+        /// <summary>
+        /// Create database parameter with value from <paramref name="logEvent"/>
+        /// </summary>
+        /// <param name="command">Current command.</param>
+        /// <param name="parameterInfo">Parameter configuration info.</param>
+        /// <param name="logEvent">Current logevent.</param>
+        /// <returns></returns>
+        protected IDbDataParameter CreateDatabaseParameter(IDbCommand command, DatabaseParameterInfo parameterInfo, LogEventInfo logEvent)
+        {
+            IDbDataParameter dbParameter = command.CreateParameter();
+            EnsureResolveParameterInfo(command, dbParameter);
+            dbParameter.Direction = ParameterDirection.Input;
+            if (parameterInfo.Name != null)
+            {
+                dbParameter.ParameterName = parameterInfo.Name;
+            }
+
+            if (parameterInfo.Size != 0)
+            {
+                dbParameter.Size = parameterInfo.Size;
+            }
+
+            if (parameterInfo.Precision != 0)
+            {
+                dbParameter.Precision = parameterInfo.Precision;
+            }
+
+            if (parameterInfo.Scale != 0)
+            {
+                dbParameter.Scale = parameterInfo.Scale;
+            }
+
+            _parameterTypeSetter.SetParameterDbType(dbParameter, parameterInfo);
+            object value;
+
+            try
+            {
+                value = GetParameterValue(logEvent, parameterInfo, dbParameter.ParameterName, dbParameter.DbType);
+            }
+            catch (Exception exception)
+            {
+                // enhance context. Already checked for must-rethrow 
+                exception.Data["parameter"] = dbParameter;
+                throw;
+            }
+
+
+            dbParameter.Value = value;
+            return dbParameter;
+        }
 
 
         /// <summary>
