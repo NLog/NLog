@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
 using NLog.Config;
 
 namespace NLog.UnitTests.LayoutRenderers
@@ -113,6 +114,34 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "4 a");
             logger.Fatal("a");
             AssertDebugLastMessage("debug", "5 a");
+        }
+
+        [Fact]
+        public void LogLevelGetTypeCodeTest()
+        {
+            // Arrange
+            var logLevel = LogLevel.Info;
+
+            // Act
+            var result = Convert.GetTypeCode(logLevel);
+
+            // Assert
+            Assert.Equal(TypeCode.Object, result);
+        }
+
+        [Theory]
+        [InlineData(typeof(int), 2)]
+        [InlineData(typeof(uint), (uint)2)]
+        public void LogLevelConvertTest(Type type, object expected)
+        {
+            // Arrange
+            var logLevel = LogLevel.Info;
+
+            // Act
+            var result = Convert.ChangeType(logLevel, type);
+
+            // Assert
+            Assert.Equal(expected, result);
         }
     }
 }
