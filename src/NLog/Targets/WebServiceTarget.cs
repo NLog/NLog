@@ -670,9 +670,8 @@ namespace NLog.Targets
                     soapAction = Target.Namespace.EndsWith("/", StringComparison.Ordinal)
                         ? string.Concat(Target.Namespace, Target.MethodName)
                         : string.Concat(Target.Namespace, "/", Target.MethodName);
+                    request.Headers[soapActionHeader] = soapAction;
                 }
-
-                request.Headers[soapActionHeader] = soapAction;
             }
         }
 
