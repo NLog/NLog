@@ -31,20 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
-namespace NLog.Targets
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Reflection;
-    using Internal;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Reflection;
+using NLog.Targets;
 
+namespace NLog.Internal
+{
     /// <summary>
     /// Set dbType on correct property (e.g. DbType, OleDbType, etc)
     /// </summary>
-    public class DatabaseParameterTypeSetter
+    internal class DatabaseParameterTypeSetter
     {
         private bool _defaultDbProperty;
 
