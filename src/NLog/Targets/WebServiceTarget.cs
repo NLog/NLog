@@ -661,19 +661,18 @@ namespace NLog.Targets
 
             protected override void InitRequest(HttpWebRequest request)
             {
+                const string soapActionHeader = "SOAPAction";
                 base.InitRequest(request);
 
-                string soapAction;
-                if (Target.Namespace.EndsWith("/", StringComparison.Ordinal))
+                string soapAction = request.Headers[soapActionHeader];
+                if (string.IsNullOrEmpty(soapAction))
                 {
-                    soapAction = string.Concat(Target.Namespace, Target.MethodName);
-                }
-                else
-                {
-                    soapAction = string.Concat(Target.Namespace, "/", Target.MethodName);
+                    soapAction = Target.Namespace.EndsWith("/", StringComparison.Ordinal)
+                        ? string.Concat(Target.Namespace, Target.MethodName)
+                        : string.Concat(Target.Namespace, "/", Target.MethodName);
                 }
 
-                request.Headers["SOAPAction"] = soapAction;
+                request.Headers[soapActionHeader] = soapAction;
             }
         }
 
