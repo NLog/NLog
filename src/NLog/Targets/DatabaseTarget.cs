@@ -853,7 +853,7 @@ namespace NLog.Targets
         /// <param name="parameterInfo">Parameter configuration info.</param>
         /// <param name="logEvent">Current logevent.</param>
         /// <returns></returns>
-        protected IDbDataParameter CreateDatabaseParameter(IDbCommand command, DatabaseParameterInfo parameterInfo, LogEventInfo logEvent)
+        protected virtual IDbDataParameter CreateDatabaseParameter(IDbCommand command, DatabaseParameterInfo parameterInfo, LogEventInfo logEvent)
         {
             IDbDataParameter dbParameter = command.CreateParameter();
             EnsureParameterSetter(dbParameter);
