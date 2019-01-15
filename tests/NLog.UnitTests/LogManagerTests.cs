@@ -504,9 +504,9 @@ namespace NLog.UnitTests
         {
             LogManager.Configuration = new LoggingConfiguration();
             LogManager.ThrowExceptions = true;
-            LogManager.Configuration.AddTarget("memory", new NLog.Targets.Wrappers.BufferingTargetWrapper(new MemoryQueueTarget(500), 5, 1));
+            LogManager.Configuration.AddTarget("memory", new NLog.Targets.Wrappers.BufferingTargetWrapper(new MemoryTarget() { MaxLogsCount = 500 }, 5, 1));
             LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, LogManager.Configuration.FindTargetByName("memory")));
-            LogManager.Configuration.AddTarget("memory2", new NLog.Targets.Wrappers.BufferingTargetWrapper(new MemoryQueueTarget(500), 5, 1));
+            LogManager.Configuration.AddTarget("memory2", new NLog.Targets.Wrappers.BufferingTargetWrapper(new MemoryTarget() { MaxLogsCount = 500 }, 5, 1));
             LogManager.Configuration.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, LogManager.Configuration.FindTargetByName("memory2")));
             var stopFlag = false;
             var exceptionThrown = false;
@@ -528,14 +528,13 @@ namespace NLog.UnitTests
         [Fact]
         public void ThreadSafe_getCurrentClassLogger_test()
         {
-            MemoryQueueTarget mTarget = new MemoryQueueTarget(1000) { Name = "memory" };
-            MemoryQueueTarget mTarget2 = new MemoryQueueTarget(1000) { Name = "memory2" };
+            MemoryTarget mTarget = new MemoryTarget() { Name = "memory", MaxLogsCount = 1000 };
+            MemoryTarget mTarget2 = new MemoryTarget() { Name = "memory2", MaxLogsCount = 1000 };
 
             var task1 = Task.Run(() =>
             {
                 //need for init
                 LogManager.Configuration = new LoggingConfiguration();
-                LogManager.ThrowExceptions = true;
 
                 LogManager.Configuration.AddTarget(mTarget.Name, mTarget);
                 LogManager.Configuration.AddRuleForAllLevels(mTarget.Name);
@@ -591,11 +590,9 @@ namespace NLog.UnitTests
         [Fact]
         public void RemovedTargetShouldNotLog()
         {
-            LogManager.ThrowExceptions = true;
-
             var config = new LoggingConfiguration();
-            var targetA = new MemoryQueueTarget("TargetA") { Layout = "A | ${message}" };
-            var targetB = new MemoryQueueTarget("TargetB") { Layout = "B | ${message}" };
+            var targetA = new MemoryTarget("TargetA") { Layout = "A | ${message}", MaxLogsCount = 1 };
+            var targetB = new MemoryTarget("TargetB") { Layout = "B | ${message}", MaxLogsCount = 1 };
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, targetA);
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, targetB);
 
@@ -622,61 +619,8 @@ namespace NLog.UnitTests
 
             logger.Info("Goodbye World");
 
-            Assert.Null(targetA.Logs);  // Flushed and closed
+            Assert.Equal("A | Hello World", targetA.Logs.LastOrDefault());  // Flushed and closed
             Assert.Equal("B | Goodbye World", targetB.Logs.LastOrDefault());
-        }
-
-        /// <summary>
-        /// target for <see cref="ThreadSafe_getCurrentClassLogger_test"/>
-        /// </summary>
-        [Target("Memory")]
-        public sealed class MemoryQueueTarget : TargetWithLayout
-        {
-            private int maxSize;
-
-            public MemoryQueueTarget() : this(1)
-            {
-            }
-
-            public MemoryQueueTarget(string name) : this(1)
-            {
-                Name = name;
-            }
-
-            public MemoryQueueTarget(int size)
-            {
-                maxSize = size;
-            }
-
-            protected override void InitializeTarget()
-            {
-                base.InitializeTarget();
-                Logs = new Queue<string>(maxSize);
-            }
-
-            protected override void CloseTarget()
-            {
-                base.CloseTarget();
-                Logs = null;
-            }
-
-            internal Queue<string> Logs { get; private set; }
-
-            protected override void Write(LogEventInfo logEvent)
-            {
-                if (Logs == null)
-                    throw new ObjectDisposedException("MemoryQueueTarget");
-
-                string msg = Layout.Render(logEvent);
-                if (msg.Length > 100)
-                    msg = msg.Substring(0, 100) + "...";
-
-                Logs.Enqueue(msg);
-                while (Logs.Count > maxSize)
-                {
-                    Logs.Dequeue();
-                }
-            }
         }
     }
 }

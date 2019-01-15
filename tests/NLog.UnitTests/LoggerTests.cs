@@ -1908,14 +1908,17 @@ namespace NLog.UnitTests
         [InlineData(null)]
         public void TooManyStructuredParametersShouldKeepBeInParamList(bool? parseMessageTemplates)
         {
-            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates, "LastLogEvent");
+            LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
+            var target = new MyTarget();
+            LogManager.Configuration.AddRuleForAllLevels(target);
+            LogManager.ReconfigExistingLoggers();
+
             ILogger logger = LogManager.GetLogger("A");
             logger.Debug("Hello World {0}", "world", "universe");
-            var target = LogManager.Configuration.FindTargetByName<LastLogEventListTarget>("debug");
 
-            Assert.Equal(2, target.LastLogEvent.Parameters.Length);
-            Assert.Equal("world", target.LastLogEvent.Parameters[0]);
-            Assert.Equal("universe", target.LastLogEvent.Parameters[1]);
+            Assert.Equal(2, target.LastEvent.Parameters.Length);
+            Assert.Equal("world", target.LastEvent.Parameters[0]);
+            Assert.Equal("universe", target.LastEvent.Parameters[1]);
         }
 
         [Theory]
@@ -2246,7 +2249,6 @@ namespace NLog.UnitTests
         [Fact]
         public void TestOptimizedBlackHoleLogger()
         {
-            LogManager.ThrowExceptions = true;
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true'>
                     <targets>
@@ -2271,12 +2273,11 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("debug", "Important Noise");
         }
 
-
-        private static XmlLoggingConfiguration CreateSimpleDebugConfig(bool? parseMessageTemplates, string targetType = "Debug")
+        private static XmlLoggingConfiguration CreateSimpleDebugConfig(bool? parseMessageTemplates)
         {
             return XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
-                    <targets><target name='debug' type='"+targetType+@"' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
                     <rules>
                         <logger name='*' writeTo='debug' />
                     </rules>
