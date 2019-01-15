@@ -641,10 +641,10 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                                 methodName ='Ping'
                                 preAuthenticate='false'
                                 encoding ='UTF-8'
+                                soapAction = 'http://tempuri.org/custom-namespace/Ping'
                                >
                             <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
                             <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
-                            <header name='SOAPAction' layout='http://tempuri.org/custom-namespace/Ping'/>
                         </target>
                     </targets>
                     <rules>
@@ -955,13 +955,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                         && Context.ExpectedParam3 == complexType.Param3
                         && Context.ExpectedParam4.Date == complexType.Param4.Date)
                     {
-                        if (Context.ExpectedHeaders != null && Context.ExpectedHeaders.Count > 0)
+                        if (!ValidateHeaders())
                         {
-                            foreach (var expectedHeader in Context.ExpectedHeaders)
-                            {
-                                if (Request.Headers.GetValues(expectedHeader.Key).First() != expectedHeader.Value)
-                                    return;
-                            }
+                            return;
                         }
                         Context.CountdownEvent.Signal();
                     }
@@ -984,16 +980,25 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 if (Context!=null)
                 {
-                    if (Context.ExpectedHeaders?.Count > 0)
+                    if (ValidateHeaders())
                     {
-                        foreach (var expectedHeader in Context.ExpectedHeaders)
-                        {
-                            if (Request.Headers.GetValues(expectedHeader.Key).First() != expectedHeader.Value)
-                                return;
-                        }
+                        Context.CountdownEvent.Signal();
                     }
-                    Context.CountdownEvent.Signal();
                 }
+            }
+
+            private bool ValidateHeaders()
+            {
+                if (Context.ExpectedHeaders?.Count > 0)
+                {
+                    foreach (var expectedHeader in Context.ExpectedHeaders)
+                    {
+                        if (Request.Headers.GetValues(expectedHeader.Key).First() != expectedHeader.Value)
+                            return false;
+                    }
+                }
+
+                return true;
             }
 
             public class TestContext

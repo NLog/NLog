@@ -137,6 +137,12 @@ namespace NLog.Targets
         public string Namespace { get; set; }
 
         /// <summary>
+        /// Gets or sets the Web service soap action name. Only used with Soap.
+        /// </summary>
+        /// <docgen category='Web Service Options' order='10' />
+        public string SoapAction { get; set; }
+
+        /// <summary>
         /// Gets or sets the protocol to be used when calling web service.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
@@ -661,17 +667,8 @@ namespace NLog.Targets
 
             protected override void InitRequest(HttpWebRequest request)
             {
-                const string soapActionHeader = "SOAPAction";
                 base.InitRequest(request);
-
-                string soapAction = request.Headers[soapActionHeader];
-                if (string.IsNullOrEmpty(soapAction))
-                {
-                    soapAction = Target.Namespace.EndsWith("/", StringComparison.Ordinal)
-                        ? string.Concat(Target.Namespace, Target.MethodName)
-                        : string.Concat(Target.Namespace, "/", Target.MethodName);
-                    request.Headers[soapActionHeader] = soapAction;
-                }
+                request.Headers["SOAPAction"] = GetSoapAction();
             }
         }
 
@@ -712,6 +709,19 @@ namespace NLog.Targets
                 xtw.WriteEndElement(); // Body
                 xtw.WriteEndElement(); // soap:Envelope
                 xtw.Flush();
+            }
+
+            protected string GetSoapAction()
+            {
+                string soapAction = Target.SoapAction;
+                if (string.IsNullOrEmpty(soapAction))
+                {
+                    soapAction = Target.Namespace.EndsWith("/", StringComparison.Ordinal)
+                        ? string.Concat(Target.Namespace, Target.MethodName)
+                        : string.Concat(Target.Namespace, "/", Target.MethodName);
+                }
+
+                return soapAction;
             }
         }
 
