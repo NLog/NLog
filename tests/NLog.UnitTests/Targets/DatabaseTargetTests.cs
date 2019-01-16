@@ -471,8 +471,11 @@ Dispose()
             AssertLog(expectedLog);
         }
 
-        [Fact]
-        public void LevelParameterTest()
+        [Theory]
+        [InlineData(true, false)] 
+        [InlineData(false, true)]
+        [InlineData(null, true)]  
+        public void LevelParameterTest(bool? rawValue, bool expectedNumber)
         {
             MockDbConnection.ClearLog();
             DatabaseTarget dt = new DatabaseTarget()
@@ -482,7 +485,7 @@ Dispose()
                 KeepConnection = true,
                 Parameters =
                 {
-                    new DatabaseParameterInfo("lvl", "${level:format=Ordinal}"),
+                    new DatabaseParameterInfo("lvl", "${level:format=Ordinal}") { UseRawValue = rawValue},
                     new DatabaseParameterInfo("msg", "${message}")
                 }
             };
@@ -504,11 +507,26 @@ Dispose()
                 Assert.Null(ex);
             }
 
-            string expectedLog = @"Open('Server=.;Trusted_Connection=SSPI;').
+            string valueLevel1;
+            string valueLevel2;
+
+            if (expectedNumber)
+            {
+                valueLevel1 = "2"; // the format ordinail
+                valueLevel2 = "1";
+            }
+            else
+            {
+                valueLevel1 = "Info"; //the enum value
+                valueLevel2 = "Debug";
+            }
+
+
+            string expectedLog = string.Format(@"Open('Server=.;Trusted_Connection=SSPI;').
 CreateParameter(0)
 Parameter #0 Direction=Input
 Parameter #0 Name=lvl
-Parameter #0 Value=2
+Parameter #0 Value={0}
 Add Parameter Parameter #0
 CreateParameter(1)
 Parameter #1 Direction=Input
@@ -519,7 +537,7 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
 CreateParameter(0)
 Parameter #0 Direction=Input
 Parameter #0 Name=lvl
-Parameter #0 Value=1
+Parameter #0 Value={1}
 Add Parameter Parameter #0
 CreateParameter(1)
 Parameter #1 Direction=Input
@@ -527,7 +545,9 @@ Parameter #1 Name=msg
 Parameter #1 Value=msg3
 Add Parameter Parameter #1
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
-";
+", valueLevel1, valueLevel2);
+
+
 
             AssertLog(expectedLog);
 
@@ -538,6 +558,64 @@ Dispose()
 ";
 
             AssertLog(expectedLog);
+        }
+
+        [Theory]
+        [InlineData("${counter}", DbType.Int16, null, (short)1)]
+        [InlineData("${counter}", DbType.Int32, null, 1)]
+        [InlineData("${counter}", DbType.Int64, null, (long)1)]
+        [InlineData("${counter}", DbType.Int16, true, (short)1)]
+        [InlineData("${counter}", DbType.Int16, false, (short)1)] //fallback
+        [InlineData("${counter}", DbType.VarNumeric, null, 1, true)]
+        [InlineData("${counter}", DbType.AnsiString, null, "1")]
+        [InlineData("${level}", DbType.AnsiString, null, "Debug")]
+        [InlineData("${level}", DbType.Int32, null, 1)]
+        [InlineData("${level}", DbType.UInt16, null, (ushort) 1)]
+        [InlineData("${event-properties:boolprop}", DbType.Boolean, null, true)]
+        [InlineData("${event-properties:intprop}", DbType.Int32, null, 123)]
+        [InlineData("${event-properties:intprop}", DbType.AnsiString, null, "123")]
+        [InlineData("${event-properties:intprop}", DbType.AnsiString, true, "123")]
+        [InlineData("${event-properties:intprop}", DbType.AnsiString, false, "123")]
+        [InlineData("${event-properties:intprop}", DbType.AnsiStringFixedLength, null, "123")]
+        [InlineData("${event-properties:intprop}", DbType.String, null, "123")]
+        [InlineData("${event-properties:intprop}", DbType.StringFixedLength, null, "123")]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.Int16, null, (short)124)]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.Int16, false, (short)124)]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.Int16, true, (short)124)]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.Int32, null, 124)]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.Int64, null, (long)124)]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.AnsiString, null, " 124 ")]
+        public void GetParameterValueTest(string layout, DbType dbtype, bool? useRawValue, object expected, bool convertToDecimal = false)
+        {
+            // Arrange
+            var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", "message 2");
+            logEventInfo.Properties["intprop"] = 123;
+            logEventInfo.Properties["boolprop"] = true;
+            logEventInfo.Properties["almostAsIntProp"] = " 124 ";
+            logEventInfo.Properties["dateprop"] = new DateTime(2018, 12, 30, 13, 34, 56);
+
+            var parameterName = "@param1";
+            var databaseParameterInfo = new DatabaseParameterInfo
+            {
+                DbType = dbtype.ToString(),
+                Layout = layout,
+                Name = parameterName,
+                UseRawValue = useRawValue
+            };
+
+
+            // Act
+
+            var result = new DatabaseTarget().GetParameterValue(logEventInfo, databaseParameterInfo, parameterName, dbtype);
+
+            //Assert
+            if (convertToDecimal)
+            {
+                //fix that we can't pass decimals into attributes (InlineData)
+                expected = (decimal) (int) expected;
+            }
+
+            Assert.Equal(expected, result);
         }
 
         [Fact]
@@ -636,6 +714,84 @@ ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
 Close()
 Dispose()
 ";
+            AssertLog(expectedLog);
+        }
+
+        [Fact]
+        public void EmptyParameterDbTypePropertyNameAndParameterConverterTest()
+        {
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='dt' type='Database'>
+                        <ConnectionString>FooBar</ConnectionString>
+                        <CommandText>INSERT INTO FooBar VALUES(@message)</CommandText>
+                        <parameter name='@message' layout='${message}'/>
+                    </target>
+                </targets>
+            </nlog>");
+
+            DatabaseTarget dt = c.FindTargetByName("dt") as DatabaseTarget;
+            Assert.NotNull(dt);
+            dt.Initialize(c);
+            Assert.Equal("DbType", dt.ParameterDbTypePropertyName);
+        }
+
+        [Fact]
+        public void ParameterDbTypePropertyNameTest()
+        {
+            MockDbConnection.ClearLog();
+            LoggingConfiguration c =  XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='dt' type='Database'>
+                        <DBProvider>MockDb</DBProvider>
+                        <ConnectionString>FooBar</ConnectionString>
+                        <CommandText>INSERT INTO FooBar VALUES(@message,@level,@date)</CommandText>
+                        <ParameterDbTypePropertyName>MockDbType</ParameterDbTypePropertyName>
+                        <parameter name='@message' layout='${message}'/>
+                        <parameter name='@level' dbType='Int32' layout='${level:format=Ordinal}'/>
+                        <parameter name='@date' dbType='DateTime' format='yyyy-MM-dd HH:mm:ss.fff' layout='${date:format=yyyy-MM-dd HH\:mm\:ss.fff}'/>
+                    </target>
+                </targets>
+            </nlog>");
+
+            DatabaseTarget dt = c.FindTargetByName("dt") as DatabaseTarget;
+            Assert.NotNull(dt);
+            Assert.Equal("MockDbType", dt.ParameterDbTypePropertyName);
+            dt.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+            dt.Initialize(c);
+            List<Exception> exceptions = new List<Exception>();
+            var alogEvent = new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add);
+            dt.WriteAsyncLogEvent(alogEvent);
+            foreach (var ex in exceptions)
+            {
+                Assert.Null(ex);
+            }
+
+            string expectedLog = @"Open('FooBar').
+CreateParameter(0)
+Parameter #0 Direction=Input
+Parameter #0 Name=@message
+Parameter #0 Value=msg1
+Add Parameter Parameter #0
+CreateParameter(1)
+Parameter #1 Direction=Input
+Parameter #1 Name=@level
+Parameter #1 MockDbType=Int32
+Parameter #1 Value={0}
+Add Parameter Parameter #1
+CreateParameter(2)
+Parameter #2 Direction=Input
+Parameter #2 Name=@date
+Parameter #2 MockDbType=DateTime
+Parameter #2 Value={1}
+Add Parameter Parameter #2
+ExecuteNonQuery: INSERT INTO FooBar VALUES(@message,@level,@date)
+Close()
+Dispose()
+";
+            expectedLog = string.Format(expectedLog, LogLevel.Info.Ordinal, alogEvent.LogEvent.TimeStamp.ToString(CultureInfo.InvariantCulture));
             AssertLog(expectedLog);
         }
 
@@ -1114,7 +1270,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 DatabaseTarget testTarget = new DatabaseTarget("TestSqliteTargetInstallProgram");
                 testTarget.ConnectionString = connectionString;
                 testTarget.DBProvider = dbProvider;
-                
+
                 DatabaseCommandInfo installDbCommand = new DatabaseCommandInfo
                 {
                     Text = "CREATE TABLE NLogSqlLiteTestAppNames (Id int PRIMARY KEY, Name varchar(100) NULL); " +
@@ -1289,12 +1445,14 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' throwExceptions='true'>
                 <targets>
                     <target name='database' xsi:type='Database' connectionstring=""" + connectionString + @"""
-                        commandText='insert into dbo.NLogSqlServerTest (Uid) values (@uid);'>
+                        commandText='insert into dbo.NLogSqlServerTest (Uid, LogDate) values (@uid, @logdate);'>
                         <parameter name='@uid' layout='${event-properties:uid}' />
+                        <parameter name='@logdate' layout='${date}' />
 <install-command ignoreFailures=""false""
                  text=""CREATE TABLE dbo.NLogSqlServerTest (
     Id       int               NOT NULL IDENTITY(1,1) PRIMARY KEY CLUSTERED,
-    Uid      uniqueidentifier  NULL
+    Uid      uniqueidentifier  NULL,
+    LogDate  date              NULL
 );""/>
 
                     </target>
@@ -1330,6 +1488,10 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 var result = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT Uid FROM dbo.NLogSqlServerTest");
 
                 Assert.Equal(uid, result);
+
+                var result2 = SqlServerTest.IssueScalarQuery(isAppVeyor, "SELECT LogDate FROM dbo.NLogSqlServerTest");
+
+                Assert.Equal(DateTime.Today, result2);
             }
             finally
             {
@@ -1639,8 +1801,21 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             public DbType DbType
             {
-                get => parameterType;
-                set => parameterType = value;
+                get { return parameterType; }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} DbType={1}", paramId, value);
+                    parameterType = value;
+                }
+            }
+            public DbType MockDbType
+            {
+                get { return parameterType; }
+                set
+                {
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} MockDbType={1}", paramId, value);
+                    parameterType = value;
+                }
             }
 
             public ParameterDirection Direction
