@@ -48,7 +48,6 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public abstract class Target : ISupportsInitialize, IDisposable
     {
-        private readonly object _lockObject = new object();
         private List<Layout> _allLayouts;
         
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
@@ -79,7 +78,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
         /// </summary>
-        protected object SyncRoot => _lockObject;
+        protected object SyncRoot { get; } = new object();
 
         /// <summary>
         /// Gets the logging configuration this target is part of.
