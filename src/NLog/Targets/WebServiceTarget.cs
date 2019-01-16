@@ -681,6 +681,14 @@ namespace NLog.Targets
             protected override string SoapEnvelopeNamespace => Soap12EnvelopeNamespaceUri;
 
             protected override string SoapName => "soap12";
+
+            protected override string ContentType => "application/soap+xml";
+
+            protected override void InitRequest(HttpWebRequest request)
+            {
+                base.InitRequest(request);
+                request.ContentType += $@"; action=""{GetSoapAction()}""";
+            }
         }
 
         private abstract class HttpPostSoapFormatterBase : HttpPostXmlFormatterBase
