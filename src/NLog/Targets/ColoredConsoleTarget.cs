@@ -262,77 +262,20 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
-            if (_pauseLogging)
-            {
-                //check early for performance
-                return;
-            }
             WriteToOutput(logEvent, RenderLogEvent(Layout, logEvent));
         }
 
         private void WriteToOutput(LogEventInfo logEvent, string message)
         {
-            var matchingRule = GetMatchingRowHighlightingRule(logEvent);
-
-            string colorMessage = message ?? string.Empty;
-            if (WordHighlightingRules.Count > 0)
+            if (_pauseLogging)
             {
-                colorMessage = GenerateColorEscapeSequences(message);
+                //check early for performance
+                return;
             }
-
-            ConsoleColor? newForegroundColor = matchingRule.ForegroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.ForegroundColor : default(ConsoleColor?);
-            ConsoleColor? newBackgroundColor = matchingRule.BackgroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.BackgroundColor : default(ConsoleColor?);
 
             try
             {
-                var consoleStream = ErrorStream ? Console.Error : Console.Out;
-                if (ReferenceEquals(colorMessage, message) && !newForegroundColor.HasValue && !newBackgroundColor.HasValue)
-                {
-                    consoleStream.WriteLine(message);
-                }
-                else
-                {
-                    ConsoleColor? oldForegroundColor = null;
-                    ConsoleColor? oldBackgroundColor = null;
-
-                    using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
-                    {
-                        TextWriter consoleWriter = _consolePrinter.AcquireTextWriter(consoleStream, targetBuilder.Result);
-
-                        try
-                        {
-                            if (!ReferenceEquals(colorMessage, message) || message.IndexOf('\n') >= 0)
-                            {
-                                oldForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
-                                oldBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
-                                var rowForegroundColor = newForegroundColor ?? oldForegroundColor;
-                                var rowBackgroundColor = newBackgroundColor ?? oldBackgroundColor;
-                                ColorizeEscapeSequences(_consolePrinter, consoleWriter, colorMessage, oldForegroundColor, oldBackgroundColor, rowForegroundColor, rowBackgroundColor);
-                                _consolePrinter.WriteLine(consoleWriter, string.Empty);
-                            }
-                            else
-                            {
-                                if (newForegroundColor.HasValue)
-                                {
-                                    oldForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor.Value);
-                                    if (oldForegroundColor == newForegroundColor)
-                                        oldForegroundColor = null;  // No color restore is needed
-                                }
-                                if (newBackgroundColor.HasValue)
-                                {
-                                    oldBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor.Value);
-                                    if (oldBackgroundColor == newBackgroundColor)
-                                        oldBackgroundColor = null;  // No color restore is needed
-                                }
-                                _consolePrinter.WriteLine(consoleWriter, message);
-                            }
-                        }
-                        finally
-                        {
-                            _consolePrinter.ReleaseTextWriter(consoleWriter, consoleStream, oldForegroundColor, oldBackgroundColor);
-                        }
-                    }
-                }
+                WriteToOutputWithColor(logEvent, message);
             }
             catch (IndexOutOfRangeException ex)
             {
@@ -347,6 +290,75 @@ namespace NLog.Targets
                 _pauseLogging = true;
                 InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
                                         "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+            }
+        }
+
+        private void WriteToOutputWithColor(LogEventInfo logEvent, string message)
+        {
+            var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+
+            string colorMessage = message ?? string.Empty;
+            if (WordHighlightingRules.Count > 0)
+            {
+                colorMessage = GenerateColorEscapeSequences(message);
+            }
+
+            ConsoleColor? newForegroundColor = matchingRule.ForegroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.ForegroundColor : default(ConsoleColor?);
+            ConsoleColor? newBackgroundColor = matchingRule.BackgroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.BackgroundColor : default(ConsoleColor?);
+
+            var consoleStream = ErrorStream ? Console.Error : Console.Out;
+            if (ReferenceEquals(colorMessage, message) && !newForegroundColor.HasValue && !newBackgroundColor.HasValue)
+            {
+                consoleStream.WriteLine(message);
+            }
+            else
+            {
+                bool wordHighlighting = !ReferenceEquals(colorMessage, message) || message.IndexOf('\n') >= 0;
+                WriteToOutputWithPrinter(consoleStream, colorMessage, newForegroundColor, newBackgroundColor, wordHighlighting);
+            }
+        }
+
+        private void WriteToOutputWithPrinter(TextWriter consoleStream, string colorMessage, ConsoleColor? newForegroundColor, ConsoleColor? newBackgroundColor,  bool wordHighlighting)
+        {
+            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            {
+                TextWriter consoleWriter = _consolePrinter.AcquireTextWriter(consoleStream, targetBuilder.Result);
+
+                ConsoleColor? oldForegroundColor = null;
+                ConsoleColor? oldBackgroundColor = null;
+
+                try
+                {
+                    if (wordHighlighting)
+                    {
+                        oldForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
+                        oldBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
+                        var rowForegroundColor = newForegroundColor ?? oldForegroundColor;
+                        var rowBackgroundColor = newBackgroundColor ?? oldBackgroundColor;
+                        ColorizeEscapeSequences(_consolePrinter, consoleWriter, colorMessage, oldForegroundColor, oldBackgroundColor, rowForegroundColor, rowBackgroundColor);
+                        _consolePrinter.WriteLine(consoleWriter, string.Empty);
+                    }
+                    else
+                    {
+                        if (newForegroundColor.HasValue)
+                        {
+                            oldForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor.Value);
+                            if (oldForegroundColor == newForegroundColor)
+                                oldForegroundColor = null;  // No color restore is needed
+                        }
+                        if (newBackgroundColor.HasValue)
+                        {
+                            oldBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor.Value);
+                            if (oldBackgroundColor == newBackgroundColor)
+                                oldBackgroundColor = null;  // No color restore is needed
+                        }
+                        _consolePrinter.WriteLine(consoleWriter, colorMessage);
+                    }
+                }
+                finally
+                {
+                    _consolePrinter.ReleaseTextWriter(consoleWriter, consoleStream, oldForegroundColor, oldBackgroundColor);
+                }
             }
         }
 
