@@ -110,6 +110,13 @@ namespace NLog.Targets
         [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
         public virtual IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
 
+        private IParameterTypeConverter ParameterTypeConverter
+        {
+            get => _parameterTypeConverter ?? (_parameterTypeConverter = ConfigurationItemFactory.Default.ParameterTypeConverter);
+            set => _parameterTypeConverter = value;
+        }
+        private IParameterTypeConverter _parameterTypeConverter;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -117,6 +124,13 @@ namespace NLog.Targets
         {
             _contextLayout = _contextLayout ?? new TargetWithContextLayout(this, base.Layout);
             OptimizeBufferReuse = true;
+        }
+
+        /// <inheritdoc/>
+        protected override void CloseTarget()
+        {
+            ParameterTypeConverter = null;
+            base.CloseTarget();
         }
 
         /// <summary>
@@ -353,7 +367,7 @@ namespace NLog.Targets
                 if (string.IsNullOrEmpty(attrib?.Name) || attrib.Layout == null)
                     continue;
 
-                var attribType = attrib.PropertyType ?? typeof(string);
+                var attribType = attrib.ParameterType ?? typeof(string);
 
                 try
                 {
@@ -375,7 +389,7 @@ namespace NLog.Targets
                         continue;
 
                     combinedProperties[attrib.Name] = attribType == typeof(string)
-                        ? attribStringValue : Convert.ChangeType(attribStringValue, attribType, CultureInfo.InvariantCulture);
+                        ? attribStringValue : ParameterTypeConverter.Convert(attribStringValue, attribType, null, CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
                 {

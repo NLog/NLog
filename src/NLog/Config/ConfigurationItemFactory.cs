@@ -194,6 +194,11 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Gets or sets the parameter converter to use with <see cref="DatabaseTarget"/>, <see cref="WebServiceTarget"/> or <see cref="TargetWithContext"/>
+        /// </summary>
+        public IParameterTypeConverter ParameterTypeConverter { get; set; } = new ParameterTypeConverter();
+
+        /// <summary>
         /// Perform mesage template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
         /// </summary>
         /// <remarks>

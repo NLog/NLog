@@ -34,6 +34,7 @@
 namespace NLog.Targets
 {
     using System;
+    using System.ComponentModel;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -97,6 +98,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Backwards compatibility")]
+        [Obsolete("Use property ParameterType instead. Marked obsolete on NLog 4.6")]
         public Type Type
         {
             get => ParameterType;
@@ -107,6 +109,7 @@ namespace NLog.Targets
         /// Gets or sets the type of the parameter.
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
+        [DefaultValue(typeof(string))]
         public Type ParameterType { get; set; }
 
         /// <summary>

@@ -85,6 +85,6 @@ namespace NLog.Targets
         /// Gets or sets the type of the property.
         /// </summary>
         [DefaultValue(typeof(string))]
-        public Type PropertyType { get; set; } = typeof(string);
+        public Type ParameterType { get; set; } = typeof(string);
     }
 }
