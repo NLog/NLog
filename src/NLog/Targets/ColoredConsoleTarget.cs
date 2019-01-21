@@ -262,17 +262,17 @@ namespace NLog.Targets
         /// <param name="logEvent">Log event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
+            if (_pauseLogging)
+            {
+                //check early for performance (See also DetectConsoleAvailable)
+                return;
+            }
+
             WriteToOutput(logEvent, RenderLogEvent(Layout, logEvent));
         }
 
         private void WriteToOutput(LogEventInfo logEvent, string message)
         {
-            if (_pauseLogging)
-            {
-                //check early for performance
-                return;
-            }
-
             try
             {
                 WriteToOutputWithColor(logEvent, message);
