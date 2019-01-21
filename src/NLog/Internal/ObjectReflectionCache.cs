@@ -91,6 +91,14 @@ namespace NLog.Internal
             }
 #endif
 
+            propertyInfos = BuildObjectPropertyInfos(value, objectType);
+            _objectTypeCache.TryAddValue(objectType, propertyInfos);
+            return new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
+        }
+
+        private static ObjectPropertyInfos BuildObjectPropertyInfos(object value, Type objectType)
+        {
+            ObjectPropertyInfos propertyInfos;
             if (ConvertToString(objectType))
             {
                 propertyInfos = ObjectPropertyInfos.SimpleToString;
@@ -114,8 +122,7 @@ namespace NLog.Internal
                 }
             }
 
-            _objectTypeCache.TryAddValue(objectType, propertyInfos);
-            return new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
+            return propertyInfos;
         }
 
         private static bool ConvertToString(Type objectType)
