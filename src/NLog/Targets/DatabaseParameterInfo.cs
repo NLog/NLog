@@ -35,9 +35,14 @@
 
 namespace NLog.Targets
 {
+    using System;
     using System.ComponentModel;
-    using Config;
-    using Layouts;
+    using System.Data;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Layouts;
+    using NLog.Internal;
+    using System.Reflection;
 
     /// <summary>
     /// Represents a parameter to a Database target.
@@ -124,6 +129,112 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='6' />
         [DefaultValue(0)]
         public byte Scale { get; set; }
+
+        internal bool SetDbType(IDbDataParameter dbParameter)
+        {
+            if (!string.IsNullOrEmpty(DbType))
+            {
+                if (_cachedDbTypeSetter == null || !_cachedDbTypeSetter.IsValid(dbParameter.GetType(), DbType))
+                {
+                    _cachedDbTypeSetter = new DbTypeSetter(dbParameter.GetType(), DbType);
+                }
+
+                return _cachedDbTypeSetter.SetDbType(dbParameter);
+            }
+
+            return true;    // DbType not in use
+        }
+
+        DbTypeSetter _cachedDbTypeSetter;
+
+        class DbTypeSetter
+        {
+            private readonly Type _dbParameterType;
+            private readonly string _dbTypeName;
+            private readonly PropertyInfo _dbTypeSetter;
+            private readonly Enum _dbTypeValue;
+            Action<IDbDataParameter> _dbTypeSetterFast;
+
+            public DbTypeSetter(Type dbParameterType, string dbTypeName)
+            {
+                _dbParameterType = dbParameterType;
+                _dbTypeName = dbTypeName;
+                if (!StringHelpers.IsNullOrWhiteSpace(dbTypeName))
+                {
+                    string[] dbTypeNames = dbTypeName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (dbTypeNames.Length > 1 && !string.Equals(dbTypeNames[0], nameof(System.Data.DbType), StringComparison.OrdinalIgnoreCase))
+                    {
+                        PropertyInfo propInfo = dbParameterType.GetProperty(dbTypeNames[0], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                        if (propInfo != null)
+                        {
+                            var enumConverter = (IEnumTypeConverter)Activator.CreateInstance(typeof(EnumTypeConverter<>).MakeGenericType(propInfo.PropertyType));
+                            if (enumConverter.TryParseEnum(dbTypeNames[1], out Enum enumType))
+                            {
+                                _dbTypeSetter = propInfo;
+                                _dbTypeValue = enumType;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (ConversionHelpers.TryParse(dbTypeNames[dbTypeNames.Length - 1], out DbType dbType))
+                        {
+                            _dbTypeSetterFast = (p) => p.DbType = dbType;
+                        }
+                    }
+                }
+            }
+
+            public bool IsValid(Type dbParameterType, string dbTypeName)
+            {
+                if (ReferenceEquals(_dbParameterType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName))
+                {
+                    if (_dbTypeSetterFast == null && _dbTypeSetter != null && _dbTypeValue != null)
+                    {
+                        var dbTypeSetterLambda = ReflectionHelpers.CreateLateBoundMethod(_dbTypeSetter.GetSetMethod());
+                        var dbTypeSetterParams = new object[] { _dbTypeValue };
+                        _dbTypeSetterFast = (p) => dbTypeSetterLambda.Invoke(p, dbTypeSetterParams);
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            public bool SetDbType(IDbDataParameter dbParameter)
+            {
+                if (_dbTypeSetterFast != null)
+                {
+                    _dbTypeSetterFast.Invoke(dbParameter);
+                    return true;
+                }
+                else if (_dbTypeSetter != null && _dbTypeValue != null)
+                {
+                    _dbTypeSetter.SetValue(dbParameter, _dbTypeValue, null);
+                    return true;
+                }
+                return false;
+            }
+
+            interface IEnumTypeConverter
+            {
+                bool TryParseEnum(string value, out Enum enumValue);
+            }
+
+            class EnumTypeConverter<TEnum> : IEnumTypeConverter where TEnum : struct
+            {
+                bool IEnumTypeConverter.TryParseEnum(string value, out Enum enumValue)
+                {
+                    TEnum enumValueT;
+                    if (ConversionHelpers.TryParse(value, out enumValueT))
+                    {
+                        enumValue = enumValueT as Enum;
+                        return enumValue != null;
+                    }
+                    enumValue = null;
+                    return false;
+                }
+            }
+        }
     }
 }
 

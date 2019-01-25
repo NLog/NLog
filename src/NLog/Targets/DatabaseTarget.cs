@@ -102,7 +102,6 @@ namespace NLog.Targets
 #endif
             CommandType = CommandType.Text;
             OptimizeBufferReuse = GetType() == typeof(DatabaseTarget);  // Class not sealed, reduce breaking changes
-            ParameterDbTypePropertyName = "DbType";
         }
 
         /// <summary>
@@ -263,19 +262,6 @@ namespace NLog.Targets
         public CommandType CommandType { get; set; }
 
         /// <summary>
-        /// Gets or sets property name of the SQL command parameter to set parameter DbType.
-        /// </summary>
-        /// <remarks>
-        /// May set strong DbType, for SQL Server is SqlDbType.
-        /// </remarks>
-        /// <docgen category='SQL Statement' order='12' />
-        [DefaultValue("DbType")]
-        public string ParameterDbTypePropertyName { get; set; }
-
-        ///<summary>SQL Command Parameter Converter</summary>
-        private DatabaseParameterTypeSetter _parameterTypeSetter;
-
-        /// <summary>
         /// Converter for parameter values
         /// </summary>
         [Advanced]
@@ -417,7 +403,7 @@ namespace NLog.Targets
                         InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
                     else
 #endif
-                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
+                        InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
                 }
             }
 
@@ -663,25 +649,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Ensure that the <see cref="_parameterTypeSetter"/> is set
-        /// </summary>
-        private void EnsureParameterSetter(IDbDataParameter dbParameter)
-        {
-            if (_parameterTypeSetter == null)
-            {
-                lock (SyncRoot)
-                {
-                    if (_parameterTypeSetter == null)
-                    {
-                        var converter = new DatabaseParameterTypeSetter();
-                        converter.Resolve(dbParameter, ParameterDbTypePropertyName, Parameters);
-                        _parameterTypeSetter = converter;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Build the connectionstring from the properties. 
         /// </summary>
         /// <remarks>
@@ -839,24 +806,28 @@ namespace NLog.Targets
         {
             for (int i = 0; i < databaseParameterInfos.Count; ++i)
             {
-                DatabaseParameterInfo par = databaseParameterInfos[i];
-                var dbParameter = CreateDatabaseParameter(command, par, logEvent);
+                DatabaseParameterInfo parameterInfo = databaseParameterInfos[i];
+
+                var dbParameter = CreateDatabaseParameter(command, parameterInfo, logEvent);
+
+                object value = GetParameterValue(logEvent, parameterInfo, dbParameter.ParameterName, dbParameter.DbType);
+
+                dbParameter.Value = value;
+
                 InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, dbParameter.Value, dbParameter.DbType);
                 command.Parameters.Add(dbParameter);
             }
         }
 
         /// <summary>
-        /// Create database parameter with value from <paramref name="logEvent"/>
+        /// Create database parameter
         /// </summary>
         /// <param name="command">Current command.</param>
         /// <param name="parameterInfo">Parameter configuration info.</param>
         /// <param name="logEvent">Current logevent.</param>
-        /// <returns></returns>
         protected virtual IDbDataParameter CreateDatabaseParameter(IDbCommand command, DatabaseParameterInfo parameterInfo, LogEventInfo logEvent)
         {
             IDbDataParameter dbParameter = command.CreateParameter();
-            EnsureParameterSetter(dbParameter);
             dbParameter.Direction = ParameterDirection.Input;
             if (parameterInfo.Name != null)
             {
@@ -878,22 +849,18 @@ namespace NLog.Targets
                 dbParameter.Scale = parameterInfo.Scale;
             }
 
-            _parameterTypeSetter.SetParameterDbType(dbParameter, parameterInfo);
-            object value;
-
             try
             {
-                value = GetParameterValue(logEvent, parameterInfo, dbParameter.ParameterName, dbParameter.DbType);
+                if (!parameterInfo.SetDbType(dbParameter))
+                {
+                    InternalLogger.Warn("  DatabaseTarget: Parameter: '{0}' - Failed to assign DbType={1}", dbParameter.ParameterName, parameterInfo.DbType);
+                }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                // enhance context. Already checked for must-rethrow 
-                exception.Data["parameter"] = dbParameter;
-                throw;
+                InternalLogger.Error(ex, "  DatabaseTarget: Parameter: '{0}' - Failed to assign DbType={1}", dbParameter.ParameterName, parameterInfo.DbType);
             }
 
-
-            dbParameter.Value = value;
             return dbParameter;
         }
 
