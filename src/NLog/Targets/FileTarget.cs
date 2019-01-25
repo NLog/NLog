@@ -449,6 +449,12 @@ namespace NLog.Targets
             get
             {
 #if SupportsMutex
+
+                if (!PlatformDetector.SupportsSharableMutex)
+                {
+                    return _concurrentWrites ?? false;  // Better user experience for mobile platforms
+                }
+
                 return _concurrentWrites ?? true;
 #else
                 return _concurrentWrites ?? false;  // Better user experience for mobile platforms
@@ -1747,10 +1753,30 @@ namespace NLog.Targets
 #if SupportsMutex
                     try
                     {
+                        var mutexSupportedForArchive = true;
                         if (archivedAppender is BaseMutexFileAppender mutexFileAppender)
-                            mutexFileAppender.ArchiveMutex?.WaitOne();
+                        {
+
+                            if (mutexFileAppender.ArchiveMutex == null)
+                            {
+                                mutexSupportedForArchive = false;
+                            }
+                            else
+                            {
+                                mutexFileAppender.ArchiveMutex.WaitOne();
+                            }
+                        }
                         else if (!KeepFileOpen || ConcurrentWrites)
+                        {
+                            mutexSupportedForArchive = false;
+                        }
+
+                        if (!mutexSupportedForArchive)
+                        {
                             InternalLogger.Info("FileTarget(Name={0}): Archive mutex not available: {1}", Name, archiveFile);
+                        }
+
+
                     }
                     catch (AbandonedMutexException)
                     {

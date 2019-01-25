@@ -121,11 +121,11 @@ namespace NLog.Internal
                 {
 #if SupportsMutex
                     var mutex = BaseMutexFileAppender.ForceCreateSharableMutex("NLogMutexTester");
-                    mutex.Dispose();
+                    mutex.Close(); //"dispose"
 
                     runTimeSupportsSharableMutex = true;
 #else
-                    _RunTimeSupportsSharableMutex = false;
+                    runTimeSupportsSharableMutex = false;
 #endif
                 }
                 catch (Exception ex) 

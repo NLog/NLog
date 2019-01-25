@@ -43,6 +43,7 @@ namespace NLog.Internal.FileAppenders
     using System.Security;
     using System.Threading;
     using System.Text;
+    using JetBrains.Annotations;
 
 #if SupportsMutex
 #if !NETSTANDARD
@@ -50,8 +51,8 @@ namespace NLog.Internal.FileAppenders
     using System.Security.Principal;
 #endif
     using System.Security.Cryptography;
-    using Common;
 #endif
+    using Common;
 
     /// <summary>
     /// Base class for optimized file appenders which require the usage of a mutex. 
@@ -72,9 +73,16 @@ namespace NLog.Internal.FileAppenders
         {
             if (createParameters.IsArchivingEnabled)
             {
+                if (PlatformDetector.SupportsSharableMutex)
+                {
 #if SupportsMutex
-                ArchiveMutex = CreateArchiveMutex();
+                    ArchiveMutex = CreateArchiveMutex();
 #endif
+                }
+                else
+                {
+                    InternalLogger.Debug("Mutex for file archive not supported");
+                }
             }
         }
 
@@ -83,6 +91,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets the mutually-exclusive lock for archiving files.
         /// </summary>
         /// <value>The mutex for archiving.</value>
+        [CanBeNull]
         public Mutex ArchiveMutex { get; private set; }
 
         private Mutex CreateArchiveMutex()
@@ -127,7 +136,7 @@ namespace NLog.Internal.FileAppenders
         protected Mutex CreateSharableMutex(string mutexNamePrefix)
         {
             if (!PlatformDetector.SupportsSharableMutex)
-                return new Mutex();
+                throw new Exception("Creating Mutex not supported");
 
             var name = GetMutexName(mutexNamePrefix);
 
