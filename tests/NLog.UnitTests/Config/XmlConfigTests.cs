@@ -100,6 +100,13 @@ namespace NLog.UnitTests.Config
 
             using (new InternalLoggerScope(true))
             {
+                var xml = "<nlog internalLogFile='${TempDir}test.txt'></nlog>";
+                var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+                Assert.Contains(System.IO.Path.GetTempPath(), InternalLogger.LogFile);
+            }
+
+            using (new InternalLoggerScope(true))
+            {
                 var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
                 var xml = "<nlog internalLogFile='%USERNAME%_test.txt'></nlog>";
                 var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
