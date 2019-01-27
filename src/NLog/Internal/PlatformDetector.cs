@@ -128,16 +128,16 @@ namespace NLog.Internal
                     runTimeSupportsSharableMutex = false;
 #endif
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     InternalLogger.Debug(ex, "Failed to create sharable mutex processes");
                     runTimeSupportsSharableMutex = false;
                 }
 
                 return runTimeSupportsSharableMutex.Value;
-                }
-
             }
+
+        }
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {
