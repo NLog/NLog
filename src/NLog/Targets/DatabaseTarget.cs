@@ -813,7 +813,7 @@ namespace NLog.Targets
 
                 var dbParameterValue = GetParameterValue(logEvent, parameterInfo);
 
-                dbParameter.Value = dbParameterValue ?? DBNull.Value;
+                dbParameter.Value = dbParameterValue;
 
                 InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, dbParameter.Value, dbParameter.DbType);
                 command.Parameters.Add(dbParameter);
@@ -871,14 +871,19 @@ namespace NLog.Targets
             return dbParameter;
         }
 
-        internal object GetParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
+        /// <summary>
+        /// Extract parameter value from the logevent
+        /// </summary>
+        /// <param name="logEvent">Current logevent.</param>
+        /// <param name="parameterInfo">Parameter configuration info.</param>
+        protected internal virtual object GetParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
             Type dbParameterType = parameterInfo.ParameterType;
             if (string.IsNullOrEmpty(parameterInfo.Format) && dbParameterType == typeof(string))
             {
                 if (!(parameterInfo.UseRawValue ?? false))
                 {
-                    return RenderLogEvent(parameterInfo.Layout, logEvent);
+                    return RenderLogEvent(parameterInfo.Layout, logEvent) ?? string.Empty;
                 }
             }
 
@@ -891,7 +896,7 @@ namespace NLog.Targets
                     try
                     {
                         InternalLogger.Trace("  DatabaseTarget: Attempt to convert raw value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
-                        return ParameterTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format, dbParameterCulture);
+                        return ParameterTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
                     }
                     catch (Exception ex)
                     {
@@ -910,7 +915,7 @@ namespace NLog.Targets
             {
                 InternalLogger.Trace("  DatabaseTarget: Attempt to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
                 string layoutValue = RenderLogEvent(parameterInfo.Layout, logEvent);
-                return ParameterTypeConverter.Convert(layoutValue, dbParameterType, parameterInfo.Format, dbParameterCulture);
+                return ParameterTypeConverter.Convert(layoutValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
             }
             catch (Exception ex)
             {
@@ -922,7 +927,7 @@ namespace NLog.Targets
                 if (ex.MustBeRethrown())
                     throw;
 
-                return dbParameterType?.IsAbstract() == false ? Activator.CreateInstance(dbParameterType) : null;   // Create Default Value of Type
+                return (dbParameterType?.IsAbstract() == false ? Activator.CreateInstance(dbParameterType) : null) ?? DBNull.Value;   // Create Default Value of Type
             }
         }
 
