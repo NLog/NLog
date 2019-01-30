@@ -115,8 +115,9 @@ namespace NLog.UnitTests.Config
             WriteConfigFile(configFilePath, config1);
 
             try
-            {                
+            {
                 LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+
                 Assert.True(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
 
                 var logger = LogManager.GetLogger("A");
