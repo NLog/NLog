@@ -111,12 +111,19 @@ namespace NLog.UnitTests.Config
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
+
             string configFilePath = Path.Combine(tempPath, "reload.nlog");
+
+            var pp = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
+            configFilePath = Path.Combine(pp, "NLog.dll.nlog");
+
             WriteConfigFile(configFilePath, config1);
+
 
             try
             {
-                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                
+                //LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
 
                 Assert.True(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
 
@@ -140,6 +147,61 @@ namespace NLog.UnitTests.Config
             {
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
+            }
+        }
+
+        [Fact]
+        public void TestAutoReloadOnFileChangeDefaultLocation()
+        {
+#if NETSTANDARD
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileChangeDefaultLocation because we are running in Travis");
+                return;
+            }
+#endif
+            string config1 = @"<nlog autoReload='true'>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                    <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
+                </nlog>";
+            string config2 = @"<nlog autoReload='true'>
+                    <targets><target name='debug' type='Debug' layout='[${message}]' /></targets>
+                    <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
+                </nlog>";
+            string badConfig = @"<nlog autoReload='true'>
+                    <targets><target name='debug' type='Debug' layout='(${message})' /></targets>
+                    <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>";
+
+            var nlogPath = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
+            var configFilePath = Path.Combine(nlogPath, "NLog.dll.nlog");
+
+            WriteConfigFile(configFilePath, config1);
+
+
+            try
+            {
+                Assert.True(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
+
+                var logger = LogManager.GetLogger("A");
+                logger.Debug("aaa");
+                AssertDebugLastMessage("debug", "aaa");
+
+                ChangeAndReloadConfigFile(configFilePath, badConfig, assertDidReload: false);
+
+                logger.Debug("bbb");
+                // Assert that config1 is still loaded.
+                AssertDebugLastMessage("debug", "bbb");
+
+                ChangeAndReloadConfigFile(configFilePath, config2);
+
+                logger.Debug("ccc");
+                // Assert that config2 is loaded.
+                AssertDebugLastMessage("debug", "[ccc]");
+            }
+            finally
+            {
+                if (File.Exists(configFilePath))
+                    File.Delete(configFilePath);
             }
         }
 

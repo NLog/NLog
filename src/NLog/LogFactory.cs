@@ -209,6 +209,7 @@ namespace NLog
                         try
                         {
                             _config = config;
+                            _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
                             LogConfigurationInitialized();
