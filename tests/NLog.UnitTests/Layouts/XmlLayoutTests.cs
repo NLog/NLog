@@ -559,6 +559,36 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(10, cnt);
         }
 
+        [Fact]
+        public void XmlLayout_PropertiesElementNameFormat_RenderTrickyDictionary()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements = { new XmlLayout("message", "${message}") },
+                PropertiesElementName = "{0}",
+                PropertiesElementKeyAttribute = "",
+                IncludeAllProperties = true,
+                MaxRecursionLimit = 10,
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "Monster massage"
+            };
+            IDictionary<object, object> testDictionary = new Internal.TrickyTestDictionary();
+            testDictionary.Add("key1", 13);
+            testDictionary.Add("key 2", 1.3m);
+            logEventInfo.Properties["nlogPropertyKey"] = testDictionary;
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>Monster massage</message><nlogPropertyKey><key1>13</key1><key_2>1.3</key_2></nlogPropertyKey></logevent>";
+            Assert.Equal(expected, result);
+        }
+
         private class TestList : IEnumerable<System.Collections.IEnumerable>
         {
             static List<int> _list1 = new List<int> { 17, 3 };

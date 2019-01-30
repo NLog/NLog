@@ -263,7 +263,7 @@ namespace NLog.MessageTemplates
         private bool SerializeDictionaryObject(IDictionary dictionary, string format, IFormatProvider formatProvider, StringBuilder builder, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             bool separator = false;
-            foreach (DictionaryEntry item in dictionary)
+            foreach (var item in new DictionaryEntryEnumerable(dictionary))
             {
                 if (builder.Length > MaxValueLength)
                     return false;
