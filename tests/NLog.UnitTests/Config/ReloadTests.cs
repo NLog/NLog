@@ -111,20 +111,12 @@ namespace NLog.UnitTests.Config
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
 
-
             string configFilePath = Path.Combine(tempPath, "reload.nlog");
-
-            var pp = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
-            configFilePath = Path.Combine(pp, "NLog.dll.nlog");
-
             WriteConfigFile(configFilePath, config1);
 
-
             try
-            {
-                
-                //LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
-
+            {                
+                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
                 Assert.True(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
 
                 var logger = LogManager.GetLogger("A");
