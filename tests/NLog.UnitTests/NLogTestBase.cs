@@ -67,7 +67,6 @@ namespace NLog.UnitTests
             if (LogManager.LogFactory != null)
             {
                 LogManager.LogFactory.ResetCandidateConfigFilePath();
-                LogManager.LogFactory.ResetLoggerCache();
             }
 
             LogManager.Configuration = null;

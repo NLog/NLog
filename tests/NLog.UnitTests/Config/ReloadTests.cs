@@ -45,6 +45,13 @@ namespace NLog.UnitTests.Config
 
     public class ReloadTests : NLogTestBase
     {
+        public ReloadTests()
+        {
+            if (LogManager.LogFactory != null)
+            {
+                LogManager.LogFactory.ResetLoggerCache();
+            }
+        }
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
