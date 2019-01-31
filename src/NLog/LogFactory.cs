@@ -1092,6 +1092,18 @@ namespace NLog
 
                 return values;
             }
+            public void Reset()
+            {
+                _loggerCache.Clear();
+            }
+        }
+
+        /// <remarks>
+        /// Internal for unit tests
+        /// </remarks>
+        internal void ResetLoggerCache()
+        {
+            _loggerCache.Reset();
         }
 
         /// <summary>

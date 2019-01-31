@@ -45,8 +45,10 @@ namespace NLog.UnitTests.Config
 
     public class ReloadTests : NLogTestBase
     {
-        [Fact]
-        public void TestNoAutoReload()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void TestNoAutoReload(bool useExplicitFileLoading)
         {
             string config1 = @"<nlog>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
@@ -65,7 +67,10 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                if (useExplicitFileLoading)
+                    LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                else
+                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
 
                 Assert.False(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
 
@@ -86,8 +91,10 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Fact]
-        public void TestAutoReloadOnFileChange()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void TestAutoReloadOnFileChange(bool useExplicitFileLoading)
         {
 #if NETSTANDARD
             if (IsTravis())
@@ -116,7 +123,10 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                if(useExplicitFileLoading)
+                    LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                else
+                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
 
                 Assert.True(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
 
@@ -143,63 +153,11 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Fact]
-        public void TestAutoReloadOnFileChangeDefaultLocation()
-        {
-#if NETSTANDARD
-            if (IsTravis())
-            {
-                Console.WriteLine("[SKIP] ReloadTests.TestAutoReloadOnFileChangeDefaultLocation because we are running in Travis");
-                return;
-            }
-#endif
-            string config1 = @"<nlog autoReload='true'>
-                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
-                    <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
-                </nlog>";
-            string config2 = @"<nlog autoReload='true'>
-                    <targets><target name='debug' type='Debug' layout='[${message}]' /></targets>
-                    <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
-                </nlog>";
-            string badConfig = @"<nlog autoReload='true'>
-                    <targets><target name='debug' type='Debug' layout='(${message})' /></targets>
-                    <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>";
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
 
-            var nlogPath = Path.GetDirectoryName(typeof(LogManager).Assembly.Location);
-            var configFilePath = Path.Combine(nlogPath, "NLog.dll.nlog");
-
-            WriteConfigFile(configFilePath, config1);
-
-
-            try
-            {
-                Assert.True(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
-
-                var logger = LogManager.GetLogger("A");
-                logger.Debug("aaa");
-                AssertDebugLastMessage("debug", "aaa");
-
-                ChangeAndReloadConfigFile(configFilePath, badConfig, assertDidReload: false);
-
-                logger.Debug("bbb");
-                // Assert that config1 is still loaded.
-                AssertDebugLastMessage("debug", "bbb");
-
-                ChangeAndReloadConfigFile(configFilePath, config2);
-
-                logger.Debug("ccc");
-                // Assert that config2 is loaded.
-                AssertDebugLastMessage("debug", "[ccc]");
-            }
-            finally
-            {
-                if (File.Exists(configFilePath))
-                    File.Delete(configFilePath);
-            }
-        }
-
-        [Fact]
-        public void TestAutoReloadOnFileMove()
+        public void TestAutoReloadOnFileMove(bool useExplicitFileLoading)
         {
             string config1 = @"<nlog autoReload='true'>
                     <targets><target name='debug' type='Debug' layout='${message}' /></targets>
@@ -219,7 +177,10 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                if (useExplicitFileLoading)
+                    LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                else
+                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -255,8 +216,11 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Fact]
-        public void TestAutoReloadOnFileCopy()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+
+        public void TestAutoReloadOnFileCopy(bool useExplicitFileLoading)
         {
 #if NETSTANDARD
             if (IsTravis())
@@ -283,7 +247,10 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                if (useExplicitFileLoading)
+                    LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+                else
+                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -320,8 +287,11 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Fact]
-        public void TestIncludedConfigNoReload()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+
+        public void TestIncludedConfigNoReload(bool useExplicitFileLoading)
         {
 #if NETSTANDARD
             if (IsTravis())
@@ -357,7 +327,10 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
+                if (useExplicitFileLoading)
+                    LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
+                else
+                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { mainConfigFilePath });
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -383,8 +356,11 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Fact]
-        public void TestIncludedConfigReload()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+
+        public void TestIncludedConfigReload(bool useExplicitFileLoading)
         {
 #if NETSTANDARD
             if (IsTravis())
@@ -420,7 +396,10 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
+                if (useExplicitFileLoading)
+                    LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
+                else
+                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { mainConfigFilePath });
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -446,8 +425,11 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Fact]
-        public void TestMainConfigReload()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+
+        public void TestMainConfigReload(bool useExplicitFileLoading)
         {
 #if NETSTANDARD
             if (IsTravis())
@@ -489,7 +471,10 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
+                if (useExplicitFileLoading)
+                    LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
+                else
+                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { mainConfigFilePath });
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -514,8 +499,11 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        [Fact]
-        public void TestMainConfigReloadIncludedConfigNoReload()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+
+        public void TestMainConfigReloadIncludedConfigNoReload(bool useExplicitFileLoading)
         {
 #if NETSTANDARD
             if (IsTravis())
@@ -557,7 +545,10 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
+                if (useExplicitFileLoading)
+                    LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
+                else
+                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { mainConfigFilePath });
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
