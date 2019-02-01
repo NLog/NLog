@@ -510,18 +510,18 @@ namespace NLog.Layouts
             }
         }
 
-        private void AppendXmlDictionaryObject(string propName, System.Collections.IDictionary dict, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName)
+        private void AppendXmlDictionaryObject(string propName, System.Collections.IDictionary dictionary, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName)
         {
             string propNameElement = AppendXmlPropertyValue(propName, null, TypeCode.Empty, sb, orgLength, true, ignorePropertiesElementName);
             if (!string.IsNullOrEmpty(propNameElement))
             {
-                foreach (System.Collections.DictionaryEntry entry in dict)
+                foreach (var item in new DictionaryEntryEnumerable(dictionary))
                 {
                     int beforeValueLength = sb.Length;
                     if (beforeValueLength > MaxXmlLength)
                         break;
 
-                    if (!AppendXmlPropertyObjectValue(entry.Key?.ToString(), entry.Value, Convert.GetTypeCode(entry.Value), sb, orgLength, objectsInPath, depth))
+                    if (!AppendXmlPropertyObjectValue(item.Key?.ToString(), item.Value, Convert.GetTypeCode(item.Value), sb, orgLength, objectsInPath, depth))
                     {
                         sb.Length = beforeValueLength;
                     }

@@ -2359,6 +2359,16 @@ namespace NLog.UnitTests
             return "object-to-string";
         }
 
+        [Fact]
+        public void LogEventTemplateHandleTrickyDictionary()
+        {
+            IDictionary<object, object> dictionary = new Internal.TrickyTestDictionary();
+            dictionary.Add("key1", 13);
+            dictionary.Add("key 2", 1.3m);
+            LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, "{mybad}", new object[] { dictionary });
+            var result = logEventInfo.FormattedMessage;
+            Assert.Contains("\"key1\"=13, \"key 2\"", result);
+        }
 
         [Fact]
         public void LogEventTemplateShouldHaveProperties()

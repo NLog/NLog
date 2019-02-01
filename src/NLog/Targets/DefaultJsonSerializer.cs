@@ -301,7 +301,7 @@ namespace NLog.Targets
             }
         }
 
-        private void SerializeDictionaryObject(IDictionary value, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        private void SerializeDictionaryObject(IDictionary dictionary, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             bool first = true;
 
@@ -314,7 +314,7 @@ namespace NLog.Targets
 
             int originalLength;
             destination.Append('{');
-            foreach (DictionaryEntry de in value)
+            foreach (var item in new DictionaryEntryEnumerable(dictionary))
             {
                 originalLength = destination.Length;
                 if (originalLength > MaxJsonLength)
@@ -327,7 +327,7 @@ namespace NLog.Targets
                     destination.Append(',');
                 }
 
-                var itemKey = de.Key;
+                var itemKey = item.Key;
                 var itemKeyTypeCode = Convert.GetTypeCode(itemKey);
                 if (options.QuoteKeys)
                 {
@@ -361,7 +361,7 @@ namespace NLog.Targets
                 destination.Append(':');
 
                 //only serialize, if key and value are serialized without error (e.g. due to reference loop)
-                var itemValue = de.Value;
+                var itemValue = item.Value;
                 var itemValueTypeCode = Convert.GetTypeCode(itemValue);
                 if (!SerializeObject(itemValue, itemValueTypeCode, destination, options, objectsInPath, nextDepth))
                 {

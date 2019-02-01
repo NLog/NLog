@@ -263,6 +263,16 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
+        public void SerializeTrickyDict_Test()
+        {
+            IDictionary<object,object> dictionary = new Internal.TrickyTestDictionary();
+            dictionary.Add("key1", 13);
+            dictionary.Add("key 2", 1.3m);
+            var actual = SerializeObject(dictionary);
+            Assert.Equal("{\"key1\":13,\"key 2\":1.3}", actual);
+        }
+
+        [Fact]
         public void SerializeIntegerKeyDict_Test()
         {
             var dictionary = new Dictionary<int, string>();
@@ -316,8 +326,7 @@ namespace NLog.UnitTests.Targets
             var actual = SerializeObject(newGuid);
             Assert.Equal("\"" + newGuid.ToString() + "\"", actual);
         }
-
-
+        
         [Fact]
         public void SerializeEnum_Test()
         {
@@ -325,8 +334,6 @@ namespace NLog.UnitTests.Targets
             var actual = SerializeObject(val);
             Assert.Equal("\"Method\"", actual);
         }
-
-
 
         [Fact]
         public void SerializeFlagEnum_Test()
