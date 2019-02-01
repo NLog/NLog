@@ -244,6 +244,15 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void LogRuleToStringTest_regex()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("server[*].connection[3].*", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[3]\\..*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+        }
+
+        [Fact]
         public void LogRuleToStringTest_filter()
         {
             var target = new FileTarget {Name = "file1"};
