@@ -36,6 +36,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using NLog.Internal;
@@ -575,6 +576,198 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
         }
 
+        /// <summary>
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_soap11_default_soapaction()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{getWsAddress(1)}{"api/logdoc/soap11"}'
+                                protocol='Soap11'
+                                namespace='http://tempuri.org/'
+                                methodName ='Ping'
+                                preAuthenticate='false'
+                                encoding ='UTF-8'
+                               >
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+            var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
+            var count = 1;
+            var expectedHeaders = new Dictionary<string, string>
+            {
+                {"SOAPAction", "http://tempuri.org/Ping" }
+            };
+            var context = new LogDocController.TestContext(1, count, true, expectedHeaders, null, null, true, DateTime.UtcNow);
+
+            StartOwinDocTest(context, () =>
+            {
+                logger.Info(txt);
+            });
+
+            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
+        }
+
+        /// <summary>
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_soap11_custom_soapaction()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{getWsAddress(1)}{"api/logdoc/soap11"}'
+                                protocol='Soap11'
+                                namespace='http://tempuri.org/'
+                                methodName ='Ping'
+                                preAuthenticate='false'
+                                encoding ='UTF-8'
+                                soapAction = 'http://tempuri.org/custom-namespace/Ping'
+                               >
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+            var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
+            var count = 1;
+            var expectedHeaders = new Dictionary<string, string>
+            {
+                {"SOAPAction", "http://tempuri.org/custom-namespace/Ping" }
+            };
+            var context = new LogDocController.TestContext(1, count, true, expectedHeaders, null, null, true, DateTime.UtcNow);
+
+            StartOwinDocTest(context, () =>
+            {
+                logger.Info(txt);
+            });
+
+            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
+        }
+
+        /// <summary>
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_soap12_default_soapaction()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{getWsAddress(1)}{"api/logdoc/soap12"}'
+                                protocol='Soap12'
+                                namespace='http://tempuri.org/'
+                                methodName ='Ping'
+                                preAuthenticate='false'
+                                encoding ='UTF-8'
+                               >
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+            var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
+            var count = 1;
+            var contentType = MediaTypeHeaderValue.Parse("application/soap+xml;charset=utf-8;action=\"http://tempuri.org/Ping\"");
+            var context = new LogDocController.TestContext(1, count, true, null, null, null, true, DateTime.UtcNow, contentType);
+
+            StartOwinDocTest(context, () =>
+            {
+                logger.Info(txt);
+            });
+
+            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
+        }
+
+        /// <summary>
+        /// Test the Webservice with Soap11 api - <see cref="WebServiceProtocol.Soap11"/> 
+        /// </summary>
+        [Fact]
+        public void WebserviceTest_soap12_custom_soapaction()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+                <nlog throwExceptions='true'>
+                    <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='{getWsAddress(1)}{"api/logdoc/soap12"}'
+                                protocol='Soap12'
+                                namespace='http://tempuri.org/'
+                                methodName ='Ping'
+                                preAuthenticate='false'
+                                encoding ='UTF-8'
+                                soapAction = 'http://tempuri.org/custom-namespace/Ping'
+                               >
+                            <parameter name='param1' ParameterType='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' ParameterType='System.String' layout='${{level}}'/>
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+            var txt = "test.message";   // Lets tease the Xml-Serializer, and see it can handle xml-tags
+            var count = 1;
+            var contentType = MediaTypeHeaderValue.Parse("application/soap+xml;charset=utf-8;action=\"http://tempuri.org/custom-namespace/Ping\"");
+            var context = new LogDocController.TestContext(1, count, true, null, null, null, true, DateTime.UtcNow, contentType);
+
+            StartOwinDocTest(context, () =>
+            {
+                logger.Info(txt);
+            });
+
+            Assert.Equal<int>(0, context.CountdownEvent.CurrentCount);
+        }
+
 
         /// <summary>
         /// Start/config route of WS
@@ -856,13 +1049,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                         && Context.ExpectedParam3 == complexType.Param3
                         && Context.ExpectedParam4.Date == complexType.Param4.Date)
                     {
-                        if (Context.ExpectedHeaders != null && Context.ExpectedHeaders.Count > 0)
+                        if (!ValidateHeaders())
                         {
-                            foreach (var expectedHeader in Context.ExpectedHeaders)
-                            {
-                                if (Request.Headers.GetValues(expectedHeader.Key).First() != expectedHeader.Value)
-                                    return;
-                            }
+                            return;
                         }
                         Context.CountdownEvent.Signal();
                     }
@@ -878,6 +1067,41 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 }
 
                 processRequest(complexType);
+            }
+
+            [HttpPost]
+            public void Soap11()
+            {
+                if (Context != null)
+                {
+                    if (ValidateHeaders())
+                    {
+                        Context.CountdownEvent.Signal();
+                    }
+                }
+            }
+
+            [HttpPost]
+            public void Soap12()
+            {
+                if (Context?.ExpectedContentType != null && Context.ExpectedContentType.Equals(Request.Content.Headers.ContentType))
+                {
+                    Context.CountdownEvent.Signal();
+                }
+            }
+
+            private bool ValidateHeaders()
+            {
+                if (Context.ExpectedHeaders?.Count > 0)
+                {
+                    foreach (var expectedHeader in Context.ExpectedHeaders)
+                    {
+                        if (Request.Headers.GetValues(expectedHeader.Key).First() != expectedHeader.Value)
+                            return false;
+                    }
+                }
+
+                return true;
             }
 
             public class TestContext
@@ -898,7 +1122,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
                 public DateTime ExpectedParam4 { get; }
 
-                public TestContext(int portOffset, int expectedMessages, bool xmlInsteadOfJson, Dictionary<string, string> expectedHeaders, string expected1, string expected2, bool expected3, DateTime expected4)
+                public MediaTypeHeaderValue ExpectedContentType { get; }
+
+                public TestContext(int portOffset, int expectedMessages, bool xmlInsteadOfJson, Dictionary<string, string> expectedHeaders, string expected1, string expected2, bool expected3, DateTime expected4, MediaTypeHeaderValue expectedContentType = null)
                 {
                     CountdownEvent = new CountdownEvent(expectedMessages);
                     PortOffset = portOffset;
@@ -908,6 +1134,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                     ExpectedParam2 = expected2;
                     ExpectedParam3 = expected3;
                     ExpectedParam4 = expected4;
+                    ExpectedContentType = expectedContentType;
                 }
             }
         }
