@@ -49,11 +49,11 @@
 <DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.xml" />
 <DocumentationSource sourceFile="dll_to_doc\NLog.Web.dll" />
 <DocumentationSource sourceFile="dll_to_doc\NLog.Web.xml" /></DocumentationSources>
-    <HelpTitle>NLog 4.5</HelpTitle>
+    <HelpTitle>NLog 4.6</HelpTitle>
     <CopyrightText>Copyright %28c%29 2004-2019 NLog</CopyrightText>
     <FeedbackEMailAddress>
     </FeedbackEMailAddress>
-    <CopyrightHref>http://nlog-project.org/</CopyrightHref>
+    <CopyrightHref>https://nlog-project.org/</CopyrightHref>
     <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
