@@ -74,10 +74,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                if (useExplicitFileLoading)
-                    LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
-                else
-                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
+                SetLogManagerConfiguration(useExplicitFileLoading, configFilePath);
 
                 Assert.False(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
 
@@ -96,6 +93,14 @@ namespace NLog.UnitTests.Config
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
+        }
+
+        private static void SetLogManagerConfiguration(bool useExplicitFileLoading, string configFilePath)
+        {
+            if (useExplicitFileLoading)
+                LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
+            else
+                LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
         }
 
         [Theory]
@@ -130,10 +135,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                if(useExplicitFileLoading)
-                    LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
-                else
-                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
+                SetLogManagerConfiguration(useExplicitFileLoading, configFilePath);
 
                 Assert.True(((XmlLoggingConfiguration)LogManager.Configuration).AutoReload);
 
@@ -184,10 +186,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                if (useExplicitFileLoading)
-                    LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
-                else
-                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
+                SetLogManagerConfiguration(useExplicitFileLoading, configFilePath);
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -254,10 +253,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                if (useExplicitFileLoading)
-                    LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
-                else
-                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { configFilePath });
+                SetLogManagerConfiguration(useExplicitFileLoading, configFilePath);
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -334,10 +330,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                if (useExplicitFileLoading)
-                    LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
-                else
-                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { mainConfigFilePath });
+                SetLogManagerConfiguration(useExplicitFileLoading, mainConfigFilePath);
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -403,10 +396,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                if (useExplicitFileLoading)
-                    LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
-                else
-                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { mainConfigFilePath });
+                SetLogManagerConfiguration(useExplicitFileLoading, mainConfigFilePath);
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -478,10 +468,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                if (useExplicitFileLoading)
-                    LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
-                else
-                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { mainConfigFilePath });
+                SetLogManagerConfiguration(useExplicitFileLoading, mainConfigFilePath);
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");
@@ -552,10 +539,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                if (useExplicitFileLoading)
-                    LogManager.Configuration = new XmlLoggingConfiguration(mainConfigFilePath);
-                else
-                    LogManager.LogFactory.SetCandidateConfigFilePaths(new string[] { mainConfigFilePath });
+                SetLogManagerConfiguration(useExplicitFileLoading, mainConfigFilePath);
 
                 var logger = LogManager.GetLogger("A");
                 logger.Debug("aaa");

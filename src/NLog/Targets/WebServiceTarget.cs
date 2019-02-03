@@ -137,12 +137,6 @@ namespace NLog.Targets
         public string Namespace { get; set; }
 
         /// <summary>
-        /// Gets or sets the Web service soap action name. Only used with Soap.
-        /// </summary>
-        /// <docgen category='Web Service Options' order='10' />
-        public string SoapAction { get; set; }
-
-        /// <summary>
         /// Gets or sets the protocol to be used when calling web service.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
@@ -580,8 +574,15 @@ namespace NLog.Targets
                 Target = target;
             }
 
-            protected abstract string ContentType { get; }
+            protected string ContentType => _contentType ?? (_contentType = GetContentType(Target));
+            private string _contentType;
+
             protected WebServiceTarget Target { get; private set; }
+
+            protected virtual string GetContentType(WebServiceTarget target)
+            {
+                return string.Concat("charset=", target.Encoding.WebName);
+            }
 
             public MemoryStream PrepareRequest(HttpWebRequest request, object[] parameterValues)
             {
@@ -595,7 +596,7 @@ namespace NLog.Targets
             protected virtual void InitRequest(HttpWebRequest request)
             {
                 request.Method = "POST";
-                request.ContentType = string.Concat(ContentType, "; charset=", Target.Encoding.WebName);
+                request.ContentType = ContentType;
             }
 
             protected abstract void WriteContent(MemoryStream ms, object[] parameterValues);
@@ -610,7 +611,10 @@ namespace NLog.Targets
                 _encodingFlags = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
             }
 
-            protected override string ContentType => "application/x-www-form-urlencoded";
+            protected override string GetContentType(WebServiceTarget target)
+            {
+                return string.Concat("application/x-www-form-urlencoded", "; ", base.GetContentType(target));
+            }
 
             protected override void WriteStringContent(StringBuilder builder, object[] parameterValues)
             {
@@ -623,11 +627,15 @@ namespace NLog.Targets
             private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = ConfigurationItemFactory.Default.JsonConverter);
             private IJsonConverter _jsonConverter;
 
-            public HttpPostJsonFormatter(WebServiceTarget target) : base(target)
+            public HttpPostJsonFormatter(WebServiceTarget target)
+                : base(target)
             {
             }
 
-            protected override string ContentType => "application/json";
+            protected override string GetContentType(WebServiceTarget target)
+            {
+                return string.Concat("application/json", "; ", base.GetContentType(target));
+            }
 
             protected override void WriteStringContent(StringBuilder builder, object[] parameterValues)
             {
@@ -657,18 +665,27 @@ namespace NLog.Targets
 
         private class HttpPostSoap11Formatter : HttpPostSoapFormatterBase
         {
+            private readonly string _defaultSoapAction;
+
             public HttpPostSoap11Formatter(WebServiceTarget target) : base(target)
             {
+                _defaultSoapAction = GetDefaultSoapAction(target);
             }
 
             protected override string SoapEnvelopeNamespace => SoapEnvelopeNamespaceUri;
 
             protected override string SoapName => "soap";
 
+            protected override string GetContentType(WebServiceTarget target)
+            {
+                return string.Concat("text/xml", "; ", base.GetContentType(target));
+            }
+
             protected override void InitRequest(HttpWebRequest request)
             {
                 base.InitRequest(request);
-                request.Headers["SOAPAction"] = GetSoapAction();
+                if (Target.Headers?.Count == 0 || string.IsNullOrEmpty(request.Headers["SOAPAction"]))
+                    request.Headers["SOAPAction"] = _defaultSoapAction;
             }
         }
 
@@ -682,12 +699,22 @@ namespace NLog.Targets
 
             protected override string SoapName => "soap12";
 
-            protected override string ContentType => "application/soap+xml";
+            protected override string GetContentType(WebServiceTarget target)
+            {
+                return GetContentTypeSoap12(target, GetDefaultSoapAction(target));
+            }
 
             protected override void InitRequest(HttpWebRequest request)
             {
                 base.InitRequest(request);
-                request.ContentType += $@"; action=""{GetSoapAction()}""";
+                string nonDefaultSoapAction = Target.Headers?.Count > 0 ? request.Headers["SOAPAction"] : string.Empty;
+                if (!string.IsNullOrEmpty(nonDefaultSoapAction))
+                    request.ContentType = GetContentTypeSoap12(Target, nonDefaultSoapAction);
+            }
+
+            private string GetContentTypeSoap12(WebServiceTarget target, string soapAction)
+            {
+                return string.Concat("application/soap+xml", "; ", base.GetContentType(target), "; action=\"", soapAction, "\"");
             }
         }
 
@@ -719,17 +746,11 @@ namespace NLog.Targets
                 xtw.Flush();
             }
 
-            protected string GetSoapAction()
+            protected static string GetDefaultSoapAction(WebServiceTarget target)
             {
-                string soapAction = Target.SoapAction;
-                if (string.IsNullOrEmpty(soapAction))
-                {
-                    soapAction = Target.Namespace.EndsWith("/", StringComparison.Ordinal)
-                        ? string.Concat(Target.Namespace, Target.MethodName)
-                        : string.Concat(Target.Namespace, "/", Target.MethodName);
-                }
-
-                return soapAction;
+                return target.Namespace.EndsWith("/", StringComparison.Ordinal)
+                    ? string.Concat(target.Namespace, target.MethodName)
+                    : string.Concat(target.Namespace, "/", target.MethodName);
             }
         }
 
@@ -769,14 +790,17 @@ namespace NLog.Targets
         {
             private readonly XmlWriterSettings _xmlWriterSettings;
 
-            protected override string ContentType => "application/xml";
-
             public HttpPostXmlDocumentFormatter(WebServiceTarget target) : base(target)
             {
                 if (string.IsNullOrEmpty(target.XmlRoot))
                     throw new InvalidOperationException("WebServiceProtocol.Xml requires WebServiceTarget.XmlRoot to be set.");
 
                 _xmlWriterSettings = new XmlWriterSettings { Encoding = target.Encoding, OmitXmlDeclaration = true, Indent = false };
+            }
+
+            protected override string GetContentType(WebServiceTarget target)
+            {
+                return string.Concat("application/xml", "; ", base.GetContentType(target));
             }
 
             protected override void WriteContent(MemoryStream ms, object[] parameterValues)
@@ -797,8 +821,6 @@ namespace NLog.Targets
             protected HttpPostXmlFormatterBase(WebServiceTarget target) : base(target)
             {
             }
-
-            protected override string ContentType => "text/xml";
 
             protected void WriteAllParametersToCurrenElement(XmlWriter currentXmlWriter, object[] parameterValues)
             {
