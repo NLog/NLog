@@ -680,6 +680,7 @@ Dispose()
             yield return new object[] { "3", DbType.UInt32, (uint)3 };
             yield return new object[] { "3", DbType.UInt64, (ulong)3 };
             yield return new object[] { "3", DbType.AnsiString, "3" };
+            yield return new object[] { "${db-null}", DbType.DateTime, DBNull.Value };
             //todo binary
             //todo default
 

@@ -896,6 +896,9 @@ namespace NLog.Targets
                     try
                     {
                         InternalLogger.Trace("  DatabaseTarget: Attempt to convert raw value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
+                        if (ReferenceEquals(rawValue, DBNull.Value))
+                            return rawValue;
+
                         return ParameterTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
                     }
                     catch (Exception ex)
@@ -922,7 +925,7 @@ namespace NLog.Targets
                 if (ex.MustBeRethrownImmediately())
                     throw;
 
-                InternalLogger.Trace(ex, "  DatabaseTarget: Failed to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
+                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
 
                 if (ex.MustBeRethrown())
                     throw;
