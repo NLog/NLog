@@ -244,7 +244,7 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void LogRuleToStringTest_wildcards()
+        public void LogRuleToStringTest_wildcardsRegex()
         {
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("server[*].connection[?].*", target);
@@ -264,6 +264,81 @@ namespace NLog.UnitTests.Config
             Assert.False(loggingRule.NameMatches("server[1234].connection[3].reader"));
             Assert.True(loggingRule.NameMatches("server[1234].connection[34].reader"));
             Assert.False(loggingRule.NameMatches("server[1234].connection[345].reader"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_wildcardsRegex2()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("fo?bar*", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (^fo.bar.*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
+            Assert.True(loggingRule.NameMatches("foAbar.bazbaz"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.False(loggingRule.NameMatches("Foobar"));
+            Assert.False(loggingRule.NameMatches("fooba"));
+            Assert.False(loggingRule.NameMatches("xfoobar"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_wildcardsRegex3()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("fo*bar*", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (^fo.*bar.*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
+            Assert.True(loggingRule.NameMatches("foAbar.bazbaz"));
+            Assert.True(loggingRule.NameMatches("foABCDEFGbar.bazbaz"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.False(loggingRule.NameMatches("Foobar"));
+            Assert.False(loggingRule.NameMatches("fooba"));
+            Assert.False(loggingRule.NameMatches("xfoobar"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_wildcardsStartsWith()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("foobar*", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (foobar:StartsWith) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.False(loggingRule.NameMatches("Foobar"));
+            Assert.False(loggingRule.NameMatches("fooba"));
+            Assert.False(loggingRule.NameMatches("xfoobar"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_wildcardsEndsWith()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("*foobar", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (foobar:EndsWith) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("bazbaz.foobar"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.False(loggingRule.NameMatches("Foobar"));
+            Assert.False(loggingRule.NameMatches("oobar"));
+            Assert.False(loggingRule.NameMatches("foobarx"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_wildcardsContains()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("*foobar*", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (foobar:Contains) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("bazbaz.foobar.bimbum"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.True(loggingRule.NameMatches("foobar.bimbum"));
+            Assert.True(loggingRule.NameMatches("bazbaz.foobar"));
+            Assert.False(loggingRule.NameMatches("Foobar"));
+            Assert.False(loggingRule.NameMatches("oobar"));
+            Assert.False(loggingRule.NameMatches("fooba"));
         }
 
         [Fact]

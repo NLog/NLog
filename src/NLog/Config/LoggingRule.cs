@@ -120,6 +120,9 @@ namespace NLog.Config
         {
             All,
             Equals,
+            StartsWith,
+            EndsWith,
+            Contains,
             Regex,
         }
 
@@ -170,8 +173,10 @@ namespace NLog.Config
                 _loggerNamePattern = value;
                 _loggerNameMatchRegex = null;
 
-                int wildcardPos = _loggerNamePattern.IndexOfAny(new char[] { '*', '?' });
-                if (wildcardPos < 0)
+                int starPos1 = _loggerNamePattern.IndexOf('*');
+                int starPos2 = _loggerNamePattern.IndexOf('*', starPos1 + 1);
+                int questionPos = _loggerNamePattern.IndexOf('?');
+                if (starPos1 < 0 && questionPos < 0)
                 {
                     _loggerNameMatchMode = MatchMode.Equals;
                     _loggerNameMatchArgument = value;
@@ -182,6 +187,30 @@ namespace NLog.Config
                     _loggerNameMatchArgument = string.Empty;
                     _loggerNameMatchMode = MatchMode.All;
                     return;
+                }
+                if(questionPos < 0)
+                {
+                    if(starPos1 == 0 && starPos2 == _loggerNamePattern.Length-1)
+                    {
+                        _loggerNameMatchArgument = _loggerNamePattern.Substring(1, _loggerNamePattern.Length - 2);
+                        _loggerNameMatchMode = MatchMode.Contains;
+                        return;
+                    }
+                    if(starPos2<0)
+                    {
+                        if(starPos1 == 0)
+                        {
+                            _loggerNameMatchArgument = _loggerNamePattern.Substring(1);
+                            _loggerNameMatchMode = MatchMode.EndsWith;
+                            return;
+                        }
+                        if (starPos1 == _loggerNamePattern.Length - 1)
+                        {
+                            _loggerNameMatchArgument = _loggerNamePattern.Substring(0, _loggerNamePattern.Length - 1);
+                            _loggerNameMatchMode = MatchMode.StartsWith;
+                            return;
+                        }
+                    }
                 }
                 _loggerNameMatchMode = MatchMode.Regex;
                 _loggerNameMatchArgument =
@@ -345,7 +374,12 @@ namespace NLog.Config
                 default:
                 case MatchMode.Equals:
                     return loggerName.Equals(_loggerNameMatchArgument, StringComparison.Ordinal);
-
+                case MatchMode.StartsWith:
+                    return loggerName.StartsWith(_loggerNameMatchArgument, StringComparison.Ordinal);
+                case MatchMode.EndsWith:
+                    return loggerName.EndsWith(_loggerNameMatchArgument, StringComparison.Ordinal);
+                case MatchMode.Contains:
+                    return loggerName.IndexOf(_loggerNameMatchArgument, StringComparison.Ordinal) >= 0;
                 case MatchMode.Regex:
                     return _loggerNameMatchRegex.IsMatch(loggerName);
 
