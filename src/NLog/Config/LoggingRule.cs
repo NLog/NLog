@@ -374,12 +374,16 @@ namespace NLog.Config
                 default:
                 case MatchMode.Equals:
                     return loggerName.Equals(_loggerNameMatchArgument, StringComparison.Ordinal);
+
                 case MatchMode.StartsWith:
                     return loggerName.StartsWith(_loggerNameMatchArgument, StringComparison.Ordinal);
+
                 case MatchMode.EndsWith:
                     return loggerName.EndsWith(_loggerNameMatchArgument, StringComparison.Ordinal);
+
                 case MatchMode.Contains:
                     return loggerName.IndexOf(_loggerNameMatchArgument, StringComparison.Ordinal) >= 0;
+
                 case MatchMode.Regex:
                     return _loggerNameMatchRegex.IsMatch(loggerName);
 
