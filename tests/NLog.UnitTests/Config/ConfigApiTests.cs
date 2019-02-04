@@ -244,6 +244,28 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void LogRuleToStringTest_empty()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (:Equals) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches(""));
+            Assert.False(loggingRule.NameMatches("x"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_onechar()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("a", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (a:Equals) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("a"));
+            Assert.False(loggingRule.NameMatches("x"));
+        }
+
+        [Fact]
         public void LogRuleToStringTest_wildcardsRegex()
         {
             var target = new FileTarget { Name = "file1" };
@@ -298,6 +320,45 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void LogRuleToStringTest_wildcardsRegex4()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("?", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (^.$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("f"));
+            Assert.False(loggingRule.NameMatches("fo"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_wildcardsRegex5()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("***", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (^.*.*.*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.True(loggingRule.NameMatches("Foobar"));
+            Assert.True(loggingRule.NameMatches("fooba"));
+            Assert.True(loggingRule.NameMatches("xfoobar"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_wildcardsStarStar()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("**", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (:Contains) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.True(loggingRule.NameMatches("Foobar"));
+            Assert.True(loggingRule.NameMatches("fooba"));
+            Assert.True(loggingRule.NameMatches("xfoobar"));
+        }
+
+        [Fact]
         public void LogRuleToStringTest_wildcardsStartsWith()
         {
             var target = new FileTarget { Name = "file1" };
@@ -308,6 +369,19 @@ namespace NLog.UnitTests.Config
             Assert.True(loggingRule.NameMatches("foobar"));
             Assert.False(loggingRule.NameMatches("Foobar"));
             Assert.False(loggingRule.NameMatches("fooba"));
+            Assert.False(loggingRule.NameMatches("xfoobar"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_wildcardsStartsWith2()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("f*", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (f:StartsWith) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.False(loggingRule.NameMatches("Foobar"));
             Assert.False(loggingRule.NameMatches("xfoobar"));
         }
 
@@ -326,6 +400,20 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void LogRuleToStringTest_wildcardsEndsWith2()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("*r", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (r:EndsWith) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("bazbaz.foobar"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.False(loggingRule.NameMatches("FoobaR"));
+            Assert.False(loggingRule.NameMatches("foobarx"));
+        }
+
+
+        [Fact]
         public void LogRuleToStringTest_wildcardsContains()
         {
             var target = new FileTarget { Name = "file1" };
@@ -339,6 +427,21 @@ namespace NLog.UnitTests.Config
             Assert.False(loggingRule.NameMatches("Foobar"));
             Assert.False(loggingRule.NameMatches("oobar"));
             Assert.False(loggingRule.NameMatches("fooba"));
+        }
+
+        [Fact]
+        public void LogRuleToStringTest_wildcardsContains2()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("*o*", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (o:Contains) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("bazbaz.foobar.bimbum"));
+            Assert.True(loggingRule.NameMatches("foobar"));
+            Assert.True(loggingRule.NameMatches("foobar.bimbum"));
+            Assert.True(loggingRule.NameMatches("bazbaz.foobar"));
+            Assert.False(loggingRule.NameMatches("FOObar"));
+            Assert.False(loggingRule.NameMatches("bar"));
         }
 
         [Fact]
