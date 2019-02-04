@@ -244,12 +244,26 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void LogRuleToStringTest_regex()
+        public void LogRuleToStringTest_wildcards()
         {
             var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("server[*].connection[3].*", target);
+            var loggingRule = new LoggingRule("server[*].connection[?].*", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[3]\\..*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[.]\\..*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.True(loggingRule.NameMatches("server[1234].connection[3].reader"));
+            Assert.True(loggingRule.NameMatches("server[1234].connection[A].reader"));
+            Assert.True(loggingRule.NameMatches("server[1234].connection[3]."));
+            Assert.False(loggingRule.NameMatches("server[1234].connection[3]"));
+            Assert.True(loggingRule.NameMatches("server[].connection[3]."));
+            Assert.False(loggingRule.NameMatches("Server[1234].connection[3].reader"));
+            Assert.False(loggingRule.NameMatches("Server[1234].connection[34].reader"));
+            Assert.False(loggingRule.NameMatches("Server[1234].connection[].reader"));
+            loggingRule = new LoggingRule("server[*].connection[??].*", target);
+            s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[..]\\..*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.False(loggingRule.NameMatches("server[1234].connection[3].reader"));
+            Assert.True(loggingRule.NameMatches("server[1234].connection[34].reader"));
+            Assert.False(loggingRule.NameMatches("server[1234].connection[345].reader"));
         }
 
         [Fact]

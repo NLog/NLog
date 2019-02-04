@@ -156,7 +156,10 @@ namespace NLog.Config
         /// Gets or sets logger name pattern.
         /// </summary>
         /// <remarks>
-        /// Logger name pattern. It may include one or more '*' wildcard at any position.
+        /// Logger name pattern. 
+        /// It may include one or more '*' or '?' wildcards at any position.
+        ///  - '*' means zero or more occurrecnces of any character
+        ///  - '?' means exactly one occurrence of any character
         /// </remarks>
         public string LoggerNamePattern
         {
@@ -167,8 +170,8 @@ namespace NLog.Config
                 _loggerNamePattern = value;
                 _loggerNameMatchRegex = null;
 
-                int starPos = _loggerNamePattern.IndexOf('*');
-                if (starPos < 0)
+                int wildcardPos = _loggerNamePattern.IndexOfAny(new char[] { '*', '?' });
+                if (wildcardPos < 0)
                 {
                     _loggerNameMatchMode = MatchMode.Equals;
                     _loggerNameMatchArgument = value;
@@ -183,7 +186,9 @@ namespace NLog.Config
                 _loggerNameMatchMode = MatchMode.Regex;
                 _loggerNameMatchArgument =
                     '^' +
-                    Regex.Escape(_loggerNamePattern).Replace("\\*", ".*")
+                    Regex.Escape(_loggerNamePattern)
+                        .Replace("\\*", ".*")
+                        .Replace("\\?", ".")
                     + '$';
                 _loggerNameMatchRegex = new Regex(_loggerNameMatchArgument, RegexOptions.CultureInvariant);
 
