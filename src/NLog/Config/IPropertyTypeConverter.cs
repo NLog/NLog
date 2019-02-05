@@ -31,36 +31,23 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-
-using System.Data;
-using JetBrains.Annotations;
-
-namespace NLog.Targets
+namespace NLog.Config
 {
+    using System;
+
     /// <summary>
-    /// Convert values for the database target
+    /// Convert object-value into specified type
     /// </summary>
-    public interface IDatabaseValueConverter
+    public interface IPropertyTypeConverter
     {
         /// <summary>
-        /// Convert layout value to parameter value
+        /// Parses the input value and converts into the wanted type
         /// </summary>
-        /// <param name="value">Current value after rendering.</param>
-        /// <param name="dbType">Configured DbType, or DbType after setting the SqlDbType/OracleDyType property</param>
-        /// <param name="parameterInfo">The configured parameterInfo.</param>
-        /// <returns>Converted object that suits with <paramref name="dbType"/>.</returns>
-        object ConvertFromString(string value, DbType dbType, [NotNull] DatabaseParameterInfo parameterInfo);
-
-        /// <summary>
-        /// Convert rawvalue to parameter value
-        /// </summary>
-        /// <param name="rawValue">Current rawvalue after rendering raw (non-string).</param>
-        /// <param name="dbType">Configured DbType, or DbType after setting the SqlDbType/OracleDyType property</param>
-        /// <param name="parameterInfo">The configured parameterInfo.</param>
-        /// <returns>Converted object that suits with <paramref name="dbType"/>.</returns>
-        object ConvertFromObject(object rawValue, DbType dbType, [NotNull] DatabaseParameterInfo parameterInfo);
+        /// <param name="propertyValue">Input Value</param>
+        /// <param name="propertyType">Wanted Type</param>
+        /// <param name="format">Format to use when parsing</param>
+        /// <param name="formatProvider">Culture to use when parsing</param>
+        /// <returns>Output value with wanted type</returns>
+        object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider);
     }
 }
-
-#endif

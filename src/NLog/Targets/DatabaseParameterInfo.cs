@@ -38,11 +38,12 @@ namespace NLog.Targets
     using System;
     using System.ComponentModel;
     using System.Data;
+    using System.Globalization;
+    using System.Reflection;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Layouts;
     using NLog.Internal;
-    using System.Reflection;
+    using NLog.Layouts;
 
     /// <summary>
     /// Represents a parameter to a Database target.
@@ -110,6 +111,13 @@ namespace NLog.Targets
         public string Format { get; set; }
 
         /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+        [DefaultValue(null)]
+        public CultureInfo Culture { get; set; }
+
+        /// <summary>
         /// Gets or sets the database parameter size.
         /// </summary>
         /// <docgen category='Parameter Options' order='4' />
@@ -130,6 +138,13 @@ namespace NLog.Targets
         [DefaultValue(0)]
         public byte Scale { get; set; }
 
+        /// <summary>
+        /// Gets or sets the type of the parameter.
+        /// </summary>
+        [DefaultValue(typeof(string))]
+        public Type ParameterType { get => _parameterType ?? _cachedDbTypeSetter?.ParameterType ?? typeof(string); set => _parameterType = value; }
+        private Type _parameterType;
+
         internal bool SetDbType(IDbDataParameter dbParameter)
         {
             if (!string.IsNullOrEmpty(DbType))
@@ -149,15 +164,17 @@ namespace NLog.Targets
 
         class DbTypeSetter
         {
-            private readonly Type _dbParameterType;
+            private readonly Type _dbPropertyInfoType;
             private readonly string _dbTypeName;
             private readonly PropertyInfo _dbTypeSetter;
             private readonly Enum _dbTypeValue;
-            Action<IDbDataParameter> _dbTypeSetterFast;
+            private Action<IDbDataParameter> _dbTypeSetterFast;
+
+            public Type ParameterType { get; }
 
             public DbTypeSetter(Type dbParameterType, string dbTypeName)
             {
-                _dbParameterType = dbParameterType;
+                _dbPropertyInfoType = dbParameterType;
                 _dbTypeName = dbTypeName;
                 if (!StringHelpers.IsNullOrWhiteSpace(dbTypeName))
                 {
@@ -172,6 +189,7 @@ namespace NLog.Targets
                             {
                                 _dbTypeSetter = propInfo;
                                 _dbTypeValue = enumType;
+                                ParameterType = TryParseParameterType(enumType.ToString());
                             }
                         }
                     }
@@ -179,15 +197,88 @@ namespace NLog.Targets
                     {
                         if (ConversionHelpers.TryParse(dbTypeNames[dbTypeNames.Length - 1], out DbType dbType))
                         {
+                            _dbTypeValue = dbType;
+                            ParameterType = TryLookupParameterType(dbType);
                             _dbTypeSetterFast = (p) => p.DbType = dbType;
                         }
                     }
                 }
             }
 
+            private static Type TryLookupParameterType(DbType dbType)
+            {
+                switch (dbType)
+                {
+                    case System.Data.DbType.AnsiString:
+                    case System.Data.DbType.String:
+                    case System.Data.DbType.AnsiStringFixedLength:
+                    case System.Data.DbType.StringFixedLength:
+                    case System.Data.DbType.Xml:
+                        return typeof(string);
+                    case System.Data.DbType.Byte:
+                        return typeof(byte);
+                    case System.Data.DbType.SByte:
+                        return typeof(sbyte);
+                    case System.Data.DbType.Boolean:
+                        return typeof(bool);
+                    case System.Data.DbType.Date:
+                    case System.Data.DbType.DateTime:
+                    case System.Data.DbType.DateTime2:
+                        return typeof(DateTime);
+                    case System.Data.DbType.DateTimeOffset:
+                        return typeof(DateTimeOffset);
+                    case System.Data.DbType.Decimal:
+                    case System.Data.DbType.VarNumeric:
+                    case System.Data.DbType.Currency:
+                        return typeof(decimal);
+                    case System.Data.DbType.Double:
+                        return typeof(double);
+                    case System.Data.DbType.Guid:
+                        return typeof(Guid);
+                    case System.Data.DbType.Int16:
+                        return typeof(short);
+                    case System.Data.DbType.Int32:
+                        return typeof(int);
+                    case System.Data.DbType.Int64:
+                        return typeof(long);
+                    case System.Data.DbType.Object:
+                        return typeof(object);
+                    case System.Data.DbType.Single:
+                        return typeof(float);
+                    case System.Data.DbType.Time:
+                        return typeof(TimeSpan);
+                    case System.Data.DbType.UInt16:
+                        return typeof(ushort);
+                    case System.Data.DbType.UInt32:
+                        return typeof(uint);
+                    case System.Data.DbType.UInt64:
+                        return typeof(ulong);
+                }
+
+                return null;
+            }
+
+            private Type TryParseParameterType(string dbTypeString)
+            {
+                if (dbTypeString.IndexOf("Date", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(DateTime);
+                else if (dbTypeString.IndexOf("Timestamp", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(DateTime);
+                else if (dbTypeString.IndexOf("Double", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(double);
+                else if (dbTypeString.IndexOf("Decimal", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(decimal);
+                else if (dbTypeString.IndexOf("Bool", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(bool);
+                else if (dbTypeString.IndexOf("Guid", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(Guid);
+
+                return null;
+            }
+
             public bool IsValid(Type dbParameterType, string dbTypeName)
             {
-                if (ReferenceEquals(_dbParameterType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName))
+                if (ReferenceEquals(_dbPropertyInfoType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName))
                 {
                     if (_dbTypeSetterFast == null && _dbTypeSetter != null && _dbTypeValue != null)
                     {

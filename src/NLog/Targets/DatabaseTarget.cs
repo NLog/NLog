@@ -262,13 +262,6 @@ namespace NLog.Targets
         public CommandType CommandType { get; set; }
 
         /// <summary>
-        /// Converter for parameter values
-        /// </summary>
-        [Advanced]
-        [NLogConfigurationIgnoreProperty]
-        public static IDatabaseValueConverter ParameterValueConverter { get; set; } = new DatabaseValueConverter();
-
-        /// <summary>
         /// Gets the collection of parameters. Each parameter contains a mapping
         /// between NLog layout and a database named or positional parameter.
         /// </summary>
@@ -284,6 +277,13 @@ namespace NLog.Targets
 #endif
 
         internal Type ConnectionType { get; set; }
+
+        private IPropertyTypeConverter PropertyTypeConverter
+        {
+            get => _propertyTypeConverter ?? (_propertyTypeConverter = ConfigurationItemFactory.Default.PropertyTypeConverter);
+            set => _propertyTypeConverter = value;
+        }
+        private IPropertyTypeConverter _propertyTypeConverter;
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -509,6 +509,7 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
+            PropertyTypeConverter = null;
             base.CloseTarget();
             InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of CloseTarget", Name);
             CloseConnection();
@@ -810,9 +811,9 @@ namespace NLog.Targets
 
                 var dbParameter = CreateDatabaseParameter(command, parameterInfo, logEvent);
 
-                object value = GetParameterValue(logEvent, parameterInfo, dbParameter.ParameterName, dbParameter.DbType);
+                var dbParameterValue = GetParameterValue(logEvent, parameterInfo);
 
-                dbParameter.Value = value;
+                dbParameter.Value = dbParameterValue;
 
                 InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, dbParameter.Value, dbParameter.DbType);
                 command.Parameters.Add(dbParameter);
@@ -853,113 +854,84 @@ namespace NLog.Targets
             {
                 if (!parameterInfo.SetDbType(dbParameter))
                 {
-                    InternalLogger.Warn("  DatabaseTarget: Parameter: '{0}' - Failed to assign DbType={1}", dbParameter.ParameterName, parameterInfo.DbType);
+                    InternalLogger.Warn("  DatabaseTarget: Parameter: '{0}' - Failed to assign DbType={1}", parameterInfo.Name, parameterInfo.DbType);
                 }
             }
             catch (Exception ex)
             {
-                InternalLogger.Error(ex, "  DatabaseTarget: Parameter: '{0}' - Failed to assign DbType={1}", dbParameter.ParameterName, parameterInfo.DbType);
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Error(ex, "  DatabaseTarget: Parameter: '{0}' - Failed to assign DbType={1}", parameterInfo.Name, parameterInfo.DbType);
+
+                if (ex.MustBeRethrown())
+                    throw;
             }
 
             return dbParameter;
         }
 
-
         /// <summary>
-        /// Get (converted) parameter value, including fallbacks
+        /// Extract parameter value from the logevent
         /// </summary>
         /// <param name="logEvent">Current logevent.</param>
-        /// <param name="parameterInfo">Parameter config</param>
-        /// <param name="parameterName"></param>
-        /// <param name="dbType"></param>
-        /// <returns></returns>
-        internal object GetParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo, string parameterName, DbType dbType)
+        /// <param name="parameterInfo">Parameter configuration info.</param>
+        protected internal virtual object GetParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
-            //returns: should rethrow
-            bool HandleException(Exception exception, string errorMessage)
+            Type dbParameterType = parameterInfo.ParameterType;
+            if (string.IsNullOrEmpty(parameterInfo.Format) && dbParameterType == typeof(string))
             {
-                exception.Data["parameterInfo"] = parameterInfo;
-
-                var errorPreMessage = "DatabaseTarget: parameter '{0}'";
-                InternalLogger.Error(exception, $"  {errorPreMessage}: {errorMessage}", parameterName, dbType);
-
-                if (exception.MustBeRethrownImmediately())
+                if (!(parameterInfo.UseRawValue ?? false))
                 {
-                    return true;
+                    return RenderLogEvent(parameterInfo.Layout, logEvent) ?? string.Empty;
                 }
-
-                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of exception", Name);
-                CloseConnection();
-
-                if (exception.MustBeRethrown())
-                {
-                    return true;
-                }
-
-                return false;
             }
 
-            object value = null;
-            var valueSet = false;
-            var useRawValue = parameterInfo.UseRawValue == true || (parameterInfo.UseRawValue == null && !IsStringyDbType(dbType));
-            InternalLogger.Trace("  DatabaseTarget: {0} for '{1}'", useRawValue ? "use RawValue" : "don't use RawValue", parameterName);
-            if (useRawValue)
+            IFormatProvider dbParameterCulture = parameterInfo.Culture ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
+
+            if (parameterInfo.UseRawValue ?? true)
             {
                 if (parameterInfo.Layout.TryGetRawValue(logEvent, out var rawValue))
                 {
                     try
                     {
-                        InternalLogger.Trace("  DatabaseTarget: got raw value for '{0}'", parameterName);
-                        value = ParameterValueConverter.ConvertFromObject(rawValue, dbType, parameterInfo);
-                        valueSet = true;
+                        InternalLogger.Trace("  DatabaseTarget: Attempt to convert raw value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
+                        if (ReferenceEquals(rawValue, DBNull.Value))
+                            return rawValue;
+
+                        return PropertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
                     }
-                    catch (Exception exception)
+                    catch (Exception ex)
                     {
-                        exception.Data["rawValue"] = rawValue;
-                        const string errorMessage = "converting object to '{1}` failed. Try render and parse.";
-                        var rethrow = HandleException(exception, errorMessage);
-                        if (rethrow)
-                        {
+                        if (ex.MustBeRethrownImmediately())
                             throw;
-                        }
+
+                        InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
+
+                        if (ex.MustBeRethrown())
+                            throw;
                     }
-                }
-                else
-                {
-                    InternalLogger.Trace("  DatabaseTarget: no RawValue retrieved for '{0}'", parameterName);
                 }
             }
 
-            if (!valueSet)
+            try
             {
-                InternalLogger.Trace("  DatabaseTarget: got string value for '{0}'", parameterName);
-                string stringValue = RenderLogEvent(parameterInfo.Layout, logEvent);
-                try
-                {
-
-                    value = ParameterValueConverter.ConvertFromString(stringValue, dbType, parameterInfo);
-                }
-                catch (Exception exception)
-                {
-                    exception.Data["stringValue"] = stringValue;
-                    const string errorMessage = "converting string to '{1}` failed. We use the stringValue";
-                    var rethrow = HandleException(exception, errorMessage);
-                    if (rethrow)
-                    {
-                        throw;
-                    }
-
-                    return stringValue;
-                }
+                InternalLogger.Trace("  DatabaseTarget: Attempt to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
+                string layoutValue = RenderLogEvent(parameterInfo.Layout, logEvent);
+                return PropertyTypeConverter.Convert(layoutValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
             }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
 
-            return value;
-        }
+                InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
 
-        private static bool IsStringyDbType(DbType dbType)
-        {
-            return dbType == DbType.AnsiString || dbType == DbType.String || dbType == DbType.AnsiStringFixedLength ||
-                   dbType == DbType.StringFixedLength;
+                if (ex.MustBeRethrown())
+                    throw;
+
+                return (dbParameterType?.IsAbstract() == false ? Activator.CreateInstance(dbParameterType) : null) ?? DBNull.Value;   // Create Default Value of Type
+            }
         }
 
 #if NETSTANDARD1_0

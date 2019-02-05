@@ -61,6 +61,20 @@ namespace NLog.Targets
         [ArrayParameter(typeof(MethodCallParameter), "parameter")]
         public IList<MethodCallParameter> Parameters { get; private set; }
 
+        private IPropertyTypeConverter PropertyTypeConverter
+        {
+            get => _propertyTypeConverter ?? (_propertyTypeConverter = ConfigurationItemFactory.Default.PropertyTypeConverter);
+            set => _propertyTypeConverter = value;
+        }
+        private IPropertyTypeConverter _propertyTypeConverter;
+
+        /// <inheritdoc/>
+        protected override void CloseTarget()
+        {
+            PropertyTypeConverter = null;
+            base.CloseTarget();
+        }
+
         /// <summary>
         /// Prepares an array of parameters to be passed based on the logging event and calls DoInvoke().
         /// </summary>
@@ -72,7 +86,8 @@ namespace NLog.Targets
             {
                 var param = Parameters[i];
                 var parameterValue = RenderLogEvent(param.Layout, logEvent.LogEvent);
-                parameters[i] = Convert.ChangeType(parameterValue, param.ParameterType, CultureInfo.InvariantCulture);
+                parameters[i] = param.ParameterType == typeof(string) ? parameterValue :
+                        PropertyTypeConverter.Convert(parameterValue, param.ParameterType, null, CultureInfo.InvariantCulture);
             }
 
             DoInvoke(parameters, logEvent);

@@ -472,9 +472,9 @@ Dispose()
         }
 
         [Theory]
-        [InlineData(true, false)] 
+        [InlineData(true, false)]
         [InlineData(false, true)]
-        [InlineData(null, true)]  
+        [InlineData(null, true)]
         public void LevelParameterTest(bool? rawValue, bool expectedNumber)
         {
             MockDbConnection.ClearLog();
@@ -602,11 +602,10 @@ Dispose()
                 Name = parameterName,
                 UseRawValue = useRawValue
             };
-
+            databaseParameterInfo.SetDbType(new MockDbConnection().CreateCommand().CreateParameter());
 
             // Act
-
-            var result = new DatabaseTarget().GetParameterValue(logEventInfo, databaseParameterInfo, parameterName, dbtype);
+            var result = new DatabaseTarget().GetParameterValue(logEventInfo, databaseParameterInfo);
 
             //Assert
             if (convertToDecimal)
@@ -616,6 +615,75 @@ Dispose()
             }
 
             Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [MemberData(nameof(ConvertFromStringTestCases))]
+        public void GetParameterValueFromStringTest(string value, DbType dbType, object expected, string format = null, CultureInfo cultureInfo = null)
+        {
+
+            var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("NL-nl");
+
+                // Arrange
+                var databaseParameterInfo = new DatabaseParameterInfo("@test", value)
+                {
+                    Format = format,
+                    DbType = dbType.ToString(),
+                    Culture = cultureInfo,
+                };
+                databaseParameterInfo.SetDbType(new MockDbConnection().CreateCommand().CreateParameter());
+
+                // Act
+                var result = new DatabaseTarget().GetParameterValue(LogEventInfo.CreateNullEvent(), databaseParameterInfo);
+
+                // Assert
+                Assert.Equal(expected, result);
+            }
+            finally
+            {
+                // Restore
+                System.Threading.Thread.CurrentThread.CurrentCulture = culture;
+            }
+        }
+
+        public static IEnumerable<object[]> ConvertFromStringTestCases()
+        {
+            yield return new object[] { "true", DbType.Boolean, true };
+            yield return new object[] { "True", DbType.Boolean, true };
+            yield return new object[] { "1,2", DbType.VarNumeric, (decimal)1.2 };
+            yield return new object[] { "1,2", DbType.Currency, (decimal)1.2 };
+            yield return new object[] { "1,2", DbType.Decimal, (decimal)1.2 };
+            yield return new object[] { "1,2", DbType.Double, (double)1.2 };
+            yield return new object[] { "1,2", DbType.Single, (Single)1.2 };
+            yield return new object[] { "2:30", DbType.Time, new TimeSpan(0, 2, 30, 0), };
+            yield return new object[] { "2018-12-23 22:56", DbType.DateTime, new DateTime(2018, 12, 23, 22, 56, 0), };
+            yield return new object[] { "2018-12-23 22:56", DbType.DateTime2, new DateTime(2018, 12, 23, 22, 56, 0), };
+            yield return new object[] { "23-12-2018 22:56", DbType.DateTime, new DateTime(2018, 12, 23, 22, 56, 0), "dd-MM-yyyy HH:mm" };
+            yield return new object[] { new DateTime(2018, 12, 23, 22, 56, 0).ToString(CultureInfo.InvariantCulture), DbType.DateTime, new DateTime(2018, 12, 23, 22, 56, 0), null, CultureInfo.InvariantCulture };
+            yield return new object[] { "2018-12-23", DbType.Date, new DateTime(2018, 12, 23, 0, 0, 0), };
+            yield return new object[] { "2018-12-23 +2:30", DbType.DateTimeOffset, new DateTimeOffset(2018, 12, 23, 0, 0, 0, new TimeSpan(2, 30, 0)) };
+            yield return new object[] { "23-12-2018 22:56 +2:30", DbType.DateTimeOffset, new DateTimeOffset(2018, 12, 23, 22, 56, 0, new TimeSpan(2, 30, 0)), "dd-MM-yyyy HH:mm zzz" };
+            yield return new object[] { "3888CCA3-D11D-45C9-89A5-E6B72185D287", DbType.Guid, Guid.Parse("3888CCA3-D11D-45C9-89A5-E6B72185D287") };
+            yield return new object[] { "3888CCA3D11D45C989A5E6B72185D287", DbType.Guid, Guid.Parse("3888CCA3-D11D-45C9-89A5-E6B72185D287") };
+            yield return new object[] { "3888CCA3D11D45C989A5E6B72185D287", DbType.Guid, Guid.Parse("3888CCA3-D11D-45C9-89A5-E6B72185D287"), "N" };
+            yield return new object[] { "3", DbType.Byte, (byte)3 };
+            yield return new object[] { "3", DbType.SByte, (sbyte)3 };
+            yield return new object[] { "3", DbType.Int16, (short)3 };
+            yield return new object[] { " 3 ", DbType.Int16, (short)3 };
+            yield return new object[] { "3", DbType.Int32, 3 };
+            yield return new object[] { "3", DbType.Int64, (long)3 };
+            yield return new object[] { "3", DbType.UInt16, (ushort)3 };
+            yield return new object[] { "3", DbType.UInt32, (uint)3 };
+            yield return new object[] { "3", DbType.UInt64, (ulong)3 };
+            yield return new object[] { "3", DbType.AnsiString, "3" };
+            yield return new object[] { "${db-null}", DbType.DateTime, DBNull.Value };
+            //todo binary
+            //todo default
+
         }
 
         [Fact]
