@@ -133,11 +133,6 @@ namespace NLog.MessageTemplates
         /// <returns></returns>
         private bool SerializeSimpleObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
-            // todo support all scalar types: 
-
-            // todo byte[] - hex?
-            // todo nullables correct?
-
             if (value is string stringValue)
             {
                 bool includeQuotes = format != LiteralFormatSymbol;

@@ -265,8 +265,6 @@ namespace NLog
             if (Is<#=level#>Enabled)
             {
 #pragma warning disable 618
-           
-            //todo log also these calls as warning?
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
