@@ -39,7 +39,6 @@ namespace NLog.Config
     using System.Globalization;
     using System.Linq;
     using System.Text;
-    using System.Text.RegularExpressions;
     using NLog.Filters;
     using NLog.Targets;
 
@@ -51,8 +50,7 @@ namespace NLog.Config
     {
         private readonly bool[] _logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
-        private string _loggerNamePattern;
-        private LoggerNameMatcher _loggerNameMatcher = new LoggerNameMatcher.None();
+        private LoggerNameMatcher _loggerNameMatcher = LoggerNameMatcher.Create(null);
 
         /// <summary>
         /// Create an empty <see cref="LoggingRule" />.
@@ -154,52 +152,11 @@ namespace NLog.Config
         /// </remarks>
         public string LoggerNamePattern
         {
-            get => _loggerNamePattern;
+            get => _loggerNameMatcher.Pattern;
 
             set
             {
-                _loggerNamePattern = value;
-                if(_loggerNamePattern == null)
-                {
-                    _loggerNameMatcher = new LoggerNameMatcher.None();
-                    return;
-                }
-
-                int starPos1 = _loggerNamePattern.IndexOf('*');
-                int starPos2 = _loggerNamePattern.IndexOf('*', starPos1 + 1);
-                int questionPos = _loggerNamePattern.IndexOf('?');
-                if (starPos1 < 0 && questionPos < 0)
-                {
-                    _loggerNameMatcher = new LoggerNameMatcher.Equals(_loggerNamePattern);
-                    return;
-                }
-                if(_loggerNamePattern == "*")
-                {
-                    _loggerNameMatcher = new LoggerNameMatcher.All();
-                    return;
-                }
-                if(questionPos < 0)
-                {
-                    if(starPos1 == 0 && starPos2 == _loggerNamePattern.Length-1)
-                    {
-                        _loggerNameMatcher = new LoggerNameMatcher.Contains(_loggerNamePattern.Substring(1, _loggerNamePattern.Length - 2));
-                        return;
-                    }
-                    if(starPos2<0)
-                    {
-                        if(starPos1 == 0)
-                        {
-                            _loggerNameMatcher = new LoggerNameMatcher.EndsWith(_loggerNamePattern.Substring(1));
-                            return;
-                        }
-                        if (starPos1 == _loggerNamePattern.Length - 1)
-                        {
-                            _loggerNameMatcher = new LoggerNameMatcher.StartsWith(_loggerNamePattern.Substring(0, _loggerNamePattern.Length - 1));
-                            return;
-                        }
-                    }
-                }
-                _loggerNameMatcher = new LoggerNameMatcher.MultiplePattern(_loggerNamePattern);
+                _loggerNameMatcher = LoggerNameMatcher.Create(value);
             }
         }
 
@@ -348,104 +305,5 @@ namespace NLog.Config
             return _loggerNameMatcher.NameMatches(loggerName);
         }
 
-        abstract class LoggerNameMatcher
-        {
-            protected readonly string _pattern;
-            private readonly string _toString;
-            public LoggerNameMatcher(string pattern)
-            {
-                _pattern = pattern;
-                _toString = "logNamePattern: (" + pattern + ":" + GetType().Name + ")";
-            }
-            public override string ToString()
-            {
-                return _toString;
-            }
-            public abstract bool NameMatches(string loggerName);
-            internal class None : LoggerNameMatcher
-            {
-                public None() : base(null)
-                {
-
-                }
-                public override bool NameMatches(string loggerName)
-                {
-                    return false;
-                }
-            }
-            internal class All : LoggerNameMatcher
-            {
-                public All() : base(null) { }
-                public override bool NameMatches(string loggerName)
-                {
-                    return true;
-                }
-            }
-            internal new class Equals : LoggerNameMatcher
-            {
-                public Equals(string pattern) : base(pattern) { }
-                public override bool NameMatches(string loggerName)
-                {
-                    return loggerName.Equals(_pattern, StringComparison.Ordinal);
-                }
-            }
-            internal class StartsWith : LoggerNameMatcher
-            {
-                public StartsWith(string pattern) : base(pattern) { }
-                public override bool NameMatches(string loggerName)
-                {
-                    return loggerName.StartsWith(_pattern, StringComparison.Ordinal);
-                }
-            }
-            internal class EndsWith : LoggerNameMatcher
-            {
-                public EndsWith(string pattern) : base(pattern) { }
-                public override bool NameMatches(string loggerName)
-                {
-                    return loggerName.EndsWith(_pattern, StringComparison.Ordinal);
-                }
-            }
-            internal class Contains : LoggerNameMatcher
-            {
-                public Contains(string pattern) : base(pattern) { }
-                public override bool NameMatches(string loggerName)
-                {
-                    return loggerName.IndexOf(_pattern, StringComparison.Ordinal) >= 0;
-                }
-            }
-            internal class MultiplePattern : LoggerNameMatcher
-            {
-                private readonly Regex _regex;
-                private static string getRegex(string wildcardsPattern)
-                {
-                    return 
-                        '^' +
-                        Regex.Escape(wildcardsPattern)
-                            .Replace("\\*", ".*")
-                            .Replace("\\?", ".")
-                        + '$';
-                }
-                public MultiplePattern(string pattern) : base(getRegex(pattern))
-                {
-                    _regex = new Regex(_pattern, RegexOptions.CultureInvariant);
-                }
-                public override bool NameMatches(string loggerName)
-                {
-                    return _regex.IsMatch(loggerName);
-                }
-            }
-            internal class RegexPattern : LoggerNameMatcher
-            {
-                private readonly Regex _regex;
-                public RegexPattern(string pattern) : base(pattern)
-                {
-                    _regex = new Regex(_pattern, RegexOptions.CultureInvariant);
-                }
-                public override bool NameMatches(string loggerName)
-                {
-                    return _regex.IsMatch(loggerName);
-                }
-            }
-        }
     }
 }
