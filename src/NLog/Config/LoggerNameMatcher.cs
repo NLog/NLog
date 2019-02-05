@@ -123,6 +123,7 @@ namespace NLog.Config
                 : base(pattern, pattern) { }
             public override bool NameMatches(string loggerName)
             {
+                if (loggerName == null) return _matchingArgument == null;
                 return loggerName.Equals(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -132,6 +133,7 @@ namespace NLog.Config
                 : base(pattern, pattern.Substring(0, pattern.Length - 1)) { }
             public override bool NameMatches(string loggerName)
             {
+                if (loggerName == null) return _matchingArgument == null;
                 return loggerName.StartsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -141,6 +143,7 @@ namespace NLog.Config
                 : base(pattern, pattern.Substring(1)) { }
             public override bool NameMatches(string loggerName)
             {
+                if (loggerName == null) return _matchingArgument == null;
                 return loggerName.EndsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
@@ -150,6 +153,7 @@ namespace NLog.Config
                 : base(pattern, pattern.Substring(1, pattern.Length - 2)) { }
             public override bool NameMatches(string loggerName)
             {
+                if (loggerName == null) return _matchingArgument == null;
                 return loggerName.IndexOf(_matchingArgument, StringComparison.Ordinal) >= 0;
             }
         }
@@ -172,19 +176,28 @@ namespace NLog.Config
             }
             public override bool NameMatches(string loggerName)
             {
+                if (loggerName == null) return false;
                 return _regex.IsMatch(loggerName);
             }
         }
         class RegexPattern : LoggerNameMatcher
         {
             private readonly Regex _regex;
+            private static string ConvertToRegex(string pattern)
+            {
+                return
+                    '^' +
+                    pattern.Substring(1, pattern.Length - 2)
+                    + '$';
+            }
             public RegexPattern(string pattern) 
-                : base(pattern, pattern.Substring(1, pattern.Length - 2))
+                : base(pattern, ConvertToRegex(pattern))
             {
                 _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant);
             }
             public override bool NameMatches(string loggerName)
             {
+                if (loggerName == null) return false;
                 return _regex.IsMatch(loggerName);
             }
         }

@@ -250,198 +250,6 @@ namespace NLog.UnitTests.Config
             var loggingRule = new LoggingRule("", target);
             var s = loggingRule.ToString();
             Assert.Equal("logNamePattern: (:Equals) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches(""));
-            Assert.False(loggingRule.NameMatches("x"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_onechar()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("a", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (a:Equals) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("a"));
-            Assert.False(loggingRule.NameMatches("x"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsRegex()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("server[*].connection[?].*", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[.]\\..*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("server[1234].connection[3].reader"));
-            Assert.True(loggingRule.NameMatches("server[1234].connection[A].reader"));
-            Assert.True(loggingRule.NameMatches("server[1234].connection[3]."));
-            Assert.False(loggingRule.NameMatches("server[1234].connection[3]"));
-            Assert.True(loggingRule.NameMatches("server[].connection[3]."));
-            Assert.False(loggingRule.NameMatches("Server[1234].connection[3].reader"));
-            Assert.False(loggingRule.NameMatches("Server[1234].connection[34].reader"));
-            Assert.False(loggingRule.NameMatches("Server[1234].connection[].reader"));
-            loggingRule = new LoggingRule("server[*].connection[??].*", target);
-            s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[..]\\..*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.False(loggingRule.NameMatches("server[1234].connection[3].reader"));
-            Assert.True(loggingRule.NameMatches("server[1234].connection[34].reader"));
-            Assert.False(loggingRule.NameMatches("server[1234].connection[345].reader"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsRegex2()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("fo?bar*", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^fo.bar.*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
-            Assert.True(loggingRule.NameMatches("foAbar.bazbaz"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.False(loggingRule.NameMatches("Foobar"));
-            Assert.False(loggingRule.NameMatches("fooba"));
-            Assert.False(loggingRule.NameMatches("xfoobar"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsRegex3()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("fo*bar*", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^fo.*bar.*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
-            Assert.True(loggingRule.NameMatches("foAbar.bazbaz"));
-            Assert.True(loggingRule.NameMatches("foABCDEFGbar.bazbaz"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.False(loggingRule.NameMatches("Foobar"));
-            Assert.False(loggingRule.NameMatches("fooba"));
-            Assert.False(loggingRule.NameMatches("xfoobar"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsRegex4()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("?", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^.$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("f"));
-            Assert.False(loggingRule.NameMatches("fo"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsRegex5()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("***", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^.*.*.*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.True(loggingRule.NameMatches("Foobar"));
-            Assert.True(loggingRule.NameMatches("fooba"));
-            Assert.True(loggingRule.NameMatches("xfoobar"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsStarStar()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("**", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (:Contains) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.True(loggingRule.NameMatches("Foobar"));
-            Assert.True(loggingRule.NameMatches("fooba"));
-            Assert.True(loggingRule.NameMatches("xfoobar"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsStartsWith()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("foobar*", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (foobar:StartsWith) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.False(loggingRule.NameMatches("Foobar"));
-            Assert.False(loggingRule.NameMatches("fooba"));
-            Assert.False(loggingRule.NameMatches("xfoobar"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsStartsWith2()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("f*", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (f:StartsWith) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.False(loggingRule.NameMatches("Foobar"));
-            Assert.False(loggingRule.NameMatches("xfoobar"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsEndsWith()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("*foobar", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (foobar:EndsWith) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("bazbaz.foobar"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.False(loggingRule.NameMatches("Foobar"));
-            Assert.False(loggingRule.NameMatches("oobar"));
-            Assert.False(loggingRule.NameMatches("foobarx"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsEndsWith2()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("*r", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (r:EndsWith) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("bazbaz.foobar"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.False(loggingRule.NameMatches("FoobaR"));
-            Assert.False(loggingRule.NameMatches("foobarx"));
-        }
-
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsContains()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("*foobar*", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (foobar:Contains) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("bazbaz.foobar.bimbum"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.True(loggingRule.NameMatches("foobar.bimbum"));
-            Assert.True(loggingRule.NameMatches("bazbaz.foobar"));
-            Assert.False(loggingRule.NameMatches("Foobar"));
-            Assert.False(loggingRule.NameMatches("oobar"));
-            Assert.False(loggingRule.NameMatches("fooba"));
-        }
-
-        [Fact]
-        public void LogRuleToStringTest_wildcardsContains2()
-        {
-            var target = new FileTarget { Name = "file1" };
-            var loggingRule = new LoggingRule("*o*", target);
-            var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (o:Contains) levels: [ ] appendTo: [ file1 ]", s);
-            Assert.True(loggingRule.NameMatches("bazbaz.foobar.bimbum"));
-            Assert.True(loggingRule.NameMatches("foobar"));
-            Assert.True(loggingRule.NameMatches("foobar.bimbum"));
-            Assert.True(loggingRule.NameMatches("bazbaz.foobar"));
-            Assert.False(loggingRule.NameMatches("FOObar"));
-            Assert.False(loggingRule.NameMatches("bar"));
         }
 
         [Fact]
@@ -505,5 +313,181 @@ namespace NLog.UnitTests.Config
             Assert.Null(ruleLookup);
             Assert.False(config.RemoveRuleByName("hello"));
         }
+
+        [Fact]
+        public void LoggerNameMatcher_None()
+        {
+            var matcher = LoggerNameMatcher.Create(null);
+            Assert.Equal("logNamePattern: (:None)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_All()
+        {
+            var matcher = LoggerNameMatcher.Create("*");
+            Assert.Equal("logNamePattern: (:All)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_Empty()
+        {
+            var matcher = LoggerNameMatcher.Create("");
+            Assert.Equal("logNamePattern: (:Equals)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_Equals()
+        {
+            var matcher = LoggerNameMatcher.Create("abc");
+            Assert.Equal("logNamePattern: (abc:Equals)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_StartsWith()
+        {
+            var matcher = LoggerNameMatcher.Create("abc*");
+            Assert.Equal("logNamePattern: (abc:StartsWith)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_EndsWith()
+        {
+            var matcher = LoggerNameMatcher.Create("*abc");
+            Assert.Equal("logNamePattern: (abc:EndsWith)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_Contains()
+        {
+            var matcher = LoggerNameMatcher.Create("*abc*");
+            Assert.Equal("logNamePattern: (abc:Contains)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_MultiplePattern_StarInternal()
+        {
+            var matcher = LoggerNameMatcher.Create("a*bc");
+            Assert.Equal("logNamePattern: (^a.*bc$:MultiplePattern)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_MultiplePattern_QuestionMark()
+        {
+            var matcher = LoggerNameMatcher.Create("a?bc");
+            Assert.Equal("logNamePattern: (^a.bc$:MultiplePattern)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_MultiplePattern_EscapedChars()
+        {
+            var matcher = LoggerNameMatcher.Create("a?b.c.foo.bar");
+            Assert.Equal("logNamePattern: (^a.b\\.c\\.foo\\.bar$:MultiplePattern)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_RegexPattern_Valid()
+        {
+            var matcher = LoggerNameMatcher.Create("{ab.c}");
+            Assert.Equal("logNamePattern: (^ab.c$:RegexPattern)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_RegexPattern_Invalid()
+        {
+            var matcher = LoggerNameMatcher.Create(@"{foo)bar}");
+            Assert.Equal("logNamePattern: (:None)", matcher.ToString());
+            //TODO: check warning on internal logger (don't know how to do it)
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("foobar", false)]
+        public void LoggerNameMatcher_Matches_None(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("None", null, name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("foobar", false)]
+        [InlineData("A", false)]
+        [InlineData("a", true)]
+        public void LoggerNameMatcher_Matches_Equals(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("Equals", "a", name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("Foo", false)]
+        [InlineData("Foobar", false)]
+        [InlineData("foo", true)]
+        [InlineData("foobar", true)]
+        public void LoggerNameMatcher_Matches_StartsWith(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("StartsWith", "foo*", name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("Bar", false)]
+        [InlineData("fooBar", false)]
+        [InlineData("bar", true)]
+        [InlineData("foobar", true)]
+        public void LoggerNameMatcher_Matches_EndsWith(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("EndsWith", "*bar", name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("Bar", false)]
+        [InlineData("fooBar", false)]
+        [InlineData("Barbaz", false)]
+        [InlineData("fooBarbaz", false)]
+        [InlineData("bar", true)]
+        [InlineData("foobar", true)]
+        [InlineData("barbaz", true)]
+        [InlineData("foobarbaz", true)]
+        public void LoggerNameMatcher_Matches_Contains(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("Contains", "*bar*", name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("Server[123].connection[2].reader", false)]
+        [InlineData("server[123].connection[2].reader", true)]
+        [InlineData("server[123].connection[2].", true)]
+        [InlineData("server[123].connection[2]", false)]
+        [InlineData("server[123].connection[25].reader", false)]
+        [InlineData("server[].connection[2].reader", true)]
+        public void LoggerNameMatcher_Matches_MultiplePattern(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("MultiplePattern", "server[*].connection[?].*", name, result);
+        }
+
+        [Theory]
+        [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[2].reader", false)]
+        [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[25].reader", true)]
+        [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[254].reader", false)]
+        [InlineData("RegexPattern", "{(foo|bar)baz}", null, false)]
+        [InlineData("RegexPattern", "{(foo|bar)baz}", "", false)]
+        [InlineData("RegexPattern", "{(foo|bar)baz}", "foobaz", true)]
+        [InlineData("RegexPattern", "{(foo|bar)baz}", "barbaz", true)]
+        [InlineData("RegexPattern", "{(foo|bar)baz}", "foobar", false)]
+        public void LoggerNameMatcher_Matches(string matcherType, string pattern, string name, bool result)
+        {
+            var matcher = LoggerNameMatcher.Create(pattern);
+            Assert.Contains(":" + matcherType, matcher.ToString());
+            Assert.Equal(result, matcher.NameMatches(name));
+        }
+
     }
 }
