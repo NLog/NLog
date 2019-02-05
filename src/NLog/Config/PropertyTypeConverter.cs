@@ -36,62 +36,62 @@ namespace NLog.Config
     using System;
 
     /// <summary>
-    /// Default implementation of <see cref="IParameterTypeConverter"/>
+    /// Default implementation of <see cref="IPropertyTypeConverter"/>
     /// </summary>
-    class ParameterTypeConverter : IParameterTypeConverter
+    class PropertyTypeConverter : IPropertyTypeConverter
     {
         /// <inheritdoc/>
-        public object Convert(object parameterValue, Type parameterType, string format, IFormatProvider formatProvider)
+        public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
         {
-            if (parameterType == null || parameterValue == null || parameterValue.GetType() == parameterType || parameterType == typeof(object))
+            if (propertyType == null || propertyValue == null || propertyValue.GetType() == propertyType || propertyType == typeof(object))
             {
-                return parameterValue;
+                return propertyValue;
             }
 
-            if (parameterValue is string parameterString)
+            if (propertyValue is string propertyString)
             {
-                parameterValue = parameterString = parameterString.Trim();
+                propertyValue = propertyString = propertyString.Trim();
 
-                if (parameterType == typeof(DateTime))
+                if (propertyType == typeof(DateTime))
                 {
                     if (!string.IsNullOrEmpty(format))
-                        return DateTime.ParseExact(parameterString, format, formatProvider);
+                        return DateTime.ParseExact(propertyString, format, formatProvider);
                     else
-                        return DateTime.Parse(parameterString, formatProvider);
+                        return DateTime.Parse(propertyString, formatProvider);
                 }
-                if (parameterType == typeof(DateTimeOffset))
+                if (propertyType == typeof(DateTimeOffset))
                 {
                     if (!string.IsNullOrEmpty(format))
-                        return DateTimeOffset.ParseExact(parameterString, format, formatProvider);
+                        return DateTimeOffset.ParseExact(propertyString, format, formatProvider);
                     else
-                        return DateTimeOffset.Parse(parameterString, formatProvider);
+                        return DateTimeOffset.Parse(propertyString, formatProvider);
                 }
-                if (parameterType == typeof(TimeSpan))
+                if (propertyType == typeof(TimeSpan))
                 {
 #if NET3_5
-                    return TimeSpan.Parse(parameterString);
+                    return TimeSpan.Parse(propertyString);
 #else
                     if (!string.IsNullOrEmpty(format))
-                        return TimeSpan.ParseExact(parameterString, format, formatProvider);
+                        return TimeSpan.ParseExact(propertyString, format, formatProvider);
                     else
-                        return TimeSpan.Parse(parameterString, formatProvider);
+                        return TimeSpan.Parse(propertyString, formatProvider);
 #endif
                 }
-                if (parameterType == typeof(Guid))
+                if (propertyType == typeof(Guid))
                 {
 #if NET3_5
-                    return new Guid(parameterString);
+                    return new Guid(propertyString);
 #else
-                    return string.IsNullOrEmpty(format) ? Guid.Parse(parameterString) : Guid.ParseExact(parameterString, format);
+                    return string.IsNullOrEmpty(format) ? Guid.Parse(propertyString) : Guid.ParseExact(propertyString, format);
 #endif
                 }
             }
-            else if (!string.IsNullOrEmpty(format) && parameterValue is IFormattable formattableValue)
+            else if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
             {
-                parameterValue = formattableValue.ToString(format, formatProvider);
+                propertyValue = formattableValue.ToString(format, formatProvider);
             }
 
-            return System.Convert.ChangeType(parameterValue, parameterType, formatProvider);
+            return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
         }
     }
 }

@@ -278,12 +278,12 @@ namespace NLog.Targets
 
         internal Type ConnectionType { get; set; }
 
-        private IParameterTypeConverter ParameterTypeConverter
+        private IPropertyTypeConverter PropertyTypeConverter
         {
-            get => _parameterTypeConverter ?? (_parameterTypeConverter = ConfigurationItemFactory.Default.ParameterTypeConverter);
-            set => _parameterTypeConverter = value;
+            get => _propertyTypeConverter ?? (_propertyTypeConverter = ConfigurationItemFactory.Default.PropertyTypeConverter);
+            set => _propertyTypeConverter = value;
         }
-        private IParameterTypeConverter _parameterTypeConverter;
+        private IPropertyTypeConverter _propertyTypeConverter;
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -509,7 +509,7 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            ParameterTypeConverter = null;
+            PropertyTypeConverter = null;
             base.CloseTarget();
             InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of CloseTarget", Name);
             CloseConnection();
@@ -899,7 +899,7 @@ namespace NLog.Targets
                         if (ReferenceEquals(rawValue, DBNull.Value))
                             return rawValue;
 
-                        return ParameterTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
+                        return PropertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
                     }
                     catch (Exception ex)
                     {
@@ -918,7 +918,7 @@ namespace NLog.Targets
             {
                 InternalLogger.Trace("  DatabaseTarget: Attempt to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
                 string layoutValue = RenderLogEvent(parameterInfo.Layout, logEvent);
-                return ParameterTypeConverter.Convert(layoutValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
+                return PropertyTypeConverter.Convert(layoutValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
             }
             catch (Exception ex)
             {

@@ -106,7 +106,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the type of the parameter.
+        /// Gets or sets the type of the parameter. 
         /// </summary>
         /// <docgen category='Parameter Options' order='10' />
         [DefaultValue(typeof(string))]

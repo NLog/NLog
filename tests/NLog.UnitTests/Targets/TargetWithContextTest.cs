@@ -231,7 +231,7 @@ namespace NLog.UnitTests.Targets
         }
 
         [Fact]
-        public void TargetWithContextParameterTypeTest()
+        public void TargetWithContextPropertyTypeTest()
         {
             Target.Register("contexttarget", typeof(CustomTargetWithContext));
 
@@ -240,9 +240,9 @@ namespace NLog.UnitTests.Targets
                     <targets>
                         <default-wrapper type='AsyncWrapper' timeToSleepBetweenBatches='0' overflowAction='Block' />
                         <target name='debug' type='contexttarget' includeCallSite='true'>
-                            <contextproperty name='threadid' layout='${threadid}' parameterType='System.Int32' />
-                            <contextproperty name='processid' layout='${processid}' parameterType='System.Int32' />
-                            <contextproperty name='timestamp' layout='${date}' parameterType='System.DateTime' />
+                            <contextproperty name='threadid' layout='${threadid}' propertyType='System.Int32' />
+                            <contextproperty name='processid' layout='${processid}' propertyType='System.Int32' />
+                            <contextproperty name='timestamp' layout='${date}' propertyType='System.DateTime' />
                         </target>
                     </targets>
                     <rules>

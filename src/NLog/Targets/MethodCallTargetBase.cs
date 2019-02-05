@@ -61,17 +61,17 @@ namespace NLog.Targets
         [ArrayParameter(typeof(MethodCallParameter), "parameter")]
         public IList<MethodCallParameter> Parameters { get; private set; }
 
-        private IParameterTypeConverter ParameterTypeConverter
+        private IPropertyTypeConverter PropertyTypeConverter
         {
-            get => _parameterTypeConverter ?? (_parameterTypeConverter = ConfigurationItemFactory.Default.ParameterTypeConverter);
-            set => _parameterTypeConverter = value;
+            get => _propertyTypeConverter ?? (_propertyTypeConverter = ConfigurationItemFactory.Default.PropertyTypeConverter);
+            set => _propertyTypeConverter = value;
         }
-        private IParameterTypeConverter _parameterTypeConverter;
+        private IPropertyTypeConverter _propertyTypeConverter;
 
         /// <inheritdoc/>
         protected override void CloseTarget()
         {
-            ParameterTypeConverter = null;
+            PropertyTypeConverter = null;
             base.CloseTarget();
         }
 
@@ -87,7 +87,7 @@ namespace NLog.Targets
                 var param = Parameters[i];
                 var parameterValue = RenderLogEvent(param.Layout, logEvent.LogEvent);
                 parameters[i] = param.ParameterType == typeof(string) ? parameterValue :
-                        ParameterTypeConverter.Convert(parameterValue, param.ParameterType, null, CultureInfo.InvariantCulture);
+                        PropertyTypeConverter.Convert(parameterValue, param.ParameterType, null, CultureInfo.InvariantCulture);
             }
 
             DoInvoke(parameters, logEvent);

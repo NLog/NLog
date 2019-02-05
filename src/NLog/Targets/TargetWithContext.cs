@@ -110,12 +110,12 @@ namespace NLog.Targets
         [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
         public virtual IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
 
-        private IParameterTypeConverter ParameterTypeConverter
+        private IPropertyTypeConverter PropertyTypeConverter
         {
-            get => _parameterTypeConverter ?? (_parameterTypeConverter = ConfigurationItemFactory.Default.ParameterTypeConverter);
-            set => _parameterTypeConverter = value;
+            get => _propertyTypeConverter ?? (_propertyTypeConverter = ConfigurationItemFactory.Default.PropertyTypeConverter);
+            set => _propertyTypeConverter = value;
         }
-        private IParameterTypeConverter _parameterTypeConverter;
+        private IPropertyTypeConverter _propertyTypeConverter;
 
         /// <summary>
         /// Constructor
@@ -129,7 +129,7 @@ namespace NLog.Targets
         /// <inheritdoc/>
         protected override void CloseTarget()
         {
-            ParameterTypeConverter = null;
+            PropertyTypeConverter = null;
             base.CloseTarget();
         }
 
@@ -367,7 +367,7 @@ namespace NLog.Targets
                 if (string.IsNullOrEmpty(attrib?.Name) || attrib.Layout == null)
                     continue;
 
-                var attribType = attrib.ParameterType ?? typeof(string);
+                var attribType = attrib.PropertyType ?? typeof(string);
 
                 try
                 {
@@ -389,7 +389,7 @@ namespace NLog.Targets
                         continue;
 
                     combinedProperties[attrib.Name] = attribType == typeof(string)
-                        ? attribStringValue : ParameterTypeConverter.Convert(attribStringValue, attribType, null, CultureInfo.InvariantCulture);
+                        ? attribStringValue : PropertyTypeConverter.Convert(attribStringValue, attribType, null, CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
                 {
