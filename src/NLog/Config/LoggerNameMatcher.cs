@@ -35,6 +35,7 @@ namespace NLog.Config
 {
     using System;
     using System.Text.RegularExpressions;
+    using NLog.Common;
 
     abstract class LoggerNameMatcher
     {
@@ -43,6 +44,18 @@ namespace NLog.Config
         {
             if (loggerNamePattern == null)
                 return LoggerNameMatcher.None.Instance;
+            if(loggerNamePattern.StartsWith("{") && loggerNamePattern.EndsWith("}"))
+            {
+                try
+                {
+                    return new LoggerNameMatcher.RegexPattern(loggerNamePattern);
+                }
+                catch(Exception e)
+                {
+                    InternalLogger.Warn("Ignoring invalid Regex: {0}. Regex error: {1}", loggerNamePattern, e.Message);
+                    return LoggerNameMatcher.None.Instance;
+                }
+            }
 
             int starPos1 = loggerNamePattern.IndexOf('*');
             int starPos2 = loggerNamePattern.IndexOf('*', starPos1 + 1);
@@ -143,7 +156,7 @@ namespace NLog.Config
         class MultiplePattern : LoggerNameMatcher
         {
             private readonly Regex _regex;
-            private static string getRegex(string wildcardsPattern)
+            private static string ConvertToRegex(string wildcardsPattern)
             {
                 return
                     '^' +
@@ -153,7 +166,7 @@ namespace NLog.Config
                     + '$';
             }
             public MultiplePattern(string pattern) 
-                : base(pattern, getRegex(pattern))
+                : base(pattern, ConvertToRegex(pattern))
             {
                 _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant);
             }
