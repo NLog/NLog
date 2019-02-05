@@ -271,7 +271,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("server[*].connection[?].*", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[.]\\..*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[.]\\..*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
             Assert.True(loggingRule.NameMatches("server[1234].connection[3].reader"));
             Assert.True(loggingRule.NameMatches("server[1234].connection[A].reader"));
             Assert.True(loggingRule.NameMatches("server[1234].connection[3]."));
@@ -282,7 +282,7 @@ namespace NLog.UnitTests.Config
             Assert.False(loggingRule.NameMatches("Server[1234].connection[].reader"));
             loggingRule = new LoggingRule("server[*].connection[??].*", target);
             s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[..]\\..*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (^server\\[.*]\\.connection\\[..]\\..*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
             Assert.False(loggingRule.NameMatches("server[1234].connection[3].reader"));
             Assert.True(loggingRule.NameMatches("server[1234].connection[34].reader"));
             Assert.False(loggingRule.NameMatches("server[1234].connection[345].reader"));
@@ -294,7 +294,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("fo?bar*", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^fo.bar.*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (^fo.bar.*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
             Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
             Assert.True(loggingRule.NameMatches("foAbar.bazbaz"));
             Assert.True(loggingRule.NameMatches("foobar"));
@@ -309,7 +309,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("fo*bar*", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^fo.*bar.*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (^fo.*bar.*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
             Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
             Assert.True(loggingRule.NameMatches("foAbar.bazbaz"));
             Assert.True(loggingRule.NameMatches("foABCDEFGbar.bazbaz"));
@@ -325,7 +325,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("?", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^.$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (^.$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
             Assert.True(loggingRule.NameMatches("f"));
             Assert.False(loggingRule.NameMatches("fo"));
         }
@@ -336,7 +336,7 @@ namespace NLog.UnitTests.Config
             var target = new FileTarget { Name = "file1" };
             var loggingRule = new LoggingRule("***", target);
             var s = loggingRule.ToString();
-            Assert.Equal("logNamePattern: (^.*.*.*$:Regex) levels: [ ] appendTo: [ file1 ]", s);
+            Assert.Equal("logNamePattern: (^.*.*.*$:MultiplePattern) levels: [ ] appendTo: [ file1 ]", s);
             Assert.True(loggingRule.NameMatches("foobar.bazbaz"));
             Assert.True(loggingRule.NameMatches("foobar"));
             Assert.True(loggingRule.NameMatches("Foobar"));

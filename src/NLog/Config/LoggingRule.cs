@@ -52,9 +52,7 @@ namespace NLog.Config
         private readonly bool[] _logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
         private string _loggerNamePattern;
-        private MatchMode _loggerNameMatchMode;
-        private string _loggerNameMatchArgument;
-        private Regex _loggerNameMatchRegex;
+        private LoggerNameMatcher _loggerNameMatcher = new LoggerNameMatcher.None();
 
         /// <summary>
         /// Create an empty <see cref="LoggingRule" />.
@@ -78,7 +76,7 @@ namespace NLog.Config
         /// <summary>
         /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> and  <paramref name="maxLevel"/> which writes to <paramref name="target"/>.
         /// </summary>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
@@ -93,7 +91,7 @@ namespace NLog.Config
         /// <summary>
         /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> which writes to <paramref name="target"/>.
         /// </summary>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target)
@@ -107,23 +105,13 @@ namespace NLog.Config
         /// <summary>
         /// Create a (disabled) <see cref="LoggingRule" />. You should call <see cref="EnableLoggingForLevel"/> or see cref="EnableLoggingForLevels"/> to enable logging.
         /// </summary>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="loggerNamePattern">Logger name pattern. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, Target target)
             : this()
         {
             LoggerNamePattern = loggerNamePattern;
             Targets.Add(target);
-        }
-
-        internal enum MatchMode
-        {
-            All,
-            Equals,
-            StartsWith,
-            EndsWith,
-            Contains,
-            Regex,
         }
 
         /// <summary>
@@ -171,56 +159,47 @@ namespace NLog.Config
             set
             {
                 _loggerNamePattern = value;
-                _loggerNameMatchRegex = null;
+                if(_loggerNamePattern == null)
+                {
+                    _loggerNameMatcher = new LoggerNameMatcher.None();
+                    return;
+                }
 
                 int starPos1 = _loggerNamePattern.IndexOf('*');
                 int starPos2 = _loggerNamePattern.IndexOf('*', starPos1 + 1);
                 int questionPos = _loggerNamePattern.IndexOf('?');
                 if (starPos1 < 0 && questionPos < 0)
                 {
-                    _loggerNameMatchMode = MatchMode.Equals;
-                    _loggerNameMatchArgument = value;
+                    _loggerNameMatcher = new LoggerNameMatcher.Equals(_loggerNamePattern);
                     return;
                 }
                 if(_loggerNamePattern == "*")
                 {
-                    _loggerNameMatchArgument = string.Empty;
-                    _loggerNameMatchMode = MatchMode.All;
+                    _loggerNameMatcher = new LoggerNameMatcher.All();
                     return;
                 }
                 if(questionPos < 0)
                 {
                     if(starPos1 == 0 && starPos2 == _loggerNamePattern.Length-1)
                     {
-                        _loggerNameMatchArgument = _loggerNamePattern.Substring(1, _loggerNamePattern.Length - 2);
-                        _loggerNameMatchMode = MatchMode.Contains;
+                        _loggerNameMatcher = new LoggerNameMatcher.Contains(_loggerNamePattern.Substring(1, _loggerNamePattern.Length - 2));
                         return;
                     }
                     if(starPos2<0)
                     {
                         if(starPos1 == 0)
                         {
-                            _loggerNameMatchArgument = _loggerNamePattern.Substring(1);
-                            _loggerNameMatchMode = MatchMode.EndsWith;
+                            _loggerNameMatcher = new LoggerNameMatcher.EndsWith(_loggerNamePattern.Substring(1));
                             return;
                         }
                         if (starPos1 == _loggerNamePattern.Length - 1)
                         {
-                            _loggerNameMatchArgument = _loggerNamePattern.Substring(0, _loggerNamePattern.Length - 1);
-                            _loggerNameMatchMode = MatchMode.StartsWith;
+                            _loggerNameMatcher = new LoggerNameMatcher.StartsWith(_loggerNamePattern.Substring(0, _loggerNamePattern.Length - 1));
                             return;
                         }
                     }
                 }
-                _loggerNameMatchMode = MatchMode.Regex;
-                _loggerNameMatchArgument =
-                    '^' +
-                    Regex.Escape(_loggerNamePattern)
-                        .Replace("\\*", ".*")
-                        .Replace("\\?", ".")
-                    + '$';
-                _loggerNameMatchRegex = new Regex(_loggerNameMatchArgument, RegexOptions.CultureInvariant);
-
+                _loggerNameMatcher = new LoggerNameMatcher.MultiplePattern(_loggerNamePattern);
             }
         }
 
@@ -324,7 +303,7 @@ namespace NLog.Config
         {
             var sb = new StringBuilder();
 
-            sb.AppendFormat(CultureInfo.InvariantCulture, "logNamePattern: ({0}:{1})", _loggerNameMatchArgument, _loggerNameMatchMode);
+            sb.Append(_loggerNameMatcher.ToString());
             sb.Append(" levels: [ ");
             for (int i = 0; i < _logLevels.Length; ++i)
             {
@@ -366,30 +345,107 @@ namespace NLog.Config
         /// <returns>A value of <see langword="true"/> when the name matches, <see langword="false" /> otherwise.</returns>
         public bool NameMatches(string loggerName)
         {
-            switch (_loggerNameMatchMode)
-            {
-                case MatchMode.All:
-                    return true;
-
-                default:
-                case MatchMode.Equals:
-                    return loggerName.Equals(_loggerNameMatchArgument, StringComparison.Ordinal);
-
-                case MatchMode.StartsWith:
-                    return loggerName.StartsWith(_loggerNameMatchArgument, StringComparison.Ordinal);
-
-                case MatchMode.EndsWith:
-                    return loggerName.EndsWith(_loggerNameMatchArgument, StringComparison.Ordinal);
-
-                case MatchMode.Contains:
-                    return loggerName.IndexOf(_loggerNameMatchArgument, StringComparison.Ordinal) >= 0;
-
-                case MatchMode.Regex:
-                    return _loggerNameMatchRegex.IsMatch(loggerName);
-
-            }
+            return _loggerNameMatcher.NameMatches(loggerName);
         }
 
+        abstract class LoggerNameMatcher
+        {
+            protected readonly string _pattern;
+            private readonly string _toString;
+            public LoggerNameMatcher(string pattern)
+            {
+                _pattern = pattern;
+                _toString = "logNamePattern: (" + pattern + ":" + GetType().Name + ")";
+            }
+            public override string ToString()
+            {
+                return _toString;
+            }
+            public abstract bool NameMatches(string loggerName);
+            internal class None : LoggerNameMatcher
+            {
+                public None() : base(null)
+                {
 
+                }
+                public override bool NameMatches(string loggerName)
+                {
+                    return false;
+                }
+            }
+            internal class All : LoggerNameMatcher
+            {
+                public All() : base(null) { }
+                public override bool NameMatches(string loggerName)
+                {
+                    return true;
+                }
+            }
+            internal new class Equals : LoggerNameMatcher
+            {
+                public Equals(string pattern) : base(pattern) { }
+                public override bool NameMatches(string loggerName)
+                {
+                    return loggerName.Equals(_pattern, StringComparison.Ordinal);
+                }
+            }
+            internal class StartsWith : LoggerNameMatcher
+            {
+                public StartsWith(string pattern) : base(pattern) { }
+                public override bool NameMatches(string loggerName)
+                {
+                    return loggerName.StartsWith(_pattern, StringComparison.Ordinal);
+                }
+            }
+            internal class EndsWith : LoggerNameMatcher
+            {
+                public EndsWith(string pattern) : base(pattern) { }
+                public override bool NameMatches(string loggerName)
+                {
+                    return loggerName.EndsWith(_pattern, StringComparison.Ordinal);
+                }
+            }
+            internal class Contains : LoggerNameMatcher
+            {
+                public Contains(string pattern) : base(pattern) { }
+                public override bool NameMatches(string loggerName)
+                {
+                    return loggerName.IndexOf(_pattern, StringComparison.Ordinal) >= 0;
+                }
+            }
+            internal class MultiplePattern : LoggerNameMatcher
+            {
+                private readonly Regex _regex;
+                private static string getRegex(string wildcardsPattern)
+                {
+                    return 
+                        '^' +
+                        Regex.Escape(wildcardsPattern)
+                            .Replace("\\*", ".*")
+                            .Replace("\\?", ".")
+                        + '$';
+                }
+                public MultiplePattern(string pattern) : base(getRegex(pattern))
+                {
+                    _regex = new Regex(_pattern, RegexOptions.CultureInvariant);
+                }
+                public override bool NameMatches(string loggerName)
+                {
+                    return _regex.IsMatch(loggerName);
+                }
+            }
+            internal class RegexPattern : LoggerNameMatcher
+            {
+                private readonly Regex _regex;
+                public RegexPattern(string pattern) : base(pattern)
+                {
+                    _regex = new Regex(_pattern, RegexOptions.CultureInvariant);
+                }
+                public override bool NameMatches(string loggerName)
+                {
+                    return _regex.IsMatch(loggerName);
+                }
+            }
+        }
     }
 }
