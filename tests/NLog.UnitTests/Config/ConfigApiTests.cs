@@ -384,23 +384,6 @@ namespace NLog.UnitTests.Config
             Assert.Equal("logNamePattern: (^a.b\\.c\\.foo\\.bar$:MultiplePattern)", matcher.ToString());
         }
 
-#if FEATURE_REGEXPATTERN
-        [Fact]
-        public void LoggerNameMatcher_RegexPattern_Valid()
-        {
-            var matcher = LoggerNameMatcher.Create("/ab.c/");
-            Assert.Equal("logNamePattern: (^ab.c$:RegexPattern)", matcher.ToString());
-        }
-
-        [Fact]
-        public void LoggerNameMatcher_RegexPattern_Invalid()
-        {
-            var matcher = LoggerNameMatcher.Create(@"/foo)bar/");
-            Assert.Equal("logNamePattern: (:None)", matcher.ToString());
-            //TODO: check warning on internal logger (don't know how to do it)
-        }
-#endif
-
         [Theory]
         [InlineData(null, false)]
         [InlineData("", false)]
@@ -479,13 +462,6 @@ namespace NLog.UnitTests.Config
         [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[2].reader", false)]
         [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[25].reader", true)]
         [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[254].reader", false)]
-#if FEATURE_REGEXPATTERN
-        [InlineData("RegexPattern", "/(foo|bar)baz/", null, false)]
-        [InlineData("RegexPattern", "/(foo|bar)baz/", "", false)]
-        [InlineData("RegexPattern", "/(foo|bar)baz/", "foobaz", true)]
-        [InlineData("RegexPattern", "/(foo|bar)baz/", "barbaz", true)]
-        [InlineData("RegexPattern", "/(foo|bar)baz/", "foobar", false)]
-#endif
         public void LoggerNameMatcher_Matches(string matcherType, string pattern, string name, bool result)
         {
             var matcher = LoggerNameMatcher.Create(pattern);

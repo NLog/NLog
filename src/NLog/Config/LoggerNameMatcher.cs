@@ -75,20 +75,7 @@ namespace NLog.Config
         {
             if (loggerNamePattern == null)
                 return NoneLoggerNameMatcher.Instance;
-#if FEATURE_REGEXPATTERN
-            if (loggerNamePattern.StartsWith("/") && loggerNamePattern.EndsWith("/"))
-            {
-                try
-                {
-                    return new RegexPatternLoggerNameMatcher(loggerNamePattern);
-                }
-                catch(Exception e)
-                {
-                    InternalLogger.Warn("Ignoring invalid Regex: {0}. Regex error: {1}", loggerNamePattern, e.Message);
-                    return NoneLoggerNameMatcher.Instance;
-                }
-            }
-# endif
+
             int starPos1 = loggerNamePattern.IndexOf('*');
             int starPos2 = loggerNamePattern.IndexOf('*', starPos1 + 1);
             int questionPos = loggerNamePattern.IndexOf('?');
@@ -269,29 +256,5 @@ namespace NLog.Config
                 return _regex.IsMatch(loggerName);
             }
         }
-#if FEATURE_REGEXPATTERN
-        class RegexPatternLoggerNameMatcher : LoggerNameMatcher
-        {
-            protected override string Name => "RegexPattern";
-            private readonly Regex _regex;
-            private static string ConvertToRegex(string pattern)
-            {
-                return
-                    '^' +
-                    pattern.Substring(1, pattern.Length - 2)
-                    + '$';
-            }
-            public RegexPatternLoggerNameMatcher(string pattern) 
-                : base(pattern, ConvertToRegex(pattern))
-            {
-                _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant);
-            }
-            public override bool NameMatches(string loggerName)
-            {
-                if (loggerName == null) return false;
-                return _regex.IsMatch(loggerName);
-            }
-        }
-#endif
     }
 }
