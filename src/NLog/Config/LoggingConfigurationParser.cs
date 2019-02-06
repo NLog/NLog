@@ -665,28 +665,9 @@ namespace NLog.Config
             }
 
             var rule = new LoggingRule(ruleName);
-
             rule.LoggerNamePattern = namePattern;
-            if (writeTargets != null)
-            {
-                foreach (string t in writeTargets.Split(','))
-                {
-                    string targetName = t.Trim();
-                    if (string.IsNullOrEmpty(targetName))
-                        continue;
 
-                    Target target = FindTargetByName(targetName);
-                    if (target != null)
-                    {
-                        rule.Targets.Add(target);
-                    }
-                    else
-                    {
-                        throw new NLogConfigurationException(
-                            $"Target '{targetName}' not found for logging rule: {(string.IsNullOrEmpty(ruleName) ? namePattern : ruleName)}.");
-                    }
-                }
-            }
+            ParseLoggingRuleTargets(writeTargets, rule);
 
             rule.Final = final;
 
@@ -703,6 +684,37 @@ namespace NLog.Config
                 }
             }
 
+            ParseLoggingRuleChildren(loggerElement, rule);
+
+            return rule;
+        }
+
+        private void ParseLoggingRuleTargets(string writeTargets, LoggingRule rule)
+        {
+            if (string.IsNullOrEmpty(writeTargets))
+                return;
+
+            foreach (string t in writeTargets.Split(','))
+            {
+                string targetName = t.Trim();
+                if (string.IsNullOrEmpty(targetName))
+                    continue;
+
+                Target target = FindTargetByName(targetName);
+                if (target != null)
+                {
+                    rule.Targets.Add(target);
+                }
+                else
+                {
+                    throw new NLogConfigurationException(
+                        $"Target '{targetName}' not found for logging rule: {(string.IsNullOrEmpty(rule.RuleName) ? rule.LoggerNamePattern : rule.RuleName)}.");
+                }
+            }
+        }
+
+        private void ParseLoggingRuleChildren(ILoggingConfigurationElement loggerElement, LoggingRule rule)
+        {
             foreach (var child in loggerElement.Children)
             {
                 LoggingRule childRule = null;
@@ -732,8 +744,6 @@ namespace NLog.Config
                     }
                 }
             }
-
-            return rule;
         }
 
         private void ParseFilters(LoggingRule rule, ILoggingConfigurationElement filtersElement)
