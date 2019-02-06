@@ -74,7 +74,7 @@ namespace NLog.Config
         /// <summary>
         /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> and  <paramref name="maxLevel"/> which writes to <paramref name="target"/>.
         /// </summary>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include one or more '*' or '?' wildcards at any position.</param>
+        /// <param name="loggerNamePattern">Logger name pattern used to build <see cref="LoggerNameMatcher"/>. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
@@ -89,7 +89,7 @@ namespace NLog.Config
         /// <summary>
         /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> which writes to <paramref name="target"/>.
         /// </summary>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include one or more '*' or '?' wildcards at any position.</param>
+        /// <param name="loggerNamePattern">Logger name pattern used to build <see cref="LoggerNameMatcher"/>. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target)
@@ -103,7 +103,7 @@ namespace NLog.Config
         /// <summary>
         /// Create a (disabled) <see cref="LoggingRule" />. You should call <see cref="EnableLoggingForLevel"/> or see cref="EnableLoggingForLevels"/> to enable logging.
         /// </summary>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include one or more '*' or '?' wildcards at any position.</param>
+        /// <param name="loggerNamePattern">Logger name pattern used to build <see cref="LoggerNameMatcher"/>. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, Target target)
             : this()
@@ -145,7 +145,7 @@ namespace NLog.Config
         /// Gets or sets logger name pattern.
         /// </summary>
         /// <remarks>
-        /// Logger name pattern. 
+        /// Logger name pattern used to build <see cref="LoggerNameMatcher"/>. 
         /// It may include one or more '*' or '?' wildcards at any position.
         ///  - '*' means zero or more occurrecnces of any character
         ///  - '?' means exactly one occurrence of any character
@@ -296,7 +296,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Checks whether given name matches the logger name pattern.
+        /// Checks whether given name matches the logger name pattern. <see cref="LoggerNameMatcher.NameMatches(string)"/>
         /// </summary>
         /// <param name="loggerName">String to be matched.</param>
         /// <returns>A value of <see langword="true"/> when the name matches, <see langword="false" /> otherwise.</returns>

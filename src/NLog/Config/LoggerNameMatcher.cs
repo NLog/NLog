@@ -37,48 +37,73 @@ namespace NLog.Config
     using System.Text.RegularExpressions;
     using NLog.Common;
 
+    /// <summary>
+    /// Encapsulates <see cref="LoggingRule.LoggerNamePattern"/> and the logic to match the actual logger name
+    /// All subclasses defines immutable objects.
+    /// Concrete subclasses defines various matching rules through <see cref="LoggerNameMatcher.NameMatches(string)"/>
+    /// </summary>
     abstract class LoggerNameMatcher
     {
-
+        /// <summary>
+        /// Creates a concrete <see cref="LoggerNameMatcher"/> using following rules:
+        ///  1 - if <paramref name="loggerNamePattern"/> is null => returns <see cref="NoneLoggerNameMatcher"/> (never matches)
+        ///  2 - if <paramref name="loggerNamePattern"/> doesn't contains any '*' nor '?' => returns <see cref="EqualsLoggerNameMatcher"/> (matches only on case sensitive equals)
+        ///  3 - if <paramref name="loggerNamePattern"/> == '*' => returns <see cref="AllLoggerNameMatcher"/> (always matches)
+        ///  4 - if <paramref name="loggerNamePattern"/> doesn't contain '?'
+        ///  4.1 - if <paramref name="loggerNamePattern"/> contains exactly 2 '*' one at the beginning and one at the end (i.e. "*foobar*) => returns <see cref="ContainsLoggerNameMatcher"/>
+        ///  4.2 - if <paramref name="loggerNamePattern"/> contains exactly 1 '*' at the beginning (i.e. "*foobar") => returns <see cref="EndsWithLoggerNameMatcher"/>
+        ///  4.3 - if <paramref name="loggerNamePattern"/> contains exactly 1 '*' at the end (i.e. "foobar*") => returns <see cref="StartsWithLoggerNameMatcher"/>
+        ///  5 - returns <see cref="MultiplePatternLoggerNameMatcher"/>
+        /// </summary>
+        /// <param name="loggerNamePattern">
+        /// It may include one or more '*' or '?' wildcards at any position.
+        ///  - '*' means zero or more occurrecnces of any character
+        ///  - '?' means exactly one occurrence of any character
+        /// </param>
+        /// <returns>A concrete <see cref="LoggerNameMatcher"/></returns>
         public static LoggerNameMatcher Create(string loggerNamePattern)
         {
             if (loggerNamePattern == null)
-                return LoggerNameMatcher.None.Instance;
-            if(loggerNamePattern.StartsWith("{") && loggerNamePattern.EndsWith("}"))
+                return NoneLoggerNameMatcher.Instance;
+#if FEATURE_REGEXPATTERN
+            if (loggerNamePattern.StartsWith("/") && loggerNamePattern.EndsWith("/"))
             {
                 try
                 {
-                    return new LoggerNameMatcher.RegexPattern(loggerNamePattern);
+                    return new RegexPatternLoggerNameMatcher(loggerNamePattern);
                 }
                 catch(Exception e)
                 {
                     InternalLogger.Warn("Ignoring invalid Regex: {0}. Regex error: {1}", loggerNamePattern, e.Message);
-                    return LoggerNameMatcher.None.Instance;
+                    return NoneLoggerNameMatcher.Instance;
                 }
             }
-
+# endif
             int starPos1 = loggerNamePattern.IndexOf('*');
             int starPos2 = loggerNamePattern.IndexOf('*', starPos1 + 1);
             int questionPos = loggerNamePattern.IndexOf('?');
             if (starPos1 < 0 && questionPos < 0)
-                return new LoggerNameMatcher.Equals(loggerNamePattern);
+                return new EqualsLoggerNameMatcher(loggerNamePattern);
             if (loggerNamePattern == "*")
-                return LoggerNameMatcher.All.Instance;
+                return AllLoggerNameMatcher.Instance;
             if (questionPos < 0)
             {
                 if (starPos1 == 0 && starPos2 == loggerNamePattern.Length - 1)
-                    return new LoggerNameMatcher.Contains(loggerNamePattern);
+                    return new ContainsLoggerNameMatcher(loggerNamePattern);
                 if (starPos2 < 0)
                 {
                     if (starPos1 == 0)
-                        return new LoggerNameMatcher.EndsWith(loggerNamePattern);
+                        return new EndsWithLoggerNameMatcher(loggerNamePattern);
                     if (starPos1 == loggerNamePattern.Length - 1)
-                        return new LoggerNameMatcher.StartsWith(loggerNamePattern);
+                        return new StartsWithLoggerNameMatcher(loggerNamePattern);
                 }
             }
-            return new LoggerNameMatcher.MultiplePattern(loggerNamePattern);
+            return new MultiplePatternLoggerNameMatcher(loggerNamePattern);
         }
 
+        /// <summary>
+        /// Returns the argument passed to <see cref="LoggerNameMatcher.Create(string)"/>
+        /// </summary>
         public string Pattern { get; }
 
         protected readonly string _matchingArgument;
@@ -87,17 +112,30 @@ namespace NLog.Config
         {
             Pattern = pattern;
             _matchingArgument = matchingArgument;
-            _toString = "logNamePattern: (" + matchingArgument + ":" + GetType().Name + ")";
+            _toString = "logNamePattern: (" + matchingArgument + ":" + Name + ")";
         }
         public override string ToString()
         {
             return _toString;
         }
+        protected abstract string Name { get; }
+
+        /// <summary>
+        /// Checks whether given name matches the logger name pattern.
+        /// </summary>
+        /// <param name="loggerName">String to be matched.</param>
+        /// <returns>A value of <see langword="true"/> when the name matches, <see langword="false" /> otherwise.</returns>
         public abstract bool NameMatches(string loggerName);
-        class None : LoggerNameMatcher
+
+        /// <summary>
+        /// Defines a <see cref="LoggerNameMatcher"/> that never matches.
+        /// Used when pattern is null
+        /// </summary>
+        class NoneLoggerNameMatcher : LoggerNameMatcher
         {
-            public static readonly None Instance = new None();
-            private None() 
+            protected override string Name => "None";
+            public static readonly NoneLoggerNameMatcher Instance = new NoneLoggerNameMatcher();
+            private NoneLoggerNameMatcher() 
                 : base(null, null)
             {
 
@@ -105,21 +143,33 @@ namespace NLog.Config
             public override bool NameMatches(string loggerName)
             {
                 return false;
-            }
+            }            
         }
-        class All : LoggerNameMatcher
+
+        /// <summary>
+        /// Defines a <see cref="LoggerNameMatcher"/> that always matches.
+        /// Used when pattern is '*'
+        /// </summary>
+        class AllLoggerNameMatcher : LoggerNameMatcher
         {
-            public static readonly All Instance = new All();
-            private All() 
+            protected override string Name => "All";
+            public static readonly AllLoggerNameMatcher Instance = new AllLoggerNameMatcher();
+            private AllLoggerNameMatcher() 
                 : base("*", null) { }
             public override bool NameMatches(string loggerName)
             {
                 return true;
             }
         }
-        new class Equals : LoggerNameMatcher
+
+        /// <summary>
+        /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive Equals
+        /// Used when pattern is a string without wildcards '?' '*'
+        /// </summary>
+        class EqualsLoggerNameMatcher : LoggerNameMatcher
         {
-            public Equals(string pattern) 
+            protected override string Name => "Equals";
+            public EqualsLoggerNameMatcher(string pattern) 
                 : base(pattern, pattern) { }
             public override bool NameMatches(string loggerName)
             {
@@ -127,9 +177,15 @@ namespace NLog.Config
                 return loggerName.Equals(_matchingArgument, StringComparison.Ordinal);
             }
         }
-        class StartsWith : LoggerNameMatcher
+
+        /// <summary>
+        /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive StartsWith
+        /// Used when pattern is a string like "*foobar"
+        /// </summary>
+        class StartsWithLoggerNameMatcher : LoggerNameMatcher
         {
-            public StartsWith(string pattern) 
+            protected override string Name => "StartsWith";
+            public StartsWithLoggerNameMatcher(string pattern) 
                 : base(pattern, pattern.Substring(0, pattern.Length - 1)) { }
             public override bool NameMatches(string loggerName)
             {
@@ -137,9 +193,15 @@ namespace NLog.Config
                 return loggerName.StartsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
-        class EndsWith : LoggerNameMatcher
+
+        /// <summary>
+        /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive EndsWith
+        /// Used when pattern is a string like "foobar*"
+        /// </summary>
+        class EndsWithLoggerNameMatcher : LoggerNameMatcher
         {
-            public EndsWith(string pattern) 
+            protected override string Name => "EndsWith";
+            public EndsWithLoggerNameMatcher(string pattern) 
                 : base(pattern, pattern.Substring(1)) { }
             public override bool NameMatches(string loggerName)
             {
@@ -147,9 +209,15 @@ namespace NLog.Config
                 return loggerName.EndsWith(_matchingArgument, StringComparison.Ordinal);
             }
         }
-        class Contains : LoggerNameMatcher
+
+        /// <summary>
+        /// Defines a <see cref="LoggerNameMatcher"/> that matches with a case-sensitive Contains
+        /// Used when pattern is a string like "*foobar*"
+        /// </summary>
+        class ContainsLoggerNameMatcher : LoggerNameMatcher
         {
-            public Contains(string pattern) 
+            protected override string Name => "Contains";
+            public ContainsLoggerNameMatcher(string pattern) 
                 : base(pattern, pattern.Substring(1, pattern.Length - 2)) { }
             public override bool NameMatches(string loggerName)
             {
@@ -157,8 +225,17 @@ namespace NLog.Config
                 return loggerName.IndexOf(_matchingArgument, StringComparison.Ordinal) >= 0;
             }
         }
-        class MultiplePattern : LoggerNameMatcher
+
+        /// <summary>
+        /// Defines a <see cref="LoggerNameMatcher"/> that matches with a complex wildcards combinations:
+        ///  - '*' means zero or more occurrecnces of any character
+        ///  - '?' means exactly one occurrence of any character
+        /// Used when pattern is a string containing any number of '?' or '*' in any position
+        /// i.e. "*Server[*].Connection[?]"
+        /// </summary>
+        class MultiplePatternLoggerNameMatcher : LoggerNameMatcher
         {
+            protected override string Name => "MultiplePattern";
             private readonly Regex _regex;
             private static string ConvertToRegex(string wildcardsPattern)
             {
@@ -169,7 +246,7 @@ namespace NLog.Config
                         .Replace("\\?", ".")
                     + '$';
             }
-            public MultiplePattern(string pattern) 
+            public MultiplePatternLoggerNameMatcher(string pattern) 
                 : base(pattern, ConvertToRegex(pattern))
             {
                 _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant);
@@ -180,8 +257,10 @@ namespace NLog.Config
                 return _regex.IsMatch(loggerName);
             }
         }
-        class RegexPattern : LoggerNameMatcher
+#if FEATURE_REGEXPATTERN
+        class RegexPatternLoggerNameMatcher : LoggerNameMatcher
         {
+            protected override string Name => "RegexPattern";
             private readonly Regex _regex;
             private static string ConvertToRegex(string pattern)
             {
@@ -190,7 +269,7 @@ namespace NLog.Config
                     pattern.Substring(1, pattern.Length - 2)
                     + '$';
             }
-            public RegexPattern(string pattern) 
+            public RegexPatternLoggerNameMatcher(string pattern) 
                 : base(pattern, ConvertToRegex(pattern))
             {
                 _regex = new Regex(_matchingArgument, RegexOptions.CultureInvariant);
@@ -201,5 +280,6 @@ namespace NLog.Config
                 return _regex.IsMatch(loggerName);
             }
         }
+#endif
     }
 }
