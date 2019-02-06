@@ -692,10 +692,7 @@ namespace NLog
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 TargetWithFilterChain tfc = targetsByLevel[i];
-                if (tfc != null)
-                {
-                    tfc.PrecalculateStackTraceUsage();
-                }
+                tfc?.PrecalculateStackTraceUsage();
             }
 
             return targetsFound;

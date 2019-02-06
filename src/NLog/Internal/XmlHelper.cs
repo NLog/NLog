@@ -101,8 +101,10 @@ namespace NLog.Internal
 
         internal static string EscapeXmlString(string text, bool xmlEncodeNewlines, StringBuilder result = null)
         {
-            if (result == null && text.Length < 4096 && text.IndexOfAny(xmlEncodeNewlines ? XmlEscapeNewlineChars : XmlEscapeChars) < 0)
+            if (result == null && SmallAndNoEscapeNeeded(text, xmlEncodeNewlines))
+            {
                 return text;
+            }
 
             var sb = result ?? new StringBuilder(text.Length);
             for (int i = 0; i < text.Length; ++i)
@@ -152,6 +154,16 @@ namespace NLog.Internal
             return result == null ? sb.ToString() : null;
         }
 
+        /// <summary>
+        /// Pretest, small text and not escape needed
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="xmlEncodeNewlines"></param>
+        /// <returns></returns>
+        private static bool SmallAndNoEscapeNeeded(string text, bool xmlEncodeNewlines)
+        {
+            return text.Length < 4096 && text.IndexOfAny(xmlEncodeNewlines ? XmlEscapeNewlineChars : XmlEscapeChars) < 0;
+        }
 
         /// <summary>
         /// Converts object value to invariant format, and strips any invalid xml-characters
@@ -240,20 +252,23 @@ namespace NLog.Internal
 
                 if (sb == null)
                 {
-                    sb = new StringBuilder(xmlElementName.Length);
-                    if (i > 0)
-                        sb.Append(xmlElementName, 0, i);
+                    sb = CreateStringBuilder(i);
                 }
                 sb.Append('_');
                 if (includeChr)
                     sb.Append(chr);
             }
 
-            if (sb != null)
-            {
-                sb.TrimRight();
-            }
+            sb?.TrimRight();
             return sb?.ToString() ?? xmlElementName;
+
+            StringBuilder CreateStringBuilder(int i)
+            {
+                var sb2 = new StringBuilder(xmlElementName.Length);
+                if (i > 0)
+                    sb2.Append(xmlElementName, 0, i);
+                return sb2;
+            }
         }
 
         /// <summary>

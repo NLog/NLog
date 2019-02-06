@@ -131,11 +131,11 @@ namespace NLog.Config
             }
 
             LoggingConfiguration oldConfig = (LoggingConfiguration)state;
-            LoggingConfiguration newConfig = null;
 
             InternalLogger.Info("Reloading configuration...");
             lock (_logFactory._syncRoot)
             {
+                LoggingConfiguration newConfig;
                 try
                 {
                     if (_isDisposing)

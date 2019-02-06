@@ -887,7 +887,7 @@ namespace NLog.Targets
                 }
             }
 
-            IFormatProvider dbParameterCulture = parameterInfo.Culture ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
+            IFormatProvider dbParameterCulture = GetDbParameterCulture(logEvent, parameterInfo);
 
             if (parameterInfo.UseRawValue ?? true)
             {
@@ -930,8 +930,23 @@ namespace NLog.Targets
                 if (ex.MustBeRethrown())
                     throw;
 
-                return (dbParameterType?.IsAbstract() == false ? Activator.CreateInstance(dbParameterType) : null) ?? DBNull.Value;   // Create Default Value of Type
+                return CreateDefaultValue(dbParameterType);  
             }
+        }
+
+        /// <summary>
+        /// Create Default Value of Type
+        /// </summary>
+        /// <param name="dbParameterType"></param>
+        /// <returns></returns>
+        private static object CreateDefaultValue(Type dbParameterType)
+        {
+            return (dbParameterType?.IsAbstract() == false ? Activator.CreateInstance(dbParameterType) : null) ?? DBNull.Value;
+        }
+
+        private IFormatProvider GetDbParameterCulture(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
+        {
+            return parameterInfo.Culture ?? logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo;
         }
 
 #if NETSTANDARD1_0

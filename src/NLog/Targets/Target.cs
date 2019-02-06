@@ -737,12 +737,9 @@ namespace NLog.Targets
                     return simpleLayout.Render(logEvent);
                 }
 
-                if (!layout.ThreadAgnostic || layout.MutableUnsafe)
+                if (TryGetCachedValue(layout, logEvent, out var value))
                 {
-                    if (logEvent.TryGetCachedLayoutValue(layout, out var value))
-                    {
-                        return value?.ToString() ?? string.Empty;
-                    }
+                    return value;
                 }
 
                 if (simpleLayout != null && simpleLayout.IsSimpleStringText)
@@ -759,6 +756,23 @@ namespace NLog.Targets
             {
                 return layout.Render(logEvent);
             }
+        }
+
+        private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)
+        {
+            if (!layout.ThreadAgnostic || layout.MutableUnsafe)
+            {
+                if (logEvent.TryGetCachedLayoutValue(layout, out var value2))
+                {
+                    {
+                        value = value2?.ToString() ?? string.Empty;
+                        return true;
+                    }
+                }
+            }
+
+            value = null;
+            return false;
         }
 
         /// <summary>

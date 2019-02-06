@@ -192,7 +192,7 @@ namespace NLog.LayoutRenderers
                 if (logEvent.Exception is AggregateException aggregateException)
                 {
                     aggregateException = aggregateException.Flatten();
-                    primaryException = aggregateException.InnerExceptions.Count == 1 ? aggregateException.InnerExceptions[0] : aggregateException;
+                    primaryException = GetPrimaryException(aggregateException);
                     AppendException(primaryException, Formats, builder);
                     if (currentLevel < MaxInnerExceptionLevel)
                     {
@@ -216,6 +216,11 @@ namespace NLog.LayoutRenderers
         }
 
 #if !NET3_5 && !SILVERLIGHT4
+        private static Exception GetPrimaryException(AggregateException aggregateException)
+        {
+            return aggregateException.InnerExceptions.Count == 1 ? aggregateException.InnerExceptions[0] : aggregateException;
+        }
+
         private void AppendAggregateException(AggregateException primaryException, int currentLevel, StringBuilder builder)
         {
             var asyncException = primaryException.Flatten();

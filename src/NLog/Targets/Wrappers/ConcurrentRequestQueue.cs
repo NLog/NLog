@@ -122,22 +122,7 @@ namespace NLog.Targets.Wrappers
             try
             {
                 // Attempt to yield using SpinWait
-                bool firstYield = true;
-                SpinWait spinWait = new SpinWait();
-                for (int i = 0; i <= 20; ++i)
-                {
-                    if (spinWait.NextSpinWillYield)
-                    {
-                        if (firstYield)
-                            InternalLogger.Debug("Yielding because the overflow action is Block...");
-                        firstYield = false;
-                    }
-
-                    spinWait.SpinOnce();
-                    currentCount = Interlocked.Read(ref _count);
-                    if (currentCount <= RequestLimit)
-                        break;
-                }
+                currentCount = SpinWait(currentCount);
 
                 // If yield did not help, then wait on a lock
                 while (currentCount > RequestLimit)
@@ -169,6 +154,28 @@ namespace NLog.Targets.Wrappers
             {
                 if (lockTaken)
                     Monitor.Exit(_logEventInfoQueue);
+            }
+
+            return currentCount;
+        }
+
+        private long SpinWait(long currentCount)
+        {
+            bool firstYield = true;
+            SpinWait spinWait = new SpinWait();
+            for (int i = 0; i <= 20; ++i)
+            {
+                if (spinWait.NextSpinWillYield)
+                {
+                    if (firstYield)
+                        InternalLogger.Debug("Yielding because the overflow action is Block...");
+                    firstYield = false;
+                }
+
+                spinWait.SpinOnce();
+                currentCount = Interlocked.Read(ref _count);
+                if (currentCount <= RequestLimit)
+                    break;
             }
 
             return currentCount;
