@@ -45,20 +45,30 @@ namespace NLog.Config
     abstract class LoggerNameMatcher
     {
         /// <summary>
-        /// Creates a concrete <see cref="LoggerNameMatcher"/> using following rules:
-        ///  1 - if <paramref name="loggerNamePattern"/> is null => returns <see cref="NoneLoggerNameMatcher"/> (never matches)
-        ///  2 - if <paramref name="loggerNamePattern"/> doesn't contains any '*' nor '?' => returns <see cref="EqualsLoggerNameMatcher"/> (matches only on case sensitive equals)
-        ///  3 - if <paramref name="loggerNamePattern"/> == '*' => returns <see cref="AllLoggerNameMatcher"/> (always matches)
-        ///  4 - if <paramref name="loggerNamePattern"/> doesn't contain '?'
-        ///  4.1 - if <paramref name="loggerNamePattern"/> contains exactly 2 '*' one at the beginning and one at the end (i.e. "*foobar*) => returns <see cref="ContainsLoggerNameMatcher"/>
-        ///  4.2 - if <paramref name="loggerNamePattern"/> contains exactly 1 '*' at the beginning (i.e. "*foobar") => returns <see cref="EndsWithLoggerNameMatcher"/>
-        ///  4.3 - if <paramref name="loggerNamePattern"/> contains exactly 1 '*' at the end (i.e. "foobar*") => returns <see cref="StartsWithLoggerNameMatcher"/>
-        ///  5 - returns <see cref="MultiplePatternLoggerNameMatcher"/>
+        /// Creates a concrete <see cref="LoggerNameMatcher"/> based on <paramref name="loggerNamePattern"/>.
         /// </summary>
+        /// <remarks>
+        /// Rules used to select the concrete implementation returned:
+        /// <list type="number">
+        /// <item>if <paramref name="loggerNamePattern"/> is null => returns <see cref="NoneLoggerNameMatcher"/> (never matches)</item>
+        /// <item>if <paramref name="loggerNamePattern"/> doesn't contains any '*' nor '?' => returns <see cref="EqualsLoggerNameMatcher"/> (matches only on case sensitive equals)</item>
+        /// <item>if <paramref name="loggerNamePattern"/> == '*' => returns <see cref="AllLoggerNameMatcher"/> (always matches)</item>
+        /// <item>if <paramref name="loggerNamePattern"/> doesn't contain '?'
+        /// <list type="number">
+        ///     <item>if <paramref name="loggerNamePattern"/> contains exactly 2 '*' one at the beginning and one at the end (i.e. "*foobar*) => returns <see cref="ContainsLoggerNameMatcher"/></item>
+        ///     <item>if <paramref name="loggerNamePattern"/> contains exactly 1 '*' at the beginning (i.e. "*foobar") => returns <see cref="EndsWithLoggerNameMatcher"/></item>
+        ///     <item>if <paramref name="loggerNamePattern"/> contains exactly 1 '*' at the end (i.e. "foobar*") => returns <see cref="StartsWithLoggerNameMatcher"/></item>
+        /// </list>
+        /// </item>
+        /// <item>returns <see cref="MultiplePatternLoggerNameMatcher"/></item>
+        /// </list>
+        /// </remarks>
         /// <param name="loggerNamePattern">
         /// It may include one or more '*' or '?' wildcards at any position.
-        ///  - '*' means zero or more occurrecnces of any character
-        ///  - '?' means exactly one occurrence of any character
+        /// <list type="bullet">
+        /// <item>'*' means zero or more occurrecnces of any character</item>
+        /// <item>'?' means exactly one occurrence of any character</item>
+        /// </list>
         /// </param>
         /// <returns>A concrete <see cref="LoggerNameMatcher"/></returns>
         public static LoggerNameMatcher Create(string loggerNamePattern)
@@ -228,9 +238,11 @@ namespace NLog.Config
 
         /// <summary>
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a complex wildcards combinations:
-        ///  - '*' means zero or more occurrecnces of any character
-        ///  - '?' means exactly one occurrence of any character
-        /// Used when pattern is a string containing any number of '?' or '*' in any position
+        /// <list type="bullet">
+        /// <item>'*' means zero or more occurrecnces of any character</item>
+        /// <item>'?' means exactly one occurrence of any character</item>
+        /// </list>
+        /// used when pattern is a string containing any number of '?' or '*' in any position
         /// i.e. "*Server[*].Connection[?]"
         /// </summary>
         class MultiplePatternLoggerNameMatcher : LoggerNameMatcher
