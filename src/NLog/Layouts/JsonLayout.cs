@@ -156,6 +156,7 @@ namespace NLog.Layouts
         /// <summary>
         /// How far should the JSON serializer follow object references before backing off
         /// </summary>
+        /// <docgen category='JSON Options' order='10' />
         public int MaxRecursionLimit { get; set; }
 
         /// <summary>

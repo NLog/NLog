@@ -94,6 +94,7 @@ namespace NLog.Layouts
         /// Xml Encode the value for the top level XML element
         /// </summary>
         /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
+        /// <docgen category='XML Options' order='10' />
         [DefaultValue(true)]
         public bool ElementEncode { get => _elementValueWrapper.XmlEncode; set => _elementValueWrapper.XmlEncode = value; }
 
@@ -215,6 +216,7 @@ namespace NLog.Layouts
         /// <summary>
         /// How far should the XML serializer follow object references before backing off
         /// </summary>
+        /// <docgen category='LogEvent Properties XML Options' order='10' />
         public int MaxRecursionLimit { get; set; } = 1;
 
         private readonly ObjectReflectionCache _objectReflectionCache = new ObjectReflectionCache();

@@ -68,6 +68,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether to tranform newlines (\r\n) into (&#13;&#10;)
         /// </summary>
+        /// <docgen category="Transformation Options" order="10"/>
         [DefaultValue(false)]
         public bool XmlEncodeNewlines { get; set; }
 

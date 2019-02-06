@@ -85,18 +85,6 @@ namespace NLog.Targets
         public Layout Layout { get; set; }
 
         /// <summary>
-        /// Use raw value
-        ///
-        /// If null, then rawValue will be used when the dbtype isn't a string-like (that's:
-        /// <see cref="System.Data.DbType.String"/>
-        /// <see cref="System.Data.DbType.AnsiString"/>
-        /// <see cref="System.Data.DbType.StringFixedLength"/>
-        /// <see cref="System.Data.DbType.AnsiStringFixedLength"/>
-        /// )
-        /// </summary>
-        public bool? UseRawValue { get; set; }
-
-        /// <summary>
         /// Gets or sets the database parameter DbType.
         /// </summary>
         /// <docgen category='Parameter Options' order='2' />
@@ -104,46 +92,59 @@ namespace NLog.Targets
         public string DbType { get; set; }
 
         /// <summary>
-        /// Gets or sets convert format of the database parameter value .
-        /// </summary>
-        /// <docgen category='Parameter Options' order='3' />
-        [DefaultValue(null)]
-        public string Format { get; set; }
-
-        /// <summary>
-        /// Gets or sets the culture used for rendering. 
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(null)]
-        public CultureInfo Culture { get; set; }
-
-        /// <summary>
         /// Gets or sets the database parameter size.
         /// </summary>
-        /// <docgen category='Parameter Options' order='4' />
+        /// <docgen category='Parameter Options' order='3' />
         [DefaultValue(0)]
         public int Size { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter precision.
         /// </summary>
-        /// <docgen category='Parameter Options' order='5' />
+        /// <docgen category='Parameter Options' order='4' />
         [DefaultValue(0)]
         public byte Precision { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter scale.
         /// </summary>
-        /// <docgen category='Parameter Options' order='6' />
+        /// <docgen category='Parameter Options' order='5' />
         [DefaultValue(0)]
         public byte Scale { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the parameter.
         /// </summary>
+        /// <docgen category='Parameter Options' order='6' />
         [DefaultValue(typeof(string))]
         public Type ParameterType { get => _parameterType ?? _cachedDbTypeSetter?.ParameterType ?? typeof(string); set => _parameterType = value; }
         private Type _parameterType;
+
+        /// <summary>
+        /// Use raw value
+        ///
+        /// If null, then rawValue will be used when the dbtype isn't a string-like (that's:
+        /// <see cref="System.Data.DbType.String"/>
+        /// <see cref="System.Data.DbType.AnsiString"/>
+        /// <see cref="System.Data.DbType.StringFixedLength"/>
+        /// <see cref="System.Data.DbType.AnsiStringFixedLength"/>
+        /// </summary>
+        /// <docgen category='Parameter Options' order='7' />
+        public bool? UseRawValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets convert format of the database parameter value .
+        /// </summary>
+        /// <docgen category='Parameter Options' order='8' />
+        [DefaultValue(null)]
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Gets or sets the culture used for parsing parameter string-value for type-conversion
+        /// </summary>
+        /// <docgen category='Parameter Options' order='9' />
+        [DefaultValue(null)]
+        public CultureInfo Culture { get; set; }
 
         internal bool SetDbType(IDbDataParameter dbParameter)
         {

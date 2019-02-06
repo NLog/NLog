@@ -306,7 +306,6 @@ namespace NLog.Internal
                     {
                         //skip escapechar
                         i++;
-                        //    isInPart = false;
                         inQuotedMode = false;
                         var part = sb.ToString();
                         //reset
