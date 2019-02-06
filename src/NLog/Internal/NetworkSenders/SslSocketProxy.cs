@@ -120,12 +120,13 @@ namespace NLog.Internal.NetworkSenders
             {
                 try
                 {
-                    _sslStream = new SslStream(new NetworkStream(_socketProxy.UnderlyingSocket), false, UserCertificateValidationCallback);
-                    _sslStream.ReadTimeout = 20000; // Wait 20 secs before giving up on SSL-handshake
-                    if (_sslProtocol != SslProtocols.Default)
-                        _sslStream.AuthenticateAsClient(_host, null, _sslProtocol, false);
-                    else
-                        _sslStream.AuthenticateAsClient(_host);
+                    _sslStream = new SslStream(new NetworkStream(_socketProxy.UnderlyingSocket), false, UserCertificateValidationCallback)
+                    {
+                        // Wait 20 secs before giving up on SSL-handshake
+                        ReadTimeout = 20000
+                    };
+
+                    AuthenticateAsClient(_sslStream, _host, _sslProtocol);
                 }
                 catch (SocketException ex)
                 {
@@ -136,10 +137,7 @@ namespace NLog.Internal.NetworkSenders
                 {
                     if (proxyArgs != null)
                     {
-                        if (ex.InnerException is SocketException socketException)
-                            proxyArgs.SocketError = socketException.SocketErrorCode;
-                        else
-                            proxyArgs.SocketError = SocketError.ConnectionRefused;
+                        proxyArgs.SocketError = GetSocketError(ex);
                     }
                 }
                 finally
@@ -147,6 +145,29 @@ namespace NLog.Internal.NetworkSenders
                     proxyArgs?.RaiseCompleted();
                 }
             }
+        }
+
+        private static SocketError GetSocketError(Exception ex)
+        {
+            SocketError socketError;
+            if (ex.InnerException is SocketException socketException)
+            {
+                socketError = socketException.SocketErrorCode;
+            }
+            else
+            {
+                socketError = SocketError.ConnectionRefused;
+            }
+
+            return socketError;
+        }
+
+        private static void AuthenticateAsClient(SslStream sslStream, string targetHost, SslProtocols enabledSslProtocols)
+        {
+            if (enabledSslProtocols != SslProtocols.Default)
+                sslStream.AuthenticateAsClient(targetHost, null, enabledSslProtocols, false);
+            else
+                sslStream.AuthenticateAsClient(targetHost);
         }
 
         private static bool UserCertificateValidationCallback(object sender, object certificate, object chain, SslPolicyErrors sslPolicyErrors)

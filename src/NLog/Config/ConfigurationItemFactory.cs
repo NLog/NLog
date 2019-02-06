@@ -298,46 +298,53 @@ namespace NLog.Config
         /// <param name="type"></param>
         private void CallPreload(Type type)
         {
-            if (type != null)
+            if (type == null)
             {
-                InternalLogger.Debug("Found for preload'{0}'", type.FullName);
-                var preloadMethod = type.GetMethod("Preload");
-                if (preloadMethod != null)
+                return;
+            }
+
+            InternalLogger.Debug("Found for preload'{0}'", type.FullName);
+            var preloadMethod = type.GetMethod("Preload");
+            if (preloadMethod != null)
+            {
+                if (preloadMethod.IsStatic)
                 {
-                    if (preloadMethod.IsStatic)
+
+                    InternalLogger.Debug("NLogPackageLoader contains Preload method");
+                    //only static, so first param null
+                    try
                     {
+                        var parameters = CreatePreloadParameters(preloadMethod, this);
 
-                        InternalLogger.Debug("NLogPackageLoader contains Preload method");
-                        //only static, so first param null
-                        try
-                        {
-                            var firstParam = preloadMethod.GetParameters().FirstOrDefault();
-                            object[] parameters = null;
-                            if (firstParam?.ParameterType == typeof(ConfigurationItemFactory))
-                            {
-                                parameters = new object[] { this };
-                            }
-
-                            preloadMethod.Invoke(null, parameters);
-                            InternalLogger.Debug("Preload succesfully invoked for '{0}'", type.FullName);
-                        }
-                        catch (Exception e)
-                        {
-                            InternalLogger.Warn(e, "Invoking Preload for '{0}' failed", type.FullName);
-                        }
+                        preloadMethod.Invoke(null, parameters);
+                        InternalLogger.Debug("Preload succesfully invoked for '{0}'", type.FullName);
                     }
-                    else
+                    catch (Exception e)
                     {
-                        InternalLogger.Debug("NLogPackageLoader contains a preload method, but isn't static");
+                        InternalLogger.Warn(e, "Invoking Preload for '{0}' failed", type.FullName);
                     }
-
-
                 }
                 else
                 {
-                    InternalLogger.Debug("{0} doesn't contain Preload method", type.FullName);
+                    InternalLogger.Debug("NLogPackageLoader contains a preload method, but isn't static");
                 }
             }
+            else
+            {
+                InternalLogger.Debug("{0} doesn't contain Preload method", type.FullName);
+            }
+        }
+
+        private static object[] CreatePreloadParameters(MethodInfo preloadMethod, ConfigurationItemFactory configurationItemFactory)
+        {
+            var firstParam = preloadMethod.GetParameters().FirstOrDefault();
+            object[] parameters = null;
+            if (firstParam?.ParameterType == typeof(ConfigurationItemFactory))
+            {
+                parameters = new object[] {configurationItemFactory};
+            }
+
+            return parameters;
         }
 
         /// <summary>

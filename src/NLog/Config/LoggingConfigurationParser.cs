@@ -73,100 +73,15 @@ namespace NLog.Config
         {
             InternalLogger.Trace("ParseNLogConfig");
             nlogConfig.AssertName("nlog");
-
-            bool? parseMessageTemplates = null;
-
-            string internalLogFile = null;
-
-            // build dictionary, use last value of duplicates
-            var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            foreach (var configItem in nlogConfig.Values)
-            {
-                if (configItem.Key != null)
-                {
-                    dict[configItem.Key.Trim()] = configItem.Value;
-                }
-            }
-
-            bool internalLoggerEnabled = false;
+            
+            var dict = CreateNLogConfigDictionary(nlogConfig);
 
             //check first exception throwing and internal logging, so that erros in this section could be handled correctly
-            {
-                if (dict.TryGetValue("THROWEXCEPTIONS", out var val))
-                {
-                    LogFactory.ThrowExceptions = ParseBooleanValue("ThrowExceptions", val, LogFactory.ThrowExceptions);
-                }
-            }
-            {
-                if (dict.TryGetValue("THROWCONFIGEXCEPTIONS", out var val))
-                {
-                    LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(val)
-                        ? (bool?)null
-                        : ParseBooleanValue("ThrowConfigExceptions", val, false);
-                }
-            }
-            {
-                if (dict.TryGetValue("INTERNALLOGLEVEL", out var val))
-                {
-                    // expanding variables not possible here, they are created later
-                    InternalLogger.LogLevel = ParseLogLevelSafe("InternalLogLevel", val, InternalLogger.LogLevel);
-                    internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
-                }
-            }
+            SetThrowExceptions(dict);
+            SetThrowConfigExceptions(dict);
+            var internalLoggerEnabled = SetInternalLogLevel(dict);
 
-            foreach (var configItem in dict)
-            {
-                switch (configItem.Key.ToUpperInvariant())
-                {
-                    case "USEINVARIANTCULTURE":
-                        if (ParseBooleanValue(configItem.Key, configItem.Value, false))
-                            DefaultCultureInfo = CultureInfo.InvariantCulture;
-                        break;
-#pragma warning disable 618
-                    case "EXCEPTIONLOGGINGOLDSTYLE":
-                        ExceptionLoggingOldStyle =
-                            ParseBooleanValue(configItem.Key, configItem.Value, ExceptionLoggingOldStyle);
-                        break;
-#pragma warning restore 618
-                    case "KEEPVARIABLESONRELOAD":
-                        LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value,
-                            LogFactory.KeepVariablesOnReload);
-                        break;
-                    case "INTERNALLOGTOCONSOLE":
-                        InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value,
-                            InternalLogger.LogToConsole);
-                        break;
-                    case "INTERNALLOGTOCONSOLEERROR":
-                        InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value,
-                            InternalLogger.LogToConsoleError);
-                        break;
-                    case "INTERNALLOGFILE":
-                        internalLogFile = configItem.Value?.Trim();
-                        break;
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-                    case "INTERNALLOGTOTRACE":
-                        InternalLogger.LogToTrace =
-                            ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToTrace);
-                        break;
-#endif
-                    case "INTERNALLOGINCLUDETIMESTAMP":
-                        InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value,
-                            InternalLogger.IncludeTimestamp);
-                        break;
-                    case "GLOBALTHRESHOLD":
-                        LogFactory.GlobalThreshold =
-                            ParseLogLevelSafe(configItem.Key, configItem.Value, LogFactory.GlobalThreshold);
-                        break; // expanding variables not possible here, they are created later
-                    case "PARSEMESSAGETEMPLATES":
-                        parseMessageTemplates = string.IsNullOrEmpty(configItem.Value)
-                            ? (bool?)null
-                            : ParseBooleanValue(configItem.Key, configItem.Value, true);
-                        break;
-                    default:
-                        InternalLogger.Warn("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
-                        break;
-                }
-            }
+            SetNLogElementSettings(dict, out var parseMessageTemplates, out var internalLogFile);
 
             if (internalLogFile != null)
             {
@@ -215,6 +130,132 @@ namespace NLog.Config
             {
                 ParseRulesElement(ruleChild, LoggingRules);
             }
+        }
+
+        private void SetNLogElementSettings(Dictionary<string, string> dict, out bool? parseMessageTemplates, out string internalLogFile)
+        {
+            parseMessageTemplates = null;
+            internalLogFile = null;
+            foreach (var configItem in dict)
+            {
+                switch (configItem.Key.ToUpperInvariant())
+                {
+                    case "USEINVARIANTCULTURE":
+                        if (ParseBooleanValue(configItem.Key, configItem.Value, false))
+                            DefaultCultureInfo = CultureInfo.InvariantCulture;
+                        break;
+#pragma warning disable 618
+                    case "EXCEPTIONLOGGINGOLDSTYLE":
+                        ExceptionLoggingOldStyle =
+                            ParseBooleanValue(configItem.Key, configItem.Value, ExceptionLoggingOldStyle);
+                        break;
+#pragma warning restore 618
+                    case "KEEPVARIABLESONRELOAD":
+                        LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value,
+                            LogFactory.KeepVariablesOnReload);
+                        break;
+                    case "INTERNALLOGTOCONSOLE":
+                        InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value,
+                            InternalLogger.LogToConsole);
+                        break;
+                    case "INTERNALLOGTOCONSOLEERROR":
+                        InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value,
+                            InternalLogger.LogToConsoleError);
+                        break;
+                    case "INTERNALLOGFILE":
+                        internalLogFile = configItem.Value?.Trim();
+                        break;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                    case "INTERNALLOGTOTRACE":
+                        InternalLogger.LogToTrace =
+                            ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToTrace);
+                        break;
+#endif
+                    case "INTERNALLOGINCLUDETIMESTAMP":
+                        InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value,
+                            InternalLogger.IncludeTimestamp);
+                        break;
+                    case "GLOBALTHRESHOLD":
+                        LogFactory.GlobalThreshold =
+                            ParseLogLevelSafe(configItem.Key, configItem.Value, LogFactory.GlobalThreshold);
+                        break; // expanding variables not possible here, they are created later
+                    case "PARSEMESSAGETEMPLATES":
+                        parseMessageTemplates = string.IsNullOrEmpty(configItem.Value)
+                            ? (bool?) null
+                            : ParseBooleanValue(configItem.Key, configItem.Value, true);
+                        break;
+                    default:
+                        InternalLogger.Warn("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set <see cref="InternalLogger.LogLevel"/> and return internalLoggerEnabled
+        /// </summary>
+        /// <param name="dict"></param>
+        /// <returns>internalLoggerEnabled?</returns>
+        private static bool SetInternalLogLevel(IDictionary<string, string> dict)
+        {
+            bool internalLoggerEnabled;
+            if (dict.TryGetValue("INTERNALLOGLEVEL", out var val))
+            {
+                // expanding variables not possible here, they are created later
+                InternalLogger.LogLevel = ParseLogLevelSafe("InternalLogLevel", val, InternalLogger.LogLevel);
+                internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
+            }
+            else
+            {
+                internalLoggerEnabled = false;
+            }
+
+            return internalLoggerEnabled;
+        }
+
+        /// <summary>
+        /// Set <see cref="LogFactory.ThrowConfigExceptions"/>
+        /// </summary>
+        /// <param name="dict"></param>
+        private void SetThrowConfigExceptions(IDictionary<string, string> dict)
+        {
+            if (dict.TryGetValue("THROWCONFIGEXCEPTIONS", out var val))
+            {
+                LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(val)
+                    ? (bool?) null
+                    : ParseBooleanValue("ThrowConfigExceptions", val, false);
+            }
+        }
+
+        /// <summary>
+        /// Set <see cref="LogFactory.ThrowExceptions"/>
+        /// </summary>
+        /// <param name="dict"></param>
+        private void SetThrowExceptions(IDictionary<string, string> dict)
+        {
+            if (dict.TryGetValue("THROWEXCEPTIONS", out var val))
+            {
+                LogFactory.ThrowExceptions = ParseBooleanValue("ThrowExceptions", val, LogFactory.ThrowExceptions);
+            }
+        }
+
+        /// <summary>
+        /// build dictionary, use last value of duplicates
+        /// </summary>
+        /// <param name="nlogConfig"></param>
+        /// <returns></returns>
+        private static Dictionary<string, string> CreateNLogConfigDictionary(ILoggingConfigurationElement nlogConfig)
+        {
+            var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var configItem in nlogConfig.Values)
+            {
+                if (configItem.Key != null)
+                {
+                    dict[configItem.Key.Trim()] = configItem.Value;
+                }
+            }
+
+            return dict;
         }
 
         private static string ExpandFilePathVariables(string internalLogFile)
@@ -345,26 +386,7 @@ namespace NLog.Config
 
                 if (!StringHelpers.IsNullOrWhiteSpace(type))
                 {
-                    try
-                    {
-                        _configurationItemFactory.RegisterType(Type.GetType(type, true), prefix);
-                    }
-                    catch (Exception exception)
-                    {
-                        if (exception.MustBeRethrownImmediately())
-                        {
-                            throw;
-                        }
-
-                        InternalLogger.Error(exception, "Error loading extensions.");
-                        NLogConfigurationException configException =
-                            new NLogConfigurationException("Error loading extensions: " + type, exception);
-
-                        if (configException.MustBeRethrown())
-                        {
-                            throw configException;
-                        }
-                    }
+                    RegisterExtension(type, prefix);
                 }
 
 #if !NETSTANDARD1_3
@@ -377,6 +399,30 @@ namespace NLog.Config
                 if (!StringHelpers.IsNullOrWhiteSpace(assemblyName))
                 {
                     ParseExtensionWithAssembly(assemblyName, prefix);
+                }
+            }
+        }
+
+        private void RegisterExtension(string type, string itemNamePrefix)
+        {
+            try
+            {
+                _configurationItemFactory.RegisterType(Type.GetType(type, true), itemNamePrefix);
+            }
+            catch (Exception exception)
+            {
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                InternalLogger.Error(exception, "Error loading extensions.");
+                NLogConfigurationException configException =
+                    new NLogConfigurationException("Error loading extensions: " + type, exception);
+
+                if (configException.MustBeRethrown())
+                {
+                    throw configException;
                 }
             }
         }
@@ -963,8 +1009,7 @@ namespace NLog.Config
 
         private void SetPropertyFromElement(object o, ILoggingConfigurationElement element)
         {
-            PropertyInfo propInfo;
-            if (!PropertyHelper.TryGetPropertyInfo(o, element.Name, out propInfo))
+            if (!PropertyHelper.TryGetPropertyInfo(o, element.Name, out var propInfo))
             {
                 return;
             }
@@ -979,10 +1024,7 @@ namespace NLog.Config
                 return;
             }
 
-            if (SetItemFromElement(o, propInfo, element))
-            {
-                return;
-            }
+            SetItemFromElement(o, propInfo, element);
         }
 
         private bool AddArrayItemFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
@@ -1057,12 +1099,11 @@ namespace NLog.Config
             return _configurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
         }
 
-        private bool SetItemFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
+        private void SetItemFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
         {
             object item = propInfo.GetValue(o, null);
             ConfigureObjectFromAttributes(item, element, true);
             ConfigureObjectFromElement(item, element);
-            return true;
         }
 
         private void ConfigureObjectFromElement(object targetObject, ILoggingConfigurationElement element)

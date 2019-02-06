@@ -371,16 +371,13 @@ namespace NLog.Targets
 
                 try
                 {
-
-                    if (attribType != typeof(string))
+                    var isStringType = attribType == typeof(string);
+                    if (!isStringType)
                     {
-                        if (attrib.Layout.TryGetRawValue(logEvent, out object rawValue))
+                        if (TryGetAttributeRawValue(logEvent, attrib, attribType, out var rawValue))
                         {
-                            if (rawValue?.GetType() == attribType || attribType == typeof(object))
-                            {
-                                combinedProperties[attrib.Name] = rawValue;
-                                continue;
-                            }
+                            combinedProperties[attrib.Name] = rawValue;
+                            continue;
                         }
                     }
 
@@ -388,7 +385,8 @@ namespace NLog.Targets
                     if (!attrib.IncludeEmptyValue && string.IsNullOrEmpty(attribStringValue))
                         continue;
 
-                    combinedProperties[attrib.Name] = attribType == typeof(string)
+                    
+                    combinedProperties[attrib.Name] = isStringType
                         ? attribStringValue : PropertyTypeConverter.Convert(attribStringValue, attribType, null, CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
@@ -401,6 +399,20 @@ namespace NLog.Targets
             }
 
             return combinedProperties;
+        }
+
+        private static bool TryGetAttributeRawValue(LogEventInfo logEvent, TargetPropertyWithContext attrib, Type attribType, out object rawValue)
+        {
+            var rawValue2 = false;
+            if (attrib.Layout.TryGetRawValue(logEvent, out rawValue))
+            {
+                if (attribType == typeof(object) || rawValue?.GetType() == attribType)
+                {
+                    rawValue2 = true;
+                }
+            }
+
+            return rawValue2;
         }
 
         /// <summary>

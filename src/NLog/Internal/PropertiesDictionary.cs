@@ -145,14 +145,7 @@ namespace NLog.Internal
 
                 if (oldMessageProperties != null && _eventProperties.Count > 0)
                 {
-                    PropertyValue propertyValue;
-                    for (int i = 0; i < oldMessageProperties.Count; ++i)
-                    {
-                        if (_eventProperties.TryGetValue(oldMessageProperties[i].Name, out propertyValue) && propertyValue.IsMessageProperty)
-                        {
-                            _eventProperties.Remove(oldMessageProperties[i].Name);
-                        }
-                    }
+                    RemoveOldMessageProperties(oldMessageProperties);
                 }
 
                 if (newMessageProperties != null && (_eventProperties.Count > 0 || !InsertMessagePropertiesIntoEmptyDictionary(newMessageProperties, _eventProperties)))
@@ -162,6 +155,17 @@ namespace NLog.Internal
                 else
                 {
                     return newMessageProperties;
+                }
+            }
+        }
+
+        private void RemoveOldMessageProperties(IList<MessageTemplateParameter> oldMessageProperties)
+        {
+            for (int i = 0; i < oldMessageProperties.Count; ++i)
+            {
+                if (_eventProperties.TryGetValue(oldMessageProperties[i].Name, out var propertyValue) && propertyValue.IsMessageProperty)
+                {
+                    _eventProperties.Remove(oldMessageProperties[i].Name);
                 }
             }
         }
