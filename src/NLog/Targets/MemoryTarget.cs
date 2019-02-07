@@ -90,6 +90,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the max number of items to have in memory
         /// </summary>
+        /// <docgen category='Buffering Options' order='10' />
         [DefaultValue(0)]
         public int MaxLogsCount { get; set; }
 

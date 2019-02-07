@@ -240,6 +240,7 @@ namespace NLog.Targets.Wrappers
         /// Gets or sets whether to use the locking queue, instead of a lock-free concurrent queue
         /// The locking queue is less concurrent when many logger threads, but reduces memory allocation
         /// </summary>
+        /// <docgen category='Buffering Options' order='100' />
         [DefaultValue(false)]
         public bool ForceLockingQueue { get => _forceLockingQueue ?? false; set => _forceLockingQueue = value; }
         private bool? _forceLockingQueue;

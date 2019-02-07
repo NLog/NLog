@@ -1318,9 +1318,7 @@ namespace NLog.Targets
             //todo handle double footer
             InternalLogger.Info("FileTarget(Name={0}): Already exists, append to {1}", Name, archiveFileName);
 
-            //todo maybe needs a better filelock behaviour
-
-            //copy to archive file.
+             //copy to archive file.
             var fileShare = FileShare.ReadWrite;
             if (EnableFileDelete)
             {
@@ -2304,7 +2302,6 @@ namespace NLog.Targets
             //performance: cheap check before checking file info 
             if (Header == null && !WriteBom) return;
 
-            //todo replace with hasWritten?
             var length = appender.GetFileLength();
             //  Write header and BOM only on empty files or if file info cannot be obtained.
             if (length == null || length == 0)

@@ -57,8 +57,7 @@ namespace NLog.Internal
 
                 if (o is IFormattable)
                 {
-                    //variable so only 1 lock is needed
-                    //TODO this locks the configuration, which can lead to deadlocks.
+                    // Lookup / loading global configuration can be dangerous and can lead to deadlocks
                     var loggingConfiguration = LogManager.Configuration;
                     if (loggingConfiguration != null)
                         formatProvider = loggingConfiguration.DefaultCultureInfo;
