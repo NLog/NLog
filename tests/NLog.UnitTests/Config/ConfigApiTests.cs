@@ -244,6 +244,15 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void LogRuleToStringTest_empty()
+        {
+            var target = new FileTarget { Name = "file1" };
+            var loggingRule = new LoggingRule("", target);
+            var s = loggingRule.ToString();
+            Assert.Equal("logNamePattern: (:Equals) levels: [ ] appendTo: [ file1 ]", s);
+        }
+
+        [Fact]
         public void LogRuleToStringTest_filter()
         {
             var target = new FileTarget {Name = "file1"};
@@ -304,5 +313,161 @@ namespace NLog.UnitTests.Config
             Assert.Null(ruleLookup);
             Assert.False(config.RemoveRuleByName("hello"));
         }
+
+        [Fact]
+        public void LoggerNameMatcher_None()
+        {
+            var matcher = LoggerNameMatcher.Create(null);
+            Assert.Equal("logNamePattern: (:None)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_All()
+        {
+            var matcher = LoggerNameMatcher.Create("*");
+            Assert.Equal("logNamePattern: (:All)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_Empty()
+        {
+            var matcher = LoggerNameMatcher.Create("");
+            Assert.Equal("logNamePattern: (:Equals)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_Equals()
+        {
+            var matcher = LoggerNameMatcher.Create("abc");
+            Assert.Equal("logNamePattern: (abc:Equals)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_StartsWith()
+        {
+            var matcher = LoggerNameMatcher.Create("abc*");
+            Assert.Equal("logNamePattern: (abc:StartsWith)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_EndsWith()
+        {
+            var matcher = LoggerNameMatcher.Create("*abc");
+            Assert.Equal("logNamePattern: (abc:EndsWith)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_Contains()
+        {
+            var matcher = LoggerNameMatcher.Create("*abc*");
+            Assert.Equal("logNamePattern: (abc:Contains)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_MultiplePattern_StarInternal()
+        {
+            var matcher = LoggerNameMatcher.Create("a*bc");
+            Assert.Equal("logNamePattern: (^a.*bc$:MultiplePattern)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_MultiplePattern_QuestionMark()
+        {
+            var matcher = LoggerNameMatcher.Create("a?bc");
+            Assert.Equal("logNamePattern: (^a.bc$:MultiplePattern)", matcher.ToString());
+        }
+
+        [Fact]
+        public void LoggerNameMatcher_MultiplePattern_EscapedChars()
+        {
+            var matcher = LoggerNameMatcher.Create("a?b.c.foo.bar");
+            Assert.Equal("logNamePattern: (^a.b\\.c\\.foo\\.bar$:MultiplePattern)", matcher.ToString());
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("foobar", false)]
+        public void LoggerNameMatcher_Matches_None(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("None", null, name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("foobar", false)]
+        [InlineData("A", false)]
+        [InlineData("a", true)]
+        public void LoggerNameMatcher_Matches_Equals(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("Equals", "a", name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("Foo", false)]
+        [InlineData("Foobar", false)]
+        [InlineData("foo", true)]
+        [InlineData("foobar", true)]
+        public void LoggerNameMatcher_Matches_StartsWith(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("StartsWith", "foo*", name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("Bar", false)]
+        [InlineData("fooBar", false)]
+        [InlineData("bar", true)]
+        [InlineData("foobar", true)]
+        public void LoggerNameMatcher_Matches_EndsWith(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("EndsWith", "*bar", name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("Bar", false)]
+        [InlineData("fooBar", false)]
+        [InlineData("Barbaz", false)]
+        [InlineData("fooBarbaz", false)]
+        [InlineData("bar", true)]
+        [InlineData("foobar", true)]
+        [InlineData("barbaz", true)]
+        [InlineData("foobarbaz", true)]
+        public void LoggerNameMatcher_Matches_Contains(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("Contains", "*bar*", name, result);
+        }
+
+        [Theory]
+        [InlineData(null, false)]
+        [InlineData("", false)]
+        [InlineData("Server[123].connection[2].reader", false)]
+        [InlineData("server[123].connection[2].reader", true)]
+        [InlineData("server[123].connection[2].", true)]
+        [InlineData("server[123].connection[2]", false)]
+        [InlineData("server[123].connection[25].reader", false)]
+        [InlineData("server[].connection[2].reader", true)]
+        public void LoggerNameMatcher_Matches_MultiplePattern(string name, bool result)
+        {
+            LoggerNameMatcher_Matches("MultiplePattern", "server[*].connection[?].*", name, result);
+        }
+
+        [Theory]
+        [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[2].reader", false)]
+        [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[25].reader", true)]
+        [InlineData("MultiplePattern", "server[*].connection[??].*", "server[].connection[254].reader", false)]
+        public void LoggerNameMatcher_Matches(string matcherType, string pattern, string name, bool result)
+        {
+            var matcher = LoggerNameMatcher.Create(pattern);
+            Assert.Contains(":" + matcherType, matcher.ToString());
+            Assert.Equal(result, matcher.NameMatches(name));
+        }
+
     }
 }
