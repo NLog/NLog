@@ -410,19 +410,7 @@ namespace NLog.Targets
 #if !NETSTANDARD
             if (string.IsNullOrEmpty(providerName))
             {
-                string dbProvider = DBProvider?.Trim() ?? string.Empty;
-                if (!string.IsNullOrEmpty(dbProvider))
-                {
-                    foreach (DataRow row in DbProviderFactories.GetFactoryClasses().Rows)
-                    {
-                        var invariantname = (string)row["InvariantName"];
-                        if (string.Equals(invariantname, dbProvider, StringComparison.OrdinalIgnoreCase))
-                        {
-                            providerName = invariantname;
-                            break;
-                        }
-                    }
-                }
+                providerName = GetProviderNameFromDbProviderFactories(providerName);
             }
 
             if (!string.IsNullOrEmpty(providerName))
@@ -458,6 +446,26 @@ namespace NLog.Targets
             }
         }
 
+#if !NETSTANDARD
+        private string GetProviderNameFromDbProviderFactories(string providerName)
+        {
+            string dbProvider = DBProvider?.Trim() ?? string.Empty;
+            if (!string.IsNullOrEmpty(dbProvider))
+            {
+                foreach (DataRow row in DbProviderFactories.GetFactoryClasses().Rows)
+                {
+                    var invariantname = (string)row["InvariantName"];
+                    if (string.Equals(invariantname, dbProvider, StringComparison.OrdinalIgnoreCase))
+                    {
+                        providerName = invariantname;
+                        break;
+                    }
+                }
+            }
+
+            return providerName;
+        }
+#endif
         /// <summary>
         /// Set the <see cref="ConnectionType"/> to use it for opening connections to the database.
         /// </summary>
@@ -879,39 +887,16 @@ namespace NLog.Targets
         protected internal virtual object GetParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
             Type dbParameterType = parameterInfo.ParameterType;
-            if (string.IsNullOrEmpty(parameterInfo.Format) && dbParameterType == typeof(string))
+            if (string.IsNullOrEmpty(parameterInfo.Format) && dbParameterType == typeof(string) && !(parameterInfo.UseRawValue ?? false))
             {
-                if (!(parameterInfo.UseRawValue ?? false))
-                {
-                    return RenderLogEvent(parameterInfo.Layout, logEvent) ?? string.Empty;
-                }
+                return RenderLogEvent(parameterInfo.Layout, logEvent) ?? string.Empty;
             }
 
             IFormatProvider dbParameterCulture = GetDbParameterCulture(logEvent, parameterInfo);
 
-            if (parameterInfo.UseRawValue ?? true)
+            if ((parameterInfo.UseRawValue ?? true) && TryGetConvertedRawValue(logEvent, parameterInfo, dbParameterType, dbParameterCulture, out var value))
             {
-                if (parameterInfo.Layout.TryGetRawValue(logEvent, out var rawValue))
-                {
-                    try
-                    {
-                        InternalLogger.Trace("  DatabaseTarget: Attempt to convert raw value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
-                        if (ReferenceEquals(rawValue, DBNull.Value))
-                            return rawValue;
-
-                        return PropertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
-                    }
-                    catch (Exception ex)
-                    {
-                        if (ex.MustBeRethrownImmediately())
-                            throw;
-
-                        InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
-
-                        if (ex.MustBeRethrown())
-                            throw;
-                    }
-                }
+                return value;
             }
 
             try
@@ -930,8 +915,46 @@ namespace NLog.Targets
                 if (ex.MustBeRethrown())
                     throw;
 
-                return CreateDefaultValue(dbParameterType);  
+                return CreateDefaultValue(dbParameterType);
             }
+        }
+
+        private bool TryGetConvertedRawValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo, Type dbParameterType,
+            IFormatProvider dbParameterCulture, out object value)
+        {
+            if (parameterInfo.Layout.TryGetRawValue(logEvent, out var rawValue))
+            {
+                try
+                {
+                    InternalLogger.Trace("  DatabaseTarget: Attempt to convert raw value for '{0}' into {1}",
+                        parameterInfo.Name, dbParameterType?.Name);
+                    if (ReferenceEquals(rawValue, DBNull.Value))
+                    {
+                        value = rawValue;
+                        return true;
+                    }
+
+                    {
+                        value = PropertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format,
+                                dbParameterCulture) ?? DBNull.Value;
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrownImmediately())
+                        throw;
+
+                    InternalLogger.Warn(ex, "  DatabaseTarget: Failed to convert raw value for '{0}' into {1}",
+                        parameterInfo.Name, dbParameterType?.Name);
+
+                    if (ex.MustBeRethrown())
+                        throw;
+                }
+            }
+
+            value = null;
+            return false;
         }
 
         /// <summary>

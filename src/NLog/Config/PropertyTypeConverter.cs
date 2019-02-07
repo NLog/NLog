@@ -54,36 +54,19 @@ namespace NLog.Config
 
                 if (propertyType == typeof(DateTime))
                 {
-                    if (!string.IsNullOrEmpty(format))
-                        return DateTime.ParseExact(propertyString, format, formatProvider);
-                    else
-                        return DateTime.Parse(propertyString, formatProvider);
+                    return ConvertDateTime(format, formatProvider, propertyString);
                 }
                 if (propertyType == typeof(DateTimeOffset))
                 {
-                    if (!string.IsNullOrEmpty(format))
-                        return DateTimeOffset.ParseExact(propertyString, format, formatProvider);
-                    else
-                        return DateTimeOffset.Parse(propertyString, formatProvider);
+                    return ConvertDateTimeOffset(format, formatProvider, propertyString);
                 }
                 if (propertyType == typeof(TimeSpan))
                 {
-#if NET3_5
-                    return TimeSpan.Parse(propertyString);
-#else
-                    if (!string.IsNullOrEmpty(format))
-                        return TimeSpan.ParseExact(propertyString, format, formatProvider);
-                    else
-                        return TimeSpan.Parse(propertyString, formatProvider);
-#endif
+                    return ConvertTimeSpan(format, formatProvider, propertyString);
                 }
                 if (propertyType == typeof(Guid))
                 {
-#if NET3_5
-                    return new Guid(propertyString);
-#else
-                    return string.IsNullOrEmpty(format) ? Guid.Parse(propertyString) : Guid.ParseExact(propertyString, format);
-#endif
+                    return ConvertGuid(format, propertyString);
                 }
             }
             else if (!string.IsNullOrEmpty(format) && propertyValue is IFormattable formattableValue)
@@ -92,6 +75,40 @@ namespace NLog.Config
             }
 
             return System.Convert.ChangeType(propertyValue, propertyType, formatProvider);
+        }
+
+        private static object ConvertGuid(string format, string propertyString)
+        {
+#if NET3_5
+           return new Guid(propertyString);
+#else
+            return string.IsNullOrEmpty(format) ? Guid.Parse(propertyString) : Guid.ParseExact(propertyString, format);
+#endif
+        }
+
+        private static object ConvertTimeSpan(string format, IFormatProvider formatProvider, string propertyString)
+        {
+#if NET3_5
+            return TimeSpan.Parse(propertyString);
+#else
+            if (!string.IsNullOrEmpty(format))
+                return TimeSpan.ParseExact(propertyString, format, formatProvider);
+            return TimeSpan.Parse(propertyString, formatProvider);
+#endif
+        }
+
+        private static object ConvertDateTimeOffset(string format, IFormatProvider formatProvider, string propertyString)
+        {
+            if (!string.IsNullOrEmpty(format))
+                return DateTimeOffset.ParseExact(propertyString, format, formatProvider);
+            return DateTimeOffset.Parse(propertyString, formatProvider);
+        }
+
+        private static object ConvertDateTime(string format, IFormatProvider formatProvider, string propertyString)
+        {
+            if (!string.IsNullOrEmpty(format))
+                return DateTime.ParseExact(propertyString, format, formatProvider);
+            return DateTime.Parse(propertyString, formatProvider);
         }
     }
 }

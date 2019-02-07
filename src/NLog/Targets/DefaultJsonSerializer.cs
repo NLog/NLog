@@ -312,11 +312,10 @@ namespace NLog.Targets
                 return;
             }
 
-            int originalLength;
             destination.Append('{');
             foreach (var item in new DictionaryEntryEnumerable(dictionary))
             {
-                originalLength = destination.Length;
+                var originalLength = destination.Length;
                 if (originalLength > MaxJsonLength)
                 {
                     break;
@@ -727,7 +726,7 @@ namespace NLog.Targets
 
                 try
                 {
-                    if (propertyValue.Name != null && propertyValue.Value != null)
+                    if (HasNameAndValue(propertyValue))
                     {
                         if (!first)
                         {
@@ -763,6 +762,11 @@ namespace NLog.Targets
 
             destination.Append('}');
             return true;
+        }
+
+        private static bool HasNameAndValue(ObjectReflectionCache.ObjectPropertyList.PropertyValue propertyValue)
+        {
+            return propertyValue.Name != null && propertyValue.Value != null;
         }
 
         private bool SerializeObjectAsString(object value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options)

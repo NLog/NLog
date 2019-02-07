@@ -73,7 +73,7 @@ namespace NLog.Config
         {
             InternalLogger.Trace("ParseNLogConfig");
             nlogConfig.AssertName("nlog");
-            
+
             var dict = CreateNLogConfigDictionary(nlogConfig);
 
             //check first exception throwing and internal logging, so that erros in this section could be handled correctly
@@ -181,7 +181,7 @@ namespace NLog.Config
                         break; // expanding variables not possible here, they are created later
                     case "PARSEMESSAGETEMPLATES":
                         parseMessageTemplates = string.IsNullOrEmpty(configItem.Value)
-                            ? (bool?) null
+                            ? (bool?)null
                             : ParseBooleanValue(configItem.Key, configItem.Value, true);
                         break;
                     default:
@@ -222,7 +222,7 @@ namespace NLog.Config
             if (dict.TryGetValue("THROWCONFIGEXCEPTIONS", out var val))
             {
                 LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(val)
-                    ? (bool?) null
+                    ? (bool?)null
                     : ParseBooleanValue("ThrowConfigExceptions", val, false);
             }
         }
@@ -664,17 +664,30 @@ namespace NLog.Config
                 return null;
             }
 
-            var rule = new LoggingRule(ruleName);
-            rule.LoggerNamePattern = namePattern;
+            var rule = new LoggingRule(ruleName)
+            {
+                LoggerNamePattern = namePattern
+            };
 
             ParseLoggingRuleTargets(writeTargets, rule);
 
             rule.Final = final;
 
+            EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
+
+            ParseLoggingRuleChildren(loggerElement, rule);
+
+            return rule;
+        }
+
+        private static void EnableLevelsForRule(LoggingRule rule, IEnumerable<LogLevel> enableLevels, int minLevel, int maxLevel)
+        {
             if (enableLevels != null)
             {
                 foreach (var level in enableLevels)
+                {
                     rule.EnableLoggingForLevel(level);
+                }
             }
             else
             {
@@ -683,10 +696,6 @@ namespace NLog.Config
                     rule.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
                 }
             }
-
-            ParseLoggingRuleChildren(loggerElement, rule);
-
-            return rule;
         }
 
         private void ParseLoggingRuleTargets(string writeTargets, LoggingRule rule)
@@ -894,7 +903,7 @@ namespace NLog.Config
             if (IsTargetRefElement(name))
             {
                 var targetName = childElement.GetRequiredValue("name",
-                    string.IsNullOrEmpty(wrapper.Name) ? wrapper.GetType().Name : wrapper.Name);
+                    GetName(wrapper));
                 Target newTarget = FindTargetByName(targetName);
                 if (newTarget == null)
                 {
@@ -907,8 +916,7 @@ namespace NLog.Config
 
             if (IsTargetElement(name))
             {
-                string type = StripOptionalNamespacePrefix(childElement.GetRequiredValue("type",
-                    string.IsNullOrEmpty(wrapper.Name) ? wrapper.GetType().Name : wrapper.Name));
+                string type = StripOptionalNamespacePrefix(childElement.GetRequiredValue("type", GetName(wrapper)));
 
                 Target newTarget = _configurationItemFactory.Targets.CreateInstance(type);
                 if (newTarget != null)
@@ -951,8 +959,8 @@ namespace NLog.Config
 
             if (IsTargetRefElement(name))
             {
-                targetName = childElement.GetRequiredValue("name",
-                    string.IsNullOrEmpty(compound.Name) ? compound.GetType().Name : compound.Name);
+                targetName = childElement.GetRequiredValue("name", GetName(compound));
+
                 Target newTarget = FindTargetByName(targetName);
                 if (newTarget == null)
                 {
@@ -965,8 +973,8 @@ namespace NLog.Config
 
             if (IsTargetElement(name))
             {
-                string type = StripOptionalNamespacePrefix(childElement.GetRequiredValue("type",
-                    string.IsNullOrEmpty(compound.Name) ? compound.GetType().Name : compound.Name));
+                var attributeValue = childElement.GetRequiredValue("type", GetName(compound));
+                string type = StripOptionalNamespacePrefix(attributeValue);
 
                 Target newTarget = _configurationItemFactory.Targets.CreateInstance(type);
                 if (newTarget != null)
@@ -990,6 +998,7 @@ namespace NLog.Config
             return false;
         }
 
+      
         private void ConfigureObjectFromAttributes(object targetObject, ILoggingConfigurationElement element,
             bool ignoreType)
         {
@@ -1249,6 +1258,12 @@ namespace NLog.Config
             s = s.Replace(" ", string.Empty); // get rid of the whitespace
             return s;
         }
+
+        private static string GetName(Target target)
+        {
+            return string.IsNullOrEmpty(target.Name) ? target.GetType().Name : target.Name;
+        }
+
     }
 
     static class ILoggingConfigurationSectionExtensions
