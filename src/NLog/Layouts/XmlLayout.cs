@@ -404,23 +404,31 @@ namespace NLog.Layouts
 
             if (IncludeAllProperties && logEventInfo.HasProperties)
             {
-                IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEventInfo.CreateOrUpdatePropertiesInternal(true);
-                foreach (var prop in propertiesList)
-                {
-                    if (string.IsNullOrEmpty(prop.Name))
-                        continue;
+                AppendLogEventProperties(logEventInfo, sb, orgLength);
+            }
+        }
 
-                    if (ExcludeProperties.Contains(prop.Name))
-                        continue;
+        private void AppendLogEventProperties(LogEventInfo logEventInfo, StringBuilder sb, int orgLength)
+        {
+            IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEventInfo.CreateOrUpdatePropertiesInternal(true);
+            foreach (var prop in propertiesList)
+            {
+                if (string.IsNullOrEmpty(prop.Name))
+                    continue;
 
-                    var propertyValue = prop.Value;
-                    if (!string.IsNullOrEmpty(prop.Format) && propertyValue is IFormattable formattedProperty)
-                        propertyValue = formattedProperty.ToString(prop.Format, logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
-                    else if (prop.CaptureType == MessageTemplates.CaptureType.Stringify)
-                        propertyValue = Convert.ToString(prop.Value ?? string.Empty, logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+                if (ExcludeProperties.Contains(prop.Name))
+                    continue;
 
-                    AppendXmlPropertyObjectValue(prop.Name, propertyValue, Convert.GetTypeCode(propertyValue), sb, orgLength, default(SingleItemOptimizedHashSet<object>), 0);
-                }
+                var propertyValue = prop.Value;
+                if (!string.IsNullOrEmpty(prop.Format) && propertyValue is IFormattable formattedProperty)
+                    propertyValue = formattedProperty.ToString(prop.Format,
+                        logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+                else if (prop.CaptureType == MessageTemplates.CaptureType.Stringify)
+                    propertyValue = Convert.ToString(prop.Value ?? string.Empty,
+                        logEventInfo.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
+
+                AppendXmlPropertyObjectValue(prop.Name, propertyValue, Convert.GetTypeCode(propertyValue), sb, orgLength,
+                    default(SingleItemOptimizedHashSet<object>), 0);
             }
         }
 
@@ -577,7 +585,7 @@ namespace NLog.Layouts
                 sb.Append("  ");
 
             sb.Append('<');
-            string propNameElement = null;
+            string propNameElement;
             if (ignorePropertiesElementName)
             {
                 propNameElement = XmlHelper.XmlConvertToElementName(propName, true);

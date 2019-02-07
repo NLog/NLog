@@ -617,15 +617,12 @@ namespace NLog.Targets
                     }
                 }
 
-                if (success)
+                if (success && OptimizeBufferReuse)
                 {
-                    if (OptimizeBufferReuse)
-                    {
-                        // The expected Task completed with success, allow buffer reuse
-                        reusableLogEvents.Item1.Clear();
-                        reusableLogEvents.Item2.Clear();
-                        Interlocked.CompareExchange(ref _reusableLogEvents, reusableLogEvents, null);
-                    }
+                    // The expected Task completed with success, allow buffer reuse
+                    reusableLogEvents.Item1.Clear();
+                    reusableLogEvents.Item2.Clear();
+                    Interlocked.CompareExchange(ref _reusableLogEvents, reusableLogEvents, null);
                 }
             }
             finally
