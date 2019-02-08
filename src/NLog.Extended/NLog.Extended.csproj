@@ -15,8 +15,6 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      News post:
-      http://nlog-project.org/2015/06/09/nlog-4-has-been-released.html
       Wiki:
       https://github.com/NLog/NLog/wiki/MSMQ-target
       https://github.com/NLog/NLog/wiki/AppSetting-Layout-Renderer
