@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,7 +48,7 @@ namespace NLog
     /// </summary>
     public static class MappedDiagnosticsContext
     {
-        private static readonly object dataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
+        private static readonly object DataSlot = ThreadLocalStorageHelper.AllocateDataSlot();
 
         private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
 
@@ -58,11 +58,11 @@ namespace NLog
         private class ItemRemover : IDisposable
         {
             private readonly string _item;
-            private bool _disposed = false;
+            private bool _disposed;
 
             public ItemRemover(string item)
             {
-                this._item = item;
+                _item = item;
             }
 
             public void Dispose()
@@ -82,7 +82,7 @@ namespace NLog
         /// <returns></returns>
         private static IDictionary<string, object> GetThreadDictionary(bool create = true)
         {
-            var dictionary = ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(dataSlot, create);
+            var dictionary = ThreadLocalStorageHelper.GetDataForSlot<Dictionary<string, object>>(DataSlot, create);
             if (dictionary == null && !create)
                 return EmptyDefaultDictionary;
 

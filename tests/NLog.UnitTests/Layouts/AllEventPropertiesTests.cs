@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,6 +33,7 @@
 
 using System;
 using System.Text;
+using NLog.Config;
 using NLog.LayoutRenderers;
 using NLog.Fluent;
 
@@ -110,7 +111,7 @@ namespace NLog.UnitTests.Layouts
         public void AllEventWithFluent_without_callerInformation()
         {
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='Debug'
@@ -151,7 +152,7 @@ namespace NLog.UnitTests.Layouts
 #endif
         public void AllEventWithFluent_with_callerInformation()
         {
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='Debug'

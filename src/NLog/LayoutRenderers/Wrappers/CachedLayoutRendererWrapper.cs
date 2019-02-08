@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System;
     using System.ComponentModel;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -46,9 +47,9 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </remarks>
     [LayoutRenderer("cached")]
     [AmbientProperty("Cached")]
-    [AmbientProperty("ClearCache")] 
+    [AmbientProperty("ClearCache")]
     [ThreadAgnostic]
-    public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase
+    public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase, IStringValueRenderer
     {
         /// <summary>
         /// A value indicating when the cache is cleared.
@@ -64,8 +65,8 @@ namespace NLog.LayoutRenderers.Wrappers
             OnClose = 2
         }
 
-        private string _cachedValue = null;
-        private string _renderedCacheKey = null;
+        private string _cachedValue;
+        private string _renderedCacheKey;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CachedLayoutRendererWrapper"/> class.
@@ -148,5 +149,8 @@ namespace NLog.LayoutRenderers.Wrappers
                 return base.RenderInner(logEvent);
             }
         }
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Cached ? RenderInner(logEvent) : null;
     }
 }

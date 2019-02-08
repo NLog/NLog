@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </summary>
     [LayoutRenderer("lowercase")]
     [AmbientProperty("Lowercase")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class LowercaseLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
@@ -82,6 +83,7 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
+        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
         }

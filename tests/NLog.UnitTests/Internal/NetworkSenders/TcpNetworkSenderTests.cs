@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -137,7 +137,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         public void TcpProxyTest()
         {
             var sender = new TcpNetworkSender("tcp://foo:1234", AddressFamily.Unspecified);
-            var socket = sender.CreateSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            var socket = sender.CreateSocket("foo", AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             Assert.IsType<SocketProxy>(socket);
         }
 
@@ -264,7 +264,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                 Log = new StringWriter();
             }
 
-            protected internal override ISocket CreateSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
+            protected internal override ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
             {
                 return new MockSocket(addressFamily, socketType, protocolType, this);
             }
@@ -286,7 +286,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
         {
             private readonly MyTcpNetworkSender sender;
             private readonly StringWriter log;
-            private bool faulted = false;
+            private bool faulted;
 
             public MockSocket(AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType, MyTcpNetworkSender sender)
             {

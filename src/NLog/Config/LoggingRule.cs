@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -50,15 +50,22 @@ namespace NLog.Config
     {
         private readonly bool[] _logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
-        private string _loggerNamePattern;
-        private MatchMode _loggerNameMatchMode;
-        private string _loggerNameMatchArgument;
+        private LoggerNameMatcher _loggerNameMatcher = LoggerNameMatcher.Create(null);
 
         /// <summary>
         /// Create an empty <see cref="LoggingRule" />.
         /// </summary>
         public LoggingRule()
+            :this(null)
         {
+        }
+
+        /// <summary>
+        /// Create an empty <see cref="LoggingRule" />.
+        /// </summary>
+        public LoggingRule(string ruleName)
+        {
+            RuleName = ruleName;
             Filters = new List<Filter>();
             ChildRules = new List<LoggingRule>();
             Targets = new List<Target>();
@@ -67,7 +74,7 @@ namespace NLog.Config
         /// <summary>
         /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> and  <paramref name="maxLevel"/> which writes to <paramref name="target"/>.
         /// </summary>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="loggerNamePattern">Logger name pattern used for <see cref="LoggerNamePattern"/>. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
@@ -79,12 +86,10 @@ namespace NLog.Config
             EnableLoggingForLevels(minLevel, maxLevel);
         }
 
-
-
         /// <summary>
         /// Create a new <see cref="LoggingRule" /> with a <paramref name="minLevel"/> which writes to <paramref name="target"/>.
         /// </summary>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="loggerNamePattern">Logger name pattern used for <see cref="LoggerNamePattern"/>. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="minLevel">Minimum log level needed to trigger this rule.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, LogLevel minLevel, Target target)
@@ -98,7 +103,7 @@ namespace NLog.Config
         /// <summary>
         /// Create a (disabled) <see cref="LoggingRule" />. You should call <see cref="EnableLoggingForLevel"/> or see cref="EnableLoggingForLevels"/> to enable logging.
         /// </summary>
-        /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
+        /// <param name="loggerNamePattern">Logger name pattern used for <see cref="LoggerNamePattern"/>. It may include one or more '*' or '?' wildcards at any position.</param>
         /// <param name="target">Target to be written to when the rule matches.</param>
         public LoggingRule(string loggerNamePattern, Target target)
             : this()
@@ -107,15 +112,10 @@ namespace NLog.Config
             Targets.Add(target);
         }
 
-        internal enum MatchMode
-        {
-            All,
-            None,
-            Equals,
-            StartsWith,
-            EndsWith,
-            Contains,
-        }
+        /// <summary>
+        /// Rule identifier to allow rule lookup
+        /// </summary>
+        public string RuleName { get; }
 
         /// <summary>
         /// Gets a collection of targets that should be written to when this rule matches.
@@ -145,58 +145,20 @@ namespace NLog.Config
         /// Gets or sets logger name pattern.
         /// </summary>
         /// <remarks>
-        /// Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends but not anywhere else.
+        /// Logger name pattern used by <see cref="NameMatches(string)"/> to check if a logger name matches this rule.
+        /// It may include one or more '*' or '?' wildcards at any position.
+        /// <list type="bullet">
+        /// <item>'*' means zero or more occurrecnces of any character</item>
+        /// <item>'?' means exactly one occurrence of any character</item>
+        /// </list>
         /// </remarks>
         public string LoggerNamePattern
         {
-            get => _loggerNamePattern;
+            get => _loggerNameMatcher.Pattern;
 
             set
             {
-                _loggerNamePattern = value;
-                int firstPos = _loggerNamePattern.IndexOf('*');
-                int lastPos = _loggerNamePattern.LastIndexOf('*');
-
-                if (firstPos < 0)
-                {
-                    _loggerNameMatchMode = MatchMode.Equals;
-                    _loggerNameMatchArgument = value;
-                    return;
-                }
-
-                if (firstPos == lastPos)
-                {
-                    string before = LoggerNamePattern.Substring(0, firstPos);
-                    string after = LoggerNamePattern.Substring(firstPos + 1);
-
-                    if (before.Length > 0)
-                    {
-                        _loggerNameMatchMode = MatchMode.StartsWith;
-                        _loggerNameMatchArgument = before;
-                        return;
-                    }
-
-                    if (after.Length > 0)
-                    {
-                        _loggerNameMatchMode = MatchMode.EndsWith;
-                        _loggerNameMatchArgument = after;
-                        return;
-                    }
-
-                    return;
-                }
-
-                // *text*
-                if (firstPos == 0 && lastPos == LoggerNamePattern.Length - 1)
-                {
-                    string text = LoggerNamePattern.Substring(1, LoggerNamePattern.Length - 2);
-                    _loggerNameMatchMode = MatchMode.Contains;
-                    _loggerNameMatchArgument = text;
-                    return;
-                }
-
-                _loggerNameMatchMode = MatchMode.None;
-                _loggerNameMatchArgument = string.Empty;
+                _loggerNameMatcher = LoggerNameMatcher.Create(value);
             }
         }
 
@@ -220,6 +182,10 @@ namespace NLog.Config
                 return levels.AsReadOnly();
             }
         }
+        /// <summary>
+        /// Default action if all filters won't match
+        /// </summary>
+        public FilterResult DefaultFilterResult { get; set; } = FilterResult.Neutral;
 
         /// <summary>
         /// Enables logging for a particular level.
@@ -296,7 +262,7 @@ namespace NLog.Config
         {
             var sb = new StringBuilder();
 
-            sb.AppendFormat(CultureInfo.InvariantCulture, "logNamePattern: ({0}:{1})", _loggerNameMatchArgument, _loggerNameMatchMode);
+            sb.Append(_loggerNameMatcher.ToString());
             sb.Append(" levels: [ ");
             for (int i = 0; i < _logLevels.Length; ++i)
             {
@@ -332,35 +298,14 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Checks whether given name matches the logger name pattern.
+        /// Checks whether given name matches the <see cref="LoggerNamePattern"/>.
         /// </summary>
         /// <param name="loggerName">String to be matched.</param>
         /// <returns>A value of <see langword="true"/> when the name matches, <see langword="false" /> otherwise.</returns>
         public bool NameMatches(string loggerName)
         {
-            switch (_loggerNameMatchMode)
-            {
-                case MatchMode.All:
-                    return true;
-
-                default:
-                case MatchMode.None:
-                    return false;
-
-                case MatchMode.Equals:
-                    return loggerName.Equals(_loggerNameMatchArgument, StringComparison.Ordinal);
-
-                case MatchMode.StartsWith:
-                    return loggerName.StartsWith(_loggerNameMatchArgument, StringComparison.Ordinal);
-
-                case MatchMode.EndsWith:
-                    return loggerName.EndsWith(_loggerNameMatchArgument, StringComparison.Ordinal);
-
-                case MatchMode.Contains:
-                    return loggerName.IndexOf(_loggerNameMatchArgument, StringComparison.Ordinal) >= 0;
-            }
+            return _loggerNameMatcher.NameMatches(loggerName);
         }
-
 
     }
 }

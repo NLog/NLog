@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The logger name.
@@ -43,7 +44,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("logger")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class LoggerNameLayoutRenderer : LayoutRenderer
+    public class LoggerNameLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets a value indicating whether to render short logger name (the part after the trailing dot character).
@@ -52,29 +53,38 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool ShortName { get; set; }
 
-        /// <summary>
-        /// Renders the logger name and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (ShortName)
             {
-                int lastDot = logEvent.LoggerName.LastIndexOf('.');
-                if (lastDot < 0)
-                {
-                    builder.Append(logEvent.LoggerName);
-                }
-                else
+                int lastDot = TryGetLastDotForShortName(logEvent);
+                if (lastDot >= 0)
                 {
                     builder.Append(logEvent.LoggerName, lastDot + 1, logEvent.LoggerName.Length - lastDot - 1);
+                    return;
                 }
             }
-            else
+            builder.Append(logEvent.LoggerName);
+        }
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        {
+            if (ShortName)
             {
-                builder.Append(logEvent.LoggerName);
+                int lastDot = TryGetLastDotForShortName(logEvent);
+                if (lastDot >= 0)
+                {
+                    return logEvent.LoggerName.Substring(lastDot + 1);
+                }
             }
+            return logEvent.LoggerName ?? string.Empty;
+        }
+
+        private int TryGetLastDotForShortName(LogEventInfo logEvent)
+        {
+            return logEvent.LoggerName?.LastIndexOf('.') ?? -1;
         }
     }
 }

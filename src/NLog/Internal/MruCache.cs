@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -199,9 +199,9 @@ namespace NLog.Internal
 
         struct MruCacheItem
         {
-            public TValue Value { get; }
-            public long Version { get; }
-            public bool Virgin { get; }
+            public readonly TValue Value;
+            public readonly long Version;
+            public readonly bool Virgin;
 
             public MruCacheItem(TValue value, long version, bool virgin)
             {

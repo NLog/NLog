@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,27 +48,18 @@ namespace NLog.LayoutRenderers
         private static Dictionary<string, int> sequences = new Dictionary<string, int>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CounterLayoutRenderer" /> class.
-        /// </summary>
-        public CounterLayoutRenderer()
-        {
-            Increment = 1;
-            Value = 1;
-        }
-
-        /// <summary>
         /// Gets or sets the initial value of the counter.
         /// </summary>
         /// <docgen category='Counter Options' order='10' />
         [DefaultValue(1)]
-        public int Value { get; set; }
+        public int Value { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the value to be added to the counter after each layout rendering.
         /// </summary>
         /// <docgen category='Counter Options' order='10' />
         [DefaultValue(1)]
-        public int Increment { get; set; }
+        public int Increment { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the name of the sequence. Different named sequences can have individual values.
@@ -76,12 +67,14 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Counter Options' order='10' />
         public Layout Sequence { get; set; }
 
-        /// <summary>
-        /// Renders the specified counter value and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            int v = GetNextValue(logEvent);
+            builder.AppendInvariant(v);
+        }
+
+        private int GetNextValue(LogEventInfo logEvent)
         {
             int v;
 
@@ -95,7 +88,7 @@ namespace NLog.LayoutRenderers
                 Value += Increment;
             }
 
-            builder.AppendInvariant(v);
+            return v;
         }
 
         private static int GetNextSequenceValue(string sequenceName, int defaultValue, int increment)

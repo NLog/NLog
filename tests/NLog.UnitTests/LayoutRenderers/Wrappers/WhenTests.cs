@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -30,6 +30,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
+using NLog.Config;
 
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
@@ -148,7 +150,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WhenLogLevelConditionTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>

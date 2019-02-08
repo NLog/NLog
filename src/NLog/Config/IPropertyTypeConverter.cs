@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,37 +31,23 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using NLog.Targets;
-
-namespace NLog.UnitTests.Common
+namespace NLog.Config
 {
+    using System;
+
     /// <summary>
-    /// Target for unit testing the last written LogEvent (non rendered!)
+    /// Convert object-value into specified type
     /// </summary>
-    [Target("LastLogEvent")]
-    public class LastLogEventListTarget : TargetWithLayout
+    public interface IPropertyTypeConverter
     {
-        public LastLogEventListTarget() : base()
-        {
-        }
-
-        public LastLogEventListTarget(string name) : this()
-        {
-            Name = name;
-        }
-
         /// <summary>
-        /// Increases the number of messages.
+        /// Parses the input value and converts into the wanted type
         /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        protected override void Write(LogEventInfo logEvent)
-        {
-            LastLogEvent = logEvent;
-        }
-
-        public LogEventInfo LastLogEvent { get; set; }
+        /// <param name="propertyValue">Input Value</param>
+        /// <param name="propertyType">Wanted Type</param>
+        /// <param name="format">Format to use when parsing</param>
+        /// <param name="formatProvider">Culture to use when parsing</param>
+        /// <returns>Output value with wanted type</returns>
+        object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider);
     }
 }

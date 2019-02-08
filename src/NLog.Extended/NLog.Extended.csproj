@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -12,21 +12,19 @@
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
-    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      News post:
-      http://nlog-project.org/2015/06/09/nlog-4-has-been-released.html
       Wiki:
       https://github.com/NLog/NLog/wiki/MSMQ-target
       https://github.com/NLog/NLog/wiki/AppSetting-Layout-Renderer
     </PackageReleaseNotes>
     <PackageTags>NLog;MSMQ;AppSettings;logging;log</PackageTags>
-    <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
-    <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
+    <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
+    <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
+    <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
 
     <SignAssembly>true</SignAssembly>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
@@ -36,13 +34,13 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-    <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net45' ">Full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5 Extended Profile</Title>
-    <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
+    <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
@@ -50,14 +48,16 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
+    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5 Extended Profile</Title>
-    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
+    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(monobuild)' != '' ">

@@ -12,18 +12,18 @@
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
-    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
       Wiki:
       https://github.com/NLog/NLog/wiki/Windows-Identity-Layout-Renderer
     </PackageReleaseNotes>
     <PackageTags>NLog;WindowsIdentity;logging;log</PackageTags>
-    <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
-    <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
+    <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
+    <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
+    <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
 
     <SignAssembly>true</SignAssembly>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>

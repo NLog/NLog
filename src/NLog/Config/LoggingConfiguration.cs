@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -414,6 +414,64 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Finds the logging rule with the specified name.
+        /// </summary>
+        /// <param name="ruleName">The name of the logging rule to be found.</param>
+        /// <returns>Found logging rule or <see langword="null"/> when not found.</returns>
+        public LoggingRule FindRuleByName(string ruleName)
+        {
+            if (ruleName == null)
+                return null;
+
+            var loggingRules = GetLoggingRulesThreadSafe();
+            for (int i = loggingRules.Count - 1; i >= 0; i--)
+            {
+                if (string.Equals(loggingRules[i].RuleName, ruleName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return loggingRules[i];
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Removes the specified named logging rule.
+        /// </summary>
+        /// <param name="ruleName">The name of the logging rule to be removed.</param>
+        /// <returns>Found one or more logging rule to remove, or <see langword="false"/> when not found.</returns>
+        public bool RemoveRuleByName(string ruleName)
+        {
+            if (ruleName == null)
+                return false;
+
+            HashSet<LoggingRule> removedRules = new HashSet<LoggingRule>();
+            var loggingRules = GetLoggingRulesThreadSafe();
+            foreach (var loggingRule in loggingRules)
+            {
+                if (string.Equals(loggingRule.RuleName, ruleName, StringComparison.OrdinalIgnoreCase))
+                {
+                    removedRules.Add(loggingRule);
+                }
+            }
+
+            if (removedRules.Count > 0)
+            {
+                lock (LoggingRules)
+                {
+                    for (int i = LoggingRules.Count - 1; i >= 0; i--)
+                    {
+                        if (removedRules.Contains(LoggingRules[i]))
+                        {
+                            LoggingRules.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+
+            return removedRules.Count > 0;
+        }
+
+        /// <summary>
         /// Called by LogManager when one of the log configuration files changes.
         /// </summary>
         /// <returns>
@@ -740,20 +798,24 @@ namespace NLog.Config
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [NotNull]
         internal string ExpandSimpleVariables(string input)
         {
             string output = input;
 
-            // TODO - make this case-insensitive, will probably require a different approach
-            var variables = Variables.ToList();
-            foreach (var kvp in variables)
+            if (Variables.Count > 0 && output?.IndexOf("${") >= 0)
             {
-                var layout = kvp.Value;
-                //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
-                if (layout != null) output = output.Replace(string.Concat("${", kvp.Key, "}"), layout.OriginalText);
+                // TODO - make this case-insensitive, will probably require a different approach
+                var variables = Variables.ToList();
+                foreach (var kvp in variables)
+                {
+                    var layout = kvp.Value;
+                    //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
+                    if (layout != null) output = output.Replace(string.Concat("${", kvp.Key, "}"), layout.OriginalText);
+                }
             }
 
-            return output;
+            return output ?? string.Empty;
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -58,12 +58,15 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void LayoutRendererThrows()
         {
-            ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
-            configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
-            
-            SimpleLayout l = new SimpleLayout("xx${throwsException}yy", configurationItemFactory);
-            string output = l.Render(LogEventInfo.CreateNullEvent());
-            Assert.Equal("xxyy", output);
+            using (new NoThrowNLogExceptions())
+            {
+                ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
+                configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
+
+                SimpleLayout l = new SimpleLayout("xx${throwsException}yy", configurationItemFactory);
+                string output = l.Render(LogEventInfo.CreateNullEvent());
+                Assert.Equal("xxyy", output);
+            }
         }
 
         [Fact]
@@ -90,15 +93,18 @@ namespace NLog.UnitTests.Layouts
         public void LayoutRendererThrows2()
         {
             string internalLogOutput = RunAndCaptureInternalLog(
-                () => 
+                () =>
                     {
-                        ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
-                        configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
+                        using (new NoThrowNLogExceptions())
+                        {
+                            ConfigurationItemFactory configurationItemFactory = new ConfigurationItemFactory();
+                            configurationItemFactory.LayoutRenderers.RegisterDefinition("throwsException", typeof(ThrowsExceptionRenderer));
 
-                        SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", configurationItemFactory);
-                        string output = l.Render(LogEventInfo.CreateNullEvent());
-                        Assert.Equal("xxyyzz", output);
-                    }, 
+                            SimpleLayout l = new SimpleLayout("xx${throwsException:msg1}yy${throwsException:msg2}zz", configurationItemFactory);
+                            string output = l.Render(LogEventInfo.CreateNullEvent());
+                            Assert.Equal("xxyyzz", output);
+                        }
+                    },
                     LogLevel.Warn);
 
             Assert.True(internalLogOutput.IndexOf("msg1") >= 0, internalLogOutput);
@@ -150,6 +156,73 @@ namespace NLog.UnitTests.Layouts
             lr.Close();
             Assert.Equal(1, lr.InitCount);
             Assert.Equal(1, lr.CloseCount);
+        }
+
+        [Fact]
+        public void TryGetRawValue_SingleLayoutRender_ShouldGiveRawValue()
+        {
+            // Arrange
+            SimpleLayout l = "${sequenceid}";
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<int>(value);
+            Assert.True((int)value >= 0, "(int)value >= 0");
+        }
+
+        [Fact]
+        public void TryGetRawValue_MultipleLayoutRender_ShouldGiveNullRawValue()
+        {
+            // Arrange
+            SimpleLayout l = "${sequenceid} ";
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.False(success);
+            Assert.Null(value);
+        }
+
+        [Fact]
+        public void TryGetRawValue_MutableLayoutRender_ShouldGiveNullRawValue()
+        {
+            // Arrange
+            SimpleLayout l = "${event-properties:builder}";
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.Properties["builder"] = new StringBuilder("mybuilder");
+            l.Precalculate(logEventInfo);
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.False(success);
+            Assert.Null(value);
+        }
+
+        [Fact]
+        public void TryGetRawValue_ImmutableLayoutRender_ShouldGiveRawValue()
+        {
+            // Arrange
+            SimpleLayout l = "${event-properties:correlationid}";
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            var correlationId = Guid.NewGuid();
+            logEventInfo.Properties["correlationid"] = correlationId;
+            l.Precalculate(logEventInfo);
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<Guid>(value);
+            Assert.Equal(correlationId, value);
         }
 
         public class ThrowsExceptionRenderer : LayoutRenderer

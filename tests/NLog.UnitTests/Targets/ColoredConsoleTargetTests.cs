@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -119,6 +119,82 @@ namespace NLog.UnitTests.Targets
                 new string[] { "The ", "cat", " ", "sat", " at the bar." });
         }
 
+        [Fact]
+        public void ColoredConsoleAnsi_OverlappingWordHighlight_VerificationTest()
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}", EnableAnsiOutput = true };
+            target.UseDefaultRowHighlightingRules = false;
+            target.WordHighlightingRules.Add(new ConsoleWordHighlightingRule
+            {
+                Text = "big warning",
+                ForegroundColor = ConsoleOutputColor.DarkRed,
+                BackgroundColor = ConsoleOutputColor.NoChange
+            });
+            target.WordHighlightingRules.Add(new ConsoleWordHighlightingRule
+            {
+                Text = "warn",
+                ForegroundColor = ConsoleOutputColor.DarkMagenta,
+                BackgroundColor = ConsoleOutputColor.NoChange
+            });
+            target.WordHighlightingRules.Add(new ConsoleWordHighlightingRule
+            {
+                Text = "a",
+                ForegroundColor = ConsoleOutputColor.DarkGreen,
+                BackgroundColor = ConsoleOutputColor.NoChange
+            });
+
+            AssertOutput(target, "The big warning message",
+                    new string[] { "The \x1B[31mbig \x1B[35mw\x1B[32ma\x1B[35mrn\x1B[31ming\x1B[0m mess\x1B[32ma\x1B[0mge\x1B[0m" });
+        }
+
+        [Fact]
+        public void ColoredConsoleAnsi_RepeatedWordHighlight_VerificationTest()
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}", EnableAnsiOutput = true };
+            target.UseDefaultRowHighlightingRules = false;
+            target.WordHighlightingRules.Add(new ConsoleWordHighlightingRule
+            {
+                Text = "big big",
+                ForegroundColor = ConsoleOutputColor.DarkRed,
+                BackgroundColor = ConsoleOutputColor.NoChange
+            });
+
+            AssertOutput(target, "The big big big big warning message",
+                    new string[] { "The \x1B[31mbig big\x1B[0m \x1B[31mbig big\x1B[0m warning message\x1B[0m" });
+        }
+
+        [Theory]
+        [InlineData("The big warning message", "\x1B[42mThe big warning message\x1B[0m")]
+        [InlineData("The big\r\nwarning message", "\x1B[42mThe big\x1B[0m\r\n\x1B[42mwarning message\x1B[0m")]
+        public void ColoredConsoleAnsi_RowColor_VerificationTest(string inputText, string expectedResult)
+        {
+            var target = new ColoredConsoleTarget { Layout = "${message}", EnableAnsiOutput = true };
+            target.UseDefaultRowHighlightingRules = false;
+            target.RowHighlightingRules.Add(new ConsoleRowHighlightingRule() { BackgroundColor = ConsoleOutputColor.DarkGreen });
+
+            AssertOutput(target, inputText,
+                    new string[] { expectedResult },
+                    string.Empty);
+        }
+
+        [Fact]
+        public void ColoredConsoleAnsi_RowColorWithWordHighlight_VerificationTest()
+        {
+            var target = new ColoredConsoleTarget { Layout = "${message}", EnableAnsiOutput = true };
+            target.UseDefaultRowHighlightingRules = false;
+            target.RowHighlightingRules.Add(new ConsoleRowHighlightingRule() { BackgroundColor = ConsoleOutputColor.Green });
+            target.WordHighlightingRules.Add(new ConsoleWordHighlightingRule
+            {
+                Text = "big big",
+                ForegroundColor = ConsoleOutputColor.DarkRed,
+                BackgroundColor = ConsoleOutputColor.NoChange
+            });
+
+            AssertOutput(target, "The big big big big warning message",
+                    new string[] { "\x1B[102mThe \x1B[31mbig big\x1B[0m\x1B[102m \x1B[31mbig big\x1B[0m\x1B[102m warning message\x1B[0m" },
+                    string.Empty);
+        }
+
         /// <summary>
         /// With or wihout CompileRegex, CompileRegex is never null, even if not used when CompileRegex=false. (needed for backwardscomp)
         /// </summary>
@@ -137,8 +213,6 @@ namespace NLog.UnitTests.Targets
 
             Assert.NotNull(rule.CompiledRegex);
         }
-
-
 
         [Theory]
         [InlineData(true)]
@@ -179,8 +253,7 @@ namespace NLog.UnitTests.Targets
         }
 #endif
 
-
-        private static void AssertOutput(Target target, string message, string[] expectedParts)
+        private static void AssertOutput(Target target, string message, string[] expectedParts, string loggerName = "Logger ")
         {
             var consoleOutWriter = new PartsWriter();
             TextWriter oldConsoleOutWriter = Console.Out;
@@ -190,7 +263,7 @@ namespace NLog.UnitTests.Targets
             {
                 var exceptions = new List<Exception>();
                 target.Initialize(null);
-                target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "Logger", message).WithContinuation(exceptions.Add));
+                target.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, loggerName.Trim(), message).WithContinuation(exceptions.Add));
                 target.Close();
 
                 Assert.Single(exceptions);
@@ -201,8 +274,9 @@ namespace NLog.UnitTests.Targets
                 Console.SetOut(oldConsoleOutWriter);
             }
 
-            var expected = Enumerable.Repeat("Logger " + expectedParts[0], 1).Concat(expectedParts.Skip(1));
+            var expected = Enumerable.Repeat(loggerName + expectedParts[0], 1).Concat(expectedParts.Skip(1));
             Assert.Equal(expected, consoleOutWriter.Values);
+            Assert.True(consoleOutWriter.SingleWriteLine);
         }
 
 
@@ -214,10 +288,33 @@ namespace NLog.UnitTests.Targets
             }
 
             public List<string> Values { get; private set; }
+            public bool SingleWriteLine { get; private set; }
 
             public override void Write(string value)
             {
                 Values.Add(value);
+            }
+
+            public override void WriteLine(string value)
+            {
+                if (SingleWriteLine)
+                {
+                    Values.Clear();
+                    throw new InvalidOperationException("Single WriteLine only");
+                }
+                SingleWriteLine = true;
+                if (!string.IsNullOrEmpty(value))
+                    Values.Add(value);
+            }
+
+            public override void WriteLine()
+            {
+                if (SingleWriteLine)
+                {
+                    Values.Clear();
+                    throw new InvalidOperationException("Single WriteLine only");
+                }
+                SingleWriteLine = true;
             }
         }
     }

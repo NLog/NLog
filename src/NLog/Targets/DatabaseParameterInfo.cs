@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,13 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
 namespace NLog.Targets
 {
+    using System;
     using System.ComponentModel;
-    using Config;
-    using Layouts;
+    using System.Data;
+    using System.Globalization;
+    using System.Reflection;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Represents a parameter to a Database target.
@@ -67,37 +73,260 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets the database parameter name.
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Parameter Options' order='0' />
         [RequiredParameter]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that should be use to calcuate the value for the parameter.
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Parameter Options' order='1' />
         [RequiredParameter]
         public Layout Layout { get; set; }
 
         /// <summary>
+        /// Gets or sets the database parameter DbType.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='2' />
+        [DefaultValue(null)]
+        public string DbType { get; set; }
+
+        /// <summary>
         /// Gets or sets the database parameter size.
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Parameter Options' order='3' />
         [DefaultValue(0)]
         public int Size { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter precision.
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Parameter Options' order='4' />
         [DefaultValue(0)]
         public byte Precision { get; set; }
 
         /// <summary>
         /// Gets or sets the database parameter scale.
         /// </summary>
-        /// <docgen category='Parameter Options' order='10' />
+        /// <docgen category='Parameter Options' order='5' />
         [DefaultValue(0)]
         public byte Scale { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of the parameter.
+        /// </summary>
+        /// <docgen category='Parameter Options' order='6' />
+        [DefaultValue(typeof(string))]
+        public Type ParameterType { get => _parameterType ?? _cachedDbTypeSetter?.ParameterType ?? typeof(string); set => _parameterType = value; }
+        private Type _parameterType;
+
+        /// <summary>
+        /// Use raw value
+        ///
+        /// If null, then rawValue will be used when the dbtype isn't a string-like (that's:
+        /// <see cref="System.Data.DbType.String"/>
+        /// <see cref="System.Data.DbType.AnsiString"/>
+        /// <see cref="System.Data.DbType.StringFixedLength"/>
+        /// <see cref="System.Data.DbType.AnsiStringFixedLength"/>
+        /// </summary>
+        /// <docgen category='Parameter Options' order='7' />
+        public bool? UseRawValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets convert format of the database parameter value .
+        /// </summary>
+        /// <docgen category='Parameter Options' order='8' />
+        [DefaultValue(null)]
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Gets or sets the culture used for parsing parameter string-value for type-conversion
+        /// </summary>
+        /// <docgen category='Parameter Options' order='9' />
+        [DefaultValue(null)]
+        public CultureInfo Culture { get; set; }
+
+        internal bool SetDbType(IDbDataParameter dbParameter)
+        {
+            if (!string.IsNullOrEmpty(DbType))
+            {
+                if (_cachedDbTypeSetter == null || !_cachedDbTypeSetter.IsValid(dbParameter.GetType(), DbType))
+                {
+                    _cachedDbTypeSetter = new DbTypeSetter(dbParameter.GetType(), DbType);
+                }
+
+                return _cachedDbTypeSetter.SetDbType(dbParameter);
+            }
+
+            return true;    // DbType not in use
+        }
+
+        DbTypeSetter _cachedDbTypeSetter;
+
+        class DbTypeSetter
+        {
+            private readonly Type _dbPropertyInfoType;
+            private readonly string _dbTypeName;
+            private readonly PropertyInfo _dbTypeSetter;
+            private readonly Enum _dbTypeValue;
+            private Action<IDbDataParameter> _dbTypeSetterFast;
+
+            public Type ParameterType { get; }
+
+            public DbTypeSetter(Type dbParameterType, string dbTypeName)
+            {
+                _dbPropertyInfoType = dbParameterType;
+                _dbTypeName = dbTypeName;
+                if (!StringHelpers.IsNullOrWhiteSpace(dbTypeName))
+                {
+                    string[] dbTypeNames = dbTypeName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (dbTypeNames.Length > 1 && !string.Equals(dbTypeNames[0], nameof(System.Data.DbType), StringComparison.OrdinalIgnoreCase))
+                    {
+                        PropertyInfo propInfo = dbParameterType.GetProperty(dbTypeNames[0], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                        if (propInfo != null)
+                        {
+                            var enumConverter = (IEnumTypeConverter)Activator.CreateInstance(typeof(EnumTypeConverter<>).MakeGenericType(propInfo.PropertyType));
+                            if (enumConverter.TryParseEnum(dbTypeNames[1], out Enum enumType))
+                            {
+                                _dbTypeSetter = propInfo;
+                                _dbTypeValue = enumType;
+                                ParameterType = TryParseParameterType(enumType.ToString());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (ConversionHelpers.TryParse(dbTypeNames[dbTypeNames.Length - 1], out DbType dbType))
+                        {
+                            _dbTypeValue = dbType;
+                            ParameterType = TryLookupParameterType(dbType);
+                            _dbTypeSetterFast = (p) => p.DbType = dbType;
+                        }
+                    }
+                }
+            }
+
+            private static Type TryLookupParameterType(DbType dbType)
+            {
+                switch (dbType)
+                {
+                    case System.Data.DbType.AnsiString:
+                    case System.Data.DbType.String:
+                    case System.Data.DbType.AnsiStringFixedLength:
+                    case System.Data.DbType.StringFixedLength:
+                    case System.Data.DbType.Xml:
+                        return typeof(string);
+                    case System.Data.DbType.Byte:
+                        return typeof(byte);
+                    case System.Data.DbType.SByte:
+                        return typeof(sbyte);
+                    case System.Data.DbType.Boolean:
+                        return typeof(bool);
+                    case System.Data.DbType.Date:
+                    case System.Data.DbType.DateTime:
+                    case System.Data.DbType.DateTime2:
+                        return typeof(DateTime);
+                    case System.Data.DbType.DateTimeOffset:
+                        return typeof(DateTimeOffset);
+                    case System.Data.DbType.Decimal:
+                    case System.Data.DbType.VarNumeric:
+                    case System.Data.DbType.Currency:
+                        return typeof(decimal);
+                    case System.Data.DbType.Double:
+                        return typeof(double);
+                    case System.Data.DbType.Guid:
+                        return typeof(Guid);
+                    case System.Data.DbType.Int16:
+                        return typeof(short);
+                    case System.Data.DbType.Int32:
+                        return typeof(int);
+                    case System.Data.DbType.Int64:
+                        return typeof(long);
+                    case System.Data.DbType.Object:
+                        return typeof(object);
+                    case System.Data.DbType.Single:
+                        return typeof(float);
+                    case System.Data.DbType.Time:
+                        return typeof(TimeSpan);
+                    case System.Data.DbType.UInt16:
+                        return typeof(ushort);
+                    case System.Data.DbType.UInt32:
+                        return typeof(uint);
+                    case System.Data.DbType.UInt64:
+                        return typeof(ulong);
+                }
+
+                return null;
+            }
+
+            private Type TryParseParameterType(string dbTypeString)
+            {
+                if (dbTypeString.IndexOf("Date", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(DateTime);
+                else if (dbTypeString.IndexOf("Timestamp", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(DateTime);
+                else if (dbTypeString.IndexOf("Double", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(double);
+                else if (dbTypeString.IndexOf("Decimal", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(decimal);
+                else if (dbTypeString.IndexOf("Bool", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(bool);
+                else if (dbTypeString.IndexOf("Guid", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return typeof(Guid);
+
+                return null;
+            }
+
+            public bool IsValid(Type dbParameterType, string dbTypeName)
+            {
+                if (ReferenceEquals(_dbPropertyInfoType, dbParameterType) && ReferenceEquals(_dbTypeName, dbTypeName))
+                {
+                    if (_dbTypeSetterFast == null && _dbTypeSetter != null && _dbTypeValue != null)
+                    {
+                        var dbTypeSetterLambda = ReflectionHelpers.CreateLateBoundMethod(_dbTypeSetter.GetSetMethod());
+                        var dbTypeSetterParams = new object[] { _dbTypeValue };
+                        _dbTypeSetterFast = (p) => dbTypeSetterLambda.Invoke(p, dbTypeSetterParams);
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            public bool SetDbType(IDbDataParameter dbParameter)
+            {
+                if (_dbTypeSetterFast != null)
+                {
+                    _dbTypeSetterFast.Invoke(dbParameter);
+                    return true;
+                }
+                else if (_dbTypeSetter != null && _dbTypeValue != null)
+                {
+                    _dbTypeSetter.SetValue(dbParameter, _dbTypeValue, null);
+                    return true;
+                }
+                return false;
+            }
+
+            interface IEnumTypeConverter
+            {
+                bool TryParseEnum(string value, out Enum enumValue);
+            }
+
+            class EnumTypeConverter<TEnum> : IEnumTypeConverter where TEnum : struct
+            {
+                bool IEnumTypeConverter.TryParseEnum(string value, out Enum enumValue)
+                {
+                    TEnum enumValueT;
+                    if (ConversionHelpers.TryParse(value, out enumValueT))
+                    {
+                        enumValue = enumValueT as Enum;
+                        return enumValue != null;
+                    }
+                    enumValue = null;
+                    return false;
+                }
+            }
+        }
     }
 }
 

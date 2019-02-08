@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
 using NLog.Targets;
 
 namespace NLog.UnitTests.LogReceiverService
@@ -296,7 +297,7 @@ namespace NLog.UnitTests.LogReceiverService
 
         private void RealTestLogReciever(bool useOneWayContract, bool binaryEncode)
         {
-            LogManager.Configuration = CreateConfigurationFromString($@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
           <nlog throwExceptions='true'>
                 <targets>
                    <target type='LogReceiverService'

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -66,26 +66,19 @@ namespace NLog.Targets
     [Target("EventLog")]
     public class EventLogTarget : TargetWithLayout, IInstallable
     {
-        private EventLog eventLogInstance;
+        /// <summary>
+        /// Max size in characters (limitation of the EventLog API).
+        /// </summary>
+        internal const int EventLogMaxMessageLength = 16384;
+
+        private readonly IEventLogWrapper _eventLogWrapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
         /// </summary>
         public EventLogTarget()
-            : this(LogFactory.CurrentAppDomain)
+            : this(null, null)
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
-        /// </summary>
-        public EventLogTarget(IAppDomain appDomain)
-        {
-            Source = appDomain.FriendlyName;
-            Log = "Application";
-            MachineName = ".";
-            MaxMessageLength = 16384;
-            OptimizeBufferReuse = GetType() == typeof(EventLogTarget);  // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
@@ -93,9 +86,34 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="name">Name of the target.</param>
         public EventLogTarget(string name)
-            : this(LogFactory.CurrentAppDomain)
+            : this(null, null)
         {
             Name = name;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
+        /// </summary>
+        /// <param name="appDomain"><see cref="IAppDomain"/>.<see cref="IAppDomain.FriendlyName"/> to be used as Source.</param>
+        [Obsolete("This constructor will be removed in NLog 5. Marked obsolete on NLog 4.6")]
+        public EventLogTarget(IAppDomain appDomain)
+            : this(null, appDomain)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
+        /// </summary>
+        internal EventLogTarget(IEventLogWrapper eventLogWrapper, IAppDomain appDomain)
+        {
+            _eventLogWrapper = eventLogWrapper ?? new EventLogWrapper();
+            appDomain = appDomain ?? LogFactory.CurrentAppDomain;
+
+            Source = appDomain.FriendlyName;
+            Log = "Application";
+            MachineName = ".";
+            MaxMessageLength = EventLogMaxMessageLength;
+            OptimizeBufferReuse = GetType() == typeof(EventLogTarget);  // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
@@ -118,7 +136,7 @@ namespace NLog.Targets
         public Layout Category { get; set; }
 
         /// <summary>
-        /// Optional entrytype. When not set, or when not convertable to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
+        /// Optional entrytype. When not set, or when not convertible to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
         public Layout EntryType { get; set; }
@@ -133,8 +151,7 @@ namespace NLog.Targets
         public Layout Source { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the Event Log to write to. This can be System, Application or 
-        /// any user-defined name.
+        /// Gets or sets the name of the Event Log to write to. This can be System, Application or any user-defined name.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
         [DefaultValue("Application")]
@@ -145,41 +162,41 @@ namespace NLog.Targets
         /// </summary>
         /// <remarks><value>MaxMessageLength</value> cannot be zero or negative</remarks>
         /// <docgen category='Event Log Options' order='10' />
-        [DefaultValue(16384)]
+        [DefaultValue(EventLogMaxMessageLength)]
         public int MaxMessageLength
         {
-            get => maxMessageLength;
+            get => _maxMessageLength;
             set
             {
                 if (value <= 0)
                     throw new ArgumentException("MaxMessageLength cannot be zero or negative.");
 
-                maxMessageLength = value;
+                _maxMessageLength = value;
             }
         }
-        private int maxMessageLength;
+        private int _maxMessageLength;
 
         /// <summary>
         /// Gets or sets the maximum Event log size in kilobytes.
-        /// 
-        /// If <c>null</c>, the value won't be set. 
-        /// 
-        /// Default is 512 Kilobytes as specified by Eventlog API
         /// </summary>
-        /// <remarks><value>MaxKilobytes</value> cannot be less than 64 or greater than 4194240 or not a multiple of 64. If <c>null</c>, use the default value</remarks>
+        /// <remarks>
+        /// <value>MaxKilobytes</value> cannot be less than 64 or greater than 4194240 or not a multiple of 64.
+        /// If <c>null</c>, the value will not be specified while creating the Event log.
+        /// </remarks>
         /// <docgen category='Event Log Options' order='10' />
         [DefaultValue(null)]
         public long? MaxKilobytes
         {
-            get => maxKilobytes;
+            get => _maxKilobytes;
             set
-            {   //Event log API restriction
-                if (value != null && (value < 64 || value > 4194240 || (value % 64 != 0)))
-                    throw new ArgumentException("MaxKilobytes must be a multitude of 64, and between 64 and 4194240");
-                maxKilobytes = value;
+            {
+                if (value != null && (value < 64 || value > 4194240 || (value % 64 != 0))) // Event log API restrictions
+                    throw new ArgumentException("MaxKilobytes must be a multiple of 64, and between 64 and 4194240");
+
+                _maxKilobytes = value;
             }
         }
-        private long? maxKilobytes;
+        private long? _maxKilobytes;
 
         /// <summary>
         /// Gets or sets the action to take if the message is larger than the <see cref="MaxMessageLength"/> option.
@@ -194,10 +211,8 @@ namespace NLog.Targets
         /// <param name="installationContext">The installation context.</param>
         public void Install(InstallationContext installationContext)
         {
-            var fixedSource = GetFixedSource();
-
-            //always throw error to keep backwardscomp behavior.
-            CreateEventSourceIfNeeded(fixedSource, true);
+            // always throw error to keep backwards compatible behavior.
+            CreateEventSourceIfNeeded(GetFixedSource(), true);
         }
 
         /// <summary>
@@ -214,7 +229,7 @@ namespace NLog.Targets
             }
             else
             {
-                EventLog.DeleteEventSource(fixedSource, MachineName);
+                _eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
             }
         }
 
@@ -231,10 +246,10 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(fixedSource))
             {
-                return EventLog.SourceExists(fixedSource, MachineName);
+                return _eventLogWrapper.SourceExists(fixedSource, MachineName);
             }
             InternalLogger.Debug("EventLogTarget(Name={0}): Unclear if event source exists because it contains layout renderers", Name);
-            return null; //unclear! 
+            return null; //unclear!
         }
 
         /// <summary>
@@ -244,24 +259,11 @@ namespace NLog.Targets
         {
             base.InitializeTarget();
 
-            var fixedSource = GetFixedSource();
-
-            if (string.IsNullOrEmpty(fixedSource))
-            {
-                InternalLogger.Debug("EventLogTarget(Name={0}): Skipping creation of event source because it contains layout renderers", Name);
-            }
-            else
-            {
-                var currentSourceName = EventLog.LogNameFromSourceName(fixedSource, MachineName);
-                if (!currentSourceName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
-                {
-                    CreateEventSourceIfNeeded(fixedSource, false);
-                }
-            }
+            CreateEventSourceIfNeeded(GetFixedSource(), false);
         }
 
         /// <summary>
-        /// Writes the specified logging event to the event log. 
+        /// Writes the specified logging event to the event log.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
@@ -302,8 +304,7 @@ namespace NLog.Targets
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
                 {
-                    //message will not be written
-                    return;
+                    // message should not be written
                 }
             }
             else
@@ -314,7 +315,7 @@ namespace NLog.Targets
 
         internal virtual void WriteEntry(LogEventInfo logEventInfo, string message, EventLogEntryType entryType, int eventId, short category)
         {
-            var eventLog = GetEventLog(logEventInfo);
+            IEventLogWrapper eventLog = GetEventLog(logEventInfo);
             eventLog.WriteEntry(message, entryType, eventId, category);
         }
 
@@ -322,17 +323,17 @@ namespace NLog.Targets
         /// Get the entry type for logging the message.
         /// </summary>
         /// <param name="logEvent">The logging event - for rendering the <see cref="EntryType"/></param>
-        /// <returns></returns>
         private EventLogEntryType GetEntryType(LogEventInfo logEvent)
         {
             string renderEntryType = RenderLogEvent(EntryType, logEvent);
             if (!string.IsNullOrEmpty(renderEntryType))
             {
-                //try parse, if fail,  determine auto
+                // try parse, if fail, determine auto
                 if (ConversionHelpers.TryParseEnum(renderEntryType, out EventLogEntryType eventLogEntryType))
                 {
                     return eventLogEntryType;
                 }
+
                 InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse EntryType={1}", Name, renderEntryType);
             }
 
@@ -350,18 +351,13 @@ namespace NLog.Targets
 
 
         /// <summary>
-        /// Get the source, if and only if the source is fixed. 
+        /// Get the source, if and only if the source is fixed.
         /// </summary>
         /// <returns><c>null</c> when not <see cref="SimpleLayout.IsFixedText"/></returns>
         /// <remarks>Internal for unit tests</remarks>
         internal string GetFixedSource()
         {
-            if (Source == null)
-            {
-                return null;
-            }
-            var simpleLayout = Source as SimpleLayout;
-            if (simpleLayout != null && simpleLayout.IsFixedText)
+            if (Source is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
             {
                 return simpleLayout.FixedText;
             }
@@ -369,63 +365,57 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Get the eventlog to write to.
+        /// Gets the <see cref="IEventLogWrapper"/> to write to.
         /// </summary>
         /// <param name="logEvent">Event if the source needs to be rendered.</param>
-        /// <returns></returns>
-        private EventLog GetEventLog(LogEventInfo logEvent)
+        private IEventLogWrapper GetEventLog(LogEventInfo logEvent)
         {
             var renderedSource = RenderSource(logEvent);
-            var isCacheUpToDate = eventLogInstance != null && renderedSource == eventLogInstance.Source &&
-                                   eventLogInstance.Log == Log && eventLogInstance.MachineName == MachineName;
+            var isCacheUpToDate = _eventLogWrapper.IsEventLogAssociated &&
+                                  _eventLogWrapper.Log == Log &&
+                                  _eventLogWrapper.MachineName == MachineName &&
+                                  _eventLogWrapper.Source == renderedSource;
 
             if (!isCacheUpToDate)
             {
-                eventLogInstance = new EventLog(Log, MachineName, renderedSource);
+                _eventLogWrapper.AssociateNewEventLog(Log, MachineName, renderedSource);
             }
-            if (MaxKilobytes.HasValue)
-            {
-                //you need more permissions to set, so don't set by default
-                eventLogInstance.MaximumKilobytes = MaxKilobytes.Value;
-            }
-            return eventLogInstance;
+
+            return _eventLogWrapper;
         }
 
-        internal string RenderSource(LogEventInfo logEvent)
-        {
-            return Source != null ? RenderLogEvent(Source, logEvent) : null;
-        }
+        internal string RenderSource(LogEventInfo logEvent) => RenderLogEvent(Source, logEvent);
 
         /// <summary>
-        /// (re-)create a event source, if it isn't there. Works only with fixed sourcenames.
+        /// (re-)create an event source, if it isn't there. Works only with fixed source names.
         /// </summary>
-        /// <param name="fixedSource">sourcenaam. If source is not fixed (see <see cref="SimpleLayout.IsFixedText"/>, then pass <c>null</c> or emptystring.</param>
+        /// <param name="fixedSource">The source name. If source is not fixed (see <see cref="SimpleLayout.IsFixedText"/>, then pass <c>null</c> or <see cref="string.Empty"/>.</param>
         /// <param name="alwaysThrowError">always throw an Exception when there is an error</param>
         private void CreateEventSourceIfNeeded(string fixedSource, bool alwaysThrowError)
         {
             if (string.IsNullOrEmpty(fixedSource))
             {
                 InternalLogger.Debug("EventLogTarget(Name={0}): Skipping creation of event source because it contains layout renderers", Name);
-                //we can only create event sources if the source is fixed (no layout)
+                // we can only create event sources if the source is fixed (no layout)
                 return;
             }
 
             // if we throw anywhere, we remain non-operational
             try
             {
-                if (EventLog.SourceExists(fixedSource, MachineName))
+                if (_eventLogWrapper.SourceExists(fixedSource, MachineName))
                 {
-                    string currentLogName = EventLog.LogNameFromSourceName(fixedSource, MachineName);
+                    string currentLogName = _eventLogWrapper.LogNameFromSourceName(fixedSource, MachineName);
                     if (!currentLogName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
                     {
                         // re-create the association between Log and Source
-                        EventLog.DeleteEventSource(fixedSource, MachineName);
+                        _eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
+
                         var eventSourceCreationData = new EventSourceCreationData(fixedSource, Log)
                         {
                             MachineName = MachineName
                         };
-
-                        EventLog.CreateEventSource(eventSourceCreationData);
+                        _eventLogWrapper.CreateEventSource(eventSourceCreationData);
                     }
                 }
                 else
@@ -434,8 +424,12 @@ namespace NLog.Targets
                     {
                         MachineName = MachineName
                     };
+                    _eventLogWrapper.CreateEventSource(eventSourceCreationData);
+                }
 
-                    EventLog.CreateEventSource(eventSourceCreationData);
+                if (MaxKilobytes.HasValue && GetEventLog(null).MaximumKilobytes < MaxKilobytes)
+                {
+                    GetEventLog(null).MaximumKilobytes = MaxKilobytes.Value;
                 }
             }
             catch (Exception exception)
@@ -446,6 +440,149 @@ namespace NLog.Targets
                     throw;
                 }
             }
+        }
+
+        /// <summary>
+        /// A wrapper for Windows event log.
+        /// </summary>
+        internal interface IEventLogWrapper
+        {
+            #region Instance methods
+
+            /// <summary>
+            /// A wrapper for the property <see cref="EventLog.Source"/>.
+            /// </summary>
+            string Source { get; set; }
+
+            /// <summary>
+            /// A wrapper for the property <see cref="EventLog.Log"/>.
+            /// </summary>
+            string Log { get; set; }
+
+            /// <summary>
+            /// A wrapper for the property <see cref="EventLog.MachineName"/>.
+            /// </summary>
+            string MachineName { get; set; }
+
+            /// <summary>
+            /// A wrapper for the property <see cref="EventLog.MaximumKilobytes"/>.
+            /// </summary>
+            long MaximumKilobytes { get; set; }
+
+            /// <summary>
+            /// Indicates whether an event log instance is associated.
+            /// </summary>
+            bool IsEventLogAssociated { get; }
+
+            /// <summary>
+            /// A wrapper for the method <see cref="EventLog.WriteEntry(string, EventLogEntryType, int, short)"/>.
+            /// </summary>
+            void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category);
+
+            #endregion
+
+            #region "Static" methods
+
+            /// <summary>
+            /// Creates a new association with an instance of the event log.
+            /// </summary>
+            void AssociateNewEventLog(string logName, string machineName, string source);
+
+            /// <summary>
+            /// A wrapper for the static method <see cref="EventLog.DeleteEventSource(string, string)"/>.
+            /// </summary>
+            void DeleteEventSource(string source, string machineName);
+
+            /// <summary>
+            /// A wrapper for the static method <see cref="EventLog.SourceExists(string, string)"/>.
+            /// </summary>
+            bool SourceExists(string source, string machineName);
+
+            /// <summary>
+            /// A wrapper for the static method <see cref="EventLog.LogNameFromSourceName(string, string)"/>.
+            /// </summary>
+            string LogNameFromSourceName(string source, string machineName);
+
+            /// <summary>
+            /// A wrapper for the static method <see cref="EventLog.CreateEventSource(EventSourceCreationData)"/>.
+            /// </summary>
+            void CreateEventSource(EventSourceCreationData sourceData);
+
+            #endregion
+        }
+
+        /// <summary>
+        /// The implementation of <see cref="IEventLogWrapper"/>, that uses Windows <see cref="EventLog"/>.
+        /// </summary>
+        private sealed class EventLogWrapper : IEventLogWrapper
+        {
+            private EventLog _windowsEventLog;
+
+            #region Instance methods
+
+            /// <inheritdoc />
+            public string Source
+            {
+                get => _windowsEventLog.Source;
+                set => _windowsEventLog.Source = value;
+            }
+
+            /// <inheritdoc />
+            public string Log
+            {
+                get => _windowsEventLog.Log;
+                set => _windowsEventLog.Log = value;
+            }
+
+            /// <inheritdoc />
+            public string MachineName
+            {
+                get => _windowsEventLog.MachineName;
+                set => _windowsEventLog.MachineName = value;
+            }
+
+            /// <inheritdoc />
+            public long MaximumKilobytes
+            {
+                get => _windowsEventLog.MaximumKilobytes;
+                set => _windowsEventLog.MaximumKilobytes = value;
+            }
+
+            /// <inheritdoc />
+            public bool IsEventLogAssociated => _windowsEventLog != null;
+
+            /// <inheritdoc />
+            public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category) =>
+                _windowsEventLog.WriteEntry(message, entryType, eventId, category);
+
+            #endregion
+
+            #region "Static" methods
+
+            /// <inheritdoc />
+            /// <summary>
+            /// Creates a new association with an instance of Windows <see cref="EventLog"/>.
+            /// </summary>
+            public void AssociateNewEventLog(string logName, string machineName, string source) =>
+                _windowsEventLog = new EventLog(logName, machineName, source);
+
+            /// <inheritdoc />
+            public void DeleteEventSource(string source, string machineName) =>
+                EventLog.DeleteEventSource(source, machineName);
+
+            /// <inheritdoc />
+            public bool SourceExists(string source, string machineName) =>
+                EventLog.SourceExists(source, machineName);
+
+            /// <inheritdoc />
+            public string LogNameFromSourceName(string source, string machineName) =>
+                EventLog.LogNameFromSourceName(source, machineName);
+
+            /// <inheritdoc />
+            public void CreateEventSource(EventSourceCreationData sourceData) =>
+                EventLog.CreateEventSource(sourceData);
+
+            #endregion
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,7 +38,6 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
     using NLog.Common;
-    using NLog.Conditions;
     using NLog.Config;
     using NLog.Internal;
 
@@ -49,7 +48,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("exception")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class ExceptionLayoutRenderer : LayoutRenderer
+    public class ExceptionLayoutRenderer : LayoutRenderer, IRawValue
     {
         private string _format;
         private string _innerFormat = string.Empty;
@@ -178,35 +177,50 @@ namespace NLog.LayoutRenderers
             private set;
         }
 
-        /// <summary>
-        /// Renders the specified exception information and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => logEvent.Exception;
+
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             Exception primaryException = logEvent.Exception;
             if (primaryException != null)
             {
-                AppendException(primaryException, Formats, builder);
-
                 int currentLevel = 0;
-                if (currentLevel < MaxInnerExceptionLevel)
-                {
-                    currentLevel = AppendInnerExceptionTree(primaryException, currentLevel, builder);
 
 #if !NET3_5 && !SILVERLIGHT4
-                    AggregateException asyncException = primaryException as AggregateException;
-                    if (asyncException != null)
+                if (logEvent.Exception is AggregateException aggregateException)
+                {
+                    aggregateException = aggregateException.Flatten();
+                    primaryException = GetPrimaryException(aggregateException);
+                    AppendException(primaryException, Formats, builder);
+                    if (currentLevel < MaxInnerExceptionLevel)
                     {
-                        AppendAggregateException(asyncException, currentLevel, builder);
+                        currentLevel = AppendInnerExceptionTree(primaryException, currentLevel, builder);
+                        if (currentLevel < MaxInnerExceptionLevel && aggregateException.InnerExceptions?.Count > 1)
+                        {
+                            AppendAggregateException(aggregateException, currentLevel, builder);
+                        }
                     }
+                }
+                else
 #endif
+                {
+                    AppendException(primaryException, Formats, builder);
+                    if (currentLevel < MaxInnerExceptionLevel)
+                    {
+                        AppendInnerExceptionTree(primaryException, currentLevel, builder);
+                    }
                 }
             }
         }
 
 #if !NET3_5 && !SILVERLIGHT4
+        private static Exception GetPrimaryException(AggregateException aggregateException)
+        {
+            return aggregateException.InnerExceptions.Count == 1 ? aggregateException.InnerExceptions[0] : aggregateException;
+        }
+
         private void AppendAggregateException(AggregateException primaryException, int currentLevel, StringBuilder builder)
         {
             var asyncException = primaryException.Flatten();

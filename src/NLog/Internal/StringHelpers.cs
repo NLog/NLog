@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,6 +34,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace NLog.Internal
 {
@@ -47,6 +48,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [ContractAnnotation("value:null => true")]
         internal static bool IsNullOrWhiteSpace(string value)
         {
 

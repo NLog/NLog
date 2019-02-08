@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,6 +38,7 @@ namespace NLog.LayoutRenderers
     using System.Globalization;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Current date and time.
@@ -45,7 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("date")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class DateLayoutRenderer : LayoutRenderer
+    public class DateLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DateLayoutRenderer" /> class.
@@ -92,20 +93,23 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool UniversalTime { get; set; }
 
-        /// <summary>
-        /// Renders the current date and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            builder.Append(GetStringValue(logEvent));
+        }
+
+        /// <inheritdoc/>
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetDate(logEvent);
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+
+        private string GetStringValue(LogEventInfo logEvent)
         {
             var formatProvider = GetFormatProvider(logEvent, Culture);
 
-            var timestamp = logEvent.TimeStamp;
-            if (UniversalTime)
-            {
-                timestamp = timestamp.ToUniversalTime();
-            }
+            DateTime timestamp = GetDate(logEvent);
 
             var cachedDateFormatted = _cachedDateFormatted;
             if (!ReferenceEquals(formatProvider, CultureInfo.InvariantCulture) || cachedDateFormatted.Date == DateTime.MinValue)
@@ -116,8 +120,7 @@ namespace NLog.LayoutRenderers
             {
                 if (cachedDateFormatted.Date == timestamp.Date.AddHours(timestamp.Hour))
                 {
-                    builder.Append(cachedDateFormatted.FormattedDate);
-                    return; // Cache hit
+                    return cachedDateFormatted.FormattedDate;   // Cache hit
                 }
             }
 
@@ -126,7 +129,18 @@ namespace NLog.LayoutRenderers
             {
                 _cachedDateFormatted = new CachedDateFormatted(timestamp.Date.AddHours(timestamp.Hour), formatTime);
             }
-            builder.Append(formatTime);
+            return formatTime;
+        }
+
+        private DateTime GetDate(LogEventInfo logEvent)
+        {
+            var timestamp = logEvent.TimeStamp;
+            if (UniversalTime)
+            {
+                timestamp = timestamp.ToUniversalTime();
+            }
+
+            return timestamp;
         }
 
         private static bool IsLowTimeResolutionLayout(string dateTimeFormat)

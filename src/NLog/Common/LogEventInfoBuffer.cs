@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -40,6 +40,7 @@ namespace NLog.Common
     /// </summary>
     public class LogEventInfoBuffer
     {
+        private readonly object _lockObject = new object();
         private readonly bool _growAsNeeded;
         private readonly int _growLimit;
 
@@ -75,7 +76,7 @@ namespace NLog.Common
         /// <returns>The number of items in the buffer.</returns>
         public int Append(AsyncLogEventInfo eventInfo)
         {
-            lock (this)
+            lock (_lockObject)
             {
                 // make room for additional item
                 if (_count >= _buffer.Length)
@@ -121,7 +122,7 @@ namespace NLog.Common
         /// <returns>Events in the buffer.</returns>
         public AsyncLogEventInfo[] GetEventsAndClear()
         {
-            lock (this)
+            lock (_lockObject)
             {
                 int cnt = _count;
                 if (cnt == 0)

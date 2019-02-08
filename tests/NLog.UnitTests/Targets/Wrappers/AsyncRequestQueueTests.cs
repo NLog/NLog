@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -206,5 +206,47 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(0, result);
             Assert.Equal(0, queue.RequestCount);
         }
+
+	    [Fact]
+	    public void RaiseEventLogEventQueueGrow_OnLogItems()
+	    {
+	        const int RequestsLimit = 2;
+	        const int EventsCount = 5;
+	        const int ExpectedCountOfGrovingTimes = 2;
+	        const int ExpectedFinalSize = 8;
+	        int grovingItemsCount = 0;
+
+	        AsyncRequestQueue requestQueue = new AsyncRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Grow);
+
+	        requestQueue.LogEventQueueGrow += (o, e) => { grovingItemsCount++; };
+
+	        for (int i = 0; i < EventsCount; i++)
+	        {
+	            requestQueue.Enqueue(new AsyncLogEventInfo());
+	        }
+
+            Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
+	        Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
+	    }
+
+	    [Fact]
+	    public void RaiseEventLogEventDropped_OnLogItems()
+	    {
+	        const int RequestsLimit = 2;
+	        const int EventsCount = 5;
+	        int discardedItemsCount = 0;
+	        
+	        int ExpectedDiscardedItemsCount = EventsCount - RequestsLimit;
+	        AsyncRequestQueue requestQueue = new AsyncRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Discard);
+
+	        requestQueue.LogEventDropped+= (o, e) => { discardedItemsCount++; };
+
+	        for (int i = 0; i < EventsCount; i++)
+	        {
+	            requestQueue.Enqueue(new AsyncLogEventInfo());
+	        }
+
+	        Assert.Equal(ExpectedDiscardedItemsCount, discardedItemsCount);
+	    }
     }
 }

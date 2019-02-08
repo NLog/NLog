@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests
 {
     using Xunit;
@@ -40,7 +42,7 @@ namespace NLog.UnitTests
         [Fact]
         public void LogThresholdTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -68,7 +70,7 @@ namespace NLog.UnitTests
         [Fact]
         public void LogThresholdTest2()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message}' />
@@ -110,7 +112,7 @@ namespace NLog.UnitTests
         [Fact]
         public void LoggerNameMatchTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message}' />
@@ -140,7 +142,7 @@ namespace NLog.UnitTests
         [Fact]
         public void MultiAppenderTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${message}' />

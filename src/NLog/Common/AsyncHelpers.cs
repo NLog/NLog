@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -83,10 +83,10 @@ namespace NLog.Common
         public static void ForEachItemSequentially<T>(IEnumerable<T> items, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
         {
             action = ExceptionGuard(action);
-            AsyncContinuation invokeNext = null;
+           
             IEnumerator<T> enumerator = items.GetEnumerator();
 
-            invokeNext = ex =>
+            void InvokeNext(Exception ex)
             {
                 if (ex != null)
                 {
@@ -101,10 +101,10 @@ namespace NLog.Common
                     return;
                 }
 
-                action(enumerator.Current, PreventMultipleCalls(invokeNext));
-            };
+                action(enumerator.Current, PreventMultipleCalls(InvokeNext));
+            }
 
-            invokeNext(null);
+            InvokeNext(null);
         }
 
         /// <summary>
@@ -116,10 +116,9 @@ namespace NLog.Common
         public static void Repeat(int repeatCount, AsyncContinuation asyncContinuation, AsynchronousAction action)
         {
             action = ExceptionGuard(action);
-            AsyncContinuation invokeNext = null;
             int remaining = repeatCount;
 
-            invokeNext = ex =>
+            void InvokeNext(Exception ex)
             {
                 if (ex != null)
                 {
@@ -133,10 +132,10 @@ namespace NLog.Common
                     return;
                 }
 
-                action(PreventMultipleCalls(invokeNext));
-            };
+                action(PreventMultipleCalls(InvokeNext));
+            }
 
-            invokeNext(null);
+            InvokeNext(null);
         }
 
         /// <summary>

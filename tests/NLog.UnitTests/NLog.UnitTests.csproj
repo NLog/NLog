@@ -18,11 +18,11 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 
-    <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net452' ">Full</DebugType>
+    <DebugType Condition=" '$(TargetFramework)' == 'net452' ">Full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == '' ">
-    <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_5;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == 'net35' ">
@@ -30,11 +30,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == 'net40-client' ">
-    <DefineConstants>$(DefineConstants);NET4_0</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_0;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-    <DefineConstants>$(DefineConstants);NETSTANDARD;NET4_5</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD;NET4_5;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
@@ -49,7 +49,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
-    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">

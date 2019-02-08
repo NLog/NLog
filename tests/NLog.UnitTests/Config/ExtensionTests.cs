@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -68,7 +68,7 @@ namespace NLog.UnitTests.Config
         {
             Assert.NotNull(typeof(FooLayout));
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <extensions>
         <add assemblyFile='" + GetExtensionAssemblyFullPath() + @"' />
@@ -111,7 +111,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest2()
         {
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <extensions>
         <add assembly='" + extensionAssemblyName1 + @"' />
@@ -158,7 +158,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionWithPrefixTest()
         {
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <extensions>
         <add prefix='myprefix' assemblyFile='" + GetExtensionAssemblyFullPath() + @"' />
@@ -203,7 +203,7 @@ namespace NLog.UnitTests.Config
         {
             Assert.NotNull(typeof(FooLayout));
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <extensions>
         <add type='" + typeof(MyTarget).AssemblyQualifiedName + @"' />
@@ -251,7 +251,7 @@ namespace NLog.UnitTests.Config
         {
             Assert.NotNull(typeof(FooLayout));
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     
     <targets>
@@ -302,7 +302,7 @@ namespace NLog.UnitTests.Config
                 <add type='some_type_that_doesnt_exist'/>
 </extensions>
 </nlog>";
-            Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
+            Assert.Throws<NLogConfigurationException>(() => XmlLoggingConfiguration.CreateFromXmlString(configXml));
         }
 
         [Fact]
@@ -314,7 +314,7 @@ namespace NLog.UnitTests.Config
         <add assembly='some_assembly_that_doesnt_exist'/>
     </extensions>
 </nlog>";
-            Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
+            Assert.Throws<NLogConfigurationException>(() => XmlLoggingConfiguration.CreateFromXmlString(configXml));
         }
 
         [Fact]
@@ -326,7 +326,7 @@ namespace NLog.UnitTests.Config
                 <add assemblyfile='some_file_that_doesnt_exist'/>
 </extensions>
 </nlog>";
-            Assert.Throws<NLogConfigurationException>(() => CreateConfigurationFromString(configXml));
+            Assert.Throws<NLogConfigurationException>(() => XmlLoggingConfiguration.CreateFromXmlString(configXml));
         }
 
         [Fact]
@@ -339,7 +339,7 @@ namespace NLog.UnitTests.Config
                 <add assembly='NLog'/>
 </extensions>
 </nlog>";
-            CreateConfigurationFromString(configXml);
+            XmlLoggingConfiguration.CreateFromXmlString(configXml);
         }
 
         [Fact]
@@ -351,7 +351,7 @@ namespace NLog.UnitTests.Config
         <add assembly='some_assembly_that_doesnt_exist'/>
     </extensions>
 </nlog>";
-            CreateConfigurationFromString(configXml);
+            XmlLoggingConfiguration.CreateFromXmlString(configXml);
         }
 
         [Fact]
@@ -363,13 +363,13 @@ namespace NLog.UnitTests.Config
                 <add assemblyfile='some_file_that_doesnt_exist'/>
 </extensions>
 </nlog>";
-            CreateConfigurationFromString(configXml);
+            XmlLoggingConfiguration.CreateFromXmlString(configXml);
         }
 
         [Fact]
         public void CustomXmlNamespaceTest()
         {
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true' xmlns:foo='http://bar'>
     <targets>
         <target name='d' type='foo:Debug' />
@@ -391,7 +391,7 @@ namespace NLog.UnitTests.Config
                 Assert.NotNull(fileLocations[0].Value); // Primary search location is NLog-assembly
                 Assert.Equal(fileLocations.Length, fileLocations.Select(f => f.Key).Distinct().Count());
 
-                var configuration = CreateConfigurationFromString(@"
+                var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <targets>
         <target name='t' type='AutoLoadTarget' />
@@ -432,7 +432,11 @@ namespace NLog.UnitTests.Config
                 ConfigurationItemFactory.Default = null; //build new factory next time
                 ConfigurationItemFactory.AssemblyLoading += onAssemblyLoading;
 
-                var configuration = CreateConfigurationFromString(@"
+                using(new NoThrowNLogExceptions())
+                {
+                    LogManager.ThrowExceptions = true;
+
+                    var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='false'>
     <targets>
         <target name='t' type='AutoLoadTarget' />
@@ -444,15 +448,16 @@ namespace NLog.UnitTests.Config
     </rules>
 </nlog>");
 
-                var autoLoadedTarget = configuration.FindTargetByName("t");
+                    var autoLoadedTarget = configuration.FindTargetByName("t");
 
-                if (cancel)
-                {
-                    Assert.Null(autoLoadedTarget);
-                }
-                else
-                {
-                    Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+                    if (cancel)
+                    {
+                        Assert.Null(autoLoadedTarget);
+                    }
+                    else
+                    {
+                        Assert.Equal("NLogAutloadExtension.AutoLoadTarget", autoLoadedTarget.GetType().FullName);
+                    }
                 }
             }
             finally
@@ -461,7 +466,6 @@ namespace NLog.UnitTests.Config
                 ConfigurationItemFactory.AssemblyLoading -= onAssemblyLoading;
                 ConfigurationItemFactory.Default.Clear();
                 ConfigurationItemFactory.Default = null; //build new factory next time
-
             }
         }
 
@@ -479,7 +483,7 @@ namespace NLog.UnitTests.Config
                 var fact = ConfigurationItemFactory.Default;
 
                 //also throw exceptions 
-                LogManager.Configuration = CreateConfigurationFromString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
 
 </nlog>");
@@ -504,7 +508,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ImplicitConversionOperatorTest()
         {
-            var config = CreateConfigurationFromString(@"
+            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
     <extensions>
         <add assemblyFile='" + GetExtensionAssemblyFullPath() + @"' />

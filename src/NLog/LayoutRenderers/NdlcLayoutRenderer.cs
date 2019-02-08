@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -81,6 +81,8 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             var messages = NestedDiagnosticsLogicalContext.GetAllObjects();
+            if (messages.Length == 0)
+                return;
 
             int startPos = 0;
             int endPos = messages.Length;
@@ -94,10 +96,11 @@ namespace NLog.LayoutRenderers
                 startPos = messages.Length - Math.Min(BottomFrames, messages.Length);
             }
 
+            var formatProvider = GetFormatProvider(logEvent);
             string currentSeparator = string.Empty;
             for (int i = endPos - 1; i >= startPos; --i)
             {
-                var stringValue = Internal.FormatHelper.ConvertToString(messages[i], logEvent.FormatProvider);
+                string stringValue = Convert.ToString(messages[i], formatProvider);
                 builder.Append(currentSeparator);
                 builder.Append(stringValue);
                 currentSeparator = Separator;

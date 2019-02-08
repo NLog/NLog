@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,6 +34,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using NLog.Config;
 using Xunit;
 
 namespace NLog.UnitTests.LayoutRenderers
@@ -47,7 +48,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void ShowFileNameOnlyTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite-filename:includeSourcePath=False}|${message}' /></targets>
                 <rules>
@@ -71,7 +72,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void ShowFullPathTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite-filename:includeSourcePath=True}|${message}' /></targets>
                 <rules>
@@ -97,7 +98,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void ShowFileNameOnlyAsyncTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite-filename:includeSourcePath=False}|${message}' /></targets>
                 <rules>
@@ -120,7 +121,7 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void ShowFullPathAsyncTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${callsite-filename:includeSourcePath=True}|${message}' /></targets>
                 <rules>

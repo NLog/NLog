@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -47,6 +47,8 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("file-contents")]
     public class FileContentsLayoutRenderer : LayoutRenderer
     {
+        private readonly object _lockObject = new object();
+
         private string _lastFileName;
         private string _currentFileContents;
 
@@ -84,7 +86,7 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            lock (this)
+            lock (_lockObject)
             {
                 string fileName = FileName.Render(logEvent);
 

@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -96,8 +96,15 @@ namespace NLog.Targets
             }
             else if (!pauseLogging)
             {
-                Console.OutputEncoding = newEncoding;   // Can throw exception if console is not availabe
-                return true;
+                try
+                {
+                    Console.OutputEncoding = newEncoding;   // Can throw exception if console is not availabe
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Warn(ex, "Failed changing Console.OutputEncoding to {0}", newEncoding);
+                }
             }
 #endif
             return false;       // No console available

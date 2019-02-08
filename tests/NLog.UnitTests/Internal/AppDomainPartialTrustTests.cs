@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -64,7 +64,8 @@ namespace NLog.UnitTests.Internal
                     AppDomain partialTrusted;
                     var classUnderTest = MediumTrustContext.Create<ClassUnderTest>(fileWritePath, out partialTrusted);
 #if NET4_0 || NET4_5
-                    using (NestedDiagnosticsLogicalContext.Push("PartialTrust"))
+                    MappedDiagnosticsLogicalContext.Set("Winner", new { Hero = "Zero" });
+                    using (NestedDiagnosticsLogicalContext.Push(new { Hello = "World" }))
 #endif
                     {
                         classUnderTest.PartialTrustSuccess(times, fileWritePath);
@@ -99,9 +100,6 @@ namespace NLog.UnitTests.Internal
             {
                 if (Directory.Exists(fileWritePath))
                     Directory.Delete(fileWritePath, true);
-
-                // Clean up configuration change, breaks onetimeonlyexceptioninhandlertest
-                LogManager.ThrowExceptions = true;
             }
         }
     }
@@ -129,21 +127,24 @@ namespace NLog.UnitTests.Internal
                 </rules>
             </nlog>";
 
-            LogManager.Configuration = NLogTestBase.CreateConfigurationFromString(configXml);
-
-            //this method gave issues
-            LogFactory.LogConfigurationInitialized();
-
-            ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
-
-            for (var i = 0; i < times; ++i)
+            using (new NLogTestBase.NoThrowNLogExceptions())
             {
-                logger.Trace("@@@");
-                logger.Debug("aaa");
-                logger.Info("bbb");
-                logger.Warn("ccc");
-                logger.Error("ddd");
-                logger.Fatal("eee");
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(configXml);
+
+                //this method gave issues
+                LogFactory.LogConfigurationInitialized();
+
+                ILogger logger = LogManager.GetLogger("NLog.UnitTests.Targets.FileTargetTests");
+
+                for (var i = 0; i < times; ++i)
+                {
+                    logger.Trace("@@@");
+                    logger.Debug("aaa");
+                    logger.Info("bbb");
+                    logger.Warn("ccc");
+                    logger.Error("ddd");
+                    logger.Fatal("eee");
+                }
             }
         }
     }

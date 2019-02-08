@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,12 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using NLog.Config;
-
 namespace NLog.LayoutRenderers
 {
+    using System;
+    using System.Text;
+    using NLog.Config;
+    using NLog.Internal;
+
     /// <summary>
     /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
@@ -47,7 +48,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="layoutRendererName">Name without ${}.</param>
         /// <param name="renderMethod">Method that renders the layout.</param>
-        public FuncLayoutRenderer( string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
+        public FuncLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
         {
             RenderMethod = renderMethod;
             LayoutRendererName = layoutRendererName;
@@ -63,22 +64,20 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public Func<LogEventInfo, LoggingConfiguration, object> RenderMethod { get; private set; }
 
-        #region Overrides of LayoutRenderer
-
-        /// <summary>
-        /// Renders the specified environmental information and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (RenderMethod != null)
+            var value = GetValue(logEvent);
+            if (value != null)
             {
-                builder.Append(RenderMethod(logEvent, LoggingConfiguration));
+                builder.Append(value);
             }
-
         }
 
-        #endregion
+        private object GetValue(LogEventInfo logEvent)
+        {
+            var renderMethod = RenderMethod?.Invoke(logEvent, LoggingConfiguration);
+            return renderMethod;
+        }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -288,27 +288,30 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                var fileTarget = WrapFileTarget(new FileTarget
+                using (new NoThrowNLogExceptions())
                 {
-                    FileName = logFile,
-                    Layout = "${level} ${message}",
-                    ConcurrentWrites = concurrentWrites,
-                    KeepFileOpen = keepFileOpen,
-                    NetworkWrites = networkWrites,
-                    ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                });
+                    var fileTarget = WrapFileTarget(new FileTarget
+                    {
+                        FileName = logFile,
+                        Layout = "${level} ${message}",
+                        ConcurrentWrites = concurrentWrites,
+                        KeepFileOpen = keepFileOpen,
+                        NetworkWrites = networkWrites,
+                        ForceManaged = forceManaged,
+                        ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                    });
 
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-                for (int i = 0; i < 300; i++)
-                {
-                    logger.Debug("aaa");
+                    for (int i = 0; i < 300; i++)
+                    {
+                        logger.Debug("aaa");
+                    }
+
+                    LogManager.Configuration = null;    // Flush
+
+                    Assert.True(DateTime.UtcNow - start < TimeSpan.FromSeconds(5));
                 }
-
-                LogManager.Configuration = null;    // Flush
-
-                Assert.True(DateTime.UtcNow - start < TimeSpan.FromSeconds(5));
             }
             finally
             {
@@ -608,7 +611,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void DeleteFileOnStartTest_noExceptionWhenMissing()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
     <targets>
       <target name='file1' encoding='UTF-8' type='File'  deleteOldFileOnStartup='true' fileName='c://temp2/logs/i-dont-exist.log' layout='${message} ' />
     </targets>
@@ -813,32 +816,32 @@ namespace NLog.UnitTests.Targets
         [InlineData(false)]
         public void ReplaceFileContentsOnEachWrite_CreateDirs(bool createDirs)
         {
-
-            LogManager.ThrowExceptions = false;
-
             var tempPath = Path.Combine(Path.GetTempPath(), "dir_" + Guid.NewGuid().ToString());
             var logfile = Path.Combine(tempPath, "log.log");
 
             try
             {
-                var target = new FileTarget
+                using (new NoThrowNLogExceptions())
                 {
-                    FileName = logfile,
-                    ReplaceFileContentsOnEachWrite = true,
-                    CreateDirs = createDirs
-                };
-                var config = new LoggingConfiguration();
+                    var target = new FileTarget
+                    {
+                        FileName = logfile,
+                        ReplaceFileContentsOnEachWrite = true,
+                        CreateDirs = createDirs
+                    };
+                    var config = new LoggingConfiguration();
 
-                config.AddTarget("logfile", target);
+                    config.AddTarget("logfile", target);
 
-                config.AddRuleForAllLevels(target);
+                    config.AddRuleForAllLevels(target);
 
-                LogManager.Configuration = config;
+                    LogManager.Configuration = config;
 
-                ILogger logger = LogManager.GetLogger("A");
-                logger.Info("a");
+                    ILogger logger = LogManager.GetLogger("A");
+                    logger.Info("a");
 
-                Assert.Equal(createDirs, Directory.Exists(tempPath));
+                    Assert.Equal(createDirs, Directory.Exists(tempPath));
+                }
             }
             finally
             {
@@ -3112,7 +3115,7 @@ namespace NLog.UnitTests.Targets
         {
             try
             {
-                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
  
@@ -3144,7 +3147,7 @@ namespace NLog.UnitTests.Targets
         {
             try
             {
-                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
  
@@ -3189,7 +3192,7 @@ namespace NLog.UnitTests.Targets
 
                 GlobalDiagnosticsContext.Set("basedir", tempPath);
 
-                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog>
   <variable name='basedir' value='' />
   <targets>
@@ -3254,7 +3257,7 @@ namespace NLog.UnitTests.Targets
 
             try
             {
-                LogManager.Configuration = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                         <targets>
                             <target name='file1' encoding='UTF-8' type='File' fileName='" + logFile + @"'>
                                 <layout type='JsonLayout'>
@@ -3364,7 +3367,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 //create config with archiving
-                var configuration = CreateConfigurationFromString(@"
+                var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true' >
                     <targets>
                        <target name='fileAll' type='File' 
@@ -3498,7 +3501,7 @@ namespace NLog.UnitTests.Targets
                 // Create same app1 Debug file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(logdir + "\\" + app1DebugNm + fileExt, new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
 
-                var app1Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                var app1Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='traceFile' type='File' 
                                         fileName='" + Path.Combine(logdir, app1TraceNm + fileExt) + @"'
@@ -3523,7 +3526,7 @@ namespace NLog.UnitTests.Targets
                                     </rules>
                                   </nlog>");
 
-                var app2Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                var app2Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
                                         fileName='" + Path.Combine(logdir, app2Nm + fileExt) + @"'
@@ -3625,7 +3628,7 @@ namespace NLog.UnitTests.Targets
                 // Create same app1 file as config defines. Will force archiving to happen on startup
                 File.WriteAllLines(Path.Combine(logdir, app1Nm + fileExt), new[] { "Write first app debug target. Startup will archive this file" }, Encoding.ASCII);
 
-                var app1Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                var app1Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
                                         fileName='" + Path.Combine(logdir, app1Nm + fileExt) + @"'
@@ -3641,7 +3644,7 @@ namespace NLog.UnitTests.Targets
                                     </rules>
                                   </nlog>");
 
-                var app2Config = CreateConfigurationFromString(@"<nlog throwExceptions='true'>
+                var app2Config = XmlLoggingConfiguration.CreateFromXmlString(@"<nlog throwExceptions='true'>
                                     <targets>
                                       <target name='logfile' type='File' 
                                         fileName='" + Path.Combine(logdir, app2Nm + fileExt) + @"'
@@ -3883,27 +3886,30 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void BatchErrorHandlingTest()
         {
-            var fileTarget = WrapFileTarget(new FileTarget { FileName = "${logger}", Layout = "${message}" });
-            fileTarget.Initialize(null);
-
-            // make sure that when file names get sorted, the asynchronous continuations are sorted with them as well
-            var exceptions = new List<Exception>();
-            var events = new[]
+            using (new NoThrowNLogExceptions())
             {
-                new LogEventInfo(LogLevel.Info, "file99.txt", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "", "msg2").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Info, "", "msg3").WithContinuation(exceptions.Add)
-            };
+                var fileTarget = WrapFileTarget(new FileTarget { FileName = "${logger}", Layout = "${message}" });
+                fileTarget.Initialize(null);
 
-            fileTarget.WriteAsyncLogEvents(events);
-            LogManager.Flush();
+                // make sure that when file names get sorted, the asynchronous continuations are sorted with them as well
+                var exceptions = new List<Exception>();
+                var events = new[]
+                {
+                    new LogEventInfo(LogLevel.Info, "file99.txt", "msg1").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "", "msg1").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "", "msg2").WithContinuation(exceptions.Add),
+                    new LogEventInfo(LogLevel.Info, "", "msg3").WithContinuation(exceptions.Add)
+                };
 
-            Assert.Equal(4, exceptions.Count);
-            Assert.Null(exceptions[0]);
-            Assert.NotNull(exceptions[1]);
-            Assert.NotNull(exceptions[2]);
-            Assert.NotNull(exceptions[3]);
+                fileTarget.WriteAsyncLogEvents(events);
+                LogManager.Flush();
+
+                Assert.Equal(4, exceptions.Count);
+                Assert.Null(exceptions[0]);
+                Assert.NotNull(exceptions[1]);
+                Assert.NotNull(exceptions[2]);
+                Assert.NotNull(exceptions[3]);
+            }
         }
 
         [Fact]

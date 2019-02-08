@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,10 +35,10 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
+    // ReSharper disable once RedundantUsingDirective
     using NLog.Internal;
 
     /// <summary>
@@ -50,7 +50,7 @@ namespace NLog.Config
         /// <summary>
         /// Mapping between log levels and console output colors.
         /// </summary>
-        private static readonly Dictionary<LogLevel, ConsoleColor> logLevel2ConsoleColor = new Dictionary<LogLevel, ConsoleColor>()
+        private static readonly Dictionary<LogLevel, ConsoleColor> LogLevel2ConsoleColor = new Dictionary<LogLevel, ConsoleColor>()
         {
             { LogLevel.Trace, ConsoleColor.DarkGray },
             { LogLevel.Debug, ConsoleColor.Gray },
@@ -197,7 +197,7 @@ namespace NLog.Config
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
                 var oldColor = Console.ForegroundColor;
-                Console.ForegroundColor = logLevel2ConsoleColor[logLevel];
+                Console.ForegroundColor = LogLevel2ConsoleColor[logLevel];
 
                 try
                 {

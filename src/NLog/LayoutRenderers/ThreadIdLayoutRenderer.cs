@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,15 +45,16 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class ThreadIdLayoutRenderer : LayoutRenderer
     {
-        /// <summary>
-        /// Renders the current thread identifier and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             //no culture needed for ints
-            builder.AppendInvariant(AsyncHelpers.GetManagedThreadId());
+            builder.AppendInvariant(GetValue());
+        }
+
+        private static int GetValue()
+        {
+            return AsyncHelpers.GetManagedThreadId();
         }
     }
 }

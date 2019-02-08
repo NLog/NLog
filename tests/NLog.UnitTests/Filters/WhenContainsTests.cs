@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.Filters
 {
     using Xunit;
@@ -40,7 +42,7 @@ namespace NLog.UnitTests.Filters
         [Fact]
         public void WhenContainsTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -64,7 +66,7 @@ namespace NLog.UnitTests.Filters
         [Fact]
         public void WhenContainsInsensitiveTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -90,7 +92,7 @@ namespace NLog.UnitTests.Filters
         [Fact]
         public void WhenContainsQuoteTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
@@ -116,7 +118,7 @@ namespace NLog.UnitTests.Filters
         [Fact]
         public void WhenContainsQuoteTestComplex()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>

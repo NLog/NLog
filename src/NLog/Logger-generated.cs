@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -286,8 +286,6 @@ namespace NLog
             if (IsTraceEnabled)
             {
 #pragma warning disable 618
-           
-            //todo log also these calls as warning?
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
@@ -573,8 +571,6 @@ namespace NLog
             if (IsDebugEnabled)
             {
 #pragma warning disable 618
-           
-            //todo log also these calls as warning?
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
@@ -860,8 +856,6 @@ namespace NLog
             if (IsInfoEnabled)
             {
 #pragma warning disable 618
-           
-            //todo log also these calls as warning?
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
@@ -1147,8 +1141,6 @@ namespace NLog
             if (IsWarnEnabled)
             {
 #pragma warning disable 618
-           
-            //todo log also these calls as warning?
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
@@ -1434,8 +1426,6 @@ namespace NLog
             if (IsErrorEnabled)
             {
 #pragma warning disable 618
-           
-            //todo log also these calls as warning?
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   
@@ -1721,8 +1711,6 @@ namespace NLog
             if (IsFatalEnabled)
             {
 #pragma warning disable 618
-           
-            //todo log also these calls as warning?
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
                 {   

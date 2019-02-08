@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -51,7 +51,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void SimpleTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='d' type='Debug' layout='${message}' />
@@ -71,7 +71,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void SimpleElementSyntaxTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target type='Debug'>
@@ -94,7 +94,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void NestedXmlConfigElementTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <extensions>
                     <add type='" + typeof(StructuredDebugTarget).AssemblyQualifiedName + @"' />
@@ -119,7 +119,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ArrayParameterTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target type='MethodCall' name='mct'>
@@ -146,7 +146,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ArrayElementParameterTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target type='MethodCall' name='mct'>
@@ -189,7 +189,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void SimpleTest2()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='d' type='Debug' layout='${message} ${level}' />
@@ -212,7 +212,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void WrapperTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <wrapper-target name='b' type='BufferingWrapper' bufferSize='19'>
@@ -243,7 +243,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void WrapperRefTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='c' type='Debug' layout='${message}' />
@@ -278,7 +278,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void CompoundTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <compound-target name='rr' type='RoundRobinGroup'>
@@ -323,7 +323,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void CompoundRefTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='d1' type='Debug' layout='${message}1' />
@@ -373,7 +373,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void AsyncWrappersTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets async='true'>
                     <target type='Debug' name='d' />
@@ -401,7 +401,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void DefaultTargetParametersTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <default-target-parameters type='Debug' layout='x${message}x' />
@@ -422,7 +422,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void DefaultTargetParametersOnWrappedTargetTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <default-target-parameters type='Debug' layout='x${message}x' />
@@ -444,7 +444,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void DefaultWrapperTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <default-wrapper type='BufferingWrapper'>
@@ -472,7 +472,7 @@ namespace NLog.UnitTests.Config
         public void DontThrowExceptionWhenArchiveEverySetByDefaultParameters()
         {
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <targets>
         <default-target-parameters 
@@ -502,7 +502,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void DataTypesTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <extensions>
                     <add type='" + typeof(MyTarget).AssemblyQualifiedName + @"' />
@@ -555,7 +555,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void NullableDataTypesTest()
         {
-            LoggingConfiguration c = CreateConfigurationFromString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <extensions>
                     <add type='" + typeof(MyNullableTarget).AssemblyQualifiedName + @"' />

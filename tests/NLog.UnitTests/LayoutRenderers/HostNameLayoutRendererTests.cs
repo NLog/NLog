@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,19 +31,32 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if USE_LEGACY_ASYNC_API
+using NLog.Config;
 
-namespace NLog.Internal.NetworkSenders
+namespace NLog.UnitTests.LayoutRenderers
 {
-    /// <summary>
-    /// Emulate missing functionality from .NET Compact Framework
-    /// </summary>
-    internal enum SocketError
-    {
-        Success,
+    using System;
+    using Xunit;
 
-        SocketError,
+    public class HostNameLayoutRendererTests : NLogTestBase
+    {
+        [Fact]
+        public void HostNameTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${hostname} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            // Get the actual hostname that the code would use            
+            string h = Environment.GetEnvironmentVariable("HOSTNAME")
+                ?? System.Net.Dns.GetHostName()
+                ?? Environment.GetEnvironmentVariable("COMPUTERNAME");
+            LogManager.GetLogger("A").Debug("a log message");
+            AssertDebugLastMessage("debug", h + " a log message");
+        }
     }
 }
-
-#endif

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -74,5 +74,15 @@ namespace NLog.Layouts
         /// <docgen category='CSV Column Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the override of Quoting mode
+        /// </summary>
+        /// <remarks>
+        /// <see cref="CsvQuotingMode.All"/> and <see cref="CsvQuotingMode.Nothing"/> are faster than the default <see cref="CsvQuotingMode.Auto"/>
+        /// </remarks>
+        /// <docgen category='CSV Column Options' order='10' />
+        public CsvQuotingMode Quoting { get => _quoting ?? CsvQuotingMode.Auto; set => _quoting = value; }
+        internal CsvQuotingMode? _quoting;
     }
 }

@@ -1,7 +1,7 @@
 ![NLog](https://raw.githubusercontent.com/NLog/NLog.github.io/master/images/NLog-logo-only_small.png)
 
 [![NuGet](https://img.shields.io/nuget/v/nlog.svg)](https://www.nuget.org/packages/NLog)
-[![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-3D9FE0.svg)](http://semver.org/)
+[![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-3D9FE0.svg)](https://semver.org/)
 [![Twitter Follow](https://img.shields.io/twitter/follow/NLogOfficial.svg?style=social?maxAge=2592000)](https://twitter.com/NLogOfficial)
 [![StackOverflow](https://img.shields.io/stackexchange/stackoverflow/t/nlog.svg?maxAge=2592000&label=stackoverflow)](https://stackoverflow.com/questions/tagged/nlog) 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
@@ -22,7 +22,7 @@
 
 
 
-<!--[NLog is Looking for Developers!](http://nlog-project.org/2015/08/05/NLog-is-looking-for-developers.html)-->
+<!--[NLog is Looking for Developers!](https://nlog-project.org/2015/08/05/NLog-is-looking-for-developers.html)-->
 
 
 
@@ -34,10 +34,10 @@ It can process diagnostic messages emitted from any .NET language, augment
 them with contextual information, format them according to your preference
 and send them to one or more targets such as file or database.
 
-For more information, see the website [nlog-project.org](http://nlog-project.org)
+For more information, see the website [nlog-project.org](https://nlog-project.org)
 or just get started with the tutorials on [the NLog wiki](https://github.com/NLog/NLog/wiki).
 
-Major releases will be posted on [project news](http://nlog-project.org/archives/). For smaller updates, follow us on [Twitter](https://twitter.com/NLogOfficial)
+Major releases will be posted on [project news](https://nlog-project.org/archives/). For smaller updates, follow us on [Twitter](https://twitter.com/NLogOfficial)
 
 
 Getting started
@@ -55,7 +55,7 @@ Getting started
 
 More detailed tutorial can be found [here](https://github.com/NLog/NLog/wiki/Tutorial).
 
-For the possible options in the config, check the [Target list](https://github.com/NLog/NLog/wiki/Targets) and the [layout renderer list](https://github.com/NLog/NLog/wiki/Layout-Renderers)
+For the possible options in the config, check the [Options list](https://nlog-project.org/config/)
 
 Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)
 
@@ -120,10 +120,10 @@ A good way to get started (flow)
 
 
 1. Fork the NLog repos.
-1. Create a new branch in you current repos from the 'master' branch.
+1. Create a new branch in you current repos from the 'dev' branch. (critical bugfixes from 'master')
 1. 'Check out' the code with Git or [GitHub Desktop](https://desktop.github.com/)
 1. Check [contributing.md](.github/CONTRIBUTING.md#sync-projects)
-1. push commits and create a Pull Request (PR) to NLog
+1. Push commits and create a Pull Request (PR) to NLog
 
 
 License
@@ -141,5 +141,5 @@ For building in the cloud we use:
 - Travis for Mono builds.
 - CodeCov for code coverage
 
-Trying to build your fork in the could? Check [this how-to](howto-build-your-fork.md)
+Trying to build your fork in the cloud? Check [this how-to](howto-build-your-fork.md)
 

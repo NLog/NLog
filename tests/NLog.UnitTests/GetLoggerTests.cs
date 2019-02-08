@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -130,21 +130,24 @@ namespace NLog.UnitTests
         [Fact]
         public void InvalidLoggerConfiguration_ThrowsConfigurationException_isFalse()
         {
-            InvalidLoggerConfiguration_ThrowsConfigurationException(false, true);
+            using (new NoThrowNLogExceptions())
+            {
+                InvalidLoggerConfiguration_ThrowsConfigurationException(true);
+            }
         }
 
 
         [Fact]
         public void InvalidLoggerConfiguration_ThrowsConfigurationException_isTrue()
         {
-            InvalidLoggerConfiguration_ThrowsConfigurationException(true, null);
+            LogManager.ThrowExceptions = true;
+            InvalidLoggerConfiguration_ThrowsConfigurationException(null);
         }
 
-        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool throwExceptions, bool? throwConfigExceptions)
+        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool? throwConfigExceptions)
         {
             Assert.Throws<NLogConfigurationException>(() =>
             {
-                LogManager.ThrowExceptions = throwExceptions;
                 LogManager.ThrowConfigExceptions = throwConfigExceptions;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             });

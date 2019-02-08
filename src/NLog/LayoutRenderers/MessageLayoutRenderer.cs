@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -44,7 +44,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("message")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class MessageLayoutRenderer : LayoutRenderer
+    public class MessageLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageLayoutRenderer" /> class.
@@ -72,18 +72,16 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Layout Options' order='10' />
         public bool Raw { get; set; }
 
-        /// <summary>
-        /// Renders the log message including any positional parameters and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            bool exceptionOnly = logEvent.Exception != null && WithException && logEvent.Parameters?.Length == 1 && ReferenceEquals(logEvent.Parameters[0], logEvent.Exception) && logEvent.Message == "{0}";
+
             if (Raw)
             {
                 builder.Append(logEvent.Message);
             }
-            else
+            else if (!exceptionOnly)
             {
                 if (ReferenceEquals(logEvent.MessageFormatter, LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter))
                 {
@@ -95,11 +93,30 @@ namespace NLog.LayoutRenderers
                     builder.Append(logEvent.FormattedMessage);
                 }
             }
+
             if (WithException && logEvent.Exception != null)
             {
-                builder.Append(ExceptionSeparator);
-                builder.Append(logEvent.Exception.ToString());
+                var primaryException = logEvent.Exception;
+#if !NET3_5 && !SILVERLIGHT4
+                if (logEvent.Exception is AggregateException aggregateException)
+                {
+                    aggregateException = aggregateException.Flatten();
+                    primaryException = aggregateException.InnerExceptions.Count == 1 ? aggregateException.InnerExceptions[0] : aggregateException;
+                }
+#endif
+                if (!exceptionOnly)
+                    builder.Append(ExceptionSeparator);
+                builder.Append(primaryException.ToString());
             }
+        }
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        {
+            if (WithException)
+                return null;
+            else
+                return (Raw ? logEvent.Message : logEvent.FormattedMessage) ?? string.Empty;
         }
     }
 }

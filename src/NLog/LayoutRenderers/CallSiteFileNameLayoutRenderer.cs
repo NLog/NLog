@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -46,22 +46,14 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("callsite-filename")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class CallSiteFileNameLayoutRenderer : LayoutRenderer, IUsesStackTrace
+    public class CallSiteFileNameLayoutRenderer : LayoutRenderer, IUsesStackTrace, IStringValueRenderer
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CallSiteFileNameLayoutRenderer" /> class.
-        /// </summary>
-        public CallSiteFileNameLayoutRenderer()
-        {
-            IncludeSourcePath = true;
-        }
-
         /// <summary>
         /// Gets or sets a value indicating whether to include source file path.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
-        public bool IncludeSourcePath { get; set; }
+        public bool IncludeSourcePath { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the number of frames to skip.
@@ -75,28 +67,26 @@ namespace NLog.LayoutRenderers
         /// </summary>
         StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsage.WithSource;
 
-        /// <summary>
-        /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            builder.Append(GetStringValue(logEvent));
+        }
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+
+        private string GetStringValue(LogEventInfo logEvent)
         {
             if (logEvent.CallSiteInformation != null)
             {
                 string fileName = logEvent.CallSiteInformation.GetCallerFilePath(SkipFrames);
                 if (!string.IsNullOrEmpty(fileName))
                 {
-                    if (IncludeSourcePath)
-                    {
-                        builder.Append(fileName);
-                    }
-                    else
-                    {
-                        builder.Append(Path.GetFileName(fileName));
-                    }
+                    return IncludeSourcePath ? fileName : Path.GetFileName(fileName);
                 }
             }
+            return string.Empty;
         }
     }
 }

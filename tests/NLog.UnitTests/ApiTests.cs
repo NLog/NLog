@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -41,7 +41,7 @@ namespace NLog.UnitTests
     using Xunit;
 
     /// <summary>
-    /// Test the characteristics of the API. Config of the API is testged in <see cref="NLog.UnitTests.Config.ConfigApiTests"/>
+    /// Test the characteristics of the API. Config of the API is tested in <see cref="NLog.UnitTests.Config.ConfigApiTests"/>
     /// </summary>
     public class ApiTests : NLogTestBase
     {
@@ -155,6 +155,46 @@ namespace NLog.UnitTests
             if (typeUsageCount.ContainsKey(type))
             {
                 typeUsageCount[type]++;
+            }
+        }
+
+        [Fact]
+        public void TryGetRawValue_ThreadAgnostic_Attribute_Required()
+        {
+            foreach (Type type in allTypes)
+            {
+                if (typeof(NLog.Internal.IRawValue).IsAssignableFrom(type) && !type.IsInterface)
+                {
+                    var threadAgnosticAttribute = type.GetCustomAttribute<ThreadAgnosticAttribute>();
+                    Assert.True(!ReferenceEquals(threadAgnosticAttribute, null), $"{type.ToString()} cannot implement IRawValue");
+                }
+            }
+        }
+
+        [Fact]
+        public void IStringValueRenderer_AppDomainFixedOutput_Attribute_NotRequired()
+        {
+            foreach (Type type in allTypes)
+            {
+                if (typeof(NLog.Internal.IStringValueRenderer).IsAssignableFrom(type) && !type.IsInterface)
+                {
+                    var appDomainFixedOutputAttribute = type.GetCustomAttribute<AppDomainFixedOutputAttribute>();
+                    Assert.True(ReferenceEquals(appDomainFixedOutputAttribute, null), $"{type.ToString()} should not implement IStringValueRenderer");
+                }
+            }
+        }
+
+        [Fact]
+        public void AppDomainFixedOutput_Attribute_EnsureThreadAgnostic()
+        {
+            foreach (Type type in allTypes)
+            {
+                var appDomainFixedOutputAttribute = type.GetCustomAttribute<AppDomainFixedOutputAttribute>();
+                if (appDomainFixedOutputAttribute != null)
+                {
+                    var threadAgnosticAttribute = type.GetCustomAttribute<ThreadAgnosticAttribute>();
+                    Assert.True(!ReferenceEquals(threadAgnosticAttribute, null), $"{type.ToString()} should also have ThreadAgnostic");
+                }
             }
         }
     }

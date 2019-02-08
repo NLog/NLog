@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using Xunit;
@@ -40,7 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ThreadNameTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets><target name='debug' type='Debug' layout='${threadname} ${message}' /></targets>
                 <rules>

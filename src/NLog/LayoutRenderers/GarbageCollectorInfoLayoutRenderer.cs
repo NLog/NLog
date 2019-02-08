@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,7 +37,6 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.ComponentModel;
-    using System.Globalization;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -50,33 +49,24 @@ namespace NLog.LayoutRenderers
     public class GarbageCollectorInfoLayoutRenderer : LayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GarbageCollectorInfoLayoutRenderer" /> class.
-        /// </summary>
-        public GarbageCollectorInfoLayoutRenderer()
-        {
-            Property = GarbageCollectorProperty.TotalMemory;
-        }
-
-        /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue("TotalMemory")]
-        public GarbageCollectorProperty Property { get; set; }
-        
-        /// <summary>
-        /// Renders the selected process information.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        public GarbageCollectorProperty Property { get; set; } = GarbageCollectorProperty.TotalMemory;
+
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var formatProvider = GetFormatProvider(logEvent);
-            if (ReferenceEquals(formatProvider, CultureInfo.InvariantCulture))
-            {
-                formatProvider = null;
-            }
+            var value = GetValue();
+            if (value >= 0 && value < uint.MaxValue)
+                builder.AppendInvariant((uint)value);
+            else
+                builder.Append(value.ToString());
+        }
 
+        private long GetValue()
+        {
             long value = 0;
 
             switch (Property)
@@ -102,16 +92,13 @@ namespace NLog.LayoutRenderers
                     value = GC.CollectionCount(2);
                     break;
 #endif
-                
+
                 case GarbageCollectorProperty.MaxGeneration:
                     value = GC.MaxGeneration;
                     break;
             }
 
-            if (formatProvider == null && value >= 0 && value < uint.MaxValue)
-                builder.AppendInvariant((uint)value);
-            else
-                builder.Append(Convert.ToString(value, formatProvider ?? CultureInfo.InvariantCulture));
+            return value;
         }
     }
 }

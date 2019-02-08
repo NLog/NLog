@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -23,37 +23,79 @@ Supported platforms:
 
 For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
-    
     </Description>
     <Product>NLog v$(ProductVersion)</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
-    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - http://nlog-project.org/ </Copyright>
+    <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
 
-## Enhancements
+**Features:**
 
-- LogBuilder - Support fluent assignment of message-template after properties (@snakefoot)
-- JsonSerializer - Use ReferenceEquals instead of object.Equals when checking for cyclic object loops (#2983) (@snakefoot)
-- NullAppender - Added missing SecuritySafeCritical (@snakefoot)
+* #2363 + #2899 + #3085 + #3091 Database target: support for DbType for parameters (including SqlDbType) -  (@hubo0831,@ObikeDev,@sorvis, @304NotModified, @snakefoot)
+* #2610 AsyncTargetWrapper with LogEventDropped- + LogEventQueueGrow-events (@Pomoinytskyi)
+* #2670 + #3014 XmlLayout - Render LogEventInfo.Properties as XML (@snakefoot)
+* #2678 NetworkTarget - Support for SSL &amp; TLS (@snakefoot)
+* #2709 XML Config: Support for constant variable in level attributes (level, minlevel, etc) (@304NotModified)
+* #2848 Added defaultAction for &lt;filter&gt; (@304NotModified)
+* #2849 IRawValue-interface and ${db-null} layout renderer (@304NotModified)
+* #2902 JsonLayout with support for System.Dynamic-objects (@304NotModified)
+* #2907 New Substring, Left &amp; Right Wrappers (@304NotModified)
+* #3098 &lt;rule&gt; support for one or more '*' and '?' wildcards and in any position  (@beppemarazzi)
+* #2909 AsyncTaskTarget - BatchSize + RetryCount (@snakefoot)
+* #3018 ColoredConsoleTarget - Added EnableAnsiOutput option (VS Code support) (@jp7677 + @snakefoot)
+* #3031 + #3092 Support ${currentdir},${basedir},${tempdir} and Environment Variables for internalLogFile when parsing nlog.config (@snakefoot)
+* #3050 Added IncludeGdc property in JsonLayout (@casperc89)
+* #3071 ${HostName} Layout Renderer for full computer DNS name (@amitsaha)
+* #3053 ${AppSetting} Layout Renderer (app.config + web.config) moved from NLog.Extended for NetFramework (@snakefoot)
+* #3060 TargetWithContext - Support for PropertyType using IRawValue-interface (@snakefoot)
 
-## Fixes
+**Enhancements:**
 
-- JSON encoding should create valid JSON for non-string dictionary-keys (@snakefoot)
+* #2989 JsonLayout includes Type-property when rendering Exception-object (@snakefoot)
+* #2891 LoggingConfigurationParser - Extracted from XmlLoggingConfiguration (Prepare for appsettings.json)  (@snakefoot)
+* #2910 Added support for complex objects in MDLC and NDLC on Net45  (@snakefoot)
+* #2918 PerformanceCounter - Improve behavior for CPU usage calculation  (@snakefoot)
+* #2941 TargetWithContext - Include all properties even when duplicate names  (@snakefoot)
+* #2974 Updated resharper annotations for better validation (@imanushin)
+* #2979 Improve default reflection support on NetCore Native (@snakefoot)
+* #3017 EventLogTarget with better support for MaximumKilobytes configuration (@Coriolanuss)
+* #3039 Added Xamarin PreserveAttribute for the entire Assembly to improve AOT-linking (@snakefoot)
+* #3045 Create snupkg packages and use portable PDB (@snakefoot)
+* #3048 KeepFileOpen + ConcurrentWrites on Xamarin + UWP - #3079 (@304NotModified)
+* #3082 + #3100  WebService Target allow custom override of SoapAction-header for Soap11 (@AlexeyRokhin)
+* Various refactorings (15 pull requests) (@beppemarazzi, @304NotModified, @snakefoot)
+
+**Performance:**
+
+* #2650 AsyncTargetWrapper using ConcurrentQueue for NetCore2 for better thread-concurrency (@snakefoot)
+* #2890 AsyncTargetWrapper - TimeToSleepBetweenBatches changed default to 1ms (@snakefoot)
+* #2897 InternalLogger performance optimization when LogLevel.Off (@snakefoot)
+* #2935 InternalLogger LogLevel changes to LogLevel.Off by default unless being used. (@snakefoot)
+* #2934 CsvLayout - Allocation optimizations and optional skip quoting-check for individual columns. (@snakefoot)
+* #2949 MappedDiagnosticsLogicalContext - SetScoped with IReadOnlyList (Prepare for MEL BeginScope) (@snakefoot)
+* #2973 IRenderString-interface to improve performance for Layout with single LayoutRenderer (@snakefoot)
+* #3103 StringBuilderPool - Reduce memory overhead until required (@snakefoot)
+
+**LibLog Breaking change**
+
+* [damianh/LibLog#181](https://github.com/damianh/LibLog/pull/181) - Sub-components using LibLog ver. 5.0.3 (or newer) will now use MDLC + NDLC (Instead of MDC + NDC) when detecting application is using NLog ver. 4.6. Make sure to update NLog.config to match this change. Make sure that all sub-components have upgraded to LibLog ver. 5.0.3 (or newer) if they make use of `OpenNestedContext` or `OpenMappedContext`.
+
+See also [NLog 4.6 Milestone](https://github.com/NLog/NLog/milestone/44?closed=1)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
-Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
+Supported can be found on https://nlog-project.org/config/
 
     </PackageReleaseNotes>
     <PackageTags>NLog;logging;log;structured;tracing;logfiles;database;eventlog;email;wcf;console</PackageTags>
-    <PackageIconUrl>http://nlog-project.org/N.png</PackageIconUrl>
-    <PackageProjectUrl>http://nlog-project.org/</PackageProjectUrl>
+    <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
+    <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>git://github.com/NLog/NLog</RepositoryUrl>
+    <RepositoryUrl>https://github.com/NLog/NLog.git</RepositoryUrl>
 
     <SignAssembly>true</SignAssembly>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
@@ -62,14 +104,13 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'netstandard2.0' ">true</TreatWarningsAsErrors>
-
-    <DebugType Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net45' ">Full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Title>NLog for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED</DefineConstants>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
+    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
@@ -78,12 +119,14 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-    <DefineConstants>$(DefineConstants);NET4_0;WCF_SUPPORTED</DefineConstants>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
+    <DefineConstants>$(DefineConstants);NET4_0;WCF_SUPPORTED;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
     <DefineConstants>$(DefineConstants);NET3_5;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
   
@@ -101,7 +144,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <Title>NLog for NetStandard 2.0</Title>
-    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_5;NETSTANDARD;NETSTANDARD2_0;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(monobuild)' != '' ">
@@ -117,6 +160,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
     <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT4;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
@@ -128,6 +172,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
     <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT5;WCF_SUPPORTED</DefineConstants>
   </PropertyGroup>
 
@@ -139,6 +184,7 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
     <DefineConstants>$(DefineConstants);SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
   </PropertyGroup>
 
@@ -268,7 +314,6 @@ Supported for each platform: https://github.com/NLog/NLog/wiki/platform-support
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.0.0" />
-    <PackageReference Include="System.Collections.NonGeneric" Version="4.0.1" />
     <PackageReference Include="System.ComponentModel.Primitives" Version="4.1.0" />
     <PackageReference Include="System.Data.Common" Version="4.1.0" />
     <PackageReference Include="System.Diagnostics.StackTrace" Version="4.0.1" />

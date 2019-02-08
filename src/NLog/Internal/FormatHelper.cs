@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,6 +34,7 @@
 namespace NLog.Internal
 {
     using System;
+    using NLog.Config;
 
     internal static class FormatHelper
     {
@@ -49,17 +50,50 @@ namespace NLog.Internal
         internal static string ConvertToString(object o, IFormatProvider formatProvider)
         {
             // if no IFormatProvider is specified, use the Configuration.DefaultCultureInfo value.
-            if (formatProvider == null && !(o is string))
+            if (formatProvider == null)
             {
-                //variable so only 1 lock is needed
-                //TODO this locks the configuration, which can lead to deadlocks.
-                var loggingConfiguration = LogManager.Configuration;
-                if (loggingConfiguration != null)
-                    formatProvider = loggingConfiguration.DefaultCultureInfo;
+                if (SkipFormattableToString(o))
+                    return o?.ToString() ?? string.Empty;
+
+                if (o is IFormattable)
+                {
+                    // Lookup / loading global configuration can be dangerous and can lead to deadlocks
+                    var loggingConfiguration = LogManager.Configuration;
+                    if (loggingConfiguration != null)
+                        formatProvider = loggingConfiguration.DefaultCultureInfo;
+                }
             }
 
             return Convert.ToString(o, formatProvider);
+        }
 
+        private static bool SkipFormattableToString(object o)
+        {
+            switch (Convert.GetTypeCode(o))
+            {
+                case TypeCode.String:   return true;
+                case TypeCode.Empty:    return true;
+                default:                return false;
+            }
+        }
+
+        internal static string TryFormatToString(object value, string format, IFormatProvider formatProvider)
+        {
+            if (SkipFormattableToString(value))
+                return value?.ToString() ?? string.Empty;
+
+            if (value is IFormattable formattable)
+            {
+                return formattable.ToString(format, formatProvider);
+            }
+            else if (value is System.Collections.IEnumerable)
+            {
+                return null;
+            }
+            else
+            {
+                return value.ToString() ?? string.Empty;
+            }
         }
     }
 }

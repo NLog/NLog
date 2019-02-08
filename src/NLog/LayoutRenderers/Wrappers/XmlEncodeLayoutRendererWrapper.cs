@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,16 +35,16 @@ namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
     using System.ComponentModel;
-    using System.Globalization;
     using System.Text;
-    using System.Xml;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Converts the result of another layout output to be XML-compliant.
     /// </summary>
     [LayoutRenderer("xml-encode")]
     [AmbientProperty("XmlEncode")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class XmlEncodeLayoutRendererWrapper : WrapperLayoutRendererBase
@@ -60,60 +60,60 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Gets or sets a value indicating whether to apply XML encoding.
         /// </summary>
+        /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
         /// <docgen category="Transformation Options" order="10"/>
         [DefaultValue(true)]
         public bool XmlEncode { get; set; }
 
         /// <summary>
-        /// Post-processes the rendered message. 
+        /// Gets or sets a value indicating whether to tranform newlines (\r\n) into (&#13;&#10;)
         /// </summary>
-        /// <param name="text">The text to be post-processed.</param>
-        /// <returns>Padded and trimmed string.</returns>
-        protected override string Transform(string text)
+        /// <docgen category="Transformation Options" order="10"/>
+        [DefaultValue(false)]
+        public bool XmlEncodeNewlines { get; set; }
+
+        /// <inheritdoc/>
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            return XmlEncode ? DoXmlEscape(text) : text;
+            Inner.RenderAppendBuilder(logEvent, builder);
+            if (XmlEncode && RequiresXmlEncode(builder, orgLength))
+            {
+                var str = builder.ToString(orgLength, builder.Length - orgLength);
+                builder.Length = orgLength;
+                XmlHelper.EscapeXmlString(str, XmlEncodeNewlines, builder);
+            }
         }
 
-        private static readonly char[] XmlEscapeChars = new char[] { '<', '>', '&', '\'', '"' };
-
-        private static string DoXmlEscape(string text)
+        /// <inheritdoc/>
+        protected override string Transform(string text)
         {
-            if (text.Length < 4096 && text.IndexOfAny(XmlEscapeChars) < 0)
-                return text;
-
-            var sb = new StringBuilder(text.Length);
-
-            for (int i = 0; i < text.Length; ++i)
+            if (XmlEncode)
             {
-                switch (text[i])
+                return XmlHelper.EscapeXmlString(text, XmlEncodeNewlines);
+            }
+            return text;
+        }
+
+        private bool RequiresXmlEncode(StringBuilder target, int startPos = 0)
+        {
+            for (int i = startPos; i < target.Length; ++i)
+            {
+                switch (target[i])
                 {
                     case '<':
-                        sb.Append("&lt;");
-                        break;
-
                     case '>':
-                        sb.Append("&gt;");
-                        break;
-
                     case '&':
-                        sb.Append("&amp;");
-                        break;
-
                     case '\'':
-                        sb.Append("&apos;");
-                        break;
-
                     case '"':
-                        sb.Append("&quot;");
-                        break;
-
-                    default:
-                        sb.Append(text[i]);
+                        return true;
+                    case '\r':
+                    case '\n':
+                        if (XmlEncodeNewlines)
+                            return true;
                         break;
                 }
             }
-
-            return sb.ToString();
+            return false;
         }
     }
 }

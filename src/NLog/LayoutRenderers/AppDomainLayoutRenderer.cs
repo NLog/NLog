@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers
     ///  Used to render the application domain name.
     ///  </summary>
     [LayoutRenderer("appdomain")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public class AppDomainLayoutRenderer : LayoutRenderer
@@ -83,18 +84,14 @@ namespace NLog.LayoutRenderers
         [DefaultValue(LongFormatCode)]
         public string Format { get; set; }
 
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
             _assemblyName = null;
             base.InitializeLayoutRenderer();
         }
 
-        /// <summary>
-        /// Closes the layout renderer.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void CloseLayoutRenderer()
         {
             _assemblyName = null;
@@ -103,11 +100,7 @@ namespace NLog.LayoutRenderers
 
         private string _assemblyName;
 
-        /// <summary>
-        /// Render the layout
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="logEvent"></param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (_assemblyName == null)
@@ -118,11 +111,6 @@ namespace NLog.LayoutRenderers
             builder.Append(_assemblyName);
         }
 
-        /// <summary>
-        /// Convert the formatting string
-        /// </summary>
-        /// <param name="format"></param>
-        /// <returns></returns>
         private static string GetFormattingString(string format)
         {
             string formattingString;

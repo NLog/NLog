@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,28 +37,22 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
+	using NLog.Internal;
 
     /// <summary>
     /// Globally-unique identifier (GUID).
     /// </summary>
     [LayoutRenderer("guid")]
     [ThreadSafe]
-    public class GuidLayoutRenderer : LayoutRenderer
+    [ThreadAgnostic]
+    public class GuidLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GuidLayoutRenderer" /> class.
-        /// </summary>
-        public GuidLayoutRenderer()
-        {
-            Format = "N";
-        }
-
         /// <summary>
         /// Gets or sets the GUID format as accepted by Guid.ToString() method.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue("N")]
-        public string Format { get; set; }
+        public string Format { get; set; } = "N";
 
         /// <summary>
         /// Generate the Guid from the NLog LogEvent (Will be the same for all targets)
@@ -67,13 +61,26 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool GeneratedFromLogEvent { get; set; }
 
-        /// <summary>
-        /// Renders a newly generated GUID string and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            builder.Append(GetStringValue(logEvent));
+        }
+
+        /// <inheritdoc/>
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+
+        /// <inheritdoc/>
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
+
+        private string GetStringValue(LogEventInfo logEvent)
+        {
+            return GetValue(logEvent).ToString(Format);
+        }
+
+        private Guid GetValue(LogEventInfo logEvent)
+        {
+            Guid guid;
             if (GeneratedFromLogEvent)
             {
                 int hashCode = logEvent.GetHashCode();
@@ -88,12 +95,14 @@ namespace NLog.LayoutRenderers
                 byte i = (byte)((zeroDateTicks >> 16) & 0xFF);
                 byte j = (byte)((zeroDateTicks >> 8) & 0xFF);
                 byte k = (byte)(zeroDateTicks & 0XFF);
-                builder.Append(new Guid(logEvent.SequenceID, b, c, d, e, f, g, h, i, j, k).ToString(Format));
+                guid = new Guid(logEvent.SequenceID, b, c, d, e, f, g, h, i, j, k);
             }
             else
             {
-                builder.Append(Guid.NewGuid().ToString(Format));
+                guid = Guid.NewGuid();
             }
+
+            return guid;
         }
     }
 }

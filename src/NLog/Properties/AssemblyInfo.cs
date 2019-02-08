@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,7 +36,9 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security;
+using NLog.Internal.Xamarin;
 
+[assembly: Preserve]    // Automatic --linkskip=NLog
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]

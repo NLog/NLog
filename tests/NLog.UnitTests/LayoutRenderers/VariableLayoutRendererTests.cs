@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -73,7 +73,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_with_layout_renderers()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name='user' value='logger=${logger}' />
     <variable name='password' value='realgoodpassword' />
@@ -99,7 +99,7 @@ namespace NLog.UnitTests.LayoutRenderers
 			string folderPath = Path.GetTempPath();
 			string logFilePath = Path.Combine(folderPath, "test.log");
 
-            LogManager.Configuration = CreateConfigurationFromString($@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog>
                 <variable name='dir' value='{folderPath}' />
                 <targets>
@@ -125,7 +125,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_with_other_var()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name='user' value='${var:password}=' />
     <variable name='password' value='realgoodpassword' />
@@ -148,7 +148,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_from_api()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
            
                 <targets>
@@ -170,7 +170,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_default()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name='user' value='admin' />
  
@@ -192,7 +192,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_default_after_clear()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name='user' value='admin' />
     <variable name='password' value='realgoodpassword' />
@@ -244,7 +244,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void Var_default_after_xml_emptyString()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name='user' value='admin' />
     <variable name='password' value='' />
@@ -332,7 +332,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private void CreateConfigFromXml()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name='user' value='admin' />
     <variable name='password' value='realgoodpassword' />

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -117,29 +117,9 @@ namespace NLog.Internal
 
             foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(type))
             {
-                if (prop == null || prop.PropertyType == null || prop.PropertyType.IsPrimitive() || prop.PropertyType.IsEnum() || prop.PropertyType == typeof(string))
-                {
-                    continue;
-                }
-
-                try
-                {
-                    if (prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
-                    {
-                        continue;
-                    }
-                }
-                catch (System.Exception ex)
-                {
-                    InternalLogger.Info(ex, "{0}Type reflection not possible for property {1}. Maybe because of .NET Native.", new string(' ', level + 1), prop.Name);
-                    continue;
-                }
-
-                object value = prop.GetValue(o, null);
+                var value = GetConfigurationPropertyValue(o, prop, level);
                 if (value == null)
-                {
                     continue;
-                }
 
                 if (InternalLogger.IsTraceEnabled)
                 {
@@ -183,6 +163,29 @@ namespace NLog.Internal
                     }
                 }
             }
+        }
+
+        private static object GetConfigurationPropertyValue(object o, PropertyInfo prop, int level)
+        {
+            if (prop == null || prop.PropertyType == null || prop.PropertyType.IsPrimitive() || prop.PropertyType.IsEnum() || prop.PropertyType == typeof(string))
+            {
+                return null;
+            }
+
+            try
+            {
+                if (prop.IsDefined(typeof(NLogConfigurationIgnorePropertyAttribute), true))
+                {
+                    return null;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                InternalLogger.Info(ex, "{0}Type reflection not possible for property {1}. Maybe because of .NET Native.", new string(' ', level + 1), prop.Name);
+                return null;
+            }
+
+            return prop.GetValue(o, null);
         }
 
         private static void ScanPropertiesList<T>(bool aggressiveSearch, List<T> result, IEnumerable<object> elements, int level, HashSet<object> visitedObjects) where T : class

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,14 +35,14 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Asynchronous request queue.
     /// </summary>
-	internal class AsyncRequestQueue
+	internal class AsyncRequestQueue : AsyncRequestQueueBase
     {
-        private readonly Queue<AsyncLogEventInfo> _logEventInfoQueue = new Queue<AsyncLogEventInfo>();
+        private readonly Queue<AsyncLogEventInfo> _logEventInfoQueue = new Queue<AsyncLogEventInfo>(1000);
 
         /// <summary>
         /// Initializes a new instance of the AsyncRequestQueue class.
@@ -56,39 +56,30 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Gets or sets the request limit.
-        /// </summary>
-        public int RequestLimit { get; set; }
-
-        /// <summary>
-        /// Gets or sets the action to be taken when there's no more room in
-        /// the queue and another request is enqueued.
-        /// </summary>
-        public AsyncTargetWrapperOverflowAction OnOverflow { get; set; }
-
-        /// <summary>
         /// Gets the number of requests currently in the queue.
         /// </summary>
         public int RequestCount
         {
             get
             {
-                lock (this)
+                lock (_logEventInfoQueue)
                 {
                     return _logEventInfoQueue.Count;
                 }
             }
         }
 
+        public override bool IsEmpty => RequestCount == 0;
+
         /// <summary>
         /// Enqueues another item. If the queue is overflown the appropriate
-        /// action is taken as specified by <see cref="OnOverflow"/>.
+        /// action is taken as specified by <see cref="AsyncRequestQueueBase.OnOverflow"/>.
         /// </summary>
         /// <param name="logEventInfo">The log event info.</param>
         /// <returns>Queue was empty before enqueue</returns>
-        public bool Enqueue(AsyncLogEventInfo logEventInfo)
+        public override bool Enqueue(AsyncLogEventInfo logEventInfo)
         {
-            lock (this)
+            lock (_logEventInfoQueue)
             {
                 if (_logEventInfoQueue.Count >= RequestLimit)
                 {
@@ -97,18 +88,21 @@ namespace NLog.Targets.Wrappers
                     {
                         case AsyncTargetWrapperOverflowAction.Discard:
                             InternalLogger.Debug("Discarding one element from queue");
-                            _logEventInfoQueue.Dequeue();
+                            var lostItem = _logEventInfoQueue.Dequeue();
+                            OnLogEventDropped(lostItem.LogEvent);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Grow:
                             InternalLogger.Debug("The overflow action is Grow, adding element anyway");
+                            RequestLimit *= 2;
+                            OnLogEventQueueGrows(RequestCount + 1);
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Block:
                             while (_logEventInfoQueue.Count >= RequestLimit)
                             {
                                 InternalLogger.Debug("Blocking because the overflow action is Block...");
-                                System.Threading.Monitor.Wait(this);
+                                System.Threading.Monitor.Wait(_logEventInfoQueue);
                                 InternalLogger.Trace("Entered critical section.");
                             }
 
@@ -128,11 +122,11 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued (-1 means everything).</param>
         /// <returns>The array of log events.</returns>
-        public AsyncLogEventInfo[] DequeueBatch(int count)
+        public override AsyncLogEventInfo[] DequeueBatch(int count)
         {
             AsyncLogEventInfo[] resultEvents;
 
-            lock (this)
+            lock (_logEventInfoQueue)
             {
                 if (_logEventInfoQueue.Count < count)
                     count = _logEventInfoQueue.Count;
@@ -148,7 +142,7 @@ namespace NLog.Targets.Wrappers
 
                 if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
                 {
-                    System.Threading.Monitor.PulseAll(this);
+                    System.Threading.Monitor.PulseAll(_logEventInfoQueue);
                 }
             }
 
@@ -160,9 +154,9 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="count">Maximum number of items to be dequeued</param>
         /// <param name="result">Preallocated list</param>
-        public void DequeueBatch(int count, IList<AsyncLogEventInfo> result)
+        public override void DequeueBatch(int count, IList<AsyncLogEventInfo> result)
         {
-            lock (this)
+            lock (_logEventInfoQueue)
             {
                 if (_logEventInfoQueue.Count < count)
                     count = _logEventInfoQueue.Count;
@@ -170,7 +164,7 @@ namespace NLog.Targets.Wrappers
                     result.Add(_logEventInfoQueue.Dequeue());
                 if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
                 {
-                    System.Threading.Monitor.PulseAll(this);
+                    System.Threading.Monitor.PulseAll(_logEventInfoQueue);
                 }
             }
         }
@@ -178,9 +172,9 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Clears the queue.
         /// </summary>
-        public void Clear()
+        public override void Clear()
         {
-            lock (this)
+            lock (_logEventInfoQueue)
             {
                 _logEventInfoQueue.Clear();
             }

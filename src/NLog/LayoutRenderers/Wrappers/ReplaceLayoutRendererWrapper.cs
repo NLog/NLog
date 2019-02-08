@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,6 +45,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// ${replace:searchFor=\\n+:replaceWith=-:regex=true:inner=${message}}
     /// </example>
     [LayoutRenderer("replace")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class ReplaceLayoutRendererWrapper : WrapperLayoutRendererBase

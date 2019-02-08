@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,6 +38,18 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal interface INetworkSenderFactory
     {
+#if !SILVERLIGHT
+        /// <summary>
+        /// Creates a new instance of the network sender based on a network URL.
+        /// </summary>
+        /// <param name="url">URL that determines the network sender to be created.</param>
+        /// <param name="maxQueueSize">The maximum queue size.</param>
+        /// <param name="sslProtocols">SSL protcols for TCP</param>
+        /// <returns>
+        /// A newly created network sender.
+        /// </returns>
+        NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols);
+#else
         /// <summary>
         /// Creates a new instance of the network sender based on a network URL.
         /// </summary>
@@ -51,5 +63,6 @@ namespace NLog.Internal.NetworkSenders
         /// A newly created network sender.
         /// </returns>
         NetworkSender Create(string url, int maxQueueSize);
+#endif
     }
 }

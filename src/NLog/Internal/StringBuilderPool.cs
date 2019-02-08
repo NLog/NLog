@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -49,9 +49,9 @@ namespace NLog.Internal
         /// <param name="poolCapacity">Max number of items</param>
         /// <param name="initialBuilderCapacity">Initial StringBuilder Size</param>
         /// <param name="maxBuilderCapacity">Max StringBuilder Size</param>
-        public StringBuilderPool(int poolCapacity, int initialBuilderCapacity = 16 * 1024, int maxBuilderCapacity = 512 * 1024)
+        public StringBuilderPool(int poolCapacity, int initialBuilderCapacity = 1024, int maxBuilderCapacity = 512 * 1024)
         {
-            _fastPool = new StringBuilder(Math.Max(initialBuilderCapacity, 16 * 1024));
+            _fastPool = new StringBuilder(10 * initialBuilderCapacity);
             _slowPool = new StringBuilder[poolCapacity];
             for (int i = 0; i < _slowPool.Length; ++i)
             {
@@ -93,7 +93,12 @@ namespace NLog.Internal
         {
             if (stringBuilder.Length > _maxBuilderCapacity)
             {
-                stringBuilder = new StringBuilder(_maxBuilderCapacity / 2);
+                // Avoid high memory usage by not keeping huge StringBuilders alive (Except one StringBuilder)
+                int maxBuilderCapacity = poolIndex == -1 ? _maxBuilderCapacity * 10 : _maxBuilderCapacity;
+                if (stringBuilder.Length > maxBuilderCapacity)
+                {
+                    stringBuilder = new StringBuilder(maxBuilderCapacity / 2);
+                }
             } 
             else
             {

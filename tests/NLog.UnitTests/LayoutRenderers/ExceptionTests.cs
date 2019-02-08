@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -50,7 +50,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithStackTrace_ObsoleteMethodTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -96,7 +96,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithStackTraceTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -142,7 +142,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutMessageParam()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -186,7 +186,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutStackTrace_ObsoleteMethodTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -227,7 +227,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutStackTraceTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -265,7 +265,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionNewLineSeparatorTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=message,shorttype:separator=&#13;&#10;}' />
@@ -382,7 +382,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void InnerExceptionTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3}' />
@@ -399,20 +399,20 @@ namespace NLog.UnitTests.LayoutRenderers
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
 #pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
         }
 
         [Fact]
         public void InnerExceptionTest_Serialize()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=@}' />
@@ -429,8 +429,8 @@ namespace NLog.UnitTests.LayoutRenderers
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
             var lastMessage1 = GetDebugLastMessage("debug1");
-            Assert.StartsWith("{\"Message\":\"Wrapper2\"", lastMessage1);
-            Assert.Contains("\"InnerException\":{\"Message\":\"Wrapper1\"", lastMessage1);
+            Assert.StartsWith("{\"Type\":\"System.InvalidOperationException\", \"Message\":\"Wrapper2\"", lastMessage1);
+            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage1);
             Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage1);
             Assert.Contains("1Really_Bad_Boy_", lastMessage1);
 
@@ -438,8 +438,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
             logger.Error(ex, "msg");
             var lastMessage2 = GetDebugLastMessage("debug1");
-            Assert.StartsWith("{\"Message\":\"Wrapper2\"", lastMessage2);
-            Assert.Contains("\"InnerException\":{\"Message\":\"Wrapper1\"", lastMessage2);
+            Assert.StartsWith("{\"Type\":\"System.InvalidOperationException\", \"Message\":\"Wrapper2\"", lastMessage2);
+            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage2);
             Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage2);
             Assert.Contains("1Really_Bad_Boy_", lastMessage1);
         }
@@ -447,7 +447,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void CustomInnerException_ObsoleteMethodTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
@@ -474,16 +474,16 @@ namespace NLog.UnitTests.LayoutRenderers
 #pragma warning restore 0618
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" +
                                              "\r\n----INNER----\r\n" +
-                                             "System.InvalidOperationException Wrapper1");
+                                             "System.ArgumentException Wrapper1");
             AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" +
                                                            "\r\n----INNER----\r\n" +
-                                                           "System.InvalidOperationException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
+                                                           "System.ArgumentException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
         [Fact]
         public void CustomInnerExceptionTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
@@ -507,16 +507,16 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" +
                                              "\r\n----INNER----\r\n" +
-                                             "System.InvalidOperationException Wrapper1");
+                                             "System.ArgumentException Wrapper1");
             AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" +
                                                            "\r\n----INNER----\r\n" +
-                                                           "System.InvalidOperationException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
+                                                           "System.ArgumentException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
         }
 
         [Fact]
         public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception}' />
@@ -534,7 +534,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ErrorException_should_not_throw_exception_when_exception_message_property_throw_exception_serialize()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=@}' />
@@ -554,9 +554,9 @@ namespace NLog.UnitTests.LayoutRenderers
 #else
         [Fact]
 #endif
-        public void AggregateExceptionTest()
+        public void AggregateExceptionMultiTest()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=5}' />
@@ -595,6 +595,46 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessageContains("debug1", "Test Inner 2");
         }
 
+#if NET3_5
+        [Fact(Skip = "NET3_5 not supporting AggregateException")]
+#else
+        [Fact]
+#endif
+        public void AggregateExceptionSingleTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=message,shorttype:maxInnerExceptionLevel=5}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            var task1 = System.Threading.Tasks.Task.Factory.StartNew(() => { throw new Exception("Test exception 1", new Exception("Test Inner 1")); },
+                System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+
+            var aggregateExceptionMessage = "nothing thrown!";
+            try
+            {
+                System.Threading.Tasks.Task.WaitAll(new[] { task1 });
+            }
+            catch (AggregateException ex)
+            {
+                aggregateExceptionMessage = ex.ToString();
+                logger.Error(ex, "msg");
+            }
+
+            Assert.Contains(typeof(AggregateException).Name, aggregateExceptionMessage);
+            Assert.Contains("Test exception 1", aggregateExceptionMessage);
+            Assert.Contains("Test Inner 1", aggregateExceptionMessage);
+
+            var lastMessage = GetDebugLastMessage("debug1");
+            Assert.StartsWith("Test exception 1", lastMessage);
+            Assert.Contains("Test Inner 1", lastMessage);
+        }
+
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
         {
             public override string Message => throw new Exception("Exception from Message property");
@@ -602,7 +642,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
         private void SetConfigurationForExceptionUsingRootMethodTests()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${level:uppercase=true}*${message}*${exception:format=message,shorttype:separator=*}' />
@@ -643,7 +683,7 @@ namespace NLog.UnitTests.LayoutRenderers
                     }
                     catch (Exception exception)
                     {
-                        throw new InvalidOperationException("Wrapper1", exception);
+                        throw new System.ArgumentException("Wrapper1", exception);
                     }
                 }
                 catch (Exception exception)
@@ -714,13 +754,13 @@ namespace NLog.UnitTests.LayoutRenderers
             // Obsolete method requires testing until completely removed.
             logger.ErrorException("msg", ex);
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
 #pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "InvalidOperationException Wrapper1" + EnvironmentHelper.NewLine +
+                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
                                              "CustomArgumentException Test exception");
 
             var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
@@ -734,7 +774,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void InnerExceptionTestAPI()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=3:innerFormat=message}' />
@@ -775,7 +815,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("exception-custom", typeof(CustomExceptionLayoutRendrer));
 
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception-custom:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
@@ -799,16 +839,16 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "InvalidOperationException Wrapper2" + "\r\ncustom-exception-renderer" +
                                              "\r\n----INNER----\r\n" +
-                                             "System.InvalidOperationException Wrapper1" + "\r\ncustom-exception-renderer");
+                                             "System.ArgumentException Wrapper1" + "\r\ncustom-exception-renderer");
             AssertDebugLastMessage("debug2", string.Format("InvalidOperationException Wrapper2" + "\r\ncustom-exception-renderer" +
                                                            "\r\n----INNER----\r\n" +
-                                                           "System.InvalidOperationException Wrapper1" + "\r\ncustom-exception-renderer " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue + "\r\ncustom-exception-renderer-data"));
+                                                           "System.ArgumentException Wrapper1" + "\r\ncustom-exception-renderer " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue + "\r\ncustom-exception-renderer-data"));
         }
 
         [Fact]
         public void ExceptionDataWithDifferentSeparators()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>                    
                     <target name='debug1' type='Debug' layout='${exception:format=data}' />
@@ -846,7 +886,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionDataWithNewLineSeparator()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>                                        
                     <target name='debug1' type='Debug' layout='${exception:format=data:ExceptionDataSeparator=\r\n}' />
@@ -879,7 +919,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithSeparatorForExistingRender()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>                                        
                     <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />
@@ -904,7 +944,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void ExceptionWithoutSeparatorForNoRender()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>                                        
                     <target name='debug1' type='Debug' layout='${exception:format=tostring,data:separator=\r\nXXX}' />

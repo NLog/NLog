@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,12 +37,14 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Trims the whitespace from the result of another layout renderer.
     /// </summary>
     [LayoutRenderer("trim-whitespace")]
     [AmbientProperty("TrimWhiteSpace")]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public sealed class TrimWhiteSpaceLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
@@ -74,13 +76,14 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         /// <inheritdoc/>
+        [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
         }
 
         private static void TransformTrimWhiteSpaces(StringBuilder builder, int startPos)
         {
-            TrimRight(builder, startPos);  // Fast
+            builder.TrimRight(startPos);  // Fast
             if (builder.Length > startPos)
             {
                 if (char.IsWhiteSpace(builder[startPos]))
@@ -90,17 +93,6 @@ namespace NLog.LayoutRenderers.Wrappers
                     builder.Append(str.Trim());
                 }
             }
-        }
-
-        private static void TrimRight(StringBuilder sb, int startPos)
-        {
-            int i = sb.Length - 1;
-            for (; i >= startPos; i--)
-                if (!char.IsWhiteSpace(sb[i]))
-                    break;
-
-            if (i < sb.Length - 1)
-                sb.Length = i + 1;
         }
     }
 }

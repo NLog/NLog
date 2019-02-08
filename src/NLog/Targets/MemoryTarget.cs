@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,6 +34,7 @@
 namespace NLog.Targets
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     /// <summary>
     /// Writes log messages to an ArrayList in memory for programmatic retrieval.
@@ -84,7 +85,14 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the list of logs gathered in the <see cref="MemoryTarget"/>.
         /// </summary>
-        public IList<string> Logs { get; private set; }
+        public IList<string> Logs { get; }
+
+        /// <summary>
+        /// Gets or sets the max number of items to have in memory
+        /// </summary>
+        /// <docgen category='Buffering Options' order='10' />
+        [DefaultValue(0)]
+        public int MaxLogsCount { get; set; }
 
         /// <summary>
         /// Renders the logging event message and adds it to the internal ArrayList of log messages.
@@ -92,6 +100,10 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void Write(LogEventInfo logEvent)
         {
+            if (MaxLogsCount > 0 && Logs.Count >= MaxLogsCount)
+            {
+                Logs.RemoveAt(0);
+            }
             Logs.Add(RenderLogEvent(Layout, logEvent));
         }
     }

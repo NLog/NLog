@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -81,7 +81,7 @@ namespace NLog.Internal
         /// </summary>
         public void StopWatching()
         {
-            lock (this)
+            lock (_watcherMap)
             {
                 foreach (FileSystemWatcher watcher in _watcherMap.Values)
                 {
@@ -97,7 +97,7 @@ namespace NLog.Internal
         /// <param name="fileName"></param>
         public void StopWatching(string fileName)
         {
-            lock (this)
+            lock (_watcherMap)
             {
                 FileSystemWatcher watcher;
                 if (_watcherMap.TryGetValue(fileName, out watcher))
@@ -135,7 +135,7 @@ namespace NLog.Internal
                 return;
             }
 
-            lock (this)
+            lock (_watcherMap)
             {
                 if (_watcherMap.ContainsKey(fileName))
                     return;

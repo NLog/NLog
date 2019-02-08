@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -55,6 +55,15 @@ namespace NLog.Internal
     {
         private static Dictionary<Type, Dictionary<string, PropertyInfo>> parameterInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
+#pragma warning disable S1144 // Unused private types or members should be removed. BUT they help CoreRT to provide config through reflection
+        private static readonly RequiredParameterAttribute _requiredParameterAttribute = new RequiredParameterAttribute();
+        private static readonly ArrayParameterAttribute _arrayParameterAttribute = new ArrayParameterAttribute(null, string.Empty);
+        private static readonly DefaultValueAttribute _defaultValueAttribute = new DefaultValueAttribute(string.Empty);
+        private static readonly AdvancedAttribute _advancedAttribute = new AdvancedAttribute();
+        private static readonly DefaultParameterAttribute _defaultParameterAttribute = new DefaultParameterAttribute();
+        private static readonly FlagsAttribute _flagsAttribute = new FlagsAttribute();
+#pragma warning restore S1144 // Unused private types or members should be removed
+
         /// <summary>
         /// Set value parsed from string.
         /// </summary>
@@ -75,7 +84,7 @@ namespace NLog.Internal
 
             try
             {
-                if (propInfo.IsDefined(typeof(ArrayParameterAttribute), false))
+                if (propInfo.IsDefined(_arrayParameterAttribute.GetType(), false))
                 {
                     throw new NotSupportedException($"Parameter {propertyName} of {obj.GetType().Name} is an array and cannot be assigned a scalar value.");
                 }
@@ -128,7 +137,7 @@ namespace NLog.Internal
                 throw new NotSupportedException($"Parameter {propertyName} not supported on {t.Name}");
             }
 
-            return propInfo.IsDefined(typeof(ArrayParameterAttribute), false);
+            return propInfo.IsDefined(_arrayParameterAttribute.GetType(), false);
         }
 
         /// <summary>
@@ -177,7 +186,7 @@ namespace NLog.Internal
         {
             foreach (PropertyInfo propInfo in GetAllReadableProperties(o.GetType()))
             {
-                if (propInfo.IsDefined(typeof(RequiredParameterAttribute), false))
+                if (propInfo.IsDefined(_requiredParameterAttribute.GetType(), false))
                 {
                     object value = propInfo.GetValue(o, null);
                     if (value == null)
@@ -247,7 +256,7 @@ namespace NLog.Internal
                 return false;
             }
 
-            if (flagsEnumAllowed && resultType.IsDefined(typeof(FlagsAttribute), false))
+            if (flagsEnumAllowed && resultType.IsDefined(_flagsAttribute.GetType(), false))
             {
                 ulong union = 0;
 
@@ -285,6 +294,8 @@ namespace NLog.Internal
             if (type == typeof(Encoding))
             {
                 value = value.Trim();
+                if (string.Equals(value, nameof(Encoding.UTF8), StringComparison.OrdinalIgnoreCase))
+                    value = Encoding.UTF8.WebName;  // Support utf8 without hyphen (And not just Utf-8)
                 newValue = Encoding.GetEncoding(value);
                 return true;
             }
@@ -321,37 +332,9 @@ namespace NLog.Internal
         {
             if (type.IsGenericType())
             {
-                var typeDefinition = type.GetGenericTypeDefinition();
-#if NET3_5
-                var isSet = typeDefinition == typeof(HashSet<>);
-#else
-                var isSet = typeDefinition == typeof(ISet<>) || typeDefinition == typeof(HashSet<>);
-#endif
-                //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
-                if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
+                if (TryCreateCollectionObject(type, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
                 {
-                    //note: type.GenericTypeArguments is .NET 4.5+ 
-                    var propertyType = type.GetGenericArguments()[0];
-
-                    var listType = isSet ? typeof(HashSet<>) : typeof(List<>);
-                    var genericArgs = propertyType;
-                    var concreteType = listType.MakeGenericType(genericArgs);
-                    var newList = Activator.CreateInstance(concreteType);
-                    //no support for array
-                    if (newList == null)
-                    {
-                        throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", type.ToString(), valueRaw);
-                    }
-
                     var values = valueRaw.SplitQuoted(',', '\'', '\\');
-
-                    var collectionAddMethod = concreteType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
-
-                    if (collectionAddMethod == null)
-                    {
-                        throw new NLogConfigurationException("Add method on type {0} for value {1} not found", type.ToString(), valueRaw);
-                    }
-
                     foreach (var value in values)
                     {
                         if (!(TryGetEnumValue(propertyType, value, out newValue, false)
@@ -363,9 +346,7 @@ namespace NLog.Internal
                         }
 
                         collectionAddMethod.Invoke(newList, new object[] { newValue });
-
                     }
-
 
                     newValue = newList;
                     return true;
@@ -373,6 +354,45 @@ namespace NLog.Internal
             }
 
             newValue = null;
+            return false;
+        }
+
+        private static bool TryCreateCollectionObject(Type collectionType, string valueRaw, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        {
+            var typeDefinition = collectionType.GetGenericTypeDefinition();
+#if NET3_5
+            var isSet = typeDefinition == typeof(HashSet<>);
+#else
+            var isSet = typeDefinition == typeof(ISet<>) || typeDefinition == typeof(HashSet<>);
+#endif
+            //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
+            if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
+            {
+                //note: type.GenericTypeArguments is .NET 4.5+ 
+                collectionItemType = collectionType.GetGenericArguments()[0];
+
+                var listType = isSet ? typeof(HashSet<>) : typeof(List<>);
+                var genericArgs = collectionItemType;
+                var concreteType = listType.MakeGenericType(genericArgs);
+                collectionObject = Activator.CreateInstance(concreteType);
+                //no support for array
+                if (collectionObject == null)
+                {
+                    throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", collectionType.ToString(), valueRaw);
+                }
+
+                collectionAddMethod = concreteType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                if (collectionAddMethod == null)
+                {
+                    throw new NLogConfigurationException("Add method on type {0} for value {1} not found", collectionType.ToString(), valueRaw);
+                }
+
+                return true;
+            }
+
+            collectionObject = null;
+            collectionAddMethod = null;
+            collectionItemType = null;
             return false;
         }
 
@@ -445,7 +465,7 @@ namespace NLog.Internal
                     retVal[propInfo.Name] = propInfo;
                 }
 
-                if (propInfo.IsDefined(typeof(DefaultParameterAttribute), false))
+                if (propInfo.IsDefined(_defaultParameterAttribute.GetType(), false))
                 {
                     // define a property with empty name
                     retVal[string.Empty] = propInfo;

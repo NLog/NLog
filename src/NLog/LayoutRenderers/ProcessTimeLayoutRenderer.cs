@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("processtime")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class ProcessTimeLayoutRenderer : LayoutRenderer
+    public class ProcessTimeLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets a value indicating whether to output in culture invariant format
@@ -55,24 +55,20 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool Invariant { get; set; }
 
-        /// <summary>
-        /// Renders the current process running time and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            TimeSpan ts = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
+            var ts = GetValue(logEvent);
             var culture = Invariant ? null : GetCulture(logEvent);
             WritetTimestamp(builder, ts, culture);
         }
 
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+
         /// <summary>
         /// Write timestamp to builder with format hh:mm:ss:fff
         /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="ts"></param>
-        /// <param name="culture"></param>
         internal static void WritetTimestamp(StringBuilder builder, TimeSpan ts, CultureInfo culture)
         {
             string timeSeparator = ":";
@@ -110,6 +106,12 @@ namespace NLog.LayoutRenderers
             }
 
             builder.AppendInvariant(milliseconds);
+        }
+
+        private static TimeSpan GetValue(LogEventInfo logEvent)
+        {
+            TimeSpan ts = logEvent.TimeStamp.ToUniversalTime() - LogEventInfo.ZeroDate;
+            return ts;
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -39,18 +39,17 @@ namespace NLog.Layouts
     public enum CsvQuotingMode
     {
         /// <summary>
-        /// Quote all column.
+        /// Quote all column (Fast)
         /// </summary>
         All,
 
         /// <summary>
-        /// Quote nothing.
+        /// Quote nothing (Very fast)
         /// </summary>
         Nothing,
 
         /// <summary>
-        /// Quote only whose values contain the quote symbol or
-        /// the separator.
+        /// Quote only whose values contain the quote symbol or the separator (Slow)
         /// </summary>
         Auto
     }

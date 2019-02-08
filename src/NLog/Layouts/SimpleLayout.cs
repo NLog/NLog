@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -56,6 +56,8 @@ namespace NLog.Layouts
     {
         private string _fixedText;
         private string _layoutText;
+        private IRawValue _rawValueRenderer;
+        private IStringValueRenderer _stringValueRenderer;
         private readonly ConfigurationItemFactory _configurationItemFactory;
 
         /// <summary>
@@ -128,6 +130,7 @@ namespace NLog.Layouts
                 SetRenderers(renderers, txt);
             }
         }
+
         /// <summary>
         /// Is the message fixed? (no Layout renderers used)
         /// </summary>
@@ -137,6 +140,11 @@ namespace NLog.Layouts
         /// Get the fixed text. Only set when <see cref="IsFixedText"/> is <c>true</c>
         /// </summary>
         public string FixedText => _fixedText;
+
+        /// <summary>
+        /// Is the message a simple formatted string? (Can skip StringBuilder)
+        /// </summary>
+        internal bool IsSimpleStringText => _stringValueRenderer != null;
 
         /// <summary>
         /// Gets a collection of <see cref="LayoutRenderer"/> objects that make up this layout.
@@ -222,14 +230,28 @@ namespace NLog.Layouts
         {
             Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
 
-            if (Renderers.Count == 1 && Renderers[0] is LiteralLayoutRenderer renderer)
+            //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
+            _fixedText = null;
+            _rawValueRenderer = null;
+            _stringValueRenderer = null;
+
+            if (Renderers.Count == 1)
             {
-                _fixedText = renderer.Text;
-            }
-            else
-            {
-                //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
-                _fixedText = null;
+                if (Renderers[0] is LiteralLayoutRenderer renderer)
+                {
+                    _fixedText = renderer.Text;
+                }
+                else
+                {
+                    if (Renderers[0] is IRawValue rawValueRendrer)
+                    {
+                        _rawValueRenderer = rawValueRendrer;
+                    }
+                    if (Renderers[0] is IStringValueRenderer stringValueRendrer)
+                    {
+                        _stringValueRenderer = stringValueRendrer;
+                    }
+                }
             }
 
             _layoutText = text;
@@ -240,9 +262,7 @@ namespace NLog.Layouts
             }
         }
 
-        /// <summary>
-        /// Initializes the layout.
-        /// </summary>
+        /// <inheritdoc />
         protected override void InitializeLayout()
         {
             for (int i = 0; i < Renderers.Count; i++)
@@ -272,22 +292,111 @@ namespace NLog.Layouts
             base.InitializeLayout();
         }
 
+        /// <inheritdoc />
+        public override void Precalculate(LogEventInfo logEvent)
+        {
+            if (_rawValueRenderer != null)
+            {
+                if (!IsInitialized)
+                {
+                    Initialize(LoggingConfiguration);
+                }
+
+                if (ThreadAgnostic && MutableUnsafe)
+                {
+                    // If raw value doesn't have the ability to mutate, then we can skip precalculate
+                    var value = _rawValueRenderer.GetRawValue(logEvent);
+                    if (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType())
+                        return;
+                }
+            }
+
+            base.Precalculate(logEvent);
+
+        }
+
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
             PrecalculateBuilderInternal(logEvent, target);
         }
 
-        /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers
-        /// that make up the event.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <returns>The rendered layout.</returns>
+        /// <inheritdoc />
+        internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        {
+            if (!IsInitialized)
+            {
+                Initialize(LoggingConfiguration);
+            }
+
+            try
+            {
+                if (_rawValueRenderer != null)
+                {
+                    if (!ThreadAgnostic || MutableUnsafe)
+                    {
+                        if (logEvent.TryGetCachedLayoutValue(this, out _))
+                        {
+                            rawValue = null;
+                            return false;    // Raw-Value has been precalculated, so not available
+                        }
+                    }
+
+                    rawValue = _rawValueRenderer.GetRawValue(logEvent);
+                    return true;
+                }
+            }
+            catch (Exception exception)
+            {
+                //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+
+                //check for performance
+                if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                {
+                    InternalLogger.Warn(exception, "Exception in '{0}.InitializeLayout()'", Renderers.Count > 0 ? Renderers[0].GetType().FullName : null);
+                }
+
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
+
+            rawValue = null;
+            return false;
+        }
+
+        /// <inheritdoc />
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             if (IsFixedText)
             {
                 return _fixedText;
+            }
+
+            if (_stringValueRenderer != null)
+            {
+                try
+                {
+                    string stringValue = _stringValueRenderer.GetFormattedString(logEvent);
+                    if (stringValue != null)
+                        return stringValue;
+
+                    _stringValueRenderer = null;    // Optimization is not possible
+                }
+                catch (Exception exception)
+                {
+                    //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+                    //check for performance
+                    if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                    {
+                        InternalLogger.Warn(exception, "Exception in '{0}.Append()'", _stringValueRenderer?.GetType().FullName);
+                    }
+
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+                }
             }
 
             return RenderAllocateBuilder(logEvent);
@@ -322,12 +431,7 @@ namespace NLog.Layouts
             }
         }
 
-        /// <summary>
-        /// Renders the layout for the specified logging event by invoking layout renderers
-        /// that make up the event.
-        /// </summary>
-        /// <param name="logEvent">The logging event.</param>
-        /// <param name="target"><see cref="StringBuilder"/> for the result</param>
+        /// <inheritdoc />
         protected override void RenderFormattedMessage(LogEventInfo logEvent, StringBuilder target)
         {
             if (IsFixedText)

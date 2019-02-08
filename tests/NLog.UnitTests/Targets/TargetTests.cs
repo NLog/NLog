@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -611,11 +611,13 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WrongMyTargetShouldNotThrowExceptionWhenThrowExceptionsIsFalse()
         {
-            var target = new WrongMyTarget();
-            LogManager.ThrowExceptions = false;
-            SimpleConfigurator.ConfigureForTargetLogging(target);
-            var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
-            logger.Info("Testing");
+            using (new NoThrowNLogExceptions())
+            {
+                var target = new WrongMyTarget();
+                SimpleConfigurator.ConfigureForTargetLogging(target);
+                var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
+                logger.Info("Testing");
+            }
         }
 
 

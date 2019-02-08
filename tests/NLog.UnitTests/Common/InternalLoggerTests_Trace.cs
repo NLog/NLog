@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -32,6 +32,8 @@
 // 
 
 #define DEBUG
+
+using NLog.Config;
 
 namespace NLog.UnitTests.Common
 {
@@ -263,7 +265,7 @@ namespace NLog.UnitTests.Common
 
             var xmlConfiguration = string.Format(XmlConfigurationFormat, logLevel, internalLogToTraceAttribute);
 
-            LogManager.Configuration = CreateConfigurationFromString(xmlConfiguration);
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(xmlConfiguration);
 
             InternalLogger.IncludeTimestamp = false;
 

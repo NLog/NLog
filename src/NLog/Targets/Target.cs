@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -48,7 +48,6 @@ namespace NLog.Targets
     [NLogConfigurationItem]
     public abstract class Target : ISupportsInitialize, IDisposable
     {
-        private readonly object _lockObject = new object();
         private List<Layout> _allLayouts;
         
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
@@ -79,7 +78,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the object which can be used to synchronize asynchronous operations that must rely on the .
         /// </summary>
-        protected object SyncRoot => _lockObject;
+        protected object SyncRoot { get; } = new object();
 
         /// <summary>
         /// Gets the logging configuration this target is part of.
@@ -212,7 +211,7 @@ namespace NLog.Targets
 
                     if (_precalculateStringBuilderPool == null)
                     {
-                        System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(System.Environment.ProcessorCount * 4, 1024), null);
+                        System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2), null);
                     }
 
                     using (var targetBuilder = _precalculateStringBuilderPool.Acquire())
@@ -734,14 +733,18 @@ namespace NLog.Targets
             {
                 SimpleLayout simpleLayout = layout as SimpleLayout;
                 if (simpleLayout != null && simpleLayout.IsFixedText)
-                    return simpleLayout.Render(logEvent);
-
-                if (!layout.ThreadAgnostic || layout.MutableUnsafe)
                 {
-                    if (logEvent.TryGetCachedLayoutValue(layout, out var value))
-                    {
-                        return value?.ToString() ?? string.Empty;
-                    }
+                    return simpleLayout.Render(logEvent);
+                }
+
+                if (TryGetCachedValue(layout, logEvent, out var value))
+                {
+                    return value;
+                }
+
+                if (simpleLayout != null && simpleLayout.IsSimpleStringText)
+                {
+                    return simpleLayout.Render(logEvent);
                 }
 
                 using (var localTarget = ReusableLayoutBuilder.Allocate())
@@ -753,6 +756,23 @@ namespace NLog.Targets
             {
                 return layout.Render(logEvent);
             }
+        }
+
+        private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)
+        {
+            if (!layout.ThreadAgnostic || layout.MutableUnsafe)
+            {
+                if (logEvent.TryGetCachedLayoutValue(layout, out var value2))
+                {
+                    {
+                        value = value2?.ToString() ?? string.Empty;
+                        return true;
+                    }
+                }
+            }
+
+            value = null;
+            return false;
         }
 
         /// <summary>

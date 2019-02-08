@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,6 +34,7 @@
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
+    using NLog.Common;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -57,6 +58,13 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultParameter]
         public Layout Inner { get; set; }
 
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            base.InitializeLayoutRenderer();
+            Inner?.Initialize(LoggingConfiguration);
+        }
+
         /// <summary>
         /// Renders the inner message, processes it and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
@@ -64,6 +72,12 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            if (Inner == null)
+            {
+                InternalLogger.Warn("{0} has no configured Inner-Layout, so skipping", this);
+                return;
+            }
+
             int orgLength = builder.Length;
             try
             {
@@ -113,7 +127,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Contents of inner layout.</returns>
         protected virtual string RenderInner(LogEventInfo logEvent)
         {
-            return Inner.Render(logEvent);
+            return Inner?.Render(logEvent) ?? string.Empty;
         }
     }
 }

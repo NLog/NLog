@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,7 +45,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("time")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class TimeLayoutRenderer : LayoutRenderer
+    public class TimeLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
@@ -61,18 +61,10 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool Invariant { get; set; }
 
-        /// <summary>
-        /// Renders time in the 24-h format (HH:mm:ss.mmm) and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            DateTime dt = logEvent.TimeStamp;
-            if (UniversalTime)
-            {
-                dt = dt.ToUniversalTime();
-            }
+            var dt = GetValue(logEvent);
 
             string timeSeparator = ":";
             string ticksSeparator = ".";
@@ -95,6 +87,23 @@ namespace NLog.LayoutRenderers
             builder.Append2DigitsZeroPadded(dt.Second);
             builder.Append(ticksSeparator);
             builder.Append4DigitsZeroPadded((int)(dt.Ticks % 10000000) / 1000);
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue(logEvent);
+        }
+
+        private DateTime GetValue(LogEventInfo logEvent)
+        {
+            DateTime dt = logEvent.TimeStamp;
+            if (UniversalTime)
+            {
+                dt = dt.ToUniversalTime();
+            }
+
+            return dt;
         }
     }
 }

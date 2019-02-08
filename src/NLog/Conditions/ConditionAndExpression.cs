@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,8 +38,8 @@ namespace NLog.Conditions
     /// </summary>
     internal sealed class ConditionAndExpression : ConditionExpression
     {
-        private static readonly object boxedFalse = false;
-        private static readonly object boxedTrue = true;
+        private static readonly object BoxedFalse = false;
+        private static readonly object BoxedTrue = true;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionAndExpression" /> class.
@@ -81,16 +81,16 @@ namespace NLog.Conditions
             var bval1 = (bool)Left.Evaluate(context);
             if (!bval1)
             {
-                return boxedFalse;
+                return BoxedFalse;
             }
 
             var bval2 = (bool)Right.Evaluate(context);
             if (!bval2)
             {
-                return boxedFalse;
+                return BoxedFalse;
             }
 
-            return boxedTrue;
+            return BoxedTrue;
         }
     }
 }

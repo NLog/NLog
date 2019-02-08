@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -288,7 +288,7 @@ namespace NLog.UnitTests.Layouts
         {
             MappedDiagnosticsContext.Clear();
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name=""searchExp""
               value=""(?&lt;!\\d[ -]*)(?\u003a(?&lt;digits&gt;\\d)[ -]*)\u007b8,16\u007d(?=(\\d[ -]*)\u007b3\u007d(\\d)(?![ -]\\d))""
@@ -327,7 +327,7 @@ namespace NLog.UnitTests.Layouts
         {
             MappedDiagnosticsContext.Clear();
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name=""searchExp""
               value=""(?&lt;!\\d[ -]*)(?\:(?&lt;digits&gt;\\d)[ -]*)\{8,16\}(?=(\\d[ -]*)\{3\}(\\d)(?![ -]\\d))""
@@ -513,10 +513,13 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         public void InvalidLayoutWillParsePartly()
         {
-            SimpleLayout l = @"aaa ${iDontExist} bbb";
+            using (new NoThrowNLogExceptions())
+            {
+                SimpleLayout l = @"aaa ${iDontExist} bbb";
 
-            var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
-            Assert.Equal("aaa  bbb", l.Render(le));
+                var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+                Assert.Equal("aaa  bbb", l.Render(le));
+            }
         }
 
         [Fact]

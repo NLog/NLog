@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,36 +37,22 @@ namespace NLog
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
-    using System.IO;
-    using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Security;
     using System.Text;
     using System.Threading;
-
     using JetBrains.Annotations;
-
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Targets;
     using NLog.Internal.Fakeables;
 
-#if SILVERLIGHT
-    using System.Windows;
-#endif
-
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
     /// </summary>
     public class LogFactory : IDisposable
     {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-        private const int ReconfigAfterFileChangedTimeout = 1000;
-        internal Timer _reloadTimer;
-        private readonly MultiFileWatcher _watcher;
-#endif
-
         private static readonly TimeSpan DefaultFlushTimeout = TimeSpan.FromSeconds(15);
 
         private static IAppDomain currentAppDomain;
@@ -76,7 +62,7 @@ namespace NLog
         /// </remarks>
         internal readonly object _syncRoot = new object();
 
-        private LoggingConfiguration _config;
+        internal LoggingConfiguration _config;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded;
         // TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
@@ -88,6 +74,8 @@ namespace NLog
         /// When this property is <c>null</c>, the default file paths (<see cref="GetCandidateConfigFilePaths"/> are used.
         /// </summary>
         private List<string> _candidateConfigFilePaths;
+
+        private readonly ILoggingConfigurationLoader _configLoader;
 
         /// <summary>
         /// Occurs when logging <see cref="Configuration" /> changes.
@@ -118,12 +106,12 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
-        {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-            _watcher = new MultiFileWatcher();
-            _watcher.FileChanged += ConfigFileChanged;
-            LoggerShutdown += OnStopLogging;
+            : this(new LoggingConfigurationWatchableFileLoader())
+#else
+            : this(new LoggingConfigurationFileLoader())
 #endif
+        {
         }
 
         /// <summary>
@@ -134,6 +122,18 @@ namespace NLog
             : this()
         {
             Configuration = config;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogFactory" /> class.
+        /// </summary>
+        /// <param name="configLoader">The config loader</param>
+        internal LogFactory(ILoggingConfigurationLoader configLoader)
+        {
+            _configLoader = configLoader;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+            LoggerShutdown += OnStopLogging;
+#endif
         }
 
         /// <summary>
@@ -203,29 +203,15 @@ namespace NLog
                     if (_configLoaded || _isDisposing)
                         return _config;
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-                    //load
-
-                    if (_config == null)
-                    {
-                        TryLoadFromAppConfig();
-                    }
-#endif
-                    // Retest the condition as we might have loaded a config.
-                    if (_config == null)
-                    {
-                        TryLoadFromFilePaths();
-                    }
-
-                    if (_config != null)
+                    var config = _configLoader.Load(this);
+                    if (config != null)
                     {
                         try
                         {
+                            _config = config;
+                            _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                            TryWachtingConfigFile();
-#endif
                             LogConfigurationInitialized();
                         }
                         finally
@@ -240,22 +226,6 @@ namespace NLog
 
             set
             {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                try
-                {
-                    _watcher.StopWatching();
-                }
-                catch (Exception exception)
-                {
-                    InternalLogger.Error(exception, "Cannot stop file watching.");
-
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-                }
-#endif
-
                 lock (_syncRoot)
                 {
                     LoggingConfiguration oldConfig = _config;
@@ -269,105 +239,27 @@ namespace NLog
                     _config = value;
 
                     if (_config == null)
+                    {
                         _configLoaded = false;
+                        _configLoader.Activated(this, _config);
+                    }
                     else
                     {
                         try
                         {
+                            _configLoader.Activated(this, _config);
                             _config.Dump();
                             ReconfigExistingLoggers();
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                            TryWachtingConfigFile();
-#endif
                         }
                         finally
                         {
                             _configLoaded = true;
                         }
                     }
-
                     OnConfigurationChanged(new LoggingConfigurationChangedEventArgs(value, oldConfig));
                 }
             }
         }
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-        private void TryWachtingConfigFile()
-        {
-            try
-            {
-                _watcher.Watch(_config.FileNamesToWatch);
-            }
-            catch (Exception exception)
-            {
-                if (exception.MustBeRethrown())
-                {
-                    throw;
-                }
-
-                //ToArray needed for .Net 3.5
-                InternalLogger.Warn(exception, "Cannot start file watching: {0}", string.Join(",", _config.FileNamesToWatch.ToArray()));
-            }
-        }
-#endif
-
-#if __ANDROID__
-
-        private void TryLoadFromAndroidAssets()
-        {
-//try nlog.config in assets folder
-            const string nlogConfigFilename = "NLog.config";
-            try
-            {
-                using (var stream = Android.App.Application.Context.Assets.Open(nlogConfigFilename))
-                {
-                    if (stream != null)
-                    {
-                        _config = LoadXmlLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                InternalLogger.Trace(e, "no {0} in assets folder", nlogConfigFilename);
-            }
-        }
-
-#endif
-
-        private void TryLoadFromFilePaths()
-        {
-            var configFileNames = GetCandidateConfigFilePaths();
-            foreach (string configFile in configFileNames)
-            {
-                if (TryLoadLoggingConfiguration(configFile, out _config))
-                    return;
-            }
-
-#if __ANDROID__
-            TryLoadFromAndroidAssets();
-#endif
-        }
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-
-        private void TryLoadFromAppConfig()
-        {
-            try
-            {
-                // Try to load default configuration.
-                _config = XmlLoggingConfiguration.AppConfig;
-            }
-            catch (Exception ex)
-            {
-                //loading could fail due to an invalid XML file (app.config) etc.
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
-        }
-#endif
 
         /// <summary>
         /// Gets or sets the global log level threshold. Log events below this threshold are not logged.
@@ -746,83 +638,16 @@ namespace NLog
         {
             ConfigurationReloaded?.Invoke(this, e);
         }
-#endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-        internal void ReloadConfigOnTimer(object state)
+        internal void NotifyConfigurationReloaded(LoggingConfigurationReloadedEventArgs eventArgs)
         {
-            if (_reloadTimer == null && _isDisposing)
-            {
-                return; //timer was disposed already. 
-            }
-
-            LoggingConfiguration configurationToReload = (LoggingConfiguration)state;
-
-            InternalLogger.Info("Reloading configuration...");
-            lock (_syncRoot)
-            {
-                try
-                {
-                    if (_isDisposing)
-                    {
-                        return; //timer was disposed already. 
-                    }
-
-                    var currentTimer = _reloadTimer;
-                    if (currentTimer != null)
-                    {
-                        _reloadTimer = null;
-                        currentTimer.WaitForDispose(TimeSpan.Zero);
-                    }
-
-                    _watcher.StopWatching();
-
-                    if (_config != configurationToReload)
-                    {
-                        throw new NLogConfigurationException("Config changed in between. Not reloading.");
-                    }
-
-                    LoggingConfiguration newConfig = configurationToReload.Reload();
-
-                    //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
-                    //therefor we check the InitializeSucceeded property.
-
-                    if (newConfig is XmlLoggingConfiguration xmlConfig && xmlConfig.InitializeSucceeded != true)
-                    {
-                        throw new NLogConfigurationException("Configuration.Reload() failed. Invalid XML?");
-                    }
-
-                    if (newConfig != null)
-                    {
-                        if (KeepVariablesOnReload && _config != null)
-                        {
-                            newConfig.CopyVariables(_config.Variables);
-                        }
-                        Configuration = newConfig;
-                        OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
-                    }
-                    else
-                    {
-                        throw new NLogConfigurationException("Configuration.Reload() returned null. Not reloading.");
-                    }
-                }
-                catch (Exception exception)
-                {
-                    InternalLogger.Warn(exception, "NLog configuration while reloading");
-
-                    if (exception.MustBeRethrownImmediately())
-                    {
-                        throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                    }
-
-                    _watcher.Watch(configurationToReload.FileNamesToWatch);
-                    OnConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(false, exception));
-                }
-            }
+            OnConfigurationReloaded(eventArgs);
         }
 #endif
-        private void GetTargetsByLevelForLogger(string name, IEnumerable<LoggingRule> loggingRules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
+
+        private bool GetTargetsByLevelForLogger(string name, List<LoggingRule> loggingRules, TargetWithFilterChain[] targetsByLevel, TargetWithFilterChain[] lastTargetsByLevel, bool[] suppressedLevels)
         {
+            bool targetsFound = false;
             foreach (LoggingRule rule in loggingRules)
             {
                 if (!rule.NameMatches(name))
@@ -842,7 +667,8 @@ namespace NLog
 
                     foreach (Target target in rule.GetTargetsThreadSafe())
                     {
-                        var awf = new TargetWithFilterChain(target, rule.Filters);
+                        targetsFound = true;
+                        var awf = new TargetWithFilterChain(target, rule.Filters, rule.DefaultFilterResult);
                         if (lastTargetsByLevel[i] != null)
                         {
                             lastTargetsByLevel[i].NextInChain = awf;
@@ -859,18 +685,17 @@ namespace NLog
                 // Recursively analyze the child rules.
                 if (rule.ChildRules.Count != 0)
                 {
-                    GetTargetsByLevelForLogger(name, rule.GetChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels);
+                    targetsFound = GetTargetsByLevelForLogger(name, rule.GetChildRulesThreadSafe(), targetsByLevel, lastTargetsByLevel, suppressedLevels) || targetsFound;
                 }
             }
 
             for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
             {
                 TargetWithFilterChain tfc = targetsByLevel[i];
-                if (tfc != null)
-                {
-                    tfc.PrecalculateStackTraceUsage();
-                }
+                tfc?.PrecalculateStackTraceUsage();
             }
+
+            return targetsFound;
         }
 
         internal LoggerConfiguration GetConfigurationForLogger(string name, LoggingConfiguration configuration)
@@ -879,30 +704,38 @@ namespace NLog
             TargetWithFilterChain[] lastTargetsByLevel = new TargetWithFilterChain[LogLevel.MaxLevel.Ordinal + 1];
             bool[] suppressedLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
 
+            bool targetsFound = false;
             if (configuration != null && IsLoggingEnabled())
             {
                 //no "System.InvalidOperationException: Collection was modified"
                 var loggingRules = configuration.GetLoggingRulesThreadSafe();
-                GetTargetsByLevelForLogger(name, loggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
+                targetsFound = GetTargetsByLevelForLogger(name, loggingRules, targetsByLevel, lastTargetsByLevel, suppressedLevels);
             }
 
             if (InternalLogger.IsDebugEnabled)
             {
-                InternalLogger.Debug("Targets for {0} by level:", name);
-                for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
+                if (targetsFound)
                 {
-                    StringBuilder sb = new StringBuilder();
-                    sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
-                    for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
+                    InternalLogger.Debug("Targets for {0} by level:", name);
+                    for (int i = 0; i <= LogLevel.MaxLevel.Ordinal; ++i)
                     {
-                        sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
-                        if (afc.FilterChain.Count > 0)
+                        StringBuilder sb = new StringBuilder();
+                        sb.AppendFormat(CultureInfo.InvariantCulture, "{0} =>", LogLevel.FromOrdinal(i));
+                        for (TargetWithFilterChain afc = targetsByLevel[i]; afc != null; afc = afc.NextInChain)
                         {
-                            sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                            sb.AppendFormat(CultureInfo.InvariantCulture, " {0}", afc.Target.Name);
+                            if (afc.FilterChain.Count > 0)
+                            {
+                                sb.AppendFormat(CultureInfo.InvariantCulture, " ({0} filters)", afc.FilterChain.Count);
+                            }
                         }
-                    }
 
-                    InternalLogger.Debug(sb.ToString());
+                        InternalLogger.Debug(sb.ToString());
+                    }
+                }
+                else
+                {
+                    InternalLogger.Debug("Targets not configured for logger: {0}", name);
                 }
             }
 
@@ -928,30 +761,13 @@ namespace NLog
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             LoggerShutdown -= OnStopLogging;
             ConfigurationReloaded = null;   // Release event listeners
-
-            if (_watcher != null)
-            {
-                // Disable startup of new reload-timers
-                _watcher.FileChanged -= ConfigFileChanged;
-                _watcher.StopWatching();
-            }
 #endif
 
             if (Monitor.TryEnter(_syncRoot, 500))
             {
                 try
                 {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                    var currentTimer = _reloadTimer;
-                    if (currentTimer != null)
-                    {
-                        _reloadTimer = null;
-                        currentTimer.WaitForDispose(TimeSpan.Zero);
-                    }
-
-                    // Dispose file-watcher after having dispose timer to avoid race
-                    _watcher?.Dispose();
-#endif
+                    _configLoader.Dispose();
 
                     var oldConfig = _config;
                     if (_configLoaded && oldConfig != null)
@@ -1020,7 +836,7 @@ namespace NLog
 
         internal void Shutdown()
         {
-            InternalLogger.Info("Logger closing down...");
+            InternalLogger.Info("Shutdown() called. Logger closing...");
             if (!_isDisposing && _configLoaded)
             {
                 lock (_syncRoot)
@@ -1047,7 +863,7 @@ namespace NLog
                 return _candidateConfigFilePaths.AsReadOnly();
             }
 
-            return GetDefaultCandidateConfigFilePaths();
+            return _configLoader.GetDefaultCandidateConfigFilePaths();
         }
 
         /// <summary>
@@ -1070,78 +886,6 @@ namespace NLog
         public void ResetCandidateConfigFilePath()
         {
             _candidateConfigFilePaths = null;
-        }
-
-        /// <summary>
-        /// Get default file paths (including filename) for possible NLog config files. 
-        /// </summary>
-        private static IEnumerable<string> GetDefaultCandidateConfigFilePaths()
-        {
-            // NLog.config from application directory
-            string baseDirectory = PathHelpers.TrimDirectorySeparators(CurrentAppDomain?.BaseDirectory);
-            if (!string.IsNullOrEmpty(baseDirectory))
-                yield return Path.Combine(baseDirectory, "NLog.config");
-
-            bool platformFileSystemCaseInsensitive = PlatformDetector.IsWin32;
-            if (!platformFileSystemCaseInsensitive && !string.IsNullOrEmpty(baseDirectory))
-                yield return Path.Combine(baseDirectory, "nlog.config");
-
-#if !SILVERLIGHT && !NETSTANDARD1_3
-            var entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly()));
-            if (!string.IsNullOrEmpty(entryAssemblyLocation))
-            {
-                if (!string.Equals(entryAssemblyLocation, baseDirectory, StringComparison.OrdinalIgnoreCase))
-                {
-                    yield return Path.Combine(entryAssemblyLocation, "NLog.config");
-                    if (!platformFileSystemCaseInsensitive)
-                        yield return Path.Combine(entryAssemblyLocation, "nlog.config");
-                }
-            }
-#endif
-
-            if (string.IsNullOrEmpty(baseDirectory))
-            {
-                yield return "NLog.config";
-                if (!platformFileSystemCaseInsensitive)
-                    yield return "nlog.config";
-            }
-
-            // Current config file with .config renamed to .nlog
-            string configurationFile = CurrentAppDomain?.ConfigurationFile;
-            if (!string.IsNullOrEmpty(configurationFile))
-            {
-                yield return Path.ChangeExtension(configurationFile, ".nlog");
-
-                // .nlog file based on the non-vshost version of the current config file
-                const string vshostSubStr = ".vshost.";
-                if (configurationFile.Contains(vshostSubStr))
-                {
-                    yield return Path.ChangeExtension(configurationFile.Replace(vshostSubStr, "."), ".nlog");
-                }
-
-                IEnumerable<string> privateBinPaths = CurrentAppDomain.PrivateBinPath;
-                if (privateBinPaths != null)
-                {
-                    foreach (var path in privateBinPaths)
-                    {
-                        if (!string.IsNullOrEmpty(path))
-                        {
-                            yield return Path.Combine(path, "NLog.config");
-                            if (!platformFileSystemCaseInsensitive)
-                                yield return Path.Combine(path, "nlog.config");
-                        }
-                    }
-                }
-            }
-
-#if !SILVERLIGHT && !NETSTANDARD1_0
-            // Get path to NLog.dll.nlog only if the assembly is not in the GAC
-            var nlogAssembly = typeof(LogFactory).GetAssembly();
-            if (!string.IsNullOrEmpty(nlogAssembly?.Location) && !nlogAssembly.GlobalAssemblyCache)
-            {
-                yield return nlogAssembly.Location + ".nlog";
-            }
-#endif
         }
 
         private Logger GetLogger(LoggerCacheKey cacheKey)
@@ -1246,108 +990,14 @@ namespace NLog
         /// <returns>LogFactory instance for fluent interface</returns>
         public LogFactory LoadConfiguration(string configFile)
         {
-            if (FilePathLayout.DetectFilePathKind(configFile) == FilePathKind.Relative)
+            // TODO Remove explicit File-loading logic from LogFactory (Should handle environment without files)
+            if (_configLoader is LoggingConfigurationFileLoader configFileLoader)
             {
-                configFile = Path.Combine(CurrentAppDomain.BaseDirectory, configFile);
+                Configuration = configFileLoader.Load(this, configFile);
             }
-
-            Configuration = LoadXmlLoggingConfiguration(configFile);
             return this;
         }
 
-        private LoggingConfiguration LoadXmlLoggingConfiguration(string configFile)
-        {
-            InternalLogger.Debug("Loading config from {0}", configFile);
-            var xmlConfig = new XmlLoggingConfiguration(configFile, this);
-            //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
-            //therefor we check the InitializeSucceeded property.
-            if (xmlConfig.InitializeSucceeded != true)
-            {
-                InternalLogger.Warn("Failed loading config from {0}. Invalid XML?", configFile);
-            }
-            return xmlConfig;
-        }
-
-        private bool TryLoadLoggingConfiguration(string configFile, out LoggingConfiguration config)
-        {
-            try
-            {
-#if SILVERLIGHT && !WINDOWS_PHONE
-                Uri configFileUri = new Uri(configFile, UriKind.Relative);
-                if (Application.GetResourceStream(configFileUri) != null)
-                {
-                    config = LoadXmlLoggingConfiguration(configFile);
-                    return true;    // File exists, and maybe the config is valid, stop search
-                }
-#else
-                if (File.Exists(configFile))
-                {
-                    config = LoadXmlLoggingConfiguration(configFile);
-                    return true;    // File exists, and maybe the config is valid, stop search
-                }
-#endif
-            }
-            catch (IOException ex)
-            {
-                InternalLogger.Warn(ex, "Skipping invalid config file location: {0}", configFile);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                InternalLogger.Warn(ex, "Skipping inaccessible config file location: {0}", configFile);
-            }
-            catch (SecurityException ex)
-            {
-                InternalLogger.Warn(ex, "Skipping inaccessible config file location: {0}", configFile);
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error(ex, "Failed loading from config file location: {0}", configFile);
-                if (ex.MustBeRethrown())
-                    throw;
-            }
-
-            config = null;
-            return false;   // No valid file found
-        }
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-        private void ConfigFileChanged(object sender, EventArgs args)
-        {
-            InternalLogger.Info("Configuration file change detected! Reloading in {0}ms...", ReconfigAfterFileChangedTimeout);
-
-            // In the rare cases we may get multiple notifications here, 
-            // but we need to reload config only once.
-            //
-            // The trick is to schedule the reload in one second after
-            // the last change notification comes in.
-            lock (_syncRoot)
-            {
-                if (_isDisposing)
-                {
-                    return;
-                }
-
-                if (_reloadTimer == null)
-                {
-                    var configuration = Configuration;
-                    if (configuration != null)
-                    {
-                        _reloadTimer = new Timer(
-                                ReloadConfigOnTimer,
-                                configuration,
-                                ReconfigAfterFileChangedTimeout,
-                                Timeout.Infinite);
-                    }
-                }
-                else
-                {
-                    _reloadTimer.Change(
-                            ReconfigAfterFileChangedTimeout,
-                            Timeout.Infinite);
-                }
-            }
-        }
-#endif
         /// <summary>
         /// Logger cache key.
         /// </summary>
@@ -1439,6 +1089,18 @@ namespace NLog
 
                 return values;
             }
+            public void Reset()
+            {
+                _loggerCache.Clear();
+            }
+        }
+
+        /// <remarks>
+        /// Internal for unit tests
+        /// </remarks>
+        internal void ResetLoggerCache()
+        {
+            _loggerCache.Reset();
         }
 
         /// <summary>
@@ -1523,7 +1185,7 @@ namespace NLog
                 //stop timer on domain unload, otherwise: 
                 //Exception: System.AppDomainUnloadedException
                 //Message: Attempted to access an unloaded AppDomain.
-                InternalLogger.Info("Shutting down logging...");
+                InternalLogger.Info("AppDomain Shutting down. Logger closing...");
                 // Finalizer thread has about 2 secs, before being terminated
                 Close(TimeSpan.FromMilliseconds(1500));
                 InternalLogger.Info("Logger has been shut down.");

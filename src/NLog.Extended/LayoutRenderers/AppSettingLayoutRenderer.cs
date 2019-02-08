@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -90,8 +90,8 @@ namespace NLog.LayoutRenderers
 				builder.Append(value);
 		}
 
-		private bool _cachedAppSettingValue = false;
-		private string _appSettingValue = null;
+		private bool _cachedAppSettingValue;
+		private string _appSettingValue;
 		
 		private string AppSettingValue
 		{

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -77,13 +77,16 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void WrapperTargetDefaultWriteTest()
         {
-            Exception lastException = null;
-            var wrapper = new MyWrapper();
-            wrapper.WrappedTarget = new MyWrappedTarget();
-            wrapper.Initialize(null);
-            wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => lastException = ex));
-            Assert.NotNull(lastException);
-            Assert.IsType<NotSupportedException>(lastException);
+            using (new NoThrowNLogExceptions())
+            {
+                Exception lastException = null;
+                var wrapper = new MyWrapper();
+                wrapper.WrappedTarget = new MyWrappedTarget();
+                wrapper.Initialize(null);
+                wrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => lastException = ex));
+                Assert.NotNull(lastException);
+                Assert.IsType<NotSupportedException>(lastException);
+            }
         }
 
         public class MyWrapper : WrapperTargetBase

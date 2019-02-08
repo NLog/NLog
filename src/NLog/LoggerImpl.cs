@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -100,7 +100,7 @@ namespace NLog
             for (var t = targets; t != null; t = t.NextInChain)
             {
                 FilterResult result = ReferenceEquals(prevFilterChain, t.FilterChain) ?
-                    prevFilterResult : GetFilterResult(t.FilterChain, logEvent);
+                    prevFilterResult : GetFilterResult(t.FilterChain, logEvent, t.DefaultResult);
                 if (!WriteToTargetWithFilterChain(t.Target, result, logEvent, exceptionHandler))
                 {
                     break;
@@ -234,10 +234,11 @@ namespace NLog
         /// </summary>
         /// <param name="filterChain">The filter chain.</param>
         /// <param name="logEvent">The log event.</param>
+        /// <param name="defaultFilterResult">default result if there are no filters, or none of the filters decides.</param>
         /// <returns>The result of the filter.</returns>
-        private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent)
+        private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent, FilterResult defaultFilterResult)
         {
-            FilterResult result = FilterResult.Neutral;
+            FilterResult result = defaultFilterResult; 
 
             if (filterChain == null || filterChain.Count == 0)
                 return result;
@@ -252,11 +253,11 @@ namespace NLog
                     result = f.GetFilterResult(logEvent);
                     if (result != FilterResult.Neutral)
                     {
-                        break;
+                        return result;
                     }
                 }
 
-                return result;
+                return defaultFilterResult;
             }
             catch (Exception exception)
             {

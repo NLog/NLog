@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -52,7 +52,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Is this layout initialized? See <see cref="Initialize(NLog.Config.LoggingConfiguration)"/>
         /// </summary>
-        private bool _isInitialized;
+        internal bool IsInitialized;
         private bool _scannedForObjects;
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace NLog.Layouts
         /// <returns>String representing log event.</returns>
         public string Render(LogEventInfo logEvent)
         {
-            if (!_isInitialized)
+            if (!IsInitialized)
             {
                 Initialize(LoggingConfiguration);
             }
@@ -179,7 +179,7 @@ namespace NLog.Layouts
         /// <param name="cacheLayoutResult">Should rendering result be cached on LogEventInfo</param>
         internal void RenderAppendBuilder(LogEventInfo logEvent, StringBuilder target, bool cacheLayoutResult = false)
         {
-            if (!_isInitialized)
+            if (!IsInitialized)
             {
                 Initialize(LoggingConfiguration);
             }
@@ -263,10 +263,10 @@ namespace NLog.Layouts
         /// <param name="configuration">The configuration.</param>
         internal void Initialize(LoggingConfiguration configuration)
         {
-            if (!_isInitialized)
+            if (!IsInitialized)
             {
                 LoggingConfiguration = configuration;
-                _isInitialized = true;
+                IsInitialized = true;
                 _scannedForObjects = false;
 
                 InitializeLayout();
@@ -302,10 +302,10 @@ namespace NLog.Layouts
         /// </summary>
         internal void Close()
         {
-            if (_isInitialized)
+            if (IsInitialized)
             {
                 LoggingConfiguration = null;
-                _isInitialized = false;
+                IsInitialized = false;
                 CloseLayout();
             }
         }
@@ -377,6 +377,18 @@ namespace NLog.Layouts
                 return string.Concat(GetType().Name, "=", string.Join("|", nestedNames));
             }
             return base.ToString();
+        }
+
+        /// <summary>
+        /// Try get value
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="rawValue">rawValue if return result is true</param>
+        /// <returns>false if we could not determine the rawValue</returns>
+        internal virtual bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        {
+            rawValue = null;
+            return false;
         }
     }
 }

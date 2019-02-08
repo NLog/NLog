@@ -13,9 +13,10 @@
     <summary>Configuration file for NLog. </summary>
     <description>Xml file to get started with configuring NLog. This package is not mandatory to get started with NLog: the configuration file can created manually and the configuration can be created programmatically.  </description>
     <language>en-US</language>
-    <iconUrl>http://nlog-project.org/NConfig.png</iconUrl>
-    <projectUrl>http://nlog-project.org/</projectUrl>
-    <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+    <iconUrl>https://nlog-project.org/NConfig.png</iconUrl>
+    <projectUrl>https://nlog-project.org/</projectUrl>
+    <repository type="git" url="https://github.com/NLog/NLog.git" />
+    <licenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</licenseUrl>
     <releaseNotes>NLog $BuildVersion$</releaseNotes>
     <dependencies>
       <dependency id="NLog" version="$BuildVersion$" />

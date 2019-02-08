@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -54,6 +54,11 @@ namespace NLog.UnitTests.LayoutRenderers
 #endif
         public void WindowsIdentityTest()
         {
+#if NETSTANDARD
+            if (IsTravis())
+                return; // NetCore on Travis not supporting WindowsIdentity
+#endif
+
             var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
             var userName = Environment.GetEnvironmentVariable("USERNAME") ?? string.Empty;
             if (!string.IsNullOrEmpty(userDomainName))
@@ -100,7 +105,7 @@ namespace NLog.UnitTests.LayoutRenderers
                             .RegisterDefinition("CSharpEventTarget", typeof(CSharpEventTarget));
 
 
-                LogManager.Configuration = CreateConfigurationFromString(@"<?xml version='1.0' encoding='utf-8' ?>
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
  

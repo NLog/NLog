@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Config
 {
     using System;
@@ -40,6 +42,7 @@ namespace NLog.Config
     /// layout targets and filters.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
+    [MeansImplicitUse]
     public sealed class RequiredParameterAttribute : Attribute
     {
     }

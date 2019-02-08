@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -178,6 +178,15 @@ namespace NLog.Internal
             return type.GetTypeInfo().IsPrimitive;
 #else
             return type.IsPrimitive;
+#endif
+        }
+
+        public static bool IsValueType(this Type type)
+        {
+#if NETSTANDARD1_0
+            return type.GetTypeInfo().IsValueType;
+#else
+            return type.IsValueType;
 #endif
         }
 

@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void WriteMoreMessagesThanLimitOnlyWritesLimitMessages()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5'>
@@ -73,7 +73,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void WriteMessagesAfterLimitExpiredWritesMessages()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='5' interval='0:0:0:0.100'>
@@ -304,7 +304,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void CreatingFromConfigSetsMessageLimitCorrectly()
         {
-            LoggingConfiguration config = CreateConfigurationFromString(@"
+            LoggingConfiguration config = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' messagelimit='50'>
@@ -335,7 +335,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void CreatingFromConfigSetsIntervalCorrectly()
         {
-            LoggingConfiguration config = CreateConfigurationFromString(@"
+            LoggingConfiguration config = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <wrapper-target name='limiting' type='LimitingWrapper' interval='1:2:5:00'>

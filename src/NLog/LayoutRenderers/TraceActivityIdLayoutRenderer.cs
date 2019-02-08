@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -40,24 +40,37 @@ namespace NLog.LayoutRenderers
     using System.Globalization;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// A renderer that puts into log a System.Diagnostics trace correlation id.
     /// </summary>
     [LayoutRenderer("activityid")]
     [ThreadSafe]
-    public class TraceActivityIdLayoutRenderer : LayoutRenderer
+    public class TraceActivityIdLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
-        /// <summary>
-        /// Renders the current trace activity ID.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var activityId = Trace.CorrelationManager.ActivityId;
-            builder.Append(Guid.Empty.Equals(activityId) ?
-                string.Empty : activityId.ToString("D", CultureInfo.InvariantCulture));
+            builder.Append(GetStringValue());
+        }
+
+        /// <inheritdoc />
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
+
+        private static string GetStringValue()
+        {
+            var activityId = GetValue();
+            if (!Guid.Empty.Equals(activityId))
+            {
+                return activityId.ToString("D", CultureInfo.InvariantCulture);
+            }
+            return string.Empty;
+        }
+
+        private static Guid GetValue()
+        {
+            return Trace.CorrelationManager.ActivityId;
         }
     }
 }

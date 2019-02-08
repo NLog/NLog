@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -32,20 +32,17 @@
 // 
 
 using System.Linq;
-using System.Text;
 
 namespace NLog.Config
 {
-    using Internal;
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Xml;
 
     /// <summary>
     /// Represents simple XML element with case-insensitive attribute semantics.
     /// </summary>
-    internal class NLogXmlElement
+    internal class NLogXmlElement : ILoggingConfigurationElement
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NLogXmlElement"/> class.
@@ -101,6 +98,27 @@ namespace NLog.Config
         /// </summary>
         public string Value { get; private set; }
 
+        public string Name => LocalName;
+
+        public IEnumerable<KeyValuePair<string, string>> Values
+        {
+            get
+            {
+                if (Children.Count > 0)
+                {
+                    for (int i = 0; i < Children.Count; ++i)
+                    {
+                        var child = Children[i];
+                        if (child.Children.Count == 0 && child.AttributeValues.Count == 0 && child.Value != null)
+                            return Children.Where(item => item.Children.Count == 0 && item.AttributeValues.Count == 0 && item.Value != null).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)).Concat(AttributeValues);
+                    }
+                }
+                return AttributeValues;
+            }
+        }
+
+        IEnumerable<ILoggingConfigurationElement> ILoggingConfigurationElement.Children => Children.Where(item => item.Children.Count > 0 || item.AttributeValues.Count > 0).Cast<ILoggingConfigurationElement>();
+
         /// <summary>
         /// Last error occured during configuration read
         /// </summary>
@@ -124,82 +142,6 @@ namespace NLog.Config
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Gets the required attribute.
-        /// </summary>
-        /// <param name="attributeName">Name of the attribute.</param>
-        /// <returns>Attribute value.</returns>
-        /// <remarks>Throws if the attribute is not specified.</remarks>
-        public string GetRequiredAttribute(string attributeName)
-        {
-            string value = GetOptionalAttribute(attributeName, null);
-            if (value == null)
-            {
-                throw new NLogConfigurationException("Expected " + attributeName + " on <" + LocalName + " />");
-            }
-
-            return value;
-        }
-
-        /// <summary>
-        /// Gets the optional boolean attribute value.
-        /// </summary>
-        /// <param name="attributeName">Name of the attribute.</param>
-        /// <param name="defaultValue">Default value to return if the attribute is not found.</param>
-        /// <returns>Boolean attribute value or default.</returns>
-        public bool GetOptionalBooleanAttribute(string attributeName, bool defaultValue)
-        {
-            if (!AttributeValues.TryGetValue(attributeName, out var value))
-            {
-                return defaultValue;
-            }
-
-            return Convert.ToBoolean(value, CultureInfo.InvariantCulture);
-        }
-
-        /// <summary>
-        /// Gets the optional boolean attribute value. If whitespace, then returning <c>null</c>.
-        /// </summary>
-        /// <param name="attributeName">Name of the attribute.</param>
-        /// <param name="defaultValue">Default value to return if the attribute is not found.</param>
-        /// <returns>Boolean attribute value or default.</returns>
-        public bool? GetOptionalBooleanAttribute(string attributeName, bool? defaultValue)
-        {
-            string value;
-
-            if (!AttributeValues.TryGetValue(attributeName, out value))
-            {
-                //not defined, don't override default
-                return defaultValue;
-            }
-
-            if (StringHelpers.IsNullOrWhiteSpace(value))
-            {
-                //not default otherwise no difference between not defined and empty value.
-                return null;
-            }
-
-            return Convert.ToBoolean(value, CultureInfo.InvariantCulture);
-        }
-
-        /// <summary>
-        /// Gets the optional attribute value.
-        /// </summary>
-        /// <param name="attributeName">Name of the attribute.</param>
-        /// <param name="defaultValue">The default value.</param>
-        /// <returns>Value of the attribute or default value.</returns>
-        public string GetOptionalAttribute(string attributeName, string defaultValue)
-        {
-            string value;
-
-            if (!AttributeValues.TryGetValue(attributeName, out value))
-            {
-                value = defaultValue;
-            }
-
-            return value;
         }
 
         /// <summary>

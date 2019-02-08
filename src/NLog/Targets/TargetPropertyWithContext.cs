@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -33,6 +33,8 @@
 
 namespace NLog.Targets
 {
+    using System;
+    using System.ComponentModel;
     using NLog.Config;
     using NLog.Layouts;
 
@@ -57,7 +59,6 @@ namespace NLog.Targets
         {
             Name = name;
             Layout = layout;
-            IncludeEmptyValue = true;
         }
 
         /// <summary>
@@ -77,6 +78,13 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets when an empty value should cause the property to be included
         /// </summary>
-        public bool IncludeEmptyValue { get; set; }
+        [DefaultValue(true)]
+        public bool IncludeEmptyValue { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets the type of the property.
+        /// </summary>
+        [DefaultValue(typeof(string))]
+        public Type PropertyType { get; set; } = typeof(string);
     }
 }

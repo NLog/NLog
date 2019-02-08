@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -84,19 +84,20 @@ namespace NLog.UnitTests
         [Fact]
         public void OneTimeOnlyExceptionInHandlerTest()
         {
-            LogManager.ThrowExceptions = false;
+            using (new NoThrowNLogExceptions())
+            {
+                var exceptions = new List<Exception>();
+                var sampleException = new InvalidOperationException("some message");
+                AsyncContinuation cont = ex => { exceptions.Add(ex); throw sampleException; };
+                cont = AsyncHelpers.PreventMultipleCalls(cont);
 
-            var exceptions = new List<Exception>();
-            var sampleException = new InvalidOperationException("some message");
-            AsyncContinuation cont = ex => { exceptions.Add(ex); throw sampleException; };
-            cont = AsyncHelpers.PreventMultipleCalls(cont);
+                cont(null);
+                cont(null);
+                cont(null);
 
-            cont(null);
-            cont(null);
-            cont(null);
-
-            Assert.Single(exceptions);
-            Assert.Null(exceptions[0]);
+                Assert.Single(exceptions);
+                Assert.Null(exceptions[0]);
+            }
         }
 
         [Fact]
@@ -125,9 +126,6 @@ namespace NLog.UnitTests
                 cont(null);
             }
             catch { }
-
-            // cleanup
-            LogManager.ThrowExceptions = false;
 
             Assert.Single(exceptions);
             Assert.Null(exceptions[0]);
@@ -279,28 +277,31 @@ namespace NLog.UnitTests
         [Fact]
         public void RepeatTest3()
         {
-            bool finalContinuationInvoked = false;
-            Exception lastException = null;
-            Exception sampleException = new InvalidOperationException("Some message");
-
-            AsyncContinuation finalContinuation = ex =>
+            using (new NoThrowNLogExceptions())
             {
-                finalContinuationInvoked = true;
-                lastException = ex;
-            };
+                bool finalContinuationInvoked = false;
+                Exception lastException = null;
+                Exception sampleException = new InvalidOperationException("Some message");
 
-            int callCount = 0;
-
-            AsyncHelpers.Repeat(10, finalContinuation,
-                cont =>
+                AsyncContinuation finalContinuation = ex =>
                 {
-                    callCount++;
-                    throw sampleException;
-                });
+                    finalContinuationInvoked = true;
+                    lastException = ex;
+                };
 
-            Assert.True(finalContinuationInvoked);
-            Assert.Same(sampleException, lastException);
-            Assert.Equal(1, callCount);
+                int callCount = 0;
+
+                AsyncHelpers.Repeat(10, finalContinuation,
+                    cont =>
+                    {
+                        callCount++;
+                        throw sampleException;
+                    });
+
+                Assert.True(finalContinuationInvoked);
+                Assert.Same(sampleException, lastException);
+                Assert.Equal(1, callCount);
+            }
         }
 
         [Fact]
@@ -363,29 +364,32 @@ namespace NLog.UnitTests
         [Fact]
         public void ForEachItemSequentiallyTest3()
         {
-            bool finalContinuationInvoked = false;
-            Exception lastException = null;
-            Exception sampleException = new InvalidOperationException("Some message");
-
-            AsyncContinuation finalContinuation = ex =>
+            using (new NoThrowNLogExceptions())
             {
-                finalContinuationInvoked = true;
-                lastException = ex;
-            };
+                bool finalContinuationInvoked = false;
+                Exception lastException = null;
+                Exception sampleException = new InvalidOperationException("Some message");
 
-            int sum = 0;
-            var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
-
-            AsyncHelpers.ForEachItemSequentially(input, finalContinuation,
-                (i, cont) =>
+                AsyncContinuation finalContinuation = ex =>
                 {
-                    sum += i;
-                    throw sampleException;
-                });
+                    finalContinuationInvoked = true;
+                    lastException = ex;
+                };
 
-            Assert.True(finalContinuationInvoked);
-            Assert.Same(sampleException, lastException);
-            Assert.Equal(1, sum);
+                int sum = 0;
+                var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+
+                AsyncHelpers.ForEachItemSequentially(input, finalContinuation,
+                    (i, cont) =>
+                    {
+                        sum += i;
+                        throw sampleException;
+                    });
+
+                Assert.True(finalContinuationInvoked);
+                Assert.Same(sampleException, lastException);
+                Assert.Equal(1, sum);
+            }
         }
 
         [Fact]
@@ -442,6 +446,7 @@ namespace NLog.UnitTests
         public void ForEachItemInParallelSingleFailureTest()
         {
             using (new InternalLoggerScope())
+            using (new NoThrowNLogExceptions())
             {
                 InternalLogger.LogLevel = LogLevel.Trace;
 
@@ -485,34 +490,37 @@ namespace NLog.UnitTests
         [Fact]
         public void ForEachItemInParallelMultipleFailuresTest()
         {
-            var finalContinuationInvoked = new ManualResetEvent(false);
-            Exception lastException = null;
-
-            AsyncContinuation finalContinuation = ex =>
+            using (new NoThrowNLogExceptions())
             {
-                lastException = ex;
-                finalContinuationInvoked.Set();
-            };
+                var finalContinuationInvoked = new ManualResetEvent(false);
+                Exception lastException = null;
 
-            int sum = 0;
-            var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
-
-            AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
-                (i, cont) =>
+                AsyncContinuation finalContinuation = ex =>
                 {
-                    lock (input)
+                    lastException = ex;
+                    finalContinuationInvoked.Set();
+                };
+
+                int sum = 0;
+                var input = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, };
+
+                AsyncHelpers.ForEachItemInParallel(input, finalContinuation,
+                    (i, cont) =>
                     {
-                        sum += i;
-                    }
+                        lock (input)
+                        {
+                            sum += i;
+                        }
 
-                    throw new InvalidOperationException("Some failure.");
-                });
+                        throw new InvalidOperationException("Some failure.");
+                    });
 
-            finalContinuationInvoked.WaitOne();
-            Assert.Equal(55, sum);
-            Assert.NotNull(lastException);
-            Assert.IsType<NLogRuntimeException>(lastException);
-            Assert.StartsWith("Got multiple exceptions:\r\n", lastException.Message);
+                finalContinuationInvoked.WaitOne();
+                Assert.Equal(55, sum);
+                Assert.NotNull(lastException);
+                Assert.IsType<NLogRuntimeException>(lastException);
+                Assert.StartsWith("Got multiple exceptions:\r\n", lastException.Message);
+            }
         }
 
         [Fact]

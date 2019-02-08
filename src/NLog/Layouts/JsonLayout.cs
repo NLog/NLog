@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -51,13 +51,13 @@ namespace NLog.Layouts
             get => _jsonConverter ?? (_jsonConverter = new LimitRecursionJsonConvert(MaxRecursionLimit, ConfigurationItemFactory.Default.JsonConverter));
             set => _jsonConverter = value;
         }
-        private LimitRecursionJsonConvert _jsonConverter = null;
+        private LimitRecursionJsonConvert _jsonConverter;
         private IValueFormatter ValueFormatter
         {
             get => _valueFormatter ?? (_valueFormatter = ConfigurationItemFactory.Default.ValueFormatter);
             set => _valueFormatter = value;
         }
-        private IValueFormatter _valueFormatter = null;
+        private IValueFormatter _valueFormatter;
 
         class LimitRecursionJsonConvert : IJsonConverter
         {
@@ -118,6 +118,12 @@ namespace NLog.Layouts
         public bool RenderEmptyObject { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary.
+        /// </summary>
+        /// <docgen category='JSON Options' order='10' />
+        public bool IncludeGdc { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
         /// <docgen category='JSON Options' order='10' />
@@ -150,6 +156,7 @@ namespace NLog.Layouts
         /// <summary>
         /// How far should the JSON serializer follow object references before backing off
         /// </summary>
+        /// <docgen category='JSON Options' order='10' />
         public int MaxRecursionLimit { get; set; }
 
         /// <summary>
@@ -230,6 +237,17 @@ namespace NLog.Layouts
                 }
             }
 
+            if(IncludeGdc)
+            {
+                foreach (string key in GlobalDiagnosticsContext.GetNames())
+                {
+                    if (string.IsNullOrEmpty(key))
+                        continue;
+                    object propertyValue = GlobalDiagnosticsContext.GetObject(key);
+                    AppendJsonPropertyValue(key, propertyValue, null, null, MessageTemplates.CaptureType.Unknown, sb, sb.Length == orgLength);
+                }
+            }
+
             if (IncludeMdc)
             {
                 foreach (string key in MappedDiagnosticsContext.GetNames())
@@ -256,7 +274,7 @@ namespace NLog.Layouts
 
             if (IncludeAllProperties && logEvent.HasProperties)
             {
-                var propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true) as IEnumerable<MessageTemplates.MessageTemplateParameter>;
+                IEnumerable<MessageTemplates.MessageTemplateParameter> propertiesList = logEvent.CreateOrUpdatePropertiesInternal(true);
                 foreach (var prop in propertiesList)
                 {
                     if (string.IsNullOrEmpty(prop.Name))

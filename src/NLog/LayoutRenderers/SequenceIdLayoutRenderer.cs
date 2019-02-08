@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -43,16 +43,23 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("sequenceid")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class SequenceIdLayoutRenderer : LayoutRenderer
+    public class SequenceIdLayoutRenderer : LayoutRenderer, IRawValue
     {
-        /// <summary>
-        /// Renders the current log sequence ID and appends it to the specified <see cref="StringBuilder"/>.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.AppendInvariant(logEvent.SequenceID);
+            builder.AppendInvariant(GetValue(logEvent));
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        {
+            return GetValue(logEvent);
+        }
+
+        private static int GetValue(LogEventInfo logEvent)
+        {
+            return logEvent.SequenceID;
         }
     }
 }

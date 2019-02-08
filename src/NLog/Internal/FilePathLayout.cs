@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -86,7 +86,6 @@ namespace NLog.Internal
         /// </summary>
         private string _cachedPrevCleanFileName;
 
-        //TODO onInit maken
         /// <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
         public FilePathLayout(Layout layout, bool cleanupInvalidChars, FilePathKind filePathKind)
         {

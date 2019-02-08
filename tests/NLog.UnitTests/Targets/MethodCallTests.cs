@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Targets
 
 #pragma warning disable xUnit1013 //we need public methods here
 
-        private static MethodCallRecord LastCallTest = null;
+        private static MethodCallRecord LastCallTest;
         public static void StaticAndPublic(string param1, int param2)
         {
             LastCallTest = new MethodCallRecord("StaticAndPublic", param1, param2);
@@ -106,7 +106,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void PrivateMethodDontThrow()
         {
-            TestMethodCall(null, "NonStaticAndPublic", CorrectClassName);
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "NonStaticAndPublic", CorrectClassName);
+            }
         }
 
         [Fact]
@@ -118,19 +121,28 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WrongParametersDontThrow()
         {
-            TestMethodCall(null, "StaticAndPublicWrongParameters", CorrectClassName);
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "StaticAndPublicWrongParameters", CorrectClassName);
+            }
         }
 
         [Fact]
         public void TooLessParametersDontThrow()
         {
-            TestMethodCall(null, "StaticAndPublicTooLessParameters", CorrectClassName);
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "StaticAndPublicTooLessParameters", CorrectClassName);
+            }
         }
 
         [Fact]
         public void TooManyParametersDontThrow()
         {
-            TestMethodCall(null, "StaticAndPublicTooManyParameters", CorrectClassName);
+            using (new NoThrowNLogExceptions())
+            {
+                TestMethodCall(null, "StaticAndPublicTooManyParameters", CorrectClassName);
+            }
         }
 
         [Fact]

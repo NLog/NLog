@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -46,16 +46,20 @@ namespace NLog.LayoutRenderers
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class ProcessIdLayoutRenderer : LayoutRenderer
+    public class ProcessIdLayoutRenderer : LayoutRenderer, IRawValue
     {
-        /// <summary>
-        /// Renders the current process ID.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.AppendInvariant(ThreadIDHelper.Instance.CurrentProcessID);
+            builder.AppendInvariant(GetValue());
+        }
+
+        /// <inheritdoc />
+        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue();
+
+        private static int GetValue()
+        {
+            return ThreadIDHelper.Instance.CurrentProcessID;
         }
     }
 }

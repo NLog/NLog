@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -63,6 +63,9 @@ namespace NLog.MessageTemplates
         private const string LiteralFormatSymbol = "l";
 
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
+
+        public const string FormatAsJson = "@";
+        public const string FormatAsString = "$";
 
         /// <summary>
         /// Serialization of an object, e.g. JSON and append to <paramref name="builder"/>
@@ -130,11 +133,6 @@ namespace NLog.MessageTemplates
         /// <returns></returns>
         private bool SerializeSimpleObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
-            // todo support all scalar types: 
-
-            // todo byte[] - hex?
-            // todo nullables correct?
-
             if (value is string stringValue)
             {
                 bool includeQuotes = format != LiteralFormatSymbol;
@@ -260,7 +258,7 @@ namespace NLog.MessageTemplates
         private bool SerializeDictionaryObject(IDictionary dictionary, string format, IFormatProvider formatProvider, StringBuilder builder, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             bool separator = false;
-            foreach (DictionaryEntry item in dictionary)
+            foreach (var item in new DictionaryEntryEnumerable(dictionary))
             {
                 if (builder.Length > MaxValueLength)
                     return false;

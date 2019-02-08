@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -53,23 +53,12 @@ namespace NLog.LayoutRenderers
         private double frequency = 1;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="QueryPerformanceCounterLayoutRenderer" /> class.
-        /// </summary>
-        public QueryPerformanceCounterLayoutRenderer()
-        {
-            Normalize = true;
-            Difference = false;
-            Precision = 4;
-            AlignDecimalPoint = true;
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to normalize the result by subtracting 
         /// it from the result of the first call (so that it's effectively zero-based).
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
-        public bool Normalize { get; set; }
+        public bool Normalize { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether to output the difference between the result 
@@ -96,18 +85,16 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(4)]
-        public int Precision { get; set; }
+        public int Precision { get; set; } = 4;
 
         /// <summary>
         /// Gets or sets a value indicating whether to align decimal point (emit non-significant zeros).
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(true)]
-        public bool AlignDecimalPoint { get; set; }
+        public bool AlignDecimalPoint { get; set; } = true;
 
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
+        /// <inheritdoc />
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
@@ -131,18 +118,53 @@ namespace NLog.LayoutRenderers
             lastQpcValue = qpcValue;
         }
 
-        /// <summary>
-        /// Renders the ticks value of current time and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            ulong qpcValue;
+            var qpcValue = GetValue();
 
-            if (!NativeMethods.QueryPerformanceCounter(out qpcValue))
+            if (qpcValue != null)
             {
-                return;
+                string stringValue;
+
+                if (Seconds)
+                {
+                    var val = ToSeconds(qpcValue.Value);
+
+                    stringValue = Convert.ToString(val, CultureInfo.InvariantCulture);
+                    if (AlignDecimalPoint)
+                    {
+                        int p = stringValue.IndexOf('.');
+                        if (p == -1)
+                        {
+                            stringValue += "." + new string('0', Precision);
+                        }
+                        else
+                        {
+                            stringValue += new string('0', Precision - (stringValue.Length - 1 - p));
+                        }
+                    }
+                }
+                else
+                {
+                    stringValue = Convert.ToString(qpcValue, CultureInfo.InvariantCulture);
+                }
+
+                builder.Append(stringValue);
+            }
+        }
+
+        private double ToSeconds(ulong qpcValue)
+        {
+            double val = Math.Round(qpcValue / frequency, Precision);
+            return val;
+        }
+
+        private ulong? GetValue()
+        {
+            if (!NativeMethods.QueryPerformanceCounter(out var qpcValue))
+            {
+                return null;
             }
 
             ulong v = qpcValue;
@@ -157,34 +179,10 @@ namespace NLog.LayoutRenderers
             }
 
             lastQpcValue = v;
-
-            string stringValue;
-
-            if (Seconds)
-            {
-                double val = Math.Round(qpcValue / frequency, Precision);
-
-                stringValue = Convert.ToString(val, CultureInfo.InvariantCulture);
-                if (AlignDecimalPoint)
-                {
-                    int p = stringValue.IndexOf('.');
-                    if (p == -1)
-                    {
-                        stringValue += "." + new string('0', Precision);
-                    }
-                    else
-                    {
-                        stringValue += new string('0', Precision - (stringValue.Length - 1 - p));
-                    }
-                }
-            }
-            else
-            {
-                stringValue = Convert.ToString(qpcValue, CultureInfo.InvariantCulture);
-            }
-
-            builder.Append(stringValue);
+            return qpcValue;
         }
+
+  
     }
 }
 

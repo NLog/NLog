@@ -30,30 +30,31 @@
     <HtmlHelpName>NLog</HtmlHelpName>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\NLog\bin\Release\net45\NLog.dll" platform=".NET Framework 4.5" />
-<DocumentationSource sourceFile="..\NLog\bin\Release\net45\NLog.xml" platform=".NET Framework 4.5" />
-<DocumentationSource sourceFile="..\NLog.Extended\bin\Release\net45\NLog.Extended.dll" platform=".NET Framework 4.5" />
-<DocumentationSource sourceFile="..\NLog.Extended\bin\Release\net45\NLog.Extended.xml" platform=".NET Framework 4.5" />
-<DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.dll" />
-<DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.xml" />
-<DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.dll" />
-<DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.xml" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Windows.Forms.XML" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Windows.Forms.dll" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.dll" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.xml" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.dll" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.xml" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Owin.Logging.dll" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Owin.Logging.xml" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.dll" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.xml" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Web.dll" />
-<DocumentationSource sourceFile="dll_to_doc\NLog.Web.xml" /></DocumentationSources>
-    <HelpTitle>NLog 4.5</HelpTitle>
-    <CopyrightText>Copyright %28c%29 2004-2018 NLog</CopyrightText>
+      <DocumentationSource sourceFile="..\NLog\bin\Release\net45\NLog.xml" platform=".NET Framework 4.5" />
+      <DocumentationSource sourceFile="..\NLog.Extended\bin\Release\net45\NLog.Extended.dll" platform=".NET Framework 4.5" />
+      <DocumentationSource sourceFile="..\NLog.Extended\bin\Release\net45\NLog.Extended.xml" platform=".NET Framework 4.5" />
+      <DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.dll" />
+      <DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.xml" />
+      <DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.dll" />
+      <DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Windows.Forms.XML" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Windows.Forms.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Owin.Logging.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Owin.Logging.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Web.AspNetCore.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Web.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Web.xml" />
+    </DocumentationSources>
+    <HelpTitle>NLog 4.6</HelpTitle>
+    <CopyrightText>Copyright %28c%29 2004-2019 NLog</CopyrightText>
     <FeedbackEMailAddress>
     </FeedbackEMailAddress>
-    <CopyrightHref>http://nlog-project.org/</CopyrightHref>
+    <CopyrightHref>https://nlog-project.org/</CopyrightHref>
     <FrameworkVersion>Cross-platform (.NET Core/.NET Standard)</FrameworkVersion>
     <ComponentConfigurations>
       <ComponentConfig id="Code Block Component" enabled="True">
@@ -76,25 +77,24 @@
     <Preliminary>False</Preliminary>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="NLog" isDocumented="True">Logging interface, context classes</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Internal" isDocumented="False">Components used internally for NLog.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Config" isDocumented="True">Reading XML/API config</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Targets" isDocumented="True">Non-wrapper targets</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True">Targets which wraps other targets</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Filters" isDocumented="True">Message filters</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Layouts" isDocumented="True">All layouts</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True">Non-wrapper layout renderers</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.LayoutRenderers.Wrappers" isDocumented="True">All layout renderers which wraps other layout renderers</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Conditions" isDocumented="True">Conditions used to filter log events.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Common" isDocumented="True">Common components used when implementing NLog extensions.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.ComInterop" isDocumented="False">COM Interop classes.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True">WCF proxy classes for implementing clients and servers of log receiver service.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Web" isDocumented="False">Integration with ASP.NET.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Fluent" isDocumented="True">Fluent logging API</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
-      <NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.LayoutRenderers (Group)" isGroup="True" isDocumented="True">All layout renderers</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="NLog.Targets (Group)" isGroup="True" isDocumented="True">All targets</NamespaceSummaryItem>
-    </NamespaceSummaries>
+<NamespaceSummaryItem name="NLog.Internal" isDocumented="False">Components used internally for NLog.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Config" isDocumented="True">Reading XML/API config</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Targets" isDocumented="True">Non-wrapper targets</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True">Targets which wraps other targets</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Filters" isDocumented="True">Message filters</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Layouts" isDocumented="True">All layouts</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True">Non-wrapper layout renderers</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LayoutRenderers.Wrappers" isDocumented="True">All layout renderers which wraps other layout renderers</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Conditions" isDocumented="True">Conditions used to filter log events.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Common" isDocumented="True">Common components used when implementing NLog extensions.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.ComInterop" isDocumented="False">COM Interop classes.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LogReceiverService" isDocumented="True">WCF proxy classes for implementing clients and servers of log receiver service.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Web" isDocumented="True">Integration with ASP.NET.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Fluent" isDocumented="True">Fluent logging API</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
+<NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LayoutRenderers (Group)" isGroup="True" isDocumented="True">All layout renderers</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Targets (Group)" isGroup="True" isDocumented="True">All targets</NamespaceSummaryItem></NamespaceSummaries>
     <PlugInConfigurations>
       <PlugInConfig id="Assembly Binding Redirection" enabled="True">
         <configuration useGAC="false">

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,9 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Common;
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD1_3
 
 namespace NLog.Targets
 {
@@ -43,6 +41,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.IO;
     using NLog.Config;
+    using NLog.Common;
 
     /// <summary>
     /// Writes log messages to the console with customizable coloring.
@@ -68,15 +67,7 @@ namespace NLog.Targets
         /// </remarks>
         private bool _pauseLogging;
 
-        private static readonly IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules = new List<ConsoleRowHighlightingRule>()
-        {
-            new ConsoleRowHighlightingRule("level == LogLevel.Fatal", ConsoleOutputColor.Red, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Error", ConsoleOutputColor.Yellow, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Warn", ConsoleOutputColor.Magenta, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Info", ConsoleOutputColor.White, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Debug", ConsoleOutputColor.Gray, ConsoleOutputColor.NoChange),
-            new ConsoleRowHighlightingRule("level == LogLevel.Trace", ConsoleOutputColor.DarkGray, ConsoleOutputColor.NoChange),
-        };
+        private IColoredConsolePrinter _consolePrinter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
@@ -92,6 +83,7 @@ namespace NLog.Targets
             _pauseLogging = false;
             DetectConsoleAvailable = false;
             OptimizeBufferReuse = true;
+            _consolePrinter = CreateConsolePrinter(EnableAnsiOutput);
         }
 
         /// <summary>
@@ -188,6 +180,13 @@ namespace NLog.Targets
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
+        /// Enables output using ANSI Color Codes
+        /// </summary>
+        /// <docgen category='Console Options' order='10' />
+        [DefaultValue(false)]
+        public bool EnableAnsiOutput { get; set; }
+
+        /// <summary>
         /// Gets the row highlighting rules.
         /// </summary>
         /// <docgen category='Highlighting Rules' order='10' />
@@ -216,16 +215,30 @@ namespace NLog.Targets
                     InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
                 }
             }
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
-            if (_encoding != null && !_pauseLogging)
-                Console.OutputEncoding = _encoding;
+            if (_encoding != null)
+                ConsoleTargetHelper.SetConsoleOutputEncoding(_encoding, true, _pauseLogging);
 #endif
+
             base.InitializeTarget();
             if (Header != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
                 WriteToOutput(lei, RenderLogEvent(Header, lei));
             }
+
+            _consolePrinter = CreateConsolePrinter(EnableAnsiOutput);
+        }
+
+        private static IColoredConsolePrinter CreateConsolePrinter(bool enableAnsiOutput)
+        {
+#if !__IOS__ && !__ANDROID__
+            if (!enableAnsiOutput)
+                return new ColoredConsoleSystemPrinter();
+            else
+#endif
+                return new ColoredConsoleAnsiPrinter();
         }
 
         /// <summary>
@@ -251,110 +264,186 @@ namespace NLog.Targets
         {
             if (_pauseLogging)
             {
-                //check early for performance
+                //check early for performance (See also DetectConsoleAvailable)
                 return;
             }
+
             WriteToOutput(logEvent, RenderLogEvent(Layout, logEvent));
         }
 
         private void WriteToOutput(LogEventInfo logEvent, string message)
         {
-            ConsoleColor oldForegroundColor = Console.ForegroundColor;
-            ConsoleColor oldBackgroundColor = Console.BackgroundColor;
-            bool didChangeForegroundColor = false, didChangeBackgroundColor = false;
-
             try
             {
-                var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+                WriteToOutputWithColor(logEvent, message);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                // This is a bug and will therefore stop the logging. For docs, see the PauseLogging property.
+                _pauseLogging = true;
+                InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                // This is a bug and will therefore stop the logging. For docs, see the PauseLogging property.
+                _pauseLogging = true;
+                InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+            }
+        }
 
-                didChangeForegroundColor = IsColorChange(matchingRule.ForegroundColor, oldForegroundColor);
-                if (didChangeForegroundColor)
-                    Console.ForegroundColor = (ConsoleColor)matchingRule.ForegroundColor;
+        private void WriteToOutputWithColor(LogEventInfo logEvent, string message)
+        {
+            var matchingRule = GetMatchingRowHighlightingRule(logEvent);
 
-                didChangeBackgroundColor = IsColorChange(matchingRule.BackgroundColor, oldBackgroundColor);
-                if (didChangeBackgroundColor)
-                    Console.BackgroundColor = (ConsoleColor)matchingRule.BackgroundColor;
+            string colorMessage = message ?? string.Empty;
+            if (WordHighlightingRules.Count > 0)
+            {
+                colorMessage = GenerateColorEscapeSequences(message);
+            }
 
+            ConsoleColor? newForegroundColor = matchingRule.ForegroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.ForegroundColor : default(ConsoleColor?);
+            ConsoleColor? newBackgroundColor = matchingRule.BackgroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.BackgroundColor : default(ConsoleColor?);
+
+            var consoleStream = ErrorStream ? Console.Error : Console.Out;
+            if (ReferenceEquals(colorMessage, message) && !newForegroundColor.HasValue && !newBackgroundColor.HasValue)
+            {
+                consoleStream.WriteLine(message);
+            }
+            else
+            {
+                bool wordHighlighting = !ReferenceEquals(colorMessage, message) || message.IndexOf('\n') >= 0;
+                WriteToOutputWithPrinter(consoleStream, colorMessage, newForegroundColor, newBackgroundColor, wordHighlighting);
+            }
+        }
+
+        private void WriteToOutputWithPrinter(TextWriter consoleStream, string colorMessage, ConsoleColor? newForegroundColor, ConsoleColor? newBackgroundColor,  bool wordHighlighting)
+        {
+            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            {
+                TextWriter consoleWriter = _consolePrinter.AcquireTextWriter(consoleStream, targetBuilder.Result);
+
+                ConsoleColor? oldForegroundColor = null;
+                ConsoleColor? oldBackgroundColor = null;
 
                 try
                 {
-                    var consoleStream = ErrorStream ? Console.Error : Console.Out;
-                    if (WordHighlightingRules.Count == 0)
+                    if (wordHighlighting)
                     {
-                        consoleStream.WriteLine(message);
+                        oldForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor);
+                        oldBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor);
+                        var rowForegroundColor = newForegroundColor ?? oldForegroundColor;
+                        var rowBackgroundColor = newBackgroundColor ?? oldBackgroundColor;
+                        ColorizeEscapeSequences(_consolePrinter, consoleWriter, colorMessage, oldForegroundColor, oldBackgroundColor, rowForegroundColor, rowBackgroundColor);
+                        _consolePrinter.WriteLine(consoleWriter, string.Empty);
                     }
                     else
                     {
-                        message = message.Replace("\a", "\a\a");
-                        foreach (ConsoleWordHighlightingRule hl in WordHighlightingRules)
+                        if (newForegroundColor.HasValue)
                         {
-                            message = hl.ReplaceWithEscapeSequences(message);
+                            oldForegroundColor = _consolePrinter.ChangeForegroundColor(consoleWriter, newForegroundColor.Value);
+                            if (oldForegroundColor == newForegroundColor)
+                                oldForegroundColor = null;  // No color restore is needed
                         }
-
-                        ColorizeEscapeSequences(consoleStream, message, new ColorPair(Console.ForegroundColor, Console.BackgroundColor), new ColorPair(oldForegroundColor, oldBackgroundColor));
-                        consoleStream.WriteLine();
-
-                        didChangeForegroundColor = didChangeBackgroundColor = true;
+                        if (newBackgroundColor.HasValue)
+                        {
+                            oldBackgroundColor = _consolePrinter.ChangeBackgroundColor(consoleWriter, newBackgroundColor.Value);
+                            if (oldBackgroundColor == newBackgroundColor)
+                                oldBackgroundColor = null;  // No color restore is needed
+                        }
+                        _consolePrinter.WriteLine(consoleWriter, colorMessage);
                     }
                 }
-                catch (IndexOutOfRangeException ex)
+                finally
                 {
-                    // This is a bug and will therefore stop the logging. For docs, see the PauseLogging property.
-                    _pauseLogging = true;
-                    InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
-                                            "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+                    _consolePrinter.ReleaseTextWriter(consoleWriter, consoleStream, oldForegroundColor, oldBackgroundColor);
                 }
-                catch (ArgumentOutOfRangeException ex)
-                {
-                    // This is a bug and will therefore stop the logging. For docs, see the PauseLogging property.
-                    _pauseLogging = true;
-                    InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
-                                            "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
-                }
-            }
-            finally
-            {
-                if (didChangeForegroundColor)
-                    Console.ForegroundColor = oldForegroundColor;
-                if (didChangeBackgroundColor)
-                    Console.BackgroundColor = oldBackgroundColor;
             }
         }
 
         private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(LogEventInfo logEvent)
         {
-            foreach (ConsoleRowHighlightingRule rule in RowHighlightingRules)
+            var matchingRule = GetMatchingRowHighlightingRule(RowHighlightingRules, logEvent);
+            if (matchingRule == null && UseDefaultRowHighlightingRules)
             {
+                matchingRule = GetMatchingRowHighlightingRule(_consolePrinter.DefaultConsoleRowHighlightingRules, logEvent);
+            }
+            return matchingRule ?? ConsoleRowHighlightingRule.Default;
+        }
+
+        private ConsoleRowHighlightingRule GetMatchingRowHighlightingRule(IList<ConsoleRowHighlightingRule> rules, LogEventInfo logEvent)
+        {
+            for (int i = 0; i < rules.Count; ++i)
+            {
+                var rule = rules[i];
                 if (rule.CheckCondition(logEvent))
                     return rule;
             }
+            return null;
+        }
 
-            if (UseDefaultRowHighlightingRules)
+        private string GenerateColorEscapeSequences(string message)
+        {
+            if (string.IsNullOrEmpty(message))
+                return message;
+
+            if (message.IndexOf("\a", StringComparison.Ordinal) >= 0)
+                message = message.Replace("\a", "\a\a");
+
+            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
             {
-                foreach (ConsoleRowHighlightingRule rule in DefaultConsoleRowHighlightingRules)
+                StringBuilder sb = targetBuilder.Result;
+
+                for (int i = 0; i < WordHighlightingRules.Count; ++i)
                 {
-                    if (rule.CheckCondition(logEvent))
-                        return rule;
+                    var hl = WordHighlightingRules[i];
+                    var matches = hl.Matches(message);
+                    if (matches == null)
+                        continue;
+
+                    if (sb != null)
+                        sb.Length = 0;
+
+                    int previousIndex = 0;
+                    foreach (System.Text.RegularExpressions.Match match in matches)
+                    {
+                        sb = sb ?? new StringBuilder(message.Length + 5);
+                        sb.Append(message, previousIndex, match.Index - previousIndex);
+
+                        sb.Append('\a');
+                        sb.Append((char)((int)hl.ForegroundColor + 'A'));
+                        sb.Append((char)((int)hl.BackgroundColor + 'A'));
+                        sb.Append(match.Value);
+                        sb.Append('\a');
+                        sb.Append('X');
+
+                        previousIndex = match.Index + match.Length;
+                    }
+
+                    if (sb?.Length > 0)
+                    {
+                        sb.Append(message, previousIndex, message.Length - previousIndex);
+                        message = sb.ToString();
+                    }
                 }
             }
 
-            return ConsoleRowHighlightingRule.Default;
-        }
-
-        private static bool IsColorChange(ConsoleOutputColor targetColor, ConsoleColor oldColor)
-        {
-            return (targetColor != ConsoleOutputColor.NoChange) && ((ConsoleColor)targetColor != oldColor);
+            return message;
         }
 
         private static void ColorizeEscapeSequences(
-            TextWriter output,
+            IColoredConsolePrinter consolePrinter,
+            TextWriter consoleWriter,
             string message,
-            ColorPair startingColor,
-            ColorPair defaultColor)
+            ConsoleColor? defaultForegroundColor,
+            ConsoleColor? defaultBackgroundColor,
+            ConsoleColor? rowForegroundColor,
+            ConsoleColor? rowBackgroundColor)
         {
-            var colorStack = new Stack<ColorPair>();
+            var colorStack = new Stack<KeyValuePair<ConsoleColor?, ConsoleColor?>>();
 
-            colorStack.Push(startingColor);
+            colorStack.Push(new KeyValuePair<ConsoleColor?, ConsoleColor?>(rowForegroundColor, rowBackgroundColor));
 
             int p0 = 0;
 
@@ -369,7 +458,7 @@ namespace NLog.Targets
                 // text
                 if (p1 != p0)
                 {
-                    output.Write(message.Substring(p0, p1 - p0));
+                    consolePrinter.WriteSubString(consoleWriter, message, p0, p1);
                 }
 
                 if (p1 >= message.Length)
@@ -389,19 +478,23 @@ namespace NLog.Targets
 
                 if (c1 == '\a' && c2 == '\a')
                 {
-                    output.Write('\a');
+                    consolePrinter.WriteChar(consoleWriter, '\a');
                     p0 = p1 + 2;
                     continue;
                 }
 
                 if (c1 == '\r' || c1 == '\n')
                 {
-                    Console.ForegroundColor = defaultColor.ForegroundColor;
-                    Console.BackgroundColor = defaultColor.BackgroundColor;
-                    output.Write(c1);
-                    Console.ForegroundColor = colorStack.Peek().ForegroundColor;
-                    Console.BackgroundColor = colorStack.Peek().BackgroundColor;
+                    consolePrinter.ResetDefaultColors(consoleWriter, defaultForegroundColor, defaultBackgroundColor);
+                    consolePrinter.WriteChar(consoleWriter, c1);
                     p0 = p1 + 1;
+                    if (c2 == '\n')
+                    {
+                        consolePrinter.WriteChar(consoleWriter, c2);
+                        p0 = p1 + 2;
+                    }
+                    consolePrinter.ChangeForegroundColor(consoleWriter, colorStack.Peek().Key);
+                    consolePrinter.ChangeBackgroundColor(consoleWriter, colorStack.Peek().Value);
                     continue;
                 }
 
@@ -409,58 +502,52 @@ namespace NLog.Targets
                 {
                     if (c2 == 'X')
                     {
-                        colorStack.Pop();
-                        Console.ForegroundColor = colorStack.Peek().ForegroundColor;
-                        Console.BackgroundColor = colorStack.Peek().BackgroundColor;
+                        var oldColorConfig = colorStack.Pop();
+                        var newColorConfig = colorStack.Peek();
+                        if (newColorConfig.Key != oldColorConfig.Key || newColorConfig.Value != oldColorConfig.Value)
+                        {
+                            if ((oldColorConfig.Key.HasValue && !newColorConfig.Key.HasValue) || (oldColorConfig.Value.HasValue && !newColorConfig.Value.HasValue))
+                            {
+                                consolePrinter.ResetDefaultColors(consoleWriter, defaultForegroundColor, defaultBackgroundColor);
+                            }
+                            consolePrinter.ChangeForegroundColor(consoleWriter, newColorConfig.Key);
+                            consolePrinter.ChangeBackgroundColor(consoleWriter, newColorConfig.Value);
+                        }
                         p0 = p1 + 2;
                         continue;
                     }
+
+                    var currentForegroundColor = colorStack.Peek().Key;
+                    var currentBackgroundColor = colorStack.Peek().Value;
 
                     var foreground = (ConsoleOutputColor)(c2 - 'A');
                     var background = (ConsoleOutputColor)(message[p1 + 2] - 'A');
 
                     if (foreground != ConsoleOutputColor.NoChange)
                     {
-                        Console.ForegroundColor = (ConsoleColor)foreground;
+                        currentForegroundColor = (ConsoleColor)foreground;
+                        consolePrinter.ChangeForegroundColor(consoleWriter, currentForegroundColor);
                     }
 
                     if (background != ConsoleOutputColor.NoChange)
                     {
-                        Console.BackgroundColor = (ConsoleColor)background;
+                        currentBackgroundColor = (ConsoleColor)background;
+                        consolePrinter.ChangeBackgroundColor(consoleWriter, currentBackgroundColor);
                     }
 
-                    colorStack.Push(new ColorPair(Console.ForegroundColor, Console.BackgroundColor));
+                    colorStack.Push(new KeyValuePair<ConsoleColor?, ConsoleColor?>(currentForegroundColor, currentBackgroundColor));
                     p0 = p1 + 3;
                     continue;
                 }
 
-                output.Write(c1);
+                consolePrinter.WriteChar(consoleWriter, c1);
                 p0 = p1 + 1;
             }
 
             if (p0 < message.Length)
             {
-                output.Write(message.Substring(p0));
+                consolePrinter.WriteSubString(consoleWriter, message, p0, message.Length);
             }
-        }
-
-        /// <summary>
-        /// Color pair (foreground and background).
-        /// </summary>
-        internal struct ColorPair
-        {
-            private readonly ConsoleColor _foregroundColor;
-            private readonly ConsoleColor _backgroundColor;
-
-            internal ColorPair(ConsoleColor foregroundColor, ConsoleColor backgroundColor)
-            {
-                _foregroundColor = foregroundColor;
-                _backgroundColor = backgroundColor;
-            }
-
-            internal ConsoleColor BackgroundColor => _backgroundColor;
-
-            internal ConsoleColor ForegroundColor => _foregroundColor;
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -50,7 +50,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var targetWrapper = new AsyncTargetWrapper(myTarget, 300, AsyncTargetWrapperOverflowAction.Grow);
             Assert.Equal(AsyncTargetWrapperOverflowAction.Grow, targetWrapper.OverflowAction);
             Assert.Equal(300, targetWrapper.QueueLimit);
-            Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
+            Assert.Equal(1, targetWrapper.TimeToSleepBetweenBatches);
             Assert.Equal(200, targetWrapper.BatchSize);
         }
 
@@ -65,15 +65,26 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             Assert.Equal(AsyncTargetWrapperOverflowAction.Discard, targetWrapper.OverflowAction);
             Assert.Equal(10000, targetWrapper.QueueLimit);
-            Assert.Equal(50, targetWrapper.TimeToSleepBetweenBatches);
+            Assert.Equal(1, targetWrapper.TimeToSleepBetweenBatches);
             Assert.Equal(200, targetWrapper.BatchSize);
+        }
+
+        [Fact]
+        public void AsyncTargetWrapperSyncTest_WithLock_WhenTimeToSleepBetweenBatchesIsEqualToZero()
+        {
+            AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(true);
+        }
+
+        [Fact]
+        public void AsyncTargetWrapperSyncTest_NoLock_WhenTimeToSleepBetweenBatchesIsEqualToZero()
+        {
+            AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(false);
         }
 
         /// <summary>
         /// Test Fix for https://github.com/NLog/NLog/issues/1069
         /// </summary>
-        [Fact]
-        public void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero()
+        private void AsyncTargetWrapperSyncTest_WhenTimeToSleepBetweenBatchesIsEqualToZero(bool forceLockingQueue)
         {
             LogManager.ThrowConfigExceptions = true;
 
@@ -81,8 +92,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             var targetWrapper = new AsyncTargetWrapper() {
                 WrappedTarget = myTarget,
                 TimeToSleepBetweenBatches = 0,
-                BatchSize = 4,
-                QueueLimit = 2, // Will make it "sleep" between every second write
+#if NET4_5
+                ForceLockingQueue = forceLockingQueue,
+                OptimizeBufferReuse = !forceLockingQueue,
+#endif
+                BatchSize = 3,
+                QueueLimit = 5, // Will make it "sleep" between every second write
                 OverflowAction = AsyncTargetWrapperOverflowAction.Block
             };
             targetWrapper.Initialize(null);
@@ -127,7 +142,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 #if NET4_5
                 if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
 #endif
-                    Assert.True(elapsedMilliseconds < 950);
+                    Assert.InRange(elapsedMilliseconds, 0, 950);
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)
@@ -392,22 +407,23 @@ namespace NLog.UnitTests.Targets.Wrappers
                 Name = "AsyncTargetWrapperExceptionTest_Wrapper"
             };
 
-            LogManager.ThrowExceptions = false;
+            using (new NoThrowNLogExceptions())
+            {
+                targetWrapper.Initialize(null);
 
-            targetWrapper.Initialize(null);
+                // null out wrapped target - will cause exception on the timer thread
+                targetWrapper.WrappedTarget = null;
 
-            // null out wrapped target - will cause exception on the timer thread
-            targetWrapper.WrappedTarget = null;
+                string internalLog = RunAndCaptureInternalLog(
+                    () =>
+                    {
+                        targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
+                        targetWrapper.Close();
+                    },
+                    LogLevel.Trace);
 
-            string internalLog = RunAndCaptureInternalLog(
-                () =>
-                {
-                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(ex => { }));
-                    targetWrapper.Close();
-                },
-                LogLevel.Trace);
-
-            Assert.True(internalLog.Contains("WrappedTarget is NULL"), internalLog);
+                Assert.True(internalLog.Contains("WrappedTarget is NULL"), internalLog);
+            }
         }
 
         [Fact]
@@ -451,7 +467,178 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
-        class MyAsyncTarget : Target
+        [Fact]
+        public void LogEventDropped_OnRequestqueueOverflow()
+        {
+            int queueLimit = 2;
+            int loggedEventCount = 5;
+            int eventsCounter = 0;
+            var myTarget = new MyTarget();
+
+            var targetWrapper = new AsyncTargetWrapperForEventTests()
+            {
+                WrappedTarget = myTarget,
+                QueueLimit = queueLimit,
+                TimeToSleepBetweenBatches = 500,    // Make it slow
+                OverflowAction = AsyncTargetWrapperOverflowAction.Discard,
+            };
+
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
+            try
+            {
+                targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
+
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    logger.Info("Hello");
+                }
+
+                Assert.Equal(loggedEventCount - queueLimit, eventsCounter);
+            }
+            finally
+            {
+                logFactory.Configuration = null;
+            }
+        }
+
+        [Fact]
+        public void LogEventNotDropped_IfOverflowActionBlock()
+        {
+            int queueLimit = 2;
+            int loggedEventCount = 5;
+            int eventsCounter = 0;
+            var myTarget = new MyTarget();
+
+            var targetWrapper = new AsyncTargetWrapperForEventTests()
+            {
+                WrappedTarget = myTarget,
+                QueueLimit = queueLimit,
+                OverflowAction = AsyncTargetWrapperOverflowAction.Block
+            };
+
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
+            try
+            {
+                targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
+
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    logger.Info("Hello");
+                }
+                
+                Assert.Equal(0, eventsCounter);
+            }
+            finally
+            {
+                logFactory.Configuration = null;
+            }
+        }
+
+        [Fact]
+        public void LogEventNotDropped_IfOverflowActionGrow()
+        {
+            int queueLimit = 2;
+            int loggedEventCount = 5;
+            int eventsCounter = 0;
+            var myTarget = new MyTarget();
+
+            var targetWrapper = new AsyncTargetWrapperForEventTests()
+            {
+                WrappedTarget = myTarget,
+                QueueLimit = queueLimit,
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow
+            };
+
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
+            try
+            {
+                targetWrapper.LogEventDropped += (o, e) => { eventsCounter++; };
+
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    logger.Info("Hello");
+                }
+                
+                Assert.Equal(0, eventsCounter);
+            }
+            finally
+            {
+                logFactory.Configuration = null;
+            }
+        }
+
+        [Fact]
+        public void EventQueueGrow_OnQueueGrow()
+        {
+            int queueLimit = 2;
+            int loggedEventCount = 10;
+
+            int expectedGrowingNumber = 0;
+
+        #if NETCOREAPP2_0
+            expectedGrowingNumber = loggedEventCount - queueLimit;
+        #else
+            expectedGrowingNumber = 3;
+        #endif
+
+            int eventsCounter = 0;
+            var myTarget = new MyTarget();
+
+            var targetWrapper = new AsyncTargetWrapperForEventTests()
+            {
+                WrappedTarget = myTarget,
+                QueueLimit = queueLimit,
+                TimeToSleepBetweenBatches = 500,    // Make it slow
+                OverflowAction = AsyncTargetWrapperOverflowAction.Grow,
+            };
+
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
+            try
+            {
+                targetWrapper.EventQueueGrow += (o, e) => { eventsCounter++; };
+
+                for (int i = 0; i < loggedEventCount; i++)
+                {
+                    logger.Info("Hello");
+                }
+                
+                Assert.Equal(expectedGrowingNumber, eventsCounter);
+            }
+            finally
+            {
+                logFactory.Configuration = null;
+            }
+        }
+
+        private class AsyncTargetWrapperForEventTests : AsyncTargetWrapper
+        {
+            public void WriteEvent(AsyncLogEventInfo logEventInfo)
+            {
+                Write(logEventInfo);
+            }
+        }
+
+        private class MyAsyncTarget : Target
         {
             private readonly NLog.Internal.AsyncOperationCounter pendingWriteCounter = new NLog.Internal.AsyncOperationCounter();
 
@@ -506,7 +693,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             public bool ThrowExceptions { get; set; }
         }
 
-        class MyTarget : Target
+        private class MyTarget : Target
         {
             public int FlushCount { get; set; }
             public int WriteCount { get; set; }

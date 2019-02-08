@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -32,8 +32,10 @@
 // 
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 
 namespace NLogAutloadExtension
@@ -90,9 +92,12 @@ namespace LoaderTestPrivateNested
         [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private class NLogPackageLoader
         {
-            public static void Preload()
+            public static void Preload(ConfigurationItemFactory fact)
             {
-
+                if (fact == null)
+                {
+                    throw new ArgumentNullException(nameof(fact));
+                }
             }
         }
     }
@@ -119,6 +124,7 @@ namespace LoaderTestWrong1
 {
     public class NLogPackageLoader
     {
+        [DebuggerStepThrough]
         public static void Preload()
         {
             throw new Exception("ow noos");

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,6 +36,7 @@
 namespace NLog.Targets
 {
     using System.Diagnostics;
+    using NLog.Common;
 
     /// <summary>
     /// Writes log messages to the attached managed debugger.
@@ -87,6 +88,11 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+            if (!Debugger.IsLogging())
+            {
+                InternalLogger.Debug("Debugger(Name={0}): System.Diagnostics.Debugger.IsLogging()==false. Output has been disabled.", Name);
+            }
+
             if (Header != null)
             {
                 Debugger.Log(LogLevel.Off.Ordinal, string.Empty, RenderLogEvent(Header, LogEventInfo.CreateNullEvent()) + "\n");
@@ -114,7 +120,7 @@ namespace NLog.Targets
         {
             if (Debugger.IsLogging())
             {
-                string logMessage = string.Empty;
+                string logMessage;
                 if (OptimizeBufferReuse)
                 {
                     using (var localTarget = ReusableLayoutBuilder.Allocate())

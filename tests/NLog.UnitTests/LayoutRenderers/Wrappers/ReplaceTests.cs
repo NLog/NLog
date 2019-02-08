@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
@@ -59,7 +61,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             MappedDiagnosticsContext.Clear();
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <targets>
         <target name='d1' type='Debug' layout='${replace:inner=${message}:searchFor=\\r\\n|\\s:replaceWith= :regex=true}' />
@@ -83,7 +85,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             MappedDiagnosticsContext.Clear();
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name=""whitespace"" value=""\\r\\n|\\s"" />
     <variable name=""oneLineMessage"" value=""${replace:inner=${message}:searchFor=${whitespace}:replaceWith= :regex=true}"" />
@@ -109,7 +111,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             MappedDiagnosticsContext.Clear();
 
-            var configuration = CreateConfigurationFromString(@"
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <variable name=""searchExp""
               value=""(?&lt;!\\d[ -]*)(?\:(?&lt;digits&gt;\\d)[ -]*)\{8,16\}(?=(\\d[ -]*)\{3\}(\\d)(?![ -]\\d))""

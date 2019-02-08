@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -34,9 +34,11 @@
 namespace NLog.UnitTests
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading;
     using NLog.Config;
+    using NLog.UnitTests.Mocks;
     using Xunit;
 
     public class LogFactoryTests : NLogTestBase
@@ -44,30 +46,36 @@ namespace NLog.UnitTests
         [Fact]
         public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog throwExceptions='false'>
-                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeto='test'></logger>
-                </rules>
-            </nlog>");
+            using (new NoThrowNLogExceptions())
+            {
+                LogManager.ThrowExceptions = true;
 
-            ILogger logger = LogManager.GetCurrentClassLogger();
-            logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog throwExceptions='false'>
+                    <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
+                    <rules>
+                        <logger name='*' minlevel='Debug' writeto='test'></logger>
+                    </rules>
+                </nlog>");
+
+                ILogger logger = LogManager.GetCurrentClassLogger();
+                logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
+            }
         }
 
         [Fact]
         public void InvalidXMLConfiguration_DoesNotThrowErrorWhen_ThrowExceptionFlagIsNotSet()
         {
-            LogManager.ThrowExceptions = false;
-
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            using (new NoThrowNLogExceptions())
+            {
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
             </nlog>");
+            }
         }
 
         [Fact]
@@ -78,7 +86,7 @@ namespace NLog.UnitTests
             {
                 LogManager.ThrowExceptions = true;
 
-                LogManager.Configuration = CreateConfigurationFromString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
                 <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
                 <rules>
@@ -211,7 +219,11 @@ namespace NLog.UnitTests
 
                 var loggingConfiguration = new LoggingConfiguration();
                 LogManager.Configuration = loggingConfiguration;
-                var logFactory = new LogFactory(loggingConfiguration);
+
+                var configLoader = new LoggingConfigurationWatchableFileLoader();
+                var logFactory = new LogFactory(configLoader);
+                logFactory.Configuration = loggingConfiguration;
+
                 var differentConfiguration = new LoggingConfiguration();
 
                 // Verify that the random configuration change is ignored (Only the final reset is reacted upon)
@@ -220,7 +232,7 @@ namespace NLog.UnitTests
                 testChanged = (s, e) => { called = true; oldConfiguration = e.DeactivatedConfiguration; newConfiguration = e.ActivatedConfiguration; };
                 LogManager.LogFactory.ConfigurationChanged += testChanged;
 
-                var exRecorded = Record.Exception(() => logFactory.ReloadConfigOnTimer(differentConfiguration));
+                var exRecorded = Record.Exception(() => configLoader.ReloadConfigOnTimer(differentConfiguration));
                 Assert.Null(exRecorded);
 
                 // Final reset clears the configuration, so it is changed to null
@@ -249,51 +261,31 @@ namespace NLog.UnitTests
         {
             var loggingConfiguration = new ReloadNullConfiguration();
             LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
+            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var logFactory = new LogFactory(configLoader);
+            logFactory.Configuration = loggingConfiguration;
 
-            var exRecorded = Record.Exception(() => logFactory.ReloadConfigOnTimer(loggingConfiguration));
+            var exRecorded = Record.Exception(() => configLoader.ReloadConfigOnTimer(loggingConfiguration));
             Assert.Null(exRecorded);
         }
 
         [Fact]
-        public void ReloadConfigOnTimer_Raises_ConfigurationReloadedEvent()
+        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent()
         {
             var called = false;
-            var loggingConfiguration = new LoggingConfiguration();
-            LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
-            logFactory.ConfigurationReloaded += (sender, args) => { called = true; };
-
-            logFactory.ReloadConfigOnTimer(loggingConfiguration);
-
-            Assert.True(called);
-        }
-
-        [Fact]
-        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent_With_Correct_Sender()
-        {
+            LoggingConfigurationReloadedEventArgs arguments = null;
             object calledBy = null;
             var loggingConfiguration = new LoggingConfiguration();
             LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
-            logFactory.ConfigurationReloaded += (sender, args) => { calledBy = sender; };
+            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var logFactory = new LogFactory(configLoader);
+            logFactory.Configuration = loggingConfiguration;
+            logFactory.ConfigurationReloaded += (sender, args) => { called = true; calledBy = sender; arguments = args; };
 
-            logFactory.ReloadConfigOnTimer(loggingConfiguration);
+            configLoader.ReloadConfigOnTimer(loggingConfiguration);
 
+            Assert.True(called);
             Assert.Same(calledBy, logFactory);
-        }
-
-        [Fact]
-        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent_With_Argument_Indicating_Success()
-        {
-            LoggingConfigurationReloadedEventArgs arguments = null;
-            var loggingConfiguration = new LoggingConfiguration();
-            LogManager.Configuration = loggingConfiguration;
-            var logFactory = new LogFactory(loggingConfiguration);
-            logFactory.ConfigurationReloaded += (sender, args) => { arguments = args; };
-
-            logFactory.ReloadConfigOnTimer(loggingConfiguration);
-
             Assert.True(arguments.Succeeded);
         }
 
@@ -303,7 +295,7 @@ namespace NLog.UnitTests
         [Fact]
         public void NewAttrOnNLogLevelShouldNotThrowError()
         {
-            LogManager.Configuration = CreateConfigurationFromString(@"
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true' imAnewAttribute='noError'>
                 <targets><target type='file' name='f1' filename='test.log' /></targets>
                 <rules>
@@ -391,6 +383,44 @@ namespace NLog.UnitTests
             Assert.False(factory.IsLoggingEnabled());
             factory.ResumeLogging();
             Assert.True(factory.IsLoggingEnabled());
+        }
+
+
+        [Theory]
+        [MemberData(nameof(GetConfigFile_absolutePath_loads_testData))]
+        public void GetConfigFile_absolutePath_loads(string filename, string accepts, string expected, string baseDir)
+        {
+            // Arrange
+            var fileMock = new FileMock(f => f == accepts);
+            var fileLoader = new LoggingConfigurationFileLoader(fileMock);
+            var appDomain = LogFactory.CurrentAppDomain;
+
+            try
+            {
+                LogFactory.CurrentAppDomain = new AppDomainMock(baseDir);
+
+                // Act
+                var result = fileLoader.GetConfigFile(filename);
+
+                // Assert
+                Assert.Equal(expected, result);
+            }
+            finally
+            {
+                //restore
+                LogFactory.CurrentAppDomain = appDomain;
+            }
+
+        }
+
+        public static IEnumerable<object[]> GetConfigFile_absolutePath_loads_testData()
+        {
+            var d = Path.DirectorySeparatorChar;
+            var baseDir = Path.GetTempPath();
+            var dirInBaseDir = $"{baseDir}dir1";
+            yield return new object[] { $"{baseDir}configfile", $"{baseDir}configfile", $"{baseDir}configfile", dirInBaseDir };
+            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog.config", $"{baseDir}dir1{d}nlog.config", dirInBaseDir }; //exists
+            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog2.config", "nlog.config", dirInBaseDir}; //not existing, fallback
         }
     }
 }

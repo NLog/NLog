@@ -1,5 +1,5 @@
-﻿// 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -110,6 +110,13 @@ namespace NLog.Targets
         [ArrayParameter(typeof(TargetPropertyWithContext), "contextproperty")]
         public virtual IList<TargetPropertyWithContext> ContextProperties { get; } = new List<TargetPropertyWithContext>();
 
+        private IPropertyTypeConverter PropertyTypeConverter
+        {
+            get => _propertyTypeConverter ?? (_propertyTypeConverter = ConfigurationItemFactory.Default.PropertyTypeConverter);
+            set => _propertyTypeConverter = value;
+        }
+        private IPropertyTypeConverter _propertyTypeConverter;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -117,6 +124,13 @@ namespace NLog.Targets
         {
             _contextLayout = _contextLayout ?? new TargetWithContextLayout(this, base.Layout);
             OptimizeBufferReuse = true;
+        }
+
+        /// <inheritdoc/>
+        protected override void CloseTarget()
+        {
+            PropertyTypeConverter = null;
+            base.CloseTarget();
         }
 
         /// <summary>
@@ -141,18 +155,20 @@ namespace NLog.Targets
         /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
         protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent)
         {
-            IDictionary<string, object> combinedProperties = null;
-            if (IncludeGdc)
-            {
-                combinedProperties = CaptureContextGdc(logEvent, null);
-            }
+            return GetContextProperties(logEvent, null);
+        }
 
-            if (IncludeMdc)
+        /// <summary>
+        /// Checks if any context properties, and if any returns them as a single dictionary
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="combinedProperties">Optional prefilled dictionary</param>
+        /// <returns>Dictionary with any context properties for the logEvent (Null if none found)</returns>
+        protected IDictionary<string, object> GetContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        {
+            if (ContextProperties?.Count > 0)
             {
-                if (!CombineProperties(logEvent, _contextLayout.MdcLayout, ref combinedProperties))
-                {
-                    combinedProperties = CaptureContextMdc(logEvent, combinedProperties);
-                }
+                combinedProperties = CaptureContextProperties(logEvent, combinedProperties);
             }
 
 #if !SILVERLIGHT
@@ -165,21 +181,17 @@ namespace NLog.Targets
             }
 #endif
 
-            if (ContextProperties != null && ContextProperties.Count > 0)
+            if (IncludeMdc)
             {
-                combinedProperties = combinedProperties ?? new Dictionary<string, object>();
-                for (int i = 0; i < ContextProperties.Count; ++i)
+                if (!CombineProperties(logEvent, _contextLayout.MdcLayout, ref combinedProperties))
                 {
-                    var attrib = ContextProperties[i];
-                    if (string.IsNullOrEmpty(attrib?.Name) || attrib.Layout == null)
-                        continue;
-
-                    var attribValue = RenderLogEvent(attrib.Layout, logEvent);
-                    if (!attrib.IncludeEmptyValue && string.IsNullOrEmpty(attribValue))
-                        continue;
-
-                    combinedProperties[attrib.Name] = attribValue;
+                    combinedProperties = CaptureContextMdc(logEvent, combinedProperties);
                 }
+            }
+
+            if (IncludeGdc)
+            {
+                combinedProperties = CaptureContextGdc(logEvent, combinedProperties);
             }
 
             return combinedProperties;
@@ -192,23 +204,63 @@ namespace NLog.Targets
         /// <returns>Dictionary with all collected properties for logEvent</returns>
         protected IDictionary<string, object> GetAllProperties(LogEventInfo logEvent)
         {
-            IDictionary<string, object> combinedPropties = GetContextProperties(logEvent);
+            return GetAllProperties(logEvent, null);
+        }
+
+        /// <summary>
+        /// Creates combined dictionary of all configured properties for logEvent
+        /// </summary>
+        /// <param name="logEvent"></param>
+        /// <param name="combinedProperties">Optional prefilled dictionary</param>
+        /// <returns>Dictionary with all collected properties for logEvent</returns>
+        protected IDictionary<string, object> GetAllProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        {
             if (IncludeEventProperties && logEvent.HasProperties)
             {
-                // TODO Make Dictionary-adapter for PropertiesDictionary to skip extra Dictionary-allocation
-                combinedPropties = combinedPropties ?? new Dictionary<string, object>();
+                // TODO Make Dictionary-Lazy-adapter for PropertiesDictionary to skip extra Dictionary-allocation
+                combinedProperties = combinedProperties ?? CreateNewDictionary(logEvent.Properties.Count + (ContextProperties?.Count ?? 0));
+                bool checkForDuplicates = combinedProperties.Count > 0;
                 foreach (var property in logEvent.Properties)
                 {
                     string propertyKey = property.Key.ToString();
                     if (string.IsNullOrEmpty(propertyKey))
                         continue;
-                    combinedPropties[propertyKey] = property.Value;
+
+                    AddContextProperty(logEvent, propertyKey, property.Value, checkForDuplicates, combinedProperties);
                 }
             }
-            return combinedPropties ?? new Dictionary<string, object>();
+            combinedProperties = GetContextProperties(logEvent, combinedProperties);
+            return combinedProperties ?? new Dictionary<string, object>();
         }
 
-        private static bool CombineProperties(LogEventInfo logEvent, Layout contextLayout, ref IDictionary<string, object> combinedPropties)
+        private static IDictionary<string, object> CreateNewDictionary(int initialCapacity)
+        {
+            return new Dictionary<string, object>(Math.Max(initialCapacity, 3));
+        }
+
+        /// <summary>
+        /// Generates a new unique name, when duplicate names are detected
+        /// </summary>
+        /// <param name="logEvent">LogEvent that triggered the duplicate name</param>
+        /// <param name="itemName">Duplicate item name</param>
+        /// <param name="itemValue">Item Value</param>
+        /// <param name="combinedProperties">Dictionary of context values</param>
+        /// <returns>New (unique) value (or null to skip value). If the same value is used then the item will be overwritten</returns>
+        protected virtual string GenerateUniqueItemName(LogEventInfo logEvent, string itemName, object itemValue, IDictionary<string, object> combinedProperties)
+        {
+            itemName = itemName ?? string.Empty;
+
+            int newNameIndex = 1;
+            var newItemName = string.Concat(itemName, "_1");
+            while (combinedProperties.ContainsKey(newItemName))
+            {
+                newItemName = string.Concat(itemName, "_", (++newNameIndex).ToString());
+            }
+
+            return newItemName;
+        }
+
+        private bool CombineProperties(LogEventInfo logEvent, Layout contextLayout, ref IDictionary<string, object> combinedProperties)
         {
             if (!logEvent.TryGetCachedLayoutValue(contextLayout, out object value))
             {
@@ -218,19 +270,32 @@ namespace NLog.Targets
             var contextProperties = value as IDictionary<string, object>;
             if (contextProperties != null)
             {
-                if (combinedPropties != null)
+                if (combinedProperties != null)
                 {
+                    bool checkForDuplicates = combinedProperties.Count > 0;
                     foreach (var property in contextProperties)
                     {
-                        combinedPropties[property.Key] = property.Value;
+                        AddContextProperty(logEvent, property.Key, property.Value, checkForDuplicates, combinedProperties);
                     }
                 }
                 else
                 {
-                    combinedPropties = contextProperties;
+                    combinedProperties = contextProperties;
                 }
             }
             return true;
+        }
+
+        private void AddContextProperty(LogEventInfo logEvent, string itemName, object itemValue, bool checkForDuplicates, IDictionary<string, object> combinedProperties)
+        {
+            if (checkForDuplicates && combinedProperties.ContainsKey(itemName))
+            {
+                itemName = GenerateUniqueItemName(logEvent, itemName, itemValue, combinedProperties);
+                if (itemName == null)
+                    return;
+            }
+
+            combinedProperties[itemName] = itemValue;
         }
 
         /// <summary>
@@ -293,6 +358,63 @@ namespace NLog.Targets
         }
 #endif
 
+        private IDictionary<string, object> CaptureContextProperties(LogEventInfo logEvent, IDictionary<string, object> combinedProperties)
+        {
+            combinedProperties = combinedProperties ?? CreateNewDictionary(ContextProperties.Count);
+            for (int i = 0; i < ContextProperties.Count; ++i)
+            {
+                var attrib = ContextProperties[i];
+                if (string.IsNullOrEmpty(attrib?.Name) || attrib.Layout == null)
+                    continue;
+
+                var attribType = attrib.PropertyType ?? typeof(string);
+
+                try
+                {
+                    var isStringType = attribType == typeof(string);
+                    if (!isStringType)
+                    {
+                        if (TryGetAttributeRawValue(logEvent, attrib, attribType, out var rawValue))
+                        {
+                            combinedProperties[attrib.Name] = rawValue;
+                            continue;
+                        }
+                    }
+
+                    var attribStringValue = RenderLogEvent(attrib.Layout, logEvent);
+                    if (!attrib.IncludeEmptyValue && string.IsNullOrEmpty(attribStringValue))
+                        continue;
+
+                    
+                    combinedProperties[attrib.Name] = isStringType
+                        ? attribStringValue : PropertyTypeConverter.Convert(attribStringValue, attribType, null, CultureInfo.InvariantCulture);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrownImmediately())
+                        throw;
+
+                    Common.InternalLogger.Warn(ex, "{0}(Name={1}): Failed to add context property {2}", GetType(), Name, attrib.Name);
+                }
+            }
+
+            return combinedProperties;
+        }
+
+        private static bool TryGetAttributeRawValue(LogEventInfo logEvent, TargetPropertyWithContext attrib, Type attribType, out object rawValue)
+        {
+            var rawValue2 = false;
+            if (attrib.Layout.TryGetRawValue(logEvent, out rawValue))
+            {
+                if (attribType == typeof(object) || rawValue?.GetType() == attribType)
+                {
+                    rawValue2 = true;
+                }
+            }
+
+            return rawValue2;
+        }
+
         /// <summary>
         /// Takes snapshot of <see cref="GlobalDiagnosticsContext"/> for the <see cref="LogEventInfo"/>
         /// </summary>
@@ -305,13 +427,14 @@ namespace NLog.Targets
             if (globalNames.Count == 0)
                 return contextProperties;
 
-            contextProperties = contextProperties ?? new Dictionary<string, object>();
+            contextProperties = contextProperties ?? CreateNewDictionary(globalNames.Count);
+            bool checkForDuplicates = contextProperties.Count > 0;
             foreach (string propertyName in globalNames)
             {
                 var propertyValue = GlobalDiagnosticsContext.GetObject(propertyName);
                 if (SerializeItemValue(logEvent, propertyName, propertyValue, out propertyValue))
                 {
-                    contextProperties[propertyName] = propertyValue;
+                    AddContextProperty(logEvent, propertyName, propertyValue, checkForDuplicates, contextProperties);
                 }
             }
 
@@ -330,13 +453,14 @@ namespace NLog.Targets
             if (names.Count == 0)
                 return contextProperties;
 
-            contextProperties = contextProperties ?? new Dictionary<string, object>();
+            contextProperties = contextProperties ?? CreateNewDictionary(names.Count);
+            bool checkForDuplicates = contextProperties.Count > 0;
             foreach (var name in names)
             {
                 object value = MappedDiagnosticsContext.GetObject(name);
                 if (SerializeMdcItem(logEvent, name, value, out var serializedValue))
                 {
-                    contextProperties[name] = serializedValue;
+                    AddContextProperty(logEvent, name, value, checkForDuplicates, contextProperties);
                 }
             }
             return contextProperties;
@@ -374,13 +498,14 @@ namespace NLog.Targets
             if (names.Count == 0)
                 return contextProperties;
 
-            contextProperties = contextProperties ?? new Dictionary<string, object>();
+            contextProperties = contextProperties ?? CreateNewDictionary(names.Count);
+            bool checkForDuplicates = contextProperties.Count > 0;
             foreach (var name in names)
             {
                 object value = MappedDiagnosticsLogicalContext.GetObject(name);
                 if (SerializeMdlcItem(logEvent, name, value, out var serializedValue))
                 {
-                    contextProperties[name] = serializedValue;
+                    AddContextProperty(logEvent, name, value, checkForDuplicates, contextProperties);
                 }
             }
             return contextProperties;
@@ -525,7 +650,7 @@ namespace NLog.Targets
             }
 
             // Make snapshot of the context value
-            serializedValue = Convert.ToString(value, logEvent.FormatProvider ?? CultureInfo.CurrentCulture);
+            serializedValue = Convert.ToString(value, logEvent.FormatProvider ?? LoggingConfiguration?.DefaultCultureInfo);
             return true;
         }
 

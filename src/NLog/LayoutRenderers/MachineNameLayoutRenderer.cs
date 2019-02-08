@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2018 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -52,9 +52,7 @@ namespace NLog.LayoutRenderers
     {
         internal string MachineName { get; private set; }
 
-        /// <summary>
-        /// Initializes the layout renderer.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
         {
             base.InitializeLayoutRenderer();
@@ -78,11 +76,7 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        /// <summary>
-        /// Renders the machine name and appends it to the specified <see cref="StringBuilder" />.
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
+        /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             builder.Append(MachineName);
