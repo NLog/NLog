@@ -120,7 +120,7 @@ namespace NLog.UnitTests.Layouts
                 },
             };
 
-            var logEventInfo = new LogEventInfo {  Message = @"<hello planet=""earth""/>" };
+            var logEventInfo = new LogEventInfo { Message = @"<hello planet=""earth""/>" };
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
@@ -237,6 +237,37 @@ namespace NLog.UnitTests.Layouts
             logEventInfo.Properties["prop1"] = "a";
             logEventInfo.Properties["prop2"] = "b";
             logEventInfo.Properties["prop3"] = "c";
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>message 1</message><property key=""prop1"">a</property><property key=""prop3"">c</property></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void XmlLayout_ExcludePropertiesFromLayout_RenderNotProperty()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements =
+                {
+                    new XmlElement("message", "${message}"),
+                },
+                IncludeAllProperties = true,
+                ExcludeProperties = "${Event-properties:excludeKeys}"
+            };
+
+            var logEventInfo = new LogEventInfo
+            {
+                Message = "message 1"
+            };
+            logEventInfo.Properties["prop1"] = "a";
+            logEventInfo.Properties["prop2"] = "b";
+            logEventInfo.Properties["prop3"] = "c";
+            logEventInfo.Properties["excludeKeys"] = new HashSet<string> { "prop2", "excludeKeys" };
 
             // Act
             var result = xmlLayout.Render(logEventInfo);
@@ -453,7 +484,7 @@ namespace NLog.UnitTests.Layouts
             {
                 Message = "Monster massage"
             };
-            logEventInfo.Properties["nlogPropertyKey"] = new [] { "Hello", "World" };
+            logEventInfo.Properties["nlogPropertyKey"] = new[] { "Hello", "World" };
 
             // Act
             var result = xmlLayout.Render(logEventInfo);

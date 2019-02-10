@@ -126,7 +126,7 @@ namespace NLog.Targets
         /// Gets or sets the layout that renders event ID.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public Layout EventId { get; set; }
+        public Layout<int> EventId { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that renders event Category.
@@ -271,13 +271,7 @@ namespace NLog.Targets
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
-            int eventId = 0;
-            string renderEventId = RenderLogEvent(EventId, logEvent);
-            if (!string.IsNullOrEmpty(renderEventId) && !int.TryParse(renderEventId, out eventId))
-            {
-                InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse EventId={1}", Name, renderEventId);
-            }
-
+            var eventId = EventId.ToValueOrDefault(logEvent);
             short category = 0;
             string renderCategory = RenderLogEvent(Category, logEvent);
             if (!string.IsNullOrEmpty(renderCategory) && !short.TryParse(renderCategory, out category))

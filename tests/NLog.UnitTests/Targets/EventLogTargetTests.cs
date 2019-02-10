@@ -506,7 +506,6 @@ namespace NLog.UnitTests.Targets
             int eventId = rnd.Next(1, short.MaxValue);
             int category = rnd.Next(1, short.MaxValue);
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
-            target.EventId = new SimpleLayout(eventId.ToString());
             target.Category = new SimpleLayout(category.ToString());
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
             var logger = LogManager.GetLogger("WriteEventLogEntry");
@@ -531,7 +530,7 @@ namespace NLog.UnitTests.Targets
             int eventId = rnd.Next(1, short.MaxValue);
             int category = rnd.Next(1, short.MaxValue);
             var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
-            target.EventId = new SimpleLayout("${event-properties:EventId}");
+            target.EventId = "${event-properties:EventId}";
             target.Category = new SimpleLayout("${event-properties:Category}");
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
             var logger = LogManager.GetLogger("WriteEventLogEntry");

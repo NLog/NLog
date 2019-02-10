@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Layouts;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -70,7 +72,9 @@ namespace NLog.UnitTests
                 }
             }
 
+            // ignore checks on these:
             typeUsageCount[typeof(IInstallable)] = 1;
+            typeUsageCount[typeof(IToValue<>)] = 1;
 
             foreach (Type type in allTypes)
             {

@@ -303,7 +303,7 @@ namespace MakeNLogXSD
         {
             if (string.IsNullOrWhiteSpace(apiTypeName))
             {
-                throw new NotSupportedException("Unknown API type '" + apiTypeName + "'.");
+                throw new NotSupportedException("Unknown API empty type '" + apiTypeName + "'.");
             }
 
             if (IgnoreTypes.Contains(apiTypeName))
