@@ -28,21 +28,20 @@ msbuild /t:Restore,Pack .\src\NLog\ /p:targetFrameworks='"net45;net40-client;net
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Restore,Pack .\src\NLog.Extended\ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
+function create-package($packageName)
+{
 
-msbuild /t:Restore,Pack .\src\NLog.Wcf\ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
+	$path = ".\src\$packageName\"
+	msbuild /t:Restore,Pack $path /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
+	if (-Not $LastExitCode -eq 0)
+		{ exit $LastExitCode }
 
-msbuild /t:Restore,Pack .\src\NLog.WindowsEventLog\ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
+}
 
-msbuild /t:Restore,Pack .\src\NLog.WindowsIdentity\ /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
+create-package('NLog.Extended')
+create-package('NLog.Wcf')
+create-package('NLog.WindowsEventLog')
+create-package('NLog.WindowsIdentity')
 
 msbuild /t:xsd /t:NuGetSchemaPackage /t:NuGetConfigPackage .\src\NLog.proj /p:Configuration=Release /p:BuildNetFX45=true /p:BuildVersion=$versionProduct /p:Configuration=Release /p:BuildLabelOverride=NONE /verbosity:minimal
 
