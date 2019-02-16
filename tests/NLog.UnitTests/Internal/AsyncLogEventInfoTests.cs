@@ -63,7 +63,7 @@ namespace NLog.UnitTests.Internal
             Assert.False(async1 == async2);
             Assert.True(async1 != async2);
 
-            //2 delegates will return the same hashcode, http://stackoverflow.com/questions/6624151/why-do-2-delegate-instances-return-the-same-hashcode
+            //2 delegates will return the same hashcode, https://stackoverflow.com/questions/6624151/why-do-2-delegate-instances-return-the-same-hashcode
             //and that isn't really bad, so ignore this
             //   Assert.NotEqual(async1.GetHashCode(), async2.GetHashCode());
         }

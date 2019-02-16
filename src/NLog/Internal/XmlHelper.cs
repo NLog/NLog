@@ -44,7 +44,7 @@ namespace NLog.Internal
     /// </summary>
     public static class XmlHelper
     {
-        // found on http://stackoverflow.com/questions/397250/unicode-regex-invalid-xml-characters/961504#961504
+        // found on https://stackoverflow.com/questions/397250/unicode-regex-invalid-xml-characters/961504#961504
         // filters control characters but allows only properly-formed surrogate sequences
 #if NET3_5 || NETSTANDARD1_0
         private static readonly Regex InvalidXmlChars = new Regex(
