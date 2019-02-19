@@ -262,6 +262,11 @@ namespace NLog
         }
 
         /// <summary>
+        /// Repository of intefaces used by NLog to allow override for dependency injection
+        /// </summary>
+        public ServiceRepository ServiceRepository { get; } = new ServiceRepository();
+
+        /// <summary>
         /// Gets or sets the global log level threshold. Log events below this threshold are not logged.
         /// </summary>
         public LogLevel GlobalThreshold
@@ -922,7 +927,7 @@ namespace NLog
                         else
                         {
 
-                            var instance = FactoryHelper.CreateInstance(cacheKey.ConcreteType);
+                            var instance = ServiceRepository.ConfigItemCreator.CreateInstance(cacheKey.ConcreteType);
                             newLogger = instance as Logger;
                             if (newLogger == null)
                             {

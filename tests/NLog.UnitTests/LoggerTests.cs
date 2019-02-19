@@ -1797,7 +1797,7 @@ namespace NLog.UnitTests
             var singleLogger = LogManager.GetLogger("SingleTarget");
             var dualLogger = LogManager.GetLogger("DualTarget");
 
-            ConfigurationItemFactory.Default.ParseMessageTemplates = null;
+            LogManager.LogFactory.ServiceRepository.ParseMessageTemplates = null;
 
             singleLogger.Debug("Hello");
             AssertDebugLastMessage("target1", "SingleTarget|Hello");
@@ -1811,7 +1811,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("target1", "DualTarget|Hello World");
             AssertDebugLastMessage("target2", "DualTarget|Hello World");
 
-            ConfigurationItemFactory.Default.ParseMessageTemplates = true;
+            LogManager.LogFactory.ServiceRepository.ParseMessageTemplates = true;
 
             singleLogger.Debug("Hello");
             AssertDebugLastMessage("target1", "SingleTarget|Hello");
@@ -1825,7 +1825,7 @@ namespace NLog.UnitTests
             AssertDebugLastMessage("target1", "DualTarget|Hello World");
             AssertDebugLastMessage("target2", "DualTarget|Hello World");
 
-            ConfigurationItemFactory.Default.ParseMessageTemplates = false;
+            LogManager.LogFactory.ServiceRepository.ParseMessageTemplates = false;
 
             singleLogger.Debug("Hello");
             AssertDebugLastMessage("target1", "SingleTarget|Hello");
@@ -1933,12 +1933,12 @@ namespace NLog.UnitTests
 
             if (parseMessageTemplates.HasValue)
             {
-                Assert.Equal(ConfigurationItemFactory.Default.ParseMessageTemplates, parseMessageTemplates.Value);
+                Assert.Equal(LogManager.LogFactory.ServiceRepository.ParseMessageTemplates, parseMessageTemplates.Value);
             }
 
             if (overrideParseMessageTemplates.HasValue)
             {
-                ConfigurationItemFactory.Default.ParseMessageTemplates = overrideParseMessageTemplates.Value;
+                LogManager.LogFactory.ServiceRepository.ParseMessageTemplates = overrideParseMessageTemplates.Value;
             }
 
             ILogger logger = LogManager.GetLogger("A");

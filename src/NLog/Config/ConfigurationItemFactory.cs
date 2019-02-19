@@ -57,7 +57,8 @@ namespace NLog.Config
     {
         private static ConfigurationItemFactory _defaultInstance;
 
-        private readonly IList<object> _allFactories;
+        private readonly ServiceRepository _serviceRepository;
+        private readonly List<IFactory> _allFactories;
         private readonly Factory<Target, TargetAttribute> _targets;
         private readonly Factory<Filter, FilterAttribute> _filters;
         private readonly LayoutRendererFactory _layoutRenderers;
@@ -65,8 +66,6 @@ namespace NLog.Config
         private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> _conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> _ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> _timeSources;
-
-        private IJsonConverter _jsonSerializer = DefaultJsonSerializer.Instance;
 
         /// <summary>
         /// Called before the assembly will be loaded.
@@ -78,16 +77,21 @@ namespace NLog.Config
         /// </summary>
         /// <param name="assemblies">The assemblies to scan for named items.</param>
         public ConfigurationItemFactory(params Assembly[] assemblies)
+            :this(new ServiceRepository(), null, assemblies)
         {
-            CreateInstance = FactoryHelper.CreateInstance;
-            _targets = new Factory<Target, TargetAttribute>(this);
-            _filters = new Factory<Filter, FilterAttribute>(this);
-            _layoutRenderers = new LayoutRendererFactory(this);
-            _layouts = new Factory<Layout, LayoutAttribute>(this);
-            _conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
-            _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
-            _timeSources = new Factory<TimeSource, TimeSourceAttribute>(this);
-            _allFactories = new List<object>
+        }
+
+        internal ConfigurationItemFactory(ServiceRepository serviceRepository, ConfigurationItemFactory globalDefaultFactory, params Assembly[] assemblies)
+        {
+            _serviceRepository = serviceRepository;
+            _targets = new Factory<Target, TargetAttribute>(serviceRepository, globalDefaultFactory?._targets);
+            _filters = new Factory<Filter, FilterAttribute>(serviceRepository, globalDefaultFactory?._filters);
+            _layoutRenderers = new LayoutRendererFactory(serviceRepository, globalDefaultFactory?._layoutRenderers);
+            _layouts = new Factory<Layout, LayoutAttribute>(serviceRepository, globalDefaultFactory?._layouts);
+            _conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>(globalDefaultFactory?._conditionMethods);
+            _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(serviceRepository, globalDefaultFactory?._ambientProperties);
+            _timeSources = new Factory<TimeSource, TimeSourceAttribute>(serviceRepository, globalDefaultFactory?._timeSources);
+            _allFactories = new List<IFactory>
             {
                 _targets,
                 _filters,
@@ -114,7 +118,11 @@ namespace NLog.Config
         public static ConfigurationItemFactory Default
         {
             get => _defaultInstance ?? (_defaultInstance = BuildDefaultFactory());
-            set => _defaultInstance = value;
+            set
+            {
+                _defaultInstance = value;
+                LogManager.LogFactory.ServiceRepository.ConfigurationItemFactory = null;
+            }
         }
 
         /// <summary>
@@ -123,7 +131,12 @@ namespace NLog.Config
         /// <remarks>
         /// By overriding this property, one can enable dependency injection or interception for created objects.
         /// </remarks>
-        public ConfigurationItemCreator CreateInstance { get; set; }
+        [Obsolete("Use property LogFactory.ServiceRepository.CreateInstance instead. Marked obsolete on NLog 4.6")]
+        public ConfigurationItemCreator CreateInstance
+        {
+            get => (_serviceRepository.ConfigItemCreator as ConfigItemCreator)?.CreateInstanceMethod ?? ConfigItemCreator.Instance.CreateInstanceMethod;
+            set => _serviceRepository.ConfigItemCreator = new ConfigItemCreator(value);
+        }
 
         /// <summary>
         /// Gets the <see cref="Target"/> factory.
@@ -171,32 +184,29 @@ namespace NLog.Config
         [Obsolete("Use JsonConverter property instead. Marked obsolete on NLog 4.5")]
         public IJsonSerializer JsonSerializer
         {
-            get => _jsonSerializer as IJsonSerializer;
-            set => _jsonSerializer = value != null ? (IJsonConverter)new JsonConverterLegacy(value) : DefaultJsonSerializer.Instance;
+            get => _serviceRepository.JsonConverter as IJsonSerializer;
+            set => _serviceRepository.JsonConverter = value != null ? (IJsonConverter)new JsonConverterLegacy(value) : DefaultJsonSerializer.Instance;
         }
 
         /// <summary>
         /// Gets or sets the JSON serializer to use with <see cref="WebServiceTarget"/> or <see cref="JsonLayout"/>
         /// </summary>
+        [Obsolete("Use property LogFactory.ServiceRepository.JsonConverter instead. Marked obsolete on NLog 4.6")]
         public IJsonConverter JsonConverter
         {
-            get => _jsonSerializer;
-            set => _jsonSerializer = value ?? DefaultJsonSerializer.Instance;
+            get => _serviceRepository.JsonConverter;
+            set => _serviceRepository.JsonConverter = value;
         }
 
         /// <summary>
         /// Gets or sets the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
         /// </summary>
+        [Obsolete("Use property LogFactory.ServiceRepository.ValueFormatter instead. Marked obsolete on NLog 4.6")]
         public IValueFormatter ValueFormatter
         {
-            get => MessageTemplates.ValueFormatter.Instance;
-            set => MessageTemplates.ValueFormatter.Instance = value;
+            get => _serviceRepository.ValueFormatter;
+            set => _serviceRepository.ValueFormatter = value;
         }
-
-        /// <summary>
-        /// Gets or sets the parameter converter to use with <see cref="DatabaseTarget"/>, <see cref="WebServiceTarget"/> or <see cref="TargetWithContext"/>
-        /// </summary>
-        public IPropertyTypeConverter PropertyTypeConverter { get; set; } = new PropertyTypeConverter();
 
         /// <summary>
         /// Perform mesage template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
@@ -206,24 +216,11 @@ namespace NLog.Config
         /// - True: Always performs the parsing of <see cref="LogEventInfo.Message"/> and rendering of <see cref="LogEventInfo.FormattedMessage"/> using the NLog-parser (Allows custom formatting with <see cref="ValueFormatter"/>)
         /// - False: Always performs parsing and rendering using string.Format (Fastest if not using structured logging)
         /// </remarks>
+        [Obsolete("Use property LogFactory.ServiceRepository.ParseMessageTemplates instead. Marked obsolete on NLog 4.6")]
         public bool? ParseMessageTemplates
         {
-            get
-            {
-                if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogEventInfo.StringFormatMessageFormatter))
-                {
-                    return false;
-                }
-                else if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogMessageTemplateFormatter.Default.MessageFormatter))
-                {
-                    return true;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            set => LogEventInfo.SetDefaultMessageFormatter(value);
+            get => _serviceRepository.ParseMessageTemplates;
+            set => _serviceRepository.ParseMessageTemplates = value;
         }
 
         /// <summary>
@@ -378,7 +375,7 @@ namespace NLog.Config
         private static ConfigurationItemFactory BuildDefaultFactory()
         {
             var nlogAssembly = typeof(ILogger).GetAssembly();
-            var factory = new ConfigurationItemFactory(nlogAssembly);
+            var factory = new ConfigurationItemFactory(LogManager.LogFactory.ServiceRepository, null, nlogAssembly);
             factory.RegisterExtendedItems();
 
 #if !SILVERLIGHT && !NETSTANDARD1_3

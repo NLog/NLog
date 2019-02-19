@@ -208,6 +208,15 @@ namespace NLog.Internal
 #endif
         }
 
+        public static bool IsInterface(this Type type)
+        {
+#if NETSTANDARD1_0
+            return type.GetTypeInfo().IsInterface;
+#else
+            return type.IsInterface;
+#endif
+        }
+
         public static bool IsClass(this Type type)
         {
 #if NETSTANDARD1_0

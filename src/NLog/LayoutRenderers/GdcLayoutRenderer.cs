@@ -46,6 +46,9 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceRepository().ValueFormatter);
+        private IValueFormatter _valueFormatter;
+
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
@@ -64,8 +67,11 @@ namespace NLog.LayoutRenderers
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             object value = GetValue();
-            var formatProvider = GetFormatProvider(logEvent, null);
-            builder.AppendFormattedValue(value, Format, formatProvider);
+            if (value != null || !string.IsNullOrEmpty(Format))
+            {
+                var formatProvider = GetFormatProvider(logEvent, null);
+                builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
+            }
         }
 
         /// <inheritdoc/>

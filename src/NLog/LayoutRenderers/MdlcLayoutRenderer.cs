@@ -45,6 +45,9 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class MdlcLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceRepository().ValueFormatter);
+        private IValueFormatter _valueFormatter;
+
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
@@ -64,7 +67,7 @@ namespace NLog.LayoutRenderers
         {
             var value = GetValue();
             var formatProvider = GetFormatProvider(logEvent, null);
-            builder.AppendFormattedValue(value, Format, formatProvider);
+            builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
         }
         
         /// <inheritdoc/>

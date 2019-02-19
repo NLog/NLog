@@ -37,8 +37,8 @@ namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Factory for class-based items.
@@ -50,11 +50,13 @@ namespace NLog.Config
         where TAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, GetTypeDelegate> _items = new Dictionary<string, GetTypeDelegate>(StringComparer.OrdinalIgnoreCase);
-        private readonly ConfigurationItemFactory _parentFactory;
+        private readonly ServiceRepository _serviceRepository;
+        private readonly Factory<TBaseType, TAttributeType> _globalDefaultFactory;
 
-        internal Factory(ConfigurationItemFactory parentFactory)
+        internal Factory(ServiceRepository serviceRepository, Factory<TBaseType, TAttributeType> globalDefaultFactory)
         {
-            _parentFactory = parentFactory;
+            _serviceRepository = serviceRepository;
+            _globalDefaultFactory = globalDefaultFactory;
         }
 
         private delegate Type GetTypeDelegate();
@@ -142,6 +144,11 @@ namespace NLog.Config
 
             if (!_items.TryGetValue(itemName, out getTypeDelegate))
             {
+                if (_globalDefaultFactory != null && _globalDefaultFactory.TryGetDefinition(itemName, out result))
+                {
+                    return true;
+                }
+
                 result = null;
                 return false;
             }
@@ -180,7 +187,7 @@ namespace NLog.Config
                 return false;
             }
 
-            result = (TBaseType)_parentFactory.CreateInstance(type);
+            result = (TBaseType)_serviceRepository.ConfigItemCreator.CreateInstance(type);
             return true;
         }
 
@@ -213,18 +220,20 @@ namespace NLog.Config
     /// </summary>
     class LayoutRendererFactory : Factory<LayoutRenderer, LayoutRendererAttribute>
     {
-        public LayoutRendererFactory(ConfigurationItemFactory parentFactory) : base(parentFactory)
-        {
-        }
-
         private Dictionary<string, FuncLayoutRenderer> _funcRenderers;
+        private readonly LayoutRendererFactory _globalDefaultFactory;
+
+        public LayoutRendererFactory(ServiceRepository serviceRepository, LayoutRendererFactory globalDefaultFactory) : base(serviceRepository, globalDefaultFactory)
+        {
+            _globalDefaultFactory = globalDefaultFactory;
+        }
 
         /// <summary>
         /// Clear all func layouts
         /// </summary>
         public void ClearFuncLayouts()
         {
-            _funcRenderers = null;
+            _funcRenderers?.Clear();
         }
 
         /// <summary>
@@ -250,21 +259,20 @@ namespace NLog.Config
         public override bool TryCreateInstance(string itemName, out LayoutRenderer result)
         {
             //first try func renderers, as they should have the possiblity to overwrite a current one.
-            if (_funcRenderers != null)
+            FuncLayoutRenderer funcResult;
+            if (_funcRenderers != null && _funcRenderers.TryGetValue(itemName, out funcResult))
             {
-                FuncLayoutRenderer funcResult;
-                var succesAsFunc = _funcRenderers.TryGetValue(itemName, out funcResult);
-                if (succesAsFunc)
-                {
-                    result = funcResult;
-                    return true;
-                }
+                result = funcResult;
+                return true;
             }
 
-            var success = base.TryCreateInstance(itemName, out result);
+            if (_globalDefaultFactory?._funcRenderers != null && _globalDefaultFactory._funcRenderers.TryGetValue(itemName, out funcResult))
+            {
+                result = funcResult;
+                return true;
+            }
 
-            return success;
+            return base.TryCreateInstance(itemName, out result);
         }
-
     }
 }

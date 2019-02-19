@@ -53,7 +53,7 @@ namespace NLog.Config
     /// </summary>
     public abstract class LoggingConfigurationParser : LoggingConfiguration
     {
-        private ConfigurationItemFactory _configurationItemFactory;
+        private readonly ServiceRepository _serviceRepository;
 
         /// <summary>
         /// Constructor
@@ -62,6 +62,7 @@ namespace NLog.Config
         protected LoggingConfigurationParser(LogFactory logFactory)
             : base(logFactory)
         {
+            _serviceRepository = logFactory.ServiceRepository;
         }
 
         /// <summary>
@@ -94,8 +95,7 @@ namespace NLog.Config
                 InternalLogger.LogLevel = LogLevel.Off; // Reduce overhead of the InternalLogger when not configured
             }
 
-            _configurationItemFactory = ConfigurationItemFactory.Default;
-            _configurationItemFactory.ParseMessageTemplates = parseMessageTemplates;
+            _serviceRepository.ParseMessageTemplates = parseMessageTemplates;
 
             var children = nlogConfig.Children.ToList();
 
@@ -407,7 +407,7 @@ namespace NLog.Config
         {
             try
             {
-                _configurationItemFactory.RegisterType(Type.GetType(type, true), itemNamePrefix);
+                _serviceRepository.ConfigurationItemFactory.RegisterType(Type.GetType(type, true), itemNamePrefix);
             }
             catch (Exception exception)
             {
@@ -433,7 +433,7 @@ namespace NLog.Config
             try
             {
                 Assembly asm = AssemblyHelpers.LoadFromPath(assemblyFile, baseDirectory);
-                _configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                _serviceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
             }
             catch (Exception exception)
             {
@@ -459,7 +459,7 @@ namespace NLog.Config
             try
             {
                 Assembly asm = AssemblyHelpers.LoadFromName(assemblyName);
-                _configurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
+                _serviceRepository.ConfigurationItemFactory.RegisterItemsFromAssembly(asm, prefix);
             }
             catch (Exception exception)
             {
@@ -531,7 +531,7 @@ namespace NLog.Config
             if (!AssertNonEmptyValue(timeSourceType, "type", timeElement.Name, string.Empty))
                 return;
 
-            TimeSource newTimeSource = _configurationItemFactory.TimeSources.CreateInstance(timeSourceType);
+            TimeSource newTimeSource = _serviceRepository.ConfigurationItemFactory.TimeSources.CreateInstance(timeSourceType);
             ConfigureObjectFromAttributes(newTimeSource, timeElement, true);
 
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
@@ -763,14 +763,14 @@ namespace NLog.Config
             if (defaultActionResult != null)
             {
                 PropertyHelper.SetPropertyFromString(rule, nameof(rule.DefaultFilterResult), defaultActionResult,
-                    _configurationItemFactory);
+                    _serviceRepository.ConfigurationItemFactory);
             }
 
             foreach (var filterElement in filtersElement.Children)
             {
                 string name = filterElement.Name;
 
-                Filter filter = _configurationItemFactory.Filters.CreateInstance(name);
+                Filter filter = _serviceRepository.ConfigurationItemFactory.Filters.CreateInstance(name);
                 ConfigureObjectFromAttributes(filter, filterElement, false);
                 rule.Filters.Add(filter);
             }
@@ -823,7 +823,7 @@ namespace NLog.Config
                     case "COMPOUND-TARGET":
                         if (AssertNonEmptyValue(targetType, "type", targetValueName, targetsElement.Name))
                         {
-                            newTarget = _configurationItemFactory.Targets.CreateInstance(targetType);
+                            newTarget = _serviceRepository.ConfigurationItemFactory.Targets.CreateInstance(targetType);
                             ParseTargetElement(newTarget, targetElement, typeNameToDefaultTargetParameters);
                         }
 
@@ -918,7 +918,7 @@ namespace NLog.Config
             {
                 string type = StripOptionalNamespacePrefix(childElement.GetRequiredValue("type", GetName(wrapper)));
 
-                Target newTarget = _configurationItemFactory.Targets.CreateInstance(type);
+                Target newTarget = _serviceRepository.ConfigurationItemFactory.Targets.CreateInstance(type);
                 if (newTarget != null)
                 {
                     ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
@@ -976,7 +976,7 @@ namespace NLog.Config
                 var attributeValue = childElement.GetRequiredValue("type", GetName(compound));
                 string type = StripOptionalNamespacePrefix(attributeValue);
 
-                Target newTarget = _configurationItemFactory.Targets.CreateInstance(type);
+                Target newTarget = _serviceRepository.ConfigurationItemFactory.Targets.CreateInstance(type);
                 if (newTarget != null)
                 {
                     if (targetName != null)
@@ -1015,7 +1015,7 @@ namespace NLog.Config
                 try
                 {
                     PropertyHelper.SetPropertyFromString(targetObject, childName, ExpandSimpleVariables(childValue),
-                        _configurationItemFactory);
+                        _serviceRepository.ConfigurationItemFactory);
                 }
                 catch (Exception ex)
                 {
@@ -1080,7 +1080,7 @@ namespace NLog.Config
             object arrayItem = TryCreateLayoutInstance(element, elementType);
             // arrayItem is not a layout
             if (arrayItem == null)
-                arrayItem = FactoryHelper.CreateInstance(elementType);
+                arrayItem = _serviceRepository.ConfigItemCreator.CreateInstance(elementType);
 
             ConfigureObjectFromAttributes(arrayItem, element, true);
             ConfigureObjectFromElement(arrayItem, element);
@@ -1115,7 +1115,7 @@ namespace NLog.Config
             if (layoutTypeName == null)
                 return null;
 
-            return _configurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
+            return _serviceRepository.ConfigurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
         }
 
         private void SetItemFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
@@ -1150,7 +1150,7 @@ namespace NLog.Config
         private Target WrapWithDefaultWrapper(Target t, ILoggingConfigurationElement defaultParameters)
         {
             string wrapperType = StripOptionalNamespacePrefix(defaultParameters.GetRequiredValue("type", "targets"));
-            Target wrapperTargetInstance = _configurationItemFactory.Targets.CreateInstance(wrapperType);
+            Target wrapperTargetInstance = _serviceRepository.ConfigurationItemFactory.Targets.CreateInstance(wrapperType);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
             if (wtb == null)
             {

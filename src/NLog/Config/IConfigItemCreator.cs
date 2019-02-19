@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,30 +31,23 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.Config
 {
     using System;
-    using System.Reflection;
 
     /// <summary>
-    /// Object construction helper.
+    /// Interface to instantiate configuration objects.
     /// </summary>
-    internal class FactoryHelper
+    /// <remarks>
+    /// Create own custom implementation to perform dependency injection or custom initialization
+    /// </remarks>
+    public interface IConfigItemCreator
     {
-        private FactoryHelper()
-        {
-        }
-
-        internal static object CreateInstance(Type t)
-        {
-            try
-            {
-                return Activator.CreateInstance(t);
-            }
-            catch (MissingMethodException exception)
-            {
-                throw new NLogConfigurationException($"Cannot access the constructor of type: {t.FullName}. Is the required permission granted?", exception);
-            }
-        }
+        /// <summary>
+        /// Constructs a new instance the configuration item (target, layout, layout renderer, etc.) given its type.
+        /// </summary>
+        /// <param name="itemType">Type of the item.</param>
+        /// <returns>Created object of the specified type.</returns>
+        object CreateInstance(Type itemType);
     }
 }

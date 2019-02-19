@@ -40,6 +40,11 @@ namespace NLog.Config
     /// </summary>
     class PropertyTypeConverter : IPropertyTypeConverter
     {
+        /// <summary>
+        /// Singleton instance of the serializer.
+        /// </summary>
+        public static PropertyTypeConverter Instance { get; } = new PropertyTypeConverter();
+
         /// <inheritdoc/>
         public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
         {
