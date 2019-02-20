@@ -92,7 +92,6 @@ namespace NLog.Targets
         /// </summary>
         public DatabaseTarget()
         {
-            Parameters = new List<DatabaseParameterInfo>();
             InstallDdlCommands = new List<DatabaseCommandInfo>();
             UninstallDdlCommands = new List<DatabaseCommandInfo>();
             DBProvider = "sqlserver";
@@ -203,6 +202,11 @@ namespace NLog.Targets
         public bool? UseTransactions { get; set; }
 
         /// <summary>
+        /// Creates a prepared (or compiled) version of the command (improves performance on batching)
+        /// </summary>
+        public bool PrepareDbCommand { get; set; }
+
+        /// <summary>
         /// Gets or sets the database host name. If the ConnectionString is not provided
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
@@ -267,7 +271,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='SQL Statement' order='14' />
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
-        public IList<DatabaseParameterInfo> Parameters { get; private set; }
+        public IList<DatabaseParameterInfo> Parameters { get; } = new List<DatabaseParameterInfo>();
 
 #if !NETSTANDARD
         internal DbProviderFactory ProviderFactory { get; set; }
@@ -284,6 +288,8 @@ namespace NLog.Targets
             set => _propertyTypeConverter = value;
         }
         private IPropertyTypeConverter _propertyTypeConverter;
+
+        SortHelpers.KeySelector<AsyncLogEventInfo, string> _buildConnectionStringDelegate;
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -533,7 +539,18 @@ namespace NLog.Targets
         {
             try
             {
-                WriteEventToDatabase(logEvent);
+                var connectionString = BuildConnectionString(logEvent);
+
+                //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
+                using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
+                {
+                    using (var dbCommand = CreateDbCommandWithParameters(connectionString, CommandType))
+                    {
+                        WriteEventToDatabase(dbCommand, logEvent, CommandText, Parameters, PrepareDbCommand);
+                    }
+
+                    transactionScope.Complete();    //not really needed as there is no transaction at all.
+                }
             }
             catch (Exception exception)
             {
@@ -580,7 +597,10 @@ namespace NLog.Targets
         /// <param name="logEvents">Logging events to be written out.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            var buckets = logEvents.BucketSort(c => BuildConnectionString(c.LogEvent));
+            if (_buildConnectionStringDelegate == null)
+                _buildConnectionStringDelegate = (l) => BuildConnectionString(l.LogEvent);
+
+            var buckets = logEvents.BucketSort(_buildConnectionStringDelegate);
 
             try
             {
@@ -588,12 +608,25 @@ namespace NLog.Targets
                 {
                     for (int i = 0; i < kvp.Value.Count; i++)
                     {
-                        AsyncLogEventInfo ev = kvp.Value[i];
-
                         try
                         {
-                            WriteEventToDatabase(ev.LogEvent);
-                            ev.Continuation(null);
+                            //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
+                            using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
+                            {
+                                using (IDbCommand dbCommand = CreateDbCommandWithParameters(kvp.Key, CommandType))
+                                {
+                                    for (; i < kvp.Value.Count; i++)
+                                    {
+                                        AsyncLogEventInfo ev = kvp.Value[i];
+                                        WriteEventToDatabase(dbCommand,ev.LogEvent, CommandText, Parameters, PrepareDbCommand);
+                                        ev.Continuation(null);
+                                        if (!PrepareDbCommand)
+                                            break;
+                                    }
+                                }
+
+                                transactionScope.Complete();    //not really needed as there is no transaction at all.
+                            }
                         }
                         catch (Exception exception)
                         {
@@ -604,9 +637,11 @@ namespace NLog.Targets
                             {
                                 throw;
                             }
+
                             InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of exception", Name);
                             CloseConnection();
-                            ev.Continuation(exception);
+
+                            kvp.Value[i].Continuation(exception);
 
                             if (exception.MustBeRethrown())
                             {
@@ -629,32 +664,46 @@ namespace NLog.Targets
         /// Write logEvent to database
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
-        private void WriteEventToDatabase(LogEventInfo logEvent)
+        private void WriteEventToDatabase(IDbCommand command, LogEventInfo logEvent, Layout commandLayout, IList<DatabaseParameterInfo> databaseParameterInfos, bool prepareDbCommand)
         {
-            //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
-            using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
+            var commandText = RenderLogEvent(commandLayout, logEvent);
+
+            InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, command.CommandType, commandText);
+
+            if (databaseParameterInfos.Count > 0)
             {
-                EnsureConnectionOpen(BuildConnectionString(logEvent));
-
-                using (IDbCommand command = _activeConnection.CreateCommand())
+                bool createParameters = !prepareDbCommand || command.Parameters.Count == 0;
+                for (int i = 0; i < databaseParameterInfos.Count; ++i)
                 {
-                    command.CommandText = RenderLogEvent(CommandText, logEvent);
-                    if (command.CommandType != CommandType)
-                    {
-                        command.CommandType = CommandType;  // Some DbProviders will throw when trying to modify CommandType
-                    }
-
-                    InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, command.CommandType, command.CommandText);
-
-                    AddParametersToCommand(command, Parameters, logEvent);
-
-                    int result = command.ExecuteNonQuery();
-                    InternalLogger.Trace("DatabaseTarget(Name={0}): Finished execution, result = {1}", Name, result);
+                    var parameterInfo = databaseParameterInfos[i];
+                    var dbParameter = createParameters ? CreateDatabaseParameter(command, parameterInfo) : (IDbDataParameter)command.Parameters[i];
+                    var dbParameterValue = GetParameterValue(logEvent, parameterInfo);
+                    dbParameter.Value = dbParameterValue;
+                    if (createParameters)
+                        command.Parameters.Add(dbParameter);
+                    InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, dbParameter.Value, dbParameter.DbType);
                 }
-
-                //not really needed as there is no transaction at all.
-                transactionScope.Complete();
             }
+
+            if (!prepareDbCommand || command.CommandText != commandText)
+            {
+                command.CommandText = commandText;
+                if (prepareDbCommand)
+                {
+                    command.Prepare();
+                }
+            }
+
+            int result = command.ExecuteNonQuery();
+            InternalLogger.Trace("DatabaseTarget(Name={0}): Finished execution, result = {1}", Name, result);
+        }
+
+        private IDbCommand CreateDbCommandWithParameters(string connectionString, CommandType commandType)
+        {
+            EnsureConnectionOpen(connectionString);
+            var command = _activeConnection.CreateCommand();
+            command.CommandType = commandType;
+            return command;
         }
 
         /// <summary>
@@ -765,17 +814,11 @@ namespace NLog.Targets
 
                     EnsureConnectionOpen(cs);
 
-                    using (IDbCommand command = _activeConnection.CreateCommand())
+                    using (IDbCommand dbCommand = CreateDbCommandWithParameters(cs, commandInfo.CommandType))
                     {
-                        command.CommandType = commandInfo.CommandType;
-                        command.CommandText = RenderLogEvent(commandInfo.Text, logEvent);
-
-                        AddParametersToCommand(command, commandInfo.Parameters, logEvent);
-
                         try
                         {
-                            installationContext.Trace("DatabaseTarget(Name={0}) - Executing {1} '{2}'", Name, command.CommandType, command.CommandText);
-                            command.ExecuteNonQuery();
+                            WriteEventToDatabase(dbCommand, logEvent, commandInfo.Text, commandInfo.Parameters, false);
                         }
                         catch (Exception exception)
                         {
@@ -806,35 +849,11 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Adds the given list of DatabaseParameterInfo to the given IDbCommand after transforming them into IDbDataParameters.
-        /// </summary>
-        /// <param name="command">The IDbCommand to add parameters to</param>
-        /// <param name="databaseParameterInfos">The list of DatabaseParameterInfo to transform into IDbDataParameters and to add to the IDbCommand</param>
-        /// <param name="logEvent">The log event to base the parameter's layout rendering on.</param>
-        private void AddParametersToCommand(IDbCommand command, IList<DatabaseParameterInfo> databaseParameterInfos, LogEventInfo logEvent)
-        {
-            for (int i = 0; i < databaseParameterInfos.Count; ++i)
-            {
-                DatabaseParameterInfo parameterInfo = databaseParameterInfos[i];
-
-                var dbParameter = CreateDatabaseParameter(command, parameterInfo, logEvent);
-
-                var dbParameterValue = GetParameterValue(logEvent, parameterInfo);
-
-                dbParameter.Value = dbParameterValue;
-
-                InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, dbParameter.Value, dbParameter.DbType);
-                command.Parameters.Add(dbParameter);
-            }
-        }
-
-        /// <summary>
         /// Create database parameter
         /// </summary>
         /// <param name="command">Current command.</param>
         /// <param name="parameterInfo">Parameter configuration info.</param>
-        /// <param name="logEvent">Current logevent.</param>
-        protected virtual IDbDataParameter CreateDatabaseParameter(IDbCommand command, DatabaseParameterInfo parameterInfo, LogEventInfo logEvent)
+        protected virtual IDbDataParameter CreateDatabaseParameter(IDbCommand command, DatabaseParameterInfo parameterInfo)
         {
             IDbDataParameter dbParameter = command.CreateParameter();
             dbParameter.Direction = ParameterDirection.Input;
