@@ -379,10 +379,7 @@ namespace NLog.Config
         {
             var nlogAssembly = typeof(ILogger).GetAssembly();
             var factory = new ConfigurationItemFactory(nlogAssembly);
-
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             factory.RegisterExtendedItems();
-#endif
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
             try
@@ -556,25 +553,27 @@ namespace NLog.Config
         }
 #endif
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
         /// <summary>
         /// Registers items in NLog.Extended.dll using late-bound types, so that we don't need a reference to NLog.Extended.dll.
         /// </summary>
         private void RegisterExtendedItems()
         {
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
             string suffix = typeof(ILogger).AssemblyQualifiedName;
             string myAssemblyName = "NLog,";
-            string extendedAssemblyName = "NLog.Extended,";
             var p = suffix?.IndexOf(myAssemblyName, StringComparison.OrdinalIgnoreCase);
             if (p >= 0)
             {
-                suffix = ", " + extendedAssemblyName + suffix.Substring(p.Value + myAssemblyName.Length);
-
                 // register types
+                string extendedAssemblySuffix = ", NLog.Extended," + suffix.Substring(p.Value + myAssemblyName.Length);
                 string targetsNamespace = typeof(DebugTarget).Namespace;
-                _targets.RegisterNamedType("MSMQ", targetsNamespace + ".MessageQueueTarget" + suffix);
+                _targets.RegisterNamedType("MSMQ", targetsNamespace + ".MessageQueueTarget" + extendedAssemblySuffix);
             }
-        }
 #endif
+
+#if NET4_5 || NETSTANDARD
+            _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
+#endif
+        }
     }
 }
