@@ -121,13 +121,13 @@ namespace NLog.Targets
         /// The parameter name should be a provider invariant name as registered in machine.config or app.config. Common values are:
         /// </para>
         /// <ul>
-        /// <li><c>System.Data.SqlClient</c> - <see href="http://msdn.microsoft.com/en-us/library/system.data.sqlclient.aspx">SQL Sever Client</see></li>
-        /// <li><c>System.Data.SqlServerCe.3.5</c> - <see href="http://www.microsoft.com/sqlserver/2005/en/us/compact.aspx">SQL Sever Compact 3.5</see></li>
-        /// <li><c>System.Data.OracleClient</c> - <see href="http://msdn.microsoft.com/en-us/library/system.data.oracleclient.aspx">Oracle Client from Microsoft</see> (deprecated in .NET Framework 4)</li>
-        /// <li><c>Oracle.DataAccess.Client</c> - <see href="http://www.oracle.com/technology/tech/windows/odpnet/index.html">ODP.NET provider from Oracle</see></li>
+        /// <li><c>System.Data.SqlClient</c> - <see href="https://msdn.microsoft.com/en-us/library/system.data.sqlclient.aspx">SQL Sever Client</see></li>
+        /// <li><c>System.Data.SqlServerCe.3.5</c> - <see href="https://www.microsoft.com/sqlserver/2005/en/us/compact.aspx">SQL Sever Compact 3.5</see></li>
+        /// <li><c>System.Data.OracleClient</c> - <see href="https://msdn.microsoft.com/en-us/library/system.data.oracleclient.aspx">Oracle Client from Microsoft</see> (deprecated in .NET Framework 4)</li>
+        /// <li><c>Oracle.DataAccess.Client</c> - <see href="https://www.oracle.com/technology/tech/windows/odpnet/index.html">ODP.NET provider from Oracle</see></li>
         /// <li><c>System.Data.SQLite</c> - <see href="http://sqlite.phxsoftware.com/">System.Data.SQLite driver for SQLite</see></li>
-        /// <li><c>Npgsql</c> - <see href="http://npgsql.projects.postgresql.org/">Npgsql driver for PostgreSQL</see></li>
-        /// <li><c>MySql.Data.MySqlClient</c> - <see href="http://www.mysql.com/downloads/connector/net/">MySQL Connector/Net</see></li>
+        /// <li><c>Npgsql</c> - <see href="https://www.npgsql.org/">Npgsql driver for PostgreSQL</see></li>
+        /// <li><c>MySql.Data.MySqlClient</c> - <see href="https://www.mysql.com/downloads/connector/net/">MySQL Connector/Net</see></li>
         /// </ul>
         /// <para>(Note that provider invariant names are not supported on .NET Compact Framework).</para>
         /// <para>
@@ -147,7 +147,7 @@ namespace NLog.Targets
 
 #if !NETSTANDARD
         /// <summary>
-        /// Gets or sets the name of the connection string (as specified in <see href="http://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
+        /// Gets or sets the name of the connection string (as specified in <see href="https://msdn.microsoft.com/en-us/library/bf7sd233.aspx">&lt;connectionStrings&gt; configuration section</see>.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public string ConnectionStringName { get; set; }

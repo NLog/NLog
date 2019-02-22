@@ -90,7 +90,7 @@ namespace NLog.Internal
         /// <param name="type"></param>
         /// <returns></returns>
         /// <remarks>This is a work around, as Type doesn't have this property. 
-        /// From: http://stackoverflow.com/questions/1175888/determine-if-a-type-is-static
+        /// From: https://stackoverflow.com/questions/1175888/determine-if-a-type-is-static
         /// </remarks>
         public static bool IsStaticClass(this Type type)
         {

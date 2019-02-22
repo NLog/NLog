@@ -94,7 +94,7 @@ class C1
             options.GenerateExecutable = true;
             options.IncludeDebugInformation = true;
             // To allow debugging the generated Runner.exe we need to keep files.
-            // See http://stackoverflow.com/questions/875723/how-to-debug-break-in-codedom-compiled-code
+            // See https://stackoverflow.com/questions/875723/how-to-debug-break-in-codedom-compiled-code
             options.TempFiles = new TempFileCollection(Environment.GetEnvironmentVariable("TEMP"), true);
             var results = provider.CompileAssemblyFromSource(options, sourceCode);
             Assert.False(results.Errors.HasWarnings);

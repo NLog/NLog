@@ -1559,7 +1559,7 @@ namespace NLog.Targets
         ///  Sunday 2017-03-05. If dayOfWeek is Thursday, this will return *next* Thursday 2017-03-09.</remarks>
         public static DateTime CalculateNextWeekday(DateTime previousLogEventTimestamp, DayOfWeek dayOfWeek)
         {
-            // Shamelessly taken from http://stackoverflow.com/a/7611480/1354930
+            // Shamelessly taken from https://stackoverflow.com/a/7611480/1354930
             int start = (int)previousLogEventTimestamp.DayOfWeek;
             int target = (int)dayOfWeek;
             if (target <= start)
@@ -1760,7 +1760,7 @@ namespace NLog.Targets
                     {
                         // ignore the exception, another process was killed without properly releasing the mutex
                         // the mutex has been acquired, so proceed to writing
-                        // See: http://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
+                        // See: https://msdn.microsoft.com/en-us/library/system.threading.abandonedmutexexception.aspx
                     }
 #endif
 
