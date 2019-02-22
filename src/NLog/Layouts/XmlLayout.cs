@@ -160,7 +160,7 @@ namespace NLog.Layouts
 #endif
 
         /// <summary>
-        /// XML tag name to use when rendering properties
+        /// XML element name to use when rendering properties
         /// </summary>
         /// <remarks>
         /// Support string-format where {0} means property-key-name
@@ -208,7 +208,7 @@ namespace NLog.Layouts
         public string PropertiesElementValueAttribute { get; set; }
 
         /// <summary>
-        /// XML elment name to use for rendering IList-collections items
+        /// XML element name to use for rendering IList-collections items
         /// </summary>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         public string PropertiesCollectionItemName { get; set; } = DefaultCollectionItemName;
