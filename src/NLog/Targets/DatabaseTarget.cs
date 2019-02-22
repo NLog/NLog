@@ -677,7 +677,7 @@ namespace NLog.Targets
                 {
                     var parameterInfo = databaseParameterInfos[i];
                     var dbParameter = createParameters ? CreateDatabaseParameter(command, parameterInfo) : (IDbDataParameter)command.Parameters[i];
-                    var dbParameterValue = GetParameterValue(logEvent, parameterInfo);
+                    var dbParameterValue = CreateDatabaseParameterValue(logEvent, parameterInfo);
                     dbParameter.Value = dbParameterValue;
                     if (createParameters)
                         command.Parameters.Add(dbParameter);
@@ -903,7 +903,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvent">Current logevent.</param>
         /// <param name="parameterInfo">Parameter configuration info.</param>
-        protected internal virtual object GetParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
+        protected internal virtual object CreateDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
             Type dbParameterType = parameterInfo.ParameterType;
             if (string.IsNullOrEmpty(parameterInfo.Format) && dbParameterType == typeof(string) && !(parameterInfo.UseRawValue ?? false))
@@ -915,14 +915,18 @@ namespace NLog.Targets
 
             if ((parameterInfo.UseRawValue ?? true) && TryGetConvertedRawValue(logEvent, parameterInfo, dbParameterType, dbParameterCulture, out var value))
             {
-                return value;
+                return value ?? CreateDefaultValue(dbParameterType);
             }
 
             try
             {
                 InternalLogger.Trace("  DatabaseTarget: Attempt to convert layout value for '{0}' into {1}", parameterInfo.Name, dbParameterType?.Name);
-                string layoutValue = RenderLogEvent(parameterInfo.Layout, logEvent);
-                return PropertyTypeConverter.Convert(layoutValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
+                string parameterValue = RenderLogEvent(parameterInfo.Layout, logEvent);
+                if (string.IsNullOrEmpty(parameterValue))
+                {
+                    return CreateDefaultValue(dbParameterType);
+                }
+                return PropertyTypeConverter.Convert(parameterValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
             }
             catch (Exception ex)
             {
@@ -953,11 +957,9 @@ namespace NLog.Targets
                         return true;
                     }
 
-                    {
-                        value = PropertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format,
-                                dbParameterCulture) ?? DBNull.Value;
-                        return true;
-                    }
+                    value = PropertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format,
+                            dbParameterCulture);
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -983,7 +985,12 @@ namespace NLog.Targets
         /// <returns></returns>
         private static object CreateDefaultValue(Type dbParameterType)
         {
-            return (dbParameterType?.IsAbstract() == false ? Activator.CreateInstance(dbParameterType) : null) ?? DBNull.Value;
+            if (dbParameterType == typeof(string))
+                return string.Empty;
+            else if (dbParameterType.IsValueType())
+                return Activator.CreateInstance(dbParameterType);
+            else
+                return DBNull.Value;
         }
 
         private IFormatProvider GetDbParameterCulture(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
