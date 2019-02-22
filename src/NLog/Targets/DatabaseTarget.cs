@@ -87,6 +87,8 @@ namespace NLog.Targets
         private IDbConnection _activeConnection;
         private string _activeConnectionString;
 
+        private readonly Dictionary<KeyValuePair<string, string>, IDbCommand> _preparedDbCommands = new Dictionary<KeyValuePair<string, string>, IDbCommand>();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
         /// </summary>
@@ -202,8 +204,12 @@ namespace NLog.Targets
         public bool? UseTransactions { get; set; }
 
         /// <summary>
-        /// Creates a prepared (or compiled) version of the command (improves performance on batching)
+        /// Creates a prepared (or compiled) version of the CommandText as a temporary stored procedure (can improves performance on batching)
         /// </summary>
+        /// <remarks>
+        /// Before you call Prepare, specify the DbType of each parameter in the statement to be prepared.
+        /// For each parameter that has a variable length data type, you must set the Size property to the maximum size needed
+        /// </remarks>
         public bool PrepareDbCommand { get; set; }
 
         /// <summary>
@@ -544,10 +550,7 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    using (var dbCommand = CreateDbCommandWithParameters(connectionString, CommandType))
-                    {
-                        WriteEventToDatabase(dbCommand, logEvent, CommandText, Parameters, PrepareDbCommand);
-                    }
+                    WriteEventToDatabase(logEvent, connectionString, CommandType, CommandText, Parameters, PrepareDbCommand);
 
                     transactionScope.Complete();    //not really needed as there is no transaction at all.
                 }
@@ -613,16 +616,11 @@ namespace NLog.Targets
                             //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                             using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                             {
-                                using (IDbCommand dbCommand = CreateDbCommandWithParameters(kvp.Key, CommandType))
+                                for (; i < kvp.Value.Count; i++)
                                 {
-                                    for (; i < kvp.Value.Count; i++)
-                                    {
-                                        AsyncLogEventInfo ev = kvp.Value[i];
-                                        WriteEventToDatabase(dbCommand,ev.LogEvent, CommandText, Parameters, PrepareDbCommand);
-                                        ev.Continuation(null);
-                                        if (!PrepareDbCommand)
-                                            break;
-                                    }
+                                    AsyncLogEventInfo ev = kvp.Value[i];
+                                    WriteEventToDatabase(ev.LogEvent, kvp.Key, CommandType, CommandText, Parameters, PrepareDbCommand);
+                                    ev.Continuation(null);
                                 }
 
                                 transactionScope.Complete();    //not really needed as there is no transaction at all.
@@ -660,50 +658,82 @@ namespace NLog.Targets
                 }
             }
         }
+
         /// <summary>
         /// Write logEvent to database
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
-        private void WriteEventToDatabase(IDbCommand command, LogEventInfo logEvent, Layout commandLayout, IList<DatabaseParameterInfo> databaseParameterInfos, bool prepareDbCommand)
+        private void WriteEventToDatabase(LogEventInfo logEvent, string connectionString, CommandType commandType, Layout commandLayout, IList<DatabaseParameterInfo> databaseParameterInfos, bool prepareDbCommand)
         {
             var commandText = RenderLogEvent(commandLayout, logEvent);
 
-            InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, command.CommandType, commandText);
+            InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, commandType, commandText);
 
-            if (databaseParameterInfos.Count > 0)
+            IDbCommand dbCommand = null;
+
+            try
             {
-                bool createParameters = !prepareDbCommand || command.Parameters.Count == 0;
-                for (int i = 0; i < databaseParameterInfos.Count; ++i)
-                {
-                    var parameterInfo = databaseParameterInfos[i];
-                    var dbParameter = createParameters ? CreateDatabaseParameter(command, parameterInfo) : (IDbDataParameter)command.Parameters[i];
-                    var dbParameterValue = CreateDatabaseParameterValue(logEvent, parameterInfo);
-                    dbParameter.Value = dbParameterValue;
-                    if (createParameters)
-                        command.Parameters.Add(dbParameter);
-                    InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, dbParameter.Value, dbParameter.DbType);
-                }
+                dbCommand = CreateDbCommandWithParameters(logEvent, connectionString, CommandType, commandText, databaseParameterInfos, prepareDbCommand && KeepConnection);
+                int result = dbCommand.ExecuteNonQuery();
+                InternalLogger.Trace("DatabaseTarget(Name={0}): Finished execution, result = {1}", Name, result);
             }
-
-            if (!prepareDbCommand || command.CommandText != commandText)
+            finally
             {
-                command.CommandText = commandText;
-                if (prepareDbCommand)
-                {
-                    command.Prepare();
-                }
+                if (!prepareDbCommand)
+                    dbCommand?.Dispose();
             }
-
-            int result = command.ExecuteNonQuery();
-            InternalLogger.Trace("DatabaseTarget(Name={0}): Finished execution, result = {1}", Name, result);
         }
 
-        private IDbCommand CreateDbCommandWithParameters(string connectionString, CommandType commandType)
+        private IDbCommand CreateDbCommandWithParameters(LogEventInfo logEvent, string connectionString, CommandType commandType, string dbCommandText, IList<DatabaseParameterInfo> databaseParameterInfos, bool prepareDbCommand)
         {
             EnsureConnectionOpen(connectionString);
-            var command = _activeConnection.CreateCommand();
-            command.CommandType = commandType;
-            return command;
+
+            if (prepareDbCommand)
+            {
+                if (_preparedDbCommands.TryGetValue(new KeyValuePair<string, string>(connectionString, dbCommandText), out var dbCommandCached))
+                {
+                    for (int i = 0; i < databaseParameterInfos.Count; ++i)
+                    {
+                        var parameterInfo = databaseParameterInfos[i];
+                        var dbParameter = (IDbDataParameter)dbCommandCached.Parameters[i];
+                        var dbParameterValue = CreateDatabaseParameterValue(logEvent, parameterInfo);
+                        dbParameter.Value = dbParameterValue;
+                        InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, dbParameter.Value, dbParameter.DbType);
+                    }
+
+                    return dbCommandCached;
+                }
+            }
+
+            var dbCommand = _activeConnection.CreateCommand();
+            dbCommand.CommandType = commandType;
+            dbCommand.CommandText = dbCommandText;
+
+            for (int i = 0; i < databaseParameterInfos.Count; ++i)
+            {
+                var parameterInfo = databaseParameterInfos[i];
+                var dbParameter = CreateDatabaseParameter(dbCommand, parameterInfo);
+                var dbParameterValue = CreateDatabaseParameterValue(logEvent, parameterInfo);
+                dbParameter.Value = dbParameterValue;
+                dbCommand.Parameters.Add(dbParameter);
+                InternalLogger.Trace("  DatabaseTarget: Parameter: '{0}' = '{1}' ({2})", dbParameter.ParameterName, dbParameter.Value, dbParameter.DbType);
+            }
+
+            if (prepareDbCommand)
+            {
+                try
+                {
+                    dbCommand.Prepare();
+                    _preparedDbCommands[new KeyValuePair<string, string>(connectionString, dbCommandText)] = dbCommand;
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): DbCommand Prepare Failed {1}: {2}", Name, dbCommand.CommandType, dbCommand.CommandText);
+                    throw;
+                }
+            }
+
+            return dbCommand;
         }
 
         /// <summary>
@@ -769,12 +799,14 @@ namespace NLog.Targets
 
         private void CloseConnection()
         {
+            _preparedDbCommands.Clear();
+            _activeConnectionString = null;
+
             if (_activeConnection != null)
             {
                 _activeConnection.Close();
                 _activeConnection.Dispose();
                 _activeConnection = null;
-                _activeConnectionString = null;
             }
         }
 
@@ -814,28 +846,25 @@ namespace NLog.Targets
 
                     EnsureConnectionOpen(cs);
 
-                    using (IDbCommand dbCommand = CreateDbCommandWithParameters(cs, commandInfo.CommandType))
+                    try
                     {
-                        try
+                        WriteEventToDatabase(logEvent, cs, commandInfo.CommandType, commandInfo.Text, commandInfo.Parameters, false);
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrownImmediately())
                         {
-                            WriteEventToDatabase(dbCommand, logEvent, commandInfo.Text, commandInfo.Parameters, false);
+                            throw;
                         }
-                        catch (Exception exception)
-                        {
-                            if (exception.MustBeRethrownImmediately())
-                            {
-                                throw;
-                            }
 
-                            if (commandInfo.IgnoreFailures || installationContext.IgnoreFailures)
-                            {
-                                installationContext.Warning(exception.Message);
-                            }
-                            else
-                            {
-                                installationContext.Error(exception.Message);
-                                throw;
-                            }
+                        if (commandInfo.IgnoreFailures || installationContext.IgnoreFailures)
+                        {
+                            installationContext.Warning(exception.Message);
+                        }
+                        else
+                        {
+                            installationContext.Error(exception.Message);
+                            throw;
                         }
                     }
                 }
