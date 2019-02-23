@@ -48,7 +48,7 @@ namespace NLog.Layouts
     [ThreadSafe]
     public class XmlLayout : Layout
     {
-        private const string DefaultTopElementName = "logevent";
+        private const string DefaultTopNodeName = "logevent";
         private const string DefaultPropertyName = "property";
         private const string DefaultPropertyKeyAttribute = "key";
         private const string DefaultCollectionItemName = "item";
@@ -57,46 +57,46 @@ namespace NLog.Layouts
         /// Initializes a new instance of the <see cref="XmlLayout"/> class.
         /// </summary>
         public XmlLayout()
-            : this(DefaultTopElementName, null)
+            : this(DefaultTopNodeName, null)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLayout"/> class.
         /// </summary>
-        /// <param name="elementName">The name of the top XML node</param>
-        /// <param name="elementValue">The value of the top XML node</param>
-        public XmlLayout(string elementName, Layout elementValue)
+        /// <param name="nodeName">The name of the top XML node</param>
+        /// <param name="nodeLayout">The value of the top XML node</param>
+        public XmlLayout(string nodeName, Layout nodeLayout)
         {
-            ElementName = elementName;
-            ElementValue = elementValue;
+            NodeName = nodeName;
+            NodeLayout = nodeLayout;
             Attributes = new List<XmlAttribute>();
-            Elements = new List<XmlLayout>();
+            ChildNodes = new List<XmlLayout>();
             ExcludeProperties = new HashSet<string>();
         }
 
         /// <summary>
-        /// Name of the top level XML element
+        /// Name of the top level XML node
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [DefaultValue(DefaultTopElementName)]
-        public string ElementName { get => _elementName; set => _elementName = XmlHelper.XmlConvertToElementName(value?.Trim(), true); }
-        private string _elementName;
+        [DefaultValue(DefaultTopNodeName)]
+        public string NodeName { get => _nodeName; set => _nodeName = XmlHelper.XmlConvertToElementName(value?.Trim(), true); }
+        private string _nodeName;
 
         /// <summary>
-        /// Value inside the top level XML element
+        /// Value inside the top level XML node
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        public Layout ElementValue { get => _elementValueWrapper.Inner; set => _elementValueWrapper.Inner = value; }
-        private readonly LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper _elementValueWrapper = new LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper();
+        public Layout NodeLayout { get => _nodeValueWrapper.Inner; set => _nodeValueWrapper.Inner = value; }
+        private readonly LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper _nodeValueWrapper = new LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper();
 
         /// <summary>
-        /// Xml Encode the value for the top level XML element
+        /// Xml Encode the value for the top level XML node
         /// </summary>
         /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
         /// <docgen category='XML Options' order='10' />
         [DefaultValue(true)]
-        public bool ElementEncode { get => _elementValueWrapper.XmlEncode; set => _elementValueWrapper.XmlEncode = value; }
+        public bool NodeValueEncode { get => _nodeValueWrapper.XmlEncode; set => _nodeValueWrapper.XmlEncode = value; }
 
         /// <summary>
         /// Auto indent and create new lines
@@ -106,18 +106,18 @@ namespace NLog.Layouts
         public bool IndentXml { get; set; }
 
         /// <summary>
-        /// Gets the array of xml 'elements' configurations.
+        /// Gets the array of xml 'ChildNodes' configurations.
         /// </summary>
         /// <docgen category='XML Options' order='10' />
-        [ArrayParameter(typeof(XmlLayout), "element")]
-        public IList<XmlLayout> Elements { get; private set; }
+        [ArrayParameter(typeof(XmlLayout), "node")]
+        public IList<XmlLayout> ChildNodes { get; }
 
         /// <summary>
-        /// Gets the array of 'attributes' configurations for the <see cref="ElementName"/>
+        /// Gets the array of 'attributes' configurations for the <see cref="NodeName"/>
         /// </summary>
         /// <docgen category='XML Options' order='10' />
         [ArrayParameter(typeof(XmlAttribute), "attribute")]
-        public IList<XmlAttribute> Attributes { get; private set; }
+        public IList<XmlAttribute> Attributes { get; }
 
         /// <summary>
         /// Gets or sets whether a ElementValue with empty value should be included in the output
@@ -165,22 +165,22 @@ namespace NLog.Layouts
         /// <remarks>
         /// Support string-format where {0} means property-key-name
         /// 
-        /// Skips closing element tag when having configured <see cref="PropertiesElementValueAttribute"/>
+        /// Skips closing element tag when having configured <see cref="PropertiesNodeValueAttribute"/>
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        public string PropertiesElementName
+        public string PropertiesNodeName
         {
-            get => _propertiesElementName;
+            get => _propertiesNodeName;
             set
             {
-                _propertiesElementName = value;
-                _propertiesElementNameHasFormat = value?.IndexOf('{') >= 0;
-                if (!_propertiesElementNameHasFormat)
-                    _propertiesElementName = XmlHelper.XmlConvertToElementName(value?.Trim(), true);
+                _propertiesNodeName = value;
+                _propertiesNodeNameHasFormat = value?.IndexOf('{') >= 0;
+                if (!_propertiesNodeNameHasFormat)
+                    _propertiesNodeName = XmlHelper.XmlConvertToElementName(value?.Trim(), true);
             }
         }
-        private string _propertiesElementName = DefaultPropertyName;
-        private bool _propertiesElementNameHasFormat;
+        private string _propertiesNodeName = DefaultPropertyName;
+        private bool _propertiesNodeNameHasFormat;
 
         /// <summary>
         /// XML attribute name to use when rendering property-key
@@ -191,7 +191,7 @@ namespace NLog.Layouts
         /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        public string PropertiesElementKeyAttribute { get; set; } = DefaultPropertyKeyAttribute;
+        public string PropertiesNodeKeyAttribute { get; set; } = DefaultPropertyKeyAttribute;
 
         /// <summary>
         /// XML attribute name to use when rendering property-value
@@ -205,7 +205,7 @@ namespace NLog.Layouts
         /// Will replace newlines in attribute-value with &#13;&#10;
         /// </remarks>
         /// <docgen category='LogEvent Properties XML Options' order='10' />
-        public string PropertiesElementValueAttribute { get; set; }
+        public string PropertiesNodeValueAttribute { get; set; }
 
         /// <summary>
         /// XML element name to use for rendering IList-collections items
@@ -254,11 +254,11 @@ namespace NLog.Layouts
                 {
                     if (string.IsNullOrEmpty(attribute.Name))
                     {
-                        Common.InternalLogger.Warn("XmlLayout(ElementName={0}): Contains attribute with missing name (Ignored)");
+                        Common.InternalLogger.Warn("XmlLayout(NodeName={0}): Contains attribute with missing name (Ignored)");
                     }
                     else if (attributeValidator.Contains(attribute.Name))
                     {
-                        Common.InternalLogger.Warn("XmlLayout(ElementName={0}): Contains duplicate attribute name: {1} (Invalid xml)", ElementName, attribute.Name);
+                        Common.InternalLogger.Warn("XmlLayout(NodeName={0}): Contains duplicate attribute name: {1} (Invalid xml)", NodeName, attribute.Name);
                     }
                     else
                     {
@@ -282,9 +282,9 @@ namespace NLog.Layouts
         {
             int orgLength = target.Length;
             RenderXmlFormattedMessage(logEvent, target);
-            if (target.Length == orgLength && IncludeEmptyValue && !string.IsNullOrEmpty(ElementName))
+            if (target.Length == orgLength && IncludeEmptyValue && !string.IsNullOrEmpty(NodeName))
             {
-                RenderSelfClosingElement(target, ElementName);
+                RenderSelfClosingElement(target, NodeName);
             }
         }
 
@@ -304,7 +304,7 @@ namespace NLog.Layouts
             int orgLength = sb.Length;
 
             // Attributes without element-names should be added to the top XML element
-            if (!string.IsNullOrEmpty(ElementName))
+            if (!string.IsNullOrEmpty(NodeName))
             {
                 for (int i = 0; i < Attributes.Count; i++)
                 {
@@ -319,8 +319,8 @@ namespace NLog.Layouts
                 if (sb.Length != orgLength)
                 {
                     bool hasElements =
-                        ElementValue != null ||
-                        Elements.Count > 0 ||
+                        NodeLayout != null ||
+                        ChildNodes.Count > 0 ||
                         IncludeMdc ||
 #if !SILVERLIGHT
                         IncludeMdlc ||
@@ -337,15 +337,15 @@ namespace NLog.Layouts
                     }
                 }
 
-                if (ElementValue != null)
+                if (NodeLayout != null)
                 {
                     int beforeElementLength = sb.Length;
                     if (sb.Length == orgLength)
                     {
-                        RenderStartElement(sb, ElementName);
+                        RenderStartElement(sb, NodeName);
                     }
                     int beforeValueLength = sb.Length;
-                    ElementValue.RenderAppendBuilder(logEvent, sb);
+                    NodeLayout.RenderAppendBuilder(logEvent, sb);
                     if (beforeValueLength == sb.Length && !IncludeEmptyValue)
                     {
                         sb.Length = beforeElementLength;
@@ -358,9 +358,9 @@ namespace NLog.Layouts
 
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < Elements.Count; i++)
+            for (int i = 0; i < ChildNodes.Count; i++)
             {
-                var element = Elements[i];
+                var element = ChildNodes[i];
                 int beforeAttributeLength = sb.Length;
                 if (!RenderAppendXmlElementValue(element, logEvent, sb, sb.Length == orgLength))
                 {
@@ -370,9 +370,9 @@ namespace NLog.Layouts
 
             AppendLogEventXmlProperties(logEvent, sb, orgLength);
 
-            if (sb.Length > orgLength && !string.IsNullOrEmpty(ElementName))
+            if (sb.Length > orgLength && !string.IsNullOrEmpty(NodeName))
             {
-                EndXmlDocument(sb, ElementName);
+                EndXmlDocument(sb, NodeName);
             }
         }
 
@@ -432,14 +432,14 @@ namespace NLog.Layouts
             }
         }
 
-        private bool AppendXmlPropertyObjectValue(string propName, object propertyValue, TypeCode objTypeCode, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName = false)
+        private bool AppendXmlPropertyObjectValue(string propName, object propertyValue, TypeCode objTypeCode, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesNodeName = false)
         {
             if (propertyValue == null)
                 objTypeCode = TypeCode.Empty;
 
             if (objTypeCode != TypeCode.Object)
             {
-                AppendXmlPropertyValue(propName, propertyValue, objTypeCode, sb, orgLength, false, ignorePropertiesElementName);
+                AppendXmlPropertyValue(propName, propertyValue, objTypeCode, sb, orgLength, false, ignorePropertiesNodeName);
             }
             else
             {
@@ -464,7 +464,7 @@ namespace NLog.Layouts
                 {
                     using (StartCollectionScope(ref objectsInPath, dict))
                     {
-                        AppendXmlDictionaryObject(propName, dict, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesElementName);
+                        AppendXmlDictionaryObject(propName, dict, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesNodeName);
                     }
                 }
                 else if (propertyValue is IDictionary<string, object> expando)
@@ -472,14 +472,14 @@ namespace NLog.Layouts
                     using (StartCollectionScope(ref objectsInPath, expando))
                     {
                         var propertyValues = new ObjectReflectionCache.ObjectPropertyList(expando);
-                        AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesElementName);
+                        AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesNodeName);
                     }
                 }
                 else if (propertyValue is System.Collections.IEnumerable collection)
                 {
                     using (StartCollectionScope(ref objectsInPath, collection))
                     {
-                        AppendXmlCollectionObject(propName, collection, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesElementName);
+                        AppendXmlCollectionObject(propName, collection, sb, orgLength, objectsInPath, nextDepth, ignorePropertiesNodeName);
                     }
                 }
                 else
@@ -487,7 +487,7 @@ namespace NLog.Layouts
                     using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(propertyValue, ref objectsInPath, false, _referenceEqualsComparer))
                     {
                         var propertyValues = _objectReflectionCache.LookupObjectProperties(propertyValue);
-                        AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesElementName);
+                        AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesNodeName);
                     }
                 }
             }
@@ -500,7 +500,7 @@ namespace NLog.Layouts
             return new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, true, _referenceEqualsComparer);
         }
 
-        private void AppendXmlCollectionObject(string propName, System.Collections.IEnumerable collection, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName)
+        private void AppendXmlCollectionObject(string propName, System.Collections.IEnumerable collection, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesNodeName)
         {
             string propNameElement = AppendXmlPropertyValue(propName, null, TypeCode.Empty, sb, orgLength, true);
             if (!string.IsNullOrEmpty(propNameElement))
@@ -516,13 +516,13 @@ namespace NLog.Layouts
                         sb.Length = beforeValueLength;
                     }
                 }
-                AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
+                AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesNodeName);
             }
         }
 
-        private void AppendXmlDictionaryObject(string propName, System.Collections.IDictionary dictionary, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName)
+        private void AppendXmlDictionaryObject(string propName, System.Collections.IDictionary dictionary, StringBuilder sb, int orgLength, SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesNodeName)
         {
-            string propNameElement = AppendXmlPropertyValue(propName, null, TypeCode.Empty, sb, orgLength, true, ignorePropertiesElementName);
+            string propNameElement = AppendXmlPropertyValue(propName, null, TypeCode.Empty, sb, orgLength, true, ignorePropertiesNodeName);
             if (!string.IsNullOrEmpty(propNameElement))
             {
                 foreach (var item in new DictionaryEntryEnumerable(dictionary))
@@ -536,19 +536,19 @@ namespace NLog.Layouts
                         sb.Length = beforeValueLength;
                     }
                 }
-                AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
+                AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesNodeName);
             }
         }
 
-        private void AppendXmlObjectPropertyValues(string propName, ref ObjectReflectionCache.ObjectPropertyList propertyValues, StringBuilder sb, int orgLength, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesElementName = false)
+        private void AppendXmlObjectPropertyValues(string propName, ref ObjectReflectionCache.ObjectPropertyList propertyValues, StringBuilder sb, int orgLength, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth, bool ignorePropertiesNodeName = false)
         {
             if (propertyValues.Count == 0)
             {
-                AppendXmlPropertyValue(propName, propertyValues.ToString(), TypeCode.String, sb, orgLength, false, ignorePropertiesElementName);
+                AppendXmlPropertyValue(propName, propertyValues.ToString(), TypeCode.String, sb, orgLength, false, ignorePropertiesNodeName);
             }
             else
             {
-                string propNameElement = AppendXmlPropertyValue(propName, null, TypeCode.Empty, sb, orgLength, true, ignorePropertiesElementName);
+                string propNameElement = AppendXmlPropertyValue(propName, null, TypeCode.Empty, sb, orgLength, true, ignorePropertiesNodeName);
                 if (!string.IsNullOrEmpty(propNameElement))
                 {
                     foreach (var property in propertyValues)
@@ -562,55 +562,55 @@ namespace NLog.Layouts
                             sb.Length = beforeValueLength;
                         }
                     }
-                    AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
+                    AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesNodeName);
                 }
             }
         }
 
-        private string AppendXmlPropertyValue(string propName, object propertyValue, TypeCode objTypeCode, StringBuilder sb, int orgLength, bool ignoreValue = false, bool ignorePropertiesElementName = false)
+        private string AppendXmlPropertyValue(string propName, object propertyValue, TypeCode objTypeCode, StringBuilder sb, int orgLength, bool ignoreValue = false, bool ignorePropertiesNodeName = false)
         {
-            if (string.IsNullOrEmpty(PropertiesElementName))
+            if (string.IsNullOrEmpty(PropertiesNodeName))
                 return string.Empty; // Not supported 
 
             propName = propName?.Trim();
             if (string.IsNullOrEmpty(propName))
                 return string.Empty; // Not supported
 
-            if (sb.Length == orgLength && !string.IsNullOrEmpty(ElementName))
+            if (sb.Length == orgLength && !string.IsNullOrEmpty(NodeName))
             {
-                BeginXmlDocument(sb, ElementName);
+                BeginXmlDocument(sb, NodeName);
             }
 
-            if (IndentXml && !string.IsNullOrEmpty(ElementName))
+            if (IndentXml && !string.IsNullOrEmpty(NodeName))
                 sb.Append("  ");
 
             sb.Append('<');
             string propNameElement;
-            if (ignorePropertiesElementName)
+            if (ignorePropertiesNodeName)
             {
                 propNameElement = XmlHelper.XmlConvertToElementName(propName, true);
                 sb.Append(propNameElement);
             }
             else
             {
-                if (_propertiesElementNameHasFormat)
+                if (_propertiesNodeNameHasFormat)
                 {
                     propNameElement = XmlHelper.XmlConvertToElementName(propName, true);
-                    sb.AppendFormat(PropertiesElementName, propNameElement);
+                    sb.AppendFormat(PropertiesNodeName, propNameElement);
                 }
                 else
                 {
-                    propNameElement = PropertiesElementName;
-                    sb.Append(PropertiesElementName);
+                    propNameElement = PropertiesNodeName;
+                    sb.Append(PropertiesNodeName);
                 }
 
-                RenderAttribute(sb, PropertiesElementKeyAttribute, propName);
+                RenderAttribute(sb, PropertiesNodeKeyAttribute, propName);
             }
 
             if (!ignoreValue)
             {
                 string xmlValueString = XmlHelper.XmlConvertToString(propertyValue, objTypeCode, true);
-                if (RenderAttribute(sb, PropertiesElementValueAttribute, xmlValueString))
+                if (RenderAttribute(sb, PropertiesNodeValueAttribute, xmlValueString))
                 {
                     sb.Append("/>");
                     if (IndentXml)
@@ -620,7 +620,7 @@ namespace NLog.Layouts
                 {
                     sb.Append('>');
                     XmlHelper.EscapeXmlString(xmlValueString, false, sb);
-                    AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesElementName);
+                    AppendClosingPropertyTag(propNameElement, sb, ignorePropertiesNodeName);
                 }
             }
             else
@@ -633,13 +633,13 @@ namespace NLog.Layouts
             return propNameElement;
         }
 
-        private void AppendClosingPropertyTag(string propNameElement, StringBuilder sb, bool ignorePropertiesElementName = false)
+        private void AppendClosingPropertyTag(string propNameElement, StringBuilder sb, bool ignorePropertiesNodeName = false)
         {
             sb.Append("</");
-            if (ignorePropertiesElementName)
+            if (ignorePropertiesNodeName)
                 sb.Append(propNameElement);
             else
-                sb.AppendFormat(PropertiesElementName, propNameElement);
+                sb.AppendFormat(PropertiesNodeName, propNameElement);
             sb.Append('>');
             if (IndentXml)
                 sb.AppendLine();
@@ -669,16 +669,16 @@ namespace NLog.Layouts
 
         private bool RenderAppendXmlElementValue(XmlLayout xmlElement, LogEventInfo logEvent, StringBuilder sb, bool beginXmlDocument)
         {
-            string xmlElementName = xmlElement.ElementName;
+            string xmlElementName = xmlElement.NodeName;
             if (string.IsNullOrEmpty(xmlElementName))
                 return false;
 
-            if (beginXmlDocument && !string.IsNullOrEmpty(ElementName))
+            if (beginXmlDocument && !string.IsNullOrEmpty(NodeName))
             {
-                BeginXmlDocument(sb, ElementName);
+                BeginXmlDocument(sb, NodeName);
             }
 
-            if (IndentXml && !string.IsNullOrEmpty(ElementName))
+            if (IndentXml && !string.IsNullOrEmpty(NodeName))
                 sb.Append("  ");
 
             int beforeValueLength = sb.Length;
@@ -700,7 +700,7 @@ namespace NLog.Layouts
             if (beginXmlDocument)
             {
                 sb.Append('<');
-                sb.Append(ElementName);
+                sb.Append(NodeName);
             }
 
             sb.Append(' ');
@@ -723,7 +723,6 @@ namespace NLog.Layouts
                 sb.AppendLine();
         }
 
-
         private void EndXmlDocument(StringBuilder sb, string elementName)
         {
             RenderEndElement(sb, elementName);
@@ -735,12 +734,12 @@ namespace NLog.Layouts
         /// <returns>XML Layout String Description</returns>
         public override string ToString()
         {
-            if (Elements.Count > 0)
-                return ToStringWithNestedItems(Elements, l => l.ToString());
+            if (ChildNodes.Count > 0)
+                return ToStringWithNestedItems(ChildNodes, l => l.ToString());
             else if (Attributes.Count > 0)
                 return ToStringWithNestedItems(Attributes, a => "Attributes:" + a.Name);
-            else if (ElementName != null)
-                return ToStringWithNestedItems(new[] { this }, n => "Element:" + n.ElementName);
+            else if (NodeName != null)
+                return ToStringWithNestedItems(new[] { this }, n => "Node:" + n.NodeName);
             else
                 return GetType().Name;
         }

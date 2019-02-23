@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Layouts
         {
             var xmlLayout = new XmlLayout()
             {
-                Elements =
+                ChildNodes =
                     {
                         new XmlLayout("date", "${longdate}"),
                         new XmlLayout("level", "${level}"),
@@ -75,14 +75,14 @@ namespace NLog.UnitTests.Layouts
                 <nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='debug'>
-                            <layout type='xmllayout' elementName='log4j:event' propertiesElementName='log4j:data' propertiesElementKeyAttribute='name' propertiesElementValueAttribute='value' includeAllProperties='true' includeMdc='true' includeMdlc='true' >
+                            <layout type='xmllayout' nodeName='log4j:event' propertiesNodeName='log4j:data' propertiesNodeKeyAttribute='name' propertiesNodeValueAttribute='value' includeAllProperties='true' includeMdc='true' includeMdlc='true' >
                                 <attribute name='logger' layout='${logger}' includeEmptyValue='true' />
                                 <attribute name='level' layout='${uppercase:${level}}' includeEmptyValue='true' />
-                                <element elementName='log4j:message' elementValue='${message}' />
-                                <element elementName='log4j:throwable' elementValue='${exception:format=tostring}' />
-                                <element elementName='log4j:locationInfo'>
+                                <node nodeName='log4j:message' nodeLayout='${message}' />
+                                <node nodeName='log4j:throwable' nodeLayout='${exception:format=tostring}' />
+                                <node nodeName='log4j:locationInfo'>
                                     <attribute name='class' layout='${callsite:methodName=false}' includeEmptyValue='true' />
-                                </element>
+                                </node>
                             </layout>
                         </target>
                     </targets>
@@ -114,7 +114,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements =
+                ChildNodes =
                 {
                     new XmlLayout("message", "${message}") { IncludeEmptyValue = true },
                 },
@@ -143,7 +143,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements =
+                ChildNodes =
                 {
                     new XmlLayout("level", "${level}"),
                     new XmlLayout("message", "${message}"),
@@ -178,7 +178,7 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements =
+                ChildNodes =
                 {
                     new XmlLayout("message", "${message}"),
                 },
@@ -234,8 +234,8 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 IncludeAllProperties = true,
-                PropertiesElementName = "{0}",
-                PropertiesElementKeyAttribute = "",
+                PropertiesNodeName = "{0}",
+                PropertiesNodeKeyAttribute = "",
             };
 
             var logEventInfo = new LogEventInfo
@@ -262,9 +262,9 @@ namespace NLog.UnitTests.Layouts
             var xmlLayout = new XmlLayout()
             {
                 IncludeAllProperties = true,
-                PropertiesElementName = "p",
-                PropertiesElementKeyAttribute = "k",
-                PropertiesElementValueAttribute = "v",
+                PropertiesNodeName = "p",
+                PropertiesNodeKeyAttribute = "k",
+                PropertiesNodeValueAttribute = "v",
             };
 
             var logEventInfo = new LogEventInfo
@@ -283,15 +283,15 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyName()
+        public void XmlLayout_PropertiesNodeNameFormat_RenderPropertyName()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
                 IncludeAllProperties = true,
-                PropertiesElementName = "{0}",
-                PropertiesElementKeyAttribute = "",
-                PropertiesElementValueAttribute = "v",
+                PropertiesNodeName = "{0}",
+                PropertiesNodeKeyAttribute = "",
+                PropertiesNodeValueAttribute = "v",
             };
 
             var logEventInfo = new LogEventInfo
@@ -315,11 +315,11 @@ namespace NLog.UnitTests.Layouts
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements =
+                ChildNodes =
                 {
                     new XmlLayout("message", "${message}")
                     {
-                        Elements =
+                        ChildNodes =
                         {
                             new XmlLayout("level", "${level}")
                         },
@@ -346,12 +346,12 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyDictionary()
+        public void XmlLayout_PropertiesNodeNameDefault_Properties_RenderPropertyDictionary()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements = { new XmlLayout("message", "${message}") },
+                ChildNodes = { new XmlLayout("message", "${message}") },
                 IncludeAllProperties = true,
             };
 
@@ -370,14 +370,14 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyDictionary()
+        public void XmlLayout_PropertiesNodeNameFormat_RenderPropertyDictionary()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements = { new XmlLayout("message", "${message}") },
-                PropertiesElementName = "{0}",
-                PropertiesElementKeyAttribute = "",
+                ChildNodes = { new XmlLayout("message", "${message}") },
+                PropertiesNodeName = "{0}",
+                PropertiesNodeKeyAttribute = "",
                 IncludeAllProperties = true,
             };
 
@@ -396,12 +396,12 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyList()
+        public void XmlLayout_PropertiesNodeNameDefault_Properties_RenderPropertyList()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements = { new XmlLayout("message", "${message}") },
+                ChildNodes = { new XmlLayout("message", "${message}") },
                 IncludeAllProperties = true,
             };
 
@@ -420,17 +420,17 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyList()
+        public void XmlLayout_PropertiesNodeNameFormat_RenderPropertyList()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements = { new XmlLayout("message", "${message}") },
-                PropertiesElementName = "{0}",
-                PropertiesElementKeyAttribute = "",
+                ChildNodes = { new XmlLayout("message", "${message}") },
+                PropertiesNodeName = "{0}",
+                PropertiesNodeKeyAttribute = "",
                 IncludeAllProperties = true,
                 PropertiesCollectionItemName = "node",
-                PropertiesElementValueAttribute = "value",
+                PropertiesNodeValueAttribute = "value",
             };
 
             var logEventInfo = new LogEventInfo
@@ -448,12 +448,12 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyObject()
+        public void XmlLayout_PropertiesNodeNameDefault_Properties_RenderPropertyObject()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements = { new XmlLayout("message", "${message}") },
+                ChildNodes = { new XmlLayout("message", "${message}") },
                 IncludeAllProperties = true,
             };
 
@@ -473,14 +473,14 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameFormat_RenderPropertyObject()
+        public void XmlLayout_PropertiesNodeNameFormat_RenderPropertyObject()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements = { new XmlLayout("message", "${message}") },
-                PropertiesElementName = "{0}",
-                PropertiesElementKeyAttribute = "",
+                ChildNodes = { new XmlLayout("message", "${message}") },
+                PropertiesNodeName = "{0}",
+                PropertiesNodeKeyAttribute = "",
                 IncludeAllProperties = true,
             };
 
@@ -503,12 +503,12 @@ namespace NLog.UnitTests.Layouts
 #if DYNAMIC_OBJECT
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameDefault_Properties_RenderPropertyExpando()
+        public void XmlLayout_PropertiesNodeNameDefault_Properties_RenderPropertyExpando()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements = { new XmlLayout("message", "${message}") },
+                ChildNodes = { new XmlLayout("message", "${message}") },
                 IncludeAllProperties = true,
             };
 
@@ -533,14 +533,14 @@ namespace NLog.UnitTests.Layouts
 #endif
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameFormat_RenderInfiniteLoop()
+        public void XmlLayout_PropertiesNodeNameFormat_RenderInfiniteLoop()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements = { new XmlLayout("message", "${message}") },
-                PropertiesElementName = "{0}",
-                PropertiesElementKeyAttribute = "",
+                ChildNodes = { new XmlLayout("message", "${message}") },
+                PropertiesNodeName = "{0}",
+                PropertiesNodeKeyAttribute = "",
                 IncludeAllProperties = true,
                 MaxRecursionLimit = 10,
             };
@@ -560,14 +560,14 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        public void XmlLayout_PropertiesElementNameFormat_RenderTrickyDictionary()
+        public void XmlLayout_PropertiesNodeNameFormat_RenderTrickyDictionary()
         {
             // Arrange
             var xmlLayout = new XmlLayout()
             {
-                Elements = { new XmlLayout("message", "${message}") },
-                PropertiesElementName = "{0}",
-                PropertiesElementKeyAttribute = "",
+                ChildNodes = { new XmlLayout("message", "${message}") },
+                PropertiesNodeName = "{0}",
+                PropertiesNodeKeyAttribute = "",
                 IncludeAllProperties = true,
                 MaxRecursionLimit = 10,
             };
