@@ -52,6 +52,10 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => DBNull.Value;
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = DBNull.Value;
+            return true;
+        }
     }
 }

@@ -69,7 +69,11 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetLineNumber(logEvent);
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = GetLineNumber(logEvent);
+            return true;
+        }
 
         private int? GetLineNumber(LogEventInfo logEvent)
         {

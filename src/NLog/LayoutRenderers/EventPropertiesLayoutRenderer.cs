@@ -79,10 +79,10 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
-        object IRawValue.GetRawValue(LogEventInfo logEvent)
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
-            GetValue(logEvent, out var value);
-            return value;
+            GetValue(logEvent, out value);
+            return true;
         }
 
         /// <inheritdoc/>

@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers
     using System.Globalization;
     using System.Text;
     using NLog.Config;
-	using NLog.Internal;
+    using NLog.Internal;
 
     /// <summary>
     /// The Ticks value of current date and time.
@@ -54,7 +54,11 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = GetValue(logEvent);
+            return true;
+        }
 
         private static long GetValue(LogEventInfo logEvent)
         {

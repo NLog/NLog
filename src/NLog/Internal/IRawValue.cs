@@ -42,8 +42,8 @@ namespace NLog.Internal
         /// Get the raw value
         /// </summary>
         /// <param name="logEvent"></param>
-        /// <returns>null if not possible or unknown</returns>
-        object GetRawValue(LogEventInfo logEvent);
-
+        /// <param name="value">The value</param>
+        /// <returns>RawValue supported?</returns>
+        bool TryGetRawValue(LogEventInfo logEvent, out object value);
     }
 }
