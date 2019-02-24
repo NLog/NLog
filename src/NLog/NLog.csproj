@@ -370,7 +370,6 @@ Supported can be found on https://nlog-project.org/config/
     <AssemblyTitle>$(Title)</AssemblyTitle>
     <!-- SonarQube WARNING: The following projects do not have a valid ProjectGuid and were not built using a valid solution (.sln) thus will be skipped from analysis… -->
     <ProjectGuid>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</ProjectGuid>
-    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
 </Project>
