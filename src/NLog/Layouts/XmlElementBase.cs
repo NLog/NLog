@@ -69,15 +69,17 @@ namespace NLog.Layouts
         /// <summary>
         /// Name of the XML element
         /// </summary>
+        /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
         /// <docgen category='XML Options' order='10' />
-        protected string ElementNameInternal { get => _elementName; set => _elementName = XmlHelper.XmlConvertToElementName(value?.Trim(), true); }
+        internal string ElementNameInternal { get => _elementName; set => _elementName = XmlHelper.XmlConvertToElementName(value?.Trim(), true); }
         private string _elementName;
 
         /// <summary>
         /// Value inside the XML element
         /// </summary>
+        /// <remarks>Upgrade to private protected when using C# 7.2 </remarks>
         /// <docgen category='XML Options' order='10' />
-        protected Layout ElementValueInternal { get => _elementValueWrapper.Inner; set => _elementValueWrapper.Inner = value; }
+        internal Layout ElementValueInternal { get => _elementValueWrapper.Inner; set => _elementValueWrapper.Inner = value; }
         private readonly LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper _elementValueWrapper = new LayoutRenderers.Wrappers.XmlEncodeLayoutRendererWrapper();
 
         /// <summary>
