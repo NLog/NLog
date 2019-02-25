@@ -67,13 +67,13 @@ namespace NLog.LayoutRenderers.Wrappers
             int orgLength = builder.Length;
             try
             {
-                if (When == null || true.Equals(When.Evaluate(logEvent)))
+                if (ShouldRenderInner(logEvent))
                 {
                     Inner?.RenderAppendBuilder(logEvent, builder);
                 }
-                else if (Else != null)
+                else
                 {
-                    Else.RenderAppendBuilder(logEvent, builder);
+                    Else?.RenderAppendBuilder(logEvent, builder);
                 }
             }
             catch
@@ -83,10 +83,40 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
+        private bool ShouldRenderInner(LogEventInfo logEvent)
+        {
+            return When == null || true.Equals(When.Evaluate(logEvent));
+        }
+
         /// <inheritdoc/>
         [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
+        }
+
+        /// <inheritdoc />
+        public override bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            if (ShouldRenderInner(logEvent))
+            {
+                if (Inner == null)
+                {
+                    value = null;
+                    return false;
+                }
+
+                return Inner.TryGetRawValue(logEvent, out value);
+            }
+            else 
+            {
+                if (Else == null)
+                {
+                    value = null;
+                    return false;
+                }
+
+                return Else.TryGetRawValue(logEvent, out value);
+            }
         }
     }
 }

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
@@ -47,7 +49,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// ${uppercase:${level}} //[DefaultParameter]
     /// ${uppercase:Inner=${level}} 
     /// </example>
-    public abstract class WrapperLayoutRendererBase : LayoutRenderer
+    public abstract class WrapperLayoutRendererBase : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets the wrapped layout.
@@ -129,5 +131,21 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             return Inner?.Render(logEvent) ?? string.Empty;
         }
+
+        #region Implementation of IRawValue
+
+        /// <inheritdoc />
+        public virtual bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            if (Inner == null)
+            {
+                value = null;
+                return false;
+            }
+
+            return Inner.TryGetRawValue(logEvent, out value);
+        }
+
+        #endregion
     }
 }

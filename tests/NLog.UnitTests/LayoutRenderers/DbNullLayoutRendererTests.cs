@@ -57,6 +57,48 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.True(result);
         }
 
+        [Theory]
+        [InlineData("logger", "DBNullValue", true)]
+        [InlineData("logger1", null, false)]
+        public void WhenDbNullRawValueShouldWork(string loggername, object expectedValue, bool expectedSuccess)
+        {
+            expectedValue = OptionalConvert(expectedValue);
 
+            //else cannot be invoked ambiently. First param is inner
+            SimpleLayout l = @"${when:${db-null}:when=logger=='logger':else=better}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, loggername, "message");
+            var success = l.TryGetRawValue(le, out var result);
+
+            Assert.Equal(expectedValue, result);
+            Assert.Equal(expectedSuccess, success);
+        }       
+        [Theory]
+        [InlineData("logger1", "DBNullValue", true)]
+        [InlineData("logger", null, false)]
+        public void WhenDbNullRawValueShouldWorkElse(string loggername, object expectedValue, bool expectedSuccess)
+        {
+
+            expectedValue = OptionalConvert(expectedValue);
+
+            //else cannot be invoked ambiently. First param is inner
+            SimpleLayout l = @"${when:something:when=logger=='logger':else=${db-null}}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, loggername, "message");
+            var success = l.TryGetRawValue(le, out var result);
+
+            Assert.Equal(expectedValue, result);
+            Assert.Equal(expectedSuccess, success);
+        }
+
+        private static object OptionalConvert(object expectedValue)
+        {
+            if (expectedValue is string s && s == "DBNullValue")
+            {
+                expectedValue = DBNull.Value;
+            }
+
+            return expectedValue;
+        }
     }
 }
