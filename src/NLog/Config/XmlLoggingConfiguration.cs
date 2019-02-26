@@ -187,7 +187,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
-        internal XmlLoggingConfiguration(XmlElement element, string fileName)
+        internal XmlLoggingConfiguration(System.Xml.XmlElement element, string fileName)
             : this(element, fileName, false)
         {
         }
@@ -198,7 +198,7 @@ namespace NLog.Config
         /// <param name="element">The XML element.</param>
         /// <param name="fileName">Name of the XML file.</param>
         /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
-        internal XmlLoggingConfiguration(XmlElement element, string fileName, bool ignoreErrors)
+        internal XmlLoggingConfiguration(System.Xml.XmlElement element, string fileName, bool ignoreErrors)
             : this(element.OuterXml, fileName, ignoreErrors)
         {
         }

@@ -31,58 +31,48 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.ComponentModel;
+using NLog.Config;
+
 namespace NLog.Layouts
 {
-    using System;
-    using System.ComponentModel;
-    using NLog.Config;
-
     /// <summary>
-    /// A specialized layout that renders XML-formatted events.
+    /// A XML Element
     /// </summary>
-    [Layout("XmlLayout")]
+    [NLogConfigurationItem]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class XmlLayout : XmlElementBase
+    public class XmlElement : XmlElementBase
     {
-        private const string DefaultRootElementName = "logevent";
+        private const string DefaultElementName = "item";
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="XmlElementBase"/> class.
-        /// </summary>
-        public XmlLayout()
-            : this(DefaultRootElementName, null)
+        /// <inheritdoc />
+        public XmlElement() : this(DefaultElementName, null)
         {
         }
 
         /// <inheritdoc />
-        public XmlLayout(string elementName, Layout elementValue) : base(elementName, elementValue)
+        public XmlElement(string elementName, Layout elementValue) : base(elementName, elementValue)
         {
         }
-        
+
         /// <summary>
-        /// Name of the root XML element
+        /// Name of the element
         /// </summary>
-        /// <docgen category='XML Options' order='10' />
-        [DefaultValue(DefaultRootElementName)]
-        public string ElementName
+        [DefaultValue(DefaultElementName)]
+        public string Name
         {
             get => base.ElementNameInternal;
             set => base.ElementNameInternal = value;
         }
 
         /// <summary>
-        /// Value inside the root XML element
+        /// Value inside the element
         /// </summary>
-        /// <docgen category='XML Options' order='10' />
-        public Layout ElementValue
+        public Layout Value
         {
             get => base.ElementValueInternal;
             set => base.ElementValueInternal = value;
         }
-
-
-
-      
     }
 }
