@@ -885,7 +885,7 @@ namespace NLog.Targets
                         return UnixMultiProcessFileAppender.TheFactory;
                     }
 #elif !NETSTANDARD
-                    if (PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
+                    if (PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
                     {
                         return WindowsMultiProcessFileAppender.TheFactory;
                     }

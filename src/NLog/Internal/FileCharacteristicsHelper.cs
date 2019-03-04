@@ -47,7 +47,7 @@ namespace NLog.Internal
         public static FileCharacteristicsHelper CreateHelper(bool forcedManaged)
         {
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-            if (!forcedManaged && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
+            if (!forcedManaged && PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
             {
                 return new Win32FileCharacteristicsHelper();
             }
@@ -70,7 +70,7 @@ namespace NLog.Internal
         {
             DateTime? fileCreationTime = primary(fileInfo);
 
-            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980 && !PlatformDetector.IsDesktopWin32)
+            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980 && !PlatformDetector.IsWin32)
             {
                 // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
                 fileCreationTime = fallback(fileInfo);

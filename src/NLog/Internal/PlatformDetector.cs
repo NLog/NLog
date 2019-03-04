@@ -36,13 +36,12 @@
 #define SupportsMutex
 #endif
 
-using System.Security;
-using NLog.Common;
-using NLog.Internal.FileAppenders;
-
 namespace NLog.Internal
 {
     using System;
+    using System.Security;
+    using NLog.Common;
+    using NLog.Internal.FileAppenders;
 
     /// <summary>
     /// Detects the platform the NLog is running on.
@@ -57,19 +56,14 @@ namespace NLog.Internal
         public static RuntimeOS CurrentOS => currentOS;
 
         /// <summary>
-        /// Gets a value indicating whether current OS is a desktop version of Windows.
-        /// </summary>
-        public static bool IsDesktopWin32 => currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT;
-
-        /// <summary>
         /// Gets a value indicating whether current OS is Win32-based (desktop or mobile).
         /// </summary>
-        public static bool IsWin32 => currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT || currentOS == RuntimeOS.WindowsCE;
+        public static bool IsWin32 => currentOS == RuntimeOS.Windows || currentOS == RuntimeOS.WindowsNT;
 
         /// <summary>
         /// Gets a value indicating whether current OS is Unix-based.
         /// </summary>
-        public static bool IsUnix => currentOS == RuntimeOS.Unix;
+        public static bool IsUnix => currentOS == RuntimeOS.Linux || currentOS == RuntimeOS.MacOSX;
 
         /// <summary>
         /// Gets a value indicating whether current runtime is Mono-based
@@ -141,24 +135,19 @@ namespace NLog.Internal
 
         private static RuntimeOS GetCurrentRuntimeOS()
         {
-#if NETSTANDARD1_0
+#if NETSTANDARD
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
                 return RuntimeOS.Windows;
             else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
-                return RuntimeOS.Unix;
+                return RuntimeOS.MacOSX;
             else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
-                return RuntimeOS.Unix;
+                return RuntimeOS.Linux;
             return RuntimeOS.Unknown;
 #else
             PlatformID platformID = Environment.OSVersion.Platform;
             if ((int)platformID == 4 || (int)platformID == 128)
             {
-                return RuntimeOS.Unix;
-            }
-
-            if ((int)platformID == 3)
-            {
-                return RuntimeOS.WindowsCE;
+                return RuntimeOS.Linux;
             }
 
             if (platformID == PlatformID.Win32Windows)
