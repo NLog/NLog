@@ -100,7 +100,11 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetDate(logEvent);
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value =  GetDate(logEvent);
+            return true;
+        }
 
         /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);

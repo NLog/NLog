@@ -37,7 +37,7 @@ namespace NLog.LayoutRenderers
     using System.ComponentModel;
     using System.Text;
     using NLog.Config;
-	using NLog.Internal;
+    using NLog.Internal;
 
     /// <summary>
     /// Globally-unique identifier (GUID).
@@ -68,7 +68,11 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc/>
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = GetValue(logEvent);
+            return true;
+        }
 
         /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
