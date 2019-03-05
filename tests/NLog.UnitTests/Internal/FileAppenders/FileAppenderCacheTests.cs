@@ -187,7 +187,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
         [Fact]
         public void FileAppenderCache_GetFileCharacteristics_Windows()
         {
-            if (NLog.Internal.PlatformDetector.IsDesktopWin32)
+            if (NLog.Internal.PlatformDetector.IsWin32)
             {
                 IFileAppenderFactory appenderFactory = WindowsMultiProcessFileAppender.TheFactory;
                 ICreateFileParameters fileTarget = new FileTarget() { ArchiveNumbering = ArchiveNumberingMode.Date };

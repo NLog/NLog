@@ -43,19 +43,14 @@ namespace NLog.Internal
     internal enum RuntimeOS
     {
         /// <summary>
-        /// Any operating system.
+        /// Unknown operating system.
         /// </summary>
-        Any,
+        Unknown,
 
         /// <summary>
         /// Unix/Linux operating systems.
         /// </summary>
-        Unix,
-
-        /// <summary>
-        /// Windows CE.
-        /// </summary>
-        WindowsCE,
+        Linux,
 
         /// <summary>
         /// Desktop versions of Windows (95,98,ME).
@@ -68,8 +63,8 @@ namespace NLog.Internal
         WindowsNT,
 
         /// <summary>
-        /// Unknown operating system.
+        /// Macintosh Mac OSX
         /// </summary>
-        Unknown,
+        MacOSX,
     }
 }
