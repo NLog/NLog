@@ -605,7 +605,7 @@ Dispose()
             databaseParameterInfo.SetDbType(new MockDbConnection().CreateCommand().CreateParameter());
 
             // Act
-            var result = new DatabaseTarget().GetParameterValue(logEventInfo, databaseParameterInfo);
+            var result = new DatabaseTarget().GetDatabaseParameterValue(logEventInfo, databaseParameterInfo);
 
             //Assert
             if (convertToDecimal)
@@ -638,7 +638,7 @@ Dispose()
                 databaseParameterInfo.SetDbType(new MockDbConnection().CreateCommand().CreateParameter());
 
                 // Act
-                var result = new DatabaseTarget().GetParameterValue(LogEventInfo.CreateNullEvent(), databaseParameterInfo);
+                var result = new DatabaseTarget().GetDatabaseParameterValue(LogEventInfo.CreateNullEvent(), databaseParameterInfo);
 
                 // Assert
                 Assert.Equal(expected, result);
@@ -681,6 +681,7 @@ Dispose()
             yield return new object[] { "3", DbType.UInt64, (ulong)3 };
             yield return new object[] { "3", DbType.AnsiString, "3" };
             yield return new object[] { "${db-null}", DbType.DateTime, DBNull.Value };
+            yield return new object[] { "${event-properties:userid}", DbType.Int32, 0 };
             //todo binary
             //todo default
 
