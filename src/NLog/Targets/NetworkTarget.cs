@@ -214,6 +214,10 @@ namespace NLog.Targets
         /// <docgen category='Connection Options' order='10' />
         public System.Security.Authentication.SslProtocols SslProtocols { get; set; } = System.Security.Authentication.SslProtocols.None;
 
+        /// <summary>
+        /// The number of seconds a connection will remain idle before the first keep-alive probe is sent
+        /// </summary>
+        public int KeepAliveTimeSeconds { get; set; }
 #endif
 
         internal INetworkSenderFactory SenderFactory { get; set; }
@@ -509,7 +513,7 @@ namespace NLog.Targets
         private NetworkSender CreateNetworkSender(string address)
         {
 #if !SILVERLIGHT
-            var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols);
+            var sender = SenderFactory.Create(address, MaxQueueSize, SslProtocols, TimeSpan.FromSeconds(KeepAliveTimeSeconds));
 #else
             var sender = SenderFactory.Create(address, MaxQueueSize);
 #endif

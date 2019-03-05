@@ -37,7 +37,6 @@ namespace NLog.Internal.NetworkSenders
     using System.IO;
     using System.Net;
     using System.Net.Sockets;
-    using Common;
 
     /// <summary>
     /// Default implementation of <see cref="INetworkSenderFactory"/>.
@@ -48,7 +47,7 @@ namespace NLog.Internal.NetworkSenders
 
 #if !SILVERLIGHT
         /// <inheritdoc />
-        public NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols)
+        public NetworkSender Create(string url, int maxQueueSize, System.Security.Authentication.SslProtocols sslProtocols, TimeSpan keepAliveTime)
 #else
         /// <inheritdoc />
         public NetworkSender Create(string url, int maxQueueSize)
@@ -71,6 +70,7 @@ namespace NLog.Internal.NetworkSenders
                     MaxQueueSize = maxQueueSize,
 #if !SILVERLIGHT
                     SslProtocols = sslProtocols,
+                    KeepAliveTime = keepAliveTime,
 #endif
                 };
             }
@@ -82,6 +82,7 @@ namespace NLog.Internal.NetworkSenders
                     MaxQueueSize = maxQueueSize,
 #if !SILVERLIGHT
                     SslProtocols = sslProtocols,
+                    KeepAliveTime = keepAliveTime,
 #endif
                 };
             }
@@ -93,6 +94,7 @@ namespace NLog.Internal.NetworkSenders
                     MaxQueueSize = maxQueueSize,
 #if !SILVERLIGHT
                     SslProtocols = sslProtocols,
+                    KeepAliveTime = keepAliveTime,
 #endif
                 };
             }
@@ -114,7 +116,7 @@ namespace NLog.Internal.NetworkSenders
             }
 #endif
 
-            throw new ArgumentException("Unrecognized network address", "url");
+            throw new ArgumentException("Unrecognized network address", nameof(url));
         }
     }
 }
