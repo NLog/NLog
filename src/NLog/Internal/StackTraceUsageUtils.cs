@@ -105,25 +105,28 @@ namespace NLog.Internal
                 return null;
 
             var callerClassType = method.DeclaringType;
-            if (cleanAsyncMoveNext && method.Name == "MoveNext" && callerClassType?.DeclaringType != null && callerClassType.Name.StartsWith("<"))
+            if (callerClassType?.DeclaringType != null)
             {
-                // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1
-                int endIndex = callerClassType.Name.IndexOf('>', 1);
-                if (endIndex > 1)
+                if (cleanAsyncMoveNext && method.Name == "MoveNext" && callerClassType.Name.IndexOf('<')==0)
                 {
+                    // NLog.UnitTests.LayoutRenderers.CallSiteTests+<CleanNamesOfAsyncContinuations>d_3'1
+                    int endIndex = callerClassType.Name.IndexOf('>', 1);
+                    if (endIndex > 1)
+                    {
+                        callerClassType = callerClassType.DeclaringType;
+                    }
+                }
+
+                if (!includeNameSpace
+                    && callerClassType.IsNested
+                    && callerClassType.GetCustomAttribute<CompilerGeneratedAttribute>() != null)
+                {
+                    // class name of compiler generated type
                     callerClassType = callerClassType.DeclaringType;
                 }
             }
 
-            if (!includeNameSpace
-                && callerClassType?.DeclaringType != null
-                && callerClassType.IsNested
-                && callerClassType.GetCustomAttribute<CompilerGeneratedAttribute>() != null)
-            {
-                return callerClassType.DeclaringType.Name;
-            }
-
-            string className = includeNameSpace ? callerClassType?.FullName : callerClassType?.Name;
+            string className = includeNameSpace ? callerClassType?.ToString() : callerClassType?.Name;
 
             if (cleanAnonymousDelegates && className != null)
             {
