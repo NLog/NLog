@@ -1086,6 +1086,8 @@ namespace NLog.Targets
                 foreach (var bucket in buckets)
                 {
                     int bucketCount = bucket.Value.Count;
+                    if (bucketCount <= 0)
+                        continue;
 
                     string fileName = bucket.Key;
                     if (string.IsNullOrEmpty(fileName))
@@ -1101,47 +1103,49 @@ namespace NLog.Targets
                     ms.SetLength(0);
                     ms.Position = 0;
 
-                    LogEventInfo firstLogEvent = null;
-
-                    using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
-                    using (var targetBuffer = OptimizeBufferReuse ? _reusableEncodingBuffer.Allocate() : _reusableEncodingBuffer.None)
-                    using (var targetStream = OptimizeBufferReuse ? _reusableFileWriteStream.Allocate() : _reusableFileWriteStream.None)
-                    {
-                        for (int i = 0; i < bucketCount; i++)
-                        {
-                            AsyncLogEventInfo ev = bucket.Value[i];
-                            if (firstLogEvent == null)
-                            {
-                                firstLogEvent = ev.LogEvent;
-                            }
-
-                            if (targetBuilder.Result != null && targetStream.Result != null)
-                            {
-                                // For some CPU's then it is faster to write to a small MemoryStream, and then copy to the larger one
-                                targetStream.Result.Position = 0;
-                                targetStream.Result.SetLength(0);
-                                targetBuilder.Result.ClearBuilder();
-                                RenderFormattedMessageToStream(ev.LogEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
-                                ms.Write(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length);
-                            }
-                            else
-                            {
-                                byte[] bytes = GetBytesToWrite(ev.LogEvent);
-                                if (ms.Capacity == 0)
-                                {
-                                    ms.Capacity = GetMemoryStreamInitialSize(bucket.Value.Count, bytes.Length);
-                                }
-                                ms.Write(bytes, 0, bytes.Length);
-                            }
-                        }
-                    }
+                    WriteToMemoryStream(bucket.Value, ms);
 
                     Exception lastException;
-                    FlushCurrentFileWrites(fileName, firstLogEvent, ms, out lastException);
+                    FlushCurrentFileWrites(fileName, bucket.Value[0].LogEvent, ms, out lastException);
 
                     for (int i = 0; i < bucketCount; ++i)
                     {
                         bucket.Value[i].Continuation(lastException);
+                    }
+                }
+            }
+        }
+
+        private void WriteToMemoryStream(IList<AsyncLogEventInfo> logEvents, MemoryStream ms)
+        {
+            int bucketCount = logEvents.Count;
+
+            using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
+            using (var targetBuffer = OptimizeBufferReuse ? _reusableEncodingBuffer.Allocate() : _reusableEncodingBuffer.None)
+            using (var targetStream = OptimizeBufferReuse ? _reusableFileWriteStream.Allocate() : _reusableFileWriteStream.None)
+            {
+                bool bufferReusePossible = targetBuilder.Result != null && targetStream.Result != null;
+
+                for (int i = 0; i < bucketCount; i++)
+                {
+                    AsyncLogEventInfo ev = logEvents[i];
+                    if (bufferReusePossible)
+                    {
+                        // For some CPU's then it is faster to write to a small MemoryStream, and then copy to the larger one
+                        targetStream.Result.Position = 0;
+                        targetStream.Result.SetLength(0);
+                        targetBuilder.Result.ClearBuilder();
+                        RenderFormattedMessageToStream(ev.LogEvent, targetBuilder.Result, targetBuffer.Result, targetStream.Result);
+                        ms.Write(targetStream.Result.GetBuffer(), 0, (int)targetStream.Result.Length);
+                    }
+                    else
+                    {
+                        byte[] bytes = GetBytesToWrite(ev.LogEvent);
+                        if (ms.Capacity == 0)
+                        {
+                            ms.Capacity = GetMemoryStreamInitialSize(bucketCount, bytes.Length);
+                        }
+                        ms.Write(bytes, 0, bytes.Length);
                     }
                 }
             }
