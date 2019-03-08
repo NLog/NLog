@@ -61,6 +61,11 @@ namespace NLog.LayoutRenderers
 		[DefaultParameter]
 		public string Name { get; set; }
 
+        /// <summary>
+        /// The AppSetting name (Easier documentation and improves consistency)
+        /// </summary>
+        public string Item { get => Name; set => Name = value; }
+
 		///<summary>
 		/// The default value to render if the AppSetting value is null.
 		///</summary>
