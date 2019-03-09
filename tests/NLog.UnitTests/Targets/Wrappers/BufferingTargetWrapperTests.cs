@@ -31,13 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Diagnostics;
-
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using System.Threading.Tasks;
     using NLog.Common;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
@@ -45,6 +44,12 @@ namespace NLog.UnitTests.Targets.Wrappers
 
     public class BufferingTargetWrapperTests : NLogTestBase
     {
+        /// <summary>
+        /// Is needed to ensure that async operations are completed.
+        /// It is better to avoid waiting for infinite time, because in this case test thread will be locked forever (and will hold ~2mb until process exit)
+        /// </summary>
+        private static readonly TimeSpan FlushWaitTimeout = TimeSpan.FromSeconds(15);
+
         [Fact]
         public void BufferingTargetWrapperSyncTest1()
         {
@@ -583,6 +588,79 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(1, myTarget.BufferedWriteCount);
             Assert.Equal(bufferSize, myTarget.BufferedTotalEvents);
         }
+        
+        [Theory]
+        [InlineData("Error")]
+        [InlineData("Fatal")]
+        public void ShouldCallFlushActionIfMessageLevelIsEqualOrGreaterThanAsyncFlushLevel(string logLevelString)
+        {
+            // Given
+            var level = LogLevel.FromString(logLevelString);
+            var logEvent = new LogEventInfo(level: level, loggerName: "test", message: "testMessage");
+            var eventWasWrittenMarker = new TaskCompletionSource<int>();
+
+            var myTarget = new MyTarget();
+            var targetWrapper = new BufferingTargetWrapper
+            {
+                BufferSize = 10000,
+                FlushTimeout = int.MaxValue,
+                AsyncFlushAfter = LogLevel.Error,
+                BlockingFlushAfter = LogLevel.Off,
+                WrappedTarget = myTarget
+            };
+
+            InitializeTargets(myTarget, targetWrapper);
+
+            // When
+            targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(_ => eventWasWrittenMarker.SetResult(0)));
+
+            // Then
+            eventWasWrittenMarker.Task.Wait(FlushWaitTimeout);
+            Assert.Equal(1, myTarget.FlushCount);
+        }
+
+        [Theory]
+        [InlineData("Error")]
+        [InlineData("Fatal")]
+        public void ShouldCallFlushActionInBlockingMannerIfMessageLevelIsEqualOrGreaterThanBlockingFlushLevel(string logLevelString)
+        {
+            // Given
+            var level = LogLevel.Fatal;
+            var logEvent = new LogEventInfo(level: level, loggerName: "test", message: "testMessage");
+            var eventWasWrittenMarker = new TaskCompletionSource<int>();
+            var innerTargetLock = new TaskCompletionSource<int>();
+
+            var myTarget = new MyTarget()
+            {
+                WritingDelaySimulation = innerTargetLock.Task
+            };
+
+            var targetWrapper = new BufferingTargetWrapper
+            {
+                BufferSize = 10000,
+                FlushTimeout = int.MaxValue,
+                AsyncFlushAfter = LogLevel.Off,
+                BlockingFlushAfter = LogLevel.Error,
+                WrappedTarget = myTarget
+            };
+
+            InitializeTargets(myTarget, targetWrapper);
+
+            // When
+            var writingTask = Task.Run(() => 
+                targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(_ => eventWasWrittenMarker.SetResult(0))));
+
+            // Then
+            Thread.Sleep(1);
+            Assert.False(writingTask.IsCompleted); // so inner target could not write, because of lock
+            Assert.False(eventWasWrittenMarker.Task.IsCompleted); // and of course no-one notified us, that writing was finished
+
+            innerTargetLock.SetResult(0);
+
+            writingTask.Wait(FlushWaitTimeout);
+            eventWasWrittenMarker.Task.Wait(FlushWaitTimeout);
+            Assert.Equal(1, myTarget.FlushCount);
+        }
 
         private static void InitializeTargets(params Target[] targets)
         {
@@ -656,6 +734,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             public int BufferedWriteCount { get; private set; }
             public int BufferedTotalEvents { get; private set; }
             public bool ThrowException { get; set; }
+            public Task WritingDelaySimulation { get; set; } = Task.FromResult(0);
             public int FailCounter { get; set; }
 
             protected override void Write(IList<AsyncLogEventInfo> logEvents)
@@ -679,6 +758,8 @@ namespace NLog.UnitTests.Targets.Wrappers
                     FailCounter--;
                     throw new InvalidOperationException("Some failure.");
                 }
+
+                WritingDelaySimulation.Wait();
             }
 
             protected override void FlushAsync(AsyncContinuation asyncContinuation)

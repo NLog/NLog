@@ -181,7 +181,7 @@ namespace NLog.Targets.Wrappers
         /// entire buffer to the wrapped target.
         /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(nameof(BufferingTargetWrapperOverflowAction.Flush))]
+        [DefaultValue("Flush")]
         public BufferingTargetWrapperOverflowAction OverflowAction { get; set; }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace NLog.Targets.Wrappers
         /// for if you configured <see cref="LogLevel.Error"/> here then all previous events (e.g. debug, info, etc.) will be flushed too.
         /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(nameof(LogLevel.Error))]
+        [DefaultValue("Error")]
         public LogLevel AsyncFlushAfter { get; set; }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace NLog.Targets.Wrappers
         /// In this case it is better to block external callers until data will be flushed.
         /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue(nameof(LogLevel.Fatal))]
+        [DefaultValue("Fatal")]
         public LogLevel BlockingFlushAfter { get; set; }
 
         /// <summary>
