@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Fluent;
+
 namespace NLog.Targets.Wrappers
 {
     using System;
@@ -105,14 +107,41 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="bufferSize">Size of the buffer.</param>
         /// <param name="flushTimeout">The flush timeout.</param>
-        /// <param name="overflowAction">The aciton to take when the buffer overflows.</param>
-        public BufferingTargetWrapper(Target wrappedTarget, int bufferSize, int flushTimeout, BufferingTargetWrapperOverflowAction overflowAction)
+        /// <param name="overflowAction">The action to take when the buffer overflows.</param>
+        public BufferingTargetWrapper(
+            Target wrappedTarget,
+            int bufferSize,
+            int flushTimeout,
+            BufferingTargetWrapperOverflowAction overflowAction)
+            : this(wrappedTarget, bufferSize, flushTimeout, BufferingTargetWrapperOverflowAction.Flush,
+                asyncFlushAfter:LogLevel.Error, blockingFlushAfter:LogLevel.Fatal)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BufferingTargetWrapper" /> class.
+        /// </summary>
+        /// <param name="wrappedTarget">The wrapped target.</param>
+        /// <param name="bufferSize">Size of the buffer.</param>
+        /// <param name="flushTimeout">The flush timeout.</param>
+        /// <param name="overflowAction">The action to take when the buffer overflows.</param>
+        /// <param name="asyncFlushAfter">Request immediately flush after the target level.</param>
+        /// <param name="blockingFlushAfter">Request immediately flush after the target level and wait until physical flush will be completed.</param>
+        public BufferingTargetWrapper(
+            Target wrappedTarget, 
+            int bufferSize, 
+            int flushTimeout, 
+            BufferingTargetWrapperOverflowAction overflowAction,
+            LogLevel asyncFlushAfter,
+            LogLevel blockingFlushAfter)
         {
             WrappedTarget = wrappedTarget;
             BufferSize = bufferSize;
             FlushTimeout = flushTimeout;
             SlidingTimeout = true;
             OverflowAction = overflowAction;
+            AsyncFlushAfter = asyncFlushAfter;
+            BlockingFlushAfter = blockingFlushAfter;
         }
 
         /// <summary>
@@ -152,8 +181,33 @@ namespace NLog.Targets.Wrappers
         /// entire buffer to the wrapped target.
         /// </remarks>
         /// <docgen category='Buffering Options' order='100' />
-        [DefaultValue("Flush")]
+        [DefaultValue(nameof(BufferingTargetWrapperOverflowAction.Flush))]
         public BufferingTargetWrapperOverflowAction OverflowAction { get; set; }
+
+        /// <summary>
+        /// Gets or sets log level, after which NLog will schedule asynchronous flush even if buffer is not complete.
+        /// </summary>
+        /// <remarks>
+        /// This option is useful for large <see cref="FlushTimeout"/> (several minutes) during the debug.
+        /// In this case NLog will present important events in log without the delay. Please note, that order will be kept,
+        /// for if you configured <see cref="LogLevel.Error"/> here then all previous events (e.g. debug, info, etc.) will be flushed too.
+        /// </remarks>
+        /// <docgen category='Buffering Options' order='100' />
+        [DefaultValue(nameof(LogLevel.Error))]
+        public LogLevel AsyncFlushAfter { get; set; }
+
+        /// <summary>
+        /// Gets or sets log level, after which NLog will schedule blocking flush even if buffer is not complete.
+        /// Please note: if this option is enabled then external called will be blocked until physical writing appears.
+        /// </summary>
+        /// <remarks>
+        /// This option is extremely important for applications, which can be exited immediately after critical error
+        /// (for example - by calling <see cref="Environment.FailFast(string)"/>). In this case last event can have useful information about the cause of crash.
+        /// In this case it is better to block external callers until data will be flushed.
+        /// </remarks>
+        /// <docgen category='Buffering Options' order='100' />
+        [DefaultValue(nameof(LogLevel.Fatal))]
+        public LogLevel BlockingFlushAfter { get; set; }
 
         /// <summary>
         /// Flushes pending events in the buffer (if any), followed by flushing the WrappedTarget.
@@ -166,7 +220,7 @@ namespace NLog.Targets.Wrappers
         }
 
         /// <summary>
-        /// Initializes the target.
+        /// Initializes the tar`get.
         /// </summary>
         protected override void InitializeTarget()
         {
@@ -206,8 +260,25 @@ namespace NLog.Targets.Wrappers
         {
             PrecalculateVolatileLayouts(logEvent.LogEvent);
 
-            int count = _buffer.Append(logEvent);
-            if (count >= BufferSize)
+            var count = _buffer.Append(logEvent);
+            var level = logEvent.LogEvent.Level ?? LogLevel.Debug;
+
+            if (level >= BlockingFlushAfter)
+            {
+                WriteEventsInBuffer("Event level is equal or greater than BlockingFlushAfter");
+
+                var innerTarget = WrappedTarget;
+
+                if (!(innerTarget is null))
+                {
+                    AsyncHelpers.RunSynchronously(continuation => innerTarget.Flush(continuation));
+                }
+            }
+            else if (level >= AsyncFlushAfter)
+            {
+                WriteEventsInBuffer("Event level is equal or greater than AsyncFlushAfter");
+            }
+            else if (count >= BufferSize)
             {
                 // If the OverflowAction action is set to "Discard", the buffer will automatically
                 // roll over the oldest item.
