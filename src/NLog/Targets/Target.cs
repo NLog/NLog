@@ -199,61 +199,62 @@ namespace NLog.Targets
             }
 
             // Not all Layouts support concurrent threads, so we have to protect them
-            if (OptimizeBufferReuse)
+            if (OptimizeBufferReuse && _allLayoutsAreThreadSafe)
             {
-                if (_allLayoutsAreThreadSafe)
+                PrecalculateVolatileLayoutsConcurrent(logEvent);
+            }
+            else
+            {
+                PrecalculateVolatileLayoutsWithLock(logEvent);
+            }
+        }
+
+        private void PrecalculateVolatileLayoutsConcurrent(LogEventInfo logEvent)
+        {
+            if (!IsInitialized)
+                return;
+
+            if (_allLayouts == null)
+                return;
+
+            if (_precalculateStringBuilderPool == null)
+            {
+                System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2), null);
+            }
+
+            using (var targetBuilder = _precalculateStringBuilderPool.Acquire())
+            {
+                foreach (Layout layout in _allLayouts)
                 {
-                    if (!IsInitialized)
-                        return;
+                    targetBuilder.Item.ClearBuilder();
+                    layout.PrecalculateBuilder(logEvent, targetBuilder.Item);
+                }
+            }
+        }
 
-                    if (_allLayouts == null)
-                        return;
+        private void PrecalculateVolatileLayoutsWithLock(LogEventInfo logEvent)
+        {
+            lock (SyncRoot)
+            {
+                if (!_isInitialized)
+                    return;
 
-                    if (_precalculateStringBuilderPool == null)
-                    {
-                        System.Threading.Interlocked.CompareExchange(ref _precalculateStringBuilderPool, new StringBuilderPool(Environment.ProcessorCount * 2), null);
-                    }
+                if (_allLayouts == null)
+                    return;
 
-                    using (var targetBuilder = _precalculateStringBuilderPool.Acquire())
+                if (OptimizeBufferReuse)
+                {
+                    using (var targetBuilder = ReusableLayoutBuilder.Allocate())
                     {
                         foreach (Layout layout in _allLayouts)
                         {
-                            targetBuilder.Item.ClearBuilder();
-                            layout.PrecalculateBuilder(logEvent, targetBuilder.Item);
+                            targetBuilder.Result.ClearBuilder();
+                            layout.PrecalculateBuilder(logEvent, targetBuilder.Result);
                         }
                     }
                 }
                 else
                 {
-                    lock (SyncRoot)
-                    {
-                        if (!_isInitialized)
-                            return;
-
-                        if (_allLayouts == null)
-                            return;
-
-                        using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                        {
-                            foreach (Layout layout in _allLayouts)
-                            {
-                                targetBuilder.Result.ClearBuilder();
-                                layout.PrecalculateBuilder(logEvent, targetBuilder.Result);
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                lock (SyncRoot)
-                {
-                    if (!_isInitialized)
-                        return;
-
-                    if (_allLayouts == null)
-                        return;
-
                     foreach (Layout layout in _allLayouts)
                     {
                         layout.Precalculate(logEvent);

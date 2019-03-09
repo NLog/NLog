@@ -247,6 +247,7 @@ namespace NLog.Targets
 
             set
             {
+                // Fixed Log4JXmlEventLayout
             }
         }
     }
