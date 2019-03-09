@@ -616,7 +616,8 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             // Then
             eventWasWrittenMarker.Task.Wait(FlushWaitTimeout);
-            Assert.Equal(1, myTarget.FlushCount);
+            Assert.Equal(1, myTarget.WriteCount);
+            Assert.Equal(0, myTarget.FlushCount);
         }
 
         [Theory]
@@ -625,7 +626,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void ShouldCallFlushActionInBlockingMannerIfMessageLevelIsEqualOrGreaterThanBlockingFlushLevel(string logLevelString)
         {
             // Given
-            var level = LogLevel.Fatal;
+            var level = LogLevel.FromString(logLevelString);
             var logEvent = new LogEventInfo(level: level, loggerName: "test", message: "testMessage");
             var eventWasWrittenMarker = new TaskCompletionSource<int>();
             var innerTargetLock = new TaskCompletionSource<int>();
@@ -659,6 +660,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
             writingTask.Wait(FlushWaitTimeout);
             eventWasWrittenMarker.Task.Wait(FlushWaitTimeout);
+            Assert.Equal(1, myTarget.WriteCount);
             Assert.Equal(1, myTarget.FlushCount);
         }
 
