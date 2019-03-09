@@ -255,7 +255,11 @@ namespace NLog.UnitTests.Targets.Wrappers
         public void BufferingAutoFlushWrapperTest()
         {
             var testTarget = new MyTarget();
-            var bufferingTargetWrapper = new BufferingTargetWrapper(testTarget, 100);
+            var bufferingTargetWrapper = new BufferingTargetWrapper(testTarget, 100)
+            {
+                BlockingFlushAfter = LogLevel.Off,
+                AsyncFlushAfter = LogLevel.Off
+            };
             var autoFlushOnLevelWrapper = new AutoFlushTargetWrapper(bufferingTargetWrapper);
             autoFlushOnLevelWrapper.Condition = "level > LogLevel.Info";
             testTarget.Initialize(null);

@@ -617,7 +617,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             // Then
             eventWasWrittenMarker.Task.Wait(FlushWaitTimeout);
             Assert.Equal(1, myTarget.WriteCount);
-            Assert.Equal(0, myTarget.FlushCount);
+            Assert.Equal(1, myTarget.FlushCount);
         }
 
         [Theory]

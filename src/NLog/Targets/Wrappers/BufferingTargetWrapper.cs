@@ -48,6 +48,8 @@ namespace NLog.Targets.Wrappers
     [Target("BufferingWrapper", IsWrapper = true)]
     public class BufferingTargetWrapper : WrapperTargetBase
     {
+        private readonly AsyncContinuation _flushContinuation;
+
         private LogEventInfoBuffer _buffer;
         private Timer _flushTimer;
         private readonly object _lockObject = new object();
@@ -114,7 +116,7 @@ namespace NLog.Targets.Wrappers
             int flushTimeout,
             BufferingTargetWrapperOverflowAction overflowAction)
             : this(wrappedTarget, bufferSize, flushTimeout, BufferingTargetWrapperOverflowAction.Flush,
-                asyncFlushAfter:LogLevel.Error, blockingFlushAfter:LogLevel.Fatal)
+                asyncFlushAfter: LogLevel.Error, blockingFlushAfter: LogLevel.Fatal)
         {
         }
 
@@ -128,9 +130,9 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncFlushAfter">Request immediately flush after the target level.</param>
         /// <param name="blockingFlushAfter">Request immediately flush after the target level and wait until physical flush will be completed.</param>
         public BufferingTargetWrapper(
-            Target wrappedTarget, 
-            int bufferSize, 
-            int flushTimeout, 
+            Target wrappedTarget,
+            int bufferSize,
+            int flushTimeout,
             BufferingTargetWrapperOverflowAction overflowAction,
             LogLevel asyncFlushAfter,
             LogLevel blockingFlushAfter)
@@ -142,6 +144,14 @@ namespace NLog.Targets.Wrappers
             OverflowAction = overflowAction;
             AsyncFlushAfter = asyncFlushAfter;
             BlockingFlushAfter = blockingFlushAfter;
+
+            _flushContinuation = ex =>
+            {
+                if (ex != null)
+                {
+                    InternalLogger.Trace(ex, "BufferingWrapper(Name={0}): Async Flush was failed", Name);
+                }
+            };
         }
 
         /// <summary>
@@ -277,6 +287,8 @@ namespace NLog.Targets.Wrappers
             else if (level >= AsyncFlushAfter)
             {
                 WriteEventsInBuffer("Event level is equal or greater than AsyncFlushAfter");
+                
+                WrappedTarget?.Flush(_flushContinuation);
             }
             else if (count >= BufferSize)
             {
