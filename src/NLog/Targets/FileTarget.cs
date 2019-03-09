@@ -1470,9 +1470,9 @@ namespace NLog.Targets
                 {
                     case FileArchivePeriod.Year: formatString = "yyyy"; break;
                     case FileArchivePeriod.Month: formatString = "yyyyMM"; break;
-                    default: formatString = "yyyyMMdd"; break;      // Also for Weekdays
                     case FileArchivePeriod.Hour: formatString = "yyyyMMddHH"; break;
                     case FileArchivePeriod.Minute: formatString = "yyyyMMddHHmm"; break;
+                    default: formatString = "yyyyMMdd"; break;      // Also for Weekdays
                 }
             }
             return formatString;
