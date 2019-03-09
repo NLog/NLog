@@ -363,56 +363,72 @@ namespace NLog.Targets
             combinedProperties = combinedProperties ?? CreateNewDictionary(ContextProperties.Count);
             for (int i = 0; i < ContextProperties.Count; ++i)
             {
-                var attrib = ContextProperties[i];
-                if (string.IsNullOrEmpty(attrib?.Name) || attrib.Layout == null)
+                var contextProperty = ContextProperties[i];
+                if (string.IsNullOrEmpty(contextProperty?.Name) || contextProperty.Layout == null)
                     continue;
-
-                var attribType = attrib.PropertyType ?? typeof(string);
 
                 try
                 {
-                    var isStringType = attribType == typeof(string);
-                    if (!isStringType)
+                    if (TryGetContextPropertyValue(logEvent, contextProperty, out var propertyValue))
                     {
-                        if (TryGetAttributeRawValue(logEvent, attrib, attribType, out var rawValue))
-                        {
-                            combinedProperties[attrib.Name] = rawValue;
-                            continue;
-                        }
+                        combinedProperties[contextProperty.Name] = propertyValue;
                     }
-
-                    var attribStringValue = RenderLogEvent(attrib.Layout, logEvent);
-                    if (!attrib.IncludeEmptyValue && string.IsNullOrEmpty(attribStringValue))
-                        continue;
-
-                    
-                    combinedProperties[attrib.Name] = isStringType
-                        ? attribStringValue : PropertyTypeConverter.Convert(attribStringValue, attribType, null, CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
                 {
                     if (ex.MustBeRethrownImmediately())
                         throw;
 
-                    Common.InternalLogger.Warn(ex, "{0}(Name={1}): Failed to add context property {2}", GetType(), Name, attrib.Name);
+                    Common.InternalLogger.Warn(ex, "{0}(Name={1}): Failed to add context property {2}", GetType(), Name, contextProperty.Name);
                 }
             }
 
             return combinedProperties;
         }
 
-        private static bool TryGetAttributeRawValue(LogEventInfo logEvent, TargetPropertyWithContext attrib, Type attribType, out object rawValue)
+        private bool TryGetContextPropertyValue(LogEventInfo logEvent, TargetPropertyWithContext contextProperty, out object propertyValue)
         {
-            var rawValue2 = false;
-            if (attrib.Layout.TryGetRawValue(logEvent, out rawValue))
+            var propertyType = contextProperty.PropertyType ?? typeof(string);
+
+            var isStringType = propertyType == typeof(string);
+            if (!isStringType)
             {
-                if (attribType == typeof(object) || rawValue?.GetType() == attribType)
+                if (contextProperty.Layout.TryGetRawValue(logEvent, out var rawValue))
                 {
-                    rawValue2 = true;
+                    if (propertyType == typeof(object))
+                    {
+                        propertyValue = rawValue;
+                        return contextProperty.IncludeEmptyValue || propertyValue != null;
+                    }
+                    else if (rawValue?.GetType() == propertyType)
+                    {
+                        propertyValue = rawValue;
+                        return true;
+                    }
                 }
             }
 
-            return rawValue2;
+            var propertyStringValue = RenderLogEvent(contextProperty.Layout, logEvent) ?? string.Empty;
+            if (!contextProperty.IncludeEmptyValue && string.IsNullOrEmpty(propertyStringValue))
+            {
+                propertyValue = null;
+                return false;
+            }
+
+            if (isStringType)
+            {
+                propertyValue = propertyStringValue;
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(propertyStringValue) && propertyType.IsValueType())
+            {
+                propertyValue = Activator.CreateInstance(propertyType);
+                return true;
+            }
+
+            propertyValue = PropertyTypeConverter.Convert(propertyStringValue, propertyType, null, CultureInfo.InvariantCulture);
+            return true;
         }
 
         /// <summary>
