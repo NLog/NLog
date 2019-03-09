@@ -84,13 +84,37 @@ namespace NLog.Targets
             object[] parameters = Parameters.Count > 0 ? new object[Parameters.Count] : ArrayHelper.Empty<object>();
             for (int i = 0; i < parameters.Length; ++i)
             {
-                var param = Parameters[i];
-                var parameterValue = RenderLogEvent(param.Layout, logEvent.LogEvent);
-                parameters[i] = param.ParameterType == typeof(string) ? parameterValue :
-                        PropertyTypeConverter.Convert(parameterValue, param.ParameterType, null, CultureInfo.InvariantCulture);
+                try
+                {
+                    parameters[i] = GetParameterValue(logEvent.LogEvent, Parameters[i]);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.MustBeRethrownImmediately())
+                        throw;
+
+                    Common.InternalLogger.Warn(ex, "{0}(Name={1}): Failed to get parameter value {2}", GetType(), Name, Parameters[i].Name);
+                    throw;
+                }
             }
 
             DoInvoke(parameters, logEvent);
+        }
+
+        private object GetParameterValue(LogEventInfo logEvent, MethodCallParameter param)
+        {
+            var parameterType = param.ParameterType ?? typeof(string);
+
+            var parameterValue = RenderLogEvent(param.Layout, logEvent);
+            if (parameterType == typeof(string) || parameterType == typeof(object))
+                return parameterValue;
+
+            if (string.IsNullOrEmpty(parameterValue) && parameterType.IsValueType())
+            {
+                return Activator.CreateInstance(param.ParameterType);
+            }
+
+            return PropertyTypeConverter.Convert(parameterValue, parameterType, null, CultureInfo.InvariantCulture);
         }
 
         /// <summary>
