@@ -408,7 +408,7 @@ namespace NLog.Targets
                 }
             }
 
-            var propertyStringValue = RenderLogEvent(contextProperty.Layout, logEvent);
+            var propertyStringValue = RenderLogEvent(contextProperty.Layout, logEvent) ?? string.Empty;
             if (!contextProperty.IncludeEmptyValue && string.IsNullOrEmpty(propertyStringValue))
             {
                 propertyValue = null;

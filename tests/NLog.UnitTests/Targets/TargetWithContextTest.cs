@@ -243,7 +243,11 @@ namespace NLog.UnitTests.Targets
                             <contextproperty name='threadid' layout='${threadid}' propertyType='System.Int32' />
                             <contextproperty name='processid' layout='${processid}' propertyType='System.Int32' />
                             <contextproperty name='timestamp' layout='${date}' propertyType='System.DateTime' />
-                        </target>
+                            <contextproperty name='int-non-existing' layout='${event-properties:non-existing}' propertyType='System.Int32' includeEmptyValue='true' />
+                            <contextproperty name='int-non-existing-empty' layout='${event-properties:non-existing}' propertyType='System.Int32' includeEmptyValue='false' />
+                            <contextproperty name='object-non-existing' layout='${event-properties:non-existing}' propertyType='System.Object' includeEmptyValue='true' />
+                            <contextproperty name='object-non-existing-empty' layout='${event-properties:non-existing}' propertyType='System.Object' includeEmptyValue='false' />
+                       </target>
                     </targets>
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
@@ -262,7 +266,10 @@ namespace NLog.UnitTests.Targets
             Assert.NotEmpty(lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId), lastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("processid", System.Diagnostics.Process.GetCurrentProcess().Id), lastCombinedProperties);
-            Assert.Contains(new KeyValuePair<string, object>("timestamp", logEvent.TimeStamp), lastCombinedProperties);
+            Assert.Contains(new KeyValuePair<string, object>("int-non-existing", 0), lastCombinedProperties);
+            Assert.DoesNotContain("int-non-existing-empty", lastCombinedProperties.Keys);
+            Assert.Contains(new KeyValuePair<string, object>("object-non-existing", null), lastCombinedProperties);
+            Assert.DoesNotContain("object-non-existing-empty", lastCombinedProperties.Keys);
         }
     }
 }

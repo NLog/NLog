@@ -105,7 +105,7 @@ namespace NLog.Targets
         {
             var parameterType = param.ParameterType ?? typeof(string);
 
-            var parameterValue = RenderLogEvent(param.Layout, logEvent);
+            var parameterValue = RenderLogEvent(param.Layout, logEvent) ?? string.Empty;
             if (parameterType == typeof(string) || parameterType == typeof(object))
                 return parameterValue;
 
