@@ -351,6 +351,9 @@ namespace MakeNLogXSD
                 case "System.TimeSpan":
                     return "xs:string";
 
+                case "NLog.LogLevel":
+                    return "xs:string";
+
                 default:
                     if (
                         apiTypeName.StartsWith("System.Collections.Generic.ISet")|| 
