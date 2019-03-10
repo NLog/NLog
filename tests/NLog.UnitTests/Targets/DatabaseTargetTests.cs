@@ -374,7 +374,7 @@ Dispose()
 CreateParameter(0)
 Parameter #0 Direction=Input
 Parameter #0 Name=paramOne
-Parameter #0 Value=SomeValue
+Parameter #0 Value=""SomeValue""
 Add Parameter Parameter #0
 ExecuteNonQuery: INSERT INTO dbo.SomeTable(SomeColumn) SELECT @paramOne WHERE NOT EXISTS(SELECT 1 FROM dbo.SomeOtherTable WHERE SomeColumn = @paramOne);
 Close()
@@ -429,33 +429,33 @@ Dispose()
 CreateParameter(0)
 Parameter #0 Direction=Input
 Parameter #0 Name=msg
-Parameter #0 Value=msg1
+Parameter #0 Value=""msg1""
 Add Parameter Parameter #0
 CreateParameter(1)
 Parameter #1 Direction=Input
 Parameter #1 Name=lvl
-Parameter #1 Value=Info
+Parameter #1 Value=""Info""
 Add Parameter Parameter #1
 CreateParameter(2)
 Parameter #2 Direction=Input
 Parameter #2 Name=lg
-Parameter #2 Value=MyLogger
+Parameter #2 Value=""MyLogger""
 Add Parameter Parameter #2
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
 CreateParameter(0)
 Parameter #0 Direction=Input
 Parameter #0 Name=msg
-Parameter #0 Value=msg3
+Parameter #0 Value=""msg3""
 Add Parameter Parameter #0
 CreateParameter(1)
 Parameter #1 Direction=Input
 Parameter #1 Name=lvl
-Parameter #1 Value=Debug
+Parameter #1 Value=""Debug""
 Add Parameter Parameter #1
 CreateParameter(2)
 Parameter #2 Direction=Input
 Parameter #2 Name=lg
-Parameter #2 Value=MyLogger2
+Parameter #2 Value=""MyLogger2""
 Add Parameter Parameter #2
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
 ";
@@ -472,11 +472,16 @@ Dispose()
         }
 
         [Theory]
-        [InlineData(true, false)]
-        [InlineData(false, true)]
-        [InlineData(null, true)]
-        public void LevelParameterTest(bool? rawValue, bool expectedNumber)
+        [InlineData(null, true, @"""2""")]
+        [InlineData(null, false, @"""2""")]
+        [InlineData(DbType.Int32, true, "2")]
+        [InlineData(DbType.Int32, false, "2")]
+        [InlineData(DbType.Object, true, @"""2""")]
+        [InlineData(DbType.Object, false, "Info")]
+        public void LevelParameterTest(DbType? dbType, bool noRawValue, string expectedValue)
         {
+            string lvlLayout = noRawValue ? "${level:format=Ordinal:norawvalue=true}" : "${level:format=Ordinal}";
+
             MockDbConnection.ClearLog();
             DatabaseTarget dt = new DatabaseTarget()
             {
@@ -485,7 +490,7 @@ Dispose()
                 KeepConnection = true,
                 Parameters =
                 {
-                    new DatabaseParameterInfo("lvl", "${level:format=Ordinal}") { UseRawValue = rawValue},
+                    new DatabaseParameterInfo("lvl", lvlLayout) { DbType = dbType?.ToString() },
                     new DatabaseParameterInfo("msg", "${message}")
                 }
             };
@@ -498,7 +503,6 @@ Dispose()
             var events = new[]
             {
                 new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add),
-                new LogEventInfo(LogLevel.Debug, "MyLogger2", "msg3").WithContinuation(exceptions.Add),
             };
 
             dt.WriteAsyncLogEvents(events);
@@ -507,47 +511,19 @@ Dispose()
                 Assert.Null(ex);
             }
 
-            string valueLevel1;
-            string valueLevel2;
-
-            if (expectedNumber)
-            {
-                valueLevel1 = "2"; // the format ordinail
-                valueLevel2 = "1";
-            }
-            else
-            {
-                valueLevel1 = "Info"; //the enum value
-                valueLevel2 = "Debug";
-            }
-
-
             string expectedLog = string.Format(@"Open('Server=.;Trusted_Connection=SSPI;').
 CreateParameter(0)
 Parameter #0 Direction=Input
-Parameter #0 Name=lvl
-Parameter #0 Value={0}
-Add Parameter Parameter #0
-CreateParameter(1)
-Parameter #1 Direction=Input
-Parameter #1 Name=msg
-Parameter #1 Value=msg1
-Add Parameter Parameter #1
-ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
-CreateParameter(0)
-Parameter #0 Direction=Input
-Parameter #0 Name=lvl
+Parameter #0 Name=lvl{0}
 Parameter #0 Value={1}
 Add Parameter Parameter #0
 CreateParameter(1)
 Parameter #1 Direction=Input
 Parameter #1 Name=msg
-Parameter #1 Value=msg3
+Parameter #1 Value=""msg1""
 Add Parameter Parameter #1
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
-", valueLevel1, valueLevel2);
-
-
+", dbType.HasValue ? $"\r\nParameter #0 DbType={dbType.Value}" : "",  expectedValue);
 
             AssertLog(expectedLog);
 
@@ -561,31 +537,28 @@ Dispose()
         }
 
         [Theory]
-        [InlineData("${counter}", DbType.Int16, null, (short)1)]
-        [InlineData("${counter}", DbType.Int32, null, 1)]
-        [InlineData("${counter}", DbType.Int64, null, (long)1)]
-        [InlineData("${counter}", DbType.Int16, true, (short)1)]
-        [InlineData("${counter}", DbType.Int16, false, (short)1)] //fallback
-        [InlineData("${counter}", DbType.VarNumeric, null, 1, true)]
-        [InlineData("${counter}", DbType.AnsiString, null, "1")]
-        [InlineData("${level}", DbType.AnsiString, null, "Debug")]
-        [InlineData("${level}", DbType.Int32, null, 1)]
-        [InlineData("${level}", DbType.UInt16, null, (ushort) 1)]
-        [InlineData("${event-properties:boolprop}", DbType.Boolean, null, true)]
-        [InlineData("${event-properties:intprop}", DbType.Int32, null, 123)]
-        [InlineData("${event-properties:intprop}", DbType.AnsiString, null, "123")]
-        [InlineData("${event-properties:intprop}", DbType.AnsiString, true, "123")]
-        [InlineData("${event-properties:intprop}", DbType.AnsiString, false, "123")]
-        [InlineData("${event-properties:intprop}", DbType.AnsiStringFixedLength, null, "123")]
-        [InlineData("${event-properties:intprop}", DbType.String, null, "123")]
-        [InlineData("${event-properties:intprop}", DbType.StringFixedLength, null, "123")]
-        [InlineData("${event-properties:almostAsIntProp}", DbType.Int16, null, (short)124)]
-        [InlineData("${event-properties:almostAsIntProp}", DbType.Int16, false, (short)124)]
-        [InlineData("${event-properties:almostAsIntProp}", DbType.Int16, true, (short)124)]
-        [InlineData("${event-properties:almostAsIntProp}", DbType.Int32, null, 124)]
-        [InlineData("${event-properties:almostAsIntProp}", DbType.Int64, null, (long)124)]
-        [InlineData("${event-properties:almostAsIntProp}", DbType.AnsiString, null, " 124 ")]
-        public void GetParameterValueTest(string layout, DbType dbtype, bool? useRawValue, object expected, bool convertToDecimal = false)
+        [InlineData("${counter}", DbType.Int16, (short)1)]
+        [InlineData("${counter}", DbType.Int32, 1)]
+        [InlineData("${counter}", DbType.Int64, (long)1)]
+        [InlineData("${counter}", DbType.Int16, (short)1)]
+        [InlineData("${counter:norawvalue=true}", DbType.Int16, (short)1)] //fallback
+        [InlineData("${counter}", DbType.VarNumeric, 1, true)]
+        [InlineData("${counter}", DbType.AnsiString, "1")]
+        [InlineData("${level}", DbType.AnsiString, "Debug")]
+        [InlineData("${level}", DbType.Int32, 1)]
+        [InlineData("${level}", DbType.UInt16, (ushort) 1)]
+        [InlineData("${event-properties:boolprop}", DbType.Boolean, true)]
+        [InlineData("${event-properties:intprop}", DbType.Int32, 123)]
+        [InlineData("${event-properties:intprop}", DbType.AnsiString, "123")]
+        [InlineData("${event-properties:intprop}", DbType.AnsiStringFixedLength, "123")]
+        [InlineData("${event-properties:intprop}", DbType.String, "123")]
+        [InlineData("${event-properties:intprop}", DbType.StringFixedLength, "123")]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.Int16, (short)124)]
+        [InlineData("${event-properties:almostAsIntProp:norawvalue=true}", DbType.Int16, (short)124)]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.Int32, 124)]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.Int64, (long)124)]
+        [InlineData("${event-properties:almostAsIntProp}", DbType.AnsiString, " 124 ")]
+        public void GetParameterValueTest(string layout, DbType dbtype, object expected, bool convertToDecimal = false)
         {
             // Arrange
             var logEventInfo = new LogEventInfo(LogLevel.Debug, "logger1", "message 2");
@@ -600,7 +573,6 @@ Dispose()
                 DbType = dbtype.ToString(),
                 Layout = layout,
                 Name = parameterName,
-                UseRawValue = useRawValue
             };
             databaseParameterInfo.SetDbType(new MockDbConnection().CreateCommand().CreateParameter());
 
@@ -682,9 +654,7 @@ Dispose()
             yield return new object[] { "3", DbType.AnsiString, "3" };
             yield return new object[] { "${db-null}", DbType.DateTime, DBNull.Value };
             yield return new object[] { "${event-properties:userid}", DbType.Int32, 0 };
-            //todo binary
-            //todo default
-
+            yield return new object[] { "${date:universalTime=true:format=yyyy-MM:norawvalue=true}", DbType.DateTime, DateTime.SpecifyKind(DateTime.UtcNow.Date.AddDays(-DateTime.UtcNow.Day + 1), DateTimeKind.Unspecified)};
         }
 
         [Fact]
@@ -746,18 +716,18 @@ Parameter #0 Name=msg
 Parameter #0 Size=9
 Parameter #0 Precision=3
 Parameter #0 Scale=7
-Parameter #0 Value=msg1
+Parameter #0 Value=""msg1""
 Add Parameter Parameter #0
 CreateParameter(1)
 Parameter #1 Direction=Input
 Parameter #1 Name=lvl
 Parameter #1 Scale=7
-Parameter #1 Value=Info
+Parameter #1 Value=""Info""
 Add Parameter Parameter #1
 CreateParameter(2)
 Parameter #2 Direction=Input
 Parameter #2 Name=lg
-Parameter #2 Value=MyLogger
+Parameter #2 Value=""MyLogger""
 Add Parameter Parameter #2
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
 CreateParameter(0)
@@ -766,18 +736,18 @@ Parameter #0 Name=msg
 Parameter #0 Size=9
 Parameter #0 Precision=3
 Parameter #0 Scale=7
-Parameter #0 Value=msg3
+Parameter #0 Value=""msg3""
 Add Parameter Parameter #0
 CreateParameter(1)
 Parameter #1 Direction=Input
 Parameter #1 Name=lvl
 Parameter #1 Scale=7
-Parameter #1 Value=Debug
+Parameter #1 Value=""Debug""
 Add Parameter Parameter #1
 CreateParameter(2)
 Parameter #2 Direction=Input
 Parameter #2 Name=lg
-Parameter #2 Value=MyLogger2
+Parameter #2 Value=""MyLogger2""
 Add Parameter Parameter #2
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@msg, @lvl, @lg)
 Close()
@@ -821,13 +791,13 @@ Dispose()
 CreateParameter(0)
 Parameter #0 Direction=Input
 Parameter #0 Name=@message
-Parameter #0 Value=msg1
+Parameter #0 Value=""msg1""
 Add Parameter Parameter #0
 CreateParameter(1)
 Parameter #1 Direction=Input
 Parameter #1 Name=@level
 Parameter #1 MockDbType=Int32
-Parameter #1 Value={0}
+Parameter #1 Value=""{0}""
 Add Parameter Parameter #1
 CreateParameter(2)
 Parameter #2 Direction=Input
@@ -1902,7 +1872,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 get => parameterValue;
                 set
                 {
-                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Value={1}", paramId, value);
+                    object valueOutput = value is string valueString ? $"\"{valueString}\"" : value;
+                    ((MockDbConnection)mockDbCommand.Connection).AddToLog("Parameter #{0} Value={1}", paramId, valueOutput);
                     parameterValue = value;
                 }
             }
