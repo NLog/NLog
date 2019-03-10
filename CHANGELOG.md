@@ -4,55 +4,59 @@ Date format: (year/month/day)
 
 ## Change Log
 
-
 ### V4.6
 
-**Features:**
+#### Features
 
-* #2363 + #2899 + #3085 + #3091 Database target: support for DbType for parameters (including SqlDbType) -  (@hubo0831,@ObikeDev,@sorvis, @304NotModified, @snakefoot)
-* #2610 AsyncTargetWrapper with LogEventDropped- + LogEventQueueGrow-events (@Pomoinytskyi)
-* #2670 + #3014 XmlLayout - Render LogEventInfo.Properties as XML (@snakefoot)
-* #2678 NetworkTarget - Support for SSL & TLS (@snakefoot)
-* #2709 XML Config: Support for constant variable in level attributes (level, minlevel, etc) (@304NotModified)
-* #2848 Added defaultAction for <filter> (@304NotModified)
-* #2849 IRawValue-interface and ${db-null} layout renderer (@304NotModified)
-* #2902 JsonLayout with support for System.Dynamic-objects (@304NotModified)
-* #2907 New Substring, Left & Right Wrappers (@304NotModified)
-* #3098 <rule> support for one or more '*' and '?' wildcards and in any position  (@beppemarazzi)
-* #2909 AsyncTaskTarget - BatchSize + RetryCount (@snakefoot)
-* #3018 ColoredConsoleTarget - Added EnableAnsiOutput option (VS Code support) (@jp7677 + @snakefoot)
-* #3031 + #3092 Support ${currentdir},${basedir},${tempdir} and Environment Variables for internalLogFile when parsing nlog.config (@snakefoot)
-* #3050 Added IncludeGdc property in JsonLayout (@casperc89)
-* #3071 ${HostName} Layout Renderer for full computer DNS name (@amitsaha)
-* #3053 ${AppSetting} Layout Renderer (app.config + web.config) moved from NLog.Extended for NetFramework (@snakefoot)
-* #3060 TargetWithContext - Support for PropertyType using IRawValue-interface (@snakefoot)
+- [#2363](https://github.com/NLog/NLog/pull/2363) + [#2899](https://github.com/NLog/NLog/pull/2899) + [#3085](https://github.com/NLog/NLog/pull/3085) + [#3091](https://github.com/NLog/NLog/pull/3091) Database target: support for DbType for parameters (including SqlDbType) -  (@hubo0831,@ObikeDev,@sorvis, @304NotModified, @snakefoot)
+- [#2610](https://github.com/NLog/NLog/pull/2610) AsyncTargetWrapper with LogEventDropped- + LogEventQueueGrow-events (@Pomoinytskyi)
+- [#2670](https://github.com/NLog/NLog/pull/2670) + [#3014](https://github.com/NLog/NLog/pull/3014) XmlLayout - Render LogEventInfo.Properties as XML (@snakefoot)
+- [#2678](https://github.com/NLog/NLog/pull/2678) NetworkTarget - Support for SSL & TLS (@snakefoot)
+- [#2709](https://github.com/NLog/NLog/pull/2709) XML Config: Support for constant variable in level attributes (level, minlevel, etc) (@304NotModified)
+- [#2848](https://github.com/NLog/NLog/pull/2848) Added defaultAction for <filter> (@304NotModified)
+- [#2849](https://github.com/NLog/NLog/pull/2849) IRawValue-interface and ${db-null} layout renderer (@304NotModified)
+- [#2902](https://github.com/NLog/NLog/pull/2902) JsonLayout with support for System.Dynamic-objects (@304NotModified)
+- [#2907](https://github.com/NLog/NLog/pull/2907) New Substring, Left & Right Wrappers (@304NotModified)
+- [#3098](https://github.com/NLog/NLog/pull/3098) <rule> support for one or more '*' and '?' wildcards and in any position  (@beppemarazzi)
+- [#2909](https://github.com/NLog/NLog/pull/2909) AsyncTaskTarget - BatchSize + RetryCount (@snakefoot)
+- [#3018](https://github.com/NLog/NLog/pull/3018) ColoredConsoleTarget - Added EnableAnsiOutput option (VS Code support) (@jp7677 + @snakefoot)
+- [#3031](https://github.com/NLog/NLog/pull/3031) + [#3092](https://github.com/NLog/NLog/pull/3092) Support ${currentdir},${basedir},${tempdir} and Environment Variables for internalLogFile when parsing nlog.config (@snakefoot)
+- [#3050](https://github.com/NLog/NLog/pull/3050) Added IncludeGdc property in JsonLayout (@casperc89)
+- [#3071](https://github.com/NLog/NLog/pull/3071) ${HostName} Layout Renderer for full computer DNS name (@amitsaha)
+- [#3053](https://github.com/NLog/NLog/pull/3053) ${AppSetting} Layout Renderer (app.config + web.config) moved from NLog.Extended for NetFramework (@snakefoot)
+- [#3060](https://github.com/NLog/NLog/pull/3060)](https://github.com/NLog/NLog/pull/[#3060](https://github.com/NLog/NLog/pull/3060)) TargetWithContext - Support for PropertyType using IRawValue-interface (@snakefoot)
+- [#3124](https://github.com/NLog/NLog/pull/3124) NetworkTarget - Added support for KeepAliveTimeSeconds (@snakefoot)
+- [#3129](https://github.com/NLog/NLog/pull/3129) ConfigSetting - Preregister so it can be accessed without extension registration (#3129) (@snakefoot)
 
-**Enhancements:**
 
-* #2989 JsonLayout includes Type-property when rendering Exception-object (@snakefoot)
-* #2891 LoggingConfigurationParser - Extracted from XmlLoggingConfiguration (Prepare for appsettings.json)  (@snakefoot)
-* #2910 Added support for complex objects in MDLC and NDLC on Net45  (@snakefoot)
-* #2918 PerformanceCounter - Improve behavior for CPU usage calculation  (@snakefoot)
-* #2941 TargetWithContext - Include all properties even when duplicate names  (@snakefoot)
-* #2974 Updated resharper annotations for better validation (@imanushin)
-* #2979 Improve default reflection support on NetCore Native (@snakefoot)
-* #3017 EventLogTarget with better support for MaximumKilobytes configuration (@Coriolanuss)
-* #3039 Added Xamarin PreserveAttribute for the entire Assembly to improve AOT-linking (@snakefoot)
-* #3045 Create snupkg packages and use portable PDB (@snakefoot)
-* #3048 KeepFileOpen + ConcurrentWrites on Xamarin + UWP - #3079 (@304NotModified)
-* #3082 + #3100  WebService Target allow custom override of SoapAction-header for Soap11 (@AlexeyRokhin)
-* Various refactorings (15 pull requests) (@beppemarazzi, @304NotModified, @snakefoot)
+#### Enhancements
 
-**Performance:**
+- [#2989](https://github.com/NLog/NLog/pull/2989) JsonLayout includes Type-property when rendering Exception-object (@snakefoot)
+- [#2891](https://github.com/NLog/NLog/pull/2891) LoggingConfigurationParser - Extracted from XmlLoggingConfiguration (Prepare for appsettings.json)  (@snakefoot)
+- [#2910](https://github.com/NLog/NLog/pull/2910) Added support for complex objects in MDLC and NDLC on Net45  (@snakefoot)
+- [#2918](https://github.com/NLog/NLog/pull/2918) PerformanceCounter - Improve behavior for CPU usage calculation  (@snakefoot)
+- [#2941](https://github.com/NLog/NLog/pull/2941) TargetWithContext - Include all properties even when duplicate names  (@snakefoot)
+- [#2974](https://github.com/NLog/NLog/pull/2974) Updated resharper annotations for better validation (@imanushin)
+- [#2979](https://github.com/NLog/NLog/pull/2979) Improve default reflection support on NetCore Native (@snakefoot)
+- [#3017](https://github.com/NLog/NLog/pull/3017) EventLogTarget with better support for MaximumKilobytes configuration (@Coriolanuss)
+- [#3039](https://github.com/NLog/NLog/pull/3039) Added Xamarin PreserveAttribute for the entire Assembly to improve AOT-linking (@snakefoot)
+- [#3045](https://github.com/NLog/NLog/pull/3045) Create snupkg packages and use portable PDB (@snakefoot)
+- [#3048](https://github.com/NLog/NLog/pull/3048) KeepFileOpen + ConcurrentWrites on Xamarin + UWP - [#3079](https://github.com/NLog/NLog/pull/3079) (@304NotModified)
+- [#3082](https://github.com/NLog/NLog/pull/3082) + [#3100](https://github.com/NLog/NLog/pull/3100)  WebService Target allow custom override of SoapAction-header for Soap11 (@AlexeyRokhin)
+- [#3162](https://github.com/NLog/NLog/pull/3162) ContextProperty with IncludeEmptyValue means default value for ValueType (#3162) (@snakefoot)
+- [#3159](https://github.com/NLog/NLog/pull/3159) AppSettingLayoutRenderer - Include Item for NLog.Extended (@snakefoot)
+-  Various refactorings (15+ pull requests) (@beppemarazzi, @304NotModified, @snakefoot)
 
-* #2650 AsyncTargetWrapper using ConcurrentQueue for NetCore2 for better thread-concurrency (@snakefoot)
-* #2890 AsyncTargetWrapper - TimeToSleepBetweenBatches changed default to 1ms (@snakefoot)
-* #2897 InternalLogger performance optimization when LogLevel.Off (@snakefoot)
-* #2935 InternalLogger LogLevel changes to LogLevel.Off by default unless being used. (@snakefoot)
-* #2934 CsvLayout - Allocation optimizations and optional skip quoting-check for individual columns. (@snakefoot)
-* #2949 MappedDiagnosticsLogicalContext - SetScoped with IReadOnlyList (Prepare for MEL BeginScope) (@snakefoot)
-* #2973 IRenderString-interface to improve performance for Layout with single LayoutRenderer (@snakefoot)
-* #3103 StringBuilderPool - Reduce memory overhead until required (@snakefoot)
+#### Performance
+
+- [#2650](https://github.com/NLog/NLog/pull/2650) AsyncTargetWrapper using ConcurrentQueue for NetCore2 for better thread-concurrency (@snakefoot)
+- [#2890](https://github.com/NLog/NLog/pull/2890) AsyncTargetWrapper - TimeToSleepBetweenBatches changed default to 1ms (@snakefoot)
+- [#2897](https://github.com/NLog/NLog/pull/2897) InternalLogger performance optimization when LogLevel.Off (@snakefoot)
+- [#2935](https://github.com/NLog/NLog/pull/2935) InternalLogger LogLevel changes to LogLevel.Off by default unless being used. (@snakefoot)
+- [#2934](https://github.com/NLog/NLog/pull/2934) CsvLayout - Allocation optimizations and optional skip quoting-check for individual columns. (@snakefoot)
+- [#2949](https://github.com/NLog/NLog/pull/2949) MappedDiagnosticsLogicalContext - SetScoped with IReadOnlyList (Prepare for MEL BeginScope) (@snakefoot)
+- [#2973](https://github.com/NLog/NLog/pull/2973) IRenderString-interface to improve performance for Layout with single LayoutRenderer (@snakefoot)
+- [#3103](https://github.com/NLog/NLog/pull/3103) StringBuilderPool - Reduce memory overhead until required (@snakefoot)
 
 **LibLog Breaking change**
 

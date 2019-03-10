@@ -54,7 +54,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the system special folder to use.
         /// </summary>
         /// <remarks>
-        /// Full list of options is available at <a href="http://msdn2.microsoft.com/en-us/system.environment.specialfolder.aspx">MSDN</a>.
+        /// Full list of options is available at <a href="https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder">MSDN</a>.
         /// The most common ones are:
         /// <ul>
         /// <li><b>ApplicationData</b> - roaming application data for current user.</li>

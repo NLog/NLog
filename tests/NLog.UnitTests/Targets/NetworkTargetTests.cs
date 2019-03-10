@@ -893,12 +893,35 @@ namespace NLog.UnitTests.Targets
         {
             var config = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog>
-                <targets><target name='target1' type='network' layout='${{message}}' Address='tcp://127.0.0.1' sslProtocols='{sslOptions}' /></targets>
+                <targets><target name='target1' type='network' layout='${{message}}' Address='tcp://127.0.0.1:50001' sslProtocols='{sslOptions}' /></targets>
                
             </nlog>");
 
             var target = config.FindTargetByName<NetworkTarget>("target1");
             Assert.Equal(expected, target.SslProtocols);
+        }
+
+        [Theory]
+        [InlineData("0", 0)]
+        [InlineData("30", 30)]
+        public void KeepAliveTimeConfigTest(string keepAliveTimeSeconds, int expected)
+        {
+            var config = XmlLoggingConfiguration.CreateFromXmlString($@"
+            <nlog>
+                <targets><target name='target1' type='network' layout='${{message}}' Address='tcp://127.0.0.1:50001' keepAliveTimeSeconds='{keepAliveTimeSeconds}' /></targets>
+                <rules><logger name='*' minLevel='Trace' writeTo='target1'/></rules>
+            </nlog>");
+
+            var target = config.FindTargetByName<NetworkTarget>("target1");
+            Assert.Equal(expected, target.KeepAliveTimeSeconds);
+
+            LogManager.Configuration = config;
+            var logger = LogManager.GetLogger("keepAliveTimeSeconds");
+
+            using (new NoThrowNLogExceptions())
+            {
+                logger.Info("Hello");
+            }
         }
 
         internal class MySenderFactory : INetworkSenderFactory
@@ -907,7 +930,7 @@ namespace NLog.UnitTests.Targets
             internal StringWriter Log = new StringWriter();
             private int idCounter;
 
-            public NetworkSender Create(string url, int maximumQueueSize, SslProtocols sslProtocols)
+            public NetworkSender Create(string url, int maxQueueSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
             {
                 var sender = new MyNetworkSender(url, ++idCounter, Log, this);
                 Senders.Add(sender);

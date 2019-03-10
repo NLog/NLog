@@ -44,6 +44,10 @@ namespace NLog.Internal.NetworkSenders
     /// </summary>
     internal class TcpNetworkSender : NetworkSender
     {
+#if !SILVERLIGHT
+        private static bool? EnableKeepAliveSuccessful;
+#endif
+
         private readonly Queue<SocketAsyncEventArgs> _pendingRequests = new Queue<SocketAsyncEventArgs>();
 
         private ISocket _socket;
@@ -69,6 +73,8 @@ namespace NLog.Internal.NetworkSenders
 
 #if !SILVERLIGHT
         internal System.Security.Authentication.SslProtocols SslProtocols { get; set; }
+
+        internal TimeSpan KeepAliveTime { get; set; }
 #endif
 
         /// <summary>
@@ -83,6 +89,14 @@ namespace NLog.Internal.NetworkSenders
         protected internal virtual ISocket CreateSocket(string host, AddressFamily addressFamily, SocketType socketType, ProtocolType protocolType)
         {
             var socketProxy = new SocketProxy(addressFamily, socketType, protocolType);
+
+#if !SILVERLIGHT
+            if (KeepAliveTime.TotalSeconds >= 1.0 && EnableKeepAliveSuccessful != false)
+            {
+                EnableKeepAliveSuccessful = TryEnableKeepAlive(socketProxy.UnderlyingSocket, (int)KeepAliveTime.TotalSeconds);
+            }
+#endif
+
 #if !NETSTANDARD1_0 && !SILVERLIGHT
             if (SslProtocols != System.Security.Authentication.SslProtocols.None)
             {
@@ -91,6 +105,75 @@ namespace NLog.Internal.NetworkSenders
 #endif
             return socketProxy;
         }
+
+#if !SILVERLIGHT
+        private static bool TryEnableKeepAlive(Socket underlyingSocket, int keepAliveTimeSeconds)
+        {
+            if (TrySetSocketOption(underlyingSocket, SocketOptionName.KeepAlive, true))
+            {
+                // SOCKET OPTION NAME CONSTANT
+                // Ws2ipdef.h (Windows SDK)
+                // #define    TCP_KEEPALIVE      3
+                // #define    TCP_KEEPINTVL      17
+                SocketOptionName TcpKeepAliveTime = (SocketOptionName)0x3;
+                SocketOptionName TcpKeepAliveInterval = (SocketOptionName)0x11;
+
+                if (PlatformDetector.CurrentOS == RuntimeOS.Linux)
+                {
+                    // https://github.com/torvalds/linux/blob/v4.16/include/net/tcp.h
+                    // #define    TCP_KEEPIDLE            4              /* Start keeplives after this period */
+                    // #define    TCP_KEEPINTVL           5              /* Interval between keepalives */
+                    TcpKeepAliveTime = (SocketOptionName)0x4;
+                    TcpKeepAliveInterval = (SocketOptionName)0x5;
+                }
+                else if (PlatformDetector.CurrentOS == RuntimeOS.MacOSX)
+                {
+                    // https://opensource.apple.com/source/xnu/xnu-4570.41.2/bsd/netinet/tcp.h.auto.html
+                    // #define    TCP_KEEPALIVE      0x10                      /* idle time used when SO_KEEPALIVE is enabled */
+                    // #define    TCP_KEEPINTVL      0x101                     /* interval between keepalives */
+                    TcpKeepAliveTime = (SocketOptionName)0x10;
+                    TcpKeepAliveInterval = (SocketOptionName)0x101;
+                }
+
+                if (TrySetTcpOption(underlyingSocket, TcpKeepAliveTime, keepAliveTimeSeconds))
+                {
+                    // Configure retransmission interval when missing acknowlege of keep-alive-probe
+                    TrySetTcpOption(underlyingSocket, TcpKeepAliveInterval, 1); // Default 1 sec on Windows (75 sec on Linux)
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool TrySetSocketOption(Socket underlyingSocket, SocketOptionName socketOption, bool value)
+        {
+            try
+            {
+                underlyingSocket.SetSocketOption(SocketOptionLevel.Socket, socketOption, value);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "NetworkTarget: Failed to configure Socket-option {0} = {1}", socketOption, value);
+                return false;
+            }
+        }
+
+        private static bool TrySetTcpOption(Socket underlyingSocket, SocketOptionName socketOption, int value)
+        {
+            try
+            {
+                underlyingSocket.SetSocketOption(SocketOptionLevel.Tcp, socketOption, value);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Warn(ex, "NetworkTarget: Failed to configure TCP-option {0} = {1}", socketOption, value);
+                return false;
+            }
+        }
+#endif
 
         /// <summary>
         /// Performs sender-specific initialization.

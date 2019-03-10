@@ -42,7 +42,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Decodes text "encrypted" with ROT-13.
     /// </summary>
     /// <remarks>
-    /// See <a href="http://en.wikipedia.org/wiki/ROT13">http://en.wikipedia.org/wiki/ROT13</a>.
+    /// See <a href="https://en.wikipedia.org/wiki/ROT13">https://en.wikipedia.org/wiki/ROT13</a>.
     /// </remarks>
     [LayoutRenderer("rot13")]
     [AppDomainFixedOutput]

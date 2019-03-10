@@ -64,7 +64,11 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => GetValue(logEvent);
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = GetValue(logEvent);
+            return true;
+        }
 
         /// <summary>
         /// Write timestamp to builder with format hh:mm:ss:fff

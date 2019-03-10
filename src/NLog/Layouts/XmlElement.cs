@@ -31,59 +31,48 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
 using System.ComponentModel;
-using System.Text;
 using NLog.Config;
-using NLog.Internal;
 
-#if !SILVERLIGHT
-namespace NLog.LayoutRenderers
+namespace NLog.Layouts
 {
     /// <summary>
-    /// The call site source line number. Full callsite <see cref="CallSiteLayoutRenderer"/>
+    /// A XML Element
     /// </summary>
-    [LayoutRenderer("callsite-linenumber")]
+    [NLogConfigurationItem]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class CallSiteLineNumberLayoutRenderer : LayoutRenderer, IUsesStackTrace, IRawValue
+    public class XmlElement : XmlElementBase
     {
-        /// <summary>
-        /// Gets or sets the number of frames to skip.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(0)]
-        public int SkipFrames { get; set; }
-        
-        /// <summary>
-        /// Gets the level of stack trace information required by the implementing class.
-        /// </summary>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsage.WithSource;
+        private const string DefaultElementName = "item";
 
         /// <inheritdoc />
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        public XmlElement() : this(DefaultElementName, null)
         {
-            var lineNumber = GetLineNumber(logEvent);
-            if (lineNumber.HasValue)
-                builder.AppendInvariant(lineNumber.Value);
         }
 
         /// <inheritdoc />
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        public XmlElement(string elementName, Layout elementValue) : base(elementName, elementValue)
         {
-            value = GetLineNumber(logEvent);
-            return true;
         }
 
-        private int? GetLineNumber(LogEventInfo logEvent)
+        /// <summary>
+        /// Name of the element
+        /// </summary>
+        [DefaultValue(DefaultElementName)]
+        public string Name
         {
-            if (logEvent.CallSiteInformation == null)
-            {
-                return null;
-            }
+            get => base.ElementNameInternal;
+            set => base.ElementNameInternal = value;
+        }
 
-            return logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
+        /// <summary>
+        /// Value inside the element
+        /// </summary>
+        public Layout Value
+        {
+            get => base.ElementValueInternal;
+            set => base.ElementValueInternal = value;
         }
     }
 }
-#endif

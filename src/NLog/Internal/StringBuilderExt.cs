@@ -90,7 +90,7 @@ namespace NLog.Internal
         /// <summary>
         /// Appends uint without using culture, and most importantly without garbage
         /// 
-        /// Credits Gavin Pugh  - http://www.gavpugh.com/2010/04/01/xnac-avoiding-garbage-when-working-with-stringbuilder/
+        /// Credits Gavin Pugh  - https://www.gavpugh.com/2010/04/01/xnac-avoiding-garbage-when-working-with-stringbuilder/
         /// </summary>
         /// <param name="builder"></param>
         /// <param name="value">value to append</param>

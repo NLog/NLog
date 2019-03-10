@@ -178,7 +178,11 @@ namespace NLog.LayoutRenderers
         }
 
         /// <inheritdoc />
-        object IRawValue.GetRawValue(LogEventInfo logEvent) => logEvent.Exception;
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = logEvent.Exception;
+            return true;
+        }
 
         /// <inheritdoc />
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)

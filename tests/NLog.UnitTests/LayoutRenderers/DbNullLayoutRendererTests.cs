@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -32,58 +32,31 @@
 // 
 
 using System;
-using System.ComponentModel;
-using System.Text;
-using NLog.Config;
+using System.Linq;
 using NLog.Internal;
+using NLog.LayoutRenderers;
+using NLog.Layouts;
+using Xunit;
 
-#if !SILVERLIGHT
-namespace NLog.LayoutRenderers
+namespace NLog.UnitTests.LayoutRenderers
 {
-    /// <summary>
-    /// The call site source line number. Full callsite <see cref="CallSiteLayoutRenderer"/>
-    /// </summary>
-    [LayoutRenderer("callsite-linenumber")]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public class CallSiteLineNumberLayoutRenderer : LayoutRenderer, IUsesStackTrace, IRawValue
+    public class DbNullLayoutRendererTests
     {
-        /// <summary>
-        /// Gets or sets the number of frames to skip.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(0)]
-        public int SkipFrames { get; set; }
-        
-        /// <summary>
-        /// Gets the level of stack trace information required by the implementing class.
-        /// </summary>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsage.WithSource;
-
-        /// <inheritdoc />
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        [Fact]
+        public void TryGetRawValue_emptyEvent_shouldReturnDbNull()
         {
-            var lineNumber = GetLineNumber(logEvent);
-            if (lineNumber.HasValue)
-                builder.AppendInvariant(lineNumber.Value);
+            // Arrange
+            var renderer = new DbNullLayoutRenderer();
+            IRawValue rawValueGetter = renderer;
+
+            // Act
+            var result = rawValueGetter.TryGetRawValue(LogEventInfo.CreateNullEvent(), out var resultValue);
+
+            // Assert
+            Assert.Equal(DBNull.Value, resultValue);
+            Assert.True(result);
         }
 
-        /// <inheritdoc />
-        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
-        {
-            value = GetLineNumber(logEvent);
-            return true;
-        }
 
-        private int? GetLineNumber(LogEventInfo logEvent)
-        {
-            if (logEvent.CallSiteInformation == null)
-            {
-                return null;
-            }
-
-            return logEvent.CallSiteInformation.GetCallerLineNumber(SkipFrames);
-        }
     }
 }
-#endif

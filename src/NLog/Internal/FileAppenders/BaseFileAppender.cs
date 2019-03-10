@@ -273,7 +273,7 @@ namespace NLog.Internal.FileAppenders
 #if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__  && !NETSTANDARD
             try
             {
-                if (!CreateFileParameters.ForceManaged && PlatformDetector.IsDesktopWin32 && !PlatformDetector.IsMono)
+                if (!CreateFileParameters.ForceManaged && PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
                 {
                     return WindowsCreateFile(FileName, allowFileSharedWriting);
                 }

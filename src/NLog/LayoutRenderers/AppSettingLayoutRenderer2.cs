@@ -35,7 +35,7 @@
 
 namespace NLog.LayoutRenderers
 {
-    using System.Collections.Specialized;
+    using System;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -48,18 +48,24 @@ namespace NLog.LayoutRenderers
     /// stored in the application's App.config or Web.config file.
     /// </remarks>
     /// <code lang="NLog Layout Renderer">
-    /// ${appsetting:name=mysetting:default=mydefault} - produces "mydefault" if no appsetting
+    /// ${appsetting:item=mysetting:default=mydefault} - produces "mydefault" if no appsetting
     /// </code>
     [LayoutRenderer("appsetting")]
     public sealed class AppSettingLayoutRenderer2 : LayoutRenderer
     {
         ///<summary>
-        /// The AppSetting name.
+        /// The AppSetting item-name
         ///</summary>
         /// <docgen category='Rendering Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
-        public string Name { get; set; }
+        public string Item { get; set; }
+
+        ///<summary>
+        /// The AppSetting item-name
+        ///</summary>
+        [Obsolete("Allows easier conversion from NLog.Extended. Instead use Item-property")]
+        public string Name { get => Item; set => Item = value; }
 
         ///<summary>
         /// The default value to render if the AppSetting value is null.
@@ -76,10 +82,10 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (Name == null)
+            if (Item == null)
                 return;
 
-            string value = ConfigurationManager.AppSettings[Name];
+            string value = ConfigurationManager.AppSettings[Item];
             if (value == null && Default != null)
                 value = Default;
 

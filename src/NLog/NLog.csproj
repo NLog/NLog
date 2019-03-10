@@ -12,7 +12,7 @@ NLog supports traditional logging, structured logging and the combination of bot
 
 Supported platforms:
 
-- .NET Framework 3.5, 4, 4.5, 4.6 &amp; 4.7
+- .NET Framework 3.5, 4, 4.5, 4.6, 4.7 &amp; 4.8
 - .NET Standard 1.3+ and 2.0+;
 - .NET Framework 4 client profile
 - Xamarin Android, Xamarin iOs
@@ -32,7 +32,33 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 
-**Features:**
+## Changes since RC1
+
+### Breaking 
+
+Breaking changes since NLog 4.6 RC1, no breaking changes with 4.5.11
+
+- #3131 DatabaseTarget - Removed logEvent-parameter from CreateDatabaseParameter (@snakefoot)
+- #3138 Split XML layout to XMLELement and XmlElementBase (#3138) (@304NotModified)
+
+### Features
+
+- #3124 NetworkTarget - Added support for KeepAliveTimeSeconds (@snakefoot)
+- #3129 ConfigSetting - Preregister so it can be accessed without extension registration (#3129) (@snakefoot)
+
+### Improvements
+
+- #3162 ContextProperty with IncludeEmptyValue means default value for ValueType (#3162) (@snakefoot)
+- #3160 Refactor filetarget + target to reduce code complexity (@snakefoot)
+- #3159 AppSettingLayoutRenderer - Include Item for NLog.Extended (@snakefoot)
+- #3155 PlatformDetector - Introduced detection of MacOSX, and removed WindowsCE (@snakefoot)
+- #3144 TryGetRawValue instead of GetRawValue (@304NotModified)
+- #3141 AppSettingLayoutRenderer2 - Use Item instead of Name as it matches GDC + MDC + MDLC (#3141) (@snakefoot)
+- #3121 All Hyperlinks to https (@304NotModified)
+
+## All changes NLog 4.6
+
+### Features
 
 * #2363 + #2899 + #3085 + #3091 Database target: support for DbType for parameters (including SqlDbType) -  (@hubo0831,@ObikeDev,@sorvis, @304NotModified, @snakefoot)
 * #2610 AsyncTargetWrapper with LogEventDropped- + LogEventQueueGrow-events (@Pomoinytskyi)
@@ -52,7 +78,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 * #3053 ${AppSetting} Layout Renderer (app.config + web.config) moved from NLog.Extended for NetFramework (@snakefoot)
 * #3060 TargetWithContext - Support for PropertyType using IRawValue-interface (@snakefoot)
 
-**Enhancements:**
+### Enhancements
 
 * #2989 JsonLayout includes Type-property when rendering Exception-object (@snakefoot)
 * #2891 LoggingConfigurationParser - Extracted from XmlLoggingConfiguration (Prepare for appsettings.json)  (@snakefoot)
@@ -68,7 +94,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 * #3082 + #3100  WebService Target allow custom override of SoapAction-header for Soap11 (@AlexeyRokhin)
 * Various refactorings (15 pull requests) (@beppemarazzi, @304NotModified, @snakefoot)
 
-**Performance:**
+### Performance
 
 * #2650 AsyncTargetWrapper using ConcurrentQueue for NetCore2 for better thread-concurrency (@snakefoot)
 * #2890 AsyncTargetWrapper - TimeToSleepBetweenBatches changed default to 1ms (@snakefoot)
