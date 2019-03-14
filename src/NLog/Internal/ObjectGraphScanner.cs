@@ -117,50 +117,55 @@ namespace NLog.Internal
 
             foreach (PropertyInfo prop in PropertyHelper.GetAllReadableProperties(type))
             {
-                var value = GetConfigurationPropertyValue(o, prop, level);
-                if (value == null)
+                var propValue = GetConfigurationPropertyValue(o, prop, level);
+                if (propValue == null)
                     continue;
 
-                if (InternalLogger.IsTraceEnabled)
-                {
-                    InternalLogger.Trace("{0}Scanning Property {1} '{2}' {3}", new string(' ', level + 1), prop.Name, value.ToString(), prop.PropertyType.Namespace);
-                }
+                ScanPropertyForObject(prop, propValue, aggressiveSearch, result, level, visitedObjects);
+            }
+        }
 
-                if (value is IList list)
+        private static void ScanPropertyForObject<T>(PropertyInfo prop, object propValue, bool aggressiveSearch, List<T> result, int level, HashSet<object> visitedObjects) where T : class
+        {
+            if (InternalLogger.IsTraceEnabled)
+            {
+                InternalLogger.Trace("{0}Scanning Property {1} '{2}' {3}", new string(' ', level + 1), prop.Name, propValue.ToString(), prop.PropertyType.Namespace);
+            }
+
+            if (propValue is IList list)
+            {
+                //try first icollection for syncroot
+                List<object> elements;
+                lock (list.SyncRoot)
                 {
-                    //try first icollection for syncroot
-                    List<object> elements;
-                    lock (list.SyncRoot)
+                    elements = new List<object>(list.Count);
+                    //no foreach. Even .Cast can lead to  Collection was modified after the enumerator was instantiated.
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        elements = new List<object>(list.Count);
-                        //no foreach. Even .Cast can lead to  Collection was modified after the enumerator was instantiated.
-                        for (int i = 0; i < list.Count; i++)
-                        {
-                            var item = list[i];
-                            elements.Add(item);
-                        }
+                        var item = list[i];
+                        elements.Add(item);
                     }
+                }
+                ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
+            }
+            else
+            {
+                if (propValue is IEnumerable enumerable)
+                {
+                    //new list to prevent: Collection was modified after the enumerator was instantiated.
+                    var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
+                    //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
                     ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
                 }
                 else
                 {
-                    if (value is IEnumerable enumerable)
-                    {
-                        //new list to prevent: Collection was modified after the enumerator was instantiated.
-                        var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
-                        //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
-                        ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
-                    }
-                    else
-                    {
 #if NETSTANDARD
-                        if (!prop.PropertyType.IsDefined(typeof(NLogConfigurationItemAttribute), true))
-                        {
-                            continue;   // .NET native doesn't always allow reflection of System-types (Ex. Encoding)
-                        }
-#endif
-                        ScanProperties(aggressiveSearch, result, value, level + 1, visitedObjects);
+                    if (!prop.PropertyType.IsDefined(typeof(NLogConfigurationItemAttribute), true))
+                    {
+                        return;   // .NET native doesn't always allow reflection of System-types (Ex. Encoding)
                     }
+#endif
+                    ScanProperties(aggressiveSearch, result, propValue, level + 1, visitedObjects);
                 }
             }
         }
