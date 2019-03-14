@@ -1590,12 +1590,23 @@ namespace NLog.Targets
             }
 
             string archiveFilePattern = GetArchiveFileNamePattern(fileName, eventInfo);
-
             if (string.IsNullOrEmpty(archiveFilePattern))
             {
                 InternalLogger.Warn("FileTarget(Name={0}): Skip auto archive because archiveFilePattern is NULL", Name);
                 return;
             }
+
+            DateTime? archiveDate = GetArchiveDate(fileName, eventInfo, previousLogEventTimestamp);
+
+            var archiveFileName = GenerateArchiveFileNameAfterCleanup(fileName, fileInfo, archiveFilePattern, archiveDate, initializedNewFile);
+            if (!string.IsNullOrEmpty(archiveFileName))
+            {
+                ArchiveFile(fileInfo.FullName, archiveFileName);
+            }
+        }
+
+        private string GenerateArchiveFileNameAfterCleanup(string fileName, FileInfo fileInfo, string archiveFilePattern, DateTime? archiveDate, bool initializedNewFile)
+        {
             InternalLogger.Trace("FileTarget(Name={0}): Archive pattern '{1}'", Name, archiveFilePattern);
 
             var fileArchiveStyle = GetFileArchiveHelper(archiveFilePattern);
@@ -1621,43 +1632,42 @@ namespace NLog.Targets
                     if (string.Equals(Path.GetDirectoryName(archiveFilePattern), fileInfo.DirectoryName, StringComparison.OrdinalIgnoreCase))
                     {
                         DeleteOldArchiveFile(fileName);
-                        return;
+                        return null;
                     }
                 }
             }
 
-            DateTime? archiveDate = GetArchiveDate(fileName, eventInfo, previousLogEventTimestamp);
             var archiveFileName = archiveDate.HasValue ? fileArchiveStyle.GenerateArchiveFileName(archiveFilePattern, archiveDate.Value, existingArchiveFiles) : null;
-            if (archiveFileName != null)
-            {
-                if (!initializedNewFile)
-                {
-                    FinalizeFile(fileName, isArchiving: true);
-                }
+            if (archiveFileName == null)
+                return null;
 
-                if (string.Equals(Path.GetDirectoryName(archiveFileName.FileName), fileInfo.DirectoryName, StringComparison.OrdinalIgnoreCase))
+            if (!initializedNewFile)
+            {
+                FinalizeFile(fileName, isArchiving: true);
+            }
+
+            if (string.Equals(Path.GetDirectoryName(archiveFileName.FileName), fileInfo.DirectoryName, StringComparison.OrdinalIgnoreCase))
+            {
+                // Extra handling when archive-directory is the same as logging-directory
+                for (int i = 0; i < existingArchiveFiles.Count; ++i)
                 {
-                    // Extra handling when archive-directory is the same as logging-directory
-                    for (int i = 0; i < existingArchiveFiles.Count; ++i)
+                    if (string.Equals(existingArchiveFiles[i].FileName, fileInfo.FullName, StringComparison.OrdinalIgnoreCase))
                     {
-                        if (string.Equals(existingArchiveFiles[i].FileName, fileInfo.FullName, StringComparison.OrdinalIgnoreCase))
-                        {
-                            existingArchiveFiles.RemoveAt(i);
-                            break;
-                        }
+                        existingArchiveFiles.RemoveAt(i);
+                        break;
                     }
                 }
-
-                existingArchiveFiles.Add(archiveFileName);
-
-                var cleanupArchiveFiles = fileArchiveStyle.CheckArchiveCleanup(archiveFilePattern, existingArchiveFiles, MaxArchiveFiles);
-                foreach (var oldArchiveFile in cleanupArchiveFiles)
-                {
-                    DeleteOldArchiveFile(oldArchiveFile.FileName);
-                }
-
-                ArchiveFile(fileInfo.FullName, archiveFileName.FileName);
             }
+
+            existingArchiveFiles.Add(archiveFileName);
+
+            var cleanupArchiveFiles = fileArchiveStyle.CheckArchiveCleanup(archiveFilePattern, existingArchiveFiles, MaxArchiveFiles);
+            foreach (var oldArchiveFile in cleanupArchiveFiles)
+            {
+                DeleteOldArchiveFile(oldArchiveFile.FileName);
+            }
+
+            return archiveFileName.FileName;
         }
 
         /// <summary>
@@ -2204,9 +2214,9 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Invokes the archiving and clean up of older archive file based on the values of <see
-        /// cref="NLog.Targets.FileTarget.ArchiveOldFileOnStartup"/> and <see
-        /// cref="NLog.Targets.FileTarget.DeleteOldFileOnStartup"/> properties respectively.
+        /// Invokes the archiving and clean up of older archive file based on the values of
+        /// <see cref="NLog.Targets.FileTarget.ArchiveOldFileOnStartup"/> and
+        /// <see cref="NLog.Targets.FileTarget.DeleteOldFileOnStartup"/> properties respectively.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <param name="logEvent">Log event that the <see cref="FileTarget"/> instance is currently processing.</param>
