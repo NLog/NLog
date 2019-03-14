@@ -860,12 +860,12 @@ namespace NLog.UnitTests.Targets
             {
                 if (string.IsNullOrEmpty(Host) && string.IsNullOrEmpty(PickupDirectoryLocation))
                 {
-                    throw new InvalidOperationException("[Host/Pickup directory] is null or empty.");
+                    throw new ApplicationException("[Host/Pickup directory] is null or empty.");
                 }
                 MessagesSent.Add(msg);
                 if (Host == "ERROR")
                 {
-                    throw new InvalidOperationException("Some SMTP error.");
+                    throw new ApplicationException("Some SMTP error.");
                 }
             }
             public void Dispose()

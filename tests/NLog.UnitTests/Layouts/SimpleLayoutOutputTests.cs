@@ -238,7 +238,7 @@ namespace NLog.UnitTests.Layouts
 
             protected override void Append(StringBuilder builder, LogEventInfo logEvent)
             {
-                throw new InvalidOperationException(Message);
+                throw new ApplicationException(Message);
             }
         }
 

@@ -201,7 +201,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 if (ThrowExceptions-- > 0)
                 {
-                    logEvent.Continuation(new InvalidOperationException("Some exception has occurred."));
+                    logEvent.Continuation(new ApplicationException("Some exception has occurred."));
                     return;
                 }
 
