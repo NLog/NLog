@@ -121,18 +121,6 @@ namespace NLog.Targets
         private Type _parameterType;
 
         /// <summary>
-        /// Use raw value
-        ///
-        /// If null, then rawValue will be used when the dbtype isn't a string-like (that's:
-        /// <see cref="System.Data.DbType.String"/>
-        /// <see cref="System.Data.DbType.AnsiString"/>
-        /// <see cref="System.Data.DbType.StringFixedLength"/>
-        /// <see cref="System.Data.DbType.AnsiStringFixedLength"/>
-        /// </summary>
-        /// <docgen category='Parameter Options' order='7' />
-        public bool? UseRawValue { get; set; }
-
-        /// <summary>
         /// Gets or sets convert format of the database parameter value .
         /// </summary>
         /// <docgen category='Parameter Options' order='8' />

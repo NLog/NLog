@@ -881,14 +881,14 @@ namespace NLog.Targets
         protected internal virtual object GetDatabaseParameterValue(LogEventInfo logEvent, DatabaseParameterInfo parameterInfo)
         {
             Type dbParameterType = parameterInfo.ParameterType;
-            if (string.IsNullOrEmpty(parameterInfo.Format) && dbParameterType == typeof(string) && !(parameterInfo.UseRawValue ?? false))
+            if (string.IsNullOrEmpty(parameterInfo.Format) && dbParameterType == typeof(string))
             {
                 return RenderLogEvent(parameterInfo.Layout, logEvent) ?? string.Empty;
             }
 
             IFormatProvider dbParameterCulture = GetDbParameterCulture(logEvent, parameterInfo);
 
-            if ((parameterInfo.UseRawValue ?? true) && TryGetConvertedRawValue(logEvent, parameterInfo, dbParameterType, dbParameterCulture, out var value))
+            if (TryGetConvertedRawValue(logEvent, parameterInfo, dbParameterType, dbParameterCulture, out var value))
             {
                 return value ?? CreateDefaultValue(dbParameterType);
             }
