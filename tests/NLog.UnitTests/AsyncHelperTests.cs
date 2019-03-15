@@ -52,7 +52,7 @@ namespace NLog.UnitTests
             var cont2 = AsyncHelpers.PreventMultipleCalls(cont);
             Assert.Same(cont, cont2);
 
-            var sampleException = new InvalidOperationException("some message");
+            var sampleException = new ApplicationException("some message");
 
             cont(null);
             cont(sampleException);
@@ -70,7 +70,7 @@ namespace NLog.UnitTests
             AsyncContinuation cont = exceptions.Add;
             cont = AsyncHelpers.PreventMultipleCalls(cont);
 
-            var sampleException = new InvalidOperationException("some message");
+            var sampleException = new ApplicationException("some message");
 
             cont(sampleException);
             cont(null);
@@ -87,7 +87,7 @@ namespace NLog.UnitTests
             using (new NoThrowNLogExceptions())
             {
                 var exceptions = new List<Exception>();
-                var sampleException = new InvalidOperationException("some message");
+                var sampleException = new ApplicationException("some message");
                 AsyncContinuation cont = ex => { exceptions.Add(ex); throw sampleException; };
                 cont = AsyncHelpers.PreventMultipleCalls(cont);
 
@@ -106,7 +106,7 @@ namespace NLog.UnitTests
             LogManager.ThrowExceptions = true;
 
             var exceptions = new List<Exception>();
-            var sampleException = new InvalidOperationException("some message");
+            var sampleException = new ApplicationException("some message");
             AsyncContinuation cont = ex => { exceptions.Add(ex); throw sampleException; };
             cont = AsyncHelpers.PreventMultipleCalls(cont);
 
@@ -153,9 +153,9 @@ namespace NLog.UnitTests
 
             // those will be ignored
             cont(null);
-            cont(new InvalidOperationException("Some exception"));
+            cont(new ApplicationException("Some exception"));
             cont(null);
-            cont(new InvalidOperationException("Some exception"));
+            cont(new ApplicationException("Some exception"));
 
             Assert.Single(exceptions);
         }
@@ -180,9 +180,9 @@ namespace NLog.UnitTests
 
             // those will be ignored
             cont(null);
-            cont(new InvalidOperationException("Some exception"));
+            cont(new ApplicationException("Some exception"));
             cont(null);
-            cont(new InvalidOperationException("Some exception"));
+            cont(new ApplicationException("Some exception"));
 
             Assert.Single(exceptions);
             Assert.Null(exceptions[0]);
@@ -197,7 +197,7 @@ namespace NLog.UnitTests
             // set up a timer to strike
             var cont = AsyncHelpers.WithTimeout(AsyncHelpers.PreventMultipleCalls(exceptions.Add), TimeSpan.FromMilliseconds(50));
 
-            var exception = new InvalidOperationException("Foo");
+            var exception = new ApplicationException("Foo");
             // call success quickly, hopefully before the timer comes
             cont(exception);
 
@@ -212,9 +212,9 @@ namespace NLog.UnitTests
 
             // those will be ignored
             cont(null);
-            cont(new InvalidOperationException("Some exception"));
+            cont(new ApplicationException("Some exception"));
             cont(null);
-            cont(new InvalidOperationException("Some exception"));
+            cont(new ApplicationException("Some exception"));
 
             Assert.Single(exceptions);
             Assert.NotNull(exceptions[0]);
@@ -251,7 +251,7 @@ namespace NLog.UnitTests
         {
             bool finalContinuationInvoked = false;
             Exception lastException = null;
-            Exception sampleException = new InvalidOperationException("Some message");
+            Exception sampleException = new ApplicationException("Some message");
 
             AsyncContinuation finalContinuation = ex =>
             {
@@ -281,7 +281,7 @@ namespace NLog.UnitTests
             {
                 bool finalContinuationInvoked = false;
                 Exception lastException = null;
-                Exception sampleException = new InvalidOperationException("Some message");
+                Exception sampleException = new ApplicationException("Some message");
 
                 AsyncContinuation finalContinuation = ex =>
                 {
@@ -337,7 +337,7 @@ namespace NLog.UnitTests
         {
             bool finalContinuationInvoked = false;
             Exception lastException = null;
-            Exception sampleException = new InvalidOperationException("Some message");
+            Exception sampleException = new ApplicationException("Some message");
 
             AsyncContinuation finalContinuation = ex =>
             {
@@ -368,7 +368,7 @@ namespace NLog.UnitTests
             {
                 bool finalContinuationInvoked = false;
                 Exception lastException = null;
-                Exception sampleException = new InvalidOperationException("Some message");
+                Exception sampleException = new ApplicationException("Some message");
 
                 AsyncContinuation finalContinuation = ex =>
                 {
@@ -473,7 +473,7 @@ namespace NLog.UnitTests
 
                             if (i == 7)
                             {
-                                throw new InvalidOperationException("Some failure.");
+                                throw new ApplicationException("Some failure.");
                             }
 
                             cont(null);
@@ -482,7 +482,7 @@ namespace NLog.UnitTests
                 finalContinuationInvoked.WaitOne();
                 Assert.Equal(55, sum);
                 Assert.NotNull(lastException);
-                Assert.IsType<InvalidOperationException>(lastException);
+                Assert.IsType<ApplicationException>(lastException);
                 Assert.Equal("Some failure.", lastException.Message);
             }
         }
@@ -512,7 +512,7 @@ namespace NLog.UnitTests
                             sum += i;
                         }
 
-                        throw new InvalidOperationException("Some failure.");
+                        throw new ApplicationException("Some failure.");
                     });
 
                 finalContinuationInvoked.WaitOne();
@@ -581,7 +581,7 @@ namespace NLog.UnitTests
             };
 
             AsyncContinuation cont = AsyncHelpers.PrecededBy(originalContinuation, doSomethingElse);
-            var sampleException = new InvalidOperationException("Some message.");
+            var sampleException = new ApplicationException("Some message.");
             cont(sampleException);
 
             // make sure doSomethingElse was not invoked

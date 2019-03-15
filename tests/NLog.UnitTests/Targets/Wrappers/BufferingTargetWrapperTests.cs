@@ -621,7 +621,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                             {
                                 if (ThrowExceptions)
                                 {
-                                    @event.Continuation(new InvalidOperationException("Some problem!"));
+                                    @event.Continuation(new ApplicationException("Some problem!"));
                                 }
                                 else
                                 {
@@ -677,7 +677,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 if (FailCounter > 0)
                 {
                     FailCounter--;
-                    throw new InvalidOperationException("Some failure.");
+                    throw new ApplicationException("Some failure.");
                 }
             }
 

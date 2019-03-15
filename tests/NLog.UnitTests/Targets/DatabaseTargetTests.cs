@@ -1699,7 +1699,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 AddToLog("Open('{0}').", ConnectionString);
                 if (ConnectionString == "cannotconnect")
                 {
-                    throw new InvalidOperationException("Cannot open fake database.");
+                    throw new ApplicationException("Cannot open fake database.");
                 }
             }
 
@@ -1760,7 +1760,7 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 ((MockDbConnection)Connection).AddToLog("ExecuteNonQuery: {0}", CommandText);
                 if (Connection.ConnectionString == "cannotexecute")
                 {
-                    throw new InvalidOperationException("Failure during ExecuteNonQuery");
+                    throw new ApplicationException("Failure during ExecuteNonQuery");
                 }
 
                 return 0;
