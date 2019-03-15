@@ -1797,20 +1797,6 @@ namespace NLog.UnitTests
             var singleLogger = LogManager.GetLogger("SingleTarget");
             var dualLogger = LogManager.GetLogger("DualTarget");
 
-            ConfigurationItemFactory.Default.ParseMessageTemplates = null;
-
-            singleLogger.Debug("Hello");
-            AssertDebugLastMessage("target1", "SingleTarget|Hello");
-            singleLogger.Debug("Hello {0}", "World");
-            AssertDebugLastMessage("target1", "SingleTarget|Hello World");
-
-            dualLogger.Debug("Hello");
-            AssertDebugLastMessage("target1", "DualTarget|Hello");
-            AssertDebugLastMessage("target2", "DualTarget|Hello");
-            dualLogger.Debug("Hello {0}", "World");
-            AssertDebugLastMessage("target1", "DualTarget|Hello World");
-            AssertDebugLastMessage("target2", "DualTarget|Hello World");
-
             ConfigurationItemFactory.Default.ParseMessageTemplates = true;
 
             singleLogger.Debug("Hello");
@@ -1838,11 +1824,23 @@ namespace NLog.UnitTests
             dualLogger.Debug("Hello {0}", "World");
             AssertDebugLastMessage("target1", "DualTarget|Hello World");
             AssertDebugLastMessage("target2", "DualTarget|Hello World");
+
+            ConfigurationItemFactory.Default.ParseMessageTemplates = null;
+
+            singleLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello");
+            singleLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "SingleTarget|Hello World");
+
+            dualLogger.Debug("Hello");
+            AssertDebugLastMessage("target1", "DualTarget|Hello");
+            AssertDebugLastMessage("target2", "DualTarget|Hello");
+            dualLogger.Debug("Hello {0}", "World");
+            AssertDebugLastMessage("target1", "DualTarget|Hello World");
+            AssertDebugLastMessage("target2", "DualTarget|Hello World");
         }
 
         [Theory]
-        [InlineData(null, "OrderId", "@Client")]
-        [InlineData(true, "OrderId", "@Client")]
         [InlineData(null, "0", "@Client", Skip = "Not supported for performance reasons")]
         [InlineData(true, "0", "@Client")]
         [InlineData(null, "$0", "@Client")]
@@ -1856,6 +1854,8 @@ namespace NLog.UnitTests
         [InlineData(true, "0", "1")]
         [InlineData(false, "0", "1")]
         [InlineData(true, "OrderId", "Client")] //succeeeds, but gives JSON like (no quoted key, missing quotes arround string, =, other spacing)
+        [InlineData(true, "OrderId", "@Client")]
+        [InlineData(null, "OrderId", "@Client")]
         public void MixedStructuredEventsConfigTest(bool? parseMessageTemplates, string param1, string param2)
         {
             LogManager.Configuration = CreateSimpleDebugConfig(parseMessageTemplates);
