@@ -41,6 +41,8 @@
       <DocumentationSource sourceFile="dll_to_doc\NLog.Windows.Forms.dll" />
       <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.dll" />
       <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Logging.xml" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Hosting.dll" />
+      <DocumentationSource sourceFile="dll_to_doc\NLog.Extensions.Hosting.xml" />
       <DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.dll" />
       <DocumentationSource sourceFile="dll_to_doc\NLog.MailKit.xml" />
       <DocumentationSource sourceFile="dll_to_doc\NLog.Owin.Logging.dll" />
@@ -94,7 +96,8 @@
 <NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
 <NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.LayoutRenderers (Group)" isGroup="True" isDocumented="True">All layout renderers</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Targets (Group)" isGroup="True" isDocumented="True">All targets</NamespaceSummaryItem></NamespaceSummaries>
+<NamespaceSummaryItem name="NLog.Targets (Group)" isGroup="True" isDocumented="True">All targets</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Internal.Xamarin" isDocumented="False" /></NamespaceSummaries>
     <PlugInConfigurations>
       <PlugInConfig id="Assembly Binding Redirection" enabled="True">
         <configuration useGAC="false">
@@ -107,6 +110,7 @@
             <assemblyIdentity name="MimeKit" />
             <assemblyIdentity name="MiMeKit" />
             <assemblyIdentity name="Owin" />
+            <assemblyIdentity name="netstandard" />
           </ignoreIfUnresolved>
         </configuration>
       </PlugInConfig>

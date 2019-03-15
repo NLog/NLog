@@ -143,7 +143,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 
                 if (ThrowExceptions)
                 {
-                    throw new InvalidOperationException("Some exception has occurred.");
+                    throw new ApplicationException("Some exception has occurred.");
                 }
             }
         }

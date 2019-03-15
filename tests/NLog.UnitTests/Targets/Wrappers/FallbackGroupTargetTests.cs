@@ -192,7 +192,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                     {
                         // for the first 3 rounds, no target is available
                         Assert.NotNull(exceptions[i]);
-                        Assert.IsType<InvalidOperationException>(exceptions[i]);
+                        Assert.IsType<ApplicationException>(exceptions[i]);
                         Assert.Equal("Some failure.", exceptions[i].Message);
                     }
                     else
@@ -369,7 +369,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 if (Layout != null && string.IsNullOrEmpty(Layout.Render(logEvent)))
                 {
-                    throw new InvalidOperationException("Empty LogEvent.");
+                    throw new ApplicationException("Empty LogEvent.");
                 }
 
                 Assert.True(FlushCount <= WriteCount);
@@ -378,7 +378,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                 if (FailCounter > 0)
                 {
                     FailCounter--;
-                    throw new InvalidOperationException("Some failure.");
+                    throw new ApplicationException("Some failure.");
                 }
             }
 

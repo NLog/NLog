@@ -47,3 +47,6 @@ deploy:
   artifact: /.*\.nupkg/
   on:
     branch: master
+
+after_deploy:
+- ps : Get-ChildItem *.snupkg | % { dotnet nuget push $_.FullName -s https://api.nuget.org/v3/index.json -k $env:NUGET_DEPLOY_SECRET }

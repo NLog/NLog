@@ -27,6 +27,7 @@ Date format: (year/month/day)
 - [#3060](https://github.com/NLog/NLog/pull/3060)](https://github.com/NLog/NLog/pull/[#3060](https://github.com/NLog/NLog/pull/3060)) TargetWithContext - Support for PropertyType using IRawValue-interface (@snakefoot)
 - [#3124](https://github.com/NLog/NLog/pull/3124) NetworkTarget - Added support for KeepAliveTimeSeconds (@snakefoot)
 - [#3129](https://github.com/NLog/NLog/pull/3129) ConfigSetting - Preregister so it can be accessed without extension registration (#3129) (@snakefoot)
+* [#3165](https://github.com/NLog/NLog/pull/3165) Added noRawValue layout wrapper (@snakefoot)
 
 
 #### Enhancements
