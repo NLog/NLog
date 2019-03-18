@@ -7,6 +7,8 @@ environment:
     secure: WYvd/k1xGCsDS+4iOhjzxA5/e36RjkxnuVOHpBR+eDtZNNjpYydCyNfd1COME9jI
   sonar_token:
     secure: OUI/jCbBF75TwKMPT+IfewdgwCgx9nQkRg3cYOEQNJeX5J2++oWS3dmpwO51XduP
+  NUGET_DEPLOY_SECRET:
+    secure: DtVDH1ZfIR8E2oDLeSPxfn0WFXw3MCv4WhLkkQQl9LfEHswb5sdxdCYodNKhrKik
 
 install:
   - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"'
