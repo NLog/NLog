@@ -293,7 +293,7 @@ namespace NLog.Config
         public override LoggingConfiguration Reload()
         {
             if (!string.IsNullOrEmpty(_originalFileName))
-                return new XmlLoggingConfiguration(_originalFileName);
+                return new XmlLoggingConfiguration(_originalFileName, LogFactory);
             else
                 return base.Reload();
         }
