@@ -140,8 +140,6 @@ namespace NLog.Targets
             _taskCompletion = TaskCompletion;
             _taskCancelledToken = TaskCancelledToken;
             _taskTimeoutTimer = new Timer(TaskTimeout, null, Timeout.Infinite, Timeout.Infinite);
-            _cancelTokenSource = new CancellationTokenSource();
-            _cancelTokenSource.Token.Register(_taskCancelledToken);
 
 #if NETSTANDARD2_0
             // NetStandard20 includes many optimizations for ConcurrentQueue:
@@ -161,6 +159,9 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
+            _cancelTokenSource = new CancellationTokenSource();
+            _cancelTokenSource.Token.Register(_taskCancelledToken);
+
             base.InitializeTarget();
 
             if (BatchSize <= 0)
@@ -272,12 +273,23 @@ namespace NLog.Targets
             bool queueWasEmpty = _requestQueue.Enqueue(logEvent);
             if (queueWasEmpty)
             {
-                lock (SyncRoot)
+                bool lockTaken = false;
+                try
                 {
+                    if (_previousTask == null)
+                        Monitor.Enter(SyncRoot, ref lockTaken);
+                    else
+                        Monitor.TryEnter(SyncRoot, 50, ref lockTaken);
+
                     if (_previousTask == null)
                     {
                         _lazyWriterTimer.Change(TaskDelayMilliseconds, Timeout.Infinite);
                     }
+                }
+                finally
+                {
+                    if (lockTaken)
+                        Monitor.Exit(SyncRoot);
                 }
             }
         }
@@ -361,22 +373,18 @@ namespace NLog.Targets
                 {
                     if (previousTask != null)
                     {
+                        // Task Completed
                         if (_previousTask != null && !ReferenceEquals(previousTask, _previousTask))
-                            break;
-
-                        _previousTask = null;
-                        previousTask = null;
+                            break;  // Other Task is already running
                     }
                     else
                     {
+                        // Task Queue Timer
                         if (_previousTask?.IsCompleted == false)
-                            break;
+                            break;  // Other Task is already running
                     }
 
                     if (!IsInitialized)
-                        break;
-
-                    if (_requestQueue.IsEmpty)
                     {
                         _previousTask = null;
                         break;
@@ -389,11 +397,16 @@ namespace NLog.Targets
                         if (logEvents.Count > 0)
                         {
                             if (TaskCreation(logEvents))
-                                break;
+                                return;
+                        }
+                        else
+                        {
+                            _previousTask = null;
+                            break;  // Empty queue, let Task Queue Timer begin next task
                         }
                     }
                 }
-            } while (!_requestQueue.IsEmpty);
+            } while (!_requestQueue.IsEmpty || previousTask != null);
         }
 
         /// <summary>
@@ -700,14 +713,8 @@ namespace NLog.Targets
 
         private void TaskCancelledToken()
         {
-            lock (SyncRoot)
-            {
-                if (!IsInitialized)
-                    return;
-
-                _cancelTokenSource = new CancellationTokenSource();
-                _cancelTokenSource.Token.Register(_taskCancelledToken);
-            }
+            _cancelTokenSource = new CancellationTokenSource();
+            _cancelTokenSource.Token.Register(_taskCancelledToken);
         }
     }
 #endif
