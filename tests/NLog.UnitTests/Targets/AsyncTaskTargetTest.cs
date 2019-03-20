@@ -65,7 +65,11 @@ namespace NLog.UnitTests.Targets
                 else if (logEvent.Message == "TIMEOUT")
                     await Task.Delay(15000, token).ConfigureAwait(false);
                 else
+                {
+                    if (logEvent.Message == "SLEEP")
+                        Task.Delay(5000, token).GetAwaiter().GetResult();
                     await Task.Delay(10, token).ContinueWith((t) => Logs.Enqueue(RenderLogEvent(Layout, logEvent)), token).ContinueWith(async (t) => await Task.Delay(10).ConfigureAwait(false)).ConfigureAwait(false);
+                }
             }
         }
 
@@ -324,6 +328,34 @@ namespace NLog.UnitTests.Targets
             }
 
             LogManager.Configuration = null;
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_TestSlowBatchWriting()
+        {
+            ILogger logger = LogManager.GetCurrentClassLogger();
+
+            var asyncTarget = new AsyncTaskBatchTestTarget
+            {
+                Layout = "${level}",
+                TaskDelayMilliseconds = 200
+            };
+
+            SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
+            Assert.True(asyncTarget.Logs.Count == 0);
+
+            DateTime utcNow = DateTime.UtcNow;
+
+            logger.Log(LogLevel.Info, LogLevel.Info.ToString().ToUpperInvariant());
+            logger.Log(LogLevel.Fatal, "SLEEP");
+            Thread.Sleep(500);
+            Assert.True(asyncTarget.Logs.Count != 0);
+            logger.Log(LogLevel.Error, LogLevel.Error.ToString().ToUpperInvariant());
+
+            asyncTarget.Dispose();  // Trigger fast shutdown
+            LogManager.Configuration = null;
+
+            Assert.True(DateTime.UtcNow - utcNow < TimeSpan.FromSeconds(4));
         }
     }
 #endif
