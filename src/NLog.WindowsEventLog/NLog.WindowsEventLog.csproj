@@ -15,7 +15,7 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      Wiki:
+      Docs:
       https://github.com/nlog/NLog/wiki/EventLog-target
     </PackageReleaseNotes>
     <PackageTags>NLog;EventLog;logging;log</PackageTags>

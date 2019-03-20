@@ -15,7 +15,7 @@
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
 
     <PackageReleaseNotes>
-      Wiki:
+      Docs:
       https://github.com/NLog/NLog/wiki/Windows-Identity-Layout-Renderer
     </PackageReleaseNotes>
     <PackageTags>NLog;WindowsIdentity;logging;log</PackageTags>
