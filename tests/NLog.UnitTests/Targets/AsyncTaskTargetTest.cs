@@ -98,7 +98,6 @@ namespace NLog.UnitTests.Targets
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
             NLog.Common.InternalLogger.LogLevel = LogLevel.Off;
 
-            Assert.True(asyncTarget.Logs.Count == 0);
             logger.Trace("TTT");
             logger.Debug("DDD");
             logger.Info("III");
@@ -130,7 +129,6 @@ namespace NLog.UnitTests.Targets
             };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
-            Assert.True(asyncTarget.Logs.Count == 0);
 
             foreach (var logLevel in LogLevel.AllLoggingLevels)
                 logger.Log(logLevel, logLevel == LogLevel.Debug ? "ASYNCEXCEPTION" : logLevel.Name.ToUpperInvariant());
@@ -167,7 +165,7 @@ namespace NLog.UnitTests.Targets
                 };
 
                 SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
-                Assert.True(asyncTarget.Logs.Count == 0);
+
                 logger.Trace("TTT");
                 logger.Debug("TIMEOUT");
                 logger.Info("III");
@@ -201,7 +199,6 @@ namespace NLog.UnitTests.Targets
             };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
-            Assert.True(asyncTarget.Logs.Count == 0);
 
             foreach (var logLevel in LogLevel.AllLoggingLevels)
                 logger.Log(logLevel, logLevel == LogLevel.Debug ? "ASYNCEXCEPTION" : logLevel.Name.ToUpperInvariant());
@@ -238,7 +235,6 @@ namespace NLog.UnitTests.Targets
             };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
-            Assert.True(asyncTarget.Logs.Count == 0);
 
             foreach (var logLevel in LogLevel.AllLoggingLevels)
                 logger.Log(logLevel, logLevel == LogLevel.Debug ? "EXCEPTION" : logLevel.Name.ToUpperInvariant());
@@ -275,7 +271,6 @@ namespace NLog.UnitTests.Targets
             };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
-            Assert.True(asyncTarget.Logs.Count == 0);
 
             foreach (var logLevel in LogLevel.AllLoggingLevels)
                 logger.Log(logLevel, logLevel.Name.ToUpperInvariant());
@@ -309,7 +304,6 @@ namespace NLog.UnitTests.Targets
             };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
-            Assert.True(asyncTarget.Logs.Count == 0);
 
             foreach (var logLevel in LogLevel.AllLoggingLevels)
                 logger.Log(logLevel, logLevel.Name.ToUpperInvariant());
@@ -342,7 +336,6 @@ namespace NLog.UnitTests.Targets
             };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
-            Assert.True(asyncTarget.Logs.Count == 0);
 
             DateTime utcNow = DateTime.UtcNow;
 
@@ -356,6 +349,30 @@ namespace NLog.UnitTests.Targets
             LogManager.Configuration = null;
 
             Assert.True(DateTime.UtcNow - utcNow < TimeSpan.FromSeconds(4));
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_TestThrottleOnTaskDelay()
+        {
+            ILogger logger = LogManager.GetCurrentClassLogger();
+
+            var asyncTarget = new AsyncTaskBatchTestTarget
+            {
+                Layout = "${level}",
+                TaskDelayMilliseconds = 50,
+                BatchSize = 10,
+            };
+
+            SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
+
+            for (int i = 0; i < 50; ++i)
+            {
+                logger.Log(LogLevel.Info, i.ToString());
+                Thread.Sleep(20);
+            }
+
+            Assert.True(asyncTarget.Logs.Count > 25);
+            Assert.True(asyncTarget.WriteTasks < 15);
         }
     }
 #endif
