@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers
                 layout.Initialize(LoggingConfiguration);
                 if (!layout.ThreadSafe)
                 {
-                    InternalLogger.Warn("${{var={0}}} should be declared as <variable name=\"var_{0}\" value=\"...\" /> and used like this ${var_{{0}}}. Because of unsafe Layout={1}", Name, layout);
+                    InternalLogger.Warn("${{var={0}}} should be declared as <variable name=\"var_{0}\" value=\"...\" /> and used like this ${{var_{0}}}. Because of unsafe Layout={1}", Name, layout);
                 }
             }
 
