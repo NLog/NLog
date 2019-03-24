@@ -21,7 +21,7 @@ Supported platforms:
 - Silverlight 4 and 5
 - Mono 4
 
-For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.Asp.NET Core
+For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     </Description>
     <Product>NLog v$(ProductVersion)</Product>
