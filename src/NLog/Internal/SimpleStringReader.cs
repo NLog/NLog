@@ -40,10 +40,10 @@ namespace NLog.Internal
     /// </summary>
 
 #if DEBUG
-     [System.Diagnostics.DebuggerDisplay("{" + nameof(CurrentState) + "}")]
+    [System.Diagnostics.DebuggerDisplay("{" + nameof(CurrentState) + "}")]
 #endif
-	internal class SimpleStringReader
-	{
+    internal class SimpleStringReader
+    {
         private readonly string _text;
 
         /// <summary>
@@ -67,14 +67,20 @@ namespace NLog.Internal
         internal string Text => _text;
 
 #if DEBUG
-        string CurrentState
+        internal static string BuildCurrentState(string done, char current, string todo)
+            => $"done: '{done}'.   current: '{current}'.   todo: '{todo}'";
+        internal string CurrentState
         {
             get
             {
                 var current = (char)Peek();
-                var done = Substring(0, Position - 1);
-                var todo = ((Position > _text.Length) ? Text.Substring(Position + 1) : "");
-                return $"done: '{done}'.   current: '{current}'.   todo: '{todo}'";
+                if (Position < 0 || Position > Text.Length)
+                {
+                    return BuildCurrentState(done: "INVALID_CURRENT_STATE", current: char.MaxValue, todo: "INVALID_CURRENT_STATE");
+                }
+                var done = Substring(0, Position);
+                var todo = ((Position < _text.Length - 1) ? Text.Substring(Position + 1) : "");
+                return BuildCurrentState(done: done, current: current, todo: todo);
             }
         }
 #endif
