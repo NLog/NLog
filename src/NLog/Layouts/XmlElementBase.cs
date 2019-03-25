@@ -87,8 +87,7 @@ namespace NLog.Layouts
         /// </summary>
         /// <remarks>Ensures always valid XML, but gives a performance hit</remarks>
         /// <docgen category='XML Options' order='10' />
-        [DefaultValue(true)]
-        public bool ElementEncode { get => _elementValueWrapper.XmlEncode; set => _elementValueWrapper.XmlEncode = value; }
+        internal bool ElementEncodeInternal { get => _elementValueWrapper.XmlEncode; set => _elementValueWrapper.XmlEncode = value; }
 
         /// <summary>
         /// Auto indent and create new lines
@@ -337,7 +336,7 @@ namespace NLog.Layouts
                         RenderStartElement(sb, ElementNameInternal);
                     }
                     int beforeValueLength = sb.Length;
-                    ElementValueInternal.RenderAppendBuilder(logEvent, sb);
+                    _elementValueWrapper.RenderAppendBuilder(logEvent, sb);
                     if (beforeValueLength == sb.Length && !IncludeEmptyValue)
                     {
                         sb.Length = beforeElementLength;

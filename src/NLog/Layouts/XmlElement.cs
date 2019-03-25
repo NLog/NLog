@@ -40,6 +40,7 @@ namespace NLog.Layouts
     /// A XML Element
     /// </summary>
     [NLogConfigurationItem]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public class XmlElement : XmlElementBase
@@ -73,6 +74,16 @@ namespace NLog.Layouts
         {
             get => base.ElementValueInternal;
             set => base.ElementValueInternal = value;
+        }
+
+        /// <summary>
+        /// Determines wether or not this attribute will be Xml encoded.
+        /// </summary>
+        [DefaultValue(true)]
+        public bool Encode
+        {
+            get => base.ElementEncodeInternal;
+            set => base.ElementEncodeInternal = value;
         }
     }
 }
