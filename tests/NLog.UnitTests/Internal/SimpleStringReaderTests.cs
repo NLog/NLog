@@ -42,7 +42,7 @@ namespace NLog.UnitTests
     using Xunit;
 
 #if DEBUG
-    public class SimpleStringReaderDebugViewTests : NLogTestBase
+    public class SimpleStringReaderTests : NLogTestBase
     {
         [Theory]
         [InlineData("", 0, "", char.MaxValue, "" )]
@@ -53,12 +53,12 @@ namespace NLog.UnitTests
         /// <summary>
         /// https://github.com/NLog/NLog/issues/3194
         /// </summary>
-        public void DebugView_CurrentState(string input, Int32 position, string done, char current, string todo)
+        public void DebugView_CurrentState(string input, Int32 position, string expectedDone, char expectedCurrent, string expectedTodo)
         {
             var reader = new SimpleStringReader(input);
             reader.Position = position;
             Assert.Equal(
-                SimpleStringReader.BuildCurrentState(done, current, todo), 
+                SimpleStringReader.BuildCurrentState(expectedDone, expectedCurrent, expectedTodo), 
                 reader.CurrentState);
         }
 
