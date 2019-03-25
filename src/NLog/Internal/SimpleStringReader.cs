@@ -79,7 +79,7 @@ namespace NLog.Internal
                     return BuildCurrentState(done: "INVALID_CURRENT_STATE", current: char.MaxValue, todo: "INVALID_CURRENT_STATE");
                 }
                 var done = Substring(0, Position);
-                var todo = ((Position < _text.Length) ? Text.Substring(Position) : "");
+                var todo = ((Position < _text.Length - 1) ? Text.Substring(Position + 1) : "");
                 return BuildCurrentState(done: done, current: current, todo: todo);
             }
         }

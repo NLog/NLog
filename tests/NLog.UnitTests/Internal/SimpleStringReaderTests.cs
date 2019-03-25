@@ -46,8 +46,8 @@ namespace NLog.UnitTests
     {
         [Theory]
         [InlineData("", 0, "", char.MaxValue, "" )]
-        [InlineData("abcdef", 0, "", 'a', "abcdef")]
-        [InlineData("abcdef", 2, "ab", 'c', "cdef")]
+        [InlineData("abcdef", 0, "", 'a', "bcdef")]
+        [InlineData("abcdef", 2, "ab", 'c', "def")]
         [InlineData("abcdef", 6, "abcdef", char.MaxValue, "")]
         [InlineData("abcdef", 7, "INVALID_CURRENT_STATE", char.MaxValue, "INVALID_CURRENT_STATE")]
         /// <summary>
