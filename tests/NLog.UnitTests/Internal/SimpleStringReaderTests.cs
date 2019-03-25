@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.UnitTests
+namespace NLog.UnitTests.Internal
 {
     using NLog.Internal;
     using System;
