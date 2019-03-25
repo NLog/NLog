@@ -66,6 +66,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest1()
         {
+            ConfigurationItemFactory.Default = null; //build new factory next time
+
             Assert.NotNull(typeof(FooLayout));
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -111,6 +113,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest2()
         {
+            ConfigurationItemFactory.Default = null; //build new factory next time
+
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <extensions>
@@ -158,6 +162,8 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionWithPrefixTest()
         {
+            ConfigurationItemFactory.Default = null; //build new factory next time
+
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
     <extensions>
@@ -202,6 +208,8 @@ namespace NLog.UnitTests.Config
         public void ExtensionTest4()
         {
             Assert.NotNull(typeof(FooLayout));
+
+            ConfigurationItemFactory.Default = null; //build new factory next time
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
@@ -250,6 +258,8 @@ namespace NLog.UnitTests.Config
         public void ExtensionTest_extensions_not_top_and_used()
         {
             Assert.NotNull(typeof(FooLayout));
+
+            ConfigurationItemFactory.Default = null; //build new factory next time
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>

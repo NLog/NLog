@@ -790,7 +790,7 @@ namespace NLog.Config
 
             foreach (var targetElement in targetsElement.Children)
             {
-                string targetType = StripOptionalNamespacePrefix(targetElement.GetOptionalValue("type", null));
+                string targetTypeName = GetConfigItemTypeAttribute(targetElement);
                 string targetValueName = targetElement.GetOptionalValue("name", null);
                 Target newTarget = null;
                 if (!string.IsNullOrEmpty(targetValueName))
@@ -801,7 +801,7 @@ namespace NLog.Config
                 switch (targetElement.Name?.Trim().ToUpperInvariant())
                 {
                     case "DEFAULT-WRAPPER":
-                        if (AssertNonEmptyValue(targetType, "type", targetValueName, targetsElement.Name))
+                        if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
                             defaultWrapperElement = targetElement;
                         }
@@ -809,9 +809,9 @@ namespace NLog.Config
                         break;
 
                     case "DEFAULT-TARGET-PARAMETERS":
-                        if (AssertNonEmptyValue(targetType, "type", targetValueName, targetsElement.Name))
+                        if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
-                            ParseDefaultTargetParameters(targetElement, targetType, typeNameToDefaultTargetParameters);
+                            ParseDefaultTargetParameters(targetElement, targetTypeName, typeNameToDefaultTargetParameters);
                         }
 
                         break;
@@ -821,9 +821,9 @@ namespace NLog.Config
                     case "WRAPPER":
                     case "WRAPPER-TARGET":
                     case "COMPOUND-TARGET":
-                        if (AssertNonEmptyValue(targetType, "type", targetValueName, targetsElement.Name))
+                        if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
-                            newTarget = _configurationItemFactory.Targets.CreateInstance(targetType);
+                            newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
                             ParseTargetElement(newTarget, targetElement, typeNameToDefaultTargetParameters);
                         }
 
@@ -862,10 +862,10 @@ namespace NLog.Config
         private void ParseTargetElement(Target target, ILoggingConfigurationElement targetElement,
             Dictionary<string, ILoggingConfigurationElement> typeNameToDefaultTargetParameters = null)
         {
-            string targetType = StripOptionalNamespacePrefix(targetElement.GetRequiredValue("type", "targets"));
+            string targetTypeName = GetConfigItemTypeAttribute(targetElement, "targets");
             ILoggingConfigurationElement defaults;
             if (typeNameToDefaultTargetParameters != null &&
-                typeNameToDefaultTargetParameters.TryGetValue(targetType, out defaults))
+                typeNameToDefaultTargetParameters.TryGetValue(targetTypeName, out defaults))
             {
                 ParseTargetElement(target, defaults, null);
             }
@@ -916,9 +916,9 @@ namespace NLog.Config
 
             if (IsTargetElement(name))
             {
-                string type = StripOptionalNamespacePrefix(childElement.GetRequiredValue("type", GetName(wrapper)));
+                string targetTypeName = GetConfigItemTypeAttribute(childElement, GetName(wrapper));
 
-                Target newTarget = _configurationItemFactory.Targets.CreateInstance(type);
+                Target newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
                 if (newTarget != null)
                 {
                     ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
@@ -940,6 +940,12 @@ namespace NLog.Config
             }
 
             return false;
+        }
+
+        private static string GetConfigItemTypeAttribute(ILoggingConfigurationElement childElement, string sectionNameForRequiredValue = null)
+        {
+            var typeAttributeValue = sectionNameForRequiredValue != null ? childElement.GetRequiredValue("type", sectionNameForRequiredValue) : childElement.GetOptionalValue("type", null);
+            return StripOptionalNamespacePrefix(typeAttributeValue);
         }
 
         private bool ParseCompoundTarget(
@@ -973,10 +979,9 @@ namespace NLog.Config
 
             if (IsTargetElement(name))
             {
-                var attributeValue = childElement.GetRequiredValue("type", GetName(compound));
-                string type = StripOptionalNamespacePrefix(attributeValue);
+                string targetTypeName = GetConfigItemTypeAttribute(childElement, GetName(compound));
 
-                Target newTarget = _configurationItemFactory.Targets.CreateInstance(type);
+                Target newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
                 if (newTarget != null)
                 {
                     if (targetName != null)
@@ -1109,9 +1114,8 @@ namespace NLog.Config
             if (!typeof(Layout).IsAssignableFrom(type))
                 return null;
 
-            string layoutTypeName = StripOptionalNamespacePrefix(element.GetOptionalValue("type", null));
-
             // Check if the 'type' attribute has been specified
+            string layoutTypeName = GetConfigItemTypeAttribute(element);
             if (layoutTypeName == null)
                 return null;
 
@@ -1149,8 +1153,8 @@ namespace NLog.Config
 
         private Target WrapWithDefaultWrapper(Target t, ILoggingConfigurationElement defaultParameters)
         {
-            string wrapperType = StripOptionalNamespacePrefix(defaultParameters.GetRequiredValue("type", "targets"));
-            Target wrapperTargetInstance = _configurationItemFactory.Targets.CreateInstance(wrapperType);
+            string wrapperTypeName = GetConfigItemTypeAttribute(defaultParameters, "targets");
+            Target wrapperTargetInstance = _configurationItemFactory.Targets.CreateInstance(wrapperTypeName);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
             if (wtb == null)
             {
@@ -1238,13 +1242,13 @@ namespace NLog.Config
                 return null;
             }
 
-            int p = attributeValue.LastIndexOfAny(new[] { ':', '.' });
-            if (p >= 0)
+            int p = attributeValue.IndexOf(':');
+            if (p < 0)
             {
-                attributeValue = attributeValue.Substring(p + 1);
+                return attributeValue;
             }
 
-            return attributeValue.Trim();
+            return attributeValue.Substring(p + 1);
         }
 
         /// <summary>
