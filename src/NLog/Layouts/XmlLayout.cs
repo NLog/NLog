@@ -81,8 +81,15 @@ namespace NLog.Layouts
             set => base.ElementValueInternal = value;
         }
 
-
-
-      
+        /// <summary>
+        /// Determines wether or not this attribute will be Xml encoded.
+        /// </summary>
+        /// <docgen category='XML Options' order='100' />
+        [DefaultValue(true)]
+        public bool ElementEncode
+        {
+            get => base.ElementEncodeInternal;
+            set => base.ElementEncodeInternal = value;
+        }
     }
 }
