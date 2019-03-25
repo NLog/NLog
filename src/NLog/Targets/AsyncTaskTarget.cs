@@ -151,7 +151,7 @@ namespace NLog.Targets
             _requestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
 #endif
 
-            _lazyWriterTimer = new Timer(TaskStartNext, null, Timeout.Infinite, Timeout.Infinite);
+            _lazyWriterTimer = new Timer((s) => TaskStartNext(null, false), null, Timeout.Infinite, Timeout.Infinite);
         }
 
         /// <summary>
@@ -365,7 +365,8 @@ namespace NLog.Targets
         /// Checks the internal queue for the next <see cref="LogEventInfo"/> to create a new task for
         /// </summary>
         /// <param name="previousTask">Used for race-condition validation betweewn task-completion and timeout</param>
-        private void TaskStartNext(object previousTask)
+        /// <param name="fullBatchCompleted">Signals whether previousTask completed an almost full BatchSize</param>
+        private void TaskStartNext(object previousTask, bool fullBatchCompleted)
         {
             do
             {
@@ -388,6 +389,13 @@ namespace NLog.Targets
                     {
                         _previousTask = null;
                         break;
+                    }
+
+                    if (previousTask != null && !fullBatchCompleted && TaskDelayMilliseconds >= 50 && !_requestQueue.IsEmpty)
+                    {
+                        _previousTask = null;
+                        _lazyWriterTimer.Change(TaskDelayMilliseconds, Timeout.Infinite);
+                        break;  // Throttle using Timer, since we didn't write a full batch
                     }
 
                     using (var targetList = _reusableAsyncLogEventList.Allocate())
@@ -578,6 +586,7 @@ namespace NLog.Targets
         private void TaskCompletion(Task completedTask, object continuation)
         {
             bool success = true;
+            bool fullBatchCompleted = true;
 
             try
             {
@@ -633,6 +642,7 @@ namespace NLog.Targets
                 if (success && OptimizeBufferReuse)
                 {
                     // The expected Task completed with success, allow buffer reuse
+                    fullBatchCompleted = reusableLogEvents.Item2.Count * 2 > BatchSize;
                     reusableLogEvents.Item1.Clear();
                     reusableLogEvents.Item2.Clear();
                     Interlocked.CompareExchange(ref _reusableLogEvents, reusableLogEvents, null);
@@ -640,7 +650,7 @@ namespace NLog.Targets
             }
             finally
             {
-                TaskStartNext(completedTask);
+                TaskStartNext(completedTask, fullBatchCompleted);
             }
         }
 
@@ -696,7 +706,7 @@ namespace NLog.Targets
                     InternalLogger.Debug(ex, "{0} WriteAsyncTask had timeout. Task failed to cancel properly.", Name);
                 }
 
-                TaskStartNext(null);
+                TaskStartNext(null, false);
             }
             catch (Exception ex)
             {
