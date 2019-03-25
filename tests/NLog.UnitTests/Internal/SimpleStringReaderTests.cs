@@ -53,7 +53,7 @@ namespace NLog.UnitTests
         /// <summary>
         /// https://github.com/NLog/NLog/issues/3194
         /// </summary>
-        public void DebugView_CurrentState(string input, Int32 position, string expectedDone, char expectedCurrent, string expectedTodo)
+        public void DebugView_CurrentState(string input, int position, string expectedDone, char expectedCurrent, string expectedTodo)
         {
             var reader = new SimpleStringReader(input);
             reader.Position = position;
