@@ -31,14 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-using NLog.Internal;
-
 namespace NLog
 {
     using System;
     using System.Collections.Generic;
-    using Config;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Global Diagnostics Context - a dictionary structure to hold per-application-instance values.
@@ -46,6 +44,7 @@ namespace NLog
     public static class GlobalDiagnosticsContext
     {
         private static Dictionary<string, object> dict = new Dictionary<string, object>();
+        private static Dictionary<string, object> dictReadOnly;  // Reset cache on change
 
         /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
@@ -56,7 +55,7 @@ namespace NLog
         {
             lock (dict)
             {
-                dict[item] = value;
+                GetWritableDict(dictReadOnly != null && !dict.ContainsKey(item))[item] = value;
             }
         }
 
@@ -69,7 +68,7 @@ namespace NLog
         {
             lock (dict)
             {
-                dict[item] = value;
+                GetWritableDict(dictReadOnly != null && !dict.ContainsKey(item))[item] = value;
             }
         }
 
@@ -103,11 +102,8 @@ namespace NLog
         /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            lock (dict)
-            {
-                dict.TryGetValue(item, out var o);
-                return o;
-            }
+            GetReadOnlyDict().TryGetValue(item, out var o);
+            return o;
         }
 
         /// <summary>
@@ -116,10 +112,7 @@ namespace NLog
         /// <returns>A collection of the names of all items in the Global Diagnostics Context.</returns>
         public static ICollection<string> GetNames()
         {
-            lock (dict)
-            {
-                return dict.Keys;
-            }
+            return GetReadOnlyDict().Keys;
         }
 
         /// <summary>
@@ -129,10 +122,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified item exists in current thread GDC.</returns>
         public static bool Contains(string item)
         {
-            lock (dict)
-            {
-                return dict.ContainsKey(item);
-            }
+            return GetReadOnlyDict().ContainsKey(item);
         }
 
         /// <summary>
@@ -143,7 +133,7 @@ namespace NLog
         {
             lock (dict)
             {
-                dict.Remove(item);
+                GetWritableDict(dictReadOnly != null && dict.ContainsKey(item)).Remove(item);
             }
         }
 
@@ -154,8 +144,38 @@ namespace NLog
         {
             lock (dict)
             {
-                dict.Clear();
+                GetWritableDict(dictReadOnly != null && dict.Count > 0, false).Clear();
             }
+        }
+
+        private static Dictionary<string, object> GetReadOnlyDict()
+        {
+            var readOnly = dictReadOnly;
+            if (readOnly == null)
+            {
+                lock (dict)
+                {
+                    readOnly = dictReadOnly = dict;
+                }
+            }
+            return readOnly;
+        }
+
+        private static Dictionary<string, object> GetWritableDict(bool mustCreateNew, bool clone = true)
+        {
+            if (mustCreateNew)
+            {
+                var newDict = new Dictionary<string, object>(clone ? dict.Count + 1 : 0);
+                if (clone)
+                {
+                    // Less allocation with enumerator than Dictionary-constructor
+                    foreach (var item in dict)
+                        newDict[item.Key] = item.Value;
+                }
+                dict = newDict;
+                dictReadOnly = null;
+            }
+            return dict;
         }
     }
 }
