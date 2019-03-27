@@ -43,8 +43,8 @@ namespace NLog
     /// </summary>
     public static class GlobalDiagnosticsContext
     {
-        private static Dictionary<string, object> dict = new Dictionary<string, object>();
-        private static Dictionary<string, object> dictReadOnly;  // Reset cache on change
+        private static Dictionary<string, object> _dict = new Dictionary<string, object>();
+        private static Dictionary<string, object> _dictReadOnly;  // Reset cache on change
 
         /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
@@ -53,9 +53,9 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            lock (dict)
+            lock (_dict)
             {
-                GetWritableDict(dictReadOnly != null && !dict.ContainsKey(item))[item] = value;
+                GetWritableDict(_dictReadOnly != null && !_dict.ContainsKey(item))[item] = value;
             }
         }
 
@@ -66,9 +66,9 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            lock (dict)
+            lock (_dict)
             {
-                GetWritableDict(dictReadOnly != null && !dict.ContainsKey(item))[item] = value;
+                GetWritableDict(_dictReadOnly != null && !_dict.ContainsKey(item))[item] = value;
             }
         }
 
@@ -131,9 +131,9 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            lock (dict)
+            lock (_dict)
             {
-                GetWritableDict(dictReadOnly != null && dict.ContainsKey(item)).Remove(item);
+                GetWritableDict(_dictReadOnly != null && _dict.ContainsKey(item)).Remove(item);
             }
         }
 
@@ -142,20 +142,20 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            lock (dict)
+            lock (_dict)
             {
-                GetWritableDict(dictReadOnly != null && dict.Count > 0, false).Clear();
+                GetWritableDict(_dictReadOnly != null && _dict.Count > 0, false).Clear();
             }
         }
 
         private static Dictionary<string, object> GetReadOnlyDict()
         {
-            var readOnly = dictReadOnly;
+            var readOnly = _dictReadOnly;
             if (readOnly == null)
             {
-                lock (dict)
+                lock (_dict)
                 {
-                    readOnly = dictReadOnly = dict;
+                    readOnly = _dictReadOnly = _dict;
                 }
             }
             return readOnly;
@@ -165,17 +165,17 @@ namespace NLog
         {
             if (mustCreateNew)
             {
-                var newDict = new Dictionary<string, object>(clone ? dict.Count + 1 : 0);
+                var newDict = new Dictionary<string, object>(clone ? _dict.Count + 1 : 0);
                 if (clone)
                 {
                     // Less allocation with enumerator than Dictionary-constructor
-                    foreach (var item in dict)
+                    foreach (var item in _dict)
                         newDict[item.Key] = item.Value;
                 }
-                dict = newDict;
-                dictReadOnly = null;
+                _dict = newDict;
+                _dictReadOnly = null;
             }
-            return dict;
+            return _dict;
         }
     }
 }
