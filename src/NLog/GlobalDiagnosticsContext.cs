@@ -141,7 +141,7 @@ namespace NLog
         {
             lock (_dict)
             {
-                GetWritableDict(_dictReadOnly != null && _dict.Count > 0, false).Clear();
+                GetWritableDict(_dictReadOnly != null && _dict.Count > 0, true).Clear();
             }
         }
 
@@ -158,21 +158,27 @@ namespace NLog
             return readOnly;
         }
 
-        private static Dictionary<string, object> GetWritableDict(bool mustCreateNew, bool clone = true)
+        private static Dictionary<string, object> GetWritableDict(bool mustCreateNew, bool clearDictionary = false)
         {
             if (mustCreateNew)
             {
-                var newDict = new Dictionary<string, object>(clone ? _dict.Count + 1 : 0);
-                if (clone)
-                {
-                    // Less allocation with enumerator than Dictionary-constructor
-                    foreach (var item in _dict)
-                        newDict[item.Key] = item.Value;
-                }
+                Dictionary<string, object> newDict = CopyDictionaryOnWrite(clearDictionary);
                 _dict = newDict;
                 _dictReadOnly = null;
             }
             return _dict;
+        }
+
+        private static Dictionary<string, object> CopyDictionaryOnWrite(bool clearDictionary)
+        {
+            var newDict = new Dictionary<string, object>(clearDictionary ? 0 : _dict.Count + 1);
+            if (!clearDictionary)
+            {
+                // Less allocation with enumerator than Dictionary-constructor
+                foreach (var item in _dict)
+                    newDict[item.Key] = item.Value;
+            }
+            return newDict;
         }
     }
 }
