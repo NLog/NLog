@@ -65,7 +65,8 @@ namespace NLog
         {
             lock (_dict)
             {
-                GetWritableDict(_dictReadOnly != null && !_dict.ContainsKey(item))[item] = value;
+                bool requireCopyOnWrite = _dictReadOnly != null && !_dict.ContainsKey(item); // Overwiting existing value is ok (no resize)
+                GetWritableDict(requireCopyOnWrite)[item] = value;
             }
         }
 
@@ -130,7 +131,8 @@ namespace NLog
         {
             lock (_dict)
             {
-                GetWritableDict(_dictReadOnly != null && _dict.ContainsKey(item)).Remove(item);
+                bool requireCopyOnWrite = _dictReadOnly != null && _dict.ContainsKey(item);
+                GetWritableDict(requireCopyOnWrite).Remove(item);
             }
         }
 
@@ -141,7 +143,8 @@ namespace NLog
         {
             lock (_dict)
             {
-                GetWritableDict(_dictReadOnly != null && _dict.Count > 0, true).Clear();
+                bool requireCopyOnWrite = _dictReadOnly != null && _dict.Count > 0;
+                GetWritableDict(requireCopyOnWrite, true).Clear();
             }
         }
 
@@ -158,9 +161,9 @@ namespace NLog
             return readOnly;
         }
 
-        private static Dictionary<string, object> GetWritableDict(bool mustCreateNew, bool clearDictionary = false)
+        private static Dictionary<string, object> GetWritableDict(bool requireCopyOnWrite, bool clearDictionary = false)
         {
-            if (mustCreateNew)
+            if (requireCopyOnWrite)
             {
                 Dictionary<string, object> newDict = CopyDictionaryOnWrite(clearDictionary);
                 _dict = newDict;
