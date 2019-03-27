@@ -83,7 +83,7 @@
     <PackageReference Include="System.ServiceModel.Http" Version="4.1.0" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="4.1.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.1.0" />
-    <PackageReference Include="System.ServiceModel.Security" Version="4.0.1" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.4" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.0.11" />
   </ItemGroup>
 
@@ -92,7 +92,7 @@
     <PackageReference Include="System.ServiceModel.Http" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.4" />
   </ItemGroup>
 
   <ItemGroup>
