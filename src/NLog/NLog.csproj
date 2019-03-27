@@ -337,7 +337,7 @@ Supported can be found on https://nlog-project.org/config/
   </ItemGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="System.ComponentModel.Primitives" Version="4.1.0" />
     <PackageReference Include="System.Data.Common" Version="4.1.0" />
     <PackageReference Include="System.Diagnostics.StackTrace" Version="4.0.1" />
