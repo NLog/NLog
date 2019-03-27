@@ -53,10 +53,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            lock (_dict)
-            {
-                GetWritableDict(_dictReadOnly != null && !_dict.ContainsKey(item))[item] = value;
-            }
+            Set(item, (object)value);
         }
 
         /// <summary>
