@@ -186,14 +186,19 @@ namespace NLog.Config
             {
                 do
                 {
-                    if (!AttributeValues.ContainsKey(reader.LocalName))
+                    var isXmlNamespaceAttribute = reader.Prefix.Equals("xmlns", StringComparison.OrdinalIgnoreCase);
+                    if (!isXmlNamespaceAttribute)
                     {
-                        AttributeValues.Add(reader.LocalName, reader.Value);
-                    }
-                    else
-                    {
-                        string message = $"Duplicate attribute detected. Attribute name: [{reader.LocalName}]. Duplicate value:[{reader.Value}], Current value:[{AttributeValues[reader.LocalName]}]";
-                        _parsingErrors.Add(message);
+                        if (!AttributeValues.ContainsKey(reader.LocalName))
+                        {
+                            AttributeValues.Add(reader.LocalName, reader.Value);
+                        }
+                        else
+                        {
+                            string message =
+                                $"Duplicate attribute detected. Attribute name: [{reader.LocalName}]. Duplicate value:[{reader.Value}], Current value:[{AttributeValues[reader.LocalName]}]";
+                            _parsingErrors.Add(message);
+                        }
                     }
                 }
                 while (reader.MoveToNextAttribute());
