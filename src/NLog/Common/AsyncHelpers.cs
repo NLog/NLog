@@ -53,12 +53,13 @@ namespace NLog.Common
 #endif
         }
 
-        internal static void StartAsyncTask(Action<object> action, object state)
+        internal static void StartAsyncTask(AsyncHelpersTask asyncTask, object state)
         {
-#if NET4_0 || NET4_5 || NETSTANDARD
-            System.Threading.Tasks.Task.Factory.StartNew(action, state, CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
+            var asyncDelegate = asyncTask.AsyncDelegate;
+#if NETSTANDARD1_0
+            System.Threading.Tasks.Task.Factory.StartNew(asyncDelegate, state, CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default);
 #else
-            ThreadPool.QueueUserWorkItem(new WaitCallback(action), state);
+            ThreadPool.QueueUserWorkItem(asyncDelegate, state);
 #endif
         }
 
@@ -227,7 +228,7 @@ namespace NLog.Common
             foreach (T item in items)
             {
                 T itemCopy = item;
-                StartAsyncTask(s =>
+                StartAsyncTask(new AsyncHelpersTask(s =>
                 {
                     try
                     {
@@ -241,7 +242,7 @@ namespace NLog.Common
                             throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
                     }
-                }, null);
+                }), null);
             }
         }
 
