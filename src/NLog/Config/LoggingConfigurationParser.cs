@@ -74,28 +74,7 @@ namespace NLog.Config
             InternalLogger.Trace("ParseNLogConfig");
             nlogConfig.AssertName("nlog");
 
-            var dict = CreateNLogConfigDictionary(nlogConfig);
-
-            //check first exception throwing and internal logging, so that erros in this section could be handled correctly
-            SetThrowExceptions(dict);
-            SetThrowConfigExceptions(dict);
-            var internalLoggerEnabled = SetInternalLogLevel(dict);
-
-            SetNLogElementSettings(dict, out var parseMessageTemplates, out var internalLogFile);
-
-            if (internalLogFile != null)
-            {
-                internalLogFile = ExpandFilePathVariables(internalLogFile);
-                InternalLogger.LogFile = internalLogFile;
-            }
-
-            if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())
-            {
-                InternalLogger.LogLevel = LogLevel.Off; // Reduce overhead of the InternalLogger when not configured
-            }
-
-            _configurationItemFactory = ConfigurationItemFactory.Default;
-            _configurationItemFactory.ParseMessageTemplates = parseMessageTemplates;
+            SetNLogElementSettings(nlogConfig);
 
             var children = nlogConfig.Children.ToList();
 
@@ -132,14 +111,30 @@ namespace NLog.Config
             }
         }
 
-        private void SetNLogElementSettings(Dictionary<string, string> dict, out bool? parseMessageTemplates, out string internalLogFile)
+        private void SetNLogElementSettings(ILoggingConfigurationElement nlogConfig)
         {
-            parseMessageTemplates = null;
-            internalLogFile = null;
-            foreach (var configItem in dict)
+            var sortedList = CreateUniqueSortedListFromConfig(nlogConfig);
+
+            bool? parseMessageTemplates = null;
+            bool internalLoggerEnabled = false;
+            foreach (var configItem in sortedList)
             {
                 switch (configItem.Key.ToUpperInvariant())
                 {
+                    case "THROWEXCEPTIONS":
+                        LogFactory.ThrowExceptions = ParseBooleanValue(configItem.Key, configItem.Value,
+                            LogFactory.ThrowExceptions);
+                        break;
+                    case "THROWCONFIGEXCEPTIONS":
+                        LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(configItem.Value)
+                            ? (bool?)null
+                            : ParseBooleanValue(configItem.Key, configItem.Value, false);
+                        break;
+                    case "INTERNALLOGLEVEL":
+                        InternalLogger.LogLevel = ParseLogLevelSafe(configItem.Key, configItem.Value,
+                            InternalLogger.LogLevel);
+                        internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
+                        break;
                     case "USEINVARIANTCULTURE":
                         if (ParseBooleanValue(configItem.Key, configItem.Value, false))
                             DefaultCultureInfo = CultureInfo.InvariantCulture;
@@ -163,7 +158,12 @@ namespace NLog.Config
                             InternalLogger.LogToConsoleError);
                         break;
                     case "INTERNALLOGFILE":
-                        internalLogFile = configItem.Value?.Trim();
+                        var internalLogFile = configItem.Value?.Trim();
+                        if (!string.IsNullOrEmpty(internalLogFile))
+                        {
+                            internalLogFile = ExpandFilePathVariables(internalLogFile);
+                            InternalLogger.LogFile = internalLogFile;
+                        }
                         break;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                     case "INTERNALLOGTOTRACE":
@@ -184,78 +184,59 @@ namespace NLog.Config
                             ? (bool?)null
                             : ParseBooleanValue(configItem.Key, configItem.Value, true);
                         break;
+                    case "AUTORELOAD":
+                        break;  // Ignore here, used by other logic
                     default:
-                        InternalLogger.Warn("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
+                        InternalLogger.Debug("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
                         break;
                 }
             }
+
+            if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())
+            {
+                InternalLogger.LogLevel = LogLevel.Off; // Reduce overhead of the InternalLogger when not configured
+            }
+
+            _configurationItemFactory = ConfigurationItemFactory.Default;
+            _configurationItemFactory.ParseMessageTemplates = parseMessageTemplates;
         }
 
         /// <summary>
-        /// Set <see cref="InternalLogger.LogLevel"/> and return internalLoggerEnabled
-        /// </summary>
-        /// <param name="dict"></param>
-        /// <returns>internalLoggerEnabled?</returns>
-        private static bool SetInternalLogLevel(IDictionary<string, string> dict)
-        {
-            bool internalLoggerEnabled;
-            if (dict.TryGetValue("INTERNALLOGLEVEL", out var val))
-            {
-                // expanding variables not possible here, they are created later
-                InternalLogger.LogLevel = ParseLogLevelSafe("InternalLogLevel", val, InternalLogger.LogLevel);
-                internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
-            }
-            else
-            {
-                internalLoggerEnabled = false;
-            }
-
-            return internalLoggerEnabled;
-        }
-
-        /// <summary>
-        /// Set <see cref="LogFactory.ThrowConfigExceptions"/>
-        /// </summary>
-        /// <param name="dict"></param>
-        private void SetThrowConfigExceptions(IDictionary<string, string> dict)
-        {
-            if (dict.TryGetValue("THROWCONFIGEXCEPTIONS", out var val))
-            {
-                LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(val)
-                    ? (bool?)null
-                    : ParseBooleanValue("ThrowConfigExceptions", val, false);
-            }
-        }
-
-        /// <summary>
-        /// Set <see cref="LogFactory.ThrowExceptions"/>
-        /// </summary>
-        /// <param name="dict"></param>
-        private void SetThrowExceptions(IDictionary<string, string> dict)
-        {
-            if (dict.TryGetValue("THROWEXCEPTIONS", out var val))
-            {
-                LogFactory.ThrowExceptions = ParseBooleanValue("ThrowExceptions", val, LogFactory.ThrowExceptions);
-            }
-        }
-
-        /// <summary>
-        /// build dictionary, use last value of duplicates
+        /// Builds list with unique keys, using last value of duplicates. High priority keys placed first.
         /// </summary>
         /// <param name="nlogConfig"></param>
         /// <returns></returns>
-        private static Dictionary<string, string> CreateNLogConfigDictionary(ILoggingConfigurationElement nlogConfig)
+        private static List<KeyValuePair<string,string>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
         {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             foreach (var configItem in nlogConfig.Values)
             {
-                if (configItem.Key != null)
+                if (!string.IsNullOrEmpty(configItem.Key))
                 {
                     dict[configItem.Key.Trim()] = configItem.Value;
                 }
             }
 
-            return dict;
+            var sortedList = new List<KeyValuePair<string, string>>(dict.Count);
+            AddHighPrioritySetting("ThrowExceptions", dict, sortedList);
+            AddHighPrioritySetting("ThrowConfigExceptions", dict, sortedList);
+            AddHighPrioritySetting("InternalLogLevel", dict, sortedList);
+            AddHighPrioritySetting("InternalLogFile", dict, sortedList);
+            AddHighPrioritySetting("InternalLogToConsole", dict, sortedList);
+            foreach (var configItem in dict)
+            {
+                sortedList.Add(configItem);
+            }
+            return sortedList;
+        }
+
+        private static void AddHighPrioritySetting(string settingName, Dictionary<string, string> dict, List<KeyValuePair<string, string>> sortedDict)
+        {
+            if (dict.ContainsKey(settingName))
+            {
+                sortedDict.Add(new KeyValuePair<string, string>(settingName, dict[settingName]));
+                dict.Remove(settingName);
+            }
         }
 
         private static string ExpandFilePathVariables(string internalLogFile)
@@ -379,7 +360,7 @@ namespace NLog.Config
                     }
                     else
                     {
-                        InternalLogger.Warn("Skipping unknown property {0} for element {1} in section {2}",
+                        InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
                             childProperty.Key, childItem.Name, extensionsElement.Name);
                     }
                 }
@@ -490,7 +471,7 @@ namespace NLog.Config
                 else if (MatchesName(childProperty.Key, "value"))
                     variableValue = childProperty.Value;
                 else
-                    InternalLogger.Warn("Skipping unknown property {0} for element {1} in section {2}",
+                    InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
                         childProperty.Key, variableElement.Name, "variables");
             }
 
@@ -524,7 +505,7 @@ namespace NLog.Config
                 if (MatchesName(childProperty.Key, "type"))
                     timeSourceType = childProperty.Value;
                 else
-                    InternalLogger.Warn("Skipping unknown property {0} for element {1} in section {2}",
+                    InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
                         childProperty.Key, timeElement.Name, timeElement.Name);
             }
 
@@ -644,7 +625,7 @@ namespace NLog.Config
                         maxLevel = LogLevelFromString(childProperty.Value).Ordinal;
                         break;
                     default:
-                        InternalLogger.Warn("Skipping unknown property {0} for element {1} in section {2}",
+                        InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
                             childProperty.Key, loggerElement.Name, "rules");
                         break;
                 }
@@ -741,7 +722,7 @@ namespace NLog.Config
                 }
                 else
                 {
-                    InternalLogger.Warn("Skipping unknown child {0} for element {1} in section {2}", child.Name,
+                    InternalLogger.Debug("Skipping unknown child {0} for element {1} in section {2}", child.Name,
                         loggerElement.Name, "rules");
                 }
 
@@ -830,7 +811,7 @@ namespace NLog.Config
                         break;
 
                     default:
-                        InternalLogger.Warn("Skipping unknown element {0} in section {1}", targetValueName,
+                        InternalLogger.Debug("Skipping unknown element {0} in section {1}", targetValueName,
                             targetsElement.Name);
                         break;
                 }
