@@ -392,34 +392,8 @@ namespace NLog
         /// </summary>
         protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
         {
-            loggerName = (loggerName ?? Name) ?? string.Empty;
-
-            StackTrace stackTrace = null;
-            int userFrameIndex = -1;
-            if (AutoLoggerName)
-            {
-                stackTrace = new StackTrace();
-                for (int i = 0; i < stackTrace.FrameCount; ++i)
-                {
-                    var frame = stackTrace.GetFrame(i);
-                    loggerName = Internal.StackTraceUsageUtils.LookupClassNameFromStackFrame(frame);
-                    if (!string.IsNullOrEmpty(loggerName))
-                    {
-                        userFrameIndex = i;
-                        break;
-                    }
-                }
-            }
-
-            ILogger logger;
-            if (LogFactory != null)
-            {
-                logger = LogFactory.GetLogger(loggerName);
-            }
-            else
-            {
-                logger = LogManager.GetLogger(loggerName);
-            }
+            StackTrace stackTrace = AutoLoggerName ? new StackTrace() : null;
+            ILogger logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
 
             logLevel = _forceLogLevel ?? logLevel;
             if (!logger.IsEnabled(logLevel))
@@ -428,7 +402,7 @@ namespace NLog
             }
 
             var ev = new LogEventInfo();
-            ev.LoggerName = loggerName;
+            ev.LoggerName = logger.Name;
             ev.Level = logLevel;
             if (eventType.HasValue)
             {
@@ -455,6 +429,35 @@ namespace NLog
             }
 
             logger.Log(ev);
+        }
+
+        private ILogger GetLogger(string loggerName, StackTrace stackTrace, out int userFrameIndex)
+        {
+            loggerName = (loggerName ?? Name) ?? string.Empty;
+
+            userFrameIndex = -1;
+            if (stackTrace != null)
+            {
+                for (int i = 0; i < stackTrace.FrameCount; ++i)
+                {
+                    var frame = stackTrace.GetFrame(i);
+                    loggerName = StackTraceUsageUtils.LookupClassNameFromStackFrame(frame);
+                    if (!string.IsNullOrEmpty(loggerName))
+                    {
+                        userFrameIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            if (LogFactory != null)
+            {
+                return LogFactory.GetLogger(loggerName);
+            }
+            else
+            {
+                return LogManager.GetLogger(loggerName);
+            }
         }
 
         private void InitAttributes()
