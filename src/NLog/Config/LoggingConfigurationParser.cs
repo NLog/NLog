@@ -122,8 +122,7 @@ namespace NLog.Config
                 switch (configItem.Key.ToUpperInvariant())
                 {
                     case "THROWEXCEPTIONS":
-                        LogFactory.ThrowExceptions = ParseBooleanValue(configItem.Key, configItem.Value,
-                            LogFactory.ThrowExceptions);
+                        LogFactory.ThrowExceptions = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.ThrowExceptions);
                         break;
                     case "THROWCONFIGEXCEPTIONS":
                         LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(configItem.Value)
@@ -131,8 +130,7 @@ namespace NLog.Config
                             : ParseBooleanValue(configItem.Key, configItem.Value, false);
                         break;
                     case "INTERNALLOGLEVEL":
-                        InternalLogger.LogLevel = ParseLogLevelSafe(configItem.Key, configItem.Value,
-                            InternalLogger.LogLevel);
+                        InternalLogger.LogLevel = ParseLogLevelSafe(configItem.Key, configItem.Value, InternalLogger.LogLevel);
                         internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
                         break;
                     case "USEINVARIANTCULTURE":
@@ -141,21 +139,17 @@ namespace NLog.Config
                         break;
 #pragma warning disable 618
                     case "EXCEPTIONLOGGINGOLDSTYLE":
-                        ExceptionLoggingOldStyle =
-                            ParseBooleanValue(configItem.Key, configItem.Value, ExceptionLoggingOldStyle);
+                        ExceptionLoggingOldStyle = ParseBooleanValue(configItem.Key, configItem.Value, ExceptionLoggingOldStyle);
                         break;
 #pragma warning restore 618
                     case "KEEPVARIABLESONRELOAD":
-                        LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value,
-                            LogFactory.KeepVariablesOnReload);
+                        LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.KeepVariablesOnReload);
                         break;
                     case "INTERNALLOGTOCONSOLE":
-                        InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value,
-                            InternalLogger.LogToConsole);
+                        InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsole);
                         break;
                     case "INTERNALLOGTOCONSOLEERROR":
-                        InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value,
-                            InternalLogger.LogToConsoleError);
+                        InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsoleError);
                         break;
                     case "INTERNALLOGFILE":
                         var internalLogFile = configItem.Value?.Trim();
@@ -167,17 +161,14 @@ namespace NLog.Config
                         break;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                     case "INTERNALLOGTOTRACE":
-                        InternalLogger.LogToTrace =
-                            ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToTrace);
+                        InternalLogger.LogToTrace = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToTrace);
                         break;
 #endif
                     case "INTERNALLOGINCLUDETIMESTAMP":
-                        InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value,
-                            InternalLogger.IncludeTimestamp);
+                        InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.IncludeTimestamp);
                         break;
                     case "GLOBALTHRESHOLD":
-                        LogFactory.GlobalThreshold =
-                            ParseLogLevelSafe(configItem.Key, configItem.Value, LogFactory.GlobalThreshold);
+                        LogFactory.GlobalThreshold = ParseLogLevelSafe(configItem.Key, configItem.Value, LogFactory.GlobalThreshold);
                         break; // expanding variables not possible here, they are created later
                     case "PARSEMESSAGETEMPLATES":
                         parseMessageTemplates = string.IsNullOrEmpty(configItem.Value)
@@ -206,7 +197,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="nlogConfig"></param>
         /// <returns></returns>
-        private static List<KeyValuePair<string,string>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
+        private static IList<KeyValuePair<string, string>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
         {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             foreach (var configItem in nlogConfig.Values)
@@ -218,24 +209,24 @@ namespace NLog.Config
             }
 
             var sortedList = new List<KeyValuePair<string, string>>(dict.Count);
-            AddHighPrioritySetting("ThrowExceptions", dict, sortedList);
-            AddHighPrioritySetting("ThrowConfigExceptions", dict, sortedList);
-            AddHighPrioritySetting("InternalLogLevel", dict, sortedList);
-            AddHighPrioritySetting("InternalLogFile", dict, sortedList);
-            AddHighPrioritySetting("InternalLogToConsole", dict, sortedList);
+            AddHighPrioritySetting("ThrowExceptions");
+            AddHighPrioritySetting("ThrowConfigExceptions");
+            AddHighPrioritySetting("InternalLogLevel");
+            AddHighPrioritySetting("InternalLogFile");
+            AddHighPrioritySetting("InternalLogToConsole");
             foreach (var configItem in dict)
             {
                 sortedList.Add(configItem);
             }
             return sortedList;
-        }
 
-        private static void AddHighPrioritySetting(string settingName, Dictionary<string, string> dict, List<KeyValuePair<string, string>> sortedDict)
-        {
-            if (dict.ContainsKey(settingName))
+            void AddHighPrioritySetting(string settingName)
             {
-                sortedDict.Add(new KeyValuePair<string, string>(settingName, dict[settingName]));
-                dict.Remove(settingName);
+                if (dict.ContainsKey(settingName))
+                {
+                    sortedList.Add(new KeyValuePair<string, string>(settingName, dict[settingName]));
+                    dict.Remove(settingName);
+                }
             }
         }
 
@@ -979,7 +970,7 @@ namespace NLog.Config
             return false;
         }
 
-      
+
         private void ConfigureObjectFromAttributes(object targetObject, ILoggingConfigurationElement element,
             bool ignoreType)
         {
