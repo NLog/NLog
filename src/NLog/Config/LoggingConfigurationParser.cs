@@ -184,6 +184,16 @@ namespace NLog.Config
                             ? (bool?)null
                             : ParseBooleanValue(configItem.Key, configItem.Value, true);
                         break;
+
+                    case "INTERNALLOGLEVEL":
+                        // skip, read later
+                        break;
+                    case "XMLNS":
+                    case "XSI":
+                    case "SCHEMALOCATION":
+                    case "TYPE":
+                        // We could ignore these
+                        break;
                     default:
                         InternalLogger.Warn("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
                         break;
@@ -1003,7 +1013,7 @@ namespace NLog.Config
             return false;
         }
 
-      
+
         private void ConfigureObjectFromAttributes(object targetObject, ILoggingConfigurationElement element,
             bool ignoreType)
         {
