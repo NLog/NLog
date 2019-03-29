@@ -198,8 +198,9 @@ namespace NLog.Layouts
 
                 if (ch == '\\')
                 {
-                    // skip the backslash
-                    sr.Read();
+                    // issue#3193
+                    // save the backslash for ParseParameterValue
+                    nameBuf.Append((char)sr.Read());
 
                     // append next character
                     nameBuf.Append((char)sr.Read());
