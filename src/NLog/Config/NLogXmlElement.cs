@@ -54,7 +54,7 @@ namespace NLog.Config
             using (var reader = XmlReader.Create(inputUri))
             {
                 reader.MoveToContent();
-                Parse(reader);
+                Parse(reader, true);
             }
         }
 
@@ -63,9 +63,14 @@ namespace NLog.Config
         /// </summary>
         /// <param name="reader">The reader to initialize element from.</param>
         public NLogXmlElement(XmlReader reader)
+            : this(reader, false)
+        {
+        }
+
+        private NLogXmlElement(XmlReader reader, bool nestedElement)
             : this()
         {
-            Parse(reader);
+            Parse(reader, nestedElement);
         }
 
         /// <summary>
@@ -180,12 +185,22 @@ namespace NLog.Config
             }
         }
 
-        private void Parse(XmlReader reader)
+        private void Parse(XmlReader reader, bool nestedElement)
         {
             if (reader.MoveToFirstAttribute())
             {
                 do
                 {
+                    if (!nestedElement)
+                    {
+                        if (reader.LocalName?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
+                            continue;
+                        if (reader.Prefix?.Equals("xsi", StringComparison.OrdinalIgnoreCase) == true)
+                            continue;
+                        if (reader.Prefix?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
+                            continue;
+                    }
+
                     if (!AttributeValues.ContainsKey(reader.LocalName))
                     {
                         AttributeValues.Add(reader.LocalName, reader.Value);
@@ -219,7 +234,7 @@ namespace NLog.Config
 
                     if (reader.NodeType == XmlNodeType.Element)
                     {
-                        Children.Add(new NLogXmlElement(reader));
+                        Children.Add(new NLogXmlElement(reader, true));
                     }
                 }
             }

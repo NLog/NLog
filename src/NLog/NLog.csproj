@@ -21,7 +21,7 @@ Supported platforms:
 - Silverlight 4 and 5
 - Mono 4
 
-For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.Asp.NET Core
+For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     </Description>
     <Product>NLog v$(ProductVersion)</Product>
@@ -31,74 +31,22 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.Asp.NET Core
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
+Bugfixes
+- LoggingConfigurationParser - Fixed bug in handling of extensions prefix (@snakefoot)
+- Fix wrong warnings on &lt;lnlog&gt; element (only wrong warnings) (#3253) (@snakefoot, @304NotModified)
+- SimpleStringReader: fix DebuggerDisplay value (#3195) (@lobster2012-user)
+- XmlLayout - Fixed missing encode of xml element value (@snakefoot)
+- VariableLayoutRenderer - Fixed format-string for internal logger warning (@snakefoot, @lobster2012-user)
+- Fix error with Embedded Assembly in LogAssemblyVersion (@snakefoot)
 
-## All changes NLog 4.6
+Improvements
+- Auto-flush on process exit improvements (@snakefoot)
+- AsyncTaskTarget - Respect TaskDelayMilliseconds on low activity (@snakefoot)
 
-### Features
+Performance
 
-#### Main Feature
-
-* Database target: support for DbType for parameters (including SqlDbType) - #2363 + #2899 + #3085 + #3091 (@hubo0831, @ObikeDev, @sorvis, @304NotModified, @snakefoot)
-
-#### XML config features
-
-* Added support for constant variable in level attributes - #2709  (level, minlevel, etc) (@304NotModified)
-* Added defaultAction option for &lt;filter&gt; - #2848 (@304NotModified)
-* Rules now support multiple '*' and '?' wildcards and in any position - #3098   (@beppemarazzi)
-* Added Support ${currentdir}, ${basedir}, ${tempdir} and environment variables in internalLogFile value - #3031 + #3092  (@snakefoot)
-
-#### New targets, layouts and layout renderers
-
-* Added XmlLayout - Render LogEventInfo.Properties as XML - #2670 + #3014 (@snakefoot)
-* Added ${db-null} layout renderer - #2849  (@304NotModified)
-* Added New ${substring}, ${left} &amp; ${right} layoutrenderer wrappers - #2907  (@304NotModified)
-* Added ${HostName} Layout Renderer for full computer DNS name - #3071  (@amitsaha)
-* Added ${AppSetting} Layout Renderer (app.config + web.config) moved from NLog.Extended for NetFramework - #3053  (@snakefoot)
-* Added noRawValue layout wrapper - #3165  (@snakefoot)
-
-#### Additions to targets, layouts and layout renderers
-
-* AsyncTargetWrapper: added LogEventDropped + LogEventQueueGrow events - #2610 (@Pomoinytskyi)
-* NetworkTarget - Support for SSL &amp; TLS - #2678 (@snakefoot)
-* JsonLayout: support for System.Dynamic-objects - #2902  (@304NotModified)
-* AsyncTaskTarget: Added support for BatchSize and RetryCount  - #2909  (@snakefoot)
-* ColoredConsoleTarget - Added EnableAnsiOutput option (VS Code support) - #3018  (@jp7677 + @snakefoot)
-* Added IncludeGdc property in JsonLayout - #3050  (@casperc89)
-* TargetWithContext - Support for PropertyType using IRawValue-interface - #3060  (@snakefoot)
-
-### Enhancements
-
-* JsonLayout includes Type-property when rendering Exception-object - #2989 (@snakefoot)
-* LoggingConfigurationParser - Extracted from XmlLoggingConfiguration - #2891 (Prepare for appsettings.json)  (@snakefoot)
-* Added support for complex objects in MDLC and NDLC on Net45 - #2910  (@snakefoot)
-* PerformanceCounter - Improve behavior for CPU usage calculation - #2918  (@snakefoot)
-* TargetWithContext - Include all properties even when duplicate names - #2941  (@snakefoot)
-* Updated resharper annotations for better validation - #2974 (@imanushin)
-* Improve default reflection support on .NET Core Native - #2979 (@snakefoot)
-* EventLogTarget with better support for MaximumKilobytes configuration - #3017 (@Coriolanuss)
-* Added Xamarin PreserveAttribute for the entire Assembly to improve AOT-linking - #3039 (@snakefoot)
-* Create snupkg packages and use portable PDB - #3045 (@snakefoot)
-* KeepFileOpen + ConcurrentWrites on Xamarin + UWP - #3079 - #3048 (@304NotModified)
-* WebService Target allow custom override of SoapAction-header for Soap11 - #3082 + #3100 (@AlexeyRokhin)
-* AsyncTaskTarget - Fixed unwanted delay caused by slow writer
-* Various refactorings (19 pull requests) (@beppemarazzi, @304NotModified, @snakefoot)
-
-### Performance
-
-* AsyncTargetWrapper using ConcurrentQueue for .NET Core 2 for better thread-concurrency - #2650 (@snakefoot)
-* AsyncTargetWrapper - TimeToSleepBetweenBatches changed default to 1ms - #2890 (@snakefoot)
-* InternalLogger performance optimization when LogLevel.Off - #2897 (@snakefoot)
-* InternalLogger LogLevel changes to LogLevel.Off by default unless being used. - #2935 (@snakefoot)
-* CsvLayout - Allocation optimizations and optional skip quoting-check for individual columns. - #2934 (@snakefoot)
-* MappedDiagnosticsLogicalContext - SetScoped with IReadOnlyList (Prepare for MEL BeginScope) - #2949 (@snakefoot)
-* IRenderString-interface to improve performance for Layout with single LayoutRenderer - #2973 (@snakefoot)
-* StringBuilderPool - Reduce memory overhead until required - #3103 (@snakefoot)
-
-**LibLog Breaking change**
-
-* [damianh/LibLog#181](https://github.com/damianh/LibLog/pull/181) - Sub-components using LibLog ver. 5.0.3 (or newer) will now use MDLC + NDLC (Instead of MDC + NDC) when detecting application is using NLog ver. 4.6. Make sure to update NLog.config to match this change. Make sure that all sub-components have upgraded to LibLog ver. 5.0.3 (or newer) if they make use of `OpenNestedContext` or `OpenMappedContext`.
-
-See also [NLog 4.6 Milestone](https://github.com/NLog/NLog/milestone/44?closed=1)
+- ${NDLC} + ${NDC} - Faster checking when TopFrames = 1 (@snakefoot)
+- ${GDC} reading is now lockfree (#3201) (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

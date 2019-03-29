@@ -563,7 +563,12 @@ namespace NLog
         {
             if (_layoutCache == null)
             {
-                Interlocked.CompareExchange(ref _layoutCache, new Dictionary<Layout, object>(), null);
+                var dictionary = new Dictionary<Layout, object>();
+                dictionary[layout] = value; // Faster than collection initializer
+                if (Interlocked.CompareExchange(ref _layoutCache, dictionary, null) == null)
+                {
+                    return; // No need to use lock
+                }
             }
             lock (_layoutCache)
             {

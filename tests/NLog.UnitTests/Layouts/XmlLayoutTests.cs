@@ -109,6 +109,50 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
+        public void XmlLayout_EncodeValue_RenderXmlMessage()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements =
+                {
+                    new XmlElement("message", "${message}"),
+                },
+            };
+
+            var logEventInfo = new LogEventInfo {  Message = @"<hello planet=""earth""/>" };
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message>&lt;hello planet=&quot;earth&quot;/&gt;</message></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void XmlLayout_SkipEncodeValue_RenderXmlMessage()
+        {
+            // Arrange
+            var xmlLayout = new XmlLayout()
+            {
+                Elements =
+                {
+                    new XmlElement("message", "${message}") { Encode = false }
+                },
+            };
+
+            var logEventInfo = new LogEventInfo { Message = @"<hello planet=""earth""/>" };
+
+            // Act
+            var result = xmlLayout.Render(logEventInfo);
+
+            // Assert
+            const string expected = @"<logevent><message><hello planet=""earth""/></message></logevent>";
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
         public void XmlLayout_IncludeEmptyValue_RenderEmptyValue()
         {
             // Arrange

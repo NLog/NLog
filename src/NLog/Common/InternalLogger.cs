@@ -478,11 +478,12 @@ namespace NLog.Common
 #if SILVERLIGHT || __IOS__ || __ANDROID__ || NETSTANDARD1_0
                 Info(assembly.FullName);
 #else
-                var fileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+                var fileVersionInfo = !string.IsNullOrEmpty(assembly.Location) ?
+                    System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location) : null;
                 Info("{0}. File version: {1}. Product version: {2}.",
                     assembly.FullName,
-                    fileVersionInfo.FileVersion,
-                    fileVersionInfo.ProductVersion);
+                    fileVersionInfo?.FileVersion,
+                    fileVersionInfo?.ProductVersion);
 #endif
             }
             catch (Exception ex)

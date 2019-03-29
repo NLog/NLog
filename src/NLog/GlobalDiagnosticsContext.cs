@@ -31,21 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Linq;
-using NLog.Internal;
-
 namespace NLog
 {
     using System;
     using System.Collections.Generic;
-    using Config;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Global Diagnostics Context - a dictionary structure to hold per-application-instance values.
     /// </summary>
     public static class GlobalDiagnosticsContext
     {
-        private static Dictionary<string, object> dict = new Dictionary<string, object>();
+        private static Dictionary<string, object> _dict = new Dictionary<string, object>();
+        private static Dictionary<string, object> _dictReadOnly;  // Reset cache on change
 
         /// <summary>
         /// Sets the Global Diagnostics Context item to the specified value.
@@ -54,10 +53,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, string value)
         {
-            lock (dict)
-            {
-                dict[item] = value;
-            }
+            Set(item, (object)value);
         }
 
         /// <summary>
@@ -67,9 +63,10 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            lock (dict)
+            lock (_dict)
             {
-                dict[item] = value;
+                bool requireCopyOnWrite = _dictReadOnly != null && !_dict.ContainsKey(item); // Overwiting existing value is ok (no resize)
+                GetWritableDict(requireCopyOnWrite)[item] = value;
             }
         }
 
@@ -103,11 +100,8 @@ namespace NLog
         /// <returns>The item value, if defined; otherwise <c>null</c>.</returns>
         public static object GetObject(string item)
         {
-            lock (dict)
-            {
-                dict.TryGetValue(item, out var o);
-                return o;
-            }
+            GetReadOnlyDict().TryGetValue(item, out var o);
+            return o;
         }
 
         /// <summary>
@@ -116,10 +110,7 @@ namespace NLog
         /// <returns>A collection of the names of all items in the Global Diagnostics Context.</returns>
         public static ICollection<string> GetNames()
         {
-            lock (dict)
-            {
-                return dict.Keys;
-            }
+            return GetReadOnlyDict().Keys;
         }
 
         /// <summary>
@@ -129,10 +120,7 @@ namespace NLog
         /// <returns>A boolean indicating whether the specified item exists in current thread GDC.</returns>
         public static bool Contains(string item)
         {
-            lock (dict)
-            {
-                return dict.ContainsKey(item);
-            }
+            return GetReadOnlyDict().ContainsKey(item);
         }
 
         /// <summary>
@@ -141,9 +129,10 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            lock (dict)
+            lock (_dict)
             {
-                dict.Remove(item);
+                bool requireCopyOnWrite = _dictReadOnly != null && _dict.ContainsKey(item);
+                GetWritableDict(requireCopyOnWrite).Remove(item);
             }
         }
 
@@ -152,10 +141,47 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            lock (dict)
+            lock (_dict)
             {
-                dict.Clear();
+                bool requireCopyOnWrite = _dictReadOnly != null && _dict.Count > 0;
+                GetWritableDict(requireCopyOnWrite, true).Clear();
             }
+        }
+
+        private static Dictionary<string, object> GetReadOnlyDict()
+        {
+            var readOnly = _dictReadOnly;
+            if (readOnly == null)
+            {
+                lock (_dict)
+                {
+                    readOnly = _dictReadOnly = _dict;
+                }
+            }
+            return readOnly;
+        }
+
+        private static Dictionary<string, object> GetWritableDict(bool requireCopyOnWrite, bool clearDictionary = false)
+        {
+            if (requireCopyOnWrite)
+            {
+                Dictionary<string, object> newDict = CopyDictionaryOnWrite(clearDictionary);
+                _dict = newDict;
+                _dictReadOnly = null;
+            }
+            return _dict;
+        }
+
+        private static Dictionary<string, object> CopyDictionaryOnWrite(bool clearDictionary)
+        {
+            var newDict = new Dictionary<string, object>(clearDictionary ? 0 : _dict.Count + 1);
+            if (!clearDictionary)
+            {
+                // Less allocation with enumerator than Dictionary-constructor
+                foreach (var item in _dict)
+                    newDict[item.Key] = item.Value;
+            }
+            return newDict;
         }
     }
 }

@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,65 +31,24 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+
+namespace NLog.Internal
 {
-    using System;
-    using System.ComponentModel;
-    using NLog.Config;
+#if NETSTANDARD1_0
+    using AsyncDelegate = System.Action<object>;
+#else
+    using AsyncDelegate = System.Threading.WaitCallback;
+#endif
 
     /// <summary>
-    /// A specialized layout that renders XML-formatted events.
+    /// Forward declare of system delegate type for use by other classes
     /// </summary>
-    [Layout("XmlLayout")]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public class XmlLayout : XmlElementBase
+    internal struct AsyncHelpersTask
     {
-        private const string DefaultRootElementName = "logevent";
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="XmlElementBase"/> class.
-        /// </summary>
-        public XmlLayout()
-            : this(DefaultRootElementName, null)
+        public readonly AsyncDelegate AsyncDelegate;
+        public AsyncHelpersTask(AsyncDelegate asyncDelegate)
         {
-        }
-
-        /// <inheritdoc />
-        public XmlLayout(string elementName, Layout elementValue) : base(elementName, elementValue)
-        {
-        }
-        
-        /// <summary>
-        /// Name of the root XML element
-        /// </summary>
-        /// <docgen category='XML Options' order='10' />
-        [DefaultValue(DefaultRootElementName)]
-        public string ElementName
-        {
-            get => base.ElementNameInternal;
-            set => base.ElementNameInternal = value;
-        }
-
-        /// <summary>
-        /// Value inside the root XML element
-        /// </summary>
-        /// <docgen category='XML Options' order='10' />
-        public Layout ElementValue
-        {
-            get => base.ElementValueInternal;
-            set => base.ElementValueInternal = value;
-        }
-
-        /// <summary>
-        /// Determines wether or not this attribute will be Xml encoded.
-        /// </summary>
-        /// <docgen category='XML Options' order='100' />
-        [DefaultValue(true)]
-        public bool ElementEncode
-        {
-            get => base.ElementEncodeInternal;
-            set => base.ElementEncodeInternal = value;
+            AsyncDelegate = asyncDelegate;
         }
     }
 }

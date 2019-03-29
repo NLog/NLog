@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,65 +31,45 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+namespace NLog.UnitTests.Internal
 {
+    using NLog.Internal;
     using System;
-    using System.ComponentModel;
-    using NLog.Config;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Xunit;
 
-    /// <summary>
-    /// A specialized layout that renders XML-formatted events.
-    /// </summary>
-    [Layout("XmlLayout")]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public class XmlLayout : XmlElementBase
+#if DEBUG
+    public class SimpleStringReaderTests : NLogTestBase
     {
-        private const string DefaultRootElementName = "logevent";
-
+        [Theory]
+        [InlineData("", 0, "", char.MaxValue, "" )]
+        [InlineData("abcdef", 0, "", 'a', "bcdef")]
+        [InlineData("abcdef", 2, "ab", 'c', "def")]
+        [InlineData("abcdef", 6, "abcdef", char.MaxValue, "")]
+        [InlineData("abcdef", 7, "INVALID_CURRENT_STATE", char.MaxValue, "INVALID_CURRENT_STATE")]
         /// <summary>
-        /// Initializes a new instance of the <see cref="XmlElementBase"/> class.
+        /// https://github.com/NLog/NLog/issues/3194
         /// </summary>
-        public XmlLayout()
-            : this(DefaultRootElementName, null)
+        public void DebugView_CurrentState(string input, int position, string expectedDone, char expectedCurrent, string expectedTodo)
         {
+            var reader = new SimpleStringReader(input);
+            reader.Position = position;
+            Assert.Equal(
+                SimpleStringReader.BuildCurrentState(expectedDone, expectedCurrent, expectedTodo), 
+                reader.CurrentState);
         }
 
-        /// <inheritdoc />
-        public XmlLayout(string elementName, Layout elementValue) : base(elementName, elementValue)
+        [Fact]
+        public void DebugView_CurrentState_NegativePosition()
         {
-        }
-        
-        /// <summary>
-        /// Name of the root XML element
-        /// </summary>
-        /// <docgen category='XML Options' order='10' />
-        [DefaultValue(DefaultRootElementName)]
-        public string ElementName
-        {
-            get => base.ElementNameInternal;
-            set => base.ElementNameInternal = value;
-        }
-
-        /// <summary>
-        /// Value inside the root XML element
-        /// </summary>
-        /// <docgen category='XML Options' order='10' />
-        public Layout ElementValue
-        {
-            get => base.ElementValueInternal;
-            set => base.ElementValueInternal = value;
-        }
-
-        /// <summary>
-        /// Determines wether or not this attribute will be Xml encoded.
-        /// </summary>
-        /// <docgen category='XML Options' order='100' />
-        [DefaultValue(true)]
-        public bool ElementEncode
-        {
-            get => base.ElementEncodeInternal;
-            set => base.ElementEncodeInternal = value;
+            Assert.Throws<IndexOutOfRangeException>(() => new SimpleStringReader("abcdef")
+            {
+                Position = -1,
+            }.CurrentState);
         }
     }
+#endif
 }

@@ -1,0 +1,25 @@
+# Configuration for welcome - https://github.com/behaviorbot/welcome
+
+# Configuration for new-issue-welcome - https://github.com/behaviorbot/new-issue-welcome
+
+# Comment to be posted to on first time issues
+newIssueWelcomeComment: >
+  Hi! Thanks for opening your first issue here! Please make sure to follow the issue template - so we could help you better!
+
+# Configuration for new-pr-welcome - https://github.com/behaviorbot/new-pr-welcome
+
+# Comment to be posted to on PRs from first time contributors in your repository
+newPRWelcomeComment: >
+  Thanks for opening this pull request!
+  
+  We will try to review this soon! Please note that pull requests with unit tests are earlier accepted :angel:
+
+# Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
+
+# Comment to be posted to on pull requests merged by a first time user
+firstPRMergeComment: >
+  Hooray your first pull request is merged! Thanks for the contribution! Looking for more? :angel: Please check the [up-for-grabs issues](https://github.com/NLog/NLog/issues?q=is%3Aopen+is%3Aissue+label%3Aup-for-grabs) - thanks!
+  
+  ![thanks!](https://i.imgflip.com/1g17ph.jpg)
+
+# It is recommend to include as many gifs and emojis as possible

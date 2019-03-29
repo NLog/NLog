@@ -33,6 +33,7 @@
 
 namespace NLog.Layouts
 {
+    using System.ComponentModel;
     using NLog.Config;
     using NLog.Internal;
 
@@ -40,6 +41,7 @@ namespace NLog.Layouts
     /// XML attribute.
     /// </summary>
     [NLogConfigurationItem]
+    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
     public class XmlAttribute
@@ -94,6 +96,7 @@ namespace NLog.Layouts
         /// Determines wether or not this attribute will be Xml encoded.
         /// </summary>
         /// <docgen category='XML Attribute Options' order='100' />
+        [DefaultValue(true)]
         public bool Encode
         {
             get => LayoutWrapper.XmlEncode;

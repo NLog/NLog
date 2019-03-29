@@ -74,28 +74,7 @@ namespace NLog.Config
             InternalLogger.Trace("ParseNLogConfig");
             nlogConfig.AssertName("nlog");
 
-            var dict = CreateNLogConfigDictionary(nlogConfig);
-
-            //check first exception throwing and internal logging, so that erros in this section could be handled correctly
-            SetThrowExceptions(dict);
-            SetThrowConfigExceptions(dict);
-            var internalLoggerEnabled = SetInternalLogLevel(dict);
-
-            SetNLogElementSettings(dict, out var parseMessageTemplates, out var internalLogFile);
-
-            if (internalLogFile != null)
-            {
-                internalLogFile = ExpandFilePathVariables(internalLogFile);
-                InternalLogger.LogFile = internalLogFile;
-            }
-
-            if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())
-            {
-                InternalLogger.LogLevel = LogLevel.Off; // Reduce overhead of the InternalLogger when not configured
-            }
-
-            _configurationItemFactory = ConfigurationItemFactory.Default;
-            _configurationItemFactory.ParseMessageTemplates = parseMessageTemplates;
+            SetNLogElementSettings(nlogConfig);
 
             var children = nlogConfig.Children.ToList();
 
@@ -132,130 +111,123 @@ namespace NLog.Config
             }
         }
 
-        private void SetNLogElementSettings(Dictionary<string, string> dict, out bool? parseMessageTemplates, out string internalLogFile)
+        private void SetNLogElementSettings(ILoggingConfigurationElement nlogConfig)
         {
-            parseMessageTemplates = null;
-            internalLogFile = null;
-            foreach (var configItem in dict)
+            var sortedList = CreateUniqueSortedListFromConfig(nlogConfig);
+
+            bool? parseMessageTemplates = null;
+            bool internalLoggerEnabled = false;
+            foreach (var configItem in sortedList)
             {
                 switch (configItem.Key.ToUpperInvariant())
                 {
+                    case "THROWEXCEPTIONS":
+                        LogFactory.ThrowExceptions = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.ThrowExceptions);
+                        break;
+                    case "THROWCONFIGEXCEPTIONS":
+                        LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(configItem.Value)
+                            ? (bool?)null
+                            : ParseBooleanValue(configItem.Key, configItem.Value, false);
+                        break;
+                    case "INTERNALLOGLEVEL":
+                        InternalLogger.LogLevel = ParseLogLevelSafe(configItem.Key, configItem.Value, InternalLogger.LogLevel);
+                        internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
+                        break;
                     case "USEINVARIANTCULTURE":
                         if (ParseBooleanValue(configItem.Key, configItem.Value, false))
                             DefaultCultureInfo = CultureInfo.InvariantCulture;
                         break;
 #pragma warning disable 618
                     case "EXCEPTIONLOGGINGOLDSTYLE":
-                        ExceptionLoggingOldStyle =
-                            ParseBooleanValue(configItem.Key, configItem.Value, ExceptionLoggingOldStyle);
+                        ExceptionLoggingOldStyle = ParseBooleanValue(configItem.Key, configItem.Value, ExceptionLoggingOldStyle);
                         break;
 #pragma warning restore 618
                     case "KEEPVARIABLESONRELOAD":
-                        LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value,
-                            LogFactory.KeepVariablesOnReload);
+                        LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.KeepVariablesOnReload);
                         break;
                     case "INTERNALLOGTOCONSOLE":
-                        InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value,
-                            InternalLogger.LogToConsole);
+                        InternalLogger.LogToConsole = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsole);
                         break;
                     case "INTERNALLOGTOCONSOLEERROR":
-                        InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value,
-                            InternalLogger.LogToConsoleError);
+                        InternalLogger.LogToConsoleError = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToConsoleError);
                         break;
                     case "INTERNALLOGFILE":
-                        internalLogFile = configItem.Value?.Trim();
+                        var internalLogFile = configItem.Value?.Trim();
+                        if (!string.IsNullOrEmpty(internalLogFile))
+                        {
+                            internalLogFile = ExpandFilePathVariables(internalLogFile);
+                            InternalLogger.LogFile = internalLogFile;
+                        }
                         break;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                     case "INTERNALLOGTOTRACE":
-                        InternalLogger.LogToTrace =
-                            ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToTrace);
+                        InternalLogger.LogToTrace = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.LogToTrace);
                         break;
 #endif
                     case "INTERNALLOGINCLUDETIMESTAMP":
-                        InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value,
-                            InternalLogger.IncludeTimestamp);
+                        InternalLogger.IncludeTimestamp = ParseBooleanValue(configItem.Key, configItem.Value, InternalLogger.IncludeTimestamp);
                         break;
                     case "GLOBALTHRESHOLD":
-                        LogFactory.GlobalThreshold =
-                            ParseLogLevelSafe(configItem.Key, configItem.Value, LogFactory.GlobalThreshold);
+                        LogFactory.GlobalThreshold = ParseLogLevelSafe(configItem.Key, configItem.Value, LogFactory.GlobalThreshold);
                         break; // expanding variables not possible here, they are created later
                     case "PARSEMESSAGETEMPLATES":
                         parseMessageTemplates = string.IsNullOrEmpty(configItem.Value)
                             ? (bool?)null
                             : ParseBooleanValue(configItem.Key, configItem.Value, true);
                         break;
+                    case "AUTORELOAD":
+                        break;  // Ignore here, used by other logic
                     default:
-                        InternalLogger.Warn("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
+                        InternalLogger.Debug("Skipping unknown 'NLog' property {0}={1}", configItem.Key, configItem.Value);
                         break;
                 }
             }
+
+            if (!internalLoggerEnabled && !InternalLogger.HasActiveLoggers())
+            {
+                InternalLogger.LogLevel = LogLevel.Off; // Reduce overhead of the InternalLogger when not configured
+            }
+
+            _configurationItemFactory = ConfigurationItemFactory.Default;
+            _configurationItemFactory.ParseMessageTemplates = parseMessageTemplates;
         }
 
         /// <summary>
-        /// Set <see cref="InternalLogger.LogLevel"/> and return internalLoggerEnabled
-        /// </summary>
-        /// <param name="dict"></param>
-        /// <returns>internalLoggerEnabled?</returns>
-        private static bool SetInternalLogLevel(IDictionary<string, string> dict)
-        {
-            bool internalLoggerEnabled;
-            if (dict.TryGetValue("INTERNALLOGLEVEL", out var val))
-            {
-                // expanding variables not possible here, they are created later
-                InternalLogger.LogLevel = ParseLogLevelSafe("InternalLogLevel", val, InternalLogger.LogLevel);
-                internalLoggerEnabled = InternalLogger.LogLevel != LogLevel.Off;
-            }
-            else
-            {
-                internalLoggerEnabled = false;
-            }
-
-            return internalLoggerEnabled;
-        }
-
-        /// <summary>
-        /// Set <see cref="LogFactory.ThrowConfigExceptions"/>
-        /// </summary>
-        /// <param name="dict"></param>
-        private void SetThrowConfigExceptions(IDictionary<string, string> dict)
-        {
-            if (dict.TryGetValue("THROWCONFIGEXCEPTIONS", out var val))
-            {
-                LogFactory.ThrowConfigExceptions = StringHelpers.IsNullOrWhiteSpace(val)
-                    ? (bool?)null
-                    : ParseBooleanValue("ThrowConfigExceptions", val, false);
-            }
-        }
-
-        /// <summary>
-        /// Set <see cref="LogFactory.ThrowExceptions"/>
-        /// </summary>
-        /// <param name="dict"></param>
-        private void SetThrowExceptions(IDictionary<string, string> dict)
-        {
-            if (dict.TryGetValue("THROWEXCEPTIONS", out var val))
-            {
-                LogFactory.ThrowExceptions = ParseBooleanValue("ThrowExceptions", val, LogFactory.ThrowExceptions);
-            }
-        }
-
-        /// <summary>
-        /// build dictionary, use last value of duplicates
+        /// Builds list with unique keys, using last value of duplicates. High priority keys placed first.
         /// </summary>
         /// <param name="nlogConfig"></param>
         /// <returns></returns>
-        private static Dictionary<string, string> CreateNLogConfigDictionary(ILoggingConfigurationElement nlogConfig)
+        private static IList<KeyValuePair<string, string>> CreateUniqueSortedListFromConfig(ILoggingConfigurationElement nlogConfig)
         {
             var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             foreach (var configItem in nlogConfig.Values)
             {
-                if (configItem.Key != null)
+                if (!string.IsNullOrEmpty(configItem.Key))
                 {
                     dict[configItem.Key.Trim()] = configItem.Value;
                 }
             }
 
-            return dict;
+            var sortedList = new List<KeyValuePair<string, string>>(dict.Count);
+            AddHighPrioritySetting("ThrowExceptions");
+            AddHighPrioritySetting("ThrowConfigExceptions");
+            AddHighPrioritySetting("InternalLogLevel");
+            AddHighPrioritySetting("InternalLogFile");
+            AddHighPrioritySetting("InternalLogToConsole");
+            foreach (var configItem in dict)
+            {
+                sortedList.Add(configItem);
+            }
+            return sortedList;
+
+            void AddHighPrioritySetting(string settingName)
+            {
+                if (dict.ContainsKey(settingName))
+                {
+                    sortedList.Add(new KeyValuePair<string, string>(settingName, dict[settingName]));
+                    dict.Remove(settingName);
+                }
+            }
         }
 
         private static string ExpandFilePathVariables(string internalLogFile)
@@ -379,7 +351,7 @@ namespace NLog.Config
                     }
                     else
                     {
-                        InternalLogger.Warn("Skipping unknown property {0} for element {1} in section {2}",
+                        InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
                             childProperty.Key, childItem.Name, extensionsElement.Name);
                     }
                 }
@@ -490,7 +462,7 @@ namespace NLog.Config
                 else if (MatchesName(childProperty.Key, "value"))
                     variableValue = childProperty.Value;
                 else
-                    InternalLogger.Warn("Skipping unknown property {0} for element {1} in section {2}",
+                    InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
                         childProperty.Key, variableElement.Name, "variables");
             }
 
@@ -524,7 +496,7 @@ namespace NLog.Config
                 if (MatchesName(childProperty.Key, "type"))
                     timeSourceType = childProperty.Value;
                 else
-                    InternalLogger.Warn("Skipping unknown property {0} for element {1} in section {2}",
+                    InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
                         childProperty.Key, timeElement.Name, timeElement.Name);
             }
 
@@ -644,7 +616,7 @@ namespace NLog.Config
                         maxLevel = LogLevelFromString(childProperty.Value).Ordinal;
                         break;
                     default:
-                        InternalLogger.Warn("Skipping unknown property {0} for element {1} in section {2}",
+                        InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
                             childProperty.Key, loggerElement.Name, "rules");
                         break;
                 }
@@ -741,7 +713,7 @@ namespace NLog.Config
                 }
                 else
                 {
-                    InternalLogger.Warn("Skipping unknown child {0} for element {1} in section {2}", child.Name,
+                    InternalLogger.Debug("Skipping unknown child {0} for element {1} in section {2}", child.Name,
                         loggerElement.Name, "rules");
                 }
 
@@ -790,7 +762,7 @@ namespace NLog.Config
 
             foreach (var targetElement in targetsElement.Children)
             {
-                string targetType = StripOptionalNamespacePrefix(targetElement.GetOptionalValue("type", null));
+                string targetTypeName = GetConfigItemTypeAttribute(targetElement);
                 string targetValueName = targetElement.GetOptionalValue("name", null);
                 Target newTarget = null;
                 if (!string.IsNullOrEmpty(targetValueName))
@@ -801,7 +773,7 @@ namespace NLog.Config
                 switch (targetElement.Name?.Trim().ToUpperInvariant())
                 {
                     case "DEFAULT-WRAPPER":
-                        if (AssertNonEmptyValue(targetType, "type", targetValueName, targetsElement.Name))
+                        if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
                             defaultWrapperElement = targetElement;
                         }
@@ -809,9 +781,9 @@ namespace NLog.Config
                         break;
 
                     case "DEFAULT-TARGET-PARAMETERS":
-                        if (AssertNonEmptyValue(targetType, "type", targetValueName, targetsElement.Name))
+                        if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
-                            ParseDefaultTargetParameters(targetElement, targetType, typeNameToDefaultTargetParameters);
+                            ParseDefaultTargetParameters(targetElement, targetTypeName, typeNameToDefaultTargetParameters);
                         }
 
                         break;
@@ -821,16 +793,16 @@ namespace NLog.Config
                     case "WRAPPER":
                     case "WRAPPER-TARGET":
                     case "COMPOUND-TARGET":
-                        if (AssertNonEmptyValue(targetType, "type", targetValueName, targetsElement.Name))
+                        if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
-                            newTarget = _configurationItemFactory.Targets.CreateInstance(targetType);
+                            newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
                             ParseTargetElement(newTarget, targetElement, typeNameToDefaultTargetParameters);
                         }
 
                         break;
 
                     default:
-                        InternalLogger.Warn("Skipping unknown element {0} in section {1}", targetValueName,
+                        InternalLogger.Debug("Skipping unknown element {0} in section {1}", targetValueName,
                             targetsElement.Name);
                         break;
                 }
@@ -862,10 +834,10 @@ namespace NLog.Config
         private void ParseTargetElement(Target target, ILoggingConfigurationElement targetElement,
             Dictionary<string, ILoggingConfigurationElement> typeNameToDefaultTargetParameters = null)
         {
-            string targetType = StripOptionalNamespacePrefix(targetElement.GetRequiredValue("type", "targets"));
+            string targetTypeName = GetConfigItemTypeAttribute(targetElement, "targets");
             ILoggingConfigurationElement defaults;
             if (typeNameToDefaultTargetParameters != null &&
-                typeNameToDefaultTargetParameters.TryGetValue(targetType, out defaults))
+                typeNameToDefaultTargetParameters.TryGetValue(targetTypeName, out defaults))
             {
                 ParseTargetElement(target, defaults, null);
             }
@@ -916,9 +888,9 @@ namespace NLog.Config
 
             if (IsTargetElement(name))
             {
-                string type = StripOptionalNamespacePrefix(childElement.GetRequiredValue("type", GetName(wrapper)));
+                string targetTypeName = GetConfigItemTypeAttribute(childElement, GetName(wrapper));
 
-                Target newTarget = _configurationItemFactory.Targets.CreateInstance(type);
+                Target newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
                 if (newTarget != null)
                 {
                     ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
@@ -940,6 +912,12 @@ namespace NLog.Config
             }
 
             return false;
+        }
+
+        private static string GetConfigItemTypeAttribute(ILoggingConfigurationElement childElement, string sectionNameForRequiredValue = null)
+        {
+            var typeAttributeValue = sectionNameForRequiredValue != null ? childElement.GetRequiredValue("type", sectionNameForRequiredValue) : childElement.GetOptionalValue("type", null);
+            return StripOptionalNamespacePrefix(typeAttributeValue);
         }
 
         private bool ParseCompoundTarget(
@@ -973,10 +951,9 @@ namespace NLog.Config
 
             if (IsTargetElement(name))
             {
-                var attributeValue = childElement.GetRequiredValue("type", GetName(compound));
-                string type = StripOptionalNamespacePrefix(attributeValue);
+                string targetTypeName = GetConfigItemTypeAttribute(childElement, GetName(compound));
 
-                Target newTarget = _configurationItemFactory.Targets.CreateInstance(type);
+                Target newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
                 if (newTarget != null)
                 {
                     if (targetName != null)
@@ -998,7 +975,7 @@ namespace NLog.Config
             return false;
         }
 
-      
+
         private void ConfigureObjectFromAttributes(object targetObject, ILoggingConfigurationElement element,
             bool ignoreType)
         {
@@ -1109,9 +1086,8 @@ namespace NLog.Config
             if (!typeof(Layout).IsAssignableFrom(type))
                 return null;
 
-            string layoutTypeName = StripOptionalNamespacePrefix(element.GetOptionalValue("type", null));
-
             // Check if the 'type' attribute has been specified
+            string layoutTypeName = GetConfigItemTypeAttribute(element);
             if (layoutTypeName == null)
                 return null;
 
@@ -1149,8 +1125,8 @@ namespace NLog.Config
 
         private Target WrapWithDefaultWrapper(Target t, ILoggingConfigurationElement defaultParameters)
         {
-            string wrapperType = StripOptionalNamespacePrefix(defaultParameters.GetRequiredValue("type", "targets"));
-            Target wrapperTargetInstance = _configurationItemFactory.Targets.CreateInstance(wrapperType);
+            string wrapperTypeName = GetConfigItemTypeAttribute(defaultParameters, "targets");
+            Target wrapperTargetInstance = _configurationItemFactory.Targets.CreateInstance(wrapperTypeName);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
             if (wtb == null)
             {
@@ -1238,13 +1214,13 @@ namespace NLog.Config
                 return null;
             }
 
-            int p = attributeValue.LastIndexOfAny(new[] { ':', '.' });
-            if (p >= 0)
+            int p = attributeValue.IndexOf(':');
+            if (p < 0)
             {
-                attributeValue = attributeValue.Substring(p + 1);
+                return attributeValue;
             }
 
-            return attributeValue.Trim();
+            return attributeValue.Substring(p + 1);
         }
 
         /// <summary>
