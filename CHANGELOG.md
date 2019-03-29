@@ -46,7 +46,8 @@ Date format: (year/month/day)
 - [#3082](https://github.com/NLog/NLog/pull/3082) + [#3100](https://github.com/NLog/NLog/pull/3100)  WebService Target allow custom override of SoapAction-header for Soap11 (@AlexeyRokhin)
 - [#3162](https://github.com/NLog/NLog/pull/3162) ContextProperty with IncludeEmptyValue means default value for ValueType (#3162) (@snakefoot)
 - [#3159](https://github.com/NLog/NLog/pull/3159) AppSettingLayoutRenderer - Include Item for NLog.Extended (@snakefoot)
--  Various refactorings (15+ pull requests) (@beppemarazzi, @304NotModified, @snakefoot)
+- [#3187](https://github.com/NLog/NLog/pull/3187) AsyncTaskTarget - Fixed unwanted delay caused by slow writer   (@snakefoot)
+-  Various refactorings (19 pull requests) (@beppemarazzi, @304NotModified, @snakefoot)
 
 #### Performance
 

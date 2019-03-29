@@ -32,16 +32,6 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     
     <PackageReleaseNotes>
 
-## Changes since RC2
-
-### Breaking 
-
-Oops, again a breaking change with the previous NLog 4.6 RC
-
-- Database target: dropped UseRawValue option on parameters (introduced in NLog 4.6 RC1), introduced ${myRenderer:noRawValue=true} (@snakefoot)
-
-Note, there are no breaking changes with NLog 4.5.11. Semver is important!
-
 ## All changes NLog 4.6
 
 ### Features
@@ -90,7 +80,8 @@ Note, there are no breaking changes with NLog 4.5.11. Semver is important!
 * Create snupkg packages and use portable PDB - #3045 (@snakefoot)
 * KeepFileOpen + ConcurrentWrites on Xamarin + UWP - #3079 - #3048 (@304NotModified)
 * WebService Target allow custom override of SoapAction-header for Soap11 - #3082 + #3100 (@AlexeyRokhin)
-* Various refactorings (15 pull requests) (@beppemarazzi, @304NotModified, @snakefoot)
+* AsyncTaskTarget - Fixed unwanted delay caused by slow writer
+* Various refactorings (19 pull requests) (@beppemarazzi, @304NotModified, @snakefoot)
 
 ### Performance
 
@@ -111,7 +102,7 @@ See also [NLog 4.6 Milestone](https://github.com/NLog/NLog/milestone/44?closed=1
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
-Supported can be found on https://nlog-project.org/config/
+For all config options and platform support, check https://nlog-project.org/config/
 
     </PackageReleaseNotes>
     <PackageTags>NLog;logging;log;structured;tracing;logfiles;database;eventlog;email;wcf;console</PackageTags>
