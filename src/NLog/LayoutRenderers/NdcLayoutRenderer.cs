@@ -79,6 +79,15 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
+            if (TopFrames == 1)
+            {
+                // Allows fast rendering of ${when:when='${ndc:topframes=1}' == '':inner=:else=${ndc}|}
+                var topFrame = NestedDiagnosticsContext.PeekObject();
+                if (topFrame != null)
+                    AppendAsString(topFrame, GetFormatProvider(logEvent), builder);
+                return;
+            }
+
             var messages = NestedDiagnosticsContext.GetAllObjects();
             if (messages.Length == 0)
                 return;
@@ -99,11 +108,16 @@ namespace NLog.LayoutRenderers
             string currentSeparator = string.Empty;
             for (int i = endPos - 1; i >= startPos; --i)
             {
-                string stringValue = Convert.ToString(messages[i], formatProvider);
                 builder.Append(currentSeparator);
-                builder.Append(stringValue);
+                AppendAsString(messages[i], formatProvider, builder);
                 currentSeparator = Separator;
             }
+        }
+
+        private static void AppendAsString(object message, IFormatProvider formatProvider, StringBuilder builder)
+        {
+            string stringValue = Convert.ToString(message, formatProvider);
+            builder.Append(stringValue);
         }
     }
 }
