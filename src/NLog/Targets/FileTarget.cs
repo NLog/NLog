@@ -80,7 +80,6 @@ namespace NLog.Targets
         /// </summary>
         private const int ArchiveAboveSizeDisabled = -1;
 
-
         /// <summary>
         /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
         /// </summary>
@@ -88,7 +87,6 @@ namespace NLog.Targets
         private readonly Dictionary<string, DateTime> _initializedFiles = new Dictionary<string, DateTime>(StringComparer.OrdinalIgnoreCase);
 
         private LineEndingMode _lineEndingMode = LineEndingMode.Default;
-
 
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
@@ -240,7 +238,6 @@ namespace NLog.Targets
 
             return new FilePathLayout(value, CleanupFileName, FileNameKind);
         }
-
 
         /// <summary>
         /// Cleanup invalid values in a filename, e.g. slashes in a filename. If set to <c>true</c>, this can impact the performance of massive writes. 
@@ -1159,7 +1156,7 @@ namespace NLog.Targets
         private int GetMemoryStreamInitialSize(int eventsCount, int firstEventSize)
         {
             if (eventsCount > 10)
-                return ((eventsCount + 1) * firstEventSize / 1024 + 1) * 1024;
+                return (1 + eventsCount) * ((firstEventSize / 1024) + 1) * 1024;
 
             if (eventsCount > 1)
                 return (1 + eventsCount) * firstEventSize;
@@ -1322,7 +1319,7 @@ namespace NLog.Targets
             //todo handle double footer
             InternalLogger.Info("FileTarget(Name={0}): Already exists, append to {1}", Name, archiveFileName);
 
-             //copy to archive file.
+            //copy to archive file.
             var fileShare = FileShare.ReadWrite;
             if (EnableFileDelete)
             {
@@ -1463,19 +1460,22 @@ namespace NLog.Targets
         {
             // If archiveDateFormat is not set in the config file, use a default 
             // date format string based on the archive period.
-            string formatString = defaultFormat;
-            if (string.IsNullOrEmpty(formatString))
+            if (!string.IsNullOrEmpty(defaultFormat))
+                return defaultFormat;
+
+            switch (ArchiveEvery)
             {
-                switch (ArchiveEvery)
-                {
-                    case FileArchivePeriod.Year: formatString = "yyyy"; break;
-                    case FileArchivePeriod.Month: formatString = "yyyyMM"; break;
-                    case FileArchivePeriod.Hour: formatString = "yyyyMMddHH"; break;
-                    case FileArchivePeriod.Minute: formatString = "yyyyMMddHHmm"; break;
-                    default: formatString = "yyyyMMdd"; break;      // Also for Weekdays
-                }
+                case FileArchivePeriod.Year:
+                    return "yyyy";
+                case FileArchivePeriod.Month:
+                    return "yyyyMM";
+                case FileArchivePeriod.Hour:
+                    return "yyyyMMddHH";
+                case FileArchivePeriod.Minute:
+                    return "yyyyMMddHHmm";
+                default:
+                    return "yyyyMMdd";  // Also for Weekdays
             }
-            return formatString;
         }
 
         private DateTime? GetArchiveDate(string fileName, LogEventInfo logEvent, DateTime previousLogEventTimestamp)
@@ -1522,8 +1522,6 @@ namespace NLog.Targets
 
         private bool PreviousLogOverlappedPeriod(LogEventInfo logEvent, DateTime previousLogEventTimestamp, DateTime lastFileWrite)
         {
-            DateTime timestamp = previousLogEventTimestamp;
-
             string formatString = GetArchiveDateFormatString(string.Empty);
             string lastWriteTimeString = lastFileWrite.ToString(formatString, CultureInfo.InvariantCulture);
             string logEventTimeString = logEvent.TimeStamp.ToString(formatString, CultureInfo.InvariantCulture);
@@ -1531,26 +1529,45 @@ namespace NLog.Targets
             if (lastWriteTimeString != logEventTimeString)
                 return false;
 
-            DateTime periodAfterPreviousLogEventTime;
+            DateTime? periodAfterPreviousLogEventTime = CalculateNextArchiveEventTime(previousLogEventTimestamp);
+            if (!periodAfterPreviousLogEventTime.HasValue)
+                return false;
+
+            string periodAfterPreviousLogEventTimeString = periodAfterPreviousLogEventTime.Value.ToString(formatString, CultureInfo.InvariantCulture);
+            return lastWriteTimeString == periodAfterPreviousLogEventTimeString;
+        }
+
+        DateTime? CalculateNextArchiveEventTime(DateTime timestamp)
+        {
             switch (ArchiveEvery)
             {
-                case FileArchivePeriod.Year: periodAfterPreviousLogEventTime = timestamp.AddYears(1); break;
-                case FileArchivePeriod.Month: periodAfterPreviousLogEventTime = timestamp.AddMonths(1); break;
-                case FileArchivePeriod.Day: periodAfterPreviousLogEventTime = timestamp.AddDays(1); break;
-                case FileArchivePeriod.Hour: periodAfterPreviousLogEventTime = timestamp.AddHours(1); break;
-                case FileArchivePeriod.Minute: periodAfterPreviousLogEventTime = timestamp.AddMinutes(1); break;
-                case FileArchivePeriod.Sunday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Sunday); break;
-                case FileArchivePeriod.Monday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Monday); break;
-                case FileArchivePeriod.Tuesday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Tuesday); break;
-                case FileArchivePeriod.Wednesday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Wednesday); break;
-                case FileArchivePeriod.Thursday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Thursday); break;
-                case FileArchivePeriod.Friday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Friday); break;
-                case FileArchivePeriod.Saturday: periodAfterPreviousLogEventTime = CalculateNextWeekday(timestamp, DayOfWeek.Saturday); break;
-                default: return false;
+                case FileArchivePeriod.Year:
+                    return timestamp.AddYears(1);
+                case FileArchivePeriod.Month:
+                    return timestamp.AddMonths(1);
+                case FileArchivePeriod.Day:
+                    return timestamp.AddDays(1);
+                case FileArchivePeriod.Hour:
+                    return timestamp.AddHours(1);
+                case FileArchivePeriod.Minute:
+                    return timestamp.AddMinutes(1);
+                case FileArchivePeriod.Sunday:
+                    return CalculateNextWeekday(timestamp, DayOfWeek.Sunday);
+                case FileArchivePeriod.Monday:
+                    return CalculateNextWeekday(timestamp, DayOfWeek.Monday);
+                case FileArchivePeriod.Tuesday:
+                    return CalculateNextWeekday(timestamp, DayOfWeek.Tuesday);
+                case FileArchivePeriod.Wednesday:
+                    return CalculateNextWeekday(timestamp, DayOfWeek.Wednesday);
+                case FileArchivePeriod.Thursday:
+                    return CalculateNextWeekday(timestamp, DayOfWeek.Thursday);
+                case FileArchivePeriod.Friday:
+                    return CalculateNextWeekday(timestamp, DayOfWeek.Friday);
+                case FileArchivePeriod.Saturday:
+                    return CalculateNextWeekday(timestamp, DayOfWeek.Saturday);
+                default:
+                    return null;
             }
-
-            string periodAfterPreviousLogEventTimeString = periodAfterPreviousLogEventTime.ToString(formatString, CultureInfo.InvariantCulture);
-            return lastWriteTimeString == periodAfterPreviousLogEventTimeString;
         }
 
         /// <summary>
@@ -1768,7 +1785,6 @@ namespace NLog.Targets
                         {
                             InternalLogger.Info("FileTarget(Name={0}): Archive mutex not available: {1}", Name, archiveFile);
                         }
-
                     }
                     catch (AbandonedMutexException)
                     {
