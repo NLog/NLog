@@ -31,12 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
     using System.Reflection;
+    using NLog.Config;
     using NLog.LayoutRenderers;
     using Xunit;
 	using Xunit.Abstractions;
@@ -44,6 +43,10 @@ namespace NLog.UnitTests.LayoutRenderers
     public class AssemblyVersionTests : NLogTestBase
     {
         private readonly ITestOutputHelper _testOutputHelper;
+
+#if !NETSTANDARD
+        private static Lazy<Assembly> TestAssembly = new Lazy<Assembly>(() => GenerateTestAssembly());
+#endif
 
         public AssemblyVersionTests(ITestOutputHelper testOutputHelper)
         {
@@ -105,7 +108,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
             </nlog>");
             var logger = LogManager.GetLogger("SomeLogger");
-            var compiledAssembly = GenerateTestAssembly();
+            var compiledAssembly = TestAssembly.Value;
             var testLoggerType = compiledAssembly.GetType("LogTester.LoggerTest");
             var logMethod = testLoggerType.GetMethod("TestLog");
             var testLoggerInstance = Activator.CreateInstance(testLoggerType);
@@ -154,7 +157,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 <rules><logger name='*' minlevel='Debug' writeTo='debug' /></rules>
             </nlog>");
             var logger = LogManager.GetLogger("SomeLogger");
-            var compiledAssembly = GenerateTestAssembly();
+            var compiledAssembly = TestAssembly.Value;
             var testLoggerType = compiledAssembly.GetType("LogTester.LoggerTest");
             var logMethod = testLoggerType.GetMethod("TestLog");
             var testLoggerInstance = Activator.CreateInstance(testLoggerType);
