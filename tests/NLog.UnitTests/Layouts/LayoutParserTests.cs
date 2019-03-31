@@ -50,11 +50,6 @@ namespace NLog.UnitTests.Layouts
         /// </summary>
         /// <param name="input"></param>
         [Theory]
-        [InlineData(@"                                    ${appdomain:format={0\} {1\}}")]
-        [InlineData(@"                           ${cached:${appdomain:format={0\} {1\}}}")]
-        [InlineData(@"                  ${cached:${cached:${appdomain:format={0\} {1\}}}}")]
-        [InlineData(@"         ${cached:${cached:${cached:${appdomain:format={0\} {1\}}}}}")]
-        [InlineData(@"${cached:${cached:${cached:${cached:${appdomain:format={0\} {1\}}}}}}")]
         [InlineData(@"                                    ${literal:text={0\} {1\}}")]
         [InlineData(@"                           ${cached:${literal:text={0\} {1\}}}")]
         [InlineData(@"                  ${cached:${cached:${literal:text={0\} {1\}}}}")]
@@ -62,37 +57,9 @@ namespace NLog.UnitTests.Layouts
         [InlineData(@"${cached:${cached:${cached:${cached:${literal:text={0\} {1\}}}}}}")]
         public void Issue_3193_Nested_Сlosing_Braces(string input)
         {
-            var reader = new NLog.Internal.SimpleStringReader(input.Trim());
-            var factory = NLog.Config.ConfigurationItemFactory.Default;
-            IReadOnlyCollection<LayoutRenderer> renderers = LayoutParser.CompileLayout(factory, reader, isNested: true, text: out var text);
-
-            while (true)
-            {
-                Assert.Equal(1, renderers.Count);
-                var singleRender = renderers.Single();
-                if (singleRender is WrapperLayoutRendererBase wrapperRender)
-                {
-                    renderers = ((SimpleLayout)wrapperRender.Inner).Renderers;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            var textRenderer = (LiteralLayoutRenderer)renderers.Single();
-            if (input.IndexOf("literal") >= 0)
-            {
-                Assert.Equal("{0} {1}", textRenderer.Text);
-            }
-            else if (input.IndexOf("appdomain") >= 0)
-            {
-                var appDomain = LogFactory.CurrentAppDomain;
-                Assert.Equal($"{appDomain.Id} {appDomain.FriendlyName}", textRenderer.Text);
-            }
-            else
-            {
-                throw new Xunit.Sdk.XunitException("NOT SUPPORTED");
-            }
+            SimpleLayout simple = input.Trim();
+            var result = simple.Render(new LogEventInfo { });
+            Assert.Equal("{0} {1}", result);
         }
     }
 }
