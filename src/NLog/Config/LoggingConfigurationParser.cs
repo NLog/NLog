@@ -204,7 +204,12 @@ namespace NLog.Config
             {
                 if (!string.IsNullOrEmpty(configItem.Key))
                 {
-                    dict[configItem.Key.Trim()] = configItem.Value;
+                    string key = configItem.Key.Trim();
+                    if (dict.ContainsKey(key))
+                    {
+                        InternalLogger.Debug("Skipping duplicate value for 'NLog' property {0}. Value={1}", configItem.Key, dict[key]);
+                    }
+                    dict[key] = configItem.Value;
                 }
             }
 

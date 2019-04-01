@@ -47,7 +47,6 @@ namespace NLog.Layouts
     [ThreadSafe]
     public abstract class XmlElementBase : Layout
     {
-
         private const string DefaultPropertyName = "property";
         private const string DefaultPropertyKeyAttribute = "key";
         private const string DefaultCollectionItemName = "item";
@@ -278,7 +277,6 @@ namespace NLog.Layouts
                 RenderSelfClosingElement(target, ElementNameInternal);
             }
         }
-
 
         /// <summary>
         /// Formats the log event as a XML document for writing.
@@ -714,7 +712,6 @@ namespace NLog.Layouts
                 sb.AppendLine();
         }
 
-
         private void EndXmlDocument(StringBuilder sb, string elementName)
         {
             RenderEndElement(sb, elementName);
@@ -735,7 +732,6 @@ namespace NLog.Layouts
             else
                 return GetType().Name;
         }
-
 
         private static void RenderSelfClosingElement(StringBuilder target, string elementName)
         {

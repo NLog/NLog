@@ -387,7 +387,6 @@ namespace NLog.Targets
                         sender.Close(ex2 => { });
                         logEvent.Continuation(ex);
                     });
-
             }
         }
 
@@ -616,4 +615,3 @@ namespace NLog.Targets
         }
     }
 }
-

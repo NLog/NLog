@@ -86,8 +86,6 @@ namespace NLog.Targets
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> _initializedFiles = new Dictionary<string, DateTime>(StringComparer.OrdinalIgnoreCase);
 
-        private LineEndingMode _lineEndingMode = LineEndingMode.Default;
-
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
         /// </summary>
@@ -364,11 +362,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='10' />
         [Advanced]
-        public LineEndingMode LineEnding
-        {
-            get => _lineEndingMode;
-            set => _lineEndingMode = value;
-        }
+        public LineEndingMode LineEnding { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to automatically flush the file buffers after each log message.
@@ -733,7 +727,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets the characters that are appended after each line.
         /// </summary>
-        protected internal string NewLineChars => _lineEndingMode.NewLineCharacters;
+        protected internal string NewLineChars => LineEnding.NewLineCharacters;
 
         /// <summary>
         /// Refresh the ArchiveFilePatternToWatch option of the <see cref="FileAppenderCache" />. 

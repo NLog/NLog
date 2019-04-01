@@ -81,7 +81,6 @@ namespace LoaderTestInternal
         {
 
         }
-
     }
 }
 
@@ -101,7 +100,6 @@ namespace LoaderTestPrivateNested
             }
         }
     }
-
 }
 
 namespace LoaderTestPrivateNestedStatic
@@ -117,7 +115,6 @@ namespace LoaderTestPrivateNestedStatic
             }
         }
     }
-
 }
 
 namespace LoaderTestWrong1
@@ -130,8 +127,8 @@ namespace LoaderTestWrong1
             throw new Exception("ow noos");
         }
     }
-
 }
+
 namespace LoaderTestWrong2
 {
     public class NLogPackageLoader
@@ -141,8 +138,8 @@ namespace LoaderTestWrong2
             //im not static
         }
     }
-
 }
+
 namespace LoaderTestWrong3
 {
     public class NLogPackageLoader
@@ -152,5 +149,4 @@ namespace LoaderTestWrong3
             //I have args
         }
     }
-
 }
