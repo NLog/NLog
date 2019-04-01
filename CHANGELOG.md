@@ -4,6 +4,28 @@ Date format: (year/month/day)
 
 ## Change Log
 
+
+### V4.6.1 (2019/03/29)
+
+#### Bugfixes
+
+- [#3199](https://github.com/NLog/NLog/pull/3199) LoggingConfigurationParser - Fixed bug in handling of extensions prefix (@snakefoot)
+- [#3253](https://github.com/NLog/NLog/pull/3253) Fix wrong warnings on `<nlog>` element (only wrong warnings) (#3253) (@snakefoot, @304NotModified)
+- [#3195](https://github.com/NLog/NLog/pull/3195) SimpleStringReader: fix DebuggerDisplay value (#3195) (@lobster2012-user)
+- [#3198](https://github.com/NLog/NLog/pull/3198) XmlLayout - Fixed missing encode of xml element value (@snakefoot)
+- [#3191](https://github.com/NLog/NLog/pull/3191) VariableLayoutRenderer - Fixed format-string for internal logger warning (@snakefoot, @lobster2012-user)
+- [#3258](https://github.com/NLog/NLog/pull/3258) Fix error with Embedded Assembly in LogAssemblyVersion (@snakefoot)
+
+#### Improvements
+
+- [#3255](https://github.com/NLog/NLog/pull/3255) Auto-flush on process exit improvements (@snakefoot)
+- [#3189](https://github.com/NLog/NLog/pull/3189) AsyncTaskTarget - Respect TaskDelayMilliseconds on low activity (@snakefoot)
+
+#### Performance
+
+- [#3256](https://github.com/NLog/NLog/pull/3256) ${NDLC} + ${NDC} - Faster checking when TopFrames = 1 (@snakefoot)
+- [#3201](https://github.com/NLog/NLog/pull/3201) ${GDC} reading is now lockfree (#3201) (@snakefoot)
+
 ### V4.6
 
 #### Features
@@ -24,7 +46,7 @@ Date format: (year/month/day)
 - [#3050](https://github.com/NLog/NLog/pull/3050) Added IncludeGdc property in JsonLayout (@casperc89)
 - [#3071](https://github.com/NLog/NLog/pull/3071) ${HostName} Layout Renderer for full computer DNS name (@amitsaha)
 - [#3053](https://github.com/NLog/NLog/pull/3053) ${AppSetting} Layout Renderer (app.config + web.config) moved from NLog.Extended for NetFramework (@snakefoot)
-- [#3060](https://github.com/NLog/NLog/pull/3060)](https://github.com/NLog/NLog/pull/[#3060](https://github.com/NLog/NLog/pull/3060)) TargetWithContext - Support for PropertyType using IRawValue-interface (@snakefoot)
+- [#3060](https://github.com/NLog/NLog/pull/3060) TargetWithContext - Support for PropertyType using IRawValue-interface (@snakefoot)
 - [#3124](https://github.com/NLog/NLog/pull/3124) NetworkTarget - Added support for KeepAliveTimeSeconds (@snakefoot)
 - [#3129](https://github.com/NLog/NLog/pull/3129) ConfigSetting - Preregister so it can be accessed without extension registration (#3129) (@snakefoot)
 * [#3165](https://github.com/NLog/NLog/pull/3165) Added noRawValue layout wrapper (@snakefoot)
@@ -65,11 +87,6 @@ Date format: (year/month/day)
 * [damianh/LibLog#181](https://github.com/damianh/LibLog/pull/181) - Sub-components using LibLog ver. 5.0.3 (or newer) will now use MDLC + NDLC (Instead of MDC + NDC) when detecting application is using NLog ver. 4.6. Make sure to update NLog.config to match this change. Make sure that all sub-components have upgraded to LibLog ver. 5.0.3 (or newer) if they make use of `OpenNestedContext` or `OpenMappedContext`.
 
 See also [NLog 4.6 Milestone](https://github.com/NLog/NLog/milestone/44?closed=1)
-
-Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
-
-Supported can be found on https://nlog-project.org/config/
-
 
 ### V4.5.11 (2018/11/06)
 
