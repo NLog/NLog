@@ -91,12 +91,12 @@ namespace NLog.Config
         /// <summary>
         /// Gets the dictionary of attribute values.
         /// </summary>
-        public Dictionary<string, string> AttributeValues { get; private set; }
+        public Dictionary<string, string> AttributeValues { get; }
 
         /// <summary>
         /// Gets the collection of child elements.
         /// </summary>
-        public IList<NLogXmlElement> Children { get; private set; }
+        public IList<NLogXmlElement> Children { get; }
 
         /// <summary>
         /// Gets the value of the element.
@@ -109,20 +109,39 @@ namespace NLog.Config
         {
             get
             {
-                if (Children.Count > 0)
+                for (int i = 0; i < Children.Count; ++i)
                 {
-                    for (int i = 0; i < Children.Count; ++i)
+                    var child = Children[i];
+                    if (SingleValueElement(child))
                     {
-                        var child = Children[i];
-                        if (child.Children.Count == 0 && child.AttributeValues.Count == 0 && child.Value != null)
-                            return Children.Where(item => item.Children.Count == 0 && item.AttributeValues.Count == 0 && item.Value != null).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)).Concat(AttributeValues);
+                        // Values assigned using nested node-elements. Maybe in combination with attributes
+                        return Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)).Concat(AttributeValues);
                     }
                 }
                 return AttributeValues;
             }
         }
 
-        IEnumerable<ILoggingConfigurationElement> ILoggingConfigurationElement.Children => Children.Where(item => item.Children.Count > 0 || item.AttributeValues.Count > 0).Cast<ILoggingConfigurationElement>();
+        private static bool SingleValueElement(NLogXmlElement child)
+        {
+            // Node-element that works like an attribute
+            return child.Children.Count == 0 && child.AttributeValues.Count == 0 && child.Value != null;
+        }
+
+        IEnumerable<ILoggingConfigurationElement> ILoggingConfigurationElement.Children
+        {
+            get
+            {
+                for (int i = 0; i < Children.Count; ++i)
+                {
+                    var child = Children[i];
+                    if (!SingleValueElement(child))
+                        return Children.Where(item => !SingleValueElement(item)).Cast<ILoggingConfigurationElement>();
+                }
+
+                return NLog.Internal.ArrayHelper.Empty<ILoggingConfigurationElement>();
+            }
+        }
 
         /// <summary>
         /// Last error occured during configuration read

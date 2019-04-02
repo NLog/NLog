@@ -5,6 +5,14 @@ Date format: (year/month/day)
 ## Change Log
 
 
+### V4.6.2 (2019/04/02)
+
+#### Bugfixes
+
+- [#3260](https://github.com/NLog/NLog/pull/3260) Fix escaping nested close brackets when parsing layout renderers (@lobster2012-user)
+- [#3271](https://github.com/NLog/NLog/pull/3271) NLog config - Fixed bug where empty xml-elements were ignored (@snakefoot, @jonreis)
+
+
 ### V4.6.1 (2019/03/29)
 
 #### Bugfixes

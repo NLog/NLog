@@ -598,6 +598,22 @@ namespace NLog.UnitTests.Layouts
             });
         }
 
+
+        [Theory]
+        [InlineData(@"                                    ${literal:text={0\} {1\}}")]
+        [InlineData(@"                           ${cached:${literal:text={0\} {1\}}}")]
+        [InlineData(@"                  ${cached:${cached:${literal:text={0\} {1\}}}}")]
+        [InlineData(@"         ${cached:${cached:${cached:${literal:text={0\} {1\}}}}}")]
+        [InlineData(@"${cached:${cached:${cached:${cached:${literal:text={0\} {1\}}}}}}")]
+        public void Render_EscapedBrackets_ShouldRenderAllBrackets(string input)
+        {
+            SimpleLayout simple = input.Trim();
+            var result = simple.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("{0} {1}", result);
+        }
+
+
+
         private class LayoutRendererWithListParam : LayoutRenderer
         {
             public List<double> Doubles { get; set; }

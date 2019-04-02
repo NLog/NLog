@@ -31,22 +31,10 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-Bugfixes
-- LoggingConfigurationParser - Fixed bug in handling of extensions prefix (@snakefoot)
-- Fix wrong warnings on &lt;lnlog&gt; element (only wrong warnings) (#3253) (@snakefoot, @304NotModified)
-- SimpleStringReader: fix DebuggerDisplay value (#3195) (@lobster2012-user)
-- XmlLayout - Fixed missing encode of xml element value (@snakefoot)
-- VariableLayoutRenderer - Fixed format-string for internal logger warning (@snakefoot, @lobster2012-user)
-- Fix error with Embedded Assembly in LogAssemblyVersion (@snakefoot)
+Bugfixes:
 
-Improvements
-- Auto-flush on process exit improvements (@snakefoot)
-- AsyncTaskTarget - Respect TaskDelayMilliseconds on low activity (@snakefoot)
-
-Performance
-
-- ${NDLC} + ${NDC} - Faster checking when TopFrames = 1 (@snakefoot)
-- ${GDC} reading is now lockfree (#3201) (@snakefoot)
+- Fix escaping nested close brackets when parsing layout renderers (@lobster2012-user)
+- NLog config - Fixed bug where empty xml-elements were ignored (@snakefoot, @jonreis)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
