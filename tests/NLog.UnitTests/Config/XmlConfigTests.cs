@@ -199,7 +199,7 @@ namespace NLog.UnitTests.Config
             // Arrange
             var xml = @"<nlog>
                     <targets>
-                        <target name='file' type='File' encoding='utf8' layout='${message}' />
+                        <target name='file' type='File' encoding='utf8' layout='${message}' fileName='hello.txt' />
                     </targets>
                     <rules>
                         <logger name='*' minlevel='debug' appendto='file' />
@@ -209,6 +209,28 @@ namespace NLog.UnitTests.Config
 
             Assert.Single(config.AllTargets);
             Assert.Equal(System.Text.Encoding.UTF8, (config.AllTargets[0] as NLog.Targets.FileTarget)?.Encoding);
+        }
+
+        [Fact]
+        public void XmlConfig_ParseFilter_WithoutAttributes()
+        {
+            // Arrange
+            var xml = @"<nlog>
+                    <targets>
+                        <target name='debug' type='Debug' layout='${message}' />
+                    </targets>
+                    <rules>
+                        <logger name='*' minlevel='debug' appendto='debug' defaultFilterResult='ignore'>
+                            <filters>
+                                <whenContains />
+                            </filters>
+                        </logger>
+                    </rules>
+                </nlog>";
+
+            var config = XmlLoggingConfiguration.CreateFromXmlString(xml);
+            Assert.Single(config.LoggingRules);
+            Assert.Single(config.LoggingRules[0].Filters);
         }
 
         [Theory]
