@@ -185,7 +185,6 @@ namespace NLog
         /// </summary>
         public bool KeepVariablesOnReload { get; set; }
 
-
         /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
         /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers" />
@@ -906,7 +905,6 @@ namespace NLog
                     var fullName = cacheKey.ConcreteType.FullName;
                     try
                     {
-
                         //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
                         if (cacheKey.ConcreteType.IsStaticClass())
                         {
@@ -921,7 +919,6 @@ namespace NLog
                         }
                         else
                         {
-
                             var instance = FactoryHelper.CreateInstance(cacheKey.ConcreteType);
                             newLogger = instance as Logger;
                             if (newLogger == null)
@@ -938,7 +935,6 @@ namespace NLog
 
                                 // Creating default instance of logger if instance of specified type cannot be created.
                                 newLogger = CreateDefaultLogger(ref cacheKey);
-
                             }
                         }
                     }

@@ -67,13 +67,10 @@ namespace NLog
         }
 
 <#
-
     }
 
     foreach(var level in levels)
-    { 
-
-
+    {
 #>
 
         #region <#=level#>() overloads 
@@ -267,17 +264,16 @@ namespace NLog
 #pragma warning disable 618
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
-                {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                {
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        <#=level#>(message, exceptionCandidate);	
+                        <#=level#>(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 

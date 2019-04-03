@@ -639,8 +639,6 @@ namespace NLog.Config
                     {
                         throw;
                     }
-
-
                 }
             }
 

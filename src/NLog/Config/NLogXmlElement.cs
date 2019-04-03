@@ -206,6 +206,35 @@ namespace NLog.Config
 
         private void Parse(XmlReader reader, bool nestedElement)
         {
+            ParseAttributes(reader, nestedElement);
+
+            LocalName = reader.LocalName;
+
+            if (!reader.IsEmptyElement)
+            {
+                while (reader.Read())
+                {
+                    if (reader.NodeType == XmlNodeType.EndElement)
+                    {
+                        break;
+                    }
+
+                    if (reader.NodeType == XmlNodeType.CDATA || reader.NodeType == XmlNodeType.Text)
+                    {
+                        Value += reader.Value;
+                        continue;
+                    }
+
+                    if (reader.NodeType == XmlNodeType.Element)
+                    {
+                        Children.Add(new NLogXmlElement(reader, true));
+                    }
+                }
+            }
+        }
+
+        private void ParseAttributes(XmlReader reader, bool nestedElement)
+        {
             if (reader.MoveToFirstAttribute())
             {
                 do
@@ -232,30 +261,6 @@ namespace NLog.Config
                 }
                 while (reader.MoveToNextAttribute());
                 reader.MoveToElement();
-            }
-
-            LocalName = reader.LocalName;
-
-            if (!reader.IsEmptyElement)
-            {
-                while (reader.Read())
-                {
-                    if (reader.NodeType == XmlNodeType.EndElement)
-                    {
-                        break;
-                    }
-
-                    if (reader.NodeType == XmlNodeType.CDATA || reader.NodeType == XmlNodeType.Text)
-                    {
-                        Value += reader.Value;
-                        continue;
-                    }
-
-                    if (reader.NodeType == XmlNodeType.Element)
-                    {
-                        Children.Add(new NLogXmlElement(reader, true));
-                    }
-                }
             }
         }
     }

@@ -391,20 +391,17 @@ namespace NLog.Targets
             var propertyType = contextProperty.PropertyType ?? typeof(string);
 
             var isStringType = propertyType == typeof(string);
-            if (!isStringType)
+            if (!isStringType && contextProperty.Layout.TryGetRawValue(logEvent, out var rawValue))
             {
-                if (contextProperty.Layout.TryGetRawValue(logEvent, out var rawValue))
+                if (propertyType == typeof(object))
                 {
-                    if (propertyType == typeof(object))
-                    {
-                        propertyValue = rawValue;
-                        return contextProperty.IncludeEmptyValue || propertyValue != null;
-                    }
-                    else if (rawValue?.GetType() == propertyType)
-                    {
-                        propertyValue = rawValue;
-                        return true;
-                    }
+                    propertyValue = rawValue;
+                    return contextProperty.IncludeEmptyValue || propertyValue != null;
+                }
+                else if (rawValue?.GetType() == propertyType)
+                {
+                    propertyValue = rawValue;
+                    return true;
                 }
             }
 
