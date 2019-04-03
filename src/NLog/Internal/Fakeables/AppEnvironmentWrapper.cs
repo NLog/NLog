@@ -31,24 +31,39 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Internal.Fakeables;
-
-namespace NLog.UnitTests.Mocks
+namespace NLog.Internal.Fakeables
 {
-    public class FileMock : IFile
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Xml;
+
+    internal class AppEnvironmentWrapper : IAppEnvironment
     {
+        /// <inheritdoc />
+        public string AppDomainBaseDirectory => LogFactory.CurrentAppDomain.BaseDirectory;
+        /// <inheritdoc />
+        public string AppDomainConfigurationFile => LogFactory.CurrentAppDomain.ConfigurationFile;
+#if !NETSTANDARD1_3 && !SILVERLIGHT
+        /// <inheritdoc />
+        public string CurrentProcessFilePath => ProcessIDHelper.Instance.CurrentProcessFilePath;
+        /// <inheritdoc />
+        public string EntryAssemblyLocation => AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly());
+        /// <inheritdoc />
+        public string EntryAssemblyFileName => Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location ?? string.Empty);
+#endif
+        /// <inheritdoc />
+        public IEnumerable<string> PrivateBinPath => LogFactory.CurrentAppDomain.PrivateBinPath;
 
-        private readonly Func<string, bool> _exists;
-
-        public FileMock(Func<string, bool> exists)
+        /// <inheritdoc />
+        public bool FileExists(string path)
         {
-            _exists = exists;
+            return System.IO.File.Exists(path);
         }
 
-        public bool Exists(string path)
+        /// <inheritdoc />
+        public XmlReader LoadXmlFile(string path)
         {
-            return _exists(path);
+            return XmlReader.Create(path);
         }
     }
 }

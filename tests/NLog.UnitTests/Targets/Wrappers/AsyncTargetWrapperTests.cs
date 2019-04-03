@@ -356,7 +356,7 @@ namespace NLog.UnitTests.Targets.Wrappers
                                     mre.Set();
                                 }
                             });
-                        Assert.True(mre.WaitOne());
+                        Assert.True(mre.WaitOne(5000), InternalLogger.LogWriter?.ToString() ?? string.Empty);
                     },
                     LogLevel.Trace);
 

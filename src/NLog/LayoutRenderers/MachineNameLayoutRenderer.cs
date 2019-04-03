@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class MachineNameLayoutRenderer : LayoutRenderer
     {
-        internal string MachineName { get; private set; }
+        private string _machineName;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -58,8 +58,8 @@ namespace NLog.LayoutRenderers
             base.InitializeLayoutRenderer();
             try
             {
-                MachineName = EnvironmentHelper.GetMachineName();
-                if (string.IsNullOrEmpty(MachineName))
+                _machineName = EnvironmentHelper.GetMachineName();
+                if (string.IsNullOrEmpty(_machineName))
                 {
                     InternalLogger.Info("MachineName is not available.");
                 }
@@ -72,14 +72,14 @@ namespace NLog.LayoutRenderers
                     throw;
                 }
 
-                MachineName = string.Empty;
+                _machineName = string.Empty;
             }
         }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(MachineName);
+            builder.Append(_machineName);
         }
     }
 }
