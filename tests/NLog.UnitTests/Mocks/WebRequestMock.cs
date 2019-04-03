@@ -35,7 +35,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading;
+using NSubstitute;
 
 namespace NLog.UnitTests.Mocks
 {
@@ -56,13 +56,15 @@ namespace NLog.UnitTests.Mocks
         public override WebResponse EndGetResponse(IAsyncResult asyncResult)
         {
             var responseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes("new response 1"));
-            return new WebReponseMock(responseStream);
+            var webResponseMock = Substitute.For<WebResponse>();
+            webResponseMock.GetResponseStream().Returns(responseStream);
+            return webResponseMock;
         }
 
         /// <inheritdoc />
         public override IAsyncResult BeginGetRequestStream(AsyncCallback callback, object state)
         {
-            var result = new AsyncResultMock(state);
+            var result = CreateAsyncResultMock(state);
             callback(result);
             return result;
         }
@@ -76,7 +78,7 @@ namespace NLog.UnitTests.Mocks
         /// <inheritdoc />
         public override IAsyncResult BeginGetResponse(AsyncCallback callback, object state)
         {
-            var result = new AsyncResultMock(state);
+            var result = CreateAsyncResultMock(state);
             callback(result);
             return result;
         }
@@ -91,6 +93,13 @@ namespace NLog.UnitTests.Mocks
             var content = RequestStream.ToArray();
             var contentAsString = System.Text.Encoding.UTF8.GetString(content);
             return contentAsString;
+        }
+
+        private static IAsyncResult CreateAsyncResultMock(object state)
+        {
+            var asyncResult = Substitute.For<IAsyncResult>();
+            asyncResult.AsyncState.Returns(state);
+            return asyncResult;
         }
     }
 
@@ -109,40 +118,4 @@ namespace NLog.UnitTests.Mocks
             base.Dispose(true);
         }
     }
-
-    class AsyncResultMock : IAsyncResult
-    {
-        public AsyncResultMock(object state)
-        {
-            AsyncState = state;
-        }
-
-        /// <inheritdoc />
-        public object AsyncState { get; set; }
-
-        /// <inheritdoc />
-        public WaitHandle AsyncWaitHandle { get; set; }
-
-        /// <inheritdoc />
-        public bool CompletedSynchronously { get; set; }
-
-        /// <inheritdoc />
-        public bool IsCompleted { get; set; }
-    }
-
-    class WebReponseMock : WebResponse
-    {
-        readonly Stream _responseStream;
-
-        public WebReponseMock(Stream responseStream)
-        {
-            _responseStream = responseStream;
-        }
-
-        public override Stream GetResponseStream()
-        {
-            return _responseStream;
-        }
-    }
-
 }

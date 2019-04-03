@@ -38,6 +38,7 @@ using NLog.Config;
 using NLog.Internal.NetworkSenders;
 using NLog.Targets;
 using NLog.UnitTests.Mocks;
+using NSubstitute;
 using Xunit;
 
 namespace NLog.UnitTests.Internal.NetworkSenders
@@ -53,8 +54,10 @@ namespace NLog.UnitTests.Internal.NetworkSenders
                 Address = "http://test.with.mock",
                 Layout = "${logger}|${message}|${exception}"
             };
-            var senderFactoryWithHttpMocks = new SenderFactoryWithHttpMocks();
-            networkTarget.SenderFactory = senderFactoryWithHttpMocks;
+
+            var webRequestMock = new WebRequestMock();
+            var networkSenderFactoryMock = CreateNetworkSenderFactoryMock(webRequestMock);
+            networkTarget.SenderFactory = networkSenderFactoryMock;
 
             var logFactory = new LogFactory();
             var config = new LoggingConfiguration(logFactory);
@@ -68,32 +71,26 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             logFactory.Flush();
 
             // Assert
-            var mock = senderFactoryWithHttpMocks.WebRequestMock;
+            var mock = webRequestMock;
             var requestedString = mock.GetRequestContentAsString();
 
             Assert.Equal("http://test.with.mock/", mock.RequestedAddress.ToString());
-            Assert.Equal("HttpHappyPathTestLogger|test message1|",requestedString);
-            Assert.Equal("POST",mock.Method);
+            Assert.Equal("HttpHappyPathTestLogger|test message1|", requestedString);
+            Assert.Equal("POST", mock.Method);
+            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", 0, SslProtocols.None, new TimeSpan());
 
         }
 
-    }
-
-    internal class SenderFactoryWithHttpMocks : INetworkSenderFactory
-    {
-        #region Implementation of INetworkSenderFactory
-
-        /// <inheritdoc />
-        public NetworkSender Create(string url, int maxQueueSize, SslProtocols sslProtocols, TimeSpan keepAliveTime)
+        private static INetworkSenderFactory CreateNetworkSenderFactoryMock(WebRequestMock webRequestMock)
         {
-            return new HttpNetworkSender(url)
-            {
-                WebRequestFactory = new WebRequestFactoryMock(WebRequestMock)
-            };
+            var networkSenderFactoryMock = Substitute.For<INetworkSenderFactory>();
+
+            networkSenderFactoryMock.Create(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<SslProtocols>(), Arg.Any<TimeSpan>())
+                .Returns(url => new HttpNetworkSender(url.Arg<string>())
+                {
+                    WebRequestFactory = new WebRequestFactoryMock(webRequestMock)
+                });
+            return networkSenderFactoryMock;
         }
-
-        public WebRequestMock WebRequestMock { get; } = new WebRequestMock();
-
-        #endregion
     }
 }
