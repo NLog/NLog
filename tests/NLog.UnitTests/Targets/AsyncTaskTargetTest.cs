@@ -371,8 +371,8 @@ namespace NLog.UnitTests.Targets
                 Thread.Sleep(20);
             }
 
-            Assert.True(asyncTarget.Logs.Count > 25);
-            Assert.True(asyncTarget.WriteTasks < 15);
+            Assert.True(asyncTarget.Logs.Count > 25, $"{asyncTarget.Logs.Count} LogEvents are too few after {asyncTarget.WriteTasks} writes");
+            Assert.True(asyncTarget.WriteTasks < 20, $"{asyncTarget.WriteTasks} writes are too many.");
         }
     }
 #endif
