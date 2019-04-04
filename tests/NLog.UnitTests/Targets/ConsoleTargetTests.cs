@@ -70,6 +70,7 @@ namespace NLog.UnitTests.Targets
                     new LogEventInfo(LogLevel.Info, "Logger2", "message5").WithContinuation(exceptions.Add),
                     new LogEventInfo(LogLevel.Info, "Logger1", "message6").WithContinuation(exceptions.Add));
                 Assert.Equal(6, exceptions.Count);
+                target.Flush((ex) => { });
                 target.Close();
             }
             finally
@@ -116,6 +117,7 @@ namespace NLog.UnitTests.Targets
                     new LogEventInfo(LogLevel.Info, "Logger2", "message5").WithContinuation(exceptions.Add),
                     new LogEventInfo(LogLevel.Info, "Logger1", "message6").WithContinuation(exceptions.Add));
                 Assert.Equal(6, exceptions.Count);
+                target.Flush((ex) => { });
                 target.Close();
             }
             finally
