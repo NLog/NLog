@@ -45,8 +45,11 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 {
     public class HttpNetworkSenderTests : NLogTestBase
     {
+        /// <summary>
+        /// Test <see cref="HttpNetworkSender"/> via <see cref="NetworkTarget"/>
+        /// </summary>
         [Fact]
-        public void HttpHappyPathTest()
+        public void HttpNetworkSenderViaNetworkTargetTest()
         {
             // Arrange
             var networkTarget = new NetworkTarget("target1")
@@ -72,12 +75,17 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 
             // Assert
             var mock = webRequestMock;
+            
             var requestedString = mock.GetRequestContentAsString();
 
             Assert.Equal("http://test.with.mock/", mock.RequestedAddress.ToString());
             Assert.Equal("HttpHappyPathTestLogger|test message1|", requestedString);
             Assert.Equal("POST", mock.Method);
+
             networkSenderFactoryMock.Received(1).Create("http://test.with.mock", 0, SslProtocols.None, new TimeSpan());
+
+            // Cleanup
+            mock.Dispose();
 
         }
 

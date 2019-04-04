@@ -39,11 +39,12 @@ using NSubstitute;
 
 namespace NLog.UnitTests.Mocks
 {
-    public class WebRequestMock : WebRequest
+    public class WebRequestMock : WebRequest, IDisposable
     {
         public Uri RequestedAddress { get; set; }
 
-        public MemoryStream RequestStream = new FakeMemoryStream();
+        public MemoryStream RequestStream => _requestStream;
+        private readonly ManualDisposableMemoryStream _requestStream = new ManualDisposableMemoryStream();
 
         /// <inheritdoc />
         public WebRequestMock()
@@ -101,21 +102,15 @@ namespace NLog.UnitTests.Mocks
             asyncResult.AsyncState.Returns(state);
             return asyncResult;
         }
-    }
 
-    /// <summary>
-    /// Don't dispose so we could Assert it
-    /// </summary>
-    public sealed class FakeMemoryStream : MemoryStream
-    {
-        public bool Disposed { get; set; }
-        protected override void Dispose(bool disposing)
+        #region IDisposable
+
+        /// <inheritdoc />
+        public void Dispose()
         {
-            Disposed = true;
+            _requestStream?.RealDispose();
         }
-        public void RealDispose()
-        {
-            base.Dispose(true);
-        }
+
+        #endregion
     }
 }
