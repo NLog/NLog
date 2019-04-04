@@ -906,6 +906,12 @@ namespace NLog.UnitTests.Targets
         [InlineData("30", 30)]
         public void KeepAliveTimeConfigTest(string keepAliveTimeSeconds, int expected)
         {
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] NetworkTargetTests.KeepAliveTimeConfigTest because we are running in Travis");
+                return;
+            }
+
             var config = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog>
                 <targets><target name='target1' type='network' layout='${{message}}' Address='tcp://127.0.0.1:50001' keepAliveTimeSeconds='{keepAliveTimeSeconds}' /></targets>
