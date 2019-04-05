@@ -116,6 +116,15 @@ namespace NLog.Targets
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to auto-flush after <see cref="Console.WriteLine()"/>
+        /// </summary>
+        /// <remarks>
+        /// Normally the standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = false, but not when piped
+        /// </remarks>
+        [DefaultValue(false)]
+        public bool AutoFlush { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -178,8 +187,31 @@ namespace NLog.Targets
             {
                 WriteToOutput(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
             }
-
+            ExplicitConsoleFlush();
             base.CloseTarget();
+        }
+
+        /// <inheritdoc />
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            try
+            {
+                ExplicitConsoleFlush();
+                base.FlushAsync(asyncContinuation);
+            }
+            catch (Exception ex)
+            {
+                asyncContinuation(ex);
+            }
+        }
+
+        private void ExplicitConsoleFlush()
+        {
+            if (!_pauseLogging && !AutoFlush)
+            {
+                var output = GetOutput();
+                output.Flush();
+            }
         }
 
         /// <summary>
@@ -217,6 +249,8 @@ namespace NLog.Targets
             try
             {
                 output.WriteLine(textLine);
+                if (AutoFlush)
+                    output.Flush();
             }
             catch (IndexOutOfRangeException ex)
             {

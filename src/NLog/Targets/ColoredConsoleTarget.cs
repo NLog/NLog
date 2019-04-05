@@ -180,6 +180,15 @@ namespace NLog.Targets
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to auto-flush after <see cref="Console.WriteLine()"/>
+        /// </summary>
+        /// <remarks>
+        /// Normally the standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = false, but not when piped
+        /// </remarks>
+        [DefaultValue(false)]
+        public bool AutoFlush { get; set; }
+
+        /// <summary>
         /// Enables output using ANSI Color Codes
         /// </summary>
         /// <docgen category='Console Options' order='10' />
@@ -251,8 +260,31 @@ namespace NLog.Targets
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
                 WriteToOutput(lei, RenderLogEvent(Footer, lei));
             }
-
+            ExplicitConsoleFlush();
             base.CloseTarget();
+        }
+
+        /// <inheritdoc />
+        protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            try
+            {
+                ExplicitConsoleFlush();
+                base.FlushAsync(asyncContinuation);
+            }
+            catch (Exception ex)
+            {
+                asyncContinuation(ex);
+            }
+        }
+
+        private void ExplicitConsoleFlush()
+        {
+            if (!_pauseLogging && !AutoFlush)
+            {
+                var output = GetOutput();
+                output.Flush();
+            }
         }
 
         /// <summary>
@@ -306,7 +338,7 @@ namespace NLog.Targets
             ConsoleColor? newForegroundColor = matchingRule.ForegroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.ForegroundColor : default(ConsoleColor?);
             ConsoleColor? newBackgroundColor = matchingRule.BackgroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.BackgroundColor : default(ConsoleColor?);
 
-            var consoleStream = ErrorStream ? Console.Error : Console.Out;
+            var consoleStream = GetOutput();
             if (ReferenceEquals(colorMessage, message) && !newForegroundColor.HasValue && !newBackgroundColor.HasValue)
             {
                 consoleStream.WriteLine(message);
@@ -316,6 +348,8 @@ namespace NLog.Targets
                 bool wordHighlighting = !ReferenceEquals(colorMessage, message) || message.IndexOf('\n') >= 0;
                 WriteToOutputWithPrinter(consoleStream, colorMessage, newForegroundColor, newBackgroundColor, wordHighlighting);
             }
+            if (AutoFlush)
+                consoleStream.Flush();
         }
 
         private void WriteToOutputWithPrinter(TextWriter consoleStream, string colorMessage, ConsoleColor? newForegroundColor, ConsoleColor? newBackgroundColor,  bool wordHighlighting)
@@ -548,6 +582,11 @@ namespace NLog.Targets
             {
                 consolePrinter.WriteSubString(consoleWriter, message, p0, message.Length);
             }
+        }
+
+        private TextWriter GetOutput()
+        {
+            return ErrorStream ? Console.Error : Console.Out;
         }
     }
 }

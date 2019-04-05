@@ -233,6 +233,15 @@ namespace NLog.UnitTests.Targets
                 new string[] { "The Cat Sat At The Bar." });
         }
 
+        [Fact]
+        public void ColortedConsoleAutoFlushOnWrite()
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}", AutoFlush = true };
+            AssertOutput(target, "The Cat Sat At The Bar.",
+                new string[] { "The Cat Sat At The Bar." });
+
+        }
+
 #if !NET3_5 && !MONO
         [Fact]
         public void ColoredConsoleRaceCondtionIgnoreTest()
@@ -277,6 +286,7 @@ namespace NLog.UnitTests.Targets
             var expected = Enumerable.Repeat(loggerName + expectedParts[0], 1).Concat(expectedParts.Skip(1));
             Assert.Equal(expected, consoleOutWriter.Values);
             Assert.True(consoleOutWriter.SingleWriteLine);
+            Assert.True(consoleOutWriter.SingleFlush);
         }
 
 
@@ -289,10 +299,21 @@ namespace NLog.UnitTests.Targets
 
             public List<string> Values { get; private set; }
             public bool SingleWriteLine { get; private set; }
+            public bool SingleFlush { get; private set; }
 
             public override void Write(string value)
             {
                 Values.Add(value);
+            }
+
+            public override void Flush()
+            {
+                if (SingleFlush)
+                {
+                    throw new InvalidOperationException("Single Flush only");
+                }
+                SingleFlush = true;
+                base.Flush();
             }
 
             public override void WriteLine(string value)
