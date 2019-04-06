@@ -99,6 +99,25 @@ namespace NLog.UnitTests.MessageTemplates
             Assert.Equal(expectedPositionalIndex, messageTemplateParameters[index].PositionalIndex);
             Assert.Equal(expectedCaptureType, messageTemplateParameters[index].CaptureType);
         }
+
+        [Theory]
+        [InlineData("{a}", "a")]
+        [InlineData("{a} {b}", "a;b")]
+        [InlineData("{b} {0} {a} ", "b;0;a")]
+        public void EnumeratorTest(string input, string namesRaw)
+        {
+            // Arrange
+            var parameters = CreateParameters(1);
+            var names = namesRaw.Split(';');
+
+            // Act
+            var messageTemplateParameters = new MessageTemplateParameters(input, parameters);
+
+            // Assert
+            var resultNames = messageTemplateParameters.Select(t => t.Name).ToArray();
+            Assert.Equal(names, resultNames);
+        }
+
         private static object[] CreateParameters(int count)
         {
             var parameters = new List<object>(count);
