@@ -82,6 +82,23 @@ namespace NLog.UnitTests.MessageTemplates
             Assert.Equal(expected, messageTemplateParameters.IsPositional);
         }
 
+        [Theory]
+        [InlineData("{0}", 0, "0", "0", 0, CaptureType.Normal)]
+        [InlineData("{a}", 0, "0", "a", null, CaptureType.Normal)]
+        public void IndexerTest(string input, int index, object expectedValue, string expectedName, int? expectedPositionalIndex, CaptureType expectedCaptureType)
+        {
+            // Arrange
+            var parameters = CreateParameters(1);
+
+            // Act
+            var messageTemplateParameters = new MessageTemplateParameters(input, parameters);
+
+            // Assert
+            Assert.Equal(expectedValue, messageTemplateParameters[index].Value);
+            Assert.Equal(expectedName, messageTemplateParameters[index].Name);
+            Assert.Equal(expectedPositionalIndex, messageTemplateParameters[index].PositionalIndex);
+            Assert.Equal(expectedCaptureType, messageTemplateParameters[index].CaptureType);
+        }
         private static object[] CreateParameters(int count)
         {
             var parameters = new List<object>(count);
