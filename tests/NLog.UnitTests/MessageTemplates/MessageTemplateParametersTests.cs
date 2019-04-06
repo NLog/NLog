@@ -49,20 +49,48 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("I have {a} {1} {2} parameters", 3)]
         [InlineData("I have {{text}} and {{0}}", 0)]
         [InlineData(" {3} {4} {9} {8} {5} {6} {7}", 7)]
-        public void ParseParameters(string input, int count)
+        public void ParseParameters(string input, int expected)
         {
             // Arrange
+            var parameters = CreateParameters(expected);
+
+            // Act
+            var messageTemplateParameters = new MessageTemplateParameters(input, parameters);
+
+            // Assert
+            Assert.Equal(expected, messageTemplateParameters.Count);
+        }
+
+        [Theory]
+        [InlineData("", true)] // no really important when empty
+        [InlineData("{0}", true)]
+        [InlineData("{ 0}", false)] //no trimming
+        [InlineData("{0} {1} {2}", true)]
+        [InlineData("{a}", false)]
+        [InlineData("{a} {0}", false)]
+        [InlineData("{0} {a}", false)]
+        [InlineData("{0} {a} {1}", false)]
+        public void IsPositionalTest(string input, bool expected)
+        {
+            // Arrange
+            var parameters = CreateParameters(10);
+
+            // Act
+            var messageTemplateParameters = new MessageTemplateParameters(input, parameters);
+
+            // Assert
+            Assert.Equal(expected, messageTemplateParameters.IsPositional);
+        }
+
+        private static object[] CreateParameters(int count)
+        {
             var parameters = new List<object>(count);
             for (int i = 0; i < count; i++)
             {
                 parameters.Add(i.ToString());
             }
 
-            // Act
-            var MessageTemplateParameters = new MessageTemplateParameters(input, parameters.ToArray());
-
-            // Assert
-            Assert.Equal(count, MessageTemplateParameters.Count);
+            return parameters.ToArray();
         }
     }
 }
