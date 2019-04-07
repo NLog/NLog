@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WindowsEventLog", "NLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackageLoaderTestAssembly", "..\tests\PackageLoaderTestAssembly\PackageLoaderTestAssembly.csproj", "{1A86A7FA-1C2E-4745-87FC-FD3F583DBAD2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestAssets", "TestAssets", "{8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94F21E64-A259-4D79-AFCA-08974DF51701} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
+		{B1DA63B3-1EB0-41B3-BFDA-9D7409481E27} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
+		{1A86A7FA-1C2E-4745-87FC-FD3F583DBAD2} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B4C8E9F-1E2F-4AB3-993A-8776CFA08DC0}
