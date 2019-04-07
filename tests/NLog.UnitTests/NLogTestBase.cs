@@ -31,6 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
@@ -566,6 +567,12 @@ namespace NLog.UnitTests
                 LogManager.ThrowExceptions = throwExceptions;
                 LogManager.ThrowConfigExceptions = throwConfigExceptions;
             }
+        }
+
+        protected static void AssertContainsInDictionary<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TKey key, TValue value)
+        {
+            Assert.Contains(key, dictionary);
+            Assert.Equal(value, dictionary[key]);
         }
     }
 }

@@ -40,7 +40,7 @@ using Xunit;
 
 namespace NLog.UnitTests.Internal
 {
-    public class PropertiesDictionaryTests
+    public class PropertiesDictionaryTests : NLogTestBase
     {
         [Fact]
         public void DefaultPropertiesDictionary()
@@ -54,7 +54,7 @@ namespace NLog.UnitTests.Internal
                 Assert.False(true, "Should be empty");
             foreach (var item in dictionary.Values)
                 Assert.False(true, "Should be empty");
-            Assert.DoesNotContain(new KeyValuePair<object, object>("Hello World", 42), dictionary);
+            Assert.DoesNotContain("Hello World", dictionary);
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
             Assert.False(dictionary.Values.Contains(42));
@@ -82,7 +82,8 @@ namespace NLog.UnitTests.Internal
                 Assert.False(true, "Should be empty");
             foreach (var item in dictionary.Values)
                 Assert.False(true, "Should be empty");
-            Assert.DoesNotContain(new KeyValuePair<object, object>("Hello World", 42), dictionary);
+
+            Assert.DoesNotContain("Hello World", dictionary);
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
             Assert.False(dictionary.Values.Contains(42));
@@ -111,7 +112,7 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
             Assert.False(dictionary.Values.Contains(42));
-            Assert.DoesNotContain(new KeyValuePair<object, object>("Hello World", 42), dictionary);
+            Assert.DoesNotContain("Hello World", dictionary);
             object value;
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
@@ -139,7 +140,7 @@ namespace NLog.UnitTests.Internal
             Assert.False(dictionary.ContainsKey("Hello World"));
             Assert.False(dictionary.Keys.Contains("Hello World"));
             Assert.False(dictionary.Values.Contains(42));
-            Assert.DoesNotContain(new KeyValuePair<object, object>("Hello World", 42), dictionary);
+            Assert.DoesNotContain("Hello World", dictionary);
             object value;
             Assert.False(dictionary.TryGetValue("Hello World", out value));
             Assert.Null(value);
@@ -166,13 +167,13 @@ namespace NLog.UnitTests.Internal
                 Assert.Equal("Hello World", item);
             foreach (var item in dictionary.Values)
                 Assert.Equal(42, item);
-            Assert.Contains(new KeyValuePair<object, object>("Hello World", 42), dictionary);
+            AssertContainsInDictionary(dictionary, "Hello World", 42);
             Assert.True(dictionary.ContainsKey("Hello World"));
             Assert.True(dictionary.Keys.Contains("Hello World"));
             Assert.True(dictionary.Values.Contains(42));
             Assert.False(dictionary.ContainsKey("Goodbye World"));
             Assert.False(dictionary.Keys.Contains("Goodbye World"));
-            Assert.DoesNotContain(new KeyValuePair<object, object>("Goodbye World", 666), dictionary);
+            Assert.DoesNotContain("Goodbye World", dictionary);
             object value;
             Assert.True(dictionary.TryGetValue("Hello World", out value));
             Assert.Equal(42, value);
@@ -235,13 +236,13 @@ namespace NLog.UnitTests.Internal
 
             Assert.Single(dictionary);
 
-            Assert.Contains(new KeyValuePair<object, object>("Hello World", 42), dictionary);
+            AssertContainsInDictionary(dictionary, "Hello World", 42);
             Assert.True(dictionary.ContainsKey("Hello World"));
             Assert.True(dictionary.Keys.Contains("Hello World"));
             Assert.True(dictionary.Values.Contains(42));
             Assert.False(dictionary.ContainsKey("Goodbye World"));
             Assert.False(dictionary.Keys.Contains("Goodbye World"));
-            Assert.DoesNotContain(new KeyValuePair<object, object>("Goodbye World", 666), dictionary);
+            Assert.DoesNotContain("Goodbye World", dictionary);
             object value;
             Assert.True(dictionary.TryGetValue("Hello World", out value));
             Assert.Equal(42, value);
@@ -317,11 +318,11 @@ namespace NLog.UnitTests.Internal
                 }
             }
             Assert.True(dictionary.ContainsKey("Hello World"));
-            Assert.Contains(new KeyValuePair<object, object>("Hello World", 42), dictionary);
+            AssertContainsInDictionary(dictionary, "Hello World", 42);
             Assert.True(dictionary.Keys.Contains("Hello World"));
             Assert.True(dictionary.Values.Contains(42));
             Assert.True(dictionary.ContainsKey("Goodbye World"));
-            Assert.Contains(new KeyValuePair<object, object>("Goodbye World", 666), dictionary);
+            AssertContainsInDictionary(dictionary, "Goodbye World", 666);
             Assert.True(dictionary.Keys.Contains("Goodbye World"));
             Assert.True(dictionary.Values.Contains(666));
             Assert.False(dictionary.Keys.Contains("Mad World"));
@@ -335,7 +336,7 @@ namespace NLog.UnitTests.Internal
             Assert.Null(value);
             var copyToArray = new KeyValuePair<object, object>[2];
             dictionary.CopyTo(copyToArray, 0);
-            Assert.Contains(new KeyValuePair<object,object>("Hello World", 42), copyToArray);
+            Assert.Contains(new KeyValuePair<object, object>("Hello World", 42), copyToArray);
             Assert.Contains(new KeyValuePair<object, object>("Goodbye World", 666), copyToArray);
             var copyToValuesArray = new object[2];
             dictionary.Values.CopyTo(copyToValuesArray, 0);
@@ -352,6 +353,8 @@ namespace NLog.UnitTests.Internal
             dictionary.Clear();
             Assert.Empty(dictionary);
         }
+
+
 
         [Fact]
         public void OverrideMessagePropertiesDictionary()
