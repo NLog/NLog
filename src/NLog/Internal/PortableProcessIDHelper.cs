@@ -31,55 +31,50 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD1_3
 
 namespace NLog.Internal
 {
-    using NLog.Config;
+    using System;
+    using System.Diagnostics;
 
     /// <summary>
-    /// Returns details about current process and thread in a portable manner.
+    /// Portable implementation of <see cref="ProcessIDHelper"/>.
     /// </summary>
-    internal abstract class ThreadIDHelper
+    internal class PortableProcessIDHelper : ProcessIDHelper
     {
+        private readonly int _currentProcessId;
+        private readonly string _currentProcessFilePath = string.Empty;
+
         /// <summary>
-        /// Initializes static members of the ThreadIDHelper class.
+        /// Initializes a new instance of the <see cref="PortableProcessIDHelper" /> class.
         /// </summary>
-        static ThreadIDHelper()
+        public PortableProcessIDHelper()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-            if (PlatformDetector.IsWin32)
+            try
             {
-                Instance = new Win32ThreadIDHelper();
+                var currentProcess = Process.GetCurrentProcess();
+                _currentProcessId = currentProcess?.Id ?? 0;
+                _currentProcessFilePath = currentProcess?.MainModule.FileName ?? string.Empty;
             }
-            else
-#endif
+            catch (Exception ex)
             {
-                Instance = new PortableThreadIDHelper();
+                if (ex.MustBeRethrownImmediately())
+                    throw;
             }
         }
 
         /// <summary>
-        /// Gets the singleton instance of PortableThreadIDHelper or
-        /// Win32ThreadIDHelper depending on runtime environment.
-        /// </summary>
-        /// <value>The instance.</value>
-        public static ThreadIDHelper Instance { get; private set; }
-
-        /// <summary>
         /// Gets current process ID.
         /// </summary>
-        public abstract int CurrentProcessID { get; }
+        /// <value></value>
+        public override int CurrentProcessID => _currentProcessId;
 
         /// <summary>
         /// Gets current process name.
         /// </summary>
-        public abstract string CurrentProcessName { get; }
-
-        /// <summary>
-        /// Gets current process name (excluding filename extension, if any).
-        /// </summary>
-        public abstract string CurrentProcessBaseName { get; }
+        /// <value></value>
+        public override string CurrentProcessFilePath => _currentProcessFilePath;
     }
 }
 

@@ -64,7 +64,7 @@ namespace NLog.Config
         /// <summary>
         /// Prefix for assets in Xamarin Android
         /// </summary>
-        internal const string AssetsPrefix = "assets/";
+        private const string AssetsPrefix = "assets/";
 #endif
 
         private readonly Dictionary<string, bool> _fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);

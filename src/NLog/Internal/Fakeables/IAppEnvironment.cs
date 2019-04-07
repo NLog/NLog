@@ -33,14 +33,20 @@
 
 namespace NLog.Internal.Fakeables
 {
+    using System.Collections.Generic;
+
     /// <summary>
-    /// Abstract calls to File
+    /// Abstract calls for the application environment
     /// </summary>
-    internal interface IFile
+    internal interface IAppEnvironment : IFileSystem
     {
-        /// <summary>Determines whether the specified file exists.</summary>
-        /// <param name="path">The file to check. </param>
-        /// <returns></returns>
-        bool Exists(string path);
+        string AppDomainBaseDirectory { get; }
+        string AppDomainConfigurationFile { get; }
+#if !NETSTANDARD1_3 && !SILVERLIGHT
+        string CurrentProcessFilePath { get; }
+        string EntryAssemblyLocation { get; }
+        string EntryAssemblyFileName { get; }
+#endif
+        IEnumerable<string> PrivateBinPath { get; }
     }
 }

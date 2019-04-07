@@ -61,9 +61,9 @@ namespace NLog.LayoutRenderers
             return true;
         }
 
-        private static int GetValue()
+        private int GetValue()
         {
-            return ThreadIDHelper.Instance.CurrentProcessID;
+            return ProcessIDHelper.Instance.CurrentProcessID;
         }
     }
 }

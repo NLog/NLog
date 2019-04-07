@@ -36,28 +36,24 @@
 namespace NLog.Internal
 {
     using System;
-    using System.IO;
     using System.Security;
     using System.Text;
 
     /// <summary>
-    /// Win32-optimized implementation of <see cref="ThreadIDHelper"/>.
+    /// Win32-optimized implementation of <see cref="ProcessIDHelper"/>.
     /// </summary>
     [SecuritySafeCritical]
-    internal class Win32ThreadIDHelper : ThreadIDHelper
+    internal class Win32ProcessIDHelper : ProcessIDHelper
     {
-        private readonly int currentProcessID;
-
-        private readonly string currentProcessName;
-
-        private readonly string currentProcessBaseName;
+        private readonly int _currentProcessId;
+        private readonly string _currentProcessFilePath = string.Empty;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Win32ThreadIDHelper" /> class.
+        /// Initializes a new instance of the <see cref="Win32ProcessIDHelper" /> class.
         /// </summary>
-        public Win32ThreadIDHelper()
+        public Win32ProcessIDHelper()
         {
-            currentProcessID = NativeMethods.GetCurrentProcessId();
+            _currentProcessId = NativeMethods.GetCurrentProcessId();
 
             var sb = new StringBuilder(512);
             if (0 == NativeMethods.GetModuleFileName(IntPtr.Zero, sb, sb.Capacity))
@@ -65,27 +61,18 @@ namespace NLog.Internal
                 throw new InvalidOperationException("Cannot determine program name.");
             }
 
-            currentProcessName = sb.ToString();
-            currentProcessBaseName = Path.GetFileNameWithoutExtension(currentProcessName);
+            _currentProcessFilePath = sb.ToString();
         }
 
         /// <summary>
         /// Gets current process ID.
         /// </summary>
-        /// <value></value>
-        public override int CurrentProcessID => currentProcessID;
+        public override int CurrentProcessID => _currentProcessId;
 
         /// <summary>
-        /// Gets current process name.
+        /// Gets current process absolute file path.
         /// </summary>
-        /// <value></value>
-        public override string CurrentProcessName => currentProcessName;
-
-        /// <summary>
-        /// Gets current process name (excluding filename extension, if any).
-        /// </summary>
-        /// <value></value>
-        public override string CurrentProcessBaseName => currentProcessBaseName;
+        public override string CurrentProcessFilePath => _currentProcessFilePath;
     }
 }
 

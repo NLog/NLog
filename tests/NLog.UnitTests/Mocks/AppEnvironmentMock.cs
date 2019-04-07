@@ -31,50 +31,44 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD1_3
+using System;
+using System.Collections.Generic;
+using System.Xml;
+using NLog.Internal.Fakeables;
 
-namespace NLog.LayoutRenderers
+namespace NLog.UnitTests.Mocks
 {
-    using System.ComponentModel;
-    using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
-
-    /// <summary>
-    /// The name of the current process.
-    /// </summary>
-    [LayoutRenderer("processname")]
-    [AppDomainFixedOutput]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public class ProcessNameLayoutRenderer : LayoutRenderer
+    internal class AppEnvironmentMock : IAppEnvironment
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether to write the full path to the process executable.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
-        public bool FullName { get; set; }
+        private readonly Func<string, bool> _fileexists;
+        private readonly Func<string, XmlReader> _fileload;
 
-        /// <summary>
-        /// Renders the current process name (optionally with a full path).
-        /// </summary>
-        /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
-        /// <param name="logEvent">Logging event.</param>
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        public AppEnvironmentMock(Func<string, bool> fileExists, Func<string, XmlReader> fileLoad)
         {
-            string output;
-            if (FullName)
-            {
-                output = ProcessIDHelper.Instance.CurrentProcessFilePath;
-            }
-            else
-            {
-                output = ProcessIDHelper.Instance.CurrentProcessBaseName;
-            }
-            builder.Append(output);
+            _fileexists = fileExists;
+            _fileload = fileLoad;
+        }
+
+        public string AppDomainBaseDirectory { get; set; } = string.Empty;
+
+        public string AppDomainConfigurationFile { get; set; } = string.Empty;
+
+        public string CurrentProcessFilePath { get; set; } = string.Empty;
+
+        public string EntryAssemblyLocation { get; set; } = string.Empty;
+
+        public string EntryAssemblyFileName { get; set; } = string.Empty;
+
+        public IEnumerable<string> PrivateBinPath { get; set; } = NLog.Internal.ArrayHelper.Empty<string>();
+
+        public bool FileExists(string path)
+        {
+            return _fileexists(path);
+        }
+
+        public XmlReader LoadXmlFile(string path)
+        {
+            return _fileload(path);
         }
     }
 }
-
-#endif
