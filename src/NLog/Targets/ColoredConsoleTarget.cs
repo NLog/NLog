@@ -345,7 +345,7 @@ namespace NLog.Targets
             }
             else
             {
-                bool wordHighlighting = !ReferenceEquals(colorMessage, message) || message.IndexOf('\n') >= 0;
+                bool wordHighlighting = !ReferenceEquals(colorMessage, message) || message?.IndexOf('\n') >= 0;
                 WriteToOutputWithPrinter(consoleStream, colorMessage, newForegroundColor, newBackgroundColor, wordHighlighting);
             }
             if (AutoFlush)

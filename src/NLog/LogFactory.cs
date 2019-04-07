@@ -899,48 +899,20 @@ namespace NLog
                 }
 
                 Logger newLogger;
-
                 if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
                 {
-                    var fullName = cacheKey.ConcreteType.FullName;
                     try
                     {
-                        //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
-                        if (cacheKey.ConcreteType.IsStaticClass())
+                        newLogger = CreateCustomLoggerType(cacheKey.ConcreteType);
+                        if (newLogger == null)
                         {
-                            var errorMessage =
-                                $"GetLogger / GetCurrentClassLogger is '{fullName}' as loggerType can be a static class and should inherit from Logger";
-                            InternalLogger.Error(errorMessage);
-                            if (ThrowExceptions)
-                            {
-                                throw new NLogRuntimeException(errorMessage);
-                            }
+                            // Creating default instance of logger if instance of specified type cannot be created.
                             newLogger = CreateDefaultLogger(ref cacheKey);
-                        }
-                        else
-                        {
-                            var instance = FactoryHelper.CreateInstance(cacheKey.ConcreteType);
-                            newLogger = instance as Logger;
-                            if (newLogger == null)
-                            {
-                                //well, it's not a Logger, and we should return a Logger.
-
-                                var errorMessage =
-                                    $"GetLogger / GetCurrentClassLogger got '{fullName}' as loggerType which doesn't inherit from Logger";
-                                InternalLogger.Error(errorMessage);
-                                if (ThrowExceptions)
-                                {
-                                    throw new NLogRuntimeException(errorMessage);
-                                }
-
-                                // Creating default instance of logger if instance of specified type cannot be created.
-                                newLogger = CreateDefaultLogger(ref cacheKey);
-                            }
                         }
                     }
                     catch (Exception ex)
                     {
-                        InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
+                        InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor.", cacheKey.ConcreteType);
 
                         if (ex.MustBeRethrown())
                         {
@@ -967,6 +939,41 @@ namespace NLog
                 //      Should we set cacheKey.ConcreteType = typeof(Logger) for default loggers?
 
                 _loggerCache.InsertOrUpdate(cacheKey, newLogger);
+                return newLogger;
+            }
+        }
+
+        private Logger CreateCustomLoggerType(Type customLoggerType)
+        {
+            //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
+            if (customLoggerType.IsStaticClass())
+            {
+                var errorMessage =
+                    $"GetLogger / GetCurrentClassLogger is '{customLoggerType}' as loggerType is static class and should instead inherit from Logger";
+                InternalLogger.Error(errorMessage);
+                if (ThrowExceptions)
+                {
+                    throw new NLogRuntimeException(errorMessage);
+                }
+                return null;
+            }
+            else
+            {
+                var instance = FactoryHelper.CreateInstance(customLoggerType);
+                var newLogger = instance as Logger;
+                if (newLogger == null)
+                {
+                    //well, it's not a Logger, and we should return a Logger.
+                    var errorMessage =
+                        $"GetLogger / GetCurrentClassLogger got '{customLoggerType}' as loggerType doesn't inherit from Logger";
+                    InternalLogger.Error(errorMessage);
+                    if (ThrowExceptions)
+                    {
+                        throw new NLogRuntimeException(errorMessage);
+                    }
+                    return null;
+                }
+
                 return newLogger;
             }
         }
