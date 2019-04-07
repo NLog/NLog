@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.UnitTests", "..\tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleExtensions", "..\tests\SampleExtensions\SampleExtensions.csproj", "{94F21E64-A259-4D79-AFCA-08974DF51701}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLogAutoLoadExtension", "NLogAutoLoadExtension\NLogAutoLoadExtension.csproj", "{B1DA63B3-1EB0-41B3-BFDA-9D7409481E27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLogAutoLoadExtension", "..\tests\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj", "{B1DA63B3-1EB0-41B3-BFDA-9D7409481E27}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Extended", "NLog.Extended\NLog.Extended.csproj", "{FEBC3D32-AB28-4ACC-8697-D3147B790D80}"
 	ProjectSection(ProjectDependencies) = postProject
