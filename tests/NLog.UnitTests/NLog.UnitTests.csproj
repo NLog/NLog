@@ -121,7 +121,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj">
+    <ProjectReference Include="..\..\tests\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj">
       <Private>true</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.csproj">

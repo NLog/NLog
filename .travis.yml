@@ -21,7 +21,7 @@ install:
 
   # Restore dependencies
   - dotnet restore src/NLog
-  - dotnet restore src/NLogAutoLoadExtension
+  - dotnet restore tests/NLogAutoLoadExtension
 
   - dotnet restore tests/SampleExtensions
 

@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.UnitTests", "..\tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleExtensions", "..\tests\SampleExtensions\SampleExtensions.csproj", "{94F21E64-A259-4D79-AFCA-08974DF51701}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLogAutoLoadExtension", "NLogAutoLoadExtension\NLogAutoLoadExtension.csproj", "{B1DA63B3-1EB0-41B3-BFDA-9D7409481E27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLogAutoLoadExtension", "..\tests\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj", "{B1DA63B3-1EB0-41B3-BFDA-9D7409481E27}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Extended", "NLog.Extended\NLog.Extended.csproj", "{FEBC3D32-AB28-4ACC-8697-D3147B790D80}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -25,7 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Wcf", "NLog.Wcf\NLog.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.WindowsEventLog", "NLog.WindowsEventLog\NLog.WindowsEventLog.csproj", "{99BCE294-CA56-41BD-AEBF-61795F5650AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackageLoaderTestAssembly", "..\tests\PackageLoaderTestAssembly\PackageLoaderTestAssembly.csproj", "{1A86A7FA-1C2E-4745-87FC-FD3F583DBAD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PackageLoaderTestAssembly", "..\tests\PackageLoaderTestAssembly\PackageLoaderTestAssembly.csproj", "{1A86A7FA-1C2E-4745-87FC-FD3F583DBAD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestAssets", "TestAssets", "{8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{194AB4BD-C817-4C59-A86C-49D89B8C3A64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +76,15 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94F21E64-A259-4D79-AFCA-08974DF51701} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
+		{B1DA63B3-1EB0-41B3-BFDA-9D7409481E27} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
+		{FEBC3D32-AB28-4ACC-8697-D3147B790D80} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{746E1B52-CBE6-4A57-A213-886A3660BE0A} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{4692A3FF-5FF9-4B93-BFEB-82ADAA957725} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{99BCE294-CA56-41BD-AEBF-61795F5650AB} = {194AB4BD-C817-4C59-A86C-49D89B8C3A64}
+		{1A86A7FA-1C2E-4745-87FC-FD3F583DBAD2} = {8CCD7CF7-F30B-414A-B7FE-1B49411E4EFD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B4C8E9F-1E2F-4AB3-993A-8776CFA08DC0}
