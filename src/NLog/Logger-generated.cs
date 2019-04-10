@@ -48,7 +48,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Trace</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsTraceEnabled
         {
-            get { return _isTraceEnabled; }
+            get { return _contextLogger._isTraceEnabled; }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Debug</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsDebugEnabled
         {
-            get { return _isDebugEnabled; }
+            get { return _contextLogger._isDebugEnabled; }
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Info</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsInfoEnabled
         {
-            get { return _isInfoEnabled; }
+            get { return _contextLogger._isInfoEnabled; }
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsWarnEnabled
         {
-            get { return _isWarnEnabled; }
+            get { return _contextLogger._isWarnEnabled; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Error</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsErrorEnabled
         {
-            get { return _isErrorEnabled; }
+            get { return _contextLogger._isErrorEnabled; }
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Fatal</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsFatalEnabled
         {
-            get { return _isFatalEnabled; }
+            get { return _contextLogger._isFatalEnabled; }
         }
 
 

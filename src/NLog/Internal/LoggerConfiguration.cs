@@ -75,21 +75,5 @@ namespace NLog.Internal
             }
             return _targetsByLevel[level.Ordinal];
         }
-
-        /// <summary>
-        /// Determines whether the specified level is enabled.
-        /// </summary>
-        /// <param name="level">The level.</param>
-        /// <returns>
-        /// A value of <c>true</c> if the specified level is enabled; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsEnabled(LogLevel level)
-        {
-            if (level == LogLevel.Off)
-            {
-                return false;
-            }
-            return _targetsByLevel[level.Ordinal] != null;
-        }
     }
 }

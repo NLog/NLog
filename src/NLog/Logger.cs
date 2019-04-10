@@ -34,12 +34,13 @@
 namespace NLog
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
-    using NLog.Internal;
-
 #if NET4_5
     using System.Threading.Tasks;
 #endif
+    using JetBrains.Annotations;
+    using NLog.Internal;
 
     /// <summary>
     /// Provides logging interface and utility functions.
@@ -47,9 +48,10 @@ namespace NLog
     [CLSCompliant(true)]
     public partial class Logger : ILogger
     {
-        private readonly Type _loggerType = typeof(Logger);
-
-        private volatile LoggerConfiguration _configuration;
+        internal static readonly Type DefaultLoggerType = typeof(Logger);
+        private Logger _contextLogger;
+        private Dictionary<string, object> _contextProperties;
+        private LoggerConfiguration _configuration;
         private volatile bool _isTraceEnabled;
         private volatile bool _isDebugEnabled;
         private volatile bool _isInfoEnabled;
@@ -62,6 +64,35 @@ namespace NLog
         /// </summary>
         protected internal Logger()
         {
+            _contextLogger = this;
+        }
+
+        /// <summary>
+        /// Creates new logger that automatically appends the specified property to all log events
+        /// </summary>
+        /// <param name="propertyKey">Property Name</param>
+        /// <param name="propertyValue">Property Value</param>
+        /// <returns>New Logger that automatically appends specified property</returns>
+        public Logger WithProperty(string propertyKey, object propertyValue)
+        {
+            if (string.IsNullOrEmpty(propertyKey))
+                throw new ArgumentException(nameof(propertyKey));
+
+            Logger newLogger = Factory.CreateNewLogger(GetType()) ?? new Logger();
+            newLogger.Initialize(Name, _configuration, Factory);
+            var contextProperties = _contextProperties != null
+                ? new Dictionary<string, object>(_contextProperties)
+                : new Dictionary<string, object>();
+            contextProperties[propertyKey] = propertyValue;
+            newLogger._contextProperties = contextProperties;
+            newLogger._contextLogger = _contextLogger;
+            newLogger._isTraceEnabled = true;
+            newLogger._isDebugEnabled = true;
+            newLogger._isInfoEnabled = true;
+            newLogger._isWarnEnabled = true;
+            newLogger._isErrorEnabled = true;
+            newLogger._isFatalEnabled = true;
+            return newLogger;
         }
 
         /// <summary>
@@ -100,11 +131,12 @@ namespace NLog
         /// <param name="logEvent">Log event.</param>
         public void Log(LogEventInfo logEvent)
         {
-            if (IsEnabled(logEvent.Level))
+            var targetsForLevel = IsEnabled(logEvent.Level) ? GetTargetsForLevel(logEvent.Level) : null;
+            if (targetsForLevel != null)
             {
                 if (logEvent.LoggerName == null)
                     logEvent.LoggerName = Name;
-                WriteToTargets(logEvent);
+                WriteToTargets(logEvent, targetsForLevel);
             }
         }
 
@@ -115,11 +147,12 @@ namespace NLog
         /// <param name="logEvent">Log event.</param>
         public void Log(Type wrapperType, LogEventInfo logEvent)
         {
-            if (IsEnabled(logEvent.Level))
+            var targetsForLevel = IsEnabled(logEvent.Level) ? GetTargetsForLevel(logEvent.Level) : null;
+            if (targetsForLevel != null)
             {
                 if (logEvent.LoggerName == null)
                     logEvent.LoggerName = Name;
-                WriteToTargets(wrapperType, logEvent);
+                WriteToTargets(wrapperType, logEvent, targetsForLevel);
             }
         }
 
@@ -392,25 +425,23 @@ namespace NLog
             }
         }
 
-        private void WriteToTargets(LogLevel level, Exception ex, [Localizable(false)] string message, object[] args)
-        {
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, Name, ex, Factory.DefaultCultureInfo, message, args)), Factory);
-        }
-
-        private void WriteToTargets(LogLevel level, Exception ex, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
-        {
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, Name, ex, formatProvider, message, args)), Factory);
-        }
-
-
         private LogEventInfo PrepareLogEventInfo(LogEventInfo logEvent)
         {
             if (logEvent.FormatProvider == null)
             {
                 logEvent.FormatProvider = Factory.DefaultCultureInfo;
             }
+            if (_contextProperties != null)
+            {
+                foreach (var property in _contextProperties)
+                {
+                    if (!logEvent.Properties.ContainsKey(property.Key))
+                    {
+                        logEvent.Properties[property.Key] = property.Value;
+                    }
+                }
+            }
             return logEvent;
-
         }
 
         #endregion
@@ -557,38 +588,71 @@ namespace NLog
             SetConfiguration(loggerConfiguration);
         }
 
-        internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
-        {
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, Name, formatProvider, message, args)), Factory);
-        }
-
-        private void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message)
-        {
-            // please note that this overload calls the overload of LogEventInfo.Create with object[] parameter on purpose -
-            // to avoid unnecessary string.Format (in case of calling Create(LogLevel, string, IFormatProvider, object))
-            var logEvent = LogEventInfo.Create(level, Name, formatProvider, message, (object[])null);
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), PrepareLogEventInfo(logEvent), Factory);
-        }
-
-        private void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
-        {
-            var logEvent = PrepareLogEventInfo(LogEventInfo.Create(level, Name, formatProvider, value));
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(level), logEvent, Factory);
-        }
-
-        internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, object[] args)
+        private void WriteToTargets(LogLevel level, [Localizable(false)] string message, object[] args)
         {
             WriteToTargets(level, Factory.DefaultCultureInfo, message, args);
         }
 
-        private void WriteToTargets(LogEventInfo logEvent)
+        private void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
         {
-            LoggerImpl.Write(_loggerType, GetTargetsForLevel(logEvent.Level), PrepareLogEventInfo(logEvent), Factory);
+            var targetsForLevel = GetTargetsForLevel(level);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(level, Name, formatProvider, message, args);
+                WriteToTargets(logEvent, targetsForLevel);
+            }
         }
 
-        private void WriteToTargets(Type wrapperType, LogEventInfo logEvent)
+        private void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message)
         {
-            LoggerImpl.Write(wrapperType ?? _loggerType, GetTargetsForLevel(logEvent.Level), PrepareLogEventInfo(logEvent), Factory);
+            var targetsForLevel = GetTargetsForLevel(level);
+            if (targetsForLevel != null)
+            {
+                // please note that this overload calls the overload of LogEventInfo.Create with object[] parameter on purpose -
+                // to avoid unnecessary string.Format (in case of calling Create(LogLevel, string, IFormatProvider, object))
+                var logEvent = LogEventInfo.Create(level, Name, formatProvider, message, (object[])null);
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        private void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
+        {
+            var targetsForLevel = GetTargetsForLevel(level);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(level, Name, formatProvider, value);
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        private void WriteToTargets(LogLevel level, Exception ex, [Localizable(false)] string message, object[] args)
+        {
+            var targetsForLevel = GetTargetsForLevel(level);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(level, Name, ex, Factory.DefaultCultureInfo, message, args);
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        private void WriteToTargets(LogLevel level, Exception ex, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
+        {
+            var targetsForLevel = GetTargetsForLevel(level);
+            if (targetsForLevel != null)
+            {
+                var logEvent = LogEventInfo.Create(level, Name, ex, formatProvider, message, args);
+                WriteToTargets(logEvent, targetsForLevel);
+            }
+        }
+
+        private void WriteToTargets([NotNull] LogEventInfo logEvent, [NotNull] TargetWithFilterChain targetsForLevel)
+        {
+            LoggerImpl.Write(DefaultLoggerType, targetsForLevel, PrepareLogEventInfo(logEvent), Factory);
+        }
+
+        private void WriteToTargets(Type wrapperType, [NotNull] LogEventInfo logEvent, [NotNull] TargetWithFilterChain targetsForLevel)
+        {
+            LoggerImpl.Write(wrapperType ?? DefaultLoggerType, targetsForLevel, PrepareLogEventInfo(logEvent), Factory);
         }
 
         internal void SetConfiguration(LoggerConfiguration newConfiguration)
@@ -596,19 +660,22 @@ namespace NLog
             _configuration = newConfiguration;
 
             // pre-calculate 'enabled' flags
-            _isTraceEnabled = newConfiguration.IsEnabled(LogLevel.Trace);
-            _isDebugEnabled = newConfiguration.IsEnabled(LogLevel.Debug);
-            _isInfoEnabled = newConfiguration.IsEnabled(LogLevel.Info);
-            _isWarnEnabled = newConfiguration.IsEnabled(LogLevel.Warn);
-            _isErrorEnabled = newConfiguration.IsEnabled(LogLevel.Error);
-            _isFatalEnabled = newConfiguration.IsEnabled(LogLevel.Fatal);
+            _isTraceEnabled = IsEnabled(LogLevel.Trace);
+            _isDebugEnabled = IsEnabled(LogLevel.Debug);
+            _isInfoEnabled = IsEnabled(LogLevel.Info);
+            _isWarnEnabled = IsEnabled(LogLevel.Warn);
+            _isErrorEnabled = IsEnabled(LogLevel.Error);
+            _isFatalEnabled = IsEnabled(LogLevel.Fatal);
 
             OnLoggerReconfigured(EventArgs.Empty);
         }
 
         private TargetWithFilterChain GetTargetsForLevel(LogLevel level)
         {
-            return _configuration.GetTargetsForLevel(level);
+            if (ReferenceEquals(_contextLogger, this))
+                return _configuration.GetTargetsForLevel(level);
+            else
+                return _contextLogger.GetTargetsForLevel(level);
         }
 
         /// <summary>
@@ -617,11 +684,7 @@ namespace NLog
         /// <param name="e">Event arguments</param>
         protected virtual void OnLoggerReconfigured(EventArgs e)
         {
-            var reconfigured = LoggerReconfigured;
-            if (reconfigured != null)
-            {
-                reconfigured(this, e);
-            }
+            LoggerReconfigured?.Invoke(this, e);
         }
     }
 }

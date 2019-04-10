@@ -392,7 +392,7 @@ namespace NLog
         /// are not guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name)
         {
-            return GetLoggerThreadSafe(name, typeof(Logger));
+            return GetLoggerThreadSafe(name, Logger.DefaultLoggerType);
         }
 
         /// <summary>
@@ -431,7 +431,6 @@ namespace NLog
             lock (_syncRoot)
             {
                 _config?.InitializeAll();
-
                 loggers = _loggerCache.GetLoggers();
             }
 

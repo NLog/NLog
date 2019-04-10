@@ -51,15 +51,10 @@ namespace NLog
         private const int StackTraceSkipMethods = 0;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
-        internal static void Write([NotNull] Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory)
+        internal static void Write([NotNull] Type loggerType, [NotNull] TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory factory)
         {
-            if (targets == null)
-            {
-                return;
-            }
-
 #if !NETSTANDARD1_0 || NETSTANDARD1_5
-            StackTraceUsage stu = targets.GetStackTraceUsage();
+            StackTraceUsage stu = targetsForLevel.GetStackTraceUsage();
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
 #if NETSTANDARD1_5
@@ -89,7 +84,7 @@ namespace NLog
                 };
             }
 
-            if (targets.NextInChain == null && logEvent.CanLogEventDeferMessageFormat())
+            if (targetsForLevel.NextInChain == null && logEvent.CanLogEventDeferMessageFormat())
             {
                 // Change MessageFormatter so it writes directly to StringBuilder without string-allocation
                 logEvent.MessageFormatter = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
@@ -97,7 +92,7 @@ namespace NLog
 
             IList<Filter> prevFilterChain = null;
             FilterResult prevFilterResult = FilterResult.Neutral;
-            for (var t = targets; t != null; t = t.NextInChain)
+            for (var t = targetsForLevel; t != null; t = t.NextInChain)
             {
                 FilterResult result = ReferenceEquals(prevFilterChain, t.FilterChain) ?
                     prevFilterResult : GetFilterResult(t.FilterChain, logEvent, t.DefaultResult);
