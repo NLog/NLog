@@ -379,13 +379,15 @@ namespace NLog.UnitTests.Targets
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
 
-            for (int i = 0; i < 50; ++i)
+            for (int i = 0; i < 5; ++i)
             {
-                logger.Log(LogLevel.Info, i.ToString());
-                Thread.Sleep(20);
+                for (int j = 0; j < 10; ++j)
+                {
+                    logger.Log(LogLevel.Info, i.ToString());
+                    Thread.Sleep(20);
+                }
+                Assert.True(asyncTarget.WaitForWriteEvent(0));
             }
-
-            Assert.True(asyncTarget.WaitForWriteEvent(0));
 
             Assert.True(asyncTarget.Logs.Count > 25, $"{asyncTarget.Logs.Count} LogEvents are too few after {asyncTarget.WriteTasks} writes");
             Assert.True(asyncTarget.WriteTasks < 20, $"{asyncTarget.WriteTasks} writes are too many.");
