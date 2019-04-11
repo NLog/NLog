@@ -490,12 +490,12 @@ namespace NLog.Config
             nlogElement.AssertName("nlog");
 
             bool autoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);
-            if (config.Path != null) _configMustAutoReloadLookup[config] = autoReload;
+            if (config?.Path != null) _configMustAutoReloadLookup[config] = autoReload;
 
             try
             {
-                _currentFilePath.Push(config.Path);
-                var folder = config.ConfigType == ConfigType.File ? Path.GetDirectoryName(config.Path) : "C:\\temp";
+                _currentFilePath.Push(config?.Path);
+                var folder = config?.ConfigType == ConfigType.File ? Path.GetDirectoryName(config?.Path) : "C:\\temp";
                 base.LoadConfig(nlogElement, folder);
             }
             finally
