@@ -66,36 +66,9 @@ namespace NLog.Config
         /// </summary>
         private const string AssetsPrefix = "assets/";
 #endif
-        internal enum ConfigType { Uri, File }
 
-        internal class ReloadConfig
-        {
-            internal ReloadConfig(ConfigType configType, string path)
-            {
-                ConfigType = configType;
-                Path = path;
-            }
-            internal ConfigType ConfigType { get; }
-            internal string Path { get; }
 
-            public override bool Equals(object obj)
-            {
-                if (ReferenceEquals(this, obj))
-                    return true;
-
-                if (!(obj is ReloadConfig other))
-                    return false;
-
-                return other.ConfigType == this.ConfigType && other.Path == this.Path;
-            }
-
-            public override int GetHashCode()
-            {
-                return ConfigType.GetHashCode() | Path.GetHashCode();
-            }
-        }
-
-        private readonly Dictionary<ReloadConfig, bool> _configMustAutoReloadLookup = new Dictionary<ReloadConfig, bool>();
+        private readonly Dictionary<XmlConfigurationSource, bool> _configMustAutoReloadLookup = new Dictionary<XmlConfigurationSource, bool>();
 
         private string _originalFileName;
 
@@ -370,7 +343,7 @@ namespace NLog.Config
                 if (!string.IsNullOrEmpty(fileName))
                 {
                     InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
-                    var config = new ReloadConfig(ConfigType.File, fileName);
+                    var config = new XmlConfigurationSource(ConfigType.File, fileName);
                     ParseTopLevel(content, config, autoReloadDefault: false);
                 }
                 else
@@ -433,7 +406,7 @@ namespace NLog.Config
         /// <param name="autoReloadDefault"></param>
         private void ConfigureFromFile(string fileName, bool autoReloadDefault)
         {
-            var config = new ReloadConfig(ConfigType.File, fileName);
+            var config = new XmlConfigurationSource(ConfigType.File, fileName);
             if (!_configMustAutoReloadLookup.ContainsKey(config))
                 ParseTopLevel(new NLogXmlElement(fileName), config, autoReloadDefault);
         }
@@ -444,7 +417,7 @@ namespace NLog.Config
         /// <param name="content"></param>
         /// <param name="config">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseTopLevel(NLogXmlElement content, ReloadConfig config, bool autoReloadDefault)
+        private void ParseTopLevel(NLogXmlElement content, XmlConfigurationSource config, bool autoReloadDefault)
         {
             content.AssertName("nlog", "configuration");
 
@@ -466,7 +439,7 @@ namespace NLog.Config
         /// <param name="configurationElement"></param>
         /// <param name="config">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseConfigurationElement(NLogXmlElement configurationElement, ReloadConfig config, bool autoReloadDefault)
+        private void ParseConfigurationElement(NLogXmlElement configurationElement, XmlConfigurationSource config, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
@@ -484,7 +457,7 @@ namespace NLog.Config
         /// <param name="nlogElement"></param>
         /// <param name="config">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseNLogElement(ILoggingConfigurationElement nlogElement, ReloadConfig config, bool autoReloadDefault)
+        private void ParseNLogElement(ILoggingConfigurationElement nlogElement, XmlConfigurationSource config, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseNLogElement");
             nlogElement.AssertName("nlog");
@@ -604,7 +577,7 @@ namespace NLog.Config
 
         private void IncludeUri(string uri, bool autoReloadDefault)
         {
-            var config = new ReloadConfig(ConfigType.Uri, uri);
+            var config = new XmlConfigurationSource(ConfigType.Uri, uri);
             if (_configMustAutoReloadLookup.ContainsKey(config))
                 return;
 
@@ -657,26 +630,16 @@ namespace NLog.Config
             }
         }
 
-        private static ReloadConfig GetFileLookupKey(string fileName)
+        private static XmlConfigurationSource GetFileLookupKey(string fileName)
         {
 
 #if SILVERLIGHT && !WINDOWS_PHONE
             // file names are relative to XAP
-            return new ReloadConfig(ConfigType.File, fileName);
+            return new XmlConfigurationSource(ConfigType.File, fileName);
 #else
-            return new ReloadConfig(ConfigType.File, Path.GetFullPath(fileName));
+            return new XmlConfigurationSource(ConfigType.File, Path.GetFullPath(fileName));
 #endif
         }
-
-        /// <summary>
-        /// Detects if a given string is a Uri
-        /// </summary>
-        /// <param name="fileName">Location of either a local, physical file, or a remote Uri.</param>
-        public static  bool IsUri(string fileName)
-        {
-            return fileName.StartsWith("https://") || fileName.StartsWith("http://");
-        }
-
 
     }
 }
