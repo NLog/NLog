@@ -468,7 +468,7 @@ namespace NLog.Config
             try
             {
                 _currentFilePath.Push(config?.Path);
-                var folder = config?.ConfigType == ConfigType.File ? Path.GetDirectoryName(config?.Path) : "C:\\temp";
+                var folder = config?.ConfigType == ConfigType.File ? Path.GetDirectoryName(config?.Path) : null;
                 base.LoadConfig(nlogElement, folder);
             }
             finally
