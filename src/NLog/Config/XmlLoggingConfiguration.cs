@@ -121,6 +121,7 @@ namespace NLog.Config
         /// <returns>reader or <c>null</c> if filename is empty.</returns>
         private static XmlReader CreateFileReader(string fileName)
         {
+            
             if (!string.IsNullOrEmpty(fileName))
             {
                 fileName = fileName.Trim();
@@ -497,50 +498,19 @@ namespace NLog.Config
         {
             includeElement.AssertName("include");
 
-            string newFileName = includeElement.GetRequiredValue("file", "nlog");
+            var newFileName = includeElement.GetOptionalValue("file", null);
+            var uri = includeElement.GetOptionalValue("uri", null);
 
             var ignoreErrors = includeElement.GetOptionalBooleanValue("ignoreErrors", false);
 
             try
             {
-                newFileName = ExpandSimpleVariables(newFileName);
-                newFileName = SimpleLayout.Evaluate(newFileName);
-                var fullNewFileName = newFileName;
-                if (baseDirectory != null)
-                {
-                    fullNewFileName = Path.Combine(baseDirectory, newFileName);
-                }
+                if (!string.IsNullOrEmpty(newFileName))
+                    IncludeFile(baseDirectory, autoReloadDefault, ignoreErrors, ref newFileName);
 
-#if SILVERLIGHT && !WINDOWS_PHONE
-                newFileName = newFileName.Replace("\\", "/");
-                if (Application.GetResourceStream(new Uri(fullNewFileName, UriKind.Relative)) != null)
-#else
-                if (File.Exists(fullNewFileName))
-#endif
-                {
-                    InternalLogger.Debug("Including file '{0}'", fullNewFileName);
-                    ConfigureFromFile(fullNewFileName, autoReloadDefault);
-                }
-                else
-                {
-                    //is mask?
+                if (!string.IsNullOrEmpty(uri))
+                    IncludeUri(uri, autoReloadDefault);
 
-                    if (newFileName.Contains("*"))
-                    {
-                        ConfigureFromFilesByMask(baseDirectory, newFileName, autoReloadDefault);
-                    }
-                    else
-                    {
-                        if (ignoreErrors)
-                        {
-                            //quick stop for performances
-                            InternalLogger.Debug("Skipping included file '{0}' as it can't be found", fullNewFileName);
-                            return;
-                        }
-
-                        throw new FileNotFoundException("Included file not found: " + fullNewFileName);
-                    }
-                }
             }
             catch (Exception exception)
             {
@@ -557,6 +527,60 @@ namespace NLog.Config
                 }
 
                 throw new NLogConfigurationException("Error when including: " + newFileName, exception);
+            }
+        }
+
+        private void IncludeFile(string baseDirectory, bool autoReloadDefault, bool ignoreErrors, ref string newFileName)
+        {
+            newFileName = ExpandSimpleVariables(newFileName);
+            newFileName = SimpleLayout.Evaluate(newFileName);
+            var fullNewFileName = newFileName;
+            if (baseDirectory != null)
+            {
+                fullNewFileName = Path.Combine(baseDirectory, newFileName);
+            }
+
+#if SILVERLIGHT && !WINDOWS_PHONE
+                newFileName = newFileName.Replace("\\", "/");
+                if (Application.GetResourceStream(new Uri(fullNewFileName, UriKind.Relative)) != null)
+#else
+            if (File.Exists(fullNewFileName))
+#endif
+            {
+                InternalLogger.Debug("Including file '{0}'", fullNewFileName);
+                ConfigureFromFile(fullNewFileName, autoReloadDefault);
+            }
+            else
+            {
+                //is mask?
+
+                if (newFileName.Contains("*"))
+                {
+                    ConfigureFromFilesByMask(baseDirectory, newFileName, autoReloadDefault);
+                }
+                else
+                {
+                    if (ignoreErrors)
+                    {
+                        //quick stop for performances
+                        InternalLogger.Debug("Skipping included file '{0}' as it can't be found", fullNewFileName);
+                        return;
+                    }
+
+                    throw new FileNotFoundException("Included file not found: " + fullNewFileName);
+                }
+            }
+        }
+
+        private void IncludeUri(string uri, bool autoReloadDefault)
+        {
+            if (_fileMustAutoReloadLookup.ContainsKey(uri))
+                return;
+
+            using (var reader = XmlReader.Create(uri))
+            {
+                reader.MoveToContent();
+                    ParseTopLevel(new NLogXmlElement(reader), uri, autoReloadDefault);
             }
         }
 
@@ -612,5 +636,16 @@ namespace NLog.Config
             return Path.GetFullPath(fileName);
 #endif
         }
+
+        /// <summary>
+        /// Detects if a given string is a Uri
+        /// </summary>
+        /// <param name="fileName">Location of either a local, physical file, or a remote Uri.</param>
+        public static  bool IsUri(string fileName)
+        {
+            return fileName.StartsWith("https://") || fileName.StartsWith("http://");
+        }
+
+
     }
 }
