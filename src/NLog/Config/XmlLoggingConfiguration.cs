@@ -68,7 +68,7 @@ namespace NLog.Config
 #endif
 
 
-        private readonly Dictionary<IXmlConfigurationSource, bool> _configMustAutoReloadLookup = new Dictionary<IXmlConfigurationSource, bool>();
+        private readonly HashSet<IXmlConfigurationSource> _configMustAutoReloadLookup = new HashSet<IXmlConfigurationSource>();
 
         private string _originalFileName;
 
@@ -256,13 +256,12 @@ namespace NLog.Config
                 if (_configMustAutoReloadLookup.Count == 0)
                     return false;
                 else
-                    return _configMustAutoReloadLookup.Values.All(mustReload => mustReload);
+                    return _configMustAutoReloadLookup.All(x => x.AutoReload);
             }
             set
             {
-                var autoReloadFiles = _configMustAutoReloadLookup.Keys.ToList();
-                foreach (var nextFile in autoReloadFiles)
-                    _configMustAutoReloadLookup[nextFile] = value;
+                foreach (var nextFile in _configMustAutoReloadLookup)
+                    nextFile.AutoReload = value;
             }
         }
 
@@ -275,7 +274,7 @@ namespace NLog.Config
         {
             get
             {
-                return _configMustAutoReloadLookup.Where(config => config.Key.AutoReload).Select(entry => entry.Key.SourcePath);
+                return _configMustAutoReloadLookup.Where(config => config.AutoReload).Select(entry => entry.SourcePath);
             }
         }
 
@@ -335,7 +334,8 @@ namespace NLog.Config
                     reader.MoveToContent();
                     var content = new NLogXmlElement(reader);
 
-                    InternalLogger.Info("Configuring from an XML element in {0}...", source.SourcePath);
+                    if (!string.IsNullOrEmpty(source.SourcePath))
+                        InternalLogger.Info("Configuring from an XML element in {0}...", source.SourcePath);
                     ParseTopLevel(content, source, autoReloadDefault: false);
 
                     InitializeSucceeded = true;
@@ -397,7 +397,7 @@ namespace NLog.Config
         private void ConfigureFromFile(string fileName, bool autoReloadDefault)
         {
             var config = new XmlFileConfigurationSource(fileName, autoReloadDefault);
-            if (!_configMustAutoReloadLookup.ContainsKey(config))
+            if (!_configMustAutoReloadLookup.Contains(config))
                 ParseTopLevel(new NLogXmlElement(fileName), config, autoReloadDefault);
         }
 
@@ -453,7 +453,7 @@ namespace NLog.Config
             nlogElement.AssertName("nlog");
 
             config.AutoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);
-
+            _configMustAutoReloadLookup.Add(config);
             try
             {
                 _currentFilePath.Push(config);

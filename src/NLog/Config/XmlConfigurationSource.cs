@@ -61,6 +61,8 @@ namespace NLog.Config
         public bool AutoReload { get; set; }
 
         public XmlReader GetReader() => _reader;
+
+        public override int GetHashCode() => SourcePath.GetHashCode();
     }
 
     internal class XmlStringConfigurationSource : IXmlConfigurationSource
@@ -84,6 +86,7 @@ namespace NLog.Config
             var stringReader = new StringReader(_xmlContents);
             return XmlReader.Create(stringReader, new XmlReaderSettings() { CloseInput = true });
         }
+        public override int GetHashCode() => _xmlContents.GetHashCode();
     }
 
     internal class XmlFileConfigurationSource : IXmlConfigurationSource
@@ -103,5 +106,6 @@ namespace NLog.Config
         {
             return XmlReader.Create(SourcePath);
         }
+        public override int GetHashCode() => SourcePath.GetHashCode();
     }
 }
