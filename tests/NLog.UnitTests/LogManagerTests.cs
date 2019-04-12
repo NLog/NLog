@@ -263,9 +263,12 @@ namespace NLog.UnitTests
 
         private void WaitForConfigReload(int counter)
         {
+            var i = 0;
             while (_reloadCounter < counter)
             {
                 System.Threading.Thread.Sleep(100);
+
+                if (++i > 20) throw new ApplicationException("Timeout waiting for configuration reload.");
             }
         }
 

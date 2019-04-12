@@ -31,34 +31,77 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+using System.Xml;
+
 namespace NLog.Config
 {
-    internal enum ConfigType { Uri, File }
-
-    internal class XmlConfigurationSource
+    internal interface IXmlConfigurationSource
     {
-        internal XmlConfigurationSource(ConfigType configType, string path)
+        string SourcePath { get; }
+        string LocalFolder { get; }
+        XmlReader GetReader();
+        bool AutoReload { get; set; }
+    }
+
+    internal class XmlReaderConfigurationSource : IXmlConfigurationSource
+    {
+        private readonly XmlReader _reader;
+
+        internal XmlReaderConfigurationSource(XmlReader reader, string fileName)
         {
-            ConfigType = configType;
-            Path = path;
+            _reader = reader;
+
+            SourcePath = fileName;
+            LocalFolder = Path.GetDirectoryName(fileName);
         }
-        internal ConfigType ConfigType { get; }
-        internal string Path { get; }
 
-        public override bool Equals(object obj)
+        public string SourcePath { get; }
+        public string LocalFolder { get; }
+        public bool AutoReload { get; set; }
+
+        public XmlReader GetReader() => _reader;
+    }
+
+    internal class XmlStringConfigurationSource : IXmlConfigurationSource
+    {
+        private readonly string _xmlContents;
+
+        internal XmlStringConfigurationSource(string xmlContents, string fileName)
         {
-            if (ReferenceEquals(this, obj))
-                return true;
+            _xmlContents = xmlContents;
 
-            if (!(obj is XmlConfigurationSource other))
-                return false;
-
-            return other.ConfigType == this.ConfigType && other.Path == this.Path;
+            SourcePath = fileName;
+            LocalFolder = Path.GetDirectoryName(fileName);
         }
 
-        public override int GetHashCode()
+        public string SourcePath { get; }
+        public string LocalFolder { get; }
+        public bool AutoReload { get; set; }
+
+        public XmlReader GetReader()
         {
-            return ConfigType.GetHashCode() | Path.GetHashCode();
+            var stringReader = new StringReader(_xmlContents);
+            return XmlReader.Create(stringReader, new XmlReaderSettings() { CloseInput = true });
+        }
+    }
+
+    internal class XmlFileConfigurationSource : IXmlConfigurationSource
+    {
+        internal XmlFileConfigurationSource(string fileName, bool reload = false)
+        {
+            SourcePath = fileName;
+            LocalFolder = Path.GetDirectoryName(fileName);
+            AutoReload = reload;
+        }
+
+        public string SourcePath { get; set; }
+        public string LocalFolder { get; set; }
+        public bool AutoReload { get; set; }
+
+        public XmlReader GetReader()
+        {
+            return XmlReader.Create(SourcePath);
         }
     }
 }

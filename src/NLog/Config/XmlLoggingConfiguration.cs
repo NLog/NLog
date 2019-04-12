@@ -68,11 +68,11 @@ namespace NLog.Config
 #endif
 
 
-        private readonly Dictionary<XmlConfigurationSource, bool> _configMustAutoReloadLookup = new Dictionary<XmlConfigurationSource, bool>();
+        private readonly Dictionary<IXmlConfigurationSource, bool> _configMustAutoReloadLookup = new Dictionary<IXmlConfigurationSource, bool>();
 
         private string _originalFileName;
 
-        private readonly Stack<string> _currentFilePath = new Stack<string>();
+        private readonly Stack<IXmlConfigurationSource> _currentFilePath = new Stack<IXmlConfigurationSource>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
@@ -109,10 +109,7 @@ namespace NLog.Config
         public XmlLoggingConfiguration(string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {
-            using (XmlReader reader = CreateFileReader(fileName))
-            {
-                Initialize(reader, fileName, ignoreErrors);
-            }
+            Initialize(new XmlFileConfigurationSource(fileName), ignoreErrors);
         }
 
         /// <summary>
@@ -122,7 +119,7 @@ namespace NLog.Config
         /// <returns>reader or <c>null</c> if filename is empty.</returns>
         private static XmlReader CreateFileReader(string fileName)
         {
-            
+
             if (!string.IsNullOrEmpty(fileName))
             {
                 fileName = fileName.Trim();
@@ -180,7 +177,7 @@ namespace NLog.Config
         public XmlLoggingConfiguration(XmlReader reader, string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {
-            Initialize(reader, fileName, ignoreErrors);
+            Initialize(new XmlReaderConfigurationSource(reader, fileName), ignoreErrors);
         }
 
 #if !SILVERLIGHT
@@ -214,13 +211,7 @@ namespace NLog.Config
         internal XmlLoggingConfiguration(string xmlContents, string fileName, bool ignoreErrors)
             : base(LogManager.LogFactory)
         {
-            using (var stringReader = new StringReader(xmlContents))
-            {
-                using (XmlReader reader = XmlReader.Create(stringReader))
-                {
-                    Initialize(reader, fileName, ignoreErrors);
-                }
-            }
+            Initialize(new XmlStringConfigurationSource(xmlContents, fileName), ignoreErrors);
         }
 
         /// <summary>
@@ -284,7 +275,7 @@ namespace NLog.Config
         {
             get
             {
-                return _configMustAutoReloadLookup.Where(config => config.Key.ConfigType == ConfigType.File && config.Value).Select(entry => entry.Key.Path);
+                return _configMustAutoReloadLookup.Where(config => config.Key.AutoReload).Select(entry => entry.Key.SourcePath);
             }
         }
 
@@ -329,29 +320,28 @@ namespace NLog.Config
         /// <summary>
         /// Initializes the configuration.
         /// </summary>
-        /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
-        /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
+        /// <param name="source">The configuration source.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        private void Initialize([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors)
+        private void Initialize([NotNull] IXmlConfigurationSource source, bool ignoreErrors)
         {
             try
             {
                 InitializeSucceeded = null;
-                _originalFileName = fileName;
-                reader.MoveToContent();
-                var content = new NLogXmlElement(reader);
-                if (!string.IsNullOrEmpty(fileName))
+                if (_originalFileName == null)
+                    _originalFileName = source.SourcePath;
+
+                using (var reader = source.GetReader())
                 {
-                    InternalLogger.Info("Configuring from an XML element in {0}...", fileName);
-                    var config = new XmlConfigurationSource(ConfigType.File, fileName);
-                    ParseTopLevel(content, config, autoReloadDefault: false);
+                    reader.MoveToContent();
+                    var content = new NLogXmlElement(reader);
+
+                    InternalLogger.Info("Configuring from an XML element in {0}...", source.SourcePath);
+                    ParseTopLevel(content, source, autoReloadDefault: false);
+
+                    InitializeSucceeded = true;
+                    CheckParsingErrors(content);
                 }
-                else
-                {
-                    ParseTopLevel(content, null, autoReloadDefault: false);
-                }
-                InitializeSucceeded = true;
-                CheckParsingErrors(content);
+
                 base.CheckUnusedTargets();
             }
             catch (Exception exception)
@@ -362,8 +352,8 @@ namespace NLog.Config
                     throw;
                 }
 
-                var configurationException = new NLogConfigurationException(exception, "Exception when parsing {0}. ", fileName);
-                InternalLogger.Error(configurationException, "Parsing configuration from {0} failed.", fileName);
+                var configurationException = new NLogConfigurationException(exception, "Exception when parsing {0}. ", source.SourcePath);
+                InternalLogger.Error(configurationException, "Parsing configuration from {0} failed.", source.SourcePath);
 
                 if (!ignoreErrors && configurationException.MustBeRethrown())
                 {
@@ -406,7 +396,7 @@ namespace NLog.Config
         /// <param name="autoReloadDefault"></param>
         private void ConfigureFromFile(string fileName, bool autoReloadDefault)
         {
-            var config = new XmlConfigurationSource(ConfigType.File, fileName);
+            var config = new XmlFileConfigurationSource(fileName, autoReloadDefault);
             if (!_configMustAutoReloadLookup.ContainsKey(config))
                 ParseTopLevel(new NLogXmlElement(fileName), config, autoReloadDefault);
         }
@@ -417,7 +407,7 @@ namespace NLog.Config
         /// <param name="content"></param>
         /// <param name="config">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseTopLevel(NLogXmlElement content, XmlConfigurationSource config, bool autoReloadDefault)
+        private void ParseTopLevel(NLogXmlElement content, IXmlConfigurationSource config, bool autoReloadDefault)
         {
             content.AssertName("nlog", "configuration");
 
@@ -439,7 +429,7 @@ namespace NLog.Config
         /// <param name="configurationElement"></param>
         /// <param name="config">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseConfigurationElement(NLogXmlElement configurationElement, XmlConfigurationSource config, bool autoReloadDefault)
+        private void ParseConfigurationElement(NLogXmlElement configurationElement, IXmlConfigurationSource config, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
@@ -457,19 +447,17 @@ namespace NLog.Config
         /// <param name="nlogElement"></param>
         /// <param name="config">path to config file.</param>
         /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseNLogElement(ILoggingConfigurationElement nlogElement, XmlConfigurationSource config, bool autoReloadDefault)
+        private void ParseNLogElement(ILoggingConfigurationElement nlogElement, IXmlConfigurationSource config, bool autoReloadDefault)
         {
             InternalLogger.Trace("ParseNLogElement");
             nlogElement.AssertName("nlog");
 
-            bool autoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);
-            if (config?.Path != null) _configMustAutoReloadLookup[config] = autoReload;
+            config.AutoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);
 
             try
             {
-                _currentFilePath.Push(config?.Path);
-                var folder = config?.ConfigType == ConfigType.File ? Path.GetDirectoryName(config?.Path) : null;
-                base.LoadConfig(nlogElement, folder);
+                _currentFilePath.Push(config);
+                base.LoadConfig(nlogElement, config.LocalFolder);
             }
             finally
             {
@@ -486,9 +474,9 @@ namespace NLog.Config
         {
             if (configSection.MatchesName("include"))
             {
-                string filePath = _currentFilePath.Peek();
-                bool autoLoad = filePath != null && _configMustAutoReloadLookup[GetFileLookupKey(filePath)];
-                ParseIncludeElement(configSection, filePath != null ? Path.GetDirectoryName(filePath) : null, autoLoad);
+                var parentConfiguration = _currentFilePath.Peek();
+                var autoLoad = parentConfiguration?.AutoReload ?? false;
+                ParseIncludeElement(configSection, parentConfiguration?.LocalFolder, autoLoad);
                 return true;
             }
             else
@@ -511,8 +499,8 @@ namespace NLog.Config
                 if (!string.IsNullOrEmpty(newFileName))
                     IncludeFile(baseDirectory, autoReloadDefault, ignoreErrors, ref newFileName);
 
-                if (!string.IsNullOrEmpty(uri))
-                    IncludeUri(uri, autoReloadDefault);
+                //if (!string.IsNullOrEmpty(uri))
+                //    IncludeUri(uri, autoReloadDefault);
 
             }
             catch (Exception exception)
@@ -575,18 +563,6 @@ namespace NLog.Config
             }
         }
 
-        private void IncludeUri(string uri, bool autoReloadDefault)
-        {
-            var config = new XmlConfigurationSource(ConfigType.Uri, uri);
-            if (_configMustAutoReloadLookup.ContainsKey(config))
-                return;
-
-            using (var reader = XmlReader.Create(uri))
-            {
-                reader.MoveToContent();
-                    ParseTopLevel(new NLogXmlElement(reader), config, autoReloadDefault);
-            }
-        }
 
         /// <summary>
         /// Include (multiple) files by filemask, e.g. *.nlog
@@ -629,17 +605,5 @@ namespace NLog.Config
                 ConfigureFromFile(file, autoReloadDefault);
             }
         }
-
-        private static XmlConfigurationSource GetFileLookupKey(string fileName)
-        {
-
-#if SILVERLIGHT && !WINDOWS_PHONE
-            // file names are relative to XAP
-            return new XmlConfigurationSource(ConfigType.File, fileName);
-#else
-            return new XmlConfigurationSource(ConfigType.File, Path.GetFullPath(fileName));
-#endif
-        }
-
     }
 }
