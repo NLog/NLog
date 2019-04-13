@@ -51,7 +51,9 @@ namespace NLog.LayoutRenderers
     /// ${appsetting:item=mysetting:default=mydefault} - produces "mydefault" if no appsetting
     /// </code>
     [LayoutRenderer("appsetting")]
-    public sealed class AppSettingLayoutRenderer2 : LayoutRenderer
+    [ThreadAgnostic]
+    [ThreadSafe]
+    public sealed class AppSettingLayoutRenderer2 : LayoutRenderer, IStringValueRenderer
     {
         ///<summary>
         /// The AppSetting item-name
@@ -82,15 +84,21 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (Item == null)
-                return;
+            builder.Append(GetStringValue());
+        }
+
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
+
+        private string GetStringValue()
+        {
+            if (string.IsNullOrEmpty(Item))
+                return Default;
 
             string value = ConfigurationManager.AppSettings[Item];
             if (value == null && Default != null)
                 value = Default;
 
-            if (!string.IsNullOrEmpty(value))
-                builder.Append(value);
+            return value ?? string.Empty;
         }
     }
 }
