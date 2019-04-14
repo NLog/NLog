@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace NLog.Targets.Wrappers
 {
     using System.Threading;
@@ -114,6 +116,7 @@ namespace NLog.Targets.Wrappers
         /// resets the target to the first target
         /// stored in <see cref="Targets"/>.
         /// </remarks>
+        [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
         protected override void Write(AsyncLogEventInfo logEvent)
         {
             AsyncContinuation continuation = null;
@@ -127,11 +130,13 @@ namespace NLog.Targets.Wrappers
                         // success
                         if (ReturnToFirstOnSuccess)
                         {
+#pragma warning disable S1066 // Collapsible "if" statements should be merged
 #if !SILVERLIGHT || WINDOWS_PHONEs
                             if (Interlocked.Read(ref _currentTarget) != 0)
 #else
                             if (Interlocked.CompareExchange(ref _currentTarget, 0, 0) != 0)
 #endif
+#pragma warning restore S1066 // Collapsible "if" statements should be merged
                             {
                                 InternalLogger.Debug("FallbackGroup(Name={0}): Target '{1}' succeeded. Returning to the first one.", Name, Targets[targetToInvoke]);
                                 Interlocked.Exchange(ref _currentTarget, 0);

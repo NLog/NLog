@@ -491,7 +491,7 @@ namespace NLog.Targets
             using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
-                UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
+                UrlHelper.EscapeEncodingFlags encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
                 BuildWebServiceQueryParameters(parameterValues, sb, encodingFlags);
                 queryParameters = sb.ToString();
             }
@@ -511,7 +511,7 @@ namespace NLog.Targets
             return builder.Uri;
         }
 
-        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb, UrlHelper.EscapeEncodingFlag encodingFlags)
+        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb, UrlHelper.EscapeEncodingFlags encodingFlags)
         {
             string separator = string.Empty;
             for (int i = 0; i < Parameters.Count; i++)
@@ -605,7 +605,7 @@ namespace NLog.Targets
 
         private class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
         {
-            readonly UrlHelper.EscapeEncodingFlag _encodingFlags;
+            readonly UrlHelper.EscapeEncodingFlags _encodingFlags;
 
             public HttpPostFormEncodedFormatter(WebServiceTarget target) : base(target)
             {
