@@ -156,7 +156,7 @@ namespace NLog.Config
                         return;
                     }
 
-                    newConfig = oldConfig.Reload();
+                    newConfig = LoggingConfiguration.Reload(oldConfig);
 
                     //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
                     //therefor we check the InitializeSucceeded property.
@@ -185,11 +185,6 @@ namespace NLog.Config
 
                     if (newConfig != null)
                     {
-                        if (_logFactory.KeepVariablesOnReload && _logFactory._config != null)
-                        {
-                            newConfig.CopyVariables(_logFactory._config.Variables);
-                        }
-
                         _logFactory.Configuration = newConfig;  // Triggers LogFactory to call Activated(...) that adds file-watch again
 
                         _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));

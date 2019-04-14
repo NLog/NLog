@@ -483,6 +483,31 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Helper method to perform correct reload of log configuration with respect to <see cref="LogFactory.KeepVariablesOnReload"/>
+        /// </summary>
+        /// <param name="oldConfig">Current Configuration</param>
+        /// <returns>
+        /// A new instance of <see cref="LoggingConfiguration"/> that represents the updated configuration.
+        /// </returns>
+        public static LoggingConfiguration Reload(LoggingConfiguration oldConfig)
+        {
+            var newConfig = oldConfig?.Reload();
+            if (newConfig != null)
+            {
+                var logFactory = oldConfig.LogFactory ?? LogManager.LogFactory;
+                if (logFactory.KeepVariablesOnReload)
+                {
+                    var currentConfig = logFactory._config ?? oldConfig;
+                    if (!ReferenceEquals(newConfig, currentConfig))
+                    {
+                        newConfig.CopyVariables(currentConfig.Variables);
+                    }
+                }
+            }
+            return newConfig;
+        }
+
+        /// <summary>
         /// Removes the specified named target.
         /// </summary>
         /// <param name="name">Name of the target.</param>
