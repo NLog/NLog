@@ -167,7 +167,7 @@ namespace NLog.Targets
                 _dbTypeName = dbTypeName;
                 if (!StringHelpers.IsNullOrWhiteSpace(dbTypeName))
                 {
-                    string[] dbTypeNames = dbTypeName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] dbTypeNames = dbTypeName.SplitAndTrimTokens('.');
                     if (dbTypeNames.Length > 1 && !string.Equals(dbTypeNames[0], nameof(System.Data.DbType), StringComparison.OrdinalIgnoreCase))
                     {
                         PropertyInfo propInfo = dbParameterType.GetProperty(dbTypeNames[0], BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);

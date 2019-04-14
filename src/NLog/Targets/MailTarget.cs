@@ -681,7 +681,7 @@ namespace NLog.Targets
             var added = false;
             if (layout != null)
             {
-                foreach (string mail in layout.Render(logEvent).Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (string mail in layout.Render(logEvent).SplitAndTrimTokens(';'))
                 {
                     mailAddressCollection.Add(mail);
                     added = true;

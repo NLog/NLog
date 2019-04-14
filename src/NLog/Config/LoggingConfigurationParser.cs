@@ -610,8 +610,8 @@ namespace NLog.Config
                         break;
                     case "LEVELS":
                         {
-                            string[] tokens = CleanSpaces(childProperty.Value).Split(',');
-                            enableLevels = tokens.Where(t => !string.IsNullOrEmpty(t)).Select(LogLevelFromString);
+                            string[] tokens = childProperty.Value.SplitAndTrimTokens(',');
+                            enableLevels = tokens.Select(LogLevelFromString);
                             break;
                         }
                     case "MINLEVEL":
@@ -680,12 +680,8 @@ namespace NLog.Config
             if (string.IsNullOrEmpty(writeTargets))
                 return;
 
-            foreach (string t in writeTargets.Split(','))
+            foreach (string targetName in writeTargets.SplitAndTrimTokens(','))
             {
-                string targetName = t.Trim();
-                if (string.IsNullOrEmpty(targetName))
-                    continue;
-
                 Target target = FindTargetByName(targetName);
                 if (target != null)
                 {
@@ -1227,19 +1223,7 @@ namespace NLog.Config
 
             return attributeValue.Substring(p + 1);
         }
-
-        /// <summary>
-        /// Remove all spaces, also in between text. 
-        /// </summary>
-        /// <param name="s">text</param>
-        /// <returns>text without spaces</returns>
-        /// <remarks>Tabs and other whitespace is not removed!</remarks>
-        private static string CleanSpaces(string s)
-        {
-            s = s.Replace(" ", string.Empty); // get rid of the whitespace
-            return s;
-        }
-
+       
         private static string GetName(Target target)
         {
             return string.IsNullOrEmpty(target.Name) ? target.GetType().Name : target.Name;

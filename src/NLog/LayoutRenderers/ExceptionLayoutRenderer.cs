@@ -409,7 +409,7 @@ namespace NLog.LayoutRenderers
         private static List<ExceptionRenderingFormat> CompileFormat(string formatSpecifier)
         {
             List<ExceptionRenderingFormat> formats = new List<ExceptionRenderingFormat>();
-            string[] parts = formatSpecifier.Replace(" ", string.Empty).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = formatSpecifier.SplitAndTrimTokens(',');
 
             foreach (string s in parts)
             {
