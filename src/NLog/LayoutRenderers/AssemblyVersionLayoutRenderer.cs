@@ -148,7 +148,7 @@ namespace NLog.LayoutRenderers
                 return version;
             }
 
-            var versionParts = version.Split('.');
+            var versionParts = version.SplitAndTrimTokens('.');
             version = Format.Replace("major", versionParts[0])
                 .Replace("minor", versionParts.Length > 1 ? versionParts[1] : "0")
                 .Replace("build", versionParts.Length > 2 ? versionParts[2] : "0")

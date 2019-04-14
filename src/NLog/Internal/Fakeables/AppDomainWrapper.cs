@@ -118,7 +118,7 @@ namespace NLog.Internal.Fakeables
             string privateBinPath = appDomain.SetupInformation.PrivateBinPath;
             return string.IsNullOrEmpty(privateBinPath)
                                     ? ArrayHelper.Empty<string>()
-                                    : privateBinPath.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                                    : privateBinPath.SplitAndTrimTokens(';');
 #else
             return ArrayHelper.Empty<string>();
 #endif

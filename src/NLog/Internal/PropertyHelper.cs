@@ -260,9 +260,9 @@ namespace NLog.Internal
             {
                 ulong union = 0;
 
-                foreach (string v in value.Split(','))
+                foreach (string v in value.SplitAndTrimTokens(','))
                 {
-                    FieldInfo enumField = resultType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                    FieldInfo enumField = resultType.GetField(v, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
                     if (enumField == null)
                     {
                         throw new NLogConfigurationException($"Invalid enumeration value '{value}'.");

@@ -32,7 +32,6 @@
 // 
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 
@@ -51,7 +50,6 @@ namespace NLog.Internal
         [ContractAnnotation("value:null => true")]
         internal static bool IsNullOrWhiteSpace(string value)
         {
-
 #if NET3_5
 
             if (value == null) return true;
@@ -60,6 +58,26 @@ namespace NLog.Internal
 #else
             return string.IsNullOrWhiteSpace(value);
 #endif
+        }
+
+        internal static string[] SplitAndTrimTokens(this string value, char delimiter)
+        {
+            if (IsNullOrWhiteSpace(value))
+                return ArrayHelper.Empty<string>();
+
+            if (value.IndexOf(delimiter) == -1)
+            {
+                return new[] { value.Trim() };
+            }
+
+            var result = value.Split(new char[] { delimiter }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < result.Length; ++i)
+            {
+                result[i] = result[i].Trim();
+                if (string.IsNullOrEmpty(result[i]))
+                    return result.Where(s => !IsNullOrWhiteSpace(s)).Select(s => s.Trim()).ToArray();
+            }
+            return result;
         }
     }
 }
