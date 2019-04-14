@@ -262,7 +262,7 @@ namespace NLog.Internal
 
                 foreach (string v in value.SplitAndTrimTokens(','))
                 {
-                    FieldInfo enumField = resultType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                    FieldInfo enumField = resultType.GetField(v, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
                     if (enumField == null)
                     {
                         throw new NLogConfigurationException($"Invalid enumeration value '{value}'.");
