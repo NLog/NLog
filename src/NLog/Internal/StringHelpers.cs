@@ -73,12 +73,9 @@ namespace NLog.Internal
             var result = value.Split(new char[] { delimiter }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < result.Length; ++i)
             {
-                if (char.IsWhiteSpace(result[i][0]) || char.IsWhiteSpace(result[i][result[i].Length - 1]))
-                {
-                    result[i] = result[i].Trim();
-                    if (string.IsNullOrEmpty(result[i]))
-                        return result.Where(s => !IsNullOrWhiteSpace(s)).Select(s => s.Trim()).ToArray();
-                }
+                result[i] = result[i].Trim();
+                if (string.IsNullOrEmpty(result[i]))
+                    return result.Where(s => !IsNullOrWhiteSpace(s)).Select(s => s.Trim()).ToArray();
             }
             return result;
         }
