@@ -35,19 +35,20 @@ namespace NLog.UnitTests.Targets
 {
 #if !NET3_5
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Xunit;
     using NLog.Config;
     using NLog.Targets;
+    using Xunit;
 
     public class AsyncTaskTargetTest : NLogTestBase
     {
         class AsyncTaskTestTarget : AsyncTaskTarget
         {
             private readonly AutoResetEvent _writeEvent = new AutoResetEvent(false);
-            internal readonly Queue<string> Logs = new Queue<string>();
+            internal readonly ConcurrentQueue<string> Logs = new ConcurrentQueue<string>();
             internal int WriteTasks => _writeTasks;
             protected int _writeTasks;
 
@@ -120,9 +121,8 @@ namespace NLog.UnitTests.Targets
             Assert.NotEmpty(asyncTarget.Logs);
             LogManager.Flush();
             Assert.True(asyncTarget.Logs.Count == 6);
-            while (asyncTarget.Logs.Count > 0)
+            while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
             {
-                string logEventMessage = asyncTarget.Logs.Dequeue();
                 Assert.Equal(0, logEventMessage.IndexOf(Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
             }
 
@@ -150,9 +150,8 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(LogLevel.MaxLevel.Ordinal, asyncTarget.Logs.Count);
 
             int ordinal = 0;
-            while (asyncTarget.Logs.Count > 0)
+            while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
             {
-                string logEventMessage = asyncTarget.Logs.Dequeue();
                 var logLevel = LogLevel.FromString(logEventMessage);
                 Assert.NotEqual(LogLevel.Debug, logLevel);
                 Assert.Equal(ordinal++, logLevel.Ordinal);
@@ -187,10 +186,9 @@ namespace NLog.UnitTests.Targets
                 Assert.True(asyncTarget.WaitForWriteEvent());
                 Assert.NotEmpty(asyncTarget.Logs);
                 LogManager.Flush();
-                Assert.True(asyncTarget.Logs.Count == 5);
-                while (asyncTarget.Logs.Count > 0)
+                Assert.Equal(5, asyncTarget.Logs.Count);
+                while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
                 {
-                    string logEventMessage = asyncTarget.Logs.Dequeue();
                     Assert.Equal(-1, logEventMessage.IndexOf("Debug|"));
                 }
 
@@ -221,9 +219,8 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(LogLevel.MaxLevel.Ordinal + 4, asyncTarget.WriteTasks);
 
             int ordinal = 0;
-            while (asyncTarget.Logs.Count > 0)
+            while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
             {
-                string logEventMessage = asyncTarget.Logs.Dequeue();
                 var logLevel = LogLevel.FromString(logEventMessage);
                 Assert.NotEqual(LogLevel.Debug, logLevel);
                 Assert.Equal(ordinal++, logLevel.Ordinal);
@@ -257,9 +254,8 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(LogLevel.MaxLevel.Ordinal + 4, asyncTarget.WriteTasks);
 
             int ordinal = 0;
-            while (asyncTarget.Logs.Count > 0)
+            while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
             {
-                string logEventMessage = asyncTarget.Logs.Dequeue();
                 var logLevel = LogLevel.FromString(logEventMessage);
                 Assert.NotEqual(LogLevel.Debug, logLevel);
                 Assert.Equal(ordinal++, logLevel.Ordinal);
@@ -293,9 +289,8 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(LogLevel.MaxLevel.Ordinal / 2, asyncTarget.WriteTasks);
 
             int ordinal = 0;
-            while (asyncTarget.Logs.Count > 0)
+            while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
             {
-                string logEventMessage = asyncTarget.Logs.Dequeue();
                 var logLevel = LogLevel.FromString(logEventMessage);
                 Assert.Equal(ordinal++, logLevel.Ordinal);
             }
@@ -327,9 +322,8 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(LogLevel.MaxLevel.Ordinal + 1, asyncTarget.WriteTasks);
 
             int ordinal = 0;
-            while (asyncTarget.Logs.Count > 0)
+            while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
             {
-                string logEventMessage = asyncTarget.Logs.Dequeue();
                 var logLevel = LogLevel.FromString(logEventMessage);
                 Assert.Equal(ordinal++, logLevel.Ordinal);
             }
@@ -386,7 +380,7 @@ namespace NLog.UnitTests.Targets
                     logger.Log(LogLevel.Info, i.ToString());
                     Thread.Sleep(20);
                 }
-                Assert.True(asyncTarget.WaitForWriteEvent(0));
+                Assert.True(asyncTarget.WaitForWriteEvent());
             }
 
             Assert.True(asyncTarget.Logs.Count > 25, $"{asyncTarget.Logs.Count} LogEvents are too few after {asyncTarget.WriteTasks} writes");
