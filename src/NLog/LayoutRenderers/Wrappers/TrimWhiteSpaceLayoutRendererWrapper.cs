@@ -84,14 +84,11 @@ namespace NLog.LayoutRenderers.Wrappers
         private static void TransformTrimWhiteSpaces(StringBuilder builder, int startPos)
         {
             builder.TrimRight(startPos);  // Fast
-            if (builder.Length > startPos)
+            if (builder.Length > startPos && char.IsWhiteSpace(builder[startPos]))
             {
-                if (char.IsWhiteSpace(builder[startPos]))
-                {
-                    var str = builder.ToString(startPos, builder.Length - startPos);
-                    builder.Length = startPos;
-                    builder.Append(str.Trim());
-                }
+                var str = builder.ToString(startPos, builder.Length - startPos);
+                builder.Length = startPos;
+                builder.Append(str.Trim());
             }
         }
     }

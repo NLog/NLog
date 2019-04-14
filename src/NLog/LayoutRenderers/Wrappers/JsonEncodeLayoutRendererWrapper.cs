@@ -75,14 +75,11 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
             Inner.RenderAppendBuilder(logEvent, builder);
-            if (JsonEncode && builder.Length > orgLength)
+            if (JsonEncode && builder.Length > orgLength && RequiresJsonEncode(builder, orgLength))
             {
-                if (RequiresJsonEncode(builder, orgLength))
-                {
-                    var str = builder.ToString(orgLength, builder.Length - orgLength);
-                    builder.Length = orgLength;
-                    Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, EscapeUnicode);
-                }
+                var str = builder.ToString(orgLength, builder.Length - orgLength);
+                builder.Length = orgLength;
+                Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, EscapeUnicode);
             }
         }
 

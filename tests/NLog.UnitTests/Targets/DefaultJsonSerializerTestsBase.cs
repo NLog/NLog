@@ -338,7 +338,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SerializeFlagEnum_Test()
         {
-            var val = UrlHelper.EscapeEncodingFlag.LegacyRfc2396 | UrlHelper.EscapeEncodingFlag.LowerCaseHex;
+            var val = UrlHelper.EscapeEncodingFlags.LegacyRfc2396 | UrlHelper.EscapeEncodingFlags.LowerCaseHex;
             var actual = SerializeObject(val);
             Assert.Equal("\"LegacyRfc2396, LowerCaseHex\"", actual);
         }

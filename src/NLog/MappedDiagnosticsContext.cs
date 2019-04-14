@@ -52,10 +52,7 @@ namespace NLog
 
         private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private class ItemRemover : IDisposable
+        private sealed class ItemRemover : IDisposable
         {
             private readonly string _item;
             private bool _disposed;

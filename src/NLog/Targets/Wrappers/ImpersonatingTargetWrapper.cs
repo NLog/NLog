@@ -52,8 +52,8 @@ namespace NLog.Targets.Wrappers
     [Target("ImpersonatingWrapper", IsWrapper = true)]
     public class ImpersonatingTargetWrapper : WrapperTargetBase
     {
-        private WindowsIdentity newIdentity;
-        private IntPtr duplicateTokenHandle = IntPtr.Zero;
+        private WindowsIdentity _newIdentity;
+        private IntPtr _duplicateTokenHandle = IntPtr.Zero;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImpersonatingTargetWrapper" /> class.
@@ -138,7 +138,7 @@ namespace NLog.Targets.Wrappers
         {
             if (!RevertToSelf)
             {
-                newIdentity = CreateWindowsIdentity(out duplicateTokenHandle);
+                _newIdentity = CreateWindowsIdentity(out _duplicateTokenHandle);
             }
 
             using (DoImpersonate())
@@ -157,16 +157,16 @@ namespace NLog.Targets.Wrappers
                 base.CloseTarget();
             }
 
-            if (duplicateTokenHandle != IntPtr.Zero)
+            if (_duplicateTokenHandle != IntPtr.Zero)
             {
-                NativeMethods.CloseHandle(duplicateTokenHandle);
-                duplicateTokenHandle = IntPtr.Zero;
+                NativeMethods.CloseHandle(_duplicateTokenHandle);
+                _duplicateTokenHandle = IntPtr.Zero;
             }
 
-            if (newIdentity != null)
+            if (_newIdentity != null)
             {
-                newIdentity.Dispose();
-                newIdentity = null;
+                _newIdentity.Dispose();
+                _newIdentity = null;
             }
         }
 
@@ -229,7 +229,7 @@ namespace NLog.Targets.Wrappers
                 return new ContextReverter(WindowsIdentity.Impersonate(IntPtr.Zero));
             }
 
-            return new ContextReverter(newIdentity.Impersonate());
+            return new ContextReverter(_newIdentity.Impersonate());
         }
 
         //
@@ -239,7 +239,6 @@ namespace NLog.Targets.Wrappers
         private WindowsIdentity CreateWindowsIdentity(out IntPtr handle)
         {
             // initialize tokens
-            IntPtr logonHandle;
 
             if (!NativeMethods.LogonUser(
                 UserName,
@@ -247,7 +246,7 @@ namespace NLog.Targets.Wrappers
                 Password,
                 (int)LogOnType,
                 (int)LogOnProvider,
-                out logonHandle))
+                out var logonHandle))
             {
                 throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
             }
@@ -268,9 +267,9 @@ namespace NLog.Targets.Wrappers
         /// Helper class which reverts the given <see cref="WindowsImpersonationContext"/> 
         /// to its original value as part of <see cref="IDisposable.Dispose"/>.
         /// </summary>
-        internal class ContextReverter : IDisposable
+        internal sealed class ContextReverter : IDisposable
         {
-            private readonly WindowsImpersonationContext wic;
+            private readonly WindowsImpersonationContext _wic;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="ContextReverter" /> class.
@@ -278,7 +277,7 @@ namespace NLog.Targets.Wrappers
             /// <param name="windowsImpersonationContext">The windows impersonation context.</param>
             public ContextReverter(WindowsImpersonationContext windowsImpersonationContext)
             {
-                wic = windowsImpersonationContext;
+                _wic = windowsImpersonationContext;
             }
 
             /// <summary>
@@ -286,7 +285,7 @@ namespace NLog.Targets.Wrappers
             /// </summary>
             public void Dispose()
             {
-                wic.Undo();
+                _wic.Undo();
             }
         }
     }

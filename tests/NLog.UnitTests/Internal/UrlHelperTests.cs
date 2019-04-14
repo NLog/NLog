@@ -77,9 +77,9 @@ namespace NLog.UnitTests.Internal
         public void EscapeDataEncodeTestRfc2396(string input, bool spaceAsPlus, string result)
         {
             System.Text.StringBuilder builder = new System.Text.StringBuilder(input.Length + 20);
-            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.EscapeEncodingFlag.LowerCaseHex | UrlHelper.EscapeEncodingFlag.LegacyRfc2396 | UrlHelper.EscapeEncodingFlag.UriString;
+            UrlHelper.EscapeEncodingFlags encodingFlags = UrlHelper.EscapeEncodingFlags.LowerCaseHex | UrlHelper.EscapeEncodingFlags.LegacyRfc2396 | UrlHelper.EscapeEncodingFlags.UriString;
             if (spaceAsPlus)
-                encodingFlags |= UrlHelper.EscapeEncodingFlag.SpaceAsPlus;
+                encodingFlags |= UrlHelper.EscapeEncodingFlags.SpaceAsPlus;
             UrlHelper.EscapeDataEncode(input, builder, encodingFlags);
             Assert.Equal(result, builder.ToString());
             Assert.Equal(input.Replace('+', ' '), DecodeUrlString(builder.ToString()));
@@ -97,9 +97,9 @@ namespace NLog.UnitTests.Internal
         public void EscapeDataEncodeTestRfc3986(string input, bool spaceAsPlus, string result)
         {
             System.Text.StringBuilder builder = new System.Text.StringBuilder(input.Length + 20);
-            UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.EscapeEncodingFlag.None;
+            UrlHelper.EscapeEncodingFlags encodingFlags = UrlHelper.EscapeEncodingFlags.None;
             if (spaceAsPlus)
-                encodingFlags |= UrlHelper.EscapeEncodingFlag.SpaceAsPlus;
+                encodingFlags |= UrlHelper.EscapeEncodingFlags.SpaceAsPlus;
             UrlHelper.EscapeDataEncode(input, builder, encodingFlags);
             Assert.Equal(result, builder.ToString());
             Assert.Equal(input.Replace('+', ' '), DecodeUrlString(builder.ToString()));

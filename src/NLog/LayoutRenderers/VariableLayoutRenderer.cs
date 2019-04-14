@@ -87,15 +87,8 @@ namespace NLog.LayoutRenderers
         private bool TryGetLayout(out SimpleLayout layout)
         {
             layout = null;
-            if (Name != null)
-            {
-                //don't use LogManager (locking, recursion)
-                if (LoggingConfiguration?.Variables?.TryGetValue(Name, out layout) == true)
-                {
-                    return true;
-                }
-            }
-            return false;
+            //Note: don't use LogManager (locking, recursion)
+            return Name != null && LoggingConfiguration?.Variables?.TryGetValue(Name, out layout) == true;
         }
 
 

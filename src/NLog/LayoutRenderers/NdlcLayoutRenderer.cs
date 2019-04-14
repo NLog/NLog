@@ -82,7 +82,7 @@ namespace NLog.LayoutRenderers
         {
             if (TopFrames == 1)
             {
-                // Allows fast rendering of ${ndlc:topframes=1}
+                // Allows fast rendering of topframes=1
                 var topFrame = NestedDiagnosticsLogicalContext.PeekObject();
                 if (topFrame != null)
                     AppendAsString(topFrame, GetFormatProvider(logEvent), builder);
