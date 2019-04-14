@@ -7,12 +7,12 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=ncloc)](https://sonarcloud.io/dashboard/?id=nlog) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=bugs)](https://sonarcloud.io/dashboard/?id=nlog) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=vulnerabilities)](https://sonarcloud.io/dashboard/?id=nlog) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=code_smells)](https://sonarcloud.io/project/issues?id=nlog&resolved=false&types=CODE_SMELL) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=duplicated_lines_density)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=sqale_debt_ratio)](https://sonarcloud.io/dashboard/?id=nlog) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=ncloc&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=bugs&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=vulnerabilities&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=code_smells&branch=dev)](https://sonarcloud.io/project/issues?id=nlog&resolved=false&types=CODE_SMELL&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=duplicated_lines_density&branch=dev)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=sqale_debt_ratio&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
 [![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=dev)](https://codecov.io/github/NLog/NLog?branch=dev)
 
 <!--
