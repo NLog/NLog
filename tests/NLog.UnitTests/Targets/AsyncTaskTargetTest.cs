@@ -106,24 +106,35 @@ namespace NLog.UnitTests.Targets
         {
             ILogger logger = LogManager.GetCurrentClassLogger();
 
-            var asyncTarget = new AsyncTaskTestTarget { Layout = "${threadid}|${level}|${message}" };
+            var asyncTarget = new AsyncTaskTestTarget { Layout = "${threadid}|${level}|${message}|${mdlc:item=Test}" };
 
             SimpleConfigurator.ConfigureForTargetLogging(asyncTarget, LogLevel.Trace);
             NLog.Common.InternalLogger.LogLevel = LogLevel.Off;
 
-            logger.Trace("TTT");
-            logger.Debug("DDD");
-            logger.Info("III");
-            logger.Warn("WWW");
-            logger.Error("EEE");
-            logger.Fatal("FFF");
+            int managedThreadId = 0;
+            Task task;
+            using (MappedDiagnosticsLogicalContext.SetScoped("Test", 42))
+            {
+                task = Task.Run(() =>
+                {
+                    managedThreadId = Thread.CurrentThread.ManagedThreadId;
+                    logger.Trace("TTT");
+                    logger.Debug("DDD");
+                    logger.Info("III");
+                    logger.Warn("WWW");
+                    logger.Error("EEE");
+                    logger.Fatal("FFF");
+                });
+            }
             Assert.True(asyncTarget.WaitForWriteEvent());
             Assert.NotEmpty(asyncTarget.Logs);
+            task.Wait();
             LogManager.Flush();
-            Assert.True(asyncTarget.Logs.Count == 6);
+            Assert.Equal(6, asyncTarget.Logs.Count);
             while (asyncTarget.Logs.TryDequeue(out var logEventMessage))
             {
-                Assert.Equal(0, logEventMessage.IndexOf(Thread.CurrentThread.ManagedThreadId.ToString() + "|"));
+                Assert.Equal(0, logEventMessage.IndexOf(managedThreadId.ToString() + "|"));
+                Assert.EndsWith("|42", logEventMessage);
             }
 
             LogManager.Configuration = null;
