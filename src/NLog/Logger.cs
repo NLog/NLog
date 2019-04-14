@@ -68,34 +68,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Creates new logger that automatically appends the specified property to all log events
-        /// </summary>
-        /// <param name="propertyKey">Property Name</param>
-        /// <param name="propertyValue">Property Value</param>
-        /// <returns>New Logger that automatically appends specified property</returns>
-        public Logger WithProperty(string propertyKey, object propertyValue)
-        {
-            if (string.IsNullOrEmpty(propertyKey))
-                throw new ArgumentException(nameof(propertyKey));
-
-            Logger newLogger = Factory.CreateNewLogger(GetType()) ?? new Logger();
-            newLogger.Initialize(Name, _configuration, Factory);
-            var contextProperties = _contextProperties != null
-                ? new Dictionary<string, object>(_contextProperties)
-                : new Dictionary<string, object>();
-            contextProperties[propertyKey] = propertyValue;
-            newLogger._contextProperties = contextProperties;
-            newLogger._contextLogger = _contextLogger;
-            newLogger._isTraceEnabled = true;
-            newLogger._isDebugEnabled = true;
-            newLogger._isInfoEnabled = true;
-            newLogger._isWarnEnabled = true;
-            newLogger._isErrorEnabled = true;
-            newLogger._isFatalEnabled = true;
-            return newLogger;
-        }
-
-        /// <summary>
         /// Occurs when logger configuration changes.
         /// </summary>
         public event EventHandler<EventArgs> LoggerReconfigured;
@@ -123,6 +95,58 @@ namespace NLog
             }
 
             return GetTargetsForLevel(level) != null;
+        }
+
+        /// <summary>
+        /// Creates new logger that automatically appends the specified property to all log events (without changing current logger)
+        /// </summary>
+        /// <param name="propertyKey">Property Name</param>
+        /// <param name="propertyValue">Property Value</param>
+        /// <returns>New Logger object that automatically appends specified property</returns>
+        public Logger WithProperty(string propertyKey, object propertyValue)
+        {
+            if (string.IsNullOrEmpty(propertyKey))
+                throw new ArgumentException(nameof(propertyKey));
+
+            Logger newLogger = Factory.CreateNewLogger(GetType()) ?? new Logger();
+            newLogger.Initialize(Name, _configuration, Factory);
+            var contextProperties = _contextProperties != null
+                ? new Dictionary<string, object>(_contextProperties)
+                : new Dictionary<string, object>();
+            contextProperties[propertyKey] = propertyValue;
+            newLogger._contextProperties = contextProperties;
+            newLogger._contextLogger = _contextLogger;
+            newLogger._isTraceEnabled = true;
+            newLogger._isDebugEnabled = true;
+            newLogger._isInfoEnabled = true;
+            newLogger._isWarnEnabled = true;
+            newLogger._isErrorEnabled = true;
+            newLogger._isFatalEnabled = true;
+            return newLogger;
+        }
+
+        /// <summary>
+        /// Updates the specified context property for the current logger. The logger will append it for all log events
+        /// </summary>
+        /// <remarks>
+        /// Will affect all locations/contexts that makes use of the same named logger object.
+        /// </remarks>
+        /// <param name="propertyKey">Property Name</param>
+        /// <param name="propertyValue">Property Value</param>
+        public void SetProperty(string propertyKey, object propertyValue)
+        {
+            if (string.IsNullOrEmpty(propertyKey))
+                throw new ArgumentException(nameof(propertyKey));
+
+            var currentProperties = _contextProperties;
+            var contextProperties = new Dictionary<string, object>((currentProperties?.Count ?? 0) + 1);
+            if (currentProperties != null)
+            {
+                foreach (var property in currentProperties)
+                    contextProperties[property.Key] = property.Value;
+            }
+            contextProperties[propertyKey] = propertyValue;
+            _contextProperties = contextProperties;
         }
 
         /// <summary>
