@@ -50,7 +50,7 @@ namespace NLog.Targets
         /// <docgen category='Layout Options' order='1' />
         public sealed override Layout Layout
         {
-            get { return _contextLayout; }
+            get => _contextLayout;
             set
             {
                 if (_contextLayout != null)
@@ -172,21 +172,15 @@ namespace NLog.Targets
             }
 
 #if !SILVERLIGHT
-            if (IncludeMdlc)
+            if (IncludeMdlc && !CombineProperties(logEvent, _contextLayout.MdlcLayout, ref combinedProperties))
             {
-                if (!CombineProperties(logEvent, _contextLayout.MdlcLayout, ref combinedProperties))
-                {
-                    combinedProperties = CaptureContextMdlc(logEvent, combinedProperties);
-                }
+                combinedProperties = CaptureContextMdlc(logEvent, combinedProperties);
             }
 #endif
 
-            if (IncludeMdc)
+            if (IncludeMdc && !CombineProperties(logEvent, _contextLayout.MdcLayout, ref combinedProperties))
             {
-                if (!CombineProperties(logEvent, _contextLayout.MdcLayout, ref combinedProperties))
-                {
-                    combinedProperties = CaptureContextMdc(logEvent, combinedProperties);
-                }
+                combinedProperties = CaptureContextMdc(logEvent, combinedProperties);
             }
 
             if (IncludeGdc)
@@ -267,8 +261,7 @@ namespace NLog.Targets
                 return false;
             }
 
-            var contextProperties = value as IDictionary<string, object>;
-            if (contextProperties != null)
+            if (value is IDictionary<string, object> contextProperties)
             {
                 if (combinedProperties != null)
                 {

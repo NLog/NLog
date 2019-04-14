@@ -83,7 +83,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (!string.IsNullOrEmpty(text))
             {
-                UrlHelper.EscapeEncodingFlag encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, SpaceAsPlus, EscapeDataRfc3986);
+                UrlHelper.EscapeEncodingFlags encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, SpaceAsPlus, EscapeDataRfc3986);
                 System.Text.StringBuilder sb = new System.Text.StringBuilder(text.Length + 20);
                 UrlHelper.EscapeDataEncode(text, sb, encodingFlags);
                 return sb.ToString();

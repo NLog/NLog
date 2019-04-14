@@ -218,13 +218,10 @@ namespace NLog.Targets.Wrappers
             }
             else
             {
-                if (FlushTimeout > 0)
+                if (FlushTimeout > 0 && (SlidingTimeout || count == 1))
                 {
                     // reset the timer on first item added to the buffer or whenever SlidingTimeout is set to true
-                    if (SlidingTimeout || count == 1)
-                    {
-                        _flushTimer.Change(FlushTimeout, -1);
-                    }
+                    _flushTimer.Change(FlushTimeout, -1);
                 }
             }
         }

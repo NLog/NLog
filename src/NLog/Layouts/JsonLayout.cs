@@ -80,9 +80,9 @@ namespace NLog.Layouts
                     return _converter.SerializeObject(value, builder);
             }
 
-            public bool SerializeObjectNoLimit(object value, StringBuilder builder)
+            public void SerializeObjectNoLimit(object value, StringBuilder builder)
             {
-                return _converter.SerializeObject(value, builder);
+                _converter.SerializeObject(value, builder);
             }
         }
 

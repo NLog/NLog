@@ -69,8 +69,7 @@ namespace NLog.Internal
             foreach (var input in inputs)
             {
                 var keyValue = keySelector(input);
-                List<TValue> eventsInBucket;
-                if (!buckets.TryGetValue(keyValue, out eventsInBucket))
+                if (!buckets.TryGetValue(keyValue, out var eventsInBucket))
                 {
                     eventsInBucket = new List<TValue>();
                     buckets.Add(keyValue, eventsInBucket);
@@ -126,22 +125,12 @@ namespace NLog.Internal
                     if (!keyComparer.Equals(singleBucketKey, keyValue))
                     {
                         // Multiple buckets needed, allocate full dictionary
-                        buckets = new Dictionary<TKey, IList<TValue>>(keyComparer);
-                        var bucket = new List<TValue>(i);
-                        for (int j = 0; j < i; j++)
-                        {
-                            bucket.Add(inputs[j]);
-                        }
-                        buckets[singleBucketKey] = bucket;
-                        bucket = new List<TValue>();
-                        bucket.Add(inputs[i]);
-                        buckets[keyValue] = bucket;
+                        buckets = CreateBucketDictionaryWithValue(inputs, keyComparer, i, singleBucketKey, keyValue);
                     }
                 }
                 else
                 {
-                    IList<TValue> eventsInBucket;
-                    if (!buckets.TryGetValue(keyValue, out eventsInBucket))
+                    if (!buckets.TryGetValue(keyValue, out var eventsInBucket))
                     {
                         eventsInBucket = new List<TValue>();
                         buckets.Add(keyValue, eventsInBucket);
@@ -158,6 +147,21 @@ namespace NLog.Internal
             {
                 return new ReadOnlySingleBucketDictionary<TKey, IList<TValue>>(new KeyValuePair<TKey, IList<TValue>>(singleBucketKey, inputs), keyComparer);
             }
+        }
+
+        private static Dictionary<TKey, IList<TValue>> CreateBucketDictionaryWithValue<TValue, TKey>(IList<TValue> inputs, IEqualityComparer<TKey> keyComparer, int currentIndex, TKey singleBucketKey, TKey keyValue)
+        {
+            var buckets = new Dictionary<TKey, IList<TValue>>(keyComparer);
+            var bucket = new List<TValue>(currentIndex);
+            for (int i = 0; i < currentIndex; i++)
+            {
+                bucket.Add(inputs[i]);
+            }
+
+            buckets[singleBucketKey] = bucket;
+            bucket = new List<TValue> {inputs[currentIndex]};
+            buckets[keyValue] = bucket;
+            return buckets;
         }
 
         /// <summary>

@@ -138,11 +138,67 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            ConditionExpression resultFilter = null;
+
 
             InternalLogger.Trace("PostFilteringWrapper(Name={0}): Running on {1} events", Name, logEvents.Count);
 
-            // evaluate all the rules to get the filtering condition
+            var resultFilter = EvaluateAllRules(logEvents) ?? DefaultFilter;
+
+            if (resultFilter == null)
+            {
+                WrappedTarget.WriteAsyncLogEvents(logEvents);
+            }
+            else
+            {
+                InternalLogger.Trace("PostFilteringWrapper(Name={0}): Filter to apply: {1}", Name, resultFilter);
+
+                var resultBuffer = ApplyFilter(logEvents, resultFilter);
+
+                InternalLogger.Trace("PostFilteringWrapper(Name={0}): After filtering: {1} events.", Name, resultBuffer.Count);
+                if (resultBuffer.Count > 0)
+                {
+                    InternalLogger.Trace("PostFilteringWrapper(Name={0}): Sending to {1}", Name, WrappedTarget);
+                    WrappedTarget.WriteAsyncLogEvents(resultBuffer);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Apply the condition to the buffer
+        /// </summary>
+        /// <param name="logEvents"></param>
+        /// <param name="resultFilter"></param>
+        /// <returns></returns>
+        private static List<AsyncLogEventInfo> ApplyFilter(IList<AsyncLogEventInfo> logEvents, ConditionExpression resultFilter)
+        {
+            var resultBuffer = new List<AsyncLogEventInfo>();
+
+            for (int i = 0; i < logEvents.Count; ++i)
+            {
+                object v = resultFilter.Evaluate(logEvents[i].LogEvent);
+                if (boxedTrue.Equals(v))
+                {
+                    resultBuffer.Add(logEvents[i]);
+                }
+                else
+                {
+                    // anything not passed down will be notified about successful completion
+                    logEvents[i].Continuation(null);
+                }
+            }
+
+            return resultBuffer;
+        }
+
+        /// <summary>
+        /// Evaluate all the rules to get the filtering condition
+        /// </summary>
+        /// <param name="logEvents"></param>
+        /// <returns></returns>
+        private ConditionExpression EvaluateAllRules(IList<AsyncLogEventInfo> logEvents)
+        {
+            ConditionExpression resultFilter = null;
+            
             for (int i = 0; i < logEvents.Count; ++i)
             {
                 foreach (FilteringRule rule in Rules)
@@ -164,43 +220,7 @@ namespace NLog.Targets.Wrappers
                 }
             }
 
-            if (resultFilter == null)
-            {
-                resultFilter = DefaultFilter;
-            }
-
-            if (resultFilter == null)
-            {
-                WrappedTarget.WriteAsyncLogEvents(logEvents);
-            }
-            else
-            {
-                InternalLogger.Trace("PostFilteringWrapper(Name={0}): Filter to apply: {1}", Name, resultFilter);
-
-                // apply the condition to the buffer
-                var resultBuffer = new List<AsyncLogEventInfo>();
-
-                for (int i = 0; i < logEvents.Count; ++i)
-                {
-                    object v = resultFilter.Evaluate(logEvents[i].LogEvent);
-                    if (boxedTrue.Equals(v))
-                    {
-                        resultBuffer.Add(logEvents[i]);
-                    }
-                    else
-                    {
-                        // anything not passed down will be notified about successful completion
-                        logEvents[i].Continuation(null);
-                    }
-                }
-
-                InternalLogger.Trace("PostFilteringWrapper(Name={0}): After filtering: {1} events.", Name, resultBuffer.Count);
-                if (resultBuffer.Count > 0)
-                {
-                    InternalLogger.Trace("PostFilteringWrapper(Name={0}): Sending to {1}", Name, WrappedTarget);
-                    WrappedTarget.WriteAsyncLogEvents(resultBuffer);
-                }
-            }
+            return resultFilter;
         }
     }
 }

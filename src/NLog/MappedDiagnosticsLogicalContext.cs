@@ -51,7 +51,7 @@ namespace NLog
     /// </remarks>
     public static class MappedDiagnosticsLogicalContext
     {
-        private class ItemRemover : IDisposable
+        private sealed class ItemRemover : IDisposable
         {
             private readonly string _item1;
 #if NET4_5
