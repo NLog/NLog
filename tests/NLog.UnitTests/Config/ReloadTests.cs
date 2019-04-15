@@ -700,7 +700,7 @@ namespace NLog.UnitTests.Config
         private string _configXml;
         private LogFactory _logFactory;
 
-        private XmlLoggingConfigurationMock(LogFactory logFactory, string configXml) : base(XmlReader.Create(new StringReader(configXml)), null, logFactory)
+        private XmlLoggingConfigurationMock(LogFactory logFactory, string configXml) : base(configXml, null, false, logFactory)
         {
             _logFactory = logFactory;
             _configXml = configXml;

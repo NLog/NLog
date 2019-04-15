@@ -191,15 +191,8 @@ namespace NLog.Config
         private LoggingConfiguration LoadXmlLoggingConfigurationFile(LogFactory logFactory, string configFile)
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
-            using (var xmlReader = _appEnvironment.LoadXmlFile(configFile))
-            {
-                return LoadXmlLoggingConfiguration(xmlReader, configFile, logFactory);
-            }
-        }
+            var xmlConfig = new XmlLoggingConfiguration(configFile, logFactory);
 
-        private LoggingConfiguration LoadXmlLoggingConfiguration(XmlReader xmlReader, string configFile, LogFactory logFactory)
-        {
-            var xmlConfig = new XmlLoggingConfiguration(xmlReader, configFile, logFactory);
             //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
             //therefor we check the InitializeSucceeded property.
             if (xmlConfig.InitializeSucceeded != true)

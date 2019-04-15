@@ -195,7 +195,19 @@ namespace NLog.Config
         /// <param name="fileName">Name of the XML file.</param>
         /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
         internal XmlLoggingConfiguration(string xmlContents, string fileName, bool ignoreErrors)
-            : base(LogManager.LogFactory)
+            : this(xmlContents, fileName, ignoreErrors, LogManager.LogFactory)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="xmlContents">The XML contents.</param>
+        /// <param name="fileName">Name of the XML file.</param>
+        /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
+        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        internal XmlLoggingConfiguration(string xmlContents, string fileName, bool ignoreErrors, LogFactory logFactory)
+            : base(logFactory)
         {
             Initialize(new XmlStringConfigurationSource(xmlContents, fileName), ignoreErrors);
         }
@@ -208,6 +220,16 @@ namespace NLog.Config
         public static XmlLoggingConfiguration CreateFromXmlString(string xml)
         {
             return new XmlLoggingConfiguration(xml, null, false);
+        }
+        /// <summary>
+        /// Parse XML string as NLog configuration
+        /// </summary>
+        /// <param name="xml">NLog configuration</param>
+        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        /// <returns></returns>
+        public static XmlLoggingConfiguration CreateFromXmlString(string xml, LogFactory logFactory)
+        {
+            return new XmlLoggingConfiguration(xml, null, false, logFactory);
         }
 #endif
 
