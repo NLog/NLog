@@ -68,11 +68,12 @@ namespace NLog.Config
 #endif
 
 
+        //TODO: Replace with List<IXmlConfigurationSource> _currentConfigurations...
         private readonly HashSet<IXmlConfigurationSource> _configMustAutoReloadLookup = new HashSet<IXmlConfigurationSource>();
 
-        private string _originalFileName;
+        private IXmlConfigurationSource _rootConfigurationSource;
 
-        private readonly Stack<IXmlConfigurationSource> _currentFilePath = new Stack<IXmlConfigurationSource>();
+        private readonly Stack<IXmlConfigurationSource> _currentConfigurationSource = new Stack<IXmlConfigurationSource>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
@@ -110,32 +111,6 @@ namespace NLog.Config
             : base(logFactory)
         {
             Initialize(new XmlFileConfigurationSource(fileName), ignoreErrors);
-        }
-
-        /// <summary>
-        /// Create XML reader for (xml config) file.
-        /// </summary>
-        /// <param name="fileName">filepath</param>
-        /// <returns>reader or <c>null</c> if filename is empty.</returns>
-        private static XmlReader CreateFileReader(string fileName)
-        {
-
-            if (!string.IsNullOrEmpty(fileName))
-            {
-                fileName = fileName.Trim();
-#if __ANDROID__
-                //suport loading config from special assets folder in nlog.config
-                if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
-                {
-                    //remove prefix
-                    fileName = fileName.Substring(AssetsPrefix.Length);
-                    Stream stream = Android.App.Application.Context.Assets.Open(fileName);
-                    return XmlReader.Create(stream);
-                }
-#endif
-                return XmlReader.Create(fileName);
-            }
-            return null;
         }
 
         /// <summary>
@@ -178,6 +153,17 @@ namespace NLog.Config
             : base(logFactory)
         {
             Initialize(new XmlReaderConfigurationSource(reader, fileName), ignoreErrors);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="configurationSource">An already established <see cref="IXmlConfigurationSource"/> containing the location of the configuration data.</param>
+        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
+        internal XmlLoggingConfiguration(IXmlConfigurationSource configurationSource, bool ignoreErrors)
+            : base(LogManager.LogFactory)
+        {
+            Initialize(configurationSource, ignoreErrors);
         }
 
 #if !SILVERLIGHT
@@ -249,6 +235,7 @@ namespace NLog.Config
         /// Gets or sets a value indicating whether all of the configuration files
         /// should be watched for changes and reloaded automatically when changed.
         /// </summary>
+        //TODO: Modify setter to update IXmlConfigurationSource.AutoReload
         public bool AutoReload
         {
             get
@@ -270,6 +257,7 @@ namespace NLog.Config
         /// This is the list of configuration files processed.
         /// If the <c>autoReload</c> attribute is not set it returns empty collection.
         /// </summary>
+        //TODO: Will be moved to XmlConfigurationSource in future commit...
         public override IEnumerable<string> FileNamesToWatch
         {
             get
@@ -284,8 +272,8 @@ namespace NLog.Config
         /// <returns>The new <see cref="XmlLoggingConfiguration" /> object.</returns>
         public override LoggingConfiguration Reload()
         {
-            if (!string.IsNullOrEmpty(_originalFileName))
-                return new XmlLoggingConfiguration(_originalFileName);
+            if (_rootConfigurationSource != null)
+                return new XmlLoggingConfiguration(_rootConfigurationSource, false);
             else
                 return base.Reload();
         }
@@ -294,6 +282,7 @@ namespace NLog.Config
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
         /// <returns>The filepaths to the possible config file</returns>
+        //TODO: Determine if this is moved or not.  It is a public static and tested method. THis will be a breaking change.
         public static IEnumerable<string> GetCandidateConfigFilePaths()
         {
             return LogManager.LogFactory.GetCandidateConfigFilePaths();
@@ -303,6 +292,7 @@ namespace NLog.Config
         /// Overwrite the paths (including filename) for the possible NLog config files.
         /// </summary>
         /// <param name="filePaths">The filepaths to the possible config file</param>
+        //TODO: Determine if this is moved or not.  It is a public static and tested method. THis will be a breaking change.
         public static void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             LogManager.LogFactory.SetCandidateConfigFilePaths(filePaths);
@@ -311,6 +301,7 @@ namespace NLog.Config
         /// <summary>
         /// Clear the candidate file paths and return to the defaults.
         /// </summary>
+        //TODO: Determine if this is moved or not.  It is a public static and tested method. THis will be a breaking change.
         public static void ResetCandidateConfigFilePath()
         {
             LogManager.LogFactory.ResetCandidateConfigFilePath();
@@ -326,8 +317,8 @@ namespace NLog.Config
             try
             {
                 InitializeSucceeded = null;
-                if (_originalFileName == null)
-                    _originalFileName = source.SourcePath;
+                if (_rootConfigurationSource == null)
+                    _rootConfigurationSource = source;
 
                 using (var reader = source.GetReader())
                 {
@@ -336,7 +327,8 @@ namespace NLog.Config
 
                     if (!string.IsNullOrEmpty(source.SourcePath))
                         InternalLogger.Info("Configuring from an XML element in {0}...", source.SourcePath);
-                    ParseTopLevel(content, source, autoReloadDefault: false);
+						
+                    ParseTopLevel(content, source);
 
                     InitializeSucceeded = true;
                     CheckParsingErrors(content);
@@ -390,35 +382,22 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a file with configuration. Check if not already included.
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <param name="autoReloadDefault"></param>
-        private void ConfigureFromFile(string fileName, bool autoReloadDefault)
-        {
-            var config = new XmlFileConfigurationSource(fileName, autoReloadDefault);
-            if (!_configMustAutoReloadLookup.Contains(config))
-                ParseTopLevel(new NLogXmlElement(fileName), config, autoReloadDefault);
-        }
-
-        /// <summary>
         /// Parse the root
         /// </summary>
         /// <param name="content"></param>
-        /// <param name="config">path to config file.</param>
-        /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseTopLevel(NLogXmlElement content, IXmlConfigurationSource config, bool autoReloadDefault)
+        /// <param name="config">source to locate the configuration data.</param>
+        private void ParseTopLevel(NLogXmlElement content, IXmlConfigurationSource config)
         {
             content.AssertName("nlog", "configuration");
 
             switch (content.LocalName.ToUpperInvariant())
             {
                 case "CONFIGURATION":
-                    ParseConfigurationElement(content, config, autoReloadDefault);
+                    ParseConfigurationElement(content, config);
                     break;
 
                 case "NLOG":
-                    ParseNLogElement(content, config, autoReloadDefault);
+                    ParseNLogElement(content, config);
                     break;
             }
         }
@@ -427,9 +406,8 @@ namespace NLog.Config
         /// Parse {configuration} xml element.
         /// </summary>
         /// <param name="configurationElement"></param>
-        /// <param name="config">path to config file.</param>
-        /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseConfigurationElement(NLogXmlElement configurationElement, IXmlConfigurationSource config, bool autoReloadDefault)
+        /// <param name="config">source to locate the configuration data.</param>
+        private void ParseConfigurationElement(NLogXmlElement configurationElement, IXmlConfigurationSource config)
         {
             InternalLogger.Trace("ParseConfigurationElement");
             configurationElement.AssertName("configuration");
@@ -437,7 +415,7 @@ namespace NLog.Config
             var nlogElements = configurationElement.Elements("nlog").ToList();
             foreach (var nlogElement in nlogElements)
             {
-                ParseNLogElement(nlogElement, config, autoReloadDefault);
+                ParseNLogElement(nlogElement, config);
             }
         }
 
@@ -445,23 +423,23 @@ namespace NLog.Config
         /// Parse {NLog} xml element.
         /// </summary>
         /// <param name="nlogElement"></param>
-        /// <param name="config">path to config file.</param>
-        /// <param name="autoReloadDefault">The default value for the autoReload option.</param>
-        private void ParseNLogElement(ILoggingConfigurationElement nlogElement, IXmlConfigurationSource config, bool autoReloadDefault)
+        /// <param name="config">source to locate the configuration data.</param>
+        private void ParseNLogElement(ILoggingConfigurationElement nlogElement, IXmlConfigurationSource config)
         {
             InternalLogger.Trace("ParseNLogElement");
             nlogElement.AssertName("nlog");
 
-            config.AutoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);
+            config.AutoReload = nlogElement.GetOptionalBooleanValue("autoReload", config.AutoReload);
             _configMustAutoReloadLookup.Add(config);
+			
             try
             {
-                _currentFilePath.Push(config);
+                _currentConfigurationSource.Push(config);
                 base.LoadConfig(nlogElement, config.LocalFolder);
             }
             finally
             {
-                _currentFilePath.Pop();
+                _currentConfigurationSource.Pop();
             }
         }
 
@@ -474,9 +452,8 @@ namespace NLog.Config
         {
             if (configSection.MatchesName("include"))
             {
-                var parentConfiguration = _currentFilePath.Peek();
-                var autoLoad = parentConfiguration?.AutoReload ?? false;
-                ParseIncludeElement(configSection, parentConfiguration?.LocalFolder, autoLoad);
+                var parentConfiguration = _currentConfigurationSource.Peek();
+                ParseIncludeElement(configSection, parentConfiguration);
                 return true;
             }
             else
@@ -485,27 +462,59 @@ namespace NLog.Config
             }
         }
 
-        private void ParseIncludeElement(ILoggingConfigurationElement includeElement, string baseDirectory, bool autoReloadDefault)
+        private void ParseIncludeElement(ILoggingConfigurationElement includeElement, IXmlConfigurationSource parentConfiguration)
         {
             includeElement.AssertName("include");
 
-            var newFileName = includeElement.GetOptionalValue("file", null);
-            var uri = includeElement.GetOptionalValue("uri", null);
 
             var ignoreErrors = includeElement.GetOptionalBooleanValue("ignoreErrors", false);
 
+
+            var includedConfigurations = Enumerable.Empty<IXmlConfigurationSource>();
+            var includedFileName = includeElement.GetOptionalValue("file", null);
+            if (!string.IsNullOrEmpty(includedFileName))
+            {
+                //TODO: Maybe move this?  The only reason I left these two lines here is because the expansion is done in the base class...
+                includedFileName = ExpandSimpleVariables(includedFileName);
+                includedFileName = SimpleLayout.Evaluate(includedFileName);
+
+                var configurationsToAdd = XmlFileConfigurationSource.IncludeFromPath(includedFileName, parentConfiguration, ignoreErrors);
+                if(configurationsToAdd != null)
+                    includedConfigurations = includedConfigurations.Union(configurationsToAdd);
+            }
+
+            //var includedUri = includeElement.GetOptionalValue("uri", null);
+            //if (!string.IsNullOrEmpty(includedUri))
+            //{
+            //    includedUri = ExpandSimpleVariables(includedUri);
+            //    includedUri = SimpleLayout.Evaluate(includedUri);
+            //    includedConfigurations = includedConfigurations.Union(XmlRemoteConfigurationSource.IncludeFromUri(includedUri, parentConfiguration, ignoreErrors));
+            //}
+
+            foreach (var configuration in includedConfigurations)
+            {
+                TryLoadConfigurationFromSource(configuration, ignoreErrors);
+            }
+        }
+
+        private void TryLoadConfigurationFromSource(IXmlConfigurationSource configuration, bool ignoreErrors)
+        {
+            if (_configMustAutoReloadLookup.Contains(configuration))
+                return;
+
             try
             {
-                if (!string.IsNullOrEmpty(newFileName))
-                    IncludeFile(baseDirectory, autoReloadDefault, ignoreErrors, ref newFileName);
+                using (var reader = configuration.GetReader())
+                {
+                    reader.MoveToContent();
+                    var content = new NLogXmlElement(reader);
 
-                //if (!string.IsNullOrEmpty(uri))
-                //    IncludeUri(uri, autoReloadDefault);
-
+                    ParseTopLevel(content, configuration);
+                }
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "Error when including '{0}'.", newFileName);
+                InternalLogger.Error(exception, "Error when including '{0}'.", configuration.SourcePath);
 
                 if (ignoreErrors)
                 {
@@ -517,92 +526,7 @@ namespace NLog.Config
                     throw;
                 }
 
-                throw new NLogConfigurationException("Error when including: " + newFileName, exception);
-            }
-        }
-
-        private void IncludeFile(string baseDirectory, bool autoReloadDefault, bool ignoreErrors, ref string newFileName)
-        {
-            newFileName = ExpandSimpleVariables(newFileName);
-            newFileName = SimpleLayout.Evaluate(newFileName);
-            var fullNewFileName = newFileName;
-            if (baseDirectory != null)
-            {
-                fullNewFileName = Path.Combine(baseDirectory, newFileName);
-            }
-
-#if SILVERLIGHT && !WINDOWS_PHONE
-                newFileName = newFileName.Replace("\\", "/");
-                if (Application.GetResourceStream(new Uri(fullNewFileName, UriKind.Relative)) != null)
-#else
-            if (File.Exists(fullNewFileName))
-#endif
-            {
-                InternalLogger.Debug("Including file '{0}'", fullNewFileName);
-                ConfigureFromFile(fullNewFileName, autoReloadDefault);
-            }
-            else
-            {
-                //is mask?
-
-                if (newFileName.Contains("*"))
-                {
-                    ConfigureFromFilesByMask(baseDirectory, newFileName, autoReloadDefault);
-                }
-                else
-                {
-                    if (ignoreErrors)
-                    {
-                        //quick stop for performances
-                        InternalLogger.Debug("Skipping included file '{0}' as it can't be found", fullNewFileName);
-                        return;
-                    }
-
-                    throw new FileNotFoundException("Included file not found: " + fullNewFileName);
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// Include (multiple) files by filemask, e.g. *.nlog
-        /// </summary>
-        /// <param name="baseDirectory">base directory in case if <paramref name="fileMask"/> is relative</param>
-        /// <param name="fileMask">relative or absolute fileMask</param>
-        /// <param name="autoReloadDefault"></param>
-        private void ConfigureFromFilesByMask(string baseDirectory, string fileMask, bool autoReloadDefault)
-        {
-            var directory = baseDirectory;
-
-            //if absolute, split to filemask and directory.
-            if (Path.IsPathRooted(fileMask))
-            {
-                directory = Path.GetDirectoryName(fileMask);
-                if (directory == null)
-                {
-                    InternalLogger.Warn("directory is empty for include of '{0}'", fileMask);
-                    return;
-                }
-
-                var filename = Path.GetFileName(fileMask);
-
-                if (filename == null)
-                {
-                    InternalLogger.Warn("filename is empty for include of '{0}'", fileMask);
-                    return;
-                }
-                fileMask = filename;
-            }
-
-#if SILVERLIGHT && !WINDOWS_PHONE
-            var files = Directory.EnumerateFiles(directory, fileMask);
-#else
-            var files = Directory.GetFiles(directory, fileMask);
-#endif
-            foreach (var file in files)
-            {
-                //note we exclude ourself in ConfigureFromFile
-                ConfigureFromFile(file, autoReloadDefault);
+                throw new NLogConfigurationException("Error when including: " + configuration.SourcePath, exception);
             }
         }
     }
