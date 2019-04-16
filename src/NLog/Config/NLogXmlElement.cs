@@ -239,14 +239,9 @@ namespace NLog.Config
             {
                 do
                 {
-                    if (!nestedElement)
+                    if (!nestedElement && IsSpecialXmlAttribute(reader))
                     {
-                        if (reader.LocalName?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
-                            continue;
-                        if (reader.Prefix?.Equals("xsi", StringComparison.OrdinalIgnoreCase) == true)
-                            continue;
-                        if (reader.Prefix?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
-                            continue;
+                        continue;
                     }
 
                     if (!AttributeValues.ContainsKey(reader.LocalName))
@@ -262,6 +257,20 @@ namespace NLog.Config
                 while (reader.MoveToNextAttribute());
                 reader.MoveToElement();
             }
+        }
+
+        /// <summary>
+        /// Special attribute we could ignore
+        /// </summary>
+        private static bool IsSpecialXmlAttribute(XmlReader reader)
+        {
+            if (reader.LocalName?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
+                return true;
+            if (reader.Prefix?.Equals("xsi", StringComparison.OrdinalIgnoreCase) == true)
+                return true;
+            if (reader.Prefix?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
+                return true;
+            return false;
         }
     }
 }
