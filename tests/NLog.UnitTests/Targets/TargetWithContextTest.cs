@@ -46,13 +46,15 @@ namespace NLog.UnitTests.Targets
     {
         public class CustomTargetWithContext : TargetWithContext
         {
+            public bool SkipAssert { get; set; }
+
             public class CustomTargetPropertyWithContext : TargetPropertyWithContext
             {
                 public string Hello { get; set; }
             }
 
             [NLog.Config.ArrayParameter(typeof(CustomTargetPropertyWithContext), "contextproperty")]
-            public override IList<TargetPropertyWithContext> ContextProperties { get;  }
+            public override IList<TargetPropertyWithContext> ContextProperties { get; }
 
             public CustomTargetWithContext()
             {
@@ -64,9 +66,13 @@ namespace NLog.UnitTests.Targets
 
             protected override void Write(LogEventInfo logEvent)
             {
-                var test = MappedDiagnosticsLogicalContext.GetNames();
-                Assert.Empty(test);
-                Assert.True(logEvent.HasStackTrace);
+                if (!SkipAssert)
+                {
+                    var test = MappedDiagnosticsLogicalContext.GetNames();
+                    Assert.Empty(test);
+                    Assert.True(logEvent.HasStackTrace);
+                }
+
                 LastCombinedProperties = base.GetAllProperties(logEvent);
                 LastMessage = base.RenderLogEvent(Layout, logEvent);
             }
@@ -102,14 +108,7 @@ namespace NLog.UnitTests.Targets
             MappedDiagnosticsLogicalContext.Set("TestKey", "Hello Async World");
             MappedDiagnosticsLogicalContext.Set("AsyncKey", "Hello Async World");
             logger.Debug("log message");
-            System.Threading.Thread.Sleep(1);
-            for (int i = 0; i < 1000; ++i)
-            {
-                if (target.LastMessage != null)
-                    break;
-
-                System.Threading.Thread.Sleep(1);
-            }
+            WaitForLastMessage(target);
 
             Assert.NotEqual(0, target.LastMessage.Length);
             Assert.NotNull(target.LastCombinedProperties);
@@ -122,6 +121,57 @@ namespace NLog.UnitTests.Targets
             Assert.Contains(new KeyValuePair<string, object>("TestKey_1", "Hello Thread World"), target.LastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("TestKey_2", "Hello Global World"), target.LastCombinedProperties);
             Assert.Contains(new KeyValuePair<string, object>("threadid", System.Environment.CurrentManagedThreadId.ToString()), target.LastCombinedProperties);
+        }
+
+        private static void WaitForLastMessage(CustomTargetWithContext target)
+        {
+            System.Threading.Thread.Sleep(1);
+            for (int i = 0; i < 1000; ++i)
+            {
+                if (target.LastMessage != null)
+                    break;
+
+                System.Threading.Thread.Sleep(1);
+            }
+        }
+
+        [Fact]
+        public void TargetWithContextMdcSerializeTest()
+        {
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("TestKey", new { a = "b" });
+
+            CustomTargetWithContext target = new CustomTargetWithContext() { IncludeMdc = true, SkipAssert = true };
+
+            WriteAndAssertSingleKey(target);
+        }
+
+        [Fact]
+        public void TargetWithContextMdlcSerializeTest()
+        {
+            MappedDiagnosticsLogicalContext.Clear();
+            MappedDiagnosticsLogicalContext.Set("TestKey", new { a = "b" });
+
+            CustomTargetWithContext target = new CustomTargetWithContext() { IncludeMdlc = true, SkipAssert = true };
+
+            WriteAndAssertSingleKey(target);
+        }
+
+        private static void WriteAndAssertSingleKey(CustomTargetWithContext target)
+        {
+            AsyncTargetWrapper wrapper = new AsyncTargetWrapper { WrappedTarget = target, TimeToSleepBetweenBatches = 0 };
+
+            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(wrapper, LogLevel.Debug);
+
+            Logger logger = LogManager.GetLogger("Example");
+
+
+            logger.Debug("log message");
+
+            WaitForLastMessage(target);
+
+
+            Assert.Equal("{ a = b }", target.LastCombinedProperties["TestKey"]);
         }
 
         [Fact]

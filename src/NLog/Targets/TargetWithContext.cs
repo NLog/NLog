@@ -473,7 +473,7 @@ namespace NLog.Targets
                 object value = MappedDiagnosticsContext.GetObject(name);
                 if (SerializeMdcItem(logEvent, name, value, out var serializedValue))
                 {
-                    AddContextProperty(logEvent, name, value, checkForDuplicates, contextProperties);
+                    AddContextProperty(logEvent, name, serializedValue, checkForDuplicates, contextProperties);
                 }
             }
             return contextProperties;
@@ -518,7 +518,7 @@ namespace NLog.Targets
                 object value = MappedDiagnosticsLogicalContext.GetObject(name);
                 if (SerializeMdlcItem(logEvent, name, value, out var serializedValue))
                 {
-                    AddContextProperty(logEvent, name, value, checkForDuplicates, contextProperties);
+                    AddContextProperty(logEvent, name, serializedValue, checkForDuplicates, contextProperties);
                 }
             }
             return contextProperties;
