@@ -214,7 +214,19 @@ namespace NLog.Internal
             {
                 readonly public string Name;
                 readonly public object Value;
-                public TypeCode TypeCode => _typecode == TypeCode.Object ? Convert.GetTypeCode(Value) : (Value == null ? TypeCode.Empty : _typecode);
+                public TypeCode TypeCode
+                {
+                    get
+                    {
+                        if (_typecode == TypeCode.Object)
+                        {
+                            return Convert.GetTypeCode(Value);
+                        }
+
+                        return Value == null ? TypeCode.Empty : _typecode;
+                    }
+                }
+
                 readonly private TypeCode _typecode;
 
                 public PropertyValue(string name, object value, TypeCode typeCode)

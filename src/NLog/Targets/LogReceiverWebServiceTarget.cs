@@ -258,26 +258,7 @@ namespace NLog.Targets
 
             if (IncludeEventProperties)
             {
-                for (int i = 0; i < logEvents.Count; ++i)
-                {
-                    var ev = logEvents[i].LogEvent;
-
-                    if (ev.HasProperties)
-                    {
-                        // add all event-level property names in 'LayoutNames' collection.
-                        foreach (var prop in ev.Properties)
-                        {
-                            string propName = prop.Key as string;
-                            if (propName != null)
-                            {
-                                if (!networkLogEvents.LayoutNames.Contains(propName))
-                                {
-                                    networkLogEvents.LayoutNames.Add(propName);
-                                }
-                            }
-                        }
-                    }
-                }
+                AddEventProperties(logEvents, networkLogEvents);
             }
 
             networkLogEvents.Events = new NLogEvent[logEvents.Count];
@@ -288,6 +269,26 @@ namespace NLog.Targets
             }
 
             return networkLogEvents;
+        }
+
+        private static void AddEventProperties(IList<AsyncLogEventInfo> logEvents, NLogEvents networkLogEvents)
+        {
+            for (int i = 0; i < logEvents.Count; ++i)
+            {
+                var ev = logEvents[i].LogEvent;
+
+                if (ev.HasProperties)
+                {
+                    // add all event-level property names in 'LayoutNames' collection.
+                    foreach (var prop in ev.Properties)
+                    {
+                        if (prop.Key is string propName && !networkLogEvents.LayoutNames.Contains(propName))
+                        {
+                            networkLogEvents.LayoutNames.Add(propName);
+                        }
+                    }
+                }
+            }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Client is disposed asynchronously.")]

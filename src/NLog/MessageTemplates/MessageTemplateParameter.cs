@@ -87,10 +87,9 @@ namespace NLog.MessageTemplates
                     case "8": return 8;
                     case "9": return 9;
                     default:
-                        if (Name?.Length >= 1 && Name[0] >= '0' && Name[0] <= '9')
+                        if (Name?.Length >= 1 && Name[0] >= '0' && Name[0] <= '9' && int.TryParse(Name, out var parameterIndex))
                         {
-                            if (int.TryParse(Name, out var parameterIndex))
-                                return parameterIndex;
+                            return parameterIndex;
                         }
                         return null;
                 }

@@ -75,12 +75,17 @@ namespace NLog.LayoutRenderers.Wrappers
                 {
                     string str = builder.ToString(orgLength, builder.Length - orgLength);
                     str = str.Replace(newLine, Replacement);
-                    if (newLine != "\n" && !(Replacement?.IndexOf('\n') >= 0) && str.IndexOf('\n') >= 0)
+                    if (newLine != "\n" && !HasUnixNewline(Replacement) && HasUnixNewline(str))
                         str = str.Replace("\n", Replacement);   // Recognize Unix-Newline on Windows-platform
                     builder.Length = orgLength;
                     builder.Append(str);
                 }
             }
+        }
+
+        private static bool HasUnixNewline(string str)
+        {
+            return str != null && str.IndexOf('\n') >= 0;
         }
 
         /// <inheritdoc/>

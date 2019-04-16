@@ -1281,7 +1281,7 @@ namespace NLog.Targets
         private void ArchiveFile(string fileName, string archiveFileName)
         {
             string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
-            if (!Directory.Exists(archiveFolderPath))
+            if (archiveFolderPath != null && !Directory.Exists(archiveFolderPath))
                 Directory.CreateDirectory(archiveFolderPath);
 
             if (string.Equals(fileName, archiveFileName, StringComparison.OrdinalIgnoreCase))
@@ -2160,17 +2160,13 @@ namespace NLog.Targets
         /// <returns>The DateTime of the previous log event for this file (DateTime.MinValue if just initialized).</returns>
         private DateTime InitializeFile(string fileName, LogEventInfo logEvent)
         {
-            if (_initializedFiles.Count != 0 && _previousLogEventTimestamp.HasValue && _previousLogFileName == fileName)
+            if (_initializedFiles.Count != 0 && _previousLogEventTimestamp.HasValue && _previousLogFileName == fileName && logEvent.TimeStamp == _previousLogEventTimestamp.Value)
             {
-                if (logEvent.TimeStamp == _previousLogEventTimestamp.Value)
-                {
-                    return _previousLogEventTimestamp.Value;
-                }
+                return _previousLogEventTimestamp.Value;
             }
 
             var now = logEvent.TimeStamp;
-            DateTime lastTime;
-            if (!_initializedFiles.TryGetValue(fileName, out lastTime))
+            if (!_initializedFiles.TryGetValue(fileName, out var lastTime))
             {
                 ProcessOnStartup(fileName, logEvent);
 
@@ -2214,12 +2210,9 @@ namespace NLog.Targets
         private void WriteFooter(string fileName)
         {
             ArraySegment<byte> footerBytes = GetLayoutBytes(Footer);
-            if (footerBytes.Count > 0)
+            if (footerBytes.Count > 0 && File.Exists(fileName))
             {
-                if (File.Exists(fileName))
-                {
-                    WriteToFile(fileName, footerBytes, false);
-                }
+                WriteToFile(fileName, footerBytes, false);
             }
         }
 
@@ -2258,19 +2251,16 @@ namespace NLog.Targets
             }
 
             string archiveFilePattern = GetArchiveFileNamePattern(fileName, logEvent);
-            if (!string.IsNullOrEmpty(archiveFilePattern))
+            if (!string.IsNullOrEmpty(archiveFilePattern) && FileArchiveModeFactory.ShouldDeleteOldArchives(MaxArchiveFiles))
             {
-                if (FileArchiveModeFactory.ShouldDeleteOldArchives(MaxArchiveFiles))
+                var fileArchiveStyle = GetFileArchiveHelper(archiveFilePattern);
+                if (fileArchiveStyle.AttemptCleanupOnInitializeFile(archiveFilePattern, MaxArchiveFiles))
                 {
-                    var fileArchiveStyle = GetFileArchiveHelper(archiveFilePattern);
-                    if (fileArchiveStyle.AttemptCleanupOnInitializeFile(archiveFilePattern, MaxArchiveFiles))
+                    var existingArchiveFiles = fileArchiveStyle.GetExistingArchiveFiles(archiveFilePattern);
+                    var cleanupArchiveFiles = fileArchiveStyle.CheckArchiveCleanup(archiveFilePattern, existingArchiveFiles, MaxArchiveFiles);
+                    foreach (var oldFile in cleanupArchiveFiles)
                     {
-                        var existingArchiveFiles = fileArchiveStyle.GetExistingArchiveFiles(archiveFilePattern);
-                        var cleanupArchiveFiles = fileArchiveStyle.CheckArchiveCleanup(archiveFilePattern, existingArchiveFiles, MaxArchiveFiles);
-                        foreach (var oldFile in cleanupArchiveFiles)
-                        {
-                            DeleteOldArchiveFile(oldFile.FileName);
-                        }
+                        DeleteOldArchiveFile(oldFile.FileName);
                     }
                 }
             }

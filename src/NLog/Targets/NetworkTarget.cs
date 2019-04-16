@@ -228,17 +228,16 @@ namespace NLog.Targets
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            int remainingCount = 0;
+            int remainingCount;
 
-            AsyncContinuation continuation =
-                ex =>
+            void Continuation(Exception ex)
+            {
+                // ignore exception
+                if (Interlocked.Decrement(ref remainingCount) == 0)
                 {
-                    // ignore exception
-                    if (Interlocked.Decrement(ref remainingCount) == 0)
-                    {
-                        asyncContinuation(null);
-                    }
-                };
+                    asyncContinuation(null);
+                }
+            }
 
             lock (_openNetworkSenders)
             {
@@ -254,7 +253,7 @@ namespace NLog.Targets
                     // and invoke continuation at the very end
                     foreach (var openSender in _openNetworkSenders)
                     {
-                        openSender.FlushAsync(continuation);
+                        openSender.FlushAsync(Continuation);
                     }
                 }
             }
@@ -467,10 +466,8 @@ namespace NLog.Targets
         {
             lock (_currentSenderCache)
             {
-                LinkedListNode<NetworkSender> senderNode;
-
                 // already have address
-                if (_currentSenderCache.TryGetValue(address, out senderNode))
+                if (_currentSenderCache.TryGetValue(address, out var senderNode))
                 {
                     senderNode.Value.CheckSocket();
                     return senderNode;
@@ -535,15 +532,10 @@ namespace NLog.Targets
                     }
                 }
 
-                LinkedListNode<NetworkSender> sender2;
-
                 // make sure the current sender for this address is the one we want to remove
-                if (_currentSenderCache.TryGetValue(networkSender.Address, out sender2))
+                if (_currentSenderCache.TryGetValue(networkSender.Address, out var sender2) && ReferenceEquals(senderNode, sender2))
                 {
-                    if (ReferenceEquals(senderNode, sender2))
-                    {
-                        _currentSenderCache.Remove(networkSender.Address);
-                    }
+                    _currentSenderCache.Remove(networkSender.Address);
                 }
             }
         }
@@ -568,15 +560,14 @@ namespace NLog.Targets
             {
                 int pos = 0;
 
-                AsyncContinuation sendNextChunk = null;
-
-                sendNextChunk = ex =>
+                void SendNextChunk(Exception ex)
                 {
                     if (ex != null)
                     {
                         continuation(ex);
                         return;
                     }
+
                     InternalLogger.Trace("NetworkTarget(Name={0}): Sending chunk, position: {1}, length: {2}", Name, pos, tosend);
                     if (tosend <= 0)
                     {
@@ -607,10 +598,10 @@ namespace NLog.Targets
                     tosend -= chunksize;
                     pos += chunksize;
 
-                    sender.Send(buffer, pos0, chunksize, sendNextChunk);
-                };
+                    sender.Send(buffer, pos0, chunksize, SendNextChunk);
+                }
 
-                sendNextChunk(null);
+                SendNextChunk(null);
             }
         }
     }
