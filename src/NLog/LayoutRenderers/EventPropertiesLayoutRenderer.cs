@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -48,13 +51,25 @@ namespace NLog.LayoutRenderers
     [MutableUnsafe]
     public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
+        private string _item;
+        private string _propertyName;
+        private bool _evaluateAsNestedProperties;
+        private List<string> _propertyChain;
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
-        public string Item { get; set; }
+        public string Item
+        {
+            get => _item;
+            set
+            {
+                _item = value;
+                UpdateProperties();
+            }
+        }
 
         /// <summary>
         /// Format string for conversion from object to string.
@@ -67,6 +82,36 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+
+
+        /// <summary>
+        /// Gets or sets whether <see cref="Item"/> with a dot are evaluated as properties or not
+        /// </summary>
+        /// <docgen category='Rendering Options' order='100' />
+        public bool EvaluateAsNestedProperties
+        {
+            get => _evaluateAsNestedProperties;
+            set
+            {
+                _evaluateAsNestedProperties = value;
+                UpdateProperties();
+            }
+        }
+
+        private void UpdateProperties()
+        {
+            if (_evaluateAsNestedProperties)
+            {
+                var itemParts = Item.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+                _propertyName = itemParts.FirstOrDefault();
+                _propertyChain = itemParts.Skip(1).ToList();
+            }
+            else
+            {
+                _propertyName = Item;
+                _propertyChain = null;
+            }
+        }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -91,7 +136,20 @@ namespace NLog.LayoutRenderers
         private bool GetValue(LogEventInfo logEvent, out object value)
         {
             value = null;
-            return logEvent.HasProperties && logEvent.Properties.TryGetValue(Item, out value);
+            if (!logEvent.HasProperties)
+            {
+                return false;
+            }
+            if (logEvent.Properties.TryGetValue(_propertyName, out value))
+            {
+                if (_evaluateAsNestedProperties)
+                {
+                    value = PropertyReader.GetNestedPropertyOfValue(value, _propertyChain);
+                }
+
+                return true;
+            }
+            return false;
         }
 
         private string GetStringValue(LogEventInfo logEvent)
