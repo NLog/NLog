@@ -81,7 +81,7 @@ namespace NLog.UnitTests
             WeakReference wr = GetWeakReferenceToTemporaryLogger();
 
             // nobody's holding a reference to this Logger anymore, so GC.Collect(2) should free it
-            GC.Collect();
+            GC.Collect(2, GCCollectionMode.Forced, true);
             Assert.False(wr.IsAlive);
         }
 
