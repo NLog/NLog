@@ -372,7 +372,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule for alle loglevels.
+        /// Add a rule for all loglevels.
         /// </summary>
         /// <param name="targetName">Name of the target to be written when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
@@ -388,7 +388,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule for alle loglevels.
+        /// Add a rule for all loglevels.
         /// </summary>
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
@@ -399,7 +399,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Add a rule for alle loglevels.
+        /// Add a rule for all loglevels.
         /// </summary>
         /// <param name="target">Target to be written to when the rule matches.</param>
         /// <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
