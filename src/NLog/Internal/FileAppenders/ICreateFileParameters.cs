@@ -95,5 +95,10 @@ namespace NLog.Internal.FileAppenders
         /// Should archive mutex be created?
         /// </summary>
         bool IsArchivingEnabled { get; }
+
+        /// <summary>
+        /// Should manual simple detection of file deletion be enabled?
+        /// </summary>
+        bool EnableFileDeleteSimpleMonitor { get; }
     }
 }

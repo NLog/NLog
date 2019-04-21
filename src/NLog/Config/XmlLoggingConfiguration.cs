@@ -293,7 +293,7 @@ namespace NLog.Config
         public override LoggingConfiguration Reload()
         {
             if (!string.IsNullOrEmpty(_originalFileName))
-                return new XmlLoggingConfiguration(_originalFileName);
+                return new XmlLoggingConfiguration(_originalFileName, LogFactory);
             else
                 return base.Reload();
         }
@@ -459,7 +459,7 @@ namespace NLog.Config
             nlogElement.AssertName("nlog");
 
             bool autoReload = nlogElement.GetOptionalBooleanValue("autoReload", autoReloadDefault);
-            if (filePath != null)
+            if (!string.IsNullOrEmpty(filePath))
                 _fileMustAutoReloadLookup[GetFileLookupKey(filePath)] = autoReload;
 
             try
@@ -483,8 +483,8 @@ namespace NLog.Config
             if (configSection.MatchesName("include"))
             {
                 string filePath = _currentFilePath.Peek();
-                bool autoLoad = filePath != null && _fileMustAutoReloadLookup[GetFileLookupKey(filePath)];
-                ParseIncludeElement(configSection, filePath != null ? Path.GetDirectoryName(filePath) : null, autoLoad);
+                bool autoLoad = !string.IsNullOrEmpty(filePath) && _fileMustAutoReloadLookup[GetFileLookupKey(filePath)];
+                ParseIncludeElement(configSection, !string.IsNullOrEmpty(filePath) ? Path.GetDirectoryName(filePath) : null, autoLoad);
                 return true;
             }
             else

@@ -120,17 +120,20 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-#if !MONO
         [Theory]
-#else
-        [Theory(Skip="Not supported on MONO on Travis, because of FileSystemWatcher not working")]
-#endif
         [MemberData(nameof(SimpleFileTest_TestParameters))]
         public void SimpleFileDeleteTest(bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool forceManaged, bool forceMutexConcurrentWrites, bool optimizeBufferReuse)
         {
+            bool isSimpleKeepFileOpen = keepFileOpen && !networkWrites && !concurrentWrites && IsTravis();
+            if (IsTravis() && concurrentWrites && keepFileOpen && !networkWrites)
+            {
+                Console.WriteLine("[SKIP] Not supported on MONO on Travis, because of FileSystemWatcher not working");
+                return;
+            }
+
             var logFile = Path.GetTempFileName();
             var logFile2 = Path.Combine(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()), Path.GetFileName(logFile));
-
+           
             try
             {
                 var fileTarget = WrapFileTarget(new FileTarget
@@ -156,12 +159,12 @@ namespace NLog.UnitTests.Targets
 
                 Directory.CreateDirectory(Path.GetDirectoryName(logFile2));
                 File.Move(logFile, logFile2);
-                if (keepFileOpen)
-#if MONO
-                    Thread.Sleep(500); // Allow AutoClose-Timer-Thread to react (FileWatcher depends on operating system, fallback to polling every 3 secs)
-#else
+
+                if (isSimpleKeepFileOpen)
+                    Thread.Sleep(1500); // Ensure EnableFileDeleteSimpleMonitor will trigger
+                else if (keepFileOpen && !networkWrites)
                     Thread.Sleep(150);  // Allow AutoClose-Timer-Thread to react (FileWatcher schedules timer after 50 msec)
-#endif
+
                 logger.Info("bbb");
 
                 LogManager.Configuration = null;
