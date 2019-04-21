@@ -131,7 +131,7 @@ namespace NLog.Targets.Wrappers
                         if (ReturnToFirstOnSuccess)
                         {
 #pragma warning disable S1066 // Collapsible "if" statements should be merged
-#if !SILVERLIGHT || WINDOWS_PHONEs
+#if !SILVERLIGHT || WINDOWS_PHONE
                             if (Interlocked.Read(ref _currentTarget) != 0)
 #else
                             if (Interlocked.CompareExchange(ref _currentTarget, 0, 0) != 0)
