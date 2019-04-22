@@ -39,14 +39,18 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     public class LeftLayoutRendererWrapperTests
     {
         [Theory]
-        [InlineData(":length=2", "12")]
-        [InlineData(":length=1000", "1234567890")]
-        [InlineData(":length=-1", "")]
-        [InlineData(":length=0", "")]
-        public void LeftWrapperTest(string options, string expected)
+        [InlineData(2, "12")]
+        [InlineData(1000, "1234567890")]
+        [InlineData(-1, "")]
+        [InlineData(0, "")]
+        public void LeftWrapperTest(int length, string expected)
         {
-            SimpleLayout l = $"${{left:${{message}}{options}}}";
+            SimpleLayout l = $"${{left:${{message}}:length={length}}}";
             var result = l.Render(LogEventInfo.Create(LogLevel.Debug, "substringTest", "1234567890"));
+            Assert.Equal(expected, result);
+
+            l = $"${{message:truncate={length}}}";
+            result = l.Render(LogEventInfo.Create(LogLevel.Debug, "substringTest", "1234567890"));
             Assert.Equal(expected, result);
         }
     }

@@ -41,6 +41,7 @@ namespace NLog.LayoutRenderers.Wrappers
     /// Left part of a text
     /// </summary>
     [LayoutRenderer("left")]
+    [AmbientProperty("Truncate")]
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
@@ -52,6 +53,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category="Transformation Options" order="10"/>
         [RequiredParameter]
         public int Length { get; set; }
+
+        /// <summary>
+        /// Same as <see cref="Length"/>-property, so it can be used as ambient property.
+        /// </summary>
+        /// <example>
+        /// ${message:truncate=80}
+        /// </example>
+        public int Truncate { get => Length; set => Length = value; }
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
