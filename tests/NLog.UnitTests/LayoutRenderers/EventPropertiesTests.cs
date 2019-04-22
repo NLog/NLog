@@ -127,5 +127,30 @@ namespace NLog.UnitTests.LayoutRenderers
             logEvent.Properties["prop1"] = new string[] { "Hello", "World" };
             Assert.Equal("[\"Hello\",\"World\"]", layout.Render(logEvent));
         }
+
+        [Theory]
+        [InlineData("prop1", "", "{ Id = 1, id = 2, Name = test, Nested = { Id = 3 } }")]
+        [InlineData("prop1", "Id", "1")]
+        [InlineData("prop1", "id", "2")] //correct casing
+        [InlineData("prop1", "Nested.Id", "3")]
+        [InlineData("prop1", "Id.Wrong", "")] //don't crash on nesting
+        [InlineData("prop1", "Name", "test")]
+        [InlineData("prop1", "Name ", "test")] // trimend
+        [InlineData("prop1", "NameWrong", "")]
+        public void ObjectPathNestedProperty(string item, string objectPath, string expectedValue)
+        {
+            Layout layout = "${event-properties:" + item + ":objectpath=" + objectPath + "}";
+            layout.Initialize(null);
+
+            // Slow Uncached Lookup
+            LogEventInfo logEvent = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent.Properties["prop1"] = new { Id = 1, id = 2, Name = "test", Nested = new { Id = 3 } };
+            Assert.Equal(expectedValue, layout.Render(logEvent));
+
+            // Fast Cached Lookup
+            LogEventInfo logEvent2 = LogEventInfo.Create(LogLevel.Info, "logger1", "message1");
+            logEvent2.Properties["prop1"] = new { Id = 1, id = 2, Name = "test", Nested = new { Id = 3 } };
+            Assert.Equal(expectedValue, layout.Render(logEvent2));
+        }
     }
 }
