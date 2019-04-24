@@ -384,5 +384,12 @@ namespace NLog.UnitTests
             factory.ResumeLogging();
             Assert.True(factory.IsLoggingEnabled());
         }
+
+        [Fact]
+        public void LogFactory_GetLoggerWithNull_ShouldThrow()
+        {
+            LogFactory factory = new LogFactory();
+            Assert.Throws<ArgumentNullException>(() => factory.GetLogger(null));
+        }
     }
 }
