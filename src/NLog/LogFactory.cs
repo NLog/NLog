@@ -889,6 +889,9 @@ namespace NLog
 
         private Logger GetLoggerThreadSafe(string name, Type loggerType)
         {
+            if (name == null)
+                throw new ArgumentNullException(nameof(name), "Name of logger cannot be null");
+
             LoggerCacheKey cacheKey = new LoggerCacheKey(name, loggerType ?? typeof(Logger));
 
             lock (_syncRoot)
