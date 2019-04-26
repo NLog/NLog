@@ -165,6 +165,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the collection of log levels enabled by this rule.
         /// </summary>
+        [NLogConfigurationIgnoreProperty]
         public ReadOnlyCollection<LogLevel> Levels
         {
             get
@@ -182,6 +183,7 @@ namespace NLog.Config
                 return levels.AsReadOnly();
             }
         }
+
         /// <summary>
         /// Default action if all filters won't match
         /// </summary>

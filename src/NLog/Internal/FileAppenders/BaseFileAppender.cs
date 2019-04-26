@@ -67,7 +67,7 @@ namespace NLog.Internal.FileAppenders
         /// Gets the path of the file, including file extension.
         /// </summary>
         /// <value>The name of the file.</value>
-        public string FileName { get; private set; }
+        public string FileName { get; }
 
         /// <summary>
         /// Gets or sets the creation time for a file associated with the appender. The time returned is in Coordinated  
@@ -315,6 +315,29 @@ namespace NLog.Internal.FileAppenders
                 File.SetCreationTimeUtc(FileName, CreationTimeUtc);
 #endif
             }
+        }
+
+
+        protected static bool MonitorForEnableFileDeleteEvent(string fileName, ref DateTime lastSimpleMonitorCheckTimeUtc)
+        {
+            long ticksDelta = DateTime.UtcNow.Ticks - lastSimpleMonitorCheckTimeUtc.Ticks;
+            if (ticksDelta > TimeSpan.TicksPerSecond || ticksDelta < -TimeSpan.TicksPerSecond)
+            {
+                lastSimpleMonitorCheckTimeUtc = DateTime.UtcNow;
+                try
+                {
+                    if (!File.Exists(fileName))
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "Failed to check if File.Exists {0}", fileName);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

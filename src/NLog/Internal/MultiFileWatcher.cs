@@ -131,7 +131,7 @@ namespace NLog.Internal
             var directory = Path.GetDirectoryName(fileName);
             if (!Directory.Exists(directory))
             {
-                InternalLogger.Warn("Cannot watch {0} for changes as it doesn't exist", directory);
+                InternalLogger.Warn("Cannot watch file {0} for changes as directory {1} doesn't exist", fileName, directory);
                 return;
             }
 

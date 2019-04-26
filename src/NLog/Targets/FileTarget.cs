@@ -440,7 +440,6 @@ namespace NLog.Targets
             get
             {
 #if SupportsMutex
-
                 return _concurrentWrites ?? PlatformDetector.SupportsSharableMutex;
 #else
                 return _concurrentWrites ?? false;  // Better user experience for mobile platforms
@@ -740,11 +739,14 @@ namespace NLog.Targets
             {
                 _fileAppenderCache.CheckCloseAppenders -= AutoCloseAppendersAfterArchive;
 
-                if (KeepFileOpen)
-                    _fileAppenderCache.CheckCloseAppenders += AutoCloseAppendersAfterArchive;
+                bool mustWatchArchiving = IsArchivingEnabled && KeepFileOpen && ConcurrentWrites;
+                bool mustWatchActiveFile = KeepFileOpen && EnableFileDelete && !NetworkWrites && !ReplaceFileContentsOnEachWrite && !EnableFileDeleteSimpleMonitor;
+                if (mustWatchArchiving || mustWatchActiveFile)
+                {
+                    _fileAppenderCache.CheckCloseAppenders += AutoCloseAppendersAfterArchive;   // Activates FileSystemWatcher
+                }
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                bool mustWatchArchiving = IsArchivingEnabled && ConcurrentWrites && KeepFileOpen;
                 if (mustWatchArchiving)
                 {
                     string fileNamePattern = GetArchiveFileNamePattern(fileName, logEvent);
@@ -900,6 +902,12 @@ namespace NLog.Targets
         }
 
         private bool IsArchivingEnabled => ArchiveAboveSize != ArchiveAboveSizeDisabled || ArchiveEvery != FileArchivePeriod.None;
+
+        private bool IsSimpleKeepFileOpen => KeepFileOpen && !NetworkWrites && !ReplaceFileContentsOnEachWrite && !ConcurrentWrites;
+
+        private bool EnableFileDeleteSimpleMonitor => EnableFileDelete && !PlatformDetector.IsWin32 && IsSimpleKeepFileOpen;
+
+        bool ICreateFileParameters.EnableFileDeleteSimpleMonitor => EnableFileDeleteSimpleMonitor;
 
         /// <summary>
         /// Initializes file logging by creating data structures that
@@ -1359,7 +1367,7 @@ namespace NLog.Targets
             }
             catch (IOException ex)
             {
-                if (KeepFileOpen && !ConcurrentWrites)
+                if (IsSimpleKeepFileOpen)
                     throw;  // No need to retry, when only single process access
 
                 if (!EnableFileDelete && KeepFileOpen)
@@ -1503,7 +1511,7 @@ namespace NLog.Targets
                     return previousLogEventTimestamp;
                 }
 
-                if (!AutoFlush && KeepFileOpen && !ConcurrentWrites && !NetworkWrites && previousLogEventTimestamp < lastWriteTimeSource)
+                if (!AutoFlush && IsSimpleKeepFileOpen && previousLogEventTimestamp < lastWriteTimeSource)
                 {
                     InternalLogger.Trace("FileTarget(Name={0}): Using previous LogEvent-TimeStamp {1}, because AutoFlush=false affects File-LastModified {2}", Name, previousLogEventTimestamp, lastWriteTimeSource);
                     return previousLogEventTimestamp;
@@ -1940,7 +1948,7 @@ namespace NLog.Targets
             }
 
             // Linux FileSystems doesn't always have file-birth-time, so NLog tries to provide a little help
-            DateTime? fallbackTimeSourceLinux = (previousLogEventTimestamp != DateTime.MinValue && KeepFileOpen && !ConcurrentWrites && !NetworkWrites) ? previousLogEventTimestamp : (DateTime?)null;
+            DateTime? fallbackTimeSourceLinux = (previousLogEventTimestamp != DateTime.MinValue && IsSimpleKeepFileOpen) ? previousLogEventTimestamp : (DateTime?)null;
             var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, fallbackTimeSourceLinux);
             if (creationTimeSource == null)
             {
@@ -1951,7 +1959,7 @@ namespace NLog.Targets
             {
                 if (TruncateArchiveTime(previousLogEventTimestamp, FileArchivePeriod.Minute) < TruncateArchiveTime(creationTimeSource.Value, FileArchivePeriod.Minute) && PlatformDetector.IsUnix)
                 {
-                    if (KeepFileOpen && !ConcurrentWrites && !NetworkWrites)
+                    if (IsSimpleKeepFileOpen)
                     {
                         InternalLogger.Debug("FileTarget(Name={0}): Adjusted file creation time from {1} to {2}. Linux FileSystem probably don't support file birthtime.", Name, creationTimeSource, previousLogEventTimestamp);
                         creationTimeSource = previousLogEventTimestamp;
