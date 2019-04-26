@@ -68,10 +68,24 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
+        /// <summary>
+        /// Gets or sets the object-property-navigation-path for lookup of nested property
+        /// </summary>
+        /// <docgen category='Rendering Options' order='20' />
+        public string ObjectPath
+        {
+            get => _objectPropertyPath?.Length > 0 ? string.Join(".", _objectPropertyPath) : null;
+            set => _objectPropertyPath = StringHelpers.IsNullOrWhiteSpace(value) ? null : value.SplitAndTrimTokens('.');
+        }
+        private string[] _objectPropertyPath;
+
+        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache());
+        private ObjectReflectionCache _objectReflectionCache;
+
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            if (GetValue(logEvent, out var value))
+            if (TryGetValue(logEvent, out var value))
             {
                 var formatProvider = GetFormatProvider(logEvent, Culture);
                 builder.AppendFormattedValue(value, Format, formatProvider);
@@ -81,24 +95,56 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
-            GetValue(logEvent, out value);
+            TryGetValue(logEvent, out value);
             return true;
         }
 
         /// <inheritdoc/>
         string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
-        private bool GetValue(LogEventInfo logEvent, out object value)
+        private bool TryGetValue(LogEventInfo logEvent, out object value)
         {
             value = null;
-            return logEvent.HasProperties && logEvent.Properties.TryGetValue(Item, out value);
+
+            if (!logEvent.HasProperties)
+                return false;
+
+            if (!logEvent.Properties.TryGetValue(Item, out value))
+                return false;
+
+            if (_objectPropertyPath != null && !TryGetObjectProperty(ref value))
+                return false;
+
+            return true;
+        }
+
+        private bool TryGetObjectProperty(ref object value)
+        {
+            var objectReflectionCache = ObjectReflectionCache;
+            for (int i = 0; i < _objectPropertyPath.Length; ++i)
+            {
+                if (value == null)
+                    return false;
+
+                var eventProperties = objectReflectionCache.LookupObjectProperties(value);
+                if (eventProperties.TryGetPropertyValue(_objectPropertyPath[i], out var propertyValue))
+                {
+                    value = propertyValue.Value;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private string GetStringValue(LogEventInfo logEvent)
         {
             if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
             {
-                if (GetValue(logEvent, out var value))
+                if (TryGetValue(logEvent, out var value))
                 {
                     string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, Culture));
                     return stringValue;
