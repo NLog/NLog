@@ -77,10 +77,10 @@ namespace NLog.UnitTests.Internal
         public void EscapeDataEncodeTestRfc2396(string input, bool spaceAsPlus, string result)
         {
             System.Text.StringBuilder builder = new System.Text.StringBuilder(input.Length + 20);
-            UrlHelper.EscapeEncodingFlags encodingFlags = UrlHelper.EscapeEncodingFlags.LowerCaseHex | UrlHelper.EscapeEncodingFlags.LegacyRfc2396 | UrlHelper.EscapeEncodingFlags.UriString;
+            UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.EscapeEncodingOptions.LowerCaseHex | UrlHelper.EscapeEncodingOptions.LegacyRfc2396 | UrlHelper.EscapeEncodingOptions.UriString;
             if (spaceAsPlus)
-                encodingFlags |= UrlHelper.EscapeEncodingFlags.SpaceAsPlus;
-            UrlHelper.EscapeDataEncode(input, builder, encodingFlags);
+                encodingOptions |= UrlHelper.EscapeEncodingOptions.SpaceAsPlus;
+            UrlHelper.EscapeDataEncode(input, builder, encodingOptions);
             Assert.Equal(result, builder.ToString());
             Assert.Equal(input.Replace('+', ' '), DecodeUrlString(builder.ToString()));
         }
@@ -97,10 +97,10 @@ namespace NLog.UnitTests.Internal
         public void EscapeDataEncodeTestRfc3986(string input, bool spaceAsPlus, string result)
         {
             System.Text.StringBuilder builder = new System.Text.StringBuilder(input.Length + 20);
-            UrlHelper.EscapeEncodingFlags encodingFlags = UrlHelper.EscapeEncodingFlags.None;
+            UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.EscapeEncodingOptions.None;
             if (spaceAsPlus)
-                encodingFlags |= UrlHelper.EscapeEncodingFlags.SpaceAsPlus;
-            UrlHelper.EscapeDataEncode(input, builder, encodingFlags);
+                encodingOptions |= UrlHelper.EscapeEncodingOptions.SpaceAsPlus;
+            UrlHelper.EscapeDataEncode(input, builder, encodingOptions);
             Assert.Equal(result, builder.ToString());
             Assert.Equal(input.Replace('+', ' '), DecodeUrlString(builder.ToString()));
         }
