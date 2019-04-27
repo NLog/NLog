@@ -39,7 +39,8 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// Mapped Diagnostic Logical Context item (based on CallContext).
+    /// Render a Mapped Diagnostic Logical Context item (based on CallContext).
+    /// See <see cref="MappedDiagnosticsLogicalContext"/>
     /// </summary>
     [LayoutRenderer("mdlc")]
     [ThreadSafe]

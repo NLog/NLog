@@ -38,7 +38,7 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// Mapped Diagnostic Context item. Provided for compatibility with log4net.
+    /// Render a Mapped Diagnostic Context item, See <see cref="MappedDiagnosticsContext"/>
     /// </summary>
     [LayoutRenderer("mdc")]
     [ThreadSafe]

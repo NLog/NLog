@@ -38,7 +38,8 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
 
     /// <summary>
-    /// Nested Diagnostic Context item. Provided for compatibility with log4net.
+    /// Render a Nested Diagnostic Context item.
+    /// See <see cref="NestedDiagnosticsContext"/>
     /// </summary>
     [LayoutRenderer("ndc")]
     [ThreadSafe]

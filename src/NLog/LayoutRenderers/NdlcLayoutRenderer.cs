@@ -39,7 +39,8 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
 
     /// <summary>
-    /// <see cref="NestedDiagnosticsLogicalContext"/> Renderer (Async scope)
+    /// Render a Nested Diagnostic Logical Context item (Async scope)
+    /// See <see cref="NestedDiagnosticsLogicalContext"/>
     /// </summary>
     [LayoutRenderer("ndlc")]
     [ThreadSafe]
