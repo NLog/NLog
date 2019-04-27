@@ -756,14 +756,11 @@ namespace NLog.Targets
 
         private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)
         {
-            if (!layout.ThreadAgnostic || layout.MutableUnsafe)
+            if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out var value2))
             {
-                if (logEvent.TryGetCachedLayoutValue(layout, out var value2))
                 {
-                    {
-                        value = value2?.ToString() ?? string.Empty;
-                        return true;
-                    }
+                    value = value2?.ToString() ?? string.Empty;
+                    return true;
                 }
             }
 

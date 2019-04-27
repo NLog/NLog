@@ -157,7 +157,7 @@ namespace NLog.Internal
 #if !SILVERLIGHT
             if (transformBuffer != null)
             {
-                int charCount = 0;
+                int charCount;
                 int byteCount = encoding.GetMaxByteCount(builder.Length);
                 ms.SetLength(ms.Position + byteCount);
                 for (int i = 0; i < builder.Length; i += transformBuffer.Length)

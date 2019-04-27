@@ -82,7 +82,7 @@ namespace NLog.Internal
             {
                 string s = Environment.GetEnvironmentVariable(name);
 
-                if (s == null || s.Length == 0)
+                if (string.IsNullOrEmpty(s))
                 {
                     return null;
                 }

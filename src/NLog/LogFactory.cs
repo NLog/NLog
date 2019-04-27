@@ -509,7 +509,7 @@ namespace NLog
             try
             {
                 InternalLogger.Trace("LogFactory.Flush({0})", timeout);
-                LoggingConfiguration loggingConfiguration = null;
+                LoggingConfiguration loggingConfiguration;
                 lock (_syncRoot)
                 {
                     loggingConfiguration = _config; // Flush should not attempt to auto-load Configuration

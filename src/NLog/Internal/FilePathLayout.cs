@@ -174,11 +174,10 @@ namespace NLog.Internal
 
                 _layout.RenderAppendBuilder(logEvent, reusableBuilder);
 
-                if (_cachedPrevRawFileName != null)
+                if (_cachedPrevRawFileName != null && reusableBuilder.EqualTo(_cachedPrevRawFileName))
                 {
                     // If old filename matches the newly rendered, then no need to call StringBuilder.ToString()
-                    if (reusableBuilder.EqualTo(_cachedPrevRawFileName))
-                        return _cachedPrevRawFileName;
+                    return _cachedPrevRawFileName;
                 }
 
                 _cachedPrevRawFileName = reusableBuilder.ToString();

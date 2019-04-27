@@ -77,13 +77,10 @@ namespace NLog.Internal.FileAppenders
                 return;
             }
 
-            if (_enableFileDeleteSimpleMonitor)
+            if (_enableFileDeleteSimpleMonitor && MonitorForEnableFileDeleteEvent(FileName, ref _lastSimpleMonitorCheckTimeUtc))
             {
-                if (MonitorForEnableFileDeleteEvent(FileName, ref _lastSimpleMonitorCheckTimeUtc))
-                {
-                    _file.Dispose();
-                    _file = CreateFileStream(false);
-                }
+                _file.Dispose();
+                _file = CreateFileStream(false);
             }
 
             _file.Write(bytes, offset, count);

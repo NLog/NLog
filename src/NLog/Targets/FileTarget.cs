@@ -1335,13 +1335,10 @@ namespace NLog.Targets
                 //clear old content
                 fileStream.SetLength(0);
 
-                if (EnableFileDelete)
+                if (EnableFileDelete && !DeleteOldArchiveFile(fileName))
                 {
                     // Attempt to delete file to reset File-Creation-Time (Delete under file-lock)
-                    if (!DeleteOldArchiveFile(fileName))
-                    {
-                        fileShare &= ~FileShare.Delete;  // Retry after having released file-lock
-                    }
+                    fileShare &= ~FileShare.Delete;  // Retry after having released file-lock
                 }
 
                 fileStream.Close(); // This flushes the content, too.
@@ -1646,13 +1643,10 @@ namespace NLog.Targets
                     }
                 }
 
-                if (initializedNewFile)
+                if (initializedNewFile && string.Equals(Path.GetDirectoryName(archiveFilePattern), fileInfo.DirectoryName, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (string.Equals(Path.GetDirectoryName(archiveFilePattern), fileInfo.DirectoryName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        DeleteOldArchiveFile(fileName);
-                        return null;
-                    }
+                    DeleteOldArchiveFile(fileName);
+                    return null;
                 }
             }
 

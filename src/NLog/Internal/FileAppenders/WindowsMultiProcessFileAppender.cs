@@ -210,7 +210,7 @@ namespace NLog.Internal.FileAppenders
         public override long? GetFileLength()
         {
             var fileChars = GetFileCharacteristics();
-            return fileChars != null ? fileChars.FileLength : (long?)null;
+            return fileChars?.FileLength;
         }
 
         private FileCharacteristics GetFileCharacteristics()

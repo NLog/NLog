@@ -117,7 +117,7 @@ namespace NLog.Targets.Wrappers
 
         private long WaitForBelowRequestLimit()
         {
-            long currentCount = 0;
+            long currentCount;
             bool lockTaken = false;
             try
             {

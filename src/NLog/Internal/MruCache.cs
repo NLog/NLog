@@ -115,7 +115,7 @@ namespace NLog.Internal
 
                 oldestGeneration = long.MaxValue;
 
-                long elementGeneration = 0;
+                long elementGeneration;
                 foreach (var element in _dictionary)
                 {
                     elementGeneration = element.Value.Version;

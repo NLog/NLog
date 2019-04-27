@@ -170,19 +170,16 @@ namespace NLog.Targets
             get
             {
 #if !__ANDROID__ && !__IOS__ && !NETSTANDARD
-                if (UseSystemNetMailSettings)
-                {
-                    // In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
-                    // Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
-                    // It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
+                
+                // In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
+                // Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
+                // It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
 
-                    //only use from config when not set in current
-                    if (_from == null)
-                    {
-                        var from = SmtpSection.From;
-                        if (from == null) return null;
-                        return from;
-                    }
+                //only use from config when not set in current
+                if (UseSystemNetMailSettings && _from == null)
+                {
+                    var from = SmtpSection.From;
+                    return from;
                 }
 #endif
                 return _from;
