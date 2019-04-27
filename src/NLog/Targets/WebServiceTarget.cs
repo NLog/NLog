@@ -487,7 +487,7 @@ namespace NLog.Targets
             }
 
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
-            string queryParameters = string.Empty;
+            string queryParameters;
             using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();

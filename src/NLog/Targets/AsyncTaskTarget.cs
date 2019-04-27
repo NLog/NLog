@@ -689,12 +689,9 @@ namespace NLog.Targets
                     {
                         if (previousTask.Status != TaskStatus.Canceled &&
                             previousTask.Status != TaskStatus.Faulted &&
-                            previousTask.Status != TaskStatus.RanToCompletion)
+                            previousTask.Status != TaskStatus.RanToCompletion && !previousTask.Wait(100))
                         {
-                            if (!previousTask.Wait(100))
-                            {
-                                InternalLogger.Debug("{0} WriteAsyncTask had timeout. Task did not cancel properly: {1}.", Name, previousTask.Status);
-                            }
+                            InternalLogger.Debug("{0} WriteAsyncTask had timeout. Task did not cancel properly: {1}.", Name, previousTask.Status);
                         }
 
                         Exception actualException = ExtractActualException(previousTask.Exception);

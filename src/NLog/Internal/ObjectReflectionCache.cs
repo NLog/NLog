@@ -213,8 +213,8 @@ namespace NLog.Internal
 
             public struct PropertyValue
             {
-                readonly public string Name;
-                readonly public object Value;
+                public readonly string Name;
+                public readonly object Value;
                 public TypeCode TypeCode
                 {
                     get
@@ -228,7 +228,7 @@ namespace NLog.Internal
                     }
                 }
 
-                readonly private TypeCode _typecode;
+                private readonly TypeCode _typecode;
 
                 public PropertyValue(string name, object value, TypeCode typeCode)
                 {
@@ -293,13 +293,10 @@ namespace NLog.Internal
                         }
                     }
                 }
-                else if (_object is IDictionary<string, object> expandoObject)
+                else if (_object is IDictionary<string, object> expandoObject && expandoObject.TryGetValue(name, out var objectValue))
                 {
-                    if (expandoObject.TryGetValue(name, out var objectValue))
-                    {
-                        propertyValue = new PropertyValue(name, objectValue, TypeCode.Object);
-                        return true;
-                    }
+                    propertyValue = new PropertyValue(name, objectValue, TypeCode.Object);
+                    return true;
                 }
                 propertyValue = default(PropertyValue);
                 return false;

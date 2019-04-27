@@ -186,7 +186,7 @@ namespace NLog.Conditions
         protected override object EvaluateNode(LogEventInfo context)
         {
             int parameterOffset = _acceptsLogEvent ? 1 : 0;
-            int parameterDefaults = _lateBoundMethodDefaultParameters != null ? _lateBoundMethodDefaultParameters.Length : 0;
+            int parameterDefaults = _lateBoundMethodDefaultParameters?.Length ?? 0;
 
             var callParameters = new object[MethodParameters.Count + parameterOffset + parameterDefaults];
 
