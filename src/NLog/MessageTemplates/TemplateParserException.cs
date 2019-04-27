@@ -31,8 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if NET3_5 ||  NET4_0 || NET4_5 || NET4_6 || NETSTANDARD2_0
+#define Serialization
+#endif
+
 using System;
-#if !NETSTANDARD1_0
+#if Serialization
 using System.Runtime.Serialization;
 #endif
 
@@ -64,7 +68,7 @@ namespace NLog.MessageTemplates
             Index = index;
             Template = template;
         }
-#if !NETSTANDARD1_0
+#if Serialization
         /// <summary>
         /// Serialization
         /// </summary>
