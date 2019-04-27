@@ -38,6 +38,7 @@ namespace NLog.LayoutRenderers
     using System.Globalization;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// The short date in a sortable format yyyy-MM-dd.
@@ -45,7 +46,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("shortdate")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class ShortDateLayoutRenderer : LayoutRenderer
+    public class ShortDateLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
@@ -63,11 +64,13 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var timestamp = logEvent.TimeStamp;
-            if (UniversalTime)
-            {
-                timestamp = timestamp.ToUniversalTime();
-            }
+            string formattedDate = GetStringValue(logEvent);
+            builder.Append(formattedDate);
+        }
+
+        private string GetStringValue(LogEventInfo logEvent)
+        {
+            DateTime timestamp = GetValue(logEvent);
 
             var cachedDateFormatted = _cachedDateFormatted;
             if (cachedDateFormatted.Date != timestamp.Date)
@@ -76,8 +79,26 @@ namespace NLog.LayoutRenderers
                 _cachedDateFormatted = cachedDateFormatted = new CachedDateFormatted(timestamp.Date, formatTime);
             }
 
-            builder.Append(cachedDateFormatted.FormattedDate);
+            return cachedDateFormatted.FormattedDate;
         }
+
+        private DateTime GetValue(LogEventInfo logEvent)
+        {
+            var timestamp = logEvent.TimeStamp;
+            if (UniversalTime)
+            {
+                timestamp = timestamp.ToUniversalTime();
+            }
+            return timestamp;
+        }
+
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = GetValue(logEvent).Date;    // Only Date-part
+            return true;
+        }
+
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
         private class CachedDateFormatted
         {
