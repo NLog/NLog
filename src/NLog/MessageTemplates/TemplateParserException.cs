@@ -32,6 +32,9 @@
 // 
 
 using System;
+#if !NETSTANDARD1_0
+using System.Runtime.Serialization;
+#endif
 
 namespace NLog.MessageTemplates
 {
@@ -61,5 +64,13 @@ namespace NLog.MessageTemplates
             Index = index;
             Template = template;
         }
+#if !NETSTANDARD1_0
+        /// <summary>
+        /// Serialization
+        /// </summary>
+        protected TemplateParserException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+#endif
     }
 }
