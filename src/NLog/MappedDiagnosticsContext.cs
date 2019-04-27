@@ -44,7 +44,6 @@ namespace NLog
     /// <summary>
     /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
     /// of strings and provides methods to output them in layouts. 
-    /// Mostly for compatibility with log4net.
     /// </summary>
     public static class MappedDiagnosticsContext
     {
