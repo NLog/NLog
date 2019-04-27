@@ -491,8 +491,8 @@ namespace NLog.Targets
             using (var targetBuilder = OptimizeBufferReuse ? ReusableLayoutBuilder.Allocate() : ReusableLayoutBuilder.None)
             {
                 StringBuilder sb = targetBuilder.Result ?? new StringBuilder();
-                UrlHelper.EscapeEncodingFlags encodingFlags = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
-                BuildWebServiceQueryParameters(parameterValues, sb, encodingFlags);
+                UrlHelper.EscapeEncodingOptions encodingOptions = UrlHelper.GetUriStringEncodingFlags(EscapeDataNLogLegacy, false, EscapeDataRfc3986);
+                BuildWebServiceQueryParameters(parameterValues, sb, encodingOptions);
                 queryParameters = sb.ToString();
             }
 
@@ -511,7 +511,7 @@ namespace NLog.Targets
             return builder.Uri;
         }
 
-        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb, UrlHelper.EscapeEncodingFlags encodingFlags)
+        private void BuildWebServiceQueryParameters(object[] parameterValues, StringBuilder sb, UrlHelper.EscapeEncodingOptions encodingOptions)
         {
             string separator = string.Empty;
             for (int i = 0; i < Parameters.Count; i++)
@@ -522,7 +522,7 @@ namespace NLog.Targets
                 string parameterValue = XmlHelper.XmlConvertToString(parameterValues[i]);
                 if (!string.IsNullOrEmpty(parameterValue))
                 {
-                    UrlHelper.EscapeDataEncode(parameterValue, sb, encodingFlags);
+                    UrlHelper.EscapeDataEncode(parameterValue, sb, encodingOptions);
                 }
                 separator = "&";
             }
@@ -605,11 +605,11 @@ namespace NLog.Targets
 
         private class HttpPostFormEncodedFormatter : HttpPostTextFormatterBase
         {
-            readonly UrlHelper.EscapeEncodingFlags _encodingFlags;
+            readonly UrlHelper.EscapeEncodingOptions _encodingOptions;
 
             public HttpPostFormEncodedFormatter(WebServiceTarget target) : base(target)
             {
-                _encodingFlags = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
+                _encodingOptions = UrlHelper.GetUriStringEncodingFlags(target.EscapeDataNLogLegacy, true, target.EscapeDataRfc3986);
             }
 
             protected override string GetContentType(WebServiceTarget target)
@@ -619,7 +619,7 @@ namespace NLog.Targets
 
             protected override void WriteStringContent(StringBuilder builder, object[] parameterValues)
             {
-                Target.BuildWebServiceQueryParameters(parameterValues, builder, _encodingFlags);
+                Target.BuildWebServiceQueryParameters(parameterValues, builder, _encodingOptions);
             }
         }
 

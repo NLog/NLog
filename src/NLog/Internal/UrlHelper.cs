@@ -42,7 +42,7 @@ namespace NLog.Internal
     internal static class UrlHelper
     {
         [Flags]
-        public enum EscapeEncodingFlags
+        public enum EscapeEncodingOptions
         {
             None = 0,
             /// <summary>Allow UnreservedMarks instead of ReservedMarks, as specified by chosen RFC</summary>
@@ -62,16 +62,16 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="source">unicode string-data to be encoded</param>
         /// <param name="target">target for the encoded result</param>
-        /// <param name="flags"><see cref="EscapeEncodingFlags"/>s for how to perform the encoding</param>
-        public static void EscapeDataEncode(string source, StringBuilder target, EscapeEncodingFlags flags)
+        /// <param name="options"><see cref="EscapeEncodingOptions"/>s for how to perform the encoding</param>
+        public static void EscapeDataEncode(string source, StringBuilder target, EscapeEncodingOptions options)
         {
             if (string.IsNullOrEmpty(source))
                 return;
 
           
-            bool isLowerCaseHex = Contains(flags, EscapeEncodingFlags.LowerCaseHex);
-            bool isSpaceAsPlus = Contains(flags, EscapeEncodingFlags.SpaceAsPlus);
-            bool isNLogLegacy = Contains(flags, EscapeEncodingFlags.NLogLegacy);
+            bool isLowerCaseHex = Contains(options, EscapeEncodingOptions.LowerCaseHex);
+            bool isSpaceAsPlus = Contains(options, EscapeEncodingOptions.SpaceAsPlus);
+            bool isNLogLegacy = Contains(options, EscapeEncodingOptions.NLogLegacy);
 
             char[] charArray = null;
             byte[] byteArray = null;
@@ -90,7 +90,7 @@ namespace NLog.Internal
                     continue;
                 }
 
-                if (IsAllowedChar(flags, ch))
+                if (IsAllowedChar(options, ch))
                 {
                     continue;
                 }
@@ -113,9 +113,9 @@ namespace NLog.Internal
             }
         }
 
-        private static bool Contains(EscapeEncodingFlags flags, EscapeEncodingFlags flag)
+        private static bool Contains(EscapeEncodingOptions options, EscapeEncodingOptions option)
         {
-            return (flags & flag) == flag;
+            return (options & option) == option;
         }
 
         /// <summary>
@@ -162,13 +162,13 @@ namespace NLog.Internal
         /// <summary>
         /// Is allowed?
         /// </summary>
-        /// <param name="flags"></param>
+        /// <param name="options"></param>
         /// <param name="ch"></param>
         /// <returns></returns>
-        private static bool IsAllowedChar(EscapeEncodingFlags flags, char ch)
+        private static bool IsAllowedChar(EscapeEncodingOptions options, char ch)
         {
-            bool isUriString = (flags & EscapeEncodingFlags.UriString) == EscapeEncodingFlags.UriString;
-            bool isLegacyRfc2396 = (flags & EscapeEncodingFlags.LegacyRfc2396) == EscapeEncodingFlags.LegacyRfc2396;
+            bool isUriString = (options & EscapeEncodingOptions.UriString) == EscapeEncodingOptions.UriString;
+            bool isLegacyRfc2396 = (options & EscapeEncodingOptions.LegacyRfc2396) == EscapeEncodingOptions.LegacyRfc2396;
             if (isUriString)
             {
                 if (!isLegacyRfc2396 && RFC3986UnreservedMarks.IndexOf(ch) >= 0)
@@ -208,16 +208,16 @@ namespace NLog.Internal
             { '0', '1', '2', '3', '4', '5', '6', '7',
             '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
-        public static EscapeEncodingFlags GetUriStringEncodingFlags(bool escapeDataNLogLegacy, bool spaceAsPlus, bool escapeDataRfc3986)
+        public static EscapeEncodingOptions GetUriStringEncodingFlags(bool escapeDataNLogLegacy, bool spaceAsPlus, bool escapeDataRfc3986)
         {
-            EscapeEncodingFlags encodingFlags = EscapeEncodingFlags.UriString;
+            EscapeEncodingOptions encodingOptions = EscapeEncodingOptions.UriString;
             if (escapeDataNLogLegacy)
-                encodingFlags |= EscapeEncodingFlags.LowerCaseHex | EscapeEncodingFlags.NLogLegacy;
+                encodingOptions |= EscapeEncodingOptions.LowerCaseHex | EscapeEncodingOptions.NLogLegacy;
             else if (!escapeDataRfc3986)
-                encodingFlags |= EscapeEncodingFlags.LowerCaseHex | EscapeEncodingFlags.LegacyRfc2396;
+                encodingOptions |= EscapeEncodingOptions.LowerCaseHex | EscapeEncodingOptions.LegacyRfc2396;
             if (spaceAsPlus)
-                encodingFlags |= EscapeEncodingFlags.SpaceAsPlus;
-            return encodingFlags;
+                encodingOptions |= EscapeEncodingOptions.SpaceAsPlus;
+            return encodingOptions;
         }
     }
 }
