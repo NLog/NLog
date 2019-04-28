@@ -154,51 +154,49 @@ namespace NLog.MessageTemplates
                 builder.Append(formattable.ToString(format, formatProvider));
                 return true;
             }
-            else
+
+            // Optimize for types that are pretty much invariant in all cultures when no format-string
+            TypeCode objTypeCode = Convert.GetTypeCode(value);
+            switch (objTypeCode)
             {
-                // Optimize for types that are pretty much invariant in all cultures when no format-string
-                TypeCode objTypeCode = Convert.GetTypeCode(value);
-                switch (objTypeCode)
+                case TypeCode.Boolean:
                 {
-                    case TypeCode.Boolean:
-                        {
-                            builder.Append(((bool)value) ? "true" : "false");
-                            return true;
-                        }
-                    case TypeCode.Char:
-                        {
-                            bool includeQuotes = format != LiteralFormatSymbol;
-                            if (includeQuotes) builder.Append('"');
-                            builder.Append((char)value);
-                            if (includeQuotes) builder.Append('"');
-                            return true;
-                        }
-
-                    case TypeCode.Byte:
-                    case TypeCode.SByte:
-                    case TypeCode.Int16:
-                    case TypeCode.Int32:
-                    case TypeCode.Int64:
-                    case TypeCode.UInt16:
-                    case TypeCode.UInt32:
-                    case TypeCode.UInt64:
-                        {
-                            Enum enumValue;
-                            if ((enumValue = value as Enum) != null)
-                            {
-                                AppendEnumAsString(builder, enumValue);
-                            }
-                            else
-                            {
-                                builder.AppendIntegerAsString(value, objTypeCode);
-                            }
-                        }
-                        return true;
-
-                    case TypeCode.Object:   // Guid, TimeSpan, DateTimeOffset
-                    default:                // Single, Double, Decimal, etc.
-                        break;
+                    builder.Append((bool)value ? "true" : "false");
+                    return true;
                 }
+                case TypeCode.Char:
+                {
+                    bool includeQuotes = format != LiteralFormatSymbol;
+                    if (includeQuotes) builder.Append('"');
+                    builder.Append((char)value);
+                    if (includeQuotes) builder.Append('"');
+                    return true;
+                }
+
+                case TypeCode.Byte:
+                case TypeCode.SByte:
+                case TypeCode.Int16:
+                case TypeCode.Int32:
+                case TypeCode.Int64:
+                case TypeCode.UInt16:
+                case TypeCode.UInt32:
+                case TypeCode.UInt64:
+                {
+                    Enum enumValue;
+                    if ((enumValue = value as Enum) != null)
+                    {
+                        AppendEnumAsString(builder, enumValue);
+                    }
+                    else
+                    {
+                        builder.AppendIntegerAsString(value, objTypeCode);
+                    }
+                }
+                    return true;
+
+                case TypeCode.Object:   // Guid, TimeSpan, DateTimeOffset
+                default:                // Single, Double, Decimal, etc.
+                    break;
             }
 
             return false;
@@ -206,8 +204,7 @@ namespace NLog.MessageTemplates
 
         private void AppendEnumAsString(StringBuilder sb, Enum value)
         {
-            string textValue;
-            if (!_enumCache.TryGetValue(value, out textValue))
+            if (!_enumCache.TryGetValue(value, out var textValue))
             {
                 textValue = value.ToString();
                 _enumCache.TryAddValue(value, textValue);

@@ -380,32 +380,7 @@ namespace NLog.Targets
 
             if (ConnectionString != null)
             {
-                try
-                {
-                    var connectionString = BuildConnectionString(LogEventInfo.CreateNullEvent());
-                    var dbConnectionStringBuilder = new DbConnectionStringBuilder { ConnectionString = connectionString };
-                    if (dbConnectionStringBuilder.TryGetValue("provider connection string", out var connectionStringValue))
-                    {
-                        // Special Entity Framework Connection String
-                        if (dbConnectionStringBuilder.TryGetValue("provider", out var providerValue))
-                        {
-                            // Provider was overriden by ConnectionString
-                            providerName = providerValue.ToString()?.Trim() ?? string.Empty;
-                        }
-
-                        // ConnectionString was overriden by ConnectionString :)
-                        ConnectionString = SimpleLayout.Escape(connectionStringValue.ToString());
-                    }
-                }
-                catch (Exception ex)
-                {
-#if !NETSTANDARD
-                    if (!string.IsNullOrEmpty(ConnectionStringName))
-                        InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
-                    else
-#endif
-                        InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
-                }
+                providerName = InitConnectionString(providerName);
             }
 
 #if !NETSTANDARD
@@ -416,16 +391,7 @@ namespace NLog.Targets
 
             if (!string.IsNullOrEmpty(providerName))
             {
-                try
-                {
-                    ProviderFactory = DbProviderFactories.GetFactory(providerName);
-                    foundProvider = true;
-                }
-                catch (Exception ex)
-                {
-                    InternalLogger.Error(ex, "DatabaseTarget(Name={0}): DbProviderFactories failed to get factory from ProviderName={1}", Name, providerName);
-                    throw;
-                }
+                foundProvider = InitProviderFactory(providerName);
             }
 #endif
 
@@ -447,7 +413,56 @@ namespace NLog.Targets
             }
         }
 
+        private string InitConnectionString(string providerName)
+        {
+            try
+            {
+                var connectionString = BuildConnectionString(LogEventInfo.CreateNullEvent());
+                var dbConnectionStringBuilder = new DbConnectionStringBuilder {ConnectionString = connectionString};
+                if (dbConnectionStringBuilder.TryGetValue("provider connection string", out var connectionStringValue))
+                {
+                    // Special Entity Framework Connection String
+                    if (dbConnectionStringBuilder.TryGetValue("provider", out var providerValue))
+                    {
+                        // Provider was overriden by ConnectionString
+                        providerName = providerValue.ToString()?.Trim() ?? string.Empty;
+                    }
+
+                    // ConnectionString was overriden by ConnectionString :)
+                    ConnectionString = SimpleLayout.Escape(connectionStringValue.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
 #if !NETSTANDARD
+                if (!string.IsNullOrEmpty(ConnectionStringName))
+                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
+                else
+#endif
+                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
+            }
+
+            return providerName;
+        }
+
+#if !NETSTANDARD
+        private bool InitProviderFactory(string providerName)
+        {
+            bool foundProvider;
+            try
+            {
+                ProviderFactory = DbProviderFactories.GetFactory(providerName);
+                foundProvider = true;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "DatabaseTarget(Name={0}): DbProviderFactories failed to get factory from ProviderName={1}", Name, providerName);
+                throw;
+            }
+
+            return foundProvider;
+        }
+
         private string GetProviderNameFromDbProviderFactories(string providerName)
         {
             string dbProvider = DBProvider?.Trim() ?? string.Empty;
@@ -759,23 +774,7 @@ namespace NLog.Targets
             {
                 foreach (var commandInfo in commands)
                 {
-                    string cs;
-
-                    if (commandInfo.ConnectionString != null)
-                    {
-                        // if there is connection string specified on the command info, use it
-                        cs = RenderLogEvent(commandInfo.ConnectionString, logEvent);
-                    }
-                    else if (InstallConnectionString != null)
-                    {
-                        // next, try InstallConnectionString
-                        cs = RenderLogEvent(InstallConnectionString, logEvent);
-                    }
-                    else
-                    {
-                        // if it's not defined, fall back to regular connection string
-                        cs = BuildConnectionString(logEvent);
-                    }
+                    var connectionString = GetConnectionStringFromCommand(commandInfo, logEvent);
 
                     // Set ConnectionType if it has not been initialized already
                     if (ConnectionType == null)
@@ -783,7 +782,7 @@ namespace NLog.Targets
                         SetConnectionType();
                     }
 
-                    EnsureConnectionOpen(cs);
+                    EnsureConnectionOpen(connectionString);
 
                     string commandText = RenderLogEvent(commandInfo.Text, logEvent);
 
@@ -821,6 +820,28 @@ namespace NLog.Targets
 
                 CloseConnection();
             }
+        }
+
+        private string GetConnectionStringFromCommand(DatabaseCommandInfo commandInfo, LogEventInfo logEvent)
+        {
+            string connectionString;
+            if (commandInfo.ConnectionString != null)
+            {
+                // if there is connection string specified on the command info, use it
+                connectionString = RenderLogEvent(commandInfo.ConnectionString, logEvent);
+            }
+            else if (InstallConnectionString != null)
+            {
+                // next, try InstallConnectionString
+                connectionString = RenderLogEvent(InstallConnectionString, logEvent);
+            }
+            else
+            {
+                // if it's not defined, fall back to regular connection string
+                connectionString = BuildConnectionString(logEvent);
+            }
+
+            return connectionString;
         }
 
         /// <summary>

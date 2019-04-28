@@ -372,17 +372,9 @@ namespace NLog.Targets
             {
                 lock (SyncRoot)
                 {
-                    if (previousTask != null)
+                    if (CheckOtherTask(previousTask))
                     {
-                        // Task Completed
-                        if (_previousTask != null && !ReferenceEquals(previousTask, _previousTask))
-                            break;  // Other Task is already running
-                    }
-                    else
-                    {
-                        // Task Queue Timer
-                        if (_previousTask?.IsCompleted == false)
-                            break;  // Other Task is already running
+                        break;  // Other Task is already running
                     }
 
                     if (!IsInitialized)
@@ -415,6 +407,24 @@ namespace NLog.Targets
                     }
                 }
             } while (!_requestQueue.IsEmpty || previousTask != null);
+        }
+
+        private bool CheckOtherTask(object previousTask)
+        {
+            if (previousTask != null)
+            {
+                // Task Completed
+                if (_previousTask != null && !ReferenceEquals(previousTask, _previousTask))
+                    return true;
+            }
+            else
+            {
+                // Task Queue Timer
+                if (_previousTask?.IsCompleted == false)
+                    return true;
+            }
+
+            return false;
         }
 
         /// <summary>
