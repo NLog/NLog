@@ -524,20 +524,7 @@ namespace NLog.Config
 
             if (!string.IsNullOrEmpty(name) || removedTarget != null)
             {
-                var loggingRules = GetLoggingRulesThreadSafe();
-
-                foreach (var rule in loggingRules)
-                {
-                    var targetList = rule.GetTargetsThreadSafe();
-                    foreach (var target in targetList)
-                    {
-                        if (ReferenceEquals(removedTarget, target) || (!string.IsNullOrEmpty(name) && target.Name == name))
-                        {
-                            removedTargets.Add(target);
-                            rule.RemoveTargetThreadSafe(target);
-                        }
-                    }
-                }
+                CleanupRulesForRemovedTarget(name, removedTarget, removedTargets);
             }
 
             if (removedTargets.Count > 0)
@@ -563,6 +550,24 @@ namespace NLog.Config
                     target.Flush((ex) => flushCompleted.Set());
                     flushCompleted.WaitOne(TimeSpan.FromSeconds(15));
                     target.Close();
+                }
+            }
+        }
+
+        private void CleanupRulesForRemovedTarget(string name, Target removedTarget, HashSet<Target> removedTargets)
+        {
+            var loggingRules = GetLoggingRulesThreadSafe();
+
+            foreach (var rule in loggingRules)
+            {
+                var targetList = rule.GetTargetsThreadSafe();
+                foreach (var target in targetList)
+                {
+                    if (ReferenceEquals(removedTarget, target) || (!string.IsNullOrEmpty(name) && target.Name == name))
+                    {
+                        removedTargets.Add(target);
+                        rule.RemoveTargetThreadSafe(target);
+                    }
                 }
             }
         }
@@ -847,44 +852,41 @@ namespace NLog.Config
             ReadOnlyCollection<Target> configuredNamedTargets = ConfiguredNamedTargets; //assign to variable because `ConfiguredNamedTargets` computes a new list every time.
             InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", LoggingRules.Count, configuredNamedTargets.Count);
 
-            HashSet<string> targetNamesAtRules = new HashSet<string>(GetLoggingRulesThreadSafe().SelectMany(r => r.Targets).Select(t => t.Name));
+            var targetNamesAtRules = new HashSet<string>(GetLoggingRulesThreadSafe().SelectMany(r => r.Targets).Select(t => t.Name));
             var wrappedTargets = configuredNamedTargets.OfType<WrapperTargetBase>().ToLookup(wt => wt.WrappedTarget, wt => wt);
             var compoundTargets = configuredNamedTargets.OfType<CompoundTargetBase>().SelectMany(wt => wt.Targets.Select(t => new KeyValuePair<Target, Target>(t, wt))).ToLookup(p => p.Key, p => p.Value);
+
+            bool IsUnusedInList<T>(Target target1, ILookup<Target, T> targets)
+            where T:Target
+            {
+                if (targets.Contains(target1))
+                {
+                    foreach (var wrapperTarget in targets[target1])
+                    {
+                        if (targetNamesAtRules.Contains(wrapperTarget.Name))
+                            return false;
+
+                        if (wrappedTargets.Contains(wrapperTarget))
+                            return false;
+
+                        if (compoundTargets.Contains(wrapperTarget))
+                            return false;
+                    }
+                }
+
+                return true;
+            }
 
             int unusedCount = configuredNamedTargets.Count((target) =>
             {
                 if (targetNamesAtRules.Contains(target.Name))
                     return false;
 
-                if (wrappedTargets.Contains(target))
-                {
-                    foreach (var wrapperTarget in wrappedTargets[target])
-                    {
-                        if (targetNamesAtRules.Contains(wrapperTarget.Name))
-                            return false;
+                if (!IsUnusedInList(target, wrappedTargets))
+                    return false;
 
-                        if (wrappedTargets.Contains(wrapperTarget))
-                            return false;   // Double nested targets are too complicated
-
-                        if (compoundTargets.Contains(wrapperTarget))
-                            return false;   // Double nested targets are too complicated
-                    }
-                }
-
-                if (compoundTargets.Contains(target))
-                {
-                    foreach (var wrapperTarget in compoundTargets[target])
-                    {
-                        if (targetNamesAtRules.Contains(wrapperTarget.Name))
-                            return false;
-
-                        if (wrappedTargets.Contains(wrapperTarget))
-                            return false;   // Double nested targets are too complicated
-
-                        if (compoundTargets.Contains(wrapperTarget))
-                            return false;   // Double nested targets are too complicated
-                    }
-                }
+                if (!IsUnusedInList(target, compoundTargets))
+                    return false;
 
                 InternalLogger.Warn("Unused target detected. Add a rule for this target to the configuration. TargetName: {0}", target.Name);
                 return true;
