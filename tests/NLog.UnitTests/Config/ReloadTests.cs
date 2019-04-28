@@ -584,7 +584,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
             Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].OriginalText);
 
-            logFactory.Configuration = LoggingConfiguration.Reload(configuration);
+            logFactory.Configuration = configuration.ReloadNewConfig();
             Assert.Equal("new_value", logFactory.Configuration.Variables["var1"].OriginalText);
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
             Assert.Equal("new_value3", logFactory.Configuration.Variables["var3"].OriginalText);
@@ -608,7 +608,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("", logFactory.Configuration.Variables["var1"].OriginalText);
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
 
-            logFactory.Configuration = LoggingConfiguration.Reload(configuration);
+            logFactory.Configuration = configuration.ReloadNewConfig();
             Assert.Equal("", logFactory.Configuration.Variables["var1"].OriginalText);
             Assert.Equal("keep_value", logFactory.Configuration.Variables["var2"].OriginalText);
         }

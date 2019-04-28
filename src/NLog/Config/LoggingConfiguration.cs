@@ -48,8 +48,7 @@ namespace NLog.Config
     using NLog.Targets.Wrappers;
 
     /// <summary>
-    /// Keeps logging configuration and provides simple API
-    /// to modify it.
+    /// Keeps logging configuration and provides simple API to modify it.
     /// </summary>
     ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class LoggingConfiguration
@@ -482,28 +481,31 @@ namespace NLog.Config
             return this;
         }
 
-        /// <summary>
-        /// Helper method to perform correct reload of log configuration with respect to <see cref="LogFactory.KeepVariablesOnReload"/>
-        /// </summary>
-        /// <param name="oldConfig">Current Configuration</param>
-        /// <returns>
-        /// A new instance of <see cref="LoggingConfiguration"/> that represents the updated configuration.
-        /// </returns>
-        public static LoggingConfiguration Reload(LoggingConfiguration oldConfig)
+        internal LoggingConfiguration ReloadNewConfig()
         {
-            var newConfig = oldConfig?.Reload();
+            var newConfig = Reload();
             if (newConfig != null)
             {
-                var logFactory = oldConfig.LogFactory ?? LogManager.LogFactory;
+                //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
+                //therefor we check the InitializeSucceeded property.
+
+                if (newConfig is XmlLoggingConfiguration xmlConfig && xmlConfig.InitializeSucceeded != true)
+                {
+                    InternalLogger.Warn("NLog Config Reload() failed. Invalid XML?");
+                    return null;
+                }
+
+                var logFactory = LogFactory ?? LogManager.LogFactory;
                 if (logFactory.KeepVariablesOnReload)
                 {
-                    var currentConfig = logFactory._config ?? oldConfig;
+                    var currentConfig = logFactory._config ?? this;
                     if (!ReferenceEquals(newConfig, currentConfig))
                     {
                         newConfig.CopyVariables(currentConfig.Variables);
                     }
                 }
             }
+
             return newConfig;
         }
 
@@ -782,11 +784,6 @@ namespace NLog.Config
                     }
                 }
             }
-        }
-
-        internal void EnsureInitialized()
-        {
-            InitializeAll();
         }
 
         private List<IInstallable> GetInstallableItems()
