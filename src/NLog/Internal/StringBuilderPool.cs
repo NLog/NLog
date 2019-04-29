@@ -99,11 +99,9 @@ namespace NLog.Internal
                 {
                     stringBuilder = new StringBuilder(maxBuilderCapacity / 2);
                 }
-            } 
-            else
-            {
-                stringBuilder.Length = 0;
             }
+
+            stringBuilder.Length = 0;
 
             if (poolIndex == -1)
             {
