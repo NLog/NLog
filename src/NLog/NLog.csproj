@@ -33,8 +33,35 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <PackageReleaseNotes>
 Bugfixes:
 
-- Fix escaping nested close brackets when parsing layout renderers (@lobster2012-user)
-- NLog config - Fixed bug where empty xml-elements were ignored (@snakefoot, @jonreis)
+- Fixed potential memory issue and message duplication with large strings (@snakefoot)
+- TargetWithContext - serialize MDC and MDLC values properly (@304NotModified)
+
+Features:
+
+- Added WithProperty and SetProperty on Logger (@snakefoot)
+- ${EventProperties} - Added ObjectPath for rendering nested property (@snakefoot, @304NotModified)
+- ${ShortDate} added support for IRawValue + IStringValueRenderer (@snakefoot)
+- Added truncate ambient property, e.g. ${message:truncate=80} (@snakefoot)
+- ConsoleTarget &amp; ColoredConsoleTarget  - Added AutoFlush and improve default flush behavior (@snakefoot)
+
+Improvements:
+
+- FileTarget - Introduced EnableFileDeleteSimpleMonitor without FileSystemWatcher for non-Windows (@snakefoot)
+- LogFactory - GetLogger should validate name of logger (@snakefoot)
+- FallbackGroupTarget - Fixed potential issue with WINDOWS_PHONE (@snakefoot)
+- NLog config file loading: use process name (e.g. applicationname.exe.nlog) when app.config is not available (@snakefoot)
+
+Performance:
+
+- Split string - avoid allocation of object array. Added StringHelpers.SplitAndTrimTokens (@snakefoot)
+- AppSettingLayoutRenderer - Mark as ThreadSafe and ThreadAgnostic (@snakefoot)
+
+Misc:
+
+- Update docs of various context classes (@304NotModified)
+- Move NLogPackageLoaders for better unittest debugging experience of NLog (@304NotModified)
+- Make HttpNetworkSender mockable, add unit test, introduce NSubsitute (@304NotModified)
+- 10 pull requests with refactorings (@snakefoot, @304NotModified)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
