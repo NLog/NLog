@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,56 +31,101 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD1_3
+using System;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 
-namespace NLog.Internal
+namespace LoaderTestPublic
 {
-    using NLog.Config;
-
-    /// <summary>
-    /// Returns details about current process and thread in a portable manner.
-    /// </summary>
-    internal abstract class ThreadIDHelper
+    public class NLogPackageLoader
     {
-        /// <summary>
-        /// Initializes static members of the ThreadIDHelper class.
-        /// </summary>
-        static ThreadIDHelper()
+        public static void Preload()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-            if (PlatformDetector.IsWin32)
-            {
-                Instance = new Win32ThreadIDHelper();
-            }
-            else
-#endif
-            {
-                Instance = new PortableThreadIDHelper();
-            }
+
         }
-
-        /// <summary>
-        /// Gets the singleton instance of PortableThreadIDHelper or
-        /// Win32ThreadIDHelper depending on runtime environment.
-        /// </summary>
-        /// <value>The instance.</value>
-        public static ThreadIDHelper Instance { get; private set; }
-
-        /// <summary>
-        /// Gets current process ID.
-        /// </summary>
-        public abstract int CurrentProcessID { get; }
-
-        /// <summary>
-        /// Gets current process name.
-        /// </summary>
-        public abstract string CurrentProcessName { get; }
-
-        /// <summary>
-        /// Gets current process name (excluding filename extension, if any).
-        /// </summary>
-        public abstract string CurrentProcessBaseName { get; }
     }
 }
 
-#endif
+namespace LoaderTestInternal
+{
+    /// <summary>
+    /// private
+    /// </summary>
+    internal class NLogPackageLoader
+    {
+        public static void Preload()
+        {
+
+        }
+    }
+}
+
+namespace LoaderTestPrivateNested
+{
+    internal class SomeType
+    {
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
+        private class NLogPackageLoader
+        {
+            public static void Preload(ConfigurationItemFactory fact)
+            {
+                if (fact == null)
+                {
+                    throw new ArgumentNullException(nameof(fact));
+                }
+            }
+        }
+    }
+}
+
+namespace LoaderTestPrivateNestedStatic
+{
+    internal class SomeType
+    {
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
+        private static class NLogPackageLoader
+        {
+            public static void Preload()
+            {
+
+            }
+        }
+    }
+}
+
+namespace LoaderTestWrong1
+{
+    public class NLogPackageLoader
+    {
+        [DebuggerStepThrough]
+        public static void Preload()
+        {
+            throw new Exception("ow noos");
+        }
+    }
+}
+
+namespace LoaderTestWrong2
+{
+    public class NLogPackageLoader
+    {
+        public void Preload()
+        {
+            //im not static
+        }
+    }
+}
+
+namespace LoaderTestWrong3
+{
+    public class NLogPackageLoader
+    {
+        public static void Preload(int arg1, int arg2)
+        {
+            //I have args
+        }
+    }
+}

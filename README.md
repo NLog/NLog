@@ -7,13 +7,13 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=ncloc)](https://sonarcloud.io/dashboard/?id=nlog) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=bugs)](https://sonarcloud.io/dashboard/?id=nlog) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=vulnerabilities)](https://sonarcloud.io/dashboard/?id=nlog) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=code_smells)](https://sonarcloud.io/project/issues?id=nlog&resolved=false&types=CODE_SMELL) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=duplicated_lines_density)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=sqale_debt_ratio)](https://sonarcloud.io/dashboard/?id=nlog) 
-[![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=master)](https://codecov.io/github/NLog/NLog?branch=master)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=ncloc&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=bugs&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=vulnerabilities&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=code_smells&branch=dev)](https://sonarcloud.io/project/issues?id=nlog&resolved=false&types=CODE_SMELL&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=duplicated_lines_density&branch=dev)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=sqale_debt_ratio&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
+[![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=dev)](https://codecov.io/github/NLog/NLog?branch=dev)
 
 <!--
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
@@ -75,7 +75,7 @@ NLog consists of multiple packages. Most of the functionality is inside the NLog
 
 Package  | Build status | NuGet 
 -------- | :------------ | :------------ 
-NLog                                    | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)   [![Build Status](https://travis-ci.org/NLog/NLog.svg?branch=master)](https://travis-ci.org/NLog/NLog)                    | [![NuGet](https://img.shields.io/nuget/v/nlog.svg)](https://www.nuget.org/packages/NLog)
+NLog                                    | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)   [![Build Status](https://travis-ci.org/NLog/NLog.svg?branch=dev)](https://travis-ci.org/NLog/NLog)                    | [![NuGet](https://img.shields.io/nuget/v/nlog.svg)](https://www.nuget.org/packages/NLog)
 [NLog.Extensions.Logging](https://github.com/NLog/NLog.Extensions.Logging)  | [![Build status](https://img.shields.io/appveyor/ci/nlog/nlog-framework-logging/master.svg)](https://ci.appveyor.com/project/nlog/nlog-framework-logging/branch/master) | [![NuGet Pre Release](https://img.shields.io/nuget/vpre/NLog.Extensions.Logging.svg)](https://www.nuget.org/packages/NLog.Extensions.Logging)
 NLog.Config                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.Config.svg)](https://www.nuget.org/packages/NLog.Config)
 [NLog.Contrib.ActiveMQ](https://github.com/NLog/NLog.Contrib.ActiveMQ)                                              | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog-contrib-activemq/master.svg)](https://ci.appveyor.com/project/nlog/nlog-contrib-activemq/branch/master)                   | [![NuGet package](https://img.shields.io/nuget/v/NLog.Contrib.ActiveMQ.svg)](https://www.nuget.org/packages/NLog.Contrib.ActiveMQ)

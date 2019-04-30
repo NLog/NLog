@@ -43,8 +43,6 @@ namespace NLog.Time
     [NLogConfigurationItem]
     public abstract class TimeSource
     {
-        private static TimeSource currentSource = new FastLocalTimeSource();
-
         /// <summary>
         /// Gets current time.
         /// </summary>
@@ -56,11 +54,7 @@ namespace NLog.Time
         /// <remarks>
         /// Default time source is <see cref="FastLocalTimeSource"/>.
         /// </remarks>
-        public static TimeSource Current
-        {
-            get => currentSource;
-            set => currentSource = value;
-        }
+        public static TimeSource Current { get; set; } = new FastLocalTimeSource();
 
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.

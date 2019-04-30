@@ -54,5 +54,25 @@ namespace NLog.UnitTests.Internal
         {
             Assert.Equal(result, StringHelpers.IsNullOrWhiteSpace(input));
         }
+
+        [Theory]
+        [InlineData("", new string [0])]
+        [InlineData("  ", new string[0])]
+        [InlineData(" , ", new string[0])]
+        [InlineData("a", new string[] { "a" })]
+        [InlineData("a ", new string[] { "a" })]
+        [InlineData(" a", new string[] { "a" })]
+        [InlineData(" a,", new string[] { "a" })]
+        [InlineData(" a, ", new string[] { "a" })]
+        [InlineData("a,b", new string[] { "a", "b" })]
+        [InlineData("a ,b", new string[] { "a", "b" })]
+        [InlineData(" a ,b", new string[] { "a", "b" })]
+        [InlineData(" a , b ", new string[] { "a", "b" })]
+        [InlineData(" a b ", new string[] { "a b" })]
+        public void SplitAndTrimToken(string input, string[] expected)
+        {
+            var result = input.SplitAndTrimTokens(',');
+            Assert.Equal(expected, result);
+        }
     }
 }

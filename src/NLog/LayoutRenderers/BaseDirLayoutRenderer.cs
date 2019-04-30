@@ -105,7 +105,7 @@ namespace NLog.LayoutRenderers
 #if !SILVERLIGHT && !NETSTANDARD1_3
             if (ProcessDir)
             {
-                dir = _processDir ?? (_processDir = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+                dir = _processDir ?? (_processDir = Path.GetDirectoryName(ProcessIDHelper.Instance.CurrentProcessFilePath));
             }
 #endif
 

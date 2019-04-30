@@ -48,7 +48,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Trace</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsTraceEnabled
         {
-            get { return _isTraceEnabled; }
+            get { return _contextLogger._isTraceEnabled; }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Debug</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsDebugEnabled
         {
-            get { return _isDebugEnabled; }
+            get { return _contextLogger._isDebugEnabled; }
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Info</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsInfoEnabled
         {
-            get { return _isInfoEnabled; }
+            get { return _contextLogger._isInfoEnabled; }
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Warn</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsWarnEnabled
         {
-            get { return _isWarnEnabled; }
+            get { return _contextLogger._isWarnEnabled; }
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Error</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsErrorEnabled
         {
-            get { return _isErrorEnabled; }
+            get { return _contextLogger._isErrorEnabled; }
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace NLog
         /// <returns>A value of <see langword="true" /> if logging is enabled for the <c>Fatal</c> level, otherwise it returns <see langword="false" />.</returns>
         public bool IsFatalEnabled
         {
-            get { return _isFatalEnabled; }
+            get { return _contextLogger._isFatalEnabled; }
         }
 
 
@@ -288,17 +288,16 @@ namespace NLog
 #pragma warning disable 618
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
-                {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                {
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Trace(message, exceptionCandidate);	
+                        Trace(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -573,17 +572,16 @@ namespace NLog
 #pragma warning disable 618
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
-                {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                {
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Debug(message, exceptionCandidate);	
+                        Debug(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -858,17 +856,16 @@ namespace NLog
 #pragma warning disable 618
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
-                {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                {
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Info(message, exceptionCandidate);	
+                        Info(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -1143,17 +1140,16 @@ namespace NLog
 #pragma warning disable 618
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
-                {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                {
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Warn(message, exceptionCandidate);	
+                        Warn(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -1428,17 +1424,16 @@ namespace NLog
 #pragma warning disable 618
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
-                {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                {
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Error(message, exceptionCandidate);	
+                        Error(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 
@@ -1713,17 +1708,16 @@ namespace NLog
 #pragma warning disable 618
                 if (_configuration.ExceptionLoggingOldStyle)
 #pragma warning restore 618
-                {   
-                    var exceptionCandidate = argument as Exception;		
-                    if (exceptionCandidate != null)		
+                {
+                    var exceptionCandidate = argument as Exception;
+                    if (exceptionCandidate != null)
                     {
-
                         // ReSharper disable CSharpWarnings::CS0618
                         #pragma warning disable 618
-                        Fatal(message, exceptionCandidate);	
+                        Fatal(message, exceptionCandidate);
                         #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618	
-                        return;		
+                        // ReSharper restore CSharpWarnings::CS0618
+                        return;
                     }
                 }
 

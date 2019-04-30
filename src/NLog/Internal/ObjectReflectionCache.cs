@@ -206,22 +206,49 @@ namespace NLog.Internal
 
         public struct ObjectPropertyList : IEnumerable<ObjectPropertyList.PropertyValue>
         {
+            internal static readonly StringComparer NameComparer = StringComparer.Ordinal;
             private readonly object _object;
             private readonly PropertyInfo[] _properties;
-            private readonly ObjectReflectionCache.FastPropertyLookup[] _fastLookup;
+            private readonly FastPropertyLookup[] _fastLookup;
 
             public struct PropertyValue
             {
-                readonly public string Name;
-                readonly public object Value;
-                public TypeCode TypeCode => _typecode == TypeCode.Object ? Convert.GetTypeCode(Value) : (Value == null ? TypeCode.Empty : _typecode);
-                readonly private TypeCode _typecode;
+                public readonly string Name;
+                public readonly object Value;
+                public TypeCode TypeCode
+                {
+                    get
+                    {
+                        if (_typecode == TypeCode.Object)
+                        {
+                            return Convert.GetTypeCode(Value);
+                        }
+
+                        return Value == null ? TypeCode.Empty : _typecode;
+                    }
+                }
+
+                private readonly TypeCode _typecode;
 
                 public PropertyValue(string name, object value, TypeCode typeCode)
                 {
                     Name = name;
                     Value = value;
                     _typecode = typeCode;
+                }
+
+                public PropertyValue(object owner, PropertyInfo propertyInfo)
+                {
+                    Name = propertyInfo.Name;
+                    Value = propertyInfo.GetValue(owner, null);
+                    _typecode = TypeCode.Object;
+                }
+
+                public PropertyValue(object owner, FastPropertyLookup fastProperty)
+                {
+                    Name = fastProperty.Name;
+                    Value = fastProperty.ValueLookup(owner, null);
+                    _typecode = fastProperty.TypeCode;
                 }
             }
 
@@ -239,6 +266,40 @@ namespace NLog.Internal
                 _object = value;    // Expando objects
                 _properties = null;
                 _fastLookup = null;
+            }
+
+            public bool TryGetPropertyValue(string name, out PropertyValue propertyValue)
+            {
+                if (_fastLookup != null)
+                {
+                    int nameHashCode = NameComparer.GetHashCode(name);
+                    foreach (var fastProperty in _fastLookup)
+                    {
+                        if (fastProperty.NameHashCode==nameHashCode && NameComparer.Equals(fastProperty.Name, name))
+                        {
+                            propertyValue = new PropertyValue(_object, fastProperty);
+                            return true;
+                        }
+                    }
+                }
+                else if (_properties != null)
+                {
+                    foreach (var propInfo in _properties)
+                    {
+                        if (NameComparer.Equals(propInfo.Name, name))
+                        {
+                            propertyValue = new PropertyValue(_object, propInfo);
+                            return true;
+                        }
+                    }
+                }
+                else if (_object is IDictionary<string, object> expandoObject && expandoObject.TryGetValue(name, out var objectValue))
+                {
+                    propertyValue = new PropertyValue(name, objectValue, TypeCode.Object);
+                    return true;
+                }
+                propertyValue = default(PropertyValue);
+                return false;
             }
 
             public override string ToString()
@@ -290,9 +351,9 @@ namespace NLog.Internal
                         try
                         {
                             if (_fastLookup != null)
-                                return new PropertyValue(_fastLookup[_index].Name, _fastLookup[_index].ValueLookup(_owner, null), _fastLookup[_index].TypeCode);
+                                return new PropertyValue(_owner, _fastLookup[_index]);
                             else if (_properties != null)
-                                return new PropertyValue(_properties[_index].Name, _properties[_index].GetValue(_owner, null), TypeCode.Object);
+                                return new PropertyValue(_owner, _properties[_index]);
                             else
                                 return new PropertyValue(_enumerator.Current.Key, _enumerator.Current.Value, TypeCode.Object);
                         }
@@ -334,12 +395,14 @@ namespace NLog.Internal
             public readonly string Name;
             public readonly ReflectionHelpers.LateBoundMethod ValueLookup;
             public readonly TypeCode TypeCode;
+            public readonly int NameHashCode;
 
             public FastPropertyLookup(string name, TypeCode typeCode, ReflectionHelpers.LateBoundMethod valueLookup)
             {
                 Name = name;
                 ValueLookup = valueLookup;
                 TypeCode = typeCode;
+                NameHashCode = ObjectPropertyList.NameComparer.GetHashCode(name);
             }
         }
 

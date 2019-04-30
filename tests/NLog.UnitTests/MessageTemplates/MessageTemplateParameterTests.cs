@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,16 +31,45 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal.Fakeables
+using System;
+using System.Linq;
+using NLog.MessageTemplates;
+using Xunit;
+
+namespace NLog.UnitTests.MessageTemplates
 {
-    /// <summary>
-    /// Abstract calls to File
-    /// </summary>
-    internal interface IFile
+    public class MessageTemplateParameterTests
     {
-        /// <summary>Determines whether the specified file exists.</summary>
-        /// <param name="path">The file to check. </param>
-        /// <returns></returns>
-        bool Exists(string path);
+        [Theory]
+        [InlineData("0", 0)] //all single numbers for all code branches
+        [InlineData("1", 1)]
+        [InlineData("2", 2)]
+        [InlineData("3", 3)]
+        [InlineData("4", 4)]
+        [InlineData("5", 5)]
+        [InlineData("6", 6)]
+        [InlineData("7", 7)]
+        [InlineData("8", 8)]
+        [InlineData("9", 9)] 
+        [InlineData(" 1 ", null)] //no trim
+        [InlineData("100", 100)] //parse test
+        [InlineData(" 100 ", null)] //no trim in parse test
+        [InlineData("a", null)] //no parse test
+        [InlineData("a1", null)] //no partial parse test
+        [InlineData("0a", null)] //condition branch 1
+        [InlineData("1a", null)] //condition branch 1b
+        [InlineData("9a", null)] //condition branch 2a
+        [InlineData("8a", null)] //condition branch 2b
+        public void PositionalIndexTest(string name, int? expected)
+        {
+            // Arrange
+            var parameter = new MessageTemplateParameter(name, null, null);
+
+            // Act
+            var positionalIndex = parameter.PositionalIndex;
+
+            // Assert
+            Assert.Equal(expected, positionalIndex);
+        }
     }
 }

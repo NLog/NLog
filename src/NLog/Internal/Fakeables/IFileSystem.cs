@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,17 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-
 namespace NLog.Internal.Fakeables
 {
-    class FileWrapper : IFile
-    {
-        /// <inheritdoc />
-        public bool Exists(string path)
-        {
-            return File.Exists(path);
-        }
+    using System.Xml;
 
+    /// <summary>
+    /// Abstract calls to FileSystem
+    /// </summary>
+    internal interface IFileSystem
+    {
+        /// <summary>Determines whether the specified file exists.</summary>
+        /// <param name="path">The file to check.</param>
+        bool FileExists(string path);
+        /// <summary>Returns the content of the specified file</summary>
+        /// <param name="path">The file to load.</param>
+        XmlReader LoadXmlFile(string path);
     }
 }

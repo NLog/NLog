@@ -31,12 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD
-
 namespace NLog.UnitTests
 {
     using System;
-    using System.CodeDom.Compiler;
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -48,9 +45,225 @@ namespace NLog.UnitTests
     using NLog.Config;
     using NLog.Layouts;
     using NLog.LayoutRenderers;
+    using NLog.UnitTests.Mocks;
 
     public class ConfigFileLocatorTests : NLogTestBase, IDisposable
     {
+        private readonly string _tempDirectory;
+
+        public ConfigFileLocatorTests()
+        {
+            _tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(_tempDirectory);
+        }
+
+        void IDisposable.Dispose()
+        {
+            if (Directory.Exists(_tempDirectory))
+                Directory.Delete(_tempDirectory, true);
+        }
+
+        [Fact]
+        void FuncLayoutRendererRegisterTest1()
+        {
+            LayoutRenderer.Register("the-answer", (info) => "42");
+            Layout l = "${the-answer}";
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("42", result);
+        }
+
+        [Fact]
+        void FuncLayoutRendererRegisterTest1WithXML()
+        {
+            LayoutRenderer.Register("the-answer", (info) => "42");
+
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+            
+                <targets>
+                    <target name='debug' type='Debug' layout= '${the-answer}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("test1");
+            AssertDebugLastMessage("debug", "42");
+        }
+
+        [Fact]
+        void FuncLayoutRendererRegisterTest2()
+        {
+            LayoutRenderer.Register("message-length", (info) => info.Message.Length);
+            Layout l = "${message-length}";
+            var result = l.Render(LogEventInfo.Create(LogLevel.Error, "logger-adhoc", "1234567890"));
+            Assert.Equal("10", result);
+
+        }
+
+        [Fact]
+        public void GetCandidateConfigTest()
+        {
+            var candidateConfigFilePaths = XmlLoggingConfiguration.GetCandidateConfigFilePaths();
+            Assert.NotNull(candidateConfigFilePaths);
+            var count = candidateConfigFilePaths.Count();
+            Assert.NotEqual(0, count);
+        }
+
+        [Fact]
+        public void GetCandidateConfigTest_list_is_readonly()
+        {
+            Assert.Throws<NotSupportedException>(() =>
+            {
+                var list = new List<string> { "c:\\global\\temp.config" };
+                XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
+                var candidateConfigFilePaths = XmlLoggingConfiguration.GetCandidateConfigFilePaths();
+                var list2 = candidateConfigFilePaths as IList;
+                list2.Add("test");
+            });
+        }
+
+        [Fact]
+        public void SetCandidateConfigTest()
+        {
+            var list = new List<string> { "c:\\global\\temp.config" };
+            XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
+            Assert.Single(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
+            //no side effects
+            list.Add("c:\\global\\temp2.config");
+            Assert.Single(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
+        }
+
+        [Fact]
+        public void ResetCandidateConfigTest()
+        {
+            var countBefore = XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count();
+            var list = new List<string> { "c:\\global\\temp.config" };
+            XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
+            Assert.Single(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
+            XmlLoggingConfiguration.ResetCandidateConfigFilePath();
+            Assert.Equal(countBefore, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
+        }
+
+        [Theory]
+        [MemberData(nameof(GetConfigFile_absolutePath_loads_testData))]
+        public void GetConfigFile_absolutePath_loads(string filename, string accepts, string expected, string baseDir)
+        {
+            // Arrange
+            var appEnvMock = new AppEnvironmentMock(f => f == accepts, f => null) { AppDomainBaseDirectory = baseDir };
+            var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
+
+            // Act
+            var result = fileLoader.GetConfigFile(filename);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+
+        public static IEnumerable<object[]> GetConfigFile_absolutePath_loads_testData()
+        {
+            var d = Path.DirectorySeparatorChar;
+            var baseDir = Path.GetTempPath();
+            var dirInBaseDir = $"{baseDir}dir1";
+            yield return new object[] { $"{baseDir}configfile", $"{baseDir}configfile", $"{baseDir}configfile", dirInBaseDir };
+            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog.config", $"{baseDir}dir1{d}nlog.config", dirInBaseDir }; //exists
+            yield return new object[] { "nlog.config", $"{baseDir}dir1{d}nlog2.config", "nlog.config", dirInBaseDir }; //not existing, fallback
+        }
+
+        [Fact]
+        public void LoadConfigFile_EmptyEnvironment_UseCurrentDirectory()
+        {
+            // Arrange
+            var appEnvMock = new AppEnvironmentMock(f => true, f => null);
+            var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
+
+            // Act
+            var result = fileLoader.GetDefaultCandidateConfigFilePaths().ToList();
+
+            // Assert loading from current-directory and from nlog-assembly-directory
+            if (NLog.Internal.PlatformDetector.IsWin32)
+                Assert.Equal(2, result.Count);  // Case insensitive
+            Assert.Equal("NLog.config", result.First(), StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("NLog.dll.nlog", result.Last(), StringComparison.OrdinalIgnoreCase);
+        }
+
+        [Fact]
+        public void LoadConfigFile_NetCoreUnpublished_UseEntryDirectory()
+        {
+            // Arrange
+            var d = Path.DirectorySeparatorChar;
+            var tmpDir = Path.GetTempPath();
+            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            {
+                AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
+#if NETSTANDARD
+                AppDomainConfigurationFile = string.Empty,                  // NetCore style
+#else
+                AppDomainConfigurationFile = Path.Combine(tmpDir, "EntryDir", "Entry.exe.config"),
+#endif
+                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Process.exe"),// NetCore dotnet.exe
+                EntryAssemblyLocation = Path.Combine(tmpDir, "EntryDir"),
+                EntryAssemblyFileName = "Entry.dll"
+            };
+
+            var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
+
+            // Act
+            var result = fileLoader.GetDefaultCandidateConfigFilePaths().ToList();
+
+            // Assert base-directory + entry-directory + nlog-assembly-directory
+            AssertResult(tmpDir, "EntryDir", "Entry", result);
+        }
+
+        [Fact]
+        public void LoadConfigFile_NetCorePublished_UseProcessDirectory()
+        {
+            // Arrange
+            var d = Path.DirectorySeparatorChar;
+            var tmpDir = Path.GetTempPath();
+            var appEnvMock = new AppEnvironmentMock(f => true, f => null)
+            {
+                AppDomainBaseDirectory = Path.Combine(tmpDir, "BaseDir"),
+#if NETSTANDARD
+                AppDomainConfigurationFile = string.Empty,                  // NetCore style
+#else
+                AppDomainConfigurationFile = Path.Combine(tmpDir, "ProcessDir", "Process.exe.config"),
+#endif
+                CurrentProcessFilePath = Path.Combine(tmpDir, "ProcessDir", "Process.exe"),    // NetCore published exe
+                EntryAssemblyLocation = Path.Combine(tmpDir, "ProcessDir"),
+                EntryAssemblyFileName = "Entry.dll"
+            };
+
+            var fileLoader = new LoggingConfigurationFileLoader(appEnvMock);
+
+            // Act
+            var result = fileLoader.GetDefaultCandidateConfigFilePaths().ToList();
+
+            // Assert base-directory + process-directory + nlog-assembly-directory
+            AssertResult(tmpDir, "ProcessDir", "Process", result);
+        }
+
+        private static void AssertResult(string tmpDir, string appDir, string appName, List<string> result)
+        {
+            if (NLog.Internal.PlatformDetector.IsWin32)
+            {
+#if NETSTANDARD
+                Assert.Equal(5, result.Count);  // Case insensitive
+#else
+                Assert.Equal(4, result.Count);  // Case insensitive
+#endif
+            }
+            Assert.Equal(Path.Combine(tmpDir, "BaseDir", "NLog.config"), result.First(), StringComparer.OrdinalIgnoreCase);
+            Assert.Contains(Path.Combine(tmpDir, appDir, "NLog.config"), result, StringComparer.OrdinalIgnoreCase);
+            Assert.Contains(Path.Combine(tmpDir, appDir, appName + ".exe.nlog"), result, StringComparer.OrdinalIgnoreCase);
+#if NETSTANDARD
+            Assert.Contains(Path.Combine(tmpDir, appDir, "Entry.dll.nlog"), result, StringComparer.OrdinalIgnoreCase);
+#endif
+            Assert.Contains("NLog.dll.nlog", result.Last(), StringComparison.OrdinalIgnoreCase);
+        }
+
+#if !NETSTANDARD
         private string appConfigContents = @"
 <configuration>
 <configSections>
@@ -106,19 +319,6 @@ namespace NLog.UnitTests
         private string nlogConfigOutput = "--BEGIN--|NLC InfoMsg|NLC WarnMsg|NLC ErrorMsg|NLC FatalMsg|--END--|";
         private string nlogDllNLogOutput = "--BEGIN--|NDN InfoMsg|NDN WarnMsg|NDN ErrorMsg|NDN FatalMsg|--END--|";
         private string missingConfigOutput = "--BEGIN--|--END--|";
-        private readonly string _tempDirectory;
-
-        public ConfigFileLocatorTests()
-        {
-            _tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-            Directory.CreateDirectory(_tempDirectory);
-        }
-
-        void IDisposable.Dispose()
-        {
-            if (Directory.Exists(_tempDirectory))
-                Directory.Delete(_tempDirectory, true);
-        }
 
         [Fact]
         public void MissingConfigFileTest()
@@ -215,103 +415,11 @@ namespace NLog.UnitTests
 
             output = RunTest();
             Assert.Equal(missingConfigOutput, output);
-
         }
 
-        [Fact]
-        void FuncLayoutRendererRegisterTest1()
-        {
-            LayoutRenderer.Register("the-answer", (info) => "42");
-            Layout l = "${the-answer}";
-            var result = l.Render(LogEventInfo.CreateNullEvent());
-            Assert.Equal("42", result);
-
-        }
-        [Fact]
-        void FuncLayoutRendererRegisterTest1WithXML()
-        {
-            LayoutRenderer.Register("the-answer", (info) => "42");
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-            
-                <targets>
-                    <target name='debug' type='Debug' layout= '${the-answer}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            var logger = LogManager.GetCurrentClassLogger();
-            logger.Debug("test1");
-            AssertDebugLastMessage("debug", "42");
-
-        }
-
-        [Fact]
-        void FuncLayoutRendererRegisterTest2()
-        {
-            LayoutRenderer.Register("message-length", (info) => info.Message.Length);
-            Layout l = "${message-length}";
-            var result = l.Render(LogEventInfo.Create(LogLevel.Error, "logger-adhoc", "1234567890"));
-            Assert.Equal("10", result);
-
-        }
-
-        [Fact]
-        public void GetCandidateConfigTest()
-        {
-            Assert.NotNull(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
-            var candidateConfigFilePaths = XmlLoggingConfiguration.GetCandidateConfigFilePaths();
-            var count = candidateConfigFilePaths.Count();
-            Assert.True(count > 0);
-
-        }
-
-        [Fact]
-        public void GetCandidateConfigTest_list_is_readonly()
-        {
-            Assert.Throws<NotSupportedException>(() =>
-            {
-                var list = new List<string> { "c:\\global\\temp.config" };
-                XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
-                var candidateConfigFilePaths = XmlLoggingConfiguration.GetCandidateConfigFilePaths();
-                var list2 = candidateConfigFilePaths as IList;
-                list2.Add("test");
-            });
-        }
-
-        [Fact]
-        public void SetCandidateConfigTest()
-        {
-            var list = new List<string> { "c:\\global\\temp.config" };
-            XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
-            Assert.Single(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
-            //no side effects
-            list.Add("c:\\global\\temp2.config");
-            Assert.Single(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
-
-        }
-
-        [Fact]
-        public void ResetCandidateConfigTest()
-        {
-
-            var countBefore = XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count();
-            var list = new List<string> { "c:\\global\\temp.config" };
-            XmlLoggingConfiguration.SetCandidateConfigFilePaths(list);
-            Assert.Single(XmlLoggingConfiguration.GetCandidateConfigFilePaths());
-            XmlLoggingConfiguration.ResetCandidateConfigFilePath();
-            Assert.Equal(countBefore, XmlLoggingConfiguration.GetCandidateConfigFilePaths().Count());
-
-        }
 
         private string RunTest()
         {
-
-
-
-
             string sourceCode = @"
 using System;
 using System.Reflection;
@@ -334,7 +442,7 @@ class C1
     }
 }";
             var provider = new CSharpCodeProvider();
-            var options = new CompilerParameters();
+            var options = new System.CodeDom.Compiler.CompilerParameters();
             options.OutputAssembly = Path.Combine(_tempDirectory, "ConfigFileLocator.exe");
             options.GenerateExecutable = true;
             options.ReferencedAssemblies.Add(typeof(ILogger).Assembly.Location);
@@ -377,7 +485,6 @@ class C1
                 return proc.StandardOutput.ReadToEnd().Replace("\r", "").Replace("\n", "|");
             }
         }
+#endif
     }
 }
-
-#endif

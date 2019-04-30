@@ -319,15 +319,12 @@ namespace NLog.Internal.NetworkSenders
 
                 if (e.SocketError != SocketError.Success)
                 {
-                    _pendingError = new IOException($"Error: " + e.SocketError);
+                    _pendingError = new IOException("Error: " + e.SocketError);
                 }
 
                 e.Dispose();
 
-                if (asyncContinuation != null)
-                {
-                    asyncContinuation(_pendingError);
-                }
+                asyncContinuation?.Invoke(_pendingError);
             }
 
             ProcessNextQueuedItem();

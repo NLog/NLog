@@ -38,7 +38,8 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
 
     /// <summary>
-    /// Nested Diagnostic Context item. Provided for compatibility with log4net.
+    /// Render a Nested Diagnostic Context item.
+    /// See <see cref="NestedDiagnosticsContext"/>
     /// </summary>
     [LayoutRenderer("ndc")]
     [ThreadSafe]
@@ -81,7 +82,7 @@ namespace NLog.LayoutRenderers
         {
             if (TopFrames == 1)
             {
-                // Allows fast rendering of ${when:when='${ndc:topframes=1}' == '':inner=:else=${ndc}|}
+                // Allows fast rendering of topframes=1
                 var topFrame = NestedDiagnosticsContext.PeekObject();
                 if (topFrame != null)
                     AppendAsString(topFrame, GetFormatProvider(logEvent), builder);

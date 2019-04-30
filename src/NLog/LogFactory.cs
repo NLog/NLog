@@ -185,7 +185,6 @@ namespace NLog
         /// </summary>
         public bool KeepVariablesOnReload { get; set; }
 
-
         /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
         /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers" />
@@ -382,7 +381,7 @@ namespace NLog
 #else
             var className = StackTraceUsageUtils.GetClassFullName(new StackFrame(1, false));
 #endif
-            return GetLogger(className, loggerType);
+            return GetLoggerThreadSafe(className, loggerType);
         }
 
         /// <summary>
@@ -393,7 +392,7 @@ namespace NLog
         /// are not guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name)
         {
-            return GetLogger(new LoggerCacheKey(name, typeof(Logger)));
+            return GetLoggerThreadSafe(name, Logger.DefaultLoggerType);
         }
 
         /// <summary>
@@ -405,7 +404,7 @@ namespace NLog
         /// are not guaranteed to return the same logger reference.</returns>
         public T GetLogger<T>(string name) where T : Logger
         {
-            return (T)GetLogger(new LoggerCacheKey(name, typeof(T)));
+            return (T)GetLoggerThreadSafe(name, typeof(T));
         }
 
         /// <summary>
@@ -417,7 +416,7 @@ namespace NLog
         /// same argument aren't guaranteed to return the same logger reference.</returns>
         public Logger GetLogger(string name, Type loggerType)
         {
-            return GetLogger(new LoggerCacheKey(name, loggerType));
+            return GetLoggerThreadSafe(name, loggerType);
         }
 
         /// <summary>
@@ -432,7 +431,6 @@ namespace NLog
             lock (_syncRoot)
             {
                 _config?.InitializeAll();
-
                 loggers = _loggerCache.GetLoggers();
             }
 
@@ -511,7 +509,7 @@ namespace NLog
             try
             {
                 InternalLogger.Trace("LogFactory.Flush({0})", timeout);
-                LoggingConfiguration loggingConfiguration = null;
+                LoggingConfiguration loggingConfiguration;
                 lock (_syncRoot)
                 {
                     loggingConfiguration = _config; // Flush should not attempt to auto-load Configuration
@@ -740,8 +738,9 @@ namespace NLog
             }
 
 #pragma warning disable 618
-            return new LoggerConfiguration(targetsByLevel, configuration != null && configuration.ExceptionLoggingOldStyle);
+            var exceptionLoggingOldStyle = configuration?.ExceptionLoggingOldStyle == true;
 #pragma warning restore 618
+            return new LoggerConfiguration(targetsByLevel, exceptionLoggingOldStyle);
         }
 
         /// <summary>
@@ -888,8 +887,13 @@ namespace NLog
             _candidateConfigFilePaths = null;
         }
 
-        private Logger GetLogger(LoggerCacheKey cacheKey)
+        private Logger GetLoggerThreadSafe(string name, Type loggerType)
         {
+            if (name == null)
+                throw new ArgumentNullException(nameof(name), "Name of logger cannot be null");
+
+            LoggerCacheKey cacheKey = new LoggerCacheKey(name, loggerType ?? typeof(Logger));
+
             lock (_syncRoot)
             {
                 Logger existingLogger = _loggerCache.Retrieve(cacheKey);
@@ -899,88 +903,79 @@ namespace NLog
                     return existingLogger;
                 }
 
-                Logger newLogger;
-
-                if (cacheKey.ConcreteType != null && cacheKey.ConcreteType != typeof(Logger))
+                Logger newLogger = CreateNewLogger(cacheKey.ConcreteType);
+                if (newLogger == null)
                 {
-                    var fullName = cacheKey.ConcreteType.FullName;
-                    try
-                    {
-
-                        //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
-                        if (cacheKey.ConcreteType.IsStaticClass())
-                        {
-                            var errorMessage =
-                                $"GetLogger / GetCurrentClassLogger is '{fullName}' as loggerType can be a static class and should inherit from Logger";
-                            InternalLogger.Error(errorMessage);
-                            if (ThrowExceptions)
-                            {
-                                throw new NLogRuntimeException(errorMessage);
-                            }
-                            newLogger = CreateDefaultLogger(ref cacheKey);
-                        }
-                        else
-                        {
-
-                            var instance = FactoryHelper.CreateInstance(cacheKey.ConcreteType);
-                            newLogger = instance as Logger;
-                            if (newLogger == null)
-                            {
-                                //well, it's not a Logger, and we should return a Logger.
-
-                                var errorMessage =
-                                    $"GetLogger / GetCurrentClassLogger got '{fullName}' as loggerType which doesn't inherit from Logger";
-                                InternalLogger.Error(errorMessage);
-                                if (ThrowExceptions)
-                                {
-                                    throw new NLogRuntimeException(errorMessage);
-                                }
-
-                                // Creating default instance of logger if instance of specified type cannot be created.
-                                newLogger = CreateDefaultLogger(ref cacheKey);
-
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor. ", fullName);
-
-                        if (ex.MustBeRethrown())
-                        {
-                            throw;
-                        }
-
-                        // Creating default instance of logger if instance of specified type cannot be created.
-                        newLogger = CreateDefaultLogger(ref cacheKey);
-                    }
-                }
-                else
-                {
+                    cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
                     newLogger = new Logger();
                 }
 
-                if (cacheKey.ConcreteType != null)
-                {
-                    newLogger.Initialize(cacheKey.Name, GetConfigurationForLogger(cacheKey.Name, Configuration), this);
-                }
-
-                // TODO: Clarify what is the intention when cacheKey.ConcreteType = null.
-                //      At the moment, a logger typeof(Logger) will be created but the ConcreteType 
-                //      will remain null and inserted into the cache. 
-                //      Should we set cacheKey.ConcreteType = typeof(Logger) for default loggers?
-
+                newLogger.Initialize(name, GetConfigurationForLogger(name, Configuration), this);
                 _loggerCache.InsertOrUpdate(cacheKey, newLogger);
                 return newLogger;
             }
         }
 
-        private static Logger CreateDefaultLogger(ref LoggerCacheKey cacheKey)
+        internal Logger CreateNewLogger(Type loggerType)
         {
-            cacheKey = new LoggerCacheKey(cacheKey.Name, typeof(Logger));
+            Logger newLogger;
+            if (loggerType != null && loggerType != typeof(Logger))
+            {
+                try
+                {
+                    newLogger = CreateCustomLoggerType(loggerType);
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "GetLogger / GetCurrentClassLogger. Cannot create instance of type '{0}'. It should have an default contructor.", loggerType);
+                    if (ex.MustBeRethrown())
+                    {
+                        throw;
+                    }
+                    newLogger = null;
+                }
+            }
+            else
+            {
+                newLogger = new Logger();
+            }
 
-            var newLogger = new Logger();
             return newLogger;
+        }
+
+        private Logger CreateCustomLoggerType(Type customLoggerType)
+        {
+            //creating instance of static class isn't possible, and also not wanted (it cannot inherited from Logger)
+            if (customLoggerType.IsStaticClass())
+            {
+                var errorMessage =
+                    $"GetLogger / GetCurrentClassLogger is '{customLoggerType}' as loggerType is static class and should instead inherit from Logger";
+                InternalLogger.Error(errorMessage);
+                if (ThrowExceptions)
+                {
+                    throw new NLogRuntimeException(errorMessage);
+                }
+                return null;
+            }
+            else
+            {
+                var instance = FactoryHelper.CreateInstance(customLoggerType);
+                var newLogger = instance as Logger;
+                if (newLogger == null)
+                {
+                    //well, it's not a Logger, and we should return a Logger.
+                    var errorMessage =
+                        $"GetLogger / GetCurrentClassLogger got '{customLoggerType}' as loggerType doesn't inherit from Logger";
+                    InternalLogger.Error(errorMessage);
+                    if (ThrowExceptions)
+                    {
+                        throw new NLogRuntimeException(errorMessage);
+                    }
+                    return null;
+                }
+
+                return newLogger;
+            }
         }
 
         /// <summary>
@@ -1001,7 +996,7 @@ namespace NLog
         /// <summary>
         /// Logger cache key.
         /// </summary>
-        internal struct LoggerCacheKey : IEquatable<LoggerCacheKey>
+        private struct LoggerCacheKey : IEquatable<LoggerCacheKey>
         {
             public readonly string Name;
             public readonly Type ConcreteType;

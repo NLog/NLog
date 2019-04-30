@@ -36,7 +36,7 @@ namespace NLog
     using System;
 
     /// <summary>
-    /// Nested Diagnostics Context - for log4net compatibility.
+    /// Nested Diagnostics Context
     /// </summary>
     /// <remarks>This class marked as obsolete on NLog 2.0 and it may be removed in a future release.</remarks>
     [Obsolete("Use NestedDiagnosticsContext class instead. Marked obsolete on NLog 2.0")]

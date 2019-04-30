@@ -406,11 +406,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests.GivenOneSkipFrameDefined_WhenLogging_ShouldSkipOneUserStackFrame msg");
         }
 
-#if MONO
-        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
         [Fact]
-#endif
         public void CleanMethodNamesOfAnonymousDelegatesTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -443,11 +439,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if MONO
-        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
         [Fact]
-#endif
         public void DontCleanMethodNamesOfAnonymousDelegatesTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -481,11 +473,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if MONO
-        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
         [Fact]
-#endif
         public void CleanClassNamesOfAnonymousDelegatesTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -518,11 +506,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-#if MONO
-        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
-#else
         [Fact]
-#endif
         public void DontCleanClassNamesOfAnonymousDelegatesTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"

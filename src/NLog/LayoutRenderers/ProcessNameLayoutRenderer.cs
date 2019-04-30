@@ -63,8 +63,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var name = FullName ? ThreadIDHelper.Instance.CurrentProcessName : ThreadIDHelper.Instance.CurrentProcessBaseName;
-            builder.Append(name);
+            var output = FullName ? ProcessIDHelper.Instance.CurrentProcessFilePath : ProcessIDHelper.Instance.CurrentProcessBaseName;
+            builder.Append(output);
         }
     }
 }

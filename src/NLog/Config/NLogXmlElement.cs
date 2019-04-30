@@ -206,33 +206,7 @@ namespace NLog.Config
 
         private void Parse(XmlReader reader, bool nestedElement)
         {
-            if (reader.MoveToFirstAttribute())
-            {
-                do
-                {
-                    if (!nestedElement)
-                    {
-                        if (reader.LocalName?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
-                            continue;
-                        if (reader.Prefix?.Equals("xsi", StringComparison.OrdinalIgnoreCase) == true)
-                            continue;
-                        if (reader.Prefix?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
-                            continue;
-                    }
-
-                    if (!AttributeValues.ContainsKey(reader.LocalName))
-                    {
-                        AttributeValues.Add(reader.LocalName, reader.Value);
-                    }
-                    else
-                    {
-                        string message = $"Duplicate attribute detected. Attribute name: [{reader.LocalName}]. Duplicate value:[{reader.Value}], Current value:[{AttributeValues[reader.LocalName]}]";
-                        _parsingErrors.Add(message);
-                    }
-                }
-                while (reader.MoveToNextAttribute());
-                reader.MoveToElement();
-            }
+            ParseAttributes(reader, nestedElement);
 
             LocalName = reader.LocalName;
 
@@ -257,6 +231,46 @@ namespace NLog.Config
                     }
                 }
             }
+        }
+
+        private void ParseAttributes(XmlReader reader, bool nestedElement)
+        {
+            if (reader.MoveToFirstAttribute())
+            {
+                do
+                {
+                    if (!nestedElement && IsSpecialXmlAttribute(reader))
+                    {
+                        continue;
+                    }
+
+                    if (!AttributeValues.ContainsKey(reader.LocalName))
+                    {
+                        AttributeValues.Add(reader.LocalName, reader.Value);
+                    }
+                    else
+                    {
+                        string message = $"Duplicate attribute detected. Attribute name: [{reader.LocalName}]. Duplicate value:[{reader.Value}], Current value:[{AttributeValues[reader.LocalName]}]";
+                        _parsingErrors.Add(message);
+                    }
+                }
+                while (reader.MoveToNextAttribute());
+                reader.MoveToElement();
+            }
+        }
+
+        /// <summary>
+        /// Special attribute we could ignore
+        /// </summary>
+        private static bool IsSpecialXmlAttribute(XmlReader reader)
+        {
+            if (reader.LocalName?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
+                return true;
+            if (reader.Prefix?.Equals("xsi", StringComparison.OrdinalIgnoreCase) == true)
+                return true;
+            if (reader.Prefix?.Equals("xmlns", StringComparison.OrdinalIgnoreCase) == true)
+                return true;
+            return false;
         }
     }
 }

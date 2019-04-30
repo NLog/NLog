@@ -37,6 +37,7 @@ namespace NLog.Config
     using System.Collections.Generic;
     using System.IO;
     using System.Security;
+    using System.Xml;
     using NLog.Common;
     using NLog.Internal;
     using NLog.Internal.Fakeables;
@@ -51,23 +52,23 @@ namespace NLog.Config
     /// </summary>
     internal class LoggingConfigurationFileLoader : ILoggingConfigurationLoader
     {
-        private static readonly FileWrapper DefaultFileWrapper = new FileWrapper();
-        private readonly IFile _file;
+        private static readonly AppEnvironmentWrapper DefaultAppEnvironment = new AppEnvironmentWrapper();
+        private readonly IAppEnvironment _appEnvironment;
 
         public LoggingConfigurationFileLoader()
-            :this(DefaultFileWrapper)
+            :this(DefaultAppEnvironment)
         {
         }
 
-        public LoggingConfigurationFileLoader(IFile file)
+        public LoggingConfigurationFileLoader(IAppEnvironment appEnvironment)
         {
-            _file = file;
+            _appEnvironment = appEnvironment;
         }
 
         public LoggingConfiguration Load(LogFactory logFactory, string filename)
         {
             var configFile = GetConfigFile(filename);
-            return LoadXmlLoggingConfiguration(logFactory, configFile);
+            return LoadXmlLoggingConfigurationFile(logFactory, configFile);
         }
 
         public virtual LoggingConfiguration Load(LogFactory logFactory)
@@ -86,7 +87,7 @@ namespace NLog.Config
             {
                 foreach (var path in GetDefaultCandidateConfigFilePaths(configFile))
                 {
-                    if (_file.Exists(path))
+                    if (_appEnvironment.FileExists(path))
                     {
                         configFile = path;
                         break;
@@ -108,7 +109,11 @@ namespace NLog.Config
                 {
                     if (stream != null)
                     {
-                        return LoadXmlLoggingConfiguration(logFactory, XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
+                        InternalLogger.Debug("Loading config from Assets {0}", nlogConfigFilename);
+                        using (var xmlReader = XmlReader.Create(stream))
+                        {
+                            return LoadXmlLoggingConfiguration(xmlReader, null, logFactory);
+                        }
                     }
                 }
             }
@@ -142,15 +147,20 @@ namespace NLog.Config
             {
 #if SILVERLIGHT && !WINDOWS_PHONE
                 Uri configFileUri = new Uri(configFile, UriKind.Relative);
-                if (Application.GetResourceStream(configFileUri) != null)
+                var streamResourceInfo = Application.GetResourceStream(configFileUri);
+                if (streamResourceInfo != null)
                 {
-                    config = LoadXmlLoggingConfiguration(logFactory, configFile);
-                    return true;    // File exists, and maybe the config is valid, stop search
+                    InternalLogger.Debug("Loading config from Resource {0}", configFileUri);
+                    using (var xmlReader = XmlReader.Create(streamResourceInfo.Stream))
+                    {
+                        config = LoadXmlLoggingConfiguration(xmlReader, null, logFactory);
+                        return true;
+                    }
                 }
 #else
-                if (File.Exists(configFile))
+                if (_appEnvironment.FileExists(configFile))
                 {
-                    config = LoadXmlLoggingConfiguration(logFactory, configFile);
+                    config = LoadXmlLoggingConfigurationFile(logFactory, configFile);
                     return true;    // File exists, and maybe the config is valid, stop search
                 }
 #endif
@@ -178,10 +188,18 @@ namespace NLog.Config
             return false;   // No valid file found
         }
 
-        private LoggingConfiguration LoadXmlLoggingConfiguration(LogFactory logFactory, string configFile)
+        private LoggingConfiguration LoadXmlLoggingConfigurationFile(LogFactory logFactory, string configFile)
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
-            var xmlConfig = new XmlLoggingConfiguration(configFile, logFactory);
+            using (var xmlReader = _appEnvironment.LoadXmlFile(configFile))
+            {
+                return LoadXmlLoggingConfiguration(xmlReader, configFile, logFactory);
+            }
+        }
+
+        private LoggingConfiguration LoadXmlLoggingConfiguration(XmlReader xmlReader, string configFile, LogFactory logFactory)
+        {
+            var xmlConfig = new XmlLoggingConfiguration(xmlReader, configFile, logFactory);
             //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
             //therefor we check the InitializeSucceeded property.
             if (xmlConfig.InitializeSucceeded != true)
@@ -204,7 +222,7 @@ namespace NLog.Config
         {
             // NLog.config from application directory
             string nlogConfigFile = fileName ?? "NLog.config";
-            string baseDirectory = PathHelpers.TrimDirectorySeparators(LogFactory.CurrentAppDomain?.BaseDirectory);
+            string baseDirectory = PathHelpers.TrimDirectorySeparators(_appEnvironment.AppDomainBaseDirectory);
             if (!string.IsNullOrEmpty(baseDirectory))
                 yield return Path.Combine(baseDirectory, nlogConfigFile);
 
@@ -214,17 +232,16 @@ namespace NLog.Config
                 yield return Path.Combine(baseDirectory, nLogConfigFileLowerCase);
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
-            var entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly()));
-            if (!string.IsNullOrEmpty(entryAssemblyLocation))
-            {
-                if (!string.Equals(entryAssemblyLocation, baseDirectory, StringComparison.OrdinalIgnoreCase))
-                {
-                    yield return Path.Combine(entryAssemblyLocation, nlogConfigFile);
-                    if (!platformFileSystemCaseInsensitive)
-                        yield return Path.Combine(entryAssemblyLocation, nLogConfigFileLowerCase);
-                }
-            }
+            string entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(_appEnvironment.EntryAssemblyLocation);
+#else
+            string entryAssemblyLocation = string.Empty;
 #endif
+            if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, baseDirectory, StringComparison.OrdinalIgnoreCase))
+            {
+                yield return Path.Combine(entryAssemblyLocation, nlogConfigFile);
+                if (!platformFileSystemCaseInsensitive)
+                    yield return Path.Combine(entryAssemblyLocation, nLogConfigFileLowerCase);
+            }
 
             if (string.IsNullOrEmpty(baseDirectory))
             {
@@ -235,35 +252,13 @@ namespace NLog.Config
 
             if (fileName == null)
             {
-                // Current config file with .config renamed to .nlog
-                string configurationFile = LogFactory.CurrentAppDomain?.ConfigurationFile;
-                if (!StringHelpers.IsNullOrWhiteSpace(configurationFile))
-                {
-                    yield return Path.ChangeExtension(configurationFile, ".nlog");
-
-                    // .nlog file based on the non-vshost version of the current config file
-                    const string vshostSubStr = ".vshost.";
-                    if (configurationFile.Contains(vshostSubStr))
-                    {
-                        yield return Path.ChangeExtension(configurationFile.Replace(vshostSubStr, "."), ".nlog");
-                    }
-                }
+                // Scan for process specific nlog-files
+                foreach (var filePath in GetAppSpecificNLogLocations(entryAssemblyLocation))
+                    yield return filePath;
             }
 
-            IEnumerable<string> privateBinPaths = LogFactory.CurrentAppDomain.PrivateBinPath;
-            if (privateBinPaths != null)
-            {
-                foreach (var privatePath in privateBinPaths)
-                {
-                    var path = PathHelpers.TrimDirectorySeparators(privatePath);
-                    if (!StringHelpers.IsNullOrWhiteSpace(path) && !string.Equals(path, baseDirectory, StringComparison.OrdinalIgnoreCase))
-                    {
-                        yield return Path.Combine(path, nlogConfigFile);
-                        if (!platformFileSystemCaseInsensitive)
-                            yield return Path.Combine(path, nLogConfigFileLowerCase);
-                    }
-                }
-            }
+            foreach (var filePath in GetPrivateBinPathNLogLocations(baseDirectory, nlogConfigFile, platformFileSystemCaseInsensitive ? nLogConfigFileLowerCase : string.Empty))
+                yield return filePath;
 
 #if !SILVERLIGHT && !NETSTANDARD1_0
             if (fileName == null)
@@ -278,6 +273,78 @@ namespace NLog.Config
 #endif
         }
 
+        /// <summary>
+        /// Get default file paths (including filename) for possible NLog config files. 
+        /// </summary>
+        public IEnumerable<string> GetAppSpecificNLogLocations(string entryAssemblyLocation)
+        {
+            // Current config file with .config renamed to .nlog
+            string configurationFile = _appEnvironment.AppDomainConfigurationFile;
+            if (!StringHelpers.IsNullOrWhiteSpace(configurationFile))
+            {
+                yield return Path.ChangeExtension(configurationFile, ".nlog");
+
+                // .nlog file based on the non-vshost version of the current config file
+                const string vshostSubStr = ".vshost.";
+                if (configurationFile.Contains(vshostSubStr))
+                {
+                    yield return Path.ChangeExtension(configurationFile.Replace(vshostSubStr, "."), ".nlog");
+                }
+            }
+#if NETSTANDARD && !NETSTANDARD1_3
+            else
+            {
+                string processFilePath = _appEnvironment.CurrentProcessFilePath;
+                string processDirectory = !string.IsNullOrEmpty(processFilePath) ? PathHelpers.TrimDirectorySeparators(Path.GetDirectoryName(processFilePath)) : string.Empty;
+                if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, processDirectory, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Handle dotnet-process loading .NET Core-assembly, or IIS-process loading website
+                    string assemblyFileName = _appEnvironment.EntryAssemblyFileName;
+                    yield return Path.Combine(entryAssemblyLocation, assemblyFileName + ".nlog");
+                    // Handle unpublished .NET Core Application
+                    assemblyFileName = Path.GetFileNameWithoutExtension(assemblyFileName);
+                    if (!string.IsNullOrEmpty(assemblyFileName))
+                        yield return Path.Combine(entryAssemblyLocation, assemblyFileName + ".exe.nlog");
+                }
+                else if (!string.IsNullOrEmpty(processFilePath))
+                {
+                    yield return processFilePath + ".nlog";
+                    // Handle published .NET Core Application with assembly-nlog-file
+                    if (!string.IsNullOrEmpty(entryAssemblyLocation))
+                    {
+                        string assemblyFileName = _appEnvironment.EntryAssemblyFileName;
+                        if (!string.IsNullOrEmpty(assemblyFileName))
+                            yield return Path.Combine(entryAssemblyLocation, assemblyFileName + ".nlog");
+                    }
+                    else
+                    {
+                        string processFileName = Path.GetFileNameWithoutExtension(processFilePath);
+                        if (!string.IsNullOrEmpty(processFileName))
+                            yield return Path.Combine(processDirectory, processFileName + ".dll.nlog");
+                    }
+                }
+            }
+#endif
+        }
+
+        public IEnumerable<string> GetPrivateBinPathNLogLocations(string baseDirectory, string nlogConfigFile, string nLogConfigFileLowerCase)
+        {
+            IEnumerable<string> privateBinPaths = _appEnvironment.PrivateBinPath;
+            if (privateBinPaths != null)
+            {
+                foreach (var privatePath in privateBinPaths)
+                {
+                    var path = PathHelpers.TrimDirectorySeparators(privatePath);
+                    if (!StringHelpers.IsNullOrWhiteSpace(path) && !string.Equals(path, baseDirectory, StringComparison.OrdinalIgnoreCase))
+                    {
+                        yield return Path.Combine(path, nlogConfigFile);
+                        if (!string.IsNullOrEmpty(nLogConfigFileLowerCase))
+                            yield return Path.Combine(path, nLogConfigFileLowerCase);
+                    }
+                }
+            }
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             // Nothing to dispose
@@ -286,6 +353,7 @@ namespace NLog.Config
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

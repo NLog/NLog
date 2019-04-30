@@ -324,20 +324,17 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         public void CloseAppenders(string reason)
         {
-            if (_appenders != null)
+            for (int i = 0; i < _appenders.Length; ++i)
             {
-                for (int i = 0; i < _appenders.Length; ++i)
+                var oldAppender = _appenders[i];
+                if (oldAppender == null)
                 {
-                    var oldAppender = _appenders[i];
-                    if (oldAppender == null)
-                    {
-                        break;
-                    }
-
-                    CloseAppender(oldAppender, reason, true);
-                    _appenders[i] = null;
-                    oldAppender.Dispose();  // Dispose of Archive Mutex
+                    break;
                 }
+
+                CloseAppender(oldAppender, reason, true);
+                _appenders[i] = null;
+                oldAppender.Dispose();  // Dispose of Archive Mutex
             }
         }
 

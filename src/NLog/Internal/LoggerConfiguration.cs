@@ -46,9 +46,8 @@ namespace NLog.Internal
         /// Initializes a new instance of the <see cref="LoggerConfiguration" /> class.
         /// </summary>
         /// <param name="targetsByLevel">The targets by level.</param>
-        /// <param name="exceptionLoggingOldStyle">  Use the old exception log handling of NLog 3.0? 
-        /// </param>
-        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel, bool exceptionLoggingOldStyle = false)
+        /// <param name="exceptionLoggingOldStyle">  Use the old exception log handling of NLog 3.0?</param>
+        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel, bool exceptionLoggingOldStyle)
         {
             _targetsByLevel = targetsByLevel;
 #pragma warning disable 618
@@ -61,7 +60,7 @@ namespace NLog.Internal
         /// </summary>
         /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it  will be removed in NLog 5.</remarks>
         [Obsolete("This property marked obsolete before v4.3.11 and it will be removed in NLog 5.")]
-        public bool ExceptionLoggingOldStyle { get; private set; }
+        public bool ExceptionLoggingOldStyle { get; }
 
         /// <summary>
         /// Gets targets for the specified level.
@@ -74,24 +73,7 @@ namespace NLog.Internal
             {
                 return null;
             }
-
             return _targetsByLevel[level.Ordinal];
-        }
-
-        /// <summary>
-        /// Determines whether the specified level is enabled.
-        /// </summary>
-        /// <param name="level">The level.</param>
-        /// <returns>
-        /// A value of <c>true</c> if the specified level is enabled; otherwise, <c>false</c>.
-        /// </returns>
-        public bool IsEnabled(LogLevel level)
-        {
-            if (level == LogLevel.Off)
-            {
-                return false;
-            }
-            return _targetsByLevel[level.Ordinal] != null;
         }
     }
 }

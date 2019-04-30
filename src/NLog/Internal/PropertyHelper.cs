@@ -260,9 +260,9 @@ namespace NLog.Internal
             {
                 ulong union = 0;
 
-                foreach (string v in value.Split(','))
+                foreach (string v in value.SplitAndTrimTokens(','))
                 {
-                    FieldInfo enumField = resultType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                    FieldInfo enumField = resultType.GetField(v, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
                     if (enumField == null)
                     {
                         throw new NLogConfigurationException($"Invalid enumeration value '{value}'.");
@@ -330,27 +330,24 @@ namespace NLog.Internal
         /// <returns></returns>
         private static bool TryFlatListConversion(Type type, string valueRaw, out object newValue)
         {
-            if (type.IsGenericType())
+            if (type.IsGenericType() && TryCreateCollectionObject(type, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
             {
-                if (TryCreateCollectionObject(type, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
+                var values = valueRaw.SplitQuoted(',', '\'', '\\');
+                foreach (var value in values)
                 {
-                    var values = valueRaw.SplitQuoted(',', '\'', '\\');
-                    foreach (var value in values)
+                    if (!(TryGetEnumValue(propertyType, value, out newValue, false)
+                          || TrySpecialConversion(propertyType, value, out newValue)
+                          || TryImplicitConversion(propertyType, value, out newValue)
+                          || TryTypeConverterConversion(propertyType, value, out newValue)))
                     {
-                        if (!(TryGetEnumValue(propertyType, value, out newValue, false)
-                               || TrySpecialConversion(propertyType, value, out newValue)
-                               || TryImplicitConversion(propertyType, value, out newValue)
-                               || TryTypeConverterConversion(propertyType, value, out newValue)))
-                        {
-                            newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
-                        }
-
-                        collectionAddMethod.Invoke(newList, new object[] { newValue });
+                        newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
                     }
 
-                    newValue = newList;
-                    return true;
+                    collectionAddMethod.Invoke(newList, new object[] { newValue });
                 }
+
+                newValue = newList;
+                return true;
             }
 
             newValue = null;

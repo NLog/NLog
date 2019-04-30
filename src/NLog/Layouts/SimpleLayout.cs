@@ -332,13 +332,10 @@ namespace NLog.Layouts
             {
                 if (_rawValueRenderer != null)
                 {
-                    if (!ThreadAgnostic || MutableUnsafe)
+                    if ((!ThreadAgnostic || MutableUnsafe) && logEvent.TryGetCachedLayoutValue(this, out _))
                     {
-                        if (logEvent.TryGetCachedLayoutValue(this, out _))
-                        {
-                            rawValue = null;
-                            return false;    // Raw-Value has been precalculated, so not available
-                        }
+                        rawValue = null;
+                        return false;    // Raw-Value has been precalculated, so not available
                     }
 
                     var success = _rawValueRenderer.TryGetRawValue(logEvent, out rawValue);

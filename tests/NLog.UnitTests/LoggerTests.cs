@@ -2390,5 +2390,86 @@ namespace NLog.UnitTests
             Assert.Equal("b", props["A"]);
             Assert.Equal(1, props.Count);
         }
+
+        static Logger GetContextLoggerFromTemporary(string loggerName)
+        {
+            var globalLogger = LogManager.GetLogger(loggerName);
+            var loggerStage1 = globalLogger.WithProperty("Stage", 1);
+            globalLogger.Trace("{Stage}", "Connected");
+            return loggerStage1;
+        }
+
+        [Fact]
+        public void LogEventTemplateShouldOverrideProperties()
+        {
+            string uniqueLoggerName = Guid.NewGuid().ToString();
+
+            var config = new LoggingConfiguration();
+            var target = new MyTarget();
+            config.LoggingRules.Add(new LoggingRule(uniqueLoggerName, LogLevel.Trace, target));
+            LogManager.Configuration = config;
+            Logger loggerStage1 = GetContextLoggerFromTemporary(uniqueLoggerName);
+            GC.Collect();   // Try and free globalLogger
+            var loggerStage2 = loggerStage1.WithProperty("Stage", 2);
+            Assert.Single(target.LastEvent.Properties);
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", "Connected");
+            loggerStage1.Trace("Login attempt from {userid}", "kermit");
+            Assert.Equal(2, target.LastEvent.Properties.Count);
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", 1);
+            AssertContainsInDictionary(target.LastEvent.Properties, "userid", "kermit");
+            loggerStage2.Trace("Login succesful for {userid}", "kermit");
+            Assert.Equal(2, target.LastEvent.Properties.Count);
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", 2);
+            AssertContainsInDictionary(target.LastEvent.Properties, "userid", "kermit");
+            loggerStage2.Trace("{Stage}", "Disconnected");
+            Assert.Single(target.LastEvent.Properties);
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", "Disconnected");
+        }
+
+        [Fact]
+        public void LoggerWithPropertyShouldInheritLogLevel()
+        {
+            string uniqueLoggerName = Guid.NewGuid().ToString();
+
+            var config = new LoggingConfiguration();
+            var target = new MyTarget();
+            config.LoggingRules.Add(new LoggingRule(uniqueLoggerName, LogLevel.Trace, target));
+            LogManager.Configuration = config;
+            Logger loggerStage1 = GetContextLoggerFromTemporary(uniqueLoggerName);
+            GC.Collect();   // Try and free globalLogger
+            Assert.Single(target.LastEvent.Properties);
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", "Connected");
+            LogManager.Configuration.LoggingRules[0].DisableLoggingForLevel(LogLevel.Trace);
+            LogManager.ReconfigExistingLoggers();   // Refreshes the configuration of globalLogger
+            var loggerStage2 = loggerStage1.WithProperty("Stage", 2);
+            loggerStage2.Trace("Login attempt from {userid}", "kermit");
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", "Connected");  // Verify nothing writtne
+            loggerStage2.Debug("{Stage}", "Disconnected");
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", "Disconnected");
+        }
+
+        [Fact]
+        public void LoggerSetPropertyChangesCurrentLogger()
+        {
+            string uniqueLoggerName = Guid.NewGuid().ToString();
+
+            var config = new LoggingConfiguration();
+            var target = new MyTarget();
+            config.LoggingRules.Add(new LoggingRule(uniqueLoggerName, LogLevel.Trace, target));
+            LogManager.Configuration = config;
+            var globalLogger = LogManager.GetLogger(uniqueLoggerName);
+            globalLogger.SetProperty("Stage", 1);
+            globalLogger.Trace("Login attempt from {userid}", "kermit");
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", 1);
+            var loggerStage2 = globalLogger.WithProperty("Stage", 2);
+            loggerStage2.Trace("Hello from {userid}", "kermit");
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", 2);
+            globalLogger.SetProperty("Stage", 4);
+            loggerStage2.SetProperty("Stage", 3);
+            loggerStage2.Trace("Goodbye from {userid}", "kermit");
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", 3);
+            globalLogger.Trace("Logoff by {userid}", "kermit");
+            AssertContainsInDictionary(target.LastEvent.Properties, "Stage", 4);
+        }
     }
 }

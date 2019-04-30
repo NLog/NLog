@@ -39,7 +39,8 @@ namespace NLog.LayoutRenderers
     using NLog.Config;
 
     /// <summary>
-    /// <see cref="NestedDiagnosticsLogicalContext"/> Renderer (Async scope)
+    /// Render a Nested Diagnostic Logical Context item (Async scope)
+    /// See <see cref="NestedDiagnosticsLogicalContext"/>
     /// </summary>
     [LayoutRenderer("ndlc")]
     [ThreadSafe]
@@ -82,7 +83,7 @@ namespace NLog.LayoutRenderers
         {
             if (TopFrames == 1)
             {
-                // Allows fast rendering of ${when:when='${ndlc:topframes=1}' == '':inner=:else=${ndlc}|}
+                // Allows fast rendering of topframes=1
                 var topFrame = NestedDiagnosticsLogicalContext.PeekObject();
                 if (topFrame != null)
                     AppendAsString(topFrame, GetFormatProvider(logEvent), builder);

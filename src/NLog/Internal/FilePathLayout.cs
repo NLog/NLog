@@ -102,31 +102,8 @@ namespace NLog.Internal
             //do we have to the the layout?
             if (cleanupInvalidChars || _filePathKind == FilePathKind.Unknown)
             {
-                //check if fixed 
-                var pathLayout2 = layout as SimpleLayout;
-                if (pathLayout2 != null)
-                {
-                    var isFixedText = pathLayout2.IsFixedText;
-                    if (isFixedText)
-                    {
-                        _cleanedFixedResult = pathLayout2.FixedText;
-                        if (cleanupInvalidChars)
-                        {
-                            //clean first
-                            _cleanedFixedResult = CleanupInvalidFilePath(_cleanedFixedResult);
-                        }
-                    }
-
-                    //detect absolute
-                    if (_filePathKind == FilePathKind.Unknown)
-                    {
-                        _filePathKind = DetectFilePathKind(pathLayout2);
-                    }
-                }
-                else
-                {
-                    _filePathKind = FilePathKind.Unknown;
-                }
+                _cleanedFixedResult = CreateCleanedFixedResult(cleanupInvalidChars, layout);
+                _filePathKind = DetectKind(layout, _filePathKind);
             }
 
             if (_filePathKind == FilePathKind.Relative)
@@ -134,6 +111,45 @@ namespace NLog.Internal
                 _baseDir = LogFactory.CurrentAppDomain.BaseDirectory;
             }
 
+        }
+
+        private static FilePathKind DetectKind(Layout layout, FilePathKind currentFilePathKind)
+        {
+            if (layout is SimpleLayout simpleLayout)
+            {
+                //detect absolute
+                if (currentFilePathKind == FilePathKind.Unknown)
+                {
+                    return DetectFilePathKind(simpleLayout);
+                }
+            }
+            else
+            {
+                return FilePathKind.Unknown;
+            }
+
+            return currentFilePathKind;
+        }
+
+        private static string CreateCleanedFixedResult(bool cleanupInvalidChars, Layout layout)
+        {
+            if (layout is SimpleLayout simpleLayout)
+            {
+                var isFixedText = simpleLayout.IsFixedText;
+                if (isFixedText)
+                {
+                    var cleanedFixedResult = simpleLayout.FixedText;
+                    if (cleanupInvalidChars)
+                    {
+                        //clean first
+                        cleanedFixedResult = CleanupInvalidFilePath(cleanedFixedResult);
+                    }
+
+                    return cleanedFixedResult;
+                }
+            }
+
+            return null;
         }
 
         public Layout GetLayout()
@@ -174,11 +190,10 @@ namespace NLog.Internal
 
                 _layout.RenderAppendBuilder(logEvent, reusableBuilder);
 
-                if (_cachedPrevRawFileName != null)
+                if (_cachedPrevRawFileName != null && reusableBuilder.EqualTo(_cachedPrevRawFileName))
                 {
                     // If old filename matches the newly rendered, then no need to call StringBuilder.ToString()
-                    if (reusableBuilder.EqualTo(_cachedPrevRawFileName))
-                        return _cachedPrevRawFileName;
+                    return _cachedPrevRawFileName;
                 }
 
                 _cachedPrevRawFileName = reusableBuilder.ToString();
@@ -226,7 +241,7 @@ namespace NLog.Internal
         }
 
         internal string RenderWithBuilder(LogEventInfo logEvent, System.Text.StringBuilder reusableBuilder = null)
-        { 
+        {
             var rawFileName = GetRenderedFileName(logEvent, reusableBuilder);
             if (string.IsNullOrEmpty(rawFileName))
             {
@@ -252,13 +267,13 @@ namespace NLog.Internal
         /// </summary>
         internal static FilePathKind DetectFilePathKind(Layout pathLayout)
         {
-            var simpleLayout = pathLayout as SimpleLayout;
-            if (simpleLayout == null)
+            if (pathLayout is SimpleLayout simpleLayout)
             {
-                return FilePathKind.Unknown;
+                return DetectFilePathKind(simpleLayout);
             }
 
-            return DetectFilePathKind(simpleLayout);
+            return FilePathKind.Unknown;
+
         }
 
         /// <summary>
@@ -283,7 +298,7 @@ namespace NLog.Internal
                 if (length >= 1)
                 {
                     var firstChar = path[0];
-                    if (firstChar == Path.DirectorySeparatorChar || firstChar == Path.AltDirectorySeparatorChar)
+                    if (IsAbsoluteStartChar(firstChar))
                         return FilePathKind.Absolute;
 
                     if (firstChar == '.') //. and ..
@@ -299,7 +314,7 @@ namespace NLog.Internal
                             return FilePathKind.Absolute;
                     }
 
-                    if (!isFixedText && path.StartsWith("${", StringComparison.OrdinalIgnoreCase))
+                    if (IsLayoutRenderer(path, isFixedText))
                     {
                         //if first part is a layout, then unknown
                         return FilePathKind.Unknown;
@@ -310,6 +325,16 @@ namespace NLog.Internal
                 }
             }
             return FilePathKind.Unknown;
+        }
+
+        private static bool IsLayoutRenderer(string path, bool isFixedText)
+        {
+            return !isFixedText && path.StartsWith("${", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool IsAbsoluteStartChar(char firstChar)
+        {
+            return firstChar == Path.DirectorySeparatorChar || firstChar == Path.AltDirectorySeparatorChar;
         }
 
         private static string CleanupInvalidFilePath(string filePath)

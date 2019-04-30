@@ -35,7 +35,6 @@ using NLog.Config;
 
 namespace NLog.UnitTests
 {
-    using System.Collections.Generic;
     using NLog.MessageTemplates;
     using Xunit;
 
@@ -80,8 +79,8 @@ namespace NLog.UnitTests
 
             Assert.Equal("Login request from John for BestApplicationEver", logEventInfo.FormattedMessage);
 
-            Assert.Contains(new KeyValuePair<object, object>("Username", "John"), logEventInfo.Properties);
-            Assert.Contains(new KeyValuePair<object, object>("Application", "BestApplicationEver"), logEventInfo.Properties);
+            AssertContainsInDictionary(logEventInfo.Properties, "Username", "John");
+            AssertContainsInDictionary(logEventInfo.Properties, "Application", "BestApplicationEver");
             Assert.Contains(new MessageTemplateParameter("Username", "John", null, CaptureType.Normal), logEventInfo.MessageTemplateParameters);
             Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", null, CaptureType.Normal), logEventInfo.MessageTemplateParameters);
         }
@@ -153,8 +152,8 @@ namespace NLog.UnitTests
 
             Assert.Equal("Login request from \"John\" for BestApplicationEver", logEventInfo.FormattedMessage);
 
-            Assert.Contains(new KeyValuePair<object, object>("Username", "John"), logEventInfo.Properties);
-            Assert.Contains(new KeyValuePair<object, object>("Application", "BestApplicationEver"), logEventInfo.Properties);
+            AssertContainsInDictionary(logEventInfo.Properties, "Username", "John");
+            AssertContainsInDictionary(logEventInfo.Properties, "Application", "BestApplicationEver");
             Assert.Contains(new MessageTemplateParameter("Username", "John", null, CaptureType.Serialize), logEventInfo.MessageTemplateParameters);
             Assert.Contains(new MessageTemplateParameter("Application", "BestApplicationEver", "l", CaptureType.Normal), logEventInfo.MessageTemplateParameters);
         }

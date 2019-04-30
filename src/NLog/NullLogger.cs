@@ -45,10 +45,6 @@ namespace NLog
     /// </summary>
     public sealed class NullLogger : Logger
     {
-        // Hides the default constructor of this class.
-        [SuppressMessage("ReSharper", "UnusedMember.Local")]
-        private NullLogger() { }
-
         /// <summary>
         /// Initializes a new instance of <see cref="NullLogger"/>.
         /// </summary>

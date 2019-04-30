@@ -51,7 +51,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
             {
                 ConfigurationManager = configurationManager,
-                Name = "appSettingTestKey",
+                Item = "appSettingTestKey",
             };
 
             var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
@@ -68,7 +68,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
             {
                 ConfigurationManager = configurationManager,
-                Name = "appSettingTestKey",
+                Item = "appSettingTestKey",
                 Default = "UseDefault",
             };
 
@@ -85,7 +85,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
             {
                 ConfigurationManager = configurationManager,
-                Name = "notFound",
+                Item = "notFound",
                 Default = "UseDefault",
             };
 
@@ -101,7 +101,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
             {
                 ConfigurationManager = configurationManager,
-                Name = "notFound",
+                Item = "notFound",
             };
 
             var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());

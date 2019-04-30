@@ -31,24 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Internal.Fakeables;
-
-namespace NLog.UnitTests.Mocks
+namespace NLog.Internal.Fakeables
 {
-    public class FileMock : IFile
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Abstract calls for the application environment
+    /// </summary>
+    internal interface IAppEnvironment : IFileSystem
     {
-
-        private readonly Func<string, bool> _exists;
-
-        public FileMock(Func<string, bool> exists)
-        {
-            _exists = exists;
-        }
-
-        public bool Exists(string path)
-        {
-            return _exists(path);
-        }
+        string AppDomainBaseDirectory { get; }
+        string AppDomainConfigurationFile { get; }
+#if !NETSTANDARD1_3 && !SILVERLIGHT
+        string CurrentProcessFilePath { get; }
+        string EntryAssemblyLocation { get; }
+        string EntryAssemblyFileName { get; }
+#endif
+        IEnumerable<string> PrivateBinPath { get; }
     }
 }

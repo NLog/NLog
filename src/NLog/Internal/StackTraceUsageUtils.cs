@@ -156,7 +156,7 @@ namespace NLog.Internal
             className = GetClassFullName(stackFrame);
 #else
             var stackTrace = Environment.StackTrace;
-            var stackTraceLines = stackTrace.Replace("\r", "").Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var stackTraceLines = stackTrace.Replace("\r", "").SplitAndTrimTokens('\n');
             for (int i = 0; i < stackTraceLines.Length; ++i)
             {
                 var callingClassAndMethod = stackTraceLines[i].Split(new[] { " ", "<>", "(", ")" }, StringSplitOptions.RemoveEmptyEntries)[1];

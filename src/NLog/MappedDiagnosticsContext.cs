@@ -44,7 +44,6 @@ namespace NLog
     /// <summary>
     /// Mapped Diagnostics Context - a thread-local structure that keeps a dictionary
     /// of strings and provides methods to output them in layouts. 
-    /// Mostly for compatibility with log4net.
     /// </summary>
     public static class MappedDiagnosticsContext
     {
@@ -52,10 +51,7 @@ namespace NLog
 
         private static readonly IDictionary<string, object> EmptyDefaultDictionary = new SortHelpers.ReadOnlySingleBucketDictionary<string, object>();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private class ItemRemover : IDisposable
+        private sealed class ItemRemover : IDisposable
         {
             private readonly string _item;
             private bool _disposed;

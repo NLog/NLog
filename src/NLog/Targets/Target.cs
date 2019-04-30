@@ -192,10 +192,9 @@ namespace NLog.Targets
         /// </param>
         public void PrecalculateVolatileLayouts(LogEventInfo logEvent)
         {
-            if (_allLayoutsAreThreadAgnostic)
+            if (_allLayoutsAreThreadAgnostic && (!_oneLayoutIsMutableUnsafe || logEvent.IsLogEventMutableSafe()))
             {
-                if (!_oneLayoutIsMutableUnsafe || logEvent.IsLogEventMutableSafe())
-                    return;
+                return;
             }
 
             // Not all Layouts support concurrent threads, so we have to protect them
@@ -492,15 +491,12 @@ namespace NLog.Targets
         /// <param name="disposing">True to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && _isInitialized)
             {
-                if (_isInitialized)
+                _isInitialized = false;
+                if (_initializeException == null)
                 {
-                    _isInitialized = false;
-                    if (_initializeException == null)
-                    {
-                        CloseTarget();
-                    }
+                    CloseTarget();
                 }
             }
         }
@@ -707,8 +703,7 @@ namespace NLog.Targets
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < logEvent.Parameters.Length; ++i)
             {
-                var logEventParameter = logEvent.Parameters[i] as LogEventInfo;
-                if (logEventParameter != null && logEventParameter.HasProperties)
+                if (logEvent.Parameters[i] is LogEventInfo logEventParameter && logEventParameter.HasProperties)
                 {
                     foreach (var key in logEventParameter.Properties.Keys)
                     {
@@ -761,14 +756,11 @@ namespace NLog.Targets
 
         private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)
         {
-            if (!layout.ThreadAgnostic || layout.MutableUnsafe)
+            if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out var value2))
             {
-                if (logEvent.TryGetCachedLayoutValue(layout, out var value2))
                 {
-                    {
-                        value = value2?.ToString() ?? string.Empty;
-                        return true;
-                    }
+                    value = value2?.ToString() ?? string.Empty;
+                    return true;
                 }
             }
 

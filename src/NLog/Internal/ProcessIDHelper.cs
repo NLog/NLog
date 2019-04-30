@@ -31,88 +31,58 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !NETSTANDARD1_3
+#if !SILVERLIGHT && !NETSTANDARD1_3
 
 namespace NLog.Internal
 {
-    using System;
-    using System.Diagnostics;
     using System.IO;
 
     /// <summary>
-    /// Portable implementation of <see cref="ThreadIDHelper"/>.
+    /// Returns details about current process and thread in a portable manner.
     /// </summary>
-    internal class PortableThreadIDHelper : ThreadIDHelper
+    internal abstract class ProcessIDHelper
     {
         private const string UnknownProcessName = "<unknown>";
 
-        private readonly int _currentProcessId;
-
-        private string _currentProcessName;
+        private static ProcessIDHelper _threadIDHelper;
         private string _currentProcessBaseName;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PortableThreadIDHelper" /> class.
+        /// Gets the singleton instance of PortableThreadIDHelper or
+        /// Win32ThreadIDHelper depending on runtime environment.
         /// </summary>
-        public PortableThreadIDHelper()
-        {
-            _currentProcessId = Process.GetCurrentProcess().Id;
-        }
+        /// <value>The instance.</value>
+        public static ProcessIDHelper Instance => _threadIDHelper ?? (_threadIDHelper = Create());
 
         /// <summary>
         /// Gets current process ID.
         /// </summary>
-        /// <value></value>
-        public override int CurrentProcessID => _currentProcessId;
+        public abstract int CurrentProcessID { get; }
 
         /// <summary>
-        /// Gets current process name.
+        /// Gets current process absolute file path.
         /// </summary>
-        /// <value></value>
-        public override string CurrentProcessName
-        {
-            get
-            {
-                GetProcessName();
-                return _currentProcessName;
-            }
-        }
+        public abstract string CurrentProcessFilePath { get; }
 
         /// <summary>
         /// Gets current process name (excluding filename extension, if any).
         /// </summary>
-        /// <value></value>
-        public override string CurrentProcessBaseName
-        {
-            get
-            {
-                GetProcessName();
-                return _currentProcessBaseName;
-            }
-        }
+        public string CurrentProcessBaseName => _currentProcessBaseName ?? (_currentProcessBaseName = string.IsNullOrEmpty(CurrentProcessFilePath) ? UnknownProcessName : Path.GetFileNameWithoutExtension(CurrentProcessFilePath));
 
         /// <summary>
-        /// Gets the name of the process.
+        /// Initializes the ThreadIDHelper class.
         /// </summary>
-        private void GetProcessName()
+        private static ProcessIDHelper Create()
         {
-            if (_currentProcessName == null)
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
+            if (PlatformDetector.IsWin32)
             {
-                try
-                {
-                    _currentProcessName = Process.GetCurrentProcess().MainModule.FileName;
-                }
-                catch (Exception exception)
-                {
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
-
-                    _currentProcessName = UnknownProcessName;
-                }
-
-                _currentProcessBaseName = Path.GetFileNameWithoutExtension(_currentProcessName);
+                return new Win32ProcessIDHelper();
+            }
+            else
+#endif
+            {
+                return new PortableProcessIDHelper();
             }
         }
     }

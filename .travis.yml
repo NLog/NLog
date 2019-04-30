@@ -1,8 +1,8 @@
 language: csharp
 
-mono: 5.2.0
+mono: 5.8.0
 dotnet: 2.0.0
-dist: trusty
+dist: bionic
 
 
 install:
@@ -21,7 +21,7 @@ install:
 
   # Restore dependencies
   - dotnet restore src/NLog
-  - dotnet restore src/NLogAutoLoadExtension
+  - dotnet restore tests/NLogAutoLoadExtension
 
   - dotnet restore tests/SampleExtensions
 

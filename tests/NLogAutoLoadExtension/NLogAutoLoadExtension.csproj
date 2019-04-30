@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NLog\NLog.csproj" />
+    <ProjectReference Include="..\..\src\NLog\NLog.csproj" />
   </ItemGroup>
 
 </Project>

@@ -170,19 +170,16 @@ namespace NLog.Targets
             get
             {
 #if !__ANDROID__ && !__IOS__ && !NETSTANDARD
-                if (UseSystemNetMailSettings)
-                {
-                    // In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
-                    // Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
-                    // It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
+                
+                // In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
+                // Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
+                // It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
 
-                    //only use from config when not set in current
-                    if (_from == null)
-                    {
-                        var from = SmtpSection.From;
-                        if (from == null) return null;
-                        return from;
-                    }
+                //only use from config when not set in current
+                if (UseSystemNetMailSettings && _from == null)
+                {
+                    var from = SmtpSection.From;
+                    return from;
                 }
 #endif
                 return _from;
@@ -386,8 +383,6 @@ namespace NLog.Targets
             base.InitializeTarget();
         }
 
-
-
         /// <summary>
         /// Create mail and send with SMTP
         /// </summary>
@@ -442,7 +437,6 @@ namespace NLog.Targets
                 {
                     throw;
                 }
-
 
                 foreach (var ev in events)
                 {
@@ -540,7 +534,6 @@ namespace NLog.Targets
                     InternalLogger.Trace("MailTarget(Name={0}):   Using basic authentication: Username='{1}' Password='{2}'", Name, username, new string('*', password.Length));
                     client.Credentials = new NetworkCredential(username, password);
                 }
-
             }
 
             if (!string.IsNullOrEmpty(PickupDirectoryLocation) && DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory)
@@ -551,8 +544,6 @@ namespace NLog.Targets
             // In case DeliveryMethod = PickupDirectoryFromIis we will not require Host nor PickupDirectoryLocation
             client.DeliveryMethod = DeliveryMethod;
             client.Timeout = Timeout;
-
-
         }
 
         /// <summary>
@@ -609,7 +600,6 @@ namespace NLog.Targets
             AppendLayout(sb, logEvent, SmtpServer);
             AppendLayout(sb, logEvent, SmtpPassword);
             AppendLayout(sb, logEvent, SmtpUserName);
-
 
             return sb.ToString();
         }
@@ -688,7 +678,7 @@ namespace NLog.Targets
             var added = false;
             if (layout != null)
             {
-                foreach (string mail in layout.Render(logEvent).Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (string mail in layout.Render(logEvent).SplitAndTrimTokens(';'))
                 {
                     mailAddressCollection.Add(mail);
                     added = true;

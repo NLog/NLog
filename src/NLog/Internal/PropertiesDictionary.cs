@@ -495,7 +495,7 @@ namespace NLog.Internal
                         _messagePropertiesEnumerator = _dictionary._eventProperties.Count - 1;
                     }
 
-                    if (_dictionary._eventProperties != null && _dictionary._eventProperties.Count > 0)
+                    if (HasEventProperties(_dictionary))
                     {
                         _messagePropertiesEnumerator = null;
                         _eventEnumerator = _dictionary._eventProperties.GetEnumerator();
@@ -509,7 +509,7 @@ namespace NLog.Internal
                 {
                     return MoveNextValidEventProperty();
                 }
-                if (_dictionary._messageProperties != null && _dictionary._messageProperties.Count > 0)
+                if (HasMessageProperties(_dictionary))
                 {
                     // Move forward to a key that is not overriden
                     _messagePropertiesEnumerator = FindNextValidMessagePropertyIndex(0);
@@ -519,7 +519,7 @@ namespace NLog.Internal
                     }
                 }
 
-                if (_dictionary._eventProperties != null && _dictionary._eventProperties.Count > 0)
+                if (HasEventProperties(_dictionary))
                 {
                     _eventEnumerator = _dictionary._eventProperties.GetEnumerator();
                     _eventEnumeratorCreated = true;
@@ -527,6 +527,16 @@ namespace NLog.Internal
                 }
 
                 return false;
+            }
+
+            private static bool HasMessageProperties(PropertiesDictionary propertiesDictionary)
+            {
+                return propertiesDictionary._messageProperties != null && propertiesDictionary._messageProperties.Count > 0;
+            }
+
+            private static bool HasEventProperties(PropertiesDictionary propertiesDictionary)
+            {
+                return propertiesDictionary._eventProperties != null && propertiesDictionary._eventProperties.Count > 0;
             }
 
             private bool MoveNextValidEventProperty()

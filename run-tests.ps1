@@ -2,7 +2,7 @@ dotnet restore .\src\NLog\
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-dotnet restore .\src\NLogAutoLoadExtension\
+dotnet restore .\tests\NLogAutoLoadExtension\
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -10,7 +10,7 @@ dotnet restore .\tests\SampleExtensions\
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Build /p:Configuration=Release /p:DebugType=Full .\src\NLogAutoLoadExtension\ /verbosity:minimal
+msbuild /t:Build /p:Configuration=Release /p:DebugType=Full .\tests\NLogAutoLoadExtension\ /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 

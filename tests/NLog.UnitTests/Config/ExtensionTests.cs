@@ -495,6 +495,9 @@ namespace NLog.UnitTests.Config
                 //also throw exceptions 
                 LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
+<extensions>
+ <add assembly='PackageLoaderTestAssembly' />
+</extensions>
 
 </nlog>");
 

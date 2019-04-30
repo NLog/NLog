@@ -39,7 +39,7 @@ namespace NLog.LayoutRenderers
     using NLog.Internal;
 
     /// <summary>
-    /// Global Diagnostics Context item. Provided for compatibility with log4net.
+    /// Render a Global Diagnostics Context item. See <see cref="GlobalDiagnosticsContext"/>
     /// </summary>
     [LayoutRenderer("gdc")]
     [ThreadAgnostic]

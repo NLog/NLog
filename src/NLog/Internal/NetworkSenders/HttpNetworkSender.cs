@@ -44,6 +44,8 @@ namespace NLog.Internal.NetworkSenders
     {
         readonly Uri _addressUri;
 
+        internal IWebRequestFactory WebRequestFactory { get; set; } = new WebRequestFactory();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpNetworkSender"/> class.
         /// </summary>
@@ -64,7 +66,7 @@ namespace NLog.Internal.NetworkSenders
         /// <remarks>To be overridden in inheriting classes.</remarks>
         protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
         {
-            var webRequest = WebRequest.Create(_addressUri);
+            var webRequest = WebRequestFactory.CreateWebRequest(_addressUri);
             webRequest.Method = "POST";
 
             AsyncCallback onResponse =

@@ -540,7 +540,6 @@ Dispose()
         [InlineData("${counter}", DbType.Int16, (short)1)]
         [InlineData("${counter}", DbType.Int32, 1)]
         [InlineData("${counter}", DbType.Int64, (long)1)]
-        [InlineData("${counter}", DbType.Int16, (short)1)]
         [InlineData("${counter:norawvalue=true}", DbType.Int16, (short)1)] //fallback
         [InlineData("${counter}", DbType.VarNumeric, 1, true)]
         [InlineData("${counter}", DbType.AnsiString, "1")]
@@ -655,6 +654,7 @@ Dispose()
             yield return new object[] { "${db-null}", DbType.DateTime, DBNull.Value };
             yield return new object[] { "${event-properties:userid}", DbType.Int32, 0 };
             yield return new object[] { "${date:universalTime=true:format=yyyy-MM:norawvalue=true}", DbType.DateTime, DateTime.SpecifyKind(DateTime.UtcNow.Date.AddDays(-DateTime.UtcNow.Day + 1), DateTimeKind.Unspecified)};
+            yield return new object[] { "${shortdate:universalTime=true}", DbType.DateTime, DateTime.UtcNow.Date };
         }
 
         [Fact]

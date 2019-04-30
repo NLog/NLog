@@ -5,6 +5,41 @@ Date format: (year/month/day)
 ## Change Log
 
 
+
+### V4.6.3 (2019/04/30)
+
+#### Bugfixes
+
+- [#3345](https://github.com/NLog/NLog/pull/3345) Fixed potential memory issue and message duplication with large strings (@snakefoot)
+- [#3316](https://github.com/NLog/NLog/pull/3316) TargetWithContext - serialize MDC and MDLC values properly (@304NotModified)
+
+#### Features
+
+- [#3298](https://github.com/NLog/NLog/pull/3298) Added WithProperty and SetProperty on Logger (@snakefoot)
+- [#3329](https://github.com/NLog/NLog/pull/3329) ${EventProperties} - Added ObjectPath for rendering nested property (@snakefoot, @304NotModified)
+- [#3337](https://github.com/NLog/NLog/pull/3337) ${ShortDate} added support for IRawValue + IStringValueRenderer (@snakefoot)
+- [#3328](https://github.com/NLog/NLog/pull/3328) Added truncate ambient property, e.g. ${message:truncate=80} (@snakefoot)
+- [#3278](https://github.com/NLog/NLog/pull/3278) ConsoleTarget & ColoredConsoleTarget  - Added AutoFlush and improve default flush behavior (@snakefoot)
+
+#### Improvements
+
+- [#3322](https://github.com/NLog/NLog/pull/3322) FileTarget - Introduced EnableFileDeleteSimpleMonitor without FileSystemWatcher for non-Windows (@snakefoot)
+- [#3332](https://github.com/NLog/NLog/pull/3332) LogFactory - GetLogger should validate name of logger (@snakefoot)
+- [#3320](https://github.com/NLog/NLog/pull/3320) FallbackGroupTarget - Fixed potential issue with WINDOWS_PHONE (@snakefoot)
+- [#3261](https://github.com/NLog/NLog/pull/3261) NLog config file loading: use process name (e.g. applicationname.exe.nlog) when app.config is not available (@snakefoot)
+
+#### Performance
+
+- [#3311](https://github.com/NLog/NLog/pull/3311) Split string - avoid allocation of object array. Added StringHelpers.SplitAndTrimTokens (@snakefoot)
+- [#3305](https://github.com/NLog/NLog/pull/3305) AppSettingLayoutRenderer - Mark as ThreadSafe and ThreadAgnostic (@snakefoot)
+
+#### Misc
+
+- [#3338](https://github.com/NLog/NLog/pull/3338) Update docs of various context classes (@304NotModified)
+- [#3288](https://github.com/NLog/NLog/pull/3288) Move NLogPackageLoaders for better unittest debugging experience of NLog (@304NotModified)
+- [#3274](https://github.com/NLog/NLog/pull/3274) Make HttpNetworkSender mockable, add unit test, introduce NSubsitute (@304NotModified)
+- 10 pull requests with refactorings (@snakefoot, @304NotModified)
+
 ### V4.6.2 (2019/04/02)
 
 #### Bugfixes
