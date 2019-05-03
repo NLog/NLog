@@ -388,9 +388,9 @@ namespace NLog
         /// <param name="arguments">The log parameters.</param>
         /// <param name="eventId">The event id.</param>
         /// <param name="eventType">The event type.</param>
-        /// <param name="relatedActiviyId">The related activity id.</param>
+        /// <param name="relatedActivityId">The related activity id.</param>
         /// </summary>
-        protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActiviyId)
+        protected virtual void ProcessLogEventInfo(LogLevel logLevel, string loggerName, [Localizable(false)] string message, object[] arguments, int? eventId, TraceEventType? eventType, Guid? relatedActivityId)
         {
             StackTrace stackTrace = AutoLoggerName ? new StackTrace() : null;
             ILogger logger = GetLogger(loggerName, stackTrace, out int userFrameIndex);
@@ -409,9 +409,9 @@ namespace NLog
                 ev.Properties.Add("EventType", eventType.Value);
             }
 
-            if (relatedActiviyId.HasValue)
+            if (relatedActivityId.HasValue)
             {
-                ev.Properties.Add("RelatedActivityID", relatedActiviyId.Value);
+                ev.Properties.Add("RelatedActivityID", relatedActivityId.Value);
             }
 
             ev.Message = message;
