@@ -233,10 +233,8 @@ namespace NLog
         /// <returns>The result of the filter.</returns>
         private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent, FilterResult defaultFilterResult)
         {
-            FilterResult result = defaultFilterResult; 
-
-            if (filterChain == null || filterChain.Count == 0)
-                return result;
+            if (filterChain == null || filterChain.Count == 0) 
+                return FilterResult.Neutral;
 
             try
             {
@@ -245,7 +243,7 @@ namespace NLog
                 for (int i = 0; i < filterChain.Count; i++)
                 {
                     Filter f = filterChain[i];
-                    result = f.GetFilterResult(logEvent);
+                    var result = f.GetFilterResult(logEvent);
                     if (result != FilterResult.Neutral)
                     {
                         return result;

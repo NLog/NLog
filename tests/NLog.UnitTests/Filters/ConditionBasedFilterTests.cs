@@ -48,7 +48,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                   <filters defaultAction='log'>
                         <when condition=""contains(message,'zzz')"" action='Ignore' />
                     </filters>
                     </logger>

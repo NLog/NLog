@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                    <filters defaultAction='log'>
                         <whenEqual layout='${message}' compareTo='skipme' action='Ignore' />
                     </filters>
                     </logger>
@@ -71,7 +71,7 @@ namespace NLog.UnitTests.Filters
                 <targets><target name='debug' type='Debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug'>
-                    <filters>
+                    <filters defaultAction='log'>
                         <whenEqual layout='${message}' compareTo='skipmetoo' action='Ignore' ignoreCase='true' />
                     </filters>
                     </logger>

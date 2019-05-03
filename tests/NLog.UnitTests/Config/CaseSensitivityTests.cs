@@ -47,7 +47,7 @@ namespace NLog.UnitTests.Config
                 <targets><target name='debug' type='debug' layout='${message}' /></targets>
                 <rules>
                     <logger name='*' minlevel='info' appendto='debug'>
-                        <filters>
+                        <filters defaultAction='log'>
                             <whencontains layout='${message}' substring='msg' action='ignore' />
                         </filters>
                     </logger>
@@ -84,7 +84,7 @@ namespace NLog.UnitTests.Config
                 <TARGETS><TARGET NAME='DEBUG' TYPE='DEBUG' LAYOUT='${MESSAGE}' /></TARGETS>
                 <RULES>
                     <LOGGER NAME='*' MINLEVEL='INFO' APPENDTO='DEBUG'>
-                        <FILTERS>
+                        <FILTERS DEFAULTACTION='LOG'>
                             <WHENCONTAINS LAYOUT='${MESSAGE}' SUBSTRING='msg' ACTION='IGNORE' />
                         </FILTERS>
                     </LOGGER>

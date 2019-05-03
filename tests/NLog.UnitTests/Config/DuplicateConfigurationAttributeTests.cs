@@ -50,7 +50,7 @@ namespace NLog.UnitTests.Config
                         <targets><target name='debug' type='debug' layout='${message}' /></targets>
                         <rules>
                             <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
-                                <filters>
+                               <filters defaultAction='log'>
                                     <whencontains layout='${message}' substring='msg' action='ignore' />
                                 </filters>
                             </logger>
@@ -77,7 +77,7 @@ namespace NLog.UnitTests.Config
                         <targets><target name='debug' type='debug' layout='${message}' /></targets>
                         <rules>
                             <logger name='*' minlevel='info' minLevel='trace' appendto='debug'>
-                                <filters>
+                               <filters defaultAction='log'>
                                     <whencontains layout='${message}' substring='msg' Substring='msg1' action='ignore' />
                                 </filters>
                             </logger>
@@ -100,7 +100,7 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='debug' layout='${message}' /></targets>
                     <rules>
                         <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
-                            <filters>
+                           <filters defaultAction='log'>
                                 <whencontains layout='${message}' substring='msg' action='ignore' />
                             </filters>
                         </logger>
@@ -115,7 +115,7 @@ namespace NLog.UnitTests.Config
                     <targets><target name='debug' type='debug' layout='${message}' /></targets>
                     <rules>
                         <logger name='*' minlevel='info' minLevel='info' appendto='debug'>
-                            <filters>
+                           <filters defaultAction='log'>
                                 <whencontains layout='${message}' substring='msg' action='ignore' />
                             </filters>
                         </logger>

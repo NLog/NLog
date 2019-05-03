@@ -74,7 +74,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(1, c.LoggingRules.Count);
             var rule = c.LoggingRules[0];
             Assert.Equal("*", rule.LoggerNamePattern);
-            Assert.Equal(FilterResult.Neutral, rule.DefaultFilterResult);
+            Assert.Equal(FilterResult.Ignore, rule.DefaultFilterResult);
             Assert.Equal(4, rule.Levels.Count);
             Assert.Contains(LogLevel.Info, rule.Levels);
             Assert.Contains(LogLevel.Warn, rule.Levels);
@@ -278,7 +278,7 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1,d2,d3'>
-                        <filters>
+                       <filters defaultAction='log'>
                             <when condition=""starts-with(message, 'x')"" action='Ignore' />
                             <when condition=""starts-with(message, 'z')"" action='Ignore' />
                         </filters>
@@ -312,7 +312,7 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                        <filters>
+                       <filters defaultAction='log'>
                             <when condition=""starts-with(message, 'x')"" action='IgnoreFinal' />
                       
                         </filters>
@@ -345,9 +345,8 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                        <filters>
-                            <when condition=""starts-with(message, 'x')"" action='LogFinal' />
-                      
+                       <filters>
+                            <when condition=""starts-with(message, 'x')"" action='LogFinal' />                      
                         </filters>
                     </logger>
                      <logger name='*' level='Warn' writeTo='d2'>
@@ -358,7 +357,7 @@ namespace NLog.UnitTests.Config
             LogManager.Configuration = c;
             var logger = LogManager.GetLogger("logger1");
             logger.Warn("test 1");
-            AssertDebugLastMessage("d1", "test 1");
+            AssertDebugLastMessage("d1", "");
             AssertDebugLastMessage("d2", "test 1");
 
             logger.Warn("x-mass");
@@ -379,7 +378,7 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                        <filters>
+                        <filters defaultAction='log'>
                             <when condition=""starts-with(message, 'x')"" action='Ignore' />
                       
                         </filters>
@@ -412,7 +411,7 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                        <filters defaultAction='Ignore'>
+                       <filters>
                             <when condition=""starts-with(message, 't')"" action='Log' />
                       
                         </filters>
@@ -440,7 +439,7 @@ namespace NLog.UnitTests.Config
 
                 <rules>
                     <logger name='*' level='Warn' writeTo='d1'>
-                        <filters defaultAction='Ignore'>
+                       <filters>
                       
                         </filters>
                     </logger>
@@ -450,7 +449,7 @@ namespace NLog.UnitTests.Config
             LogManager.Configuration = c;
             var logger = LogManager.GetLogger("logger1");
             logger.Warn("test 1");
-            AssertDebugLastMessage("d1", "");
+            AssertDebugLastMessage("d1", "test 1");
 
         }
 
