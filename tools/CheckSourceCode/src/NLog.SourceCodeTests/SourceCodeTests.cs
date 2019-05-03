@@ -488,16 +488,6 @@ namespace NLog.SourceCodeTests
             var neededString = neededVal.ToString();
             var currentString = currentVal.ToString();
 
-
-
-            //handle quotes with Layouts
-            if (propType.Name == "Layout")
-            {
-
-                neededString = "'" + neededString + "'";
-
-            }
-
             var eqstring = neededString.Equals(currentString);
             if (eqstring)
             {
