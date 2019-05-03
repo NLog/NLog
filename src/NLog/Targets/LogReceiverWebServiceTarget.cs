@@ -210,7 +210,7 @@ namespace NLog.Targets
                 stringIndex = context.Strings.Count;
                 if (value != null)
                 {
-					//don't add null to the string table, that would crash
+                    //don't add null to the string table, that would crash
                     stringTable.Add(value, stringIndex);
                 }
                 context.Strings.Add(value);

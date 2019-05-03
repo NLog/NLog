@@ -86,7 +86,6 @@
     <Compile Include="..\NLog\LogReceiverService\NLogEvent.cs" Link="NLogEvent.cs" />
     <Compile Include="..\NLog\LogReceiverService\NLogEvents.cs" Link="NLogEvents.cs" />
     <Compile Include="..\NLog\LogReceiverService\StringCollection.cs" Link="StringCollection.cs" />
-    <Compile Include="..\NLog\LogReceiverService\WcfILogReceiverClient.cs" Link="WcfILogReceiverClient.cs" />
     <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverClient.cs" Link="WcfLogReceiverClient.cs" />
     <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverClientBase.cs" Link="WcfLogReceiverClientBase.cs" />
     <Compile Include="..\NLog\LogReceiverService\WcfLogReceiverOneWayClient.cs" Link="WcfLogReceiverOneWayClient.cs" />
