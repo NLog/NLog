@@ -55,7 +55,6 @@ namespace NLog.LayoutRenderers
         {
             ClassName = true;
             MethodName = true;
-            CleanNamesOfAnonymousDelegates = false;
             IncludeNamespace = true;
 #if !SILVERLIGHT
             FileName = false;
@@ -88,16 +87,16 @@ namespace NLog.LayoutRenderers
         /// Gets or sets a value indicating whether the method name will be cleaned up if it is detected as an anonymous delegate.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
-        public bool CleanNamesOfAnonymousDelegates { get; set; }
+        [DefaultValue(true)]
+        public bool CleanNamesOfAnonymousDelegates { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a value indicating whether the method and class names will be cleaned up if it is detected as an async continuation
         /// (everything after an await-statement inside of an async method).
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(false)]
-        public bool CleanNamesOfAsyncContinuations { get; set; }
+        [DefaultValue(true)]
+        public bool CleanNamesOfAsyncContinuations { get; set; } = true;
 
         /// <summary>
         /// Gets or sets the number of frames to skip.
