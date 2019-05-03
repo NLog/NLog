@@ -223,7 +223,7 @@ namespace NLog.Layouts
                 return ToStringWithNestedItems(Renderers, r => r.ToString());
             }
 
-            return string.Concat("'", Text, "'");
+            return Text;
         }
 
         internal void SetRenderers(LayoutRenderer[] renderers, string text)

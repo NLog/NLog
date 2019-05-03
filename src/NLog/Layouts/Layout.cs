@@ -373,7 +373,7 @@ namespace NLog.Layouts
         {
             if (nestedItems?.Count > 0)
             {
-                var nestedNames = nestedItems.Select(c => nextItemToString(c)).ToArray();
+                var nestedNames = nestedItems.Select(nextItemToString).ToArray();
                 return string.Concat(GetType().Name, "=", string.Join("|", nestedNames));
             }
             return base.ToString();
