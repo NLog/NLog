@@ -155,11 +155,7 @@ namespace NLog.Targets
             ArchiveAboveSize = ArchiveAboveSizeDisabled;
             ConcurrentWriteAttempts = 10;
             ConcurrentWrites = true;
-#if SILVERLIGHT || NETSTANDARD1_0
             Encoding = Encoding.UTF8;
-#else
-            Encoding = Encoding.Default;
-#endif
             BufferSize = 32768;
             AutoFlush = true;
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
