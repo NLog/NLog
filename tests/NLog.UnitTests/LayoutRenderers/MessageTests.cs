@@ -197,38 +197,6 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void MessageWithExceptionTest()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog exceptionLoggingOldStyle='true'>
-                <targets><target name='debug' type='Debug' layout='${message:withException=true}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            ILogger logger = LogManager.GetLogger("A");
-            logger.Debug("a");
-            AssertDebugLastMessage("debug", "a");
-
-            var ex = new InvalidOperationException("Exception message.");
-            
-            string newline = Environment.NewLine;
-
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.DebugException("Foo", ex);
-            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
-#pragma warning restore 0618
-
-            logger.Debug(ex, "Foo");
-            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
-
-            logger.Debug( "Foo", ex);
-            AssertDebugLastMessage("debug", "Foo" + newline + ex.ToString());
-        }
-
-        [Fact]
         public void MessageWithExceptionAndCustomSeparatorTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"

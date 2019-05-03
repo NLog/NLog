@@ -46,22 +46,11 @@ namespace NLog.Internal
         /// Initializes a new instance of the <see cref="LoggerConfiguration" /> class.
         /// </summary>
         /// <param name="targetsByLevel">The targets by level.</param>
-        /// <param name="exceptionLoggingOldStyle">  Use the old exception log handling of NLog 3.0?</param>
-        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel, bool exceptionLoggingOldStyle)
+        public LoggerConfiguration(TargetWithFilterChain[] targetsByLevel)
         {
             _targetsByLevel = targetsByLevel;
-#pragma warning disable 618
-            ExceptionLoggingOldStyle = exceptionLoggingOldStyle;
-#pragma warning restore 618
         }
-
-        /// <summary>
-        /// Use the old exception log handling of NLog 3.0? 
-        /// </summary>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it  will be removed in NLog 5.</remarks>
-        [Obsolete("This property marked obsolete before v4.3.11 and it will be removed in NLog 5.")]
-        public bool ExceptionLoggingOldStyle { get; }
-
+      
         /// <summary>
         /// Gets targets for the specified level.
         /// </summary>
