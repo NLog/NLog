@@ -266,26 +266,13 @@ namespace NLog.LogReceiverService
             remove => ProxiedClient.Closing -= value;
         }
 
-#if !SILVERLIGHT && !NETSTANDARD
+#if !NETSTANDARD
         /// <summary>
         /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
         /// </summary>
         public void DisplayInitializationUI()
         {
             ProxiedClient.DisplayInitializationUI();
-        }
-
-#endif
-
-#if !NET4_0 && !NET3_5 && !NETSTANDARD
-        /// <summary>
-        /// Gets or sets the cookie container.
-        /// </summary>
-        /// <value>The cookie container.</value>
-        public CookieContainer CookieContainer
-        {
-            get => ProxiedClient.CookieContainer;
-            set => ProxiedClient.CookieContainer = value;
         }
 #endif
 

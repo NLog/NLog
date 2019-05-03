@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !__IOS__ && !WINDOWS_PHONE && !__ANDROID__ && !NETSTANDARD || WCF_SUPPORTED
+#if WCF_SUPPORTED
 
 namespace NLog.Targets
 {
@@ -39,15 +39,9 @@ namespace NLog.Targets
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
-#if WCF_SUPPORTED
     using System.ServiceModel;
     using System.ServiceModel.Channels;
-#endif
     using System.Threading;
-#if SILVERLIGHT
-    using System.Windows;
-    using System.Windows.Threading;
-#endif
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
@@ -89,7 +83,6 @@ namespace NLog.Targets
         [RequiredParameter]
         public virtual string EndpointAddress { get; set; }
 
-#if WCF_SUPPORTED
         /// <summary>
         /// Gets or sets the name of the endpoint configuration in WCF configuration file.
         /// </summary>
@@ -108,7 +101,6 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
         public bool UseOneWayContract { get; set; }
-#endif
 
         /// <summary>
         /// Gets or sets the client ID.
@@ -218,7 +210,7 @@ namespace NLog.Targets
                 stringIndex = context.Strings.Count;
                 if (value != null)
                 {
-					//don't add null to the string table, that would crash
+                    //don't add null to the string table, that would crash
                     stringTable.Add(value, stringIndex);
                 }
                 context.Strings.Add(value);
@@ -301,9 +293,7 @@ namespace NLog.Targets
                 return;
             }
 
-#if WCF_SUPPORTED
             var client = CreateLogReceiver();
-
             client.ProcessLogMessagesCompleted += (sender, e) =>
             {
                 if (e.Error != null)
@@ -323,59 +313,9 @@ namespace NLog.Targets
             };
 
             inCall = true;
-#if SILVERLIGHT
-            if (!Deployment.Current.Dispatcher.CheckAccess())
-            {
-                Deployment.Current.Dispatcher.BeginInvoke(() => client.ProcessLogMessagesAsync(events));
-            }
-            else
-            {
-                client.ProcessLogMessagesAsync(events);
-            }
-#else
             client.ProcessLogMessagesAsync(events);
-#endif
-#else
-            var client = new SoapLogReceiverClient(this.EndpointAddress);
-            this.inCall = true;
-            client.BeginProcessLogMessages(
-                events,
-                result =>
-                    {
-                        Exception exception = null;
-
-                        try
-                        {
-                            client.EndProcessLogMessages(result);
-                        }
-                        catch (Exception ex)
-                        {
-                            InternalLogger.Error(ex, "LogReceiverServiceTarget(Name={0}): Error while sending", Name);
-                            if (ex.MustBeRethrownImmediately())
-                            {
-                                throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                            }
-
-                            exception = ex;
-                        }
-
-                        // report error to the callers
-                        for (int i = 0; i < asyncContinuations.Count; ++i)
-                        {
-                            asyncContinuations[i].Continuation(exception);
-                        }
-
-                        if (flushContinuations != null)
-                            flushContinuations(exception);
-
-                        // send any buffered events
-                        this.SendBufferedEvents(null);
-                    },
-                null);
-#endif
         }
 
-#if WCF_SUPPORTED
         /// <summary>
         /// Creating a new instance of WcfLogReceiverClient
         /// 
@@ -447,7 +387,6 @@ namespace NLog.Targets
                 }
             }
         }
-#endif
 
         private void SendBufferedEvents(AsyncContinuation flushContinuation)
         {
@@ -476,21 +415,15 @@ namespace NLog.Targets
                 if (flushContinuation != null)
                 {
                     InternalLogger.Error(exception, "LogReceiverServiceTarget(Name={0}): Error in flush async", Name);
-#if !NETSTANDARD
-                    if (exception.MustBeRethrown())
+                    if (LogManager.ThrowExceptions)
                         throw;
-#endif
+
                     flushContinuation(exception);
                 }
                 else
                 {
+                    // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                     InternalLogger.Error(exception, "LogReceiverServiceTarget(Name={0}): Error in send async", Name);
-#if !NETSTANDARD
-                    if (exception.MustBeRethrownImmediately())
-                    {
-                        throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
-                    }
-#endif
                 }
             }
         }

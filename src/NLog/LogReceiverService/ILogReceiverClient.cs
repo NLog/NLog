@@ -31,21 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !NETSTANDARD || WCF_SUPPORTED
+#if WCF_SUPPORTED
 
 namespace NLog.LogReceiverService
 {
     using System;
-#if WCF_SUPPORTED
     using System.ServiceModel;
-#endif
+
     /// <summary>
     /// Service contract for Log Receiver client.
     /// </summary>
     /// <remarks>This class marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-#if WCF_SUPPORTED
     [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace, ConfigurationName = "NLog.LogReceiverService.ILogReceiverClient")]
-#endif
     [Obsolete("Use ILogReceiverOneWayClient or ILogReceiverTwoWayClient instead. Marked obsolete before v4.3.11 and it may be removed in a future release.")]
     public interface ILogReceiverClient
     {
@@ -58,9 +55,7 @@ namespace NLog.LogReceiverService
         /// <returns>
         /// IAsyncResult value which can be passed to <see cref="EndProcessLogMessages"/>.
         /// </returns>
-#if WCF_SUPPORTED
         [OperationContractAttribute(AsyncPattern = true, Action = "http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessages", ReplyAction = "http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessagesResponse")]
-#endif
         IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState);
 
         /// <summary>

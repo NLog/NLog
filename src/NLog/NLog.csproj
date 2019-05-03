@@ -88,7 +88,7 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Title>NLog for .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);NET4_5;WCF_SUPPORTED;DYNAMIC_OBJECT</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_5;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
@@ -98,14 +98,14 @@ For all config options and platform support, check https://nlog-project.org/conf
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);NET4_0;WCF_SUPPORTED;DYNAMIC_OBJECT</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET4_0;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
     <Title>NLog for .NET Framework 3.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);NET3_5;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>
   </PropertyGroup>
   
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
@@ -139,7 +139,7 @@ For all config options and platform support, check https://nlog-project.org/conf
     <ValidateXaml>true</ValidateXaml>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT4;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT4</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'sl5' ">
@@ -151,7 +151,7 @@ For all config options and platform support, check https://nlog-project.org/conf
     <ValidateXaml>true</ValidateXaml>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
-    <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT5;WCF_SUPPORTED</DefineConstants>
+    <DefineConstants>$(DefineConstants);SILVERLIGHT;SILVERLIGHT5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'wp8' ">
@@ -194,8 +194,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -206,8 +204,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -218,8 +214,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -232,7 +226,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Browser" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
 
@@ -244,7 +237,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Browser" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
   </ItemGroup> 
 

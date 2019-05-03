@@ -31,11 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.LogReceiverService
 {
     using System;
+    using NLog.Config;
     using NLog.LogReceiverService;
     using Xunit;
 
