@@ -133,7 +133,23 @@ namespace NLog.LayoutRenderers
             if (!_isInitialized)
             {
                 _isInitialized = true;
+                Initialize();
+            }
+        }
+
+        private void Initialize()
+        {
+            try
+            {
                 InitializeLayoutRenderer();
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Exception in layout renderer initialization.");
+                if (ex.MustBeRethrown())
+                {
+                    throw;
+                }
             }
         }
 
@@ -160,7 +176,7 @@ namespace NLog.LayoutRenderers
             if (!_isInitialized)
             {
                 _isInitialized = true;
-                InitializeLayoutRenderer();
+                Initialize();
             }
 
             try
