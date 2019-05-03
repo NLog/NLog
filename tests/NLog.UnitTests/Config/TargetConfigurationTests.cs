@@ -134,13 +134,13 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(t);
             Assert.Equal(3, t.Parameters.Count);
             Assert.Equal("p1", t.Parameters[0].Name);
-            Assert.Equal("'${message}'", t.Parameters[0].Layout.ToString());
+            Assert.Equal("${message}", t.Parameters[0].Layout.ToString());
 
             Assert.Equal("p2", t.Parameters[1].Name);
-            Assert.Equal("'${level}'", t.Parameters[1].Layout.ToString());
+            Assert.Equal("${level}", t.Parameters[1].Layout.ToString());
 
             Assert.Equal("p3", t.Parameters[2].Name);
-            Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
+            Assert.Equal("${logger}", t.Parameters[2].Layout.ToString());
         }
 
         [Fact]
@@ -173,7 +173,7 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(t);
             Assert.Equal(3, t.Parameters.Count);
             Assert.Equal("p1", t.Parameters[0].Name);
-            Assert.Equal("'${message}'", t.Parameters[0].Layout.ToString());
+            Assert.Equal("${message}", t.Parameters[0].Layout.ToString());
 
             Assert.Equal("p2", t.Parameters[1].Name);
             CsvLayout csvLayout = t.Parameters[1].Layout as CsvLayout;
@@ -183,7 +183,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal("y", csvLayout.Columns[1].Name);
 
             Assert.Equal("p3", t.Parameters[2].Name);
-            Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
+            Assert.Equal("${logger}", t.Parameters[2].Layout.ToString());
         }
 
         [Fact]
@@ -412,11 +412,11 @@ namespace NLog.UnitTests.Config
 
             var t = c.FindTargetByName("d") as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal("'x${message}x'", t.Layout.ToString());
+            Assert.Equal("x${message}x", t.Layout.ToString());
 
             t = c.FindTargetByName("d2") as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal("'x${message}x'", t.Layout.ToString());
+            Assert.Equal("x${message}x", t.Layout.ToString());
         }
 
         [Fact]
@@ -438,7 +438,7 @@ namespace NLog.UnitTests.Config
 
             var t = wrap.WrappedTarget as DebugTarget;
             Assert.NotNull(t);
-            Assert.Equal("'x${message}x'", t.Layout.ToString());
+            Assert.Equal("x${message}x", t.Layout.ToString());
         }
 
         [Fact]
@@ -465,7 +465,7 @@ namespace NLog.UnitTests.Config
             var debugTarget = retryingTargetWrapper.WrappedTarget as DebugTarget;
             Assert.NotNull(debugTarget);
             Assert.Equal("d_wrapped", debugTarget.Name);
-            Assert.Equal("'${level}'", debugTarget.Layout.ToString());
+            Assert.Equal("${level}", debugTarget.Layout.ToString());
         }
 
         [Fact]
@@ -546,7 +546,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
             Assert.Equal("en-US", myTarget.CultureProperty.Name);
             Assert.Equal(typeof(int), myTarget.TypeProperty);
-            Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.Equal("${level}", myTarget.LayoutProperty.ToString());
             Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
             Assert.Equal(new Uri("http://nlog-project.org"), myTarget.UriProperty);
             Assert.Equal(LineEndingMode.Default, myTarget.LineEndingModeProperty);
@@ -597,7 +597,7 @@ namespace NLog.UnitTests.Config
             Assert.Equal(Encoding.UTF8, myTarget.EncodingProperty);
             Assert.Equal("en-US", myTarget.CultureProperty.Name);
             Assert.Equal(typeof(int), myTarget.TypeProperty);
-            Assert.Equal("'${level}'", myTarget.LayoutProperty.ToString());
+            Assert.Equal("${level}", myTarget.LayoutProperty.ToString());
             Assert.Equal("starts-with(message, 'x')", myTarget.ConditionProperty.ToString());
         }
 
