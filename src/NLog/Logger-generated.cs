@@ -285,22 +285,6 @@ namespace NLog
         { 
             if (IsTraceEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Trace(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Trace, message, new object[] { argument });
             }
         }
@@ -569,22 +553,6 @@ namespace NLog
         { 
             if (IsDebugEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Debug(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Debug, message, new object[] { argument });
             }
         }
@@ -853,22 +821,6 @@ namespace NLog
         { 
             if (IsInfoEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Info(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Info, message, new object[] { argument });
             }
         }
@@ -1137,22 +1089,6 @@ namespace NLog
         { 
             if (IsWarnEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Warn(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Warn, message, new object[] { argument });
             }
         }
@@ -1421,22 +1357,6 @@ namespace NLog
         { 
             if (IsErrorEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Error(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Error, message, new object[] { argument });
             }
         }
@@ -1705,22 +1625,6 @@ namespace NLog
         { 
             if (IsFatalEnabled)
             {
-#pragma warning disable 618
-                if (_configuration.ExceptionLoggingOldStyle)
-#pragma warning restore 618
-                {
-                    var exceptionCandidate = argument as Exception;
-                    if (exceptionCandidate != null)
-                    {
-                        // ReSharper disable CSharpWarnings::CS0618
-                        #pragma warning disable 618
-                        Fatal(message, exceptionCandidate);
-                        #pragma warning restore 618
-                        // ReSharper restore CSharpWarnings::CS0618
-                        return;
-                    }
-                }
-
                 WriteToTargets(LogLevel.Fatal, message, new object[] { argument });
             }
         }

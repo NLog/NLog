@@ -137,11 +137,6 @@ namespace NLog.Config
                         if (ParseBooleanValue(configItem.Key, configItem.Value, false))
                             DefaultCultureInfo = CultureInfo.InvariantCulture;
                         break;
-#pragma warning disable 618
-                    case "EXCEPTIONLOGGINGOLDSTYLE":
-                        ExceptionLoggingOldStyle = ParseBooleanValue(configItem.Key, configItem.Value, ExceptionLoggingOldStyle);
-                        break;
-#pragma warning restore 618
                     case "KEEPVARIABLESONRELOAD":
                         LogFactory.KeepVariablesOnReload = ParseBooleanValue(configItem.Key, configItem.Value, LogFactory.KeepVariablesOnReload);
                         break;

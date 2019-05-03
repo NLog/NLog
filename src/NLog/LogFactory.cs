@@ -737,10 +737,7 @@ namespace NLog
                 }
             }
 
-#pragma warning disable 618
-            var exceptionLoggingOldStyle = configuration?.ExceptionLoggingOldStyle == true;
-#pragma warning restore 618
-            return new LoggerConfiguration(targetsByLevel, exceptionLoggingOldStyle);
+            return new LoggerConfiguration(targetsByLevel);
         }
 
         /// <summary>
