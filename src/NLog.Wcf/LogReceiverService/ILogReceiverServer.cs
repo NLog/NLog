@@ -31,35 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
-
 namespace NLog.LogReceiverService
 {
-    using System;
-    using System.Collections.Generic;
+    using System.ServiceModel;
 
     /// <summary>
-    /// Implementation of <see cref="ILogReceiverServer" /> which forwards received logs through <see cref="LogManager"/> or a given <see cref="LogFactory"/>.
+    /// Service contract for Log Receiver server.
     /// </summary>
-    public class LogReceiverForwardingService : BaseLogReceiverForwardingService, ILogReceiverServer
+    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
+    public interface ILogReceiverServer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogReceiverForwardingService"/> class.
+        /// Processes the log messages.
         /// </summary>
-        public LogReceiverForwardingService()
-            : this(null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LogReceiverForwardingService"/> class.
-        /// </summary>
-        /// <param name="logFactory">The log factory.</param>
-        public LogReceiverForwardingService(LogFactory logFactory)
-            : base(logFactory)
-        {
-        }
+        /// <param name="events">The events.</param>
+        [OperationContract]
+        void ProcessLogMessages(NLogEvents events);
     }
 }
-
-#endif

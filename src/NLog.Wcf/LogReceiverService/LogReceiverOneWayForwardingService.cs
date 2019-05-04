@@ -31,25 +31,31 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED && !SILVERLIGHT
-
 namespace NLog.LogReceiverService
 {
-    using System.ServiceModel;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
-    /// Service contract for Log Receiver server.
+    /// Implementation of <see cref="ILogReceiverOneWayServer" /> which forwards received logs through <see cref="LogManager"/> or a given <see cref="LogFactory"/>.
     /// </summary>
-    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
-    public interface ILogReceiverOneWayServer
+    public class LogReceiverOneWayForwardingService : BaseLogReceiverForwardingService, ILogReceiverOneWayServer
     {
         /// <summary>
-        /// Processes the log messages.
+        /// Initializes a new instance of the <see cref="LogReceiverOneWayForwardingService"/> class.
         /// </summary>
-        /// <param name="events">The events.</param>
-        [OperationContract(IsOneWay=true)]
-        void ProcessLogMessages(NLogEvents events);
+        public LogReceiverOneWayForwardingService()
+            : this(null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogReceiverOneWayForwardingService"/> class.
+        /// </summary>
+        /// <param name="logFactory">The log factory.</param>
+        public LogReceiverOneWayForwardingService(LogFactory logFactory)
+            : base(logFactory)
+        {
+        }
     }
 }
-
-#endif

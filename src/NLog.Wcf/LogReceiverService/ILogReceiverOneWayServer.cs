@@ -31,27 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
-
 namespace NLog.LogReceiverService
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Runtime.Serialization;
+    using System.ServiceModel;
 
     /// <summary>
-    /// List of strings annotated for more terse serialization.
+    /// Service contract for Log Receiver server.
     /// </summary>
-    [CollectionDataContract(ItemName = "l", Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
-    public class StringCollection : Collection<string>
+    [ServiceContract(Namespace = LogReceiverServiceConfig.WebServiceNamespace)]
+    public interface ILogReceiverOneWayServer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StringCollection"/> class.
+        /// Processes the log messages.
         /// </summary>
-        public StringCollection()
-        {
-        }
+        /// <param name="events">The events.</param>
+        [OperationContract(IsOneWay=true)]
+        void ProcessLogMessages(NLogEvents events);
     }
 }
-
-#endif

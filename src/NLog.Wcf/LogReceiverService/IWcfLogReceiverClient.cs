@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
-
 using System;
 using System.ComponentModel;
 using System.Net;
@@ -137,5 +135,3 @@ namespace NLog.LogReceiverService
 #endif
     }
 }
-
-#endif

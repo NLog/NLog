@@ -226,7 +226,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Browser" />
-    <Reference Include="System.ServiceModel" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'sl5' ">
@@ -237,7 +236,6 @@ For all config options and platform support, check https://nlog-project.org/conf
     <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Browser" />
-    <Reference Include="System.ServiceModel" />
   </ItemGroup> 
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'wp8' ">

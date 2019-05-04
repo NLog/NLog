@@ -31,63 +31,59 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
-
 namespace NLog.LogReceiverService
 {
     using System;
-    using System.ComponentModel;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
-    using System.Net;
 
     /// <summary>
     /// Log Receiver Client using WCF.
     /// </summary>
-    public sealed class WcfLogReceiverOneWayClient : WcfLogReceiverClientBase<ILogReceiverOneWayClient>, ILogReceiverOneWayClient
+    public sealed class WcfLogReceiverTwoWayClient : WcfLogReceiverClientBase<ILogReceiverTwoWayClient>, ILogReceiverTwoWayClient
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
         /// </summary>
-        public WcfLogReceiverOneWayClient()
+        public WcfLogReceiverTwoWayClient()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
-        public WcfLogReceiverOneWayClient(string endpointConfigurationName) :
+        public WcfLogReceiverTwoWayClient(string endpointConfigurationName) :
             base(endpointConfigurationName)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverOneWayClient(string endpointConfigurationName, string remoteAddress) :
+        public WcfLogReceiverTwoWayClient(string endpointConfigurationName, string remoteAddress) :
             base(endpointConfigurationName, remoteAddress)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverOneWayClient(string endpointConfigurationName, EndpointAddress remoteAddress) :
+        public WcfLogReceiverTwoWayClient(string endpointConfigurationName, EndpointAddress remoteAddress) :
             base(endpointConfigurationName, remoteAddress)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
         /// </summary>
         /// <param name="binding">The binding.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverOneWayClient(Binding binding, EndpointAddress remoteAddress) :
+        public WcfLogReceiverTwoWayClient(Binding binding, EndpointAddress remoteAddress) :
             base(binding, remoteAddress)
         {
         }
@@ -116,5 +112,3 @@ namespace NLog.LogReceiverService
         }
     }
 }
-
-#endif

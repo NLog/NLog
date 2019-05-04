@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
-
 namespace NLog.Targets
 {
     using System;
@@ -369,7 +367,6 @@ namespace NLog.Targets
             return CreateWcfLogReceiverClient();
 
 #pragma warning restore 612, 618
-
         }
 
         private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)
@@ -474,5 +471,3 @@ namespace NLog.Targets
         }
     }
 }
-
-#endif

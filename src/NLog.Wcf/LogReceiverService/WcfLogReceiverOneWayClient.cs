@@ -31,63 +31,61 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
-
 namespace NLog.LogReceiverService
 {
     using System;
     using System.ComponentModel;
-    using System.Net;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
+    using System.Net;
 
     /// <summary>
     /// Log Receiver Client using WCF.
     /// </summary>
-    public sealed class WcfLogReceiverTwoWayClient : WcfLogReceiverClientBase<ILogReceiverTwoWayClient>, ILogReceiverTwoWayClient
+    public sealed class WcfLogReceiverOneWayClient : WcfLogReceiverClientBase<ILogReceiverOneWayClient>, ILogReceiverOneWayClient
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
         /// </summary>
-        public WcfLogReceiverTwoWayClient()
+        public WcfLogReceiverOneWayClient()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
-        public WcfLogReceiverTwoWayClient(string endpointConfigurationName) :
+        public WcfLogReceiverOneWayClient(string endpointConfigurationName) :
             base(endpointConfigurationName)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverTwoWayClient(string endpointConfigurationName, string remoteAddress) :
+        public WcfLogReceiverOneWayClient(string endpointConfigurationName, string remoteAddress) :
             base(endpointConfigurationName, remoteAddress)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
         /// </summary>
         /// <param name="endpointConfigurationName">Name of the endpoint configuration.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverTwoWayClient(string endpointConfigurationName, EndpointAddress remoteAddress) :
+        public WcfLogReceiverOneWayClient(string endpointConfigurationName, EndpointAddress remoteAddress) :
             base(endpointConfigurationName, remoteAddress)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfLogReceiverTwoWayClient"/> class.
+        /// Initializes a new instance of the <see cref="WcfLogReceiverOneWayClient"/> class.
         /// </summary>
         /// <param name="binding">The binding.</param>
         /// <param name="remoteAddress">The remote address.</param>
-        public WcfLogReceiverTwoWayClient(Binding binding, EndpointAddress remoteAddress) :
+        public WcfLogReceiverOneWayClient(Binding binding, EndpointAddress remoteAddress) :
             base(binding, remoteAddress)
         {
         }
@@ -114,46 +112,5 @@ namespace NLog.LogReceiverService
         {
             Channel.EndProcessLogMessages(result);
         }
-
-#if SILVERLIGHT
-        /// <summary>
-        /// Returns a new channel from the client to the service.
-        /// </summary>
-        /// <returns>
-        /// A channel of type <see cref="ILogReceiverOneWayClient"/> that identifies the type 
-        /// of service contract encapsulated by this client object (proxy).
-        /// </returns>
-        protected override ILogReceiverTwoWayClient CreateChannel()
-        {
-            return new LogReceiverServerClientChannel(this);
-        }
-
-        private class LogReceiverServerClientChannel : ChannelBase<ILogReceiverTwoWayClient>, ILogReceiverTwoWayClient
-        {
-            public LogReceiverServerClientChannel(ClientBase<ILogReceiverTwoWayClient> client) :
-                base(client)
-            {
-            }
-
-            public IAsyncResult BeginProcessLogMessages(NLogEvents events, AsyncCallback callback, object asyncState)
-            {
-                return this.BeginInvoke(
-                    "ProcessLogMessages", 
-                    new object[] { events }, 
-                    callback, 
-                    asyncState);
-            }
-
-            public void EndProcessLogMessages(IAsyncResult result)
-            {
-                this.EndInvoke(
-                    "ProcessLogMessages", 
-                    new object[] { }, 
-                    result);
-            }
-        }
-#endif
     }
 }
-
-#endif
