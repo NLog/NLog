@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if WCF_SUPPORTED
-
 namespace NLog.LogReceiverService
 {
     using System;
@@ -172,5 +170,3 @@ namespace NLog.LogReceiverService
         }
     }
 }
-
-#endif
