@@ -39,7 +39,6 @@ using System.ServiceModel.Description;
 
 namespace NLog.LogReceiverService
 {
-
     /// <summary>
     /// Client of <see cref="ILogReceiverServer"/>
     /// </summary>
@@ -132,6 +131,15 @@ namespace NLog.LogReceiverService
         /// Instructs the inner channel to display a user interface if one is required to initialize the channel prior to using it.
         /// </summary>
         void DisplayInitializationUI();
+#endif
+
+#if !NET4_0 && !NET3_5 && !NETSTANDARD
+
+        /// <summary>
+        /// Gets or sets the cookie container.
+        /// </summary>
+        /// <value>The cookie container.</value>
+        CookieContainer CookieContainer { get; set; }
 #endif
     }
 }

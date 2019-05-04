@@ -82,7 +82,6 @@ namespace NLog.LogReceiverService
         {
             UseOneWay = useOneWay;
             ProxiedClient = useOneWay ? (IWcfLogReceiverClient)new WcfLogReceiverOneWayClient(endpointConfigurationName) : new WcfLogReceiverTwoWayClient(endpointConfigurationName);
-
         }
 
         /// <summary>
@@ -95,7 +94,6 @@ namespace NLog.LogReceiverService
         {
             UseOneWay = useOneWay;
             ProxiedClient = useOneWay ? (IWcfLogReceiverClient)new WcfLogReceiverOneWayClient(endpointConfigurationName, remoteAddress) : new WcfLogReceiverTwoWayClient(endpointConfigurationName, remoteAddress);
-
         }
 
         /// <summary>
@@ -108,7 +106,6 @@ namespace NLog.LogReceiverService
         {
             UseOneWay = useOneWay;
             ProxiedClient = useOneWay ? (IWcfLogReceiverClient)new WcfLogReceiverOneWayClient(endpointConfigurationName, remoteAddress) : new WcfLogReceiverTwoWayClient(endpointConfigurationName, remoteAddress);
-
         }
 
         /// <summary>
@@ -121,7 +118,6 @@ namespace NLog.LogReceiverService
         {
             UseOneWay = useOneWay;
             ProxiedClient = useOneWay ? (IWcfLogReceiverClient)new WcfLogReceiverOneWayClient(binding, remoteAddress) : new WcfLogReceiverTwoWayClient(binding, remoteAddress);
-
         }
 
 #region delegating
@@ -271,6 +267,18 @@ namespace NLog.LogReceiverService
         public void DisplayInitializationUI()
         {
             ProxiedClient.DisplayInitializationUI();
+        }
+#endif
+
+#if !NET4_0 && !NET3_5 && !NETSTANDARD
+        /// <summary>
+        /// Gets or sets the cookie container.
+        /// </summary>
+        /// <value>The cookie container.</value>
+        public CookieContainer CookieContainer
+        {
+            get => ProxiedClient.CookieContainer;
+            set => ProxiedClient.CookieContainer = value;
         }
 #endif
 
