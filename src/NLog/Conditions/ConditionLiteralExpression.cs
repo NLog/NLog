@@ -67,6 +67,15 @@ namespace NLog.Conditions
                 return "null";
             }
 
+            if (LiteralValue is string stringValue)
+            {
+                return $"'{stringValue}'";
+            }
+            if (LiteralValue is char charValue)
+            {
+                return $"'{charValue}'";
+            }
+
             return Convert.ToString(LiteralValue, CultureInfo.InvariantCulture);
         }
 

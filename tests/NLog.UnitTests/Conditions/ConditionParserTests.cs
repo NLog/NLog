@@ -154,7 +154,8 @@ namespace NLog.UnitTests.Conditions
         [Fact]
         public void NumberTest()
         {
-            Assert.Equal("3.141592", ConditionParser.ParseExpression("3.141592").ToString());
+            var conditionExpression = ConditionParser.ParseExpression("3.141592");
+            Assert.Equal("3.141592", conditionExpression.ToString());
             Assert.Equal("42", ConditionParser.ParseExpression("42").ToString());
             Assert.Equal("-42", ConditionParser.ParseExpression("-42").ToString());
             Assert.Equal("-3.141592", ConditionParser.ParseExpression("-3.141592").ToString());

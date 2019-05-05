@@ -410,8 +410,8 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(typeof(JsonLayout), attrs[2].Layout.GetType());
             var nestedJsonLayout = (JsonLayout)attrs[2].Layout;
             Assert.Equal(2, nestedJsonLayout.Attributes.Count);
-            Assert.Equal("'${message}'", nestedJsonLayout.Attributes[0].Layout.ToString());
-            Assert.Equal("'${exception}'", nestedJsonLayout.Attributes[1].Layout.ToString());
+            Assert.Equal("${message}", nestedJsonLayout.Attributes[0].Layout.ToString());
+            Assert.Equal("${exception}", nestedJsonLayout.Attributes[1].Layout.ToString());
 
             var logEventInfo = new LogEventInfo
             {

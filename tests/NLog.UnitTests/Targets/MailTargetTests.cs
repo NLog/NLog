@@ -765,11 +765,11 @@ namespace NLog.UnitTests.Targets
                 SmtpSection = new SmtpSection { From = "config@foo.com" }
 #endif
             };
-            Assert.Equal("'nlog@foo.com'", mmt.From.ToString());
+            Assert.Equal("nlog@foo.com", mmt.From.ToString());
 
             mmt.Initialize(null);
 
-            Assert.Equal("'nlog@foo.com'", mmt.From.ToString());
+            Assert.Equal("nlog@foo.com", mmt.From.ToString());
         }
 
         [Fact]
@@ -786,11 +786,11 @@ namespace NLog.UnitTests.Targets
                 UseSystemNetMailSettings = true,
                 SmtpSection = new SmtpSection { From = "config@foo.com" }
             };
-            Assert.Equal("'config@foo.com'", mmt.From.ToString());
+            Assert.Equal("config@foo.com", mmt.From.ToString());
 
             mmt.Initialize(null);
 
-            Assert.Equal("'config@foo.com'", mmt.From.ToString());
+            Assert.Equal("config@foo.com", mmt.From.ToString());
 #endif
         }
 

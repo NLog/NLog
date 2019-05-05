@@ -62,6 +62,11 @@ namespace NLog.Conditions
         /// <returns>String literal in single quotes.</returns>
         public override string ToString()
         {
+            if (Layout is SimpleLayout simpleLayout)
+            {
+                return "'" + simpleLayout.ToString() + "'";
+            }
+
             return Layout.ToString();
         }
 
