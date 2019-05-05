@@ -33,6 +33,7 @@
 
 using System;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 
 namespace NLog.Internal
@@ -78,6 +79,73 @@ namespace NLog.Internal
                     return result.Where(s => !IsNullOrWhiteSpace(s)).Select(s => s.Trim()).ToArray();
             }
             return result;
+        }
+
+        /// <summary>
+        /// Replace string with <paramref name="comparison"/>
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="comparison"></param>
+        /// <returns>The same reference of nothing has been replaced.</returns>
+        public static string Replace([NotNull] string str, [NotNull] string oldValue, string newValue, StringComparison comparison)
+        {
+            if (str == null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (oldValue == null)
+            {
+                throw new ArgumentNullException(nameof(oldValue));
+            }
+
+            if (str.Length == 0)
+            {
+                //nothing to do
+                return str;
+            }
+
+            StringBuilder sb = null;
+
+            int previousIndex = 0;
+            int index = str.IndexOf(oldValue, comparison);
+            while (index != -1)
+            {
+                sb = sb ?? new StringBuilder(str.Length);
+
+                if (previousIndex >= str.Length)
+                {
+                    // for cases that 2 chars is one symbol
+                    break;
+                }
+                sb.Append(str.Substring(previousIndex, index - previousIndex));
+                sb.Append(newValue);
+                index += oldValue.Length;
+
+                previousIndex = index;
+                if (index >= str.Length)
+                {
+                    // for cases that 2 chars is one symbol
+                    break;
+                }
+
+                index = str.IndexOf(oldValue, index, comparison);
+            }
+
+            if (sb == null)
+            {
+                //nothing replaced
+                return str;
+            }
+
+            if (previousIndex < str.Length)
+            {
+                sb.Append(str.Substring(previousIndex));
+            }
+            return sb.ToString();
+
         }
     }
 }

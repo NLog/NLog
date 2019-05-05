@@ -33,11 +33,9 @@
 
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using NLog.Internal;
 using Xunit;
-using Xunit.Extensions;
 
 namespace NLog.UnitTests.Internal
 {
@@ -56,7 +54,7 @@ namespace NLog.UnitTests.Internal
         }
 
         [Theory]
-        [InlineData("", new string [0])]
+        [InlineData("", new string[0])]
         [InlineData("  ", new string[0])]
         [InlineData(" , ", new string[0])]
         [InlineData("a", new string[] { "a" })]
@@ -73,6 +71,37 @@ namespace NLog.UnitTests.Internal
         {
             var result = input.SplitAndTrimTokens(',');
             Assert.Equal(expected, result);
+        }
+
+
+        [Theory]
+        [InlineData("", "", "", StringComparison.InvariantCulture, "")]
+        [InlineData("", "", null, StringComparison.InvariantCulture, "")]
+        [InlineData("a", "a", "b", StringComparison.InvariantCulture, "b")]
+        [InlineData("aa", "a", "b", StringComparison.InvariantCulture, "bb")]
+        [InlineData("aa", "a", "", StringComparison.InvariantCulture, "")]
+        [InlineData(" Caac ", "a", "", StringComparison.InvariantCulture, " Cc ")]
+        [InlineData(" Caac ", "a", " ", StringComparison.InvariantCulture, " C  c ")]
+        [InlineData("aA", "a", "b", StringComparison.InvariantCulture, "bA")]
+        [InlineData("aA", "a", "b", StringComparison.InvariantCultureIgnoreCase, "bb")]
+        [InlineData("œ", "œ", "", StringComparison.InvariantCulture, "")]
+        [InlineData("œ", "oe", "", StringComparison.OrdinalIgnoreCase, "œ")]
+        [InlineData("var ${var}", "${var}", "2", StringComparison.InvariantCulture, "var 2")]
+        [InlineData("var ${var}", "${VAR}", "2", StringComparison.InvariantCulture, "var ${var}")]
+        [InlineData("var ${VAR}", "${var}", "2", StringComparison.InvariantCulture, "var ${VAR}")]
+        [InlineData("var ${var}", "${VAR}", "2", StringComparison.InvariantCultureIgnoreCase, "var 2")]
+        [InlineData("var ${VAR}", "${var}", "2", StringComparison.InvariantCultureIgnoreCase, "var 2")]
+        public void ReplaceTest(string input, string search, string replace, StringComparison comparer, string result)
+        {
+            Assert.Equal(result, StringHelpers.Replace(input, search, replace, comparer));
+        }
+
+        [Theory]
+        [InlineData(null, "", "", StringComparison.InvariantCulture)]
+        [InlineData("", null, "", StringComparison.InvariantCulture)]
+        public void ReplaceTestThrowsNullException(string input, string search, string replace, StringComparison comparer)
+        {
+            Assert.Throws<ArgumentNullException>(() => StringHelpers.Replace(input, search, replace, comparer));
         }
     }
 }
