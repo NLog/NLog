@@ -86,7 +86,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == '' ">
-    <ProjectReference Include="..\..\src\NLog.Extended\NLog.Extended.csproj" />
+    <ProjectReference Include="..\..\src\NLog.MSMQ\NLog.MSMQ.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' != '' ">
@@ -94,8 +94,8 @@
       <HintPath>..\..\src\NLog\bin\$(Configuration)\$(TestTargetFramework)\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NLog.Extended">
-      <HintPath>..\..\src\NLog.Extended\bin\$(Configuration)\$(TestTargetFramework)\NLog.Extended.dll</HintPath>
+    <Reference Include="NLog.MSMQ">
+      <HintPath>..\..\src\NLog.MSMQ\bin\$(Configuration)\$(TestTargetFramework)\NLog.MSMQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NLogAutoLoadExtension">

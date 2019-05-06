@@ -38,7 +38,7 @@ function create-package($packageName)
 
 }
 
-create-package('NLog.Extended')
+create-package('NLog.MSMQ')
 create-package('NLog.Wcf')
 create-package('NLog.WindowsEventLog')
 create-package('NLog.WindowsIdentity')
