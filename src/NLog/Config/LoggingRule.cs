@@ -187,7 +187,7 @@ namespace NLog.Config
         /// <summary>
         /// Default action if all filters won't match
         /// </summary>
-        public FilterResult DefaultFilterResult { get; set; } = FilterResult.Neutral;
+        public FilterResult DefaultFilterResult { get; set; } = FilterResult.Ignore;
 
         /// <summary>
         /// Enables logging for a particular level.
