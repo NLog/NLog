@@ -379,7 +379,7 @@ namespace NLog.Config
         {
             var nlogAssembly = typeof(ILogger).GetAssembly();
             var factory = new ConfigurationItemFactory(nlogAssembly);
-            factory.RegisterExtendedItems();
+            factory.RegisterExternalItems();
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
             try
@@ -522,7 +522,6 @@ namespace NLog.Config
                 .Select(Path.GetFileName)
                 .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
                 .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
-                .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
                 .Select(x => Path.Combine(assemblyLocation, x));
                 return extensionDlls.ToArray();
             }
@@ -557,22 +556,10 @@ namespace NLog.Config
 #endif
 
         /// <summary>
-        /// Registers items in NLog.Extended.dll using late-bound types, so that we don't need a reference to NLog.Extended.dll.
+        /// Registers items in using late-bound types, so that we don't need a reference to the dll.
         /// </summary>
-        private void RegisterExtendedItems()
+        private void RegisterExternalItems()
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-            string suffix = typeof(ILogger).AssemblyQualifiedName;
-            string myAssemblyName = "NLog,";
-            var p = suffix?.IndexOf(myAssemblyName, StringComparison.OrdinalIgnoreCase);
-            if (p >= 0)
-            {
-                // register types
-                string extendedAssemblySuffix = ", NLog.Extended," + suffix.Substring(p.Value + myAssemblyName.Length);
-                string targetsNamespace = typeof(DebugTarget).Namespace;
-                _targets.RegisterNamedType("MSMQ", targetsNamespace + ".MessageQueueTarget" + extendedAssemblySuffix);
-            }
-#endif
 
 #if NET4_5 || NETSTANDARD
             _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
