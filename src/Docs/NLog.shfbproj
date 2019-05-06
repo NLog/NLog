@@ -31,8 +31,8 @@
     <DocumentationSources>
       <DocumentationSource sourceFile="..\NLog\bin\Release\net45\NLog.dll" platform=".NET Framework 4.5" />
       <DocumentationSource sourceFile="..\NLog\bin\Release\net45\NLog.xml" platform=".NET Framework 4.5" />
-      <DocumentationSource sourceFile="..\NLog.Extended\bin\Release\net45\NLog.Extended.dll" platform=".NET Framework 4.5" />
-      <DocumentationSource sourceFile="..\NLog.Extended\bin\Release\net45\NLog.Extended.xml" platform=".NET Framework 4.5" />
+      <DocumentationSource sourceFile="..\NLog.MSMQ\bin\Release\net45\NLog.MSMQ.dll" platform=".NET Framework 4.5" />
+      <DocumentationSource sourceFile="..\NLog.MSMQ\bin\Release\net45\NLog.MSMQ.xml" platform=".NET Framework 4.5" />
       <DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.dll" />
       <DocumentationSource sourceFile="..\NLog.Wcf\bin\Release\netstandard2.0\NLog.Wcf.xml" />
       <DocumentationSource sourceFile="..\NLog.WindowsIdentity\bin\Release\netstandard2.0\NLog.WindowsIdentity.dll" />
