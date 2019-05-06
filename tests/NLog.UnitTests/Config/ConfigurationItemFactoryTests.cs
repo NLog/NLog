@@ -72,8 +72,6 @@ namespace NLog.UnitTests.Config
         }
 
 #if !NETSTANDARD
-        // this is just to force reference to NLog.Extended.dll
-        public Type ForceExtendedReference = typeof(MessageQueueTarget).DeclaringType;
 
         [Fact]
         public void ExtendedTargetTest()

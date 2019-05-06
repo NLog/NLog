@@ -5,10 +5,10 @@
 
     <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35</TargetFrameworks>
 
-    <Title>NLog for Extended Profile</Title>
+    <Title>NLog MSMQ target</Title>
     <Company>NLog</Company>
-    <Description>NLog.Extended.dll provides MSMQ target and AppSetting renderer</Description>
-    <Product>NLog Extended Profile v$(ProductVersion)</Product>
+    <Description>NLog MSMQ target - write to the Microsoft Message Queuing</Description>
+    <Product>NLog MSMQ target</Product>
     <InformationalVersion>$(ProductVersion)</InformationalVersion>
     <Authors>Jarek Kowalski,Kim Christensen,Julian Verdurmen</Authors>
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
@@ -17,9 +17,8 @@
     <PackageReleaseNotes>
       Docs:
       https://github.com/NLog/NLog/wiki/MSMQ-target
-      https://github.com/NLog/NLog/wiki/AppSetting-Layout-Renderer
-    </PackageReleaseNotes>
-    <PackageTags>NLog;MSMQ;AppSettings;logging;log</PackageTags>
+</PackageReleaseNotes>
+    <PackageTags>NLog;MSMQ;logging;log</PackageTags>
     <PackageIconUrl>https://nlog-project.org/N.png</PackageIconUrl>
     <PackageProjectUrl>https://nlog-project.org/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/NLog/NLog/blob/master/LICENSE.txt</PackageLicenseUrl>
@@ -37,14 +36,14 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Title>NLog for .NET Framework 4.5 Extended Profile</Title>
+    <Title>MSMQ target for NLog - .NET Framework 4.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
     <DefineConstants>$(DefineConstants);NET4_5</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net40-client' ">
-    <Title>NLog for .NET Framework 4 Extended Profile</Title>
+    <Title>MSMQ target for NLog - .NET Framework 4</Title>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -54,7 +53,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <Title>NLog for .NET Framework 3.5 Extended Profile</Title>
+    <Title>MSMQ target for NLog - .NET Framework 3.5</Title>
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
     <DefineConstants>$(DefineConstants);NET3_5</DefineConstants>

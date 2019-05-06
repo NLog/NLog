@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT
-
 namespace NLog.Targets
 {
     using System.ComponentModel;
@@ -67,7 +65,7 @@ namespace NLog.Targets
     [Target("MSMQ")]
     public class MessageQueueTarget : TargetWithLayout
     {
-        private MessagePriority messagePriority = MessagePriority.Normal;
+        private const MessagePriority MessagePriority = System.Messaging.MessagePriority.Normal;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageQueueTarget"/> class.
@@ -167,18 +165,15 @@ namespace NLog.Targets
 
             var queue = Queue.Render(logEvent);
 
-            if (CheckIfQueueExists)
+            if (CheckIfQueueExists && !IsFormatNameSyntax(queue) && !MessageQueueProxy.Exists(queue))
             {
-                if (!IsFormatNameSyntax(queue) && !MessageQueueProxy.Exists(queue))
+                if (CreateQueueIfNotExists)
                 {
-                    if (CreateQueueIfNotExists)
-                    {
-                        MessageQueueProxy.Create(queue);
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    MessageQueueProxy.Create(queue);
+                }
+                else
+                {
+                    return;
                 }
             }
 
@@ -205,7 +200,7 @@ namespace NLog.Targets
             }
 
             msg.Recoverable = Recoverable;
-            msg.Priority = messagePriority;
+            msg.Priority = MessagePriority;
 
             if (UseXmlEncoding)
             {
@@ -253,5 +248,3 @@ namespace NLog.Targets
         }
     }
 }
-
-#endif

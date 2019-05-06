@@ -43,16 +43,7 @@ NuGet package management
 
 ## Create NuGet packages
 
-Use `msbuild /t:Restore,Pack ...`, see build.ps1
-
-## Publish symbols packages
-
-To www.symbolsource.org
-
-```
-nuget push NLog\build\bin\release\NuGetPackages\NLog.4.2.0.symbols.nupkg
-nuget push NLog\build\bin\release\NuGetPackages\NLog.Extended.4.2.0.symbols.nupkg
-```
+See build.ps1
 
 ## Versions
 

@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleExtensions", "..\test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLogAutoLoadExtension", "..\tests\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj", "{B1DA63B3-1EB0-41B3-BFDA-9D7409481E27}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.Extended", "NLog.Extended\NLog.Extended.csproj", "{FEBC3D32-AB28-4ACC-8697-D3147B790D80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog.MSMQ", "NLog.MSMQ\NLog.MSMQ.csproj", "{FEBC3D32-AB28-4ACC-8697-D3147B790D80}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66} = {A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}
 	EndProjectSection
