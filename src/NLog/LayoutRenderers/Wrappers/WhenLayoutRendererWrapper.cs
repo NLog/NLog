@@ -100,24 +100,21 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (ShouldRenderInner(logEvent))
             {
-                if (Inner == null)
-                {
-                    value = null;
-                    return false;
-                }
-
-                return Inner.TryGetRawValue(logEvent, out value);
+                return TryGetRawValueFromLayout(logEvent, Inner, out value);
             }
-            else 
+
+            return TryGetRawValueFromLayout(logEvent, Else, out value);
+        }
+
+        private static bool TryGetRawValueFromLayout(LogEventInfo logEvent, Layout layout, out object value)
+        {
+            if (layout == null)
             {
-                if (Else == null)
-                {
-                    value = null;
-                    return false;
-                }
-
-                return Else.TryGetRawValue(logEvent, out value);
+                value = null;
+                return false;
             }
+
+            return layout.TryGetRawValue(logEvent, out value);
         }
     }
 }
