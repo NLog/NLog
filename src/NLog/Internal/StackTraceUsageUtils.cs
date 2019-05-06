@@ -118,7 +118,7 @@ namespace NLog.Internal
             if (!includeNameSpace
                 && callerClassType?.DeclaringType != null
                 && callerClassType.IsNested
-                && callerClassType.GetCustomAttribute<CompilerGeneratedAttribute>() != null)
+                && callerClassType.GetFirstCustomAttribute<CompilerGeneratedAttribute>() != null)
             {
                 return callerClassType.DeclaringType.Name;
             }

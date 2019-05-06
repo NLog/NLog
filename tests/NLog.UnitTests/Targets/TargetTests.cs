@@ -81,10 +81,10 @@ namespace NLog.UnitTests.Targets
                     if (isWrapped)
                     {
                         neededCheckCount++;
-                      
+
                         var args = new List<object> { fileTarget };
 
-                
+
 
                         //default ctor
                         var defaultConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType);
@@ -96,7 +96,7 @@ namespace NLog.UnitTests.Targets
                         {
                             var cond = new ConditionLoggerNameExpression();
                             args.Add(cond);
-                            var target = (FilteringTargetWrapper) defaultConstructedTarget;
+                            var target = (FilteringTargetWrapper)defaultConstructedTarget;
                             target.Condition = cond;
                         }
                         else if (targetType == typeof(RepeatingTargetWrapper))
@@ -125,7 +125,7 @@ namespace NLog.UnitTests.Targets
 
                         //ctor: target+name
                         var namedConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType, args.ToArray());
-                        
+
                         CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
 
                         CheckEquals(targetType, defaultConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
@@ -138,7 +138,7 @@ namespace NLog.UnitTests.Targets
                         var args = new List<object> { fileTarget, memoryTarget };
 
                         //specials cases
-                   
+
 
                         //default ctor
                         var defaultConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType);
@@ -171,7 +171,7 @@ namespace NLog.UnitTests.Targets
                         CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
                     }
 
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -184,7 +184,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(neededCheckCount, checkCount);
         }
 
-        private static void CheckEquals(Type targetType, Target defaultConstructedTarget, Target namedConstructedTarget, 
+        private static void CheckEquals(Type targetType, Target defaultConstructedTarget, Target namedConstructedTarget,
             ref string lastPropertyName, ref int @checked)
         {
             var checkedAtLeastOneProperty = false;
@@ -208,11 +208,11 @@ namespace NLog.UnitTests.Targets
                     {
                         if (value1 is IRenderable)
                         {
-                            Assert.Equal((IRenderable) value1, (IRenderable) value2, new RenderableEq());
+                            Assert.Equal((IRenderable)value1, (IRenderable)value2, new RenderableEq());
                         }
                         else if (value1 is AsyncRequestQueue)
                         {
-                            Assert.Equal((AsyncRequestQueue) value1, (AsyncRequestQueue) value2, new AsyncRequestQueueEq());
+                            Assert.Equal((AsyncRequestQueue)value1, (AsyncRequestQueue)value2, new AsyncRequestQueueEq());
                         }
                         else
                         {
@@ -435,6 +435,26 @@ namespace NLog.UnitTests.Targets
             // flush was not called
             Assert.Equal(0, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
         }
+
+        [Theory]
+        [InlineData("Database")]
+        [InlineData("DATABASE")]
+        [InlineData("DB")]
+        [InlineData("db")]
+        public void TargetAliasShouldWork(string typeName)
+        {
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString($@"
+            <nlog>
+                <targets>
+                    <target name='d' type='{typeName}' />
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName<DatabaseTarget>("d");
+            Assert.NotNull(t);
+        }
+
+
 
         [Fact]
         public void FlushOnClosedTargetTest()

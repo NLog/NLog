@@ -43,6 +43,7 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// URI of the HTML page which hosts the current Silverlight application.
     /// </summary>
+    [LayoutRenderer("sl-document-uri")]
     [LayoutRenderer("document-uri")]
     public class DocumentUriLayoutRenderer : LayoutRenderer
     {

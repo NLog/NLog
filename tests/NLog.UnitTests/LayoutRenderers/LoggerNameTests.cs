@@ -104,6 +104,25 @@ namespace NLog.UnitTests.LayoutRenderers
             ILogger logger = LogManager.GetLogger("A.B.C");
             logger.Debug("a");
             AssertDebugLastMessage("debug", "A.B.C a");
+        }    
+        
+        [Theory]
+        [InlineData("logger")]
+        [InlineData("logger-name")]
+        [InlineData("loggername")]
+        public void LoggerNameAliasTest(string loggerLayout)
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${{{loggerLayout}}} ${{message}}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A.B.C");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "A.B.C a");
         }
     }
 }

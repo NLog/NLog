@@ -173,7 +173,7 @@ namespace NLog.Internal
 
         internal static Type GetArrayItemType(PropertyInfo propInfo)
         {
-            var arrayParameterAttribute = propInfo.GetCustomAttribute<ArrayParameterAttribute>();
+            var arrayParameterAttribute = propInfo.GetFirstCustomAttribute<ArrayParameterAttribute>();
             return arrayParameterAttribute?.ItemType;
         }
 
@@ -451,7 +451,7 @@ namespace NLog.Internal
             var retVal = new Dictionary<string, PropertyInfo>(StringComparer.OrdinalIgnoreCase);
             foreach (PropertyInfo propInfo in GetAllReadableProperties(t))
             {
-                var arrayParameterAttribute = propInfo.GetCustomAttribute<ArrayParameterAttribute>();
+                var arrayParameterAttribute = propInfo.GetFirstCustomAttribute<ArrayParameterAttribute>();
 
                 if (arrayParameterAttribute != null)
                 {

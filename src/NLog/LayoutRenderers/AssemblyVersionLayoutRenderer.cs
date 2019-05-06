@@ -226,10 +226,10 @@ namespace NLog.LayoutRenderers
             switch (Type)
             {
                 case AssemblyVersionType.File:
-                    return assembly?.GetCustomAttribute<System.Reflection.AssemblyFileVersionAttribute>()?.Version;
+                    return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyFileVersionAttribute>()?.Version;
 
                 case AssemblyVersionType.Informational:
-                    return assembly?.GetCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+                    return assembly?.GetFirstCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 
                 default:
                     return assembly?.GetName().Version?.ToString();

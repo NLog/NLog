@@ -60,6 +60,6 @@ namespace NLog.Config
         /// Gets the name of the item.
         /// </summary>
         /// <value>The name of the item.</value>
-        public string Name { get; private set; }
+        public string Name { get; }
     }
 }

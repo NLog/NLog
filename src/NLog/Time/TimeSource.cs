@@ -64,7 +64,7 @@ namespace NLog.Time
         /// </returns>
         public override string ToString()
         {
-            var targetAttribute = GetType().GetCustomAttribute<TimeSourceAttribute>();
+            var targetAttribute = GetType().GetFirstCustomAttribute<TimeSourceAttribute>();
             if (targetAttribute != null)
             {
                 return targetAttribute.Name + " (time source)";

@@ -39,7 +39,7 @@ namespace NLog.Layouts
     /// <summary>
     /// Marks class as a layout renderer and assigns a format string to it.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class LayoutAttribute : NameBaseAttribute
     {
         /// <summary>

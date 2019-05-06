@@ -270,7 +270,7 @@ namespace NLog.Targets
         /// </returns>
         public override string ToString()
         {
-            var targetAttribute = GetType().GetCustomAttribute<TargetAttribute>();
+            var targetAttribute = GetType().GetFirstCustomAttribute<TargetAttribute>();
             if (targetAttribute != null)
             {
                 return $"{targetAttribute.Name} Target[{(Name ?? "(unnamed)")}]";
