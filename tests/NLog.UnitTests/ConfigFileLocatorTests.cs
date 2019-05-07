@@ -254,12 +254,14 @@ namespace NLog.UnitTests
                 Assert.Equal(4, result.Count);  // Case insensitive
 #endif
             }
-            Assert.Equal(Path.Combine(tmpDir, "BaseDir", "NLog.config"), result.First(), StringComparer.OrdinalIgnoreCase);
-            Assert.Contains(Path.Combine(tmpDir, appDir, "NLog.config"), result, StringComparer.OrdinalIgnoreCase);
-            Assert.Contains(Path.Combine(tmpDir, appDir, appName + ".exe.nlog"), result, StringComparer.OrdinalIgnoreCase);
 #if NETSTANDARD
+            Assert.Contains(Path.Combine(tmpDir, appDir, appName + ".exe.nlog"), result, StringComparer.OrdinalIgnoreCase);
             Assert.Contains(Path.Combine(tmpDir, appDir, "Entry.dll.nlog"), result, StringComparer.OrdinalIgnoreCase);
+#else
+            Assert.Equal(Path.Combine(tmpDir, appDir, appName + ".exe.nlog"), result.First(), StringComparer.OrdinalIgnoreCase);
 #endif
+            Assert.Contains(Path.Combine(tmpDir, "BaseDir", "NLog.config"), result, StringComparer.OrdinalIgnoreCase);
+            Assert.Contains(Path.Combine(tmpDir, appDir, "NLog.config"), result, StringComparer.OrdinalIgnoreCase);
             Assert.Contains("NLog.dll.nlog", result.Last(), StringComparison.OrdinalIgnoreCase);
         }
 
@@ -380,15 +382,15 @@ namespace NLog.UnitTests
                                          },
                                      new
                                          {
-                                             File = "NLog.config",
-                                             Contents = nlogConfigContents,
-                                             Output = nlogConfigOutput
-                                         },
-                                     new
-                                         {
                                              File = "ConfigFileLocator.exe.nlog",
                                              Contents = appNLogContents,
                                              Output = appNLogOutput
+                                         },
+                                     new
+                                         {
+                                             File = "NLog.config",
+                                             Contents = nlogConfigContents,
+                                             Output = nlogConfigOutput
                                          },
                                      new
                                          {

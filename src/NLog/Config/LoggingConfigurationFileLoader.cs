@@ -220,6 +220,13 @@ namespace NLog.Config
         /// </summary>
         public IEnumerable<string> GetDefaultCandidateConfigFilePaths(string fileName)
         {
+            if (fileName == null)
+            {
+                // Scan for process specific nlog-files
+                foreach (var filePath in GetAppSpecificNLogLocations())
+                    yield return filePath;
+            }
+
             // NLog.config from application directory
             string nlogConfigFile = fileName ?? "NLog.config";
             string baseDirectory = PathHelpers.TrimDirectorySeparators(_appEnvironment.AppDomainBaseDirectory);
@@ -250,13 +257,6 @@ namespace NLog.Config
                     yield return nLogConfigFileLowerCase;
             }
 
-            if (fileName == null)
-            {
-                // Scan for process specific nlog-files
-                foreach (var filePath in GetAppSpecificNLogLocations(entryAssemblyLocation))
-                    yield return filePath;
-            }
-
             foreach (var filePath in GetPrivateBinPathNLogLocations(baseDirectory, nlogConfigFile, platformFileSystemCaseInsensitive ? nLogConfigFileLowerCase : string.Empty))
                 yield return filePath;
 
@@ -276,7 +276,7 @@ namespace NLog.Config
         /// <summary>
         /// Get default file paths (including filename) for possible NLog config files. 
         /// </summary>
-        public IEnumerable<string> GetAppSpecificNLogLocations(string entryAssemblyLocation)
+        public IEnumerable<string> GetAppSpecificNLogLocations()
         {
             // Current config file with .config renamed to .nlog
             string configurationFile = _appEnvironment.AppDomainConfigurationFile;
@@ -294,6 +294,7 @@ namespace NLog.Config
 #if NETSTANDARD && !NETSTANDARD1_3
             else
             {
+                string entryAssemblyLocation = PathHelpers.TrimDirectorySeparators(_appEnvironment.EntryAssemblyLocation);
                 string processFilePath = _appEnvironment.CurrentProcessFilePath;
                 string processDirectory = !string.IsNullOrEmpty(processFilePath) ? PathHelpers.TrimDirectorySeparators(Path.GetDirectoryName(processFilePath)) : string.Empty;
                 if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, processDirectory, StringComparison.OrdinalIgnoreCase))
