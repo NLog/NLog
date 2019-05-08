@@ -42,7 +42,7 @@ namespace NLog.Layouts
     /// <summary>
     /// Layout rendering to int
     /// </summary>
-    public class IntLayout : Layout, IRawValue
+    public sealed class IntLayout : Layout, IRawValue
     {
         private readonly Layout _layout;
         private readonly int? _value;
