@@ -34,6 +34,7 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using NLog.Common;
 using NLog.Internal;
 
@@ -53,9 +54,21 @@ namespace NLog.Layouts
         /// <param name="layout"></param>
         public IntLayout(Layout layout)
         {
-            //todo test layout if fixed and if non-number
+            if (layout != null && layout is SimpleLayout simpleLayout && simpleLayout.IsFixedText)
+            {
+                if (!TryParse(simpleLayout.FixedText, out var value))
+                {
+                    InternalLogger.Warn($"layout with text '{simpleLayout.FixedText}' isn't an int");
+                }
+                _number = value;
+                //keep layout also for context
+            }
+            else
+            {
+                _number = null;
+            }
+           
             _layout = layout;
-            _number = null;
         }
 
         /// <summary>
@@ -110,28 +123,62 @@ namespace NLog.Layouts
 
             if (_layout.TryGetRawValue(logEvent, out var raw))
             {
-                if (raw is int i1)
+                if (TryConvertRawToValue(raw, out var renderToInt))
                 {
-                    return i1;
+                    return renderToInt;
                 }
-                //todo use IPropertyTypeConverter?
+
                 InternalLogger.Warn("rawvalue isn't a int ");
             }
 
             var text = _layout.Render(logEvent);
-            if (int.TryParse(text, out var i)) //todo use IPropertyTypeConverter?
+            if (TryParse(text, out var value))
             {
-                return i;
+                return value;
             }
-            else
-            {
-                InternalLogger.Warn("Parse {0} to int failed", text);
-                return null;
-            }
+
+            InternalLogger.Warn("Parse {0} to int failed", text);
+            return null;
 
         }
 
-      
+        private static bool TryParse(string text, out int? value)
+        {
+            if (int.TryParse(text, out var i))
+            {
+                value = i;
+                return true;
+            }
+
+            value = null;
+
+            return false;
+        }
+
+        private static bool TryConvertRawToValue(object raw, out int? value)
+        {
+            if (raw == null)
+            {
+                value = null;
+                return true;
+            }
+
+            if (raw is int i)
+            {
+                value = i;
+                return true;
+            }
+
+            if (raw is IConvertible convertableValue)
+            {
+                value = convertableValue.ToInt32(Thread.CurrentThread.CurrentCulture);
+                return true;
+            }
+
+            value = null;
+
+            return false;
+        }
 
         #region Overrides of Layout
 
