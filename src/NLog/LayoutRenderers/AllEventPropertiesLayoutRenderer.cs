@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Layouts;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -68,7 +70,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets string that will be used to separate key/value pairs.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        public string Separator { get; set; }
+        public Layout Separator { get; set; }
 
 #if NET4_5
 
@@ -129,11 +131,12 @@ namespace NLog.LayoutRenderers
                 var formatProvider = GetFormatProvider(logEvent);
 
                 bool first = true;
+                var separator = Separator.Render(logEvent);
                 foreach (var property in GetProperties(logEvent))
                 {
                     if (!first)
                     {
-                        builder.Append(Separator);
+                        builder.Append(separator);
                     }
 
                     first = false;

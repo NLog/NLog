@@ -38,6 +38,7 @@ using System.ComponentModel;
 using System.Text;
 using NLog.Config;
 using NLog.Internal.Fakeables;
+using NLog.Layouts;
 
 namespace NLog.LayoutRenderers
 {
@@ -82,7 +83,7 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [DefaultParameter]
         [DefaultValue(LongFormatCode)]
-        public string Format { get; set; }
+        public Layout Format { get; set; }
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -105,7 +106,7 @@ namespace NLog.LayoutRenderers
         {
             if (_assemblyName == null)
             {
-                var formattingString = GetFormattingString(Format);
+                var formattingString = GetFormattingString(Format.Render(logEvent));
                 _assemblyName = string.Format(formattingString, _currentDomain.Id, _currentDomain.FriendlyName);
             }
             builder.Append(_assemblyName);

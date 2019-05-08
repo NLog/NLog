@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Layouts;
+
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
 namespace NLog.LayoutRenderers
@@ -61,19 +63,19 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         [RequiredParameter]
         [DefaultParameter]
-        public string Item { get; set; }
+        public Layout Item { get; set; }
 
         ///<summary>
         /// The AppSetting item-name
         ///</summary>
         [Obsolete("Allows easier conversion from NLog.Extended. Instead use Item-property")]
-        public string Name { get => Item; set => Item = value; }
+        public Layout Name { get => Item; set => Item = value; }
 
         ///<summary>
         /// The default value to render if the AppSetting value is null.
         ///</summary>
         /// <docgen category='Rendering Options' order='10' />
-        public string Default { get; set; }
+        public Layout Default { get; set; }
 
         internal IConfigurationManager ConfigurationManager { get; set; } = new ConfigurationManager();
 
@@ -84,19 +86,20 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(GetStringValue());
+            builder.Append(GetStringValue(logEvent));
         }
 
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue();
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
 
-        private string GetStringValue()
+        private string GetStringValue(LogEventInfo logEvent)
         {
-            if (string.IsNullOrEmpty(Item))
-                return Default;
+            var item = Item.Render(logEvent);
+            if (string.IsNullOrEmpty(item))
+                return Default.Render(logEvent);
 
-            string value = ConfigurationManager.AppSettings[Item];
+            string value = ConfigurationManager.AppSettings[item];
             if (value == null && Default != null)
-                value = Default;
+                value = Default.Render(logEvent);
 
             return value ?? string.Empty;
         }

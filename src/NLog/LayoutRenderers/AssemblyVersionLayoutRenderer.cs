@@ -32,6 +32,8 @@
 // 
 
 
+using NLog.Layouts;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -69,7 +71,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultParameter]
-        public string Name { get; set; }
+        public Layout Name { get; set; }
 
         /// <summary>
         /// Gets or sets the type of assembly version to retrieve.
@@ -85,8 +87,6 @@ namespace NLog.LayoutRenderers
 
         private const string DefaultFormat = "major.minor.build.revision";
 
-        private string _format;
-
         /// <summary>
         /// Gets or sets the custom format of the assembly version output.
         /// </summary>
@@ -98,11 +98,7 @@ namespace NLog.LayoutRenderers
         /// </remarks>
         /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(DefaultFormat)]
-        public string Format
-        {
-            get => _format;
-            set => _format = value?.ToLowerInvariant();
-        }
+        public Layout Format { get; set; }
 
         /// <summary>
         /// Initializes the layout renderer.
@@ -123,6 +119,7 @@ namespace NLog.LayoutRenderers
         }
 
         private string _assemblyVersion;
+        private string _nameCache;
 
         /// <summary>
         /// Renders an assembly version and appends it to the specified <see cref="StringBuilder" />.
@@ -131,25 +128,39 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            var version = _assemblyVersion ?? (_assemblyVersion = ApplyFormatToVersion(GetVersion()));
+            var name = Name.Render(logEvent);
+
+            string version;
+            if (_assemblyVersion != null && name.Equals(_nameCache, StringComparison.OrdinalIgnoreCase))
+            {
+                version = _assemblyVersion;
+            }
+            else
+            {
+                _assemblyVersion = ApplyFormatToVersion(GetVersion(name), logEvent);
+                version = _assemblyVersion;
+            }
+            
+            _nameCache = name;
 
             if (string.IsNullOrEmpty(version))
             {
-                version = $"Could not find value for {(string.IsNullOrEmpty(Name) ? "entry" : Name)} assembly and version type {Type}";
+                version = $"Could not find value for {(string.IsNullOrEmpty(name) ? "entry" : name)} assembly and version type {Type}";
             }
 
             builder.Append(version);
         }
 
-        private string ApplyFormatToVersion(string version)
+        private string ApplyFormatToVersion(string version, LogEventInfo logEvent)
         {
-            if (Format.Equals(DefaultFormat, StringComparison.OrdinalIgnoreCase) || string.IsNullOrEmpty(version))
+            var format = Format.Render(logEvent);
+            if (format.Equals(DefaultFormat, StringComparison.OrdinalIgnoreCase) || string.IsNullOrEmpty(version))
             {
                 return version;
             }
 
             var versionParts = version.SplitAndTrimTokens('.');
-            version = Format.Replace("major", versionParts[0])
+            version = format.Replace("major", versionParts[0])
                 .Replace("minor", versionParts.Length > 1 ? versionParts[1] : "0")
                 .Replace("build", versionParts.Length > 2 ? versionParts[2] : "0")
                 .Replace("revision", versionParts.Length > 3 ? versionParts[3] : "0");
@@ -165,7 +176,7 @@ namespace NLog.LayoutRenderers
             return assemblyName.Version.ToString();
         }
 
-        private System.Reflection.AssemblyName GetAssemblyName()
+        private System.Reflection.AssemblyName GetAssemblyName(string name)
         {
             if (string.IsNullOrEmpty(Name))
             {
@@ -179,29 +190,29 @@ namespace NLog.LayoutRenderers
 
 #elif NETSTANDARD1_3
 
-        private string GetVersion()
+        private string GetVersion(string name)
         {
-            if (string.IsNullOrEmpty(Name))
+            if (string.IsNullOrEmpty(name))
             {
                 return Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion;
             }
             else
             {
-                var assembly = GetAssembly();
+                var assembly = GetAssembly(name);
                 return assembly?.GetName().Version.ToString();
             }
         }
 
-        private System.Reflection.Assembly GetAssembly()
+        private System.Reflection.Assembly GetAssembly(string name)
         {
-            return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(Name));
+            return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(name));
         }
 
 #else
 
-        private string GetVersion()
+        private string GetVersion(string name)
         {
-            var assembly = GetAssembly();
+            var assembly = GetAssembly(name);
             return GetVersion(assembly);
         }
 
@@ -209,15 +220,15 @@ namespace NLog.LayoutRenderers
         /// Gets the assembly specified by <see cref="Name"/>, or entry assembly otherwise
         /// </summary>
         /// <returns>Found assembly</returns>
-        protected virtual System.Reflection.Assembly GetAssembly()
+        protected virtual System.Reflection.Assembly GetAssembly(string name)
         {
-            if (string.IsNullOrEmpty(Name))
+            if (string.IsNullOrEmpty(name))
             {
                 return System.Reflection.Assembly.GetEntryAssembly();
             }
             else
             {
-                return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(Name));
+                return System.Reflection.Assembly.Load(new System.Reflection.AssemblyName(name));
             }
         }
 
