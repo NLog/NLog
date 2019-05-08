@@ -275,7 +275,7 @@ namespace NLog.Targets
             int eventId = 0;
             if (EventId != null)
             {
-                int? renderEventId = EventId.RenderToInt(logEvent);
+                int? renderEventId = EventId.RenderToValue(logEvent);
                 if (renderEventId == null)
                 {
                     InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse EventId={1}", Name, EventId.Render(logEvent));

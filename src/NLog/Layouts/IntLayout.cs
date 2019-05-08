@@ -140,7 +140,7 @@ namespace NLog.Layouts
         /// Render To int
         /// </summary>
         /// <returns></returns>
-        public int? RenderToInt(LogEventInfo logEvent)
+        public int? RenderToValue(LogEventInfo logEvent)
         {
             if (_value.HasValue)
             {
