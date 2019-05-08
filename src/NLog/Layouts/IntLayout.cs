@@ -34,7 +34,6 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading;
 using NLog.Common;
 using NLog.Internal;
 
@@ -45,8 +44,8 @@ namespace NLog.Layouts
     /// </summary>
     public class IntLayout : Layout, IRawValue
     {
-        private readonly int? _number;
         private readonly Layout _layout;
+        private readonly int? _value;
 
         /// <summary>
         /// Layout rendering to int
@@ -60,12 +59,13 @@ namespace NLog.Layouts
                 {
                     InternalLogger.Warn($"layout with text '{simpleLayout.FixedText}' isn't an int");
                 }
-                _number = value;
+
+                _value = value;
                 //keep layout also for context
             }
             else
             {
-                _number = null;
+                _value = null;
             }
 
             _layout = layout;
@@ -74,32 +74,63 @@ namespace NLog.Layouts
         /// <summary>
         /// Layout with fixed int
         /// </summary>
-        /// <param name="number"></param>
-        public IntLayout(int? number)
+        /// <param name="value"></param>
+        public IntLayout(int? value)
         {
-            _number = number;
+            _value = value;
             _layout = null;
         }
 
         /// <summary>
         /// Is fixed?
         /// </summary>
-        public bool IsFixed => _number.HasValue;
+        public bool IsFixed => _value.HasValue;
+
+        #region Implementation of IRawValue
+
+        /// <inheritdoc cref="IRawValue" />
+        public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        {
+            if (_value.HasValue)
+            {
+                rawValue = _value;
+                return true;
+            }
+
+            if (_layout == null)
+            {
+                rawValue = null;
+                return true;
+            }
+
+            if (_layout.TryGetRawValue(logEvent, out var raw))
+            {
+                var success = TryConvertRawToValue(raw, out var i);
+                rawValue = i;
+                return success;
+            }
+
+            rawValue = null;
+            return false;
+        }
+
+        #endregion
 
         /// <summary>
         /// Converts a given text to a <see cref="Layout" />.
         /// </summary>
         /// <param name="number">Text to be converted.</param>
-        /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
+        /// <returns><see cref="SimpleLayout" /> object represented by the text.</returns>
         public static implicit operator IntLayout(int number)
         {
             return new IntLayout(number);
         }
+
         /// <summary>
         /// Converts a given text to a <see cref="Layout" />.
         /// </summary>
         /// <param name="layout">Text to be converted.</param>
-        /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
+        /// <returns><see cref="SimpleLayout" /> object represented by the text.</returns>
         public static implicit operator IntLayout([Localizable(false)] string layout)
         {
             return new IntLayout(layout);
@@ -111,9 +142,9 @@ namespace NLog.Layouts
         /// <returns></returns>
         public int? RenderToInt(LogEventInfo logEvent)
         {
-            if (_number.HasValue)
+            if (_value.HasValue)
             {
-                return _number;
+                return _value;
             }
 
             if (_layout == null)
@@ -139,7 +170,6 @@ namespace NLog.Layouts
 
             InternalLogger.Warn("Parse {0} to int failed", text);
             return null;
-
         }
 
         private static bool TryParse(string text, out int? value)
@@ -169,9 +199,9 @@ namespace NLog.Layouts
                 return true;
             }
 
-            if (raw is IConvertible convertableValue)
+            if (raw is IConvertible)
             {
-                value = convertableValue.ToInt32(Thread.CurrentThread.CurrentCulture);
+                value = Convert.ToInt32(raw);
                 return true;
             }
 
@@ -185,37 +215,7 @@ namespace NLog.Layouts
         /// <inheritdoc />
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            return _number?.ToString(LoggingConfiguration.DefaultCultureInfo) ?? _layout.Render(logEvent);
-        }
-
-        #endregion
-
-        #region Implementation of IRawValue
-
-        /// <inheritdoc cref="IRawValue"/> />
-        public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
-        {
-            if (_number.HasValue)
-            {
-                rawValue = _number;
-                return true;
-            }
-
-            if (_layout == null)
-            {
-                rawValue = null;
-                return true;
-            }
-
-            if (_layout.TryGetRawValue(logEvent, out var raw))
-            {
-                var success = TryConvertRawToValue(raw, out var i);
-                rawValue = i;
-                return success;
-            }
-
-            rawValue = null;
-            return false;
+            return _value?.ToString(LoggingConfiguration.DefaultCultureInfo) ?? _layout.Render(logEvent);
         }
 
         #endregion
