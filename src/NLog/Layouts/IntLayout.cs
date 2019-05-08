@@ -42,7 +42,7 @@ namespace NLog.Layouts
     /// <summary>
     /// Layout rendering to int
     /// </summary>
-    public sealed class IntLayout : Layout, IRawValue
+    public sealed class IntLayout : Layout
     {
         private readonly Layout _layout;
         private readonly int? _value;
@@ -89,7 +89,7 @@ namespace NLog.Layouts
         #region Implementation of IRawValue
 
         /// <inheritdoc cref="IRawValue" />
-        public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
             if (_value.HasValue)
             {

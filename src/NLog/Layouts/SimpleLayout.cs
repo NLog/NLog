@@ -321,7 +321,7 @@ namespace NLog.Layouts
         }
 
         /// <inheritdoc />
-        public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
             if (!IsInitialized)
             {
