@@ -43,7 +43,7 @@ namespace NLog.Layouts
     /// <summary>
     /// Layout rendering to int
     /// </summary>
-    public class IntLayout : Layout
+    public class IntLayout : Layout, IRawValue
     {
         private readonly int? _number;
         private readonly Layout _layout;
@@ -67,7 +67,7 @@ namespace NLog.Layouts
             {
                 _number = null;
             }
-           
+
             _layout = layout;
         }
 
@@ -186,6 +186,36 @@ namespace NLog.Layouts
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
             return _number?.ToString(LoggingConfiguration.DefaultCultureInfo) ?? _layout.Render(logEvent);
+        }
+
+        #endregion
+
+        #region Implementation of IRawValue
+
+        /// <inheritdoc cref="IRawValue"/> />
+        public override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
+        {
+            if (_number.HasValue)
+            {
+                rawValue = _number;
+                return true;
+            }
+
+            if (_layout == null)
+            {
+                rawValue = null;
+                return true;
+            }
+
+            if (_layout.TryGetRawValue(logEvent, out var raw))
+            {
+                var success = TryConvertRawToValue(raw, out var i);
+                rawValue = i;
+                return success;
+            }
+
+            rawValue = null;
+            return false;
         }
 
         #endregion
