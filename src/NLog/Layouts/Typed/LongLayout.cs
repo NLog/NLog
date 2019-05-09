@@ -36,55 +36,59 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using NLog.Common;
-using NLog.Internal;
 
 namespace NLog.Layouts
 {
     /// <summary>
-    /// Layout rendering to int
+    /// Layout rendering to Long
     /// </summary>
-    public sealed class IntLayout : TypedLayout<int?>
+    public class LongLayout : TypedLayout<long?>
     {
         /// <inheritdoc />
-        public IntLayout(int? value) : base(value)
+        public LongLayout(Layout layout) : base(layout)
         {
+
         }
 
         /// <inheritdoc />
-        public IntLayout(Layout layout) : base(layout)
+        public LongLayout(long value) : base(value)
         {
         }
 
-        #region Overrides of TypedLayout<int?>
+        #region Overrides of GenericLayout<long?>
 
         /// <inheritdoc />
-        protected override string TypedName => "int";
+        protected override string TypedName => "long";
 
         /// <inheritdoc />
-        protected override string ValueToString(int? value, CultureInfo cultureInfo)
+        protected override string ValueToString(long? value, CultureInfo cultureInfo)
         {
             return value?.ToString(cultureInfo);
         }
 
         /// <inheritdoc />
-        protected override bool TryParse(string text, out int? value)
+        protected override bool TryParse(string text, out long? value)
         {
-            var success = int.TryParse(text, out var value1);
+            var success = long.TryParse(text, out var value1);
             value = value1;
             return success;
         }
 
         /// <inheritdoc />
-        protected override bool TryConvertTo(object raw, out int? value)
+        protected override bool TryConvertTo(object raw, out long? value)
         {
-            if (raw is IConvertible)
+            if (raw is IConvertible c)
             {
-                value = Convert.ToInt32(raw);
+                value = Convert.ToInt64(c);
+
                 return true;
             }
 
             value = null;
             return false;
+
+
+
         }
 
         #endregion
@@ -96,9 +100,9 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="value">Text to be converted.</param>
         /// <returns><see cref="SimpleLayout" /> object represented by the text.</returns>
-        public static implicit operator IntLayout(int value)
+        public static implicit operator LongLayout(long value)
         {
-            return new IntLayout(value);
+            return new LongLayout(value);
         }
 
         /// <summary>
@@ -106,9 +110,9 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="layout">Text to be converted.</param>
         /// <returns><see cref="SimpleLayout" /> object represented by the text.</returns>
-        public static implicit operator IntLayout([Localizable(false)] string layout)
+        public static implicit operator LongLayout([Localizable(false)] string layout)
         {
-            return new IntLayout(layout);
+            return new LongLayout(layout);
         }
 
         #endregion

@@ -36,54 +36,57 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using NLog.Common;
-using NLog.Internal;
 
 namespace NLog.Layouts
 {
     /// <summary>
-    /// Layout rendering to int
+    /// Layout rendering to enum
     /// </summary>
-    public sealed class IntLayout : TypedLayout<int?>
+    public class EnumLayout<TEnum> : TypedLayout<TEnum?>
+    where TEnum : struct
     {
         /// <inheritdoc />
-        public IntLayout(int? value) : base(value)
+        public EnumLayout(Layout layout) : base(layout)
         {
+
         }
 
         /// <inheritdoc />
-        public IntLayout(Layout layout) : base(layout)
+        public EnumLayout(TEnum? value) : base(value)
         {
         }
 
-        #region Overrides of TypedLayout<int?>
+        #region Overrides of GenericLayout<TEnum?>
 
         /// <inheritdoc />
-        protected override string TypedName => "int";
+        protected override string TypedName => typeof(TEnum).Name;
 
         /// <inheritdoc />
-        protected override string ValueToString(int? value, CultureInfo cultureInfo)
+        protected override string ValueToString(TEnum? value, CultureInfo cultureInfo)
         {
-            return value?.ToString(cultureInfo);
+            return value?.ToString();
         }
 
         /// <inheritdoc />
-        protected override bool TryParse(string text, out int? value)
+        protected override bool TryParse(string text, out TEnum? value)
         {
-            var success = int.TryParse(text, out var value1);
+            var success = ConversionHelpers.TryParseEnum<TEnum>(text, out var value1, default(TEnum));
             value = value1;
             return success;
+
         }
 
         /// <inheritdoc />
-        protected override bool TryConvertTo(object raw, out int? value)
+        protected override bool TryConvertTo(object raw, out TEnum? value)
         {
-            if (raw is IConvertible)
+
+            if (raw is Enum e)
             {
-                value = Convert.ToInt32(raw);
+                value = (TEnum)raw;
                 return true;
             }
 
-            value = null;
+            value = default(TEnum);
             return false;
         }
 
@@ -96,9 +99,9 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="value">Text to be converted.</param>
         /// <returns><see cref="SimpleLayout" /> object represented by the text.</returns>
-        public static implicit operator IntLayout(int value)
+        public static implicit operator EnumLayout<TEnum>(TEnum? value)
         {
-            return new IntLayout(value);
+            return new EnumLayout<TEnum>(value);
         }
 
         /// <summary>
@@ -106,9 +109,9 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="layout">Text to be converted.</param>
         /// <returns><see cref="SimpleLayout" /> object represented by the text.</returns>
-        public static implicit operator IntLayout([Localizable(false)] string layout)
+        public static implicit operator EnumLayout<TEnum>([Localizable(false)] string layout)
         {
-            return new IntLayout(layout);
+            return new EnumLayout<TEnum>(layout);
         }
 
         #endregion
