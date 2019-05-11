@@ -151,7 +151,7 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public string AppInfo { get; set; }
+        public Layout AppInfo { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
@@ -313,7 +313,7 @@ namespace NLog.LayoutRenderers
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
                 xtw.WriteAttributeSafeString("name", "log4japp");
-                xtw.WriteAttributeSafeString("value", AppInfo);
+                xtw.WriteAttributeSafeString("value", AppInfo?.Render(logEvent) ?? string.Empty);
                 xtw.WriteEndElement();
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);

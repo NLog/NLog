@@ -117,6 +117,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
         /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public Layout LoggerName
         {
             get => Renderer.LoggerName;
@@ -124,8 +125,19 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public Layout AppInfo
+        {
+            get => Renderer.AppInfo;
+            set => Renderer.AppInfo = value;
+        }
+
+        /// <summary>
         ///  Gets or sets whether the log4j:throwable xml-element should be written as CDATA
         /// </summary>
+        /// <docgen category='Payload Options' order='10' />
         public bool WriteThrowableCData
         {
             get => Renderer.WriteThrowableCData;

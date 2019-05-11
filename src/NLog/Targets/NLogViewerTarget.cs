@@ -112,7 +112,7 @@ namespace NLog.Targets
         /// Gets or sets the AppInfo field. By default it's the friendly name of the current AppDomain.
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
-        public string AppInfo
+        public Layout AppInfo
         {
             get => Renderer.AppInfo;
             set => Renderer.AppInfo = value;
