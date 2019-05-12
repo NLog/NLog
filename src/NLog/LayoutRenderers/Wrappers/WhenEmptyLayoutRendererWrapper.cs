@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System;
@@ -46,7 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase, IRawValue
     {
         /// <summary>
         /// Gets or sets the layout to be rendered when original layout produced empty result.
@@ -78,5 +80,21 @@ namespace NLog.LayoutRenderers.Wrappers
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
         }
+
+        #region Implementation of IRawValue
+
+        /// <inheritdoc />
+        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            var item = Inner.Render(logEvent);
+            if (item.Length > 0)
+            {
+                return Inner.TryGetRawValue(logEvent, out value);
+            }
+
+            return WhenEmpty.TryGetRawValue(logEvent, out value);
+        }
+
+        #endregion
     }
 }
