@@ -268,12 +268,12 @@ namespace NLog.LayoutRenderers
                 bool includeNLogCallsite = (IncludeCallSite || IncludeSourceInfo) && logEvent.CallSiteInformation != null;
                 if (includeNLogCallsite && IncludeNLogData)
                 {
-                    xtw.WriteAttributeSafeString("xmlns", "nlog", null, dummyNLogNamespace);
+                    xtw.WriteAttributeString("xmlns", "nlog", null, dummyNLogNamespace);
                 }
                 xtw.WriteAttributeSafeString("logger", LoggerName != null ? LoggerName.Render(logEvent) : logEvent.LoggerName);
-                xtw.WriteAttributeSafeString("level", logEvent.Level.Name.ToUpperInvariant());
-                xtw.WriteAttributeSafeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
-                xtw.WriteAttributeSafeString("thread", AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeString("level", logEvent.Level.Name.ToUpperInvariant());
+                xtw.WriteAttributeString("timestamp", Convert.ToString((long)(logEvent.TimeStamp.ToUniversalTime() - log4jDateBase).TotalMilliseconds, CultureInfo.InvariantCulture));
+                xtw.WriteAttributeString("thread", AsyncHelpers.GetManagedThreadId().ToString(CultureInfo.InvariantCulture));
 
                 xtw.WriteElementSafeString("log4j", "message", dummyNamespace, logEvent.FormattedMessage);
                 if (logEvent.Exception != null)
@@ -312,12 +312,12 @@ namespace NLog.LayoutRenderers
                 AppendParameters(logEvent, xtw);
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                xtw.WriteAttributeSafeString("name", "log4japp");
+                xtw.WriteAttributeString("name", "log4japp");
                 xtw.WriteAttributeSafeString("value", AppInfo?.Render(logEvent) ?? string.Empty);
                 xtw.WriteEndElement();
 
                 xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                xtw.WriteAttributeSafeString("name", "log4jmachinename");
+                xtw.WriteAttributeString("name", "log4jmachinename");
                 xtw.WriteAttributeSafeString("value", _machineName);
                 xtw.WriteEndElement();
 
@@ -430,7 +430,7 @@ namespace NLog.LayoutRenderers
             if (IncludeSourceInfo)
             {
                 xtw.WriteAttributeSafeString("file", logEvent.CallSiteInformation.GetCallerFilePath(0));
-                xtw.WriteAttributeSafeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
+                xtw.WriteAttributeString("line", logEvent.CallSiteInformation.GetCallerLineNumber(0).ToString(CultureInfo.InvariantCulture));
             }
 #endif
             xtw.WriteEndElement();
