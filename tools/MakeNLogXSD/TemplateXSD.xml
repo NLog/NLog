@@ -185,6 +185,11 @@
     <xs:choice minOccurs="0" maxOccurs="unbounded">
       <filters-go-here xmlns=""/>
     </xs:choice>
+     <xs:attribute name="defaultAction" type="FilterResult">
+      <xs:annotation>
+        <xs:documentation>Default action if none of the filters match.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:simpleType name="NLogLevel">
