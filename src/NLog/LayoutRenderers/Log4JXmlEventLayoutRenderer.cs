@@ -370,15 +370,20 @@ namespace NLog.LayoutRenderers
 
         private void AppendParameters(LogEventInfo logEvent, XmlWriter xtw)
         {
-            if (Parameters.Count > 0)
+            for (int i = 0; i < Parameters?.Count; ++i)
             {
-                foreach (NLogViewerParameterInfo parameter in Parameters)
-                {
-                    xtw.WriteStartElement("log4j", "data", dummyNamespace);
-                    xtw.WriteAttributeSafeString("name", parameter.Name);
-                    xtw.WriteAttributeSafeString("value", parameter.Layout.Render(logEvent));
-                    xtw.WriteEndElement();
-                }
+                var parameter = Parameters[i];
+                if (string.IsNullOrEmpty(parameter?.Name))
+                    continue;
+
+                var parameterValue = parameter.Layout?.Render(logEvent) ?? string.Empty;
+                if (!parameter.IncludeEmptyValue && string.IsNullOrEmpty(parameterValue))
+                    continue;
+
+                xtw.WriteStartElement("log4j", "data", dummyNamespace);
+                xtw.WriteAttributeSafeString("name", parameter.Name);
+                xtw.WriteAttributeSafeString("value", parameterValue);
+                xtw.WriteEndElement();
             }
         }
 
