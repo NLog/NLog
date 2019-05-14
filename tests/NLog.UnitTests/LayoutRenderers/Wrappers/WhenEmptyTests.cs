@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using System;
@@ -93,6 +95,25 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
                 Assert.True(success);
                 Assert.Equal(DBNull.Value, rawValue);
             }
+
+        }
+
+        [Theory]
+        [InlineData("message", "message")]
+        [InlineData("", "default")]
+        public void GetStringValueShouldWork(string message, string expected)
+        {
+            // Arrange
+            SimpleLayout layout = @"${message:whenEmpty=default}";
+            var stringValueRenderer = (IStringValueRenderer)layout.Renderers[0];
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger", message);
+
+            // Act
+            var result = stringValueRenderer.GetFormattedString(logEvent);
+
+            // Assert
+            Assert.Equal(expected, result);
+
 
         }
     }
