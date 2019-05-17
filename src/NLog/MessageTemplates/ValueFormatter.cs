@@ -34,6 +34,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using NLog.Config;
 using NLog.Internal;
@@ -108,7 +109,7 @@ namespace NLog.MessageTemplates
         /// <returns></returns>
         public bool FormatObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
-            if (SerializeSimpleObject(value, format, formatProvider, builder))
+            if (SerializeSimpleObject(value, format, formatProvider, builder, false))
             {
                 return true;
             }
@@ -119,26 +120,18 @@ namespace NLog.MessageTemplates
                 return SerializeWithoutCyclicLoop(collection, format, formatProvider, builder, default(SingleItemOptimizedHashSet<object>), 0);
             }
 
-            builder.Append(Convert.ToString(value, formatProvider));
+            SerializeConvertToString(value, formatProvider, builder);
             return true;
         }
 
         /// <summary>
         /// Try serialising a scalar (string, int, NULL) or simple type (IFormattable)
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="format"></param>
-        /// <param name="formatProvider"></param>
-        /// <param name="builder"></param>
-        /// <returns></returns>
-        private bool SerializeSimpleObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        private bool SerializeSimpleObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder, bool convertToString = true)
         {
             if (value is string stringValue)
             {
-                bool includeQuotes = format != LiteralFormatSymbol;
-                if (includeQuotes) builder.Append('"');
-                builder.Append(stringValue);
-                if (includeQuotes) builder.Append('"');
+                SerializeStringObject(stringValue, format, builder);
                 return true;
             }
 
@@ -148,30 +141,60 @@ namespace NLog.MessageTemplates
                 return true;
             }
 
-            IFormattable formattable;
-            if (!string.IsNullOrEmpty(format) && (formattable = value as IFormattable) != null)
+            // Optimize for types that are pretty much invariant in all cultures when no format-string
+            if (value is IConvertible convertibleValue)
             {
-                builder.Append(formattable.ToString(format, formatProvider));
+                SerializeConvertibleObject(convertibleValue, format, formatProvider, builder);
                 return true;
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(format) && value is IFormattable formattable)
+                {
+                    builder.Append(formattable.ToString(format, formatProvider));
+                    return true;
+                }
 
-            // Optimize for types that are pretty much invariant in all cultures when no format-string
-            TypeCode objTypeCode = Convert.GetTypeCode(value);
-            switch (objTypeCode)
+                if (convertToString)
+                {
+                    SerializeConvertToString(value, formatProvider, builder);
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        private void SerializeConvertibleObject(IConvertible value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        {
+            TypeCode convertibleTypeCode = value.GetTypeCode();
+            if (convertibleTypeCode == TypeCode.String)
+            {
+                SerializeStringObject(value.ToString(), format, builder);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(format) && value is IFormattable formattable)
+            {
+                builder.Append(formattable.ToString(format, formatProvider));
+                return;
+            }
+
+            switch (convertibleTypeCode)
             {
                 case TypeCode.Boolean:
-                {
-                    builder.Append((bool)value ? "true" : "false");
-                    return true;
-                }
+                    {
+                        builder.Append(value.ToBoolean(CultureInfo.InvariantCulture) ? "true" : "false");
+                        break;
+                    }
                 case TypeCode.Char:
-                {
-                    bool includeQuotes = format != LiteralFormatSymbol;
-                    if (includeQuotes) builder.Append('"');
-                    builder.Append((char)value);
-                    if (includeQuotes) builder.Append('"');
-                    return true;
-                }
+                    {
+                        bool includeQuotes = format != LiteralFormatSymbol;
+                        if (includeQuotes) builder.Append('"');
+                        builder.Append(value.ToChar(CultureInfo.InvariantCulture));
+                        if (includeQuotes) builder.Append('"');
+                        break;
+                    }
 
                 case TypeCode.Byte:
                 case TypeCode.SByte:
@@ -181,25 +204,36 @@ namespace NLog.MessageTemplates
                 case TypeCode.UInt16:
                 case TypeCode.UInt32:
                 case TypeCode.UInt64:
-                {
-                    Enum enumValue;
-                    if ((enumValue = value as Enum) != null)
                     {
-                        AppendEnumAsString(builder, enumValue);
+                        if (value is Enum enumValue)
+                        {
+                            AppendEnumAsString(builder, enumValue);
+                        }
+                        else
+                        {
+                            builder.AppendIntegerAsString(value, convertibleTypeCode);
+                        }
+                        break;
                     }
-                    else
-                    {
-                        builder.AppendIntegerAsString(value, objTypeCode);
-                    }
-                }
-                    return true;
 
                 case TypeCode.Object:   // Guid, TimeSpan, DateTimeOffset
                 default:                // Single, Double, Decimal, etc.
+                    SerializeConvertToString(value, formatProvider, builder);
                     break;
             }
+        }
 
-            return false;
+        private static void SerializeConvertToString(object value, IFormatProvider formatProvider, StringBuilder builder)
+        {
+            builder.Append(Convert.ToString(value, formatProvider));
+        }
+
+        private static void SerializeStringObject(string stringValue, string format, StringBuilder builder)
+        {
+            bool includeQuotes = format != LiteralFormatSymbol;
+            if (includeQuotes) builder.Append('"');
+            builder.Append(stringValue);
+            if (includeQuotes) builder.Append('"');
         }
 
         private void AppendEnumAsString(StringBuilder sb, Enum value)
@@ -262,15 +296,9 @@ namespace NLog.MessageTemplates
 
                 if (separator) builder.Append(", ");
 
-                if (item.Key is string || !(item.Key is IEnumerable))
-                    FormatObject(item.Key, format, formatProvider, builder);
-                else
-                    SerializeWithoutCyclicLoop((IEnumerable)item.Key, format, formatProvider, builder, objectsInPath, depth + 1);
+                SerializeCollectionItem(item.Key, format, formatProvider, builder, ref objectsInPath, depth);
                 builder.Append("=");
-                if (item.Value is string || !(item.Value is IEnumerable))
-                    FormatObject(item.Value, format, formatProvider, builder);
-                else
-                    SerializeWithoutCyclicLoop((IEnumerable)item.Value, format, formatProvider, builder, objectsInPath, depth + 1);
+                SerializeCollectionItem(item.Value, format, formatProvider, builder, ref objectsInPath, depth);
                 separator = true;
             }
             return true;
@@ -286,14 +314,21 @@ namespace NLog.MessageTemplates
 
                 if (separator) builder.Append(", ");
 
-                if (item is string || !(item is IEnumerable))
-                    FormatObject(item, format, formatProvider, builder);
-                else
-                    SerializeWithoutCyclicLoop((IEnumerable)item, format, formatProvider, builder, objectsInPath, depth + 1);
+                SerializeCollectionItem(item, format, formatProvider, builder, ref objectsInPath, depth);
 
                 separator = true;
             }
             return true;
+        }
+
+        private void SerializeCollectionItem(object item, string format, IFormatProvider formatProvider, StringBuilder builder, ref SingleItemOptimizedHashSet<object> objectsInPath, int depth)
+        {
+            if (item is IConvertible convertible)
+                SerializeConvertibleObject(convertible, format, formatProvider, builder);
+            else if (item is IEnumerable enumerable)
+                SerializeWithoutCyclicLoop(enumerable, format, formatProvider, builder, objectsInPath, depth + 1);
+            else
+                SerializeSimpleObject(item, format, formatProvider, builder);
         }
 
         /// <summary>
