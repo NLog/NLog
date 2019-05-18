@@ -33,11 +33,11 @@
 
 namespace NLog.Targets.Wrappers
 {
-    using System;
-    using Common;
-    using Conditions;
-    using Config;
-    using Internal;
+    using System.Collections.Generic;
+    using NLog.Common;
+    using NLog.Conditions;
+    using NLog.Config;
+    using NLog.Filters;
 
     /// <summary>
     /// Filters log entries based on a condition.
@@ -59,8 +59,6 @@ namespace NLog.Targets.Wrappers
     [Target("FilteringWrapper", IsWrapper = true)]
     public class FilteringTargetWrapper : WrapperTargetBase
     {
-        private static readonly object boxedBooleanTrue = true;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="FilteringTargetWrapper" /> class.
         /// </summary>
@@ -90,7 +88,6 @@ namespace NLog.Targets.Wrappers
         {
             WrappedTarget = wrappedTarget;
             Condition = condition;
-            OptimizeBufferReuse = GetType() == typeof(FilteringTargetWrapper);  // Class not sealed, reduce breaking changes
         }
 
         /// <summary>
@@ -98,8 +95,25 @@ namespace NLog.Targets.Wrappers
         /// to the wrapped target.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
+        public ConditionExpression Condition { get => (Filter as ConditionBasedFilter)?.Condition; set => Filter = value != null ? new ConditionBasedFilter() { Condition = value, DefaultFilterResult = FilterResult.Ignore } : null; }
+
+        /// <summary>
+        /// Gets or sets the filter. Log events who evaluates to <see cref="FilterResult.Ignore"/> will be discarded
+        /// </summary>
+        /// <docgen category='Filtering Options' order='10' />
         [RequiredParameter]
-        public ConditionExpression Condition { get; set; }
+        public Filter Filter { get; set; }
+
+        /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+
+            if (!OptimizeBufferReuse && WrappedTarget != null && WrappedTarget.OptimizeBufferReuse)
+            {
+                OptimizeBufferReuse = GetType() == typeof(FilteringTargetWrapper); // Class not sealed, reduce breaking changes
+            }
+        }
 
         /// <summary>
         /// Checks the condition against the passed log event.
@@ -109,8 +123,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            object v = Condition.Evaluate(logEvent.LogEvent);
-            if (boxedBooleanTrue.Equals(v))
+            if (FilterIncludeLogEvent(logEvent.LogEvent))
             {
                 WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
@@ -118,6 +131,63 @@ namespace NLog.Targets.Wrappers
             {
                 logEvent.Continuation(null);
             }
+        }
+
+        /// <inheritdoc/>
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
+        {
+            bool hasIgnoredLogEvents = false;
+            IList<AsyncLogEventInfo> filterLogEvents = null;
+            AsyncLogEventInfo filterLogEvent = default(AsyncLogEventInfo);
+            for (int i = 0; i < logEvents.Count; ++i)
+            {
+                if (FilterIncludeLogEvent(logEvents[i].LogEvent))
+                {
+                    if (hasIgnoredLogEvents && filterLogEvents == null)
+                    {
+                        if (filterLogEvent.LogEvent != null)
+                        {
+                            filterLogEvents = new List<AsyncLogEventInfo>();
+                            filterLogEvents.Add(filterLogEvent);
+                            filterLogEvent = default(AsyncLogEventInfo);
+                        }
+                        else
+                        {
+                            filterLogEvent = logEvents[i];
+                        }
+                    }
+
+                    if (filterLogEvents != null)
+                        filterLogEvents.Add(logEvents[i]);
+                }
+                else
+                {
+                    if (!hasIgnoredLogEvents && i > 0)
+                    {
+                        filterLogEvents = new List<AsyncLogEventInfo>();
+                        for (int j = 0; j < i; ++j)
+                            filterLogEvents.Add(logEvents[j]);
+                    }
+                    hasIgnoredLogEvents = true;
+                    logEvents[i].Continuation(null);
+                }
+            }
+
+            if (!hasIgnoredLogEvents)
+                WrappedTarget.WriteAsyncLogEvents(logEvents);
+            else if (filterLogEvents != null)
+                WrappedTarget.WriteAsyncLogEvents(filterLogEvents);
+            else if (filterLogEvent.LogEvent != null)
+                WrappedTarget.WriteAsyncLogEvent(filterLogEvent);
+        }
+
+        private bool FilterIncludeLogEvent(LogEventInfo logEvent)
+        {
+            var filterResult = Filter.GetFilterResult(logEvent);
+            if (filterResult == FilterResult.Ignore || filterResult == FilterResult.IgnoreFinal)
+                return false;
+            else
+                return true;
         }
     }
 }

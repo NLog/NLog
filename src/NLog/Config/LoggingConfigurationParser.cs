@@ -1021,6 +1021,11 @@ namespace NLog.Config
                 return;
             }
 
+            if (SetFilterFromElement(o, propInfo, element))
+            {
+                return;
+            }
+
             SetItemFromElement(o, propInfo, element);
         }
 
@@ -1093,6 +1098,30 @@ namespace NLog.Config
                 return null;
 
             return _configurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
+        }
+
+        private bool SetFilterFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement layoutElement)
+        {
+            // Check if it is a Filter
+            if (!typeof(Filter).IsAssignableFrom(propInfo.PropertyType))
+                return false;
+
+            // Check if the 'type' attribute has been specified
+            string filterTypeName = GetConfigItemTypeAttribute(layoutElement);
+            if (filterTypeName == null)
+                return false;
+
+            Filter filter = _configurationItemFactory.Filters.CreateInstance(ExpandSimpleVariables(filterTypeName));
+            // and is a Filter and 'type' attribute has been specified
+            if (filter != null)
+            {
+                ConfigureObjectFromAttributes(filter, layoutElement, true);
+                ConfigureObjectFromElement(filter, layoutElement);
+                propInfo.SetValue(o, filter, null);
+                return true;
+            }
+
+            return false;
         }
 
         private void SetItemFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
