@@ -1070,15 +1070,15 @@ namespace NLog.Config
             return arrayItem;
         }
 
-        private bool SetLayoutFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement layoutElement)
+        private bool SetLayoutFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
         {
-            Layout layout = TryCreateLayoutInstance(layoutElement, propInfo.PropertyType);
+            var layout = TryCreateLayoutInstance(element, propInfo.PropertyType);
 
             // and is a Layout and 'type' attribute has been specified
             if (layout != null)
             {
-                ConfigureObjectFromAttributes(layout, layoutElement, true);
-                ConfigureObjectFromElement(layout, layoutElement);
+                ConfigureObjectFromAttributes(layout, element, true);
+                ConfigureObjectFromElement(layout, element);
                 propInfo.SetValue(o, layout, null);
                 return true;
             }

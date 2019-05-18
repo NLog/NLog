@@ -187,7 +187,8 @@ namespace NLog.Targets.Wrappers
             IList<AsyncLogEventInfo> resultBuffer = null;
             for (int i = 0; i < logEvents.Count; ++i)
             {
-                object v = resultFilter.Evaluate(logEvents[i].LogEvent);
+                var logEvent = logEvents[i];
+                object v = resultFilter.Evaluate(logEvent.LogEvent);
                 if (boxedTrue.Equals(v))
                 {
                     if (hasIgnoredLogEvents && resultBuffer == null)
@@ -195,8 +196,7 @@ namespace NLog.Targets.Wrappers
                         resultBuffer = new List<AsyncLogEventInfo>();
                     }
 
-                    if (resultBuffer != null)
-                        resultBuffer.Add(logEvents[i]);
+                    resultBuffer?.Add(logEvent);
                 }
                 else
                 {
@@ -208,7 +208,7 @@ namespace NLog.Targets.Wrappers
                     }
                     hasIgnoredLogEvents = true;
                     // anything not passed down will be notified about successful completion
-                    logEvents[i].Continuation(null);
+                    logEvent.Continuation(null);
                 }
             }
 

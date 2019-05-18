@@ -95,7 +95,7 @@ namespace NLog.Targets.Wrappers
         /// to the wrapped target.
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
-        public ConditionExpression Condition { get => (Filter as ConditionBasedFilter)?.Condition; set => Filter = value != null ? new ConditionBasedFilter() { Condition = value, DefaultFilterResult = FilterResult.Ignore } : null; }
+        public ConditionExpression Condition { get => (Filter as ConditionBasedFilter)?.Condition; set => Filter = CreateFilter(value); }
 
         /// <summary>
         /// Gets or sets the filter. Log events who evaluates to <see cref="FilterResult.Ignore"/> will be discarded
@@ -123,7 +123,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (FilterIncludeLogEvent(logEvent.LogEvent))
+            if (ShouldLogEvent(logEvent.LogEvent, Filter))
             {
                 WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
@@ -136,40 +136,40 @@ namespace NLog.Targets.Wrappers
         /// <inheritdoc/>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            bool hasIgnoredLogEvents = false;
+            var hasIgnoredLogEvents = false;
             IList<AsyncLogEventInfo> filterLogEvents = null;
-            AsyncLogEventInfo filterLogEvent = default(AsyncLogEventInfo);
-            for (int i = 0; i < logEvents.Count; ++i)
+            var filterLogEvent = default(AsyncLogEventInfo);
+            for (var i = 0; i < logEvents.Count; ++i)
             {
-                if (FilterIncludeLogEvent(logEvents[i].LogEvent))
+                var logEvent = logEvents[i];
+
+                if (ShouldLogEvent(logEvent.LogEvent, Filter))
                 {
                     if (hasIgnoredLogEvents && filterLogEvents == null)
                     {
                         if (filterLogEvent.LogEvent != null)
                         {
-                            filterLogEvents = new List<AsyncLogEventInfo>();
-                            filterLogEvents.Add(filterLogEvent);
+                            filterLogEvents = new List<AsyncLogEventInfo> {filterLogEvent};
                             filterLogEvent = default(AsyncLogEventInfo);
                         }
                         else
                         {
-                            filterLogEvent = logEvents[i];
+                            filterLogEvent = logEvent;
                         }
                     }
 
-                    if (filterLogEvents != null)
-                        filterLogEvents.Add(logEvents[i]);
+                    filterLogEvents?.Add(logEvent);
                 }
                 else
                 {
                     if (!hasIgnoredLogEvents && i > 0)
                     {
                         filterLogEvents = new List<AsyncLogEventInfo>();
-                        for (int j = 0; j < i; ++j)
+                        for (var j = 0; j < i; ++j)
                             filterLogEvents.Add(logEvents[j]);
                     }
                     hasIgnoredLogEvents = true;
-                    logEvents[i].Continuation(null);
+                    logEvent.Continuation(null);
                 }
             }
 
@@ -181,13 +181,20 @@ namespace NLog.Targets.Wrappers
                 WrappedTarget.WriteAsyncLogEvent(filterLogEvent);
         }
 
-        private bool FilterIncludeLogEvent(LogEventInfo logEvent)
+        private static bool ShouldLogEvent(LogEventInfo logEvent, Filter filter)
         {
-            var filterResult = Filter.GetFilterResult(logEvent);
-            if (filterResult == FilterResult.Ignore || filterResult == FilterResult.IgnoreFinal)
-                return false;
-            else
-                return true;
+            var filterResult = filter.GetFilterResult(logEvent);
+            return filterResult != FilterResult.Ignore && filterResult != FilterResult.IgnoreFinal;
+        }
+
+        private static ConditionBasedFilter CreateFilter(ConditionExpression value)
+        {
+            if (value == null)
+            {
+                return null;
+            }
+
+            return new ConditionBasedFilter {Condition = value, DefaultFilterResult = FilterResult.Ignore};
         }
     }
 }
