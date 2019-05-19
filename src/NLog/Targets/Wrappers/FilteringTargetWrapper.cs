@@ -138,7 +138,7 @@ namespace NLog.Targets.Wrappers
         /// <inheritdoc/>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            var filterLogEvents = logEvents.FilterList(Filter, ShouldLogEvent);
+            var filterLogEvents = logEvents.Filter(Filter, ShouldLogEvent);
             WrappedTarget.WriteAsyncLogEvents(filterLogEvents);
         }
 

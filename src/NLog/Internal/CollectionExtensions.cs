@@ -39,7 +39,12 @@ namespace NLog.Internal
 {
     internal static class CollectionExtensions
     {
-        public static IList<TItem> FilterList<TItem,TState>([NotNull] this IList<TItem> items, TState state, Func<TItem, TState, bool> filter)
+        /// <summary>
+        /// Memory optimized filtering
+        /// </summary>
+        /// <remarks>Passing state too avoid delegate capture and memory-allocations.</remarks>
+        [NotNull]
+        public static IList<TItem> Filter<TItem, TState>([NotNull] this IList<TItem> items, TState state, Func<TItem, TState, bool> filter)
         {
             var hasIgnoredLogEvents = false;
             IList<TItem> filterLogEvents = null;
