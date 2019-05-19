@@ -33,6 +33,7 @@
 
 namespace NLog.Targets.Wrappers
 {
+    using System;
     using System.Collections.Generic;
     using NLog.Common;
     using NLog.Conditions;
@@ -124,7 +125,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvent">Log event.</param>
         protected override void Write(AsyncLogEventInfo logEvent)
         {
-            if (ShouldLogEvent(logEvent.LogEvent, Filter))
+            if (ShouldLogEvent(logEvent, Filter))
             {
                 WrappedTarget.WriteAsyncLogEvent(logEvent);
             }
@@ -137,53 +138,22 @@ namespace NLog.Targets.Wrappers
         /// <inheritdoc/>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-            var hasIgnoredLogEvents = false;
-            IList<AsyncLogEventInfo> filterLogEvents = null;
-            var filterLogEvent = default(AsyncLogEventInfo);
-            for (var i = 0; i < logEvents.Count; ++i)
-            {
-                var logEvent = logEvents[i];
-
-                if (ShouldLogEvent(logEvent.LogEvent, Filter))
-                {
-                    if (hasIgnoredLogEvents && filterLogEvents == null)
-                    {
-                        if (filterLogEvent.LogEvent != null)
-                        {
-                            filterLogEvents = new List<AsyncLogEventInfo> {filterLogEvent};
-                            filterLogEvent = default(AsyncLogEventInfo);
-                        }
-                        else
-                        {
-                            filterLogEvent = logEvent;
-                        }
-                    }
-
-                    filterLogEvents?.Add(logEvent);
-                }
-                else
-                {
-                    if (!hasIgnoredLogEvents && i > 0)
-                    {
-                        filterLogEvents = logEvents.CreatePartialList(i);
-                    }
-                    hasIgnoredLogEvents = true;
-                    logEvent.Continuation(null);
-                }
-            }
-
-            if (!hasIgnoredLogEvents)
-                WrappedTarget.WriteAsyncLogEvents(logEvents);
-            else if (filterLogEvents != null)
-                WrappedTarget.WriteAsyncLogEvents(filterLogEvents);
-            else if (filterLogEvent.LogEvent != null)
-                WrappedTarget.WriteAsyncLogEvent(filterLogEvent);
+            var filterLogEvents = logEvents.FilterList(Filter, ShouldLogEvent);
+            WrappedTarget.WriteAsyncLogEvents(filterLogEvents);
         }
 
-        private static bool ShouldLogEvent(LogEventInfo logEvent, Filter filter)
+        private static bool ShouldLogEvent(AsyncLogEventInfo logEvent, Filter filter)
         {
-            var filterResult = filter.GetFilterResult(logEvent);
-            return filterResult != FilterResult.Ignore && filterResult != FilterResult.IgnoreFinal;
+            var filterResult = filter.GetFilterResult(logEvent.LogEvent);
+            if (filterResult != FilterResult.Ignore && filterResult != FilterResult.IgnoreFinal)
+            {
+                return true;
+            }
+            else
+            {
+                logEvent.Continuation(null);
+                return false;
+            }
         }
 
         private static ConditionBasedFilter CreateFilter(ConditionExpression value)
@@ -192,8 +162,7 @@ namespace NLog.Targets.Wrappers
             {
                 return null;
             }
-
-            return new ConditionBasedFilter {Condition = value, DefaultFilterResult = FilterResult.Ignore};
+            return new ConditionBasedFilter { Condition = value, DefaultFilterResult = FilterResult.Ignore };
         }
     }
 }

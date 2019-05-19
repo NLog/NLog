@@ -165,7 +165,7 @@ namespace NLog.Targets.Wrappers
             else
             {
                 InternalLogger.Trace("PostFilteringWrapper(Name={0}): Filter to apply: {1}", Name, resultFilter);
-                var resultBuffer = ApplyFilter(logEvents, resultFilter);
+                var resultBuffer = logEvents.FilterList(resultFilter, ApplyFilter);
                 InternalLogger.Trace("PostFilteringWrapper(Name={0}): After filtering: {1} events.", Name, resultBuffer.Count);
                 if (resultBuffer.Count > 0)
                 {
@@ -175,42 +175,18 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        /// <summary>
-        /// Apply the condition to the buffer
-        /// </summary>
-        /// <param name="logEvents"></param>
-        /// <param name="resultFilter"></param>
-        /// <returns></returns>
-        private static IList<AsyncLogEventInfo> ApplyFilter(IList<AsyncLogEventInfo> logEvents, ConditionExpression resultFilter)
+        private static bool ApplyFilter(AsyncLogEventInfo logEvent, ConditionExpression resultFilter)
         {
-            bool hasIgnoredLogEvents = false;
-            IList<AsyncLogEventInfo> resultBuffer = null;
-            for (int i = 0; i < logEvents.Count; ++i)
+            object v = resultFilter.Evaluate(logEvent.LogEvent);
+            if (boxedTrue.Equals(v))
             {
-                var logEvent = logEvents[i];
-                object v = resultFilter.Evaluate(logEvent.LogEvent);
-                if (boxedTrue.Equals(v))
-                {
-                    if (hasIgnoredLogEvents && resultBuffer == null)
-                    {
-                        resultBuffer = new List<AsyncLogEventInfo>();
-                    }
-
-                    resultBuffer?.Add(logEvent);
-                }
-                else
-                {
-                    if (!hasIgnoredLogEvents && i > 0)
-                    {
-                        resultBuffer = logEvents.CreatePartialList(i);
-                    }
-                    hasIgnoredLogEvents = true;
-                    // anything not passed down will be notified about successful completion
-                    logEvent.Continuation(null);
-                }
+                return true;
             }
-
-            return resultBuffer ?? (hasIgnoredLogEvents ? ArrayHelper.Empty<AsyncLogEventInfo>() : logEvents);
+            else
+            {
+                logEvent.Continuation(null);
+                return false;
+            }
         }
 
         /// <summary>

@@ -39,26 +39,34 @@ namespace NLog.Internal
 {
     internal static class CollectionExtensions
     {
-        /// <summary>
-        /// Create a partial list with the items from the parameter <paramref name="items"/>
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items">items to include into the returning list.</param>
-        /// <param name="untilIndex">until index, not included.</param>
-        /// <returns>New list</returns>
-        /// <remarks>IList as input for performance reasons.</remarks>
-        public static IList<T> CreatePartialList<T>([NotNull] this IList<T> items, int untilIndex)
+        public static IList<TItem> FilterList<TItem,TState>([NotNull] this IList<TItem> items, TState state, Func<TItem, TState, bool> filter)
         {
-            if (items == null)
+            var hasIgnoredLogEvents = false;
+            IList<TItem> filterLogEvents = null;
+            for (var i = 0; i < items.Count; ++i)
             {
-                throw new ArgumentNullException(nameof(items));
+                var item = items[i];
+                if (filter(item, state))
+                {
+                    if (hasIgnoredLogEvents && filterLogEvents == null)
+                    {
+                        filterLogEvents = new List<TItem>();
+                    }
+
+                    filterLogEvents?.Add(item);
+                }
+                else
+                {
+                    if (!hasIgnoredLogEvents && i > 0)
+                    {
+                        filterLogEvents = new List<TItem>();
+                        for (var j = 0; j < i; ++j)
+                            filterLogEvents.Add(items[j]);
+                    }
+                    hasIgnoredLogEvents = true;
+                }
             }
-
-            IList<T> list = new List<T>();
-            for (var i = 0; i < untilIndex && i < items.Count; ++i)
-                list.Add(items[i]);
-            return list;
+            return filterLogEvents ?? (hasIgnoredLogEvents ? ArrayHelper.Empty<TItem>() : items);
         }
-
     }
 }
