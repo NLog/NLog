@@ -1077,9 +1077,7 @@ namespace NLog.Config
             // and is a Layout and 'type' attribute has been specified
             if (layout != null)
             {
-                ConfigureObjectFromAttributes(layout, element, true);
-                ConfigureObjectFromElement(layout, element);
-                propInfo.SetValue(o, layout, null);
+                SetItemOnProperty(o, propInfo, element, layout);
                 return true;
             }
 
@@ -1089,7 +1087,7 @@ namespace NLog.Config
         private Layout TryCreateLayoutInstance(ILoggingConfigurationElement element, Type type)
         {
             // Check if it is a Layout
-            if (!typeof(Layout).IsAssignableFrom(type))
+            if (!IsAssignableFrom<Layout>(type))
                 return null;
 
             // Check if the 'type' attribute has been specified
@@ -1100,14 +1098,14 @@ namespace NLog.Config
             return _configurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
         }
 
-        private bool SetFilterFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement layoutElement)
+        private bool SetFilterFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
         {
             // Check if it is a Filter
-            if (!typeof(Filter).IsAssignableFrom(propInfo.PropertyType))
+            if (!IsAssignableFrom<Filter>(propInfo.PropertyType))
                 return false;
 
             // Check if the 'type' attribute has been specified
-            string filterTypeName = GetConfigItemTypeAttribute(layoutElement);
+            string filterTypeName = GetConfigItemTypeAttribute(element);
             if (filterTypeName == null)
                 return false;
 
@@ -1115,13 +1113,23 @@ namespace NLog.Config
             // and is a Filter and 'type' attribute has been specified
             if (filter != null)
             {
-                ConfigureObjectFromAttributes(filter, layoutElement, true);
-                ConfigureObjectFromElement(filter, layoutElement);
-                propInfo.SetValue(o, filter, null);
+                SetItemOnProperty(o, propInfo, element, filter);
                 return true;
             }
 
             return false;
+        }
+
+        private static bool IsAssignableFrom<T>(Type type)
+        {
+            return typeof(T).IsAssignableFrom(type);
+        }
+
+        private void SetItemOnProperty(object o, PropertyInfo propInfo, ILoggingConfigurationElement element, object properyValue)
+        {
+            ConfigureObjectFromAttributes(properyValue, element, true);
+            ConfigureObjectFromElement(properyValue, element);
+            propInfo.SetValue(o, properyValue, null);
         }
 
         private void SetItemFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
@@ -1252,7 +1260,7 @@ namespace NLog.Config
 
             return attributeValue.Substring(p + 1);
         }
-       
+
         private static string GetName(Target target)
         {
             return string.IsNullOrEmpty(target.Name) ? target.GetType().Name : target.Name;
