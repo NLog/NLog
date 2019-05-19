@@ -38,6 +38,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Conditions;
     using NLog.Config;
     using NLog.Filters;
+    using NLog.Internal;
 
     /// <summary>
     /// Filters log entries based on a condition.
@@ -164,7 +165,7 @@ namespace NLog.Targets.Wrappers
                 {
                     if (!hasIgnoredLogEvents && i > 0)
                     {
-                        filterLogEvents = CreateAsyncLogEventList(logEvents, i);
+                        filterLogEvents = logEvents.CreatePartialList(i);
                     }
                     hasIgnoredLogEvents = true;
                     logEvent.Continuation(null);
@@ -177,14 +178,6 @@ namespace NLog.Targets.Wrappers
                 WrappedTarget.WriteAsyncLogEvents(filterLogEvents);
             else if (filterLogEvent.LogEvent != null)
                 WrappedTarget.WriteAsyncLogEvent(filterLogEvent);
-        }
-
-        private static IList<AsyncLogEventInfo> CreateAsyncLogEventList(IList<AsyncLogEventInfo> logEvents, int untilIndex)
-        {
-            IList<AsyncLogEventInfo> list = new List<AsyncLogEventInfo>();
-            for (var i = 0; i < untilIndex; ++i)
-                list.Add(logEvents[i]);
-            return list;
         }
 
         private static bool ShouldLogEvent(LogEventInfo logEvent, Filter filter)

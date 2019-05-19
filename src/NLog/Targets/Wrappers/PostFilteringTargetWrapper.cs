@@ -202,7 +202,7 @@ namespace NLog.Targets.Wrappers
                 {
                     if (!hasIgnoredLogEvents && i > 0)
                     {
-                        resultBuffer = CreateAsyncLogEventList(logEvents, i);
+                        resultBuffer = logEvents.CreatePartialList(i);
                     }
                     hasIgnoredLogEvents = true;
                     // anything not passed down will be notified about successful completion
@@ -211,14 +211,6 @@ namespace NLog.Targets.Wrappers
             }
 
             return resultBuffer ?? (hasIgnoredLogEvents ? ArrayHelper.Empty<AsyncLogEventInfo>() : logEvents);
-        }
-
-        private static IList<AsyncLogEventInfo> CreateAsyncLogEventList(IList<AsyncLogEventInfo> logEvents, int untilIndex)
-        {
-            IList<AsyncLogEventInfo> list = new List<AsyncLogEventInfo>();
-            for (var i = 0; i < untilIndex; ++i)
-                list.Add(logEvents[i]);
-            return list;
         }
 
         /// <summary>
