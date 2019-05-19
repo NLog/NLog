@@ -1083,33 +1083,12 @@ namespace NLog.Config
 
             return false;
         }
-
-        private Layout TryCreateLayoutInstance(ILoggingConfigurationElement element, Type type)
-        {
-            // Check if it is a Layout
-            if (!IsAssignableFrom<Layout>(type))
-                return null;
-
-            // Check if the 'type' attribute has been specified
-            string layoutTypeName = GetConfigItemTypeAttribute(element);
-            if (layoutTypeName == null)
-                return null;
-
-            return _configurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
-        }
-
+        
         private bool SetFilterFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
         {
-            // Check if it is a Filter
-            if (!IsAssignableFrom<Filter>(propInfo.PropertyType))
-                return false;
+            var type = propInfo.PropertyType;
 
-            // Check if the 'type' attribute has been specified
-            string filterTypeName = GetConfigItemTypeAttribute(element);
-            if (filterTypeName == null)
-                return false;
-
-            Filter filter = _configurationItemFactory.Filters.CreateInstance(ExpandSimpleVariables(filterTypeName));
+            Filter filter = TryCreateFilterInstance(element, type);
             // and is a Filter and 'type' attribute has been specified
             if (filter != null)
             {
@@ -1118,6 +1097,31 @@ namespace NLog.Config
             }
 
             return false;
+        }
+
+        private Layout TryCreateLayoutInstance(ILoggingConfigurationElement element, Type type)
+        {
+            return TryCreateInstance(element, type, _configurationItemFactory.Layouts);
+        } 
+        
+        private Filter TryCreateFilterInstance(ILoggingConfigurationElement element, Type type)
+        {
+            return TryCreateInstance(element, type, _configurationItemFactory.Filters);
+        }
+
+        private T TryCreateInstance<T>(ILoggingConfigurationElement element, Type type, INamedItemFactory<T, Type> factory)
+            where T : class
+        {
+            // Check if correct type
+            if (!IsAssignableFrom<T>(type))
+                return null;
+
+            // Check if the 'type' attribute has been specified
+            string layoutTypeName = GetConfigItemTypeAttribute(element);
+            if (layoutTypeName == null)
+                return null;
+
+            return factory.CreateInstance(ExpandSimpleVariables(layoutTypeName));
         }
 
         private static bool IsAssignableFrom<T>(Type type)
