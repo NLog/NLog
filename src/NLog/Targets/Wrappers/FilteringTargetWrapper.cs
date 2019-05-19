@@ -164,9 +164,7 @@ namespace NLog.Targets.Wrappers
                 {
                     if (!hasIgnoredLogEvents && i > 0)
                     {
-                        filterLogEvents = new List<AsyncLogEventInfo>();
-                        for (var j = 0; j < i; ++j)
-                            filterLogEvents.Add(logEvents[j]);
+                        filterLogEvents = CreateAsyncLogEventList(logEvents, i);
                     }
                     hasIgnoredLogEvents = true;
                     logEvent.Continuation(null);
@@ -179,6 +177,14 @@ namespace NLog.Targets.Wrappers
                 WrappedTarget.WriteAsyncLogEvents(filterLogEvents);
             else if (filterLogEvent.LogEvent != null)
                 WrappedTarget.WriteAsyncLogEvent(filterLogEvent);
+        }
+
+        private static IList<AsyncLogEventInfo> CreateAsyncLogEventList(IList<AsyncLogEventInfo> logEvents, int untilIndex)
+        {
+            IList<AsyncLogEventInfo> list = new List<AsyncLogEventInfo>();
+            for (var i = 0; i < untilIndex; ++i)
+                list.Add(logEvents[i]);
+            return list;
         }
 
         private static bool ShouldLogEvent(LogEventInfo logEvent, Filter filter)
