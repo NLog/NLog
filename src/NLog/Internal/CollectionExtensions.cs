@@ -31,19 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
+
 namespace NLog.Internal
 {
-    internal static class ArrayHelper
+    internal static class CollectionExtensions
     {
-        private static class EmptyArray<T>
+        /// <summary>
+        /// Create a partial list with the items from the parameter <paramref name="items"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items">items to include into the returning list.</param>
+        /// <param name="untilIndex">until index, not included.</param>
+        /// <returns>New list</returns>
+        /// <remarks>IList as input for performance reasons.</remarks>
+        public static IList<T> CreatePartialList<T>([NotNull] this IList<T> items, int untilIndex)
         {
-            internal static readonly T[] Instance = new T[0];
+            if (items == null)
+            {
+                throw new ArgumentNullException(nameof(items));
+            }
+
+            IList<T> list = new List<T>();
+            for (var i = 0; i < untilIndex && i < items.Count; ++i)
+                list.Add(items[i]);
+            return list;
         }
 
-        internal static T[] Empty<T>()
-        {
-            // TODO Use Array.Empty<T> in NET 4.6 when we are ready
-            return EmptyArray<T>.Instance;
-        }
     }
 }
