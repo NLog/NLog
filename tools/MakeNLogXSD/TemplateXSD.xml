@@ -174,9 +174,9 @@
       </xs:annotation>
     </xs:attribute>
 
-    <xs:attribute name="enabled" type="xs:boolean" default="true">
+    <xs:attribute name="ruleName" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Enable or disable logging rule. Disabled rules are ignored.</xs:documentation>
+        <xs:documentation>Rule identifier to allow rule lookup with Configuration.FindRuleByName and Configuration.RemoveRuleByName.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
