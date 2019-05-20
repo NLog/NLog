@@ -31,50 +31,47 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Filters
+using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
+
+namespace NLog.Internal
 {
-    using Conditions;
-    using Config;
-
-    /// <summary>
-    /// Matches when the specified condition is met.
-    /// </summary>
-    /// <remarks>
-    /// Conditions are expressed using a simple language 
-    /// described <a href="conditions.html">here</a>.
-    /// </remarks>
-    [Filter("when")]
-    public class ConditionBasedFilter : Filter
+    internal static class CollectionExtensions
     {
-        private static readonly object boxedTrue = true;
-
         /// <summary>
-        /// Gets or sets the condition expression.
+        /// Memory optimized filtering
         /// </summary>
-        /// <docgen category='Filtering Options' order='10' />
-        [RequiredParameter]
-        public ConditionExpression Condition { get; set; }
-
-        internal FilterResult DefaultFilterResult { get; set; } = FilterResult.Neutral;
-
-        /// <summary>
-        /// Checks whether log event should be logged or not.
-        /// </summary>
-        /// <param name="logEvent">Log event.</param>
-        /// <returns>
-        /// <see cref="FilterResult.Ignore"/> - if the log event should be ignored<br/>
-        /// <see cref="FilterResult.Neutral"/> - if the filter doesn't want to decide<br/>
-        /// <see cref="FilterResult.Log"/> - if the log event should be logged<br/>
-        /// .</returns>
-        protected override FilterResult Check(LogEventInfo logEvent)
+        /// <remarks>Passing state too avoid delegate capture and memory-allocations.</remarks>
+        [NotNull]
+        public static IList<TItem> Filter<TItem, TState>([NotNull] this IList<TItem> items, TState state, Func<TItem, TState, bool> filter)
         {
-            object val = Condition.Evaluate(logEvent);
-            if (boxedTrue.Equals(val))
+            var hasIgnoredLogEvents = false;
+            IList<TItem> filterLogEvents = null;
+            for (var i = 0; i < items.Count; ++i)
             {
-                return Action;
-            }
+                var item = items[i];
+                if (filter(item, state))
+                {
+                    if (hasIgnoredLogEvents && filterLogEvents == null)
+                    {
+                        filterLogEvents = new List<TItem>();
+                    }
 
-            return DefaultFilterResult;
+                    filterLogEvents?.Add(item);
+                }
+                else
+                {
+                    if (!hasIgnoredLogEvents && i > 0)
+                    {
+                        filterLogEvents = new List<TItem>();
+                        for (var j = 0; j < i; ++j)
+                            filterLogEvents.Add(items[j]);
+                    }
+                    hasIgnoredLogEvents = true;
+                }
+            }
+            return filterLogEvents ?? (hasIgnoredLogEvents ? ArrayHelper.Empty<TItem>() : items);
         }
     }
 }
