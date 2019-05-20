@@ -4,7 +4,28 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.6.4 (2019/05/21)
 
+#### Bugfixes
+
+- [#3392](https://github.com/NLog/NLog/pull/3392) NLog.Schema: Added missing defaultAction attribute on filters element to XSD (@304NotModified)
+
+#### Features
+
+- [#3394](https://github.com/NLog/NLog/pull/3394) ${when}, support for non-string values (@304NotModified)
+- [#3398](https://github.com/NLog/NLog/pull/3398) ${whenEmpty} support for non-string values (@snakefoot, @304NotModified)
+- [#3391](https://github.com/NLog/NLog/pull/3391) Added ${environment-user} (@snakefoot)
+- [#3389](https://github.com/NLog/NLog/pull/3389) Log4JXmlEventLayout - Added support for configuration of Parameters (@snakefoot)
+
+#### Improvements
+
+- [#3393](https://github.com/NLog/NLog/pull/3393) Update package descriptions to note the issues with <PackageReference> (@304NotModified)
+
+#### Performance
+
+- [#3398](https://github.com/NLog/NLog/pull/3398) ${whenEmpty} faster rendering of string values (@snakefoot, @304NotModified)
+- [#3405](https://github.com/NLog/NLog/pull/3405) FilteringTargetWrapper: Add support for batch writing (@snakefoot, @304NotModified)
+- [#3405](https://github.com/NLog/NLog/pull/3405) PostFilteringTargetWrapper: performance optimizations (@snakefoot, @304NotModified)
 
 ### V4.6.3 (2019/04/30)
 
