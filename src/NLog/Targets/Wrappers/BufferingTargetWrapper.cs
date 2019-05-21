@@ -187,10 +187,7 @@ namespace NLog.Targets.Wrappers
                 _flushTimer = null;
                 if (currentTimer.WaitForDispose(TimeSpan.FromSeconds(1)))
                 {
-                    lock (_lockObject)
-                    {
-                        WriteEventsInBuffer("Closing Target");
-                    }
+                    WriteEventsInBuffer("Closing Target");
                 }
             }
 
@@ -228,14 +225,23 @@ namespace NLog.Targets.Wrappers
 
         private void FlushCallback(object state)
         {
+            bool lockTaken = false;
+
             try
             {
-                lock (_lockObject)
+                int timeoutMilliseconds = Math.Min(FlushTimeout / 2, 100);
+                lockTaken = Monitor.TryEnter(_lockObject, timeoutMilliseconds);
+                if (lockTaken)
                 {
                     if (_flushTimer == null)
                         return;
 
                     WriteEventsInBuffer(null);
+                }
+                else
+                {
+                    if (_buffer.Count > 0)
+                        _flushTimer?.Change(FlushTimeout, -1);   // Schedule new retry timer
                 }
             }
             catch (Exception exception)
@@ -245,6 +251,13 @@ namespace NLog.Targets.Wrappers
                 if (exception.MustBeRethrownImmediately())
                 {
                     throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
+                }
+            }
+            finally
+            {
+                if (lockTaken)
+                {
+                    Monitor.Exit(_lockObject);
                 }
             }
         }
