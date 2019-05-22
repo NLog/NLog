@@ -127,21 +127,13 @@ namespace NLog.Targets.Wrappers
                 // If yield did not help, then wait on a lock
                 while (currentCount > RequestLimit)
                 {
+                    InternalLogger.Debug("Blocking because the overflow action is Block...");
                     if (!lockTaken)
-                    {
-                        InternalLogger.Debug("Blocking because the overflow action is Block...");
                         Monitor.Enter(_logEventInfoQueue);
-                        lockTaken = true;
-                        InternalLogger.Trace("Entered critical section.");
-                    }
                     else
-                    {
-                        InternalLogger.Debug("Blocking because the overflow action is Block...");
-                        if (!Monitor.Wait(_logEventInfoQueue, 100))
-                            lockTaken = false;
-                        else
-                            InternalLogger.Trace("Entered critical section.");
-                    }
+                        Monitor.Wait(_logEventInfoQueue);
+                    lockTaken = true;
+                    InternalLogger.Trace("Entered critical section.");
                     currentCount = Interlocked.Read(ref _count);
                 }
 
