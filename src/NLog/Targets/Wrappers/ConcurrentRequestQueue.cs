@@ -93,9 +93,10 @@ namespace NLog.Targets.Wrappers
                                     InternalLogger.Debug("Discarding one element from queue");
                                     currentCount = Interlocked.Decrement(ref _count);
                                     OnLogEventDropped(lostItem.LogEvent);
-                                break;
+                                    break;
                                 }
-                                currentCount = Interlocked.Read(ref _count);
+                                Interlocked.Decrement(ref _count);
+                                currentCount = Interlocked.Increment(ref _count);
                             } while (currentCount > RequestLimit);
                         }
                         break;
@@ -106,13 +107,15 @@ namespace NLog.Targets.Wrappers
                         break;
                     case AsyncTargetWrapperOverflowAction.Grow:
                         {
+                            InternalLogger.Debug("The overflow action is Grow, adding element anyway");
                             OnLogEventQueueGrows(currentCount);
+                            RequestLimit *= 2;
                         }
                         break;
                 }
             }
             _logEventInfoQueue.Enqueue(logEventInfo);
-            return currentCount == 1;
+            return currentCount == 1;    // Inserted first item in empty queue
         }
 
         private long WaitForBelowRequestLimit()
@@ -127,6 +130,7 @@ namespace NLog.Targets.Wrappers
                 // If yield did not help, then wait on a lock
                 while (currentCount > RequestLimit)
                 {
+                    Interlocked.Decrement(ref _count);
                     InternalLogger.Debug("Blocking because the overflow action is Block...");
                     if (!lockTaken)
                         Monitor.Enter(_logEventInfoQueue);
@@ -134,12 +138,7 @@ namespace NLog.Targets.Wrappers
                         Monitor.Wait(_logEventInfoQueue);
                     lockTaken = true;
                     InternalLogger.Trace("Entered critical section.");
-                    currentCount = Interlocked.Read(ref _count);
-                }
-
-                if (lockTaken)
-                {
-                    Monitor.PulseAll(_logEventInfoQueue);
+                    currentCount = Interlocked.Increment(ref _count);
                 }
             }
             finally
@@ -158,6 +157,7 @@ namespace NLog.Targets.Wrappers
             SpinWait spinWait = new SpinWait();
             for (int i = 0; i <= 20; ++i)
             {
+                Interlocked.Decrement(ref _count);
                 if (spinWait.NextSpinWillYield)
                 {
                     if (firstYield)
@@ -166,7 +166,7 @@ namespace NLog.Targets.Wrappers
                 }
 
                 spinWait.SpinOnce();
-                currentCount = Interlocked.Read(ref _count);
+                currentCount = Interlocked.Increment(ref _count);
                 if (currentCount <= RequestLimit)
                     break;
             }
@@ -223,11 +223,16 @@ namespace NLog.Targets.Wrappers
 
             if (dequeueBatch)
             {
-                bool lockTaken = Monitor.TryEnter(_logEventInfoQueue);    // Try to throttle
+                bool lockTaken = false;
+                if (result.Count == count)
+                {
+                    Monitor.Enter(_logEventInfoQueue);    // Only try throttle when falling behind
+                    lockTaken = true;
+                }
+
                 try
                 {
-                    for (int i = 0; i < result.Count; ++i)
-                        Interlocked.Decrement(ref _count);
+                    Interlocked.Add(ref _count, -result.Count);
                     if (lockTaken)
                         Monitor.PulseAll(_logEventInfoQueue);
                 }
