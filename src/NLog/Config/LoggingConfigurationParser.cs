@@ -590,6 +590,9 @@ namespace NLog.Config
                         else
                             ruleName = childProperty.Value;
                         break;
+                    case "RULENAME":
+                        ruleName = childProperty.Value; // Legacy Style
+                        break;
                     case "LOGGER":
                         namePattern = childProperty.Value;
                         break;
