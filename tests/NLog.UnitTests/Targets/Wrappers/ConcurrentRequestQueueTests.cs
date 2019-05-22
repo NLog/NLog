@@ -45,7 +45,8 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             const int RequestsLimit = 2;
             const int EventsCount = 5;
-            const int ExpectedCountOfGrovingTimes = EventsCount - RequestsLimit;
+            const int ExpectedCountOfGrovingTimes = 2;
+            const int ExpectedFinalSize = 8;
             int grovingItemsCount = 0;
 
             ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Grow);
@@ -58,6 +59,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
 
             Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
+            Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
         }
 
         [Fact]
