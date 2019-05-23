@@ -19,6 +19,8 @@ namespace NLog.SourceCodeTests
         private static readonly Regex ClassNameRegex = new Regex(@"^\s+(public |abstract |sealed |static |partial |internal )*\s*(class|interface|struct|enum)\s+(?<className>\w+)\b", RegexOptions.Compiled);
         private static readonly Regex DelegateTypeRegex = new Regex(@"^    (public |internal )delegate .*\b(?<delegateType>\w+)\(", RegexOptions.Compiled);
         private static List<string> _directoriesToVerify;
+        private static readonly XNamespace MsBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
+        private readonly bool _verifyNamespaces;
 
         private readonly IList<string> _fileNamesToIgnore;
 
@@ -33,6 +35,7 @@ namespace NLog.SourceCodeTests
             _directoriesToVerify = GetAppSettingAsList("VerifyFiles.Paths");
             _fileNamesToIgnore = GetAppSettingAsList("VerifyFiles.IgnoreFiles");
             _projectFolders = GetAppSettingAsList("projectFolders");
+            _verifyNamespaces = false; //off for now (april 2019) - so we could create folders and don't break stuff
             if (_rootDir != null)
             {
                 _licenseLines = File.ReadAllLines(_licenseFile);
@@ -97,7 +100,7 @@ namespace NLog.SourceCodeTests
             }
         }
 
-        private static readonly XNamespace MsBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
+     
 
 
         /// <summary>assemblyToCheckPath
@@ -310,7 +313,7 @@ namespace NLog.SourceCodeTests
 
         ///<summary>Verify classname and namespace in a file.</summary>
         ///<returns>errors</returns>
-        private static IEnumerable<string> VerifySingleFile(string filePath, string expectedNamespace, string expectedClassName)
+        private IEnumerable<string> VerifySingleFile(string filePath, string expectedNamespace, string expectedClassName)
         {
             //ignore list
             if (filePath != null && !filePath.EndsWith("nunit.cs", StringComparison.InvariantCultureIgnoreCase))
@@ -322,12 +325,16 @@ namespace NLog.SourceCodeTests
 
                     while ((line = sr.ReadLine()) != null)
                     {
-                        if (line.StartsWith("namespace ", StringComparison.Ordinal))
+                        if (_verifyNamespaces)
                         {
-                            string ns = line.Substring(10);
-                            if (expectedNamespace != ns)
+
+                            if (line.StartsWith("namespace ", StringComparison.Ordinal))
                             {
-                                yield return $"Invalid namespace: '{ns}' Expected: '{expectedNamespace}'";
+                                string ns = line.Substring(10);
+                                if (expectedNamespace != ns)
+                                {
+                                    yield return $"Invalid namespace: '{ns}' Expected: '{expectedNamespace}'";
+                                }
                             }
                         }
 

@@ -32,7 +32,6 @@ tools/FAKE/
 packages/
 build/
 *.sublime-*
-*.DotSettings
 *.vshost.*
 .vs
 .cr
