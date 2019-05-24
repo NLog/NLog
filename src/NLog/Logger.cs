@@ -110,7 +110,8 @@ namespace NLog
 
             Logger newLogger = Factory.CreateNewLogger(GetType()) ?? new Logger();
             newLogger.Initialize(Name, _configuration, Factory);
-            newLogger._contextProperties = CopyOnWrite(propertyKey, propertyValue);
+            newLogger._contextProperties = CreateContextPropertiesDictionary(_contextProperties);
+            newLogger._contextProperties[propertyKey] = propertyValue;
             newLogger._contextLogger = _contextLogger;  // Use the LoggerConfiguration of the parent Logger
             return newLogger;
         }
@@ -128,16 +129,15 @@ namespace NLog
             if (string.IsNullOrEmpty(propertyKey))
                 throw new ArgumentException(nameof(propertyKey));
 
-            _contextProperties = CopyOnWrite(propertyKey, propertyValue);
+            _contextProperties = CreateContextPropertiesDictionary(_contextProperties);
+            _contextProperties[propertyKey] = propertyValue;
         }
 
-        private Dictionary<string, object> CopyOnWrite(string propertyKey, object propertyValue)
+        private static Dictionary<string, object> CreateContextPropertiesDictionary(Dictionary<string, object> contextProperties)
         {
-            var contextProperties = _contextProperties;
             contextProperties = contextProperties != null
                 ? new Dictionary<string, object>(contextProperties)
                 : new Dictionary<string, object>();
-            contextProperties[propertyKey] = propertyValue;
             return contextProperties;
         }
 
@@ -246,10 +246,10 @@ namespace NLog
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
         public void Log(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, params object[] args)
-        { 
+        {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, formatProvider, message, args); 
+                WriteToTargets(level, formatProvider, message, args);
             }
         }
 
@@ -258,8 +258,8 @@ namespace NLog
         /// </summary>
         /// <param name="level">The log level.</param>
         /// <param name="message">Log message.</param>
-        public void Log(LogLevel level, [Localizable(false)] string message) 
-        { 
+        public void Log(LogLevel level, [Localizable(false)] string message)
+        {
             if (IsEnabled(level))
             {
                 WriteToTargets(level, null, message);
@@ -273,8 +273,8 @@ namespace NLog
         /// <param name="message">A <see langword="string" /> containing format items.</param>
         /// <param name="args">Arguments to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void Log(LogLevel level, [Localizable(false)] string message, params object[] args) 
-        { 
+        public void Log(LogLevel level, [Localizable(false)] string message, params object[] args)
+        {
             if (IsEnabled(level))
             {
                 WriteToTargets(level, message, args);
@@ -340,10 +340,10 @@ namespace NLog
         /// <param name="argument">The argument to format.</param>
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument argument)
-        { 
+        {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, formatProvider, message, new object[] { argument }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument });
             }
         }
 
@@ -374,11 +374,11 @@ namespace NLog
         /// <param name="argument1">The first argument to format.</param>
         /// <param name="argument2">The second argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2) 
-        { 
+        public void Log<TArgument1, TArgument2>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
+        {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2 }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2 });
             }
         }
 
@@ -393,7 +393,7 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2>(LogLevel level, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2)
-        { 
+        {
             if (IsEnabled(level))
             {
                 WriteToTargets(level, message, new object[] { argument1, argument2 });
@@ -413,11 +413,11 @@ namespace NLog
         /// <param name="argument2">The second argument to format.</param>
         /// <param name="argument3">The third argument to format.</param>
         [MessageTemplateFormatMethod("message")]
-        public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3) 
-        { 
+        public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
+        {
             if (IsEnabled(level))
             {
-                WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2, argument3 }); 
+                WriteToTargets(level, formatProvider, message, new object[] { argument1, argument2, argument3 });
             }
         }
 
@@ -434,7 +434,7 @@ namespace NLog
         /// <param name="argument3">The third argument to format.</param>
         [MessageTemplateFormatMethod("message")]
         public void Log<TArgument1, TArgument2, TArgument3>(LogLevel level, [Localizable(false)] string message, TArgument1 argument1, TArgument2 argument2, TArgument3 argument3)
-        { 
+        {
             if (IsEnabled(level))
             {
                 WriteToTargets(level, message, new object[] { argument1, argument2, argument3 });
