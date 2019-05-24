@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections;
+
 namespace NLog.LayoutRenderers
 {
     using System;
@@ -70,6 +72,14 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public string Separator { get; set; }
 
+        /// <summary>
+        /// Get or set if empty values should be included.
+        ///
+        /// A value is empty when null or in case of a string, null or empty string.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool IncludeEmptyValues { get; set; } = false;
+
 #if NET4_5
 
         /// <summary>
@@ -101,7 +111,7 @@ namespace NLog.LayoutRenderers
 
                 _format = value;
 
-                var formatSplit = _format.Split(new [] { "[key]", "[value]" }, StringSplitOptions.None);
+                var formatSplit = _format.Split(new[] { "[key]", "[value]" }, StringSplitOptions.None);
                 if (formatSplit.Length == 3)
                 {
                     _beforeKey = formatSplit[0];
@@ -129,7 +139,12 @@ namespace NLog.LayoutRenderers
                 var formatProvider = GetFormatProvider(logEvent);
 
                 bool first = true;
-                foreach (var property in GetProperties(logEvent))
+                IEnumerable<KeyValuePair<object, object>> properties = GetProperties(logEvent);
+                if (!IncludeEmptyValues)
+                {
+                    properties = properties.Where(p => !IsEmptyPropertyValue(p.Value));
+                }
+                foreach (var property in properties)
                 {
                     if (!first)
                     {
@@ -158,6 +173,16 @@ namespace NLog.LayoutRenderers
             }
         }
 
+        private static bool IsEmptyPropertyValue(object value)
+        {
+            if (value is string s)
+            {
+                return string.IsNullOrEmpty(s);
+            }
+
+            return value == null;
+        }
+
 #if NET4_5
 
         /// <summary>
@@ -183,6 +208,7 @@ namespace NLog.LayoutRenderers
         {
             var properties = logEvent.Properties;
 #if NET4_5
+
             if (IncludeCallerInformation)
             {
                 return properties;
