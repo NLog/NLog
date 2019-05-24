@@ -82,10 +82,14 @@ namespace NLog
         /// </summary>
         public LogFactory Factory { get; private set; }
 
+#if !NET3_5 && !NET4_0 && !SILVERLIGHT && !WINDOWS_PHONE
+
         /// <summary>
         /// Properties added with <see cref="WithProperty"/> or <see cref="SetProperty"/>
         /// </summary>
-        public IDictionary<string, object> Properties => _contextProperties ?? new Dictionary<string, object>();
+        public IReadOnlyDictionary<string, object> Properties => CreateContextPropertiesDictionary(_contextProperties); //clone for immutable
+
+#endif
 
         /// <summary>
         /// Gets a value indicating whether logging is enabled for the specified level.
