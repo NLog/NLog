@@ -32,7 +32,7 @@ function create-package($packageName)
 {
 
 	$path = ".\src\$packageName\"
-	msbuild /t:Restore,Pack $path /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
+	msbuild /t:Restore,Pack $path /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal  /maxcpucount
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 
