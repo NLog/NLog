@@ -34,10 +34,10 @@
 namespace NLog.Internal
 {
     using System;
+    using System.Globalization;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Xml;
-    using NLog.Internal;
 
     /// <summary>
     ///  Helper class for XML
@@ -172,8 +172,7 @@ namespace NLog.Internal
         /// <returns>Object value converted to string</returns>
         internal static string XmlConvertToStringSafe(object value)
         {
-            TypeCode objTypeCode = Convert.GetTypeCode(value);
-            return XmlConvertToString(value, objTypeCode, true);
+            return XmlConvertToString(value, true);
         }
 
         /// <summary>
@@ -183,8 +182,7 @@ namespace NLog.Internal
         /// <returns>Object value converted to string</returns>
         internal static string XmlConvertToString(object value)
         {
-            TypeCode objTypeCode = Convert.GetTypeCode(value);
-            return XmlConvertToString(value, objTypeCode, false);
+            return XmlConvertToString(value, false);
         }
 
         /// <summary>
@@ -271,6 +269,38 @@ namespace NLog.Internal
             }
         }
 
+        private static string XmlConvertToString(object value, bool safeConversion)
+        {
+            try
+            {
+                IConvertible convertibleValue = value as IConvertible;
+                TypeCode objTypeCode = value == null ? TypeCode.Empty : (convertibleValue?.GetTypeCode() ?? TypeCode.Object);
+                if (objTypeCode != TypeCode.Object)
+                {
+                    return XmlConvertToString(convertibleValue, objTypeCode, safeConversion);
+                }
+
+                return XmlConvertToStringInvariant(value, safeConversion);
+            }
+            catch
+            {
+                return safeConversion ? "" : null;
+            }
+        }
+
+        private static string XmlConvertToStringInvariant(object value, bool safeConversion)
+        {
+            try
+            {
+                string valueString = Convert.ToString(value, CultureInfo.InvariantCulture);
+                return safeConversion ? RemoveInvalidXmlChars(valueString) : valueString;
+            }
+            catch
+            {
+                return safeConversion ? "" : null;
+            }
+        }
+
         /// <summary>
         /// Converts object value to invariant format (understood by JavaScript)
         /// </summary>
@@ -278,7 +308,7 @@ namespace NLog.Internal
         /// <param name="objTypeCode">Object TypeCode</param>
         /// <param name="safeConversion">Check and remove unusual unicode characters from the result string.</param>
         /// <returns>Object value converted to string</returns>
-        internal static string XmlConvertToString(object value, TypeCode objTypeCode, bool safeConversion = false)
+        internal static string XmlConvertToString(IConvertible value, TypeCode objTypeCode, bool safeConversion = false)
         {
             if (value == null)
             {
@@ -288,57 +318,47 @@ namespace NLog.Internal
             switch (objTypeCode)
             {
                 case TypeCode.Boolean:
-                    return XmlConvert.ToString((bool)value);   // boolean as lowercase
+                    return XmlConvert.ToString(value.ToBoolean(CultureInfo.InvariantCulture));   // boolean as lowercase
                 case TypeCode.Byte:
-                    return XmlConvert.ToString((byte)value);
+                    return XmlConvert.ToString(value.ToByte(CultureInfo.InvariantCulture));
                 case TypeCode.SByte:
-                    return XmlConvert.ToString((sbyte)value);
+                    return XmlConvert.ToString(value.ToSByte(CultureInfo.InvariantCulture));
                 case TypeCode.Int16:
-                    return XmlConvert.ToString((short)value);
+                    return XmlConvert.ToString(value.ToInt16(CultureInfo.InvariantCulture));
                 case TypeCode.Int32:
-                    return XmlConvert.ToString((int)value);
+                    return XmlConvert.ToString(value.ToInt32(CultureInfo.InvariantCulture));
                 case TypeCode.Int64:
-                    return XmlConvert.ToString((long)value);
+                    return XmlConvert.ToString(value.ToInt64(CultureInfo.InvariantCulture));
                 case TypeCode.UInt16:
-                    return XmlConvert.ToString((ushort)value);
+                    return XmlConvert.ToString(value.ToUInt16(CultureInfo.InvariantCulture));
                 case TypeCode.UInt32:
-                    return XmlConvert.ToString((uint)value);
+                    return XmlConvert.ToString(value.ToUInt32(CultureInfo.InvariantCulture));
                 case TypeCode.UInt64:
-                    return XmlConvert.ToString((ulong)value);
+                    return XmlConvert.ToString(value.ToUInt64(CultureInfo.InvariantCulture));
                 case TypeCode.Single:
                     {
-                        float singleValue = (float)value;
-                        if (float.IsInfinity(singleValue))
-                            return Convert.ToString(singleValue, System.Globalization.CultureInfo.InvariantCulture); // Infinity instead of INF
-                        else
-                            return XmlConvert.ToString(singleValue);    // 8 digits scale
+                        float singleValue = value.ToSingle(CultureInfo.InvariantCulture);
+                        return float.IsInfinity(singleValue) ?
+                            Convert.ToString(singleValue, CultureInfo.InvariantCulture) :
+                            XmlConvert.ToString(singleValue);
                     }
                 case TypeCode.Double:
                     {
-                        double doubleValue = (double)value;
-                        if (double.IsInfinity(doubleValue))
-                            return Convert.ToString(doubleValue, System.Globalization.CultureInfo.InvariantCulture); // Infinity instead of INF
-                        else
-                            return XmlConvert.ToString(doubleValue);    // 16 digits scale
+                        double doubleValue = value.ToDouble(CultureInfo.InvariantCulture);
+                        return double.IsInfinity(doubleValue) ?
+                            Convert.ToString(doubleValue, CultureInfo.InvariantCulture) :
+                            XmlConvert.ToString(doubleValue);
                     }
                 case TypeCode.Decimal:
-                    return XmlConvert.ToString((decimal)value);
+                    return XmlConvert.ToString(value.ToDecimal(CultureInfo.InvariantCulture));
                 case TypeCode.DateTime:
-                    return XmlConvert.ToString((DateTime)value, XmlDateTimeSerializationMode.Utc);
+                    return XmlConvert.ToString(value.ToDateTime(CultureInfo.InvariantCulture), XmlDateTimeSerializationMode.Utc);
                 case TypeCode.Char:
-                    return XmlConvert.ToString((char)value);
+                    return XmlConvert.ToString(value.ToChar(CultureInfo.InvariantCulture));
                 case TypeCode.String:
-                    return safeConversion ? RemoveInvalidXmlChars((string)value) : (string)value;
+                    return safeConversion ? RemoveInvalidXmlChars(value.ToString(CultureInfo.InvariantCulture)) : value.ToString(CultureInfo.InvariantCulture);
                 default:
-                    try
-                    {
-                        string valueString = Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture);
-                        return safeConversion ? RemoveInvalidXmlChars(valueString) : valueString;
-                    }
-                    catch
-                    {
-                        return null;
-                    }
+                    return XmlConvertToStringInvariant(value, safeConversion);
             }
         }
 
