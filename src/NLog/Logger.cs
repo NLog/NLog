@@ -83,6 +83,11 @@ namespace NLog
         public LogFactory Factory { get; private set; }
 
         /// <summary>
+        /// Properties added with <see cref="WithProperty"/> or <see cref="SetProperty"/>
+        /// </summary>
+        public IDictionary<string, object> Properties => _contextProperties ?? new Dictionary<string, object>();
+
+        /// <summary>
         /// Gets a value indicating whether logging is enabled for the specified level.
         /// </summary>
         /// <param name="level">Log level to be checked.</param>
