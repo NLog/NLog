@@ -1590,45 +1590,6 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         }
 #endif
 
-        [Theory]
-        [InlineData("usetransactions='false'", true)]
-        [InlineData("usetransactions='true'", true)]
-        [InlineData("", false)]
-        public void WarningForObsoleteUseTransactions(string property, bool printWarning)
-        {
-            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString($@"
-            <nlog ThrowExceptions='true' internalLogLevel='Info'>
-                <targets>
-                    <target type='database' {property} name='t1' commandtext='fake sql' connectionstring='somewhere' />
-                </targets>
-                <rules>
-                      <logger name='*' writeTo='t1'>
-                       
-                      </logger>
-                    </rules>
-            </nlog>");
-
-            StringWriter writer1 = new StringWriter()
-            {
-                NewLine = "\n"
-            };
-            InternalLogger.LogWriter = writer1;
-            var t = c.FindTargetByName<DatabaseTarget>("t1");
-            t.Initialize(null);
-            var internalLog = writer1.ToString();
-
-            if (printWarning)
-            {
-                Assert.Contains("obsolete", internalLog, StringComparison.OrdinalIgnoreCase);
-                Assert.Contains("usetransactions", internalLog, StringComparison.OrdinalIgnoreCase);
-            }
-            else
-            {
-                Assert.DoesNotContain("obsolete", internalLog, StringComparison.OrdinalIgnoreCase);
-                Assert.DoesNotContain("usetransactions", internalLog, StringComparison.OrdinalIgnoreCase);
-            }
-        }
-
         private static void AssertLog(string expectedLog)
         {
             Assert.Equal(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));

@@ -143,20 +143,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
-        /// 
-        /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Write" method. Inheriting classes can use this method to
-        /// optimize batch writes.
-        /// </summary>
-        /// <param name="logEvents">Logging events to be written out.</param>
-        [Obsolete("Instead override Write(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
-        protected override void Write(AsyncLogEventInfo[] logEvents)
-        {
-            Write((IList<AsyncLogEventInfo>)logEvents);
-        }
-
-        /// <summary>
         /// Writes an array of logging events to the log target. By default it iterates on all
         /// events and passes them to "Append" method. Inheriting classes can use this method to
         /// optimize batch writes.
@@ -315,14 +301,14 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Creating a new instance of WcfLogReceiverClient
+        /// Creating a new instance of IWcfLogReceiverClient
         /// 
         /// Inheritors can override this method and provide their own 
         /// service configuration - binding and endpoint address
         /// </summary>
-        /// <remarks>This method marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use CreateLogReceiver instead. Marked obsolete before v4.3.11 and it may be removed in a future release.")]
-        protected virtual WcfLogReceiverClient CreateWcfLogReceiverClient()
+        /// <returns></returns>
+        /// <remarks>virtual is used by endusers</remarks>
+        protected virtual IWcfLogReceiverClient CreateLogReceiver()
         {
             WcfLogReceiverClient client;
 
@@ -350,23 +336,6 @@ namespace NLog.Targets
             client.ProcessLogMessagesCompleted += ClientOnProcessLogMessagesCompleted;
 
             return client;
-        }
-
-        /// <summary>
-        /// Creating a new instance of IWcfLogReceiverClient
-        /// 
-        /// Inheritors can override this method and provide their own 
-        /// service configuration - binding and endpoint address
-        /// </summary>
-        /// <returns></returns>
-        /// <remarks>virtual is used by endusers</remarks>
-        protected virtual IWcfLogReceiverClient CreateLogReceiver()
-        {
-#pragma warning disable 612, 618
-
-            return CreateWcfLogReceiverClient();
-
-#pragma warning restore 612, 618
         }
 
         private void ClientOnProcessLogMessagesCompleted(object sender, AsyncCompletedEventArgs asyncCompletedEventArgs)

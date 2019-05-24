@@ -209,12 +209,6 @@ namespace NLog.UnitTests
                 logger.Trace(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-#pragma warning disable 0618
-                // Obsolete method requires testing until removed.
-                logger.TraceException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
-#pragma warning restore 0618
-
                 logger.Trace(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
@@ -388,12 +382,6 @@ namespace NLog.UnitTests
 
                 logger.Debug(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
-
-#pragma warning disable 0618
-                // Obsolete method requires testing until removed.
-                logger.DebugException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
-#pragma warning restore 0618
 
                 logger.Debug(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
@@ -569,12 +557,6 @@ namespace NLog.UnitTests
                 logger.Info(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-#pragma warning disable 0618
-                // Obsolete method requires testing until removed.
-                logger.InfoException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
-#pragma warning restore 0618
-
                 logger.Info(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
@@ -748,12 +730,6 @@ namespace NLog.UnitTests
 
                 logger.Warn(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
-
-#pragma warning disable 0618
-                // Obsolete method requires testing until removed.
-                logger.WarnException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
-#pragma warning restore 0618
 
                 logger.Warn(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
@@ -929,12 +905,6 @@ namespace NLog.UnitTests
                 logger.Error(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-#pragma warning disable 0618
-                // Obsolete method requires testing until removed.
-                logger.ErrorException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
-#pragma warning restore 0618
-
                 logger.Error(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
@@ -1109,12 +1079,6 @@ namespace NLog.UnitTests
                 logger.Fatal(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
 
-#pragma warning disable 0618
-                // Obsolete method requires testing until removed.
-                logger.FatalException("message", new Exception("test"));
-                if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
-#pragma warning restore 0618
-
                 logger.Fatal(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
 
@@ -1266,12 +1230,6 @@ namespace NLog.UnitTests
 
                     logger.Log(level, new Exception("test"), "message {0}", "from parameter");
                     if (enabled == 1) AssertDebugLastMessage("debug", "A|message from parametertest");
-
-#pragma warning disable 0618
-                    // Obsolete method requires testing until removed.
-                    logger.LogException(level, "message", new Exception("test"));
-                    if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
-#pragma warning restore 0618
 
                     logger.Log(level, delegate { return "message from lambda"; });
                     if (enabled == 1) AssertDebugLastMessage("debug", "A|message from lambda");
@@ -2136,12 +2094,6 @@ namespace NLog.UnitTests
 
                 //                logger.Error(CultureInfo.InvariantCulture, "message{0}", (decimal)2.5);
                 //                if (enabled == 1) AssertDebugLastMessage("debug", "A|message2.5");
-
-                //#pragma warning disable 0618
-                //                // Obsolete method requires testing until removed.
-                //                logger.ErrorException("message", new Exception("test"));
-                //                if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");
-                //#pragma warning restore 0618
 
                 logger.Error(new Exception("test"), "message");
                 if (enabled == 1) AssertDebugLastMessage("debug", "A|messagetest");

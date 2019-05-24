@@ -600,20 +600,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
-        /// 
-        /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Write" method. Inheriting classes can use this method to
-        /// optimize batch writes.
-        /// </summary>
-        /// <param name="logEvents">Logging events to be written out.</param>
-        [Obsolete("Instead override Write(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
-        protected virtual void Write(AsyncLogEventInfo[] logEvents)
-        {
-            Write((IList<AsyncLogEventInfo>)logEvents);
-        }
-
-        /// <summary>
         /// Writes an array of logging events to the log target. By default it iterates on all
         /// events and passes them to "Write" method. Inheriting classes can use this method to
         /// optimize batch writes.
@@ -625,22 +611,6 @@ namespace NLog.Targets
             {
                 Write(logEvents[i]);
             }
-        }
-
-        /// <summary>
-        /// NOTE! Obsolete, instead override WriteAsyncThreadSafe(IList{AsyncLogEventInfo} logEvents)
-        /// 
-        /// Writes an array of logging events to the log target, in a thread safe manner.
-        /// 
-        /// !WARNING! Custom targets should only override this method if able to provide their
-        /// own synchronization mechanism. <see cref="Layout" />-objects are not guaranteed to be
-        /// threadsafe, so using them without a SyncRoot-object can be dangerous.
-        /// </summary>
-        /// <param name="logEvents">Logging events to be written out.</param>
-        [Obsolete("Instead override WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
-        protected virtual void WriteAsyncThreadSafe(AsyncLogEventInfo[] logEvents)
-        {
-            WriteAsyncThreadSafe((IList<AsyncLogEventInfo>)logEvents);
         }
 
         /// <summary>
@@ -666,18 +636,7 @@ namespace NLog.Targets
                     return;
                 }
 
-                AsyncLogEventInfo[] logEventsArray = OptimizeBufferReuse ? null : logEvents as AsyncLogEventInfo[];
-                if (!OptimizeBufferReuse && logEventsArray != null)
-                {
-                    // Backwards compatibility
-#pragma warning disable 612, 618
-                    Write(logEventsArray);
-#pragma warning restore 612, 618
-                }
-                else
-                {
-                    Write(logEvents);
-                }
+                Write(logEvents);
             }
         }
 

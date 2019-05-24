@@ -43,9 +43,7 @@ namespace NLog.Targets
     /// <summary>
     /// Default class for serialization of values to JSON format.
     /// </summary>
-#pragma warning disable 618
-    public class DefaultJsonSerializer : IJsonConverter, IJsonSerializer
-#pragma warning restore 618
+    public class DefaultJsonSerializer : IJsonConverter
     {
         private readonly ObjectReflectionCache _objectReflectionCache = new ObjectReflectionCache();
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);

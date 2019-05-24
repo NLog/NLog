@@ -166,16 +166,6 @@ namespace NLog.Config
         public INamedItemFactory<LayoutRenderer, Type> AmbientProperties => _ambientProperties;
 
         /// <summary>
-        /// Legacy interface, no longer used by the NLog engine
-        /// </summary>
-        [Obsolete("Use JsonConverter property instead. Marked obsolete on NLog 4.5")]
-        public IJsonSerializer JsonSerializer
-        {
-            get => _jsonSerializer as IJsonSerializer;
-            set => _jsonSerializer = value != null ? (IJsonConverter)new JsonConverterLegacy(value) : DefaultJsonSerializer.Instance;
-        }
-
-        /// <summary>
         /// Gets or sets the JSON serializer to use with <see cref="WebServiceTarget"/> or <see cref="JsonLayout"/>
         /// </summary>
         public IJsonConverter JsonConverter

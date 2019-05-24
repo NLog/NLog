@@ -123,18 +123,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use <#=level#>(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void <#=level#>Exception([Localizable(false)] string message, Exception exception)
-        {
-            <#=level#>(message, exception); 
-        }
-
-        /// <summary>
         /// Writes the diagnostic message at the <c><#=level#></c> level using the specified parameters and formatting them with the supplied format provider.
         /// </summary>
         /// <param name="formatProvider">An IFormatProvider that supplies culture-specific formatting information.</param>
@@ -172,21 +160,6 @@ namespace NLog
             if (Is<#=level#>Enabled)
             {
                 WriteToTargets(LogLevel.<#=level#>, message, args);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the <c><#=level#></c> level.
-        /// </summary>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use <#=level#>(Exception exception, string message, params object[] args) method instead. Marked obsolete before v4.3.11")]
-        public void <#=level#>([Localizable(false)] string message, Exception exception)
-        {
-            if (Is<#=level#>Enabled)
-            {
-                WriteToTargets(LogLevel.<#=level#>, exception, message, null);
             }
         }
 

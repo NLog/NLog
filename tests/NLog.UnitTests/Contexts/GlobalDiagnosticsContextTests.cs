@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#pragma warning disable 0618
-
 namespace NLog.UnitTests.Contexts
 {
     using Xunit;
@@ -70,33 +68,6 @@ namespace NLog.UnitTests.Contexts
 
             GlobalDiagnosticsContext.Set("foo3", new { One = 1 });
             Assert.NotNull(GlobalDiagnosticsContext.Get("foo3", null));
-        }
-
-        [Fact]
-        public void GDCTest2()
-        {
-            GDC.Clear();
-            Assert.False(GDC.Contains("foo"));
-            Assert.Equal(string.Empty, GDC.Get("foo"));
-            Assert.False(GDC.Contains("foo2"));
-            Assert.Equal(string.Empty, GDC.Get("foo2"));
-
-            GDC.Set("foo", "bar");
-            GDC.Set("foo2", "bar2");
-
-            Assert.True(GDC.Contains("foo"));
-            Assert.Equal("bar", GDC.Get("foo"));
-
-            GDC.Remove("foo");
-            Assert.False(GDC.Contains("foo"));
-            Assert.Equal(string.Empty, GDC.Get("foo"));
-
-            Assert.True(GDC.Contains("foo2"));
-            Assert.Equal("bar2", GDC.Get("foo2"));
-
-            Assert.Null(GDC.GetObject("foo3"));
-
-            Assert.Equal(string.Empty, GDC.Get("foo3", null));
         }
     }
 }

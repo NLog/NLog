@@ -34,8 +34,6 @@
 using System.Linq;
 using System.Text;
 
-#pragma warning disable 0618
-
 namespace NLog.UnitTests.Contexts
 {
     using System;
@@ -121,82 +119,6 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
-        public void NDCTest2()
-        {
-            List<Exception> exceptions = new List<Exception>();
-            ManualResetEvent mre = new ManualResetEvent(false);
-            int counter = 100;
-            int remaining = counter;
-
-            for (int i = 0; i < counter; ++i)
-            {
-                ThreadPool.QueueUserWorkItem(
-                    s =>
-                    {
-                        try
-                        {
-                            NDC.Clear();
-                            Assert.Equal(string.Empty, NDC.TopMessage);
-                            Assert.Equal(string.Empty, NDC.Pop());
-                            AssertContents(NDC.GetAllMessages());
-                            using (NDC.Push("foo"))
-                            {
-                                Assert.Equal("foo", NDC.TopMessage);
-                                AssertContents(NDC.GetAllMessages(), "foo");
-                                using (NDC.Push("bar"))
-                                {
-                                    AssertContents(NDC.GetAllMessages(), "bar", "foo");
-                                    Assert.Equal("bar", NDC.TopMessage);
-                                    NDC.Push("baz");
-                                    AssertContents(NDC.GetAllMessages(), "baz", "bar", "foo");
-                                    Assert.Equal("baz", NDC.TopMessage);
-                                    Assert.Equal("baz", NDC.Pop());
-
-                                    AssertContents(NDC.GetAllMessages(), "bar", "foo");
-                                    Assert.Equal("bar", NDC.TopMessage);
-                                }
-
-                                AssertContents(NDC.GetAllMessages(), "foo");
-                                Assert.Equal("foo", NDC.TopMessage);
-                            }
-
-                            AssertContents(NDC.GetAllMessages());
-                            Assert.Equal(string.Empty, NDC.Pop());
-                        }
-                        catch (Exception ex)
-                        {
-                            lock (exceptions)
-                            {
-                                exceptions.Add(ex);
-                            }
-                        }
-                        finally
-                        {
-                            if (Interlocked.Decrement(ref remaining) == 0)
-                            {
-                                mre.Set();
-                            }
-                        }
-                    });
-            }
-
-            mre.WaitOne();
-            StringBuilder exceptionsMessage = new StringBuilder();
-            foreach (var ex in exceptions)
-            {
-                if (exceptionsMessage.Length > 0)
-                {
-                    exceptionsMessage.Append("\r\n");
-                }
-
-                exceptionsMessage.Append(ex.ToString());
-            }
-
-            Assert.True(exceptions.Count == 0, exceptionsMessage.ToString());
-        }
-
-
-        [Fact]
         public void NDCTest2_object()
         {
             List<Exception> exceptions = new List<Exception>();
@@ -211,33 +133,33 @@ namespace NLog.UnitTests.Contexts
                     {
                         try
                         {
-                            NDC.Clear();
-                            Assert.Null(NDC.TopObject);
-                            Assert.Null(NDC.PopObject());
-                            AssertContents(NDC.GetAllMessages());
-                            using (NDC.Push("foo"))
+                            NestedDiagnosticsContext.Clear();
+                            Assert.Null(NestedDiagnosticsContext.TopObject);
+                            Assert.Null(NestedDiagnosticsContext.PopObject());
+                            AssertContents(NestedDiagnosticsContext.GetAllMessages());
+                            using (NestedDiagnosticsContext.Push("foo"))
                             {
-                                Assert.Equal("foo", NDC.TopObject);
-                                AssertContents(NDC.GetAllObjects(), "foo");
-                                using (NDC.Push("bar"))
+                                Assert.Equal("foo", NestedDiagnosticsContext.TopObject);
+                                AssertContents(NestedDiagnosticsContext.GetAllObjects(), "foo");
+                                using (NestedDiagnosticsContext.Push("bar"))
                                 {
-                                    AssertContents(NDC.GetAllObjects(), "bar", "foo");
-                                    Assert.Equal("bar", NDC.TopObject);
-                                    NDC.Push("baz");
-                                    AssertContents(NDC.GetAllObjects(), "baz", "bar", "foo");
-                                    Assert.Equal("baz", NDC.TopObject);
-                                    Assert.Equal("baz", NDC.PopObject());
+                                    AssertContents(NestedDiagnosticsContext.GetAllObjects(), "bar", "foo");
+                                    Assert.Equal("bar", NestedDiagnosticsContext.TopObject);
+                                    NestedDiagnosticsContext.Push("baz");
+                                    AssertContents(NestedDiagnosticsContext.GetAllObjects(), "baz", "bar", "foo");
+                                    Assert.Equal("baz", NestedDiagnosticsContext.TopObject);
+                                    Assert.Equal("baz", NestedDiagnosticsContext.PopObject());
 
-                                    AssertContents(NDC.GetAllObjects(), "bar", "foo");
-                                    Assert.Equal("bar", NDC.TopObject);
+                                    AssertContents(NestedDiagnosticsContext.GetAllObjects(), "bar", "foo");
+                                    Assert.Equal("bar", NestedDiagnosticsContext.TopObject);
                                 }
 
-                                AssertContents(NDC.GetAllObjects(), "foo");
-                                Assert.Equal("foo", NDC.TopObject);
+                                AssertContents(NestedDiagnosticsContext.GetAllObjects(), "foo");
+                                Assert.Equal("foo", NestedDiagnosticsContext.TopObject);
                             }
 
-                            AssertContents(NDC.GetAllMessages());
-                            Assert.Null(NDC.PopObject());
+                            AssertContents(NestedDiagnosticsContext.GetAllMessages());
+                            Assert.Null(NestedDiagnosticsContext.PopObject());
                         }
                         catch (Exception ex)
                         {

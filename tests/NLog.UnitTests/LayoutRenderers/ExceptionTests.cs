@@ -48,52 +48,6 @@ namespace NLog.UnitTests.LayoutRenderers
         private const string ExceptionDataFormat = "{0}: {1}";
 
         [Fact]
-        public void ExceptionWithStackTrace_ObsoleteMethodTest()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
-                <targets>
-                    <target name='debug1' type='Debug' layout='${exception}' />
-                    <target name='debug2' type='Debug' layout='${exception:format=stacktrace}' />
-                    <target name='debug3' type='Debug' layout='${exception:format=type}' />
-                    <target name='debug4' type='Debug' layout='${exception:format=shorttype}' />
-                    <target name='debug5' type='Debug' layout='${exception:format=tostring}' />
-                    <target name='debug6' type='Debug' layout='${exception:format=message}' />
-                    <target name='debug7' type='Debug' layout='${exception:format=method}' />
-                    <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
-                    <target name='debug9' type='Debug' layout='${exception:format=data}' />
-                </targets>
-                <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9' />
-                </rules>
-            </nlog>");
-
-            const string exceptionMessage = "Test exception";
-            const string exceptionDataKey = "testkey";
-            const string exceptionDataValue = "testvalue";
-            Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-            ex.Data.Add(exceptionDataKey, exceptionDataValue);
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.ErrorException("msg", ex);
-#pragma warning restore 0618
-            AssertDebugLastMessage("debug1", exceptionMessage);
-            AssertDebugLastMessage("debug2", ex.StackTrace);
-            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
-            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
-            AssertDebugLastMessage("debug5", ex.ToString());
-            AssertDebugLastMessage("debug6", exceptionMessage);
-            AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
-
-            // each version of the framework produces slightly different information for MethodInfo, so we just 
-            // make sure it's not empty
-            var debug7Target = (DebugTarget)LogManager.Configuration.FindTargetByName("debug7");
-            Assert.False(string.IsNullOrEmpty(debug7Target.LastMessage));
-
-            AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
-        }
-
-        [Fact]
         public void ExceptionWithStackTraceTest()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -182,48 +136,6 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", exceptionMessage + "*" + typeof(CustomArgumentException).Name);
         }
 
-
-        [Fact]
-        public void ExceptionWithoutStackTrace_ObsoleteMethodTest()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
-                <targets>
-                    <target name='debug1' type='Debug' layout='${exception}' />
-                    <target name='debug2' type='Debug' layout='${exception:format=stacktrace}' />
-                    <target name='debug3' type='Debug' layout='${exception:format=type}' />
-                    <target name='debug4' type='Debug' layout='${exception:format=shorttype}' />
-                    <target name='debug5' type='Debug' layout='${exception:format=tostring}' />
-                    <target name='debug6' type='Debug' layout='${exception:format=message}' />
-                    <target name='debug7' type='Debug' layout='${exception:format=method}' />
-                    <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
-                    <target name='debug9' type='Debug' layout='${exception:format=data}' />
-                </targets>
-                <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9' />
-                </rules>
-            </nlog>");
-
-            const string exceptionMessage = "Test exception";
-            const string exceptionDataKey = "testkey";
-            const string exceptionDataValue = "testvalue";
-            Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
-            ex.Data.Add(exceptionDataKey, exceptionDataValue);
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.ErrorException("msg", ex);
-#pragma warning restore 0618
-            AssertDebugLastMessage("debug1", exceptionMessage);
-            AssertDebugLastMessage("debug2", "");
-            AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
-            AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
-            AssertDebugLastMessage("debug5", ex.ToString());
-            AssertDebugLastMessage("debug6", exceptionMessage);
-            AssertDebugLastMessage("debug7", "");
-            AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
-            AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
-        }
-
         [Fact]
         public void ExceptionWithoutStackTraceTest()
         {
@@ -277,12 +189,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
             string exceptionMessage = "Test exception";
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
-
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.ErrorException("msg", ex);
-            AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(CustomArgumentException).Name);
-#pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "Test exception\r\n" + typeof(CustomArgumentException).Name);
@@ -395,14 +301,6 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
 
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.ErrorException("msg", ex);
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
-                                             "CustomArgumentException Test exception");
-#pragma warning restore 0618
-
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
                                              "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
@@ -425,59 +323,12 @@ namespace NLog.UnitTests.LayoutRenderers
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
 
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.ErrorException("msg", ex);
-            var lastMessage1 = GetDebugLastMessage("debug1");
-            Assert.StartsWith("{\"Type\":\"System.ApplicationException\", \"Message\":\"Wrapper2\"", lastMessage1);
-            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage1);
-            Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage1);
-            Assert.Contains("1Really_Bad_Boy_", lastMessage1);
-
-#pragma warning restore 0618
-
             logger.Error(ex, "msg");
-            var lastMessage2 = GetDebugLastMessage("debug1");
-            Assert.StartsWith("{\"Type\":\"System.ApplicationException\", \"Message\":\"Wrapper2\"", lastMessage2);
-            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage2);
-            Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage2);
-            Assert.Contains("1Really_Bad_Boy_", lastMessage1);
-        }
-
-        [Fact]
-        public void CustomInnerException_ObsoleteMethodTest()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-            <nlog>
-                <targets>
-                    <target name='debug1' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
-                    <target name='debug2' type='Debug' layout='${exception:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message,data}' />
-                </targets>
-                <rules>
-                    <logger minlevel='Info' writeTo='debug1' />
-                    <logger minlevel='Info' writeTo='debug2' />
-                </rules>
-            </nlog>");
-
-            var t = (DebugTarget)LogManager.Configuration.AllTargets[0];
-            var elr = ((SimpleLayout)t.Layout).Renderers[0] as ExceptionLayoutRenderer;
-            Assert.Equal("\r\n----INNER----\r\n", elr.InnerExceptionSeparator);
-
-            string exceptionMessage = "Test exception";
-            const string exceptionDataKey = "testkey";
-            const string exceptionDataValue = "testvalue";
-            Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
-            ex.InnerException.Data.Add(exceptionDataKey, exceptionDataValue);
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.ErrorException("msg", ex);
-#pragma warning restore 0618
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" +
-                                             "\r\n----INNER----\r\n" +
-                                             "System.ArgumentException Wrapper1");
-            AssertDebugLastMessage("debug2", string.Format("ApplicationException Wrapper2" +
-                                                           "\r\n----INNER----\r\n" +
-                                                           "System.ArgumentException Wrapper1 " + ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
+            var lastMessage = GetDebugLastMessage("debug1");
+            Assert.StartsWith("{\"Type\":\"System.ApplicationException\", \"Message\":\"Wrapper2\"", lastMessage);
+            Assert.Contains("\"InnerException\":{\"Type\":\"System.ArgumentException\", \"Message\":\"Wrapper1\"", lastMessage);
+            Assert.Contains("\"ParamName\":\"exceptionMessage\"", lastMessage);
+            Assert.Contains("1Really_Bad_Boy_", lastMessage);
         }
 
         [Fact]
@@ -722,7 +573,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public class CustomArgumentException : ApplicationException
         {
             public CustomArgumentException(string message, string paramName)
-                :base(message)
+                : base(message)
             {
                 ParamName = paramName;
                 StrangeProperty = "Strange World";
@@ -749,14 +600,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
-
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.ErrorException("msg", ex);
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "ArgumentException Wrapper1" + EnvironmentHelper.NewLine +
-                                             "CustomArgumentException Test exception");
-#pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
@@ -786,14 +629,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
             string exceptionMessage = "Test exception";
             Exception ex = GetNestedExceptionWithStackTrace(exceptionMessage);
-
-#pragma warning disable 0618
-            // Obsolete method requires testing until completely removed.
-            logger.ErrorException("msg", ex);
-            AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + EnvironmentHelper.NewLine +
-                                             "Wrapper1" + EnvironmentHelper.NewLine +
-                                             "Test exception");
-#pragma warning restore 0618
 
             logger.Error(ex, "msg");
             AssertDebugLastMessage("debug1", "ApplicationException Wrapper2" + EnvironmentHelper.NewLine +

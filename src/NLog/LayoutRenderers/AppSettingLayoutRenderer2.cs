@@ -66,7 +66,7 @@ namespace NLog.LayoutRenderers
         ///<summary>
         /// The AppSetting item-name
         ///</summary>
-        [Obsolete("Allows easier conversion from NLog.Extended. Instead use Item-property")]
+        [Obsolete("Allows easier conversion from NLog.Extended. Instead use Item-property. Marked obsolete in NLog 4.6")]
         public string Name { get => Item; set => Item = value; }
 
         ///<summary>

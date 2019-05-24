@@ -325,17 +325,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets or sets the maximum number of log filenames that should be stored as existing.
-        /// </summary>
-        /// <remarks>
-        /// The bigger this number is the longer it will take to write each log record. The smaller the number is
-        /// the higher the chance that the clean function will be run when no new files have been opened.
-        /// </remarks>
-        [Obsolete("This option will be removed in NLog 5. Marked obsolete on NLog 4.5")]
-        [DefaultValue(0)]
-        public int maxLogFilenames { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to enable log file(s) to be deleted.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
@@ -1038,20 +1027,6 @@ namespace NLog.Targets
             {
                 return _fullFileName.Render(logEvent);
             }
-        }
-
-        /// <summary>
-        /// NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
-        /// 
-        /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Write" method. Inheriting classes can use this method to
-        /// optimize batch writes.
-        /// </summary>
-        /// <param name="logEvents">Logging events to be written out.</param>
-        [Obsolete("Instead override Write(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
-        protected override void Write(AsyncLogEventInfo[] logEvents)
-        {
-            Write((IList<AsyncLogEventInfo>)logEvents);
         }
 
         SortHelpers.KeySelector<AsyncLogEventInfo, string> _getFullFileNameDelegate;

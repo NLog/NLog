@@ -333,20 +333,6 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        public void EnableAndDisableLogging()
-        {
-            LogFactory factory = new LogFactory();
-#pragma warning disable 618
-            // In order Suspend => Resume 
-            Assert.True(factory.IsLoggingEnabled());
-            factory.DisableLogging();
-            Assert.False(factory.IsLoggingEnabled());
-            factory.EnableLogging();
-            Assert.True(factory.IsLoggingEnabled());
-#pragma warning restore 618
-        }
-
-        [Fact]
         public void SuspendAndResumeLogging_InOrder()
         {
             LogFactory factory = new LogFactory();
