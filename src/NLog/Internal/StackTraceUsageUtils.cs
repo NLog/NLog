@@ -48,9 +48,14 @@ namespace NLog.Internal
         private static readonly Assembly mscorlibAssembly = typeof(string).GetAssembly();
         private static readonly Assembly systemAssembly = typeof(Debug).GetAssembly();
 
-        internal static StackTraceUsage Max(StackTraceUsage u1, StackTraceUsage u2)
+        public static StackTraceUsage GetStackTraceUsage(bool includeFileName, int skipFrames)
         {
-            return (StackTraceUsage)Math.Max((int)u1, (int)u2);
+#if !SILVERLIGHT
+            if (includeFileName)
+                return skipFrames == 0 ? (StackTraceUsage.WithCallSite | StackTraceUsage.WithSourceCode) : StackTraceUsage.WithSource;
+            else
+#endif
+                return skipFrames == 0 ? StackTraceUsage.WithCallSite : StackTraceUsage.WithoutSource;
         }
 
         public static int GetFrameCount(this StackTrace strackTrace)

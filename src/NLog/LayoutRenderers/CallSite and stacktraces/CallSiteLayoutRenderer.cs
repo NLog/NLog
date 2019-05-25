@@ -124,20 +124,13 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage
-        {
-            get
-            {
+        StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsageUtils.GetStackTraceUsage(
 #if !SILVERLIGHT
-                if (FileName)
-                {
-                    return StackTraceUsage.Max;
-                }
+            FileName,
+#else
+            false,
 #endif
-
-                return StackTraceUsage.WithoutSource;
-            }
-        }
+            SkipFrames);
 
         /// <summary>
         /// Renders the call site and appends it to the specified <see cref="StringBuilder" />.

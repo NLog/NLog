@@ -229,23 +229,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage
-        {
-            get
-            {
-                if (IncludeSourceInfo)
-                {
-                    return StackTraceUsage.Max;
-                }
-
-                if (IncludeCallSite)
-                {
-                    return StackTraceUsage.WithoutSource;
-                }
-
-                return StackTraceUsage.None;
-            }
-        }
+        StackTraceUsage IUsesStackTrace.StackTraceUsage => (IncludeCallSite || IncludeSourceInfo) ? StackTraceUsageUtils.GetStackTraceUsage(IncludeSourceInfo, 0) : StackTraceUsage.None;
 
         internal IList<NLogViewerParameterInfo> Parameters { get; set; }
 

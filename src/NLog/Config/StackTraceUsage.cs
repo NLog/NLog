@@ -33,36 +33,56 @@
 
 namespace NLog.Config
 {
+    using System;
+
     /// <summary>
     /// Value indicating how stack trace should be captured when processing the log event.
     /// </summary>
+    [Flags]
     public enum StackTraceUsage
     {
         /// <summary>
         /// Stack trace should not be captured.
         /// </summary>
-        None = 0, 
+        None = 0,
+
+        /// <summary>
+        /// Stack trace should be captured
+        /// </summary>
+        WithStackTrace = 1,
+
+#if !SILVERLIGHT
+        /// <summary>
+        /// Source-level information should be capture (source-filename + linenumber)
+        /// </summary>
+        WithSourceCode = 2,
+#endif
+
+        /// <summary>
+        /// Stack trace should only be captured if callsite details are missing
+        /// </summary>
+        WithCallSite = 4,
 
         /// <summary>
         /// Stack trace should be captured without source-level information.
         /// </summary>
-        WithoutSource = 1,
+        WithoutSource = WithStackTrace,
 
 #if !SILVERLIGHT
         /// <summary>
         /// Stack trace should be captured including source-level information such as line numbers.
         /// </summary>
-        WithSource = 2,
+        WithSource = WithStackTrace | WithSourceCode,
 
         /// <summary>
         /// Capture maximum amount of the stack trace information supported on the platform.
         /// </summary>
-        Max = 2,
+        Max = WithSource,
 #else
         /// <summary>
         /// Capture maximum amount of the stack trace information supported on the platform.
         /// </summary>
-        Max = 1,
+        Max = WithoutSource,
 #endif
     }
 }
