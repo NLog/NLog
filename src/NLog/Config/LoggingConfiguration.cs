@@ -61,7 +61,7 @@ namespace NLog.Config
         /// <summary>
         /// Variables defined in xml or in API. name is case case insensitive. 
         /// </summary>
-        private readonly Dictionary<string, SimpleLayout> _variables = new Dictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
+        private readonly ThreadSafeDictionary<string, SimpleLayout> _variables = new ThreadSafeDictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Gets the factory that will be configured
@@ -812,10 +812,7 @@ namespace NLog.Config
         /// <param name="masterVariables">Master variables dictionary</param>
         internal void CopyVariables(IDictionary<string, SimpleLayout> masterVariables)
         {
-            foreach (var variable in masterVariables)
-            {
-                Variables[variable.Key] = variable.Value;
-            }
+            _variables.CopyFrom(masterVariables);
         }
 
         /// <summary>
