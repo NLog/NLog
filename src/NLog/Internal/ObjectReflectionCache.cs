@@ -177,10 +177,7 @@ namespace NLog.Internal
 
         private static bool ConvertToString(Type objectType)
         {
-            if (objectType == typeof(Guid))
-                return true;
-
-            if (objectType == typeof(TimeSpan))
+            if (typeof(IFormattable).IsAssignableFrom(objectType))
                 return true;
 
             if (typeof(Uri).IsAssignableFrom(objectType))
