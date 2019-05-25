@@ -65,7 +65,7 @@ namespace NLog.Internal
 
         public TValue this[TKey key]
         {
-            get { return GetReadOnlyDict()[key]; }
+            get => GetReadOnlyDict()[key];
             set
             {
                 lock (_lockObject)
@@ -124,16 +124,13 @@ namespace NLog.Internal
 
         public void CopyFrom(IDictionary<TKey, TValue> source)
         {
-            if (!ReferenceEquals(this, source))
+            if (!ReferenceEquals(this, source) && source?.Count > 0)
             {
-                if (source?.Count > 0)
+                lock (_lockObject)
                 {
-                    lock (_lockObject)
-                    {
-                        var destDict = GetWritableDict();
-                        foreach (var item in source)
-                            destDict[item.Key] = item.Value;
-                    }
+                    var destDict = GetWritableDict();
+                    foreach (var item in source)
+                        destDict[item.Key] = item.Value;
                 }
             }
         }
