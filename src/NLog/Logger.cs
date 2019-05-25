@@ -86,8 +86,8 @@ namespace NLog
         /// Collection of context properties for the Logger. The logger will append it for all log events
         /// </summary>
         /// <remarks>
-        /// It is recommended to only use <see cref="WithProperty(string, object)"/> for modifying context properties.
-        /// Because direct changes might give unexpected side-effects as multiple locations can share the same logger-object.
+        /// It is recommended to use <see cref="WithProperty(string, object)"/> for modifying context properties
+        /// when same named logger is used at multiple locations or shared by different thread contexts.
         /// </remarks>
         public IDictionary<string, object> Properties => _contextProperties ?? System.Threading.Interlocked.CompareExchange(ref _contextProperties, CreateContextPropertiesDictionary(null), null) ?? _contextProperties;
 
@@ -126,14 +126,21 @@ namespace NLog
         }
 
         /// <summary>
-        /// Updates the specified context property for the current logger. The logger will append it for all log events
+        /// Updates the specified context property for the current logger. The logger will append it for all log events.
+        ///
+        /// It could be rendered with ${event-properties:YOURNAME}
+        ///
+        /// With <see cref="Properties"/> property, all properties could be changed. 
         /// </summary>
         /// <remarks>
         /// Will affect all locations/contexts that makes use of the same named logger object.
         /// </remarks>
         /// <param name="propertyKey">Property Name</param>
         /// <param name="propertyValue">Property Value</param>
-        [Obsolete("Instead use the Properties-property to access or modify the active collection")]
+        /// <remarks>
+        /// It is recommended to use <see cref="WithProperty(string, object)"/> for modifying context properties
+        /// when same named logger is used at multiple locations or shared by different thread contexts.
+        /// </remarks>
         public void SetProperty(string propertyKey, object propertyValue)
         {
             if (string.IsNullOrEmpty(propertyKey))
