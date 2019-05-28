@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -29,57 +29,37 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
-using NLog.Common;
-using NLog.Targets.Wrappers;
-
-using Xunit;
-
-namespace NLog.UnitTests.Targets.Wrappers
+namespace NLog.UnitTests.LayoutRenderers
 {
-    public class ConcurrentRequestQueueTests : NLogTestBase
+    using System;
+    using NLog.Layouts;
+    using Xunit;
+
+    public class EnvironmentUserLayoutRendererTests
     {
         [Fact]
-        public void RaiseEventLogEventQueueGrow_OnLogItems()
+        public void EnvironmentUserTest()
         {
-            const int RequestsLimit = 2;
-            const int EventsCount = 5;
-            const int ExpectedCountOfGrovingTimes = 2;
-            const int ExpectedFinalSize = 8;
-            int grovingItemsCount = 0;
+            var userName = Environment.GetEnvironmentVariable("USERNAME");
+            if (string.IsNullOrEmpty(userName))
+                userName = Environment.GetEnvironmentVariable("USER") ?? string.Empty;
 
-            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Grow);
-
-            requestQueue.LogEventQueueGrow += (o, e) => { grovingItemsCount++; };
-
-            for (int i = 0; i < EventsCount; i++)
+            Layout layout = "${environment-user}";
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+            if (!string.IsNullOrEmpty(userName))
             {
-                requestQueue.Enqueue(new AsyncLogEventInfo());
+                Assert.Equal(userName, result);
+
+                var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;
+                if (!string.IsNullOrEmpty(userDomainName))
+                {
+                    layout = "${environment-user:domain=true}";
+                    result = layout.Render(LogEventInfo.CreateNullEvent());
+                    Assert.Equal(userDomainName + "\\" + userName, result);
+                }
             }
-
-            Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
-            Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
-        }
-
-        [Fact]
-        public void RaiseEventLogEventDropped_OnLogItems()
-        {
-            const int RequestsLimit = 2;
-            const int EventsCount = 5;
-            int discardedItemsCount = 0;
-	        
-            int ExpectedDiscardedItemsCount = EventsCount - RequestsLimit;
-            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Discard);
-
-            requestQueue.LogEventDropped+= (o, e) => { discardedItemsCount++; };
-
-            for (int i = 0; i < EventsCount; i++)
-            {
-                requestQueue.Enqueue(new AsyncLogEventInfo());
-            }
-
-            Assert.Equal(ExpectedDiscardedItemsCount, discardedItemsCount);
         }
     }
 }

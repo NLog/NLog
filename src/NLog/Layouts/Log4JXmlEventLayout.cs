@@ -33,9 +33,11 @@
 
 namespace NLog.Layouts
 {
+    using System.Collections.Generic;
     using System.Text;
     using NLog.Config;
     using NLog.LayoutRenderers;
+    using NLog.Targets;
 
     /// <summary>
     /// A specialized layout that renders Log4j-compatible XML events.
@@ -55,12 +57,22 @@ namespace NLog.Layouts
         public Log4JXmlEventLayout()
         {
             Renderer = new Log4JXmlEventLayoutRenderer();
+            Parameters = new List<NLogViewerParameterInfo>();
+            Renderer.Parameters = Parameters;
         }
 
         /// <summary>
         /// Gets the <see cref="Log4JXmlEventLayoutRenderer"/> instance that renders log events.
         /// </summary>
-        public Log4JXmlEventLayoutRenderer Renderer { get; private set; }
+        public Log4JXmlEventLayoutRenderer Renderer { get; }
+
+        /// <summary>
+        /// Gets the collection of parameters. Each parameter contains a mapping
+        /// between NLog layout and a named parameter.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        [ArrayParameter(typeof(NLogViewerParameterInfo), "parameter")]
+        public IList<NLogViewerParameterInfo> Parameters { get => Renderer.Parameters; set => Renderer.Parameters = value;  }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.

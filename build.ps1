@@ -5,7 +5,7 @@ dotnet --version
 # dotnet restore .\src\NLog\
 # dotnet pack .\src\NLog\  --configuration release --include-symbols -o ..\..\artifacts
 
-$versionPrefix = "4.6.3"
+$versionPrefix = "4.6.4"
 $versionSuffix = ""
 $versionFile = $versionPrefix + "." + ${env:APPVEYOR_BUILD_NUMBER}
 $versionProduct = $versionPrefix;
@@ -18,13 +18,15 @@ if ($env:APPVEYOR_PULL_REQUEST_NUMBER)
    $versionSuffix = "PR" + $env:APPVEYOR_PULL_REQUEST_NUMBER
 }
 
-# download nuget.exe
-
-$sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 $targetNugetExe = "tools\nuget.exe"
-Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
+if (-Not (test-path $targetNugetExe))
+{
+	# download nuget.exe
+	$sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+	Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
+}
 
-msbuild /t:Restore,Pack .\src\NLog\ /p:targetFrameworks='"net45;net40-client;net35;netstandard1.3;netstandard1.5;netstandard2.0;sl4;sl5;wp8;monoandroid44;xamarinios10"' /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
+msbuild /t:Restore,Pack .\src\NLog\ /p:targetFrameworks='"net45;net40-client;net35;netstandard1.3;netstandard1.5;netstandard2.0;sl4;sl5;wp8;monoandroid44;xamarinios10"' /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal /maxcpucount
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
@@ -32,7 +34,7 @@ function create-package($packageName)
 {
 
 	$path = ".\src\$packageName\"
-	msbuild /t:Restore,Pack $path /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal
+	msbuild /t:Restore,Pack $path /p:VersionPrefix=$versionPrefix /p:VersionSuffix=$versionSuffix /p:FileVersion=$versionFile /p:ProductVersion=$versionProduct /p:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:PackageOutputPath=..\..\artifacts /verbosity:minimal  /maxcpucount
 	if (-Not $LastExitCode -eq 0)
 		{ exit $LastExitCode }
 

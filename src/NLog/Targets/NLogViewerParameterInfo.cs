@@ -40,6 +40,9 @@ namespace NLog.Targets
     /// Represents a parameter to a NLogViewer target.
     /// </summary>
     [NLogConfigurationItem]
+    [ThreadAgnostic]
+    [ThreadSafe]
+    [AppDomainFixedOutput]
     public class NLogViewerParameterInfo
     {
         /// <summary>
@@ -62,5 +65,11 @@ namespace NLog.Targets
         /// <docgen category='Parameter Options' order='10' />
         [RequiredParameter]
         public Layout Layout { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether an attribute with empty value should be included in the output
+        /// </summary>
+        /// <docgen category='Parameter Options' order='100' />
+        public bool IncludeEmptyValue { get; set; } = true;
     }
 }

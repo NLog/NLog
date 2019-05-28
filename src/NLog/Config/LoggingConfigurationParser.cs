@@ -585,6 +585,9 @@ namespace NLog.Config
                         else
                             ruleName = childProperty.Value;
                         break;
+                    case "RULENAME":
+                        ruleName = childProperty.Value; // Legacy Style
+                        break;
                     case "LOGGER":
                         namePattern = childProperty.Value;
                         break;
@@ -1016,6 +1019,11 @@ namespace NLog.Config
                 return;
             }
 
+            if (SetFilterFromElement(o, propInfo, element))
+            {
+                return;
+            }
+
             SetItemFromElement(o, propInfo, element);
         }
 
@@ -1060,16 +1068,29 @@ namespace NLog.Config
             return arrayItem;
         }
 
-        private bool SetLayoutFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement layoutElement)
+        private bool SetLayoutFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
         {
-            Layout layout = TryCreateLayoutInstance(layoutElement, propInfo.PropertyType);
+            var layout = TryCreateLayoutInstance(element, propInfo.PropertyType);
 
             // and is a Layout and 'type' attribute has been specified
             if (layout != null)
             {
-                ConfigureObjectFromAttributes(layout, layoutElement, true);
-                ConfigureObjectFromElement(layout, layoutElement);
-                propInfo.SetValue(o, layout, null);
+                SetItemOnProperty(o, propInfo, element, layout);
+                return true;
+            }
+
+            return false;
+        }
+        
+        private bool SetFilterFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
+        {
+            var type = propInfo.PropertyType;
+
+            Filter filter = TryCreateFilterInstance(element, type);
+            // and is a Filter and 'type' attribute has been specified
+            if (filter != null)
+            {
+                SetItemOnProperty(o, propInfo, element, filter);
                 return true;
             }
 
@@ -1078,8 +1099,19 @@ namespace NLog.Config
 
         private Layout TryCreateLayoutInstance(ILoggingConfigurationElement element, Type type)
         {
-            // Check if it is a Layout
-            if (!typeof(Layout).IsAssignableFrom(type))
+            return TryCreateInstance(element, type, _configurationItemFactory.Layouts);
+        } 
+        
+        private Filter TryCreateFilterInstance(ILoggingConfigurationElement element, Type type)
+        {
+            return TryCreateInstance(element, type, _configurationItemFactory.Filters);
+        }
+
+        private T TryCreateInstance<T>(ILoggingConfigurationElement element, Type type, INamedItemFactory<T, Type> factory)
+            where T : class
+        {
+            // Check if correct type
+            if (!IsAssignableFrom<T>(type))
                 return null;
 
             // Check if the 'type' attribute has been specified
@@ -1087,7 +1119,19 @@ namespace NLog.Config
             if (layoutTypeName == null)
                 return null;
 
-            return _configurationItemFactory.Layouts.CreateInstance(ExpandSimpleVariables(layoutTypeName));
+            return factory.CreateInstance(ExpandSimpleVariables(layoutTypeName));
+        }
+
+        private static bool IsAssignableFrom<T>(Type type)
+        {
+            return typeof(T).IsAssignableFrom(type);
+        }
+
+        private void SetItemOnProperty(object o, PropertyInfo propInfo, ILoggingConfigurationElement element, object properyValue)
+        {
+            ConfigureObjectFromAttributes(properyValue, element, true);
+            ConfigureObjectFromElement(properyValue, element);
+            propInfo.SetValue(o, properyValue, null);
         }
 
         private void SetItemFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
@@ -1218,7 +1262,7 @@ namespace NLog.Config
 
             return attributeValue.Substring(p + 1);
         }
-       
+
         private static string GetName(Target target)
         {
             return string.IsNullOrEmpty(target.Name) ? target.GetType().Name : target.Name;

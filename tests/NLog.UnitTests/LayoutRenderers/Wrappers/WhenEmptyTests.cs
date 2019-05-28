@@ -31,8 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal;
+
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
+    using System;
     using NLog;
     using NLog.Layouts;
     using Xunit;
@@ -72,6 +75,46 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
             SimpleLayout l = @"${whenEmpty:whenEmpty=${literal:text=c:\logs\}:inner=${environment:LOG_DIR_XXX}}api.log";
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
             Assert.Equal("api.log", l.Render(le));
+        }
+
+        [Fact]
+        public void WhenDbNullRawValueShouldWork()
+        {
+            SimpleLayout l = @"${event-properties:prop1:whenEmpty=${db-null}}";
+            {
+                var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+                le.Properties["prop1"] = 1;
+                var success = l.TryGetRawValue(le, out var rawValue);
+                Assert.True(success);
+                Assert.Equal(1, rawValue);
+            }
+            // empty log message
+            {
+                var le = LogEventInfo.Create(LogLevel.Info, "logger", "message");
+                var success = l.TryGetRawValue(le, out var rawValue);
+                Assert.True(success);
+                Assert.Equal(DBNull.Value, rawValue);
+            }
+
+        }
+
+        [Theory]
+        [InlineData("message", "message")]
+        [InlineData("", "default")]
+        public void GetStringValueShouldWork(string message, string expected)
+        {
+            // Arrange
+            SimpleLayout layout = @"${message:whenEmpty=default}";
+            var stringValueRenderer = (IStringValueRenderer)layout.Renderers[0];
+            var logEvent = LogEventInfo.Create(LogLevel.Info, "logger", message);
+
+            // Act
+            var result = stringValueRenderer.GetFormattedString(logEvent);
+
+            // Assert
+            Assert.Equal(expected, result);
+
+
         }
     }
 }

@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System;
     using System.Text;
     using NLog.Config;
+    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -44,11 +45,12 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("when-empty")]
     [LayoutRenderer("whenEmpty")]
     [AmbientProperty("WhenEmpty")]
-    [AppDomainFixedOutput]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class WhenEmptyLayoutRendererWrapper : WrapperLayoutRendererBuilderBase, IRawValue, IStringValueRenderer
     {
+        private bool _skipStringValueRenderer;
+
         /// <summary>
         /// Gets or sets the layout to be rendered when original layout produced empty result.
         /// </summary>
@@ -61,6 +63,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             base.InitializeLayoutRenderer();
             WhenEmpty?.Initialize(LoggingConfiguration);
+            _skipStringValueRenderer = !TryGetStringValue(out _, out _);
         }
 
         /// <inheritdoc/>
@@ -72,6 +75,66 @@ namespace NLog.LayoutRenderers.Wrappers
 
             // render WhenEmpty when the inner layout was empty
             WhenEmpty.RenderAppendBuilder(logEvent, builder);
+        }
+
+        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent)
+        {
+            if (_skipStringValueRenderer)
+            {
+                return null;
+            }
+
+            if (TryGetStringValue(out var innerLayout, out var whenEmptyLayout))
+            {
+                var innerValue = innerLayout.Render(logEvent);
+                if (!string.IsNullOrEmpty(innerValue))
+                {
+                    return innerValue;
+                }
+
+                // render WhenEmpty when the inner layout was empty
+                return whenEmptyLayout.Render(logEvent);
+            }
+
+            _skipStringValueRenderer = true;
+            return null;
+        }
+
+        private bool TryGetStringValue(out SimpleLayout innerLayout, out SimpleLayout whenEmptyLayout)
+        {
+            whenEmptyLayout = WhenEmpty as SimpleLayout;
+            innerLayout = Inner as SimpleLayout;
+
+            return IsStringLayout(innerLayout) && IsStringLayout(whenEmptyLayout);
+        }
+
+        private static bool IsStringLayout(SimpleLayout innerLayout)
+        {
+            return innerLayout != null && (innerLayout.IsFixedText || innerLayout.IsSimpleStringText);
+        }
+
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            if (Inner.TryGetRawValue(logEvent, out var innerValue))
+            {
+                if (innerValue != null && !innerValue.Equals(string.Empty))
+                {
+                    value = innerValue;
+                    return true;
+                }
+            }
+            else
+            {
+                var innerResult = Inner.Render(logEvent); // Beware this can be very expensive call
+                if (!string.IsNullOrEmpty(innerResult))
+                {
+                    value = null;
+                    return false;
+                }
+            }
+
+            // render WhenEmpty when the inner layout was empty
+            return WhenEmpty.TryGetRawValue(logEvent, out value);
         }
 
         /// <inheritdoc/>

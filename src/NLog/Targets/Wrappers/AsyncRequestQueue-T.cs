@@ -94,8 +94,8 @@ namespace NLog.Targets.Wrappers
 
                         case AsyncTargetWrapperOverflowAction.Grow:
                             InternalLogger.Debug("The overflow action is Grow, adding element anyway");
-                            RequestLimit *= 2;
                             OnLogEventQueueGrows(RequestCount + 1);
+                            RequestLimit *= 2;
                             break;
 
                         case AsyncTargetWrapperOverflowAction.Block:

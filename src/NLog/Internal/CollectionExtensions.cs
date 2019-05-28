@@ -31,55 +31,47 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Common;
-using NLog.Targets.Wrappers;
+using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 
-using Xunit;
-
-namespace NLog.UnitTests.Targets.Wrappers
+namespace NLog.Internal
 {
-    public class ConcurrentRequestQueueTests : NLogTestBase
+    internal static class CollectionExtensions
     {
-        [Fact]
-        public void RaiseEventLogEventQueueGrow_OnLogItems()
+        /// <summary>
+        /// Memory optimized filtering
+        /// </summary>
+        /// <remarks>Passing state too avoid delegate capture and memory-allocations.</remarks>
+        [NotNull]
+        public static IList<TItem> Filter<TItem, TState>([NotNull] this IList<TItem> items, TState state, Func<TItem, TState, bool> filter)
         {
-            const int RequestsLimit = 2;
-            const int EventsCount = 5;
-            const int ExpectedCountOfGrovingTimes = 2;
-            const int ExpectedFinalSize = 8;
-            int grovingItemsCount = 0;
-
-            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Grow);
-
-            requestQueue.LogEventQueueGrow += (o, e) => { grovingItemsCount++; };
-
-            for (int i = 0; i < EventsCount; i++)
+            var hasIgnoredLogEvents = false;
+            IList<TItem> filterLogEvents = null;
+            for (var i = 0; i < items.Count; ++i)
             {
-                requestQueue.Enqueue(new AsyncLogEventInfo());
+                var item = items[i];
+                if (filter(item, state))
+                {
+                    if (hasIgnoredLogEvents && filterLogEvents == null)
+                    {
+                        filterLogEvents = new List<TItem>();
+                    }
+
+                    filterLogEvents?.Add(item);
+                }
+                else
+                {
+                    if (!hasIgnoredLogEvents && i > 0)
+                    {
+                        filterLogEvents = new List<TItem>();
+                        for (var j = 0; j < i; ++j)
+                            filterLogEvents.Add(items[j]);
+                    }
+                    hasIgnoredLogEvents = true;
+                }
             }
-
-            Assert.Equal(ExpectedCountOfGrovingTimes, grovingItemsCount);
-            Assert.Equal(ExpectedFinalSize, requestQueue.RequestLimit);
-        }
-
-        [Fact]
-        public void RaiseEventLogEventDropped_OnLogItems()
-        {
-            const int RequestsLimit = 2;
-            const int EventsCount = 5;
-            int discardedItemsCount = 0;
-	        
-            int ExpectedDiscardedItemsCount = EventsCount - RequestsLimit;
-            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(RequestsLimit, AsyncTargetWrapperOverflowAction.Discard);
-
-            requestQueue.LogEventDropped+= (o, e) => { discardedItemsCount++; };
-
-            for (int i = 0; i < EventsCount; i++)
-            {
-                requestQueue.Enqueue(new AsyncLogEventInfo());
-            }
-
-            Assert.Equal(ExpectedDiscardedItemsCount, discardedItemsCount);
+            return filterLogEvents ?? (hasIgnoredLogEvents ? ArrayHelper.Empty<TItem>() : items);
         }
     }
 }

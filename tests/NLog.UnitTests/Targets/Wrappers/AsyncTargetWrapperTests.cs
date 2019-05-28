@@ -98,6 +98,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 #endif
                 BatchSize = 3,
                 QueueLimit = 5, // Will make it "sleep" between every second write
+                FullBatchSizeWriteLimit = 1,
                 OverflowAction = AsyncTargetWrapperOverflowAction.Block
             };
             targetWrapper.Initialize(null);
@@ -108,35 +109,69 @@ namespace NLog.UnitTests.Targets.Wrappers
                 int flushCounter = 0;
                 AsyncContinuation flushHandler = (ex) => { ++flushCounter; };
 
-                List<KeyValuePair<LogEventInfo, AsyncContinuation>> itemPrepareList = new List<KeyValuePair<LogEventInfo, AsyncContinuation>>(500);
-                List<int> itemWrittenList = new List<int>(itemPrepareList.Capacity);
-                for (int i = 0; i< itemPrepareList.Capacity; ++i)
+                var itemPrepareList = new List<AsyncLogEventInfo>(500);
+                var itemWrittenList = new List<int>(itemPrepareList.Capacity);
+                for (int i = 0; i < itemPrepareList.Capacity; ++i)
                 {
                     var logEvent = new LogEventInfo();
                     int sequenceID = logEvent.SequenceID;
-                    itemPrepareList.Add(new KeyValuePair<LogEventInfo, AsyncContinuation>(logEvent, (ex) => itemWrittenList.Add(sequenceID)));
+                    bool blockConsumer = (itemPrepareList.Capacity / 2) == i;  // Force producers to get into blocking-mode
+                    itemPrepareList.Add(logEvent.WithContinuation((ex) => { if (blockConsumer) Thread.Sleep(125); itemWrittenList.Add(sequenceID); }));
                 }
 
-                long startTicks = Environment.TickCount;
-                for (int i = 0; i < itemPrepareList.Count; ++i)
+                var eventProducer0 = new ManualResetEvent(false);
+                var eventProducer1 = new ManualResetEvent(false);
+                ParameterizedThreadStart producerMethod = (s) =>
                 {
-                    var logEvent = itemPrepareList[i].Key;
-                    targetWrapper.WriteAsyncLogEvent(logEvent.WithContinuation(itemPrepareList[i].Value));
-                }
+                    var eventProducer = (ManualResetEvent)s;
+                    if (eventProducer != null)
+                        eventProducer.Set();    // Signal we are ready
+
+                    int partitionNo = ReferenceEquals(eventProducer, eventProducer1) ? 1 : 0;
+                    for (int i = 0; i < itemPrepareList.Count; ++i)
+                    {
+                        if (i % 2 == partitionNo)
+                            targetWrapper.WriteAsyncLogEvent(itemPrepareList[i]);
+                    }
+                };
+
+                Thread producer0 = new Thread(producerMethod);
+                producer0.IsBackground = true;
+                Thread producer1 = new Thread(producerMethod);
+                producer1.IsBackground = true;
+                producer1.Start(eventProducer0);
+                producer0.Start(eventProducer1);
+                Assert.True(eventProducer0.WaitOne(5000), "Producer0 Start Timeout");
+                Assert.True(eventProducer1.WaitOne(5000), "Producer1 Start Timeout");
+
+                long startTicks = Environment.TickCount;
+
+                Assert.True(producer0.Join(5000), "Producer0 Complete Timeout");  // Wait for producer0 to complete
+                Assert.True(producer1.Join(5000), "Producer1 Complete Timeout");  // Wait for producer1 to complete
+
+                long elapsedMilliseconds = Environment.TickCount - startTicks;
 
                 targetWrapper.Flush(flushHandler);
 
                 for (int i = 0; i < itemPrepareList.Count * 2 && itemWrittenList.Count != itemPrepareList.Count; ++i)
                     Thread.Sleep(1);
 
-                long elapsedMilliseconds = Environment.TickCount - startTicks;
-
                 Assert.Equal(itemPrepareList.Count, itemWrittenList.Count);
-                int prevSequenceID = 0;
-                for (int i = 0; i < itemWrittenList.Count; ++i)
+
+                int producer0sequenceID = 0;
+                int producer1sequenceID = 0;
+                for (int i = 1; i < itemWrittenList.Count; ++i)
                 {
-                    Assert.True(prevSequenceID < itemWrittenList[i]);
-                    prevSequenceID = itemWrittenList[i];
+                    if (itemWrittenList[i] % 2 == 0)
+                    {
+                        Assert.True(producer0sequenceID < itemWrittenList[i], "Producer0 invalid sequence");
+                        producer0sequenceID = itemWrittenList[i];
+                    }
+                    else
+                    {
+                        Assert.True(producer1sequenceID < itemWrittenList[i], "Producer1 invalid sequence");
+                        producer1sequenceID = itemWrittenList[i];
+                    }
                 }
 
 #if NET4_5
@@ -475,7 +510,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventsCounter = 0;
             var myTarget = new MyTarget();
 
-            var targetWrapper = new AsyncTargetWrapperForEventTests()
+            var targetWrapper = new AsyncTargetWrapper()
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
@@ -514,7 +549,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventsCounter = 0;
             var myTarget = new MyTarget();
 
-            var targetWrapper = new AsyncTargetWrapperForEventTests()
+            var targetWrapper = new AsyncTargetWrapper()
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
@@ -552,7 +587,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             int eventsCounter = 0;
             var myTarget = new MyTarget();
 
-            var targetWrapper = new AsyncTargetWrapperForEventTests()
+            var targetWrapper = new AsyncTargetWrapper()
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
@@ -588,18 +623,12 @@ namespace NLog.UnitTests.Targets.Wrappers
             int queueLimit = 2;
             int loggedEventCount = 10;
 
-            int expectedGrowingNumber = 0;
-
-        #if NETCOREAPP2_0
-            expectedGrowingNumber = loggedEventCount - queueLimit;
-        #else
-            expectedGrowingNumber = 3;
-        #endif
+            int expectedGrowingNumber = 3;
 
             int eventsCounter = 0;
             var myTarget = new MyTarget();
 
-            var targetWrapper = new AsyncTargetWrapperForEventTests()
+            var targetWrapper = new AsyncTargetWrapper()
             {
                 WrappedTarget = myTarget,
                 QueueLimit = queueLimit,
@@ -627,14 +656,6 @@ namespace NLog.UnitTests.Targets.Wrappers
             finally
             {
                 logFactory.Configuration = null;
-            }
-        }
-
-        private class AsyncTargetWrapperForEventTests : AsyncTargetWrapper
-        {
-            public void WriteEvent(AsyncLogEventInfo logEventInfo)
-            {
-                Write(logEventInfo);
             }
         }
 

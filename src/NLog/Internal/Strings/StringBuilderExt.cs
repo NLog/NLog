@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using NLog.MessageTemplates;
@@ -333,28 +334,28 @@ namespace NLog.Internal
         /// <summary>
         /// Apend a int type (byte, int) as string
         /// </summary>
-        internal static void AppendIntegerAsString(this StringBuilder sb, object value, TypeCode objTypeCode)
+        internal static void AppendIntegerAsString(this StringBuilder sb, IConvertible value, TypeCode objTypeCode)
         {
             switch (objTypeCode)
             {
-                case TypeCode.Byte: sb.AppendInvariant((byte)value); break;
-                case TypeCode.SByte: sb.AppendInvariant((sbyte)value); break;
-                case TypeCode.Int16: sb.AppendInvariant((short)value); break;
-                case TypeCode.Int32: sb.AppendInvariant((int)value); break;
+                case TypeCode.Byte: sb.AppendInvariant(value.ToByte(CultureInfo.InvariantCulture)); break;
+                case TypeCode.SByte: sb.AppendInvariant(value.ToSByte(CultureInfo.InvariantCulture)); break;
+                case TypeCode.Int16: sb.AppendInvariant(value.ToInt16(CultureInfo.InvariantCulture)); break;
+                case TypeCode.Int32: sb.AppendInvariant(value.ToInt32(CultureInfo.InvariantCulture)); break;
                 case TypeCode.Int64:
                     {
-                        long int64 = (long)value;
+                        long int64 = value.ToInt64(CultureInfo.InvariantCulture);
                         if (int64 < int.MaxValue && int64 > int.MinValue)
                             sb.AppendInvariant((int)int64);
                         else
                             sb.Append(int64);
                     }
                     break;
-                case TypeCode.UInt16: sb.AppendInvariant((ushort)value); break;
-                case TypeCode.UInt32: sb.AppendInvariant((uint)value); break;
+                case TypeCode.UInt16: sb.AppendInvariant(value.ToUInt16(CultureInfo.InvariantCulture)); break;
+                case TypeCode.UInt32: sb.AppendInvariant(value.ToUInt32(CultureInfo.InvariantCulture)); break;
                 case TypeCode.UInt64:
                     {
-                        ulong uint64 = (ulong)value;
+                        ulong uint64 = value.ToUInt64(CultureInfo.InvariantCulture);
                         if (uint64 < uint.MaxValue)
                             sb.AppendInvariant((uint)uint64);
                         else

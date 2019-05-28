@@ -185,7 +185,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Default action if all filters won't match
+        /// Default action if none of the filters match
         /// </summary>
         public FilterResult DefaultFilterResult { get; set; } = FilterResult.Ignore;
 
