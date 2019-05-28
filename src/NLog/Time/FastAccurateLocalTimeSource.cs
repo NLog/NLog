@@ -40,8 +40,8 @@ namespace NLog.Time
     /// <summary>
     /// Current local time retrieved from DateTime.UtcNow with local time offset
     /// </summary>
-    [TimeSource("FasterAccurateLocal")]
-    public class FasterAccurateLocalTimeSource : TimeSource
+    [TimeSource("FastAccurateLocal")]
+    public class FastAccurateLocalTimeSource : TimeSource
     {
         private long _ticksOffset;
         private long _lastUpdated;
@@ -49,7 +49,7 @@ namespace NLog.Time
         /// <summary>
         /// Initializes TimeSource with offset from utc to local time
         /// </summary>
-        public FasterAccurateLocalTimeSource()
+        public FastAccurateLocalTimeSource()
         {
             DateTime utc = DateTime.UtcNow;
             _ticksOffset = (DateTime.Now - utc).Ticks;
