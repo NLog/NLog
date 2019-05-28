@@ -76,22 +76,21 @@ namespace NLog.Time
 
         private DateTime GetTime()
         {
-            DateTime utc = DateTime.UtcNow;
+            long utcTicks = DateTime.UtcNow.Ticks;
 #if !SILVERLIGHT || WINDOWS_PHONE
-            long deltaTicks = utc.Ticks - Interlocked.Read(ref _lastUpdated);
+            long deltaTicks = utcTicks - Interlocked.Read(ref _lastUpdated);
 #else
-            long deltaTicks = utc.Ticks - Interlocked.CompareExchange(ref _lastUpdated, 0, 0);
+            long deltaTicks = utcTicks - Interlocked.CompareExchange(ref _lastUpdated, 0, 0);
 #endif
             long ticksOffset = _ticksOffset;
 
             if (deltaTicks > TimeSpan.TicksPerSecond || deltaTicks < -TimeSpan.TicksPerSecond)
             {
-                _ticksOffset = ticksOffset = (DateTime.Now - utc).Ticks;
-                _lastUpdated = utc.Ticks;
+                _ticksOffset = ticksOffset = (DateTime.Now.Ticks - utcTicks);
+                _lastUpdated = utcTicks;
             }
 
-            long ticks = utc.Ticks + ticksOffset;
-            return new DateTime(ticks, DateTimeKind.Local);
+            return new DateTime(utcTicks + ticksOffset, DateTimeKind.Local);
         }
     }
 }
