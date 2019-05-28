@@ -4,7 +4,35 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.6.4 (2019/05/28)
 
+#### Bugfixes
+
+- [#3392](https://github.com/NLog/NLog/pull/3392) NLog.Schema: Added missing defaultAction attribute on filters element in XSD (@304NotModified)
+- [#3415](https://github.com/NLog/NLog/pull/3415) AsyncWrapper in Blocking Mode can cause deadlock (@snakefoot)
+
+#### Features
+
+- [#3430](https://github.com/NLog/NLog/pull/3430) Added "Properties" property on Logger for reading and editing properties.(@snakefoot, @304NotModified)
+- [#3423](https://github.com/NLog/NLog/pull/3423) ${all-event-properties}: Added IncludeEmptyValues option (@304NotModified)
+- [#3394](https://github.com/NLog/NLog/pull/3394) ${when}, support for non-string values (@304NotModified)
+- [#3398](https://github.com/NLog/NLog/pull/3398) ${whenEmpty} support for non-string values (@snakefoot, @304NotModified)
+- [#3391](https://github.com/NLog/NLog/pull/3391) Added ${environment-user} (@snakefoot)
+- [#3389](https://github.com/NLog/NLog/pull/3389) Log4JXmlEventLayout - Added support for configuration of Parameters (@snakefoot)
+- [#3411](https://github.com/NLog/NLog/pull/3411) LoggingConfigurationParser - Recognize LoggingRule.RuleName property (@snakefoot)
+
+#### Improvements
+
+- [#3393](https://github.com/NLog/NLog/pull/3393) Update package descriptions to note the issues with <PackageReference> (@304NotModified)
+- [#3409](https://github.com/NLog/NLog/pull/3409) Various XSD improvements (NLog.Schema package) (@304NotModified)
+
+#### Performance
+
+- [#3398](https://github.com/NLog/NLog/pull/3398) ${whenEmpty} faster rendering of string values (@snakefoot, @304NotModified)
+- [#3405](https://github.com/NLog/NLog/pull/3405) FilteringTargetWrapper: Add support for batch writing (@snakefoot, @304NotModified)
+- [#3405](https://github.com/NLog/NLog/pull/3405) PostFilteringTargetWrapper: performance optimizations (@snakefoot, @304NotModified)
+- [#3435](https://github.com/NLog/NLog/pull/3435) Async / buffering wrapper: Improve performance when blocking (@snakefoot)
+- [#3434](https://github.com/NLog/NLog/pull/3434) ObjectReflectionCache - Skip property-reflection for IFormattable (@snakefoot)
 
 ### V4.6.3 (2019/04/30)
 

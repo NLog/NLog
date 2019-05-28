@@ -65,9 +65,14 @@ namespace NLog.Common
         }
 
         /// <summary>
-        /// Gets the number of items in the array.
+        /// Gets the capacity of the buffer
         /// </summary>
         public int Size => _buffer.Length;
+
+        /// <summary>
+        /// Gets the number of items in the buffer
+        /// </summary>
+        internal int Count { get { lock (_lockObject) return _count; } }
 
         /// <summary>
         /// Adds the specified log event to the buffer.

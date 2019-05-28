@@ -31,19 +31,20 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
-using NLog.Config;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
-    using System.Threading;
-    using System.Diagnostics;
     using System;
-    using System.Xml;
-    using System.Reflection;
+    using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
-    using Xunit;
+    using System.Reflection;
+    using System.Threading;
+    using System.Xml;
+    using NLog.Config;
     using NLog.Internal;
+    using NLog.Layouts;
+    using NLog.Targets;
+    using Xunit;
 
     public class Log4JXmlTests : NLogTestBase
     {
@@ -53,8 +54,8 @@ namespace NLog.UnitTests.LayoutRenderers
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog throwExceptions='true'>
                 <targets>
-        <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}}' />
-       </targets>
+                    <target name='debug' type='Debug' layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}}' />
+                </targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
@@ -233,6 +234,35 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 Assert.True(foundsChilds.ContainsKey(required), $"{required} not found!");
             }
+        }
+
+        [Fact]
+        void Log4JXmlEventLayoutParameterTest()
+        {
+            var log4jLayout = new Log4JXmlEventLayout()
+            {
+                Parameters =
+                {
+                    new NLogViewerParameterInfo
+                    {
+                        Name = "mt",
+                        Layout = "${message:raw=true}",
+                    }
+                },
+            };
+            log4jLayout.Renderer.AppInfo = "MyApp";
+            var logEventInfo = new LogEventInfo
+            {
+                LoggerName = "MyLOgger",
+                TimeStamp = new DateTime(2010, 01, 01, 12, 34, 56, DateTimeKind.Utc),
+                Level = LogLevel.Info,
+                Message = "hello, {0}",
+                Parameters = new[] { "world" },
+            };
+
+            var threadid = Environment.CurrentManagedThreadId;
+            var machinename = Environment.MachineName;
+            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, world</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, {{0}}\" /><log4j:data name=\"log4japp\" value=\"MyApp\" /><log4j:data name=\"log4jmachinename\" value=\"{machinename}\" /></log4j:properties></log4j:event>", log4jLayout.Render(logEventInfo)); 
         }
 
         [Fact]

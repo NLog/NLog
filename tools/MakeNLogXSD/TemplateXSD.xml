@@ -43,12 +43,12 @@
     </xs:attribute>
     <xs:attribute name="globalThreshold" type="NLogLevel">
       <xs:annotation>
-        <xs:documentation>Global log level threshold for application log messages. Messages below this level won't be logged..</xs:documentation>
+        <xs:documentation>Global log level threshold for application log messages. Messages below this level won't be logged.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="throwExceptions" type="xs:boolean">
       <xs:annotation>
-        <xs:documentation>Throw an exception when there is an internal error. Default value is: false.</xs:documentation>
+        <xs:documentation>Throw an exception when there is an internal error. Default value is: false. Not recommend to set to true in production!</xs:documentation>
       </xs:annotation>
     </xs:attribute>   
     <xs:attribute name="throwConfigExceptions" type="xs:boolean">
@@ -134,7 +134,7 @@
     </xs:choice>
     <xs:attribute name="name" use="optional">
       <xs:annotation>
-        <xs:documentation>Name of the logger. May include '*' character which acts like a wildcard. Allowed forms are: *, Name, *Name, Name* and *Name*</xs:documentation>
+        <xs:documentation>Name of the logger. May include  wildcard characters ('*' or '?').</xs:documentation>
       </xs:annotation>
     </xs:attribute>
 
@@ -174,9 +174,9 @@
       </xs:annotation>
     </xs:attribute>
 
-    <xs:attribute name="enabled" type="xs:boolean" default="true">
+    <xs:attribute name="ruleName" type="xs:string" use="optional">
       <xs:annotation>
-        <xs:documentation>Enable or disable logging rule. Disabled rules are ignored.</xs:documentation>
+        <xs:documentation>Rule identifier to allow rule lookup with Configuration.FindRuleByName and Configuration.RemoveRuleByName.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -185,6 +185,11 @@
     <xs:choice minOccurs="0" maxOccurs="unbounded">
       <filters-go-here xmlns=""/>
     </xs:choice>
+     <xs:attribute name="defaultAction" type="FilterResult">
+      <xs:annotation>
+        <xs:documentation>Default action if none of the filters match.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:simpleType name="NLogLevel">
