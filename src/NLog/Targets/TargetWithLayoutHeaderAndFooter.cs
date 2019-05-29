@@ -109,5 +109,5 @@ namespace NLog.Targets
             get => (LayoutWithHeaderAndFooter)base.Layout;
             set => base.Layout = value;
         }
-   }
+    }
 }

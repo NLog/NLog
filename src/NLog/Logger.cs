@@ -241,19 +241,6 @@ namespace NLog
         }
 
         /// <summary>
-        /// Writes the diagnostic message and exception at the specified level.
-        /// </summary>
-        /// <param name="level">The log level.</param>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Log(LogLevel, String, Exception) method instead. Marked obsolete before v4.3.11")]
-        public void LogException(LogLevel level, [Localizable(false)] string message, Exception exception)
-        {
-            Log(level, message, exception);
-        }
-
-        /// <summary>
         /// Writes the diagnostic message at the specified level using the specified parameters and formatting them with the supplied format provider.
         /// </summary>
         /// <param name="level">The log level.</param>
@@ -294,22 +281,6 @@ namespace NLog
             if (IsEnabled(level))
             {
                 WriteToTargets(level, message, args);
-            }
-        }
-
-        /// <summary>
-        /// Writes the diagnostic message and exception at the specified level.
-        /// </summary>
-        /// <param name="level">The log level.</param>
-        /// <param name="message">A <see langword="string" /> to be written.</param>
-        /// <param name="exception">An exception to be logged.</param>
-        /// <remarks>This method was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Log(LogLevel level, Exception exception, [Localizable(false)] string message, params object[] args) instead. Marked obsolete before v4.3.11")]
-        public void Log(LogLevel level, [Localizable(false)] string message, Exception exception)
-        {
-            if (IsEnabled(level))
-            {
-                WriteToTargets(level, exception, message, null);
             }
         }
 

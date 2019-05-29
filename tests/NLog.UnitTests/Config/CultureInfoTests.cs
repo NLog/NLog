@@ -126,24 +126,6 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
-        public void EventContextRendererCultureTest()
-        {
-            string cultureName = "de-DE";
-            string expected = "1,23";   // with decimal comma
-
-            var logEventInfo = CreateLogEventInfo(cultureName);
-            logEventInfo.Properties["ADouble"] = 1.23;
-
-#pragma warning disable 618
-            var renderer = new EventContextLayoutRenderer();
-#pragma warning restore 618
-            renderer.Item = "ADouble";
-            string output = renderer.Render(logEventInfo);
-
-            Assert.Equal(expected, output);
-        }
-
-        [Fact]
         public void ProcessInfoLayoutRendererCultureTest()
         {
             string cultureName = "de-DE";

@@ -34,8 +34,6 @@
 using System.Linq;
 using System.Text;
 
-#pragma warning disable 0618
-
 namespace NLog.UnitTests.Contexts
 {
     using System;
@@ -137,26 +135,26 @@ namespace NLog.UnitTests.Contexts
                     {
                         try
                         {
-                            MDC.Clear();
-                            Assert.False(MDC.Contains("foo"));
-                            Assert.Equal(string.Empty, MDC.Get("foo"));
-                            Assert.False(MDC.Contains("foo2"));
-                            Assert.Equal(string.Empty, MDC.Get("foo2"));
+                            MappedDiagnosticsContext.Clear();
+                            Assert.False(MappedDiagnosticsContext.Contains("foo"));
+                            Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
+                            Assert.False(MappedDiagnosticsContext.Contains("foo2"));
+                            Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo2"));
 
-                            MDC.Set("foo", "bar");
-                            MDC.Set("foo2", "bar2");
+                            MappedDiagnosticsContext.Set("foo", "bar");
+                            MappedDiagnosticsContext.Set("foo2", "bar2");
 
-                            Assert.True(MDC.Contains("foo"));
-                            Assert.Equal("bar", MDC.Get("foo"));
+                            Assert.True(MappedDiagnosticsContext.Contains("foo"));
+                            Assert.Equal("bar", MappedDiagnosticsContext.Get("foo"));
 
-                            MDC.Remove("foo");
-                            Assert.False(MDC.Contains("foo"));
-                            Assert.Equal(string.Empty, MDC.Get("foo"));
+                            MappedDiagnosticsContext.Remove("foo");
+                            Assert.False(MappedDiagnosticsContext.Contains("foo"));
+                            Assert.Equal(string.Empty, MappedDiagnosticsContext.Get("foo"));
 
-                            Assert.True(MDC.Contains("foo2"));
-                            Assert.Equal("bar2", MDC.Get("foo2"));
+                            Assert.True(MappedDiagnosticsContext.Contains("foo2"));
+                            Assert.Equal("bar2", MappedDiagnosticsContext.Get("foo2"));
 
-                            Assert.Null(MDC.GetObject("foo3"));
+                            Assert.Null(MappedDiagnosticsContext.GetObject("foo3"));
                         }
                         catch (Exception ex)
                         {
@@ -201,8 +199,8 @@ namespace NLog.UnitTests.Contexts
             {
                 try
                 {
-                    getObject = MDC.GetObject("DoNotExist");
-                    getValue = MDC.Get("DoNotExistEither");
+                    getObject = MappedDiagnosticsContext.GetObject("DoNotExist");
+                    getValue = MappedDiagnosticsContext.Get("DoNotExistEither");
                 }
                 finally
                 {

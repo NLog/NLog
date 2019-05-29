@@ -189,20 +189,6 @@ namespace NLog.Targets
         public bool KeepConnection { get; set; }
 
         /// <summary>
-        /// Obsolete - value will be ignored! The logging code always runs outside of transaction. 
-        /// 
-        /// Gets or sets a value indicating whether to use database transactions. 
-        /// Some data providers require this.
-        /// </summary>
-        /// <docgen category='Connection Options' order='10' />
-        /// <remarks>
-        /// This option was removed in NLog 4.0 because the logging code always runs outside of transaction. 
-        /// This ensures that the log gets written to the database if you rollback the main transaction because of an error and want to log the error.
-        /// </remarks>
-        [Obsolete("Value will be ignored as logging code always executes outside of a transaction. Marked obsolete on NLog 4.0 and it will be removed in NLog 6.")]
-        public bool? UseTransactions { get; set; }
-
-        /// <summary>
         /// Gets or sets the database host name. If the ConnectionString is not provided
         /// this value will be used to construct the "Server=" part of the
         /// connection string.
@@ -350,13 +336,6 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-
-#pragma warning disable 618
-            if (UseTransactions.HasValue)
-#pragma warning restore 618
-            {
-                InternalLogger.Warn("DatabaseTarget(Name={0}): UseTransactions property is obsolete and will not be used - will be removed in NLog 6", Name);
-            }
 
             bool foundProvider = false;
             string providerName = string.Empty;
@@ -574,20 +553,6 @@ namespace NLog.Targets
                     CloseConnection();
                 }
             }
-        }
-
-        /// <summary>
-        /// NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
-        /// 
-        /// Writes an array of logging events to the log target. By default it iterates on all
-        /// events and passes them to "Write" method. Inheriting classes can use this method to
-        /// optimize batch writes.
-        /// </summary>
-        /// <param name="logEvents">Logging events to be written out.</param>
-        [Obsolete("Instead override Write(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
-        protected override void Write(AsyncLogEventInfo[] logEvents)
-        {
-            Write((IList<AsyncLogEventInfo>)logEvents);
         }
 
         /// <summary>

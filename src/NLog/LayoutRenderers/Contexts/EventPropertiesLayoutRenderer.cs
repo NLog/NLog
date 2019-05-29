@@ -44,6 +44,7 @@ namespace NLog.LayoutRenderers
     /// </summary>
     [LayoutRenderer("event-property")]
     [LayoutRenderer("event-properties")]
+    [LayoutRenderer("event-context")]
     [ThreadAgnostic]
     [ThreadSafe]
     [MutableUnsafe]

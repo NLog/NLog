@@ -57,14 +57,6 @@ namespace NLog
 
         private static readonly object lockObject = new object();
 
-
-        /// <summary>
-        /// Delegate used to set/get the culture in use.
-        /// </summary>
-        /// <remarks>This delegate marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Marked obsolete before v4.3.11")]
-        public delegate CultureInfo GetCultureInfo();
-
         /// <summary>
         /// Gets the <see cref="NLog.LogFactory" /> instance used in the <see cref="LogManager"/>.
         /// </summary>
@@ -153,17 +145,6 @@ namespace NLog
         {
             get => factory.GlobalThreshold;
             set => factory.GlobalThreshold = value;
-        }
-
-        /// <summary>
-        /// Gets or sets the default culture to use.
-        /// </summary>
-        /// <remarks>This property was marked as obsolete before NLog 4.3.11 and it may be removed in a future release.</remarks>
-        [Obsolete("Use Configuration.DefaultCultureInfo property instead. Marked obsolete before v4.3.11")]
-        public static GetCultureInfo DefaultCultureInfo
-        {
-            get { return () => factory.DefaultCultureInfo ?? CultureInfo.CurrentCulture; }
-            set => throw new NotSupportedException("Setting the DefaultCultureInfo delegate is no longer supported. Use the Configuration.DefaultCultureInfo property to change the default CultureInfo.");
         }
 
         /// <summary>
