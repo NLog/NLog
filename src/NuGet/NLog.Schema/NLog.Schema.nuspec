@@ -10,7 +10,10 @@
     <summary>Enables Intellisense(TM) when editing NLog.config.</summary>
     <description>XSD file to enables Intellisense(TM) when editing NLog configuration files, for example in Visual Studio.  
 
-Note: extensions to NLog will report XSD errors. Those can be ignored safely.  </description>
+Notes:
+- Extensions could report XSD errors. Those errors could be ignored safely.  
+- Unfortunately this package won't work well when using &lt;PackageReference&gt;. You could download the lastest XSD from here: https://nlog-project.org/schemas/NLog.xsd 
+</description>
     <releaseNotes>NLog $BuildVersion$</releaseNotes>
     <language>en-US</language>
     <iconUrl>https://nlog-project.org/NConfig.png</iconUrl>

@@ -43,6 +43,7 @@ namespace NLog
     /// </summary>
     public static class GlobalDiagnosticsContext
     {
+        private static readonly object _lockObject = new object();
         private static Dictionary<string, object> _dict = new Dictionary<string, object>();
         private static Dictionary<string, object> _dictReadOnly;  // Reset cache on change
 
@@ -63,7 +64,7 @@ namespace NLog
         /// <param name="value">Item value.</param>
         public static void Set(string item, object value)
         {
-            lock (_dict)
+            lock (_lockObject)
             {
                 bool requireCopyOnWrite = _dictReadOnly != null && !_dict.ContainsKey(item); // Overwiting existing value is ok (no resize)
                 GetWritableDict(requireCopyOnWrite)[item] = value;
@@ -129,7 +130,7 @@ namespace NLog
         /// <param name="item">Item name.</param>
         public static void Remove(string item)
         {
-            lock (_dict)
+            lock (_lockObject)
             {
                 bool requireCopyOnWrite = _dictReadOnly != null && _dict.ContainsKey(item);
                 GetWritableDict(requireCopyOnWrite).Remove(item);
@@ -141,7 +142,7 @@ namespace NLog
         /// </summary>
         public static void Clear()
         {
-            lock (_dict)
+            lock (_lockObject)
             {
                 bool requireCopyOnWrite = _dictReadOnly != null && _dict.Count > 0;
                 GetWritableDict(requireCopyOnWrite, true).Clear();
@@ -153,7 +154,7 @@ namespace NLog
             var readOnly = _dictReadOnly;
             if (readOnly == null)
             {
-                lock (_dict)
+                lock (_lockObject)
                 {
                     readOnly = _dictReadOnly = _dict;
                 }

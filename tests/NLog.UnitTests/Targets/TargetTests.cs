@@ -84,8 +84,6 @@ namespace NLog.UnitTests.Targets
 
                         var args = new List<object> { fileTarget };
 
-
-
                         //default ctor
                         var defaultConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType);
                         defaultConstructedTarget.Name = name;
@@ -94,7 +92,7 @@ namespace NLog.UnitTests.Targets
                         //specials cases
                         if (targetType == typeof(FilteringTargetWrapper))
                         {
-                            var cond = new ConditionLoggerNameExpression();
+                            ConditionLoggerNameExpression cond = null;
                             args.Add(cond);
                             var target = (FilteringTargetWrapper)defaultConstructedTarget;
                             target.Condition = cond;
