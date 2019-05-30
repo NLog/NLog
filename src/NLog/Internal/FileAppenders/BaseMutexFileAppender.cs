@@ -73,7 +73,7 @@ namespace NLog.Internal.FileAppenders
         {
             if (createParameters.IsArchivingEnabled)
             {
-                if (PlatformDetector.SupportsSharableMutex)
+                if (MutexDetector.SupportsSharableMutex)
                 {
 #if SupportsMutex
                     ArchiveMutex = CreateArchiveMutex();
@@ -135,7 +135,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A <see cref="Mutex"/> object which is sharable by multiple processes.</returns>
         protected Mutex CreateSharableMutex(string mutexNamePrefix)
         {
-            if (!PlatformDetector.SupportsSharableMutex)
+            if (!MutexDetector.SupportsSharableMutex)
                 throw new NotSupportedException("Creating Mutex not supported");
 
             var name = GetMutexName(mutexNamePrefix);
