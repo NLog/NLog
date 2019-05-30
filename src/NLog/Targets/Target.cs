@@ -521,7 +521,13 @@ namespace NLog.Targets
             {
                 _allLayoutsAreThreadSafe = _allLayouts.All(layout => layout.ThreadSafe);
             }
-            StackTraceUsage = _allLayouts.DefaultIfEmpty().Aggregate(StackTraceUsage.None, (seed,layout) => seed | (layout?.StackTraceUsage ?? StackTraceUsage.None));
+
+            StackTraceUsage result = StackTraceUsage.None;
+            foreach (var layout in _allLayouts.DefaultIfEmpty())
+            {
+                result |= layout?.StackTraceUsage ?? StackTraceUsage.None;
+            }
+            StackTraceUsage = result;
             if (this is IUsesStackTrace usesStackTrace)
                 StackTraceUsage |= usesStackTrace.StackTraceUsage;
             _scannedForLayouts = true;
