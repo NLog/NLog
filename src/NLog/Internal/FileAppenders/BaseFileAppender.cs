@@ -163,8 +163,9 @@ namespace NLog.Internal.FileAppenders
         /// Creates the file stream.
         /// </summary>
         /// <param name="allowFileSharedWriting">If set to <c>true</c> sets the file stream to allow shared writing.</param>
+        /// <param name="overrideBufferSize">If larger than 0 then it will be used instead of the default BufferSize for the FileStream.</param>
         /// <returns>A <see cref="FileStream"/> object which can be used to write to the file.</returns>
-        protected FileStream CreateFileStream(bool allowFileSharedWriting)
+        protected FileStream CreateFileStream(bool allowFileSharedWriting, int overrideBufferSize = 0)
         {
             int currentDelay = CreateFileParameters.ConcurrentWriteAttemptDelay;
 
@@ -175,7 +176,7 @@ namespace NLog.Internal.FileAppenders
                 {
                     try
                     {
-                        return TryCreateFileStream(allowFileSharedWriting);
+                        return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
                     }
                     catch (DirectoryNotFoundException)
                     {
@@ -194,7 +195,7 @@ namespace NLog.Internal.FileAppenders
                             //if creating a directory failed, don't retry for this message (e.g the ConcurrentWriteAttempts below)
                             throw new NLogRuntimeException("Could not create directory {0}", directoryName);
                         }
-                        return TryCreateFileStream(allowFileSharedWriting);
+                        return TryCreateFileStream(allowFileSharedWriting, overrideBufferSize);
 
                     }
                 }
@@ -217,7 +218,7 @@ namespace NLog.Internal.FileAppenders
 
 #if !SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__  && !NETSTANDARD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Objects are disposed elsewhere")]
-        private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting)
+        private FileStream WindowsCreateFile(string fileName, bool allowFileSharedWriting, int overrideBufferSize)
         {
             int fileShare = Win32FileNativeMethods.FILE_SHARE_READ;
 
@@ -250,7 +251,7 @@ namespace NLog.Internal.FileAppenders
                     Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
                 }
 
-                fileStream = new FileStream(handle, FileAccess.Write, CreateFileParameters.BufferSize);
+                fileStream = new FileStream(handle, FileAccess.Write, overrideBufferSize > 0 ? overrideBufferSize : CreateFileParameters.BufferSize);
                 fileStream.Seek(0, SeekOrigin.End);
                 return fileStream;
             }
@@ -266,7 +267,7 @@ namespace NLog.Internal.FileAppenders
         }
 #endif
 
-        private FileStream TryCreateFileStream(bool allowFileSharedWriting)
+        private FileStream TryCreateFileStream(bool allowFileSharedWriting, int overrideBufferSize)
         {
             UpdateCreationTime();
 
@@ -275,7 +276,7 @@ namespace NLog.Internal.FileAppenders
             {
                 if (!CreateFileParameters.ForceManaged && PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
                 {
-                    return WindowsCreateFile(FileName, allowFileSharedWriting);
+                    return WindowsCreateFile(FileName, allowFileSharedWriting, overrideBufferSize);
                 }
             }
             catch (SecurityException)
@@ -295,7 +296,7 @@ namespace NLog.Internal.FileAppenders
                 FileMode.Append,
                 FileAccess.Write,
                 fileShare,
-                CreateFileParameters.BufferSize);
+                overrideBufferSize > 0 ? overrideBufferSize : CreateFileParameters.BufferSize);
         }
 
         private void UpdateCreationTime()
