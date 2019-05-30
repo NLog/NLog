@@ -63,7 +63,8 @@ namespace NLog.Internal.FileAppenders
         /// <param name="count">The number of bytes.</param>
         public override void Write(byte[] bytes, int offset, int count)
         {
-            using (FileStream fileStream = CreateFileStream(false))
+            int overrideBufferSize = Math.Min((count / 4096 + 1) * 4096, CreateFileParameters.BufferSize);
+            using (FileStream fileStream = CreateFileStream(false, overrideBufferSize))
             {
                 fileStream.Write(bytes, offset, count);
             }
