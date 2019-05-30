@@ -425,7 +425,7 @@ namespace NLog.Targets
             get
             {
 #if SupportsMutex
-                return _concurrentWrites ?? PlatformDetector.SupportsSharableMutex;
+                return _concurrentWrites ?? MutexDetector.SupportsSharableMutex;
 #else
                 return _concurrentWrites ?? false;  // Better user experience for mobile platforms
 #endif
@@ -870,7 +870,7 @@ namespace NLog.Targets
 #endif
                 }
 
-                if (PlatformDetector.SupportsSharableMutex)
+                if (MutexDetector.SupportsSharableMutex)
                 {
                     return MutexMultiProcessFileAppender.TheFactory;
                 }
@@ -1341,7 +1341,7 @@ namespace NLog.Targets
                 if (!EnableFileDelete && KeepFileOpen)
                     throw;  // No need to retry when file delete has been disabled
 
-                if (!PlatformDetector.SupportsSharableMutex)
+                if (!MutexDetector.SupportsSharableMutex)
                     throw;  // No need to retry when not having a real archive mutex to protect us
 
                 // It is possible to move a file while other processes has open file-handles.
