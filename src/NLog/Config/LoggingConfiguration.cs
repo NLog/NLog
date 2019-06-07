@@ -227,8 +227,12 @@ namespace NLog.Config
         {
             if (name == null)
             {
-                // TODO: NLog 5 - The ArgumentException should be changed to ArgumentNullException for name parameter.
-                throw new ArgumentException("Target name cannot be null", nameof(name));
+                throw new ArgumentNullException(nameof(name), "Target name cannot be null");
+            }
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException("Target name cannot be empty", nameof(name));
             }
 
             if (target == null) { throw new ArgumentNullException(nameof(target)); }
