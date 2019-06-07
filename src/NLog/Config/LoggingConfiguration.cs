@@ -61,7 +61,7 @@ namespace NLog.Config
         /// <summary>
         /// Variables defined in xml or in API. name is case case insensitive. 
         /// </summary>
-        private readonly ThreadSafeDictionary<string, SimpleLayout> _variables = new ThreadSafeDictionary<string, SimpleLayout>(StringComparer.OrdinalIgnoreCase);
+        private readonly ThreadSafeDictionary<string, Layout> _variables = new ThreadSafeDictionary<string, Layout>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Gets the factory that will be configured
@@ -88,7 +88,7 @@ namespace NLog.Config
         /// <summary>
         /// Gets the variables defined in the configuration.
         /// </summary>
-        public IDictionary<string, SimpleLayout> Variables => _variables;
+        public IDictionary<string, Layout> Variables => _variables;
 
         /// <summary>
         /// Gets a collection of named targets specified in the configuration.
@@ -803,7 +803,7 @@ namespace NLog.Config
         /// Copies all variables from provided dictionary into current configuration variables. 
         /// </summary>
         /// <param name="masterVariables">Master variables dictionary</param>
-        internal void CopyVariables(IDictionary<string, SimpleLayout> masterVariables)
+        internal void CopyVariables(IDictionary<string, Layout> masterVariables)
         {
             _variables.CopyFrom(masterVariables);
         }
@@ -817,6 +817,7 @@ namespace NLog.Config
         internal string ExpandSimpleVariables(string input)
         {
             string output = input;
+            var culture = StringComparison.CurrentCultureIgnoreCase;
 
             if (Variables.Count > 0 && output?.IndexOf("${") >= 0)
             {
@@ -824,8 +825,24 @@ namespace NLog.Config
                 foreach (var kvp in variables)
                 {
                     var layout = kvp.Value;
+
+                    if (layout == null)
+                    {
+                        continue;
+                    }
+
+                    var layoutText = string.Concat("${", kvp.Key, "}");
+                    if (output.IndexOf(layoutText, culture) < 0)
+                    {
+                        continue;
+                    }
+
                     //this value is set from xml and that's a string. Because of that, we can use SimpleLayout here.
-                    if (layout != null) output = StringHelpers.Replace(output, string.Concat("${", kvp.Key, "}"), layout.OriginalText, StringComparison.CurrentCultureIgnoreCase);
+                    if (layout is SimpleLayout simpleLayout)
+                    {
+
+                        output = StringHelpers.Replace(output, layoutText, simpleLayout.OriginalText, culture);
+                    }
                 }
             }
 

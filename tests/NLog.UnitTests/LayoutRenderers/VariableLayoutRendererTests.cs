@@ -94,10 +94,36 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void Var_with_layout()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+    <variable name='myJson'  >
+        <layout type='JsonLayout'>
+            <attribute name='short date' layout='${level}' />
+            <attribute name='message' layout='${message}' />
+        </layout>
+    </variable>
+            
+                <targets>
+                    <target name='debug' type='Debug' layout='${var:myJson}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            logger.Debug("msg");
+            var lastMessage = GetDebugLastMessage("debug");
+            Assert.Equal("{ \"short date\": \"Debug\", \"message\": \"msg\" }", lastMessage);
+        }
+
+        [Fact]
         public void Var_in_file_target()
         {
-			string folderPath = Path.GetTempPath();
-			string logFilePath = Path.Combine(folderPath, "test.log");
+            string folderPath = Path.GetTempPath();
+            string logFilePath = Path.Combine(folderPath, "test.log");
 
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog>

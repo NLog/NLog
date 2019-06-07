@@ -115,8 +115,11 @@ namespace NLog.UnitTests
 
         protected DebugTarget GetDebugTarget(string targetName, LoggingConfiguration configuration)
         {
-            var debugTarget = (DebugTarget)configuration.FindTargetByName(targetName);
-            Assert.NotNull(debugTarget);
+            var debugTarget = configuration.FindTargetByName<DebugTarget>(targetName);
+            if (debugTarget == null)
+            {
+                throw new Exception($"debugtarget with name {targetName} not found in configuration");
+            }
             return debugTarget;
         }
 

@@ -65,14 +65,20 @@ namespace NLog.LayoutRenderers
         /// </summary>
         protected override void InitializeLayoutRenderer()
         {
-            SimpleLayout layout;
-            if (TryGetLayout(out layout) && layout != null)
+            if (TryGetLayout(out var layout) && layout != null)
             {
                 //pass loggingConfiguration to layout
                 layout.Initialize(LoggingConfiguration);
                 if (!layout.ThreadSafe)
                 {
-                    InternalLogger.Warn("${{var={0}}} should be declared as <variable name=\"var_{0}\" value=\"...\" /> and used like this ${{var_{0}}}. Because of unsafe Layout={1}", Name, layout);
+                    if (layout is SimpleLayout)
+                    {
+                        InternalLogger.Warn("${{var={0}}} should be declared as <variable name=\"var_{0}\" value=\"...\" /> and used like this ${{var_{0}}}. Because of layout isn't thread safe. Layout={1}", Name, layout);
+                    }
+                    else
+                    {
+                        InternalLogger.Warn("${{var={0}}} is not thread safe. Caution when updating in multithread environment", Name);
+                    }
                 }
             }
 
@@ -84,7 +90,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <param name="layout"></param>
         /// <returns></returns>
-        private bool TryGetLayout(out SimpleLayout layout)
+        private bool TryGetLayout(out Layout layout)
         {
             layout = null;
             //Note: don't use LogManager (locking, recursion)
@@ -101,15 +107,10 @@ namespace NLog.LayoutRenderers
         {
             if (Name != null)
             {
-                SimpleLayout layout;
-                if (TryGetLayout(out layout))
+                if (TryGetLayout(out var layout))
                 {
-                    //todo in later stage also layout as values?
                     //ignore NULL, but it set, so don't use default.
-                    if (layout != null)
-                    { 
-                        layout.RenderAppendBuilder(logEvent, builder);
-                    }
+                    layout?.RenderAppendBuilder(logEvent, builder);
                 }
                 else if (Default != null)
                 {
