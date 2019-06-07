@@ -74,13 +74,15 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
             logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", exceptionMessage);
+            var dataText = string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue);
+            AssertDebugLastMessage("debug1", ex.ToString() + " " + dataText);
             AssertDebugLastMessage("debug2", ex.StackTrace);
             AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
             AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
-            AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
+
+            AssertDebugLastMessage("debug9", dataText);
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
@@ -120,13 +122,14 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetExceptionWithStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
             logger.Error(ex);
-            AssertDebugLastMessage("debug1", exceptionMessage);
+            var dataText = string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue);
+            AssertDebugLastMessage("debug1", ex.ToString() + " " + dataText);
             AssertDebugLastMessage("debug2", ex.StackTrace);
             AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
             AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
-            AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
+            AssertDebugLastMessage("debug9", dataText);
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
@@ -163,7 +166,8 @@ namespace NLog.UnitTests.LayoutRenderers
             Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
             ex.Data.Add(exceptionDataKey, exceptionDataValue);
             logger.Error(ex, "msg");
-            AssertDebugLastMessage("debug1", exceptionMessage);
+            var dataText = string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue);
+            AssertDebugLastMessage("debug1", ex.ToString() + " " + dataText);
             AssertDebugLastMessage("debug2", "");
             AssertDebugLastMessage("debug3", typeof(CustomArgumentException).FullName);
             AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
@@ -171,7 +175,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug7", "");
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
-            AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
+            AssertDebugLastMessage("debug9", dataText);
         }
 
         [Fact]

@@ -71,7 +71,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public ExceptionLayoutRenderer()
         {
-            Format = "message";
+            Format = "TOSTRING,DATA";
             Separator = " ";
             ExceptionDataSeparator = ";";
             InnerExceptionSeparator = EnvironmentHelper.NewLine;
@@ -348,7 +348,20 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose call to ToString() should be appended.</param>       
         protected virtual void AppendToString(StringBuilder sb, Exception ex)
         {
-            sb.Append(ex.ToString());
+
+            try
+            {
+                sb.Append(ex.ToString());
+            }
+            catch (Exception exception)
+            {
+                var message =
+                    $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendToString(): {exception.GetType().FullName}.";
+                sb.Append("NLog message: ");
+                sb.Append(message);
+                InternalLogger.Warn(exception, message);
+            }
+
         }
 
         /// <summary>
