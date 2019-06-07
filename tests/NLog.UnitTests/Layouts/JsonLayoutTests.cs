@@ -384,7 +384,7 @@ namespace NLog.UnitTests.Layouts
         <attribute name='nested' encode='false'  >
           <layout type='JsonLayout'>
             <attribute name='message' layout='${message}' />
-            <attribute name='exception' layout='${exception}' />
+            <attribute name='exception' layout='${exception:message}' />
           </layout>
         </attribute>
       </layout>
@@ -411,7 +411,7 @@ namespace NLog.UnitTests.Layouts
             var nestedJsonLayout = (JsonLayout)attrs[2].Layout;
             Assert.Equal(2, nestedJsonLayout.Attributes.Count);
             Assert.Equal("${message}", nestedJsonLayout.Attributes[0].Layout.ToString());
-            Assert.Equal("${exception}", nestedJsonLayout.Attributes[1].Layout.ToString());
+            Assert.Equal("${exception:message}", nestedJsonLayout.Attributes[1].Layout.ToString());
 
             var logEventInfo = new LogEventInfo
             {

@@ -60,7 +60,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -70,7 +70,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='Trace' writeTo='debug' />
                     </rules>
@@ -234,7 +234,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -244,7 +244,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
@@ -408,7 +408,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -418,7 +418,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='Info' writeTo='debug' />
                     </rules>
@@ -582,7 +582,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -592,7 +592,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='Warn' writeTo='debug' />
                     </rules>
@@ -756,7 +756,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -766,7 +766,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
@@ -930,7 +930,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -940,7 +940,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='Fatal' writeTo='debug' />
                     </rules>
@@ -1107,7 +1107,7 @@ namespace NLog.UnitTests
                     {
                         LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -1117,7 +1117,7 @@ namespace NLog.UnitTests
                     {
                         LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='" + level.Name + @"' writeTo='debug' />
                             </rules>
@@ -1254,7 +1254,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -1264,7 +1264,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='Trace' writeTo='debug' />
                     </rules>
@@ -1428,7 +1428,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -1438,7 +1438,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='Debug' writeTo='debug' />
                     </rules>
@@ -1922,7 +1922,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='' writeTo='debug' />
                     </rules>
@@ -1932,7 +1932,7 @@ namespace NLog.UnitTests
                 {
                     LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' levels='Error' writeTo='debug' />
                     </rules>
@@ -2229,7 +2229,7 @@ namespace NLog.UnitTests
         {
             return XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog parseMessageTemplates='" + (parseMessageTemplates?.ToString() ?? string.Empty) + @"'>
-                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception}' /></targets>
+                    <targets><target name='debug' type='Debug' layout='${logger}|${message}${exception:message}' /></targets>
                     <rules>
                         <logger name='*' writeTo='debug' />
                     </rules>

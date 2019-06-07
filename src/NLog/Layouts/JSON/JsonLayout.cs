@@ -95,7 +95,7 @@ namespace NLog.Layouts
             RenderEmptyObject = true;
             IncludeAllProperties = false;
             ExcludeProperties = new HashSet<string>();
-            MaxRecursionLimit = 0;  // Will enumerate simple collections but not object properties. TODO NLog 5.0 change to 1 (or higher)
+            MaxRecursionLimit = 1;  // Will enumerate simple collections but not object properties. TODO NLog 5.0 change to 1 (or higher)
         }
 
         /// <summary>
