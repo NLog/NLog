@@ -43,7 +43,7 @@ namespace NLog.Internal.Fakeables
     /// <summary>
     /// Adapter for <see cref="AppDomain"/> to <see cref="IAppDomain"/>
     /// </summary>
-    public class AppDomainWrapper : IAppDomain
+    internal class AppDomainWrapper : IAppDomain
     {
 #if !SILVERLIGHT
         private readonly AppDomain _currentAppDomain;
