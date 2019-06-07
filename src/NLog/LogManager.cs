@@ -205,7 +205,6 @@ namespace NLog
         /// Creates a logger that discards all log messages.
         /// </summary>
         /// <returns>Null logger which discards all log messages.</returns>
-        [CLSCompliant(false)]
         public static Logger CreateNullLogger()
         {
             return factory.CreateNullLogger();
@@ -216,7 +215,6 @@ namespace NLog
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <returns>The logger reference. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
-        [CLSCompliant(false)]
         public static Logger GetLogger(string name)
         {
             return factory.GetLogger(name);
@@ -229,7 +227,6 @@ namespace NLog
         /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         /// <remarks>The generic way for this method is <see cref="NLog.LogFactory{loggerType}.GetLogger(string)"/></remarks>
-        [CLSCompliant(false)]
         public static Logger GetLogger(string name, Type loggerType)
         {
             return factory.GetLogger(name, loggerType);
