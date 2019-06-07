@@ -106,11 +106,7 @@ namespace NLog
         /// Initializes a new instance of the <see cref="LogFactory" /> class.
         /// </summary>
         public LogFactory()
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-            : this(new LoggingConfigurationWatchableFileLoader())
-#else
-            : this(new LoggingConfigurationFileLoader())
-#endif
+            : this(new LoggingConfigurationFileLoaderFactory().Create()) // TODO NLog 5 - Decouple with DI
         {
         }
 
