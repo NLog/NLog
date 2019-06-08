@@ -469,7 +469,30 @@ namespace NLog.Config
             if (!AssertNonEmptyValue(variableName, "name", variableElement.Name, "variables"))
                 return;
 
-            if (!AssertNotNullValue(variableValue, "value", variableElement.Name, "variables"))
+
+            if (variableValue == null)
+            {
+                variableValue = variableElement.Value;
+            }
+
+            if (variableValue == null)
+            {
+                var child = variableElement.Children.FirstOrDefault();
+                if (child != null)
+                {
+                    var layout = TryCreateLayoutInstance(child, typeof(Layout));
+
+                    if (layout != null)
+                    {
+                        ConfigureFromAttributesAndElements(child, layout);
+                        Variables[variableName] = layout;
+                        return;
+                    }
+                }
+            }
+
+
+            if (!AssertNotNullValue(variableValue, "value or text", variableElement.Name, "variables"))
                 return;
 
             string value = ExpandSimpleVariables(variableValue);
@@ -1081,7 +1104,7 @@ namespace NLog.Config
 
             return false;
         }
-        
+
         private bool SetFilterFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
         {
             var type = propInfo.PropertyType;
@@ -1100,8 +1123,8 @@ namespace NLog.Config
         private Layout TryCreateLayoutInstance(ILoggingConfigurationElement element, Type type)
         {
             return TryCreateInstance(element, type, _configurationItemFactory.Layouts);
-        } 
-        
+        }
+
         private Filter TryCreateFilterInstance(ILoggingConfigurationElement element, Type type)
         {
             return TryCreateInstance(element, type, _configurationItemFactory.Filters);
@@ -1129,14 +1152,18 @@ namespace NLog.Config
 
         private void SetItemOnProperty(object o, PropertyInfo propInfo, ILoggingConfigurationElement element, object properyValue)
         {
-            ConfigureObjectFromAttributes(properyValue, element, true);
-            ConfigureObjectFromElement(properyValue, element);
+            ConfigureFromAttributesAndElements(element, properyValue);
             propInfo.SetValue(o, properyValue, null);
         }
 
         private void SetItemFromElement(object o, PropertyInfo propInfo, ILoggingConfigurationElement element)
         {
             object item = propInfo.GetValue(o, null);
+            ConfigureFromAttributesAndElements(element, item);
+        }
+
+        private void ConfigureFromAttributesAndElements(ILoggingConfigurationElement element, object item)
+        {
             ConfigureObjectFromAttributes(item, element, true);
             ConfigureObjectFromElement(item, element);
         }

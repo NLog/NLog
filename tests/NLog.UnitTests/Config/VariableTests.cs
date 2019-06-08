@@ -113,8 +113,8 @@ namespace NLog.UnitTests.Config
             Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Error));
             Assert.True(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
 
-        }        
-        
+        }
+
         /// <summary>
         /// Expand of level attributes
         /// </summary>
@@ -147,16 +147,50 @@ namespace NLog.UnitTests.Config
 <nlog throwExceptions='true'>
     <variable name='prefix' value='[[' />
     <variable name='suffix' value=']]' />
-
-    <targets>
-        <target name='d1' type='Debug' layout='${prefix}${message}${suffix}' />
-    </targets>
 </nlog>");
 
-            LogManager.Configuration = configuration;
 
-            Assert.Equal("[[", LogManager.Configuration.Variables["prefix"].OriginalText);
-            Assert.Equal("]]", LogManager.Configuration.Variables["suffix"].OriginalText);
+            var nullEvent = LogEventInfo.CreateNullEvent();
+
+            // Act & Assert
+            Assert.Equal("[[", configuration.Variables["prefix"].Render(nullEvent));
+            Assert.Equal("]]", configuration.Variables["suffix"].Render(nullEvent));
+        }
+
+        [Fact]
+        public void Xml_configuration_with_inner_returns_defined_variables()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+    <variable name='prefix'  >[[</variable>
+    <variable name='suffix'>]]</variable>
+
+</nlog>");
+
+            var nullEvent = LogEventInfo.CreateNullEvent();
+
+            // Act & Assert
+            Assert.Equal("[[", configuration.Variables["prefix"].Render(nullEvent));
+            Assert.Equal("]]", configuration.Variables["suffix"].Render(nullEvent));
+        }
+        [Fact]
+        public void Xml_configuration_with_innerLayouts_returns_defined_variables()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+    <variable name='myJson'  >
+        <layout type='JsonLayout'>
+            <attribute name='short date' layout='${shortdate}' />
+            <attribute name='message' layout='${message}' />
+        </layout>
+    </variable>
+</nlog>");
+
+            // Act & Assert
+            var jsonLayout = Assert.IsType<JsonLayout>(configuration.Variables["myJson"]);
+            Assert.Equal(2, jsonLayout.Attributes.Count);
+            Assert.Equal("short date", jsonLayout.Attributes[0].Name);
+            Assert.NotNull(jsonLayout.Attributes[0].Layout);
         }
 
         [Fact]
