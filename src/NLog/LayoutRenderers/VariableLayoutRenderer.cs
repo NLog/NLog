@@ -77,7 +77,7 @@ namespace NLog.LayoutRenderers
                     }
                     else
                     {
-                        InternalLogger.Warn("${{var={0}}} is not thread safe. Caution when updating in multithread environment", Name);
+                        InternalLogger.Warn("${{var={0}}} is not thread safe. This could lead to unexpected results when two targets use the same layout", Name);
                     }
                 }
             }
