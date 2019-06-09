@@ -67,7 +67,7 @@ namespace NLog
 #if SILVERLIGHT
                     var stackTrace = new StackTrace();
 #else
-                    bool includeSource = (stu & StackTraceUsage.WithSourceCode) != 0;
+                    bool includeSource = (stu & StackTraceUsage.WithFileNameAndLineNumber) != 0;
 #if NETSTANDARD1_5
                     var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { includeSource });
 #else

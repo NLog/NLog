@@ -52,7 +52,7 @@ namespace NLog.Internal
         {
 #if !SILVERLIGHT
             if (includeFileName)
-                return skipFrames == 0 ? (StackTraceUsage.WithCallSite | StackTraceUsage.WithSourceCode) : StackTraceUsage.WithSource;
+                return skipFrames == 0 ? (StackTraceUsage.WithCallSite | StackTraceUsage.WithFileNameAndLineNumber) : StackTraceUsage.WithSource;
             else
 #endif
                 return skipFrames == 0 ? StackTraceUsage.WithCallSite : StackTraceUsage.WithoutSource;

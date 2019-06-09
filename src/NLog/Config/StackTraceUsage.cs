@@ -55,7 +55,7 @@ namespace NLog.Config
         /// <summary>
         /// Source-level information should be capture (source-filename + linenumber)
         /// </summary>
-        WithSourceCode = 2,
+        WithFileNameAndLineNumber = 2,
 #endif
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace NLog.Config
         /// <summary>
         /// Stack trace should be captured including source-level information such as line numbers.
         /// </summary>
-        WithSource = WithStackTrace | WithSourceCode,
+        WithSource = WithStackTrace | WithFileNameAndLineNumber,
 
         /// <summary>
         /// Capture maximum amount of the stack trace information supported on the platform.
