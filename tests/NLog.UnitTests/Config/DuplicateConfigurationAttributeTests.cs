@@ -86,8 +86,8 @@ namespace NLog.UnitTests.Config
                 }
             }, LogLevel.Error);
 
-            Assert.True(internalLog.Contains("Duplicate attribute detected. Attribute name: [minLevel]. Duplicate value:[trace], Current value:[info]"), internalLog);
-            Assert.True(internalLog.Contains("Duplicate attribute detected. Attribute name: [Substring]. Duplicate value:[msg1], Current value:[msg]"), internalLog);
+            Assert.True(internalLog.Contains("Skipping Duplicate value for 'logger'. PropertyName=minLevel. Skips Value=trace. Existing Value=info"), internalLog);
+            Assert.True(internalLog.Contains("Skipping Duplicate value for 'whencontains'. PropertyName=Substring. Skips Value=msg1. Existing Value=msg"), internalLog);
         }
 
         [Fact]

@@ -137,7 +137,6 @@ namespace NLog.UnitTests.Config
             Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Warn));
             Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Error));
             Assert.False(rule.IsLoggingEnabledForLevel(LogLevel.Fatal));
-
         }
 
         [Fact]
@@ -162,17 +161,19 @@ namespace NLog.UnitTests.Config
         {
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
-    <variable name='prefix'  >[[</variable>
-    <variable name='suffix'>]]</variable>
-
+    <variable name='prefix'><layout><![CDATA[
+newline
+]]></layout></variable>
+    <variable name='suffix'><layout>]]</layout></variable>
 </nlog>");
 
             var nullEvent = LogEventInfo.CreateNullEvent();
 
             // Act & Assert
-            Assert.Equal("[[", configuration.Variables["prefix"].Render(nullEvent));
+            Assert.Equal("\nnewline\n", configuration.Variables["prefix"].Render(nullEvent).Replace("\r", ""));
             Assert.Equal("]]", configuration.Variables["suffix"].Render(nullEvent));
         }
+
         [Fact]
         public void Xml_configuration_with_innerLayouts_returns_defined_variables()
         {
