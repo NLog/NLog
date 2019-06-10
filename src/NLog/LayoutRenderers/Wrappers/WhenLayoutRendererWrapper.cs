@@ -38,6 +38,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using NLog.Conditions;
     using NLog.Config;
     using NLog.Layouts;
+    using NLog.Internal;
 
     /// <summary>
     /// Only outputs the inner layout when the specified condition has been met.
@@ -46,7 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [AmbientProperty("When")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBuilderBase
+    public sealed class WhenLayoutRendererWrapper : WrapperLayoutRendererBuilderBase, IRawValue
     {
         /// <summary>
         /// Gets or sets the condition that must be met for the <see cref="WrapperLayoutRendererBase.Inner"/> layout to be printed.
@@ -67,13 +68,13 @@ namespace NLog.LayoutRenderers.Wrappers
             int orgLength = builder.Length;
             try
             {
-                if (When == null || true.Equals(When.Evaluate(logEvent)))
+                if (ShouldRenderInner(logEvent))
                 {
                     Inner?.RenderAppendBuilder(logEvent, builder);
                 }
-                else if (Else != null)
+                else
                 {
-                    Else.RenderAppendBuilder(logEvent, builder);
+                    Else?.RenderAppendBuilder(logEvent, builder);
                 }
             }
             catch
@@ -83,10 +84,37 @@ namespace NLog.LayoutRenderers.Wrappers
             }
         }
 
+        private bool ShouldRenderInner(LogEventInfo logEvent)
+        {
+            return When == null || true.Equals(When.Evaluate(logEvent));
+        }
+
         /// <inheritdoc/>
         [Obsolete("Inherit from WrapperLayoutRendererBase and override RenderInnerAndTransform() instead. Marked obsolete in NLog 4.6")]
         protected override void TransformFormattedMesssage(StringBuilder target)
         {
+        }
+
+        /// <inheritdoc />
+        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            if (ShouldRenderInner(logEvent))
+            {
+                return TryGetRawValueFromLayout(logEvent, Inner, out value);
+            }
+
+            return TryGetRawValueFromLayout(logEvent, Else, out value);
+        }
+
+        private static bool TryGetRawValueFromLayout(LogEventInfo logEvent, Layout layout, out object value)
+        {
+            if (layout == null)
+            {
+                value = null;
+                return false;
+            }
+
+            return layout.TryGetRawValue(logEvent, out value);
         }
     }
 }

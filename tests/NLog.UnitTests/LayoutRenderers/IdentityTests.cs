@@ -31,18 +31,15 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using NLog.Common;
-using NLog.Config;
-using NLog.Targets;
-using NLog.Targets.Wrappers;
-using NLog.UnitTests.Common;
-using NLog.UnitTests.Targets.Wrappers;
-
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
     using System.Security.Principal;
     using System.Threading;
+    using NLog.Common;
+    using NLog.Config;
+    using NLog.Targets.Wrappers;
+    using NLog.UnitTests.Common;
     using Xunit;
 
     public class IdentityTests : NLogTestBase
@@ -56,7 +53,10 @@ namespace NLog.UnitTests.LayoutRenderers
         {
 #if NETSTANDARD
             if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] IdentityTests.WindowsIdentityTest NetStandard on Travis not supporting WindowsIdentity");
                 return; // NetCore on Travis not supporting WindowsIdentity
+            }
 #endif
 
             var userDomainName = Environment.GetEnvironmentVariable("USERDOMAIN") ?? string.Empty;

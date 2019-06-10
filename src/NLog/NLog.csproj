@@ -31,37 +31,34 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
+
 Bugfixes:
 
-- Fixed potential memory issue and message duplication with large strings (@snakefoot)
-- TargetWithContext - serialize MDC and MDLC values properly (@304NotModified)
+- NLog.Schema: Added missing defaultAction attribute on filters element in XSD (@304NotModified)
+- AsyncWrapper in Blocking Mode can cause deadlock (@snakefoot)
 
 Features:
 
-- Added WithProperty and SetProperty on Logger (@snakefoot)
-- ${EventProperties} - Added ObjectPath for rendering nested property (@snakefoot, @304NotModified)
-- ${ShortDate} added support for IRawValue + IStringValueRenderer (@snakefoot)
-- Added truncate ambient property, e.g. ${message:truncate=80} (@snakefoot)
-- ConsoleTarget &amp; ColoredConsoleTarget  - Added AutoFlush and improve default flush behavior (@snakefoot)
+- Added &quot;Properties&quot; property on Logger for reading and editing properties.(@snakefoot, @304NotModified)
+- ${all-event-properties}: Added IncludeEmptyValues option (@304NotModified)
+- ${when}, support for non-string values (@304NotModified)
+- ${whenEmpty} support for non-string values (@snakefoot, @304NotModified)
+- Added ${environment-user} (@snakefoot)
+- Log4JXmlEventLayout - Added support for configuration of Parameters (@snakefoot)
+- LoggingConfigurationParser - Recognize LoggingRule.RuleName property (@snakefoot)
 
 Improvements:
 
-- FileTarget - Introduced EnableFileDeleteSimpleMonitor without FileSystemWatcher for non-Windows (@snakefoot)
-- LogFactory - GetLogger should validate name of logger (@snakefoot)
-- FallbackGroupTarget - Fixed potential issue with WINDOWS_PHONE (@snakefoot)
-- NLog config file loading: use process name (e.g. applicationname.exe.nlog) when app.config is not available (@snakefoot)
+- Update package descriptions to note the issues with &lt;PackageReference&gt; (@304NotModified)
+- Various XSD improvements (NLog.Schema package) (@304NotModified)
 
 Performance:
 
-- Split string - avoid allocation of object array. Added StringHelpers.SplitAndTrimTokens (@snakefoot)
-- AppSettingLayoutRenderer - Mark as ThreadSafe and ThreadAgnostic (@snakefoot)
-
-Misc:
-
-- Update docs of various context classes (@304NotModified)
-- Move NLogPackageLoaders for better unittest debugging experience of NLog (@304NotModified)
-- Make HttpNetworkSender mockable, add unit test, introduce NSubsitute (@304NotModified)
-- 10 pull requests with refactorings (@snakefoot, @304NotModified)
+- ${whenEmpty} faster rendering of string values (@snakefoot, @304NotModified)
+- FilteringTargetWrapper: Add support for batch writing (@snakefoot, @304NotModified)
+- PostFilteringTargetWrapper: performance optimizations (@snakefoot, @304NotModified)
+- Async / buffering wrapper: Improve performance when blocking (@snakefoot)
+- ObjectReflectionCache - Skip property-reflection for IFormattable (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

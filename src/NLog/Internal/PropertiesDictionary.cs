@@ -466,15 +466,7 @@ namespace NLog.Internal
                     }
                     if (_eventEnumeratorCreated)
                     {
-                        string parameterName;
-                        try
-                        {
-                            parameterName = XmlHelper.XmlConvertToString(_eventEnumerator.Current.Key ?? string.Empty);
-                        }
-                        catch
-                        {
-                            parameterName = "";
-                        }
+                        string parameterName = XmlHelper.XmlConvertToString(_eventEnumerator.Current.Key ?? string.Empty) ?? string.Empty;
                         return new MessageTemplateParameter(parameterName, _eventEnumerator.Current.Value.Value, null, CaptureType.Unknown);
                     }
                     throw new InvalidOperationException();

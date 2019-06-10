@@ -37,6 +37,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using System.Threading;
     using NLog.Common;
     using NLog.Conditions;
+    using NLog.Config;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
     using Xunit;
@@ -265,6 +266,39 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Null(lastException);
             Assert.Equal(0, myTarget.WriteCount);
             Assert.Equal(2, myMockCondition.CallCount);
+        }
+
+        [Fact]
+        public void FilteringTargetWrapperWhenRepeatedFilter()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                  <target name='debug' type='BufferingWrapper'>
+                      <target name='filter' type='FilteringWrapper'>
+                        <filter type='whenRepeated' layout='${message}' timeoutSeconds='30' action='Ignore' />
+                        <target name='memory' type='Memory' />
+                      </target>
+                  </target>
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug'/>
+                </rules>
+            </nlog>");
+
+            var myTarget = LogManager.Configuration.FindTargetByName<MemoryTarget>("memory");
+            var logger = LogManager.GetLogger(nameof(FilteringTargetWrapperWhenRepeatedFilter));
+            logger.Info("Hello World");
+            logger.Info("Hello World");     // Will be ignored
+            logger.Info("Goodbye World");
+            logger.Warn("Goodbye World");
+            LogManager.Flush();
+            Assert.Equal(3, myTarget.Logs.Count);
+            logger.Info("Hello World");     // Will be ignored
+            logger.Error("Goodbye World");
+            logger.Fatal("Goodbye World");
+            LogManager.Flush();
+            Assert.Equal(5, myTarget.Logs.Count);
         }
 
         class MyAsyncTarget : Target

@@ -35,10 +35,10 @@ namespace NLog.Targets.Wrappers
 {
     using System;
     using System.Collections.Generic;
-    using Common;
-    using Conditions;
-    using Config;
-    using Internal;
+    using NLog.Common;
+    using NLog.Conditions;
+    using NLog.Config;
+    using NLog.Internal;
 
     /// <summary>
     /// Filters buffered log entries based on a set of conditions that are evaluated on a group of events.
@@ -75,18 +75,17 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
         /// </summary>
-        public PostFilteringTargetWrapper() : this(null)
+        public PostFilteringTargetWrapper()
+            : this(null)
         {
-            Rules = new List<FilteringRule>();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PostFilteringTargetWrapper" /> class.
         /// </summary>
         public PostFilteringTargetWrapper(Target wrappedTarget)
+            : this(null, wrappedTarget)
         {
-            Rules = new List<FilteringRule>();
-            WrappedTarget = wrappedTarget;
         }
 
         /// <summary>
@@ -95,9 +94,10 @@ namespace NLog.Targets.Wrappers
         /// <param name="name">Name of the target.</param>
         /// <param name="wrappedTarget">The wrapped target.</param>
         public PostFilteringTargetWrapper(string name, Target wrappedTarget)
-            : this(wrappedTarget)
         {
             Name = name;
+            WrappedTarget = wrappedTarget;
+            Rules = new List<FilteringRule>();
         }
 
         /// <summary>
@@ -114,6 +114,23 @@ namespace NLog.Targets.Wrappers
         /// <docgen category='Filtering Rules' order='10' />
         [ArrayParameter(typeof(FilteringRule), "when")]
         public IList<FilteringRule> Rules { get; private set; }
+
+        /// <inheritdoc/>
+        protected override void InitializeTarget()
+        {
+            base.InitializeTarget();
+
+            if (!OptimizeBufferReuse && WrappedTarget != null && WrappedTarget.OptimizeBufferReuse)
+            {
+                OptimizeBufferReuse = GetType() == typeof(PostFilteringTargetWrapper); // Class not sealed, reduce breaking changes
+            }
+        }
+
+        /// <inheritdoc/>
+        protected override void Write(AsyncLogEventInfo logEvent)
+        {
+            Write((IList<AsyncLogEventInfo>)new[] { logEvent });  // Single LogEvent should also work
+        }
 
         /// <summary>
         /// NOTE! Obsolete, instead override Write(IList{AsyncLogEventInfo} logEvents)
@@ -138,12 +155,9 @@ namespace NLog.Targets.Wrappers
         /// <param name="logEvents">Array of log events to be post-filtered.</param>
         protected override void Write(IList<AsyncLogEventInfo> logEvents)
         {
-
-
             InternalLogger.Trace("PostFilteringWrapper(Name={0}): Running on {1} events", Name, logEvents.Count);
 
             var resultFilter = EvaluateAllRules(logEvents) ?? DefaultFilter;
-
             if (resultFilter == null)
             {
                 WrappedTarget.WriteAsyncLogEvents(logEvents);
@@ -151,9 +165,7 @@ namespace NLog.Targets.Wrappers
             else
             {
                 InternalLogger.Trace("PostFilteringWrapper(Name={0}): Filter to apply: {1}", Name, resultFilter);
-
-                var resultBuffer = ApplyFilter(logEvents, resultFilter);
-
+                var resultBuffer = logEvents.Filter(resultFilter, ApplyFilter);
                 InternalLogger.Trace("PostFilteringWrapper(Name={0}): After filtering: {1} events.", Name, resultBuffer.Count);
                 if (resultBuffer.Count > 0)
                 {
@@ -163,31 +175,18 @@ namespace NLog.Targets.Wrappers
             }
         }
 
-        /// <summary>
-        /// Apply the condition to the buffer
-        /// </summary>
-        /// <param name="logEvents"></param>
-        /// <param name="resultFilter"></param>
-        /// <returns></returns>
-        private static List<AsyncLogEventInfo> ApplyFilter(IList<AsyncLogEventInfo> logEvents, ConditionExpression resultFilter)
+        private static bool ApplyFilter(AsyncLogEventInfo logEvent, ConditionExpression resultFilter)
         {
-            var resultBuffer = new List<AsyncLogEventInfo>();
-
-            for (int i = 0; i < logEvents.Count; ++i)
+            object v = resultFilter.Evaluate(logEvent.LogEvent);
+            if (boxedTrue.Equals(v))
             {
-                object v = resultFilter.Evaluate(logEvents[i].LogEvent);
-                if (boxedTrue.Equals(v))
-                {
-                    resultBuffer.Add(logEvents[i]);
-                }
-                else
-                {
-                    // anything not passed down will be notified about successful completion
-                    logEvents[i].Continuation(null);
-                }
+                return true;
             }
-
-            return resultBuffer;
+            else
+            {
+                logEvent.Continuation(null);
+                return false;
+            }
         }
 
         /// <summary>
@@ -197,30 +196,24 @@ namespace NLog.Targets.Wrappers
         /// <returns></returns>
         private ConditionExpression EvaluateAllRules(IList<AsyncLogEventInfo> logEvents)
         {
-            ConditionExpression resultFilter = null;
-            
+            if (Rules.Count == 0)
+                return null;
+
             for (int i = 0; i < logEvents.Count; ++i)
             {
-                foreach (FilteringRule rule in Rules)
+                for (int j = 0; j < Rules.Count; ++j)
                 {
+                    var rule = Rules[j];
                     object v = rule.Exists.Evaluate(logEvents[i].LogEvent);
-
                     if (boxedTrue.Equals(v))
                     {
                         InternalLogger.Trace("PostFilteringWrapper(Name={0}): Rule matched: {1}", Name, rule.Exists);
-
-                        resultFilter = rule.Filter;
-                        break;
+                        return rule.Filter;
                     }
-                }
-
-                if (resultFilter != null)
-                {
-                    break;
                 }
             }
 
-            return resultFilter;
+            return null;
         }
     }
 }
