@@ -293,6 +293,7 @@ For all config options and platform support, check https://nlog-project.org/conf
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.0.0" />
     <PackageReference Include="System.ComponentModel.Primitives" Version="4.1.0" />
+    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.1.0" />
     <PackageReference Include="System.Data.Common" Version="4.1.0" />
     <PackageReference Include="System.Diagnostics.StackTrace" Version="4.0.1" />
     <PackageReference Include="System.Net.NameResolution" Version="4.0.0" />

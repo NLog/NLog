@@ -35,11 +35,12 @@ namespace NLog
 {
     using System;
     using System.Collections.Generic;
-    using NLog.Internal;
+    using System.ComponentModel;
 
     /// <summary>
     /// Defines available log levels.
     /// </summary>
+    [TypeConverter(typeof(Attributes.LogLevelTypeConverter))]
     public sealed class LogLevel : IComparable, IEquatable<LogLevel>, IConvertible
     {
         /// <summary>
@@ -464,7 +465,10 @@ namespace NLog
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            return Convert.ChangeType(_ordinal, conversionType, provider);
+            if (conversionType == typeof(string))
+                return Name;
+            else
+                return Convert.ChangeType(_ordinal, conversionType, provider);
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

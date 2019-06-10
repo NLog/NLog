@@ -132,16 +132,24 @@ namespace NLog.UnitTests.LayoutRenderers
         [Theory]
         [InlineData(typeof(int), 2)]
         [InlineData(typeof(uint), (uint)2)]
+        [InlineData(typeof(string), "Info")]
         public void LogLevelConvertTest(Type type, object expected)
         {
             // Arrange
-            var logLevel = LogLevel.Info;
-
+            IConvertible logLevel = LogLevel.Info;
+            var logConverter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(LogLevel));
+                
             // Act
-            var result = Convert.ChangeType(logLevel, type);
+            var changeTypeResult = Convert.ChangeType(logLevel, type);
+            var changeToResult = logLevel.ToType(type, System.Globalization.CultureInfo.CurrentCulture);
+            var convertToResult = logConverter.CanConvertTo(type) ? logConverter.ConvertTo(logLevel, type) : null;
+            var convertFromResult = logConverter.CanConvertFrom(expected.GetType()) ? logConverter.ConvertFrom(expected) : null;
 
             // Assert
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, changeTypeResult);
+            Assert.Equal(expected, changeToResult);
+            Assert.Equal(expected, convertToResult);
+            Assert.Equal(logLevel, convertFromResult);
         }
     }
 }
