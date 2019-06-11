@@ -313,7 +313,7 @@ namespace MakeNLogXSD
                     return attribute ? "SimpleLayoutAttribute" : "Layout";
 
                 case "NLog.Filters.Filter":
-                    return "Filter";
+                    return attribute ? "xs:string" : "Filter";
 
                 case "Condition":
                     return "Condition";
