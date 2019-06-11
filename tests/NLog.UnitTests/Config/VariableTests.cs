@@ -158,6 +158,29 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void Xml_configuration_with_inner_returns_defined_variables_withValueElement()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+    <variable name='prefix'>
+
+<value><![CDATA[
+newline
+]]></value>
+
+</variable>
+    <variable name='suffix'><value>]]</value></variable>
+</nlog>");
+
+            var nullEvent = LogEventInfo.CreateNullEvent();
+
+            // Act & Assert
+            Assert.Equal("\nnewline\n", configuration.Variables["prefix"].Render(nullEvent).Replace("\r", ""));
+            Assert.Equal("]]", configuration.Variables["suffix"].Render(nullEvent));
+        }
+
+
+        [Fact]
         public void NLogConfigurationExceptionShouldThrown_WhenVariableNodeIsWrittenToWrongPlace()
         {
             LogManager.ThrowConfigExceptions = true;
