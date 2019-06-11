@@ -149,7 +149,7 @@ namespace NLog.Internal
         private static ObjectPropertyInfos BuildObjectPropertyInfos(object value, Type objectType)
         {
             ObjectPropertyInfos propertyInfos;
-            if (ConvertToString(objectType))
+            if (ConvertSimpleToString(objectType))
             {
                 propertyInfos = ObjectPropertyInfos.SimpleToString;
             }
@@ -175,7 +175,7 @@ namespace NLog.Internal
             return propertyInfos;
         }
 
-        private static bool ConvertToString(Type objectType)
+        private static bool ConvertSimpleToString(Type objectType)
         {
             if (typeof(IFormattable).IsAssignableFrom(objectType))
                 return true;
