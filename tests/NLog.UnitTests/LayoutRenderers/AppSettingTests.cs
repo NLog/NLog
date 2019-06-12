@@ -35,10 +35,12 @@
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System.Collections.Generic;
     using System.Collections.Specialized;
+    using System.Configuration;
     using NLog.Internal;
     using NLog.LayoutRenderers;
-	using Xunit;
+    using Xunit;
 
     public class AppSettingTests : NLogTestBase
     {
@@ -109,14 +111,34 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(string.Empty, rendered);
         }
 
-        private class MockConfigurationManager : IConfigurationManager
+        [Fact]
+        public void UseConnectionStringTest()
         {
-            public MockConfigurationManager()
+            var configurationManager = new MockConfigurationManager();
+            const string expected = "Hello Connection";
+            configurationManager.ConnectionStrings["myConnection"] = new ConnectionStringSettings() { ConnectionString = expected };
+            var appSettingLayoutRenderer = new AppSettingLayoutRenderer2
             {
-                AppSettings = new NameValueCollection();
-            }
+                ConfigurationManager = configurationManager,
+                Item = "ConnectionStrings.myConnection",
+            };
 
-            public NameValueCollection AppSettings { get; private set; }
+            var rendered = appSettingLayoutRenderer.Render(LogEventInfo.CreateNullEvent());
+
+            Assert.Equal(expected, rendered);
+        }
+
+        private class MockConfigurationManager : IConfigurationManager2
+        {
+            public NameValueCollection AppSettings { get; } = new NameValueCollection();
+
+            public Dictionary<string, ConnectionStringSettings> ConnectionStrings { get; } = new Dictionary<string, ConnectionStringSettings>();
+
+            public ConnectionStringSettings LookupConnectionString(string name)
+            {
+                ConnectionStrings.TryGetValue(name, out var value);
+                return value;
+            }
         }
     }
 }

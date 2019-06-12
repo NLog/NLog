@@ -55,6 +55,8 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public sealed class AppSettingLayoutRenderer2 : LayoutRenderer, IStringValueRenderer
     {
+        private string _connectionStringName = null;
+
         ///<summary>
         /// The AppSetting item-name
         ///</summary>
@@ -75,7 +77,15 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public string Default { get; set; }
 
-        internal IConfigurationManager ConfigurationManager { get; set; } = new ConfigurationManager();
+        internal IConfigurationManager2 ConfigurationManager { get; set; } = new ConfigurationManager2();
+
+        /// <inheritdoc/>
+        protected override void InitializeLayoutRenderer()
+        {
+            string connectionStringSection = "ConnectionStrings.";
+            _connectionStringName = Item?.TrimStart().StartsWith(connectionStringSection, StringComparison.InvariantCultureIgnoreCase) == true ?
+                Item.TrimStart().Substring(connectionStringSection.Length) : null;
+        }
 
         /// <summary>
         /// Renders the specified application setting or default value and appends it to the specified <see cref="StringBuilder" />.
@@ -94,7 +104,9 @@ namespace NLog.LayoutRenderers
             if (string.IsNullOrEmpty(Item))
                 return Default;
 
-            string value = ConfigurationManager.AppSettings[Item];
+            string value = _connectionStringName != null ?
+                ConfigurationManager.LookupConnectionString(_connectionStringName)?.ConnectionString :
+                ConfigurationManager.AppSettings[Item];
             if (value == null && Default != null)
                 value = Default;
 
