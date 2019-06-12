@@ -104,6 +104,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <docgen category='Filtering Options' order='10' />
         [RequiredParameter]
+        [NLogConfigurationIgnoreProperty]
         public Filter Filter { get; set; }
 
         /// <inheritdoc/>
