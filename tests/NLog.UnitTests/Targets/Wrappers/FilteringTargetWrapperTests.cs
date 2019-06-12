@@ -273,10 +273,11 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
+                <variable name='test' value='${message}' />
                 <targets>
                   <target name='debug' type='BufferingWrapper'>
                       <target name='filter' type='FilteringWrapper'>
-                        <filter type='whenRepeated' layout='${message}' timeoutSeconds='30' action='Ignore' />
+                        <filter type='whenRepeated' layout='${var:test:whenempty=${guid}}' timeoutSeconds='30' action='Ignore' />
                         <target name='memory' type='Memory' />
                       </target>
                   </target>
