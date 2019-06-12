@@ -235,7 +235,7 @@
 
   <xs:complexType name="NLogVariable">
     <xs:choice minOccurs="0" maxOccurs="1">
-      <xs:element name="value" minOccurs="0" maxOccurs="1" type="SimpleLayout" >
+      <xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:string">
         <xs:annotation>
           <xs:documentation>Variable value.</xs:documentation>
         </xs:annotation>
