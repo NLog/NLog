@@ -234,12 +234,19 @@
   </xs:complexType>
 
   <xs:complexType name="NLogVariable">
+    <xs:choice minOccurs="0" maxOccurs="1">
+      <xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Variable value. Note, the 'value' attribute has precedence over this one.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
     <xs:attribute name="name" type="xs:string" use="required">
       <xs:annotation>
         <xs:documentation>Variable name.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="value" type="SimpleLayoutAttribute" use="required">
+    <xs:attribute name="value" type="SimpleLayoutAttribute">
       <xs:annotation>
         <xs:documentation>Variable value.</xs:documentation>
       </xs:annotation>
