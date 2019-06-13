@@ -38,7 +38,7 @@ using System.Text;
 namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// A mesage template
+    /// A message template
     /// </summary>
     internal class Template
     {

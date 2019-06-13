@@ -89,7 +89,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Determines wether or not this attribute will be Json encoded.
+        /// Determines whether or not this attribute will be Json encoded.
         /// </summary>
         /// <docgen category='JSON Attribute Options' order='100' />
         public bool Encode
