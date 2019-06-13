@@ -199,7 +199,7 @@ namespace NLog.Config
         public IPropertyTypeConverter PropertyTypeConverter { get; set; } = new PropertyTypeConverter();
 
         /// <summary>
-        /// Perform mesage template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
+        /// Perform message template parsing and formatting of LogEvent messages (True = Always, False = Never, Null = Auto Detect)
         /// </summary>
         /// <remarks>
         /// - Null (Auto Detect) : NLog-parser checks <see cref="LogEventInfo.Message"/> for positional parameters, and will then fallback to string.Format-rendering.

@@ -709,7 +709,7 @@ namespace NLog.Targets
 
 #if SupportsMutex
         /// <summary>
-        /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
+        /// Gets or sets a value indicating whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]

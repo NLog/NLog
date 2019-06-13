@@ -45,7 +45,7 @@ namespace NLog.Targets
         /// <summary>
         /// Just allow it.
         /// </summary>
-        AllowNewConnnection,
+        AllowNewConnnection, //TODO Nlog 5 - fix typo and obsolete this one
 
         /// <summary>
         /// Discard the connection item.
