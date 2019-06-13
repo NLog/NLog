@@ -78,7 +78,7 @@ namespace NLog.Targets
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the layout that should be use to calcuate the value for the parameter.
+        /// Gets or sets the layout that should be use to calculate the value for the parameter.
         /// </summary>
         /// <docgen category='Parameter Options' order='1' />
         [RequiredParameter]

@@ -150,7 +150,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="value">The object to serialize to JSON.</param>
         /// <param name="destination">Write the resulting JSON to this destination.</param>
-        /// <returns>Object serialized succesfully (true/false).</returns>
+        /// <returns>Object serialized successfully (true/false).</returns>
         public bool SerializeObject(object value, StringBuilder destination)
         {
             return SerializeObject(value, destination, _serializeOptions);
@@ -162,7 +162,7 @@ namespace NLog.Targets
         /// <param name="value">The object to serialize to JSON.</param>
         /// <param name="destination">Write the resulting JSON to this destination.</param>
         /// <param name="options">serialisation options</param>
-        /// <returns>Object serialized succesfully (true/false).</returns>
+        /// <returns>Object serialized successfully (true/false).</returns>
         public bool SerializeObject(object value, StringBuilder destination, JsonSerializeOptions options)
         {
             return SerializeObject(value, destination, options, default(SingleItemOptimizedHashSet<object>), 0);
@@ -176,7 +176,7 @@ namespace NLog.Targets
         /// <param name="options">serialisation options</param>
         /// <param name="objectsInPath">The objects in path (Avoid cyclic reference loop).</param>
         /// <param name="depth">The current depth (level) of recursion.</param>
-        /// <returns>Object serialized succesfully (true/false).</returns>
+        /// <returns>Object serialized successfully (true/false).</returns>
         private bool SerializeObject(object value, StringBuilder destination, JsonSerializeOptions options, SingleItemOptimizedHashSet<object> objectsInPath, int depth)
         {
             int originalLength = destination.Length;

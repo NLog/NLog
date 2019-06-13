@@ -276,7 +276,7 @@ namespace NLog.UnitTests.Targets
 
 #if !MONO
         /// <summary>
-        /// If a drive doesn't existing, before repeatatly creating a dir was tried. This test was taking +60 seconds 
+        /// If a drive doesn't existing, before repeatably creating a dir was tried. This test was taking +60 seconds 
         /// </summary>
         [Theory]
         [MemberData(nameof(SimpleFileTest_TestParameters))]
@@ -994,7 +994,7 @@ namespace NLog.UnitTests.Targets
                     Path.Combine(archiveFolder, "0003.txt"),
                     StringRepeat(times, "ddd\n"),
                     Encoding.UTF8);
-                //0000 should not extists because of MaxArchiveFiles=3
+                //0000 should not exists because of MaxArchiveFiles=3
                 Assert.True(!File.Exists(Path.Combine(archiveFolder, "0000.txt")));
                 Assert.True(!File.Exists(Path.Combine(archiveFolder, "0004.txt")));
             }
@@ -1200,7 +1200,7 @@ namespace NLog.UnitTests.Targets
                 //two files should still be there
                 Assert.Equal(files.ElementAt(1), files2.ElementAt(0));
                 Assert.Equal(files.ElementAt(2), files2.ElementAt(1));
-                //one new archive file shoud be created
+                //one new archive file should be created
                 Assert.DoesNotContain(files2.ElementAt(2), files);
             }
             finally
@@ -1848,7 +1848,7 @@ namespace NLog.UnitTests.Targets
                 Assert.DoesNotContain(files.ElementAt(3), files2);
                 //one files should still be there
                 Assert.Equal(files.ElementAt(4), files2.ElementAt(0));
-                //one new archive file shoud be created
+                //one new archive file should be created
                 Assert.DoesNotContain(files2.ElementAt(1), files);
             }
             finally

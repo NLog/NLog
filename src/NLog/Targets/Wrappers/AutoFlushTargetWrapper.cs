@@ -38,7 +38,7 @@ namespace NLog.Targets.Wrappers
     using NLog.Internal;
 
     /// <summary>
-    /// Causes a flush on a wrapped target if LogEvent statisfies the <see cref="Condition"/>.
+    /// Causes a flush on a wrapped target if LogEvent satisfies the <see cref="Condition"/>.
     /// If condition isn't set, flushes on each write.
     /// </summary>
     /// <seealso href="https://github.com/nlog/nlog/wiki/AutoFlushWrapper-target">Documentation on NLog Wiki</seealso>

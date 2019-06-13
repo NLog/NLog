@@ -97,7 +97,7 @@ namespace NLog
         /// </summary>
         /// <value>A value of <c>true</c> if exception should be thrown; otherwise, <c>false</c>.</value>
         /// <remarks>
-        /// This option is for backwards-compatiblity.
+        /// This option is for backwards-compatibility.
         /// By default exceptions are not thrown under any circumstances.
         /// 
         /// </remarks>

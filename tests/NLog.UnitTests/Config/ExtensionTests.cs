@@ -503,13 +503,13 @@ namespace NLog.UnitTests.Config
 
 
                 var logs = writer.ToString();
-                Assert.Contains("Preload succesfully invoked for 'LoaderTestInternal.NLogPackageLoader'", logs);
-                Assert.Contains("Preload succesfully invoked for 'LoaderTestPublic.NLogPackageLoader'", logs);
-                Assert.Contains("Preload succesfully invoked for 'LoaderTestPrivateNestedStatic.SomeType+NLogPackageLoader'", logs);
-                Assert.Contains("Preload succesfully invoked for 'LoaderTestPrivateNested.SomeType+NLogPackageLoader'", logs);
+                Assert.Contains("Preload successfully invoked for 'LoaderTestInternal.NLogPackageLoader'", logs);
+                Assert.Contains("Preload successfully invoked for 'LoaderTestPublic.NLogPackageLoader'", logs);
+                Assert.Contains("Preload successfully invoked for 'LoaderTestPrivateNestedStatic.SomeType+NLogPackageLoader'", logs);
+                Assert.Contains("Preload successfully invoked for 'LoaderTestPrivateNested.SomeType+NLogPackageLoader'", logs);
 
-                //4 times succesful
-                Assert.Equal(4, Regex.Matches(logs, Regex.Escape("Preload succesfully invoked for '")).Count);
+                //4 times successful
+                Assert.Equal(4, Regex.Matches(logs, Regex.Escape("Preload successfully invoked for '")).Count);
 
             }
             finally

@@ -64,14 +64,14 @@ namespace NLog.Targets
     public class FileTarget : TargetWithLayoutHeaderAndFooter, ICreateFileParameters
     {
         /// <summary>
-        /// Default clean up period of the initilized files. When a file exceeds the clean up period is removed from the list.
+        /// Default clean up period of the initialized files. When a file exceeds the clean up period is removed from the list.
         /// </summary>
         /// <remarks>Clean up period is defined in days.</remarks>
         private const int InitializedFilesCleanupPeriod = 2;
 
         /// <summary>
-        /// The maximum number of initialised files before clean up procedures are initiated,
-        /// to keep the number of initialised files to a minimum. Chose 25 to cater for monthly rolling of log-files.
+        /// The maximum number of initialized files before clean up procedures are initiated,
+        /// to keep the number of initialized files to a minimum. Chose 25 to cater for monthly rolling of log-files.
         /// </summary>
         private const int InitializedFilesCounterMax = 25;
 
@@ -100,7 +100,7 @@ namespace NLog.Targets
         private Timer _autoClosingTimer;
 
         /// <summary>
-        /// The number of initialised files at any one time.
+        /// The number of initialized files at any one time.
         /// </summary>
         private int _initializedFilesCounter;
 
@@ -694,7 +694,7 @@ namespace NLog.Targets
 
 #if SupportsMutex
         /// <summary>
-        /// Gets or sets a value indicationg whether file creation calls should be synchronized by a system global mutex.
+        /// Gets or sets a value indicating whether file creation calls should be synchronized by a system global mutex.
         /// </summary>
         /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]
@@ -1450,7 +1450,7 @@ namespace NLog.Targets
 
         private DateTime? GetArchiveDate(string fileName, LogEventInfo logEvent, DateTime previousLogEventTimestamp)
         {
-            // Using File LastModifed to handle FileArchivePeriod.Month (where file creation time is one month ago)
+            // Using File LastModified to handle FileArchivePeriod.Month (where file creation time is one month ago)
             var fileLastModifiedUtc = _fileAppenderCache.GetFileLastWriteTimeUtc(fileName);
 
             InternalLogger.Trace("FileTarget(Name={0}): Calculating archive date. File-LastModifiedUtc: {1}; Previous LogEvent-TimeStamp: {2}", Name, fileLastModifiedUtc, previousLogEventTimestamp);
@@ -2125,7 +2125,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Initialise a file to be used by the <see cref="FileTarget"/> instance. Based on the number of initialised
+        /// Initialise a file to be used by the <see cref="FileTarget"/> instance. Based on the number of initialized
         /// files and the values of various instance properties clean up and/or archiving processes can be invoked.
         /// </summary>
         /// <param name="fileName">File name to be written.</param>

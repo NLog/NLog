@@ -4,6 +4,29 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.6.5 (2019/06/13)
+
+#### Bugfixes
+
+- [#3476](https://github.com/NLog/NLog/pull/3476) Fix broken XSD schema - NLog.Schema package (@snakefoot, @304NotModified)
+
+#### Features
+
+- [#3478](https://github.com/NLog/NLog/pull/3478) XSD: Support <value> in <variable> (@304NotModified)
+- [#3477](https://github.com/NLog/NLog/pull/3477) ${AppSetting} - Added support for ConnectionStrings Lookup (@snakefoot)
+- [#3469](https://github.com/NLog/NLog/pull/3469) LogLevel - Added support for TypeConverter (@snakefoot)
+- [#3453](https://github.com/NLog/NLog/pull/3453) Added null terminator line ending for network target (@Kahath)
+- [#3442](https://github.com/NLog/NLog/pull/3442) Log4JXmlEventLayout - Added IncludeCallSite + IncludeSourceInfo (@snakefoot)
+
+#### Improvements
+
+- [#3482](https://github.com/NLog/NLog/pull/3482) Fix typos in docs and comments (@304NotModified)
+
+#### Performance
+
+- [#3444](https://github.com/NLog/NLog/pull/3444)  RetryingMultiProcessFileAppender - better init BufferSize (@snakefoot)
+
+
 ### V4.6.4 (2019/05/28)
 
 #### Bugfixes

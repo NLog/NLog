@@ -78,7 +78,7 @@ namespace NLog.Layouts
                         }
                         else
                         {
-                            //dont treat \ as escape char and just read it
+                            //don't treat \ as escape char and just read it
                             literalBuf.Append('\\');
                         }
                         continue;

@@ -1811,7 +1811,7 @@ namespace NLog.UnitTests
         [InlineData(true, "@Client", "1")]
         [InlineData(true, "0", "1")]
         [InlineData(false, "0", "1")]
-        [InlineData(true, "OrderId", "Client")] //succeeeds, but gives JSON like (no quoted key, missing quotes arround string, =, other spacing)
+        [InlineData(true, "OrderId", "Client")] //succeeds, but gives JSON like (no quoted key, missing quotes around string, =, other spacing)
         [InlineData(true, "OrderId", "@Client")]
         [InlineData(null, "OrderId", "@Client")]
         public void MixedStructuredEventsConfigTest(bool? parseMessageTemplates, string param1, string param2)
@@ -2369,7 +2369,7 @@ namespace NLog.UnitTests
             Assert.Equal(2, target.LastEvent.Properties.Count);
             AssertContainsInDictionary(target.LastEvent.Properties, "Stage", 1);
             AssertContainsInDictionary(target.LastEvent.Properties, "userid", "kermit");
-            loggerStage2.Trace("Login succesful for {userid}", "kermit");
+            loggerStage2.Trace("Login successful for {userid}", "kermit");
             Assert.Equal(2, target.LastEvent.Properties.Count);
             AssertContainsInDictionary(target.LastEvent.Properties, "Stage", 2);
             AssertContainsInDictionary(target.LastEvent.Properties, "userid", "kermit");

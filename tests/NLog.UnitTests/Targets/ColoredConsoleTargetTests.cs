@@ -196,7 +196,7 @@ namespace NLog.UnitTests.Targets
         }
 
         /// <summary>
-        /// With or wihout CompileRegex, CompileRegex is never null, even if not used when CompileRegex=false. (needed for backwardscomp)
+        /// With or without CompileRegex, CompileRegex is never null, even if not used when CompileRegex=false. (needed for backwards-compatibility)
         /// </summary>
         /// <param name="compileRegex"></param>
         [Theory]

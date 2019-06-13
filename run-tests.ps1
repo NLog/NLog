@@ -1,3 +1,10 @@
+
+if(.\Test-XmlFile.ps1){
+	Write-Output "Valid XSD"
+}else {
+	exit 400;
+}
+
 dotnet restore .\src\NLog\
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }

@@ -730,7 +730,7 @@ namespace NLog.Targets
         /// <summary>
         /// Register a custom Target.
         /// </summary>
-        /// <remarks>Short-cut for registing to default <see cref="ConfigurationItemFactory"/></remarks>
+        /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <typeparam name="T"> Type of the Target.</typeparam>
         /// <param name="name"> Name of the Target.</param>
         public static void Register<T>(string name)
@@ -743,7 +743,7 @@ namespace NLog.Targets
         /// <summary>
         /// Register a custom Target.
         /// </summary>
-        /// <remarks>Short-cut for registing to default <see cref="ConfigurationItemFactory"/></remarks>
+        /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="targetType"> Type of the Target.</param>
         /// <param name="name"> Name of the Target.</param>
         public static void Register(string name, Type targetType)

@@ -325,7 +325,7 @@ namespace NLog.Targets
         /// <summary>
         /// Gets or sets a value indicating the SMTP client timeout.
         /// </summary>
-        /// <remarks>Warning: zero is not infinit waiting</remarks>
+        /// <remarks>Warning: zero is not infinite waiting</remarks>
         /// <docgen category='SMTP Options' order='100' />
         [DefaultValue(10000)]
         public int Timeout { get; set; }

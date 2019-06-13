@@ -156,6 +156,26 @@ namespace NLog.Layouts
             set => Renderer.WriteThrowableCData = value;
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to include call site (class and method name) in the information sent over the network.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeCallSite
+        {
+            get => Renderer.IncludeCallSite;
+            set => Renderer.IncludeCallSite = value;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include source info (file name and line number) in the information sent over the network.
+        /// </summary>
+        /// <docgen category='Payload Options' order='10' />
+        public bool IncludeSourceInfo
+        {
+            get => Renderer.IncludeSourceInfo;
+            set => Renderer.IncludeSourceInfo = value;
+        }
+
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
         {
             PrecalculateBuilderInternal(logEvent, target);

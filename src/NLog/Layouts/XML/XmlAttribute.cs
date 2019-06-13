@@ -93,7 +93,7 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Determines wether or not this attribute will be Xml encoded.
+        /// Determines whether or not this attribute will be Xml encoded.
         /// </summary>
         /// <docgen category='XML Attribute Options' order='100' />
         [DefaultValue(true)]
