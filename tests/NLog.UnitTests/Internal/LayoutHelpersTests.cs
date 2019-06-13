@@ -97,7 +97,7 @@ namespace NLog.UnitTests.Internal
 
 
         /// <summary>
-        /// test with both default. True or false, case insentive, no numbers
+        /// test with both default. True or false, case-insensitive, no numbers
         /// </summary>
         /// <param name="input"></param>
         /// <param name="expected">null = default</param>

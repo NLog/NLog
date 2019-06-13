@@ -364,7 +364,7 @@ namespace NLog.Targets
         /// <summary>
         /// Checks the internal queue for the next <see cref="LogEventInfo"/> to create a new task for
         /// </summary>
-        /// <param name="previousTask">Used for race-condition validation betweewn task-completion and timeout</param>
+        /// <param name="previousTask">Used for race-condition validation between task-completion and timeout</param>
         /// <param name="fullBatchCompleted">Signals whether previousTask completed an almost full BatchSize</param>
         private void TaskStartNext(object previousTask, bool fullBatchCompleted)
         {
@@ -589,7 +589,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Handles that scheduled task has completed (succesfully or failed), and starts the next pending task
+        /// Handles that scheduled task has completed (successfully or failed), and starts the next pending task
         /// </summary>
         /// <param name="completedTask">Task just completed</param>
         /// <param name="continuation">AsyncContinuation to notify of success or failure</param>

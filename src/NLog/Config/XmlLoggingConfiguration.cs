@@ -125,7 +125,7 @@ namespace NLog.Config
             {
                 fileName = fileName.Trim();
 #if __ANDROID__
-                //suport loading config from special assets folder in nlog.config
+                //support loading config from special assets folder in nlog.config
                 if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
                 {
                     //remove prefix
@@ -597,7 +597,7 @@ namespace NLog.Config
 #endif
             foreach (var file in files)
             {
-                //note we exclude ourself in ConfigureFromFile
+                //note we exclude our self in ConfigureFromFile
                 ConfigureFromFile(file, autoReloadDefault);
             }
         }

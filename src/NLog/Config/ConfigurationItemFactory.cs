@@ -317,7 +317,7 @@ namespace NLog.Config
                         var parameters = CreatePreloadParameters(preloadMethod, this);
 
                         preloadMethod.Invoke(null, parameters);
-                        InternalLogger.Debug("Preload succesfully invoked for '{0}'", type.FullName);
+                        InternalLogger.Debug("Preload successfully invoked for '{0}'", type.FullName);
                     }
                     catch (Exception e)
                     {

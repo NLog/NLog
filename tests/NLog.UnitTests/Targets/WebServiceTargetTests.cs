@@ -297,9 +297,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             });
 
             Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
-            Assert.Equal(2, LogMeController.RecievedLogsPostParam1.Count);
-            CheckQueueMessage(message1, LogMeController.RecievedLogsPostParam1);
-            CheckQueueMessage(message2, LogMeController.RecievedLogsPostParam1);
+            Assert.Equal(2, LogMeController.ReceivedLogsPostParam1.Count);
+            CheckQueueMessage(message1, LogMeController.ReceivedLogsPostParam1);
+            CheckQueueMessage(message2, LogMeController.ReceivedLogsPostParam1);
         }
 
         /// <summary>
@@ -323,9 +323,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
             Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
-            Assert.Equal(2, LogMeController.RecievedLogsGetParam1.Count);
-            CheckQueueMessage(message1, LogMeController.RecievedLogsGetParam1);
-            CheckQueueMessage(message2, LogMeController.RecievedLogsGetParam1);
+            Assert.Equal(2, LogMeController.ReceivedLogsGetParam1.Count);
+            CheckQueueMessage(message1, LogMeController.ReceivedLogsGetParam1);
+            CheckQueueMessage(message2, LogMeController.ReceivedLogsGetParam1);
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 LogManager.Flush(); // Nothing to flush
             });
 
-            Assert.Equal(100, LogMeController.RecievedLogsGetParam1.Count);
+            Assert.Equal(100, LogMeController.ReceivedLogsGetParam1.Count);
         }
 
         [Fact]
@@ -373,8 +373,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
             Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
-            Assert.Single(LogMeController.RecievedLogsGetParam1);
-            CheckQueueMessage("another message", LogMeController.RecievedLogsGetParam1);
+            Assert.Single(LogMeController.ReceivedLogsGetParam1);
+            CheckQueueMessage("another message", LogMeController.ReceivedLogsGetParam1);
         }
 
         private static Logger SetUpHttpGetWebservice(string relativeUrl)
@@ -406,9 +406,9 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             return logger;
         }
 
-        private static void CheckQueueMessage(string message1, ConcurrentBag<string> recievedLogsGetParam1)
+        private static void CheckQueueMessage(string message1, ConcurrentBag<string> receivedLogsGetParam1)
         {
-            var success = recievedLogsGetParam1.Contains(message1);
+            var success = receivedLogsGetParam1.Contains(message1);
             Assert.True(success, $"message '{message1}' not found");
         }
 
@@ -478,8 +478,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 });
 
                 Assert.Equal(0, LogMeController.CountdownEvent.CurrentCount);
-                Assert.Equal(createdMessages.Count, LogMeController.RecievedLogsPostParam1.Count);
-                //Assert.Equal(createdMessages, ValuesController.RecievedLogsPostParam1);
+                Assert.Equal(createdMessages.Count, LogMeController.ReceivedLogsPostParam1.Count);
+                //Assert.Equal(createdMessages, ValuesController.ReceivedLogsPostParam1);
             });
         }
 
@@ -744,8 +744,8 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             /// <param name="expectedMessages"></param>
             public static void ResetState(int expectedMessages)
             {
-                RecievedLogsPostParam1 = new ConcurrentBag<string>();
-                RecievedLogsGetParam1 = new ConcurrentBag<string>();
+                ReceivedLogsPostParam1 = new ConcurrentBag<string>();
+                ReceivedLogsGetParam1 = new ConcurrentBag<string>();
                 if (expectedMessages > 0)
                     CountdownEvent = new CountdownEvent(expectedMessages);
                 else
@@ -759,13 +759,13 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
 
             /// <summary>
-            /// Recieved param1 values (get)
+            /// Received param1 values (get)
             /// </summary>
-            public static ConcurrentBag<string> RecievedLogsGetParam1 = new ConcurrentBag<string>();
+            public static ConcurrentBag<string> ReceivedLogsGetParam1 = new ConcurrentBag<string>();
             /// <summary>
-            /// Recieved param1 values(post)
+            /// Received param1 values(post)
             /// </summary>
-            public static ConcurrentBag<string> RecievedLogsPostParam1 = new ConcurrentBag<string>();
+            public static ConcurrentBag<string> ReceivedLogsPostParam1 = new ConcurrentBag<string>();
 
 
             /// <summary>
@@ -802,7 +802,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             public IEnumerable<string> Get(string param1 = "", string param2 = "")
             {
 
-                RecievedLogsGetParam1.Add(param1);
+                ReceivedLogsGetParam1.Add(param1);
                 if (CountdownEvent != null)
                 {
                     CountdownEvent.Signal();
@@ -821,7 +821,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
                 {
                     throw new ArgumentNullException(nameof(complexType));
                 }
-                RecievedLogsPostParam1.Add(complexType.Param1);
+                ReceivedLogsPostParam1.Add(complexType.Param1);
 
                 if (CountdownEvent != null)
                 {
@@ -855,7 +855,7 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             {
                 testsFunc();
 
-                //wait for all recieved message, or timeout. There is no exception on timeout, so we have to check carefully in the unit test.
+                //wait for all received message, or timeout. There is no exception on timeout, so we have to check carefully in the unit test.
                 if (LogMeController.CountdownEvent != null)
                 {
                     LogMeController.CountdownEvent.Wait(webserviceCheckTimeoutMs);

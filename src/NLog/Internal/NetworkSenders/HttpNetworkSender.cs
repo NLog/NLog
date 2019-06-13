@@ -76,7 +76,7 @@ namespace NLog.Internal.NetworkSenders
                     {
                         using (var response = webRequest.EndGetResponse(r))
                         {
-                            // Response succesfully read
+                            // Response successfully read
                         }
 
                         // completed fine

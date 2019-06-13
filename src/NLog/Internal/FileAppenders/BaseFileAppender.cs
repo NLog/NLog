@@ -92,7 +92,7 @@ namespace NLog.Internal.FileAppenders
         public DateTime CreationTimeSource { get; private set; }
 
         /// <summary>
-        /// Gets the last time the file associated with the appeander is opened. The time returned is in Coordinated 
+        /// Gets the last time the file associated with the appender is opened. The time returned is in Coordinated 
         /// Universal Time [UTC] standard.
         /// </summary>
         /// <returns>The time the file was last opened.</returns>
@@ -133,7 +133,7 @@ namespace NLog.Internal.FileAppenders
         public abstract DateTime? GetFileCreationTimeUtc();
 
         /// <summary>
-        /// Gets the length in bytes of the file associated with the appeander.
+        /// Gets the length in bytes of the file associated with the appender.
         /// </summary>
         /// <returns>A long value representing the length of the file in bytes.</returns>
         public abstract long? GetFileLength();

@@ -214,7 +214,7 @@ namespace NLog.Internal
                 bool includeChr = false;
                 switch (chr)
                 {
-                    case ':':   // namespace-delimeter
+                    case ':':   // namespace-delimiter
                         if (i != 0 && allowNamespace)
                         {
                             allowNamespace = false;

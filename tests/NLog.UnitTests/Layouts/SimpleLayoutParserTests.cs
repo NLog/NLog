@@ -535,7 +535,7 @@ namespace NLog.UnitTests.Layouts
 
         /// <summary>
         /// 
-        /// Test layout with Genernic List type. - is the seperator
+        /// Test layout with Generic List type. - is the separator
         /// 
         /// 
         /// </summary>

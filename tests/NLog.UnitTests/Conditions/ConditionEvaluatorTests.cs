@@ -81,7 +81,7 @@ namespace NLog.UnitTests.Conditions
             AssertEvaluationResult(true, "regex-matches('foo', '^foo$')");
             AssertEvaluationResult(false, "regex-matches('foo', '^bar$')");
             
-            //Check that calling with empty strign is equivalent with not passing the parameter
+            //Check that calling with empty string is equivalent with not passing the parameter
             AssertEvaluationResult(true, "regex-matches('foo', '^foo$', '')");
             AssertEvaluationResult(false, "regex-matches('foo', '^bar$', '')");
 
@@ -242,7 +242,7 @@ namespace NLog.UnitTests.Conditions
             Assert.Equal(false, ConditionParser.ParseExpression("false == ToInt16(4)", factories).Evaluate(CreateWellKnownContext()));
             Assert.Equal(false, ConditionParser.ParseExpression("ToInt16(1) == false", factories).Evaluate(CreateWellKnownContext()));
 
-            //this is doing string comparision as thats the common type which works in this case.
+            //this is doing string comparision as that's the common type which works in this case.
             Assert.Equal(false, ConditionParser.ParseExpression("ToDateTime('2010/01/01') == '20xx/01/01'", factories).Evaluate(CreateWellKnownContext()));
         }
 
