@@ -179,6 +179,19 @@ newline
             Assert.Equal("]]", configuration.Variables["suffix"].Render(nullEvent));
         }
 
+        [Fact]
+        public void Xml_configuration_variableWithInnerAndAttribute_attributeHasPrecedence()
+        {
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+    <variable name='var1' value='1'><value>2</value></variable>
+</nlog>");
+
+            var nullEvent = LogEventInfo.CreateNullEvent();
+
+            // Act & Assert
+            Assert.Equal("1", configuration.Variables["var1"].FixedText);
+        }
 
         [Fact]
         public void NLogConfigurationExceptionShouldThrown_WhenVariableNodeIsWrittenToWrongPlace()
