@@ -177,7 +177,7 @@ namespace NLog.Conditions
         }
         
         /// <summary>
-        /// Promoto <paramref name="val"/> to type
+        /// Promotes <paramref name="val"/> to type
         /// </summary>
         /// <param name="val"></param>
         /// <param name="type1"></param>

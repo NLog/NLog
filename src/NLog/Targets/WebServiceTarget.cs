@@ -364,7 +364,7 @@ namespace NLog.Targets
                                 {
                                     using (var response = request.EndGetResponse(r))
                                     {
-                                        // Request succesfully initialized
+                                        // Request successfully initialized
                                     }
 
                                     DoInvokeCompleted(continuation, null);

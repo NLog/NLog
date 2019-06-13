@@ -218,7 +218,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             Thread.Sleep(20);
             lastException = WriteNumberAsyncLogEventsStartingAt(30, 10, wrapper);
 
-            //No more messages shouldve been written, since we are still in the third interval.
+            //No more messages should be been written, since we are still in the third interval.
             Assert.Equal(15, wrappedTarget.WriteCount);
             Assert.Equal("Hello 24", wrappedTarget.LastWrittenMessage);
             Assert.Null(lastException);

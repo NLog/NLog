@@ -124,7 +124,7 @@ namespace NLog.UnitTests.Internal.FileAppenders
             //      for the file. 
             //
 
-            // Write, flush the content into the file and release the file. This happens throught the
+            // Write, flush the content into the file and release the file. This happens through the
             // InvalidateAppender() method. We need to release the file before invoking AssertFileContents() method.
             appender.Write(StringToBytes("NLog test string."));
             cache.InvalidateAppender(tempFile);

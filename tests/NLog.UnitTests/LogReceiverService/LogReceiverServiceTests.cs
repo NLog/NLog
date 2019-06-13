@@ -320,7 +320,7 @@ namespace NLog.UnitTests.LogReceiverService
             </nlog>");
 
 
-            ExecLogRecieverAndCheck(ExecLogging1, CheckRecieved1, 2);
+            ExecLogRecieverAndCheck(ExecLogging1, CheckReceived1, 2);
 
         }
 
@@ -328,7 +328,7 @@ namespace NLog.UnitTests.LogReceiverService
         /// Create WCF service, logs and listen to the events
         /// </summary>
         /// <param name="logFunc">function for logging the messages</param>
-        /// <param name="logCheckFunc">function for checking the received messsages</param>
+        /// <param name="logCheckFunc">function for checking the received messages</param>
         /// <param name="messageCount">message count for wait for listen and checking</param>
         private void ExecLogRecieverAndCheck(Action<Logger> logFunc, Action<List<NLogEvents>> logCheckFunc, int messageCount)
         {
@@ -356,7 +356,7 @@ namespace NLog.UnitTests.LogReceiverService
 
                 var countdownEvent = new CountdownEvent(messageCount);
                 //reset
-                LogRecieverMock.recievedEvents = new List<NLogEvents>();
+                LogRecieverMock.receivedEvents = new List<NLogEvents>();
                 LogRecieverMock.CountdownEvent = countdownEvent;
 
                 var logger1 = LogManager.GetLogger("logger1");
@@ -365,27 +365,27 @@ namespace NLog.UnitTests.LogReceiverService
                 countdownEvent.Wait(20000);
                 //we need some extra time for completion
                 Thread.Sleep(1000);
-                var recieved = LogRecieverMock.recievedEvents;
+                var received = LogRecieverMock.receivedEvents;
 
 
 
 
-                Assert.Equal(messageCount, recieved.Count);
+                Assert.Equal(messageCount, received.Count);
 
-                logCheckFunc(recieved);
+                logCheckFunc(received);
 
                 // Close the ServiceHost.
                 host.Close();
             }
         }
 
-        private static void CheckRecieved1(List<NLogEvents> recieved)
+        private static void CheckReceived1(List<NLogEvents> received)
         {
             //in some case the messages aren't retrieved in the right order when invoked in the same sec.
             //more important is that both are retrieved with the correct info
-            Assert.Equal(2, recieved.Count);
+            Assert.Equal(2, received.Count);
 
-            var logmessages = new HashSet<string> { recieved[0].ToEventInfo().First().Message, recieved[1].ToEventInfo().First().Message };
+            var logmessages = new HashSet<string> { received[0].ToEventInfo().First().Message, received[1].ToEventInfo().First().Message };
 
             Assert.True(logmessages.Contains("test 1"), "message 1 is missing");
             Assert.True(logmessages.Contains("test 2"), "message 2 is missing");
@@ -405,7 +405,7 @@ namespace NLog.UnitTests.LogReceiverService
 
             public static CountdownEvent CountdownEvent;
 
-            public static List<NLogEvents> recievedEvents = new List<NLogEvents>();
+            public static List<NLogEvents> receivedEvents = new List<NLogEvents>();
 
             /// <summary>
             /// Processes the log messages.
@@ -420,7 +420,7 @@ namespace NLog.UnitTests.LogReceiverService
 
 
 
-                recievedEvents.Add(events);
+                receivedEvents.Add(events);
 
                 CountdownEvent.Signal();
             }

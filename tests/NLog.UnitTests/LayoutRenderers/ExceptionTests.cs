@@ -654,7 +654,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         /// <summary>
-        /// Get an excption with stacktrace by genating a exception
+        /// Get an exception with stacktrace by generating a exception
         /// </summary>
         /// <param name="exceptionMessage"></param>
         /// <returns></returns>

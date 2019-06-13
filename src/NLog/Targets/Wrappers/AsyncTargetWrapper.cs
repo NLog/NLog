@@ -155,7 +155,7 @@ namespace NLog.Targets.Wrappers
         
         /// <summary>
         /// Raise event when Target cannot store LogEvent.
-        /// Event arg contains losed LogEvent
+        /// Event arg contains lost LogEvents
         /// </summary>
         public event EventHandler<LogEventDroppedEventArgs> LogEventDropped
         {

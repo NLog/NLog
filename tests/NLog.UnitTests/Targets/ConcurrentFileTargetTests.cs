@@ -202,11 +202,11 @@ namespace NLog.UnitTests.Targets
 
                 bool verifyFileSize = files.Count > 1;
 
-                var recievedNumbersSet = new List<int>[numProcesses];
+                var receivedNumbersSet = new List<int>[numProcesses];
                 for (int i = 0; i < numProcesses; i++)
                 {
-                    var recievedNumbers = new List<int>(numLogs);
-                    recievedNumbersSet[i] = recievedNumbers;
+                    var receivedNumbers = new List<int>(numLogs);
+                    receivedNumbersSet[i] = receivedNumbers;
                 }
 
                 //Console.WriteLine("Verifying output file {0}", logFile);
@@ -226,7 +226,7 @@ namespace NLog.UnitTests.Targets
                             int number = Convert.ToInt32(tokens[1]);
                             Assert.True(thread >= 0);
                             Assert.True(thread < numProcesses);
-                            recievedNumbersSet[thread].Add(number);
+                            receivedNumbersSet[thread].Add(number);
                         }
 
 
@@ -250,23 +250,23 @@ namespace NLog.UnitTests.Targets
                 {
                     for (; currentProcess < numProcesses; currentProcess++)
                     {
-                        var recievedNumbers = recievedNumbersSet[currentProcess];
+                        var receivedNumbers = receivedNumbersSet[currentProcess];
 
-                        var equalLength = expected.Count == recievedNumbers.Count;
+                        var equalLength = expected.Count == receivedNumbers.Count;
 
-                        var fastCheck = equalLength && expected.SequenceEqual(recievedNumbers);
+                        var fastCheck = equalLength && expected.SequenceEqual(receivedNumbers);
 
                         if (!fastCheck)
                         //assert equals on two long lists in xUnit is lame. Not showing the difference.
                         {
                             if (equalLength)
                             {
-                                var reodered = recievedNumbers.OrderBy(i => i);
+                                var reodered = receivedNumbers.OrderBy(i => i);
 
                                 equalsWhenReorderd = expected.SequenceEqual(reodered);
                             }
 
-                            Assert.Equal(string.Join(",", expected), string.Join(",", recievedNumbers));
+                            Assert.Equal(string.Join(",", expected), string.Join(",", receivedNumbers));
                         }
                     }
                 }
@@ -297,7 +297,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(5, 4000, "none")]
         [InlineData(10, 2000, "none")]
 #if !MONO
-        // MONO Doesn't work well with global mutex, and it is needed for succesful concurrent archive operations
+        // MONO Doesn't work well with global mutex, and it is needed for successful concurrent archive operations
         [InlineData(2, 500, "none|archive")]
         [InlineData(2, 500, "none|mutex|archive")]
         [InlineData(2, 10000, "none|mutex")]
@@ -317,7 +317,7 @@ namespace NLog.UnitTests.Targets
         public void AsyncConcurrentTest(string mode)
         {
             // Before 2 processes are running into concurrent writes, 
-            // the first process typically already has written couple thousend events.
+            // the first process typically already has written couple thousand events.
             // Thus to have a meaningful test, at least 10K events are required.
             // Due to the buffering it makes no big difference in runtime, whether we
             // have 2 process writing 10K events each or couple more processes with even more events.

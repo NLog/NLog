@@ -249,7 +249,7 @@ namespace NLog.Config
         /// <returns>True if instance was created successfully, false otherwise.</returns>
         public override bool TryCreateInstance(string itemName, out LayoutRenderer result)
         {
-            //first try func renderers, as they should have the possiblity to overwrite a current one.
+            //first try func renderers, as they should have the possibility to overwrite a current one.
             if (_funcRenderers != null)
             {
                 FuncLayoutRenderer funcResult;
