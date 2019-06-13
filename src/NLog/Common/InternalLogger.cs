@@ -452,7 +452,7 @@ namespace NLog.Common
         /// <param name="message">A message to write.</param>
         /// <remarks>
         /// Works when property <see cref="LogToTrace"/> set to true.
-        /// The <see cref="System.Diagnostics.Trace"/> is used in Debug and Relaese configuration. 
+        /// The <see cref="System.Diagnostics.Trace"/> is used in Debug and Release configuration. 
         /// The <see cref="System.Diagnostics.Debug"/> works only in Debug configuration and this is reason why is replaced by <see cref="System.Diagnostics.Trace"/>.
         /// in DEBUG 
         /// </remarks>
