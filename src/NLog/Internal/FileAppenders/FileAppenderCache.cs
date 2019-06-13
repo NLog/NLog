@@ -339,7 +339,7 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
-        /// Close the allocated appenders initialised before the supplied time.
+        /// Close the allocated appenders initialized before the supplied time.
         /// </summary>
         /// <param name="expireTime">The time which prior the appenders considered expired</param>
         public void CloseAppenders(DateTime expireTime)

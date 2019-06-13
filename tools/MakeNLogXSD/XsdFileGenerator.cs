@@ -206,13 +206,13 @@ namespace MakeNLogXSD
 
                 result.Add(new XAttribute("type", enumType));
             }
-            else if (IgnoreTypes.Contains(propertyType))
+            else 
             {
-                return null;
-            }
-            else
-            {
-                result.Add(new XAttribute("type", GetXsdType(propertyType, true)));
+                string xsdType = GetXsdType(propertyType, true);
+                if (xsdType == null)
+                    return null;
+
+                result.Add(new XAttribute("type", xsdType));
             }
 
             var doc = propertyElement.Element("doc");
@@ -284,14 +284,14 @@ namespace MakeNLogXSD
                 result.Add(new XAttribute("maxOccurs", "1"));
                 result.Add(new XAttribute("type", enumType));
             }
-            else if (IgnoreTypes.Contains(propertyType))
-            {
-                return null;
-            }
             else
             {
+                string xsdType = GetXsdType(propertyType, false);
+                if (xsdType == null)
+                    return null;
+
                 result.Add(new XAttribute("maxOccurs", "1"));
-                result.Add(new XAttribute("type", GetXsdType(propertyType, false)));
+                result.Add(new XAttribute("type", xsdType));
             }
 
             return result;
@@ -301,10 +301,14 @@ namespace MakeNLogXSD
 
         private static string GetXsdType(string apiTypeName, bool attribute)
         {
-
             if (string.IsNullOrWhiteSpace(apiTypeName))
             {
                 throw new NotSupportedException("Unknown API type '" + apiTypeName + "'.");
+            }
+
+            if (IgnoreTypes.Contains(apiTypeName))
+            {
+                return null;
             }
 
             switch (apiTypeName)
@@ -313,7 +317,7 @@ namespace MakeNLogXSD
                     return attribute ? "SimpleLayoutAttribute" : "Layout";
 
                 case "NLog.Filters.Filter":
-                    return "Filter";
+                    return attribute ? null : "Filter";
 
                 case "Condition":
                     return "Condition";

@@ -117,7 +117,7 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
-        /// Gets the length in bytes of the file associated with the appeander.
+        /// Gets the length in bytes of the file associated with the appender.
         /// </summary>
         /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()

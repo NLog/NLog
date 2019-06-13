@@ -31,34 +31,25 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
+Bugfixes
 
-Bugfixes:
+- Fix broken XSD schema - NLog.Schema package (@snakefoot, @304NotModified)
 
-- NLog.Schema: Added missing defaultAction attribute on filters element in XSD (@304NotModified)
-- AsyncWrapper in Blocking Mode can cause deadlock (@snakefoot)
+Features
 
-Features:
+- XSD: Support &lt;value&gt; in &lt;variable&gt; (@304NotModified)
+- ${AppSetting} - Added support for ConnectionStrings Lookup (@snakefoot)
+- LogLevel - Added support for TypeConverter (@snakefoot)
+- Added null terminator line ending for network target (@Kahath)
+- Log4JXmlEventLayout - Added IncludeCallSite + IncludeSourceInfo (@snakefoot)
 
-- Added &quot;Properties&quot; property on Logger for reading and editing properties.(@snakefoot, @304NotModified)
-- ${all-event-properties}: Added IncludeEmptyValues option (@304NotModified)
-- ${when}, support for non-string values (@304NotModified)
-- ${whenEmpty} support for non-string values (@snakefoot, @304NotModified)
-- Added ${environment-user} (@snakefoot)
-- Log4JXmlEventLayout - Added support for configuration of Parameters (@snakefoot)
-- LoggingConfigurationParser - Recognize LoggingRule.RuleName property (@snakefoot)
+Improvements
 
-Improvements:
+- Fix typos in docs and comments (@304NotModified)
 
-- Update package descriptions to note the issues with &lt;PackageReference&gt; (@304NotModified)
-- Various XSD improvements (NLog.Schema package) (@304NotModified)
+Performance
 
-Performance:
-
-- ${whenEmpty} faster rendering of string values (@snakefoot, @304NotModified)
-- FilteringTargetWrapper: Add support for batch writing (@snakefoot, @304NotModified)
-- PostFilteringTargetWrapper: performance optimizations (@snakefoot, @304NotModified)
-- Async / buffering wrapper: Improve performance when blocking (@snakefoot)
-- ObjectReflectionCache - Skip property-reflection for IFormattable (@snakefoot)
+- RetryingMultiProcessFileAppender - better init BufferSize (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

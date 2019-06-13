@@ -236,7 +236,7 @@ namespace NLog.Config
         /// <summary>
         /// Defines a <see cref="LoggerNameMatcher"/> that matches with a complex wildcards combinations:
         /// <list type="bullet">
-        /// <item>'*' means zero or more occurrecnces of any character</item>
+        /// <item>'*' means zero or more occurrences of any character</item>
         /// <item>'?' means exactly one occurrence of any character</item>
         /// </list>
         /// used when pattern is a string containing any number of '?' or '*' in any position

@@ -72,6 +72,12 @@ namespace NLog.Targets
         public static readonly LineEndingMode LF = new LineEndingMode("LF", "\n");
 
         /// <summary>
+        /// Insert null terminator (ASCII 0) after each line.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
+        public static readonly LineEndingMode Null = new LineEndingMode("Null", "\0");
+
+        /// <summary>
         /// Do not insert any line ending.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Type is immutable")]
@@ -122,6 +128,7 @@ namespace NLog.Targets
             if (name.Equals(LF.Name, StringComparison.OrdinalIgnoreCase)) return LF;
             if (name.Equals(CR.Name, StringComparison.OrdinalIgnoreCase)) return CR;
             if (name.Equals(Default.Name, StringComparison.OrdinalIgnoreCase)) return Default;
+            if (name.Equals(Null.Name, StringComparison.OrdinalIgnoreCase)) return Null;
             if (name.Equals(None.Name, StringComparison.OrdinalIgnoreCase)) return None;
 
 #if !SILVERLIGHT

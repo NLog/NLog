@@ -42,7 +42,7 @@ namespace NLog.Targets
     public class JsonSerializeOptions
     {
         /// <summary>
-        /// Add quotes arround object keys?
+        /// Add quotes around object keys?
         /// </summary>
         [DefaultValue(true)]
         public bool QuoteKeys { get; set; }

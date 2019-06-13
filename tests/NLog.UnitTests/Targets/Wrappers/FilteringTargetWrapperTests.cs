@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Filters;
+
 namespace NLog.UnitTests.Targets.Wrappers
 {
     using System;
@@ -43,7 +45,7 @@ namespace NLog.UnitTests.Targets.Wrappers
     using Xunit;
 
     public class FilteringTargetWrapperTests : NLogTestBase
-	{
+    {
         [Fact]
         public void FilteringTargetWrapperSyncTest1()
         {
@@ -273,10 +275,11 @@ namespace NLog.UnitTests.Targets.Wrappers
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
+                <variable name='test' value='${message}' />
                 <targets>
                   <target name='debug' type='BufferingWrapper'>
                       <target name='filter' type='FilteringWrapper'>
-                        <filter type='whenRepeated' layout='${message}' timeoutSeconds='30' action='Ignore' />
+                        <filter type='whenRepeated' layout='${var:test:whenempty=${guid}}' timeoutSeconds='30' action='Ignore' />
                         <target name='memory' type='Memory' />
                       </target>
                   </target>
@@ -300,6 +303,57 @@ namespace NLog.UnitTests.Targets.Wrappers
             LogManager.Flush();
             Assert.Equal(5, myTarget.Logs.Count);
         }
+
+        [Fact]
+        public void FilteringTargetWrapperWithConditionAttribute_correctBehavior()
+        {
+            // Arrange
+            LogManager.Configuration = CreateConfigWithCondition();
+            var myTarget = LogManager.Configuration.FindTargetByName<MemoryTarget>("memory");
+
+            // Act
+            var logger = LogManager.GetLogger(nameof(FilteringTargetWrapperWhenRepeatedFilter));
+            logger.Info("Hello World");
+            logger.Info("2");     // Will be ignored
+            logger.Info("3");     // Will be ignored
+            LogManager.Flush();
+
+            // Assert
+            Assert.Equal(1, myTarget.Logs.Count);
+        }
+
+        [Fact]
+        public void FilteringTargetWrapperWithConditionAttribute_validCondition()
+        {
+            // Arrange
+            var expectedCondition = "(length(message) > 2)";
+
+            // Act
+            var config = CreateConfigWithCondition();
+
+            // Assert
+            var myTarget = config.FindTargetByName<FilteringTargetWrapper>("target1");
+
+            Assert.Equal(expectedCondition, myTarget.Condition?.ToString());
+            var conditionBasedFilter = Assert.IsType<ConditionBasedFilter>(myTarget.Filter);
+            Assert.Equal(expectedCondition, conditionBasedFilter.Condition?.ToString());
+        }
+
+        private static XmlLoggingConfiguration CreateConfigWithCondition()
+        {
+            return XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                      <target name='target1' type='FilteringWrapper' condition='length(message) &gt; 2' >
+                        <target name='memory' type='Memory' />
+                  </target>
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='target1'/>
+                </rules>
+            </nlog>");
+        }
+
 
         class MyAsyncTarget : Target
         {

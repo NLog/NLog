@@ -118,7 +118,7 @@ namespace NLog.Layouts
         /// Precalculates the layout for the specified log event and stores the result
         /// in per-log event cache.
         /// 
-        /// Only if the layout doesn't have [ThreadAgnostic] and doens't contain layouts with [ThreadAgnostic]. 
+        /// Only if the layout doesn't have [ThreadAgnostic] and doesn't contain layouts with [ThreadAgnostic]. 
         /// </summary>
         /// <param name="logEvent">The log event.</param>
         /// <remarks>
@@ -291,7 +291,7 @@ namespace NLog.Layouts
             MutableUnsafe = objectGraphScannerList.Any(item => item.GetType().IsDefined(typeof(MutableUnsafeAttribute), true));
 
             // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
-            StackTraceUsage = StackTraceUsage.None;    // Incase this Layout should implement IUsesStackTrace
+            StackTraceUsage = StackTraceUsage.None;    // In case this Layout should implement IUsesStackTrace
             StackTraceUsage = objectGraphScannerList.OfType<IUsesStackTrace>().DefaultIfEmpty().Max(item => item?.StackTraceUsage ?? StackTraceUsage.None);
 
             _scannedForObjects = true;
@@ -335,7 +335,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Register a custom Layout.
         /// </summary>
-        /// <remarks>Short-cut for registing to default <see cref="ConfigurationItemFactory"/></remarks>
+        /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <typeparam name="T"> Type of the Layout.</typeparam>
         /// <param name="name"> Name of the Layout.</param>
         public static void Register<T>(string name)
@@ -348,7 +348,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Register a custom Layout.
         /// </summary>
-        /// <remarks>Short-cut for registing to default <see cref="ConfigurationItemFactory"/></remarks>
+        /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="layoutType"> Type of the Layout.</param>
         /// <param name="name"> Name of the Layout.</param>
         public static void Register(string name, Type layoutType)

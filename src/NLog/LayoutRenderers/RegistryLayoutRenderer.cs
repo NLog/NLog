@@ -73,7 +73,7 @@ namespace NLog.LayoutRenderers
         public Layout DefaultValue { get; set; }
 
         /// <summary>
-        /// Require escaping backward slashes in <see cref="DefaultValue"/>. Need to be backwardscompatible.
+        /// Require escaping backward slashes in <see cref="DefaultValue"/>. Need to be backwards-compatible.
         /// 
         /// When true:
         /// 

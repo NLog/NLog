@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,59 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.ComponentModel;
-using NLog.Config;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
 
-namespace NLog.Layouts
+namespace NLog.Internal
 {
-    /// <summary>
-    /// A XML Element
-    /// </summary>
-    [NLogConfigurationItem]
-    [AppDomainFixedOutput]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public class XmlElement : XmlElementBase
+    internal interface IConfigurationManager2 : IConfigurationManager
     {
-        private const string DefaultElementName = "item";
-
-        /// <inheritdoc />
-        public XmlElement() : this(DefaultElementName, null)
-        {
-        }
-
-        /// <inheritdoc />
-        public XmlElement(string elementName, Layout elementValue) : base(elementName, elementValue)
-        {
-        }
-
-        /// <summary>
-        /// Name of the element
-        /// </summary>
-        [DefaultValue(DefaultElementName)]
-        public string Name
-        {
-            get => base.ElementNameInternal;
-            set => base.ElementNameInternal = value;
-        }
-
-        /// <summary>
-        /// Value inside the element
-        /// </summary>
-        public Layout Value
-        {
-            get => base.ElementValueInternal;
-            set => base.ElementValueInternal = value;
-        }
-
-        /// <summary>
-        /// Determines whether or not this attribute will be Xml encoded.
-        /// </summary>
-        [DefaultValue(true)]
-        public bool Encode
-        {
-            get => base.ElementEncodeInternal;
-            set => base.ElementEncodeInternal = value;
-        }
+        System.Configuration.ConnectionStringSettings LookupConnectionString(string name);
     }
 }
+
+#endif

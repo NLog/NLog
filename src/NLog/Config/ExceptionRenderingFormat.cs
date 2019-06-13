@@ -34,7 +34,7 @@
 namespace NLog.Config
 {
     /// <summary>
-    /// Format of the excpetion output to the specific target.
+    /// Format of the exception output to the specific target.
     /// </summary>
     public enum ExceptionRenderingFormat
     {

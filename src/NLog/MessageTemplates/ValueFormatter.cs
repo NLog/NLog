@@ -42,7 +42,7 @@ using NLog.Internal;
 namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// Convert Render or serialize a value, with optionnally backwardscompatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
+    /// Convert Render or serialize a value, with optionally backwards-compatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
     /// </summary>
     internal class ValueFormatter : IValueFormatter
     {

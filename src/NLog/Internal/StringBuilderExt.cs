@@ -332,7 +332,7 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Apend a int type (byte, int) as string
+        /// Append a int type (byte, int) as string
         /// </summary>
         internal static void AppendIntegerAsString(this StringBuilder sb, IConvertible value, TypeCode objTypeCode)
         {
