@@ -208,7 +208,7 @@ namespace MakeNLogXSD
             }
             else 
             {
-                string xsdType = GetXsdType(propertyType, false);
+                string xsdType = GetXsdType(propertyType, true);
                 if (xsdType == null)
                     return null;
 
