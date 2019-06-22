@@ -43,17 +43,9 @@ Major releases will be posted on [project news](https://nlog-project.org/archive
 Getting started
 ---
 
-- For ASP.NET Core 1 users, see [installation instructions](https://github.com/NLog/NLog.Web/wiki/Getting-started-with-ASP.NET-Core-(csproj---vs2017))
-- For ASP.NET Core 2 users, see [installation instructions](https://github.com/NLog/NLog.Web/wiki/Getting-started-with-ASP.NET-Core-2)
-- ASP.NET (classic) users: 
-  1. Install [NLog.Config NuGet package](https://www.nuget.org/packages/NLog.config)
-  2. recommended, install also install [NLog.Web NuGet package](https://www.nuget.org/packages/NLog.Web)
-
-- Others:
-  1. Install [NLog.Config NuGet package](https://www.nuget.org/packages/NLog.config)
-
-
-More detailed tutorial can be found [here](https://github.com/NLog/NLog/wiki/Tutorial).
+  * [.NET Framework](Tutorial)
+  * [ASP.NET Core](https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-2)
+  * [.NET Core Console](https://github.com/NLog/NLog/wiki/Getting-started-with-.NET-Core-2---Console-application)
 
 For the possible options in the config, check the [Options list](https://nlog-project.org/config/)
 
@@ -67,7 +59,6 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
 NLog 4.5 implements the platforms added in NLog 5 (.NET Standard 1, .NET Standard 2, UWP, etc) and added structural logging, *without breaking changes*!
 
-----
 
 NLog Packages
 ---
@@ -78,7 +69,10 @@ See Nuget/build status of all official packages [here](https://github.com/NLog/N
 
 Questions, bug reports or feature requests?
 ---
-Please post questions on [StackOverflow](https://stackoverflow.com/).
+Issues with getting it working? 
+Please check the [troubleshooting guide](https://github.com/NLog/NLog/wiki/Logging-troubleshooting)  before asking! With a clear error message, it's really easier to solve the issue! 
+
+Unclear how to configure NLog correctly of other questions? Please post questions on [StackOverflow](https://stackoverflow.com/).
 
 Do you have feature request or would you like to report a bug? Please post them on the [issue list](https://github.com/NLog/NLog/issues) and follow [these guidelines](.github/CONTRIBUTING.md).
 
