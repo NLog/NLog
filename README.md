@@ -40,7 +40,7 @@ Major and minor releases will be posted on [project news](https://nlog-project.o
 Getting started
 ---
 
-  * [.NET Framework](Tutorial)
+  * [.NET Framework](https://github.com/NLog/NLog/wiki/Tutorial)
   * [ASP.NET Core](https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-2)
   * [.NET Core Console](https://github.com/NLog/NLog/wiki/Getting-started-with-.NET-Core-2---Console-application)
 
