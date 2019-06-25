@@ -42,7 +42,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void SimpleGroupByTest()
         {
-            // Stage
+            // Arrange
             var memoryTarget = new MemoryTarget("memory") { Layout = "${level}" };
             var groupByTarget = new GroupByTargetWrapper("groupby", memoryTarget, "${logger}");
             var bufferTarget = new BufferingTargetWrapper("buffer", groupByTarget);
