@@ -339,4 +339,8 @@ For all config options and platform support, check https://nlog-project.org/conf
     <ProjectGuid>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</ProjectGuid>
   </PropertyGroup>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo building $(TargetFramework) ..." />
+  </Target>
+
 </Project>
