@@ -95,7 +95,7 @@ namespace NLog.Config
                     if (SingleValueElement(child))
                     {
                         // Values assigned using nested node-elements. Maybe in combination with attributes
-                        return Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)).Concat(AttributeValues);
+                        return AttributeValues.Concat(Children.Where(item => SingleValueElement(item)).Select(item => new KeyValuePair<string, string>(item.Name, item.Value)));
                     }
                 }
                 return AttributeValues;

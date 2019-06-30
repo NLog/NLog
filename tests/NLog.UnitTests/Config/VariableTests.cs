@@ -219,15 +219,17 @@ newline
         [Fact]
         public void Xml_configuration_variableWithInnerAndAttribute_attributeHasPrecedence()
         {
-            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
+            using (new NoThrowNLogExceptions())
+            {
+                var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog>
     <variable name='var1' value='1'><value>2</value></variable>
 </nlog>");
+                var nullEvent = LogEventInfo.CreateNullEvent();
 
-            var nullEvent = LogEventInfo.CreateNullEvent();
-
-            // Act & Assert
-            Assert.Equal("1", configuration.Variables["var1"].Render(nullEvent));
+                // Act & Assert
+                Assert.Equal("1", configuration.Variables["var1"].Render(nullEvent));
+            }
         }
 
         [Fact]
