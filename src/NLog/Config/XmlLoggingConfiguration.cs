@@ -336,7 +336,6 @@ namespace NLog.Config
             {
                 InitializeSucceeded = null;
                 _originalFileName = fileName;
-                reader.MoveToContent();
                 var content = new NLogXmlElement(reader);
                 if (!string.IsNullOrEmpty(fileName))
                 {
@@ -348,7 +347,6 @@ namespace NLog.Config
                     ParseTopLevel(content, null, autoReloadDefault: false);
                 }
                 InitializeSucceeded = true;
-                CheckParsingErrors(content);
                 base.CheckUnusedTargets();
             }
             catch (Exception exception)
@@ -370,33 +368,6 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Checks whether any error during XML configuration parsing has occured.
-        /// If there are any and <c>ThrowConfigExceptions</c> or <c>ThrowExceptions</c>
-        /// setting is enabled - throws <c>NLogConfigurationException</c>, otherwise
-        /// just write an internal log at Warn level.
-        /// </summary>
-        /// <param name="rootContentElement">Root NLog configuration xml element</param>
-        private void CheckParsingErrors(NLogXmlElement rootContentElement)
-        {
-            var parsingErrors = rootContentElement.GetParsingErrors().ToArray();
-            if (parsingErrors.Any())
-            {
-                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
-                {
-                    string exceptionMessage = string.Join(Environment.NewLine, parsingErrors);
-                    throw new NLogConfigurationException(exceptionMessage);
-                }
-                else
-                {
-                    foreach (var parsingError in parsingErrors)
-                    {
-                        InternalLogger.Log(LogLevel.Warn, parsingError);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Add a file with configuration. Check if not already included.
         /// </summary>
         /// <param name="fileName"></param>
@@ -404,7 +375,12 @@ namespace NLog.Config
         private void ConfigureFromFile(string fileName, bool autoReloadDefault)
         {
             if (!_fileMustAutoReloadLookup.ContainsKey(GetFileLookupKey(fileName)))
-                ParseTopLevel(new NLogXmlElement(fileName), fileName, autoReloadDefault);
+            {
+                using (var reader = XmlReader.Create(fileName))
+                {
+                    ParseTopLevel(new NLogXmlElement(reader), fileName, autoReloadDefault);
+                }
+            }
         }
 
         /// <summary>

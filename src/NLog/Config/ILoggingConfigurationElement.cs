@@ -52,10 +52,5 @@ namespace NLog.Config
         /// Child config sections
         /// </summary>
         IEnumerable<ILoggingConfigurationElement> Children { get; }
-
-        /// <summary>
-        /// Gets the value of the element.
-        /// </summary>
-        string Value { get; }
     }
 }
