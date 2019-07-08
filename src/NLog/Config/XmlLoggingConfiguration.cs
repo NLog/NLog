@@ -115,6 +115,18 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
+        /// </summary>
+        /// <param name="reader">XML reader to read from.</param>
+        /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
+        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        public XmlLoggingConfiguration(XmlReader reader, bool ignoreErrors, LogFactory logFactory)
+            : base(logFactory)
+        {
+            Initialize(reader, null, ignoreErrors);
+        }
+
+        /// <summary>
         /// Create XML reader for (xml config) file.
         /// </summary>
         /// <param name="fileName">filepath</param>
