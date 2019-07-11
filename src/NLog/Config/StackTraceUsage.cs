@@ -42,35 +42,36 @@ namespace NLog.Config
     public enum StackTraceUsage
     {
         /// <summary>
-        /// Stack trace should not be captured.
+        /// No Stack trace needs to be captured.
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Stack trace should be captured
+        /// Stack trace should be captured. This option won't add the filenames and linenumbers
         /// </summary>
         WithStackTrace = 1,
 
 #if !SILVERLIGHT
         /// <summary>
-        /// Source-level information should be capture (source-filename + linenumber)
+        /// Capture also filenames and linenumbers
         /// </summary>
         WithFileNameAndLineNumber = 2,
 #endif
 
         /// <summary>
-        /// Stack trace should only be captured if callsite details are missing
+        /// Capture the location of the call
         /// </summary>
         WithCallSite = 4,
 
         /// <summary>
-        /// Stack trace should be captured without source-level information.
+        /// Stack trace should be captured. This option won't add the filenames and linenumbers.
         /// </summary>
+        [Obsolete("Replace with `WithStackTrace`. Will be removed in NLog 6")]
         WithoutSource = WithStackTrace,
 
 #if !SILVERLIGHT
         /// <summary>
-        /// Stack trace should be captured including source-level information such as line numbers.
+        /// Stack trace should be captured including filenames and linenumbers.
         /// </summary>
         WithSource = WithStackTrace | WithFileNameAndLineNumber,
 
