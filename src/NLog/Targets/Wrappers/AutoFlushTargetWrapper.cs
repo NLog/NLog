@@ -68,10 +68,17 @@ namespace NLog.Targets.Wrappers
         /// Delay the flush until the LogEvent has been confirmed as written
         /// </summary>
         /// <docgen category='General Options' order='10' />
-        public bool AsyncFlush { get => _asyncFlush ?? true;
+        public bool AsyncFlush
+        {
+            get => _asyncFlush ?? true;
             set => _asyncFlush = value;
         }
         private bool? _asyncFlush;
+
+        /// <summary>
+        /// Only flush when LogEvent matches condition. Ignore explicit-flush, config-reload-flush and shutdown-flush
+        /// </summary>
+        public bool FlushOnConditionOnly { get; set; }
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
 
@@ -137,7 +144,7 @@ namespace NLog.Targets.Wrappers
                     AsyncContinuation wrappedContinuation = (ex) =>
                     {
                         if (ex == null)
-                            WrappedTarget.Flush((e) => { });
+                            FlushOnCondition();
                         _pendingManualFlushList.CompleteOperation(ex);
                         currentContinuation(ex);
                     };
@@ -147,7 +154,7 @@ namespace NLog.Targets.Wrappers
                 else
                 {
                     WrappedTarget.WriteAsyncLogEvent(logEvent);
-                    FlushAsync((e) => { });
+                    FlushOnCondition();
                 }
             }
             else
@@ -161,6 +168,22 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
+        {
+            if (FlushOnConditionOnly)
+                asyncContinuation(null);
+            else
+                FlushWrappedTarget(asyncContinuation);
+        }
+
+        private void FlushOnCondition()
+        {
+            if (FlushOnConditionOnly)
+                FlushWrappedTarget((e) => { });
+            else
+                FlushAsync((e) => { });
+        }
+
+        private void FlushWrappedTarget(AsyncContinuation asyncContinuation)
         {
             var wrappedContinuation = _pendingManualFlushList.RegisterCompletionNotification(asyncContinuation);
             WrappedTarget.Flush(wrappedContinuation);

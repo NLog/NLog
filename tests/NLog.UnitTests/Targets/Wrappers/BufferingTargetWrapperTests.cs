@@ -582,6 +582,14 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(bufferSize, myTarget.WriteCount);
             Assert.Equal(1, myTarget.BufferedWriteCount);
             Assert.Equal(bufferSize, myTarget.BufferedTotalEvents);
+
+            // Make sure that events are discarded when closing target (config-reload + shutdown)
+            targetWrapper.WriteAsyncLogEvent(new LogEventInfo().WithContinuation(createAsyncContinuation(totalEvents)));
+            targetWrapper.Close();
+            Assert.Equal(bufferSize, hitCount);
+            Assert.Equal(bufferSize, myTarget.WriteCount);
+            Assert.Equal(1, myTarget.BufferedWriteCount);
+            Assert.Equal(bufferSize, myTarget.BufferedTotalEvents);
         }
 
         private static void InitializeTargets(params Target[] targets)
