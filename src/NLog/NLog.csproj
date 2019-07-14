@@ -31,25 +31,14 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-Bugfixes
-
-- Fix broken XSD schema - NLog.Schema package (@snakefoot, @304NotModified)
-
 Features
 
-- XSD: Support &lt;value&gt; in &lt;variable&gt; (@304NotModified)
-- ${AppSetting} - Added support for ConnectionStrings Lookup (@snakefoot)
-- LogLevel - Added support for TypeConverter (@snakefoot)
-- Added null terminator line ending for network target (@Kahath)
-- Log4JXmlEventLayout - Added IncludeCallSite + IncludeSourceInfo (@snakefoot)
-
-Improvements
-
-- Fix typos in docs and comments (@304NotModified)
+- Added XmlLoggingConfiguration(XmlReader reader) ctor, improved docs and annotations (@dmitrychilli, @304NotModified)
+- AutoFlushTargetWrapper - Added FlushOnConditionOnly property (@snakefoot)
 
 Performance
 
-- RetryingMultiProcessFileAppender - better init BufferSize (@snakefoot)
+- FileTarget - improvements when ConcurrentWrites=false (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
@@ -326,5 +315,9 @@ For all config options and platform support, check https://nlog-project.org/conf
     <!-- SonarQube WARNING: The following projects do not have a valid ProjectGuid and were not built using a valid solution (.sln) thus will be skipped from analysis… -->
     <ProjectGuid>{A0BFF0DB-ED9A-4639-AE86-8E709A1EFC66}</ProjectGuid>
   </PropertyGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo building $(TargetFramework) ..." />
+  </Target>
 
 </Project>
