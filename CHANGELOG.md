@@ -4,6 +4,17 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.6.6 (2019/07/14)
+
+#### Features
+
+- [#3514](https://github.com/NLog/NLog/pull/3514) Added XmlLoggingConfiguration(XmlReader reader) ctor, improved docs and annotations (@dmitrychilli, @304NotModified)
+- [#3513](https://github.com/NLog/NLog/pull/3513) AutoFlushTargetWrapper - Added FlushOnConditionOnly property (@snakefoot)
+
+#### Performance
+
+- [#3492](https://github.com/NLog/NLog/pull/3492) FileTarget - improvements when ConcurrentWrites=false (@snakefoot)
+
 ### V4.6.5 (2019/06/13)
 
 #### Bugfixes
