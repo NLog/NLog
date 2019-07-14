@@ -187,7 +187,14 @@ namespace NLog.Targets.Wrappers
                 _flushTimer = null;
                 if (currentTimer.WaitForDispose(TimeSpan.FromSeconds(1)))
                 {
-                    WriteEventsInBuffer("Closing Target");
+                    if (OverflowAction == BufferingTargetWrapperOverflowAction.Discard)
+                    {
+                        _buffer.GetEventsAndClear();
+                    }
+                    else
+                    {
+                        WriteEventsInBuffer("Closing Target");
+                    }
                 }
             }
 

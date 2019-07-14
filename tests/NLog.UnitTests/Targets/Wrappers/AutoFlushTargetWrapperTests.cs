@@ -269,7 +269,37 @@ namespace NLog.UnitTests.Targets.Wrappers
             autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Fatal, "*", "test").WithContinuation(continuation));
             Assert.Equal(2, testTarget.WriteCount);
             Assert.Equal(1, testTarget.FlushCount);
-            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "Please FlushThis").WithContinuation(continuation));
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "Please do not FlushThis").WithContinuation(continuation));
+            Assert.Equal(2, testTarget.WriteCount);
+            Assert.Equal(1, testTarget.FlushCount);
+            autoFlushOnLevelWrapper.Flush(continuation);
+            Assert.Equal(3, testTarget.WriteCount);
+            Assert.Equal(2, testTarget.FlushCount);
+        }
+
+        [Fact]
+        public void IgnoreExplicitAutoFlushWrapperTest()
+        {
+            var testTarget = new MyTarget();
+            var bufferingTargetWrapper = new BufferingTargetWrapper(testTarget, 100);
+            var autoFlushOnLevelWrapper = new AutoFlushTargetWrapper(bufferingTargetWrapper);
+            autoFlushOnLevelWrapper.Condition = "level > LogLevel.Info";
+            autoFlushOnLevelWrapper.FlushOnConditionOnly = true;
+            testTarget.Initialize(null);
+            bufferingTargetWrapper.Initialize(null);
+            autoFlushOnLevelWrapper.Initialize(null);
+
+            AsyncContinuation continuation = ex => { };
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "test").WithContinuation(continuation));
+            Assert.Equal(0, testTarget.WriteCount);
+            Assert.Equal(0, testTarget.FlushCount);
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Fatal, "*", "test").WithContinuation(continuation));
+            Assert.Equal(2, testTarget.WriteCount);
+            Assert.Equal(1, testTarget.FlushCount);
+            autoFlushOnLevelWrapper.WriteAsyncLogEvent(LogEventInfo.Create(LogLevel.Trace, "*", "Please do not FlushThis").WithContinuation(continuation));
+            Assert.Equal(2, testTarget.WriteCount);
+            Assert.Equal(1, testTarget.FlushCount);
+            autoFlushOnLevelWrapper.Flush(continuation);
             Assert.Equal(2, testTarget.WriteCount);
             Assert.Equal(1, testTarget.FlushCount);
         }
