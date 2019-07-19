@@ -185,7 +185,7 @@ namespace NLog.LayoutRenderers
         /// <param name="renderer">The renderer for converting exception to string</param>
         public static void RegisterExceptionRenderer<T>(Func<T, string> renderer) where T : Exception
         {
-            _customRenderingfunctions.Add(typeof(T), exception => renderer((T) exception));
+            _customRenderingfunctions[typeof(T)] = exception => renderer((T)exception);
         }
 
         /// <inheritdoc />
