@@ -53,6 +53,7 @@ namespace NLog.LayoutRenderers
         private string _format;
         private string _innerFormat = string.Empty;
         private readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _renderingfunctions;
+        private static readonly Dictionary<Type, Func<Exception, string>> _customRenderingfunctions = new Dictionary<Type, Func<Exception, string>>();
 
         private static readonly Dictionary<string, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
                                                                                                     {
@@ -177,6 +178,16 @@ namespace NLog.LayoutRenderers
             private set;
         }
 
+        /// <summary>
+        /// Registers a custom exception renderer type
+        /// </summary>
+        /// <typeparam name="T">Type of the exception</typeparam>
+        /// <param name="renderer">The renderer for converting exception to string</param>
+        public static void RegisterExceptionRenderer<T>(Func<T, string> renderer) where T : Exception
+        {
+            _customRenderingfunctions.Add(typeof(T), exception => renderer((T) exception));
+        }
+
         /// <inheritdoc />
         bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
         {
@@ -285,9 +296,27 @@ namespace NLog.LayoutRenderers
                 int beforeRenderLength = builder.Length;
                 var currentRenderFunction = _renderingfunctions[renderingFormat];
                 currentRenderFunction(builder, currentException);
+
                 if (builder.Length == beforeRenderLength && builder.Length != orgLength)
                 {
                     builder.Length = orgLength;
+                }
+            }
+
+            if (_customRenderingfunctions.TryGetValue(currentException.GetType(), out var renderer))
+            {
+                try
+                {
+                    builder.Append(Separator);
+                    var render = renderer(currentException);
+                    builder.Append(render);
+                }
+                catch (Exception exception)
+                {
+                    var message = $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendException(): {exception.GetType().FullName}.";
+                    builder.Append("NLog message: ");
+                    builder.Append(message);
+                    InternalLogger.Warn(exception, message);
                 }
             }
         }
