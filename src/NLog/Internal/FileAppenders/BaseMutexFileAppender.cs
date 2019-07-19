@@ -71,7 +71,7 @@ namespace NLog.Internal.FileAppenders
         protected BaseMutexFileAppender(string fileName, ICreateFileParameters createParameters)
             : base(fileName, createParameters)
         {
-            if (createParameters.IsArchivingEnabled)
+            if (createParameters.IsArchivingEnabled && createParameters.ConcurrentWrites)
             {
                 if (MutexDetector.SupportsSharableMutex)
                 {
