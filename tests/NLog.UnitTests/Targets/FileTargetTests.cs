@@ -131,56 +131,60 @@ namespace NLog.UnitTests.Targets
                 return;
             }
 
-            var logFile = Path.GetTempFileName();
-            var logFile2 = Path.Combine(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()), Path.GetFileName(logFile));
-           
-            try
+            RetryingIntegrationTest(3, () =>
             {
-                var fileTarget = WrapFileTarget(new FileTarget
+                var logFile = Path.GetTempFileName();
+                var logFile2 = Path.Combine(Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()), Path.GetFileName(logFile));
+
+                try
                 {
-                    FileName = SimpleLayout.Escape(logFile),
-                    LineEnding = LineEndingMode.LF,
-                    Layout = "${level} ${message}",
-                    OpenFileCacheTimeout = 0,
-                    EnableFileDelete = true,
-                    ConcurrentWrites = concurrentWrites,
-                    KeepFileOpen = keepFileOpen,
-                    NetworkWrites = networkWrites,
-                    ForceManaged = forceManaged,
-                    ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
-                    OptimizeBufferReuse = optimizeBufferReuse,
-                });
+                    var fileTarget = WrapFileTarget(new FileTarget
+                    {
+                        FileName = SimpleLayout.Escape(logFile),
+                        LineEnding = LineEndingMode.LF,
+                        Layout = "${level} ${message}",
+                        OpenFileCacheTimeout = 0,
+                        EnableFileDelete = true,
+                        ConcurrentWrites = concurrentWrites,
+                        KeepFileOpen = keepFileOpen,
+                        NetworkWrites = networkWrites,
+                        ForceManaged = forceManaged,
+                        ForceMutexConcurrentWrites = forceMutexConcurrentWrites,
+                        OptimizeBufferReuse = optimizeBufferReuse,
+                    });
 
-                SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
 
-                logger.Debug("aaa");
+                    logger.Debug("aaa");
 
-                LogManager.Flush();
+                    LogManager.Flush();
 
-                Directory.CreateDirectory(Path.GetDirectoryName(logFile2));
-                File.Move(logFile, logFile2);
+                    Directory.CreateDirectory(Path.GetDirectoryName(logFile2));
+                    File.Move(logFile, logFile2);
 
-                if (isSimpleKeepFileOpen)
-                    Thread.Sleep(1500); // Ensure EnableFileDeleteSimpleMonitor will trigger
-                else if (keepFileOpen && !networkWrites)
-                    Thread.Sleep(150);  // Allow AutoClose-Timer-Thread to react (FileWatcher schedules timer after 50 msec)
+                    if (isSimpleKeepFileOpen)
+                        Thread.Sleep(1500); // Ensure EnableFileDeleteSimpleMonitor will trigger
+                    else if (keepFileOpen && !networkWrites)
+                        Thread.Sleep(150); // Allow AutoClose-Timer-Thread to react (FileWatcher schedules timer after 50 msec)
 
-                logger.Info("bbb");
+                    logger.Info("bbb");
 
-                LogManager.Configuration = null;
+                    LogManager.Configuration = null;
 
-                AssertFileContents(logFile, "Info bbb\n", Encoding.UTF8);
-            }
-            finally
-            {
-                if (File.Exists(logFile2))
-                {
-                    File.Delete(logFile2);
-                    Directory.Delete(Path.GetDirectoryName(logFile2));
+                    AssertFileContents(logFile, "Info bbb\n", Encoding.UTF8);
                 }
-                if (File.Exists(logFile))
-                    File.Delete(logFile);
-            }
+                finally
+                {
+                    if (File.Exists(logFile2))
+                    {
+                        File.Delete(logFile2);
+                        Directory.Delete(Path.GetDirectoryName(logFile2));
+                    }
+
+                    if (File.Exists(logFile))
+                        File.Delete(logFile);
+                }
+            });
         }
 
         /// <summary>

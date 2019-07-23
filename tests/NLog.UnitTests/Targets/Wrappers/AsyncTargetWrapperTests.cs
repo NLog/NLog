@@ -330,81 +330,84 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void AsyncTargetWrapperFlushTest()
         {
-            var myTarget = new MyAsyncTarget
+            RetryingIntegrationTest(3, () =>
             {
-                ThrowExceptions = true
-            };
-
-            var targetWrapper = new AsyncTargetWrapper(myTarget)
-            {
-                Name = "AsyncTargetWrapperFlushTest_Wrapper",
-                OverflowAction = AsyncTargetWrapperOverflowAction.Grow
-            };
-
-            targetWrapper.Initialize(null);
-            myTarget.Initialize(null);
-
-            try
-            {
-                List<Exception> exceptions = new List<Exception>();
-
-                int eventCount = 5000;
-
-                for (int i = 0; i < eventCount; ++i)
+                var myTarget = new MyAsyncTarget
                 {
-                    targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(
-                        ex =>
-                        {
-                            lock (exceptions)
-                            {
-                                exceptions.Add(ex);
-                            }
-                        }));
-                }
+                    ThrowExceptions = true
+                };
 
-                Exception lastException = null;
-                ManualResetEvent mre = new ManualResetEvent(false);
+                var targetWrapper = new AsyncTargetWrapper(myTarget)
+                {
+                    Name = "AsyncTargetWrapperFlushTest_Wrapper",
+                    OverflowAction = AsyncTargetWrapperOverflowAction.Grow
+                };
 
-                string internalLog = RunAndCaptureInternalLog(
-                    () =>
+                targetWrapper.Initialize(null);
+                myTarget.Initialize(null);
+
+                try
+                {
+                    List<Exception> exceptions = new List<Exception>();
+
+                    int eventCount = 5000;
+
+                    for (int i = 0; i < eventCount; ++i)
                     {
-                        targetWrapper.Flush(
-                            cont =>
+                        targetWrapper.WriteAsyncLogEvent(LogEventInfo.CreateNullEvent().WithContinuation(
+                            ex =>
                             {
-                                try
+                                lock (exceptions)
                                 {
-                                    // by this time all continuations should be completed
-                                    Assert.Equal(eventCount, exceptions.Count);
-
-                                    // with just 1 flush of the target
-                                    Assert.Equal(1, myTarget.FlushCount);
-
-                                    // and all writes should be accounted for
-                                    Assert.Equal(eventCount, myTarget.WriteCount);
+                                    exceptions.Add(ex);
                                 }
-                                catch (Exception ex)
+                            }));
+                    }
+
+                    Exception lastException = null;
+                    ManualResetEvent mre = new ManualResetEvent(false);
+
+                    string internalLog = RunAndCaptureInternalLog(
+                        () =>
+                        {
+                            targetWrapper.Flush(
+                                cont =>
                                 {
-                                    lastException = ex;
-                                }
-                                finally
-                                {
-                                    mre.Set();
-                                }
-                            });
-                        Assert.True(mre.WaitOne(5000), InternalLogger.LogWriter?.ToString() ?? string.Empty);
-                    },
-                    LogLevel.Trace);
+                                    try
+                                    {
+                                        // by this time all continuations should be completed
+                                        Assert.Equal(eventCount, exceptions.Count);
 
-                if (lastException != null)
-                {
-                    Assert.True(false, lastException.ToString() + "\r\n" + internalLog);
+                                        // with just 1 flush of the target
+                                        Assert.Equal(1, myTarget.FlushCount);
+
+                                        // and all writes should be accounted for
+                                        Assert.Equal(eventCount, myTarget.WriteCount);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        lastException = ex;
+                                    }
+                                    finally
+                                    {
+                                        mre.Set();
+                                    }
+                                });
+                            Assert.True(mre.WaitOne(5000), InternalLogger.LogWriter?.ToString() ?? string.Empty);
+                        },
+                        LogLevel.Trace);
+
+                    if (lastException != null)
+                    {
+                        Assert.True(false, lastException.ToString() + "\r\n" + internalLog);
+                    }
                 }
-            }
-            finally
-            {
-                myTarget.Close();
-                targetWrapper.Close();
-            }
+                finally
+                {
+                    myTarget.Close();
+                    targetWrapper.Close();
+                }
+            });
         }
 
         [Fact]
