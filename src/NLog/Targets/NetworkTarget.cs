@@ -547,7 +547,7 @@ namespace NLog.Targets
             if (tosend <= MaxMessageSize)
             {
                 // Chunking is not needed, no need to perform delegate capture
-                InternalLogger.Trace("Sending chunk, position: {0}, length: {1}", 0, tosend);
+                InternalLogger.Trace("NetworkTarget(Name={0}): Sending chunk, position: {1}, length: {2}", Name, 0, tosend);
                 if (tosend <= 0)
                 {
                     continuation(null);
