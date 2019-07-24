@@ -303,28 +303,31 @@ namespace NLog.LayoutRenderers
                 }
             }
 
-            var exceptionType = currentException.GetType();
-            while (exceptionType != typeof(Exception))
+            if (_customRenderingfunctions.Count > 0)
             {
-                if (_customRenderingfunctions.TryGetValue(exceptionType, out var renderer))
+                var exceptionType = currentException.GetType();
+                while (exceptionType != typeof(Exception))
                 {
-                    try
+                    if (_customRenderingfunctions.TryGetValue(exceptionType, out var renderer))
                     {
-                        builder.Append(Separator);
-                        var render = renderer(currentException);
-                        builder.Append(render);
-                    }
-                    catch (Exception exception)
-                    {
-                        var message = $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendException(): {exception.GetType().FullName}. Custom renderer for {currentException.GetType().Name} threw an exception";
+                        try
+                        {
+                            builder.Append(Separator);
+                            var render = renderer(currentException);
+                            builder.Append(render);
+                        }
+                        catch (Exception exception)
+                        {
+                            var message = $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendException(): {exception.GetType().FullName}. Custom renderer for {currentException.GetType().Name} threw an exception";
 
-                        InternalLogger.Warn(exception, message);
+                            InternalLogger.Warn(exception, message);
+                        }
+                        break;
                     }
-                    break;
-                }
-                else
-                {
-                    exceptionType = exceptionType.BaseType;
+                    else
+                    {
+                        exceptionType = exceptionType.BaseType;
+                    }
                 }
             }
         }
