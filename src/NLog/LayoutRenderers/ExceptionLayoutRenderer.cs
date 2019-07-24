@@ -303,19 +303,28 @@ namespace NLog.LayoutRenderers
                 }
             }
 
-            if (_customRenderingfunctions.TryGetValue(currentException.GetType(), out var renderer))
+            var exceptionType = currentException.GetType();
+            while (exceptionType != typeof(Exception))
             {
-                try
+                if (_customRenderingfunctions.TryGetValue(exceptionType, out var renderer))
                 {
-                    builder.Append(Separator);
-                    var render = renderer(currentException);
-                    builder.Append(render);
+                    try
+                    {
+                        builder.Append(Separator);
+                        var render = renderer(currentException);
+                        builder.Append(render);
+                    }
+                    catch (Exception exception)
+                    {
+                        var message = $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendException(): {exception.GetType().FullName}. Custom renderer for {currentException.GetType().Name} threw an exception";
+
+                        InternalLogger.Warn(exception, message);
+                    }
+                    break;
                 }
-                catch (Exception exception)
+                else
                 {
-                    var message = $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendException(): {exception.GetType().FullName}. Custom renderer for {currentException.GetType().Name} threw an exception";
-                    
-                    InternalLogger.Warn(exception, message);
+                    exceptionType = exceptionType.BaseType;
                 }
             }
         }
