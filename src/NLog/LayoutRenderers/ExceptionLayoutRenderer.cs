@@ -313,9 +313,8 @@ namespace NLog.LayoutRenderers
                 }
                 catch (Exception exception)
                 {
-                    var message = $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendException(): {exception.GetType().FullName}.";
-                    builder.Append("NLog message: ");
-                    builder.Append(message);
+                    var message = $"Exception in {typeof(ExceptionLayoutRenderer).FullName}.AppendException(): {exception.GetType().FullName}. Custom renderer for {currentException.GetType().Name} threw an exception";
+                    
                     InternalLogger.Warn(exception, message);
                 }
             }
