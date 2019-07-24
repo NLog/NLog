@@ -114,7 +114,7 @@ namespace NLog.UnitTests
             {
                 cont(null);
             }
-            catch{}
+            catch { }
 
             try
             {
@@ -134,30 +134,33 @@ namespace NLog.UnitTests
         [Fact]
         public void ContinuationTimeoutTest()
         {
-            var resetEvent = new ManualResetEvent(false);
-            var exceptions = new List<Exception>();
-
-            // set up a timer to strike in 1 second
-            var cont = AsyncHelpers.WithTimeout(ex =>
+            RetryingIntegrationTest(3, () =>
             {
-                exceptions.Add(ex);
-                resetEvent.Set();
-            }, TimeSpan.FromMilliseconds(1));
+                var resetEvent = new ManualResetEvent(false);
+                var exceptions = new List<Exception>();
 
-            resetEvent.WaitOne(TimeSpan.FromSeconds(1));
+                // set up a timer to strike in 1 second
+                var cont = AsyncHelpers.WithTimeout(ex =>
+                {
+                    exceptions.Add(ex);
+                    resetEvent.Set();
+                }, TimeSpan.FromMilliseconds(1));
 
-            // make sure we got timeout exception
-            Assert.Single(exceptions);
-            Assert.IsType<TimeoutException>(exceptions[0]);
-            Assert.Equal("Timeout.", exceptions[0].Message);
+                resetEvent.WaitOne(TimeSpan.FromSeconds(1));
 
-            // those will be ignored
-            cont(null);
-            cont(new ApplicationException("Some exception"));
-            cont(null);
-            cont(new ApplicationException("Some exception"));
+                // make sure we got timeout exception
+                Assert.Single(exceptions);
+                Assert.IsType<TimeoutException>(exceptions[0]);
+                Assert.Equal("Timeout.", exceptions[0].Message);
 
-            Assert.Single(exceptions);
+                // those will be ignored
+                cont(null);
+                cont(new ApplicationException("Some exception"));
+                cont(null);
+                cont(new ApplicationException("Some exception"));
+
+                Assert.Single(exceptions);
+            });
         }
 
         [Fact]
@@ -234,7 +237,7 @@ namespace NLog.UnitTests
 
             int callCount = 0;
 
-            AsyncHelpers.Repeat(10, finalContinuation, 
+            AsyncHelpers.Repeat(10, finalContinuation,
                 cont =>
                     {
                         callCount++;
