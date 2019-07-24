@@ -36,6 +36,7 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Reflection;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
@@ -326,7 +327,11 @@ namespace NLog.LayoutRenderers
                     }
                     else
                     {
+#if NETSTANDARD1_0
+                        exceptionType = exceptionType.GetTypeInfo().BaseType; 
+#else
                         exceptionType = exceptionType.BaseType;
+#endif
                     }
                 }
             }
