@@ -55,7 +55,7 @@ namespace NLog.Internal
                 return skipFrames == 0 ? (StackTraceUsage.WithCallSite | StackTraceUsage.WithFileNameAndLineNumber) : StackTraceUsage.WithSource;
             else
 #endif
-                return skipFrames == 0 ? StackTraceUsage.WithCallSite : StackTraceUsage.WithoutSource;
+                return skipFrames == 0 ? StackTraceUsage.WithCallSite : StackTraceUsage.WithStackTrace;
         }
 
         public static int GetFrameCount(this StackTrace strackTrace)
