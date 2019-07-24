@@ -336,10 +336,18 @@ namespace NLog.UnitTests.LogReceiverService
             Uri baseAddress = new Uri(logRecieverUrl);
 
             // Create the ServiceHost.
-            using (ServiceHost host = new ServiceHost(typeof(LogRecieverMock), baseAddress))
+            var countdownEvent = new CountdownEvent(messageCount);
+            var logReceiverMock = new LogReceiverMock(countdownEvent);
+
+            using (ServiceHost host = new ServiceHost(logReceiverMock, baseAddress))
             {
+
+                var behaviour = host.Description.Behaviors.Find<ServiceBehaviorAttribute>();
+                behaviour.InstanceContextMode = InstanceContextMode.Single;
+
                 // Enable metadata publishing.
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
+                
                 smb.HttpGetEnabled = true;
 #if !MONO
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
@@ -354,21 +362,14 @@ namespace NLog.UnitTests.LogReceiverService
 
                 //wait for 2 events
 
-                var countdownEvent = new CountdownEvent(messageCount);
-                //reset
-                LogRecieverMock.receivedEvents = new List<NLogEvents>();
-                LogRecieverMock.CountdownEvent = countdownEvent;
+              
 
                 var logger1 = LogManager.GetLogger("logger1");
                 logFunc(logger1);
 
                 countdownEvent.Wait(20000);
-                //we need some extra time for completion
-                Thread.Sleep(1000);
-                var received = LogRecieverMock.receivedEvents;
-
-
-
+               
+                var received = logReceiverMock.ReceivedEvents;
 
                 Assert.Equal(messageCount, received.Count);
 
@@ -400,12 +401,18 @@ namespace NLog.UnitTests.LogReceiverService
             logger.Info(new InvalidConstraintException("boo"), "test 2");
         }
 
-        public class LogRecieverMock : ILogReceiverServer, ILogReceiverOneWayServer
+        public class LogReceiverMock : ILogReceiverServer, ILogReceiverOneWayServer
         {
 
-            public static CountdownEvent CountdownEvent;
+            public CountdownEvent CountdownEvent { get; }
 
-            public static List<NLogEvents> receivedEvents = new List<NLogEvents>();
+            /// <inheritdoc />
+            public LogReceiverMock(CountdownEvent countdownEvent)
+            {
+                CountdownEvent = countdownEvent;
+            }
+
+            public List<NLogEvents> ReceivedEvents { get; } = new List<NLogEvents>();
 
             /// <summary>
             /// Processes the log messages.
@@ -418,9 +425,7 @@ namespace NLog.UnitTests.LogReceiverService
                     throw new Exception("test not prepared well");
                 }
 
-
-
-                receivedEvents.Add(events);
+                ReceivedEvents.Add(events);
 
                 CountdownEvent.Signal();
             }
