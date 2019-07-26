@@ -114,6 +114,20 @@ namespace NLog.Internal
             return true;
         }
 
+        internal bool MustCaptureStackTrace(StackTraceUsage stackTraceUsage, LogEventInfo logEvent)
+        {
+            if (logEvent.HasStackTrace)
+                return false;
+
+            if ((stackTraceUsage & (StackTraceUsage.WithCallSite | StackTraceUsage.WithStackTrace)) != StackTraceUsage.WithCallSite)
+                return true;
+
+            if (string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerMethodName) && string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))
+                return true;   // We don't have enough CallSiteInformation
+
+            return false;
+        }
+
         internal bool TryRememberCallSiteClassName(LogEventInfo logEvent)
         {
             if (string.IsNullOrEmpty(logEvent.CallSiteInformation?.CallerFilePath))

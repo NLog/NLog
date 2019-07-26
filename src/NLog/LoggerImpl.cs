@@ -62,7 +62,7 @@ namespace NLog
                 {
                     logEvent.CallSiteInformation.CallerClassName = callSiteClassName;
                 }
-                else if (!logEvent.HasStackTrace)
+                else if (attemptCallSiteOptimization || targetsForLevel.MustCaptureStackTrace(stu, logEvent))
                 {
 #if SILVERLIGHT
                     var stackTrace = new StackTrace();

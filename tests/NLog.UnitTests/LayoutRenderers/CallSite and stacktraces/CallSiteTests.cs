@@ -1272,7 +1272,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [InlineData(true)]
         public void CallsiteTargetUsesStackTraceTest(bool includeStackTraceUsage)
         {
-            var target = new MyTarget() { StackTraceUsage = includeStackTraceUsage ? StackTraceUsage.WithoutSource : StackTraceUsage.None };
+            var target = new MyTarget() { StackTraceUsage = includeStackTraceUsage ? StackTraceUsage.WithStackTrace : StackTraceUsage.None };
             SimpleConfigurator.ConfigureForTargetLogging(target);
             var logger = LogManager.GetLogger(nameof(CallsiteTargetUsesStackTraceTest));
             string t = null;
@@ -1282,6 +1282,25 @@ namespace NLog.UnitTests.LayoutRenderers
                 Assert.NotNull(target.LastEvent.StackTrace);
             else
                 Assert.Null(target.LastEvent.StackTrace);
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void CallsiteTargetSkipsStackTraceTest(bool includeLogEventCallSite)
+        {
+            var target = new MyTarget() { StackTraceUsage = StackTraceUsage.WithCallSite };
+            SimpleConfigurator.ConfigureForTargetLogging(target);
+            var logger = LogManager.GetLogger(nameof(CallsiteTargetUsesStackTraceTest));
+            var logEvent = LogEventInfo.Create(LogLevel.Info, logger.Name, "Hello");
+            if (includeLogEventCallSite)
+                logEvent.SetCallerInfo(nameof(CallSiteTests), nameof(CallsiteTargetSkipsStackTraceTest), string.Empty, 0);
+            logger.Log(logEvent);
+            Assert.NotNull(target.LastEvent);
+            if (includeLogEventCallSite)
+                Assert.Null(target.LastEvent.StackTrace);
+            else
+                Assert.NotNull(target.LastEvent.StackTrace);
         }
 
         public class MyTarget : TargetWithLayout, IUsesStackTrace

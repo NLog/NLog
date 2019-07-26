@@ -153,7 +153,7 @@ namespace NLog.LayoutRenderers
                     }
                     if (MethodName)
                     {
-                        string methodName = logEvent.CallSiteInformation.GetCallerMemberName(method, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
+                        string methodName = logEvent.CallSiteInformation.GetCallerMethodName(method, false, CleanNamesOfAsyncContinuations, CleanNamesOfAnonymousDelegates);
                         if (string.IsNullOrEmpty(methodName))
                             methodName = "<no method>";
 

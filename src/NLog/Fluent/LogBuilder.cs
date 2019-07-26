@@ -378,18 +378,18 @@ namespace NLog.Fluent
         }
 #endif
 
-        private void SetCallerInfo(string callerMemberName, string callerFilePath, int callerLineNumber)
+        private void SetCallerInfo(string callerMethodName, string callerFilePath, int callerLineNumber)
         {
             // TODO NLog ver. 5 - Remove these properties
-            if (callerMemberName != null)
-                Property("CallerMemberName", callerMemberName);
+            if (callerMethodName != null)
+                Property("CallerMemberName", callerMethodName);
             if (callerFilePath != null)
                 Property("CallerFilePath", callerFilePath);
             if (callerLineNumber != 0)
                 Property("CallerLineNumber", callerLineNumber);
 
-            if (callerMemberName != null || callerFilePath != null || callerLineNumber != 0)
-                _logEvent.SetCallerInfo(null, callerMemberName, callerFilePath, callerLineNumber);
+            if (callerMethodName != null || callerFilePath != null || callerLineNumber != 0)
+                _logEvent.SetCallerInfo(null, callerMethodName, callerFilePath, callerLineNumber);
         }
     }
 }

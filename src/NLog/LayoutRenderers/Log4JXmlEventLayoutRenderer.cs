@@ -401,7 +401,7 @@ namespace NLog.LayoutRenderers
         {
             MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
             string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
-            string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
+            string callerMethodName = logEvent.CallSiteInformation.GetCallerMethodName(methodBase, true, true, true);
 
             xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
             if (!string.IsNullOrEmpty(callerClassName))
@@ -409,7 +409,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeSafeString("class", callerClassName);
             }
 
-            xtw.WriteAttributeSafeString("method", callerMemberName);
+            xtw.WriteAttributeSafeString("method", callerMethodName);
 #if !SILVERLIGHT
             if (IncludeSourceInfo)
             {

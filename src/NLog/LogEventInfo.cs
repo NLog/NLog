@@ -204,7 +204,7 @@ namespace NLog
         /// <summary>
         /// Gets the callsite member function name
         /// </summary>
-        public string CallerMemberName => CallSiteInformation?.GetCallerMemberName(null, false, true, true);
+        public string CallerMemberName => CallSiteInformation?.GetCallerMethodName(null, false, true, true);
 
         /// <summary>
         /// Gets the callsite source file path
