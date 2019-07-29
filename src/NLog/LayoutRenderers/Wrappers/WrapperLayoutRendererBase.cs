@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.LayoutRenderers.Wrappers
 {
     using System.Text;
@@ -49,6 +51,8 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </example>
     public abstract class WrapperLayoutRendererBase : LayoutRenderer
     {
+        private Layout _inner;
+
         /// <summary>
         /// Gets or sets the wrapped layout.
         /// 
@@ -56,7 +60,23 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <docgen category='Transformation Options' order='10' />
         [DefaultParameter]
-        public Layout Inner { get; set; }
+        public Layout Inner
+        {
+            get => _inner;
+            set
+            {
+                var changed = !ReferenceEquals(_inner, value);
+                _inner = value;
+
+                if (changed)
+                    InnerChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Notify when <see cref="Inner"/> has been changed
+        /// </summary>
+        protected event EventHandler InnerChanged;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
