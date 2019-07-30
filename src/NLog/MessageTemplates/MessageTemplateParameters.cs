@@ -36,6 +36,7 @@ namespace NLog.MessageTemplates
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using NLog.Common;
 
     /// <summary>
@@ -80,7 +81,7 @@ namespace NLog.MessageTemplates
             var hasParameters = parameters != null && parameters.Length > 0;
             bool isPositional = hasParameters;
             bool isValidTemplate = !hasParameters;
-            _parameters = hasParameters ? ParseMessageTemplate(message, parameters, out isPositional, out isValidTemplate) : Internal.ArrayHelper.Empty<MessageTemplateParameter>();
+            _parameters = ParseMessageTemplate(message, parameters, out isPositional, out isValidTemplate);
             IsPositional = isPositional;
             IsValidTemplate = isValidTemplate;
         }
@@ -125,9 +126,12 @@ namespace NLog.MessageTemplates
                         {
                             holeIndex++;
                             var value = GetHoleValueSafe(parameters, hole.Index);
-                            templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
+                            if (!templateParameters.Any(tp => tp.Name == hole.Name))
+                            {
+                                templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
+                            }
                         }
-                        else 
+                        else
                         {
                             if (isPositional)
                             {

@@ -118,6 +118,46 @@ namespace NLog.UnitTests.MessageTemplates
             Assert.Equal(names, resultNames);
         }
 
+        [Theory]
+        [InlineData("", 0, true)] //empty OK
+        [InlineData("  ", 0, true)] //empty OK
+        [InlineData("", 1, false)]
+        [InlineData("{0}", 1, true)]
+        [InlineData("{A}", 1, true)]
+        [InlineData("{A}", 0, false)]
+        [InlineData("{A}", 2, false)]
+        [InlineData("{ 0}", 1, true)]
+        [InlineData("{0} {1}", 0, false)]
+        [InlineData("{0} {1}", 1, false)]
+        [InlineData("{0} {1}", 2, true)]
+        [InlineData("{0} {A}", 0, false)]
+        [InlineData("{0} {A}", 1, false)]
+        [InlineData("{0} {A}", 2, true)]
+        [InlineData("{A} {1}", 0, false)]
+        [InlineData("{A} {1}", 1, false)]
+        [InlineData("{A} {1}", 2, true)]
+        [InlineData("{A} {B}", 0, false)]
+        [InlineData("{A} {B}", 1, false)]
+        [InlineData("{A} {B}", 2, true)]
+        [InlineData("{0} {0}", 0, false)]
+        [InlineData("{0} {0}", 1, true)]
+        [InlineData("{0} {0}", 2, false)]
+        [InlineData("{A} {A}", 0, false)]
+        [InlineData("{A} {A}", 1, false)]
+        [InlineData("{A} {A}", 2, true)] //overwrite
+        public void IsValidTemplateTest(string input, int parameterCount, bool expected)
+        {
+            // Arrange
+            var parameters = CreateParameters(parameterCount);
+
+            // Act
+            var messageTemplateParameters = new MessageTemplateParameters(input, parameters);
+
+            // Assert
+            Assert.Equal(expected, messageTemplateParameters.IsValidTemplate);
+        }
+
+
         private static object[] CreateParameters(int count)
         {
             var parameters = new List<object>(count);
