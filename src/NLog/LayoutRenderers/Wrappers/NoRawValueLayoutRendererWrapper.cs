@@ -40,8 +40,9 @@ namespace NLog.LayoutRenderers.Wrappers
     using NLog.Internal;
 
     /// <summary>
-    /// Left part of a text
+    /// Render the non-raw value of an object.
     /// </summary>
+    /// <remarks>For performance and/or full (formatted) control of the output.</remarks>
     [LayoutRenderer("norawvalue")]
     [AmbientProperty("NoRawValue")]
     [AppDomainFixedOutput]
