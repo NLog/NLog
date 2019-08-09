@@ -43,6 +43,8 @@ namespace NLog.MessageTemplates
     /// </summary>
     public sealed class MessageTemplateParameters : IEnumerable<MessageTemplateParameter>
     {
+        internal static readonly MessageTemplateParameters Empty = new MessageTemplateParameters(string.Empty, NLog.Internal.ArrayHelper.Empty<object>());
+
         private readonly IList<MessageTemplateParameter> _parameters;
 
         /// <inheritDoc/>
@@ -124,7 +126,7 @@ namespace NLog.MessageTemplates
                         if (hole.Index != -1 && isPositional)
                         {
                             holeIndex++;
-                            var value = GetHoleValueSafe(parameters, hole.Index);
+                            var value = GetHoleValueSafe(parameters, hole.Index, ref isValidTemplate);
                             templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
                         }
                         else 
@@ -142,7 +144,7 @@ namespace NLog.MessageTemplates
                                 }
                             }
 
-                            var value = GetHoleValueSafe(parameters, holeIndex);
+                            var value = GetHoleValueSafe(parameters, holeIndex, ref isValidTemplate);
                             templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
                             holeIndex++;
                         }
@@ -164,10 +166,14 @@ namespace NLog.MessageTemplates
             }
         }
 
-        private static object GetHoleValueSafe(object[] parameters, short holeIndex)
+        private static object GetHoleValueSafe(object[] parameters, short holeIndex, ref bool isValidTemplate)
         {
-            var value = parameters.Length > holeIndex ? parameters[holeIndex] : null;
-            return value;
+            if (parameters.Length > holeIndex)
+            {
+                return parameters[holeIndex];
+            }
+            isValidTemplate = false;
+            return null;
         }
     }
 }
