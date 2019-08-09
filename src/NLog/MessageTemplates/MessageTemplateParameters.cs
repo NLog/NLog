@@ -125,11 +125,11 @@ namespace NLog.MessageTemplates
                         var hole = templateEnumerator.Current.Hole;
                         if (hole.Index != -1 && isPositional)
                         {
-                            holeIndex++;
+                            holeIndex = GetMaxHoleIndex(holeIndex, hole.Index);
                             var value = GetHoleValueSafe(parameters, hole.Index, ref isValidTemplate);
                             templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
                         }
-                        else 
+                        else
                         {
                             if (isPositional)
                             {
@@ -151,9 +151,19 @@ namespace NLog.MessageTemplates
                     }
                 }
 
-                if (templateParameters.Count != parameters.Length)
+                if (isPositional)
                 {
-                    isValidTemplate = false;
+                    if (templateParameters.Count < parameters.Length || holeIndex != parameters.Length)
+                    {
+                        isValidTemplate = false;
+                    }
+                }
+                else
+                {
+                    if (templateParameters.Count != parameters.Length)
+                    {
+                        isValidTemplate = false;
+                    }
                 }
 
                 return templateParameters;
@@ -164,6 +174,18 @@ namespace NLog.MessageTemplates
                 InternalLogger.Warn(ex, "Error when parsing a message.");
                 return templateParameters;
             }
+        }
+
+        private static short GetMaxHoleIndex(short maxHoleIndex, short holeIndex)
+        {
+            if (maxHoleIndex == 0)
+                maxHoleIndex++;
+            if (maxHoleIndex <= holeIndex)
+            {
+                maxHoleIndex = holeIndex;
+                maxHoleIndex++;
+            }
+            return maxHoleIndex;
         }
 
         private static object GetHoleValueSafe(object[] parameters, short holeIndex, ref bool isValidTemplate)
@@ -177,4 +199,3 @@ namespace NLog.MessageTemplates
         }
     }
 }
-
