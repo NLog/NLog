@@ -86,8 +86,50 @@ namespace NLog.UnitTests.Internal.NetworkSenders
 
             // Cleanup
             mock.Dispose();
-
         }
+
+        [Fact]
+        public void HttpNetworkSenderViaNetworkTargetRecoveryTest()
+        {
+            // Arrange
+            var networkTarget = new NetworkTarget("target1")
+            {
+                Address = "http://test.with.mock",
+                Layout = "${logger}|${message}|${exception}"
+            };
+
+            var webRequestMock = new WebRequestMock();
+            webRequestMock.FirstRequestMustFail = true;
+            var networkSenderFactoryMock = CreateNetworkSenderFactoryMock(webRequestMock);
+            networkTarget.SenderFactory = networkSenderFactoryMock;
+
+            var logFactory = new LogFactory();
+            var config = new LoggingConfiguration(logFactory);
+            config.AddRuleForAllLevels(networkTarget);
+            logFactory.Configuration = config;
+
+            var logger = logFactory.GetLogger("HttpHappyPathTestLogger");
+
+            // Act
+            logger.Info("test message1");   // Will fail after short delay
+            logger.Info("test message2");   // Will be queued and sent after short delay
+            logFactory.Flush();
+
+            // Assert
+            var mock = webRequestMock;
+
+            var requestedString = mock.GetRequestContentAsString();
+
+            Assert.Equal("http://test.with.mock/", mock.RequestedAddress.ToString());
+            Assert.Equal("HttpHappyPathTestLogger|test message2|", requestedString);
+            Assert.Equal("POST", mock.Method);
+
+            networkSenderFactoryMock.Received(1).Create("http://test.with.mock", 0, SslProtocols.None, new TimeSpan()); // Only created one HttpNetworkSender
+
+            // Cleanup
+            mock.Dispose();
+        }
+
 
         private static INetworkSenderFactory CreateNetworkSenderFactoryMock(WebRequestMock webRequestMock)
         {
@@ -96,7 +138,7 @@ namespace NLog.UnitTests.Internal.NetworkSenders
             networkSenderFactoryMock.Create(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<SslProtocols>(), Arg.Any<TimeSpan>())
                 .Returns(url => new HttpNetworkSender(url.Arg<string>())
                 {
-                    WebRequestFactory = new WebRequestFactoryMock(webRequestMock)
+                    HttpRequestFactory = new WebRequestFactoryMock(webRequestMock)
                 });
             return networkSenderFactoryMock;
         }

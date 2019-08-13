@@ -34,7 +34,6 @@
 namespace NLog.Internal.NetworkSenders
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Net.Sockets;
     using NLog.Common;
@@ -42,19 +41,13 @@ namespace NLog.Internal.NetworkSenders
     /// <summary>
     /// Sends messages over a TCP network connection.
     /// </summary>
-    internal class TcpNetworkSender : NetworkSender
+    internal class TcpNetworkSender : QueuedNetworkSender
     {
 #if !SILVERLIGHT
         private static bool? EnableKeepAliveSuccessful;
 #endif
-
-        private readonly Queue<SocketAsyncEventArgs> _pendingRequests = new Queue<SocketAsyncEventArgs>();
-
+        private readonly EventHandler<SocketAsyncEventArgs> _socketOperationCompleted;
         private ISocket _socket;
-        private Exception _pendingError;
-        private bool _asyncOperationInProgress;
-        private AsyncContinuation _closeContinuation;
-        private AsyncContinuation _flushContinuation;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TcpNetworkSender"/> class.
@@ -65,11 +58,10 @@ namespace NLog.Internal.NetworkSenders
             : base(url)
         {
             AddressFamily = addressFamily;
+            _socketOperationCompleted = SocketOperationCompleted;
         }
 
         internal AddressFamily AddressFamily { get; set; }
-
-        internal int MaxQueueSize { get; set; }
 
 #if !SILVERLIGHT
         internal System.Security.Authentication.SslProtocols SslProtocols { get; set; }
@@ -184,11 +176,11 @@ namespace NLog.Internal.NetworkSenders
             var uri = new Uri(Address);
             var args = new MySocketAsyncEventArgs();
             args.RemoteEndPoint = ParseEndpointAddress(new Uri(Address), AddressFamily);
-            args.Completed += SocketOperationCompleted;
+            args.Completed += _socketOperationCompleted;
             args.UserToken = null;
 
             _socket = CreateSocket(uri.Host, args.RemoteEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            _asyncOperationInProgress = true;
+            base.BeginInitialize();
 
             bool asyncOperation = false;
             try
@@ -219,73 +211,10 @@ namespace NLog.Internal.NetworkSenders
         /// <param name="continuation">The continuation.</param>
         protected override void DoClose(AsyncContinuation continuation)
         {
-            lock (_pendingRequests)
-            {
-                if (_asyncOperationInProgress)
-                {
-                    _closeContinuation = continuation;
-                }
-                else
-                {
-                    CloseSocket(continuation);
-                }
-            }
+            base.DoClose(ex => CloseSocket(continuation, ex));
         }
 
-        /// <summary>
-        /// Performs sender-specific flush.
-        /// </summary>
-        /// <param name="continuation">The continuation.</param>
-        protected override void DoFlush(AsyncContinuation continuation)
-        {
-            lock (_pendingRequests)
-            {
-                if (!_asyncOperationInProgress && _pendingRequests.Count == 0)
-                {
-                    continuation(null);
-                }
-                else
-                {
-                    _flushContinuation = continuation;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sends the specified text over the connected socket.
-        /// </summary>
-        /// <param name="bytes">The bytes to be sent.</param>
-        /// <param name="offset">Offset in buffer.</param>
-        /// <param name="length">Number of bytes to send.</param>
-        /// <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
-        /// <remarks>To be overridden in inheriting classes.</remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Object is disposed in the event handler.")]
-        protected override void DoSend(byte[] bytes, int offset, int length, AsyncContinuation asyncContinuation)
-        {
-            var args = new MySocketAsyncEventArgs();
-            args.SetBuffer(bytes, offset, length);
-            args.UserToken = asyncContinuation;
-            args.Completed += SocketOperationCompleted;
-
-            lock (_pendingRequests)
-            {
-                if (MaxQueueSize != 0 && _pendingRequests.Count >= MaxQueueSize)
-                {
-                    var dequeued = _pendingRequests.Dequeue();
-
-                    if (dequeued != null)
-                    {
-                        dequeued.Dispose();
-                    }
-                }
-
-                _pendingRequests.Enqueue(args);
-            }
-
-            ProcessNextQueuedItem();
-        }
-
-        private void CloseSocket(AsyncContinuation continuation)
+        private void CloseSocket(AsyncContinuation continuation, Exception pendingException)
         {
             try
             {
@@ -297,7 +226,7 @@ namespace NLog.Internal.NetworkSenders
                     sock.Close();
                 }
 
-                continuation(null);
+                continuation(pendingException);
             }
             catch (Exception exception)
             {
@@ -310,92 +239,51 @@ namespace NLog.Internal.NetworkSenders
             }
         }
 
-        private void SocketOperationCompleted(object sender, SocketAsyncEventArgs e)
+        private void SocketOperationCompleted(object sender, SocketAsyncEventArgs args)
         {
-            lock (_pendingRequests)
+            var asyncContinuation = args.UserToken as AsyncContinuation;
+
+            Exception pendingException = null;
+            if (args.SocketError != SocketError.Success)
             {
-                _asyncOperationInProgress = false;
-                var asyncContinuation = e.UserToken as AsyncContinuation;
-
-                if (e.SocketError != SocketError.Success)
-                {
-                    _pendingError = new IOException("Error: " + e.SocketError);
-                }
-
-                e.Dispose();
-
-                asyncContinuation?.Invoke(_pendingError);
+                pendingException = new IOException("Error: " + args.SocketError);
             }
 
-            ProcessNextQueuedItem();
+            args.Completed -= _socketOperationCompleted;    // Maybe consider reusing for next request?
+            args.Dispose();
+
+            base.EndRequest(asyncContinuation, pendingException);
         }
 
-        private void ProcessNextQueuedItem()
+        protected override void BeginRequest(NetworkRequestArgs eventArgs)
         {
-            SocketAsyncEventArgs args;
+            var args = new MySocketAsyncEventArgs();
+            args.SetBuffer(eventArgs.RequestBuffer, eventArgs.RequestBufferOffset, eventArgs.RequestBufferLength);
+            args.UserToken = eventArgs.AsyncContinuation;
+            args.Completed += _socketOperationCompleted;
 
-            lock (_pendingRequests)
+            bool asyncOperation = false;
+            try
             {
-                if (_asyncOperationInProgress)
-                {
-                    return;
-                }
+                asyncOperation = _socket.SendAsync(args);
+            }
+            catch (SocketException ex)
+            {
+                InternalLogger.Error(ex, "NetworkTarget: Error sending tcp request");
+                args.SocketError = ex.SocketErrorCode;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "NetworkTarget: Error sending tcp request");
+                if (ex.InnerException is SocketException socketException)
+                    args.SocketError = socketException.SocketErrorCode;
+                else
+                    args.SocketError = SocketError.OperationAborted;
+            }
 
-                if (_pendingError != null)
-                {
-                    while (_pendingRequests.Count != 0)
-                    {
-                        args = _pendingRequests.Dequeue();
-                        var asyncContinuation = (AsyncContinuation)args.UserToken;
-                        args.Dispose();
-                        asyncContinuation(_pendingError);
-                    }
-                }
-
-                if (_pendingRequests.Count == 0)
-                {
-                    var fc = _flushContinuation;
-                    if (fc != null)
-                    {
-                        _flushContinuation = null;
-                        fc(_pendingError);
-                    }
-
-                    var cc = _closeContinuation;
-                    if (cc != null)
-                    {
-                        _closeContinuation = null;
-                        CloseSocket(cc);
-                    }
-
-                    return;
-                }
-
-                args = _pendingRequests.Dequeue();
-
-                _asyncOperationInProgress = true;
-
-                bool asyncOperation = false;
-                try
-                {
-                    asyncOperation = _socket.SendAsync(args);
-                }
-                catch (SocketException ex)
-                {
-                    args.SocketError = ex.SocketErrorCode;
-                }
-                catch (Exception ex)
-                {
-                    if (ex.InnerException is SocketException socketException)
-                        args.SocketError = socketException.SocketErrorCode;
-                    else
-                        args.SocketError = SocketError.OperationAborted;
-                }
-
-                if (!asyncOperation)
-                {
-                    SocketOperationCompleted(_socket, args);
-                }
+            if (!asyncOperation)
+            {
+                SocketOperationCompleted(_socket, args);
             }
         }
 
