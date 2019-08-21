@@ -33,7 +33,9 @@
 
 namespace NLog.UnitTests.Config
 {
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using NLog.Config;
     using NLog.Filters;
@@ -588,6 +590,180 @@ namespace NLog.UnitTests.Config
             // The two functions below should not throw an exception.
             c.LoggingRules[0].EnableLoggingForLevel(LogLevel.Debug);
             c.LoggingRules[0].DisableLoggingForLevel(LogLevel.Debug);
+        }
+
+        [Theory]
+        [InlineData("Off")]
+        [InlineData("")]
+        [InlineData((string)null)]
+        [InlineData("Trace")]
+        [InlineData("Debug")]
+        [InlineData("Info")]
+        [InlineData("Warn")]
+        [InlineData("Error")]
+        [InlineData(" error")]
+        [InlineData("Fatal")]
+        [InlineData("Wrong")]
+        public void LoggingRule_LevelLayout_ParseLevel(string levelVariable)
+        {
+            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>"
+                + (levelVariable != null ? $"<variable name='var_level' value='{levelVariable}'/>" : "") +
+                @"<targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' level='${var:var_level}' writeTo='d1' />
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = config;
+            Logger logger = LogManager.GetLogger(nameof(LoggingRule_LevelLayout_ParseLevel));
+
+            LogLevel expectedLogLevel = (NLog.Internal.StringHelpers.IsNullOrWhiteSpace(levelVariable) || levelVariable == "Wrong") ? LogLevel.Off : LogLevel.FromString(levelVariable.Trim());
+
+            for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (LogLevel.FromOrdinal(i) == expectedLogLevel)
+                    Assert.True(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+                else
+                    Assert.False(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+            }
+
+            // Verify that runtime override also works
+            LogManager.Configuration.Variables["var_level"] = LogLevel.Fatal.ToString();
+            LogManager.ReconfigExistingLoggers();
+
+            for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (LogLevel.Fatal.Ordinal == i)
+                    Assert.True(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+                else
+                    Assert.False(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(LoggingRule_LevelsLayout_ParseLevel_TestCases))]
+        public void LoggingRule_LevelsLayout_ParseLevel(string levelsVariable, LogLevel[] expectedLevels)
+        {
+            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog>"
+    + (!string.IsNullOrEmpty(levelsVariable) ? $"<variable name='var_levels' value='{levelsVariable}'/>" : "") +
+    @"<targets>
+                        <target name='d1' type='Debug' layout='${message}' />
+                    </targets>
+                    <rules>
+                        <logger name='*' levels='${var:var_levels}' writeTo='d1' />
+                    </rules>
+                </nlog>");
+
+            LogManager.Configuration = config;
+            var logger = LogManager.GetLogger(nameof(LoggingRule_LevelsLayout_ParseLevel));
+
+            for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (expectedLevels.Contains(LogLevel.FromOrdinal(i)))
+                    Assert.True(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+                else
+                    Assert.False(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+            }
+
+            // Verify that runtime override also works
+            LogManager.Configuration.Variables["var_levels"] = LogLevel.Fatal.ToString();
+            LogManager.ReconfigExistingLoggers();
+
+            for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (LogLevel.Fatal.Ordinal == i)
+                    Assert.True(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+                else
+                    Assert.False(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+            }
+        }
+
+        public static IEnumerable<object[]> LoggingRule_LevelsLayout_ParseLevel_TestCases()
+        {
+            yield return new object[] { "Off", new LogLevel[] { LogLevel.Off } };
+            yield return new object[] { "Off, Trace", new LogLevel[] { LogLevel.Off, LogLevel.Trace } };
+            yield return new object[] { " ", new LogLevel[] { LogLevel.Off } };
+            yield return new object[] { " , Debug", new LogLevel[] { LogLevel.Off, LogLevel.Debug } };
+            yield return new object[] { "", new LogLevel[] { LogLevel.Off } };
+            yield return new object[] { ",Info", new LogLevel[] { LogLevel.Off, LogLevel.Info } };
+            yield return new object[] { "Error, Error", new LogLevel[] { LogLevel.Error, LogLevel.Error } };
+            yield return new object[] { " error", new LogLevel[] { LogLevel.Error } };
+            yield return new object[] { " error, Warn", new LogLevel[] { LogLevel.Error, LogLevel.Warn } };
+            yield return new object[] { "Wrong", new LogLevel[] { LogLevel.Off } };
+            yield return new object[] { "Wrong, Fatal", new LogLevel[] { LogLevel.Off, LogLevel.Fatal } };
+        }
+
+        [Theory]
+        [MemberData(nameof(LoggingRule_MinMaxLayout_ParseLevel_TestCases2))]
+        public void LoggingRule_MinMaxLayout_ParseLevel(string minLevel, string maxLevel, LogLevel[] expectedLevels)
+        {
+            var config = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>"
+                + (!string.IsNullOrEmpty(minLevel) ? $"<variable name='var_minlevel' value='{minLevel}'/>" : "")
+                + (!string.IsNullOrEmpty(maxLevel) ? $"<variable name='var_maxlevel' value='{maxLevel}'/>" : "") +
+                @"<targets>
+                    <target name='d1' type='Debug' layout='${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='${var:var_minlevel}' maxlevel='${var:var_maxlevel}' writeTo='d1' />
+                </rules>
+            </nlog>");
+
+            LogManager.Configuration = config;
+            var logger = LogManager.GetLogger(nameof(LoggingRule_MinMaxLayout_ParseLevel));
+
+            for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (expectedLevels.Contains(LogLevel.FromOrdinal(i)))
+                    Assert.True(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+                else
+                    Assert.False(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+            }
+
+            // Verify that runtime override also works
+            LogManager.Configuration.Variables["var_minlevel"] = LogLevel.Fatal.ToString();
+            LogManager.Configuration.Variables["var_maxlevel"] = LogLevel.Fatal.ToString();
+            LogManager.ReconfigExistingLoggers();
+
+            for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
+            {
+                if (LogLevel.Fatal.Ordinal == i)
+                    Assert.True(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+                else
+                    Assert.False(logger.IsEnabled(LogLevel.FromOrdinal(i)));
+            }
+        }
+
+        public static IEnumerable<object[]> LoggingRule_MinMaxLayout_ParseLevel_TestCases2()
+        {
+            yield return new object[] { "Off", "", new LogLevel[] {  } };
+            yield return new object[] { "Off", "Fatal", new LogLevel[] { } };
+            yield return new object[] { "Error", "Debug", new LogLevel[] { } };
+            yield return new object[] { " ", "", new LogLevel[] { } };
+            yield return new object[] { " ", "Fatal", new LogLevel[] { } };
+            yield return new object[] { "", "", new LogLevel[] { } };
+            yield return new object[] { "", "Off", new LogLevel[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "", "Fatal", new LogLevel[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "", "Debug", new LogLevel[] { LogLevel.Trace, LogLevel.Debug } };
+            yield return new object[] { "", "Trace", new LogLevel[] { LogLevel.Trace } };
+            yield return new object[] { "", " error", new LogLevel[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error } };
+            yield return new object[] { "", "Wrong", new LogLevel[] { } };
+            yield return new object[] { "Wrong", "", new LogLevel[] { } };
+            yield return new object[] { "Wrong", "Fatal", new LogLevel[] { } };
+            yield return new object[] { " error", "Debug", new LogLevel[] { } };
+            yield return new object[] { " error", "Fatal", new LogLevel[] { LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { " error", "", new LogLevel[] { LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "Error", "", new LogLevel[] { LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "Fatal", "", new LogLevel[] { LogLevel.Fatal } };
+            yield return new object[] { "Off", "", new LogLevel[] { } };
+            yield return new object[] { "Trace", " ", new LogLevel[] { } };
+            yield return new object[] { "Trace", "", new LogLevel[] { LogLevel.Trace, LogLevel.Debug, LogLevel.Info, LogLevel.Warn, LogLevel.Error, LogLevel.Fatal } };
+            yield return new object[] { "Trace", "Debug", new LogLevel[] { LogLevel.Trace, LogLevel.Debug } };
+            yield return new object[] { "Trace", "Trace", new LogLevel[] { LogLevel.Trace, LogLevel.Trace } };
         }
     }
 }
