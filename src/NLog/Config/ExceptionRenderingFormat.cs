@@ -70,5 +70,9 @@ namespace NLog.Config
         /// Destructure the exception (usually into JSON)
         /// </summary>
         Serialize = 7,
+        /// <summary>
+        /// Appends the <see cref="System.Exception.Source"/> from the application or the object that caused the error.
+        /// </summary>
+        Source = 8,
     }
 }
