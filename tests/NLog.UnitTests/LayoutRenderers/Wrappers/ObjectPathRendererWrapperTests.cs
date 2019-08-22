@@ -43,7 +43,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     {
         [Theory]
         [InlineData("${object-path:${exception}:path=ParamName}")]
-        [InlineData("${exception:object-path=ParamName}")]
+        [InlineData("${exception:objectpath=ParamName}")]
         public void RenderPropertyOfException(string layout)
         {
             // Arrange

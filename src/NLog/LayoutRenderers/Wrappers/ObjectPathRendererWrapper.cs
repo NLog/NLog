@@ -44,12 +44,15 @@ namespace NLog.LayoutRenderers.Wrappers
     /// <summary>
     /// Render a single property of a object
     /// </summary>
-    [LayoutRenderer("Object-path")]
-    [AmbientProperty("object-path")]
+    [LayoutRenderer("Object-Path")]
+    [AmbientProperty(nameof(ObjectPath))]
     [ThreadSafe]
+    [ThreadAgnostic]
     public class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {
         private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
+
+        private SimpleLayout _innerAsSimple;
 
         /// <inheritdoc />
         public ObjectPathRendererWrapper()
@@ -58,23 +61,22 @@ namespace NLog.LayoutRenderers.Wrappers
             UpdateInner();
         }
 
-        private void ObjectPathRendererWrapper_InnerChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Gets or sets the object-property-navigation-path for lookup of nested property
+        ///
+        /// Shortcut for <see cref="ObjectPath"/>
+        /// </summary>
+        public string Path
         {
-            UpdateInner();
+            get => ObjectPath;
+            set => ObjectPath = value;
         }
-
-        private void UpdateInner()
-        {
-            _innerAsSimple = Inner as SimpleLayout;
-        }
-
-        private SimpleLayout _innerAsSimple;
 
         /// <summary>
         /// Gets or sets the object-property-navigation-path for lookup of nested property
         /// </summary>
         /// <docgen category='Rendering Options' order='20' />
-        public string Path
+        public string ObjectPath
         {
             get => _objectPropertyHelper.ObjectPath;
             set => _objectPropertyHelper.ObjectPath = value;
@@ -136,5 +138,15 @@ namespace NLog.LayoutRenderers.Wrappers
         }
 
         #endregion
+
+        private void ObjectPathRendererWrapper_InnerChanged(object sender, EventArgs e)
+        {
+            UpdateInner();
+        }
+
+        private void UpdateInner()
+        {
+            _innerAsSimple = Inner as SimpleLayout;
+        }
     }
 }
