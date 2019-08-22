@@ -126,7 +126,7 @@ namespace NLog.Targets
         /// Gets or sets the layout that renders event ID.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        public SimpleLayout<int> EventId { get; set; }
+        public Layoutable<int> EventId { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that renders event Category.
@@ -271,7 +271,7 @@ namespace NLog.Targets
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
-            var eventId = EventId?.RenderToValue(logEvent) ?? 0;
+            var eventId = EventId?.ToValue(logEvent) ?? 0;
             short category = 0;
             string renderCategory = RenderLogEvent(Category, logEvent);
             if (!string.IsNullOrEmpty(renderCategory) && !short.TryParse(renderCategory, out category))

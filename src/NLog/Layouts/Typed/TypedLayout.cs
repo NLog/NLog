@@ -114,7 +114,7 @@ namespace NLog.Layouts
         /// Render to value
         /// </summary>
         /// <returns></returns>
-        public T RenderToValue(LogEventInfo logEvent)
+        public T ToValue(LogEventInfo logEvent)
         {
             if (_fixedValue)
             {
