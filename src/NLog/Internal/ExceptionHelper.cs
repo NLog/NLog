@@ -152,6 +152,10 @@ namespace NLog.Internal
             {
                 return true;
             }
+            if (exception is System.Reflection.TargetInvocationException)
+            {
+                return true;    // Compiler/reflection exception
+            }
 #endif
             return false;
         }
