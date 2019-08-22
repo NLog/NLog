@@ -57,8 +57,7 @@ namespace NLog.Config
         {
             if (!ReferenceEquals(LogLevels, Off.LogLevels))
                 return this;
-            else
-                return new LoggingRuleLevelFilter();
+            return new LoggingRuleLevelFilter();
         }
 
         public LoggingRuleLevelFilter SetLoggingLevels(LogLevel minLevel, LogLevel maxLevel, bool enable)

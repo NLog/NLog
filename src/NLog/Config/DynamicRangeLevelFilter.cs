@@ -113,18 +113,18 @@ namespace NLog.Config
 
         private struct MinMaxLevels : IEquatable<MinMaxLevels>
         {
-            private readonly string MinLevel;
-            private readonly string MaxLevel;
+            private readonly string _minLevel;
+            private readonly string _maxLevel;
 
             public MinMaxLevels(string minLevel, string maxLevel)
             {
-                MinLevel = minLevel;
-                MaxLevel = maxLevel;
+                _minLevel = minLevel;
+                _maxLevel = maxLevel;
             }
 
             public bool Equals(MinMaxLevels other)
             {
-                return MinLevel == other.MinLevel && MaxLevel == other.MaxLevel;
+                return _minLevel == other._minLevel && _maxLevel == other._maxLevel;
             }
         }
     }

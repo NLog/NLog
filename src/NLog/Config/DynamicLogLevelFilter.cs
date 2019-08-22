@@ -44,7 +44,7 @@ namespace NLog.Config
     /// </summary>
     internal class DynamicLogLevelFilter : ILoggingRuleLevelFilter
     {
-        private static readonly char[] _levelFilerSplitter = { ',' };
+        private static readonly char[] LevelFilerSplitter = { ',' };
         private readonly LoggingRule _loggingRule;
         private readonly SimpleLayout _levelFilter;
         private KeyValuePair<string, bool[]> _activeFilter;
@@ -113,7 +113,7 @@ namespace NLog.Config
 
         private bool[] ParseLevels(string levelFilter)
         {
-            var levels = levelFilter.Split(_levelFilerSplitter, StringSplitOptions.RemoveEmptyEntries);
+            var levels = levelFilter.Split(LevelFilerSplitter, StringSplitOptions.RemoveEmptyEntries);
             bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
             foreach (var level in levels)
             {
