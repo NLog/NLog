@@ -76,7 +76,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Notify when <see cref="Inner"/> has been changed
         /// </summary>
-        protected event EventHandler InnerChanged;
+        /// <remarks>Change to private protected in C# 7.3</remarks>
+        internal event EventHandler InnerChanged;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
