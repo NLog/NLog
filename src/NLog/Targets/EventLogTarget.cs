@@ -126,8 +126,7 @@ namespace NLog.Targets
         /// Gets or sets the layout that renders event ID.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
-        [CLSCompliant(false)]
-        public PrimitiveLayout<int> EventId { get; set; }
+        public SimpleLayout<int> EventId { get; set; }
 
         /// <summary>
         /// Gets or sets the layout that renders event Category.
