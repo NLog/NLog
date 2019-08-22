@@ -53,7 +53,7 @@ namespace NLog.Layouts
         /// Name of the typed, for logging
         /// </summary>
         protected abstract string TypedName { get; }
-        
+
         /// <summary>
         /// Layout with fixed value
         /// </summary>
@@ -135,7 +135,7 @@ namespace NLog.Layouts
 
                 InternalLogger.Warn("rawvalue isn't a {0} ", TypedName);
             }
-            
+
             var text = _layout.Render(logEvent);
             if (TryParse(text, out var parsedValue))
             {

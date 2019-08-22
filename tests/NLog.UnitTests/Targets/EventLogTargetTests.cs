@@ -421,7 +421,6 @@ namespace NLog.UnitTests.Targets
             int eventId = rnd.Next(1, short.MaxValue);
             int category = rnd.Next(1, short.MaxValue);
             var target = CreateEventLogTarget<EventLogTarget>("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
-            target.EventId = eventId;
             target.Category = new SimpleLayout(category.ToString());
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
             var logger = LogManager.GetLogger("WriteEventLogEntry");
