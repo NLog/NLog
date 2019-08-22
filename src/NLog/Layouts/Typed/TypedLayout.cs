@@ -41,7 +41,7 @@ using NLog.Internal;
 namespace NLog.Layouts
 {
     /// <summary>
-    /// Layout rendering to int
+    /// Layout rendering of <typeparam name="T"></typeparam>
     /// </summary>
     public abstract class TypedLayout<T> : Layout
     {
