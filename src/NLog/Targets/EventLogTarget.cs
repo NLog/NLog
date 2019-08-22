@@ -41,7 +41,6 @@ namespace NLog.Targets
     using Internal.Fakeables;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -272,20 +271,7 @@ namespace NLog.Targets
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
-            int eventId = 0;
-            if (EventId != null)
-            {
-                int? renderEventId = EventId.RenderToValue(logEvent);
-                if (renderEventId == null)
-                {
-                    InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse EventId={1}", Name, EventId.Render(logEvent));
-                }
-                else
-                {
-                    eventId = renderEventId.Value;
-                }
-
-            }
+            var eventId = EventId?.RenderToValue(logEvent) ?? 0;
 
             short category = 0;
             string renderCategory = RenderLogEvent(Category, logEvent);
