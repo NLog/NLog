@@ -48,6 +48,8 @@ namespace NLog.LayoutRenderers
     [MutableUnsafe]
     public class EventPropertiesLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
+        private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
+
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
@@ -74,13 +76,9 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='20' />
         public string ObjectPath
         {
-            get => _objectPropertyPath?.Length > 0 ? string.Join(".", _objectPropertyPath) : null;
-            set => _objectPropertyPath = StringHelpers.IsNullOrWhiteSpace(value) ? null : value.SplitAndTrimTokens('.');
+            get => _objectPropertyHelper.ObjectPath;
+            set => _objectPropertyHelper.ObjectPath = value;
         }
-        private string[] _objectPropertyPath;
-
-        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache());
-        private ObjectReflectionCache _objectReflectionCache;
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -112,28 +110,15 @@ namespace NLog.LayoutRenderers
             if (!logEvent.Properties.TryGetValue(Item, out value))
                 return false;
 
-            if (_objectPropertyPath != null && !TryGetObjectProperty(ref value))
-                return false;
-
-            return true;
-        }
-
-        private bool TryGetObjectProperty(ref object value)
-        {
-            var objectReflectionCache = ObjectReflectionCache;
-            for (int i = 0; i < _objectPropertyPath.Length; ++i)
+            if (ObjectPath != null)
             {
-                if (value == null)
-                    return false;
-
-                var eventProperties = objectReflectionCache.LookupObjectProperties(value);
-                if (eventProperties.TryGetPropertyValue(_objectPropertyPath[i], out var propertyValue))
+                if (_objectPropertyHelper.TryGetObjectProperty(value, out var rawValue))
                 {
-                    value = propertyValue.Value;
+                    value = rawValue;
                 }
                 else
                 {
-                    return false;
+                    value = null;
                 }
             }
 
