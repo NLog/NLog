@@ -271,7 +271,7 @@ namespace NLog.Config
         /// <param name="attributeValue">Value of parse.</param>
         /// <param name="default">Used if there is an exception</param>
         /// <returns></returns>
-        private static LogLevel ParseLogLevelSafe(string attributeName, string attributeValue, LogLevel @default)
+        private LogLevel ParseLogLevelSafe(string attributeName, string attributeValue, LogLevel @default)
         {
             try
             {
@@ -281,18 +281,14 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 if (exception.MustBeRethrownImmediately())
-                {
                     throw;
-                }
 
                 const string message = "attribute '{0}': '{1}' isn't valid LogLevel. {2} will be used.";
                 var configException =
                     new NLogConfigurationException(exception, message, attributeName, attributeValue, @default);
-                if (configException.MustBeRethrown())
-                {
+                if (MustThrowConfigException(configException))
                     throw configException;
-                }
-                InternalLogger.Error(exception, configException.Message);
+
                 return @default;
             }
         }
@@ -394,17 +390,12 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 if (exception.MustBeRethrownImmediately())
-                {
                     throw;
-                }
 
                 var configException =
                     new NLogConfigurationException("Error loading extensions: " + type, exception);
-                if (configException.MustBeRethrown())
-                {
+                if (MustThrowConfigException(configException))
                     throw configException;
-                }
-                InternalLogger.Error(exception, configException.Message);
             }
         }
 
@@ -419,17 +410,12 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 if (exception.MustBeRethrownImmediately())
-                {
                     throw;
-                }
 
                 var configException =
                     new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
-                if (configException.MustBeRethrown())
-                {
+                if (MustThrowConfigException(configException))
                     throw configException;
-                }
-                InternalLogger.Error(exception, configException.Message);
             }
         }
 #endif
@@ -444,17 +430,12 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 if (exception.MustBeRethrownImmediately())
-                {
                     throw;
-                }
 
                 var configException =
                     new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
-                if (configException.MustBeRethrown())
-                {
+                if (MustThrowConfigException(configException))
                     throw configException;
-                }
-                InternalLogger.Error(exception, configException.Message);
             }
         }
 
@@ -733,11 +714,8 @@ namespace NLog.Config
                 {
                     var configException = 
                         new NLogConfigurationException($"Target '{targetName}' not found for logging rule: {(string.IsNullOrEmpty(rule.RuleName) ? rule.LoggerNamePattern : rule.RuleName)}.");
-                    if (configException.MustBeRethrown())
-                    {
+                    if (MustThrowConfigException(configException))
                         throw configException;
-                    }
-                    InternalLogger.Error(configException.Message);
                 }
             }
         }
@@ -891,12 +869,8 @@ namespace NLog.Config
                     throw;
 
                 var configException = new NLogConfigurationException($"Failed to create target type: {targetTypeName}", ex);
-                if (configException.MustBeRethrown())
-                {
+                if (MustThrowConfigException(configException))
                     throw configException;
-                }
-
-                InternalLogger.Error(ex, configException.Message);
             }
 
             return newTarget;
@@ -957,11 +931,8 @@ namespace NLog.Config
                 if (newTarget == null)
                 {
                     var configException = new NLogConfigurationException($"Referenced target '{targetName}' not found.");
-                    if (configException.MustBeRethrown())
-                    {
+                    if (MustThrowConfigException(configException))
                         throw configException;
-                    }
-                    InternalLogger.Error(configException.Message);
                 }
 
                 wrapper.WrappedTarget = newTarget;
@@ -985,12 +956,8 @@ namespace NLog.Config
                     if (wrapper.WrappedTarget != null)
                     {
                         var configException = new NLogConfigurationException($"Failed to assign wrapped target {targetTypeName}, because target {wrapper.Name} already has one.");
-                        if (configException.MustBeRethrown())
-                        {
+                        if (MustThrowConfigException(configException))
                             throw configException;
-                        }
-                        InternalLogger.Error(configException.Message);
-                        return true;
                     }
                 }
 
@@ -1282,11 +1249,6 @@ namespace NLog.Config
             return wrapperTargetInstance;
         }
 
-        private static bool MatchesName(string key, string expectedKey)
-        {
-            return string.Equals(key?.Trim(), expectedKey, StringComparison.OrdinalIgnoreCase);
-        }
-
         /// <summary>
         /// Parse boolean
         /// </summary>
@@ -1294,7 +1256,7 @@ namespace NLog.Config
         /// <param name="value">value to parse</param>
         /// <param name="defaultValue">Default value to return if the parse failed</param>
         /// <returns>Boolean attribute value or default.</returns>
-        private static bool ParseBooleanValue(string propertyName, string value, bool defaultValue)
+        private bool ParseBooleanValue(string propertyName, string value, bool defaultValue)
         {
             try
             {
@@ -1302,14 +1264,30 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
+                if (exception.MustBeRethrownImmediately())
+                    throw;
+
                 var configException = new NLogConfigurationException(exception, $"'{propertyName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used");
-                if (configException.MustBeRethrown())
-                {
+                if (MustThrowConfigException(configException))
                     throw configException;
-                }
-                InternalLogger.Error(exception, configException.Message);
                 return defaultValue;
             }
+        }
+
+        private bool MustThrowConfigException(NLogConfigurationException configException)
+        {
+            if (configException.MustBeRethrown())
+                return true;    // Global LogManager says throw
+
+            if (LogFactory.ThrowConfigExceptions ?? LogFactory.ThrowExceptions)
+                return true;    // Local LogFactory says throw
+
+            return false;
+        }
+
+        private static bool MatchesName(string key, string expectedKey)
+        {
+            return string.Equals(key?.Trim(), expectedKey, StringComparison.OrdinalIgnoreCase);
         }
 
         private static bool IsTargetElement(string name)
