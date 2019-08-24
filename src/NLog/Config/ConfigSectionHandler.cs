@@ -52,7 +52,7 @@ namespace NLog.Config
             {
                 string configFileName = appDomain.ConfigurationFile;
 
-                return new XmlLoggingConfiguration((XmlElement)section, configFileName);
+                return new XmlLoggingConfiguration(section.OuterXml, configFileName, LogManager.LogFactory);
             }
             catch (Exception exception)
             {
