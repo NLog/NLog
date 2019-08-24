@@ -562,7 +562,7 @@ namespace NLog.Config
 
         private LogLevel LogLevelFromString(string text)
         {
-            return LogLevel.FromString(ExpandSimpleVariables(text));
+            return LogLevel.FromString(ExpandSimpleVariables(text).Trim());
         }
 
         /// <summary>
@@ -571,9 +571,9 @@ namespace NLog.Config
         /// <param name="loggerElement"></param>
         private LoggingRule ParseRuleElement(ILoggingConfigurationElement loggerElement)
         {
-            IEnumerable<LogLevel> enableLevels = null;
-            int minLevel = 0;
-            int maxLevel = LogLevel.MaxLevel.Ordinal;
+            string minLevel = null;
+            string maxLevel = null;
+            string enableLevels = null;
 
             string ruleName = null;
             string namePattern = null;
@@ -609,19 +609,16 @@ namespace NLog.Config
                         final = ParseBooleanValue(childProperty.Key, childProperty.Value, false);
                         break;
                     case "LEVEL":
-                        enableLevels = new[] { LogLevelFromString(childProperty.Value) };
+                        enableLevels = childProperty.Value;
                         break;
                     case "LEVELS":
-                        {
-                            string[] tokens = childProperty.Value.SplitAndTrimTokens(',');
-                            enableLevels = tokens.Select(LogLevelFromString);
-                            break;
-                        }
+                        enableLevels = StringHelpers.IsNullOrWhiteSpace(childProperty.Value) ? "," : childProperty.Value;
+                        break;
                     case "MINLEVEL":
-                        minLevel = LogLevelFromString(childProperty.Value).Ordinal;
+                        minLevel = childProperty.Value;
                         break;
                     case "MAXLEVEL":
-                        maxLevel = LogLevelFromString(childProperty.Value).Ordinal;
+                        maxLevel = childProperty.Value;
                         break;
                     default:
                         InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
@@ -638,6 +635,7 @@ namespace NLog.Config
             }
 
             namePattern = namePattern ?? "*";
+
             if (!enabled)
             {
                 InternalLogger.Debug("Logging rule {0} with filter `{1}` is disabled", ruleName, namePattern);
@@ -649,33 +647,72 @@ namespace NLog.Config
                 LoggerNamePattern = namePattern
             };
 
+            EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
+
             ParseLoggingRuleTargets(writeTargets, rule);
 
             rule.Final = final;
-
-            EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
 
             ParseLoggingRuleChildren(loggerElement, rule);
 
             return rule;
         }
 
-        private static void EnableLevelsForRule(LoggingRule rule, IEnumerable<LogLevel> enableLevels, int minLevel, int maxLevel)
+        private void EnableLevelsForRule(LoggingRule rule, string enableLevels, string minLevel, string maxLevel)
         {
             if (enableLevels != null)
             {
-                foreach (var level in enableLevels)
+                enableLevels = ExpandSimpleVariables(enableLevels);
+                if (enableLevels.IndexOf('{') >= 0)
                 {
-                    rule.EnableLoggingForLevel(level);
+                    SimpleLayout simpleLayout = ParseLevelLayout(enableLevels);
+                    rule.EnableLoggingForLevels(simpleLayout);
+                }
+                else
+                {
+                    if (enableLevels.IndexOf(',') >= 0)
+                    {
+                        IEnumerable<LogLevel> logLevels = ParseLevels(enableLevels);
+                        foreach (var logLevel in logLevels)
+                            rule.EnableLoggingForLevel(logLevel);
+                    }
+                    else
+                    {
+                        rule.EnableLoggingForLevel(LogLevelFromString(enableLevels));
+                    }
                 }
             }
             else
             {
-                for (int i = minLevel; i <= maxLevel; ++i)
+                minLevel = minLevel != null ? ExpandSimpleVariables(minLevel) : minLevel;
+                maxLevel = maxLevel != null ? ExpandSimpleVariables(maxLevel) : maxLevel;
+                if (minLevel?.IndexOf('{') >= 0 || maxLevel?.IndexOf('{') >= 0)
                 {
-                    rule.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
+                    SimpleLayout minLevelLayout = ParseLevelLayout(minLevel);
+                    SimpleLayout maxLevelLayout = ParseLevelLayout(maxLevel);
+                    rule.EnableLoggingForRange(minLevelLayout, maxLevelLayout);
+                }
+                else
+                {
+                    LogLevel minLogLevel = minLevel != null ? LogLevelFromString(minLevel) : LogLevel.MinLevel;
+                    LogLevel maxLogLevel = maxLevel != null ? LogLevelFromString(maxLevel) : LogLevel.MaxLevel;
+                    rule.SetLoggingLevels(minLogLevel, maxLogLevel);
                 }
             }
+        }
+
+        private SimpleLayout ParseLevelLayout(string levelLayout)
+        {
+            SimpleLayout simpleLayout = !StringHelpers.IsNullOrWhiteSpace(levelLayout) ? new SimpleLayout(levelLayout, _configurationItemFactory) : null;
+            simpleLayout?.Initialize(this);
+            return simpleLayout;
+        }
+
+        private IEnumerable<LogLevel> ParseLevels(string enableLevels)
+        {
+            string[] tokens = enableLevels.SplitAndTrimTokens(',');
+            var logLevels = tokens.Select(LogLevelFromString);
+            return logLevels;
         }
 
         private void ParseLoggingRuleTargets(string writeTargets, LoggingRule rule)
