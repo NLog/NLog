@@ -120,7 +120,7 @@ namespace NLog.Filters
         private readonly Stack<KeyValuePair<FilterInfoKey, FilterInfo>> _objectPool = new Stack<KeyValuePair<FilterInfoKey, FilterInfo>>(1000);
 
         /// <summary>
-        /// Constructor
+        /// Initializes a new instance of the <see cref="WhenRepeatedFilter" /> class.
         /// </summary>
         public WhenRepeatedFilter()
         {
