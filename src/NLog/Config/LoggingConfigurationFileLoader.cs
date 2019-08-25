@@ -180,6 +180,9 @@ namespace NLog.Config
             catch (Exception ex)
             {
                 InternalLogger.Error(ex, "Failed loading from config file location: {0}", configFile);
+                if (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions)
+                    throw;
+
                 if (ex.MustBeRethrown())
                     throw;
             }
@@ -191,6 +194,7 @@ namespace NLog.Config
         private LoggingConfiguration LoadXmlLoggingConfigurationFile(LogFactory logFactory, string configFile)
         {
             InternalLogger.Debug("Loading config from {0}", configFile);
+
             using (var xmlReader = _appEnvironment.LoadXmlFile(configFile))
             {
                 return LoadXmlLoggingConfiguration(xmlReader, configFile, logFactory);
@@ -199,16 +203,96 @@ namespace NLog.Config
 
         private LoggingConfiguration LoadXmlLoggingConfiguration(XmlReader xmlReader, string configFile, LogFactory logFactory)
         {
-            var xmlConfig = new XmlLoggingConfiguration(xmlReader, configFile, logFactory);
-            //problem: XmlLoggingConfiguration.Initialize eats exception with invalid XML. ALso XmlLoggingConfiguration.Reload never returns null.
-            //therefor we check the InitializeSucceeded property.
-            if (xmlConfig.InitializeSucceeded != true)
+            try
             {
-                InternalLogger.Warn("Failed loading config from {0}. Invalid XML?", configFile);
+                var newConfig = new XmlLoggingConfiguration(xmlReader, configFile, logFactory);
+                if (newConfig.InitializeSucceeded != true)
+                {
+#if !SILVERLIGHT
+                    if (ThrowXmlConfigExceptions(configFile, xmlReader, logFactory, out var autoReload))
+                    {
+                        using (var xmlReaderRetry = _appEnvironment.LoadXmlFile(configFile))
+                        {
+                            newConfig = new XmlLoggingConfiguration(xmlReaderRetry, configFile, logFactory); // Scan again after having updated LogFactory, to throw correct exception
+                        }
+                    }
+                    else if (autoReload && !newConfig.AutoReload)
+                    {
+                        return CreateEmptyDefaultConfig(configFile, logFactory, autoReload);
+                    }
+#endif
+                }
+                return newConfig;
             }
-            return xmlConfig;
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately() || ex.MustBeRethrown() || (logFactory.ThrowConfigExceptions ?? logFactory.ThrowExceptions))
+                    throw;
+#if !SILVERLIGHT
+                if (ThrowXmlConfigExceptions(configFile, xmlReader, logFactory, out var autoReload))
+                    throw;
+
+                return CreateEmptyDefaultConfig(configFile, logFactory, autoReload);
+#else
+                return null;
+#endif
+            }
         }
-        
+
+#if !SILVERLIGHT
+        private static LoggingConfiguration CreateEmptyDefaultConfig(string configFile, LogFactory logFactory, bool autoReload)
+        {
+            return new XmlLoggingConfiguration($"<nlog autoReload='{autoReload}'></nlog>", configFile, logFactory);    // Empty default config, but monitors file
+        }
+
+        private bool ThrowXmlConfigExceptions(string configFile, XmlReader xmlReader, LogFactory logFactory, out bool autoReload)
+        {
+            autoReload = false;
+
+            try
+            {
+                if (string.IsNullOrEmpty(configFile))
+                    return false;
+
+                var fileContent = File.ReadAllText(configFile);
+
+                if (xmlReader.ReadState == ReadState.Error)
+                {
+                    // Avoid reacting to throwExceptions="true" that only exists in comments, only check when invalid xml
+                    if (ScanForBooleanParameter(fileContent, "throwExceptions", true))
+                    {
+                        logFactory.ThrowExceptions = true;
+                        return true;
+                    }
+
+                    if (ScanForBooleanParameter(fileContent, "throwConfigExceptions", true))
+                    {
+                        logFactory.ThrowConfigExceptions = true;
+                        return true;
+                    }
+                }
+
+                if (ScanForBooleanParameter(fileContent, "autoReload", true))
+                { 
+                    autoReload = true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                InternalLogger.Error(ex, "Failed to scan content of config file: {0}", configFile);
+                return false;
+            }
+        }
+
+        private static bool ScanForBooleanParameter(string fileContent, string parameterName, bool parameterValue)
+        {
+            return fileContent.IndexOf($"{parameterName}=\"{parameterValue}", StringComparison.OrdinalIgnoreCase) >= 0
+                || fileContent.IndexOf($"{parameterName}='{parameterValue}", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+#endif
+
         /// <inheritdoc/>
         public IEnumerable<string> GetDefaultCandidateConfigFilePaths()
         {

@@ -614,6 +614,26 @@ namespace NLog.UnitTests.Config
         }
 
         [Fact]
+        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent()
+        {
+            var called = false;
+            LoggingConfigurationReloadedEventArgs arguments = null;
+            object calledBy = null;
+            
+            var configLoader = new LoggingConfigurationWatchableFileLoader();
+            var logFactory = new LogFactory(configLoader);
+            var loggingConfiguration = XmlLoggingConfigurationMock.CreateFromXml(logFactory, "<nlog></nlog>");
+            logFactory.Configuration = loggingConfiguration;
+            logFactory.ConfigurationReloaded += (sender, args) => { called = true; calledBy = sender; arguments = args; };
+
+            configLoader.ReloadConfigOnTimer(loggingConfiguration);
+
+            Assert.True(called);
+            Assert.Same(calledBy, logFactory);
+            Assert.True(arguments.Succeeded);
+        }
+
+        [Fact]
         public void TestReloadingInvalidConfiguration()
         {
             var validXmlConfig = @"<nlog>
@@ -622,7 +642,48 @@ namespace NLog.UnitTests.Config
                         <logger name='*' minlevel='Debug' writeTo='debug' />
                     </rules>
                 </nlog>";
-            var invalidXmlConfig = "";
+            var invalidXmlConfig = @"<nlog autoReload='true' internalLogLevel='debug' internalLogLevel='error'>
+                    <targets><target name='debug' type='Debug' layout='${message}' /></targets>
+                </nlog>";
+
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempPath);
+
+            try
+            {
+                using (new NoThrowNLogExceptions())
+                {
+                    var nlogConfigFile = Path.Combine(tempPath, "NLog.config");
+                    LogFactory logFactory = new LogFactory();
+                    logFactory.SetCandidateConfigFilePaths(new[] { nlogConfigFile });
+                    var config = logFactory.Configuration;
+                    Assert.Null(config);
+
+                    WriteConfigFile(nlogConfigFile, invalidXmlConfig);
+                    config = logFactory.Configuration;
+                    Assert.NotNull(config);
+                    Assert.Empty(config.AllTargets);        // Failed to load 
+                    Assert.Single(config.FileNamesToWatch); // But file-watcher is active
+
+                    WriteConfigFile(nlogConfigFile, validXmlConfig);
+                    config = logFactory.Configuration.Reload();
+                    Assert.Single(config.AllTargets);
+                }
+            }
+            finally
+            {
+                if (Directory.Exists(tempPath))
+                {
+                    Directory.Delete(tempPath, true);
+                }
+            }
+        }
+
+        [Fact]
+        public void TestThrowExceptionWhenInvalidXml()
+        {
+            var invalidXmlConfig = @"<nlog throwExceptions='true' internalLogLevel='debug' internalLogLevel='error'>
+                </nlog>";
 
             string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempPath);
@@ -633,13 +694,9 @@ namespace NLog.UnitTests.Config
                 {
                     var nlogConfigFile = Path.Combine(tempPath, "NLog.config");
                     WriteConfigFile(nlogConfigFile, invalidXmlConfig);
-
-                    var invalidConfiguration = new XmlLoggingConfiguration(nlogConfigFile);
-                    Assert.False(invalidConfiguration.InitializeSucceeded);
-
-                    WriteConfigFile(nlogConfigFile, validXmlConfig);
-                    var validReloadedConfiguration = (XmlLoggingConfiguration)invalidConfiguration.Reload();
-                    Assert.True(validReloadedConfiguration.InitializeSucceeded);
+                    LogFactory logFactory = new LogFactory();
+                    logFactory.SetCandidateConfigFilePaths(new[] { nlogConfigFile });
+                    Assert.Throws<NLogConfigurationException>(() => logFactory.GetLogger("Hello"));
                 }
             }
             finally
