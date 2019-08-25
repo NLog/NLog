@@ -31,10 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Config;
-
 namespace NLog.UnitTests.Filters
 {
+    using System.Linq;
+    using NLog.Config;
     using NLog.Layouts;
     using NLog.Filters;
     using Xunit;
@@ -64,6 +64,28 @@ namespace NLog.UnitTests.Filters
             Assert.Equal("${message}", ((SimpleLayout)wcf.Layout).Text);
             Assert.Equal("zzz", wcf.Substring);
             Assert.Equal(FilterResult.Ignore, wcf.Action);
+        }
+
+        [Fact]
+        public void WhenMethodFilterApiTest()
+        {
+            // Stage
+            var logFactory = new LogFactory();
+            var logger1 = logFactory.GetLogger("Hello");
+            var logger2 = logFactory.GetLogger("Goodbye");
+            var config = new LoggingConfiguration(logFactory);
+            var target = new NLog.Targets.DebugTarget() { Layout = "${message}" };
+            config.AddRuleForAllLevels(target);
+            config.LoggingRules.Last().Filters.Add(new WhenMethodFilter((l) => l.LoggerName == logger1.Name ? FilterResult.Ignore : FilterResult.Log));
+            logFactory.Configuration = config;
+
+            // Act 1
+            logger1.Info("Hello World");
+            Assert.Empty(target.LastMessage);
+
+            // Act 2
+            logger2.Info("Goodbye World");
+            Assert.Equal("Goodbye World", target.LastMessage);
         }
     }
 }

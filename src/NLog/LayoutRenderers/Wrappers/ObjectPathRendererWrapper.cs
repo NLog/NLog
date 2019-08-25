@@ -1,0 +1,152 @@
+﻿// 
+// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// 
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+// * Redistributions of source code must retain the above copyright notice, 
+//   this list of conditions and the following disclaimer. 
+// 
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution. 
+// 
+// * Neither the name of Jaroslaw Kowalski nor the names of its 
+//   contributors may be used to endorse or promote products derived from this
+//   software without specific prior written permission. 
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+// THE POSSIBILITY OF SUCH DAMAGE.
+// 
+
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using NLog.Config;
+using NLog.Internal;
+using NLog.Layouts;
+
+namespace NLog.LayoutRenderers.Wrappers
+{
+    /// <summary>
+    /// Render a single property of a object
+    /// </summary>
+    [LayoutRenderer("Object-Path")]
+    [AmbientProperty(nameof(ObjectPath))]
+    [ThreadSafe]
+    [ThreadAgnostic]
+    public class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValue
+    {
+        private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
+
+        private SimpleLayout _innerAsSimple;
+
+        /// <inheritdoc />
+        public ObjectPathRendererWrapper()
+        {
+            InnerChanged += ObjectPathRendererWrapper_InnerChanged;
+            UpdateInner();
+        }
+
+        /// <summary>
+        /// Gets or sets the object-property-navigation-path for lookup of nested property
+        ///
+        /// Shortcut for <see cref="ObjectPath"/>
+        /// </summary>
+        public string Path
+        {
+            get => ObjectPath;
+            set => ObjectPath = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the object-property-navigation-path for lookup of nested property
+        /// </summary>
+        /// <docgen category='Rendering Options' order='20' />
+        public string ObjectPath
+        {
+            get => _objectPropertyHelper.ObjectPath;
+            set => _objectPropertyHelper.ObjectPath = value;
+        }
+
+        /// <summary>
+        /// Format string for conversion from object to string.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='50' />
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Gets or sets the culture used for rendering. 
+        /// </summary>
+        /// <docgen category='Rendering Options' order='100' />
+        public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
+
+        #region Overrides of WrapperLayoutRendererBase
+
+        /// <inheritdoc />
+        protected override string Transform(string text)
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <inheritdoc />
+        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
+        {
+            if (_innerAsSimple != null)
+            {
+                if (TryGetRawValue(logEvent, out object rawValue))
+                {
+                    var formatProvider = GetFormatProvider(logEvent, Culture);
+                    builder.AppendFormattedValue(rawValue, Format, formatProvider);
+                }
+            }
+            else
+            {
+                Inner?.RenderAppendBuilder(logEvent, builder);
+            }
+        }
+
+        #endregion
+
+        #region Implementation of IRawValue
+
+        /// <inheritdoc />
+        public bool TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            if (_innerAsSimple != null &&
+                _innerAsSimple.TryGetRawValue(logEvent, out var rawValue) &&
+                _objectPropertyHelper.TryGetObjectProperty(rawValue, out value))
+            {
+                return true;
+            }
+
+            value = null;
+            return false;
+        }
+
+        #endregion
+
+        private void ObjectPathRendererWrapper_InnerChanged(object sender, EventArgs e)
+        {
+            UpdateInner();
+        }
+
+        private void UpdateInner()
+        {
+            _innerAsSimple = Inner as SimpleLayout;
+        }
+    }
+}

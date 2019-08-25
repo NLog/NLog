@@ -31,43 +31,18 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
+namespace NLog.Config
 {
-    using System;
-    using System.ComponentModel;
-    using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
-
-    /// <summary>
-    /// Render the non-raw value of an object.
-    /// </summary>
-    /// <remarks>For performance and/or full (formatted) control of the output.</remarks>
-    [LayoutRenderer("norawvalue")]
-    [AmbientProperty("NoRawValue")]
-    [AppDomainFixedOutput]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public sealed class NoRawValueLayoutRendererWrapper : WrapperLayoutRendererBase
+    internal interface ILoggingRuleLevelFilter
     {
         /// <summary>
-        /// Gets or sets a value indicating whether to disable the IRawValue-interface
+        /// Level enabled flags for each LogLevel ordinal
         /// </summary>
-        /// <value>A value of <c>true</c> if IRawValue-interface should be ignored; otherwise, <c>false</c>.</value>
-        /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
-        public bool NoRawValue { get; set; } = true;
+        bool[] LogLevels { get; }
 
-        /// <inheritdoc/>
-        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
-        {
-            Inner?.RenderAppendBuilder(logEvent, builder);
-        }
-
-        /// <inheritdoc/>
-        protected override string Transform(string text)
-        {
-            throw new NotSupportedException();
-        }
+        /// <summary>
+        /// Converts the filter into a simple <see cref="LoggingRuleLevelFilter"/>
+        /// </summary>
+        LoggingRuleLevelFilter GetSimpleFilterForUpdate();
     }
 }

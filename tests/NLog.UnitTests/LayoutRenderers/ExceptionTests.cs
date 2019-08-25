@@ -62,9 +62,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug7' type='Debug' layout='${exception:format=method}' />
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
                     <target name='debug9' type='Debug' layout='${exception:format=data}' />
+                    <target name='debug10' type='Debug' layout='${exception:format=source}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10' />
                 </rules>
             </nlog>");
 
@@ -81,6 +82,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug4", typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
+            AssertDebugLastMessage("debug10", GetType().ToString());
 
             AssertDebugLastMessage("debug9", dataText);
 
@@ -110,9 +112,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug7' type='Debug' layout='${exception:format=method}' />
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
                     <target name='debug9' type='Debug' layout='${exception:format=data}' />
+                    <target name='debug10' type='Debug' layout='${exception:format=source}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10' />
                 </rules>
             </nlog>");
 
@@ -130,6 +133,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", dataText);
+            AssertDebugLastMessage("debug10", GetType().ToString());
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
@@ -154,9 +158,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug7' type='Debug' layout='${exception:format=method}' />
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
                     <target name='debug9' type='Debug' layout='${exception:format=data}' />
+                    <target name='debug10' type='Debug' layout='${exception:format=source}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10' />
                 </rules>
             </nlog>");
 
@@ -176,6 +181,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug7", "");
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", dataText);
+            AssertDebugLastMessage("debug10", "");
         }
 
         [Fact]
@@ -522,6 +528,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
             catch (Exception exception)
             {
+                exception.Source = GetType().ToString();
                 return exception;
             }
         }

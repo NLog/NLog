@@ -31,14 +31,26 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-Features
+## Features
 
-- Added XmlLoggingConfiguration(XmlReader reader) ctor, improved docs and annotations (@dmitrychilli, @304NotModified)
-- AutoFlushTargetWrapper - Added FlushOnConditionOnly property (@snakefoot)
+- Added ${object-path} / ${exception:objectpath=PropertyName}, for rendering a property of an object (e.g. an exception) (@304NotModified)
+- WhenMethodFilter - Support dynamic filtering using lambda (@snakefoot)
+- Added support for dynamic layout renderer in log level filters (e.g. minLevel, maxLevel)  (@snakefoot)
+- ExceptionLayoutRenderer - Added Source as new format parameter. (@snakefoot)
+- ColoredConsoleTarget - Added DetectOutputRedirected to skip coloring on redirect (@snakefoot)
 
-Performance
+## Improvements
 
-- FileTarget - improvements when ConcurrentWrites=false (@snakefoot)
+- MessageTemplateParameters - Improve validation of parameters when isPositional (@snakefoot)
+- NetworkTarget - HttpNetworkSender no longer sends out-of-order (@snakefoot)
+- NetworkTarget - Fix InternalLogger.Trace to include Target name (@snakefoot)
+- XML config - Support ThrowConfigExceptions=true even when xml is invalid (@snakefoot)
+- Fix summary of NoRawValueLayoutRendererWrapper class (@304NotModified)
+
+## Performance
+
+- MessageTemplateParameters - Skip object allocation when no parameters (@snakefoot)
+- XmlLayout - Defer allocation of ObjectReflectionCache until needed (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

@@ -61,6 +61,8 @@ namespace NLog.LayoutRenderers
                                                                                                         {"SHORTTYPE",ExceptionRenderingFormat.ShortType},
                                                                                                         {"TOSTRING",ExceptionRenderingFormat.ToString},
                                                                                                         {"METHOD",ExceptionRenderingFormat.Method},
+                                                                                                        {"TARGETSITE",ExceptionRenderingFormat.Method},
+                                                                                                        {"SOURCE",ExceptionRenderingFormat.Source},
                                                                                                         {"STACKTRACE", ExceptionRenderingFormat.StackTrace},
                                                                                                         {"DATA",ExceptionRenderingFormat.Data},
                                                                                                         {"@",ExceptionRenderingFormat.Serialize},
@@ -84,6 +86,7 @@ namespace NLog.LayoutRenderers
                                                                                                         {ExceptionRenderingFormat.ShortType, AppendShortType},
                                                                                                         {ExceptionRenderingFormat.ToString, AppendToString},
                                                                                                         {ExceptionRenderingFormat.Method, AppendMethod},
+                                                                                                        {ExceptionRenderingFormat.Source, AppendSource},
                                                                                                         {ExceptionRenderingFormat.StackTrace, AppendStackTrace},
                                                                                                         {ExceptionRenderingFormat.Data, AppendData},
                                                                                                         {ExceptionRenderingFormat.Serialize, AppendSerializeObject},
@@ -323,10 +326,7 @@ namespace NLog.LayoutRenderers
 #if SILVERLIGHT || NETSTANDARD1_0
             sb.Append(ParseMethodNameFromStackTrace(ex.StackTrace));
 #else
-            if (ex.TargetSite != null)
-            {
-                sb.Append(ex.TargetSite.ToString());
-            }
+            sb.Append(ex.TargetSite?.ToString());
 #endif
         }
 
@@ -337,8 +337,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose stack trace should be appended.</param>        
         protected virtual void AppendStackTrace(StringBuilder sb, Exception ex)
         {
-            if (!string.IsNullOrEmpty(ex.StackTrace))
-                sb.Append(ex.StackTrace);
+            sb.Append(ex.StackTrace);
         }
 
         /// <summary>
@@ -385,6 +384,18 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Appends the application source of an Exception to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose source should be appended.</param>
+        protected virtual void AppendSource(StringBuilder sb, Exception ex)
+        {
+#if !SILVERLIGHT
+            sb.Append(ex.Source);
+#endif
+        }
+
+        /// <summary>
         /// Appends the contents of an Exception's Data property to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -398,7 +409,6 @@ namespace NLog.LayoutRenderers
                 {
                     sb.Append(separator);
                     sb.AppendFormat("{0}: {1}", key, ex.Data[key]);
-
                     separator = ExceptionDataSeparator;
                 }
             }

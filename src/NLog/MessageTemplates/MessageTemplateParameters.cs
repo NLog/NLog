@@ -43,6 +43,8 @@ namespace NLog.MessageTemplates
     /// </summary>
     public sealed class MessageTemplateParameters : IEnumerable<MessageTemplateParameter>
     {
+        internal static readonly MessageTemplateParameters Empty = new MessageTemplateParameters(string.Empty, NLog.Internal.ArrayHelper.Empty<object>());
+
         private readonly IList<MessageTemplateParameter> _parameters;
 
         /// <inheritDoc/>
@@ -123,11 +125,11 @@ namespace NLog.MessageTemplates
                         var hole = templateEnumerator.Current.Hole;
                         if (hole.Index != -1 && isPositional)
                         {
-                            holeIndex++;
-                            var value = GetHoleValueSafe(parameters, hole.Index);
+                            holeIndex = GetMaxHoleIndex(holeIndex, hole.Index);
+                            var value = GetHoleValueSafe(parameters, hole.Index, ref isValidTemplate);
                             templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
                         }
-                        else 
+                        else
                         {
                             if (isPositional)
                             {
@@ -142,16 +144,26 @@ namespace NLog.MessageTemplates
                                 }
                             }
 
-                            var value = GetHoleValueSafe(parameters, holeIndex);
+                            var value = GetHoleValueSafe(parameters, holeIndex, ref isValidTemplate);
                             templateParameters.Add(new MessageTemplateParameter(hole.Name, value, hole.Format, hole.CaptureType));
                             holeIndex++;
                         }
                     }
                 }
 
-                if (templateParameters.Count != parameters.Length)
+                if (isPositional)
                 {
-                    isValidTemplate = false;
+                    if (templateParameters.Count < parameters.Length || holeIndex != parameters.Length)
+                    {
+                        isValidTemplate = false;
+                    }
+                }
+                else
+                {
+                    if (templateParameters.Count != parameters.Length)
+                    {
+                        isValidTemplate = false;
+                    }
                 }
 
                 return templateParameters;
@@ -164,11 +176,26 @@ namespace NLog.MessageTemplates
             }
         }
 
-        private static object GetHoleValueSafe(object[] parameters, short holeIndex)
+        private static short GetMaxHoleIndex(short maxHoleIndex, short holeIndex)
         {
-            var value = parameters.Length > holeIndex ? parameters[holeIndex] : null;
-            return value;
+            if (maxHoleIndex == 0)
+                maxHoleIndex++;
+            if (maxHoleIndex <= holeIndex)
+            {
+                maxHoleIndex = holeIndex;
+                maxHoleIndex++;
+            }
+            return maxHoleIndex;
+        }
+
+        private static object GetHoleValueSafe(object[] parameters, short holeIndex, ref bool isValidTemplate)
+        {
+            if (parameters.Length > holeIndex)
+            {
+                return parameters[holeIndex];
+            }
+            isValidTemplate = false;
+            return null;
         }
     }
 }
-

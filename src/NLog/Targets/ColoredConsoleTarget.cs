@@ -67,6 +67,8 @@ namespace NLog.Targets
         /// </remarks>
         private bool _pauseLogging;
 
+        private bool _disableColors;
+
         private IColoredConsolePrinter _consolePrinter;
 
         /// <summary>
@@ -80,8 +82,6 @@ namespace NLog.Targets
             WordHighlightingRules = new List<ConsoleWordHighlightingRule>();
             RowHighlightingRules = new List<ConsoleRowHighlightingRule>();
             UseDefaultRowHighlightingRules = true;
-            _pauseLogging = false;
-            DetectConsoleAvailable = false;
             OptimizeBufferReuse = true;
             _consolePrinter = CreateConsolePrinter(EnableAnsiOutput);
         }
@@ -180,10 +180,18 @@ namespace NLog.Targets
         public bool DetectConsoleAvailable { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to auto-check if the console has been redirected to file
+        ///   - Disables coloring logic when System.Console.IsOutputRedirected = true
+        /// </summary>
+        /// <docgen category='Console Options' order='11' />
+        [DefaultValue(false)]
+        public bool DetectOutputRedirected { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to auto-flush after <see cref="Console.WriteLine()"/>
         /// </summary>
         /// <remarks>
-        /// Normally the standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = false, but not when piped
+        /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
         [DefaultValue(false)]
         public bool AutoFlush { get; set; }
@@ -215,13 +223,15 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             _pauseLogging = false;
+            _disableColors = false;
+
             if (DetectConsoleAvailable)
             {
                 string reason;
                 _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
                 if (_pauseLogging)
                 {
-                    InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
+                    InternalLogger.Info("ColoredConsole(Name={0}): Console detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", Name, reason);
                 }
             }
 
@@ -230,7 +240,30 @@ namespace NLog.Targets
                 ConsoleTargetHelper.SetConsoleOutputEncoding(_encoding, true, _pauseLogging);
 #endif
 
+#if NET4_5
+            if (DetectOutputRedirected)
+            {
+                try
+                {
+                    _disableColors = ErrorStream ? Console.IsErrorRedirected : Console.IsOutputRedirected;
+                    if (_disableColors)
+                    {
+                        InternalLogger.Info("ColoredConsole(Name={0}): Console output is redirected so no colors. Disable DetectOutputRedirected to skip detection.", Name);
+                        if (!AutoFlush && GetOutput() is StreamWriter streamWriter && !streamWriter.AutoFlush)
+                        {
+                            AutoFlush = true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InternalLogger.Error(ex, "ColoredConsole(Name={0}): Failed checking if Console Output Redirected.", Name);
+                }
+            }
+#endif
+
             base.InitializeTarget();
+
             if (Header != null)
             {
                 LogEventInfo lei = LogEventInfo.CreateNullEvent();
@@ -327,16 +360,21 @@ namespace NLog.Targets
 
         private void WriteToOutputWithColor(LogEventInfo logEvent, string message)
         {
-            var matchingRule = GetMatchingRowHighlightingRule(logEvent);
-
             string colorMessage = message ?? string.Empty;
-            if (WordHighlightingRules.Count > 0)
-            {
-                colorMessage = GenerateColorEscapeSequences(message);
-            }
+            ConsoleColor? newForegroundColor = null;
+            ConsoleColor? newBackgroundColor = null;
 
-            ConsoleColor? newForegroundColor = matchingRule.ForegroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.ForegroundColor : default(ConsoleColor?);
-            ConsoleColor? newBackgroundColor = matchingRule.BackgroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.BackgroundColor : default(ConsoleColor?);
+            if (!_disableColors)
+            {
+                var matchingRule = GetMatchingRowHighlightingRule(logEvent);
+                if (WordHighlightingRules.Count > 0)
+                {
+                    colorMessage = GenerateColorEscapeSequences(message);
+                }
+
+                newForegroundColor = matchingRule.ForegroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.ForegroundColor : default(ConsoleColor?);
+                newBackgroundColor = matchingRule.BackgroundColor != ConsoleOutputColor.NoChange ? (ConsoleColor)matchingRule.BackgroundColor : default(ConsoleColor?);
+            }
 
             var consoleStream = GetOutput();
             if (ReferenceEquals(colorMessage, message) && !newForegroundColor.HasValue && !newBackgroundColor.HasValue)
@@ -348,6 +386,7 @@ namespace NLog.Targets
                 bool wordHighlighting = !ReferenceEquals(colorMessage, message) || message?.IndexOf('\n') >= 0;
                 WriteToOutputWithPrinter(consoleStream, colorMessage, newForegroundColor, newBackgroundColor, wordHighlighting);
             }
+
             if (AutoFlush)
                 consoleStream.Flush();
         }

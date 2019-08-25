@@ -31,43 +31,31 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
+namespace NLog.Filters
 {
     using System;
-    using System.ComponentModel;
-    using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
-    /// Render the non-raw value of an object.
+    /// Matches the provided filter-method
     /// </summary>
-    /// <remarks>For performance and/or full (formatted) control of the output.</remarks>
-    [LayoutRenderer("norawvalue")]
-    [AmbientProperty("NoRawValue")]
-    [AppDomainFixedOutput]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public sealed class NoRawValueLayoutRendererWrapper : WrapperLayoutRendererBase
+    public class WhenMethodFilter : Filter
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether to disable the IRawValue-interface
-        /// </summary>
-        /// <value>A value of <c>true</c> if IRawValue-interface should be ignored; otherwise, <c>false</c>.</value>
-        /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
-        public bool NoRawValue { get; set; } = true;
+        private readonly Func<LogEventInfo, FilterResult> _filterMethod;
 
-        /// <inheritdoc/>
-        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WhenMethodFilter" /> class.
+        /// </summary>
+        public WhenMethodFilter(Func<LogEventInfo, FilterResult> filterMethod)
         {
-            Inner?.RenderAppendBuilder(logEvent, builder);
+            if (filterMethod == null)
+                throw new ArgumentNullException(nameof(filterMethod));
+            _filterMethod = filterMethod;
         }
 
         /// <inheritdoc/>
-        protected override string Transform(string text)
+        protected override FilterResult Check(LogEventInfo logEvent)
         {
-            throw new NotSupportedException();
+            return _filterMethod(logEvent);
         }
     }
 }

@@ -119,7 +119,7 @@ namespace NLog.Targets
         /// Gets or sets a value indicating whether to auto-flush after <see cref="Console.WriteLine()"/>
         /// </summary>
         /// <remarks>
-        /// Normally the standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = false, but not when piped
+        /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
         [DefaultValue(false)]
         public bool AutoFlush { get; set; }

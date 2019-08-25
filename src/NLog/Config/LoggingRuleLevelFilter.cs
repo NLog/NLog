@@ -31,43 +31,40 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.LayoutRenderers.Wrappers
+namespace NLog.Config
 {
     using System;
-    using System.ComponentModel;
-    using System.Text;
-    using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
-    /// Render the non-raw value of an object.
+    /// Default filtering with static level config
     /// </summary>
-    /// <remarks>For performance and/or full (formatted) control of the output.</remarks>
-    [LayoutRenderer("norawvalue")]
-    [AmbientProperty("NoRawValue")]
-    [AppDomainFixedOutput]
-    [ThreadAgnostic]
-    [ThreadSafe]
-    public sealed class NoRawValueLayoutRendererWrapper : WrapperLayoutRendererBase
+    internal class LoggingRuleLevelFilter : ILoggingRuleLevelFilter
     {
-        /// <summary>
-        /// Gets or sets a value indicating whether to disable the IRawValue-interface
-        /// </summary>
-        /// <value>A value of <c>true</c> if IRawValue-interface should be ignored; otherwise, <c>false</c>.</value>
-        /// <docgen category='Transformation Options' order='10' />
-        [DefaultValue(true)]
-        public bool NoRawValue { get; set; } = true;
+        public static readonly ILoggingRuleLevelFilter Off = new LoggingRuleLevelFilter();
+        public bool[] LogLevels { get; }
 
-        /// <inheritdoc/>
-        protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
+        public LoggingRuleLevelFilter(bool[] logLevels = null)
         {
-            Inner?.RenderAppendBuilder(logEvent, builder);
+            LogLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
+            if (logLevels != null)
+            {
+                for (int i = 0; i < Math.Min(logLevels.Length, LogLevels.Length); ++i)
+                    LogLevels[i] = logLevels[i];
+            }
         }
 
-        /// <inheritdoc/>
-        protected override string Transform(string text)
+        public LoggingRuleLevelFilter GetSimpleFilterForUpdate()
         {
-            throw new NotSupportedException();
+            if (!ReferenceEquals(LogLevels, Off.LogLevels))
+                return this;
+            return new LoggingRuleLevelFilter();
+        }
+
+        public LoggingRuleLevelFilter SetLoggingLevels(LogLevel minLevel, LogLevel maxLevel, bool enable)
+        {
+            for (int i = minLevel.Ordinal; i <= maxLevel.Ordinal; ++i)
+                LogLevels[i] = enable;
+            return this;
         }
     }
 }

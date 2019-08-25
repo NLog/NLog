@@ -150,14 +150,14 @@ namespace NLog.Config
                         currentTimer.WaitForDispose(TimeSpan.Zero);
                     }
 
-                    if (_logFactory._config != oldConfig)
+                    if (!ReferenceEquals(_logFactory._config, oldConfig))
                     {
                         InternalLogger.Warn("NLog Config changed in between. Not reloading.");
                         return;
                     }
 
                     newConfig = oldConfig.ReloadNewConfig();
-                    if (newConfig == null)
+                    if (newConfig == null || ReferenceEquals(newConfig, oldConfig))
                         return;
                 }
                 catch (Exception exception)

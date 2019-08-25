@@ -273,22 +273,23 @@ namespace NLog.Config
         /// <param name="attributeValue">Value of parse.</param>
         /// <param name="default">Used if there is an exception</param>
         /// <returns></returns>
-        private static LogLevel ParseLogLevelSafe(string attributeName, string attributeValue, LogLevel @default)
+        private LogLevel ParseLogLevelSafe(string attributeName, string attributeValue, LogLevel @default)
         {
             try
             {
                 var internalLogLevel = LogLevel.FromString(attributeValue?.Trim());
                 return internalLogLevel;
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
+                if (exception.MustBeRethrownImmediately())
+                    throw;
+
                 const string message = "attribute '{0}': '{1}' isn't valid LogLevel. {2} will be used.";
                 var configException =
-                    new NLogConfigurationException(e, message, attributeName, attributeValue, @default);
-                if (configException.MustBeRethrown())
-                {
-                    throw;
-                }
+                    new NLogConfigurationException(exception, message, attributeName, attributeValue, @default);
+                if (MustThrowConfigException(configException))
+                    throw configException;
 
                 return @default;
             }
@@ -391,18 +392,12 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 if (exception.MustBeRethrownImmediately())
-                {
                     throw;
-                }
 
-                InternalLogger.Error(exception, "Error loading extensions.");
-                NLogConfigurationException configException =
+                var configException =
                     new NLogConfigurationException("Error loading extensions: " + type, exception);
-
-                if (configException.MustBeRethrown())
-                {
+                if (MustThrowConfigException(configException))
                     throw configException;
-                }
             }
         }
 
@@ -417,18 +412,12 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 if (exception.MustBeRethrownImmediately())
-                {
                     throw;
-                }
 
-                InternalLogger.Error(exception, "Error loading extensions.");
-                NLogConfigurationException configException =
+                var configException =
                     new NLogConfigurationException("Error loading extensions: " + assemblyFile, exception);
-
-                if (configException.MustBeRethrown())
-                {
+                if (MustThrowConfigException(configException))
                     throw configException;
-                }
             }
         }
 #endif
@@ -443,18 +432,12 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 if (exception.MustBeRethrownImmediately())
-                {
                     throw;
-                }
 
-                InternalLogger.Error(exception, "Error loading extensions.");
-                NLogConfigurationException configException =
+                var configException =
                     new NLogConfigurationException("Error loading extensions: " + assemblyName, exception);
-
-                if (configException.MustBeRethrown())
-                {
+                if (MustThrowConfigException(configException))
                     throw configException;
-                }
             }
         }
 
@@ -579,7 +562,7 @@ namespace NLog.Config
 
         private LogLevel LogLevelFromString(string text)
         {
-            return LogLevel.FromString(ExpandSimpleVariables(text));
+            return LogLevel.FromString(ExpandSimpleVariables(text).Trim());
         }
 
         /// <summary>
@@ -588,9 +571,9 @@ namespace NLog.Config
         /// <param name="loggerElement"></param>
         private LoggingRule ParseRuleElement(ValidatedConfigurationElement loggerElement)
         {
-            IEnumerable<LogLevel> enableLevels = null;
-            int minLevel = 0;
-            int maxLevel = LogLevel.MaxLevel.Ordinal;
+            string minLevel = null;
+            string maxLevel = null;
+            string enableLevels = null;
 
             string ruleName = null;
             string namePattern = null;
@@ -626,19 +609,16 @@ namespace NLog.Config
                         final = ParseBooleanValue(childProperty.Key, childProperty.Value, false);
                         break;
                     case "LEVEL":
-                        enableLevels = new[] { LogLevelFromString(childProperty.Value) };
+                        enableLevels = childProperty.Value;
                         break;
                     case "LEVELS":
-                        {
-                            string[] tokens = childProperty.Value.SplitAndTrimTokens(',');
-                            enableLevels = tokens.Select(LogLevelFromString);
-                            break;
-                        }
+                        enableLevels = StringHelpers.IsNullOrWhiteSpace(childProperty.Value) ? "," : childProperty.Value;
+                        break;
                     case "MINLEVEL":
-                        minLevel = LogLevelFromString(childProperty.Value).Ordinal;
+                        minLevel = childProperty.Value;
                         break;
                     case "MAXLEVEL":
-                        maxLevel = LogLevelFromString(childProperty.Value).Ordinal;
+                        maxLevel = childProperty.Value;
                         break;
                     default:
                         InternalLogger.Debug("Skipping unknown property {0} for element {1} in section {2}",
@@ -655,6 +635,7 @@ namespace NLog.Config
             }
 
             namePattern = namePattern ?? "*";
+
             if (!enabled)
             {
                 InternalLogger.Debug("Logging rule {0} with filter `{1}` is disabled", ruleName, namePattern);
@@ -666,33 +647,72 @@ namespace NLog.Config
                 LoggerNamePattern = namePattern
             };
 
+            EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
+
             ParseLoggingRuleTargets(writeTargets, rule);
 
             rule.Final = final;
-
-            EnableLevelsForRule(rule, enableLevels, minLevel, maxLevel);
 
             ParseLoggingRuleChildren(loggerElement, rule);
 
             return rule;
         }
 
-        private static void EnableLevelsForRule(LoggingRule rule, IEnumerable<LogLevel> enableLevels, int minLevel, int maxLevel)
+        private void EnableLevelsForRule(LoggingRule rule, string enableLevels, string minLevel, string maxLevel)
         {
             if (enableLevels != null)
             {
-                foreach (var level in enableLevels)
+                enableLevels = ExpandSimpleVariables(enableLevels);
+                if (enableLevels.IndexOf('{') >= 0)
                 {
-                    rule.EnableLoggingForLevel(level);
+                    SimpleLayout simpleLayout = ParseLevelLayout(enableLevels);
+                    rule.EnableLoggingForLevels(simpleLayout);
+                }
+                else
+                {
+                    if (enableLevels.IndexOf(',') >= 0)
+                    {
+                        IEnumerable<LogLevel> logLevels = ParseLevels(enableLevels);
+                        foreach (var logLevel in logLevels)
+                            rule.EnableLoggingForLevel(logLevel);
+                    }
+                    else
+                    {
+                        rule.EnableLoggingForLevel(LogLevelFromString(enableLevels));
+                    }
                 }
             }
             else
             {
-                for (int i = minLevel; i <= maxLevel; ++i)
+                minLevel = minLevel != null ? ExpandSimpleVariables(minLevel) : minLevel;
+                maxLevel = maxLevel != null ? ExpandSimpleVariables(maxLevel) : maxLevel;
+                if (minLevel?.IndexOf('{') >= 0 || maxLevel?.IndexOf('{') >= 0)
                 {
-                    rule.EnableLoggingForLevel(LogLevel.FromOrdinal(i));
+                    SimpleLayout minLevelLayout = ParseLevelLayout(minLevel);
+                    SimpleLayout maxLevelLayout = ParseLevelLayout(maxLevel);
+                    rule.EnableLoggingForRange(minLevelLayout, maxLevelLayout);
+                }
+                else
+                {
+                    LogLevel minLogLevel = minLevel != null ? LogLevelFromString(minLevel) : LogLevel.MinLevel;
+                    LogLevel maxLogLevel = maxLevel != null ? LogLevelFromString(maxLevel) : LogLevel.MaxLevel;
+                    rule.SetLoggingLevels(minLogLevel, maxLogLevel);
                 }
             }
+        }
+
+        private SimpleLayout ParseLevelLayout(string levelLayout)
+        {
+            SimpleLayout simpleLayout = !StringHelpers.IsNullOrWhiteSpace(levelLayout) ? new SimpleLayout(levelLayout, _configurationItemFactory) : null;
+            simpleLayout?.Initialize(this);
+            return simpleLayout;
+        }
+
+        private IEnumerable<LogLevel> ParseLevels(string enableLevels)
+        {
+            string[] tokens = enableLevels.SplitAndTrimTokens(',');
+            var logLevels = tokens.Select(LogLevelFromString);
+            return logLevels;
         }
 
         private void ParseLoggingRuleTargets(string writeTargets, LoggingRule rule)
@@ -709,8 +729,10 @@ namespace NLog.Config
                 }
                 else
                 {
-                    throw new NLogConfigurationException(
-                        $"Target '{targetName}' not found for logging rule: {(string.IsNullOrEmpty(rule.RuleName) ? rule.LoggerNamePattern : rule.RuleName)}.");
+                    var configException =
+                        new NLogConfigurationException($"Target '{targetName}' not found for logging rule: {(string.IsNullOrEmpty(rule.RuleName) ? rule.LoggerNamePattern : rule.RuleName)}.");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
                 }
             }
         }
@@ -812,8 +834,11 @@ namespace NLog.Config
                     case "COMPOUND-TARGET":
                         if (AssertNonEmptyValue(targetTypeName, "type", targetValueName, targetsElement.Name))
                         {
-                            newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
-                            ParseTargetElement(newTarget, targetElement, typeNameToDefaultTargetParameters);
+                            newTarget = CreateTargetType(targetTypeName);
+                            if (newTarget != null)
+                            {
+                                ParseTargetElement(newTarget, targetElement, typeNameToDefaultTargetParameters);
+                            }
                         }
                         break;
 
@@ -839,6 +864,29 @@ namespace NLog.Config
                     AddTarget(newTarget.Name, newTarget);
                 }
             }
+        }
+
+        private Target CreateTargetType(string targetTypeName)
+        {
+            Target newTarget = null;
+
+            try
+            {
+                newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
+                if (newTarget == null)
+                    throw new NLogConfigurationException($"Factory returned null for target type: {targetTypeName}");
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                var configException = new NLogConfigurationException($"Failed to create target type: {targetTypeName}", ex);
+                if (MustThrowConfigException(configException))
+                    throw configException;
+            }
+
+            return newTarget;
         }
 
         private void ParseTargetElement(Target target, ValidatedConfigurationElement targetElement,
@@ -870,7 +918,7 @@ namespace NLog.Config
                     continue;
                 }
 
-                SetPropertyFromElement(target, childElement);
+                SetPropertyFromElement(target, childElement, targetElement);
             }
         }
 
@@ -881,12 +929,14 @@ namespace NLog.Config
         {
             if (IsTargetRefElement(childElement.Name))
             {
-                var targetName = childElement.GetRequiredValue("name",
-                    GetName(wrapper));
+                var targetName = childElement.GetRequiredValue("name", GetName(wrapper));
+
                 Target newTarget = FindTargetByName(targetName);
                 if (newTarget == null)
                 {
-                    throw new NLogConfigurationException($"Referenced target '{targetName}' not found.");
+                    var configException = new NLogConfigurationException($"Referenced target '{targetName}' not found.");
+                    if (MustThrowConfigException(configException))
+                        throw configException;
                 }
 
                 wrapper.WrappedTarget = newTarget;
@@ -897,7 +947,7 @@ namespace NLog.Config
             {
                 string targetTypeName = GetConfigItemTypeAttribute(childElement, GetName(wrapper));
 
-                Target newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
+                Target newTarget = CreateTargetType(targetTypeName);
                 if (newTarget != null)
                 {
                     ParseTargetElement(newTarget, childElement, typeNameToDefaultTargetParameters);
@@ -909,12 +959,13 @@ namespace NLog.Config
 
                     if (wrapper.WrappedTarget != null)
                     {
-                        throw new NLogConfigurationException("Wrapped target already defined.");
+                        var configException = new NLogConfigurationException($"Failed to assign wrapped target {targetTypeName}, because target {wrapper.Name} already has one.");
+                        if (MustThrowConfigException(configException))
+                            throw configException;
                     }
-
-                    wrapper.WrappedTarget = newTarget;
                 }
 
+                wrapper.WrappedTarget = newTarget;
                 return true;
             }
 
@@ -961,7 +1012,7 @@ namespace NLog.Config
             {
                 string targetTypeName = GetConfigItemTypeAttribute(childElement, GetName(compound));
 
-                Target newTarget = _configurationItemFactory.Targets.CreateInstance(targetTypeName);
+                Target newTarget = CreateTargetType(targetTypeName);
                 if (newTarget != null)
                 {
                     if (targetName != null)
@@ -1010,29 +1061,30 @@ namespace NLog.Config
         }
 
 
-        private void SetPropertyFromElement(object o, ValidatedConfigurationElement element)
+        private void SetPropertyFromElement(object o, ValidatedConfigurationElement childElement, ILoggingConfigurationElement parentElement)
         {
-            if (!PropertyHelper.TryGetPropertyInfo(o, element.Name, out var propInfo))
+            if (!PropertyHelper.TryGetPropertyInfo(o, childElement.Name, out var propInfo))
+            {
+                InternalLogger.Debug("Skipping unknown element {0} in section {1}. Not matching any property on {2} - {3}", childElement.Name, parentElement.Name, o, o?.GetType());
+                return;
+            }
+
+            if (AddArrayItemFromElement(o, propInfo, childElement))
             {
                 return;
             }
 
-            if (AddArrayItemFromElement(o, propInfo, element))
+            if (SetLayoutFromElement(o, propInfo, childElement))
             {
                 return;
             }
 
-            if (SetLayoutFromElement(o, propInfo, element))
+            if (SetFilterFromElement(o, propInfo, childElement))
             {
                 return;
             }
 
-            if (SetFilterFromElement(o, propInfo, element))
-            {
-                return;
-            }
-
-            SetItemFromElement(o, propInfo, element);
+            SetItemFromElement(o, propInfo, childElement);
         }
 
         private bool AddArrayItemFromElement(object o, PropertyInfo propInfo, ValidatedConfigurationElement element)
@@ -1155,7 +1207,7 @@ namespace NLog.Config
         {
             foreach (var child in element.ValidChildren)
             {
-                SetPropertyFromElement(targetObject, child);
+                SetPropertyFromElement(targetObject, child, element);
             }
         }
 
@@ -1176,7 +1228,7 @@ namespace NLog.Config
         private Target WrapWithDefaultWrapper(Target t, ValidatedConfigurationElement defaultWrapperElement)
         {
             string wrapperTypeName = GetConfigItemTypeAttribute(defaultWrapperElement, "targets");
-            Target wrapperTargetInstance = _configurationItemFactory.Targets.CreateInstance(wrapperTypeName);
+            Target wrapperTargetInstance = CreateTargetType(wrapperTypeName);
             WrapperTargetBase wtb = wrapperTargetInstance as WrapperTargetBase;
             if (wtb == null)
             {
@@ -1203,11 +1255,6 @@ namespace NLog.Config
             return wrapperTargetInstance;
         }
 
-        private static bool MatchesName(string key, string expectedKey)
-        {
-            return string.Equals(key?.Trim(), expectedKey, StringComparison.OrdinalIgnoreCase);
-        }
-
         /// <summary>
         /// Parse boolean
         /// </summary>
@@ -1215,23 +1262,38 @@ namespace NLog.Config
         /// <param name="value">value to parse</param>
         /// <param name="defaultValue">Default value to return if the parse failed</param>
         /// <returns>Boolean attribute value or default.</returns>
-        private static bool ParseBooleanValue(string propertyName, string value, bool defaultValue)
+        private bool ParseBooleanValue(string propertyName, string value, bool defaultValue)
         {
             try
             {
                 return Convert.ToBoolean(value?.Trim(), CultureInfo.InvariantCulture);
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                const string message = "'{0}' hasn't a valid boolean value '{1}'. {2} will be used";
-                var configException = new NLogConfigurationException(e, message, propertyName, value, defaultValue);
-                if (configException.MustBeRethrown())
-                {
+                if (exception.MustBeRethrownImmediately())
                     throw;
-                }
 
+                var configException = new NLogConfigurationException(exception, $"'{propertyName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used");
+                if (MustThrowConfigException(configException))
+                    throw configException;
                 return defaultValue;
             }
+        }
+
+        private bool MustThrowConfigException(NLogConfigurationException configException)
+        {
+            if (configException.MustBeRethrown())
+                return true;    // Global LogManager says throw
+
+            if (LogFactory.ThrowConfigExceptions ?? LogFactory.ThrowExceptions)
+                return true;    // Local LogFactory says throw
+
+            return false;
+        }
+
+        private static bool MatchesName(string key, string expectedKey)
+        {
+            return string.Equals(key?.Trim(), expectedKey, StringComparison.OrdinalIgnoreCase);
         }
 
         private static bool IsTargetElement(string name)
@@ -1458,15 +1520,14 @@ namespace NLog.Config
             {
                 return Convert.ToBoolean(value.Trim(), CultureInfo.InvariantCulture);
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                const string message = "'{0}' hasn't a valid boolean value '{1}'. {2} will be used";
-                var configException = new NLogConfigurationException(e, message, attributeName, value, defaultValue);
+                var configException = new NLogConfigurationException(exception, $"'{attributeName}' hasn't a valid boolean value '{value}'. {defaultValue} will be used");
                 if (configException.MustBeRethrown())
                 {
-                    throw;
+                    throw configException;
                 }
-
+                InternalLogger.Error(exception, configException.Message);
                 return defaultValue;
             }
         }
