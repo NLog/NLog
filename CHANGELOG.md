@@ -4,6 +4,29 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.6.7 (2019/08/25)
+
+#### Features
+- [#3531](https://github.com/NLog/NLog/pull/3531) Added ${object-path} / ${exception:objectpath=PropertyName}, for rendering a property of an object (e.g. an exception) (#3531) (@304NotModified)
+- [#3560](https://github.com/NLog/NLog/pull/3560) WhenMethodFilter - Support dynamic filtering using lambda (#3560) (@snakefoot)
+- [#3184](https://github.com/NLog/NLog/pull/3184) Added support for dynamic layout renderer in log level filters (e.g. minLevel, maxLevel)  (#3184) (@snakefoot)
+- [#3558](https://github.com/NLog/NLog/pull/3558) ExceptionLayoutRenderer - Added Source as new format parameter. (@snakefoot)
+- [#3523](https://github.com/NLog/NLog/pull/3523) ColoredConsoleTarget - Added DetectOutputRedirected to skip coloring on redirect (@snakefoot)
+
+#### Improvements
+
+- [#3541](https://github.com/NLog/NLog/pull/3541) MessageTemplateParameters - Improve validation of parameters when isPositional (#3541) (@snakefoot)
+- [#3546](https://github.com/NLog/NLog/pull/3546) NetworkTarget - HttpNetworkSender no longer sends out-of-order (@snakefoot)
+- [#3522](https://github.com/NLog/NLog/pull/3522) NetworkTarget - Fix InternalLogger.Trace to include Target name (#3522) (@snakefoot)
+- [#3562](https://github.com/NLog/NLog/pull/3562) XML config - Support ThrowConfigExceptions=true even when xml is invalid (@snakefoot)
+- [#3532](https://github.com/NLog/NLog/pull/3532) Fix summary of NoRawValueLayoutRendererWrapper class (#3532) (@304NotModified)
+
+#### Performance
+
+- [#3540](https://github.com/NLog/NLog/pull/3540) MessageTemplateParameters - Skip object allocation when no parameters (@snakefoot)
+- [#3527](https://github.com/NLog/NLog/pull/3527) XmlLayout - Defer allocation of ObjectReflectionCache until needed (#3527) (@snakefoot)
+
+
 ### V4.6.6 (2019/07/14)
 
 #### Features
