@@ -523,7 +523,7 @@ Parameter #1 Name=msg
 Parameter #1 Value=""msg1""
 Add Parameter Parameter #1
 ExecuteNonQuery: INSERT INTO FooBar VALUES(@lvl, @msg)
-", dbType.HasValue ? $"\r\nParameter #0 DbType={dbType.Value}" : "",  expectedValue);
+", dbType.HasValue ? $"\r\nParameter #0 DbType={dbType.Value}" : "", expectedValue);
 
             AssertLog(expectedLog);
 
@@ -545,7 +545,7 @@ Dispose()
         [InlineData("${counter}", DbType.AnsiString, "1")]
         [InlineData("${level}", DbType.AnsiString, "Debug")]
         [InlineData("${level}", DbType.Int32, 1)]
-        [InlineData("${level}", DbType.UInt16, (ushort) 1)]
+        [InlineData("${level}", DbType.UInt16, (ushort)1)]
         [InlineData("${event-properties:boolprop}", DbType.Boolean, true)]
         [InlineData("${event-properties:intprop}", DbType.Int32, 123)]
         [InlineData("${event-properties:intprop}", DbType.AnsiString, "123")]
@@ -582,7 +582,7 @@ Dispose()
             if (convertToDecimal)
             {
                 //fix that we can't pass decimals into attributes (InlineData)
-                expected = (decimal) (int) expected;
+                expected = (decimal)(int)expected;
             }
 
             Assert.Equal(expected, result);
@@ -653,7 +653,7 @@ Dispose()
             yield return new object[] { "3", DbType.AnsiString, "3" };
             yield return new object[] { "${db-null}", DbType.DateTime, DBNull.Value };
             yield return new object[] { "${event-properties:userid}", DbType.Int32, 0 };
-            yield return new object[] { "${date:universalTime=true:format=yyyy-MM:norawvalue=true}", DbType.DateTime, DateTime.SpecifyKind(DateTime.UtcNow.Date.AddDays(-DateTime.UtcNow.Day + 1), DateTimeKind.Unspecified)};
+            yield return new object[] { "${date:universalTime=true:format=yyyy-MM:norawvalue=true}", DbType.DateTime, DateTime.SpecifyKind(DateTime.UtcNow.Date.AddDays(-DateTime.UtcNow.Day + 1), DateTimeKind.Unspecified) };
             yield return new object[] { "${shortdate:universalTime=true}", DbType.DateTime, DateTime.UtcNow.Date };
         }
 
@@ -760,7 +760,7 @@ Dispose()
         public void ParameterDbTypePropertyNameTest()
         {
             MockDbConnection.ClearLog();
-            LoggingConfiguration c =  XmlLoggingConfiguration.CreateFromXmlString(@"
+            LoggingConfiguration c = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
                 <targets>
                     <target name='dt' type='Database'>
@@ -1629,6 +1629,36 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             }
         }
 
+        [Theory]
+        [InlineData("localhost", "MyDatabase", "user", "password", "Server=localhost;User id=user;Password=password;Database=MyDatabase")]
+        [InlineData("localhost", null, "user", "password", "Server=localhost;User id=user;Password=password;")]
+        [InlineData("localhost", "MyDatabase", "user", "pa;ssword", "Server=localhost;User id=user;Password='pa;ssword';Database=MyDatabase")]
+        [InlineData("localhost", "MyDatabase", "user", "", "Server=localhost;User id=user;Password=;Database=MyDatabase")]
+        [InlineData("localhost", "MyDatabase", null, "password", "Server=localhost;Trusted_Connection=SSPI;Database=MyDatabase")]
+        public void DatabaseConnectionStringTest(string host, string database, string username, string password, string expected)
+        {
+            // Arrange
+            var databaseTarget = new NonLoggingDatabaseTarget()
+            {
+                CommandText = "DoSomething",
+                Name = "myTarget",
+                DBHost = host,
+                DBDatabase = database,
+                DBUserName = username,
+                DBPassword = password
+            };
+
+            // Act
+            databaseTarget.Initialize(null);
+
+            // Assert
+            var result = databaseTarget.ConnectionString.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal(expected, result);
+        }
+
+
+
+
         private static void AssertLog(string expectedLog)
         {
             Assert.Equal(expectedLog.Replace("\r", ""), MockDbConnection.Log.Replace("\r", ""));
@@ -1724,6 +1754,20 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
                 Log += message + "\r\n";
             }
+        }
+
+        private class NonLoggingDatabaseTarget : DatabaseTarget
+        {
+            #region Overrides of DatabaseTarget
+
+            /// <inheritdoc />
+            protected override void InitializeTarget()
+            {
+                base.InitializeTarget();
+                ConnectionString = base.BuildConnectionString(LogEventInfo.CreateNullEvent());
+            }
+
+            #endregion
         }
 
         private class MockDbCommand : IDbCommand

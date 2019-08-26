@@ -418,7 +418,7 @@ namespace NLog.Targets
             try
             {
                 var connectionString = BuildConnectionString(LogEventInfo.CreateNullEvent());
-                var dbConnectionStringBuilder = new DbConnectionStringBuilder {ConnectionString = connectionString};
+                var dbConnectionStringBuilder = new DbConnectionStringBuilder { ConnectionString = connectionString };
                 if (dbConnectionStringBuilder.TryGetValue("provider connection string", out var connectionStringValue))
                 {
                     // Special Entity Framework Connection String
@@ -439,7 +439,7 @@ namespace NLog.Targets
                     InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
                 else
 #endif
-                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
+                InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
             }
 
             return providerName;
@@ -712,23 +712,29 @@ namespace NLog.Targets
             sb.Append("Server=");
             sb.Append(RenderLogEvent(DBHost, logEvent));
             sb.Append(";");
-            if (DBUserName == null)
+            var dbUserName = RenderLogEvent(DBUserName, logEvent);
+            if (string.IsNullOrEmpty(dbUserName))
             {
                 sb.Append("Trusted_Connection=SSPI;");
             }
             else
             {
                 sb.Append("User id=");
-                sb.Append(RenderLogEvent(DBUserName, logEvent));
+                sb.Append(dbUserName);
                 sb.Append(";Password=");
-                sb.Append(RenderLogEvent(DBPassword, logEvent));
+                var password = RenderLogEvent(DBPassword, logEvent);
+                if (password.Contains(";"))
+                {
+                    password = $"'{password}'";
+                }
+                sb.Append(password);
                 sb.Append(";");
             }
-
-            if (DBDatabase != null)
+            var dbDatabase = RenderLogEvent(DBDatabase, logEvent);
+            if (!string.IsNullOrEmpty(dbDatabase))
             {
                 sb.Append("Database=");
-                sb.Append(RenderLogEvent(DBDatabase, logEvent));
+                sb.Append(dbDatabase);
             }
 
             return sb.ToString();
