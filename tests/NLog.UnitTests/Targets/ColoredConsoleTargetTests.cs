@@ -262,6 +262,16 @@ namespace NLog.UnitTests.Targets
         }
 #endif
 
+#if NET4_5
+        [Fact]
+        public void ColoredConsoleDetectOutputRedirectedTest()
+        {
+            var target = new ColoredConsoleTarget { Layout = "${logger} ${message}", DetectOutputRedirected = true };
+            AssertOutput(target, "The Cat Sat At The Bar.",
+                new string[] { "The Cat Sat At The Bar." });
+        }
+#endif
+
         private static void AssertOutput(Target target, string message, string[] expectedParts, string loggerName = "Logger ")
         {
             var consoleOutWriter = new PartsWriter();

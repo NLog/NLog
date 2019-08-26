@@ -43,6 +43,8 @@ namespace NLog.UnitTests.Mocks
     {
         public Uri RequestedAddress { get; set; }
 
+        public bool FirstRequestMustFail { get; set; }
+
         public MemoryStream RequestStream => _requestStream;
         private readonly ManualDisposableMemoryStream _requestStream = new ManualDisposableMemoryStream();
 
@@ -56,6 +58,15 @@ namespace NLog.UnitTests.Mocks
         /// <inheritdoc />
         public override WebResponse EndGetResponse(IAsyncResult asyncResult)
         {
+            if (FirstRequestMustFail)
+            {
+                FirstRequestMustFail = false;
+                RequestStream.Position = 0;
+                RequestStream.SetLength(0);
+                System.Threading.Thread.Sleep(50);
+                throw new ArgumentNullException("You are doomed");
+            }
+
             var responseStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes("new response 1"));
             var webResponseMock = Substitute.For<WebResponse>();
             webResponseMock.GetResponseStream().Returns(responseStream);
@@ -66,7 +77,7 @@ namespace NLog.UnitTests.Mocks
         public override IAsyncResult BeginGetRequestStream(AsyncCallback callback, object state)
         {
             var result = CreateAsyncResultMock(state);
-            callback(result);
+            System.Threading.Tasks.Task.Run(() => callback(result));
             return result;
         }
 

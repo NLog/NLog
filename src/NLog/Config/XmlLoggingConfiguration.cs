@@ -77,7 +77,7 @@ namespace NLog.Config
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
-        public XmlLoggingConfiguration([CanBeNull] string fileName)
+        public XmlLoggingConfiguration([NotNull] string fileName)
             : this(fileName, LogManager.LogFactory)
         { }
 
@@ -86,7 +86,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
-        public XmlLoggingConfiguration([CanBeNull] string fileName, LogFactory logFactory)
+        public XmlLoggingConfiguration([NotNull] string fileName, LogFactory logFactory)
             : this(fileName, false, logFactory)
         { }
 
@@ -95,7 +95,7 @@ namespace NLog.Config
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        public XmlLoggingConfiguration([CanBeNull] string fileName, bool ignoreErrors)
+        public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors)
             : this(fileName, ignoreErrors, LogManager.LogFactory)
         { }
 
@@ -105,7 +105,7 @@ namespace NLog.Config
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
-        public XmlLoggingConfiguration([CanBeNull] string fileName, bool ignoreErrors, LogFactory logFactory)
+        public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {
             using (XmlReader reader = CreateFileReader(fileName))
@@ -182,7 +182,7 @@ namespace NLog.Config
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
-        public XmlLoggingConfiguration([NotNull] XmlReader reader, string fileName, bool ignoreErrors, LogFactory logFactory)
+        public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {
             Initialize(reader, fileName, ignoreErrors);
@@ -192,38 +192,17 @@ namespace NLog.Config
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
-        /// <param name="element">The XML element.</param>
-        /// <param name="fileName">Name of the XML file.</param>
-        internal XmlLoggingConfiguration(System.Xml.XmlElement element, string fileName)
-            : this(element, fileName, false)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
-        /// </summary>
-        /// <param name="element">The XML element.</param>
-        /// <param name="fileName">Name of the XML file.</param>
-        /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
-        internal XmlLoggingConfiguration(System.Xml.XmlElement element, string fileName, bool ignoreErrors)
-            : this(element.OuterXml, fileName, ignoreErrors)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
-        /// </summary>
         /// <param name="xmlContents">The XML contents.</param>
         /// <param name="fileName">Name of the XML file.</param>
-        /// <param name="ignoreErrors">If set to <c>true</c> errors will be ignored during file processing.</param>
-        internal XmlLoggingConfiguration(string xmlContents, string fileName, bool ignoreErrors)
-            : base(LogManager.LogFactory)
+        /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        internal XmlLoggingConfiguration([NotNull] string xmlContents, [CanBeNull] string fileName, LogFactory logFactory)
+            : base(logFactory)
         {
             using (var stringReader = new StringReader(xmlContents))
             {
                 using (XmlReader reader = XmlReader.Create(stringReader))
                 {
-                    Initialize(reader, fileName, ignoreErrors);
+                    Initialize(reader, fileName, false);
                 }
             }
         }
@@ -235,7 +214,7 @@ namespace NLog.Config
         /// <returns></returns>
         public static XmlLoggingConfiguration CreateFromXmlString(string xml)
         {
-            return new XmlLoggingConfiguration(xml, null, false);
+            return new XmlLoggingConfiguration(xml, string.Empty, LogManager.LogFactory);
         }
 #endif
 
@@ -359,18 +338,16 @@ namespace NLog.Config
             catch (Exception exception)
             {
                 InitializeSucceeded = false;
+
                 if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
                 var configurationException = new NLogConfigurationException(exception, "Exception when parsing {0}. ", fileName);
-                InternalLogger.Error(configurationException, "Parsing configuration from {0} failed.", fileName);
-
-                if (!ignoreErrors && configurationException.MustBeRethrown())
-                {
+                InternalLogger.Error(exception, configurationException.Message);
+                if (!ignoreErrors && (LogFactory.ThrowConfigExceptions ?? LogFactory.ThrowExceptions || configurationException.MustBeRethrown()))
                     throw configurationException;
-                }
             }
         }
 
@@ -527,19 +504,15 @@ namespace NLog.Config
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "Error when including '{0}'.", newFileName);
-
-                if (ignoreErrors)
-                {
-                    return;
-                }
-
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
 
-                throw new NLogConfigurationException("Error when including: " + newFileName, exception);
+                var configurationException = new NLogConfigurationException(exception, "Error when including '{0}'.", newFileName);
+                InternalLogger.Error(exception, configurationException.Message);
+                if (!ignoreErrors)
+                    throw configurationException;
             }
         }
 

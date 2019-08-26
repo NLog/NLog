@@ -48,8 +48,7 @@ namespace NLog.Config
     [NLogConfigurationItem]
     public class LoggingRule
     {
-        private readonly bool[] _logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
-
+        private ILoggingRuleLevelFilter _logLevelFilter = LoggingRuleLevelFilter.Off;
         private LoggerNameMatcher _loggerNameMatcher = LoggerNameMatcher.Create(null);
 
         /// <summary>
@@ -170,17 +169,17 @@ namespace NLog.Config
         {
             get
             {
-                var levels = new List<LogLevel>();
-
+                var enabledLogLevels = new List<LogLevel>();
+                var currentLogLevels = _logLevelFilter.LogLevels;
                 for (int i = LogLevel.MinLevel.Ordinal; i <= LogLevel.MaxLevel.Ordinal; ++i)
                 {
-                    if (_logLevels[i])
+                    if (currentLogLevels[i])
                     {
-                        levels.Add(LogLevel.FromOrdinal(i));
+                        enabledLogLevels.Add(LogLevel.FromOrdinal(i));
                     }
                 }
 
-                return levels.AsReadOnly();
+                return enabledLogLevels.AsReadOnly();
             }
         }
 
@@ -200,7 +199,7 @@ namespace NLog.Config
                 return;
             }
 
-            _logLevels[level.Ordinal] = true;
+            _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(level, level, true);
         }
 
         /// <summary>
@@ -210,10 +209,17 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         public void EnableLoggingForLevels(LogLevel minLevel, LogLevel maxLevel)
         {
-            for (int i = minLevel.Ordinal; i <= maxLevel.Ordinal; ++i)
-            {
-                EnableLoggingForLevel(LogLevel.FromOrdinal(i));
-            }
+            _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(minLevel, maxLevel, true);
+        }
+
+        internal void EnableLoggingForLevels(NLog.Layouts.SimpleLayout simpleLayout)
+        {
+            _logLevelFilter = new DynamicLogLevelFilter(this, simpleLayout);
+        }
+
+        internal void EnableLoggingForRange(Layouts.SimpleLayout minLevel, Layouts.SimpleLayout maxLevel)
+        {
+            _logLevelFilter = new DynamicRangeLevelFilter(this, minLevel, maxLevel);
         }
 
         /// <summary>
@@ -227,7 +233,7 @@ namespace NLog.Config
                 return;
             }
 
-            _logLevels[level.Ordinal] = false;
+            _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(level, level, false);
         }
 
         /// <summary>
@@ -237,10 +243,7 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level to de disabled.</param>
         public void DisableLoggingForLevels(LogLevel minLevel, LogLevel maxLevel)
         {
-            for (int i = minLevel.Ordinal; i <= maxLevel.Ordinal; i++)
-            {
-                DisableLoggingForLevel(LogLevel.FromOrdinal(i));
-            }
+            _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(minLevel, maxLevel, false);
         }
 
         /// <summary>
@@ -250,8 +253,7 @@ namespace NLog.Config
         /// <param name="maxLevel">Maximum log level needed to trigger this rule.</param>
         public void SetLoggingLevels(LogLevel minLevel, LogLevel maxLevel)
         {
-            DisableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
-            EnableLoggingForLevels(minLevel, maxLevel);
+            _logLevelFilter = _logLevelFilter.GetSimpleFilterForUpdate().SetLoggingLevels(LogLevel.MinLevel, LogLevel.MaxLevel, false).SetLoggingLevels(minLevel, maxLevel, true);
         }
 
         /// <summary>
@@ -266,9 +268,11 @@ namespace NLog.Config
 
             sb.Append(_loggerNameMatcher.ToString());
             sb.Append(" levels: [ ");
-            for (int i = 0; i < _logLevels.Length; ++i)
+
+            var currentLogLevels = _logLevelFilter.LogLevels;
+            for (int i = 0; i < currentLogLevels.Length; ++i)
             {
-                if (_logLevels[i])
+                if (currentLogLevels[i])
                 {
                     sb.AppendFormat(CultureInfo.InvariantCulture, "{0} ", LogLevel.FromOrdinal(i).ToString());
                 }
@@ -296,7 +300,8 @@ namespace NLog.Config
                 return false;
             }
 
-            return _logLevels[level.Ordinal];
+            var currentLogLevels = _logLevelFilter.LogLevels;
+            return currentLogLevels[level.Ordinal];
         }
 
         /// <summary>
@@ -308,6 +313,5 @@ namespace NLog.Config
         {
             return _loggerNameMatcher.NameMatches(loggerName);
         }
-
     }
 }

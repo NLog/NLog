@@ -269,26 +269,6 @@ namespace NLog.UnitTests
             Assert.Null(exRecorded);
         }
 
-        [Fact]
-        public void ReloadConfigOnTimer_When_No_Exception_Raises_ConfigurationReloadedEvent()
-        {
-            var called = false;
-            LoggingConfigurationReloadedEventArgs arguments = null;
-            object calledBy = null;
-            var loggingConfiguration = new LoggingConfiguration();
-            LogManager.Configuration = loggingConfiguration;
-            var configLoader = new LoggingConfigurationWatchableFileLoader();
-            var logFactory = new LogFactory(configLoader);
-            logFactory.Configuration = loggingConfiguration;
-            logFactory.ConfigurationReloaded += (sender, args) => { called = true; calledBy = sender; arguments = args; };
-
-            configLoader.ReloadConfigOnTimer(loggingConfiguration);
-
-            Assert.True(called);
-            Assert.Same(calledBy, logFactory);
-            Assert.True(arguments.Succeeded);
-        }
-
         /// <summary>
         /// We should be forward compatible so that we can add easily attributes in the future.
         /// </summary>

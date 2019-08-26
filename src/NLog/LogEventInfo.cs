@@ -382,9 +382,13 @@ namespace NLog
                 {
                     return new MessageTemplateParameters(_properties.MessageProperties, _message, _parameters);
                 }
-                else
+                else if (_parameters?.Length > 0)
                 {
                     return new MessageTemplateParameters(_message, _parameters);
+                }
+                else
+                {
+                    return MessageTemplateParameters.Empty; // No parameters, means nothing to parse
                 }
             }
         }

@@ -209,7 +209,8 @@ namespace NLog.Layouts
         /// <docgen category='LogEvent Properties XML Options' order='10' />
         public int MaxRecursionLimit { get; set; } = 1;
 
-        private readonly ObjectReflectionCache _objectReflectionCache = new ObjectReflectionCache();
+        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache());
+        private ObjectReflectionCache _objectReflectionCache;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
         private const int MaxXmlLength = 512 * 1024;
 
@@ -459,7 +460,7 @@ namespace NLog.Layouts
                 }
                 else if (propertyValue is System.Collections.IEnumerable collection)
                 {
-                    if (_objectReflectionCache.TryLookupExpandoObject(propertyValue, out var propertyValues))
+                    if (ObjectReflectionCache.TryLookupExpandoObject(propertyValue, out var propertyValues))
                     {
                         using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(propertyValue, ref objectsInPath, false, _referenceEqualsComparer))
                         {
@@ -478,7 +479,7 @@ namespace NLog.Layouts
                 {
                     using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(propertyValue, ref objectsInPath, false, _referenceEqualsComparer))
                     {
-                        var propertyValues = _objectReflectionCache.LookupObjectProperties(propertyValue);
+                        var propertyValues = ObjectReflectionCache.LookupObjectProperties(propertyValue);
                         AppendXmlObjectPropertyValues(propName, ref propertyValues, sb, orgLength, ref objectsInPath, nextDepth, ignorePropertiesElementName);
                     }
                 }
