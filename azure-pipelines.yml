@@ -1,0 +1,68 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - '*'
+pr:
+  autoCancel: true
+  branches:
+    include:
+      - '*'
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: 'src/nlog.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Debug'
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 5.1.0'
+  inputs:
+    versionSpec: 5.1.0
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '$(solution)'
+    verbosityRestore: Normal
+
+- task: SonarCloudPrepare@1
+  displayName: 'Prepare analysis on SonarCloud'
+  inputs:
+    SonarCloud: Sonarcloud
+    organization: nlog
+    projectKey: nlog2
+    projectName: NLog
+    projectVersion: '$(Build.BuildId)'
+
+- task: VSBuild@1
+  displayName: 'Build NLog.sln'
+  inputs:
+    solution: '$(solution)'
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+    maximumCpuCount: true
+
+- task: VSTest@2
+  displayName: 'Run Tests'
+  inputs:
+    testAssemblyVer2: |
+     **\$(BuildConfiguration)\*test*.dll
+     **\**\nlog.unittests.dll
+     !**\obj\**
+    runOnlyImpactedTests: false
+    runInParallel: false
+    codeCoverageEnabled: true
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+    rerunFailedTests: true
+    rerunMaxAttempts: 5
+
+- task: SonarCloudAnalyze@1
+  displayName: 'Run Sonar Analysis'
+
+- task: SonarCloudPublish@1
+  displayName: 'Publish Sonar Quality Gate Result'

@@ -13,7 +13,7 @@
 [![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=code_smells&branch=dev)](https://sonarcloud.io/project/issues?id=nlog&resolved=false&types=CODE_SMELL&branch=dev) 
 [![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=duplicated_lines_density&branch=dev)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog&branch=dev) 
 [![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=sqale_debt_ratio&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
-[![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=dev)](https://codecov.io/github/NLog/NLog?branch=dev)
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=coverage&branch=dev)](https://sonarcloud.io/component_measures?id=nlog&metric=Coverage&view=list) 
 
 <!--
 [![NuGet downloads](https://img.shields.io/nuget/dt/NLog.svg)](https://www.nuget.org/packages/NLog)
