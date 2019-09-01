@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if NET4_5 || NET4_0
+
 using NLog.Common;
 using NLog.Targets.Wrappers;
 
@@ -83,3 +85,4 @@ namespace NLog.UnitTests.Targets.Wrappers
         }
     }
 }
+#endif
