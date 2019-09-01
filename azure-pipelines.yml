@@ -49,18 +49,18 @@ steps:
     msbuildArgs: '/p:DebugType=Full /verbosity:minimal'
 
 - task: MSBuild@1
-  displayName: 'Build test for .NET 3.5'
+  displayName: 'Build tests for .NET 3.5'
   inputs:
     solution: '$(testProject)'
     platform: '$(BuildPlatform)'
     msbuildArguments: '/p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net35 /verbosity:minimal /p:OutputPath=.\bin\release\net35'
 
 - task: MSBuild@1
-  displayName: 'Build test for .NET 4 (Client framework)'
+  displayName: 'Build tests for .NET 4 (Client framework)'
   inputs:
     solution: '$(testProject)'
     platform: '$(BuildPlatform)'
-    msbuildArguments: '/p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net40-client /verbosity:minimal p:OutputPath=.\bin\release\net40'
+    msbuildArguments: '/p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net40-client /verbosity:minimal /p:OutputPath=.\bin\release\net40'
 
 - task: VSTest@2
   displayName: 'Run Tests'
