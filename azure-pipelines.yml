@@ -14,8 +14,10 @@ pool:
 
 variables:
   solution: 'src/nlog.sln'
+  testProject: 'tests/NLog.UnitTests/NLog.UnitTests.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
+  
 
 steps:
 - task: NuGetToolInstaller@0
@@ -45,12 +47,25 @@ steps:
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
     maximumCpuCount: true
+    msbuildArgs: '/p:DebugType=Full /verbosity:minimal'
+- task: MSBuild@1
+  inputs:
+    solution: '$(testProject)'
+    platform: '$(BuildPlatform)'
+    msbuildArchitecture: 'x64'
+    msbuildArguments: '/p:DebugType=Full /p:TestTargetFramework=net35 /verbosity:minimal'
+
+- task: MSBuild@1
+  inputs:
+    solution: '$(testProject)'
+    platform: '$(BuildPlatform)'
+    msbuildArchitecture: 'x64'
+    msbuildArguments: '/p:DebugType=Full /p:TestTargetFramework=net40-client /verbosity:minimal'
 
 - task: VSTest@2
   displayName: 'Run Tests'
   inputs:
     testAssemblyVer2: |
-     **\$(BuildConfiguration)\*test*.dll
      **\**\nlog.unittests.dll
      !**\obj\**
     runOnlyImpactedTests: false
