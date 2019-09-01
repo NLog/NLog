@@ -69,7 +69,7 @@ steps:
      **\**\nlog.unittests.dll
      !**\obj\**
     runOnlyImpactedTests: false
-    runInParallel: false
+    runInParallel: true
     codeCoverageEnabled: true
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
