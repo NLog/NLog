@@ -1653,16 +1653,42 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
                 DBPassword = password
             };
 
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+
             // Act
-            databaseTarget.Initialize(null);
+            var result = databaseTarget.GetRenderedConnectionString(logEventInfo);
 
             // Assert
-            var result = databaseTarget.ConnectionString.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal(expected, result);
         }
 
+        [Theory]
+        [InlineData("password", "password")]
+        [InlineData("", "")]
+        [InlineData("password'", "\"password'\"")]
+        public void DatabaseConnectionStringViaVariableTest(string password, string expectedPassword)
+        {
+            // Arrange
+            var databaseTarget = new NonLoggingDatabaseTarget()
+            {
+                CommandText = "DoSomething",
+                Name = "myTarget",
+                DBHost = "localhost",
+                DBDatabase = "MyDatabase",
+                DBUserName = "user",
+                DBPassword = "${event-properties:myPassword}"
+            };
 
+            var logEventInfo = LogEventInfo.Create(LogLevel.Debug, "logger1", "message1");
+            logEventInfo.Properties["myPassword"] = password;
 
+            // Act
+            var result = databaseTarget.GetRenderedConnectionString(logEventInfo);
+
+            // Assert
+            var expected = $"Server=localhost;User id=user;Password={expectedPassword};Database=MyDatabase";
+            Assert.Equal(expected, result);
+        }
 
         private static void AssertLog(string expectedLog)
         {
@@ -1763,16 +1789,10 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
         private class NonLoggingDatabaseTarget : DatabaseTarget
         {
-            #region Overrides of DatabaseTarget
-
-            /// <inheritdoc />
-            protected override void InitializeTarget()
+            public string GetRenderedConnectionString(LogEventInfo logEventInfo)
             {
-                base.InitializeTarget();
-                ConnectionString = base.BuildConnectionString(LogEventInfo.CreateNullEvent());
+                return base.BuildConnectionString(logEventInfo);
             }
-
-            #endregion
         }
 
         private class MockDbCommand : IDbCommand

@@ -223,7 +223,19 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public Layout DBPassword { get; set; }
+        public Layout DBPassword
+        {
+            get => _dbPassword;
+            set
+            {
+                _dbPassword = value;
+                _fixedDbPassword = null;
+                if (_dbPassword is SimpleLayout s && s.IsFixedText)
+                {
+                    _fixedDbPassword = EscapeValueForConnectionString(s.FixedText);
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the database name. If the ConnectionString is not provided
@@ -285,6 +297,8 @@ namespace NLog.Targets
         private IPropertyTypeConverter _propertyTypeConverter;
 
         SortHelpers.KeySelector<AsyncLogEventInfo, string> _buildConnectionStringDelegate;
+        private Layout _dbPassword;
+        private string _fixedDbPassword;
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -722,8 +736,7 @@ namespace NLog.Targets
                 sb.Append("User id=");
                 sb.Append(dbUserName);
                 sb.Append(";Password=");
-                var password = RenderLogEvent(DBPassword, logEvent);
-                password = EscapeValueForConnectionString(password);
+                var password = GetRenderedAndEscapedPassword(logEvent);
                 sb.Append(password);
                 sb.Append(";");
             }
@@ -735,6 +748,18 @@ namespace NLog.Targets
             }
 
             return sb.ToString();
+        }
+
+        private string GetRenderedAndEscapedPassword(LogEventInfo logEvent)
+        {
+            if (_fixedDbPassword != null)
+            {
+                return _fixedDbPassword;
+            }
+
+            var password = RenderLogEvent(DBPassword, logEvent);
+            password = EscapeValueForConnectionString(password);
+            return password;
         }
 
         /// <summary>
