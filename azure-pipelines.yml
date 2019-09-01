@@ -17,7 +17,6 @@ variables:
   testProject: 'tests/NLog.UnitTests/NLog.UnitTests.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  
 
 steps:
 - task: NuGetToolInstaller@0
@@ -48,20 +47,20 @@ steps:
     configuration: '$(BuildConfiguration)'
     maximumCpuCount: true
     msbuildArgs: '/p:DebugType=Full /verbosity:minimal'
-    
+
 - task: MSBuild@1
   displayName: 'Build test for .NET 3.5'
   inputs:
     solution: '$(testProject)'
     platform: '$(BuildPlatform)'
-    msbuildArguments: '/p:DebugType=Full /p:TestTargetFramework=net35 /verbosity:minimal'
+    msbuildArguments: '/p:DebugType=Full /p:TestTargetFramework=net35 /verbosity:minimal /p:OutputPath=.\bin\release\net35'
 
 - task: MSBuild@1
   displayName: 'Build test for .NET 4 (Client framework)'
   inputs:
     solution: '$(testProject)'
     platform: '$(BuildPlatform)'
-    msbuildArguments: '/p:DebugType=Full /p:TestTargetFramework=net40-client /verbosity:minimal'
+    msbuildArguments: '/p:DebugType=Full /p:TestTargetFramework=net40-client /verbosity:minimal p:OutputPath=.\bin\release\net40'
 
 - task: VSTest@2
   displayName: 'Run Tests'
