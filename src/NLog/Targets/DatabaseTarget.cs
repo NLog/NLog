@@ -788,16 +788,16 @@ namespace NLog.Targets
             {
                 if (!containsSingle)
                 {
-                    return $"{singleQuote}{value}{singleQuote}";
+                    return string.Concat(singleQuote, value, singleQuote);
                 }
                 if (!containsDouble)
                 {
-                    return $"{doubleQuote}{value}{doubleQuote}";
+                    return string.Concat(doubleQuote, value, doubleQuote);
                 }
 
                 // both single and double
                 var escapedValue = value.Replace(doubleQuote, doubleQuote + doubleQuote);
-                return $"{doubleQuote}{escapedValue}{doubleQuote}";
+                return string.Concat(doubleQuote, escapedValue, doubleQuote);
             }
 
             return value;
