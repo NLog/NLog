@@ -49,7 +49,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="builder">append to this</param>
         /// <param name="value">value to be appended</param>
-        /// <param name="format">formatstring. If @, then serialize the value with the Default JsonConverter.</param>
+        /// <param name="format">format string. If @, then serialize the value with the Default JsonConverter.</param>
         /// <param name="formatProvider">provider, for example culture</param>
         public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider)
         {

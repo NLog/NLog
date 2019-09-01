@@ -66,7 +66,7 @@ namespace NLog.Config
         /// <param name="loggerNamePattern">
         /// It may include one or more '*' or '?' wildcards at any position.
         /// <list type="bullet">
-        /// <item>'*' means zero or more occurrecnces of any character</item>
+        /// <item>'*' means zero or more occurrences of any character</item>
         /// <item>'?' means exactly one occurrence of any character</item>
         /// </list>
         /// </param>

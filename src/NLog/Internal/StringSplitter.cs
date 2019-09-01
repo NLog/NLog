@@ -48,7 +48,7 @@ namespace NLog.Internal
     internal static class StringSplitter
     {
         /// <summary>
-        /// Split string with escape. The escape char is the same as the splitchar
+        /// Split string with escape. The escape char is the same as the split char
         /// </summary>
         /// <param name="text"></param>
         /// <param name="splitChar">split char. escaped also with this char</param>
@@ -87,17 +87,17 @@ namespace NLog.Internal
                 {
                     var c = text[i];
 
-                    //prev not escaped, then check splitchar
+                    //prev not escaped, then check split char
                     var isSplitChar = c == splitChar;
                     if (prevWasEscape)
                     {
                         if (isSplitChar)
                         {
-                            //overwrite escapechar
+                            //overwrite escape char
                             if (sb.Length > 0)
                                 sb.Length--;
                             sb.Append(c);
-                            //if splitchar ==escapechar, then in this case it's used as split
+                            //if split char is the same as the escape char, then in this case it's used as split
                             prevWasEscape = false;
                         }
                         else
@@ -243,14 +243,14 @@ namespace NLog.Internal
             {
                 var c = text[i];
 
-                //prev not escaped, then check splitchar
+                //prev not escaped, then check split char
                 var isSplitChar = c == splitChar;
                 var isQuoteAndEscapeChar = c == quoteAndEscapeChar;
                 var isLastChar = i == text.Length - 1;
 
                 if (isNewPart)
                 {
-                    //now only quote for quotemode accepted
+                    //now only quote for quote mode accepted
                     isNewPart = false;
                     isQuoteAndEscapeChar = c == quoteAndEscapeChar;
 
@@ -304,7 +304,7 @@ namespace NLog.Internal
                 {
                     if (isQuoteAndEscapeChar)
                     {
-                        //skip escapechar
+                        //skip escape char
                         i++;
                         inQuotedMode = false;
                         var part = sb.ToString();
@@ -369,7 +369,7 @@ namespace NLog.Internal
             {
                 var c = text[i];
 
-                //prev not escaped, then check splitchar
+                //prev not escaped, then check split char
                 var isSplitChar = c == splitChar;
                 var isQuoteChar = c == quoteChar;
                 var isEscapeChar = c == escapeChar;
@@ -446,7 +446,7 @@ namespace NLog.Internal
                         if (prevIsEscape)
 
                         {
-                            //skip escapechar
+                            //skip escape char
 
                             if (sb.Length > 0)
                                 sb.Length--;

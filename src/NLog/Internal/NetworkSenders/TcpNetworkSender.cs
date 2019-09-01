@@ -113,7 +113,7 @@ namespace NLog.Internal.NetworkSenders
                 if (PlatformDetector.CurrentOS == RuntimeOS.Linux)
                 {
                     // https://github.com/torvalds/linux/blob/v4.16/include/net/tcp.h
-                    // #define    TCP_KEEPIDLE            4              /* Start keeplives after this period */
+                    // #define    TCP_KEEPIDLE            4              /* Start keepalives after this period */
                     // #define    TCP_KEEPINTVL           5              /* Interval between keepalives */
                     TcpKeepAliveTime = (SocketOptionName)0x4;
                     TcpKeepAliveInterval = (SocketOptionName)0x5;
@@ -129,7 +129,7 @@ namespace NLog.Internal.NetworkSenders
 
                 if (TrySetTcpOption(underlyingSocket, TcpKeepAliveTime, keepAliveTimeSeconds))
                 {
-                    // Configure retransmission interval when missing acknowlege of keep-alive-probe
+                    // Configure retransmission interval when missing acknowledge of keep-alive-probe
                     TrySetTcpOption(underlyingSocket, TcpKeepAliveInterval, 1); // Default 1 sec on Windows (75 sec on Linux)
                     return true;
                 }

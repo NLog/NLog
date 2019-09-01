@@ -83,7 +83,7 @@ namespace NLog.Internal
         {
             if (exception.MustBeRethrownImmediately())
             {
-                //no futher logging, because it can make servere exceptions only worse.
+                //no further logging, because it can make severe exceptions only worse.
                 return true;
             }
 

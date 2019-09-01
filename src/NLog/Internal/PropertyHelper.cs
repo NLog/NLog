@@ -141,10 +141,10 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Get propertyinfo
+        /// Get property info
         /// </summary>
         /// <param name="obj">object which could have property <paramref name="propertyName"/></param>
-        /// <param name="propertyName">propertyname on <paramref name="obj"/></param>
+        /// <param name="propertyName">property name on <paramref name="obj"/></param>
         /// <param name="result">result when success.</param>
         /// <returns>success.</returns>
         internal static bool TryGetPropertyInfo(object obj, string propertyName, out PropertyInfo result)

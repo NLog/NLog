@@ -98,7 +98,7 @@ namespace NLog.Targets
             {
                 try
                 {
-                    Console.OutputEncoding = newEncoding;   // Can throw exception if console is not availabe
+                    Console.OutputEncoding = newEncoding;   // Can throw exception if console is not available
                     return true;
                 }
                 catch (Exception ex)

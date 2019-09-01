@@ -48,7 +48,7 @@ namespace NLog.Targets
         public bool QuoteKeys { get; set; }
 
         /// <summary>
-        /// Formatprovider for value
+        /// Format provider for value
         /// </summary>
         public IFormatProvider FormatProvider { get; set; }
 

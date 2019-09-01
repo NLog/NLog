@@ -140,7 +140,7 @@ namespace NLog.Config
         /// <summary>
         /// gets the <see cref="LayoutRenderer"/> factory
         /// </summary>
-        /// <remarks>not using <see cref="_layoutRenderers"/> due to backwardscomp.</remarks>
+        /// <remarks>not using <see cref="_layoutRenderers"/> due to backwards-compatibility.</remarks>
         /// <returns></returns>
         internal LayoutRendererFactory GetLayoutRenderers()
         {

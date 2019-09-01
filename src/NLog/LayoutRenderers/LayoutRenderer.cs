@@ -245,7 +245,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Register a custom layout renderer.
         /// </summary>
-        /// <remarks>Short-cut for registing to default <see cref="ConfigurationItemFactory"/></remarks>
+        /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <typeparam name="T"> Type of the layout renderer.</typeparam>
         /// <param name="name"> Name of the layout renderer - without ${}.</param>
         public static void Register<T>(string name)
@@ -278,7 +278,7 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
-        /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback recieves the logEvent and the current configuration.
+        /// Register a custom layout renderer with a callback function <paramref name="func"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
         /// <param name="name">Name of the layout renderer - without ${}.</param>
         /// <param name="func">Callback that returns the value for the layout renderer.</param>

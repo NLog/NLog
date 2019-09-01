@@ -382,7 +382,7 @@ namespace NLog.UnitTests.Targets
                 }
 
                 var files = Directory.GetFiles(tempPath);
-                // Cleanup doesn't work, as all filenames has the same timestamp
+                // Cleanup doesn't work, as all file names has the same timestamp
                 if (files.Length < 28 || files.Length > 31)
                     Assert.Equal(30, files.Length);
 

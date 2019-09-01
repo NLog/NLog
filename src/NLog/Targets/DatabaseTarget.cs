@@ -69,7 +69,7 @@ namespace NLog.Targets
     /// <example>
     /// <para>
     /// The configuration is dependent on the database type, because
-    /// there are differnet methods of specifying connection string, SQL
+    /// there are different methods of specifying connection string, SQL
     /// command and command parameters.
     /// </para>
     /// <para>MS SQL Server using System.Data.SqlClient:</para>
