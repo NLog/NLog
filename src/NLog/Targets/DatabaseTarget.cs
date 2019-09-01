@@ -439,7 +439,7 @@ namespace NLog.Targets
                     InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
                 else
 #endif
-                InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
+                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
             }
 
             return providerName;
@@ -723,10 +723,7 @@ namespace NLog.Targets
                 sb.Append(dbUserName);
                 sb.Append(";Password=");
                 var password = RenderLogEvent(DBPassword, logEvent);
-                if (password.Contains(";"))
-                {
-                    password = $"'{password}'";
-                }
+                password = EscapeValueForConnectionString(password);
                 sb.Append(password);
                 sb.Append(";");
             }
@@ -738,6 +735,47 @@ namespace NLog.Targets
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Escape quotes and semicolons.
+        /// See https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms722656(v=vs.85)#setting-values-that-use-reserved-characters
+        /// </summary>
+        private static string EscapeValueForConnectionString(string value)
+        {
+            const string singleQuote = "'";
+
+            if (value.StartsWith(singleQuote) && value.EndsWith(singleQuote))
+            {
+                // already escaped
+                return value;
+            }
+            const string doubleQuote = "\"";
+            if (value.StartsWith(doubleQuote) && value.EndsWith(doubleQuote))
+            {
+                // already escaped
+                return value;
+            }
+
+            var containsSingle = value.Contains(singleQuote);
+            var containsDouble = value.Contains(doubleQuote);
+            if (value.Contains(";") || containsSingle || containsDouble)
+            {
+                if (!containsSingle)
+                {
+                    return $"{singleQuote}{value}{singleQuote}";
+                }
+                if (!containsDouble)
+                {
+                    return $"{doubleQuote}{value}{doubleQuote}";
+                }
+
+                // both single and double
+                var escapedValue = value.Replace(doubleQuote, doubleQuote + doubleQuote);
+                return $"{doubleQuote}{escapedValue}{doubleQuote}";
+            }
+
+            return value;
         }
 
         private void EnsureConnectionOpen(string connectionString)

@@ -1632,7 +1632,12 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
         [Theory]
         [InlineData("localhost", "MyDatabase", "user", "password", "Server=localhost;User id=user;Password=password;Database=MyDatabase")]
         [InlineData("localhost", null, "user", "password", "Server=localhost;User id=user;Password=password;")]
+        [InlineData("localhost", "MyDatabase", "user", "'password'", "Server=localhost;User id=user;Password='password';Database=MyDatabase")]
+        [InlineData("localhost", "MyDatabase", "user", "\"password\"", "Server=localhost;User id=user;Password=\"password\";Database=MyDatabase")]
         [InlineData("localhost", "MyDatabase", "user", "pa;ssword", "Server=localhost;User id=user;Password='pa;ssword';Database=MyDatabase")]
+        [InlineData("localhost", "MyDatabase", "user", "pa'ssword", "Server=localhost;User id=user;Password=\"pa'ssword\";Database=MyDatabase")]
+        [InlineData("localhost", "MyDatabase", "user", "pa'\"ssword", "Server=localhost;User id=user;Password=\"pa'\"\"ssword\";Database=MyDatabase")]
+        [InlineData("localhost", "MyDatabase", "user", "pa\"ssword", "Server=localhost;User id=user;Password='pa\"ssword';Database=MyDatabase")]
         [InlineData("localhost", "MyDatabase", "user", "", "Server=localhost;User id=user;Password=;Database=MyDatabase")]
         [InlineData("localhost", "MyDatabase", null, "password", "Server=localhost;Trusted_Connection=SSPI;Database=MyDatabase")]
         public void DatabaseConnectionStringTest(string host, string database, string username, string password, string expected)
