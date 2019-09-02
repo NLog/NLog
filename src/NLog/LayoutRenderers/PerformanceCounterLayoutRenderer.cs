@@ -42,16 +42,17 @@ namespace NLog.LayoutRenderers
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// The performance counter.
     /// </summary>
     [LayoutRenderer("performancecounter")]
+    [ThreadSafe]
     public class PerformanceCounterLayoutRenderer : LayoutRenderer
     {
-        private PerformanceCounter _perfCounter;
-        private CounterSample _prevSample = CounterSample.Empty;
-        private CounterSample _nextSample = CounterSample.Empty;
+        private PerformanceCounterCached _fixedPerformanceCounter;
+        private PerformanceCounterCached _performanceCounter;
 
         /// <summary>
         /// Gets or sets the name of the counter category.
@@ -71,13 +72,31 @@ namespace NLog.LayoutRenderers
         /// Gets or sets the name of the performance counter instance (e.g. this.Global_).
         /// </summary>
         /// <docgen category='Performance Counter Options' order='10' />
-        public string Instance { get; set; }
+        public string Instance
+        {
+            get { return _instance?.Text; }
+            set
+            {
+                _instance = value != null ? new SimpleLayout(value) : null;
+                ResetPerformanceCounters();
+            }
+        }
+        private SimpleLayout _instance;
 
         /// <summary>
         /// Gets or sets the name of the machine to read the performance counter from.
         /// </summary>
         /// <docgen category='Performance Counter Options' order='10' />
-        public string MachineName { get; set; }
+        public string MachineName
+        {
+            get { return _machineName?.Text; }
+            set
+            {
+                _machineName = value != null ? new SimpleLayout(value) : null;
+                ResetPerformanceCounters();
+            }
+        }
+        private SimpleLayout _machineName;
 
         /// <summary>
         /// Format string for conversion from float to string.
@@ -96,24 +115,72 @@ namespace NLog.LayoutRenderers
         {
             base.InitializeLayoutRenderer();
 
-            _prevSample = CounterSample.Empty;
-            _nextSample = CounterSample.Empty;
-
-            if (MachineName != null)
+            if (_instance == null && string.Equals(Category, "Process", StringComparison.OrdinalIgnoreCase))
             {
-                _perfCounter = new PerformanceCounter(Category, Counter, Instance ?? string.Empty, MachineName);
+                _instance = GetCurrentProcessInstanceName(Category) ?? string.Empty;
+            }
+
+            LookupPerformanceCounter(LogEventInfo.CreateNullEvent());
+        }
+
+        /// <inheritdoc />
+        protected override void CloseLayoutRenderer()
+        {
+            base.CloseLayoutRenderer();
+            _fixedPerformanceCounter?.Close();
+            _performanceCounter?.Close();
+            ResetPerformanceCounters();
+        }
+
+        /// <inheritdoc />
+        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
+        {
+            var performanceCounter = LookupPerformanceCounter(logEvent);
+            var formatProvider = GetFormatProvider(logEvent, Culture);
+            builder.Append(performanceCounter.GetValue().ToString(Format, formatProvider));
+        }
+
+        private void ResetPerformanceCounters()
+        {
+            _fixedPerformanceCounter = null;
+            _performanceCounter = null;
+        }
+
+        PerformanceCounterCached LookupPerformanceCounter(LogEventInfo logEventInfo)
+        {
+            var perfCounterCached = _fixedPerformanceCounter;
+            if (perfCounterCached != null)
+                return perfCounterCached;
+
+            perfCounterCached = _performanceCounter;
+            var machineName = _machineName?.Render(logEventInfo) ?? string.Empty;
+            var instanceName = _instance?.Render(logEventInfo) ?? string.Empty;
+            if (perfCounterCached != null && perfCounterCached.MachineName == machineName && perfCounterCached.InstanceName == instanceName)
+            {
+                return perfCounterCached;
+            }
+
+            var perfCounter = CreatePerformanceCounter(machineName, instanceName);
+            perfCounterCached = new PerformanceCounterCached(machineName, instanceName, perfCounter);
+            if ((_machineName?.Text == null || _machineName.IsFixedText) && (_instance?.Text == null || _instance.IsFixedText))
+            {
+                _fixedPerformanceCounter = perfCounterCached;
             }
             else
             {
-                string instance = Instance;
-                if (string.IsNullOrEmpty(instance) && string.Equals(Category, "Process", StringComparison.OrdinalIgnoreCase))
-                {
-                    instance = GetCurrentProcessInstanceName(Category);
-                }
-
-                _perfCounter = new PerformanceCounter(Category, Counter, instance ?? string.Empty, true);
-                GetValue(); // Prepare Performance Counter for CounterSample.Calculate
+                _performanceCounter = perfCounterCached;
             }
+            return perfCounterCached;
+        }
+
+        private PerformanceCounter CreatePerformanceCounter(string machineName, string instanceName)
+        {
+            if (!string.IsNullOrEmpty(machineName))
+            {
+                return new PerformanceCounter(Category, Counter, instanceName, machineName);
+            }
+
+            return new PerformanceCounter(Category, Counter, instanceName, true);
         }
 
         /// <summary>
@@ -152,48 +219,55 @@ namespace NLog.LayoutRenderers
             return string.Empty;
         }
 
-        /// <inheritdoc />
-        protected override void CloseLayoutRenderer()
+        class PerformanceCounterCached
         {
-            base.CloseLayoutRenderer();
-            if (_perfCounter != null)
+            private readonly PerformanceCounter _perfCounter;
+            private readonly object _lockObject = new object();
+            private CounterSample _prevSample = CounterSample.Empty;
+            private CounterSample _nextSample = CounterSample.Empty;
+
+            public PerformanceCounterCached(string machineName, string instanceName, PerformanceCounter performanceCounter)
             {
-                _perfCounter.Close();
-                _perfCounter = null;
+                MachineName = machineName;
+                InstanceName = instanceName;
+                _perfCounter = performanceCounter;
+                GetValue(); // Prepare Performance Counter for CounterSample.Calculate
             }
-            _prevSample = CounterSample.Empty;
-            _nextSample = CounterSample.Empty;
-        }
 
-        /// <inheritdoc />
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            var formatProvider = GetFormatProvider(logEvent, Culture);
-            builder.Append(GetValue().ToString(Format, formatProvider));
-        }
+            public string MachineName { get; }
+            public string InstanceName { get; }
 
-        private float GetValue()
-        {
-            CounterSample currentSample = _perfCounter.NextSample();
-            if (currentSample.SystemFrequency != 0)
+            public float GetValue()
             {
-                // The recommended delay time between calls to the NextSample method is one second, to allow the counter to perform the next incremental read.
-                float timeDifferenceSecs = (currentSample.TimeStamp - _nextSample.TimeStamp) / (float)currentSample.SystemFrequency;
-                if (timeDifferenceSecs > 0.5F || timeDifferenceSecs < -0.5F)
+                lock (_lockObject)
                 {
-                    _prevSample = _nextSample;
-                    _nextSample = currentSample;
-                    if (_prevSample.Equals(CounterSample.Empty))
-                        _prevSample = currentSample;
+                    CounterSample currentSample = _perfCounter.NextSample();
+                    if (currentSample.SystemFrequency != 0)
+                    {
+                        // The recommended delay time between calls to the NextSample method is one second, to allow the counter to perform the next incremental read.
+                        float timeDifferenceSecs = (currentSample.TimeStamp - _nextSample.TimeStamp) / (float)currentSample.SystemFrequency;
+                        if (timeDifferenceSecs > 0.5F || timeDifferenceSecs < -0.5F)
+                        {
+                            _prevSample = _nextSample;
+                            _nextSample = currentSample;
+                            if (_prevSample.Equals(CounterSample.Empty))
+                                _prevSample = currentSample;
+                        }
+                    }
+                    else
+                    {
+                        _prevSample = _nextSample;
+                        _nextSample = currentSample;
+                    }
+                    float sampleValue = CounterSample.Calculate(_prevSample, currentSample);
+                    return sampleValue;
                 }
             }
-            else
+
+            public void Close()
             {
-                _prevSample = _nextSample;
-                _nextSample = currentSample;
+                _perfCounter.Close();
             }
-            float sampleValue = CounterSample.Calculate(_prevSample, currentSample);
-            return sampleValue;
         }
     }
 }
