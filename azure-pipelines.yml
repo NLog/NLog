@@ -1,3 +1,5 @@
+trigger: none
+
 # trigger:
 #   batch: true
 #   branches:
@@ -27,14 +29,6 @@ jobs:
     displayName: 'Use NuGet 5.1.0'
     inputs:
       versionSpec: 5.1.0
-
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-    inputs:
-      restoreSolution: '$(solution)'
-      verbosityRestore: Normal
-      
-
   - task: SonarCloudPrepare@1
     displayName: 'Prepare analysis on SonarCloud'
     inputs:
@@ -51,9 +45,7 @@ jobs:
       platform: '$(BuildPlatform)'
       configuration: '$(BuildConfiguration)'
       maximumCpuCount: true
-      msbuildArgs: '/p:DebugType=Full /verbosity:minimal /p:targetFramework=net45' 
-      
-
+      msbuildArgs: '/t:restore,build /p:DebugType=Full /verbosity:minimal /p:targetFramework=net45' 
 
   - task: VSTest@2
     displayName: 'Run Tests'
@@ -80,6 +72,10 @@ jobs:
   pool:
     vmImage: 'vs2017-win2016'
   steps:
+  - task: NuGetToolInstaller@0
+    displayName: 'Use NuGet 5.1.0'
+    inputs:
+      versionSpec: 5.1.0
   - task: MSBuild@1
     displayName: 'Build tests'
     inputs:
@@ -105,6 +101,11 @@ jobs:
   pool:
     vmImage: 'vs2017-win2016'
   steps:
+  - task: NuGetToolInstaller@0
+    displayName: 'Use NuGet 5.1.0'
+    inputs:
+      versionSpec: 5.1.0
+
   - task: MSBuild@1
     displayName: 'Build tests .NET 4  (Client framework)'
     inputs:
