@@ -741,7 +741,7 @@ namespace NLog.Targets
 
                 WriteAllParametersToCurrenElement(xtw, parameterValues);
 
-                xtw.WriteEndElement(); // methodname
+                xtw.WriteEndElement(); // method name
                 xtw.WriteEndElement(); // Body
                 xtw.WriteEndElement(); // soap:Envelope
                 xtw.Flush();

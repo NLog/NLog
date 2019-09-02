@@ -174,7 +174,7 @@ namespace NLog
         /// </summary>
         /// <value>A value of <c>true</c> if exception should be thrown; otherwise, <c>false</c>.</value>
         /// <remarks>
-        /// This option is for backwards-compatiblity.
+        /// This option is for backwards-compatibility.
         /// By default exceptions are not thrown under any circumstances.
         /// </remarks>
         public bool? ThrowConfigExceptions { get; set; }
@@ -744,7 +744,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Currently this logfactory is disposing?
+        /// Currently this <see cref="LogFactory"/> is disposing?
         /// </summary>
         private bool _isDisposing;
 
@@ -854,7 +854,7 @@ namespace NLog
         /// <summary>
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
-        /// <returns>The filepaths to the possible config file</returns>
+        /// <returns>The file paths to the possible config file</returns>
         public IEnumerable<string> GetCandidateConfigFilePaths()
         {
             if (_candidateConfigFilePaths != null)
@@ -868,7 +868,7 @@ namespace NLog
         /// <summary>
         /// Overwrite the paths (including filename) for the possible NLog config files.
         /// </summary>
-        /// <param name="filePaths">The filepaths to the possible config file</param>
+        /// <param name="filePaths">The file paths to the possible config file</param>
         public void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             _candidateConfigFilePaths = new List<string>();

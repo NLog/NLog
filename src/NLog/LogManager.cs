@@ -326,7 +326,7 @@ namespace NLog
         /// </summary>
         /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
         ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
-        /// <returns>An object that implements IDisposable whose Dispose() method reenables logging. 
+        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         ///     To be used with C# <c>using ()</c> statement.</returns>
         public static IDisposable DisableLogging()
         {

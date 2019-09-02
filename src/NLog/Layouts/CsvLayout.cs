@@ -44,7 +44,7 @@ namespace NLog.Layouts
     /// <summary>
     /// A specialized layout that renders CSV-formatted events.
     /// </summary>
-    /// <remarks>If <see cref="LayoutWithHeaderAndFooter.Header"/> is set, then the header generation with columnnames will be disabled.</remarks>
+    /// <remarks>If <see cref="LayoutWithHeaderAndFooter.Header"/> is set, then the header generation with column names will be disabled.</remarks>
     [Layout("CsvLayout")]
     [ThreadAgnostic]
     [ThreadSafe]

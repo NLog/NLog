@@ -220,7 +220,7 @@ namespace NLog.Internal
         /// <summary>
         /// Returns the assembly from the provided StackFrame (If not internal assembly)
         /// </summary>
-        /// <returns>Valid asssembly, or null if assembly was internal</returns>
+        /// <returns>Valid assembly, or null if assembly was internal</returns>
         public static Assembly LookupAssemblyFromStackFrame(StackFrame stackFrame)
         {
             var method = stackFrame.GetMethod();

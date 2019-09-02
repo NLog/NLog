@@ -58,7 +58,7 @@ namespace NLog.Config
         /// <summary>
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
-        /// <returns>The filepaths to the possible config file</returns>
+        /// <returns>The file paths to the possible config file</returns>
         IEnumerable<string> GetDefaultCandidateConfigFilePaths();
     }
 }

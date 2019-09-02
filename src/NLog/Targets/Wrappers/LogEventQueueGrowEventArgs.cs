@@ -38,7 +38,7 @@ namespace NLog.Targets.Wrappers
     /// <summary> 
     /// Raises by  <see cref="AsyncRequestQueue"/> when 
     /// queue is full
-    /// and <see cref="AsyncRequestQueueBase.OnOverflow"/> setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
+    /// and <see cref="AsyncRequestQueueBase.OnOverflow"/> set to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
     /// By default queue doubles it size.
     /// </summary>
     public class LogEventQueueGrowEventArgs : EventArgs

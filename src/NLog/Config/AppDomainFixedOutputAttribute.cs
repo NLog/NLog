@@ -40,7 +40,7 @@ namespace NLog.Config
     /// </summary>
     /// <remarks>
     /// A layout(renderer) could be converted to a literal when:
-    ///  - The layout and all layout properies are SimpleLayout or [AppDomainFixedOutput]
+    ///  - The layout and all layout properties are SimpleLayout or [AppDomainFixedOutput]
     /// 
     /// Recommendation: Apply this attribute to a layout or layout-renderer which have the result only changes by properties of type Layout.
     /// </remarks>

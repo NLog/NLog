@@ -72,8 +72,8 @@ namespace NLog.Internal.FileAppenders
         /// Initializes a new instance of the <see cref="FileAppenderCache"/> class.
         /// </summary>
         /// <remarks>
-        /// The size of the list should be positive. No validations are performed during initialisation as it is an
-        /// intenal class.
+        /// The size of the list should be positive. No validations are performed during initialization as it is an
+        /// internal class.
         /// </remarks>
         /// <param name="size">Total number of appenders allowed in list.</param>
         /// <param name="appenderFactory">Factory used to create each appender.</param>
@@ -385,7 +385,7 @@ namespace NLog.Internal.FileAppenders
         }
 
         /// <summary>
-        /// Fluch all the allocated appenders. 
+        /// Flush all the allocated appenders. 
         /// </summary>
         public void FlushAppenders()
         {

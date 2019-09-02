@@ -136,7 +136,7 @@ namespace NLog.Targets
         public Layout Category { get; set; }
 
         /// <summary>
-        /// Optional entrytype. When not set, or when not convertible to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
+        /// Optional entry type. When not set, or when not convertible to <see cref="EventLogEntryType"/> then determined by <see cref="NLog.LogLevel"/>
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />
         public Layout EntryType { get; set; }

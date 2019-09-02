@@ -46,10 +46,10 @@ namespace NLog.Common
     /// <summary>
     /// NLog internal logger.
     /// 
-    /// Writes to file, console or custom textwriter (see <see cref="InternalLogger.LogWriter"/>)
+    /// Writes to file, console or custom text writer (see <see cref="InternalLogger.LogWriter"/>)
     /// </summary>
     /// <remarks>
-    /// Don't use <see cref="ExceptionHelper.MustBeRethrown"/> as that can lead to recursive calls - stackoverflows
+    /// Don't use <see cref="ExceptionHelper.MustBeRethrown"/> as that can lead to recursive calls - stackoverflow
     /// </remarks>
     public static partial class InternalLogger
     {

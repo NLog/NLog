@@ -124,7 +124,7 @@ namespace NLog.Internal.FileAppenders
             base.Dispose(disposing);
             if (disposing)
             {
-                ArchiveMutex?.Close();    // Only closed on dispose, Mutex must survieve, when closing FileAppender before archive
+                ArchiveMutex?.Close();    // Only closed on dispose, Mutex must survive, when closing FileAppender before archive
             }
         }
 

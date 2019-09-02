@@ -162,7 +162,7 @@ namespace NLog
                     if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) ||
                         declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
                     {
-                        //async, search futher
+                        //async, search further
                         continue;
                     }
                 }

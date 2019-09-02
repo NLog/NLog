@@ -125,7 +125,7 @@ namespace NLog.MessageTemplates
         }
 
         /// <summary>
-        /// Try serialising a scalar (string, int, NULL) or simple type (IFormattable)
+        /// Try serializing a scalar (string, int, NULL) or simple type (IFormattable)
         /// </summary>
         private bool SerializeSimpleObject(object value, string format, IFormatProvider formatProvider, StringBuilder builder, bool convertToString = true)
         {

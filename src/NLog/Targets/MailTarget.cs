@@ -585,7 +585,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Create key for grouping. Needed for multiple events in one mailmessage
+        /// Create key for grouping. Needed for multiple events in one mail message
         /// </summary>
         /// <param name="logEvent">event for rendering layouts   </param>  
         ///<returns>string to group on</returns>
@@ -605,7 +605,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Append rendered layout to the stringbuilder
+        /// Append rendered <paramref name="layout"/> to <paramref name="sb"/>
         /// </summary>
         /// <param name="sb">append to this</param>
         /// <param name="logEvent">event for rendering <paramref name="layout"/></param>
@@ -620,7 +620,7 @@ namespace NLog.Targets
 
 
         /// <summary>
-        /// Create the mailmessage with the addresses, properties and body.
+        /// Create the mail message with the addresses, properties and body.
         /// </summary>
         private MailMessage CreateMailMessage(LogEventInfo lastEvent, string body)
         {

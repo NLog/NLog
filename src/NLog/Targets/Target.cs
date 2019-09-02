@@ -581,7 +581,7 @@ namespace NLog.Targets
         /// 
         /// !WARNING! Custom targets should only override this method if able to provide their
         /// own synchronization mechanism. <see cref="Layout" />-objects are not guaranteed to be
-        /// threadsafe, so using them without a SyncRoot-object can be dangerous.
+        /// thread-safe, so using them without a SyncRoot-object can be dangerous.
         /// </summary>
         /// <param name="logEvent">Log event to be written out.</param>
         protected virtual void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
@@ -634,7 +634,7 @@ namespace NLog.Targets
         /// 
         /// !WARNING! Custom targets should only override this method if able to provide their
         /// own synchronization mechanism. <see cref="Layout" />-objects are not guaranteed to be
-        /// threadsafe, so using them without a SyncRoot-object can be dangerous.
+        /// thread-safe, so using them without a SyncRoot-object can be dangerous.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
         [Obsolete("Instead override WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents. Marked obsolete on NLog 4.5")]
@@ -649,7 +649,7 @@ namespace NLog.Targets
         /// 
         /// !WARNING! Custom targets should only override this method if able to provide their
         /// own synchronization mechanism. <see cref="Layout" />-objects are not guaranteed to be
-        /// threadsafe, so using them without a SyncRoot-object can be dangerous.
+        /// thread-safe, so using them without a SyncRoot-object can be dangerous.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
         protected virtual void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)

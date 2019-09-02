@@ -67,7 +67,7 @@ namespace NLog.Internal
             short result;
   
             // NumberStyles.Integer is default of Convert.ToInt16
-            // CultureInfo.InvariantCulture is backwards-compatible.
+            // CultureInfo.InvariantCulture is backwards compatible.
             if (!short.TryParse(rendered, NumberStyles.Integer, CultureInfo.InvariantCulture, out result)) 
             {
                 InternalLogger.Warn(layoutName + ": parse of value '" + rendered + "' failed, return " + defaultValue);
@@ -101,7 +101,7 @@ namespace NLog.Internal
             int result;
   
             // NumberStyles.Integer is default of Convert.ToInt16
-            // CultureInfo.InvariantCulture is backwards-compatibility.
+            // CultureInfo.InvariantCulture is backwards compatible.
             if (!int.TryParse(rendered, NumberStyles.Integer, CultureInfo.InvariantCulture, out result)) 
             {
                 InternalLogger.Warn(layoutName + ": parse of value '" + rendered + "' failed, return " + defaultValue);
