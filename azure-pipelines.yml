@@ -9,8 +9,8 @@ pr:
     include:
       - '*'
 
-pool:
-  vmImage: 'vs2017-win2016'
+
+
 
 variables:
   solution: 'src/nlog.sln'
@@ -18,66 +18,110 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
 
-steps:
-- task: NuGetToolInstaller@0
-  displayName: 'Use NuGet 5.1.0'
-  inputs:
-    versionSpec: 5.1.0
+jobs:
+- job: Sonar
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - task: NuGetToolInstaller@0
+    displayName: 'Use NuGet 5.1.0'
+    inputs:
+      versionSpec: 5.1.0
 
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: '$(solution)'
-    verbosityRestore: Normal
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '$(solution)'
+      verbosityRestore: Normal
+      
 
-- task: SonarCloudPrepare@1
-  displayName: 'Prepare analysis on SonarCloud'
-  inputs:
-    SonarCloud: Sonarcloud
-    organization: nlog
-    projectKey: nlog2
-    projectName: NLog
-    projectVersion: '$(Build.BuildId)'
+  - task: SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: Sonarcloud
+      organization: nlog
+      projectKey: nlog2
+      projectName: NLog
+      projectVersion: '$(Build.BuildId)'
 
-- task: VSBuild@1
-  displayName: 'Build NLog.sln'
-  inputs:
-    solution: '$(solution)'
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
-    maximumCpuCount: true
-    msbuildArgs: '/p:DebugType=Full /verbosity:minimal'
+  - task: VSBuild@1
+    displayName: 'Build NLog.sln'
+    inputs:
+      solution: '$(solution)'
+      platform: '$(BuildPlatform)'
+      configuration: '$(BuildConfiguration)'
+      maximumCpuCount: true
+      msbuildArgs: '/p:DebugType=Full /verbosity:minimal /p:targetFramework=net45' 
+      
 
-- task: MSBuild@1
-  displayName: 'Build tests for .NET 3.5'
-  inputs:
-    solution: '$(testProject)'
-    platform: '$(BuildPlatform)'
-    msbuildArguments: '/p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net35 /verbosity:minimal /p:OutputPath=.\bin\release\net35'
 
-- task: MSBuild@1
-  displayName: 'Build tests for .NET 4 (Client framework)'
-  inputs:
-    solution: '$(testProject)'
-    platform: '$(BuildPlatform)'
-    msbuildArguments: '/p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net40-client /verbosity:minimal /p:OutputPath=.\bin\release\net40'
+  - task: VSTest@2
+    displayName: 'Run Tests'
+    inputs:
+      testAssemblyVer2: |
+        **\**\nlog.unittests.dll
+        !**\obj\**
+      runOnlyImpactedTests: false
+      runInParallel: true
+      codeCoverageEnabled: true
+      platform: '$(BuildPlatform)'
+      configuration: '$(BuildConfiguration)'
+      rerunFailedTests: true
+      rerunMaxAttempts: 5
 
-- task: VSTest@2
-  displayName: 'Run Tests'
-  inputs:
-    testAssemblyVer2: |
-     **\**\nlog.unittests.dll
-     !**\obj\**
-    runOnlyImpactedTests: false
-    runInParallel: true
-    codeCoverageEnabled: true
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
-    rerunFailedTests: true
-    rerunMaxAttempts: 5
+  - task: SonarCloudAnalyze@1
+    displayName: 'Run Sonar Analysis'
 
-- task: SonarCloudAnalyze@1
-  displayName: 'Run Sonar Analysis'
 
-- task: SonarCloudPublish@1
-  displayName: 'Publish Sonar Quality Gate Result'
+  - task: SonarCloudPublish@1
+    displayName: 'Publish Sonar Quality Gate Result'
+
+- job: net35
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - task: MSBuild@1
+    displayName: 'Build tests'
+    inputs:
+      solution: '$(testProject)'
+      platform: '$(BuildPlatform)'
+      msbuildArguments: '/p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net35 /verbosity:minimal /p:OutputPath=.\bin\release\net35'
+
+  - task: VSTest@2
+    displayName: 'Run Tests'
+    inputs:
+      testAssemblyVer2: |
+        **\**\nlog.unittests.dll
+        !**\obj\**
+      runOnlyImpactedTests: false
+      runInParallel: true
+      codeCoverageEnabled: true
+      platform: '$(BuildPlatform)'
+      configuration: '$(BuildConfiguration)'
+      rerunFailedTests: true
+      rerunMaxAttempts: 5
+
+- job: net4
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - task: MSBuild@1
+    displayName: 'Build tests .NET 4  (Client framework)'
+    inputs:
+      solution: '$(testProject)'
+      platform: '$(BuildPlatform)'
+      msbuildArguments: '/p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net40-client /verbosity:minimal /p:OutputPath=.\bin\release\net40'
+  - task: VSTest@2
+    displayName: 'Run Tests'
+    inputs:
+      testAssemblyVer2: |
+        **\**\nlog.unittests.dll
+        !**\obj\**
+      runOnlyImpactedTests: false
+      runInParallel: true
+      codeCoverageEnabled: true
+      platform: '$(BuildPlatform)'
+      configuration: '$(BuildConfiguration)'
+      rerunFailedTests: true
+      rerunMaxAttempts: 5
+
