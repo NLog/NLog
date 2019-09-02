@@ -186,6 +186,28 @@ namespace NLog
         public bool KeepVariablesOnReload { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to automatically call <see cref="LogFactory.Shutdown"/>
+        /// on AppDomain.Unload or AppDomain.ProcessExit
+        /// </summary>
+        public bool AutoShutdown
+        {
+            get { return _autoShutdown; }
+            set
+            {
+                if (value != _autoShutdown)
+                {
+                    _autoShutdown = value;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+                    LoggerShutdown -= OnStopLogging;
+                    if (value)
+                        LoggerShutdown += OnStopLogging;
+#endif
+                }
+            }
+        }
+        private bool _autoShutdown = true;
+
+        /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
         /// existing loggers will be re-configured, so there is no need to call <see cref="ReconfigExistingLoggers" />
         /// manually.

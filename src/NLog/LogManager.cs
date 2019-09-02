@@ -126,6 +126,16 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to automatically call <see cref="LogManager.Shutdown"/>
+        /// on AppDomain.Unload or AppDomain.ProcessExit
+        /// </summary>
+        public static bool AutoShutdown
+        {
+            get => factory.AutoShutdown;
+            set => factory.AutoShutdown = value;
+        }
+
+        /// <summary>
         /// Gets or sets the current logging configuration.
         /// <see cref="NLog.LogFactory.Configuration" />
         /// </summary>

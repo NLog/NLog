@@ -175,6 +175,11 @@ namespace NLog.Config
                             ? (bool?)null
                             : ParseBooleanValue(configItem.Key, configItem.Value, true);
                         break;
+                    case "AUTOSHUTDOWN":
+                        LogFactory.AutoShutdown = StringHelpers.IsNullOrWhiteSpace(configItem.Value)
+                                ? true
+                                : ParseBooleanValue(configItem.Key, configItem.Value, true);
+                        break;
                     case "AUTORELOAD":
                         break;  // Ignore here, used by other logic
                     default:
