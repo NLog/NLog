@@ -1,13 +1,13 @@
-trigger:
-  batch: true
-  branches:
-    include:
-      - '*'
-pr:
-  autoCancel: true
-  branches:
-    include:
-      - '*'
+# trigger:
+#   batch: true
+#   branches:
+#     include:
+#       - '*'
+# pr:
+#   autoCancel: true
+#   branches:
+#     include:
+#       - '*'
 
 
 
@@ -85,7 +85,7 @@ jobs:
     inputs:
       solution: '$(testProject)'
       platform: '$(BuildPlatform)'
-      msbuildArguments: '/p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net35 /verbosity:minimal /p:OutputPath=.\bin\release\net35'
+      msbuildArguments: '/t:restore,build /p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net35 /verbosity:minimal /p:OutputPath=.\bin\release\net35'
 
   - task: VSTest@2
     displayName: 'Run Tests'
@@ -110,7 +110,7 @@ jobs:
     inputs:
       solution: '$(testProject)'
       platform: '$(BuildPlatform)'
-      msbuildArguments: '/p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net40-client /verbosity:minimal /p:OutputPath=.\bin\release\net40'
+      msbuildArguments: '/t:restore,build /p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net40-client /verbosity:minimal /p:OutputPath=.\bin\release\net40'
   - task: VSTest@2
     displayName: 'Run Tests'
     inputs:
