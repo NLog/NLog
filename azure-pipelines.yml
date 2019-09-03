@@ -21,118 +21,32 @@ variables:
   buildConfiguration: 'Debug'
 
 jobs:
-# - job: Sonar
-#   pool:
-#     vmImage: 'vs2017-win2016'
-#   steps:
-#   - task: NuGetToolInstaller@0
-#     displayName: 'Use NuGet 5.1.0'
-#     inputs:
-#       versionSpec: 5.1.0
-#   - task: SonarCloudPrepare@1
-#     displayName: 'Prepare analysis on SonarCloud'
-#     inputs:
-#       SonarCloud: Sonarcloud
-#       organization: nlog
-#       projectKey: nlog2
-#       projectName: NLog
-#       projectVersion: '$(Build.BuildId)'
-
-#   - task: VSBuild@1
-#     displayName: 'Build NLog.sln'
-#     inputs:
-#       solution: '$(solution)'
-#       platform: '$(BuildPlatform)'
-#       configuration: '$(BuildConfiguration)'
-#       maximumCpuCount: true
-#       msbuildArgs: '/t:restore,build /p:DebugType=Full /verbosity:minimal /p:targetFramework=net45' 
-
-#   - task: VSTest@2
-#     displayName: 'Run Tests'
-#     inputs:
-#       testAssemblyVer2: |
-#         **\**\nlog.unittests.dll
-#         !**\obj\**
-#       runOnlyImpactedTests: false
-#       runInParallel: true
-#       codeCoverageEnabled: true
-#       platform: '$(BuildPlatform)'
-#       configuration: '$(BuildConfiguration)'
-#       rerunFailedTests: true
-#       rerunMaxAttempts: 5
-
-#   - task: SonarCloudAnalyze@1
-#     displayName: 'Run Sonar Analysis'
-
-
-#   - task: SonarCloudPublish@1
-#     displayName: 'Publish Sonar Quality Gate Result'
-
-# - job: net35
-#   pool:
-#     vmImage: 'vs2017-win2016'
-#   steps:
-#   - task: NuGetToolInstaller@0
-#     displayName: 'Use NuGet 5.1.0'
-#     inputs:
-#       versionSpec: 5.1.0
-#   - task: MSBuild@1
-#     displayName: 'Build tests'
-#     inputs:
-#       solution: '$(testProject)'
-#       platform: '$(BuildPlatform)'
-#       msbuildArguments: '/t:restore,build /p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net35 /verbosity:minimal /p:OutputPath=.\bin\release\net35'
-
-#   - task: VSTest@2
-#     displayName: 'Run Tests'
-#     inputs:
-#       testAssemblyVer2: |
-#         **\**\nlog.unittests.dll
-#         !**\obj\**
-#       runOnlyImpactedTests: false
-#       runInParallel: true
-#       codeCoverageEnabled: true
-#       platform: '$(BuildPlatform)'
-#       configuration: '$(BuildConfiguration)'
-#       rerunFailedTests: true
-#       rerunMaxAttempts: 5
+- job: net35
+  displayName: 'Unit tests .NET 3.5'
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - template: .azure/build-run-tests.yml
+    parameters:
+      testframework: net35
+      runframework: net452
 
 - job: net4
   displayName: 'Unit tests .NET 4  (Client framework)'
   pool:
     vmImage: 'vs2017-win2016'
   steps:
-  - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet 5.1.0'
-    inputs:
-      versionSpec: 5.1.0
+  - template: .azure/build-run-tests.yml
+    parameters:
+      testframework: net40-client
+      runframework: net452
 
-  - task: MSBuild@1
-    displayName: 'Restore and build NLog'
-    inputs:
-      solution: '$(solution)'
-      platform: '$(BuildPlatform)'
-      msbuildArguments: '-t:restore,build -v:q'
-      maximumCpuCount: true
-      
- 
-  - task: MSBuild@1
-    displayName: 'Build tests'
-    inputs:
-      solution: '$(testProject)'
-      platform: '$(BuildPlatform)'
-      msbuildArguments: '-t:build -p:OutputPath=.\bin\release\net40 -p:DebugType=Full -p:targetFramework=net452 -p:TestTargetFramework=net40-client -v:m'
-  - task: VSTest@2
-    displayName: 'Run Tests'
-    inputs:
-      testAssemblyVer2: |
-        **\release\net40\nlog.unittests.dll
-        !**\obj\**
-      runOnlyImpactedTests: false
-      runInParallel: false
-      codeCoverageEnabled: false
-      platform: '$(BuildPlatform)'
-      configuration: '$(BuildConfiguration)'
-      rerunFailedTests: true
-      rerunMaxAttempts: 5
-
+- job: netstandard2
+  displayName: 'Unit tests .NET Standard 2'
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - template: .azure/build-run-tests.yml
+    parameters:
+      testframework: netstandard2.0
+      runframework: netcoreapp2.0
