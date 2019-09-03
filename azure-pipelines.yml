@@ -130,7 +130,7 @@ jobs:
         !**\obj\**
       runOnlyImpactedTests: false
       runInParallel: false
-      codeCoverageEnabled: true
+      codeCoverageEnabled: false
       platform: '$(BuildPlatform)'
       configuration: '$(BuildConfiguration)'
       rerunFailedTests: true
