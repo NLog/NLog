@@ -124,10 +124,10 @@ jobs:
     displayName: 'Run Tests'
     inputs:
       testAssemblyVer2: |
-        **\**\nlog.unittests.dll
+        **\release\net40\nlog.unittests.dll
         !**\obj\**
       runOnlyImpactedTests: false
-      runInParallel: true
+      runInParallel: false
       codeCoverageEnabled: true
       platform: '$(BuildPlatform)'
       configuration: '$(BuildConfiguration)'
