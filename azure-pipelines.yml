@@ -108,11 +108,11 @@ jobs:
       versionSpec: 5.1.0
 
   - task: MSBuild@1
-    displayName: 'Restore NLog'
+    displayName: 'Restore and build NLog'
     inputs:
       solution: '$(solution)'
       platform: '$(BuildPlatform)'
-      msbuildArguments: '/t:restore  /p:targetFramework=net40-client /verbosity:minimal'
+      msbuildArguments: '/t:restore,build'
 
   - task: MSBuild@1
     displayName: 'Build tests'
