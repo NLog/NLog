@@ -35,6 +35,7 @@ jobs:
     parameters:
       testframework: net45
       runframework: net452
+      codeCoverageEnabled: true
   - task: SonarCloudAnalyze@1
     displayName: 'Run Sonar Analysis'
   - task: SonarCloudPublish@1
@@ -51,7 +52,7 @@ jobs:
       runframework: net452
 
 - job: net4
-  displayName: 'Unit tests .NET 4  (Client framework)'
+  displayName: 'Unit tests .NET 4 (Client framework)'
   pool:
     vmImage: 'vs2017-win2016'
   steps:
