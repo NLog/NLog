@@ -112,7 +112,7 @@ jobs:
     inputs:
       solution: '$(solution)'
       platform: '$(BuildPlatform)'
-      msbuildArguments: '-t:restore,build -v:m'
+      msbuildArguments: '-t:restore,build -v:q'
       maximumCpuCount: true
       
  
@@ -121,7 +121,7 @@ jobs:
     inputs:
       solution: '$(testProject)'
       platform: '$(BuildPlatform)'
-      msbuildArguments: '/t:restore,build /p:DebugType=Full  /p:targetFramework=net452 /p:TestTargetFramework=net40-client /verbosity:minimal /p:OutputPath=.\bin\release\net40'
+      msbuildArguments: '-t:build -p:OutputPath=.\bin\release\net40 -p:DebugType=Full -p:targetFramework=net452 -p:TestTargetFramework=net40-client -v:m'
   - task: VSTest@2
     displayName: 'Run Tests'
     inputs:
