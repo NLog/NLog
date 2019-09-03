@@ -112,8 +112,10 @@ jobs:
     inputs:
       solution: '$(solution)'
       platform: '$(BuildPlatform)'
-      msbuildArguments: '/t:restore,build'
-
+      msbuildArguments: '-t:restore,build -v:m'
+      maximumCpuCount: true
+      
+ 
   - task: MSBuild@1
     displayName: 'Build tests'
     inputs:
