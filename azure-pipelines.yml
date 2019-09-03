@@ -11,9 +11,6 @@ trigger: none
 #     include:
 #       - '*'
 
-
-
-
 variables:
   solution: 'src/nlog.sln'
   testProject: 'tests/NLog.UnitTests/NLog.UnitTests.csproj'
@@ -21,6 +18,28 @@ variables:
   buildConfiguration: 'Debug'
 
 jobs:
+- job: net45_sonar
+  displayName: 'Unit tests .NET 4.5 & Sonar'
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - task: SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: Sonarcloud
+      organization: nlog
+      projectKey: nlog2
+      projectName: NLog
+      projectVersion: '$(Build.BuildId)'
+  - template: .azure/build-run-tests.yml
+    parameters:
+      testframework: net45
+      runframework: net452
+  - task: SonarCloudAnalyze@1
+    displayName: 'Run Sonar Analysis'
+  - task: SonarCloudPublish@1
+    displayName: 'Publish Sonar Quality Gate Result'
+
 - job: net35
   displayName: 'Unit tests .NET 3.5'
   pool:
