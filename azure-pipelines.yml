@@ -16,6 +16,7 @@ variables:
   testProject: 'tests/NLog.UnitTests/NLog.UnitTests.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
 
 jobs:
 - job: net45_sonar
