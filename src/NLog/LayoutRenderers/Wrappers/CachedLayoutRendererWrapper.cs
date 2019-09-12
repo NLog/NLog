@@ -100,7 +100,7 @@ namespace NLog.LayoutRenderers.Wrappers
         public Layout CacheKey { get; set; }
 
         /// <summary>
-        /// Cachekey. If the cachekey changes, resets the value. For example, the cachekey would be the current day.s
+        /// Gets or sets a value indicating how many seconds the value should stay cached until it expires
         /// </summary>
         /// <docgen category='Caching Options' order='10' />
         public int CachedSeconds

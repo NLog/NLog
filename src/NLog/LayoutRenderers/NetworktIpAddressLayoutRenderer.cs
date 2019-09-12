@@ -31,9 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD1_0 && !SILVERLIGHT && !__IOS__ && !__ANDROID__
+
 namespace NLog.LayoutRenderers
 {
-#if !NETSTANDARD1_0 && !SILVERLIGHT && !__IOS__ && !__ANDROID__
     using System;
     using System.Net;
     using System.Net.NetworkInformation;
@@ -84,29 +85,8 @@ namespace NLog.LayoutRenderers
                         if (IPAddress.IsLoopback(ipAddress))
                             continue;
 
-                        if (_addressFamily.HasValue && ipAddress.AddressFamily == _addressFamily.Value)
-                        {
-                            if (ValidateNetworkIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress))
-                            {
-                                optimalIpAddress = ipAddress.ToString();
-                                if (networkInterface.OperationalStatus == OperationalStatus.Up)
-                                    return optimalIpAddress;
-                            }
-                        }
-                        else if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
-                        {
-                            if (ValidateNetworkIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress))
-                            {
-                                if (!_addressFamily.HasValue && networkInterface.OperationalStatus == OperationalStatus.Up)
-                                {
-                                    return ipAddress.ToString();
-                                }
-                            }
-                        }
-                        else if (ipAddress.AddressFamily == AddressFamily.InterNetworkV6)
-                        {
-                            ValidateNetworkIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress);
-                        }
+                        if (TryFindingMostOptimalIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress))
+                            return optimalIpAddress;
                     }
                 }
 
@@ -117,6 +97,36 @@ namespace NLog.LayoutRenderers
                 InternalLogger.Warn(ex, "Failed to lookup NetworkInterface.GetAllNetworkInterfaces()");
                 return string.IsNullOrEmpty(optimalIpAddress) ? firstMatchAddress : optimalIpAddress;
             }
+        }
+
+        private bool TryFindingMostOptimalIpAddress(NetworkInterface networkInterface, IPAddress ipAddress, ref string firstMatchAddress, ref string optimalIpAddress)
+        {
+            if (_addressFamily.HasValue && ipAddress.AddressFamily == _addressFamily.Value)
+            {
+                if (ValidateNetworkIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress))
+                {
+                    optimalIpAddress = ipAddress.ToString();
+                    if (networkInterface.OperationalStatus == OperationalStatus.Up)
+                        return true;
+                }
+            }
+            else if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
+            {
+                if (ValidateNetworkIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress))
+                {
+                    if (!_addressFamily.HasValue && networkInterface.OperationalStatus == OperationalStatus.Up)
+                    {
+                        optimalIpAddress = ipAddress.ToString();
+                        return true;
+                    }
+                }
+            }
+            else if (ipAddress.AddressFamily == AddressFamily.InterNetworkV6)
+            {
+                ValidateNetworkIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress);
+            }
+
+            return false;
         }
 
         private static bool ValidateNetworkIpAddress(NetworkInterface networkInterface, IPAddress ipAddress, ref string firstMatchAddress, ref string optimalIpAddress)
@@ -140,6 +150,6 @@ namespace NLog.LayoutRenderers
             return false;
         }
     }
+}
 
 #endif
-}
