@@ -48,6 +48,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [LayoutRenderer("cached")]
     [AmbientProperty("Cached")]
     [AmbientProperty("ClearCache")]
+    [AmbientProperty("CachedSeconds")]
     [ThreadAgnostic]
     public sealed class CachedLayoutRendererWrapper : WrapperLayoutRendererBase, IStringValueRenderer
     {
@@ -67,6 +68,8 @@ namespace NLog.LayoutRenderers.Wrappers
 
         private string _cachedValue;
         private string _renderedCacheKey;
+        private DateTime _cachedValueExpires;
+        private TimeSpan? _cachedValueTimeout;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CachedLayoutRendererWrapper"/> class.
@@ -95,6 +98,21 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <docgen category='Caching Options' order='10' />
         public Layout CacheKey { get; set; }
+
+        /// <summary>
+        /// Cachekey. If the cachekey changes, resets the value. For example, the cachekey would be the current day.s
+        /// </summary>
+        /// <docgen category='Caching Options' order='10' />
+        public int CachedSeconds
+        {
+            get => (int)(_cachedValueTimeout?.TotalSeconds ?? 0.0);
+            set
+            {
+                _cachedValueTimeout = TimeSpan.FromSeconds(value);
+                if (_cachedValueTimeout > TimeSpan.Zero)
+                    Cached = true;
+            }
+        }
 
         /// <summary>
         /// Initializes the layout renderer.
@@ -135,11 +153,9 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (Cached)
             {
-                var newCacheKey = CacheKey?.Render(logEvent);
-                if (_cachedValue == null || _renderedCacheKey != newCacheKey)
+                if (InvalidateCachedValue(logEvent))
                 {
                     _cachedValue = base.RenderInner(logEvent);
-                    _renderedCacheKey = newCacheKey;
                 }
 
                 return _cachedValue;
@@ -148,6 +164,20 @@ namespace NLog.LayoutRenderers.Wrappers
             {
                 return base.RenderInner(logEvent);
             }
+        }
+
+        bool InvalidateCachedValue(LogEventInfo logEvent)
+        {
+            var newCacheKey = CacheKey?.Render(logEvent);
+            if (_cachedValue == null || _renderedCacheKey != newCacheKey || (_cachedValueTimeout.HasValue && logEvent.TimeStamp > _cachedValueExpires))
+            {
+                _renderedCacheKey = newCacheKey;
+                if (_cachedValueTimeout.HasValue)
+                    _cachedValueExpires = logEvent.TimeStamp + _cachedValueTimeout.Value;
+                return true;
+            }
+
+            return false;
         }
 
         /// <inheritdoc/>
