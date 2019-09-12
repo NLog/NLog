@@ -50,7 +50,7 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class HostNameLayoutRenderer : LayoutRenderer
     {
-        internal string HostName { get; private set; }
+        private string _hostName;
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()
@@ -58,8 +58,8 @@ namespace NLog.LayoutRenderers
             base.InitializeLayoutRenderer();
             try
             {
-                HostName = GetHostName();
-                if (string.IsNullOrEmpty(HostName))
+                _hostName = GetHostName();
+                if (string.IsNullOrEmpty(_hostName))
                 {
                     InternalLogger.Info("HostName is not available.");
                 }
@@ -72,7 +72,7 @@ namespace NLog.LayoutRenderers
                     throw;
                 }
 
-                HostName = string.Empty;
+                _hostName = string.Empty;
             }
         }
 
@@ -101,7 +101,7 @@ namespace NLog.LayoutRenderers
             }
             catch (Exception ex)
             {
-                NLog.Common.InternalLogger.Warn(ex, "Failed to lookup {0}", lookupType);
+                InternalLogger.Warn(ex, "Failed to lookup {0}", lookupType);
                 return null;
             }
        }
@@ -109,7 +109,7 @@ namespace NLog.LayoutRenderers
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            builder.Append(HostName);
+            builder.Append(_hostName);
         }
     }
 }
