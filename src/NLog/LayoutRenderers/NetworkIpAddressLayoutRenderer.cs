@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("networkip")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class NetworktIpAddressLayoutRenderer : LayoutRenderer
+    public class NetworkIpAddressLayoutRenderer : LayoutRenderer
     {
         private AddressFamily? _addressFamily;
 

@@ -42,7 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NetworkIpAddressTest()
         {
-            var ipAddressRenderer = new NetworktIpAddressLayoutRenderer();
+            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer();
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
             Assert.NotEmpty(result);
         }
