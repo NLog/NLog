@@ -32,6 +32,7 @@
 // 
 
 using System.Collections.Generic;
+using System.Net;
 using System.Net.NetworkInformation;
 using NSubstitute.ExceptionExtensions;
 
@@ -55,8 +56,9 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NetworkIpAddress_RetrieverThrowsException_RenderEmptyString()
         {
-            var ipAddressRenderer = CreateNetworkIpAddressLayoutRenderer(out var networkInterfaceRetrieverMock, out _);
+            var networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
             networkInterfaceRetrieverMock.GetAllNetworkInterfaces().Throws(new Exception("oops"));
+            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
             // Act
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
@@ -65,14 +67,50 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal(string.Empty, result);
         }
 
-        private static NetworkIpAddressLayoutRenderer CreateNetworkIpAddressLayoutRenderer(out INetworkInterfaceRetriever networkInterfaceRetrieverMock, out NetworkInterface networkInterfaceMock)
+        [Fact]
+        public void NetworkIpAddress_RendersSuccessfulIp()
         {
-            networkInterfaceMock = Substitute.For<NetworkInterface>();
+            var ipString = "10.0.1.2";
+            var mac = "F0-E1-D2-C3-B4-A5";
 
-            networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
+            var ipAddressRenderer = CreateNetworkIpAddressLayoutRenderer(ipString, mac);
+
+            // Act
+            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(ipString, result);
+        }
+
+        private static NetworkIpAddressLayoutRenderer CreateNetworkIpAddressLayoutRenderer(string ipString, string mac)
+        {
+            var interfacePropertiesMock = Substitute.For<IPInterfaceProperties>();
+            var unicastIpAddressInformationCollection = Substitute.For<UnicastIPAddressInformationCollection>();
+            var networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
+            var networkInterfaceMock = Substitute.For<NetworkInterface>();
+
+            interfacePropertiesMock.UnicastAddresses.Returns(unicastIpAddressInformationCollection);
+            networkInterfaceMock.GetIPProperties().Returns(interfacePropertiesMock);
             networkInterfaceRetrieverMock.GetAllNetworkInterfaces().Returns(new List<NetworkInterface> { networkInterfaceMock });
 
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+            var ipAddressRenderer1 = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+            var ipAddressRenderer = ipAddressRenderer1;
+
+            var ipInfoMock = Substitute.For<UnicastIPAddressInformation>();
+
+            ipInfoMock.Address.Returns(IPAddress.Parse(ipString));
+
+            networkInterfaceMock.NetworkInterfaceType.Returns(NetworkInterfaceType.Ethernet);
+
+
+            networkInterfaceMock.GetPhysicalAddress().Returns(PhysicalAddress.Parse(mac));
+
+            unicastIpAddressInformationCollection.Count.Returns(1);
+
+            var list = new List<UnicastIPAddressInformation> { ipInfoMock };
+            unicastIpAddressInformationCollection.GetEnumerator().Returns(list.GetEnumerator());
+
+            networkInterfaceMock.NetworkInterfaceType.Returns(NetworkInterfaceType.Ethernet);
             return ipAddressRenderer;
         }
     }
