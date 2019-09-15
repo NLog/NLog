@@ -131,8 +131,8 @@ namespace NLog.LayoutRenderers
 
         private static bool ValidateNetworkIpAddress(NetworkInterface networkInterface, IPAddress ipAddress, ref string firstMatchAddress, ref string optimalIpAddress)
         {
-            const int MIN_MAC_ADDR_LENGTH = 12;
-            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length >= MIN_MAC_ADDR_LENGTH)
+            const int minMacAddressLength = 12;
+            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length >= minMacAddressLength)
             {
                 var ipAddressValue = ipAddress.ToString();
                 if (string.IsNullOrEmpty(firstMatchAddress))
