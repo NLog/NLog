@@ -42,6 +42,7 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Common;
     using NLog.Config;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The IP address from the network interface card (NIC) on the local machine
@@ -74,7 +75,7 @@ namespace NLog.LayoutRenderers
 
             try
             {
-                foreach (var networkInterface in NetworkInterface.GetAllNetworkInterfaces())
+                foreach (var networkInterface in GetAllNetworkInterfaces())
                 {
                     if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback || networkInterface.NetworkInterfaceType == NetworkInterfaceType.Tunnel)
                         continue;
@@ -97,6 +98,11 @@ namespace NLog.LayoutRenderers
                 InternalLogger.Warn(ex, "Failed to lookup NetworkInterface.GetAllNetworkInterfaces()");
                 return string.IsNullOrEmpty(optimalIpAddress) ? firstMatchAddress : optimalIpAddress;
             }
+        }
+
+        private static IEnumerable<NetworkInterface> GetAllNetworkInterfaces()
+        {
+            return NetworkInterface.GetAllNetworkInterfaces();
         }
 
         private bool TryFindingMostOptimalIpAddress(NetworkInterface networkInterface, IPAddress ipAddress, ref string firstMatchAddress, ref string optimalIpAddress)
