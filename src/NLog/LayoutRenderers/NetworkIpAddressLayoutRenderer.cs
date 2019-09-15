@@ -56,11 +56,24 @@ namespace NLog.LayoutRenderers
     public class NetworkIpAddressLayoutRenderer : LayoutRenderer
     {
         private AddressFamily? _addressFamily;
+        private readonly INetworkInterfaceRetriever _networkInterfaceRetriever;
 
         /// <summary>
         /// Get or set whether to prioritize IPv6 or IPv4 (default)
         /// </summary>
         public AddressFamily AddressFamily { get => _addressFamily ?? AddressFamily.InterNetwork; set => _addressFamily = value; }
+
+        /// <inheritdoc />
+        public NetworkIpAddressLayoutRenderer()
+        {
+            _networkInterfaceRetriever = new NetworkInterfaceRetriever();
+        }
+
+        /// <inheritdoc />
+        internal NetworkIpAddressLayoutRenderer(INetworkInterfaceRetriever networkInterfaceRetriever)
+        {
+            _networkInterfaceRetriever = networkInterfaceRetriever;
+        }
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
@@ -75,7 +88,7 @@ namespace NLog.LayoutRenderers
 
             try
             {
-                foreach (var networkInterface in GetAllNetworkInterfaces())
+                foreach (var networkInterface in _networkInterfaceRetriever.GetAllNetworkInterfaces())
                 {
                     if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback || networkInterface.NetworkInterfaceType == NetworkInterfaceType.Tunnel)
                         continue;
@@ -98,11 +111,6 @@ namespace NLog.LayoutRenderers
                 InternalLogger.Warn(ex, "Failed to lookup NetworkInterface.GetAllNetworkInterfaces()");
                 return string.IsNullOrEmpty(optimalIpAddress) ? firstMatchAddress : optimalIpAddress;
             }
-        }
-
-        private static IEnumerable<NetworkInterface> GetAllNetworkInterfaces()
-        {
-            return NetworkInterface.GetAllNetworkInterfaces();
         }
 
         private bool TryFindingMostOptimalIpAddress(NetworkInterface networkInterface, IPAddress ipAddress, ref string firstMatchAddress, ref string optimalIpAddress)

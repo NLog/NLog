@@ -31,50 +31,23 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD1_0 && !SILVERLIGHT && !__IOS__ && !__ANDROID__
+
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
-using NSubstitute.ExceptionExtensions;
 
-namespace NLog.UnitTests.LayoutRenderers
+namespace NLog.LayoutRenderers
 {
-    using System;
-    using NLog.LayoutRenderers;
-    using Xunit;
-    using NSubstitute;
-
-    public class NetworkIpAddressLayoutRendererTests : NLogTestBase
+    /// <summary>
+    /// Retrieve network interfaces
+    /// </summary>
+    public interface INetworkInterfaceRetriever
     {
-        [Fact]
-        public void NetworkIpAddressTest()
-        {
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer();
-            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
-            Assert.NotEmpty(result);
-        }
-
-        [Fact]
-        public void NetworkIpAddress_RetrieverThrowsException_RenderEmptyString()
-        {
-            var ipAddressRenderer = CreateNetworkIpAddressLayoutRenderer(out var networkInterfaceRetrieverMock, out _);
-            networkInterfaceRetrieverMock.GetAllNetworkInterfaces().Throws(new Exception("oops"));
-
-            // Act
-            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
-
-            // Assert
-            Assert.Equal(string.Empty, result);
-        }
-
-        private static NetworkIpAddressLayoutRenderer CreateNetworkIpAddressLayoutRenderer(out INetworkInterfaceRetriever networkInterfaceRetrieverMock, out NetworkInterface networkInterfaceMock)
-        {
-            networkInterfaceMock = Substitute.For<NetworkInterface>();
-
-            networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
-            networkInterfaceRetrieverMock.GetAllNetworkInterfaces().Returns(new List<NetworkInterface> { networkInterfaceMock });
-
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
-            return ipAddressRenderer;
-        }
+        /// <summary>
+        /// Retrieve network interfaces
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<NetworkInterface> GetAllNetworkInterfaces();
     }
-
 }
+#endif
