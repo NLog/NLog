@@ -45,8 +45,11 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class NetworkIpAddressLayoutRendererTests : NLogTestBase
     {
+        /// <summary>
+        /// Integration test
+        /// </summary>
         [Fact]
-        public void NetworkIpAddressTest()
+        public void NetworkIpAddress_CurrentMachine_NotEmpty()
         {
             var ipAddressRenderer = new NetworkIpAddressLayoutRenderer();
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
