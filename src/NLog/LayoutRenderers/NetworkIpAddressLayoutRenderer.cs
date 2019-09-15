@@ -67,7 +67,7 @@ namespace NLog.LayoutRenderers
             builder.Append(LookupIpAddress());
         }
 
-        string LookupIpAddress()
+        private string LookupIpAddress()
         {
             string firstMatchAddress = string.Empty;
             string optimalIpAddress = string.Empty;
