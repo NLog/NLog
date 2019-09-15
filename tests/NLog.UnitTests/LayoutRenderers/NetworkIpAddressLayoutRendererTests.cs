@@ -88,30 +88,24 @@ namespace NLog.UnitTests.LayoutRenderers
             var unicastIpAddressInformationCollection = Substitute.For<UnicastIPAddressInformationCollection>();
             var networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
             var networkInterfaceMock = Substitute.For<NetworkInterface>();
+            var ipInfoMock = Substitute.For<UnicastIPAddressInformation>();
 
             interfacePropertiesMock.UnicastAddresses.Returns(unicastIpAddressInformationCollection);
-            networkInterfaceMock.GetIPProperties().Returns(interfacePropertiesMock);
+
             networkInterfaceRetrieverMock.GetAllNetworkInterfaces().Returns(new List<NetworkInterface> { networkInterfaceMock });
-
-            var ipAddressRenderer1 = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
-            var ipAddressRenderer = ipAddressRenderer1;
-
-            var ipInfoMock = Substitute.For<UnicastIPAddressInformation>();
 
             ipInfoMock.Address.Returns(IPAddress.Parse(ipString));
 
+            networkInterfaceMock.GetIPProperties().Returns(interfacePropertiesMock);
             networkInterfaceMock.NetworkInterfaceType.Returns(NetworkInterfaceType.Ethernet);
-
-
             networkInterfaceMock.GetPhysicalAddress().Returns(PhysicalAddress.Parse(mac));
 
-            unicastIpAddressInformationCollection.Count.Returns(1);
+            var unicastIpAddressInformations = new List<UnicastIPAddressInformation> { ipInfoMock };
 
-            var list = new List<UnicastIPAddressInformation> { ipInfoMock };
-            unicastIpAddressInformationCollection.GetEnumerator().Returns(list.GetEnumerator());
+            unicastIpAddressInformationCollection.GetEnumerator().Returns(unicastIpAddressInformations.GetEnumerator());
+            unicastIpAddressInformationCollection.Count.Returns(unicastIpAddressInformations.Count);
 
-            networkInterfaceMock.NetworkInterfaceType.Returns(NetworkInterfaceType.Ethernet);
-            return ipAddressRenderer;
+            return new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
         }
     }
 
