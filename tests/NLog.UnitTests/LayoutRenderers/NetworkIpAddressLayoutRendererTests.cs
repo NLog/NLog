@@ -35,6 +35,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using NLog.LayoutRenderers;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
@@ -60,12 +61,13 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NetworkIpAddress_RendersSuccessfulIp()
         {
+            // Arrange
             var ipString = "10.0.1.2";
 
-            var builder = new NetworkInterfaceRetrieverBuilder()
+            var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
                 .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
-                .WithIp(ipString);
-            var networkInterfaceRetrieverMock = builder.Build();
+                .WithIp(ipString)
+                .Build();
 
             var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
@@ -74,6 +76,135 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // Assert
             Assert.Equal(ipString, result);
+        }
+
+        [Fact]
+        public void NetworkIpAddress_OneInterfaceWithMultipleIps_RendersFirstIp()
+        {
+            // Arrange
+            var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithIp("10.0.1.1")
+                .WithIp("10.0.1.2")
+                .WithIp("10.0.1.3")
+                .Build();
+
+            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+
+            // Act
+            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal("10.0.1.1", result);
+        }
+
+        [Fact]
+        public void NetworkIpAddress_SkipsLoopback()
+        {
+            // Arrange
+            var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
+                .WithInterface(NetworkInterfaceType.Loopback, "F0-E0-D2-C3-B4-A5")
+                .WithIp("1.2.3.4")
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithIp("10.0.1.2")
+                .Build();
+
+            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+
+            // Act
+            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal("10.0.1.2", result);
+        }
+
+        [Fact]
+        public void NetworkIpAddress_Multiple_TakesFirst()
+        {
+            // Arrange
+
+            var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E0-D2-C3-B4-A5")
+                .WithIp("10.0.1.1")
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithIp("10.0.1.2")
+                .Build();
+
+            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+
+            // Act
+            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal("10.0.1.1", result);
+        }
+
+        [Fact]
+        public void NetworkIpAddress_Multiple_TakesFirstUp()
+        {
+            // Arrange
+
+            var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E0-D2-C3-B4-A5", OperationalStatus.Dormant)
+                .WithIp("10.0.1.1")
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5", OperationalStatus.Up)
+                .WithIp("10.0.1.2")
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5", OperationalStatus.Down)
+                .WithIp("10.0.1.3")
+                .Build();
+
+            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+
+            // Act
+            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal("10.0.1.2", result);
+        }
+
+        [Fact]
+        public void NetworkIpAddress_Multiple_TakesFirstIpv4()
+        {
+            // Arrange
+            var ipString = "10.0.1.2";
+
+            var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E0-D2-C3-B4-A5")
+                .WithIp("fe80:0:0:0:200:f8ff:fe21:67cf")
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithIp(ipString)
+                .Build();
+
+            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+
+            // Act
+            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(ipString, result);
+        }
+
+        [Fact]
+        public void NetworkIpAddress_Multiple_TakesFirstIpv6IfRequested()
+        {
+            // Arrange
+            var ipv6 = "fe80::200:f8ff:fe21:67cf";
+
+            var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E0-D2-C3-B4-A5")
+                .WithIp("1.0.10.11")
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithIp(ipv6)
+                .Build();
+
+            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock) 
+                {AddressFamily = AddressFamily.InterNetworkV6};
+
+            // Act
+            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(ipv6, result);
         }
 
         [Fact]
@@ -95,30 +226,28 @@ namespace NLog.UnitTests.LayoutRenderers
     {
         private readonly IDictionary<int, List<string>> _ips = new Dictionary<int, List<string>>();
 
-        private IList<(NetworkInterfaceType networkInterfaceType, string mac)> _networkInterfaces = new List<(NetworkInterfaceType networkInterfaceType, string mac)>();
-        private readonly IPInterfaceProperties interfacePropertiesMock;
-        private readonly INetworkInterfaceRetriever networkInterfaceRetrieverMock;
-        private readonly UnicastIPAddressInformationCollection unicastIpAddressInformationCollection;
+        private IList<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)> _networkInterfaces = new List<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)>();
+        private readonly IPInterfaceProperties _interfacePropertiesMock;
+        private readonly INetworkInterfaceRetriever _networkInterfaceRetrieverMock;
+        private readonly UnicastIPAddressInformationCollection _unicastIpAddressInformationCollection;
 
         /// <inheritdoc />
         public NetworkInterfaceRetrieverBuilder()
         {
-            interfacePropertiesMock = Substitute.For<IPInterfaceProperties>();
-            unicastIpAddressInformationCollection = Substitute.For<UnicastIPAddressInformationCollection>();
-            networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
+            _interfacePropertiesMock = Substitute.For<IPInterfaceProperties>();
+            _unicastIpAddressInformationCollection = Substitute.For<UnicastIPAddressInformationCollection>();
+            _networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
         }
 
-        public NetworkInterfaceRetrieverBuilder WithInterface(NetworkInterfaceType networkInterfaceType, string mac)
+        public NetworkInterfaceRetrieverBuilder WithInterface(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status = OperationalStatus.Up)
         {
-            _networkInterfaces.Add((networkInterfaceType, mac));
+            _networkInterfaces.Add((networkInterfaceType, mac, status));
             return this;
         }
 
         /// <summary>
-        /// One or more ips for an interface
+        /// One or more ips for an interface added with <see cref="WithInterface"/>
         /// </summary>
-        /// <param name="ip"></param>
-        /// <returns></returns>
         public NetworkInterfaceRetrieverBuilder WithIp(string ip)
         {
             if (_networkInterfaces.Count == 0)
@@ -140,11 +269,10 @@ namespace NLog.UnitTests.LayoutRenderers
 
         public INetworkInterfaceRetriever Build()
         {
-            var allNetworkInterfaces = BuildAllNetworkInterfaces();
-            var networkInterfaces = new List<NetworkInterface>(allNetworkInterfaces);
-            networkInterfaceRetrieverMock.GetAllNetworkInterfaces().Returns(networkInterfaces);
+            var networkInterfaces = new List<NetworkInterface>(BuildAllNetworkInterfaces());
+            _networkInterfaceRetrieverMock.GetAllNetworkInterfaces().Returns(networkInterfaces);
 
-            return networkInterfaceRetrieverMock;
+            return _networkInterfaceRetrieverMock;
         }
 
         private IEnumerable<NetworkInterface> BuildAllNetworkInterfaces()
@@ -154,27 +282,29 @@ namespace NLog.UnitTests.LayoutRenderers
                 var networkInterface = _networkInterfaces[i];
                 if (_ips.TryGetValue(i, out var ips))
                 {
-                    var networkInterfaceMock = BuildNetworkInterfaceMock(ips, networkInterface.mac, networkInterface.networkInterfaceType);
+                    var networkInterfaceMock = BuildNetworkInterfaceMock(ips, networkInterface.mac, networkInterface.networkInterfaceType, networkInterface.status);
+                    networkInterfaceMock.Id.Returns($"#{i}");
+                    networkInterfaceMock.Description.Returns("ips: " + string.Join(";", ips.ToArray()));
                     yield return networkInterfaceMock;
                 }
             }
         }
 
-        private NetworkInterface BuildNetworkInterfaceMock(IEnumerable<string> ips, string mac, NetworkInterfaceType intrefaceType)
+        private NetworkInterface BuildNetworkInterfaceMock(IEnumerable<string> ips, string mac, NetworkInterfaceType type, OperationalStatus status)
         {
             var networkInterfaceMock = Substitute.For<NetworkInterface>();
 
-
-            networkInterfaceMock.NetworkInterfaceType.Returns(intrefaceType);
+            networkInterfaceMock.NetworkInterfaceType.Returns(type);
+            networkInterfaceMock.OperationalStatus.Returns(status);
             networkInterfaceMock.GetPhysicalAddress().Returns(PhysicalAddress.Parse(mac));
 
             var unicastIpAddressInformations = new List<UnicastIPAddressInformation>(BuildIpInfoMocks(ips));
 
-            networkInterfaceMock.GetIPProperties().Returns(interfacePropertiesMock);
+            networkInterfaceMock.GetIPProperties().Returns(_interfacePropertiesMock);
 
-            interfacePropertiesMock.UnicastAddresses.Returns(unicastIpAddressInformationCollection);
-            unicastIpAddressInformationCollection.GetEnumerator().Returns(unicastIpAddressInformations.GetEnumerator());
-            unicastIpAddressInformationCollection.Count.Returns(unicastIpAddressInformations.Count);
+            _interfacePropertiesMock.UnicastAddresses.Returns(_unicastIpAddressInformationCollection);
+            _unicastIpAddressInformationCollection.GetEnumerator().Returns(unicastIpAddressInformations.GetEnumerator());
+            _unicastIpAddressInformationCollection.Count.Returns(unicastIpAddressInformations.Count);
             return networkInterfaceMock;
         }
 
