@@ -62,7 +62,7 @@ namespace NLog.Config
 
         public LoggingRuleLevelFilter SetLoggingLevels(LogLevel minLevel, LogLevel maxLevel, bool enable)
         {
-            for (int i = minLevel.Ordinal; i <= maxLevel.Ordinal; ++i)
+            for (int i = minLevel.Ordinal; i <= Math.Min(maxLevel.Ordinal, LogLevels.Length - 1); ++i)
                 LogLevels[i] = enable;
             return this;
         }

@@ -44,7 +44,6 @@ namespace NLog.Config
     /// </summary>
     internal class DynamicLogLevelFilter : ILoggingRuleLevelFilter
     {
-        private static readonly char[] LevelFilerSplitter = { ',' };
         private readonly LoggingRule _loggingRule;
         private readonly SimpleLayout _levelFilter;
         private KeyValuePair<string, bool[]> _activeFilter;
@@ -80,9 +79,11 @@ namespace NLog.Config
                 else
                 {
                     logLevels = ParseSingleLevel(levelFilter);
-                    if (ReferenceEquals(logLevels, LoggingRuleLevelFilter.Off.LogLevels))
-                        return logLevels;
                 }
+
+                if (ReferenceEquals(logLevels, LoggingRuleLevelFilter.Off.LogLevels))
+                    return logLevels;
+
                 _activeFilter = activeFilter = new KeyValuePair<string, bool[]>(levelFilter, logLevels);
             }
 
@@ -113,16 +114,18 @@ namespace NLog.Config
 
         private bool[] ParseLevels(string levelFilter)
         {
-            var levels = levelFilter.Split(LevelFilerSplitter, StringSplitOptions.RemoveEmptyEntries);
+            var levels = levelFilter.SplitAndTrimTokens(',');
+            if (levels.Length == 0)
+                return LoggingRuleLevelFilter.Off.LogLevels;
+            if (levels.Length == 1)
+                return ParseSingleLevel(levels[0]);
+
             bool[] logLevels = new bool[LogLevel.MaxLevel.Ordinal + 1];
             foreach (var level in levels)
             {
                 try
                 {
-                    if (StringHelpers.IsNullOrWhiteSpace(level))
-                        continue;
-
-                    var logLevel = LogLevel.FromString(level.Trim());
+                    var logLevel = LogLevel.FromString(level);
                     if (logLevel == LogLevel.Off)
                         continue;
 

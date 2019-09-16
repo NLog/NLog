@@ -290,6 +290,17 @@ namespace NLog.UnitTests.Config
             Assert.Equal(rule.Levels, new[] { LogLevel.Warn, LogLevel.Error, LogLevel.Fatal });
         }
 
+
+        [Fact]
+        public void LogRuleSetLoggingLevels_off()
+        {
+            var rule = new LoggingRule();
+            rule.EnableLoggingForLevels(LogLevel.MinLevel, LogLevel.MaxLevel);
+
+            rule.SetLoggingLevels(LogLevel.Off, LogLevel.Off);
+            Assert.Equal(rule.Levels, new LogLevel[0]);
+        }
+
         [Fact]
         public void LogRuleDisableLoggingLevels()
         {
