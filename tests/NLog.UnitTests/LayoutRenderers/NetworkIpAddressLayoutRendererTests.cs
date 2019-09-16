@@ -47,6 +47,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class NetworkIpAddressLayoutRendererTests : NLogTestBase
     {
+        private const string Mac1 = "F0-E1-D2-C3-B4-A5";
+
         /// <summary>
         /// Integration test
         /// </summary>
@@ -65,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var ipString = "10.0.1.2";
 
             var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
-                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1)
                 .WithIp(ipString)
                 .Build();
 
@@ -83,7 +85,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             // Arrange
             var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
-                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1)
                 .WithIp("10.0.1.1")
                 .WithIp("10.0.1.2")
                 .WithIp("10.0.1.3")
@@ -105,7 +107,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
                 .WithInterface(NetworkInterfaceType.Loopback, "F0-E0-D2-C3-B4-A5")
                 .WithIp("1.2.3.4")
-                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1)
                 .WithIp("10.0.1.2")
                 .Build();
 
@@ -126,7 +128,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
                 .WithInterface(NetworkInterfaceType.Ethernet, "F0-E0-D2-C3-B4-A5")
                 .WithIp("10.0.1.1")
-                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1)
                 .WithIp("10.0.1.2")
                 .Build();
 
@@ -147,9 +149,9 @@ namespace NLog.UnitTests.LayoutRenderers
             var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
                 .WithInterface(NetworkInterfaceType.Ethernet, "F0-E0-D2-C3-B4-A5", OperationalStatus.Dormant)
                 .WithIp("10.0.1.1")
-                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5", OperationalStatus.Up)
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1, OperationalStatus.Up)
                 .WithIp("10.0.1.2")
-                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5", OperationalStatus.Down)
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1, OperationalStatus.Down)
                 .WithIp("10.0.1.3")
                 .Build();
 
@@ -171,7 +173,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
                 .WithInterface(NetworkInterfaceType.Ethernet, "F0-E0-D2-C3-B4-A5")
                 .WithIp("fe80:0:0:0:200:f8ff:fe21:67cf")
-                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1)
                 .WithIp(ipString)
                 .Build();
 
@@ -193,7 +195,7 @@ namespace NLog.UnitTests.LayoutRenderers
             var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
                 .WithInterface(NetworkInterfaceType.Ethernet, "F0-E0-D2-C3-B4-A5")
                 .WithIp("1.0.10.11")
-                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E1-D2-C3-B4-A5")
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1)
                 .WithIp(ipv6)
                 .Build();
 
