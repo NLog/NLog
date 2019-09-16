@@ -131,7 +131,8 @@ namespace NLog.LayoutRenderers
                     if (!_addressFamily.HasValue && networkInterface.OperationalStatus == OperationalStatus.Up)
                     {
                         optimalIpAddress = ipAddress.ToString();
-                        return true;
+                        if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                            return true;
                     }
                 }
             }
@@ -145,16 +146,19 @@ namespace NLog.LayoutRenderers
 
         private static bool ValidateNetworkIpAddress(NetworkInterface networkInterface, IPAddress ipAddress, ref string firstMatchAddress, ref string optimalIpAddress)
         {
-            const int minMacAddressLength = 12;
-            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length >= minMacAddressLength)
+            const int macAddressMinLength = 12;
+            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length >= macAddressMinLength)
             {
                 var ipAddressValue = ipAddress.ToString();
+                if (string.IsNullOrEmpty(ipAddressValue) || ipAddressValue == "127.0.0.1" || ipAddressValue == "0.0.0.0")
+                    return false;
+
                 if (string.IsNullOrEmpty(firstMatchAddress))
                     firstMatchAddress = ipAddressValue;
 
                 if (networkInterface.OperationalStatus == OperationalStatus.Up)
                 {
-                    if (!string.IsNullOrEmpty(optimalIpAddress))
+                    if (string.IsNullOrEmpty(optimalIpAddress))
                         optimalIpAddress = ipAddressValue;
                 }
 

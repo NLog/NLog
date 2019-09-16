@@ -229,15 +229,11 @@ namespace NLog.UnitTests.LayoutRenderers
         private readonly IDictionary<int, List<string>> _ips = new Dictionary<int, List<string>>();
 
         private IList<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)> _networkInterfaces = new List<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)>();
-        private readonly IPInterfaceProperties _interfacePropertiesMock;
         private readonly INetworkInterfaceRetriever _networkInterfaceRetrieverMock;
-        private readonly UnicastIPAddressInformationCollection _unicastIpAddressInformationCollection;
 
         /// <inheritdoc />
         public NetworkInterfaceRetrieverBuilder()
         {
-            _interfacePropertiesMock = Substitute.For<IPInterfaceProperties>();
-            _unicastIpAddressInformationCollection = Substitute.For<UnicastIPAddressInformationCollection>();
             _networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
         }
 
@@ -302,11 +298,14 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var unicastIpAddressInformations = new List<UnicastIPAddressInformation>(BuildIpInfoMocks(ips));
 
-            networkInterfaceMock.GetIPProperties().Returns(_interfacePropertiesMock);
+            var unicastIpAddressInformationCollection = Substitute.For<UnicastIPAddressInformationCollection>();
+            unicastIpAddressInformationCollection.GetEnumerator().Returns(unicastIpAddressInformations.GetEnumerator());
+            unicastIpAddressInformationCollection.Count.Returns(unicastIpAddressInformations.Count);
 
-            _interfacePropertiesMock.UnicastAddresses.Returns(_unicastIpAddressInformationCollection);
-            _unicastIpAddressInformationCollection.GetEnumerator().Returns(unicastIpAddressInformations.GetEnumerator());
-            _unicastIpAddressInformationCollection.Count.Returns(unicastIpAddressInformations.Count);
+            var interfacePropertiesMock = Substitute.For<IPInterfaceProperties>();
+            interfacePropertiesMock.UnicastAddresses.Returns(unicastIpAddressInformationCollection);
+
+            networkInterfaceMock.GetIPProperties().Returns(interfacePropertiesMock);
             return networkInterfaceMock;
         }
 
