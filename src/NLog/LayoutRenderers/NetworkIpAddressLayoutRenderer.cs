@@ -42,7 +42,6 @@ namespace NLog.LayoutRenderers
     using System.Text;
     using NLog.Common;
     using NLog.Config;
-    using System.Collections.Generic;
 
     /// <summary>
     /// The IP address from the network interface card (NIC) on the local machine
@@ -83,89 +82,106 @@ namespace NLog.LayoutRenderers
 
         private string LookupIpAddress()
         {
-            string firstMatchAddress = string.Empty;
-            string optimalIpAddress = string.Empty;
+            const int greatNetworkScore = 16;   // 8 = Good Address Family + 4 = Good NetworkStatus + Extra Bonus Points
+            int currentNetworkScore = 0;
+            string currentIpAddress = string.Empty;
 
             try
             {
                 foreach (var networkInterface in _networkInterfaceRetriever.GetAllNetworkInterfaces())
                 {
-                    if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback || networkInterface.NetworkInterfaceType == NetworkInterfaceType.Tunnel)
+                    int networkScore = CalculateNetworkInterfaceScore(networkInterface);
+                    if (networkScore == 0)
                         continue;
 
                     foreach (var networkAddress in networkInterface.GetIPProperties().UnicastAddresses)
                     {
-                        var ipAddress = networkAddress.Address;
-                        if (IPAddress.IsLoopback(ipAddress))
+                        int unicastScore = CalculateNetworkAddressScore(networkAddress);
+                        if (unicastScore == 0)
                             continue;
 
-                        if (TryFindingMostOptimalIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress))
-                            return optimalIpAddress;
+                        if ((networkScore + unicastScore) > currentNetworkScore)
+                        {
+                            currentIpAddress = networkAddress.Address.ToString();
+                            currentNetworkScore = (networkScore + unicastScore);
+                            if (currentNetworkScore >= greatNetworkScore)
+                                return currentIpAddress;
+                        }
                     }
                 }
 
-                return string.IsNullOrEmpty(optimalIpAddress) ? firstMatchAddress : optimalIpAddress;
+                return currentIpAddress;
             }
             catch (Exception ex)
             {
                 InternalLogger.Warn(ex, "Failed to lookup NetworkInterface.GetAllNetworkInterfaces()");
-                return string.IsNullOrEmpty(optimalIpAddress) ? firstMatchAddress : optimalIpAddress;
+                return currentIpAddress;
             }
         }
 
-        private bool TryFindingMostOptimalIpAddress(NetworkInterface networkInterface, IPAddress ipAddress, ref string firstMatchAddress, ref string optimalIpAddress)
+        private int CalculateNetworkAddressScore(UnicastIPAddressInformation networkAddress)
         {
-            if (_addressFamily.HasValue && ipAddress.AddressFamily == _addressFamily.Value)
+            var ipAddress = networkAddress.Address;
+            if (IPAddress.IsLoopback(ipAddress))
+                return 0;
+
+            if (ipAddress.AddressFamily != AddressFamily.InterNetwork && ipAddress.AddressFamily != AddressFamily.InterNetworkV6)
+                return 0;
+
+            var ipAddressValue = ipAddress.ToString();
+            if (string.IsNullOrEmpty(ipAddressValue))
+                return 0;
+
+            int currentScore = 0;
+            if (ipAddressValue != "127.0.0.1" && ipAddressValue != "0.0.0.0")
+                currentScore += 1;
+
+            if (_addressFamily.HasValue)
             {
-                if (ValidateNetworkIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress))
-                {
-                    optimalIpAddress = ipAddress.ToString();
-                    if (networkInterface.OperationalStatus == OperationalStatus.Up)
-                        return true;
-                }
+                if (ipAddress.AddressFamily == _addressFamily.Value)
+                    currentScore += 8;
+                else
+                    currentScore += 2;
             }
             else if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
             {
-                if (ValidateNetworkIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress))
-                {
-                    if (!_addressFamily.HasValue && networkInterface.OperationalStatus == OperationalStatus.Up)
-                    {
-                        optimalIpAddress = ipAddress.ToString();
-                        if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
-                            return true;
-                    }
-                }
+                currentScore += 8;
             }
-            else if (ipAddress.AddressFamily == AddressFamily.InterNetworkV6)
+            else
             {
-                ValidateNetworkIpAddress(networkInterface, ipAddress, ref firstMatchAddress, ref optimalIpAddress);
+                currentScore += 4;
             }
 
-            return false;
+            if (!networkAddress.IsDnsEligible)
+                currentScore += 1;
+
+            if (networkAddress.PrefixOrigin == PrefixOrigin.Dhcp)
+                currentScore += 1;
+
+            return currentScore;
         }
 
-        private static bool ValidateNetworkIpAddress(NetworkInterface networkInterface, IPAddress ipAddress, ref string firstMatchAddress, ref string optimalIpAddress)
+        private static int CalculateNetworkInterfaceScore(NetworkInterface networkInterface)
         {
+            if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback)
+                return 0;
+
+            if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Tunnel)
+                return 0;
+
             const int macAddressMinLength = 12;
-            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length >= macAddressMinLength)
-            {
-                var ipAddressValue = ipAddress.ToString();
-                if (string.IsNullOrEmpty(ipAddressValue) || ipAddressValue == "127.0.0.1" || ipAddressValue == "0.0.0.0")
-                    return false;
+            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length < macAddressMinLength)
+                return 0;
 
-                if (string.IsNullOrEmpty(firstMatchAddress))
-                    firstMatchAddress = ipAddressValue;
+            int currentScore = 1;
 
-                if (networkInterface.OperationalStatus == OperationalStatus.Up)
-                {
-                    if (string.IsNullOrEmpty(optimalIpAddress))
-                        optimalIpAddress = ipAddressValue;
-                }
+            if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                currentScore += 1;
 
-                return true;
-            }
+            if (networkInterface.OperationalStatus == OperationalStatus.Up)
+                currentScore += 4;
 
-            return false;
+            return currentScore;
         }
     }
 }
