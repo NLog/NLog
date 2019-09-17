@@ -110,19 +110,6 @@ namespace NLog.LayoutRenderers
                     }
                 }
 
-                if (string.IsNullOrEmpty(currentIpAddress))
-                {
-                    foreach (var ipAddress in Dns.GetHostAddresses(string.Empty))
-                    {
-                        int ipScore = CalculateIpAddressScore(ipAddress);
-                        if (ipScore > currentNetworkScore)
-                        {
-                            currentIpAddress = ipAddress.ToString();
-                            currentNetworkScore = ipScore;
-                        }
-                    }
-                }
-
                 return currentIpAddress;
             }
             catch (Exception ex)
@@ -130,6 +117,46 @@ namespace NLog.LayoutRenderers
                 InternalLogger.Warn(ex, "Failed to lookup NetworkInterface.GetAllNetworkInterfaces()");
                 return currentIpAddress;
             }
+        }
+
+        private static int CalculateNetworkInterfaceScore(NetworkInterface networkInterface)
+        {
+            if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback)
+                return 0;
+
+            if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Tunnel)
+                return 0;
+
+            const int macAddressMinLength = 12;
+            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length >= macAddressMinLength)
+            {
+                int currentScore = 1;
+
+                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                    currentScore += 1;
+
+                if (networkInterface.OperationalStatus == OperationalStatus.Up)
+                    currentScore += 5;  // Better to have Ipv6 that is Up, than Ipv4 that is Down
+
+                return currentScore;
+            }
+
+            return 0;
+        }
+
+        private int CalculateNetworkAddressScore(UnicastIPAddressInformation networkAddress)
+        {
+            var currentScore = CalculateIpAddressScore(networkAddress.Address);
+            if (currentScore == 0)
+                return 0;
+
+            if (!networkAddress.IsDnsEligible)
+                currentScore += 1;
+
+            if (networkAddress.PrefixOrigin == PrefixOrigin.Dhcp)
+                currentScore += 1;
+
+            return currentScore;
         }
 
         private int CalculateIpAddressScore(IPAddress ipAddress)
@@ -165,46 +192,6 @@ namespace NLog.LayoutRenderers
             }
 
             return currentScore;
-        }
-
-        private int CalculateNetworkAddressScore(UnicastIPAddressInformation networkAddress)
-        {
-            var currentScore = CalculateIpAddressScore(networkAddress.Address);
-            if (currentScore == 0)
-                return 0;
-
-            if (!networkAddress.IsDnsEligible)
-                currentScore += 1;
-
-            if (networkAddress.PrefixOrigin == PrefixOrigin.Dhcp)
-                currentScore += 1;
-
-            return currentScore;
-        }
-
-        private static int CalculateNetworkInterfaceScore(NetworkInterface networkInterface)
-        {
-            if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback)
-                return 0;
-
-            if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Tunnel)
-                return 0;
-
-            const int macAddressMinLength = 12;
-            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length >= macAddressMinLength)
-            {
-                int currentScore = 1;
-
-                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
-                    currentScore += 1;
-
-                if (networkInterface.OperationalStatus == OperationalStatus.Up)
-                    currentScore += 5;  // Better to have Ipv6 that is Up, than Ipv4 that is Down
-
-                return currentScore;
-            }
-
-            return 0;
         }
     }
 }
