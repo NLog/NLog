@@ -631,10 +631,6 @@ namespace NLog.Targets
                         sb.Append("\\\\");
                         break;
 
-                    case '/':
-                        sb.Append("\\/");
-                        break;
-
                     case '\b':
                         sb.Append("\\b");
                         break;
