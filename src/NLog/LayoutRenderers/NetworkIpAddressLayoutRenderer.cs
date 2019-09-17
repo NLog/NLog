@@ -110,6 +110,19 @@ namespace NLog.LayoutRenderers
                     }
                 }
 
+                if (string.IsNullOrEmpty(currentIpAddress))
+                {
+                    foreach (var ipAddress in Dns.GetHostAddresses(string.Empty))
+                    {
+                        int ipScore = CalculateIpAddressScore(ipAddress);
+                        if (ipScore > currentNetworkScore)
+                        {
+                            currentIpAddress = ipAddress.ToString();
+                            currentNetworkScore = ipScore;
+                        }
+                    }
+                }
+
                 return currentIpAddress;
             }
             catch (Exception ex)
@@ -119,9 +132,8 @@ namespace NLog.LayoutRenderers
             }
         }
 
-        private int CalculateNetworkAddressScore(UnicastIPAddressInformation networkAddress)
+        private int CalculateIpAddressScore(IPAddress ipAddress)
         {
-            var ipAddress = networkAddress.Address;
             if (IPAddress.IsLoopback(ipAddress))
                 return 0;
 
@@ -151,6 +163,15 @@ namespace NLog.LayoutRenderers
             {
                 currentScore += 4;
             }
+
+            return currentScore;
+        }
+
+        private int CalculateNetworkAddressScore(UnicastIPAddressInformation networkAddress)
+        {
+            var currentScore = CalculateIpAddressScore(networkAddress.Address);
+            if (currentScore == 0)
+                return 0;
 
             if (!networkAddress.IsDnsEligible)
                 currentScore += 1;
