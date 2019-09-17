@@ -125,7 +125,7 @@ namespace NLog.LayoutRenderers
             if (IPAddress.IsLoopback(ipAddress))
                 return 0;
 
-            if (ipAddress.AddressFamily != AddressFamily.InterNetwork && ipAddress.AddressFamily != AddressFamily.InterNetworkV6)
+            if (ipAddress.AddressFamily != AddressFamily.InterNetwork && ipAddress.AddressFamily != AddressFamily.InterNetworkV6 && ipAddress.AddressFamily != _addressFamily)
                 return 0;
 
             var ipAddressValue = ipAddress.ToString();
@@ -170,18 +170,20 @@ namespace NLog.LayoutRenderers
                 return 0;
 
             const int macAddressMinLength = 12;
-            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length < macAddressMinLength)
-                return 0;
+            if (networkInterface.GetPhysicalAddress()?.ToString()?.Length >= macAddressMinLength)
+            {
+                int currentScore = 1;
 
-            int currentScore = 1;
+                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                    currentScore += 1;
 
-            if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
-                currentScore += 1;
+                if (networkInterface.OperationalStatus == OperationalStatus.Up)
+                    currentScore += 5;  // Better to have Ipv6 that is Up, than Ipv4 that is Down
 
-            if (networkInterface.OperationalStatus == OperationalStatus.Up)
-                currentScore += 4;
+                return currentScore;
+            }
 
-            return currentScore;
+            return 0;
         }
     }
 }
