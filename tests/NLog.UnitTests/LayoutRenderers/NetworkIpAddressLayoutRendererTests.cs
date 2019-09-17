@@ -55,6 +55,12 @@ namespace NLog.UnitTests.LayoutRenderers
         [Fact]
         public void NetworkIpAddress_CurrentMachine_NotEmpty()
         {
+            if (IsTravis())
+            {
+                Console.WriteLine("[SKIP] NetworkIpAddressLayoutRendererTests.NetworkIpAddress_CurrentMachine_NotEmpty because we are running in Travis");
+                return;
+            }
+
             var ipAddressRenderer = new NetworkIpAddressLayoutRenderer();
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
             Assert.NotEmpty(result);
