@@ -348,7 +348,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger with the name of the current class. 
+        /// Gets the logger with the full name of the current class, so namespace and class name.
         /// </summary>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
@@ -367,7 +367,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger with the name of the current class. 
+        /// Gets the logger with the full name of the current class, so namespace and class name.
+        /// Use <typeparamref name="T"/>  to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the type parameter.
         /// </summary>
         /// <returns>The logger with type <typeparamref name="T"/>.</returns>
         /// <typeparam name="T">Type of the logger</typeparam>
@@ -387,7 +389,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets a custom logger with the full name of the current class, so namespace and class name.
+        /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/></param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
@@ -419,6 +423,8 @@ namespace NLog
 
         /// <summary>
         /// Gets the specified named logger.
+        /// Use <typeparamref name="T"/>  to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the type parameter.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <typeparam name="T">Type of the logger</typeparam>
@@ -430,7 +436,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets the specified named logger.
+        /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger" />.</param>
