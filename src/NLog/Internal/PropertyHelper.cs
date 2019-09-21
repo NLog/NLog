@@ -99,7 +99,7 @@ namespace NLog.Internal
                     || TryGetEnumValue(propertyType, value, out newValue, true)
                     || TrySpecialConversion(propertyType, value, out newValue)
                     || TryImplicitConversion(propertyType, value, out newValue)
-                    || TryFlatListConversion(propertyType, value, out newValue)
+                    || TryFlatListConversion(obj, propInfo, value, out newValue)
                     || TryTypeConverterConversion(propertyType, value, out newValue)))
                     newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
 
@@ -324,13 +324,9 @@ namespace NLog.Internal
         /// <remarks>
         /// If there is a comma in the value, then (single) quote the value. For single quotes, use the backslash as escape
         /// </remarks>
-        /// <param name="type"></param>
-        /// <param name="valueRaw"></param>
-        /// <param name="newValue"></param>
-        /// <returns></returns>
-        private static bool TryFlatListConversion(Type type, string valueRaw, out object newValue)
+        private static bool TryFlatListConversion(object obj, PropertyInfo propInfo, string valueRaw, out object newValue)
         {
-            if (type.IsGenericType() && TryCreateCollectionObject(type, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
+            if (propInfo.PropertyType.IsGenericType() && TryCreateCollectionObject(obj, propInfo, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
             {
                 var values = valueRaw.SplitQuoted(',', '\'', '\\');
                 foreach (var value in values)
@@ -354,8 +350,9 @@ namespace NLog.Internal
             return false;
         }
 
-        private static bool TryCreateCollectionObject(Type collectionType, string valueRaw, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, string valueRaw, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
         {
+            var collectionType = propInfo.PropertyType;
             var typeDefinition = collectionType.GetGenericTypeDefinition();
 #if NET3_5
             var isSet = typeDefinition == typeof(HashSet<>);
@@ -365,13 +362,14 @@ namespace NLog.Internal
             //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
             if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
             {
+                object[] constructorArgs = isSet ? CreateHashSetConstructorArgs(obj, propInfo) : ArrayHelper.Empty<object>();
+
                 //note: type.GenericTypeArguments is .NET 4.5+ 
                 collectionItemType = collectionType.GetGenericArguments()[0];
-
                 var listType = isSet ? typeof(HashSet<>) : typeof(List<>);
                 var genericArgs = collectionItemType;
                 var concreteType = listType.MakeGenericType(genericArgs);
-                collectionObject = Activator.CreateInstance(concreteType);
+                collectionObject = constructorArgs?.Length > 0 ? Activator.CreateInstance(concreteType, constructorArgs) : Activator.CreateInstance(concreteType);
                 //no support for array
                 if (collectionObject == null)
                 {
@@ -391,6 +389,27 @@ namespace NLog.Internal
             collectionAddMethod = null;
             collectionItemType = null;
             return false;
+        }
+
+        /// <summary>
+        /// Attempt to reuse the HashSet.Comparer from the original HashSet-object (Ex. StringComparer.OrdinalIgnoreCase)
+        /// </summary>
+        private static object[] CreateHashSetConstructorArgs(object obj, PropertyInfo propInfo)
+        {
+            var exitingValue = propInfo.CanRead && propInfo.GetIndexParameters().Length == 0 && propInfo.GetGetMethod() != null ? propInfo.GetGetMethod().Invoke(obj, null) : null;
+            if (exitingValue != null)
+            {
+                // Found original HashSet-object. See if we can extract the Comparer
+                var comparerPropInfo = exitingValue.GetType().GetProperty("Comparer", BindingFlags.Instance | BindingFlags.Public);
+                if (comparerPropInfo != null && comparerPropInfo.CanRead && comparerPropInfo.GetGetMethod() != null)
+                {
+                    var comparer = comparerPropInfo.GetGetMethod().Invoke(exitingValue, null);
+                    if (comparer != null)
+                        return new[] { comparer };
+                }
+            }
+
+            return ArrayHelper.Empty<object>();
         }
 
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)

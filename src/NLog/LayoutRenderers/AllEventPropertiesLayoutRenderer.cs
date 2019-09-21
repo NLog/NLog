@@ -31,15 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections;
-
 namespace NLog.LayoutRenderers
 {
     using System;
     using System.Text;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Linq;
     using NLog.Config;
     using NLog.Internal;
 
@@ -64,6 +61,13 @@ namespace NLog.LayoutRenderers
         {
             Separator = ", ";
             Format = "[key]=[value]";
+            Exclude = new HashSet<string>(
+#if NET4_5
+                CallerInformationAttributeNames,
+#else
+                ArrayHelper.Empty<string>(),
+#endif
+                StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -80,8 +84,17 @@ namespace NLog.LayoutRenderers
         [DefaultValue(false)]
         public bool IncludeEmptyValues { get; set; } = false;
 
-#if NET4_5
+        /// <summary>
+        /// Gets or sets the keys to exclude from the output. If omitted, none are excluded.
+        /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
+#if NET3_5
+        public HashSet<string> Exclude { get; set; }
+#else
+        public ISet<string> Exclude { get; set; }
+#endif
 
+#if NET4_5
         /// <summary>
         /// Also render the caller information attributes? (<see cref="System.Runtime.CompilerServices.CallerMemberNameAttribute"/>,
         /// <see cref="System.Runtime.CompilerServices.CallerFilePathAttribute"/>, <see cref="System.Runtime.CompilerServices.CallerLineNumberAttribute"/>). 
@@ -89,9 +102,32 @@ namespace NLog.LayoutRenderers
         /// See https://msdn.microsoft.com/en-us/library/hh534540.aspx
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
+        [Obsolete("Instead use the Exclude-property. Marked obsolete on NLog 4.6.8")]
         [DefaultValue(false)]
-        public bool IncludeCallerInformation { get; set; }
-
+        public bool IncludeCallerInformation
+        {
+            get => Exclude?.Contains(CallerInformationAttributeNames[0]) != true;
+            set
+            {
+                if (!value)
+                {
+                    if (Exclude == null)
+                    {
+                        Exclude = new HashSet<string>(CallerInformationAttributeNames, StringComparer.OrdinalIgnoreCase);
+                    }
+                    else
+                    {
+                        foreach (var item in CallerInformationAttributeNames)
+                            Exclude.Add(item);
+                    }
+                }
+                else if (Exclude?.Count > 0)
+                {
+                    foreach (var item in CallerInformationAttributeNames)
+                        Exclude.Remove(item);
+                }
+            }
+        }
 #endif
 
         /// <summary>
@@ -137,15 +173,18 @@ namespace NLog.LayoutRenderers
             if (logEvent.HasProperties)
             {
                 var formatProvider = GetFormatProvider(logEvent);
+                bool checkForExclude = CheckForExclude(logEvent);
+                bool nonStandardFormat = _beforeKey == null || _afterKey == null || _afterValue == null;
 
                 bool first = true;
-                IEnumerable<KeyValuePair<object, object>> properties = GetProperties(logEvent);
-                if (!IncludeEmptyValues)
+                foreach (var property in logEvent.Properties)
                 {
-                    properties = properties.Where(p => !IsEmptyPropertyValue(p.Value));
-                }
-                foreach (var property in properties)
-                {
+                    if (!IncludeEmptyValues && IsEmptyPropertyValue(property.Value))
+                        continue;
+
+                    if (checkForExclude && Exclude.Contains(property.Key as string))
+                        continue;
+
                     if (!first)
                     {
                         builder.Append(Separator);
@@ -153,7 +192,7 @@ namespace NLog.LayoutRenderers
 
                     first = false;
 
-                    if (_beforeKey == null || _afterKey == null || _afterValue == null)
+                    if (nonStandardFormat)
                     {
                         var key = Convert.ToString(property.Key, formatProvider);
                         var value = Convert.ToString(property.Value, formatProvider);
@@ -173,6 +212,19 @@ namespace NLog.LayoutRenderers
             }
         }
 
+        private bool CheckForExclude(LogEventInfo logEvent)
+        {
+            bool checkForExclude = Exclude?.Count > 0;
+#if NET45
+            if (checkForExclude)
+            {
+                // Skip Exclude check when only to exclude CallSiteInformation, and there is none
+                checkForExclude = !(logEvent.CallSiteInformation == null && Exclude.Count == CallerInformationAttributeNames.Length && Exclude.Contains(CallerInformationAttributeNames[0]));
+            }
+#endif
+            return checkForExclude && logEvent.HasProperties;
+        }
+
         private static bool IsEmptyPropertyValue(object value)
         {
             if (value is string s)
@@ -184,52 +236,17 @@ namespace NLog.LayoutRenderers
         }
 
 #if NET4_5
-
         /// <summary>
         /// The names of caller information attributes.
+        /// <see cref="System.Runtime.CompilerServices.CallerMemberNameAttribute"/>, <see cref="System.Runtime.CompilerServices.CallerFilePathAttribute"/>, <see cref="System.Runtime.CompilerServices.CallerLineNumberAttribute"/>). 
         /// https://msdn.microsoft.com/en-us/library/hh534540.aspx
         /// TODO NLog ver. 5 - Remove these properties
         /// </summary>
-        private static List<string> CallerInformationAttributeNames = new List<string>
-        {
-            {"CallerMemberName"},
-            {"CallerFilePath"},
-            {"CallerLineNumber"},
+        private static string[] CallerInformationAttributeNames = {
+            "CallerMemberName",
+            "CallerFilePath",
+            "CallerLineNumber",
         };
-
-        /// <summary>
-        /// Also render the call attributes? (<see cref="System.Runtime.CompilerServices.CallerMemberNameAttribute"/>,
-        /// <see cref="System.Runtime.CompilerServices.CallerFilePathAttribute"/>, <see cref="System.Runtime.CompilerServices.CallerLineNumberAttribute"/>). 
-        /// </summary>
-        ///
 #endif
-
-        private IDictionary<object, object> GetProperties(LogEventInfo logEvent)
-        {
-            var properties = logEvent.Properties;
-#if NET4_5
-
-            if (IncludeCallerInformation)
-            {
-                return properties;
-            }
-
-            if (logEvent.CallSiteInformation != null)
-            {
-                // TODO NLog ver. 5 - Remove these properties. Instead output artificial properties, extracted from LogEventInfo.CallSiteInformation
-                foreach (string propertyName in CallerInformationAttributeNames)
-                {
-                    if (properties.ContainsKey(propertyName))
-                    {
-                        return properties.Where(p => !CallerInformationAttributeNames.Contains(p.Key)).ToDictionary(p => p.Key, p => p.Value);
-                    }
-                }
-            }
-
-            return properties;
-#else
-            return properties;
-#endif
-        }
     }
 }
