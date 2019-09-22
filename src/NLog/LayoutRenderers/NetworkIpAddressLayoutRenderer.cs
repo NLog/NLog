@@ -49,7 +49,7 @@ namespace NLog.LayoutRenderers
     /// <remarks>
     /// Skips loopback-adapters and tunnel-interfaces. Skips devices without any MAC-address
     /// </remarks>
-    [LayoutRenderer("networkip")]
+    [LayoutRenderer("local-ip")]
     [ThreadAgnostic]
     [ThreadSafe]
     public class NetworkIpAddressLayoutRenderer : LayoutRenderer
@@ -82,7 +82,6 @@ namespace NLog.LayoutRenderers
 
         private string LookupIpAddress()
         {
-            const int greatNetworkScore = 16;   // 8 = Good Address Family + 4 = Good NetworkStatus + Extra Bonus Points
             int currentNetworkScore = 0;
             string currentIpAddress = string.Empty;
 
@@ -100,12 +99,9 @@ namespace NLog.LayoutRenderers
                         if (unicastScore == 0)
                             continue;
 
-                        if ((networkScore + unicastScore) > currentNetworkScore)
+                        if (CheckOptimalNetworkScore(networkAddress, networkScore + unicastScore, ref currentNetworkScore, ref currentIpAddress))
                         {
-                            currentIpAddress = networkAddress.Address.ToString();
-                            currentNetworkScore = (networkScore + unicastScore);
-                            if (currentNetworkScore >= greatNetworkScore)
-                                return currentIpAddress;
+                            return currentIpAddress;
                         }
                     }
                 }
@@ -117,6 +113,21 @@ namespace NLog.LayoutRenderers
                 InternalLogger.Warn(ex, "Failed to lookup NetworkInterface.GetAllNetworkInterfaces()");
                 return currentIpAddress;
             }
+        }
+
+        private bool CheckOptimalNetworkScore(UnicastIPAddressInformation networkAddress, int networkScore, ref int currentNetworkScore, ref string currentIpAddress)
+        {
+            const int greatNetworkScore = 16;   // 8 = Good Address Family + 4 = Good NetworkStatus + Extra Bonus Points
+
+            if (networkScore > currentNetworkScore)
+            {
+                currentIpAddress = networkAddress.Address.ToString();
+                currentNetworkScore = networkScore;
+                if (currentNetworkScore >= greatNetworkScore)
+                    return true;
+            }
+
+            return false;
         }
 
         private static int CalculateNetworkInterfaceScore(NetworkInterface networkInterface)
@@ -172,7 +183,7 @@ namespace NLog.LayoutRenderers
                 return 0;
 
             int currentScore = 0;
-            if (ipAddressValue != "127.0.0.1" && ipAddressValue != "0.0.0.0")
+            if (ipAddressValue != "127.0.0.1" && ipAddressValue != "0.0.0.0" && ipAddressValue != "::1")
                 currentScore += 1;
 
             if (_addressFamily.HasValue)
