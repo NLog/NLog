@@ -41,16 +41,12 @@ namespace NLog.LayoutRenderers
     /// <summary>
     /// Retrieve network interfaces
     /// </summary>
-    public class NetworkInterfaceRetriever : INetworkInterfaceRetriever
+    internal class NetworkInterfaceRetriever : INetworkInterfaceRetriever
     {
         /// <summary>
         /// Retrieve network interfaces
         /// </summary>
-        /// <returns></returns>
-        public IEnumerable<NetworkInterface> GetAllNetworkInterfaces()
-        {
-            return NetworkInterface.GetAllNetworkInterfaces();
-        }
+        public NetworkInterface[] AllNetworkInterfaces => NetworkInterface.GetAllNetworkInterfaces();
     }
 }
 #endif

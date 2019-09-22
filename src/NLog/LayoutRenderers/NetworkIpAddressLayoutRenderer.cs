@@ -87,7 +87,7 @@ namespace NLog.LayoutRenderers
 
             try
             {
-                foreach (var networkInterface in _networkInterfaceRetriever.GetAllNetworkInterfaces())
+                foreach (var networkInterface in _networkInterfaceRetriever.AllNetworkInterfaces)
                 {
                     int networkScore = CalculateNetworkInterfaceScore(networkInterface);
                     if (networkScore == 0)

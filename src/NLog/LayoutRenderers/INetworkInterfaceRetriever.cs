@@ -33,21 +33,19 @@
 
 #if !NETSTANDARD1_0 && !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
-
 namespace NLog.LayoutRenderers
 {
+    using System.Net.NetworkInformation;
+
     /// <summary>
     /// Retrieve network interfaces
     /// </summary>
-    public interface INetworkInterfaceRetriever
+    internal interface INetworkInterfaceRetriever
     {
         /// <summary>
         /// Retrieve network interfaces
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<NetworkInterface> GetAllNetworkInterfaces();
+        NetworkInterface[] AllNetworkInterfaces { get; }
     }
 }
 #endif

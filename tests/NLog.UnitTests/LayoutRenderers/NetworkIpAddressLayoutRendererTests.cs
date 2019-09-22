@@ -219,7 +219,7 @@ namespace NLog.UnitTests.LayoutRenderers
         public void NetworkIpAddress_RetrieverThrowsException_RenderEmptyString()
         {
             var networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
-            networkInterfaceRetrieverMock.GetAllNetworkInterfaces().Throws(new Exception("oops"));
+            networkInterfaceRetrieverMock.AllNetworkInterfaces.Throws(new Exception("oops"));
             var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
             // Act
@@ -230,7 +230,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
     }
 
-    public class NetworkInterfaceRetrieverBuilder
+    internal class NetworkInterfaceRetrieverBuilder
     {
         private readonly IDictionary<int, List<string>> _ips = new Dictionary<int, List<string>>();
 
@@ -273,8 +273,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
         public INetworkInterfaceRetriever Build()
         {
-            var networkInterfaces = new List<NetworkInterface>(BuildAllNetworkInterfaces());
-            _networkInterfaceRetrieverMock.GetAllNetworkInterfaces().Returns(networkInterfaces);
+            var networkInterfaces = BuildAllNetworkInterfaces().ToArray();
+            _networkInterfaceRetrieverMock.AllNetworkInterfaces.Returns(networkInterfaces);
 
             return _networkInterfaceRetrieverMock;
         }
