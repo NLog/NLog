@@ -366,17 +366,14 @@ namespace NLog.Internal
 
                 //note: type.GenericTypeArguments is .NET 4.5+ 
                 collectionItemType = collectionType.GetGenericArguments()[0];
-                var listType = isSet ? typeof(HashSet<>) : typeof(List<>);
-                var genericArgs = collectionItemType;
-                var concreteType = listType.MakeGenericType(genericArgs);
-                collectionObject = hashsetComparer != null ? Activator.CreateInstance(concreteType, hashsetComparer) : Activator.CreateInstance(concreteType);
+                collectionObject = CreateCollectionObjectInstance(isSet ? typeof(HashSet<>) : typeof(List<>), collectionItemType, hashsetComparer);
                 //no support for array
                 if (collectionObject == null)
                 {
                     throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", collectionType.ToString(), valueRaw);
                 }
 
-                collectionAddMethod = concreteType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                collectionAddMethod = collectionObject.GetType().GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
                 if (collectionAddMethod == null)
                 {
                     throw new NLogConfigurationException("Add method on type {0} for value {1} not found", collectionType.ToString(), valueRaw);
@@ -389,6 +386,18 @@ namespace NLog.Internal
             collectionAddMethod = null;
             collectionItemType = null;
             return false;
+        }
+
+        private static object CreateCollectionObjectInstance(Type collectionType, Type collectionItemType, object hashSetComparer)
+        {
+            var concreteType = collectionType.MakeGenericType(collectionItemType);
+            if (hashSetComparer != null)
+            {
+                var constructor = concreteType.GetConstructor(new[] { hashSetComparer.GetType() });
+                if (constructor != null)
+                    return constructor.Invoke(new[] { hashSetComparer });
+            }
+            return Activator.CreateInstance(concreteType);
         }
 
         /// <summary>
