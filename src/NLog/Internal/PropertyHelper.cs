@@ -362,14 +362,14 @@ namespace NLog.Internal
             //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
             if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
             {
-                object[] constructorArgs = isSet ? CreateHashSetConstructorArgs(obj, propInfo) : ArrayHelper.Empty<object>();
+                object hashsetComparer = isSet ? ExtractHashSetComparer(obj, propInfo) : null;
 
                 //note: type.GenericTypeArguments is .NET 4.5+ 
                 collectionItemType = collectionType.GetGenericArguments()[0];
                 var listType = isSet ? typeof(HashSet<>) : typeof(List<>);
                 var genericArgs = collectionItemType;
                 var concreteType = listType.MakeGenericType(genericArgs);
-                collectionObject = constructorArgs?.Length > 0 ? Activator.CreateInstance(concreteType, constructorArgs) : Activator.CreateInstance(concreteType);
+                collectionObject = hashsetComparer != null ? Activator.CreateInstance(concreteType, hashsetComparer) : Activator.CreateInstance(concreteType);
                 //no support for array
                 if (collectionObject == null)
                 {
@@ -394,22 +394,20 @@ namespace NLog.Internal
         /// <summary>
         /// Attempt to reuse the HashSet.Comparer from the original HashSet-object (Ex. StringComparer.OrdinalIgnoreCase)
         /// </summary>
-        private static object[] CreateHashSetConstructorArgs(object obj, PropertyInfo propInfo)
+        private static object ExtractHashSetComparer(object obj, PropertyInfo propInfo)
         {
-            var exitingValue = propInfo.CanRead && propInfo.GetIndexParameters().Length == 0 && propInfo.GetGetMethod() != null ? propInfo.GetGetMethod().Invoke(obj, null) : null;
+            var exitingValue = propInfo.IsValidPublicProperty() ? propInfo.GetPropertyValue(obj) : null;
             if (exitingValue != null)
             {
                 // Found original HashSet-object. See if we can extract the Comparer
                 var comparerPropInfo = exitingValue.GetType().GetProperty("Comparer", BindingFlags.Instance | BindingFlags.Public);
-                if (comparerPropInfo != null && comparerPropInfo.CanRead && comparerPropInfo.GetGetMethod() != null)
+                if (comparerPropInfo.IsValidPublicProperty())
                 {
-                    var comparer = comparerPropInfo.GetGetMethod().Invoke(exitingValue, null);
-                    if (comparer != null)
-                        return new[] { comparer };
+                    return comparerPropInfo.GetPropertyValue(exitingValue);
                 }
             }
 
-            return ArrayHelper.Empty<object>();
+            return null;
         }
 
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
