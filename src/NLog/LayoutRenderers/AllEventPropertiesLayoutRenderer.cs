@@ -182,7 +182,7 @@ namespace NLog.LayoutRenderers
                     if (!IncludeEmptyValues && IsEmptyPropertyValue(property.Value))
                         continue;
 
-                    if (checkForExclude && Exclude.Contains(property.Key as string))
+                    if (checkForExclude && property.Key is string propertyKey && Exclude.Contains(propertyKey))
                         continue;
 
                     if (!first)
