@@ -816,7 +816,5 @@ namespace NLog.Targets
                 return false;
             }
         }
-
-
     }
 }
