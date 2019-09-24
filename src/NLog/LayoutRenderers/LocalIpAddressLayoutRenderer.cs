@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("local-ip")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class NetworkIpAddressLayoutRenderer : LayoutRenderer
+    public class LocalIpAddressLayoutRenderer : LayoutRenderer
     {
         private AddressFamily? _addressFamily;
         private readonly INetworkInterfaceRetriever _networkInterfaceRetriever;
@@ -63,13 +63,13 @@ namespace NLog.LayoutRenderers
         public AddressFamily AddressFamily { get => _addressFamily ?? AddressFamily.InterNetwork; set => _addressFamily = value; }
 
         /// <inheritdoc />
-        public NetworkIpAddressLayoutRenderer()
+        public LocalIpAddressLayoutRenderer()
         {
             _networkInterfaceRetriever = new NetworkInterfaceRetriever();
         }
 
         /// <inheritdoc />
-        internal NetworkIpAddressLayoutRenderer(INetworkInterfaceRetriever networkInterfaceRetriever)
+        internal LocalIpAddressLayoutRenderer(INetworkInterfaceRetriever networkInterfaceRetriever)
         {
             _networkInterfaceRetriever = networkInterfaceRetriever;
         }

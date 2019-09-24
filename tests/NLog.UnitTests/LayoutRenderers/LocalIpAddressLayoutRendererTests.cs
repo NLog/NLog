@@ -45,7 +45,7 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
 
-    public class NetworkIpAddressLayoutRendererTests : NLogTestBase
+    public class LocalIpAddressLayoutRendererTests : NLogTestBase
     {
         private const string Mac1 = "F0-E1-D2-C3-B4-A5";
 
@@ -61,7 +61,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 return;
             }
 
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer();
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer();
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
             Assert.NotEmpty(result);
         }
@@ -77,7 +77,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 .WithIp(ipString)
                 .Build();
 
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
             // Act
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
@@ -97,7 +97,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 .WithIp("10.0.1.3")
                 .Build();
 
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
             // Act
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
@@ -117,7 +117,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 .WithIp("10.0.1.2")
                 .Build();
 
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
             // Act
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
@@ -138,7 +138,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 .WithIp("10.0.1.2")
                 .Build();
 
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
             // Act
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
@@ -161,7 +161,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 .WithIp("10.0.1.3")
                 .Build();
 
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
             // Act
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
@@ -183,7 +183,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 .WithIp(ipString)
                 .Build();
 
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
             // Act
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
@@ -205,7 +205,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 .WithIp(ipv6)
                 .Build();
 
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock) 
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock) 
                 {AddressFamily = AddressFamily.InterNetworkV6};
 
             // Act
@@ -220,7 +220,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
             networkInterfaceRetrieverMock.AllNetworkInterfaces.Throws(new Exception("oops"));
-            var ipAddressRenderer = new NetworkIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
 
             // Act
             var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
