@@ -71,6 +71,12 @@ namespace NLog.LayoutRenderers.Wrappers
         [DefaultValue(true)]
         public bool EscapeUnicode { get; set; }
 
+        /// <summary>
+        /// Should forward slashes be escaped? If true, / will be converted to \/ 
+        /// </summary>
+        [DefaultValue(false)]
+        public bool EscapeForwardSlash { get; set; }
+
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
@@ -79,7 +85,7 @@ namespace NLog.LayoutRenderers.Wrappers
             {
                 var str = builder.ToString(orgLength, builder.Length - orgLength);
                 builder.Length = orgLength;
-                Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, EscapeUnicode);
+                Targets.DefaultJsonSerializer.AppendStringEscape(builder, str, EscapeUnicode, EscapeForwardSlash);
             }
         }
 

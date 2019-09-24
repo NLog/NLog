@@ -104,7 +104,7 @@ namespace NLog.Targets
                     {
                         StringBuilder sb = new StringBuilder(str.Length + 4);
                         sb.Append('"');
-                        AppendStringEscape(sb, str, options.EscapeUnicode);
+                        AppendStringEscape(sb, str, options.EscapeUnicode, options.EscapeForwardSlash);
                         sb.Append('"');
                         return sb.ToString();
                     }
@@ -284,7 +284,7 @@ namespace NLog.Targets
             var formatProvider = options.FormatProvider ?? (hasFormat ? _defaultFormatProvider : null);
             var str = formattable.ToString(hasFormat ? options.Format : "", formatProvider);
             if (includeQuotes)
-                AppendStringEscape(destination, str, options.EscapeUnicode);
+                AppendStringEscape(destination, str, options.EscapeUnicode, options.EscapeForwardSlash);
             else
                 destination.Append(str);
 
@@ -454,7 +454,7 @@ namespace NLog.Targets
             else if (objTypeCode == TypeCode.String || objTypeCode == TypeCode.Char)
             {
                 destination.Append('"');
-                AppendStringEscape(destination, value.ToString(), options.EscapeUnicode);
+                AppendStringEscape(destination, value.ToString(), options.EscapeUnicode, options.EscapeForwardSlash);
                 destination.Append('"');
             }
             else
@@ -598,8 +598,9 @@ namespace NLog.Targets
         /// <param name="destination">Destination Builder</param>
         /// <param name="text">Input string</param>
         /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
+        /// <param name="escapeForwardSlash"></param>
         /// <returns>JSON escaped string</returns>
-        internal static void AppendStringEscape(StringBuilder destination, string text, bool escapeUnicode)
+        internal static void AppendStringEscape(StringBuilder destination, string text, bool escapeUnicode, bool escapeForwardSlash)
         {
             if (string.IsNullOrEmpty(text))
                 return;
@@ -633,6 +634,13 @@ namespace NLog.Targets
 
                     case '\b':
                         sb.Append("\\b");
+                        break;
+
+                    case '/':
+                        if (escapeForwardSlash)
+                        {
+                            sb.Append("\\/");
+                        }
                         break;
 
                     case '\r':
@@ -777,7 +785,7 @@ namespace NLog.Targets
 
                 var str = Convert.ToString(value, CultureInfo.InvariantCulture);
                 destination.Append('"');
-                AppendStringEscape(destination, str, options.EscapeUnicode);
+                AppendStringEscape(destination, str, options.EscapeUnicode, options.EscapeForwardSlash);
                 destination.Append('"');
                 return true;
             }

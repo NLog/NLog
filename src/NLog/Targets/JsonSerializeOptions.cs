@@ -64,6 +64,12 @@ namespace NLog.Targets
         public bool EscapeUnicode { get; set; }
 
         /// <summary>
+        /// Should forward slashes be escaped? If true, / will be converted to \/ 
+        /// </summary>
+        [DefaultValue(false)]
+        public bool EscapeForwardSlash { get; set; }
+        
+        /// <summary>
         /// Serialize enum as string value
         /// </summary>
         [DefaultValue(false)]
