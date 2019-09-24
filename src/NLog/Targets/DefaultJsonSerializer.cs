@@ -702,9 +702,9 @@ namespace NLog.Targets
             {
                 switch (ch)
                 {
+                    case '/': return escapeForwardSlash;
                     case '"':
-                    case '\\': return escapeForwardSlash;
-                    case '/':
+                    case '\\':
                         return true;
                     default:
                         return false;
