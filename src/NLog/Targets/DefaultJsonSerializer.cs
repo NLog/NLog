@@ -104,7 +104,7 @@ namespace NLog.Targets
                     {
                         StringBuilder sb = new StringBuilder(str.Length + 4);
                         sb.Append('"');
-                        AppendStringEscape(sb, str, options.EscapeUnicode, options.EscapeForwardSlash);
+                        AppendStringEscape(sb, str, options);
                         sb.Append('"');
                         return sb.ToString();
                     }
@@ -284,7 +284,7 @@ namespace NLog.Targets
             var formatProvider = options.FormatProvider ?? (hasFormat ? _defaultFormatProvider : null);
             var str = formattable.ToString(hasFormat ? options.Format : "", formatProvider);
             if (includeQuotes)
-                AppendStringEscape(destination, str, options.EscapeUnicode, options.EscapeForwardSlash);
+                AppendStringEscape(destination, str, options);
             else
                 destination.Append(str);
 
@@ -454,7 +454,7 @@ namespace NLog.Targets
             else if (objTypeCode == TypeCode.String || objTypeCode == TypeCode.Char)
             {
                 destination.Append('"');
-                AppendStringEscape(destination, value.ToString(), options.EscapeUnicode, options.EscapeForwardSlash);
+                AppendStringEscape(destination, value.ToString(), options);
                 destination.Append('"');
             }
             else
@@ -590,6 +590,18 @@ namespace NLog.Targets
                     return includeDecimals;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Checks input string if it needs JSON escaping, and makes necessary conversion
+        /// </summary>
+        /// <param name="destination">Destination Builder</param>
+        /// <param name="text">Input string</param>
+        /// <param name="options">all options</param>
+        /// <returns>JSON escaped string</returns>
+        private static void AppendStringEscape(StringBuilder destination, string text, JsonSerializeOptions options)
+        {
+            AppendStringEscape(destination, text, options.EscapeUnicode, options.EscapeForwardSlash);
         }
 
         /// <summary>
@@ -789,7 +801,7 @@ namespace NLog.Targets
 
                 var str = Convert.ToString(value, CultureInfo.InvariantCulture);
                 destination.Append('"');
-                AppendStringEscape(destination, str, options.EscapeUnicode, options.EscapeForwardSlash);
+                AppendStringEscape(destination, str, options);
                 destination.Append('"');
                 return true;
             }
@@ -800,5 +812,7 @@ namespace NLog.Targets
                 return false;
             }
         }
+
+
     }
 }
