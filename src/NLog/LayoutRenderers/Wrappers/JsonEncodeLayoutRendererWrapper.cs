@@ -99,7 +99,7 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             for (int i = startPos; i < target.Length; ++i)
             {
-                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(target[i], EscapeUnicode))
+                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(target[i], EscapeUnicode, EscapeForwardSlash))
                 {
                     return true;
                 }

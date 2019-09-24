@@ -350,7 +350,7 @@ namespace NLog.Layouts
 
             for (int i = valueStart + 1; i < sb.Length - 1; ++i)
             {
-                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false))
+                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false, escapeForwardSlash))
                 {
                     var jsonEscape = sb.ToString(valueStart + 1, sb.Length - valueStart - 2);
                     sb.Length = valueStart;
