@@ -162,7 +162,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
-        public bool EscapeForwardSlash { get; set; }
+        public bool EscapeForwardSlash { get; set; } = true; // todo NLog 5, default to false
 
         /// <summary>
         /// Initializes the layout.

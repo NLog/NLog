@@ -113,7 +113,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
-        [DefaultValue(false)]
+        [DefaultValue(true)] // todo NLog 5, default to false
         public bool EscapeForwardSlash 
         {
             get => LayoutWrapper.EscapeForwardSlash;

@@ -74,8 +74,8 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
-        [DefaultValue(false)]
-        public bool EscapeForwardSlash { get; set; }
+        [DefaultValue(true)] // todo NLog 5, default to false
+        public bool EscapeForwardSlash { get; set; } = true;
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
