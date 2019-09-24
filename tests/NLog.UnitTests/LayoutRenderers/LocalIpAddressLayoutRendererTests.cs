@@ -53,11 +53,11 @@ namespace NLog.UnitTests.LayoutRenderers
         /// Integration test
         /// </summary>
         [Fact]
-        public void NetworkIpAddress_CurrentMachine_NotEmpty()
+        public void LocalIpAddress_CurrentMachine_NotEmpty()
         {
             if (IsTravis())
             {
-                Console.WriteLine("[SKIP] NetworkIpAddressLayoutRendererTests.NetworkIpAddress_CurrentMachine_NotEmpty because we are running in Travis");
+                Console.WriteLine("[SKIP] NetworkIpAddressLayoutRendererTests.LocalIpAddress_CurrentMachine_NotEmpty because we are running in Travis");
                 return;
             }
 
@@ -67,7 +67,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void NetworkIpAddress_RendersSuccessfulIp()
+        public void LocalIpAddress_RendersSuccessfulIp()
         {
             // Arrange
             var ipString = "10.0.1.2";
@@ -87,7 +87,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void NetworkIpAddress_OneInterfaceWithMultipleIps_RendersFirstIp()
+        public void LocalIpAddress_OneInterfaceWithMultipleIps_RendersFirstIp()
         {
             // Arrange
             var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
@@ -107,7 +107,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void NetworkIpAddress_SkipsLoopback()
+        public void LocalIpAddress_SkipsLoopback()
         {
             // Arrange
             var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
@@ -127,7 +127,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void NetworkIpAddress_Multiple_TakesFirst()
+        public void LocalIpAddress_Multiple_TakesFirst()
         {
             // Arrange
 
@@ -148,7 +148,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void NetworkIpAddress_Multiple_TakesFirstUp()
+        public void LocalIpAddress_Multiple_TakesFirstUp()
         {
             // Arrange
 
@@ -171,7 +171,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void NetworkIpAddress_Multiple_TakesFirstIpv4()
+        public void LocalIpAddress_Multiple_TakesFirstIpv4()
         {
             // Arrange
             var ipString = "10.0.1.2";
@@ -193,7 +193,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void NetworkIpAddress_Multiple_TakesFirstIpv6IfRequested()
+        public void LocalIpAddress_Multiple_TakesFirstIpv6IfRequested()
         {
             // Arrange
             var ipv6 = "fe80::200:f8ff:fe21:67cf";
@@ -216,7 +216,7 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
-        public void NetworkIpAddress_RetrieverThrowsException_RenderEmptyString()
+        public void LocalIpAddress_RetrieverThrowsException_RenderEmptyString()
         {
             var networkInterfaceRetrieverMock = Substitute.For<INetworkInterfaceRetriever>();
             networkInterfaceRetrieverMock.AllNetworkInterfaces.Throws(new Exception("oops"));
