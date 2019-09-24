@@ -50,9 +50,9 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
 
         [Fact]
-        public void JsonHyperlinkEncodeTest()
+        public void JsonHyperlinkEscapeForwardSlashTest()
         {
-            SimpleLayout l = "${json-encode:${event-properties:prop1}}";
+            SimpleLayout l = "${json-encode:${event-properties:prop1}:escapeForwardSlash=false}";
 
             var url = "https://localhost:5001/api/values";
 

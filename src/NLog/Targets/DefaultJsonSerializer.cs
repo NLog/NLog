@@ -641,6 +641,10 @@ namespace NLog.Targets
                         {
                             sb.Append("\\/");
                         }
+                        else
+                        {
+                            sb.Append(ch);
+                        }
                         break;
 
                     case '\r':
