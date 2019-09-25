@@ -160,6 +160,11 @@ namespace NLog.Layouts
         public int MaxRecursionLimit { get; set; }
 
         /// <summary>
+        /// Should forward slashes be escaped? If true, / will be converted to \/ 
+        /// </summary>
+        public bool EscapeForwardSlash { get; set; } = true; // todo NLog 5, default to false
+
+        /// <summary>
         /// Initializes the layout.
         /// </summary>
         protected override void InitializeLayout()
@@ -330,7 +335,7 @@ namespace NLog.Layouts
                 // Overrides MaxRecursionLimit as message-template tells us it is unsafe
                 int originalStart = sb.Length;
                 ValueFormatter.FormatValue(propertyValue, format, captureType, formatProvider, sb);
-                PerformJsonEscapeIfNeeded(sb, originalStart);
+                PerformJsonEscapeIfNeeded(sb, originalStart, EscapeForwardSlash);
             }
             else
             {
@@ -338,19 +343,19 @@ namespace NLog.Layouts
             }
         }
 
-        private static void PerformJsonEscapeIfNeeded(StringBuilder sb, int valueStart)
+        private static void PerformJsonEscapeIfNeeded(StringBuilder sb, int valueStart, bool escapeForwardSlash)
         {
             if (sb.Length - valueStart <= 2)
                 return;
 
             for (int i = valueStart + 1; i < sb.Length - 1; ++i)
             {
-                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false))
+                if (Targets.DefaultJsonSerializer.RequiresJsonEscape(sb[i], false, escapeForwardSlash))
                 {
                     var jsonEscape = sb.ToString(valueStart + 1, sb.Length - valueStart - 2);
                     sb.Length = valueStart;
                     sb.Append('"');
-                    Targets.DefaultJsonSerializer.AppendStringEscape(sb, jsonEscape, false);
+                    Targets.DefaultJsonSerializer.AppendStringEscape(sb, jsonEscape, false, escapeForwardSlash);
                     sb.Append('"');
                     break;
                 }

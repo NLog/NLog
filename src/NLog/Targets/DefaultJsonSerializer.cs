@@ -100,11 +100,11 @@ namespace NLog.Targets
             {
                 for (int i = 0; i < str.Length; ++i)
                 {
-                    if (RequiresJsonEscape(str[i], options.EscapeUnicode))
+                    if (RequiresJsonEscape(str[i], options))
                     {
                         StringBuilder sb = new StringBuilder(str.Length + 4);
                         sb.Append('"');
-                        AppendStringEscape(sb, str, options.EscapeUnicode);
+                        AppendStringEscape(sb, str, options);
                         sb.Append('"');
                         return sb.ToString();
                     }
@@ -284,7 +284,7 @@ namespace NLog.Targets
             var formatProvider = options.FormatProvider ?? (hasFormat ? _defaultFormatProvider : null);
             var str = formattable.ToString(hasFormat ? options.Format : "", formatProvider);
             if (includeQuotes)
-                AppendStringEscape(destination, str, options.EscapeUnicode);
+                AppendStringEscape(destination, str, options);
             else
                 destination.Append(str);
 
@@ -454,7 +454,7 @@ namespace NLog.Targets
             else if (objTypeCode == TypeCode.String || objTypeCode == TypeCode.Char)
             {
                 destination.Append('"');
-                AppendStringEscape(destination, value.ToString(), options.EscapeUnicode);
+                AppendStringEscape(destination, value.ToString(), options);
                 destination.Append('"');
             }
             else
@@ -597,9 +597,22 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="destination">Destination Builder</param>
         /// <param name="text">Input string</param>
-        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
+        /// <param name="options">all options</param>
         /// <returns>JSON escaped string</returns>
-        internal static void AppendStringEscape(StringBuilder destination, string text, bool escapeUnicode)
+        private static void AppendStringEscape(StringBuilder destination, string text, JsonSerializeOptions options)
+        {
+            AppendStringEscape(destination, text, options.EscapeUnicode, options.EscapeForwardSlash);
+        }
+
+        /// <summary>
+        /// Checks input string if it needs JSON escaping, and makes necessary conversion
+        /// </summary>
+        /// <param name="destination">Destination Builder</param>
+        /// <param name="text">Input string</param>
+        /// <param name="escapeUnicode">Should non-ascii characters be encoded</param>
+        /// <param name="escapeForwardSlash"></param>
+        /// <returns>JSON escaped string</returns>
+        internal static void AppendStringEscape(StringBuilder destination, string text, bool escapeUnicode, bool escapeForwardSlash)
         {
             if (string.IsNullOrEmpty(text))
                 return;
@@ -609,10 +622,9 @@ namespace NLog.Targets
             for (int i = 0; i < text.Length; ++i)
             {
                 char ch = text[i];
-                if (!RequiresJsonEscape(ch, escapeUnicode))
+                if (!RequiresJsonEscape(ch, escapeUnicode, escapeForwardSlash))
                 {
-                    if (sb != null)
-                        sb.Append(ch);
+                    sb?.Append(ch);
                     continue;
                 }
                 else if (sb == null)
@@ -631,12 +643,19 @@ namespace NLog.Targets
                         sb.Append("\\\\");
                         break;
 
-                    case '/':
-                        sb.Append("\\/");
-                        break;
-
                     case '\b':
                         sb.Append("\\b");
+                        break;
+
+                    case '/':
+                        if (escapeForwardSlash)
+                        {
+                            sb.Append("\\/");
+                        }
+                        else
+                        {
+                            sb.Append(ch);
+                        }
                         break;
 
                     case '\r':
@@ -672,15 +691,20 @@ namespace NLog.Targets
                 destination.Append(text);   // Faster to make single Append
         }
 
-        internal static bool RequiresJsonEscape(char ch, bool escapeUnicode)
+        internal static bool RequiresJsonEscape(char ch, JsonSerializeOptions options)
+        {
+            return RequiresJsonEscape(ch, options.EscapeUnicode, options.EscapeForwardSlash);
+        }
+
+        internal static bool RequiresJsonEscape(char ch, bool escapeUnicode, bool escapeForwardSlash)
         {
             if (!EscapeChar(ch, escapeUnicode))
             {
                 switch (ch)
                 {
+                    case '/': return escapeForwardSlash;
                     case '"':
                     case '\\':
-                    case '/':
                         return true;
                     default:
                         return false;
@@ -781,7 +805,7 @@ namespace NLog.Targets
 
                 var str = Convert.ToString(value, CultureInfo.InvariantCulture);
                 destination.Append('"');
-                AppendStringEscape(destination, str, options.EscapeUnicode);
+                AppendStringEscape(destination, str, options);
                 destination.Append('"');
                 return true;
             }

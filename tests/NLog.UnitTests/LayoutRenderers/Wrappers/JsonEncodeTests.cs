@@ -48,5 +48,22 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
 
             Assert.Equal(@" abc\""\n\b\r\f\t\/\u1234\u5432\\xyz ", l.Render(LogEventInfo.CreateNullEvent()));
         }
+
+        [Fact]
+        public void JsonHyperlinkEscapeForwardSlashTest()
+        {
+            SimpleLayout l = "${json-encode:${event-properties:prop1}:escapeForwardSlash=false}";
+
+            var url = "https://localhost:5001/api/values";
+
+            var logEventInfo = LogEventInfo.Create(LogLevel.Info, "logger1", "myMessage");
+            logEventInfo.Properties["prop1"] = url;
+
+            // Act
+            var result = l.Render(logEventInfo);
+
+            // Assert
+            Assert.Equal(url, result);
+        }
     }
 }
