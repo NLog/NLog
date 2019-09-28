@@ -89,5 +89,15 @@ namespace NLog.Targets
             QuoteKeys = true;
             MaxRecursionLimit = 10;
         }
+
+        /// <summary>Registers a type<see cref="T:System.Type" /> to be excluded from serialization.</summary>
+        public static void RegisterSerializationExclusion(Type t) => NLog.Internal.ObjectReflectionCache.SerializationExclusionList.Add(x => x == t);
+        /// <summary>Registers a type<see cref="T:System.Type" /> to be excluded from serialization.</summary>
+        public static void RegisterSerializationExclusion<T>() => NLog.Internal.ObjectReflectionCache.SerializationExclusionList.Add(x => x == typeof(T));
+        /// <summary>Registers a custom evaluation function to determine if a given type should be serialized.  If the func returns true, the object's ToString() will be invoked.  If false, the object will be serialized.</summary>
+        public static void RegisterSerializationExclusion(Func<Type, bool> func) => NLog.Internal.ObjectReflectionCache.SerializationExclusionList.Add(func);
+        /// <summary>Resets the list for custom serialization.</summary>
+        public static void ResetSerializationExclusions() => NLog.Internal.ObjectReflectionCache.SerializationExclusionList.Clear();
+
     }
 }
