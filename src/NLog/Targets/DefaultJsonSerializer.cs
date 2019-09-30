@@ -35,6 +35,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 using System.Text;
 using NLog.Internal;
 
@@ -424,6 +425,11 @@ namespace NLog.Targets
         {
             if (depth < options.MaxRecursionLimit)
             {
+                if (options.SerializationInterceptor != null && options.SerializationInterceptor.GetCustomSerializedValue(value.GetType(), value, out var replacement))
+                {
+                    return SerializeObject(replacement, destination, options, objectsInPath, depth);
+                }
+
                 var objectPropertyList = _objectReflectionCache.LookupObjectProperties(value);
                 if (!objectPropertyList.ConvertToString)
                 {

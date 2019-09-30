@@ -31,60 +31,51 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Text;
-using NLog.Targets;
-using Xunit;
+using System;
+using System.Reflection;
 
-namespace NLog.UnitTests.Targets
+namespace NLog.Targets.SerializationInterceptors
 {
     /// <summary>
-    ///     Test via <see cref="IJsonConverter" /> path
+    /// An interceptor that can replace an object with it's 'ToString' method.
     /// </summary>
-    public class DefaultJsonSerializerClassTests : NLogTestBase
+    public class ToStringSerializationInterceptor : ISerializationInterceptor
     {
-        private static readonly object _testSyncObject = new object();
+        private readonly ISerializationInterceptor _parent;
+        private readonly Type _type;
 
-        private class ExcludedClass
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="parent">The previous interceptor, used for chaining.</param>
+        /// <param name="type"></param>
+        public ToStringSerializationInterceptor(ISerializationInterceptor parent, Type type)
         {
-            public string ExcludedString { get; set; }
+            _parent = parent;
+            _type = type;
         }
 
-        private class IncludedClass
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objectType"></param>
+        /// <param name="value"></param>
+        /// <param name="replacementValue"></param>
+        /// <returns></returns>
+        public virtual bool GetCustomSerializedValue(Type objectType, object value, out object replacementValue)
         {
-            public string IncludedString { get; set; }
-        }
-
-        private class ContainerClass
-        {
-            public string S { get; set; }
-            public ExcludedClass Excluded { get; set; }
-            public IncludedClass Included { get; set; }
-        }
-
-        private static ContainerClass BuildSampleObject()
-        {
-            var testObject = new ContainerClass
+            if (_type.IsAssignableFrom(objectType))
             {
-                S = "sample",
-                Excluded = new ExcludedClass {ExcludedString = "shouldn't be serialized"},
-                Included = new IncludedClass {IncludedString = "serialized"}
-            };
-            return testObject;
-        }
+                replacementValue = value?.ToString() ?? "null";
+                return true;
+            }
 
-        [Fact]
-        public void ExcludedClassSerializer_RegistersSerializeAsToString_InvokesToString()
-        {
-            var testObject = BuildSampleObject();
+            if (_parent != null)
+                return _parent.GetCustomSerializedValue(objectType, value, out replacementValue);
 
-            var sb = new StringBuilder();
-            var options = new JsonSerializeOptions();
-
-            options.SerializeAsToString<ExcludedClass>();
-            DefaultJsonSerializer.Instance.SerializeObject(testObject, sb, options);
-            const string expectedValue =
-                @"{""S"":""sample"", ""Excluded"":""NLog.UnitTests.Targets.DefaultJsonSerializerClassTests+ExcludedClass"", ""Included"":{""IncludedString"":""serialized""}}";
-            Assert.Equal(expectedValue, sb.ToString());
+            replacementValue = null;
+            return false;
         }
     }
+
 }

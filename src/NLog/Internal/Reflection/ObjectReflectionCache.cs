@@ -175,7 +175,6 @@ namespace NLog.Internal
             return propertyInfos;
         }
 
-        internal static List<Func<Type, bool>> SerializationExclusionList { get; } = new List<Func<Type, bool>>();
         private static bool ConvertSimpleToString(Type objectType)
         {
             if (typeof(IFormattable).IsAssignableFrom(objectType))
@@ -189,12 +188,6 @@ namespace NLog.Internal
 
             if (typeof(Assembly).IsAssignableFrom(objectType))
                 return true;
-
-            foreach (var exclusionFunc in SerializationExclusionList)
-            {
-                if (exclusionFunc(objectType))
-                    return true;
-            }
 
             return false;
         }
