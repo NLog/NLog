@@ -31,15 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Linq;
-using NLog.Common;
-
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
     using System.Reflection;
+    using NLog.Common;
     using NLog.Conditions;
     using NLog.Filters;
     using NLog.Internal;
@@ -67,6 +66,7 @@ namespace NLog.Config
         private readonly Factory<TimeSource, TimeSourceAttribute> _timeSources;
 
         private IJsonConverter _jsonSerializer = DefaultJsonSerializer.Instance;
+        private IObjectTypeTransformer _objectTypeTransformer = ObjectReflectionCache.Instance;
 
         /// <summary>
         /// Called before the assembly will be loaded.
@@ -191,6 +191,15 @@ namespace NLog.Config
         {
             get => MessageTemplates.ValueFormatter.Instance;
             set => MessageTemplates.ValueFormatter.Instance = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the custom object-type transformation for use in <see cref="JsonLayout"/>, <see cref="XmlLayout"/> or <see cref="NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper"/>
+        /// </summary>
+        internal IObjectTypeTransformer ObjectTypeTransformer
+        {
+            get => _objectTypeTransformer;
+            set => _objectTypeTransformer = value ?? ObjectReflectionCache.Instance;
         }
 
         /// <summary>

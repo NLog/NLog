@@ -42,21 +42,48 @@ namespace NLog.Internal
     using System.Linq;
     using System.Reflection;
     using NLog.Common;
-    using NLog.Internal;
+    using NLog.Config;
 
     /// <summary>
     /// Converts object into a List of property-names and -values using reflection
     /// </summary>
-    internal class ObjectReflectionCache
+    internal class ObjectReflectionCache : IObjectTypeTransformer
     {
         readonly MruCache<Type, ObjectPropertyInfos> _objectTypeCache = new MruCache<Type, ObjectPropertyInfos>(10000);
-        static readonly Dictionary<Type, Func<object, IDictionary<string,object>>> _objectTypeOverride = new Dictionary<Type, Func<object, IDictionary<string, object>>>();
+        private IObjectTypeTransformer ObjectTypeTransformation => _objectTypeTransformation ?? (_objectTypeTransformation = ConfigurationItemFactory.Default.ObjectTypeTransformer);
+        private IObjectTypeTransformer _objectTypeTransformation;
+
+        public static IObjectTypeTransformer Instance { get; } = new ObjectReflectionCache();
+
+        object IObjectTypeTransformer.TryTransformObject(object obj)
+        {
+            return null;
+        }
 
         public ObjectPropertyList LookupObjectProperties(object value)
         {
             if (TryLookupExpandoObject(value, out var propertyValues))
             {
                 return propertyValues;
+            }
+
+            if (!ReferenceEquals(ObjectTypeTransformation, Instance))
+            {
+                var result = ObjectTypeTransformation.TryTransformObject(value);
+                if (result != null)
+                {
+                    if (result is IConvertible)
+                    {
+                        return new ObjectPropertyList(result, ObjectPropertyInfos.SimpleToString.Properties, ObjectPropertyInfos.SimpleToString.FastLookup);
+                    }
+
+                    if (TryLookupExpandoObject(result, out propertyValues))
+                    {
+                        return propertyValues;
+                    }
+
+                    value = result;
+                }
             }
 
             var objectType = value.GetType();
@@ -93,28 +120,6 @@ namespace NLog.Internal
                 }
                 objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
                 return true;
-            }
-
-            if (_objectTypeOverride.Count > 0)
-            {
-                // User defined object reflection override
-                lock (_objectTypeOverride)
-                {
-                    if (_objectTypeOverride.TryGetValue(objectType, out var objectReflection))
-                    {
-                        var objectProperties = objectReflection.Invoke(value);
-                        if (objectProperties?.Count > 0)
-                        {
-                            objectPropertyList = new ObjectPropertyList(objectProperties);
-                            return true;
-                        }
-
-                        // object.ToString() since no properties
-                        propertyInfos = ObjectPropertyInfos.SimpleToString;
-                        objectPropertyList = new ObjectPropertyList(value, propertyInfos.Properties, propertyInfos.FastLookup);
-                        return true;
-                    }
-                }
             }
 
             if (TryExtractExpandoObject(objectType, out propertyInfos))

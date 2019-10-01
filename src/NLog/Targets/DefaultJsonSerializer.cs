@@ -55,14 +55,12 @@ namespace NLog.Targets
 
         private const int MaxJsonLength = 512 * 1024;
 
-        private static readonly DefaultJsonSerializer instance = new DefaultJsonSerializer();
-
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
-        public static DefaultJsonSerializer Instance => instance;
+        public static DefaultJsonSerializer Instance { get; } = new DefaultJsonSerializer();
 
         static DefaultJsonSerializer()
         {
@@ -71,7 +69,7 @@ namespace NLog.Targets
         /// <summary>
         /// Private. Use <see cref="Instance"/>
         /// </summary>
-        private DefaultJsonSerializer()
+        internal DefaultJsonSerializer()
         { }
 
         /// <summary>
@@ -429,10 +427,10 @@ namespace NLog.Targets
                 var objectPropertyList = _objectReflectionCache.LookupObjectProperties(value);
                 if (!objectPropertyList.ConvertToString)
                 {
-                    if (ReferenceEquals(options, instance._serializeOptions) && value is Exception)
+                    if (ReferenceEquals(options, Instance._serializeOptions) && value is Exception)
                     {
                         // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
-                        options = instance._exceptionSerializeOptions;
+                        options = Instance._exceptionSerializeOptions;
                     }
 
                     using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false, _referenceEqualsComparer))

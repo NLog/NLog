@@ -51,106 +51,106 @@ namespace NLog
         /// <remarks>
         /// Enabled by default, and gives a huge performance hit during startup. Recommended to disable this when running in the cloud.
         /// </remarks>
-        public static ISetupExtensionsBuilder AutoLoadAssemblies(this ISetupExtensionsBuilder extensionsBuilder, bool enable)
+        public static ISetupExtensionsBuilder AutoLoadAssemblies(this ISetupExtensionsBuilder setupBuilder, bool enable)
         {
             ConfigurationItemFactory.Default = enable ? null : new ConfigurationItemFactory(typeof(SetupBuilderExtensions).GetAssembly());
-            return extensionsBuilder;
+            return setupBuilder;
         }
 
         /// <summary>
         /// Registers NLog extensions from the assembly.
         /// </summary>
-        public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder extensionsBuilder, Assembly assembly)
+        public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, Assembly assembly)
         {
             ConfigurationItemFactory.Default.RegisterItemsFromAssembly(assembly);
-            return extensionsBuilder;
+            return setupBuilder;
         }
 
         /// <summary>
         /// Registers NLog extensions from the assembly type name
         /// </summary>
-        public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder extensionsBuilder, string assemblyName)
+        public static ISetupExtensionsBuilder RegisterAssembly(this ISetupExtensionsBuilder setupBuilder, string assemblyName)
         {
             Assembly assembly = AssemblyHelpers.LoadFromName(assemblyName);
             ConfigurationItemFactory.Default.RegisterItemsFromAssembly(assembly);
-            return extensionsBuilder;
+            return setupBuilder;
         }
 
         /// <summary>
         /// Register a custom Target.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
-        /// <param name="extensionsBuilder">Fluent interface parameter.</param>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <typeparam name="T"> Type of the Target.</typeparam>
         /// <param name="name"> Name of the Target.</param>
-        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder extensionsBuilder, string name) where T : Target
+        public static ISetupExtensionsBuilder RegisterTarget<T>(this ISetupExtensionsBuilder setupBuilder, string name) where T : Target
         {
             var layoutRendererType = typeof(T);
-            return RegisterTarget(extensionsBuilder, name, layoutRendererType);
+            return RegisterTarget(setupBuilder, name, layoutRendererType);
         }
 
         /// <summary>
         /// Register a custom Target.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
-        /// <param name="extensionsBuilder">Fluent interface parameter.</param>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="targetType"> Type of the Target.</param>
         /// <param name="name"> Name of the Target.</param>
-        public static ISetupExtensionsBuilder RegisterTarget(this ISetupExtensionsBuilder extensionsBuilder, string name, Type targetType)
+        public static ISetupExtensionsBuilder RegisterTarget(this ISetupExtensionsBuilder setupBuilder, string name, Type targetType)
         {
             ConfigurationItemFactory.Default.Targets.RegisterDefinition(name, targetType);
-            return extensionsBuilder;
+            return setupBuilder;
         }
 
         /// <summary>
         /// Register a custom layout renderer.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
-        /// <param name="extensionsBuilder">Fluent interface parameter.</param>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <typeparam name="T"> Type of the layout renderer.</typeparam>
         /// <param name="name"> Name of the layout renderer - without ${}.</param>
-        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder extensionsBuilder, string name)
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer<T>(this ISetupExtensionsBuilder setupBuilder, string name)
             where T : LayoutRenderer
         {
             var layoutRendererType = typeof(T);
-            return RegisterLayoutRenderer(extensionsBuilder, name, layoutRendererType);
+            return RegisterLayoutRenderer(setupBuilder, name, layoutRendererType);
         }
 
         /// <summary>
         /// Register a custom layout renderer.
         /// </summary>
         /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
-        /// <param name="extensionsBuilder">Fluent interface parameter.</param>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="layoutRendererType"> Type of the layout renderer.</param>
         /// <param name="name"> Name of the layout renderer - without ${}.</param>
-        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder extensionsBuilder, string name, Type layoutRendererType)
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Type layoutRendererType)
         {
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition(name, layoutRendererType);
-            return extensionsBuilder;
+            return setupBuilder;
         }
 
         /// <summary>
         /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent.
         /// </summary>
-        /// <param name="extensionsBuilder">Fluent interface parameter.</param>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">Name of the layout renderer - without ${}.</param>
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
-        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder extensionsBuilder, string name, Func<LogEventInfo, object> layoutMethod)
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> layoutMethod)
         {
-            return RegisterLayoutRenderer(extensionsBuilder, name, (info, configuration) => layoutMethod(info));
+            return RegisterLayoutRenderer(setupBuilder, name, (info, configuration) => layoutMethod(info));
         }
 
         /// <summary>
         /// Register a custom layout renderer with a callback function <paramref name="layoutMethod"/>. The callback receives the logEvent and the current configuration.
         /// </summary>
-        /// <param name="extensionsBuilder">Fluent interface parameter.</param>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="name">Name of the layout renderer - without ${}.</param>
         /// <param name="layoutMethod">Callback that returns the value for the layout renderer.</param>
-        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder extensionsBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod)
+        public static ISetupExtensionsBuilder RegisterLayoutRenderer(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, LoggingConfiguration, object> layoutMethod)
         {
             var layoutRenderer = new FuncLayoutRenderer(name, layoutMethod);
             ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
-            return extensionsBuilder;
+            return setupBuilder;
         }
     }
 }
