@@ -74,5 +74,9 @@ namespace NLog.Config
         /// Appends the <see cref="System.Exception.Source"/> from the application or the object that caused the error.
         /// </summary>
         Source = 8,
+        /// <summary>
+        /// Appends any additional properties that specific type of Exception might have.
+        /// </summary>
+        Properties = 9,
     }
 }

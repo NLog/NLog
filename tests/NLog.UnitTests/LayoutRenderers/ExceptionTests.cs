@@ -645,6 +645,24 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Contains("Test Inner 1", lastMessage);
         }
 
+        [Fact]
+        public void CustomExceptionProperties_Layout_Test()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=Properties}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            var ex = new CustomArgumentException("Goodbye World", "Nuke");
+            logger.Fatal(ex, "msg");
+            AssertDebugLastMessage("debug1", $"{nameof(CustomArgumentException.ParamName)}: Nuke");
+        }
+
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
         {
             public override string Message => throw new Exception("Exception from Message property");
