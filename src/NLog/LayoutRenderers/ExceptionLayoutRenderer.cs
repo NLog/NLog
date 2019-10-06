@@ -68,16 +68,30 @@ namespace NLog.LayoutRenderers
                                                                                                         {"STACKTRACE", ExceptionRenderingFormat.StackTrace},
                                                                                                         {"DATA",ExceptionRenderingFormat.Data},
                                                                                                         {"@",ExceptionRenderingFormat.Serialize},
+                                                                                                        {"HRESULT",ExceptionRenderingFormat.HResult},
                                                                                                         {"PROPERTIES",ExceptionRenderingFormat.Properties},
                                                                                                     };
 
         private static readonly HashSet<string> ExcludeDefaultProperties = new HashSet<string>(new[] {
             "Type",
             nameof(Exception.Data),
+#if !SILVERLIGHT
             nameof(Exception.HelpLink),
+#else
+            "HelpLink",
+#endif
+#if NET45
+            nameof(Exception.HResult),
+#else
+            "HResult",
+#endif
             nameof(Exception.InnerException),
             nameof(Exception.Message),
+#if !SILVERLIGHT
             nameof(Exception.Source),
+#else
+            "Source",
+#endif            
             nameof(Exception.StackTrace),
 #if SILVERLIGHT || NETSTANDARD1_0
             "TargetSite",
@@ -111,6 +125,7 @@ namespace NLog.LayoutRenderers
                                                                                                         {ExceptionRenderingFormat.StackTrace, AppendStackTrace},
                                                                                                         {ExceptionRenderingFormat.Data, AppendData},
                                                                                                         {ExceptionRenderingFormat.Serialize, AppendSerializeObject},
+                                                                                                        {ExceptionRenderingFormat.HResult, AppendHResult},
                                                                                                         {ExceptionRenderingFormat.Properties, AppendProperties},
                                                                                                     };
         }
@@ -401,6 +416,21 @@ namespace NLog.LayoutRenderers
         {
 #if !SILVERLIGHT
             sb.Append(ex.Source);
+#endif
+        }
+
+        /// <summary>
+        /// Appends the HResult of an Exception to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose HResult should be appended.</param>
+        protected virtual void AppendHResult(StringBuilder sb, Exception ex)
+        {
+#if NET45
+            if (ex.HResult != 0 && ex.HResult != 1)
+            {
+                sb.AppendFormat("0x{0:X8}", ex.HResult);
+            }
 #endif
         }
 
