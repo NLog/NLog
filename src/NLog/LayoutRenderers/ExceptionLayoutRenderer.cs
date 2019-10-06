@@ -71,8 +71,20 @@ namespace NLog.LayoutRenderers
                                                                                                         {"PROPERTIES",ExceptionRenderingFormat.Properties},
                                                                                                     };
 
-        private static HashSet<string> ExcludeDefaultProperties => _excludeDefaultProperties  ?? (_excludeDefaultProperties  = new HashSet<string>(typeof(Exception).GetProperties().Where(p => p.IsValidPublicProperty()).Select(p => p.Name).Concat(new [] { "Type" }), StringComparer.OrdinalIgnoreCase));
-        private static HashSet<string> _excludeDefaultProperties;
+        private static readonly HashSet<string> ExcludeDefaultProperties = new HashSet<string>(new[] {
+            "Type",
+            nameof(Exception.Data),
+            nameof(Exception.HelpLink),
+            nameof(Exception.InnerException),
+            nameof(Exception.Message),
+            nameof(Exception.Source),
+            nameof(Exception.StackTrace),
+#if SILVERLIGHT || NETSTANDARD1_0
+            "TargetSite",
+#else
+            nameof(Exception.TargetSite),
+#endif
+        });
 
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache());
         private ObjectReflectionCache _objectReflectionCache;
@@ -429,11 +441,10 @@ namespace NLog.LayoutRenderers
         protected virtual void AppendProperties(StringBuilder sb, Exception ex)
         {
             string separator = string.Empty;
-            var excludeProperties = ExcludeDefaultProperties;
             var exceptionProperties = ObjectReflectionCache.LookupObjectProperties(ex);
             foreach (var property in exceptionProperties)
             {
-                if (excludeProperties.Contains(property.Name))
+                if (ExcludeDefaultProperties.Contains(property.Name))
                     continue;
 
                 var propertyValue = property.Value;
