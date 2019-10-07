@@ -1526,7 +1526,7 @@ namespace NLog.UnitTests.Targets
         public void DateArchive_SkipPeriod(DateTimeKind timeKind, FileArchivePeriod archivePeriod, bool includeDateInLogFilePath, bool includeSequenceInArchive)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            var logFile = Path.Combine(tempPath, includeDateInLogFilePath ? "file_${shortdate}.txt" : "file.txt");
+            var logFile = Path.Combine(tempPath, includeDateInLogFilePath ? "file_${date:format=yyyyMMddHHmm}.txt" : "file.txt");
             var defaultTimeSource = TimeSource.Current;
             try
             {
@@ -2436,19 +2436,22 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData("archive/test.log.{####}", "archive/test.log.0000")]
-        [InlineData("archive\\test.log.{####}", "archive\\test.log.0000")]
-        [InlineData("file.txt", "file.txt")]
-        public void FileTargetArchiveFileNameTest(string archiveFileName, string expectedArchiveFileName)
+        [InlineData("archive/test.log.{####}", "archive/test.log.0000", ArchiveNumberingMode.Sequence)]
+        [InlineData("archive\\test.log.{####}", "archive\\test.log.0000", ArchiveNumberingMode.Sequence)]
+        [InlineData("file-${date:format=yyyyMMdd}.txt", "file-${date:format=yyyyMMdd}.txt", ArchiveNumberingMode.Sequence)]
+        [InlineData("file-{#}.txt", "file-${date:format=yyyyMMdd}.txt", ArchiveNumberingMode.Date)]
+        public void FileTargetArchiveFileNameTest(string archiveFileName, string expectedArchiveFileName, ArchiveNumberingMode archiveNumbering)
         {
-            var tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            var logFile = Path.Combine(tempPath, "file.txt");
+            var subPath = Guid.NewGuid().ToString();
+            var tempPath = Path.Combine(Path.GetTempPath(), subPath);
+            var logFile = Path.Combine(tempPath, "file-${date:format=yyyyMMdd}.txt");
             try
             {
                 var fileTarget = WrapFileTarget(new FileTarget
                 {
                     FileName = logFile,
-                    ArchiveFileName = Path.Combine(tempPath, archiveFileName),
+                    ArchiveFileName = Path.Combine(tempPath, "..", subPath, archiveFileName),
+                    ArchiveNumbering = archiveNumbering,
                     ArchiveAboveSize = 1000,
                     MaxArchiveFiles = 1000,
                 });
@@ -2461,6 +2464,10 @@ namespace NLog.UnitTests.Targets
                 }
 
                 LogManager.Configuration = null;
+
+                logFile = new SimpleLayout(logFile).Render(LogEventInfo.CreateNullEvent());
+                expectedArchiveFileName = new SimpleLayout(expectedArchiveFileName).Render(LogEventInfo.CreateNullEvent());
+
                 Assert.True(File.Exists(logFile));
                 Assert.True(File.Exists(Path.Combine(tempPath, expectedArchiveFileName)));
             }
