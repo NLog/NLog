@@ -75,29 +75,13 @@ namespace NLog.LayoutRenderers
         private static readonly HashSet<string> ExcludeDefaultProperties = new HashSet<string>(new[] {
             "Type",
             nameof(Exception.Data),
-#if !SILVERLIGHT
-            nameof(Exception.HelpLink),
-#else
-            "HelpLink",
-#endif
-#if NET45
-            nameof(Exception.HResult),
-#else
-            "HResult",
-#endif
+            "HelpLink",  // Not available on SILVERLIGHT
+            "HResult",   // Not available on NET35 + NET40
             nameof(Exception.InnerException),
             nameof(Exception.Message),
-#if !SILVERLIGHT
-            nameof(Exception.Source),
-#else
-            "Source",
-#endif            
+            "Source",    // Not available on SILVERLIGHT
             nameof(Exception.StackTrace),
-#if SILVERLIGHT || NETSTANDARD1_0
-            "TargetSite",
-#else
-            nameof(Exception.TargetSite),
-#endif
+            "TargetSite",// Not available on NETSTANDARD1_0
         });
 
         private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache());
@@ -427,7 +411,9 @@ namespace NLog.LayoutRenderers
         protected virtual void AppendHResult(StringBuilder sb, Exception ex)
         {
 #if NET45
-            if (ex.HResult != 0 && ex.HResult != 1)
+            const int S_OK = 0;     // Carries no information, so skip
+            const int S_FALSE = 1;  // Carries no information, so skip
+            if (ex.HResult != S_OK && ex.HResult != S_FALSE)
             {
                 sb.AppendFormat("0x{0:X8}", ex.HResult);
             }
@@ -477,12 +463,12 @@ namespace NLog.LayoutRenderers
                 if (ExcludeDefaultProperties.Contains(property.Name))
                     continue;
 
-                var propertyValue = property.Value;
-                if (propertyValue == null || string.IsNullOrEmpty(propertyValue as string))
+                var propertyValue = property.Value?.ToString();
+                if (string.IsNullOrEmpty(propertyValue))
                     continue;
 
                 sb.Append(separator);
-                sb.AppendFormat("{0}: {1}", property.Name, property.Value?.ToString());
+                sb.AppendFormat("{0}: {1}", property.Name, propertyValue);
                 separator = ExceptionDataSeparator;
             }
         }
