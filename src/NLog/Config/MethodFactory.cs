@@ -36,8 +36,8 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Factory for locating methods.
@@ -49,6 +49,12 @@ namespace NLog.Config
         where TMethodAttributeType : NameBaseAttribute
     {
         private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>();
+        private readonly MethodFactory<TClassAttributeType, TMethodAttributeType> _globalDefaultFactory;
+
+        public MethodFactory(MethodFactory<TClassAttributeType, TMethodAttributeType> globalDefaultFactory)
+        {
+            _globalDefaultFactory = globalDefaultFactory;
+        }
 
         /// <summary>
         /// Gets a collection of all registered items in the factory.
@@ -83,8 +89,6 @@ namespace NLog.Config
                     {
                         throw;
                     }
-
-                    
                 }
             }
         }
@@ -135,7 +139,7 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryCreateInstance(string itemName, out MethodInfo result)
         {
-            return _nameToMethodInfo.TryGetValue(itemName, out result);
+            return TryGetDefinition(itemName, out result);
         }
 
         /// <summary>
@@ -163,7 +167,12 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryGetDefinition(string itemName, out MethodInfo result)
         {
-            return _nameToMethodInfo.TryGetValue(itemName, out result);
+            if (_nameToMethodInfo.TryGetValue(itemName, out result))
+            {
+                return true;
+            }
+
+            return _globalDefaultFactory?.TryGetDefinition(itemName, out result) ?? false;
         }
     }
 }

@@ -42,21 +42,25 @@ using NLog.Internal;
 namespace NLog.MessageTemplates
 {
     /// <summary>
-    /// Convert Render or serialize a value, with optionally backwards-compatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
+    /// Convert, Render or serialize a value, with optionally backwards-compatible with <see cref="string.Format(System.IFormatProvider,string,object[])"/>
     /// </summary>
     internal class ValueFormatter : IValueFormatter
     {
         public static IValueFormatter Instance
         {
-            get => _instance ?? (_instance = new ValueFormatter());
-            set => _instance = value ?? new ValueFormatter();
+            get => _instance ?? (_instance = new ValueFormatter(null));
+            set => _instance = value ?? new ValueFormatter(null);
         }
         private static IValueFormatter _instance;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 
-        /// <summary>Singleton</summary>
-        private ValueFormatter()
+        private readonly ServiceRepository _serviceRepository;
+        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository.ResolveJsonConverter());
+        private IJsonConverter _jsonConverter;
+
+        internal ValueFormatter(ServiceRepository serviceRepository)
         {
+            _serviceRepository = serviceRepository;
         }
 
         private const int MaxRecursionDepth = 2;
@@ -83,7 +87,7 @@ namespace NLog.MessageTemplates
             {
                 case CaptureType.Serialize:
                     {
-                        return ConfigurationItemFactory.Default.JsonConverter.SerializeObject(value, builder);
+                        return JsonConverter.SerializeObject(value, builder);
                     }
                 case CaptureType.Stringify:
                     {

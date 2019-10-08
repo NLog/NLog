@@ -66,7 +66,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest1()
         {
-            ConfigurationItemFactory.Default = null; //build new factory next time
+            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
 
             Assert.NotNull(typeof(FooLayout));
 
@@ -113,7 +113,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionTest2()
         {
-            ConfigurationItemFactory.Default = null; //build new factory next time
+            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
@@ -162,7 +162,7 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void ExtensionWithPrefixTest()
         {
-            ConfigurationItemFactory.Default = null; //build new factory next time
+            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
@@ -209,7 +209,7 @@ namespace NLog.UnitTests.Config
         {
             Assert.NotNull(typeof(FooLayout));
 
-            ConfigurationItemFactory.Default = null; //build new factory next time
+            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
@@ -259,7 +259,7 @@ namespace NLog.UnitTests.Config
         {
             Assert.NotNull(typeof(FooLayout));
 
-            ConfigurationItemFactory.Default = null; //build new factory next time
+            LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
 
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
@@ -419,7 +419,7 @@ namespace NLog.UnitTests.Config
             finally
             {
                 ConfigurationItemFactory.Default.Clear();
-                ConfigurationItemFactory.Default = null; //build new factory next time
+                LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
             }
         }
 
@@ -439,7 +439,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                ConfigurationItemFactory.Default = null; //build new factory next time
+                LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
                 ConfigurationItemFactory.AssemblyLoading += onAssemblyLoading;
 
                 using(new NoThrowNLogExceptions())
@@ -475,7 +475,7 @@ namespace NLog.UnitTests.Config
                 //cleanup
                 ConfigurationItemFactory.AssemblyLoading -= onAssemblyLoading;
                 ConfigurationItemFactory.Default.Clear();
-                ConfigurationItemFactory.Default = null; //build new factory next time
+                LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
             }
         }
 
@@ -488,8 +488,8 @@ namespace NLog.UnitTests.Config
                 var writer = new StringWriter();
                 InternalLogger.LogWriter = writer;
                 InternalLogger.LogLevel = LogLevel.Debug;
-                //reload ConfigurationItemFactory 
-                ConfigurationItemFactory.Default = null;
+                LogManager.LogFactory.ServiceRepository = new ServiceRepository(true);
+
                 var fact = ConfigurationItemFactory.Default;
 
                 //also throw exceptions 

@@ -53,6 +53,9 @@ namespace NLog.LayoutRenderers
         private Process _process;
         private ReflectionHelpers.LateBoundMethod _lateBoundPropertyGet;
 
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
+        private IValueFormatter _valueFormatter;
+
         /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>
@@ -101,7 +104,7 @@ namespace NLog.LayoutRenderers
             if (value != null)
             {
                 var formatProvider = GetFormatProvider(logEvent);
-                builder.AppendFormattedValue(value, Format, formatProvider);
+                builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
             }
         }
 
