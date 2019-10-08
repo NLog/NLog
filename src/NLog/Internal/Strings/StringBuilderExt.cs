@@ -51,7 +51,8 @@ namespace NLog.Internal
         /// <param name="value">value to be appended</param>
         /// <param name="format">format string. If @, then serialize the value with the Default JsonConverter.</param>
         /// <param name="formatProvider">provider, for example culture</param>
-        public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider)
+        /// <param name="valueFormatter">NLog string.Format interface</param>
+        public static void AppendFormattedValue(this StringBuilder builder, object value, string format, IFormatProvider formatProvider, IValueFormatter valueFormatter)
         {
             string stringValue = value as string;
             if (stringValue != null && string.IsNullOrEmpty(format))
@@ -60,11 +61,11 @@ namespace NLog.Internal
             }
             else if (format == MessageTemplates.ValueFormatter.FormatAsJson)
             {
-                ValueFormatter.Instance.FormatValue(value, null, CaptureType.Serialize, formatProvider, builder);
+                valueFormatter.FormatValue(value, null, CaptureType.Serialize, formatProvider, builder);
             }
             else if (value != null)
             {
-                ValueFormatter.Instance.FormatValue(value, format, CaptureType.Normal, formatProvider, builder);
+                valueFormatter.FormatValue(value, format, CaptureType.Normal, formatProvider, builder);
             }
         }
 

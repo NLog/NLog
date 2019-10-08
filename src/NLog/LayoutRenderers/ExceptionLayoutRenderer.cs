@@ -56,6 +56,9 @@ namespace NLog.LayoutRenderers
         private string _innerFormat = string.Empty;
         private readonly Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>> _renderingfunctions;
 
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
+        private IValueFormatter _valueFormatter;
+
         private static readonly Dictionary<string, ExceptionRenderingFormat> _formatsMapping = new Dictionary<string, ExceptionRenderingFormat>(StringComparer.OrdinalIgnoreCase)
                                                                                                     {
                                                                                                         {"MESSAGE",ExceptionRenderingFormat.Message},
@@ -456,7 +459,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose properties should be appended.</param>
         protected virtual void AppendSerializeObject(StringBuilder sb, Exception ex)
         {
-            ConfigurationItemFactory.Default.ValueFormatter.FormatValue(ex, null, MessageTemplates.CaptureType.Serialize, null, sb);
+            ValueFormatter.FormatValue(ex, null, MessageTemplates.CaptureType.Serialize, null, sb);
         }
 
         /// <summary>

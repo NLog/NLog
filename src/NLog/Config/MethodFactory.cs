@@ -47,6 +47,12 @@ namespace NLog.Config
         private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>();
         private readonly Dictionary<string, ReflectionHelpers.LateBoundMethod> _nameToLateBoundMethod = new Dictionary<string, ReflectionHelpers.LateBoundMethod>();
         private readonly Func<Type, IList<KeyValuePair<string, MethodInfo>>> _methodExtractor;
+        private readonly MethodFactory<TClassAttributeType, TMethodAttributeType> _globalDefaultFactory;
+
+        public MethodFactory(MethodFactory<TClassAttributeType, TMethodAttributeType> globalDefaultFactory)
+        {
+            _globalDefaultFactory = globalDefaultFactory;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MethodFactory"/> class.
@@ -174,7 +180,7 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryCreateInstance(string itemName, out MethodInfo result)
         {
-            return _nameToMethodInfo.TryGetValue(itemName, out result);
+            return TryGetDefinition(itemName, out result);
         }
 
         /// <summary>
@@ -242,7 +248,12 @@ namespace NLog.Config
         /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
         public bool TryGetDefinition(string itemName, out MethodInfo result)
         {
-            return _nameToMethodInfo.TryGetValue(itemName, out result);
+            if (_nameToMethodInfo.TryGetValue(itemName, out result))
+            {
+                return true;
+            }
+
+            return _globalDefaultFactory?.TryGetDefinition(itemName, out result) ?? false;
         }
     }
 }

@@ -38,8 +38,13 @@ namespace NLog.Config
     /// <summary>
     /// Default implementation of <see cref="IPropertyTypeConverter"/>
     /// </summary>
-    class PropertyTypeConverter : IPropertyTypeConverter
+    internal class PropertyTypeConverter : IPropertyTypeConverter
     {
+        /// <summary>
+        /// Singleton instance of the serializer.
+        /// </summary>
+        public static PropertyTypeConverter Instance { get; } = new PropertyTypeConverter();
+
         /// <inheritdoc/>
         public object Convert(object propertyValue, Type propertyType, string format, IFormatProvider formatProvider)
         {

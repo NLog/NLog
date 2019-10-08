@@ -54,6 +54,9 @@ namespace NLog.LayoutRenderers
         private string _afterKey;
         private string _afterValue;
 
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
+        private IValueFormatter _valueFormatter;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AllEventPropertiesLayoutRenderer"/> class.
         /// </summary>
@@ -159,15 +162,15 @@ namespace NLog.LayoutRenderers
                     var key = Convert.ToString(property.Key, formatProvider);
                     var value = Convert.ToString(property.Value, formatProvider);
                     var pair = Format.Replace("[key]", key)
-                                        .Replace("[value]", value);
+                                     .Replace("[value]", value);
                     builder.Append(pair);
                 }
                 else
                 {
                     builder.Append(_beforeKey);
-                    builder.AppendFormattedValue(property.Key, null, formatProvider);
+                    builder.AppendFormattedValue(property.Key, null, formatProvider, ValueFormatter);
                     builder.Append(_afterKey);
-                    builder.AppendFormattedValue(property.Value, null, formatProvider);
+                    builder.AppendFormattedValue(property.Value, null, formatProvider, ValueFormatter);
                     builder.Append(_afterValue);
                 }
             }

@@ -52,6 +52,9 @@ namespace NLog.LayoutRenderers
     {
         private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
 
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
+        private IValueFormatter _valueFormatter;
+
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>
@@ -88,7 +91,7 @@ namespace NLog.LayoutRenderers
             if (TryGetValue(logEvent, out var value))
             {
                 var formatProvider = GetFormatProvider(logEvent, Culture);
-                builder.AppendFormattedValue(value, Format, formatProvider);
+                builder.AppendFormattedValue(value, Format, formatProvider, ValueFormatter);
             }
         }
 

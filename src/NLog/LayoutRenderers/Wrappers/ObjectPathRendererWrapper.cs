@@ -50,6 +50,18 @@ namespace NLog.LayoutRenderers.Wrappers
     {
         private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
 
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
+        private IValueFormatter _valueFormatter;
+
+        private SimpleLayout _innerAsSimple;
+
+        /// <inheritdoc />
+        public ObjectPathRendererWrapper()
+        {
+            InnerChanged += ObjectPathRendererWrapper_InnerChanged;
+            UpdateInner();
+        }
+
         /// <summary>
         /// Gets or sets the object-property-navigation-path for lookup of nested property
         ///
@@ -93,10 +105,17 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc />
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (TryGetRawValue(logEvent, out object rawValue))
+            if (_innerAsSimple != null)
             {
-                var formatProvider = GetFormatProvider(logEvent, Culture);
-                builder.AppendFormattedValue(rawValue, Format, formatProvider);
+                if (TryGetRawValue(logEvent, out object rawValue))
+                {
+                    var formatProvider = GetFormatProvider(logEvent, Culture);
+                    builder.AppendFormattedValue(rawValue, Format, formatProvider, ValueFormatter);
+                }
+            }
+            else
+            {
+                Inner?.RenderAppendBuilder(logEvent, builder);
             }
         }
 
