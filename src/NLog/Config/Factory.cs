@@ -31,14 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.LayoutRenderers;
-
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
-    using Common;
-    using Internal;
+    using System.Reflection;
+    using NLog.Common;
+    using NLog.Internal;
+    using NLog.LayoutRenderers;
 
     /// <summary>
     /// Factory for class-based items.
@@ -92,12 +92,15 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterType(Type type, string itemNamePrefix)
         {
-            IEnumerable<TAttributeType> attributes = type.GetCustomAttributes<TAttributeType>(false);
-            if (attributes != null)
+            if (typeof(TBaseType).IsAssignableFrom(type))
             {
-                foreach (TAttributeType attr in attributes)
+                IEnumerable<TAttributeType> attributes = type.GetCustomAttributes<TAttributeType>(false);
+                if (attributes != null)
                 {
-                    RegisterDefinition(itemNamePrefix + attr.Name, type);
+                    foreach (TAttributeType attr in attributes)
+                    {
+                        RegisterDefinition(itemNamePrefix + attr.Name, type);
+                    }
                 }
             }
         }
