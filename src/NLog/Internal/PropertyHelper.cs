@@ -314,6 +314,18 @@ namespace NLog.Internal
                 return true;
             }
 
+            if (type == typeof(LineEndingMode))
+            {
+                newValue = LineEndingMode.FromString(value);
+                return true;
+            }
+
+            if (type == typeof(Uri))
+            {
+                newValue = new Uri(value);
+                return true;
+            }
+
             newValue = null;
             return false;
         }
@@ -421,28 +433,25 @@ namespace NLog.Internal
 
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
+            try
+            {
 #if !SILVERLIGHT && !NETSTANDARD1_3
-            var converter = TypeDescriptor.GetConverter(type);
-            if (converter.CanConvertFrom(typeof(string)))
-            {
-                newValue = converter.ConvertFromInvariantString(value);
-                return true;
-            }
-#else
-            if (type == typeof(LineEndingMode))
-            {
-                newValue = LineEndingMode.FromString(value);
-                return true;
-            }
-            else if (type == typeof(Uri))
-            {
-                newValue = new Uri(value);
-                return true;
-            }
+                var converter = TypeDescriptor.GetConverter(type);
+                if (converter.CanConvertFrom(typeof(string)))
+                {
+                    newValue = converter.ConvertFromInvariantString(value);
+                    return true;
+                }
 #endif
-
-            newValue = null;
-            return false;
+                newValue = null;
+                return false;
+            }
+            catch (MissingMethodException ex)
+            {
+                InternalLogger.Error(ex, "Error in lookup of TypeDescriptor for type={0} to convert value '{1}'", type, value);
+                newValue = null;
+                return false;
+            }
         }
 
 
