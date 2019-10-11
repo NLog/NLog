@@ -122,32 +122,28 @@ namespace NLog.Targets.Wrappers
 
         private void WaitForBelowRequestLimit()
         {
-            long currentCount;
-            bool lockTaken = false;
-            try
-            {
-                // Attempt to yield using SpinWait
-                currentCount = TrySpinWaitForLowerCount();
+            // Attempt to yield using SpinWait
+            long currentCount = TrySpinWaitForLowerCount();
 
-                // If yield did not help, then wait on a lock
-                while (currentCount > RequestLimit)
+            // If yield did not help, then wait on a lock
+            if (currentCount > RequestLimit)
+            {
+                InternalLogger.Debug("Blocking because the overflow action is Block...");
+                lock (_logEventInfoQueue)
                 {
-                    Interlocked.Decrement(ref _count);
-                    InternalLogger.Debug("Blocking because the overflow action is Block...");
-                    if (!lockTaken)
-                        Monitor.Enter(_logEventInfoQueue);
-                    else
-                        Monitor.Wait(_logEventInfoQueue);
-                    lockTaken = true;
                     InternalLogger.Trace("Entered critical section.");
-                    currentCount = Interlocked.Increment(ref _count);
+                    currentCount = Interlocked.Read(ref _count);
+                    while (currentCount > RequestLimit)
+                    {
+                        Interlocked.Decrement(ref _count);
+                        Monitor.Wait(_logEventInfoQueue);
+                        InternalLogger.Trace("Entered critical section.");
+                        currentCount = Interlocked.Increment(ref _count);
+                    }
                 }
             }
-            finally
-            {
-                if (lockTaken)
-                    Monitor.Exit(_logEventInfoQueue);
-            }
+
+            InternalLogger.Trace("Async queue limit ok.");
         }
 
         private long TrySpinWaitForLowerCount()
@@ -222,23 +218,10 @@ namespace NLog.Targets.Wrappers
 
             if (dequeueBatch)
             {
-                bool lockTaken = false;
-                if (result.Count == count)
-                {
-                    Monitor.Enter(_logEventInfoQueue);    // Only try throttle when falling behind
-                    lockTaken = true;
-                }
-
-                try
+                lock (_logEventInfoQueue)
                 {
                     Interlocked.Add(ref _count, -result.Count);
-                    if (lockTaken)
-                        Monitor.PulseAll(_logEventInfoQueue);
-                }
-                finally
-                {
-                    if (lockTaken)
-                        Monitor.Exit(_logEventInfoQueue);
+                    Monitor.PulseAll(_logEventInfoQueue);
                 }
             }
         }

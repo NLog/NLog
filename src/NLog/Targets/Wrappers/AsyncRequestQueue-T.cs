@@ -106,7 +106,7 @@ namespace NLog.Targets.Wrappers
                                 InternalLogger.Trace("Entered critical section.");
                             }
 
-                            InternalLogger.Trace("Limit ok.");
+                            InternalLogger.Trace("Async queue limit ok.");
                             break;
                     }
                 }
