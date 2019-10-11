@@ -36,6 +36,8 @@ namespace NLog.LayoutRenderers
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
+    using System.Reflection;
     using System.Text;
     using NLog.Common;
     using NLog.Config;
@@ -66,7 +68,24 @@ namespace NLog.LayoutRenderers
                                                                                                         {"STACKTRACE", ExceptionRenderingFormat.StackTrace},
                                                                                                         {"DATA",ExceptionRenderingFormat.Data},
                                                                                                         {"@",ExceptionRenderingFormat.Serialize},
+                                                                                                        {"HRESULT",ExceptionRenderingFormat.HResult},
+                                                                                                        {"PROPERTIES",ExceptionRenderingFormat.Properties},
                                                                                                     };
+
+        private static readonly HashSet<string> ExcludeDefaultProperties = new HashSet<string>(new[] {
+            "Type",
+            nameof(Exception.Data),
+            "HelpLink",  // Not available on SILVERLIGHT
+            "HResult",   // Not available on NET35 + NET40
+            nameof(Exception.InnerException),
+            nameof(Exception.Message),
+            "Source",    // Not available on SILVERLIGHT
+            nameof(Exception.StackTrace),
+            "TargetSite",// Not available on NETSTANDARD1_0
+        });
+
+        private ObjectReflectionCache ObjectReflectionCache => _objectReflectionCache ?? (_objectReflectionCache = new ObjectReflectionCache());
+        private ObjectReflectionCache _objectReflectionCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionLayoutRenderer" /> class.
@@ -90,6 +109,8 @@ namespace NLog.LayoutRenderers
                                                                                                         {ExceptionRenderingFormat.StackTrace, AppendStackTrace},
                                                                                                         {ExceptionRenderingFormat.Data, AppendData},
                                                                                                         {ExceptionRenderingFormat.Serialize, AppendSerializeObject},
+                                                                                                        {ExceptionRenderingFormat.HResult, AppendHResult},
+                                                                                                        {ExceptionRenderingFormat.Properties, AppendProperties},
                                                                                                     };
         }
 
@@ -274,7 +295,7 @@ namespace NLog.LayoutRenderers
             AppendException(currentException, InnerFormats ?? Formats, builder);
         }
 
-        private void AppendException(Exception currentException, IEnumerable<ExceptionRenderingFormat> renderFormats, StringBuilder builder)
+        private void AppendException(Exception currentException, List<ExceptionRenderingFormat> renderFormats, StringBuilder builder)
         {
             int orgLength = builder.Length;
             foreach (ExceptionRenderingFormat renderingFormat in renderFormats)
@@ -383,6 +404,23 @@ namespace NLog.LayoutRenderers
         }
 
         /// <summary>
+        /// Appends the HResult of an Exception to the specified <see cref="StringBuilder" />.
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose HResult should be appended.</param>
+        protected virtual void AppendHResult(StringBuilder sb, Exception ex)
+        {
+#if NET45
+            const int S_OK = 0;     // Carries no information, so skip
+            const int S_FALSE = 1;  // Carries no information, so skip
+            if (ex.HResult != S_OK && ex.HResult != S_FALSE)
+            {
+                sb.AppendFormat("0x{0:X8}", ex.HResult);
+            }
+#endif
+        }
+
+        /// <summary>
         /// Appends the contents of an Exception's Data property to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -409,6 +447,30 @@ namespace NLog.LayoutRenderers
         protected virtual void AppendSerializeObject(StringBuilder sb, Exception ex)
         {
             ConfigurationItemFactory.Default.ValueFormatter.FormatValue(ex, null, MessageTemplates.CaptureType.Serialize, null, sb);
+        }
+
+        /// <summary>
+        /// Appends all the additional properties of an Exception like Data key-value-pairs
+        /// </summary>
+        /// <param name="sb">The <see cref="StringBuilder"/> to append the rendered data to.</param>
+        /// <param name="ex">The Exception whose properties should be appended.</param>
+        protected virtual void AppendProperties(StringBuilder sb, Exception ex)
+        {
+            string separator = string.Empty;
+            var exceptionProperties = ObjectReflectionCache.LookupObjectProperties(ex);
+            foreach (var property in exceptionProperties)
+            {
+                if (ExcludeDefaultProperties.Contains(property.Name))
+                    continue;
+
+                var propertyValue = property.Value?.ToString();
+                if (string.IsNullOrEmpty(propertyValue))
+                    continue;
+
+                sb.Append(separator);
+                sb.AppendFormat("{0}: {1}", property.Name, propertyValue);
+                separator = ExceptionDataSeparator;
+            }
         }
 
         /// <summary>

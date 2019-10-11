@@ -44,6 +44,8 @@ namespace NLog.UnitTests.LayoutRenderers
 
     public class ExceptionTests : NLogTestBase
     {
+        const int E_FAIL = 80004005;
+
         private ILogger logger = LogManager.GetLogger("NLog.UnitTests.LayoutRenderer.ExceptionTests");
         private const string ExceptionDataFormat = "{0}: {1}";
 
@@ -63,9 +65,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
                     <target name='debug9' type='Debug' layout='${exception:format=data}' />
                     <target name='debug10' type='Debug' layout='${exception:format=source}' />
+                    <target name='debug11' type='Debug' layout='${exception:format=hresult}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10,debug11' />
                 </rules>
             </nlog>");
 
@@ -86,6 +89,9 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", GetType().ToString());
+#if NET45
+            AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
+#endif
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
@@ -111,9 +117,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
                     <target name='debug9' type='Debug' layout='${exception:format=data}' />
                     <target name='debug10' type='Debug' layout='${exception:format=source}' />
+                    <target name='debug11' type='Debug' layout='${exception:format=hresult}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10,debug11' />
                 </rules>
             </nlog>");
 
@@ -131,6 +138,9 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", GetType().ToString());
+#if NET45
+            AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
+#endif
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
@@ -159,9 +169,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
                     <target name='debug9' type='Debug' layout='${exception:format=data}' />
                     <target name='debug10' type='Debug' layout='${exception:format=source}' />
+                    <target name='debug11' type='Debug' layout='${exception:format=hresult}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10,debug11' />
                 </rules>
             </nlog>");
 
@@ -179,6 +190,9 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", GetType().ToString());
+#if NET45
+            AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
+#endif
 
             // each version of the framework produces slightly different information for MethodInfo, so we just 
             // make sure it's not empty
@@ -205,9 +219,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
                     <target name='debug9' type='Debug' layout='${exception:format=data}' />
                     <target name='debug10' type='Debug' layout='${exception:format=source}' />
+                    <target name='debug11' type='Debug' layout='${exception:format=hresult}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10,debug11' />
                 </rules>
             </nlog>");
 
@@ -230,6 +245,9 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", "");
+#if NET45
+            AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
+#endif
         }
 
         [Fact]
@@ -248,9 +266,10 @@ namespace NLog.UnitTests.LayoutRenderers
                     <target name='debug8' type='Debug' layout='${exception:format=message,shorttype:separator=*}' />
                     <target name='debug9' type='Debug' layout='${exception:format=data}' />
                     <target name='debug10' type='Debug' layout='${exception:format=source}' />
+                    <target name='debug11' type='Debug' layout='${exception:format=hresult}' />
                 </targets>
                 <rules>
-                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10' />
+                    <logger minlevel='Info' writeTo='debug1,debug2,debug3,debug4,debug5,debug6,debug7,debug8,debug9,debug10,debug11' />
                 </rules>
             </nlog>");
 
@@ -270,6 +289,9 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", "");
+#if NET45
+            AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
+#endif
         }
 
         [Fact]
@@ -645,6 +667,24 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Contains("Test Inner 1", lastMessage);
         }
 
+        [Fact]
+        public void CustomExceptionProperties_Layout_Test()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=Properties}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            var ex = new CustomArgumentException("Goodbye World", "Nuke");
+            logger.Fatal(ex, "msg");
+            AssertDebugLastMessage("debug1", $"{nameof(CustomArgumentException.ParamName)}: Nuke");
+        }
+
         private class ExceptionWithBrokenMessagePropertyException : NLogConfigurationException
         {
             public override string Message => throw new Exception("Exception from Message property");
@@ -737,6 +777,7 @@ namespace NLog.UnitTests.LayoutRenderers
             {
                 ParamName = paramName;
                 StrangeProperty = "Strange World";
+                HResult = E_FAIL;
             }
 
             public string ParamName { get; }
