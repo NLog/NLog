@@ -73,6 +73,31 @@ namespace NLog.UnitTests
         {
             TestTimeSource(new CustomTimeSource(), DateTime.UtcNow.AddHours(1), DateTimeKind.Unspecified);
         }
+        
+        [Theory]
+        [InlineData("FastUTC", typeof(FastUtcTimeSource))]
+        [InlineData("FastLocal", typeof(FastLocalTimeSource))]
+        [InlineData("AccurateUTC", typeof(AccurateUtcTimeSource))]
+        [InlineData("AccurateLocal", typeof(AccurateLocalTimeSource))]
+        public void ToStringDefaultImplementationsTest(string expectedName, Type timeSourceType)
+        {
+            var instance = Activator.CreateInstance(timeSourceType) as TimeSource;
+            var actual = instance.ToString();
+
+            Assert.Equal(expectedName + " (time source)", actual);
+        }
+
+        [Theory]
+        [InlineData(typeof(CustomTimeSource))]
+        public void ToStringNoImplementationTest(Type timeSourceType)
+        {
+            var instance = Activator.CreateInstance(timeSourceType) as TimeSource;
+
+            var expected = timeSourceType.Name;
+            var actual = instance.ToString();
+
+            Assert.Equal(expected, actual);
+        }
 
         class CustomTimeSource : TimeSource
         {
