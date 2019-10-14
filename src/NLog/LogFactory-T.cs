@@ -50,7 +50,7 @@ namespace NLog
         /// <returns>An instance of <typeparamref name="T"/>.</returns>
         public new T GetLogger(string name)
         {
-            return (T)GetLogger(name, typeof(T));
+            return GetLogger<T>(name);
         }
 
         /// <summary>

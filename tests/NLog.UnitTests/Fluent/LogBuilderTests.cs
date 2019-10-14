@@ -55,6 +55,7 @@ namespace NLog.UnitTests.Fluent
             var configuration = new LoggingConfiguration();
 
             var t1 = new MethodCallTarget("t1", (l, parms) => _lastLogEventInfo = l);
+            t1.Parameters.Add(new MethodCallParameter("CallSite", "${callsite}"));
             var t2 = new DebugTarget { Name = "t2", Layout = "${message}" };
             configuration.AddTarget(t1);
             configuration.AddTarget(t2);
@@ -135,7 +136,6 @@ namespace NLog.UnitTests.Fluent
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
             }
-
         }
 
         [Fact]
@@ -158,7 +158,6 @@ namespace NLog.UnitTests.Fluent
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
             }
-
         }
 
         [Fact]
@@ -168,20 +167,24 @@ namespace NLog.UnitTests.Fluent
             {
                 {"prop1", "1"},
                 {"prop2", "2"},
-
             };
 
-            _logger.Log(LogLevel.Fatal)
-                .Message("This is a test fluent message.")
-                .Properties(props).Write();
-
+            // Loop to verify caller-attribute-caching-lookup
+            for (int i = 0; i < 2; ++i)
             {
+                _logger.Log(LogLevel.Fatal)
+                    .Message("This is a test fluent message.")
+                    .Properties(props).Write();
+
                 var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
                 expectedEvent.Properties["prop1"] = "1";
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
-            }
 
+#if NET4_5
+                Assert.Equal(GetType().ToString(), _lastLogEventInfo.CallerClassName);
+#endif
+            }
         }
 
         [Fact]
@@ -205,8 +208,8 @@ namespace NLog.UnitTests.Fluent
                 .Properties(props).Write();
 
             _logger.Log(LogLevel.Off)
-          .Message("dont log this.")
-          .Properties(props2).Write();
+                .Message("dont log this.")
+                .Properties(props2).Write();
 
             {
                 var expectedEvent = new LogEventInfo(LogLevel.Fatal, "logger1", "This is a test fluent message.");
@@ -214,7 +217,6 @@ namespace NLog.UnitTests.Fluent
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
             }
-
         }
 
 #if NET4_5
@@ -238,7 +240,6 @@ namespace NLog.UnitTests.Fluent
                 expectedEvent.Properties["prop2"] = "2";
                 AssertLastLogEventTarget(expectedEvent);
             }
-
         }
 #endif
 
@@ -308,7 +309,6 @@ namespace NLog.UnitTests.Fluent
                 AssertLastLogEventTarget(expectedEvent);
                 AssertDebugLastMessageContains("t2", "This is a test fluent WriteIf message ");
             }
-
         }
 
         [Fact]
@@ -414,7 +414,6 @@ namespace NLog.UnitTests.Fluent
             var logBuilder = new LogBuilder(logger);
             Assert.Throws<ArgumentNullException>(() => logBuilder.Properties(null));
             Assert.Throws<ArgumentNullException>(() => logBuilder.Property(null, "b"));
-
         }
 
         [Fact]

@@ -229,23 +229,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage
-        {
-            get
-            {
-                if (IncludeSourceInfo)
-                {
-                    return StackTraceUsage.Max;
-                }
-
-                if (IncludeCallSite)
-                {
-                    return StackTraceUsage.WithoutSource;
-                }
-
-                return StackTraceUsage.None;
-            }
-        }
+        StackTraceUsage IUsesStackTrace.StackTraceUsage => (IncludeCallSite || IncludeSourceInfo) ? StackTraceUsageUtils.GetStackTraceUsage(IncludeSourceInfo, 0) : StackTraceUsage.None;
 
         internal IList<NLogViewerParameterInfo> Parameters { get; set; }
 
@@ -424,7 +408,7 @@ namespace NLog.LayoutRenderers
         {
             MethodBase methodBase = logEvent.CallSiteInformation.GetCallerStackFrameMethod(0);
             string callerClassName = logEvent.CallSiteInformation.GetCallerClassName(methodBase, true, true, true);
-            string callerMemberName = logEvent.CallSiteInformation.GetCallerMemberName(methodBase, true, true, true);
+            string callerMethodName = logEvent.CallSiteInformation.GetCallerMethodName(methodBase, true, true, true);
 
             xtw.WriteStartElement("log4j", "locationInfo", dummyNamespace);
             if (!string.IsNullOrEmpty(callerClassName))
@@ -432,7 +416,7 @@ namespace NLog.LayoutRenderers
                 xtw.WriteAttributeSafeString("class", callerClassName);
             }
 
-            xtw.WriteAttributeSafeString("method", callerMemberName);
+            xtw.WriteAttributeSafeString("method", callerMethodName);
 #if !SILVERLIGHT
             if (IncludeSourceInfo)
             {

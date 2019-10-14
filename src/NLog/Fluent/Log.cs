@@ -30,9 +30,11 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
 using System;
 using System.IO;
 using System.Runtime.CompilerServices;
+using NLog.Internal;
 
 namespace NLog.Fluent
 {
@@ -54,7 +56,7 @@ namespace NLog.Fluent
         {
             return Create(logLevel, callerFilePath);
         }
-        
+
         /// <summary>
         /// Starts building a log event at the <c>Trace</c> level.
         /// </summary>
@@ -117,13 +119,9 @@ namespace NLog.Fluent
 
         private static LogBuilder Create(LogLevel logLevel, string callerFilePath)
         {
-            string name = Path.GetFileNameWithoutExtension(callerFilePath ?? string.Empty);
-            var logger = string.IsNullOrWhiteSpace(name) ? _logger : LogManager.GetLogger(name);
-
+            string name = !StringHelpers.IsNullOrWhiteSpace(callerFilePath) ? Path.GetFileNameWithoutExtension(callerFilePath) : null;
+            var logger = StringHelpers.IsNullOrWhiteSpace(name) ? _logger : LogManager.GetLogger(name);
             var builder = new LogBuilder(logger, logLevel);
-            if (callerFilePath != null)
-                builder.Property("CallerFilePath", callerFilePath);
-
             return builder;
         }
     }

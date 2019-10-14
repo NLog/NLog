@@ -65,7 +65,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Gets the level of stack trace information required by the implementing class.
         /// </summary>
-        StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsage.WithSource;
+        StackTraceUsage IUsesStackTrace.StackTraceUsage => StackTraceUsageUtils.GetStackTraceUsage(true, SkipFrames);
 
         /// <inheritdoc/>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
