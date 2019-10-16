@@ -994,6 +994,37 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void ExceptionWithSeparatorForExistingBetweenRender()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>                                        
+                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data,type:separator=\r\nXXX}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            const string exceptionMessage = "message for exception";
+            const string exceptionDataKey1 = "testkey1";
+            const string exceptionDataValue1 = "testvalue1";
+
+            Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
+            ex.Data.Add(exceptionDataKey1, exceptionDataValue1);
+
+            logger.Error(ex);
+
+            AssertDebugLastMessage(
+                "debug1",
+                string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) +
+                "\r\nXXX" +
+                string.Format(ExceptionDataFormat, exceptionDataKey1, exceptionDataValue1) +
+                "\r\nXXX" +
+                ex.GetType().FullName);
+        }
+
+        [Fact]
         public void ExceptionWithoutSeparatorForNoRender()
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -1013,6 +1044,33 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Error(ex);
 
             AssertDebugLastMessage("debug1", string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage));
+        }
+
+
+        [Fact]
+        public void ExceptionWithoutSeparatorForNoBetweenRender()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets>
+                    <target name='debug1' type='Debug' layout='${exception:format=tostring,data,type:separator=\r\nXXX}' />
+                </targets>
+                <rules>
+                    <logger minlevel='Info' writeTo='debug1' />
+                </rules>
+            </nlog>");
+
+            const string exceptionMessage = "message for exception";
+
+            Exception ex = GetExceptionWithoutStackTrace(exceptionMessage);
+
+            logger.Error(ex);
+
+            AssertDebugLastMessage(
+                "debug1",
+                string.Format(ExceptionDataFormat, ex.GetType().FullName, exceptionMessage) +
+                "\r\nXXX" +
+                ex.GetType().FullName);
         }
     }
 
