@@ -248,9 +248,7 @@ namespace NLog.Targets
 
             try
             {
-                output.WriteLine(textLine);
-                if (AutoFlush)
-                    output.Flush();
+                ConsoleTargetHelper.WriteLineThreadSafe(output, textLine, AutoFlush);
             }
             catch (IndexOutOfRangeException ex)
             {

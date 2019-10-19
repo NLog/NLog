@@ -379,16 +379,13 @@ namespace NLog.Targets
             var consoleStream = GetOutput();
             if (ReferenceEquals(colorMessage, message) && !newForegroundColor.HasValue && !newBackgroundColor.HasValue)
             {
-                consoleStream.WriteLine(message);
+                ConsoleTargetHelper.WriteLineThreadSafe(consoleStream, message, AutoFlush);
             }
             else
             {
                 bool wordHighlighting = !ReferenceEquals(colorMessage, message) || message?.IndexOf('\n') >= 0;
                 WriteToOutputWithPrinter(consoleStream, colorMessage, newForegroundColor, newBackgroundColor, wordHighlighting);
             }
-
-            if (AutoFlush)
-                consoleStream.Flush();
         }
 
         private void WriteToOutputWithPrinter(TextWriter consoleStream, string colorMessage, ConsoleColor? newForegroundColor, ConsoleColor? newBackgroundColor,  bool wordHighlighting)
@@ -430,7 +427,7 @@ namespace NLog.Targets
                 }
                 finally
                 {
-                    _consolePrinter.ReleaseTextWriter(consoleWriter, consoleStream, oldForegroundColor, oldBackgroundColor);
+                    _consolePrinter.ReleaseTextWriter(consoleWriter, consoleStream, oldForegroundColor, oldBackgroundColor, AutoFlush);
                 }
             }
         }

@@ -51,14 +51,14 @@ namespace NLog.Targets
             return new StringWriter(reusableBuilder ?? new StringBuilder(50), consoleStream.FormatProvider);
         }
 
-        public void ReleaseTextWriter(TextWriter consoleWriter, TextWriter consoleStream, ConsoleColor? oldForegroundColor, ConsoleColor? oldBackgroundColor)
+        public void ReleaseTextWriter(TextWriter consoleWriter, TextWriter consoleStream, ConsoleColor? oldForegroundColor, ConsoleColor? oldBackgroundColor, bool flush)
         {
             // Flushes the in-memory console-writer to the actual console-stream
             var builder = (consoleWriter as StringWriter)?.GetStringBuilder();
             if (builder != null)
             {
                 builder.Append(TerminalDefaultColorEscapeCode);
-                consoleStream.WriteLine(builder.ToString());
+                ConsoleTargetHelper.WriteLineThreadSafe(consoleStream, builder.ToString(), flush);
             }
         }
 
