@@ -121,5 +121,15 @@ namespace NLog.Targets
                     console.Flush();
             }
         }
+
+        public static void WriteBufferThreadSafe(TextWriter console, char[] buffer, int length, bool flush = false)
+        {
+            lock (_lockObject)
+            {
+                console.Write(buffer, 0, length);
+                if (flush)
+                    console.Flush();
+            }
+        }
     }
 }
