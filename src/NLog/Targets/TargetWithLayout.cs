@@ -46,12 +46,12 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="TargetWithLayout" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "This one is safe.")]
         protected TargetWithLayout()
         {
-            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message}";
+            Layout = "${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}";
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace NLog.Targets
         /// </summary>
         /// <docgen category='Layout Options' order='1' />
         [RequiredParameter]
-        [DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message}")]
+        [DefaultValue("${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}")]
         public virtual Layout Layout { get; set; }
    }
 }
