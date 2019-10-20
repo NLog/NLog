@@ -251,51 +251,11 @@ namespace NLog.Targets
 
             if (WriteBuffer)
             {
-                var output = GetOutput();
-                using (var targetBuffer = _reusableEncodingBuffer.Allocate())
-                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                {
-                    int environmentNewLineLength = System.Environment.NewLine.Length;
-                    int targetBufferPosition = 0;
-                    try
-                    {
-                        for (int i = 0; i < logEvents.Count; ++i)
-                        {
-                            targetBuilder.Result.Length = 0;
-                            Layout.RenderAppendBuilder(logEvents[i].LogEvent, targetBuilder.Result);
-                            if (targetBuilder.Result.Length > targetBuffer.Result.Length - targetBufferPosition - environmentNewLineLength)
-                            {
-                                if (targetBufferPosition > 0)
-                                {
-                                    WriteBufferToOuput(output, targetBuffer.Result, targetBufferPosition);
-                                    targetBufferPosition = 0;
-                                }
-                                if (targetBuilder.Result.Length > targetBuffer.Result.Length - environmentNewLineLength)
-                                {
-                                    WriteLineToOuput(output, targetBuilder.Result.ToString());
-                                    logEvents[i].Continuation(null);
-                                    continue;
-                                }
-                            }
-
-                            targetBuilder.Result.Append(System.Environment.NewLine);
-                            targetBuilder.Result.CopyToBuffer(targetBuffer.Result, targetBufferPosition);
-                            targetBufferPosition += targetBuilder.Result.Length;
-                            logEvents[i].Continuation(null);
-                        }
-                    }
-                    finally
-                    {
-                        if (targetBufferPosition > 0)
-                        {
-                            WriteBufferToOuput(output, targetBuffer.Result, targetBufferPosition);
-                        }
-                    }
-                }
+                WriteBufferToOutput(logEvents);
             }
             else
             {
-                base.Write(logEvents);
+                base.Write(logEvents);  // Console.WriteLine
             }
         }
 
@@ -312,30 +272,78 @@ namespace NLog.Targets
             var output = GetOutput();
             if (WriteBuffer)
             {
-                using (var targetBuffer = _reusableEncodingBuffer.Allocate())
-                using (var targetBuilder = ReusableLayoutBuilder.Allocate())
-                {
-                    int environmentNewLineLength = System.Environment.NewLine.Length;
-                    layout.RenderAppendBuilder(logEvent, targetBuilder.Result);
-                    if (targetBuilder.Result.Length > targetBuffer.Result.Length - environmentNewLineLength)
-                    {
-                        WriteLineToOuput(output, targetBuilder.Result.ToString());
-                    }
-                    else
-                    {
-                        targetBuilder.Result.Append(System.Environment.NewLine);
-                        targetBuilder.Result.CopyToBuffer(targetBuffer.Result, 0);
-                        WriteBufferToOuput(output, targetBuffer.Result, targetBuilder.Result.Length);
-                    }
-                }
+                WriteBufferToOutput(output, layout, logEvent);
             }
             else
             {
-                WriteLineToOuput(output, RenderLogEvent(layout, logEvent));
+                WriteLineToOutput(output, RenderLogEvent(layout, logEvent));
             }
         }
 
-        private void WriteLineToOuput(TextWriter output, string message)
+        private void WriteBufferToOutput(TextWriter output, Layout layout, LogEventInfo logEvent)
+        {
+            int targetBufferPosition = 0;
+            using (var targetBuffer = _reusableEncodingBuffer.Allocate())
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            {
+                RenderLogEventToWriteBuffer(output, layout, logEvent, targetBuilder.Result, targetBuffer.Result, ref targetBufferPosition);
+                if (targetBufferPosition > 0)
+                {
+                    WriteBufferToOutput(output, targetBuffer.Result, targetBufferPosition);
+                }
+            }
+        }
+
+        private void WriteBufferToOutput(IList<AsyncLogEventInfo> logEvents)
+        {
+            var output = GetOutput();
+            using (var targetBuffer = _reusableEncodingBuffer.Allocate())
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            {
+                int targetBufferPosition = 0;
+                try
+                {
+                    for (int i = 0; i < logEvents.Count; ++i)
+                    {
+                        targetBuilder.Result.Length = 0;
+                        RenderLogEventToWriteBuffer(output, Layout, logEvents[i].LogEvent, targetBuilder.Result, targetBuffer.Result, ref targetBufferPosition);
+                        logEvents[i].Continuation(null);
+                    }
+                }
+                finally
+                {
+                    if (targetBufferPosition > 0)
+                    {
+                        WriteBufferToOutput(output, targetBuffer.Result, targetBufferPosition);
+                    }
+                }
+            }
+        }
+
+        private void RenderLogEventToWriteBuffer(TextWriter output, Layout layout, LogEventInfo logEvent, StringBuilder targetBuilder, char[] targetBuffer, ref int targetBufferPosition)
+        {
+            int environmentNewLineLength = System.Environment.NewLine.Length;
+            layout.RenderAppendBuilder(logEvent, targetBuilder);
+            if (targetBuilder.Length > targetBuffer.Length - targetBufferPosition - environmentNewLineLength)
+            {
+                if (targetBufferPosition > 0)
+                {
+                    WriteBufferToOutput(output, targetBuffer, targetBufferPosition);
+                    targetBufferPosition = 0;
+                }
+                if (targetBuilder.Length > targetBuffer.Length - environmentNewLineLength)
+                {
+                    WriteLineToOutput(output, targetBuilder.ToString());
+                    return;
+                }
+            }
+
+            targetBuilder.Append(System.Environment.NewLine);
+            targetBuilder.CopyToBuffer(targetBuffer, targetBufferPosition);
+            targetBufferPosition += targetBuilder.Length;
+        }
+
+        private void WriteLineToOutput(TextWriter output, string message)
         {
             try
             {
@@ -357,7 +365,7 @@ namespace NLog.Targets
             }
         }
 
-        private void WriteBufferToOuput(TextWriter output, char[] buffer, int length)
+        private void WriteBufferToOutput(TextWriter output, char[] buffer, int length)
         {
             try
             {
