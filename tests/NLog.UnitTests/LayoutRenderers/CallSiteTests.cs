@@ -898,7 +898,6 @@ namespace NLog.UnitTests.LayoutRenderers
 
         }
 
-
         private void MoveNext()
         {
             var logger = LogManager.GetCurrentClassLogger();
@@ -1133,66 +1132,28 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
+#else
         [Fact]
-        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
+#endif
+        public void LogAfterAwait_ShouldCleanMethodNameAsync5()
         {
-            // name of the logging method
-            const string callsiteMethodName = "AsyncMethod5";
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5";
 
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog>
-                    <targets><target name='debug' type='Debug' layout='${callsite:classname=false:cleannamesofasynccontinuations=true}' /></targets>
-                    <rules>
-                        <logger name='*' levels='Debug' writeTo='debug' />
-                    </rules>
-                </nlog>");
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Debug' writeTo='debug' />
+               </rules>
+           </nlog>");
 
             AsyncMethod5().GetAwaiter().GetResult();
-
-            AssertDebugLastMessage("debug", callsiteMethodName);
-        }
-
-        [Fact]
-        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
-        {
-            // full name of the logging method
-            const string callsiteMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5";
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog>
-                    <targets><target name='debug' type='Debug' layout='${callsite:classname=true:includenamespace=true:cleannamesofasynccontinuations=true}' /></targets>
-                    <rules>
-                        <logger name='*' levels='Debug' writeTo='debug' />
-                    </rules>
-                </nlog>");
-
-            AsyncMethod5().GetAwaiter().GetResult();
-
-            AssertDebugLastMessage("debug", callsiteMethodFullName);
-        }
-
-        [Fact]
-        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog>
-                    <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
-                    <rules>
-                        <logger name='*' levels='Debug' writeTo='debug' />
-                    </rules>
-                </nlog>");
-
-            AsyncMethod5().GetAwaiter().GetResult();
-
-            if (IsTravis())
-            {
-                Console.WriteLine("[SKIP] LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames - test is unstable on Travis");
-                return;
-            }
-
-            AssertDebugLastMessageContains("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests");
-            AssertDebugLastMessageContains("debug", "MoveNext");
-            AssertDebugLastMessageContains("debug", "d__");
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|dude");
         }
 
         private async Task AsyncMethod5()

@@ -159,7 +159,7 @@ namespace NLog
                 {
                     var nextStackFrame = stackFrames[i + 1];
                     var declaringType = nextStackFrame.GetMethod()?.DeclaringType;
-                    if (declaringType?.Namespace == "System.Runtime.CompilerServices")
+                    if (declaringType?.Namespace == "System.Runtime.CompilerServices" || declaringType == typeof(System.Threading.ExecutionContext))
                     {
                         //async, search further
                         continue;
