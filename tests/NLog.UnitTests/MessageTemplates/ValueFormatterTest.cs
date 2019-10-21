@@ -1,4 +1,4 @@
-﻿// 
+// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -181,16 +181,28 @@ namespace NLog.UnitTests.MessageTemplates
             public int Integer { get; set; }
 
         }
+        
+        private class RecursiveTest
+        {
+            public RecursiveTest(int integer)
+            {
+                Integer = integer + 1;
+            }
+            public RecursiveTest Next => new RecursiveTest(Integer);
+
+            public int Integer { get; set; }
+
+        }
 
         [Fact]
-        public void TestValueFormatterClassInstanciatedSuccessfully()
+        public void TestValueFormatterClassInstantiatedSuccessfully()
         {
             var valueFormatter = ValueFormatter.Instance;
             Assert.NotNull(valueFormatter);
         }
 
         [Fact]
-        public void TestValueFormatterClassGetsInstanciatedOnlyOneTime()
+        public void TestValueFormatterClassGetsInstantiatedOnlyOneTime()
         {
             var valueFormatter = ValueFormatter.Instance;
             var valueFormatter1 = ValueFormatter.Instance;
@@ -216,6 +228,22 @@ namespace NLog.UnitTests.MessageTemplates
             Assert.True(result);
             Assert.Equal("{\"Str\":\"Test\", \"Integer\":1}", builder.ToString());
         }
+        
+        [Fact]
+        public void TestSerialisationOfRecursiveClassObjectToJsonIsSuccessful()
+        {
+            var @class = new RecursiveTest(0);
+            StringBuilder builder = new StringBuilder();
+            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Serialize, null, builder);
+            Assert.True(result);
+            var actual = builder.ToString();
+            
+            var deepestInteger = @"""Integer"":10";
+            Assert.Contains(deepestInteger, actual);
+            
+            var deepestNext = @"""Next"":""NLog.UnitTests.MessageTemplates.ValueFormatterTest+RecursiveTest""";
+            Assert.Contains(deepestNext, actual);
+        }
 
         [Fact]
         public void TestStringifyOfStringIsSuccessful()
@@ -228,7 +256,7 @@ namespace NLog.UnitTests.MessageTemplates
         }
 
         [Fact]
-        public void TestStringifyOfIformatableObjectIsSuccessful()
+        public void TestStringifyOfIFormatableObjectIsSuccessful()
         {
             var @class = new Test();
             StringBuilder builder = new StringBuilder();
@@ -238,7 +266,7 @@ namespace NLog.UnitTests.MessageTemplates
         }
 
         [Fact]
-        public void TestStringifyOfNonIformatableObjectIsSuccessful()
+        public void TestStringifyOfNonIFormatableObjectIsSuccessful()
         {
             var @class = new Test1();
             StringBuilder builder = new StringBuilder();
@@ -249,7 +277,7 @@ namespace NLog.UnitTests.MessageTemplates
         }
 
         [Fact]
-        public void TestSerializationofListObjectIsSuccessfull()
+        public void TestSerializationOfListObjectIsSuccessful()
         {
             var list = new List<int>() { 1, 2, 3, 4, 5, 6 };
             StringBuilder builder = new StringBuilder();
@@ -259,7 +287,7 @@ namespace NLog.UnitTests.MessageTemplates
         }
 
         [Fact]
-        public void TestSerializationofDictionaryObjectIsSuccessfull()
+        public void TestSerializationOfDictionaryObjectIsSuccessful()
         {
             var list = new Dictionary<int, object>() { { 1, new Test() }, { 2, new Test1() } };
             StringBuilder builder = new StringBuilder();
@@ -269,7 +297,7 @@ namespace NLog.UnitTests.MessageTemplates
         }
 
         [Fact]
-        public void TestSerializationofCollectionOfListObjectWithDepth2IsNotSuccessfull()
+        public void TestSerializationOfCollectionOfListObjectWithDepth2IsNotSuccessful()
         {
             var list = new List<List<List<List<int>>>>() { new List<List<List<int>>>() { new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 3, 4 } }, new List<List<int>>() { new List<int>() { 4, 5 }, new List<int>() { 6, 7 } } } };
             StringBuilder builder = new StringBuilder();
@@ -287,6 +315,18 @@ namespace NLog.UnitTests.MessageTemplates
             Assert.True(result);
             Assert.NotEqual("1,2", builder.ToString());
         }
+        
+        [Theory]
+        [InlineData(CaptureType.Normal, "NULL")]
+        [InlineData(CaptureType.Serialize, "null")]
+        [InlineData(CaptureType.Stringify, "\"\"")]
+        public void TestSerializationWillBeSuccessfulForNull(CaptureType captureType, string expected)
+        {
+            StringBuilder builder = new StringBuilder();
+            var result = ValueFormatter.Instance.FormatValue(null, string.Empty, captureType, null, builder);
+            Assert.True(result);
+            Assert.Equal(expected, builder.ToString());
+        }
 
         [Fact]
         public void TestSerializationWillBeSuccessfulForNullObjects()
@@ -299,7 +339,7 @@ namespace NLog.UnitTests.MessageTemplates
         }
 
         [Fact]
-        public void TestSerialisationfStringIsSuccessful()
+        public void TestSerializationOfStringIsSuccessful()
         {
             var @class = "str";
             StringBuilder builder = new StringBuilder();
