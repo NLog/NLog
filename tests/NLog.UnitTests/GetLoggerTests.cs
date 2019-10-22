@@ -46,6 +46,14 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        public void GetCurrentClassLoggerLambdaTest()
+        {
+            System.Linq.Expressions.Expression<Func<ILogger>> sum = () => LogManager.GetCurrentClassLogger();
+            ILogger logger = sum.Compile().Invoke();
+            Assert.Equal("NLog.UnitTests.GetLoggerTests", logger.Name);
+        }
+
+        [Fact]
         public void TypedGetLoggerTest()
         {
             LogFactory lf = new LogFactory();
