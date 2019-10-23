@@ -77,6 +77,8 @@ namespace NLog.Internal
                 if (endIndex > 1)
                 {
                     methodName = callerClassType.Name.Substring(1, endIndex - 1);
+                    if (methodName.StartsWith("<"))
+                        methodName = methodName.Substring(1, methodName.Length - 1);    // Local functions, and anonymous-methods in Task.Run()
                 }
             }
 
