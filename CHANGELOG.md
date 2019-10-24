@@ -46,7 +46,7 @@ Date format: (year/month/day)
 
 #### Features
 
-- [#3478](https://github.com/NLog/NLog/pull/3478) XSD: Support <value> in <variable> (@304NotModified)
+- [#3478](https://github.com/NLog/NLog/pull/3478) XSD: Support `<value>` in `<variable>` (@304NotModified)
 - [#3477](https://github.com/NLog/NLog/pull/3477) ${AppSetting} - Added support for ConnectionStrings Lookup (@snakefoot)
 - [#3469](https://github.com/NLog/NLog/pull/3469) LogLevel - Added support for TypeConverter (@snakefoot)
 - [#3453](https://github.com/NLog/NLog/pull/3453) Added null terminator line ending for network target (@Kahath)
@@ -80,7 +80,7 @@ Date format: (year/month/day)
 
 #### Improvements
 
-- [#3393](https://github.com/NLog/NLog/pull/3393) Update package descriptions to note the issues with <PackageReference> (@304NotModified)
+- [#3393](https://github.com/NLog/NLog/pull/3393) Update package descriptions to note the issues with `<PackageReference>` (@304NotModified)
 - [#3409](https://github.com/NLog/NLog/pull/3409) Various XSD improvements (NLog.Schema package) (@304NotModified)
 
 #### Performance
@@ -163,11 +163,11 @@ Date format: (year/month/day)
 - [#2670](https://github.com/NLog/NLog/pull/2670) + [#3014](https://github.com/NLog/NLog/pull/3014) XmlLayout - Render LogEventInfo.Properties as XML (@snakefoot)
 - [#2678](https://github.com/NLog/NLog/pull/2678) NetworkTarget - Support for SSL & TLS (@snakefoot)
 - [#2709](https://github.com/NLog/NLog/pull/2709) XML Config: Support for constant variable in level attributes (level, minlevel, etc) (@304NotModified)
-- [#2848](https://github.com/NLog/NLog/pull/2848) Added defaultAction for <filter> (@304NotModified)
+- [#2848](https://github.com/NLog/NLog/pull/2848) Added defaultAction for `<filter>` (@304NotModified)
 - [#2849](https://github.com/NLog/NLog/pull/2849) IRawValue-interface and ${db-null} layout renderer (@304NotModified)
 - [#2902](https://github.com/NLog/NLog/pull/2902) JsonLayout with support for System.Dynamic-objects (@304NotModified)
 - [#2907](https://github.com/NLog/NLog/pull/2907) New Substring, Left & Right Wrappers (@304NotModified)
-- [#3098](https://github.com/NLog/NLog/pull/3098) <rule> support for one or more '*' and '?' wildcards and in any position  (@beppemarazzi)
+- [#3098](https://github.com/NLog/NLog/pull/3098) `<rule>` support for one or more '*' and '?' wildcards and in any position  (@beppemarazzi)
 - [#2909](https://github.com/NLog/NLog/pull/2909) AsyncTaskTarget - BatchSize + RetryCount (@snakefoot)
 - [#3018](https://github.com/NLog/NLog/pull/3018) ColoredConsoleTarget - Added EnableAnsiOutput option (VS Code support) (@jp7677 + @snakefoot)
 - [#3031](https://github.com/NLog/NLog/pull/3031) + [#3092](https://github.com/NLog/NLog/pull/3092) Support ${currentdir},${basedir},${tempdir} and Environment Variables for internalLogFile when parsing nlog.config (@snakefoot)
@@ -533,7 +533,7 @@ Changes since rc 07:
 - [#2444](https://github.com/nlog/nlog/pull/2444) NLog 4.5 RC2 version and changelog (@304NotModified)
 - [#2450](https://github.com/nlog/nlog/pull/2450) No need to call  type(T) (@304NotModified)
 - [#2451](https://github.com/nlog/nlog/pull/2451) FileTarget - Improved and less internal logging (@snakefoot)
-- [#2449](https://github.com/nlog/nlog/pull/2449) Refactor: fix comment, remove unused, cleanup, String -> string etc (#2449) (@304NotModified)
+- [#2449](https://github.com/nlog/nlog/pull/2449) Refactor: fix comment, remove unused, cleanup, String ->` string etc (#2449) (@304NotModified)
 - [#2447](https://github.com/nlog/nlog/pull/2447) CallSiteInformation - Prepare for fast classname lookup from filename and linenumber (@snakefoot)
 - [#2446](https://github.com/nlog/nlog/pull/2446) Refactor - split methodes, remove duplicates (#2446) (@304NotModified)
 - [#2437](https://github.com/nlog/nlog/pull/2437) Create regex-matches condition method (#2437) (@MikeFH)
@@ -662,7 +662,7 @@ Changes since rc 07:
 #### Fixes
 
 - [#2138](https://github.com/nlog/nlog/pull/2138) ReloadConfigOnTimer - fix potential NullReferenceException (@snakefoot)
-- [#2113](https://github.com/nlog/nlog/pull/2113) BugFix: <targets> after <rules> won't work (@304NotModified, @Moafak)
+- [#2113](https://github.com/nlog/nlog/pull/2113) BugFix: `<targets>` after `<rules>` won't work (@304NotModified, @Moafak)
 - [#2131](https://github.com/nlog/nlog/pull/2131) Fix : LogManager.ReconfigureExistingLoggers() could throw InvalidOperationException (@304NotModified, @jpdillingham)
 
 #### Improvements
@@ -1018,14 +1018,14 @@ Detail:
 
 ### v4.3.0-rc2 (2016/03/26)
 - [#1335](https://github.com/nlog/nlog/pull/1335) Fix all build warnings (@304NotModified)
-- [#1336](https://github.com/nlog/nlog/pull/1336) Throw NLogConfigurationException if TimeToSleepBetweenBatches <= 0 (@vincechan)
+- [#1336](https://github.com/nlog/nlog/pull/1336) Throw NLogConfigurationException if TimeToSleepBetweenBatches `<= 0` (@vincechan)
 - [#1333](https://github.com/nlog/nlog/pull/1333) Fix ${callsite} when loggerType can't be found due to inlining (@304NotModified)
 - [#1329](https://github.com/nlog/nlog/pull/1329) Update SHFB (@304NotModified)
 
 ### v4.3.0-rc1 (2016/03/22)
 - [#1323](https://github.com/nlog/nlog/pull/1323) Add TimeStamp options to XML, Appsetting and environment var (@304NotModified)
 - [#1286](https://github.com/nlog/nlog/pull/1286) Easier api: AddRule methods, fix AllTargets crash, fix IsLevelEnabled(off) crash, refactor internal (@304NotModified)
-- [#1317](https://github.com/nlog/nlog/pull/1317) don't require ProviderName attribute when using <connectionStrings> (app.config etc) (@304NotModified)
+- [#1317](https://github.com/nlog/nlog/pull/1317) don't require ProviderName attribute when using `<connectionStrings>` (app.config etc) (@304NotModified)
 - [#1316](https://github.com/nlog/nlog/pull/1316) Fix scan for stacktrace usage (bug never released) (@304NotModified)
 - [#1299](https://github.com/nlog/nlog/pull/1299) Also use logFactory for ThrowConfigExceptions (@304NotModified)
 - [#1309](https://github.com/nlog/nlog/pull/1309) Added nested json from xml unit test (@pysco68, @304NotModified)
@@ -1051,7 +1051,7 @@ Detail:
 - [#1252](https://github.com/nlog/nlog/pull/1252) improve InternalLoggerTests unit test (@304NotModified)
 - [#1259](https://github.com/nlog/nlog/pull/1259) Internallogger improvements (@304NotModified)
 - [#1258](https://github.com/nlog/nlog/pull/1258) fixed typo in NLog.config (@icnocop)
-- [#1256](https://github.com/nlog/nlog/pull/1256) Badges Shields.io -> Badge.fury.io (@304NotModified)
+- [#1256](https://github.com/nlog/nlog/pull/1256) Badges Shields.io ->` Badge.fury.io (@304NotModified)
 - [#1225](https://github.com/nlog/nlog/pull/1225) XmlLoggingConfiguration: Set config values on correct LogFactory object (@bhaeussermann, @304NotModified)
 - [#1](https://github.com/nlog/nlog/pull/1) Fix ambiguity in `cref` in comments. (@304NotModified)
 - [#1254](https://github.com/nlog/nlog/pull/1254) Remove SubversionScc / AnkhSVN info from solutions (@304NotModified)
@@ -1230,7 +1230,7 @@ Detail:
 - [#811](https://github.com/nlog/nlog/pull/811) Easier API (@304NotModified)
 - [#816](https://github.com/nlog/nlog/pull/816) Overhaul NLog variables (@304NotModified)
 - [#788](https://github.com/nlog/nlog/pull/788) Fix:  exception is not correctly logged when calling without message [WIP] (@304NotModified)
-- [#814](https://github.com/nlog/nlog/pull/814) Bugfix: <extensions> needs to be the first element in the config (@304NotModified)
+- [#814](https://github.com/nlog/nlog/pull/814) Bugfix: `<extensions>` needs to be the first element in the config (@304NotModified)
 - [#813](https://github.com/nlog/nlog/pull/813) Added unit test: reload after replace (@304NotModified)
 - [#812](https://github.com/nlog/nlog/pull/812) Unit tests: added some extra time for completion (@304NotModified)
 - [#800](https://github.com/nlog/nlog/pull/800) Replace NewLines Layout Renderer Wrapper (@flower189)
