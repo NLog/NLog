@@ -342,19 +342,12 @@ namespace NLog.Targets
             {
                 WriteToOutputWithColor(logEvent, message);
             }
-            catch (IndexOutOfRangeException ex)
+            catch (Exception ex) when (ex is OverflowException || ex is IndexOutOfRangeException || ex is ArgumentOutOfRangeException)
             {
                 // This is a bug and will therefore stop the logging. For docs, see the PauseLogging property.
                 _pauseLogging = true;
-                InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
-            }
-            catch (ArgumentOutOfRangeException ex)
-            {
-                // This is a bug and will therefore stop the logging. For docs, see the PauseLogging property.
-                _pauseLogging = true;
-                InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+                InternalLogger.Warn(ex, "ColoredConsole(Name={0}): {1} has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", Name, ex.GetType());
             }
         }
 
@@ -379,16 +372,13 @@ namespace NLog.Targets
             var consoleStream = GetOutput();
             if (ReferenceEquals(colorMessage, message) && !newForegroundColor.HasValue && !newBackgroundColor.HasValue)
             {
-                consoleStream.WriteLine(message);
+                ConsoleTargetHelper.WriteLineThreadSafe(consoleStream, message, AutoFlush);
             }
             else
             {
                 bool wordHighlighting = !ReferenceEquals(colorMessage, message) || message?.IndexOf('\n') >= 0;
                 WriteToOutputWithPrinter(consoleStream, colorMessage, newForegroundColor, newBackgroundColor, wordHighlighting);
             }
-
-            if (AutoFlush)
-                consoleStream.Flush();
         }
 
         private void WriteToOutputWithPrinter(TextWriter consoleStream, string colorMessage, ConsoleColor? newForegroundColor, ConsoleColor? newBackgroundColor,  bool wordHighlighting)
@@ -430,7 +420,7 @@ namespace NLog.Targets
                 }
                 finally
                 {
-                    _consolePrinter.ReleaseTextWriter(consoleWriter, consoleStream, oldForegroundColor, oldBackgroundColor);
+                    _consolePrinter.ReleaseTextWriter(consoleWriter, consoleStream, oldForegroundColor, oldBackgroundColor, AutoFlush);
                 }
             }
         }

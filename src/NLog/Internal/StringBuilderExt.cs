@@ -155,7 +155,7 @@ namespace NLog.Internal
         /// <param name="transformBuffer">Helper char-buffer to minimize memory allocations</param>
         public static void CopyToStream(this StringBuilder builder, MemoryStream ms, Encoding encoding, char[] transformBuffer)
         {
-#if !SILVERLIGHT
+#if !SILVERLIGHT || WINDOWS_PHONE
             if (transformBuffer != null)
             {
                 int charCount;
@@ -183,6 +183,15 @@ namespace NLog.Internal
             }
         }
 
+        public static void CopyToBuffer(this StringBuilder builder, char[] destination, int destinationIndex)
+        {
+#if !SILVERLIGHT || WINDOWS_PHONE
+            builder.CopyTo(0, destination, destinationIndex, builder.Length);
+#else
+            builder.ToString().CopyTo(0, destination, destinationIndex, builder.Length);
+#endif
+        }
+
         /// <summary>
         /// Copies the contents of the StringBuilder to the destination StringBuilder
         /// </summary>
@@ -207,7 +216,7 @@ namespace NLog.Internal
                 }
                 else
                 {
-#if !SILVERLIGHT
+#if !SILVERLIGHT || WINDOWS_PHONE
                     // Reuse single char-buffer allocation for large StringBuilders
                     char[] buffer = new char[256];
                     for (int i = 0; i < sourceLength; i += buffer.Length)

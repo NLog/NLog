@@ -415,10 +415,7 @@ namespace NLog.Common
                 return;
             }
 
-            lock (LockObject)
-            {
-                Console.WriteLine(message);
-            }
+            NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Out, message);
         }
 #endif
 
@@ -438,10 +435,7 @@ namespace NLog.Common
                 return;
             }
 
-            lock (LockObject)
-            {
-                Console.Error.WriteLine(message);
-            }
+            NLog.Targets.ConsoleTargetHelper.WriteLineThreadSafe(Console.Error, message);
         }
 #endif
 

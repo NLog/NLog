@@ -51,9 +51,11 @@ namespace NLog.Targets
             return consoleStream;
         }
 
-        public void ReleaseTextWriter(TextWriter consoleWriter, TextWriter consoleStream, ConsoleColor? oldForegroundColor, ConsoleColor? oldBackgroundColor)
+        public void ReleaseTextWriter(TextWriter consoleWriter, TextWriter consoleStream, ConsoleColor? oldForegroundColor, ConsoleColor? oldBackgroundColor, bool flush)
         {
             ResetDefaultColors(consoleWriter, oldForegroundColor, oldBackgroundColor);
+            if (flush)
+                consoleWriter.Flush();
         }
 
         public ConsoleColor? ChangeForegroundColor(TextWriter consoleWriter, ConsoleColor? foregroundColor)
@@ -96,7 +98,7 @@ namespace NLog.Targets
 
         public void WriteLine(TextWriter consoleWriter, string text)
         {
-            consoleWriter.WriteLine(text);
+            consoleWriter.WriteLine(text);  // Cannot be threadsafe, since colors are incrementally updated
         }
 
         public IList<ConsoleRowHighlightingRule> DefaultConsoleRowHighlightingRules { get; } = new List<ConsoleRowHighlightingRule>()
