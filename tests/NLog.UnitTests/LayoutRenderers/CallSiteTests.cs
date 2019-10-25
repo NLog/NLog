@@ -707,6 +707,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
             AsyncMethod().Wait();
             AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
+
+            new InnerClassAsyncMethod().AsyncMethod().Wait();
+            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod).ToString()}.AsyncMethod|direct");
         }
 
         private async Task AsyncMethod()
@@ -715,6 +718,17 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Warn("direct");
             var reader = new StreamReader(new MemoryStream(new byte[0]));
             await reader.ReadLineAsync();
+        }
+
+        private class InnerClassAsyncMethod
+        {
+            public async Task AsyncMethod()
+            {
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Warn("direct");
+                var reader = new StreamReader(new MemoryStream(new byte[0]));
+                await reader.ReadLineAsync();
+            }
         }
 
 #if NET3_5 || NET4_0
@@ -760,6 +774,8 @@ namespace NLog.UnitTests.LayoutRenderers
             AsyncMethod2a().Wait();
             AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
 
+            new InnerClassAsyncMethod2().AsyncMethod2a().Wait();
+            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod2).ToString()}.AsyncMethod2b|direct");
         }
 
         private async Task AsyncMethod2a()
@@ -773,6 +789,22 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Warn("direct");
             var reader = new StreamReader(new MemoryStream(new byte[0]));
             await reader.ReadLineAsync();
+        }
+
+        private class InnerClassAsyncMethod2
+        {
+            public async Task AsyncMethod2a()
+            {
+                await AsyncMethod2b();
+            }
+
+            public async Task AsyncMethod2b()
+            {
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Warn("direct");
+                var reader = new StreamReader(new MemoryStream(new byte[0]));
+                await reader.ReadLineAsync();
+            }
         }
 
 #if NET3_5 
@@ -797,6 +829,9 @@ namespace NLog.UnitTests.LayoutRenderers
 
             AsyncMethod3a().Wait();
             AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
+
+            new InnerClassAsyncMethod3().AsyncMethod3a().Wait();
+            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod3).ToString()}.AsyncMethod3b|direct");
         }
 
         private async Task AsyncMethod3a()
@@ -810,15 +845,22 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             var logger = LogManager.GetCurrentClassLogger();
             logger.Warn("direct");
-
         }
 
-        public async Task<IEnumerable<string>> AsyncMethod4()
+        private class InnerClassAsyncMethod3
         {
-            Logger logger = LogManager.GetLogger("AnnonTest");
-            logger.Info("Direct, async method");
+            public async Task AsyncMethod3a()
+            {
+                var reader = new StreamReader(new MemoryStream(new byte[0]));
+                await reader.ReadLineAsync();
+                AsyncMethod3b();
+            }
 
-            return await Task.FromResult(new string[] { "value1", "value2" });
+            public void AsyncMethod3b()
+            {
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Warn("direct");
+            }
         }
 
 #if NET3_5 || NET4_0
@@ -843,6 +885,28 @@ namespace NLog.UnitTests.LayoutRenderers
 
             AsyncMethod4().Wait();
             AssertDebugLastMessage("debug", $"{currentMethodFullName}|Direct, async method");
+
+            new InnerClassAsyncMethod4().AsyncMethod4().Wait();
+            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod4).ToString()}.AsyncMethod4|Direct, async method");
+       }
+
+        private async Task<IEnumerable<string>> AsyncMethod4()
+        {
+            Logger logger = LogManager.GetLogger("AnnonTest");
+            logger.Info("Direct, async method");
+
+            return await Task.FromResult(new string[] { "value1", "value2" });
+        }
+
+        private class InnerClassAsyncMethod4
+        {
+            public async Task<IEnumerable<string>> AsyncMethod4()
+            {
+                Logger logger = LogManager.GetLogger("AnnonTest");
+                logger.Info("Direct, async method");
+
+                return await Task.FromResult(new string[] { "value1", "value2" });
+            }
         }
 
 #if NET3_5 || NET4_0 || NETSTANDARD1_5
@@ -895,9 +959,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             MoveNext();
             AssertDebugLastMessage("debug", $"{currentMethodFullName}|direct");
-
         }
-
 
         private void MoveNext()
         {
@@ -1133,66 +1195,31 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 #endif
 
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
+#else
         [Fact]
-        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
+#endif
+        public void LogAfterAwait_ShouldCleanMethodNameAsync5()
         {
-            // name of the logging method
-            const string callsiteMethodName = "AsyncMethod5";
+            //namespace en name of current method
+            const string currentMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5";
 
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog>
-                    <targets><target name='debug' type='Debug' layout='${callsite:classname=false:cleannamesofasynccontinuations=true}' /></targets>
-                    <rules>
-                        <logger name='*' levels='Debug' writeTo='debug' />
-                    </rules>
-                </nlog>");
+           <nlog>
+               <targets><target name='debug' type='Debug' layout='${callsite}|${message}' /></targets>
+               <rules>
+                   <logger name='*' levels='Debug' writeTo='debug' />
+               </rules>
+           </nlog>");
 
-            AsyncMethod5().GetAwaiter().GetResult();
+            AsyncMethod5().Wait();
+            AssertDebugLastMessage("debug", $"{currentMethodFullName}|dude");
 
-            AssertDebugLastMessage("debug", callsiteMethodName);
-        }
-
-        [Fact]
-        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
-        {
-            // full name of the logging method
-            const string callsiteMethodFullName = "NLog.UnitTests.LayoutRenderers.CallSiteTests.AsyncMethod5";
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog>
-                    <targets><target name='debug' type='Debug' layout='${callsite:classname=true:includenamespace=true:cleannamesofasynccontinuations=true}' /></targets>
-                    <rules>
-                        <logger name='*' levels='Debug' writeTo='debug' />
-                    </rules>
-                </nlog>");
-
-            AsyncMethod5().GetAwaiter().GetResult();
-
-            AssertDebugLastMessage("debug", callsiteMethodFullName);
-        }
-
-        [Fact]
-        public void LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
-        {
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog>
-                    <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
-                    <rules>
-                        <logger name='*' levels='Debug' writeTo='debug' />
-                    </rules>
-                </nlog>");
-
-            AsyncMethod5().GetAwaiter().GetResult();
-
-            if (IsTravis())
-            {
-                Console.WriteLine("[SKIP] LogAfterAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames - test is unstable on Travis");
-                return;
-            }
-
-            AssertDebugLastMessageContains("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests");
-            AssertDebugLastMessageContains("debug", "MoveNext");
-            AssertDebugLastMessageContains("debug", "d__");
+            new InnerClassAsyncMethod5().AsyncMethod5().Wait();
+            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod5).ToString()}.AsyncMethod5|dude");
         }
 
         private async Task AsyncMethod5()
@@ -1203,9 +1230,146 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug("dude");
         }
 
+        private class InnerClassAsyncMethod5
+        {
+            public async Task AsyncMethod5()
+            {
+                await AMinimalAsyncMethod();
+
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Debug("dude");
+            }
+
+            private async Task AMinimalAsyncMethod()
+            {
+                await Task.Delay(1);    // Ensure it always becomes async, and it is not inlined
+            }
+        }
+
         private async Task AMinimalAsyncMethod()
         {
             await Task.Delay(1);    // Ensure it always becomes async, and it is not inlined
+        }
+
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
+#else
+        [Fact]
+#endif
+        public void LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName()
+        {
+            // name of the logging method
+            const string callsiteMethodName = nameof(LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanMethodName);
+
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=false:cleannamesofasynccontinuations=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            Task.Run(async () => {
+                await AMinimalAsyncMethod();
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Debug("dude");
+            }).Wait();
+
+            AssertDebugLastMessage("debug", callsiteMethodName);
+        }
+
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
+#else
+        [Fact]
+#endif
+        public void LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName()
+        {
+            // full name of the logging method
+            string callsiteMethodFullName = $"{GetType()}.{nameof(LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsTrue_ShouldCleanClassName)}";
+
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:classname=true:includenamespace=true:cleannamesofasynccontinuations=true:cleanNamesOfAnonymousDelegates=true}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            Task.Run(async () =>
+            {
+                await AMinimalAsyncMethod();
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Debug("dude");
+            }).Wait();
+
+            AssertDebugLastMessage("debug", callsiteMethodFullName);
+
+            new InnerClassAsyncMethod6().AsyncMethod6a().Wait();
+            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod6).ToString()}.AsyncMethod6a");
+
+            new InnerClassAsyncMethod6().AsyncMethod6b();
+            AssertDebugLastMessage("debug", $"{typeof(InnerClassAsyncMethod6).ToString()}.AsyncMethod6b");
+        }
+
+#if NET3_5 || NET4_0
+        [Fact(Skip = "NET3_5 + NET4_0 not supporting async callstack")]
+#elif MONO
+        [Fact(Skip = "Not working under MONO - not sure if unit test is wrong, or the code")]
+#else
+        [Fact]
+#endif
+        public void LogAfterTaskRunAwait_CleanNamesOfAsyncContinuationsIsFalse_ShouldNotCleanNames()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog>
+                    <targets><target name='debug' type='Debug' layout='${callsite:includenamespace=true:cleannamesofasynccontinuations=false}' /></targets>
+                    <rules>
+                        <logger name='*' levels='Debug' writeTo='debug' />
+                    </rules>
+                </nlog>");
+
+            Task.Run(async () => {
+                await AMinimalAsyncMethod();
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Debug("dude");
+            }).Wait();
+
+            AssertDebugLastMessageContains("debug", "NLog.UnitTests.LayoutRenderers.CallSiteTests");
+            AssertDebugLastMessageContains("debug", "MoveNext");
+            AssertDebugLastMessageContains("debug", "b__");
+        }
+
+        private class InnerClassAsyncMethod6
+        {
+            public virtual async Task AsyncMethod6a()
+            {
+                await Task.Run(async () =>
+                {
+                    await AMinimalAsyncMethod();
+                    var logger = LogManager.GetCurrentClassLogger();
+                    logger.Debug("dude");
+                });
+            }
+
+            public virtual void AsyncMethod6b()
+            {
+                Task.Run(async () =>
+                {
+                    await AMinimalAsyncMethod();
+                    var logger = LogManager.GetCurrentClassLogger();
+                    logger.Debug("dude");
+                }).Wait();
+            }
+
+            private async Task AMinimalAsyncMethod()
+            {
+                await Task.Delay(1);    // Ensure it always becomes async, and it is not inlined
+            }
         }
 
         public interface INLogLogger
