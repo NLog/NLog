@@ -234,6 +234,15 @@ namespace NLog.Targets.Wrappers
             while (!_logEventInfoQueue.IsEmpty)
                 _logEventInfoQueue.TryDequeue(out var _);
             Interlocked.Exchange(ref _count, 0);
+
+            if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
+            {
+                // Try to eject any threads, that are blocked in the RequestQueue
+                lock (_logEventInfoQueue)
+                {
+                    Monitor.PulseAll(_logEventInfoQueue);
+                }
+            }
         }
     }
 }

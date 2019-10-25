@@ -308,6 +308,7 @@ namespace NLog.Targets.Wrappers
         protected override void CloseTarget()
         {
             StopLazyWriterThread();
+            
             if (Monitor.TryEnter(_writeLockObject, 500))
             {
                 try
@@ -319,6 +320,12 @@ namespace NLog.Targets.Wrappers
                     Monitor.Exit(_writeLockObject);
                 }
             }
+
+            if (OverflowAction == AsyncTargetWrapperOverflowAction.Block)
+            {
+                _requestQueue.Clear();  // Try to eject any threads, that are blocked in the RequestQueue
+            }
+
             base.CloseTarget();
         }
 
