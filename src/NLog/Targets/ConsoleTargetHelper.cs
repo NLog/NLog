@@ -40,6 +40,8 @@ namespace NLog.Targets
 {
     internal static class ConsoleTargetHelper
     {
+        private static readonly object _lockObject = new object();
+
         public static bool IsConsoleAvailable(out string reason)
         {
             reason = string.Empty;
@@ -108,6 +110,26 @@ namespace NLog.Targets
             }
 #endif
             return false;       // No console available
+        }
+
+        public static void WriteLineThreadSafe(TextWriter console, string message, bool flush = false)
+        {
+            lock (_lockObject)
+            {
+                console.WriteLine(message);
+                if (flush)
+                    console.Flush();
+            }
+        }
+
+        public static void WriteBufferThreadSafe(TextWriter console, char[] buffer, int length, bool flush = false)
+        {
+            lock (_lockObject)
+            {
+                console.Write(buffer, 0, length);
+                if (flush)
+                    console.Flush();
+            }
         }
     }
 }

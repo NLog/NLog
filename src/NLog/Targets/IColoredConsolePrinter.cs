@@ -60,7 +60,8 @@ namespace NLog.Targets
         /// <param name="consoleStream">Active console stream</param>
         /// <param name="oldForegroundColor">Original foreground color for console (If changed)</param>
         /// <param name="oldBackgroundColor">Original background color for console (If changed)</param>
-        void ReleaseTextWriter(TextWriter consoleWriter, TextWriter consoleStream, ConsoleColor? oldForegroundColor, ConsoleColor? oldBackgroundColor);
+        /// <param name="flush">Flush TextWriter</param>
+        void ReleaseTextWriter(TextWriter consoleWriter, TextWriter consoleStream, ConsoleColor? oldForegroundColor, ConsoleColor? oldBackgroundColor, bool flush);
 
         /// <summary>
         /// Changes foreground color for the Colored TextWriter

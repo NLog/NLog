@@ -159,8 +159,7 @@ namespace NLog
                 {
                     var nextStackFrame = stackFrames[i + 1];
                     var declaringType = nextStackFrame.GetMethod()?.DeclaringType;
-                    if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder) ||
-                        declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder<>))
+                    if (declaringType?.Namespace == "System.Runtime.CompilerServices" || declaringType == typeof(System.Threading.ExecutionContext))
                     {
                         //async, search further
                         continue;

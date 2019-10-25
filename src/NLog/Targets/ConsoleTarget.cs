@@ -36,11 +36,13 @@
 namespace NLog.Targets
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Text;
     using System.ComponentModel;
-
     using NLog.Common;
+    using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Writes log messages to the console.
@@ -81,6 +83,8 @@ namespace NLog.Targets
         /// </remarks>
         private bool _pauseLogging;
 
+        private readonly ReusableBufferCreator _reusableEncodingBuffer = new ReusableBufferCreator(16 * 1024);
+
         /// <summary>
         /// Gets or sets a value indicating whether to send the log messages to the standard error instead of the standard output.
         /// </summary>
@@ -91,7 +95,7 @@ namespace NLog.Targets
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// The encoding for writing messages to the <see cref="Console"/>.
-        ///  </summary>
+        /// </summary>
         /// <remarks>Has side effect</remarks>
         /// <docgen category='Console Options' order='10' />
         public Encoding Encoding
@@ -125,6 +129,12 @@ namespace NLog.Targets
         public bool AutoFlush { get; set; }
 
         /// <summary>
+        /// Gets or sets whether to enable batch writing using char[]-buffers, instead of using <see cref="Console.WriteLine()"/>
+        /// </summary>
+        [DefaultValue(false)]
+        public bool WriteBuffer { get; set; } = false;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
         /// </summary>
         /// <remarks>
@@ -132,8 +142,6 @@ namespace NLog.Targets
         /// </remarks>
         public ConsoleTarget() : base()
         {
-            _pauseLogging = false;
-            DetectConsoleAvailable = false;
             OptimizeBufferReuse = true;
         }
 
@@ -162,7 +170,7 @@ namespace NLog.Targets
                 _pauseLogging = !ConsoleTargetHelper.IsConsoleAvailable(out reason);
                 if (_pauseLogging)
                 {
-                    InternalLogger.Info("Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {0}", reason);
+                    InternalLogger.Info("Console(Name={0}): Console has been detected as turned off. Disable DetectConsoleAvailable to skip detection. Reason: {1}", Name, reason);
                 }
             }
 
@@ -174,7 +182,7 @@ namespace NLog.Targets
             base.InitializeTarget();
             if (Header != null)
             {
-                WriteToOutput(RenderLogEvent(Header, LogEventInfo.CreateNullEvent()));
+                RenderToOutput(Header, LogEventInfo.CreateNullEvent());
             }
         }
 
@@ -185,7 +193,7 @@ namespace NLog.Targets
         {
             if (Footer != null)
             {
-                WriteToOutput(RenderLogEvent(Footer, LogEventInfo.CreateNullEvent()));
+                RenderToOutput(Footer, LogEventInfo.CreateNullEvent());
             }
             ExplicitConsoleFlush();
             base.CloseTarget();
@@ -230,14 +238,31 @@ namespace NLog.Targets
                 return;
             }
 
-            WriteToOutput(RenderLogEvent(Layout, logEvent));
+            RenderToOutput(Layout, logEvent);
+        }
+
+        /// <inheritdoc/>
+        protected override void Write(IList<AsyncLogEventInfo> logEvents)
+        {
+            if (_pauseLogging)
+            {
+                return;
+            }
+
+            if (WriteBuffer)
+            {
+                WriteBufferToOutput(logEvents);
+            }
+            else
+            {
+                base.Write(logEvents);  // Console.WriteLine
+            }
         }
 
         /// <summary>
         /// Write to output
         /// </summary>
-        /// <param name="textLine">text to be written.</param>
-        private void WriteToOutput(string textLine)
+        private void RenderToOutput(Layout layout, LogEventInfo logEvent)
         {
             if (_pauseLogging)
             {
@@ -245,26 +270,106 @@ namespace NLog.Targets
             }
 
             var output = GetOutput();
+            if (WriteBuffer)
+            {
+                WriteBufferToOutput(output, layout, logEvent);
+            }
+            else
+            {
+                WriteLineToOutput(output, RenderLogEvent(layout, logEvent));
+            }
+        }
 
+        private void WriteBufferToOutput(TextWriter output, Layout layout, LogEventInfo logEvent)
+        {
+            int targetBufferPosition = 0;
+            using (var targetBuffer = _reusableEncodingBuffer.Allocate())
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            {
+                RenderLogEventToWriteBuffer(output, layout, logEvent, targetBuilder.Result, targetBuffer.Result, ref targetBufferPosition);
+                if (targetBufferPosition > 0)
+                {
+                    WriteBufferToOutput(output, targetBuffer.Result, targetBufferPosition);
+                }
+            }
+        }
+
+        private void WriteBufferToOutput(IList<AsyncLogEventInfo> logEvents)
+        {
+            var output = GetOutput();
+            using (var targetBuffer = _reusableEncodingBuffer.Allocate())
+            using (var targetBuilder = ReusableLayoutBuilder.Allocate())
+            {
+                int targetBufferPosition = 0;
+                try
+                {
+                    for (int i = 0; i < logEvents.Count; ++i)
+                    {
+                        targetBuilder.Result.Length = 0;
+                        RenderLogEventToWriteBuffer(output, Layout, logEvents[i].LogEvent, targetBuilder.Result, targetBuffer.Result, ref targetBufferPosition);
+                        logEvents[i].Continuation(null);
+                    }
+                }
+                finally
+                {
+                    if (targetBufferPosition > 0)
+                    {
+                        WriteBufferToOutput(output, targetBuffer.Result, targetBufferPosition);
+                    }
+                }
+            }
+        }
+
+        private void RenderLogEventToWriteBuffer(TextWriter output, Layout layout, LogEventInfo logEvent, StringBuilder targetBuilder, char[] targetBuffer, ref int targetBufferPosition)
+        {
+            int environmentNewLineLength = System.Environment.NewLine.Length;
+            layout.RenderAppendBuilder(logEvent, targetBuilder);
+            if (targetBuilder.Length > targetBuffer.Length - targetBufferPosition - environmentNewLineLength)
+            {
+                if (targetBufferPosition > 0)
+                {
+                    WriteBufferToOutput(output, targetBuffer, targetBufferPosition);
+                    targetBufferPosition = 0;
+                }
+                if (targetBuilder.Length > targetBuffer.Length - environmentNewLineLength)
+                {
+                    WriteLineToOutput(output, targetBuilder.ToString());
+                    return;
+                }
+            }
+
+            targetBuilder.Append(System.Environment.NewLine);
+            targetBuilder.CopyToBuffer(targetBuffer, targetBufferPosition);
+            targetBufferPosition += targetBuilder.Length;
+        }
+
+        private void WriteLineToOutput(TextWriter output, string message)
+        {
             try
             {
-                output.WriteLine(textLine);
-                if (AutoFlush)
-                    output.Flush();
+                ConsoleTargetHelper.WriteLineThreadSafe(output, message, AutoFlush);
             }
-            catch (IndexOutOfRangeException ex)
+            catch (Exception ex) when (ex is OverflowException || ex is IndexOutOfRangeException || ex is ArgumentOutOfRangeException)
             {
                 //this is a bug and therefor stopping logging. For docs, see PauseLogging property
                 _pauseLogging = true;
-                InternalLogger.Warn(ex, "An IndexOutOfRangeException has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+                InternalLogger.Warn(ex, "Console(Name={0}): {1} has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", Name, ex.GetType());
             }
-            catch (ArgumentOutOfRangeException ex)
+        }
+
+        private void WriteBufferToOutput(TextWriter output, char[] buffer, int length)
+        {
+            try
+            {
+                ConsoleTargetHelper.WriteBufferThreadSafe(output, buffer, length, AutoFlush);
+            }
+            catch (Exception ex) when (ex is OverflowException || ex is IndexOutOfRangeException || ex is ArgumentOutOfRangeException)
             {
                 //this is a bug and therefor stopping logging. For docs, see PauseLogging property
                 _pauseLogging = true;
-                InternalLogger.Warn(ex, "An ArgumentOutOfRangeException has been thrown and this is probably due to a race condition." +
-                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets");
+                InternalLogger.Warn(ex, "Console(Name={0}): {1} has been thrown and this is probably due to a race condition." +
+                                        "Logging to the console will be paused. Enable by reloading the config or re-initialize the targets", Name, ex.GetType());
             }
         }
 
