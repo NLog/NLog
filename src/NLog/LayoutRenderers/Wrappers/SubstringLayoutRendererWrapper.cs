@@ -74,7 +74,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <value>Index</value>
         /// <docgen category='Transformation Options' order='10' />
         [DefaultValue(null)]
-        [RequiredParameter]
         public int? Length { get; set; }
 
 
