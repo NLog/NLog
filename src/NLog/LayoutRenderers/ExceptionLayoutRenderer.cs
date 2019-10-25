@@ -297,23 +297,20 @@ namespace NLog.LayoutRenderers
 
         private void AppendException(Exception currentException, List<ExceptionRenderingFormat> renderFormats, StringBuilder builder)
         {
-            int orgLength = builder.Length;
+            int currentLength = builder.Length;
             foreach (ExceptionRenderingFormat renderingFormat in renderFormats)
             {
-                if (orgLength != builder.Length)
-                {
-                    orgLength = builder.Length;
-                    builder.Append(Separator);
-                }
-
                 int beforeRenderLength = builder.Length;
                 var currentRenderFunction = _renderingfunctions[renderingFormat];
                 currentRenderFunction(builder, currentException);
-                if (builder.Length == beforeRenderLength && builder.Length != orgLength)
+                if (builder.Length != beforeRenderLength)
                 {
-                    builder.Length = orgLength;
+                    currentLength = builder.Length;
+                    builder.Append(Separator);
                 }
             }
+
+            builder.Length = currentLength;
         }
 
         /// <summary>
