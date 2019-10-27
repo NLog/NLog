@@ -31,15 +31,38 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
 using NLog.Common;
 using NLog.Targets.Wrappers;
-
 using Xunit;
 
 namespace NLog.UnitTests.Targets.Wrappers
 {
     public class ConcurrentRequestQueueTests : NLogTestBase
     {
+        [Theory]
+        [InlineData(AsyncTargetWrapperOverflowAction.Block)]
+        [InlineData(AsyncTargetWrapperOverflowAction.Discard)]
+        [InlineData(AsyncTargetWrapperOverflowAction.Grow)]
+        public void DequeueBatch_WithNonEmptyList_ReturnsValidCount(AsyncTargetWrapperOverflowAction overflowAction)
+        {
+            // Stage
+            ConcurrentRequestQueue requestQueue = new ConcurrentRequestQueue(2, overflowAction);
+            requestQueue.Enqueue(new AsyncLogEventInfo());
+            requestQueue.Enqueue(new AsyncLogEventInfo());
+            Assert.Equal(2, requestQueue.Count);
+
+            // Act
+            var batch = new List<AsyncLogEventInfo>();
+            requestQueue.DequeueBatch(1, batch);    // Dequeue into empty-list
+            Assert.Equal(1, requestQueue.Count);
+            requestQueue.DequeueBatch(1, batch);    // Dequeue into non-empty-list
+
+            // Assert
+            Assert.Equal(0, requestQueue.Count);
+            Assert.Equal(2, batch.Count);
+        }
+
         [Fact]
         public void RaiseEventLogEventQueueGrow_OnLogItems()
         {

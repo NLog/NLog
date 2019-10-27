@@ -212,6 +212,7 @@ namespace NLog.Targets.Wrappers
                 }
                 else
                 {
+                    count = i;
                     break;
                 }
             }
@@ -220,7 +221,7 @@ namespace NLog.Targets.Wrappers
             {
                 lock (_logEventInfoQueue)
                 {
-                    Interlocked.Add(ref _count, -result.Count);
+                    Interlocked.Add(ref _count, -count);
                     Monitor.PulseAll(_logEventInfoQueue);
                 }
             }
