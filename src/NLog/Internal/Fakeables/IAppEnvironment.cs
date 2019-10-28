@@ -46,6 +46,7 @@ namespace NLog.Internal.Fakeables
         string CurrentProcessFilePath { get; }
         string EntryAssemblyLocation { get; }
         string EntryAssemblyFileName { get; }
+        string UserTempFilePath { get; }
 #endif
         IEnumerable<string> PrivateBinPath { get; }
     }

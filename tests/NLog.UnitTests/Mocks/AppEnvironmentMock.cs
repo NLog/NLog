@@ -59,6 +59,8 @@ namespace NLog.UnitTests.Mocks
 
         public string EntryAssemblyFileName { get; set; } = string.Empty;
 
+        public string UserTempFilePath { get; set; } = string.Empty;
+
         public IEnumerable<string> PrivateBinPath { get; set; } = NLog.Internal.ArrayHelper.Empty<string>();
 
         public bool FileExists(string path)
