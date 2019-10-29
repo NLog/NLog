@@ -4,6 +4,40 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.6.8 (2019/11/03)
+
+#### Bugfixes
+- [#3566](https://github.com/NLog/NLog/pull/3566) DatabaseTarget - Auto escape special chars in password, and improve handling of empty username/password (@304NotModified)
+- [#3584](https://github.com/NLog/NLog/pull/3584) LoggingRule - Fixed IndexOutOfRangeException for SetLoggingLevels with LogLevel.Off (@snakefoot)
+- [#3609](https://github.com/NLog/NLog/pull/3609) FileTarget - Improved handling of relative path in ArchiveFileName (@snakefoot)
+- [#3631](https://github.com/NLog/NLog/pull/3631) ExceptionLayoutRenderer - Fixed missing separator when Format-value gives empty result (@brinko99)
+- [#3647](https://github.com/NLog/NLog/pull/3647) ${substring} - Length should not be mandatory (@304NotModified)
+- [#3653](https://github.com/NLog/NLog/pull/3653) SimpleLayout - Fixed NullReferenceException in PreCalculate during TryGetRawValue optimization (@snakefoot)
+
+#### Features
+- [#3578](https://github.com/NLog/NLog/pull/3578) LogFactory - AutoShutdown can be configured to unhook from AppDomain-Unload, and avoid premature shutdown with IHostBuilder (@snakefoot)
+- [#3579](https://github.com/NLog/NLog/pull/3579) PerformanceCounterLayoutRenderer - Added Layout-support for Instance-property (@snakefoot)
+- [#3583](https://github.com/NLog/NLog/pull/3583) ${local-ip} Layout Renderer for local machine ip-address (@snakefoot + @304NotModified)
+- [#3583](https://github.com/NLog/NLog/pull/3583) CachedLayoutRendererWrapper - Added CachedSeconds as ambient property. Ex. ${local-ip:cachedSeconds=60} (@snakefoot)
+- [#3586](https://github.com/NLog/NLog/pull/3586) JsonLayout - Added EscapeForwardSlash-option to skip Json-escape of forward slash (@304NotModified)
+- [#3593](https://github.com/NLog/NLog/pull/3593) AllEventPropertiesLayoutRenderer - Added Exclude-option that specifies property-keys to skip (@snakefoot)
+- [#3611](https://github.com/NLog/NLog/pull/3611) ${Exception} - Added new Format-option values HResult and Properties (@snakefoot)
+
+#### Improvements
+- [#3622](https://github.com/NLog/NLog/pull/3622) + [#3651](https://github.com/NLog/NLog/pull/3651) ConcurrentRequestQueue refactoring to reduce code complexity (@snakefoot)
+- [#3636](https://github.com/NLog/NLog/pull/3636) AsyncTargetWrapper now fallback to clearing internal queue if flush fails to release blocked writer threads (@snakefoot)
+- [#3641](https://github.com/NLog/NLog/pull/3641) ${CallSite} - Small improvements for recognizing async callsite cases (@snakefoot)
+- [#3642](https://github.com/NLog/NLog/pull/3642) LogManager.GetCurrentClassLogger - Improved capture of Logger name when called within lambda_method (@snakefoot)
+- [#3649](https://github.com/NLog/NLog/pull/3649) ${BaseDir=FixTempDir=true} fallback to process directory for .NET Core 3 Single File Publish (@snakefoot)
+- [#3649](https://github.com/NLog/NLog/pull/3649) Auto-loading NLog configuration from process.exe.nlog will priotize process directory for .NET Core 3 Single File Publish (@snakefoot)
+- [#3654](https://github.com/NLog/NLog/pull/3654) ObjectPathRendererWrapper minor refactorings (@snakefoot)
+
+#### Performance
+- [#3618](https://github.com/NLog/NLog/pull/3618) LogFactory - Faster initial assembly reflection and config loading (@snakefoot)
+- [#3635](https://github.com/NLog/NLog/pull/3635) ConsoleTarget - Added WriteBuffer option that allows batch writing to console-stream with reduced allocations (@snakefoot)
+- [#3635](https://github.com/NLog/NLog/pull/3635) ConsoleTarget - Added global lock to prevent any threadsafety issue from unsafe console (@snakefoot)
+
+
 ### V4.6.7 (2019/08/25)
 
 #### Features
