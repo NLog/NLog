@@ -1084,6 +1084,7 @@ namespace NLog.Targets
                     string fileName = bucket.Key;
                     if (string.IsNullOrEmpty(fileName))
                     {
+                        InternalLogger.Warn("FileTarget(Name={0}): FileName Layout returned empty string. The path is not of a legal form.", Name);
                         var emptyPathException = new ArgumentException("The path is not of a legal form.");
                         for (int i = 0; i < bucketCount; ++i)
                         {
