@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### V4.6.8 (2019/11/03)
+### V4.6.8 (2019/11/04)
 
 #### Bugfixes
 - [#3566](https://github.com/NLog/NLog/pull/3566) DatabaseTarget - Auto escape special chars in password, and improve handling of empty username/password (@304NotModified)
