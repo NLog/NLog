@@ -47,11 +47,7 @@ namespace NLog.MessageTemplates
     /// </summary>
     internal class ValueFormatter : IValueFormatter
     {
-        public static IValueFormatter Instance
-        {
-            get => _instance ?? (_instance = new ValueFormatter(null)); //todo fix
-            set => _instance = value ?? new ValueFormatter(null);
-        }
+        public static IValueFormatter GetInstance(object serviceRepository) => _instance ?? (_instance = new ValueFormatter(serviceRepository));
         private static IValueFormatter _instance;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 

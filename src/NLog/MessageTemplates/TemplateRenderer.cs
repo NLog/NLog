@@ -177,7 +177,7 @@ namespace NLog.MessageTemplates
             }
             else
             {
-                ValueFormatter.Instance.FormatValue(value, holeFormat, captureType, formatProvider, sb);
+                ValueFormatter.GetInstance(null).FormatValue(value, holeFormat, captureType, formatProvider, sb);
             }
         }
 
