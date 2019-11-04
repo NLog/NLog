@@ -417,4 +417,3 @@ namespace NLog
 }
 
 #endif
-

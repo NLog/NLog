@@ -65,10 +65,13 @@ namespace NLog.Internal
             catch (Exception ex)
             {
                 _wrapped = string.Empty;    // Type cannot be resolved in this AppDomain
-                InternalLogger.Info(ex, "ObjectHandleSerializer failed to deserialize object: {0}", type);
+                InternalLogger.Debug(ex, "ObjectHandleSerializer failed to deserialize object: {0}", type);
             }
         }
 
+#if NET4_5
+        [System.Security.Permissions.SecurityPermissionAttribute(System.Security.Permissions.SecurityAction.LinkDemand, SerializationFormatter = true)]
+#endif
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             try
@@ -95,7 +98,7 @@ namespace NLog.Internal
             catch (Exception ex)
             {
                 // ToString on random object can throw exception
-                InternalLogger.Info(ex, "ObjectHandleSerializer failed to serialize object: {0}", _wrapped?.GetType());
+                InternalLogger.Debug(ex, "ObjectHandleSerializer failed to serialize object: {0}", _wrapped?.GetType());
             }
         }
 
