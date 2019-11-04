@@ -262,8 +262,8 @@ namespace NLog.Config
             FuncLayoutRenderer funcResult;
             if (_funcRenderers != null)
             {
-                var succesAsFunc = _funcRenderers.TryGetValue(itemName, out funcResult);
-                if (succesAsFunc)
+                var successAsFunc = _funcRenderers.TryGetValue(itemName, out funcResult);
+                if (successAsFunc)
                 {
                     result = funcResult;
                     return true;

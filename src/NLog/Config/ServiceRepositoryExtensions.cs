@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Targets;
+
 namespace NLog.Config
 {
     using NLog.Internal;
 
-    internal static class ServiceRepositoryHelper
+    internal static class ServiceRepositoryExtensions
     {
         public static IServiceResolver GetServiceResolver(this LoggingConfiguration loggingConfiguration)
         {
@@ -62,6 +64,15 @@ namespace NLog.Config
             return serviceResolver?.ResolveService<IValueFormatter>() ?? MessageTemplates.ValueFormatter.Instance;
         }
 
+        /// <summary>
+        /// Registers singleton-object as implementation of specific interface.
+        /// </summary>
+        /// <remarks>
+        /// If the same single-object implements multiple interfaces then it must be registered for each interface
+        /// </remarks>
+        /// <typeparam name="T">Type of interface</typeparam>
+        /// <param name="serviceRepository">The repo</param>
+        /// <param name="singleton">Singleton object to use for override</param>
         public static IServiceRepository RegisterSingleton<T>(this IServiceRepository serviceRepository, T singleton) where T : class
         {
             serviceRepository.RegisterType(typeof(IValueFormatter), (t) => singleton);
@@ -80,6 +91,14 @@ namespace NLog.Config
         public static IServiceRepository RegisterJsonConverter(this IServiceRepository serviceRepository, IJsonConverter jsonConverter)
         {
             serviceRepository.RegisterSingleton(jsonConverter ?? Targets.DefaultJsonSerializer.Instance);
+            return serviceRepository;
+        } 
+        
+        public static IServiceRepository RegisterDefaults(this IServiceRepository serviceRepository)
+        {
+            serviceRepository.RegisterSingleton<IJsonConverter>(DefaultJsonSerializer.Instance);
+            serviceRepository.RegisterSingleton<IValueFormatter>(new MessageTemplates.ValueFormatter(serviceRepository));
+            serviceRepository.RegisterSingleton<IPropertyTypeConverter>(PropertyTypeConverter.Instance);
             return serviceRepository;
         }
     }
