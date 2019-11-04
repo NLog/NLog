@@ -68,7 +68,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="NullTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public NullTarget() : base()
         {
@@ -79,7 +79,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="NullTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name"></param>
         public NullTarget(string name) : this()

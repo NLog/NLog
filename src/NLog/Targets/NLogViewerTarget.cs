@@ -73,7 +73,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="NLogViewerTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public NLogViewerTarget()
         {
@@ -90,7 +90,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="NLogViewerTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public NLogViewerTarget(string name) : this()
