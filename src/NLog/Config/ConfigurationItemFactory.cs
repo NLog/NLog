@@ -192,7 +192,7 @@ namespace NLog.Config
         [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IJsonConverter)). Marked obsolete on NLog 5.0")]
         public IJsonConverter JsonConverter
         {
-            get => _serviceResolver.ResolveJsonConverter();
+            get => _serviceResolver?.ResolveService<IJsonConverter>();
             set => (_serviceResolver as IServiceRepository)?.RegisterJsonConverter(value);
         }
 
@@ -202,7 +202,7 @@ namespace NLog.Config
         [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IValueFormatter)). Marked obsolete on NLog 5.0")]
         public IValueFormatter ValueFormatter
         {
-            get => _serviceResolver.ResolveValueFormatter();
+            get => _serviceResolver?.ResolveService<IValueFormatter>() ?? MessageTemplates.ValueFormatter.Instance;
             set => (_serviceResolver as IServiceRepository)?.RegisterValueFormatter(value);
         }
 

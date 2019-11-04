@@ -39,7 +39,7 @@ namespace NLog.Config
 
     internal static class ServiceRepositoryExtensions
     {
-        public static IServiceResolver GetServiceResolver(this LoggingConfiguration loggingConfiguration)
+        internal static IServiceResolver GetServiceResolver(this LoggingConfiguration loggingConfiguration)
         {
             return loggingConfiguration?.LogFactory?.ServiceRepository ?? LogManager.LogFactory.ServiceRepository;
         }
@@ -47,21 +47,6 @@ namespace NLog.Config
         public static T ResolveService<T>(this IServiceResolver serviceResolver) where T : class
         {
             return (serviceResolver ?? LogManager.LogFactory.ServiceRepository)?.ResolveInstance(typeof(T)) as T;
-        }
-
-        public static IJsonConverter ResolveJsonConverter(this IServiceResolver serviceResolver)
-        {
-            return serviceResolver?.ResolveService<IJsonConverter>() ?? Targets.DefaultJsonSerializer.Instance;
-        }
-
-        public static IPropertyTypeConverter ResolvePropertyTypeConverter(this IServiceResolver serviceResolver)
-        {
-            return serviceResolver?.ResolveService<IPropertyTypeConverter>() ?? PropertyTypeConverter.Instance;
-        }
-
-        public static IValueFormatter ResolveValueFormatter(this IServiceResolver serviceResolver)
-        {
-            return serviceResolver?.ResolveService<IValueFormatter>() ?? MessageTemplates.ValueFormatter.Instance;
         }
 
         /// <summary>

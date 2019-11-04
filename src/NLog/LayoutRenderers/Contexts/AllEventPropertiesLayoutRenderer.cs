@@ -57,7 +57,7 @@ namespace NLog.LayoutRenderers
         private string _afterKey;
         private string _afterValue;
 
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
         private IValueFormatter _valueFormatter;
 
         /// <summary>

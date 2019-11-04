@@ -53,7 +53,7 @@ namespace NLog.LayoutRenderers
         private Process _process;
         private ReflectionHelpers.LateBoundMethod _lateBoundPropertyGet;
 
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
         private IValueFormatter _valueFormatter;
 
         /// <summary>

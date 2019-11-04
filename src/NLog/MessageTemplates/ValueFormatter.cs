@@ -55,7 +55,7 @@ namespace NLog.MessageTemplates
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 
         private readonly IServiceRepository _serviceRepository;
-        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository.ResolveJsonConverter());
+        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository?.ResolveService<IJsonConverter>());
         private IJsonConverter _jsonConverter;
 
         internal ValueFormatter(IServiceRepository serviceRepository)

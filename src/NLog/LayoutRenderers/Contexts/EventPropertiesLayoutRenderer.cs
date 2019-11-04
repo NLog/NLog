@@ -52,7 +52,7 @@ namespace NLog.LayoutRenderers
     {
         private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
 
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
         private IValueFormatter _valueFormatter;
 
         /// <summary>

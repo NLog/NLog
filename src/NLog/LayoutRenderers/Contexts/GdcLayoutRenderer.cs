@@ -46,7 +46,7 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class GdcLayoutRenderer : LayoutRenderer, IRawValue, IStringValueRenderer
     {
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
         private IValueFormatter _valueFormatter;
 
         /// <summary>
