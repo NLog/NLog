@@ -31,9 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Common;
+
 namespace NLog.Config
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Reflection;
     using NLog.Internal;
@@ -62,7 +65,7 @@ namespace NLog.Config
                 ConfigurationItemFactory.Default = null;    //build new global factory
 
             this.RegisterDefaults();
-            CreateInstance = DefaultResolveInstance;
+            CreateInstance = itemType => DefaultResolveInstance(itemType, new HashSet<Type>());
             // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
         }
 
@@ -79,7 +82,7 @@ namespace NLog.Config
                 _serviceRepository[type] = objectResolver;
         }
 
-        public object ResolveInstance(Type itemType)
+        public object ResolveService(Type itemType)
         {
             var createInstance = CreateInstance;
             if (createInstance != null)
@@ -87,24 +90,89 @@ namespace NLog.Config
                 return createInstance(itemType);
             }
 
-            return DefaultResolveInstance(itemType);
+            return DefaultResolveInstance(itemType, new HashSet<Type>());
         }
 
-        private object DefaultResolveInstance(Type itemType)
+        private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
         {
+            InternalLogger.Trace("Resolve {0}", itemType.FullName);
             if (_serviceRepository.TryGetValue(itemType, out var objectResolver))
             {
+                InternalLogger.Trace("Resolve {0} done", itemType.FullName);
                 return objectResolver(itemType);
             }
 
             try
             {
-                return Activator.CreateInstance(itemType);
+                //todo DI cache/find upfront
+                var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
+                if (defaultConstructor != null)
+                {
+                    InternalLogger.Trace("Found public default ctor");
+                    return defaultConstructor.Invoke(ArrayHelper.Empty<object>());
+                }
+
+                return CreateFromParameterizedConstructor(itemType, seenTypes);
             }
             catch (MissingMethodException exception)
             {
-                throw new NLogConfigurationException($"Cannot access the constructor of type: {itemType.FullName}. Is the required permission granted?", exception);
+                throw new NLogResolveException("Is the required permission granted?", exception, itemType);
             }
+            finally
+            {
+                InternalLogger.Trace("Resolve {0} done", itemType.FullName);
+            }
+        }
+
+        private object CreateFromParameterizedConstructor(Type itemType, HashSet<Type> seenTypes)
+        {
+            var ctors = itemType.GetConstructors(); 
+
+            if (ctors.Length == 0)
+            {
+                throw new NLogResolveException("No public constructor", itemType);
+            }
+
+            if (ctors.Length > 1)
+            {
+                throw new NLogResolveException("Multiple public constructor are not supported if there isn't a default constructor'", itemType);
+            }
+
+            var ctor = ctors.First();
+
+            var parameterInfos = ctor.GetParameters();
+
+            if (parameterInfos.Length == 0)
+            {
+                ctor.Invoke(ArrayHelper.Empty<object>());
+            }
+
+            var parameterValues = CreateCtorParameterValues(parameterInfos, seenTypes);
+
+            return ctor.Invoke(parameterValues);
+        }
+
+        private object[] CreateCtorParameterValues(ParameterInfo[] parameterInfos, HashSet<Type> seenTypes)
+        {
+            var parameterValues = new object[parameterInfos.Length];
+
+            for (var i = 0; i < parameterInfos.Length; i++)
+            {
+                var param = parameterInfos[i];
+
+                var parameterType = param.ParameterType;
+                if (seenTypes.Contains(parameterType))
+                {
+                    throw new NLogResolveException("There is a cycle", parameterType);
+                }
+
+                seenTypes.Add(parameterType);
+
+                var paramValue = DefaultResolveInstance(parameterType, seenTypes);
+                parameterValues[i] = paramValue;
+            }
+
+            return parameterValues;
         }
 
         /// <summary>

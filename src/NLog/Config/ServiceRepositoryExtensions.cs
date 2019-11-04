@@ -46,7 +46,7 @@ namespace NLog.Config
 
         public static T ResolveService<T>(this IServiceResolver serviceResolver) where T : class
         {
-            return (serviceResolver ?? LogManager.LogFactory.ServiceRepository)?.ResolveInstance(typeof(T)) as T;
+            return (serviceResolver ?? LogManager.LogFactory.ServiceRepository)?.ResolveService(typeof(T)) as T;
         }
 
         public static IJsonConverter ResolveJsonConverter(this IServiceResolver serviceResolver)

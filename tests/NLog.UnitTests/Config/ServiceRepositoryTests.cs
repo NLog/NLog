@@ -31,11 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using JetBrains.Annotations;
+using NLog.Config;
+
 namespace NLog.UnitTests.Config
 {
-    using System.IO;
     using System.Text;
-    using System.Xml;
     using NLog.Targets;
     using Xunit;
 
@@ -44,51 +46,81 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void SideBySideLogFactoryExternalInterfaceTest()
         {
-            // Stage
-            LogFactory logFactory1 = new LogFactory();
-            logFactory1.ServiceRepository.RegisterType(typeof(IMyPrettyInterface), (t) => new MyPrettyImplementation() { Test = nameof(logFactory1) });
+            // Arrange
+            var logFactory1 = new LogFactory();
+            const string name1 = "name1";
+            logFactory1.ServiceRepository.RegisterType(typeof(IMyPrettyInterface), (t) => new MyPrettyImplementation() { Test = name1 });
 
-            LogFactory logFactory2 = new LogFactory();
-            logFactory2.ServiceRepository.RegisterType(typeof(IMyPrettyInterface), (t) => new MyPrettyImplementation() { Test = nameof(logFactory2) });
+            var logFactory2 = new LogFactory();
+            const string name2 = "name2";
+            logFactory2.ServiceRepository.RegisterType(typeof(IMyPrettyInterface), (t) => new MyPrettyImplementation { Test = name2 });
 
             // Act
-            var logFactory1service = logFactory1.ServiceRepository.ResolveInstance(typeof(IMyPrettyInterface));
-            var logFactory2service = logFactory2.ServiceRepository.ResolveInstance(typeof(IMyPrettyInterface));
+            var logFactoryService1 = logFactory1.ServiceRepository.ResolveService<IMyPrettyInterface>();
+            var logFactoryService2 = logFactory2.ServiceRepository.ResolveService<IMyPrettyInterface>();
 
             // Assert
-            Assert.Equal(nameof(logFactory1), logFactory1service.ToString());
-            Assert.Equal(nameof(logFactory2), logFactory2service.ToString());
+            Assert.Equal(name1, logFactoryService1.ToString());
+            Assert.Equal(name2, logFactoryService2.ToString());
         }
 
         [Fact]
         public void SideBySideLogFactoryInternalInterfaceTest()
         {
-            // Stage
-            LogFactory logFactory1 = new LogFactory();
-            InitializeLogFactoryJsonConverter(logFactory1, nameof(logFactory1), out Logger logger1, out DebugTarget target1);
+            // Arrange
+            var logFactory1 = new LogFactory();
+            const string name1 = "name1";
+            InitializeLogFactoryJsonConverter(logFactory1, name1, out var logger1, out var target1);
 
-            LogFactory logFactory2 = new LogFactory();
-            InitializeLogFactoryJsonConverter(logFactory2, nameof(logFactory2), out Logger logger2, out DebugTarget target2);
+            var logFactory2 = new LogFactory();
+            const string name2 = "name2";
+            InitializeLogFactoryJsonConverter(logFactory2, name2, out var logger2, out var target2);
 
             // Act
             logger1.Info("Hello {user}", "Kenny");
             logger2.Info("Hello {user}", "Kenny");
 
             // Assert
-            Assert.Equal("Kenny" + "_" + nameof(logFactory1), target1.LastMessage);
-            Assert.Equal("Kenny" + "_" + nameof(logFactory2), target2.LastMessage);
+            Assert.Equal("Kenny" + "_" + name1, target1.LastMessage);
+            Assert.Equal("Kenny" + "_" + name2, target2.LastMessage);
         }
 
-        private static void InitializeLogFactoryJsonConverter(LogFactory logFactory, string jsonOutput, out Logger logger, out DebugTarget target)
+        [Fact]
+        public void ResolveShouldInjectDependencies()
         {
-            logFactory.ServiceRepository.RegisterType(typeof(IJsonConverter), (t) => new MySimpleJsonConverter() { Test = jsonOutput });
-            using (var stringReader = new StringReader(@"<nlog><targets><target type='debug' name='test' layout='${event-properties:user:format=@}'/></targets><rules><logger name='*' minLevel='Debug' writeTo='test'/></rules></nlog>"))
-            {
-                using (var reader = XmlReader.Create(stringReader))
-                {
-                    logFactory.Configuration = new NLog.Config.XmlLoggingConfiguration(reader, null, logFactory);
-                }
-            }
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            var target = logFactory.ServiceRepository.ResolveService<TargetWithInjection>();
+
+            // Assert
+            Assert.NotNull(target.JsonConverter);
+        }
+
+        [Fact]
+        public void ResolveWithDirectCycleShouldThrow()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act & Assert
+            AssertCycleException<TargetWithDirectCycleInjection>(logFactory);
+        }
+
+        private static void AssertCycleException<T>(LogFactory logFactory) where T : class
+        {
+            var ex = Assert.Throws<NLogResolveException>(() => logFactory.ServiceRepository.ResolveService<T>());
+            Assert.Contains("cycle", ex.Message, StringComparison.OrdinalIgnoreCase);
+            Assert.Equal(typeof(T), ex.TypeToResolve);
+        }
+
+        private static void InitializeLogFactoryJsonConverter(LogFactory logFactory, string testValue, out Logger logger, out DebugTarget target)
+        {
+            logFactory.ServiceRepository.RegisterType(typeof(IJsonConverter), (t) => new MySimpleJsonConverter { Test = testValue });
+
+            var xmlConfig = @"<nlog><targets><target type='debug' name='test' layout='${event-properties:user:format=@}'/></targets><rules><logger name='*' minLevel='Debug' writeTo='test'/></rules></nlog>";
+            logFactory.Configuration = XmlLoggingConfiguration.CreateFromXmlString(xmlConfig, logFactory);
             logger = logFactory.GetLogger(nameof(logFactory));
             target = logFactory.Configuration.FindTargetByName("test") as DebugTarget;
         }
@@ -115,6 +147,46 @@ namespace NLog.UnitTests.Config
             {
                 builder.Append(string.Concat(value.ToString(), "_", Test));
                 return true;
+            }
+        }
+
+        class TargetWithInjection : Target
+        {
+            public TargetWithInjection([NotNull] IJsonConverter jsonConverter)
+            {
+                JsonConverter = jsonConverter ?? throw new ArgumentNullException(nameof(jsonConverter));
+            }
+
+            public IJsonConverter JsonConverter { get; }
+        }
+
+        class TargetWithDirectCycleInjection : Target
+        {
+            /// <inheritdoc />
+            public TargetWithDirectCycleInjection(TargetWithDirectCycleInjection cycle1)
+            {
+            }
+        }
+        class TargetWithIndirectCycleInjection : Target
+        {
+            /// <inheritdoc />
+            public TargetWithIndirectCycleInjection(HelperClass1 helper)
+            {
+            }
+        }
+
+        class HelperClass1
+        {
+            /// <inheritdoc />
+            public HelperClass1(HelperClass2 helper)
+            {
+            }
+        }
+        class HelperClass2
+        {
+            /// <inheritdoc />
+            public HelperClass2(HelperClass1 helper)
+            {
             }
         }
     }

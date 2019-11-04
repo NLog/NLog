@@ -214,7 +214,23 @@ namespace NLog.Config
         /// <returns></returns>
         public static XmlLoggingConfiguration CreateFromXmlString(string xml)
         {
-            return new XmlLoggingConfiguration(xml, string.Empty, LogManager.LogFactory);
+            return CreateFromXmlString(xml, LogManager.LogFactory);
+        }
+
+        /// <summary>
+        /// Parse XML string as NLog configuration
+        /// </summary>
+        /// <param name="xml">NLog configuration</param>
+        /// <param name="logFactory">LogFactory. Not null allowed.</param>
+        /// <returns></returns>
+        public static XmlLoggingConfiguration CreateFromXmlString(string xml, [NotNull] LogFactory logFactory)
+        {
+            if (logFactory == null)
+            {
+                throw new ArgumentNullException(nameof(logFactory));
+            }
+
+            return new XmlLoggingConfiguration(xml, string.Empty, logFactory);
         }
 #endif
 

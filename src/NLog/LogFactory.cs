@@ -925,7 +925,7 @@ namespace NLog
             }
             else
             {
-                var instance = ServiceRepository.ResolveInstance(customLoggerType);
+                var instance = ServiceRepository.ResolveService(customLoggerType);
                 var newLogger = instance as Logger;
                 if (newLogger == null)
                 {
