@@ -33,11 +33,9 @@
 
 using System;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using NLog.Config;
 using NLog.Internal;
-using NLog.Layouts;
 
 namespace NLog.LayoutRenderers.Wrappers
 {
@@ -51,15 +49,6 @@ namespace NLog.LayoutRenderers.Wrappers
     public class ObjectPathRendererWrapper : WrapperLayoutRendererBase, IRawValue
     {
         private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
-
-        private SimpleLayout _innerAsSimple;
-
-        /// <inheritdoc />
-        public ObjectPathRendererWrapper()
-        {
-            InnerChanged += ObjectPathRendererWrapper_InnerChanged;
-            UpdateInner();
-        }
 
         /// <summary>
         /// Gets or sets the object-property-navigation-path for lookup of nested property
@@ -94,8 +83,6 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <docgen category='Rendering Options' order='100' />
         public CultureInfo Culture { get; set; } = CultureInfo.InvariantCulture;
 
-        #region Overrides of WrapperLayoutRendererBase
-
         /// <inheritdoc />
         protected override string Transform(string text)
         {
@@ -105,29 +92,18 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <inheritdoc />
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)
         {
-            if (_innerAsSimple != null)
+            if (TryGetRawValue(logEvent, out object rawValue))
             {
-                if (TryGetRawValue(logEvent, out object rawValue))
-                {
-                    var formatProvider = GetFormatProvider(logEvent, Culture);
-                    builder.AppendFormattedValue(rawValue, Format, formatProvider);
-                }
-            }
-            else
-            {
-                Inner?.RenderAppendBuilder(logEvent, builder);
+                var formatProvider = GetFormatProvider(logEvent, Culture);
+                builder.AppendFormattedValue(rawValue, Format, formatProvider);
             }
         }
-
-        #endregion
-
-        #region Implementation of IRawValue
 
         /// <inheritdoc />
         public bool TryGetRawValue(LogEventInfo logEvent, out object value)
         {
-            if (_innerAsSimple != null &&
-                _innerAsSimple.TryGetRawValue(logEvent, out var rawValue) &&
+            if (Inner != null &&
+                Inner.TryGetRawValue(logEvent, out var rawValue) &&
                 _objectPropertyHelper.TryGetObjectProperty(rawValue, out value))
             {
                 return true;
@@ -135,18 +111,6 @@ namespace NLog.LayoutRenderers.Wrappers
 
             value = null;
             return false;
-        }
-
-        #endregion
-
-        private void ObjectPathRendererWrapper_InnerChanged(object sender, EventArgs e)
-        {
-            UpdateInner();
-        }
-
-        private void UpdateInner()
-        {
-            _innerAsSimple = Inner as SimpleLayout;
         }
     }
 }
