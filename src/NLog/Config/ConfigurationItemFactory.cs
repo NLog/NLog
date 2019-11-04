@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Config
 {
     using System;
@@ -56,7 +58,7 @@ namespace NLog.Config
     {
         private static ConfigurationItemFactory _defaultInstance;
 
-        private readonly IServiceResolver _serviceResolver;
+        [NotNull] private readonly IServiceRepository _serviceResolver;
         private readonly List<IFactory> _allFactories;
         private readonly Factory<Target, TargetAttribute> _targets;
         private readonly Factory<Filter, FilterAttribute> _filters;
@@ -80,9 +82,9 @@ namespace NLog.Config
         {
         }
 
-        internal ConfigurationItemFactory(IServiceResolver serviceResolver, ConfigurationItemFactory globalDefaultFactory, params Assembly[] assemblies)
+        internal ConfigurationItemFactory([NotNull] IServiceRepository serviceResolver, ConfigurationItemFactory globalDefaultFactory, params Assembly[] assemblies)
         {
-            _serviceResolver = serviceResolver;
+            _serviceResolver = serviceResolver ?? throw new ArgumentNullException(nameof(serviceResolver));
             _targets = new Factory<Target, TargetAttribute>(serviceResolver, globalDefaultFactory?._targets);
             _filters = new Factory<Filter, FilterAttribute>(serviceResolver, globalDefaultFactory?._filters);
             _layoutRenderers = new LayoutRendererFactory(serviceResolver, globalDefaultFactory?._layoutRenderers);
@@ -192,8 +194,8 @@ namespace NLog.Config
         [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IJsonConverter)). Marked obsolete on NLog 5.0")]
         public IJsonConverter JsonConverter
         {
-            get => _serviceResolver?.ResolveService<IJsonConverter>();
-            set => (_serviceResolver as IServiceRepository)?.RegisterJsonConverter(value);
+            get => _serviceResolver.ResolveService<IJsonConverter>();
+            set => _serviceResolver.RegisterJsonConverter(value);
         }
 
         /// <summary>
@@ -202,8 +204,8 @@ namespace NLog.Config
         [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IValueFormatter)). Marked obsolete on NLog 5.0")]
         public IValueFormatter ValueFormatter
         {
-            get => _serviceResolver?.ResolveService<IValueFormatter>() ?? MessageTemplates.ValueFormatter.Instance;
-            set => (_serviceResolver as IServiceRepository)?.RegisterValueFormatter(value);
+            get => _serviceResolver.ResolveService<IValueFormatter>() ?? MessageTemplates.ValueFormatter.Instance;
+            set => _serviceResolver.RegisterValueFormatter(value);
         }
 
         /// <summary>
