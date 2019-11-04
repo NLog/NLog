@@ -53,9 +53,6 @@ namespace NLog.LayoutRenderers
         private Process _process;
         private ReflectionHelpers.LateBoundMethod _lateBoundPropertyGet;
 
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
-        private IValueFormatter _valueFormatter;
-
         /// <summary>
         /// Gets or sets the property to retrieve.
         /// </summary>

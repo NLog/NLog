@@ -46,9 +46,6 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class MdlcLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
-        private IValueFormatter _valueFormatter;
-
         /// <summary>
         /// Gets or sets the name of the item.
         /// </summary>

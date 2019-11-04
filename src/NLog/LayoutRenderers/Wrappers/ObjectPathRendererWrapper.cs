@@ -52,9 +52,6 @@ namespace NLog.LayoutRenderers.Wrappers
     {
         private readonly ObjectPropertyHelper _objectPropertyHelper = new ObjectPropertyHelper();
 
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
-        private IValueFormatter _valueFormatter;
-
         private SimpleLayout _innerAsSimple;
 
         /// <inheritdoc />
