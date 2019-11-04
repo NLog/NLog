@@ -75,6 +75,7 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="NullTarget" /> class.
         /// </summary>
+        /// <param name="name">Name of the target.</param>
         public NullTarget(string name) : this()
         {
             Name = name;
