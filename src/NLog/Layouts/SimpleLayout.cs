@@ -297,22 +297,39 @@ namespace NLog.Layouts
         {
             if (_rawValueRenderer != null)
             {
-                if (!IsInitialized)
+                try
                 {
-                    Initialize(LoggingConfiguration);
-                }
+                    if (!IsInitialized)
+                    {
+                        Initialize(LoggingConfiguration);
+                    }
 
-                if (ThreadAgnostic && MutableUnsafe)
+                    if (ThreadAgnostic && MutableUnsafe)
+                    {
+                        // If raw value doesn't have the ability to mutate, then we can skip precalculate
+                        var success = _rawValueRenderer.TryGetRawValue(logEvent, out var value);
+                        if (success && value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType()))
+                            return;
+                    }
+                }
+                catch (Exception exception)
                 {
-                    // If raw value doesn't have the ability to mutate, then we can skip precalculate
-                    var success = _rawValueRenderer.TryGetRawValue(logEvent, out var value);
-                    if (success && Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType())
-                        return;
+                    //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+
+                    //check for performance
+                    if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                    {
+                        InternalLogger.Warn(exception, "Exception in precalculate using '{0}.TryGetRawValue()'", _rawValueRenderer?.GetType());
+                    }
+
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
                 }
             }
 
             base.Precalculate(logEvent);
-
         }
 
         internal override void PrecalculateBuilder(LogEventInfo logEvent, StringBuilder target)
@@ -323,15 +340,15 @@ namespace NLog.Layouts
         /// <inheritdoc />
         internal override bool TryGetRawValue(LogEventInfo logEvent, out object rawValue)
         {
-            if (!IsInitialized)
+            if (_rawValueRenderer != null)
             {
-                Initialize(LoggingConfiguration);
-            }
-
-            try
-            {
-                if (_rawValueRenderer != null)
+                try
                 {
+                    if (!IsInitialized)
+                    {
+                        Initialize(LoggingConfiguration);
+                    }
+
                     if ((!ThreadAgnostic || MutableUnsafe) && logEvent.TryGetCachedLayoutValue(this, out _))
                     {
                         rawValue = null;
@@ -341,20 +358,20 @@ namespace NLog.Layouts
                     var success = _rawValueRenderer.TryGetRawValue(logEvent, out rawValue);
                     return success;
                 }
-            }
-            catch (Exception exception)
-            {
-                //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
-
-                //check for performance
-                if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                catch (Exception exception)
                 {
-                    InternalLogger.Warn(exception, "Exception in '{0}.InitializeLayout()'", Renderers.Count > 0 ? Renderers[0].GetType().FullName : null);
-                }
+                    //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
 
-                if (exception.MustBeRethrown())
-                {
-                    throw;
+                    //check for performance
+                    if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                    {
+                        InternalLogger.Warn(exception, "Exception in TryGetRawValue using '{0}.TryGetRawValue()'", _rawValueRenderer?.GetType());
+                    }
+
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
                 }
             }
 
