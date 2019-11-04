@@ -85,9 +85,6 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
         /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
-        /// </remarks>
         public AutoFlushTargetWrapper()
             : this(null)
         {
@@ -96,9 +93,6 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
         /// </summary>
-        /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
-        /// </remarks>
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="name">Name of the target</param>
         public AutoFlushTargetWrapper(string name, Target wrappedTarget)
@@ -194,7 +188,7 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void CloseTarget()
         {
-            _pendingManualFlushList.Clear();    // Maybe consider to wait a short while if pending requests?
+            _pendingManualFlushList.Clear(); // Maybe consider to wait a short while if pending requests?
             base.CloseTarget();
         }
     }
