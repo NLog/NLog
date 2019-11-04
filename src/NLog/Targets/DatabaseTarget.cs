@@ -91,8 +91,9 @@ namespace NLog.Targets
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
         /// </summary>
-        public DatabaseTarget()
+        public DatabaseTarget(IPropertyTypeConverter propertyTypeConverter)
         {
+            _propertyTypeConverter = propertyTypeConverter;
             InstallDdlCommands = new List<DatabaseCommandInfo>();
             UninstallDdlCommands = new List<DatabaseCommandInfo>();
             DBProvider = "sqlserver";
@@ -108,7 +109,8 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public DatabaseTarget(string name) : this()
+        /// <param name="propertyTypeConverter"></param>
+        public DatabaseTarget(string name, IPropertyTypeConverter propertyTypeConverter) : this(propertyTypeConverter)
         {
             Name = name;
         }
@@ -264,11 +266,6 @@ namespace NLog.Targets
 
         internal Type ConnectionType { get; set; }
 
-        private IPropertyTypeConverter PropertyTypeConverter
-        {
-            get => _propertyTypeConverter ?? (_propertyTypeConverter = LoggingConfiguration.GetServiceResolver().ResolvePropertyTypeConverter());
-            set => _propertyTypeConverter = value;
-        }
         private IPropertyTypeConverter _propertyTypeConverter;
 
         SortHelpers.KeySelector<AsyncLogEventInfo, string> _buildConnectionStringDelegate;
@@ -514,7 +511,6 @@ namespace NLog.Targets
         /// </summary>
         protected override void CloseTarget()
         {
-            PropertyTypeConverter = null;
             base.CloseTarget();
             InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of CloseTarget", Name);
             CloseConnection();
@@ -888,7 +884,7 @@ namespace NLog.Targets
                 {
                     return CreateDefaultValue(dbParameterType);
                 }
-                return PropertyTypeConverter.Convert(parameterValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
+                return _propertyTypeConverter.Convert(parameterValue, dbParameterType, parameterInfo.Format, dbParameterCulture) ?? DBNull.Value;
             }
             catch (Exception ex)
             {
@@ -919,7 +915,7 @@ namespace NLog.Targets
                         return true;
                     }
 
-                    value = PropertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format,
+                    value = _propertyTypeConverter.Convert(rawValue, dbParameterType, parameterInfo.Format,
                             dbParameterCulture);
                     return true;
                 }

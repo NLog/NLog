@@ -34,6 +34,7 @@
 namespace NLog.Config
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Reflection;
     using NLog.Internal;
@@ -99,7 +100,33 @@ namespace NLog.Config
 
             try
             {
-                return Activator.CreateInstance(itemType);
+                //todo cache/find upfront
+                var ctor = itemType.GetConstructors().FirstOrDefault(); //todo handle better
+
+                if (ctor == null)
+                {
+                    throw new NLogConfigurationException($"Type {itemType.FullName} hasn't a public constructor'");
+                }
+
+                var parameterInfos = ctor.GetParameters();
+
+                if (parameterInfos.Length == 0)
+                {
+                    ctor.Invoke(ArrayHelper.Empty<object>());
+                }
+
+                //todo handle loop
+                var parameterValues = new object[parameterInfos.Length];
+
+                for (var i = 0; i < parameterInfos.Length; i++)
+                {
+                    var param = parameterInfos[i];
+                    //todo handle loops
+                    var paramValue = DefaultResolveInstance(param.ParameterType);
+                    parameterValues[i] = paramValue;
+                }
+
+                return ctor.Invoke(parameterValues);
             }
             catch (MissingMethodException exception)
             {
