@@ -56,6 +56,8 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - ${BaseDir=FixTempDir=true} fallback to process directory for .NET Core 3 Single File Publish (@snakefoot)
 - Auto-loading NLog configuration from process.exe.nlog will priotize process directory for .NET Core 3 Single File Publish (@snakefoot)
 - ObjectPathRendererWrapper minor refactorings (@snakefoot)
+- ObjectHandleSerializer.GetObjectData includes SerializationFormatter=true for use in MDLC + NDLC (@snakefoot)
+- FileTarget - Extra logging when FileName Layout renders empty string (@snakefoot)      
 
 ## Performance
 - LogFactory - Faster initial assembly reflection and config loading (@snakefoot)
