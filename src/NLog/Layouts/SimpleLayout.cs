@@ -308,7 +308,7 @@ namespace NLog.Layouts
                     {
                         // If raw value doesn't have the ability to mutate, then we can skip precalculate
                         var success = _rawValueRenderer.TryGetRawValue(logEvent, out var value);
-                        if (success && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType()))
+                        if (success && value != null && (Convert.GetTypeCode(value) != TypeCode.Object || value.GetType().IsValueType()))
                             return;
                     }
                 }
