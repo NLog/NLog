@@ -380,11 +380,13 @@ namespace NLog.Config
             {
                 string processFilePath = _appEnvironment.CurrentProcessFilePath;
                 string processDirectory = !string.IsNullOrEmpty(processFilePath) ? PathHelpers.TrimDirectorySeparators(Path.GetDirectoryName(processFilePath)) : string.Empty;
-                if (!string.IsNullOrEmpty(entryAssemblyLocation) && !string.Equals(entryAssemblyLocation, processDirectory, StringComparison.OrdinalIgnoreCase))
+
+                if (!IsValidProcessDirectory(processDirectory, entryAssemblyLocation, _appEnvironment))
                 {
                     // Handle dotnet-process loading .NET Core-assembly, or IIS-process loading website
                     string assemblyFileName = _appEnvironment.EntryAssemblyFileName;
                     yield return Path.Combine(entryAssemblyLocation, assemblyFileName + ".nlog");
+
                     // Handle unpublished .NET Core Application
                     assemblyFileName = Path.GetFileNameWithoutExtension(assemblyFileName);
                     if (!string.IsNullOrEmpty(assemblyFileName))
@@ -393,6 +395,7 @@ namespace NLog.Config
                 else if (!string.IsNullOrEmpty(processFilePath))
                 {
                     yield return processFilePath + ".nlog";
+
                     // Handle published .NET Core Application with assembly-nlog-file
                     if (!string.IsNullOrEmpty(entryAssemblyLocation))
                     {
@@ -411,7 +414,7 @@ namespace NLog.Config
 #endif
         }
 
-        public IEnumerable<string> GetPrivateBinPathNLogLocations(string baseDirectory, string nlogConfigFile, string nLogConfigFileLowerCase)
+        private IEnumerable<string> GetPrivateBinPathNLogLocations(string baseDirectory, string nlogConfigFile, string nLogConfigFileLowerCase)
         {
             IEnumerable<string> privateBinPaths = _appEnvironment.PrivateBinPath;
             if (privateBinPaths != null)
@@ -428,6 +431,26 @@ namespace NLog.Config
                 }
             }
         }
+
+#if NETSTANDARD && !NETSTANDARD1_3
+        private static bool IsValidProcessDirectory(string processDirectory, string entryAssemblyLocation, IAppEnvironment appEnvironment)
+        {
+            if (string.IsNullOrEmpty(entryAssemblyLocation))
+                return true;
+
+            if (string.Equals(entryAssemblyLocation, processDirectory, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (string.IsNullOrEmpty(processDirectory))
+                return false;
+
+            string tempFilePath = PathHelpers.TrimDirectorySeparators(appEnvironment.UserTempFilePath);
+            if (!string.IsNullOrEmpty(tempFilePath) && entryAssemblyLocation.StartsWith(tempFilePath, StringComparison.OrdinalIgnoreCase))
+                return true;   // Hack for .NET Core 3 - Single File Publish that unpacks Entry-Assembly into temp-folder, and process-directory is valid
+
+            return false;   // NetCore Application is not published and is possible being executed by dotnet-process
+        }
+#endif
 
         protected virtual void Dispose(bool disposing)
         {

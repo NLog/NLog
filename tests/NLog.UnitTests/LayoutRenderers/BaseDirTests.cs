@@ -54,6 +54,12 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
         [Fact]
+        public void BaseDir_FixTempDir_NotRequired()
+        {
+            AssertLayoutRendererOutput("${basedir:fixtempdir=true}", baseDir);
+        }
+
+        [Fact]
         public void BaseDirCombineTest()
         {
             AssertLayoutRendererOutput("${basedir:dir=aaa}", Path.Combine(baseDir, "aaa"));
@@ -101,14 +107,36 @@ namespace NLog.UnitTests.LayoutRenderers
                 var count = paths.Count(p => p.StartsWith(fakeBaseDir));
 
                 Assert.True(count > 0, $"At least one path should start with '{fakeBaseDir}'");
-
             }
             finally
             {
                 //restore
                 LogFactory.CurrentAppDomain = old;
             }
+        }
 
+        [Fact]
+        public void BaseDir_FixTempDir_ChoosesProcessDir()
+        {
+            var tempPath = System.IO.Path.GetTempPath();
+            var old = LogFactory.CurrentAppDomain;
+            try
+            {
+                var currentAppDomain = new MyAppDomain();
+                currentAppDomain.BaseDirectory = tempPath;
+                LogFactory.CurrentAppDomain = currentAppDomain;
+
+                //test 1 
+                AssertLayoutRendererOutput("${basedir}", tempPath);
+
+                //test 2
+                AssertLayoutRendererOutput("${basedir:fixtempdir=true}", Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+            }
+            finally
+            {
+                //restore
+                LogFactory.CurrentAppDomain = old;
+            }
         }
 
         class MyAppDomain : IAppDomain
