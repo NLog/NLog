@@ -31,6 +31,8 @@ Date format: (year/month/day)
 - [#3649](https://github.com/NLog/NLog/pull/3649) ${BaseDir=FixTempDir=true} fallback to process directory for .NET Core 3 Single File Publish (@snakefoot)
 - [#3649](https://github.com/NLog/NLog/pull/3649) Auto-loading NLog configuration from process.exe.nlog will priotize process directory for .NET Core 3 Single File Publish (@snakefoot)
 - [#3654](https://github.com/NLog/NLog/pull/3654) ObjectPathRendererWrapper minor refactorings (@snakefoot)
+- [#3660](https://github.com/NLog/NLog/pull/3660) ObjectHandleSerializer.GetObjectData includes SerializationFormatter=true for use in MDLC + NDLC (@snakefoot)
+- [#3662](https://github.com/NLog/NLog/pull/3662) FileTarget - Extra logging when FileName Layout renders empty string (@snakefoot)
 
 #### Performance
 - [#3618](https://github.com/NLog/NLog/pull/3618) LogFactory - Faster initial assembly reflection and config loading (@snakefoot)
