@@ -54,11 +54,11 @@ namespace NLog.MessageTemplates
         private static IValueFormatter _instance;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 
-        private readonly ServiceRepository _serviceRepository;
+        private readonly IServiceRepository _serviceRepository;
         private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository.ResolveJsonConverter());
         private IJsonConverter _jsonConverter;
 
-        internal ValueFormatter(ServiceRepository serviceRepository)
+        internal ValueFormatter(IServiceRepository serviceRepository)
         {
             _serviceRepository = serviceRepository;
         }

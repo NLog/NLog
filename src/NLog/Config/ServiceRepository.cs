@@ -40,7 +40,7 @@ namespace NLog.Config
     using NLog.Targets;
 
     /// <summary>
-    /// Repository of intefaces used by NLog to allow override for dependency injection
+    /// Repository of interfaces used by NLog to allow override for dependency injection
     /// </summary>
     internal sealed class ServiceRepository : IServiceRepository
     {
@@ -61,26 +61,16 @@ namespace NLog.Config
             if (resetGlobalCache)
                 ConfigurationItemFactory.Default = null;    //build new global factory
 
-            RegisterSingleton(typeof(IJsonConverter), DefaultJsonSerializer.Instance);
-            RegisterSingleton(typeof(IValueFormatter), new MessageTemplates.ValueFormatter(this));
-            RegisterSingleton(typeof(IPropertyTypeConverter), NLog.Config.PropertyTypeConverter.Instance);
-            CreateInstance = new ConfigurationItemCreator(t => DefaultResolveInstance(t));
+            this.RegisterDefaults();
+            CreateInstance = DefaultResolveInstance;
             // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
         }
 
         /// <summary>
-        /// Registers singleton-object as implementation of specific interface.
+        /// 
         /// </summary>
-        /// <remarks>
-        /// If the same single-object implements multiple interfaces then it must be registered for each interface
-        /// </remarks>
-        /// <param name="interfaceType">Type of interface</param>
-        /// <param name="singletonObject">Singleton object to use for override</param>
-        internal void RegisterSingleton(Type interfaceType, object singletonObject)
-        {
-            _serviceRepository[interfaceType] = (t) => singletonObject;
-        }
-
+        /// <param name="type"></param>
+        /// <param name="objectResolver"><c>null</c> will unregister the type</param>
         public void RegisterType(Type type, ConfigurationItemCreator objectResolver)
         {
             if (objectResolver == null)
@@ -96,10 +86,8 @@ namespace NLog.Config
             {
                 return createInstance(itemType);
             }
-            else
-            {
-                return DefaultResolveInstance(itemType);
-            }
+
+            return DefaultResolveInstance(itemType);
         }
 
         private object DefaultResolveInstance(Type itemType)
