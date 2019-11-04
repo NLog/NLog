@@ -36,6 +36,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using JetBrains.Annotations;
 using NLog.Config;
 using NLog.Internal;
 
@@ -48,7 +49,7 @@ namespace NLog.MessageTemplates
     {
         public static IValueFormatter Instance
         {
-            get => _instance ?? (_instance = new ValueFormatter(null));
+            get => _instance ?? (_instance = new ValueFormatter(null)); //todo fix
             set => _instance = value ?? new ValueFormatter(null);
         }
         private static IValueFormatter _instance;
@@ -58,9 +59,9 @@ namespace NLog.MessageTemplates
         private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository?.ResolveService<IJsonConverter>());
         private IJsonConverter _jsonConverter;
 
-        internal ValueFormatter(IServiceRepository serviceRepository)
+        internal ValueFormatter([NotNull] IServiceRepository serviceRepository)
         {
-            _serviceRepository = serviceRepository;
+            _serviceRepository = serviceRepository ?? throw new ArgumentNullException(nameof(serviceRepository));
         }
 
         private const int MaxRecursionDepth = 2;
