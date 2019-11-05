@@ -33,6 +33,7 @@
 
 using System;
 using JetBrains.Annotations;
+using NLog.MessageTemplates;
 using NLog.Targets;
 
 namespace NLog.Config
@@ -76,7 +77,7 @@ namespace NLog.Config
                 throw new ArgumentNullException(nameof(valueFormatter));
             }
 
-            serviceRepository.RegisterSingleton(valueFormatter);
+            serviceRepository.RegisterSingleton(valueFormatter); //todo not good? Parameter could be non static registered?
             return serviceRepository;
         }
 
@@ -105,7 +106,7 @@ namespace NLog.Config
         public static IServiceRepository RegisterDefaults(this IServiceRepository serviceRepository)
         {
             serviceRepository.RegisterJsonConverter(DefaultJsonSerializer.Instance);
-            serviceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(serviceRepository));
+          //todo  serviceRepository.RegisterType<IValueFormatter>(typeof(ValueFormatter));
             serviceRepository.RegisterPropertyTypeConverter(PropertyTypeConverter.Instance);
             return serviceRepository;
         }

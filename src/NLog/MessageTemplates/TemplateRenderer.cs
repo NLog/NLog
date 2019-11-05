@@ -40,8 +40,16 @@ namespace NLog.MessageTemplates
     /// <summary>
     /// Render templates
     /// </summary>
-    internal static class TemplateRenderer
+    internal class TemplateRenderer
     {
+        private readonly IValueFormatter _valueFormatter;
+
+        /// <inheritdoc />
+        public TemplateRenderer(IValueFormatter valueFormatter)
+        {
+            _valueFormatter = valueFormatter;
+        }
+
         /// <summary>
         /// Render a template to a string.
         /// </summary>
@@ -51,7 +59,7 @@ namespace NLog.MessageTemplates
         /// <param name="forceTemplateRenderer">Do not fallback to StringBuilder.Format for positional templates.</param>
         /// <param name="sb">The String Builder destination.</param>
         /// <param name="messageTemplateParameters">Parameters for the holes.</param>
-        public static void Render(this string template, IFormatProvider formatProvider, object[] parameters, bool forceTemplateRenderer, StringBuilder sb, out IList<MessageTemplateParameter> messageTemplateParameters)
+        public void Render(string template, IFormatProvider formatProvider, object[] parameters, bool forceTemplateRenderer, StringBuilder sb, out IList<MessageTemplateParameter> messageTemplateParameters)
         {
             int pos = 0;
             int holeIndex = 0;
@@ -128,7 +136,7 @@ namespace NLog.MessageTemplates
         /// <param name="formatProvider">Culture.</param>
         /// <param name="parameters">Parameters for the holes.</param>
         /// <returns>Rendered template, never null.</returns>
-        public static void Render(this Template template, StringBuilder sb, IFormatProvider formatProvider, object[] parameters)
+        public void Render(Template template, StringBuilder sb, IFormatProvider formatProvider, object[] parameters)
         {
             int pos = 0;
             int holeIndex = 0;
@@ -158,12 +166,12 @@ namespace NLog.MessageTemplates
             }
         }
 
-        private static void RenderHole(StringBuilder sb, Hole hole, IFormatProvider formatProvider, object value, bool legacy = false)
+        private void RenderHole(StringBuilder sb, Hole hole, IFormatProvider formatProvider, object value, bool legacy = false)
         {
             RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value, legacy);
         }
 
-        public static void RenderHole(StringBuilder sb, CaptureType captureType, string holeFormat, IFormatProvider formatProvider, object value, bool legacy = false)
+        public void RenderHole(StringBuilder sb, CaptureType captureType, string holeFormat, IFormatProvider formatProvider, object value, bool legacy = false)
         {
             if (value == null)
             {
@@ -173,11 +181,11 @@ namespace NLog.MessageTemplates
 
             if (captureType == CaptureType.Normal && legacy)
             {
-                ValueFormatter.FormatToString(value, holeFormat, formatProvider, sb);
+                _valueFormatter.FormatToString(value, holeFormat, formatProvider, sb);
             }
             else
             {
-                ValueFormatter.GetInstance(null).FormatValue(value, holeFormat, captureType, formatProvider, sb);
+                _valueFormatter.FormatValue(value, holeFormat, captureType, formatProvider, sb);
             }
         }
 

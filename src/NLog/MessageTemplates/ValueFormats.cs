@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -32,34 +32,13 @@
 // 
 
 using System;
-using System.Text;
-using NLog.MessageTemplates;
+using System.Linq;
 
-namespace NLog
+namespace NLog.MessageTemplates
 {
-    /// <summary>
-    /// Render a message template property to a string
-    /// </summary>
-    public interface IValueFormatter
+    internal static class ValueFormats
     {
-        /// <summary>
-        /// Serialization of an object, e.g. JSON and append to <paramref name="builder"/>
-        /// </summary>
-        /// <param name="value">The object to serialize to string.</param>
-        /// <param name="format">Parameter Format</param>
-        /// <param name="captureType">Parameter CaptureType</param>
-        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
-        /// <param name="builder">Output destination.</param>
-        /// <returns>Serialize succeeded (true/false)</returns>
-        bool FormatValue(object value, string format, CaptureType captureType, IFormatProvider formatProvider, StringBuilder builder);
-
-        /// <summary>
-        /// Convert a value to a string with format and append to <paramref name="builder"/>.
-        /// </summary>
-        /// <param name="value">The value to convert.</param>
-        /// <param name="format">Format sting for the value.</param>
-        /// <param name="formatProvider">Format provider for the value.</param>
-        /// <param name="builder">Append to this</param>
-        void FormatToString(object value, string format, IFormatProvider formatProvider, StringBuilder builder);
+        public const string FormatAsJson = "@";
+        public const string FormatAsString = "$";
     }
 }

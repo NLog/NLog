@@ -51,6 +51,8 @@ namespace NLog.Internal
         private readonly bool _forceTemplateRenderer;
         private readonly bool _singleTargetOnly;
 
+        private TemplateRenderer _templateRenderer; //todo
+
         /// <summary>
         /// New formatter
         /// </summary>
@@ -61,6 +63,7 @@ namespace NLog.Internal
             _forceTemplateRenderer = forceTemplateRenderer;
             _singleTargetOnly = singleTargetOnly;
             MessageFormatter = FormatMessage;
+
         }
 
         /// <summary>
@@ -87,7 +90,7 @@ namespace NLog.Internal
             return true;    // Parse message template and allocate PropertiesDictionary
         }
 
-        private bool HasParameters(LogEventInfo logEvent)
+        private static bool HasParameters(LogEventInfo logEvent)
         {
             //if message is empty, there no parameters
             //null check cheapest, so in-front
@@ -102,7 +105,7 @@ namespace NLog.Internal
             }
             else
             {
-                logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out _);
+                _templateRenderer.Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out _);
             }
         }
 
@@ -121,7 +124,7 @@ namespace NLog.Internal
 
         private void AppendToBuilder(LogEventInfo logEvent, StringBuilder builder)
         {
-            logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out var messageTemplateParameterList);
+            _templateRenderer.Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out var messageTemplateParameterList);
             logEvent.CreateOrUpdatePropertiesInternal(false, messageTemplateParameterList ?? ArrayHelper.Empty<MessageTemplateParameter>());
         }
     }

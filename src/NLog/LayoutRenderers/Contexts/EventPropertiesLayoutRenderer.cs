@@ -129,7 +129,7 @@ namespace NLog.LayoutRenderers
 
         private string GetStringValue(LogEventInfo logEvent)
         {
-            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
+            if (Format != MessageTemplates.ValueFormats.FormatAsJson)
             {
                 if (TryGetValue(logEvent, out var value))
                 {

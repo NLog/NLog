@@ -37,7 +37,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using JetBrains.Annotations;
-using NLog.Config;
 using NLog.Internal;
 
 namespace NLog.MessageTemplates
@@ -47,17 +46,13 @@ namespace NLog.MessageTemplates
     /// </summary>
     internal class ValueFormatter : IValueFormatter
     {
-        public static IValueFormatter GetInstance(object serviceRepository) => _instance ?? (_instance = new ValueFormatter(serviceRepository));
-        private static IValueFormatter _instance;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 
-        private readonly IServiceRepository _serviceRepository;
-        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository?.ResolveService<IJsonConverter>());
-        private IJsonConverter _jsonConverter;
+        private readonly IJsonConverter _jsonConverter;
 
-        internal ValueFormatter([NotNull] IServiceRepository serviceRepository)
+        public ValueFormatter([NotNull] IJsonConverter jsonConverter)
         {
-            _serviceRepository = serviceRepository ?? throw new ArgumentNullException(nameof(serviceRepository));
+            _jsonConverter = jsonConverter ?? throw new ArgumentNullException(nameof(jsonConverter));
         }
 
         private const int MaxRecursionDepth = 2;
@@ -65,9 +60,6 @@ namespace NLog.MessageTemplates
         private const string LiteralFormatSymbol = "l";
 
         private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
-
-        public const string FormatAsJson = "@";
-        public const string FormatAsString = "$";
 
         /// <summary>
         /// Serialization of an object, e.g. JSON and append to <paramref name="builder"/>
@@ -84,7 +76,7 @@ namespace NLog.MessageTemplates
             {
                 case CaptureType.Serialize:
                     {
-                        return JsonConverter.SerializeObject(value, builder);
+                        return _jsonConverter.SerializeObject(value, builder);
                     }
                 case CaptureType.Stringify:
                     {
@@ -339,7 +331,7 @@ namespace NLog.MessageTemplates
         /// <param name="format">Format sting for the value.</param>
         /// <param name="formatProvider">Format provider for the value.</param>
         /// <param name="builder">Append to this</param>
-        public static void FormatToString(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
+        public void FormatToString(object value, string format, IFormatProvider formatProvider, StringBuilder builder)
         {
             var stringValue = value as string;
             if (stringValue != null)
