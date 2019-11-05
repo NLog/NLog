@@ -40,9 +40,6 @@ namespace NLog.Internal
 
     internal sealed class LogMessageTemplateFormatter : ILogMessageFormatter
     {
-        public static readonly LogMessageTemplateFormatter DefaultAuto = new LogMessageTemplateFormatter(false, false);
-        public static readonly LogMessageTemplateFormatter Default = new LogMessageTemplateFormatter(true, false);
-        public static readonly LogMessageTemplateFormatter DefaultAutoSingleTarget = new LogMessageTemplateFormatter(false, true);
         private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
 
         /// <summary>
@@ -51,25 +48,20 @@ namespace NLog.Internal
         private readonly bool _forceTemplateRenderer;
         private readonly bool _singleTargetOnly;
 
-        private TemplateRenderer _templateRenderer; //todo
 
         /// <summary>
         /// New formatter
         /// </summary>
         /// <param name="forceTemplateRenderer">When true: Do not fallback to StringBuilder.Format for positional templates</param>
         /// <param name="singleTargetOnly"></param>
-        private LogMessageTemplateFormatter(bool forceTemplateRenderer, bool singleTargetOnly)
+        public LogMessageTemplateFormatter(bool forceTemplateRenderer, bool singleTargetOnly)
         {
             _forceTemplateRenderer = forceTemplateRenderer;
             _singleTargetOnly = singleTargetOnly;
-            MessageFormatter = FormatMessage;
 
         }
 
-        /// <summary>
-        /// The MessageFormatter delegate
-        /// </summary>
-        public LogMessageFormatter MessageFormatter { get; }
+     
 
         /// <inheritDoc/>
         public bool HasProperties(LogEventInfo logEvent)
@@ -97,7 +89,7 @@ namespace NLog.Internal
             return logEvent.Parameters != null && !string.IsNullOrEmpty(logEvent.Message) && logEvent.Parameters.Length > 0;
         }
 
-        public void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder)
+        public void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder, TemplateRenderer templateRenderer)
         {
             if (!HasParameters(logEvent))
             {
@@ -105,11 +97,11 @@ namespace NLog.Internal
             }
             else
             {
-                _templateRenderer.Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out _);
+                templateRenderer.Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out _);
             }
         }
 
-        public string FormatMessage(LogEventInfo logEvent)
+        public string FormatMessage(LogEventInfo logEvent, TemplateRenderer templateRenderer)
         {
             if (!HasParameters(logEvent))
             {
@@ -117,14 +109,14 @@ namespace NLog.Internal
             }
             using (var builder = _builderPool.Acquire())
             {
-                AppendToBuilder(logEvent, builder.Item);
+                AppendToBuilder(templateRenderer, logEvent, builder.Item);
                 return builder.Item.ToString();
             }
         }
 
-        private void AppendToBuilder(LogEventInfo logEvent, StringBuilder builder)
+        private void AppendToBuilder(TemplateRenderer templateRenderer, LogEventInfo logEvent, StringBuilder builder)
         {
-            _templateRenderer.Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out var messageTemplateParameterList);
+            templateRenderer.Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out var messageTemplateParameterList);
             logEvent.CreateOrUpdatePropertiesInternal(false, messageTemplateParameterList ?? ArrayHelper.Empty<MessageTemplateParameter>());
         }
     }

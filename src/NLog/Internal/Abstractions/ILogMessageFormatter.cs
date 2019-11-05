@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.MessageTemplates;
+
 namespace NLog.Internal
 {
     using System.Text;
@@ -44,8 +46,9 @@ namespace NLog.Internal
         /// Format the message and return
         /// </summary>
         /// <param name="logEvent">LogEvent with message to be formatted</param>
+        /// <param name="templateRenderer"></param>
         /// <returns>formatted message</returns>
-        string FormatMessage(LogEventInfo logEvent);
+        string FormatMessage(LogEventInfo logEvent, TemplateRenderer templateRenderer); 
 
         /// <summary>
         /// Has the logevent properties?
@@ -59,6 +62,7 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="logEvent">LogEvent with message to be formatted</param>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the formatted message.</param>
-        void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder);
+        /// <param name="templateRenderer"></param>
+        void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder, TemplateRenderer templateRenderer);
     }
 }

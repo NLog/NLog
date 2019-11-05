@@ -46,11 +46,14 @@ namespace NLog.LayoutRenderers
     [ThreadSafe]
     public class MessageLayoutRenderer : LayoutRenderer, IStringValueRenderer
     {
+        private readonly ILogMessageFormatter _formatter;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageLayoutRenderer" /> class.
         /// </summary>
         public MessageLayoutRenderer()
         {
+            _formatter = Resolve<ILogMessageFormatter>(); //todo smart/lazy?
             ExceptionSeparator = EnvironmentHelper.NewLine;
         }
 
@@ -83,15 +86,7 @@ namespace NLog.LayoutRenderers
             }
             else if (!exceptionOnly)
             {
-                if (ReferenceEquals(logEvent.MessageFormatter, LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter))
-                {
-                    // Skip string-allocation of LogEventInfo.FormattedMessage, but just write directly to StringBuilder
-                    logEvent.AppendFormattedMessage(LogMessageTemplateFormatter.DefaultAutoSingleTarget, builder);
-                }
-                else
-                {
-                    builder.Append(logEvent.FormattedMessage);
-                }
+                logEvent.AppendFormattedMessage(_formatter, builder);
             }
 
             if (WithException && logEvent.Exception != null)

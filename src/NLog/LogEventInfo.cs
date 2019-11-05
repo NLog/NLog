@@ -57,9 +57,6 @@ namespace NLog
         /// Gets the date of the first log event created.
         /// </summary>
         public static readonly DateTime ZeroDate = DateTime.UtcNow;
-        internal static readonly LogMessageFormatter StringFormatMessageFormatter = GetStringFormatMessageFormatter;
-        internal static LogMessageFormatter DefaultMessageFormatter { get; private set; } = LogMessageTemplateFormatter.DefaultAuto.MessageFormatter;
-
         private static int globalSequenceId;
 
         /// <summary>
@@ -74,7 +71,7 @@ namespace NLog
 
         private object[] _parameters;
         private IFormatProvider _formatProvider;
-        private LogMessageFormatter _messageFormatter = DefaultMessageFormatter;
+     
         private IDictionary<Layout, object> _layoutCache;
         private PropertiesDictionary _properties;
 
@@ -274,21 +271,9 @@ namespace NLog
             }
         }
 
-        /// <summary>
-        /// Gets or sets the message formatter for generating <see cref="LogEventInfo.FormattedMessage"/>
-        /// Uses string.Format(...) when nothing else has been configured.
-        /// </summary>
-        public LogMessageFormatter MessageFormatter
-        {
-            get => _messageFormatter;
-            set
-            {
-                _messageFormatter = value ?? StringFormatMessageFormatter;
-                ResetFormattedMessage(false);
-            }
-        }
+        internal bool HasFormattedMessage => _formattedMessage != null;
 
-        /// <summary>
+       /// <summary>
         /// Gets the formatted message.
         /// </summary>
         public string FormattedMessage
@@ -629,32 +614,7 @@ namespace NLog
             return true;
         }
 
-        internal bool CanLogEventDeferMessageFormat()
-        {
-            if (_formattedMessage != null)
-                return false;   // Already formatted, cannot be deferred
-
-            if (_parameters == null || _parameters.Length == 0)
-                return false;   // No parameters to format
-
-            if (_message?.Length < 256 && ReferenceEquals(MessageFormatter, LogMessageTemplateFormatter.DefaultAuto.MessageFormatter))
-                return true;    // Not too expensive to scan for properties
-            else
-                return false;
-        }
-
-        private static string GetStringFormatMessageFormatter(LogEventInfo logEvent)
-        {
-            if (logEvent.Parameters == null || logEvent.Parameters.Length == 0)
-            {
-                return logEvent.Message;
-            }
-            else
-            {
-                return string.Format(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Message, logEvent.Parameters);
-            }
-        }
-
+ 
         private void CalcFormattedMessage()
         {
             try
@@ -673,7 +633,7 @@ namespace NLog
             }
         }
 
-        internal void AppendFormattedMessage(ILogMessageFormatter messageFormatter, System.Text.StringBuilder builder)
+        internal void AppendFormattedMessage(LogMessageTemplateFormatterAdapter messageFormatter, System.Text.StringBuilder builder)
         {
             if (_formattedMessage != null)
             {
@@ -720,28 +680,6 @@ namespace NLog
             return false;
         }
 
-        /// <summary>
-        /// Set the <see cref="DefaultMessageFormatter"/>
-        /// </summary>
-        /// <param name="mode">true = Always, false = Never, null = Auto Detect</param>
-        internal static void SetDefaultMessageFormatter(bool? mode)
-        {
-            if (mode == true)
-            {
-                InternalLogger.Info("Message Template Format always enabled");
-                DefaultMessageFormatter = LogMessageTemplateFormatter.Default.MessageFormatter;
-            }
-            else if (mode == false)
-            {
-                InternalLogger.Info("Message Template String Format always enabled");
-                DefaultMessageFormatter = StringFormatMessageFormatter;
-            }
-            else
-            {
-                //null = auto
-                InternalLogger.Info("Message Template Auto Format enabled");
-                DefaultMessageFormatter = LogMessageTemplateFormatter.DefaultAuto.MessageFormatter;
-            }
-        }
+     
     }
 }

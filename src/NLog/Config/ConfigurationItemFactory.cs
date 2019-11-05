@@ -225,11 +225,11 @@ namespace NLog.Config
         {
             get
             {
-                if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogEventInfo.StringFormatMessageFormatter))
+                if (ReferenceEquals(LogMessageTemplateFormatterAdapter.DefaultMessageFormatter, LogMessageTemplateFormatterAdapter.StringFormatMessageFormatter))
                 {
                     return false;
                 }
-                else if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogMessageTemplateFormatter.Default.MessageFormatter))
+                else if (ReferenceEquals(LogMessageTemplateFormatterAdapter.DefaultMessageFormatter, LogMessageTemplateFormatterAdapter.Default))
                 {
                     return true;
                 }
@@ -238,7 +238,7 @@ namespace NLog.Config
                     return null;
                 }
             }
-            set => LogEventInfo.SetDefaultMessageFormatter(value);
+            set => LogMessageTemplateFormatterAdapter.SetDefaultMessageFormatter(value);
         }
 
         /// <summary>
