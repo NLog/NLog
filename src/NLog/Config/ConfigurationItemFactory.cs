@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using JetBrains.Annotations;
 
 namespace NLog.Config
 {
@@ -48,6 +47,7 @@ namespace NLog.Config
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Time;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Provides registration information for named items (targets, layouts, layout renderers, etc.) managed by NLog.
