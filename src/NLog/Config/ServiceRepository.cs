@@ -65,7 +65,7 @@ namespace NLog.Config
                 ConfigurationItemFactory.Default = null;    //build new global factory
 
             this.RegisterDefaults();
-            CreateInstance = itemType => DefaultResolveInstance(itemType, new HashSet<Type>());
+            CreateInstance = itemType => DefaultResolveInstance(itemType, null);
             // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
         }
 
@@ -90,7 +90,7 @@ namespace NLog.Config
                 return createInstance(itemType);
             }
 
-            return DefaultResolveInstance(itemType, new HashSet<Type>());
+            return DefaultResolveInstance(itemType, null);
         }
 
         private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
@@ -112,6 +112,7 @@ namespace NLog.Config
                     return defaultConstructor.Invoke(ArrayHelper.Empty<object>());
                 }
 
+                seenTypes = seenTypes ?? new HashSet<Type>();
                 return CreateFromParameterizedConstructor(itemType, seenTypes);
             }
             catch (MissingMethodException exception)
@@ -126,7 +127,7 @@ namespace NLog.Config
 
         private object CreateFromParameterizedConstructor(Type itemType, HashSet<Type> seenTypes)
         {
-            var ctors = itemType.GetConstructors(); 
+            var ctors = itemType.GetConstructors();
 
             if (ctors.Length == 0)
             {
