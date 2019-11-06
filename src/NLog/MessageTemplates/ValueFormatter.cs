@@ -47,21 +47,17 @@ namespace NLog.MessageTemplates
     /// </summary>
     internal class ValueFormatter : IValueFormatter
     {
-        public static IValueFormatter Instance
-        {
-            get => _instance ?? (_instance = new ValueFormatter(null)); //todo fix
-            set => _instance = value ?? new ValueFormatter(null);
-        }
+        public static IValueFormatter Instance => _instance ?? (_instance = new ValueFormatter(null)); //todo DI fix null here, remove instance
         private static IValueFormatter _instance;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 
         private readonly IServiceRepository _serviceRepository;
-        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository?.ResolveService<IJsonConverter>());
+        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository?.ResolveService<IJsonConverter>() ?? Targets.DefaultJsonSerializer.Instance);  //todo DI remove default
         private IJsonConverter _jsonConverter;
 
-        internal ValueFormatter([NotNull] IServiceRepository serviceRepository)
+        internal ValueFormatter(IServiceRepository serviceRepository)
         {
-            _serviceRepository = serviceRepository ?? throw new ArgumentNullException(nameof(serviceRepository));
+            _serviceRepository = serviceRepository; 
         }
 
         private const int MaxRecursionDepth = 2;
