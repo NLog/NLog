@@ -204,7 +204,7 @@ namespace NLog.Config
         [Obsolete("Instead use LogFactory.ServiceRepository.ResolveInstance(typeof(IValueFormatter)). Marked obsolete on NLog 5.0")]
         public IValueFormatter ValueFormatter
         {
-            get => _serviceResolver.ResolveService<IValueFormatter>() ?? MessageTemplates.ValueFormatter.Instance;
+            get => _serviceResolver.ResolveService<IValueFormatter>();
             set => _serviceResolver.RegisterValueFormatter(value);
         }
 
