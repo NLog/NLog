@@ -96,6 +96,19 @@ namespace NLog.UnitTests.Config
 
             // Assert
             Assert.NotNull(target.JsonConverter);
+        }    
+        
+        [Fact]
+        public void ResolveShouldInjectNestedDependencies()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+
+            // Act
+            var target = logFactory.ServiceRepository.ResolveService<TargetWithNestedInjection>();
+
+            // Assert
+            Assert.NotNull(target.Helper.JsonConverter);
         }
 
         [Fact]
@@ -125,12 +138,12 @@ namespace NLog.UnitTests.Config
             target = logFactory.Configuration.FindTargetByName("test") as DebugTarget;
         }
 
-        interface IMyPrettyInterface
+        private interface IMyPrettyInterface
         {
             string Test { get; }
         }
 
-        class MyPrettyImplementation : IMyPrettyInterface
+        private class MyPrettyImplementation : IMyPrettyInterface
         {
             public string Test { get; set; }
             public override string ToString()
@@ -139,7 +152,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        class MySimpleJsonConverter : IJsonConverter
+        private class MySimpleJsonConverter : IJsonConverter
         {
             public string Test { get; set; }
 
@@ -150,7 +163,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        class TargetWithInjection : Target
+        private class TargetWithInjection : Target
         {
             public TargetWithInjection([NotNull] IJsonConverter jsonConverter)
             {
@@ -160,33 +173,57 @@ namespace NLog.UnitTests.Config
             public IJsonConverter JsonConverter { get; }
         }
 
-        class TargetWithDirectCycleInjection : Target
+        private class TargetWithNestedInjection : Target
+        {
+            public ClassWithInjection Helper { get; }
+
+            /// <inheritdoc />
+            public TargetWithNestedInjection([NotNull] ClassWithInjection helper)
+            {
+                Helper = helper ?? throw new ArgumentNullException(nameof(helper));
+            }
+        }
+
+        private class TargetWithDirectCycleInjection : Target
         {
             /// <inheritdoc />
             public TargetWithDirectCycleInjection(TargetWithDirectCycleInjection cycle1)
             {
             }
         }
-        class TargetWithIndirectCycleInjection : Target
+
+        private class TargetWithIndirectCycleInjection : Target
         {
             /// <inheritdoc />
-            public TargetWithIndirectCycleInjection(HelperClass1 helper)
+            public TargetWithIndirectCycleInjection(CycleHelperClass1 helper)
             {
             }
         }
 
-        class HelperClass1
+        private class CycleHelperClass1
         {
             /// <inheritdoc />
-            public HelperClass1(HelperClass2 helper)
+            public CycleHelperClass1(CycleHelperClass2 helper)
             {
             }
         }
-        class HelperClass2
+
+        private class CycleHelperClass2
         {
             /// <inheritdoc />
-            public HelperClass2(HelperClass1 helper)
+            public CycleHelperClass2(CycleHelperClass1 helper)
             {
+            }
+        }
+
+        private class ClassWithInjection
+        {
+            public IJsonConverter JsonConverter { get; }
+
+            /// <inheritdoc />
+            public ClassWithInjection(IJsonConverter jsonConverter)
+            {
+                JsonConverter = jsonConverter;
             }
         }
     }
