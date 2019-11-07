@@ -31,23 +31,34 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Linq;
+using JetBrains.Annotations;
+
 namespace NLog.Config
 {
-    using System;
-
     /// <summary>
-    /// Interface to instantiate configuration objects.
+    /// Failed to resolve a Type
     /// </summary>
-    /// <remarks>
-    /// Create own custom implementation to perform dependency injection or custom initialization
-    /// </remarks>
-    public interface IServiceResolver
+    public sealed class NLogResolveException : Exception
     {
         /// <summary>
-        /// Lookup instance of the configuration item (target, layout, layout renderer, etc.) given its type.
+        /// Typed we tried to resolve
         /// </summary>
-        /// <param name="itemType">Type of the item.</param>
-        /// <returns>Created object of the specified type.</returns>
-        object ResolveService(Type itemType);
+        [NotNull] public Type TypeToResolve { get; }
+        
+        /// <inheritdoc />
+        public NLogResolveException(string message, [NotNull] Type typeToResolve) : base(CreateFullMessage(typeToResolve, message))
+        {
+            TypeToResolve = typeToResolve ?? throw new ArgumentNullException(nameof(typeToResolve));
+        }
+
+        /// <inheritdoc />
+        public NLogResolveException(string message, Exception innerException, [NotNull] Type typeToResolve) : base(CreateFullMessage(typeToResolve, message), innerException)
+        {
+            TypeToResolve = typeToResolve ?? throw new ArgumentNullException(nameof(typeToResolve));
+        }
+
+        private static string CreateFullMessage(Type typeToResolve, string message) => $"Cannot resolve the type: '{typeToResolve.Name}'. {message}".Trim();
     }
 }

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.UnitTests
 {
     using System;
@@ -128,33 +130,29 @@ namespace NLog.UnitTests
 
 
         [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isFalse()
+        public void InvalidLoggerConfiguration_NotThrowsThrowExceptions_NotThrows()
         {
             using (new NoThrowNLogExceptions())
             {
-                InvalidLoggerConfiguration_ThrowsConfigurationException(true);
+                LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             }
         }
 
-
         [Fact]
-        public void InvalidLoggerConfiguration_ThrowsConfigurationException_isTrue()
+        public void InvalidLoggerConfiguration_ThrowsThrowExceptions_Throws()
         {
             LogManager.ThrowExceptions = true;
-            InvalidLoggerConfiguration_ThrowsConfigurationException(null);
+            InvalidLoggerConfiguration_ThrowsNLogResolveException();
         }
 
-        private void InvalidLoggerConfiguration_ThrowsConfigurationException(bool? throwConfigExceptions)
+        private void InvalidLoggerConfiguration_ThrowsNLogResolveException()
         {
-            Assert.Throws<NLogConfigurationException>(() =>
+            Assert.Throws<NLogResolveException>(() =>
             {
-                LogManager.ThrowConfigExceptions = throwConfigExceptions;
                 LogManager.GetCurrentClassLogger(typeof(InvalidLogger));
             });
 
         }
-
-
 
         public class MyLogger : Logger
         {
