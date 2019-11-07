@@ -187,7 +187,7 @@ namespace NLog.Config
                 return false;
             }
 
-            result = (TBaseType)_serviceResolver.ResolveInstance(type);
+            result = (TBaseType)_serviceResolver.ResolveService(type);
             return true;
         }
 

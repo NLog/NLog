@@ -1109,7 +1109,7 @@ namespace NLog.Config
             object arrayItem = TryCreateLayoutInstance(element, elementType);
             // arrayItem is not a layout
             if (arrayItem == null)
-                arrayItem = _serviceRepository.ResolveInstance(elementType);
+                arrayItem = _serviceRepository.ResolveService(elementType);
 
             ConfigureObjectFromAttributes(arrayItem, element, true);
             ConfigureObjectFromElement(arrayItem, element);
