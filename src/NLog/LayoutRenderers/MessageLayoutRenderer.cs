@@ -51,7 +51,7 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public MessageLayoutRenderer()
         {
-            ExceptionSeparator = EnvironmentHelper.NewLine;
+            ExceptionSeparator = "|";
         }
 
         /// <summary>

@@ -65,7 +65,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="OutputDebugStringTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public OutputDebugStringTarget() : base()
         {
@@ -76,7 +76,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="OutputDebugStringTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public OutputDebugStringTarget(string name) : this()

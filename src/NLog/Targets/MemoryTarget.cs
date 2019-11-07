@@ -62,7 +62,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="MemoryTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         public MemoryTarget()
         {
@@ -74,7 +74,7 @@ namespace NLog.Targets
         /// Initializes a new instance of the <see cref="MemoryTarget" /> class.
         /// </summary>
         /// <remarks>
-        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message:withexception=true}</code>
         /// </remarks>
         /// <param name="name">Name of the target.</param>
         public MemoryTarget(string name) : this()
