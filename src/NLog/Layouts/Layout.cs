@@ -460,5 +460,16 @@ namespace NLog.Layouts
             rawValue = null;
             return false;
         }
+
+        /// <summary>
+        /// Resolve from DI
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        protected T Resolve<T>() where T : class
+        {
+            return LoggingConfiguration.GetServiceResolver().ResolveService<T>();
+        }
+
     }
 }

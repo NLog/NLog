@@ -630,7 +630,7 @@ namespace NLog.Targets
             public HttpPostJsonFormatter(WebServiceTarget target)
                 : base(target)
             {
-                _jsonConverter = target.LoggingConfiguration.GetServiceResolver().ResolveJsonConverter();
+                _jsonConverter = target.Resolve<IJsonConverter>();
             }
 
             protected override string GetContentType(WebServiceTarget target)

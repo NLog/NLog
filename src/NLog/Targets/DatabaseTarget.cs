@@ -292,9 +292,10 @@ namespace NLog.Targets
 
         private IPropertyTypeConverter PropertyTypeConverter
         {
-            get => _propertyTypeConverter ?? (_propertyTypeConverter = LoggingConfiguration.GetServiceResolver().ResolvePropertyTypeConverter());
+            get => _propertyTypeConverter ?? (_propertyTypeConverter = Resolve<IPropertyTypeConverter>());
             set => _propertyTypeConverter = value;
         }
+
         private IPropertyTypeConverter _propertyTypeConverter;
 
         SortHelpers.KeySelector<AsyncLogEventInfo, string> _buildConnectionStringDelegate;

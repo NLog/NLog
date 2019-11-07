@@ -54,9 +54,6 @@ namespace NLog.LayoutRenderers
         private string _afterKey;
         private string _afterValue;
 
-        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = LoggingConfiguration.GetServiceResolver().ResolveValueFormatter());
-        private IValueFormatter _valueFormatter;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AllEventPropertiesLayoutRenderer"/> class.
         /// </summary>
