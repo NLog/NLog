@@ -49,11 +49,17 @@ namespace NLog.LayoutRenderers
         private const int MaxInitialRenderBufferLength = 16384;
         private int _maxRenderedLength;
         private bool _isInitialized;
+        private IValueFormatter _valueFormatter;
 
         /// <summary>
         /// Gets the logging configuration this target is part of.
         /// </summary>
         protected LoggingConfiguration LoggingConfiguration { get; private set; }
+
+        /// <summary>
+        /// Value formatter
+        /// </summary>
+        protected IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = Resolve<IValueFormatter>());
 
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
@@ -303,6 +309,16 @@ namespace NLog.LayoutRenderers
             var layoutRenderer = new FuncLayoutRenderer(name, func);
             
             ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
+        }
+
+        /// <summary>
+        /// Resolve from DI
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        protected T Resolve<T>() where T : class
+        {
+            return LoggingConfiguration.GetServiceResolver().ResolveService<T>();
         }
     }
 }

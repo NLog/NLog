@@ -31,7 +31,7 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using NLog.Common;
+using JetBrains.Annotations;
 
 namespace NLog.Config
 {
@@ -40,14 +40,14 @@ namespace NLog.Config
     using System.Collections.Generic;
     using System.Reflection;
     using NLog.Internal;
-    using NLog.Targets;
+    using NLog.Common;
 
     /// <summary>
     /// Repository of interfaces used by NLog to allow override for dependency injection
     /// </summary>
     internal sealed class ServiceRepository : IServiceRepository
     {
-        private readonly Dictionary<Type, ConfigurationItemCreator> _serviceRepository = new Dictionary<Type, ConfigurationItemCreator>();
+        private readonly Dictionary<Type, ConfigurationItemCreator> _creatorMap = new Dictionary<Type, ConfigurationItemCreator>();
         private ConfigurationItemFactory _localItemFactory;
 
         public ConfigurationItemFactory ConfigurationItemFactory
@@ -69,17 +69,9 @@ namespace NLog.Config
             // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="objectResolver"><c>null</c> will unregister the type</param>
-        public void RegisterType(Type type, ConfigurationItemCreator objectResolver)
+        public void RegisterType(Type type, [NotNull] ConfigurationItemCreator objectResolver)
         {
-            if (objectResolver == null)
-                _serviceRepository.Remove(type);
-            else
-                _serviceRepository[type] = objectResolver;
+            _creatorMap[type] = objectResolver ?? throw new ArgumentNullException(nameof(objectResolver));
         }
 
         public object ResolveService(Type itemType)
@@ -96,7 +88,7 @@ namespace NLog.Config
         private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
         {
             InternalLogger.Trace("Resolve {0}", itemType.FullName);
-            if (_serviceRepository.TryGetValue(itemType, out var objectResolver))
+            if (_creatorMap.TryGetValue(itemType, out var objectResolver))
             {
                 InternalLogger.Trace("Resolve {0} done", itemType.FullName);
                 return objectResolver(itemType);

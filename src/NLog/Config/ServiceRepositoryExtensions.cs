@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using JetBrains.Annotations;
 using NLog.Targets;
 
 namespace NLog.Config
@@ -39,7 +41,7 @@ namespace NLog.Config
 
     internal static class ServiceRepositoryExtensions
     {
-        public static IServiceResolver GetServiceResolver(this LoggingConfiguration loggingConfiguration)
+        internal static IServiceResolver GetServiceResolver(this LoggingConfiguration loggingConfiguration)
         {
             return loggingConfiguration?.LogFactory?.ServiceRepository ?? LogManager.LogFactory.ServiceRepository;
         }
@@ -47,21 +49,6 @@ namespace NLog.Config
         public static T ResolveService<T>(this IServiceResolver serviceResolver) where T : class
         {
             return (serviceResolver ?? LogManager.LogFactory.ServiceRepository)?.ResolveService(typeof(T)) as T;
-        }
-
-        public static IJsonConverter ResolveJsonConverter(this IServiceResolver serviceResolver)
-        {
-            return serviceResolver?.ResolveService<IJsonConverter>() ?? Targets.DefaultJsonSerializer.Instance;
-        }
-
-        public static IPropertyTypeConverter ResolvePropertyTypeConverter(this IServiceResolver serviceResolver)
-        {
-            return serviceResolver?.ResolveService<IPropertyTypeConverter>() ?? PropertyTypeConverter.Instance;
-        }
-
-        public static IValueFormatter ResolveValueFormatter(this IServiceResolver serviceResolver)
-        {
-            return serviceResolver?.ResolveService<IValueFormatter>() ?? MessageTemplates.ValueFormatter.Instance;
         }
 
         /// <summary>
@@ -82,23 +69,44 @@ namespace NLog.Config
         /// <summary>
         /// Registers the string serializer to use with <see cref="LogEventInfo.MessageTemplateParameters"/>
         /// </summary>
-        public static IServiceRepository RegisterValueFormatter(this IServiceRepository serviceRepository, IValueFormatter valueFormatter)
+        public static IServiceRepository RegisterValueFormatter(this IServiceRepository serviceRepository, [NotNull] IValueFormatter valueFormatter)
         {
-            serviceRepository.RegisterSingleton(valueFormatter ?? MessageTemplates.ValueFormatter.Instance);
+            if (valueFormatter == null)
+            {
+                throw new ArgumentNullException(nameof(valueFormatter));
+            }
+
+            serviceRepository.RegisterSingleton(valueFormatter);
             return serviceRepository;
         }
 
-        public static IServiceRepository RegisterJsonConverter(this IServiceRepository serviceRepository, IJsonConverter jsonConverter)
+        public static IServiceRepository RegisterJsonConverter(this IServiceRepository serviceRepository, [NotNull] IJsonConverter jsonConverter)
         {
-            serviceRepository.RegisterSingleton(jsonConverter ?? Targets.DefaultJsonSerializer.Instance);
+            if (jsonConverter == null)
+            {
+                throw new ArgumentNullException(nameof(jsonConverter));
+            }
+
+            serviceRepository.RegisterSingleton(jsonConverter);
             return serviceRepository;
-        } 
-        
+        }
+
+        public static IServiceRepository RegisterPropertyTypeConverter(this IServiceRepository serviceRepository, [NotNull] IPropertyTypeConverter converter)
+        {
+            if (converter == null)
+            {
+                throw new ArgumentNullException(nameof(converter));
+            }
+
+            serviceRepository.RegisterSingleton(converter);
+            return serviceRepository;
+        }
+
         public static IServiceRepository RegisterDefaults(this IServiceRepository serviceRepository)
         {
-            serviceRepository.RegisterSingleton<IJsonConverter>(DefaultJsonSerializer.Instance);
-            serviceRepository.RegisterSingleton<IValueFormatter>(new MessageTemplates.ValueFormatter(serviceRepository));
-            serviceRepository.RegisterSingleton<IPropertyTypeConverter>(PropertyTypeConverter.Instance);
+            serviceRepository.RegisterJsonConverter(DefaultJsonSerializer.Instance);
+            serviceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(serviceRepository));
+            serviceRepository.RegisterPropertyTypeConverter(PropertyTypeConverter.Instance);
             return serviceRepository;
         }
     }
