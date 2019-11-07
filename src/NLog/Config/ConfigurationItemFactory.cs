@@ -124,7 +124,7 @@ namespace NLog.Config
                 _defaultInstance = value;
                 if (value?._serviceResolver is ServiceRepository serviceRepository)
                 {
-                    serviceRepository.ConfigurationItemFactory = null;
+                    serviceRepository.ConfigurationItemFactory = value;
                 }
             }
         }
