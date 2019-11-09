@@ -251,7 +251,7 @@ namespace NLog.Internal
 
         private const BindingFlags PublicProperties = BindingFlags.Instance | BindingFlags.Public;
 
-        public struct ObjectPropertyList : IEnumerable<ObjectPropertyList.PropertyValue>
+        internal struct ObjectPropertyList : IEnumerable<ObjectPropertyList.PropertyValue>
         {
             internal static readonly StringComparer NameComparer = StringComparer.Ordinal;
             private static readonly FastPropertyLookup[] CreateIDictionaryEnumerator = new[] { new FastPropertyLookup(string.Empty, TypeCode.Object, (o, p) => ((IDictionary<string, object>)o).GetEnumerator()) };
@@ -265,6 +265,7 @@ namespace NLog.Internal
                 public readonly object Value;
                 public TypeCode TypeCode => Value == null ? TypeCode.Empty : _typecode;
                 private readonly TypeCode _typecode;
+                public bool HasNameAndValue => Name != null && Value != null;
 
                 public PropertyValue(string name, object value, TypeCode typeCode)
                 {

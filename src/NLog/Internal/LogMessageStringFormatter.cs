@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,51 +31,50 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-
-namespace NLog.MessageTemplates
+namespace NLog.Internal
 {
-    /// <summary>
-    /// Parse templates.
-    /// </summary>
-    internal static class TemplateParser
+    using System.Globalization;
+    using System.Text;
+
+    internal class LogMessageStringFormatter : ILogMessageFormatter
     {
-        /// <summary>
-        /// Parse a template.
-        /// </summary>
-        /// <param name="template">Template to be parsed.</param>
-        /// <exception cref="ArgumentNullException">When <paramref name="template"/> is null.</exception>
-        /// <returns>Template, never null</returns>
-        public static Template Parse(string template)
+        public static readonly LogMessageStringFormatter Default = new LogMessageStringFormatter();
+
+        private LogMessageStringFormatter()
         {
-            if (template == null)
-                throw new ArgumentNullException(nameof(template));
+            MessageFormatter = FormatMessage;
+        }
 
-            bool isPositional = true;
-            List<Literal> literals = new List<Literal>();
-            List<Hole> holes = new List<Hole>();
+        /// <summary>
+        /// The MessageFormatter delegate
+        /// </summary>
+        public LogMessageFormatter MessageFormatter { get; }
 
-            TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
-            while (templateEnumerator.MoveNext())
+        public void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder)
+        {
+            builder.Append(logEvent.FormattedMessage);
+        }
+
+        public string FormatMessage(LogEventInfo logEvent)
+        {
+            if (HasParameters(logEvent))
             {
-                if (templateEnumerator.Current.Literal.Skip == 0)
-                {
-                    literals.Add(templateEnumerator.Current.Literal);
-                }
-                else
-                {
-                    literals.Add(templateEnumerator.Current.Literal);
-                    holes.Add(templateEnumerator.Current.Hole);
-                    if (templateEnumerator.Current.Hole.Index == -1)
-                        isPositional = false;
-                }
+                return string.Format(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Message, logEvent.Parameters);
             }
 
-            Debug.Assert(holes.Count == literals.Count(x => x.Skip > 0));
-            return new Template(template, isPositional, literals, holes);
+            return logEvent.Message;
+        }
+
+        internal static bool HasParameters(LogEventInfo logEvent)
+        {
+            //if message is empty, there no parameters
+            //null check cheapest, so in-front
+            return logEvent.Parameters != null && !string.IsNullOrEmpty(logEvent.Message) && logEvent.Parameters.Length > 0;
+        }
+
+        public bool HasProperties(LogEventInfo logEvent)
+        {
+            return false;
         }
     }
 }

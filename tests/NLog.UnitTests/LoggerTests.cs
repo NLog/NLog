@@ -1820,10 +1820,7 @@ namespace NLog.UnitTests
             ILogger logger = LogManager.GetLogger("A");
             logger.Debug("Process order {" + param1 + "} for {" + param2 + "}", 13424, new { ClientId = 3001, ClientName = "John Doe" });
 
-
-
             string param1Value;
-
             if (param1.StartsWith("$"))
             {
                 param1Value = "\"13424\"";
@@ -1849,15 +1846,28 @@ namespace NLog.UnitTests
         [Fact]
         public void StructuredParametersShouldHandleDeferredCheck()
         {
+            LoggingConfiguration configuration = new LoggingConfiguration();
+            var debugTarget = new DebugTarget("debug") { Layout = "${message}" };
+            var bufferingTarget = new NLog.Targets.Wrappers.BufferingTargetWrapper("flushTarget", debugTarget);
+            configuration.AddTarget(debugTarget);
+            configuration.AddRuleForAllLevels(bufferingTarget);
+            LogManager.Configuration = configuration;
             System.Text.StringBuilder sb = new System.Text.StringBuilder("Test");
             LogEventInfo logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, "{0}", new object[] { sb });
+            LogManager.GetLogger("deferred").Log(logEventInfo);
             sb.Clear();
+
+            AssertDebugLastMessage("debug", "");    // Not written
+
             string formattedMessage = logEventInfo.FormattedMessage;
             Assert.Equal("Test", formattedMessage);
             var properties = logEventInfo.Properties;
             Assert.Empty(properties);
             string formattedMessage2 = logEventInfo.FormattedMessage;
             Assert.Equal("Test", formattedMessage2);
+
+            LogManager.Flush();
+            AssertDebugLastMessage("debug", "Test");
         }
 
         [Theory]

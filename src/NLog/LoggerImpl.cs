@@ -51,8 +51,10 @@ namespace NLog
         private const int StackTraceSkipMethods = 0;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
-        internal static void Write([NotNull] Type loggerType, [NotNull] TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory factory)
+        internal static void Write([NotNull] Type loggerType, [NotNull] TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory logFactory)
         {
+            logEvent.SetMessageFormatter(logFactory.ActiveMessageFormatter, targetsForLevel.NextInChain == null ? logFactory.SingleTargetMessageFormatter : null);
+
 #if !NETSTANDARD1_0 || NETSTANDARD1_5
             StackTraceUsage stu = targetsForLevel.GetStackTraceUsage();
             if (stu != StackTraceUsage.None)
@@ -88,7 +90,7 @@ namespace NLog
 #endif
 
             AsyncContinuation exceptionHandler = (ex) => { };
-            if (factory.ThrowExceptions)
+            if (logFactory.ThrowExceptions)
             {
                 int originalThreadId = AsyncHelpers.GetManagedThreadId();
                 exceptionHandler = ex =>
@@ -98,12 +100,6 @@ namespace NLog
                         throw new NLogRuntimeException("Exception occurred in NLog", ex);
                     }
                 };
-            }
-
-            if (targetsForLevel.NextInChain == null && logEvent.CanLogEventDeferMessageFormat())
-            {
-                // Change MessageFormatter so it writes directly to StringBuilder without string-allocation
-                logEvent.MessageFormatter = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
             }
 
             IList<Filter> prevFilterChain = null;

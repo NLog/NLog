@@ -225,20 +225,39 @@ namespace NLog.Config
         {
             get
             {
-                if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogEventInfo.StringFormatMessageFormatter))
+                var messageFormatter = _serviceResolver.ResolveService<ILogMessageFormatter>();
+                if (ReferenceEquals(messageFormatter, LogMessageStringFormatter.Default))
                 {
                     return false;
                 }
-                else if (ReferenceEquals(LogEventInfo.DefaultMessageFormatter, LogMessageTemplateFormatter.Default.MessageFormatter))
+                else if (messageFormatter is LogMessageTemplateFormatter messageTemplateFormatter)
                 {
-                    return true;
+                    return messageTemplateFormatter.ForceTemplateRenderer;
                 }
                 else
                 {
                     return null;
                 }
             }
-            set => LogEventInfo.SetDefaultMessageFormatter(value);
+            set
+            {
+                if (value == false)
+                {
+                    InternalLogger.Info("Message Template String Format always enabled");
+                    _serviceResolver.RegisterSingleton<ILogMessageFormatter>(LogMessageStringFormatter.Default);
+                }
+                else if (value == true)
+                {
+                    InternalLogger.Info("Message Template Format always enabled");
+                    _serviceResolver.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(_serviceResolver, true, false));
+                }
+                else
+                {
+                    //null = auto
+                    InternalLogger.Info("Message Template Auto Format enabled");
+                    _serviceResolver.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(_serviceResolver, false, false));
+                }
+            }
         }
 
         /// <summary>

@@ -61,13 +61,15 @@ namespace NLog
         /// Internal for unit tests
         /// </remarks>
         internal readonly object _syncRoot = new object();
-
+        private readonly LoggerCache _loggerCache = new LoggerCache();
+        private IServiceRepository _serviceRepository = new ServiceRepository();
         internal LoggingConfiguration _config;
+        internal LogMessageFormatter ActiveMessageFormatter;
+        internal LogMessageFormatter SingleTargetMessageFormatter;
         private LogLevel _globalThreshold = LogLevel.MinLevel;
         private bool _configLoaded;
         // TODO: logsEnabled property might be possible to be encapsulated into LogFactory.LogsEnabler class. 
         private int _logsEnabled;
-        private readonly LoggerCache _loggerCache = new LoggerCache();
 
         /// <summary>
         /// Overwrite possible file paths (including filename) for possible NLog config files. 
@@ -108,6 +110,7 @@ namespace NLog
         public LogFactory()
             : this(new LoggingConfigurationFileLoaderFactory().Create()) // TODO NLog 5 - Decouple with DI
         {
+            RefreshMessageFormatter();
         }
 
         /// <summary>
@@ -259,7 +262,38 @@ namespace NLog
         /// <summary>
         /// Repository of intefaces used by NLog to allow override for dependency injection
         /// </summary>
-        public IServiceRepository ServiceRepository { get; internal set; } = new ServiceRepository();
+        public IServiceRepository ServiceRepository
+        {
+            get => _serviceRepository;
+            set
+            {
+                _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
+                _serviceRepository = value ?? new ServiceRepository();
+                _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
+            }
+        }
+
+        private void ServiceRepository_TypeRegistered(object sender, RepositoryUpdateEventArgs e)
+        {
+            if (e.Type == typeof(ILogMessageFormatter))
+            {
+                RefreshMessageFormatter();
+            }
+        }
+
+        private void RefreshMessageFormatter()
+        {
+            var messageFormatter = _serviceRepository.ResolveService<ILogMessageFormatter>();
+            ActiveMessageFormatter = messageFormatter.FormatMessage;
+            if (messageFormatter is LogMessageTemplateFormatter templateFormatter)
+            {
+                SingleTargetMessageFormatter = new LogMessageTemplateFormatter(_serviceRepository, templateFormatter.ForceTemplateRenderer, true).FormatMessage;
+            }
+            else
+            {
+                SingleTargetMessageFormatter = null;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the global log level threshold. Log events below this threshold are not logged.
@@ -722,6 +756,8 @@ namespace NLog
             }
 
             _isDisposing = true;
+
+            _serviceRepository.TypeRegistered -= ServiceRepository_TypeRegistered;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
             LoggerShutdown -= OnStopLogging;

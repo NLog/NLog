@@ -51,5 +51,30 @@ namespace NLog.Config
         /// Mapping of symbol name to actual <see cref="System.Type"/>
         /// </summary>
         ConfigurationItemFactory ConfigurationItemFactory { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        event EventHandler<RepositoryUpdateEventArgs> TypeRegistered;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class RepositoryUpdateEventArgs : EventArgs
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        public RepositoryUpdateEventArgs(Type type)
+        {
+            Type = type;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Type Type { get; }
     }
 }
