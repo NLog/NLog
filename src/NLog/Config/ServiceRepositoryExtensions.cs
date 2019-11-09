@@ -31,13 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using JetBrains.Annotations;
-using NLog.Targets;
-
 namespace NLog.Config
 {
+    using System;
+    using JetBrains.Annotations;
     using NLog.Internal;
+    using NLog.Targets;
 
     internal static class ServiceRepositoryExtensions
     {
@@ -104,6 +103,7 @@ namespace NLog.Config
 
         public static IServiceRepository RegisterDefaults(this IServiceRepository serviceRepository)
         {
+            serviceRepository.RegisterSingleton<ILogMessageFormatter>(new LogMessageTemplateFormatter(serviceRepository, false, false));
             serviceRepository.RegisterJsonConverter(DefaultJsonSerializer.Instance);
             serviceRepository.RegisterValueFormatter(new MessageTemplates.ValueFormatter(serviceRepository));
             serviceRepository.RegisterPropertyTypeConverter(PropertyTypeConverter.Instance);

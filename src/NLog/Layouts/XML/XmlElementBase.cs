@@ -550,6 +550,9 @@ namespace NLog.Layouts
                         if (beforeValueLength > MaxXmlLength)
                             break;
 
+                        if (!property.HasNameAndValue)
+                            continue;
+
                         var propertyTypeCode = property.TypeCode;
                         if (propertyTypeCode != TypeCode.Object)
                         {

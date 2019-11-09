@@ -34,16 +34,20 @@
 namespace NLog.Internal
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
+    using JetBrains.Annotations;
     using MessageTemplates;
+    using NLog.Config;
 
     internal sealed class LogMessageTemplateFormatter : ILogMessageFormatter
     {
-        public static readonly LogMessageTemplateFormatter DefaultAuto = new LogMessageTemplateFormatter(false, false);
-        public static readonly LogMessageTemplateFormatter Default = new LogMessageTemplateFormatter(true, false);
-        public static readonly LogMessageTemplateFormatter DefaultAutoSingleTarget = new LogMessageTemplateFormatter(false, true);
         private static readonly StringBuilderPool _builderPool = new StringBuilderPool(Environment.ProcessorCount * 2);
+        private readonly IServiceResolver _serviceResolver;
+
+        private IValueFormatter ValueFormatter => _valueFormatter ?? (_valueFormatter = _serviceResolver.ResolveService<IValueFormatter>());
+        private IValueFormatter _valueFormatter;
 
         /// <summary>
         /// When true: Do not fallback to StringBuilder.Format for positional templates
@@ -54,10 +58,12 @@ namespace NLog.Internal
         /// <summary>
         /// New formatter
         /// </summary>
+        /// <param name="serviceResolver"></param>
         /// <param name="forceTemplateRenderer">When true: Do not fallback to StringBuilder.Format for positional templates</param>
         /// <param name="singleTargetOnly"></param>
-        private LogMessageTemplateFormatter(bool forceTemplateRenderer, bool singleTargetOnly)
+        public LogMessageTemplateFormatter([NotNull] IServiceResolver serviceResolver, bool forceTemplateRenderer, bool singleTargetOnly)
         {
+            _serviceResolver = serviceResolver;
             _forceTemplateRenderer = forceTemplateRenderer;
             _singleTargetOnly = singleTargetOnly;
             MessageFormatter = FormatMessage;
@@ -68,10 +74,12 @@ namespace NLog.Internal
         /// </summary>
         public LogMessageFormatter MessageFormatter { get; }
 
+        public bool ForceTemplateRenderer => _forceTemplateRenderer;
+
         /// <inheritDoc/>
         public bool HasProperties(LogEventInfo logEvent)
         {
-            if (!HasParameters(logEvent))
+            if (!LogMessageStringFormatter.HasParameters(logEvent))
                 return false;
 
             if (_singleTargetOnly)
@@ -87,42 +95,156 @@ namespace NLog.Internal
             return true;    // Parse message template and allocate PropertiesDictionary
         }
 
-        private bool HasParameters(LogEventInfo logEvent)
-        {
-            //if message is empty, there no parameters
-            //null check cheapest, so in-front
-            return logEvent.Parameters != null && !string.IsNullOrEmpty(logEvent.Message) && logEvent.Parameters.Length > 0;
-        }
-
         public void AppendFormattedMessage(LogEventInfo logEvent, StringBuilder builder)
         {
-            if (!HasParameters(logEvent))
+            if (_singleTargetOnly)
             {
-                builder.Append(logEvent.Message ?? string.Empty);
+                Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, builder, out _);
             }
             else
             {
-                logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out _);
+                builder.Append(logEvent.FormattedMessage);
             }
         }
 
         public string FormatMessage(LogEventInfo logEvent)
         {
-            if (!HasParameters(logEvent))
+            if (LogMessageStringFormatter.HasParameters(logEvent))
             {
-                return logEvent.Message;
+                using (var builder = _builderPool.Acquire())
+                {
+                    AppendToBuilder(logEvent, builder.Item);
+                    return builder.Item.ToString();
+                }
             }
-            using (var builder = _builderPool.Acquire())
-            {
-                AppendToBuilder(logEvent, builder.Item);
-                return builder.Item.ToString();
-            }
+            
+            return logEvent.Message;
         }
 
         private void AppendToBuilder(LogEventInfo logEvent, StringBuilder builder)
         {
-            logEvent.Message.Render(logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, _forceTemplateRenderer, builder, out var messageTemplateParameterList);
+            Render(logEvent.Message, logEvent.FormatProvider ?? CultureInfo.CurrentCulture, logEvent.Parameters, builder, out var messageTemplateParameterList);
             logEvent.CreateOrUpdatePropertiesInternal(false, messageTemplateParameterList ?? ArrayHelper.Empty<MessageTemplateParameter>());
+        }
+
+        /// <summary>
+        /// Render a template to a string.
+        /// </summary>
+        /// <param name="template">The template.</param>
+        /// <param name="formatProvider">Culture.</param>
+        /// <param name="parameters">Parameters for the holes.</param>
+        /// <param name="sb">The String Builder destination.</param>
+        /// <param name="messageTemplateParameters">Parameters for the holes.</param>
+        private void Render(string template, IFormatProvider formatProvider, object[] parameters, StringBuilder sb, out IList<MessageTemplateParameter> messageTemplateParameters)
+        {
+            int pos = 0;
+            int holeIndex = 0;
+            int holeStartPosition = 0;
+            messageTemplateParameters = null;
+            int originalLength = sb.Length;
+
+            TemplateEnumerator templateEnumerator = new TemplateEnumerator(template);
+            while (templateEnumerator.MoveNext())
+            {
+                if (holeIndex == 0 && !_forceTemplateRenderer && templateEnumerator.Current.MaybePositionalTemplate && sb.Length == originalLength)
+                {
+                    // Not a structured template
+                    sb.AppendFormat(formatProvider, template, parameters);
+                    return;
+                }
+
+                var literal = templateEnumerator.Current.Literal;
+                sb.Append(template, pos, literal.Print);
+                pos += literal.Print;
+                if (literal.Skip == 0)
+                {
+                    pos++;
+                }
+                else
+                {
+                    pos += literal.Skip;
+                    var hole = templateEnumerator.Current.Hole;
+                    if (hole.Alignment != 0)
+                        holeStartPosition = sb.Length;
+                    if (hole.Index != -1 && messageTemplateParameters == null)
+                    {
+                        holeIndex++;
+                        RenderHole(sb, hole, formatProvider, parameters[hole.Index], true);
+                    }
+                    else
+                    {
+                        var holeParameter = parameters[holeIndex];
+                        if (messageTemplateParameters == null)
+                        {
+                            messageTemplateParameters = new MessageTemplateParameter[parameters.Length];
+                            if (holeIndex != 0)
+                            {
+                                // rewind and try again
+                                templateEnumerator = new TemplateEnumerator(template);
+                                sb.Length = originalLength;
+                                holeIndex = 0;
+                                pos = 0;
+                                continue;
+                            }
+                        }
+                        messageTemplateParameters[holeIndex++] = new MessageTemplateParameter(hole.Name, holeParameter, hole.Format, hole.CaptureType);
+                        RenderHole(sb, hole, formatProvider, holeParameter);
+                    }
+                    if (hole.Alignment != 0)
+                        RenderPadding(sb, hole.Alignment, holeStartPosition);
+                }
+            }
+
+            if (messageTemplateParameters != null && holeIndex != messageTemplateParameters.Count)
+            {
+                var truncateParameters = new MessageTemplateParameter[holeIndex];
+                for (int i = 0; i < truncateParameters.Length; ++i)
+                    truncateParameters[i] = messageTemplateParameters[i];
+                messageTemplateParameters = truncateParameters;
+            }
+        }
+
+        private void RenderHole(StringBuilder sb, Hole hole, IFormatProvider formatProvider, object value, bool legacy = false)
+        {
+            RenderHole(sb, hole.CaptureType, hole.Format, formatProvider, value, legacy);
+        }
+
+        private void RenderHole(StringBuilder sb, CaptureType captureType, string holeFormat, IFormatProvider formatProvider, object value, bool legacy = false)
+        {
+            if (value == null)
+            {
+                sb.Append("NULL");
+                return;
+            }
+
+            if (captureType == CaptureType.Normal && legacy)
+            {
+                MessageTemplates.ValueFormatter.FormatToString(value, holeFormat, formatProvider, sb);
+            }
+            else
+            {
+                ValueFormatter.FormatValue(value, holeFormat, captureType, formatProvider, sb);
+            }
+        }
+
+        private static void RenderPadding(StringBuilder sb, int holeAlignment, int holeStartPosition)
+        {
+            int holeWidth = sb.Length - holeStartPosition;
+            int holePadding = Math.Abs(holeAlignment) - holeWidth;
+            if (holePadding > 0)
+            {
+                if (holeAlignment < 0 || holeWidth == 0)
+                {
+                    sb.Append(' ', holePadding);
+                }
+                else
+                {
+                    string holeFormatVaue = sb.ToString(holeStartPosition, holeWidth);
+                    sb.Length = holeStartPosition;
+                    sb.Append(' ', holePadding);
+                    sb.Append(holeFormatVaue);
+                }
+            }
         }
     }
 }

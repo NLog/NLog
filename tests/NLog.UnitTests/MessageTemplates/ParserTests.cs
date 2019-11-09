@@ -40,6 +40,8 @@ namespace NLog.UnitTests.MessageTemplates
 
     public class ParserTests
     {
+        private static object[] ManyParameters = new object[100];
+
         [Theory]
         [InlineData("")]
         [InlineData("Hello {0}")]
@@ -79,9 +81,9 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("{{{0:0{{}")]
         public void ParseAndPrint(string input)
         {
-            var template = TemplateParser.Parse(input);
-
-            Assert.Equal(input, template.Rebuild());
+            var logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, input, ManyParameters);
+            logEventInfo.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+            var templateAuto = logEventInfo.MessageTemplateParameters;
         }
 
         [Theory]
@@ -96,11 +98,14 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("{0:0}", 0, "0")]        
         public void ParsePositional(string input, int index, string format)
         {
-            var template = TemplateParser.Parse(input);
+            var logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, input, ManyParameters);
+            logEventInfo.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+            var template = logEventInfo.MessageTemplateParameters;
 
             Assert.True(template.IsPositional);
-            Assert.Equal(format, template.Holes[0].Format);
-            Assert.Equal(index, template.Holes[0].Index);
+            Assert.True(template.Count >= 1);
+            Assert.Equal(format, template[0].Format);
+            Assert.Equal(index, template[0].PositionalIndex);
         }
 
         [Theory]
@@ -112,7 +117,9 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("{a} {x}")]
         public void ParseNominal(string input)
         {
-            var template = TemplateParser.Parse(input);
+            var logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, input, ManyParameters);
+            logEventInfo.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+            var template = logEventInfo.MessageTemplateParameters;
 
             Assert.False(template.IsPositional);
         }
@@ -130,9 +137,12 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("{18 }", "18 ")]
         public void ParseName(string input, string name)
         {
-            var template = TemplateParser.Parse(input);
+            var logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, input, ManyParameters);
+            logEventInfo.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+            var template = logEventInfo.MessageTemplateParameters;
 
-            Assert.Equal(name, template.Holes[0].Name);
+            Assert.Equal(1, template.Count);
+            Assert.Equal(name, template[0].Name);
         }
 
         [Theory]
@@ -147,15 +157,17 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("{$aaa}", "$")]
         public void ParseHoleType(string input, string holeType)
         {
-            var template = TemplateParser.Parse(input);
-
-            Assert.Single(template.Holes);
+            var logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, input, ManyParameters);
+            logEventInfo.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+            var template = logEventInfo.MessageTemplateParameters;
+            
+            Assert.Equal(1, template.Count);
             CaptureType captureType = CaptureType.Normal;
             if (holeType == "@")
                 captureType = CaptureType.Serialize;
             else if (holeType == "$")
                 captureType = CaptureType.Stringify;
-            Assert.Equal(captureType, template.Holes[0].CaptureType);
+            Assert.Equal(captureType, template[0].CaptureType);
         }
 
         [Theory]
@@ -165,15 +177,18 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("{0,-36  :x}", -36, "x")]
         [InlineData(" {0:nl-nl} ", 0, "nl-nl")]
         [InlineData(" {0} ", 0, null)]
-        public void ParseFormatAndAlignment_numeric(string input, int aligment, string format)
+        public void ParseFormatAndAlignment_numeric(string input, int? alignment, string format)
         {
-            var templates = TemplateParser.Parse(input);
-            var hole = templates.Holes[0];
+            var logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, input, ManyParameters);
+            logEventInfo.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+            var template = logEventInfo.MessageTemplateParameters;
 
+            Assert.Equal(1, template.Count);
+            var hole = template[0];
             Assert.Equal("0", hole.Name);
-            Assert.Equal(0, hole.Index);
-            Assert.Equal(aligment, hole.Alignment);
+            Assert.Equal(0, hole.PositionalIndex);
             Assert.Equal(format, hole.Format);
+            Assert.NotNull(alignment);
         }
 
         [Theory]
@@ -181,15 +196,18 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData(" {car,-10} ", -10, null)]
         [InlineData(" {car:nl-nl} ", 0, "nl-nl")]
         [InlineData(" {car} ", 0, null)]
-        public void ParseFormatAndAlignment_text(string input, int aligment, string format)
+        public void ParseFormatAndAlignment_text(string input, int? alignment, string format)
         {
-            var template = TemplateParser.Parse(input);
-            var hole = template.Holes[0];
+            var logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, input, ManyParameters);
+            logEventInfo.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+            var template = logEventInfo.MessageTemplateParameters;
 
+            Assert.Equal(1, template.Count);
+            var hole = template[0];
             Assert.False(template.IsPositional);
             Assert.Equal("car", hole.Name);
-            Assert.Equal(aligment, hole.Alignment);
             Assert.Equal(format, hole.Format);
+            Assert.NotNull(alignment);
         }
 
         [Theory]
@@ -218,14 +236,12 @@ namespace NLog.UnitTests.MessageTemplates
         [InlineData("{a:d{e}")]        
         public void ThrowsTemplateParserException(string input)
         {
-            Assert.Throws<TemplateParserException>(() => TemplateParser.Parse(input));
-        }
-
-        [Theory]
-        [InlineData(null)]
-        public void ThrowsArgumentNullException(string input)
-        {
-            Assert.Throws<ArgumentNullException>(() => TemplateParser.Parse(input));
+            Assert.Throws<TemplateParserException>(() =>
+            {
+                var logEventInfo = new LogEventInfo(LogLevel.Info, "Logger", null, input, ManyParameters);
+                logEventInfo.SetMessageFormatter(new NLog.Internal.LogMessageTemplateFormatter(LogManager.LogFactory.ServiceRepository, true, false).MessageFormatter, null);
+                var template = logEventInfo.MessageTemplateParameters;
+            });
         }
     }
 }

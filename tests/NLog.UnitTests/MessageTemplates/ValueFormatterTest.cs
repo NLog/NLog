@@ -194,19 +194,9 @@ namespace NLog.UnitTests.MessageTemplates
 
         }
 
-        [Fact]
-        public void TestValueFormatterClassInstantiatedSuccessfully()
+        private static ValueFormatter CreateValueFormatter()
         {
-            var valueFormatter = ValueFormatter.Instance;
-            Assert.NotNull(valueFormatter);
-        }
-
-        [Fact]
-        public void TestValueFormatterClassGetsInstantiatedOnlyOneTime()
-        {
-            var valueFormatter = ValueFormatter.Instance;
-            var valueFormatter1 = ValueFormatter.Instance;
-            Assert.Same(valueFormatter, valueFormatter1);
+            return new ValueFormatter(LogManager.LogFactory.ServiceRepository);
         }
 
         [Fact]
@@ -214,7 +204,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var str = "Test";
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(str, string.Empty, CaptureType.Serialize, null, builder);
+            var result = CreateValueFormatter().FormatValue(str, string.Empty, CaptureType.Serialize, null, builder);
             Assert.True(result);
             Assert.Equal("\"Test\"", builder.ToString());
         }
@@ -224,17 +214,17 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test2();
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Serialize, null, builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Serialize, null, builder);
             Assert.True(result);
             Assert.Equal("{\"Str\":\"Test\", \"Integer\":1}", builder.ToString());
         }
-        
+
         [Fact]
         public void TestSerialisationOfRecursiveClassObjectToJsonIsSuccessful()
         {
             var @class = new RecursiveTest(0);
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Serialize, null, builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Serialize, null, builder);
             Assert.True(result);
             var actual = builder.ToString();
             
@@ -250,7 +240,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = "str";
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("\"str\"", builder.ToString());
         }
@@ -260,7 +250,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test();
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("\"Test\"", builder.ToString());
         }
@@ -270,7 +260,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test1();
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Stringify, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             var expectedValue = $"\"{typeof(Test1).FullName}\"";
             Assert.Equal(expectedValue, builder.ToString());
@@ -281,7 +271,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var list = new List<int>() { 1, 2, 3, 4, 5, 6 };
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("1, 2, 3, 4, 5, 6", builder.ToString());
         }
@@ -291,7 +281,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var list = new Dictionary<int, object>() { { 1, new Test() }, { 2, new Test1() } };
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal($"1=Test, 2={typeof(Test1).FullName}", builder.ToString());
         }
@@ -301,7 +291,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var list = new List<List<List<List<int>>>>() { new List<List<List<int>>>() { new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 3, 4 } }, new List<List<int>>() { new List<int>() { 4, 5 }, new List<int>() { 6, 7 } } } };
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.NotEqual("1,2,3,4,5,6,7", builder.ToString());
         }
@@ -311,7 +301,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var list = new List<List<List<List<int>>>>() { new List<List<List<int>>>() { new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 1, 2 } }, new List<List<int>>() { new List<int>() { 1, 2 }, new List<int>() { 1, 2 } } } };
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.NotEqual("1,2", builder.ToString());
         }
@@ -323,7 +313,7 @@ namespace NLog.UnitTests.MessageTemplates
         public void TestSerializationWillBeSuccessfulForNull(CaptureType captureType, string expected)
         {
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(null, string.Empty, captureType, null, builder);
+            var result = CreateValueFormatter().FormatValue(null, string.Empty, captureType, null, builder);
             Assert.True(result);
             Assert.Equal(expected, builder.ToString());
         }
@@ -333,7 +323,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             object list = null;
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(list, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("NULL", builder.ToString());
         }
@@ -343,7 +333,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = "str";
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("\"str\"", builder.ToString());
         }
@@ -353,7 +343,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test(TypeCode.Object);
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("Test", builder.ToString());
         }
@@ -363,7 +353,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test(TypeCode.String);
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             var expectedValue = $"\"{typeof(Test).FullName}\"";
             Assert.Equal(expectedValue, builder.ToString());
@@ -374,7 +364,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test(TypeCode.Boolean);
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("true", builder.ToString());
         }
@@ -384,7 +374,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test(TypeCode.Char);
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("\"t\"", builder.ToString());
         }
@@ -402,7 +392,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test(code);
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("1", builder.ToString());
         }
@@ -412,7 +402,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test(TypeCode.Byte);
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class.Data, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class.Data, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("Foo", builder.ToString());
         }
@@ -422,7 +412,7 @@ namespace NLog.UnitTests.MessageTemplates
         {
             var @class = new Test(TypeCode.DateTime);
             StringBuilder builder = new StringBuilder();
-            var result = ValueFormatter.Instance.FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
+            var result = CreateValueFormatter().FormatValue(@class, string.Empty, CaptureType.Normal, new CultureInfo("fr-FR"), builder);
             Assert.True(result);
             Assert.Equal("Test", builder.ToString());
         }

@@ -47,15 +47,13 @@ namespace NLog.MessageTemplates
     /// </summary>
     internal class ValueFormatter : IValueFormatter
     {
-        public static IValueFormatter Instance => _instance ?? (_instance = new ValueFormatter(null)); //todo DI fix null here, remove instance
-        private static IValueFormatter _instance;
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
-
+        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
         private readonly IServiceRepository _serviceRepository;
-        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository?.ResolveService<IJsonConverter>() ?? Targets.DefaultJsonSerializer.Instance);  //todo DI remove default
+        private IJsonConverter JsonConverter => _jsonConverter ?? (_jsonConverter = _serviceRepository.ResolveService<IJsonConverter>());
         private IJsonConverter _jsonConverter;
 
-        internal ValueFormatter(IServiceRepository serviceRepository)
+        internal ValueFormatter([NotNull] IServiceRepository serviceRepository)
         {
             _serviceRepository = serviceRepository; 
         }
@@ -63,9 +61,6 @@ namespace NLog.MessageTemplates
         private const int MaxRecursionDepth = 2;
         private const int MaxValueLength = 512 * 1024;
         private const string LiteralFormatSymbol = "l";
-
-        private readonly MruCache<Enum, string> _enumCache = new MruCache<Enum, string>(1500);
-
         public const string FormatAsJson = "@";
         public const string FormatAsString = "$";
 

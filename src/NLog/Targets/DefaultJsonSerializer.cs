@@ -743,39 +743,39 @@ namespace NLog.Targets
 
                 try
                 {
-                    if (HasNameAndValue(propertyValue))
+                    if (!propertyValue.HasNameAndValue)
+                        continue;
+
+                    if (!first)
                     {
-                        if (!first)
-                        {
-                            destination.Append(", ");
-                        }
+                        destination.Append(", ");
+                    }
 
-                        if (options.QuoteKeys)
+                    if (options.QuoteKeys)
+                    {
+                        QuoteValue(destination, propertyValue.Name);
+                    }
+                    else
+                    {
+                        destination.Append(propertyValue.Name);
+                    }
+                    destination.Append(':');
+
+                    var objTypeCode = propertyValue.TypeCode;
+                    if (objTypeCode != TypeCode.Object)
+                    {
+                        SerializeSimpleTypeCodeValue((IConvertible)propertyValue.Value, objTypeCode, destination, options);
+                        first = false;
+                    }
+                    else
+                    {
+                        if (!SerializeObject(propertyValue.Value, destination, options, objectsInPath, depth + 1))
                         {
-                            QuoteValue(destination, propertyValue.Name);
+                            destination.Length = originalLength;
                         }
                         else
                         {
-                            destination.Append(propertyValue.Name);
-                        }
-                        destination.Append(':');
-
-                        var objTypeCode = propertyValue.TypeCode;
-                        if (objTypeCode != TypeCode.Object)
-                        {
-                            SerializeSimpleTypeCodeValue((IConvertible)propertyValue.Value, objTypeCode, destination, options);
                             first = false;
-                        }
-                        else
-                        {
-                            if (!SerializeObject(propertyValue.Value, destination, options, objectsInPath, depth + 1))
-                            {
-                                destination.Length = originalLength;
-                            }
-                            else
-                            {
-                                first = false;
-                            }
                         }
                     }
                 }
@@ -788,11 +788,6 @@ namespace NLog.Targets
 
             destination.Append('}');
             return true;
-        }
-
-        private static bool HasNameAndValue(ObjectReflectionCache.ObjectPropertyList.PropertyValue propertyValue)
-        {
-            return propertyValue.Name != null && propertyValue.Value != null;
         }
 
         private bool SerializeObjectAsString(object value, StringBuilder destination, JsonSerializeOptions options)

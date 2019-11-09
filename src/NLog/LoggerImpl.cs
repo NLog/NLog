@@ -55,8 +55,10 @@ namespace NLog
         private const int StackTraceSkipMethods = 0;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
-        internal static void Write([NotNull] Type loggerType, [NotNull] TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory factory)
+        internal static void Write([NotNull] Type loggerType, [NotNull] TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory logFactory)
         {
+            logEvent.SetMessageFormatter(logFactory.ActiveMessageFormatter, targetsForLevel.NextInChain == null ? logFactory.SingleTargetMessageFormatter : null);
+
 #if CaptureCallSiteInfo
             StackTraceUsage stu = targetsForLevel.GetStackTraceUsage();
             if (stu != StackTraceUsage.None)
@@ -68,7 +70,7 @@ namespace NLog
                 }
                 else if (attemptCallSiteOptimization || targetsForLevel.MustCaptureStackTrace(stu, logEvent))
                 {
-                    CaptureCallSiteInfo(factory, loggerType, logEvent, stu);
+                    CaptureCallSiteInfo(logFactory, loggerType, logEvent, stu);
 
                     if (attemptCallSiteOptimization)
                     {
@@ -79,7 +81,7 @@ namespace NLog
 #endif
 
             AsyncContinuation exceptionHandler = (ex) => { };
-            if (factory.ThrowExceptions)
+            if (logFactory.ThrowExceptions)
             {
                 int originalThreadId = AsyncHelpers.GetManagedThreadId();
                 exceptionHandler = ex =>
@@ -89,12 +91,6 @@ namespace NLog
                         throw new NLogRuntimeException("Exception occurred in NLog", ex);
                     }
                 };
-            }
-
-            if (targetsForLevel.NextInChain == null && logEvent.CanLogEventDeferMessageFormat())
-            {
-                // Change MessageFormatter so it writes directly to StringBuilder without string-allocation
-                logEvent.MessageFormatter = LogMessageTemplateFormatter.DefaultAutoSingleTarget.MessageFormatter;
             }
 
             IList<Filter> prevFilterChain = null;
@@ -114,7 +110,7 @@ namespace NLog
         }
 
 #if CaptureCallSiteInfo
-        private static void CaptureCallSiteInfo(LogFactory factory, Type loggerType, LogEventInfo logEvent, StackTraceUsage stackTraceUsage)
+        private static void CaptureCallSiteInfo(LogFactory logFactory, Type loggerType, LogEventInfo logEvent, StackTraceUsage stackTraceUsage)
         {
             try
             {
@@ -135,7 +131,7 @@ namespace NLog
             }
             catch (Exception ex)
             {
-                if (factory.ThrowExceptions || ex.MustBeRethrownImmediately())
+                if (logFactory.ThrowExceptions || ex.MustBeRethrownImmediately())
                     throw;
 
                 InternalLogger.Error(ex, "Failed to capture CallSite for Logger {0}. Platform might not support ${{callsite}}", logEvent.LoggerName);

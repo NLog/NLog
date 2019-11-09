@@ -36,7 +36,6 @@ using JetBrains.Annotations;
 namespace NLog.Config
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
     using System.Reflection;
     using NLog.Internal;
@@ -49,6 +48,7 @@ namespace NLog.Config
     {
         private readonly Dictionary<Type, ConfigurationItemCreator> _creatorMap = new Dictionary<Type, ConfigurationItemCreator>();
         private ConfigurationItemFactory _localItemFactory;
+        public event EventHandler<RepositoryUpdateEventArgs> TypeRegistered;
 
         public ConfigurationItemFactory ConfigurationItemFactory
         {
@@ -72,6 +72,7 @@ namespace NLog.Config
         public void RegisterType(Type type, [NotNull] ConfigurationItemCreator objectResolver)
         {
             _creatorMap[type] = objectResolver ?? throw new ArgumentNullException(nameof(objectResolver));
+            TypeRegistered?.Invoke(this, new RepositoryUpdateEventArgs(type));
         }
 
         public object ResolveService(Type itemType)
@@ -131,17 +132,8 @@ namespace NLog.Config
                 throw new NLogResolveException("Multiple public constructor are not supported if there isn't a default constructor'", itemType);
             }
 
-            var ctor = ctors.First();
-
-            var parameterInfos = ctor.GetParameters();
-
-            if (parameterInfos.Length == 0)
-            {
-                ctor.Invoke(ArrayHelper.Empty<object>());
-            }
-
-            var parameterValues = CreateCtorParameterValues(parameterInfos, seenTypes);
-
+            var ctor = ctors[0];
+            var parameterValues = CreateCtorParameterValues(ctor.GetParameters(), seenTypes);
             return ctor.Invoke(parameterValues);
         }
 
