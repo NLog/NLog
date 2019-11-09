@@ -110,6 +110,7 @@ namespace NLog
         public LogFactory()
             : this(new LoggingConfigurationFileLoaderFactory().Create()) // TODO NLog 5 - Decouple with DI
         {
+            _serviceRepository.TypeRegistered += ServiceRepository_TypeRegistered;
             RefreshMessageFormatter();
         }
 
