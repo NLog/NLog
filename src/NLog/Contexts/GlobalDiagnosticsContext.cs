@@ -66,7 +66,7 @@ namespace NLog
         {
             lock (_lockObject)
             {
-                bool requireCopyOnWrite = _dictReadOnly != null && !_dict.ContainsKey(item); // Overwiting existing value is ok (no resize)
+                bool requireCopyOnWrite = _dictReadOnly != null && !_dict.ContainsKey(item); // Overwrite existing value is ok (no resize)
                 GetWritableDict(requireCopyOnWrite)[item] = value;
             }
         }

@@ -31,26 +31,38 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
     <Copyright>Copyright (c) 2004-$(CurrentYear) NLog Project - https://nlog-project.org/ </Copyright>
     
     <PackageReleaseNotes>
-## Features
+## Bugfixes
+- DatabaseTarget - Auto escape special chars in password, and improve handling of empty username/password (@304NotModified)
+- LoggingRule - Fixed IndexOutOfRangeException for SetLoggingLevels with LogLevel.Off (@snakefoot)
+- FileTarget - Improved handling of relative path in ArchiveFileName (@snakefoot)
+- ExceptionLayoutRenderer - Fixed missing separator when Format-value gives empty result (@brinko99)
+- ${substring} - Length should not be mandatory (@304NotModified)
+- SimpleLayout - Fixed NullReferenceException in PreCalculate during TryGetRawValue optimization (@snakefoot)
 
-- Added ${object-path} / ${exception:objectpath=PropertyName}, for rendering a property of an object (e.g. an exception) (@304NotModified)
-- WhenMethodFilter - Support dynamic filtering using lambda (@snakefoot)
-- Added support for dynamic layout renderer in log level filters (e.g. minLevel, maxLevel)  (@snakefoot)
-- ExceptionLayoutRenderer - Added Source as new format parameter. (@snakefoot)
-- ColoredConsoleTarget - Added DetectOutputRedirected to skip coloring on redirect (@snakefoot)
+## Features
+- LogFactory - AutoShutdown can be configured to unhook from AppDomain-Unload, and avoid premature shutdown with IHostBuilder (@snakefoot)
+- PerformanceCounterLayoutRenderer - Added Layout-support for Instance-property (@snakefoot)
+- ${local-ip} Layout Renderer for local machine ip-address (@snakefoot + @304NotModified)
+- CachedLayoutRendererWrapper - Added CachedSeconds as ambient property. Ex. ${local-ip:cachedSeconds=60} (@snakefoot)
+- JsonLayout - Added EscapeForwardSlash-option to skip Json-escape of forward slash (@304NotModified)
+- AllEventPropertiesLayoutRenderer - Added Exclude-option that specifies property-keys to skip (@snakefoot)
+- ${Exception} - Added new Format-option values HResult and Properties (@snakefoot)
 
 ## Improvements
-
-- MessageTemplateParameters - Improve validation of parameters when isPositional (@snakefoot)
-- NetworkTarget - HttpNetworkSender no longer sends out-of-order (@snakefoot)
-- NetworkTarget - Fix InternalLogger.Trace to include Target name (@snakefoot)
-- XML config - Support ThrowConfigExceptions=true even when xml is invalid (@snakefoot)
-- Fix summary of NoRawValueLayoutRendererWrapper class (@304NotModified)
+- ConcurrentRequestQueue refactoring to reduce code complexity (@snakefoot)
+- AsyncTargetWrapper now fallback to clearing internal queue if flush fails to release blocked writer threads (@snakefoot)
+- ${CallSite} - Small improvements for recognizing async callsite cases (@snakefoot)
+- LogManager.GetCurrentClassLogger - Improved capture of Logger name when called within lambda_method (@snakefoot)
+- ${BaseDir=FixTempDir=true} fallback to process directory for .NET Core 3 Single File Publish (@snakefoot)
+- Auto-loading NLog configuration from process.exe.nlog will priotize process directory for .NET Core 3 Single File Publish (@snakefoot)
+- ObjectPathRendererWrapper minor refactorings (@snakefoot)
+- ObjectHandleSerializer.GetObjectData includes SerializationFormatter=true for use in MDLC + NDLC (@snakefoot)
+- FileTarget - Extra logging when FileName Layout renders empty string (@snakefoot)      
 
 ## Performance
-
-- MessageTemplateParameters - Skip object allocation when no parameters (@snakefoot)
-- XmlLayout - Defer allocation of ObjectReflectionCache until needed (@snakefoot)
+- LogFactory - Faster initial assembly reflection and config loading (@snakefoot)
+- ConsoleTarget - Added WriteBuffer option that allows batch writing to console-stream with reduced allocations (@snakefoot)
+- ConsoleTarget - Added global lock to prevent any threadsafety issue from unsafe console (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 

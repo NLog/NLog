@@ -72,7 +72,7 @@ namespace NLog
         /// Pops the top message off the NDLC stack.
         /// </summary>
         /// <returns>The top message which is no longer on the stack.</returns>
-        /// <remarks>this methods returns a object instead of string, this because of backwardscompatibility</remarks>
+        /// <remarks>this methods returns a object instead of string, this because of backwards-compatibility</remarks>
         public static object Pop()
         {
             //NLOG 5: return string (breaking change)

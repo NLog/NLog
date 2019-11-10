@@ -118,6 +118,16 @@ namespace NLog
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to automatically call <see cref="LogManager.Shutdown"/>
+        /// on AppDomain.Unload or AppDomain.ProcessExit
+        /// </summary>
+        public static bool AutoShutdown
+        {
+            get => factory.AutoShutdown;
+            set => factory.AutoShutdown = value;
+        }
+
+        /// <summary>
         /// Gets or sets the current logging configuration.
         /// <see cref="NLog.LogFactory.Configuration" />
         /// </summary>
@@ -148,7 +158,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger with the name of the current class.  
+        /// Gets the logger with the full name of the current class, so namespace and class name.
         /// </summary>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
@@ -188,9 +198,11 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets a custom logger with the full name of the current class, so namespace and class name.
+        /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
-        /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
+        /// <param name="loggerType">The logger class. This class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
         /// <remarks>This is a slow-running method. 
         /// Make sure you're not doing this in a loop.</remarks>
@@ -221,10 +233,12 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named custom logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets the specified named custom logger.
+        /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
-        /// <param name="loggerType">The logger class. The class must inherit from <see cref="Logger" />.</param>
+        /// <param name="loggerType">The logger class. This class must inherit from <see cref="Logger" />.</param>
         /// <returns>The logger of type <paramref name="loggerType"/>. Multiple calls to <c>GetLogger</c> with the same argument aren't guaranteed to return the same logger reference.</returns>
         /// <remarks>The generic way for this method is <see cref="NLog.LogFactory{loggerType}.GetLogger(string)"/></remarks>
         public static Logger GetLogger(string name, Type loggerType)
@@ -304,7 +318,7 @@ namespace NLog
         /// </summary>
         /// <remarks>Logging is enabled if the number of <see cref="EnableLogging"/> calls is greater 
         ///     than or equal to <see cref="DisableLogging"/> calls.</remarks>
-        /// <returns>An object that implements IDisposable whose Dispose() method reenables logging. 
+        /// <returns>An object that implements IDisposable whose Dispose() method re-enables logging. 
         ///     To be used with C# <c>using ()</c> statement.</returns>
         public static IDisposable DisableLogging()
         {

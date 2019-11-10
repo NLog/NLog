@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.ComponentModel;
+
 namespace NLog.Layouts
 {
     using NLog.Config;
@@ -106,6 +108,16 @@ namespace NLog.Layouts
         {
             get => LayoutWrapper.EscapeUnicode;
             set => LayoutWrapper.EscapeUnicode = value;
+        }   
+
+        /// <summary>
+        /// Should forward slashes be escaped? If true, / will be converted to \/ 
+        /// </summary>
+        [DefaultValue(true)] // todo NLog 5, default to false
+        public bool EscapeForwardSlash 
+        {
+            get => LayoutWrapper.EscapeForwardSlash;
+            set => LayoutWrapper.EscapeForwardSlash = value;
         }
 
         /// <summary>

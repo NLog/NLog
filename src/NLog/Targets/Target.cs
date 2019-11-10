@@ -49,7 +49,7 @@ namespace NLog.Targets
     public abstract class Target : ISupportsInitialize, IDisposable
     {
         private List<Layout> _allLayouts;
-        
+
         /// <summary> Are all layouts in this target thread-agnostic, if so we don't precalculate the layouts </summary>
         private bool _allLayoutsAreThreadAgnostic;
         private bool _allLayoutsAreThreadSafe;
@@ -117,7 +117,7 @@ namespace NLog.Targets
         void ISupportsInitialize.Initialize(LoggingConfiguration configuration)
         {
             lock (SyncRoot)
-            { 
+            {
                 bool wasInitialized = _isInitialized;
                 Initialize(configuration);
                 if (wasInitialized && configuration != null)
@@ -587,7 +587,7 @@ namespace NLog.Targets
         /// 
         /// !WARNING! Custom targets should only override this method if able to provide their
         /// own synchronization mechanism. <see cref="Layout" />-objects are not guaranteed to be
-        /// threadsafe, so using them without a SyncRoot-object can be dangerous.
+        /// thread-safe, so using them without a SyncRoot-object can be dangerous.
         /// </summary>
         /// <param name="logEvent">Log event to be written out.</param>
         protected virtual void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
@@ -625,7 +625,7 @@ namespace NLog.Targets
         /// 
         /// !WARNING! Custom targets should only override this method if able to provide their
         /// own synchronization mechanism. <see cref="Layout" />-objects are not guaranteed to be
-        /// threadsafe, so using them without a SyncRoot-object can be dangerous.
+        /// thread-safe, so using them without a SyncRoot-object can be dangerous.
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
         protected virtual void WriteAsyncThreadSafe(IList<AsyncLogEventInfo> logEvents)

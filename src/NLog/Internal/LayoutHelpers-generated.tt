@@ -83,7 +83,7 @@ namespace NLog.Internal
             <#=type#> result;
 <# if (numericTypes.Contains(type)) {  #>  
             // NumberStyles.Integer is default of Convert.ToInt16
-            // CultureInfo.InvariantCulture is backwardscomp.
+            // CultureInfo.InvariantCulture is backwards compatible.
             if (!<#=type#>.TryParse(rendered, NumberStyles.Integer, CultureInfo.InvariantCulture, out result)) 
 <# } else {  #>  
             if (!<#=type#>.TryParse(rendered, out result)) 

@@ -51,8 +51,6 @@ namespace NLog.LayoutRenderers.Wrappers
     /// </example>
     public abstract class WrapperLayoutRendererBase : LayoutRenderer
     {
-        private Layout _inner;
-
         /// <summary>
         /// Gets or sets the wrapped layout.
         /// 
@@ -60,24 +58,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// </summary>
         /// <docgen category='Transformation Options' order='10' />
         [DefaultParameter]
-        public Layout Inner
-        {
-            get => _inner;
-            set
-            {
-                var changed = !ReferenceEquals(_inner, value);
-                _inner = value;
-
-                if (changed)
-                    InnerChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
-        /// <summary>
-        /// Notify when <see cref="Inner"/> has been changed
-        /// </summary>
-        /// <remarks>Change to private protected in C# 7.3</remarks>
-        internal event EventHandler InnerChanged;
+        public Layout Inner { get; set; }
 
         /// <inheritdoc/>
         protected override void InitializeLayoutRenderer()

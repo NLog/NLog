@@ -86,6 +86,7 @@ namespace NLog.Targets.FileArchiveModes
             FileNameTemplate archiveFileNameTemplate = GenerateFileNameTemplate(archiveFilePath);
             string dirName = Path.GetDirectoryName(archiveFilePath);
             archiveFilePath = Path.Combine(dirName, archiveFileNameTemplate.ReplacePattern("*").Replace("*", archiveDate.ToString(_archiveDateFormat)));
+            archiveFilePath = Path.GetFullPath(archiveFilePath);    // Rebuild to fix non-standard path-format
             return new DateAndSequenceArchive(archiveFilePath, archiveDate, _archiveDateFormat, 0);
         }
     }

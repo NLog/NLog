@@ -54,7 +54,7 @@ namespace NLog.Targets.Wrappers
         public AsyncTargetWrapperOverflowAction OnOverflow { get; set; }
 
         /// <summary>
-        /// Notifies about log event that was dropped when <see cref="OnOverflow"/> setted to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
+        /// Notifies about log event that was dropped when <see cref="OnOverflow"/> set to <see cref="AsyncTargetWrapperOverflowAction.Discard"/>
         /// </summary>
         public event EventHandler<LogEventDroppedEventArgs> LogEventDropped;
 

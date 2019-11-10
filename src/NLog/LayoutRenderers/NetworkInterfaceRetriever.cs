@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,23 +31,22 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal.Fakeables
-{
-    using System.Collections.Generic;
+#if !NETSTANDARD1_0 && !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+
+namespace NLog.LayoutRenderers
+{
     /// <summary>
-    /// Abstract calls for the application environment
+    /// Retrieve network interfaces
     /// </summary>
-    internal interface IAppEnvironment : IFileSystem
+    internal class NetworkInterfaceRetriever : INetworkInterfaceRetriever
     {
-        string AppDomainBaseDirectory { get; }
-        string AppDomainConfigurationFile { get; }
-#if !NETSTANDARD1_3 && !SILVERLIGHT
-        string CurrentProcessFilePath { get; }
-        string EntryAssemblyLocation { get; }
-        string EntryAssemblyFileName { get; }
-        string UserTempFilePath { get; }
-#endif
-        IEnumerable<string> PrivateBinPath { get; }
+        /// <summary>
+        /// Retrieve network interfaces
+        /// </summary>
+        public NetworkInterface[] AllNetworkInterfaces => NetworkInterface.GetAllNetworkInterfaces();
     }
 }
+#endif

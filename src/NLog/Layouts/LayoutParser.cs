@@ -98,7 +98,7 @@ namespace NLog.Layouts
                 //detect `${` (new layout-renderer)
                 if (ch == '$' && sr.Peek() == '{')
                 {
-                    //stach already found layout-renderer.
+                    //stash already found layout-renderer.
                     AddLiteral(literalBuf, result);
 
                     LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(configurationItemFactory, sr);
@@ -436,7 +436,7 @@ namespace NLog.Layouts
                     throw;
                 }
                 InternalLogger.Error(ex, "Error parsing layout {0} will be ignored.", name);
-                //replace with emptys
+                // replace with empty values
                 layoutRenderer = new LiteralLayoutRenderer(string.Empty);
             }
             return layoutRenderer;

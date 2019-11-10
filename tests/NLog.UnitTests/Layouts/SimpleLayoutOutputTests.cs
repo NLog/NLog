@@ -225,6 +225,21 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(correlationId, value);
         }
 
+        [Fact]
+        public void TryGetRawValue_WhenEmpty_ShouldNotFailWithNullException()
+        {
+            // Arrange
+            SimpleLayout l = "${event-properties:eventId:whenEmpty=0}";
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            l.Precalculate(logEventInfo);
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.False(success, "Missing EventId");
+        }
+
         public class ThrowsExceptionRenderer : LayoutRenderer
         {
             public ThrowsExceptionRenderer()

@@ -91,6 +91,7 @@ namespace NLog.Targets.FileArchiveModes
                 $"{archiveDate.ToString(_archiveDateFormat)}.{paddedSequence}");
             string dirName = Path.GetDirectoryName(archiveFilePath);
             archiveFilePath = Path.Combine(dirName, archiveFileNameWithoutPath);
+            archiveFilePath = Path.GetFullPath(archiveFilePath);    // Rebuild to fix non-standard path-format
             return new DateAndSequenceArchive(archiveFilePath, archiveDate, _archiveDateFormat, nextSequenceNumber);
         }
 

@@ -81,7 +81,7 @@ namespace NLog.Targets
         private const int ArchiveAboveSizeDisabled = -1;
 
         /// <summary>
-        /// Holds the initialised files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
+        /// Holds the initialized files each given time by the <see cref="FileTarget"/> instance. Against each file, the last write time is stored. 
         /// </summary>
         /// <remarks>Last write time is store in local time (no UTC).</remarks>
         private readonly Dictionary<string, DateTime> _initializedFiles = new Dictionary<string, DateTime>(StringComparer.OrdinalIgnoreCase);
@@ -1055,6 +1055,7 @@ namespace NLog.Targets
                     string fileName = bucket.Key;
                     if (string.IsNullOrEmpty(fileName))
                     {
+                        InternalLogger.Warn("FileTarget(Name={0}): FileName Layout returned empty string. The path is not of a legal form.", Name);
                         var emptyPathException = new ArgumentException("The path is not of a legal form.");
                         for (int i = 0; i < bucketCount; ++i)
                         {
@@ -2307,7 +2308,7 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// The sequence of <see langword="byte"/> to be written in a file after applying any formating and any
+        /// The sequence of <see langword="byte"/> to be written in a file after applying any formatting and any
         /// transformations required from the <see cref="Layout"/>.
         /// </summary>
         /// <param name="layout">The layout used to render output message.</param>

@@ -39,6 +39,7 @@ namespace NLog
     /// <summary>
     /// Specialized LogFactory that can return instances of custom logger types.
     /// </summary>
+    /// <remarks>Use this only when a custom Logger type is defined.</remarks>
     /// <typeparam name="T">The type of the logger to be returned. Must inherit from <see cref="Logger"/>.</typeparam>
     public class LogFactory<T> : LogFactory 
         where T : Logger
@@ -54,7 +55,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets a custom logger with the name of the current class and type <typeparamref name="T"/>.
+        /// Gets a custom logger with the full name of the current class (so namespace and class name) and type <typeparamref name="T"/>.
         /// </summary>
         /// <returns>An instance of <typeparamref name="T"/>.</returns>
         /// <remarks>This is a slow-running method. 

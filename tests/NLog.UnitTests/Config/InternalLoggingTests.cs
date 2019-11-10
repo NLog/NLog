@@ -46,19 +46,19 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void InternalLoggingConfigTest1()
         {
-            InternalLoggingConfigTest(LogLevel.Trace, true, true, LogLevel.Warn, true, true, @"c:\temp\nlog\file.txt", true);
+            InternalLoggingConfigTest(LogLevel.Trace, true, true, LogLevel.Warn, true, true, @"c:\temp\nlog\file.txt", true, true);
         }
 
         [Fact]
         public void InternalLoggingConfigTest2()
         {
-            InternalLoggingConfigTest(LogLevel.Error, false, false, LogLevel.Info, false, false, @"c:\temp\nlog\file2.txt", false);
+            InternalLoggingConfigTest(LogLevel.Error, false, false, LogLevel.Info, false, false, @"c:\temp\nlog\file2.txt", false, false);
         }
 
         [Fact]
         public void InternalLoggingConfigTes3()
         {
-            InternalLoggingConfigTest(LogLevel.Info, false, false, LogLevel.Trace, false, null, @"c:\temp\nlog\file3.txt", false);
+            InternalLoggingConfigTest(LogLevel.Info, false, false, LogLevel.Trace, false, null, @"c:\temp\nlog\file3.txt", false, true);
         }
 
         [Fact]
@@ -72,6 +72,7 @@ namespace NLog.UnitTests.Config
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
                 LogManager.ThrowConfigExceptions = null;
+                LogManager.AutoShutdown = true;
                 InternalLogger.LogToTrace = true;
 
                 XmlLoggingConfiguration.CreateFromXmlString(@"
@@ -84,6 +85,7 @@ namespace NLog.UnitTests.Config
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
                 Assert.Null(LogManager.ThrowConfigExceptions);
+                Assert.True(LogManager.AutoShutdown);
                 Assert.True(InternalLogger.LogToTrace);
             }
         }
@@ -119,7 +121,7 @@ namespace NLog.UnitTests.Config
             }
         }
 
-        private void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool logToTrace)
+        private void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool logToTrace, bool autoShutdown)
         {
             var logLevelString = logLevel.ToString();
             var internalLogToConsoleString = logToConsole.ToString().ToLower();
@@ -128,6 +130,7 @@ namespace NLog.UnitTests.Config
             var throwExceptionsString = throwExceptions.ToString().ToLower();
             var throwConfigExceptionsString = throwConfigExceptions == null ? "" : throwConfigExceptions.ToString().ToLower();
             var logToTraceString = logToTrace.ToString().ToLower();
+            var autoShutdownString = autoShutdown.ToString().ToLower();
 
             using (new InternalLoggerScope(true))
             {
@@ -138,7 +141,7 @@ namespace NLog.UnitTests.Config
                         globalThresholdString
                     }' throwExceptions='{throwExceptionsString}' throwConfigExceptions='{
                         throwConfigExceptionsString
-                    }' internalLogToTrace='{logToTraceString}'>
+                    }' internalLogToTrace='{logToTraceString}' autoShutdown='{autoShutdownString}'>
 </nlog>");
 
                 Assert.Same(logLevel, InternalLogger.LogLevel);
@@ -156,6 +159,8 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(throwConfigExceptions, LogManager.ThrowConfigExceptions);
 
                 Assert.Equal(logToTrace, InternalLogger.LogToTrace);
+
+                Assert.Equal(autoShutdown, LogManager.AutoShutdown);
             }
         }
     }

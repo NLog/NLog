@@ -33,6 +33,7 @@
 
 namespace NLog.Internal
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -63,14 +64,12 @@ namespace NLog.Internal
                 InternalLogger.Trace("FindReachableObject<{0}>:", typeof(T));
             }
             var result = new List<T>();
-            var visitedObjects = new HashSet<object>();
-
+            var visitedObjects = new HashSet<object>(SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default);
             foreach (var rootObject in rootObjects)
             {
                 ScanProperties(aggressiveSearch, result, rootObject, 0, visitedObjects);
             }
-
-            return result.ToList();
+            return result;
         }
 
         /// <remarks>ISet is not there in .net35, so using HashSet</remarks>
@@ -82,24 +81,16 @@ namespace NLog.Internal
                 return;
             }
 
-            var type = o.GetType();
-            try
-            {
-                if (type == null || !type.IsDefined(typeof(NLogConfigurationItemAttribute), true))
-                    return;
-            }
-            catch (System.Exception ex)
-            {
-                InternalLogger.Info(ex, "{0}Type reflection not possible for: {1}. Maybe because of .NET Native.", new string(' ', level), o.ToString());
-                return;
-            }
-
             if (visitedObjects.Contains(o))
             {
                 return;
             }
 
-            visitedObjects.Add(o);
+            var type = o.GetType();
+            if (!IncludeConfigurationItem(o, type, level))
+            {
+                return;
+            }
 
             if (InternalLogger.IsTraceEnabled)
             {
@@ -121,6 +112,7 @@ namespace NLog.Internal
                 if (propValue == null)
                     continue;
 
+                visitedObjects.Add(o);
                 ScanPropertyForObject(prop, propValue, aggressiveSearch, result, level, visitedObjects);
             }
         }
@@ -134,45 +126,55 @@ namespace NLog.Internal
 
             if (propValue is IList list)
             {
-                //try first icollection for syncroot
-                List<object> elements;
-                lock (list.SyncRoot)
+                if (list.Count > 0)
                 {
-                    elements = new List<object>(list.Count);
-                    //no foreach. Even .Cast can lead to  Collection was modified after the enumerator was instantiated.
-                    for (int i = 0; i < list.Count; i++)
+                    if (list.IsReadOnly)
                     {
-                        var item = list[i];
-                        elements.Add(item);
+                        ScanPropertiesList(aggressiveSearch, result, list, level + 1, visitedObjects);
+                    }
+                    else
+                    {
+                        lock (list.SyncRoot)
+                        {
+                            List<object> elements = new List<object>(list.Count);
+                            for (int i = 0; i < list.Count; i++)
+                            {
+                                elements.Add(list[i]);
+                            }
+                            ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
+                        }
                     }
                 }
-                ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
+            }
+            else if (propValue is IEnumerable enumerable)
+            {
+                //new list to prevent: Collection was modified after the enumerator was instantiated.
+                var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
+                //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
+                if (elements.Count > 0)
+                {
+                    ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
+                }
             }
             else
             {
-                if (propValue is IEnumerable enumerable)
+                if (IgnoreSimpleType(prop.PropertyType))
                 {
-                    //new list to prevent: Collection was modified after the enumerator was instantiated.
-                    var elements = enumerable as IList<object> ?? enumerable.Cast<object>().ToList();
-                    //note .Cast is tread-unsafe! But at least it isn't a ICollection / IList
-                    ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
+                    return;
                 }
-                else
-                {
 #if NETSTANDARD
-                    if (!prop.PropertyType.IsDefined(typeof(NLogConfigurationItemAttribute), true))
-                    {
-                        return;   // .NET native doesn't always allow reflection of System-types (Ex. Encoding)
-                    }
-#endif
-                    ScanProperties(aggressiveSearch, result, propValue, level + 1, visitedObjects);
+                if (!prop.PropertyType.IsDefined(typeof(NLogConfigurationItemAttribute), true))
+                {
+                    return;   // .NET native doesn't always allow reflection of System-types (Ex. Encoding)
                 }
+#endif
+                ScanProperties(aggressiveSearch, result, propValue, level + 1, visitedObjects);
             }
         }
 
         private static object GetConfigurationPropertyValue(object o, PropertyInfo prop, int level)
         {
-            if (prop == null || prop.PropertyType == null || prop.PropertyType.IsPrimitive() || prop.PropertyType.IsEnum() || prop.PropertyType == typeof(string))
+            if (prop == null || IgnoreSimpleType(prop.PropertyType))
             {
                 return null;
             }
@@ -193,10 +195,48 @@ namespace NLog.Internal
             return prop.GetValue(o, null);
         }
 
-        private static void ScanPropertiesList<T>(bool aggressiveSearch, List<T> result, IEnumerable<object> elements, int level, HashSet<object> visitedObjects) where T : class
+        private static bool IncludeConfigurationItem(object item, Type itemType, int level)
+        {
+            try
+            {
+                if (itemType == null)
+                    return false;
+
+                if (item is NLog.LayoutRenderers.LayoutRenderer)
+                    return true;
+
+                if (item is NLog.Layouts.Layout)
+                    return true;
+
+                if (item is NLog.Targets.Target)
+                    return true;
+
+                if (item is LoggingRule)
+                    return true;
+
+                if (itemType.IsDefined(typeof(NLogConfigurationItemAttribute), true))
+                    return true;
+            }
+            catch (System.Exception ex)
+            {
+                InternalLogger.Info(ex, "{0}Type reflection not possible for: {1}. Maybe because of .NET Native.", new string(' ', level), item.ToString());
+            }
+
+            return false;
+        }
+
+        private static bool IgnoreSimpleType(Type type)
+        {
+            return type == null || type.IsPrimitive() || type.IsEnum() || type == typeof(string) || type == typeof(System.Globalization.CultureInfo) || type == typeof(Type);
+        }
+
+        private static void ScanPropertiesList<T>(bool aggressiveSearch, List<T> result, IEnumerable elements, int level, HashSet<object> visitedObjects) where T : class
         {
             foreach (object element in elements)
             {
+                if (element == null || IgnoreSimpleType(element.GetType()))
+                    continue;
+
                 ScanProperties(aggressiveSearch, result, element, level, visitedObjects);
             }
         }

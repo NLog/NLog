@@ -43,7 +43,7 @@ namespace NLog.Internal.FileAppenders
     using NLog.Common;
 
     /// <summary>
-    /// Provides a multiprocess-safe atomic file append while
+    /// Provides a multi process-safe atomic file append while
     /// keeping the files open.
     /// </summary>
     [SecuritySafeCritical]

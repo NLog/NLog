@@ -358,7 +358,7 @@ namespace NLog.Common
         /// Disposes the Timer, and waits for it to leave the Timer-callback-method
         /// </summary>
         /// <param name="timer">The Timer object to dispose</param>
-        /// <param name="timeout">Timeout to wait (TimeSpan.Zero means dispose without wating)</param>
+        /// <param name="timeout">Timeout to wait (TimeSpan.Zero means dispose without waiting)</param>
         /// <returns>Timer disposed within timeout (true/false)</returns>
         internal static bool WaitForDispose(this Timer timer, TimeSpan timeout)
         {

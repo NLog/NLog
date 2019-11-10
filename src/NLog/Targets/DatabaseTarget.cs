@@ -69,7 +69,7 @@ namespace NLog.Targets
     /// <example>
     /// <para>
     /// The configuration is dependent on the database type, because
-    /// there are differnet methods of specifying connection string, SQL
+    /// there are different methods of specifying connection string, SQL
     /// command and command parameters.
     /// </para>
     /// <para>MS SQL Server using System.Data.SqlClient:</para>
@@ -210,7 +210,11 @@ namespace NLog.Targets
         /// connection string.
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public Layout DBPassword { get; set; }
+        public Layout DBPassword
+        {
+            get => _dbPassword?.Layout;
+            set => _dbPassword = TransformedLayout.Create(value, EscapeValueForConnectionString, RenderLogEvent);
+        }
 
         /// <summary>
         /// Gets or sets the database name. If the ConnectionString is not provided
@@ -272,6 +276,7 @@ namespace NLog.Targets
         private IPropertyTypeConverter _propertyTypeConverter;
 
         SortHelpers.KeySelector<AsyncLogEventInfo, string> _buildConnectionStringDelegate;
+        private TransformedLayout _dbPassword;
 
         /// <summary>
         /// Performs installation which requires administrative permissions.
@@ -398,7 +403,7 @@ namespace NLog.Targets
             try
             {
                 var connectionString = BuildConnectionString(LogEventInfo.CreateNullEvent());
-                var dbConnectionStringBuilder = new DbConnectionStringBuilder {ConnectionString = connectionString};
+                var dbConnectionStringBuilder = new DbConnectionStringBuilder { ConnectionString = connectionString };
                 if (dbConnectionStringBuilder.TryGetValue("provider connection string", out var connectionStringValue))
                 {
                     // Special Entity Framework Connection String
@@ -678,26 +683,69 @@ namespace NLog.Targets
             sb.Append("Server=");
             sb.Append(RenderLogEvent(DBHost, logEvent));
             sb.Append(";");
-            if (DBUserName == null)
+            var dbUserName = RenderLogEvent(DBUserName, logEvent);
+            if (string.IsNullOrEmpty(dbUserName))
             {
                 sb.Append("Trusted_Connection=SSPI;");
             }
             else
             {
                 sb.Append("User id=");
-                sb.Append(RenderLogEvent(DBUserName, logEvent));
+                sb.Append(dbUserName);
                 sb.Append(";Password=");
-                sb.Append(RenderLogEvent(DBPassword, logEvent));
+                var password = _dbPassword.Render(logEvent);
+                sb.Append(password);
                 sb.Append(";");
             }
-
-            if (DBDatabase != null)
+            var dbDatabase = RenderLogEvent(DBDatabase, logEvent);
+            if (!string.IsNullOrEmpty(dbDatabase))
             {
                 sb.Append("Database=");
-                sb.Append(RenderLogEvent(DBDatabase, logEvent));
+                sb.Append(dbDatabase);
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Escape quotes and semicolons.
+        /// See https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms722656(v=vs.85)#setting-values-that-use-reserved-characters
+        /// </summary>
+        private static string EscapeValueForConnectionString(string value)
+        {
+            const string singleQuote = "'";
+
+            if (value.StartsWith(singleQuote) && value.EndsWith(singleQuote))
+            {
+                // already escaped
+                return value;
+            }
+            const string doubleQuote = "\"";
+            if (value.StartsWith(doubleQuote) && value.EndsWith(doubleQuote))
+            {
+                // already escaped
+                return value;
+            }
+
+            var containsSingle = value.Contains(singleQuote);
+            var containsDouble = value.Contains(doubleQuote);
+            if (value.Contains(";") || containsSingle || containsDouble)
+            {
+                if (!containsSingle)
+                {
+                    return string.Concat(singleQuote, value, singleQuote);
+                }
+                if (!containsDouble)
+                {
+                    return string.Concat(doubleQuote, value, doubleQuote);
+                }
+
+                // both single and double
+                var escapedValue = value.Replace(doubleQuote, doubleQuote + doubleQuote);
+                return string.Concat(doubleQuote, escapedValue, doubleQuote);
+            }
+
+            return value;
         }
 
         private void EnsureConnectionOpen(string connectionString)

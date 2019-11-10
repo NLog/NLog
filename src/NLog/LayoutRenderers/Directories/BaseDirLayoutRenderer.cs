@@ -52,11 +52,11 @@ namespace NLog.LayoutRenderers
         private readonly string _baseDir;
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
-
         /// <summary>
         /// cached
         /// </summary>
         private string _processDir;
+#endif
 
         /// <summary>
         /// Use base dir of current process.
@@ -64,7 +64,10 @@ namespace NLog.LayoutRenderers
         /// <docgen category='Rendering Options' order='10' />
         public bool ProcessDir { get; set; }
 
-#endif
+        /// <summary>
+        /// Fallback to the base dir of current process, when AppDomain.BaseDirectory is Temp-Path (.NET Core 3 - Single File Publish)
+        /// </summary>
+        public bool FixTempDir { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseDirLayoutRenderer" /> class.
@@ -100,12 +103,15 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-
             var dir = _baseDir;
 #if !SILVERLIGHT && !NETSTANDARD1_3
             if (ProcessDir)
             {
-                dir = _processDir ?? (_processDir = Path.GetDirectoryName(ProcessIDHelper.Instance.CurrentProcessFilePath));
+                dir = _processDir ?? (_processDir = GetProcessDir());
+            }
+            else if (FixTempDir)
+            {
+                dir = _processDir ?? (_processDir = GetFixedTempBaseDir(_baseDir));
             }
 #endif
 
@@ -115,6 +121,35 @@ namespace NLog.LayoutRenderers
                 builder.Append(path);
             }
         }
+
+#if !SILVERLIGHT && !NETSTANDARD1_3
+        private static string GetFixedTempBaseDir(string baseDir)
+        {
+            try
+            {
+                var tempDir = PathHelpers.TrimDirectorySeparators(Path.GetTempPath());
+                if (!string.IsNullOrEmpty(tempDir) && Path.GetFullPath(baseDir).StartsWith(tempDir, StringComparison.OrdinalIgnoreCase))
+                {
+                    var processDir = GetProcessDir();
+                    if (!string.IsNullOrEmpty(processDir) && !Path.GetFullPath(processDir).StartsWith(tempDir, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return processDir;
+                    }
+                }
+                return baseDir;
+            }
+            catch (Exception ex)
+            {
+                Common.InternalLogger.Warn(ex, "BaseDir LayoutRenderer unexpected exception");
+                return baseDir;
+            }
+        }
+
+        private static string GetProcessDir()
+        {
+            return Path.GetDirectoryName(ProcessIDHelper.Instance.CurrentProcessFilePath);
+        }
+#endif
     }
 }
 

@@ -45,7 +45,7 @@ namespace NLog.UnitTests.LayoutRenderers
         {
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
             <nlog>
-                <targets><target name='debug' type='Debug' layout='${performancecounter:category=Process:counter=Working Set:format=F0}' /></targets>
+                <targets><target name='debug' type='Debug' layout='${performancecounter:category=Process:counter=Working Set:format=F0:MachineName=}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>

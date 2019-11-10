@@ -255,7 +255,7 @@ namespace NLog.Conditions
         /// Get the order for the type for comparision.
         /// </summary>
         /// <param name="type1"></param>
-        /// <returns>index, 0 to maxint. Lower is first</returns>
+        /// <returns>index, 0 to max int. Lower is first</returns>
         private static int GetOrder(Type type1)
         {
             int order;

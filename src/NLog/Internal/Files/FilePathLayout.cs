@@ -53,7 +53,7 @@ namespace NLog.Internal
 #if !SILVERLIGHT || WINDOWS_PHONE
 
         /// <summary>
-        /// Cached invalid filenames char array to avoid memory allocation everytime Path.GetInvalidFileNameChars() is called.
+        /// Cached invalid file names char array to avoid memory allocation every time Path.GetInvalidFileNameChars() is called.
         /// </summary>
         private static readonly HashSet<char> InvalidFileNameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
 

@@ -42,6 +42,7 @@ namespace NLog.Internal
     using System.Linq;
     using System.Reflection;
     using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Converts object into a List of property-names and -values using reflection
@@ -210,20 +211,15 @@ namespace NLog.Internal
             {
                 foreach (var prop in properties)
                 {
-                    if (!ValidPublicProperty(prop))
+                    if (!prop.IsValidPublicProperty())
                     {
-                        properties = properties.Where(p => ValidPublicProperty(p)).ToArray();
+                        properties = properties.Where(p => p.IsValidPublicProperty()).ToArray();
                         break;
                     }
                 }
             }
 
             return properties ?? ArrayHelper.Empty<PropertyInfo>();
-        }
-
-        private static bool ValidPublicProperty(PropertyInfo p)
-        {
-            return p.CanRead && p.GetIndexParameters().Length == 0 && p.GetGetMethod() != null;
         }
 
         private static FastPropertyLookup[] BuildFastLookup(PropertyInfo[] properties, bool includeType)

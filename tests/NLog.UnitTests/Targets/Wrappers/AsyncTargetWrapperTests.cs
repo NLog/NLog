@@ -662,6 +662,54 @@ namespace NLog.UnitTests.Targets.Wrappers
             }
         }
 
+
+        [Fact]
+        public void EnqueuQueueBlock_WithLock_OnClose_ReleasesWriters()
+        {
+            EnqueuQueueBlock_OnClose_ReleasesWriters(true);
+        }
+
+        [Fact]
+        public void EnqueuQueueBlock_NoLock_OnClose_ReleasesWriters()
+        {
+            EnqueuQueueBlock_OnClose_ReleasesWriters(false);
+        }
+        private void EnqueuQueueBlock_OnClose_ReleasesWriters(bool forceLockingQueue)
+        {
+            // Setup
+            var slowTarget = new MethodCallTarget("slowTarget", (logEvent, parms) => System.Threading.Thread.Sleep(300));
+            var targetWrapper = new AsyncTargetWrapper("asynSlowTarget", slowTarget)
+            {
+                OverflowAction = AsyncTargetWrapperOverflowAction.Block,
+                QueueLimit = 3,
+                ForceLockingQueue = forceLockingQueue,
+            };
+
+            var logFactory = new LogFactory();
+            var loggingConfig = new NLog.Config.LoggingConfiguration(logFactory);
+            loggingConfig.AddRuleForAllLevels(targetWrapper);
+            logFactory.Configuration = loggingConfig;
+            var logger = logFactory.GetLogger("Test");
+
+            // Act
+            long allTasksCompleted = 0;
+            AsyncHelpers.ForEachItemInParallel(System.Linq.Enumerable.Range(1, 6), (ex) => Interlocked.Exchange(ref allTasksCompleted, 1), (value, cont) => { for (int i = 0; i < 100; ++i) logger.Info("Hello {0}", value); cont(null); });
+            Thread.Sleep(150); // Let them get stuck
+            Assert.Equal(0, Interlocked.Read(ref allTasksCompleted));
+
+            targetWrapper.Close();  // Release those who are stuck, and discard the rest
+
+            // Assert
+            for (int i = 0; i < 100; i++)
+            {
+                if (Interlocked.Read(ref allTasksCompleted) == 1)
+                    break;
+                Thread.Sleep(10);
+            }
+
+            Assert.Equal(1, Interlocked.Read(ref allTasksCompleted));
+        }
+
         private class MyAsyncTarget : Target
         {
             private readonly NLog.Internal.AsyncOperationCounter pendingWriteCounter = new NLog.Internal.AsyncOperationCounter();
