@@ -287,7 +287,7 @@ namespace NLog.Config
         /// <summary>
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
-        /// <returns>The filepaths to the possible config file</returns>
+        /// <returns>The file paths to the possible config file</returns>
         public static IEnumerable<string> GetCandidateConfigFilePaths()
         {
             return LogManager.LogFactory.GetCandidateConfigFilePaths();
@@ -296,7 +296,7 @@ namespace NLog.Config
         /// <summary>
         /// Overwrite the paths (including filename) for the possible NLog config files.
         /// </summary>
-        /// <param name="filePaths">The filepaths to the possible config file</param>
+        /// <param name="filePaths">The file paths to the possible config file</param>
         public static void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             LogManager.LogFactory.SetCandidateConfigFilePaths(filePaths);
@@ -526,7 +526,7 @@ namespace NLog.Config
         {
             var directory = baseDirectory;
 
-            //if absolute, split to filemask and directory.
+            //if absolute, split to file mask and directory.
             if (Path.IsPathRooted(fileMask))
             {
                 directory = Path.GetDirectoryName(fileMask);

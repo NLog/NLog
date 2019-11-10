@@ -82,6 +82,8 @@ namespace NLog.Internal
                 if (endIndex > 1)
                 {
                     methodName = callerClassType.Name.Substring(1, endIndex - 1);
+                    if (methodName.StartsWith("<"))
+                        methodName = methodName.Substring(1, methodName.Length - 1);    // Local functions, and anonymous-methods in Task.Run()
                 }
             }
 
@@ -189,7 +191,7 @@ namespace NLog.Internal
 #if !NETSTANDARD1_0
         /// <summary>
         /// Gets the fully qualified name of the class invoking the calling method, including the 
-        /// namespace but not the assembly.    
+        /// namespace but not the assembly.
         /// </summary>
         /// <param name="stackFrame">StackFrame from the calling method</param>
         /// <returns>Fully qualified class name</returns>
@@ -204,6 +206,8 @@ namespace NLog.Internal
                 var stackTrace = new StackTrace(false);
 #endif
                 className = GetClassFullName(stackTrace);
+                if (string.IsNullOrEmpty(className))
+                    className = stackFrame.GetMethod()?.Name ?? string.Empty;
             }
             return className;
         }
@@ -225,7 +229,7 @@ namespace NLog.Internal
         /// <summary>
         /// Returns the assembly from the provided StackFrame (If not internal assembly)
         /// </summary>
-        /// <returns>Valid asssembly, or null if assembly was internal</returns>
+        /// <returns>Valid assembly, or null if assembly was internal</returns>
         public static Assembly LookupAssemblyFromStackFrame(StackFrame stackFrame)
         {
             var method = stackFrame.GetMethod();
@@ -264,10 +268,17 @@ namespace NLog.Internal
             var method = stackFrame.GetMethod();
             if (method != null && LookupAssemblyFromStackFrame(stackFrame) != null)
             {
-                string className = GetStackFrameMethodClassName(method, true, true, true) ?? method.Name;
-                if (!string.IsNullOrEmpty(className) && !className.StartsWith("System.", StringComparison.Ordinal))
+                string className = GetStackFrameMethodClassName(method, true, true, true);
+                if (!string.IsNullOrEmpty(className))
                 {
-                    return className;
+                    if (!className.StartsWith("System.", StringComparison.Ordinal))
+                        return className;
+                }
+                else
+                {
+                    className = method.Name ?? string.Empty;
+                    if (className != "lambda_method" && className != "MoveNext")
+                        return className;
                 }
             }
 

@@ -170,7 +170,7 @@ namespace NLog
         /// </summary>
         /// <value>A value of <c>true</c> if exception should be thrown; otherwise, <c>false</c>.</value>
         /// <remarks>
-        /// This option is for backwards-compatiblity.
+        /// This option is for backwards-compatibility.
         /// By default exceptions are not thrown under any circumstances.
         /// </remarks>
         public bool? ThrowConfigExceptions { get; set; }
@@ -180,6 +180,28 @@ namespace NLog
         /// Default value - false.
         /// </summary>
         public bool KeepVariablesOnReload { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to automatically call <see cref="LogFactory.Shutdown"/>
+        /// on AppDomain.Unload or AppDomain.ProcessExit
+        /// </summary>
+        public bool AutoShutdown
+        {
+            get { return _autoShutdown; }
+            set
+            {
+                if (value != _autoShutdown)
+                {
+                    _autoShutdown = value;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+                    LoggerShutdown -= OnStopLogging;
+                    if (value)
+                        LoggerShutdown += OnStopLogging;
+#endif
+                }
+            }
+        }
+        private bool _autoShutdown = true;
 
         /// <summary>
         /// Gets or sets the current logging configuration. After setting this property all
@@ -322,7 +344,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger with the name of the current class. 
+        /// Gets the logger with the full name of the current class, so namespace and class name.
         /// </summary>
         /// <returns>The logger.</returns>
         /// <remarks>This is a slow-running method. 
@@ -341,7 +363,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the logger with the name of the current class. 
+        /// Gets the logger with the full name of the current class, so namespace and class name.
+        /// Use <typeparamref name="T"/>  to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the type parameter.
         /// </summary>
         /// <returns>The logger with type <typeparamref name="T"/>.</returns>
         /// <typeparam name="T">Type of the logger</typeparam>
@@ -361,7 +385,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets a custom logger with the name of the current class. Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets a custom logger with the full name of the current class, so namespace and class name.
+        /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger"/></param>
         /// <returns>The logger of type <paramref name="loggerType"/>.</returns>
@@ -393,6 +419,8 @@ namespace NLog
 
         /// <summary>
         /// Gets the specified named logger.
+        /// Use <typeparamref name="T"/>  to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the type parameter.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <typeparam name="T">Type of the logger</typeparam>
@@ -404,7 +432,9 @@ namespace NLog
         }
 
         /// <summary>
-        /// Gets the specified named logger.  Use <paramref name="loggerType"/> to pass the type of the needed Logger.
+        /// Gets the specified named logger.
+        /// Use <paramref name="loggerType"/> to create instance of a custom <see cref="Logger"/>.
+        /// If you haven't defined your own <see cref="Logger"/> class, then use the overload without the loggerType.
         /// </summary>
         /// <param name="name">Name of the logger.</param>
         /// <param name="loggerType">The type of the logger to create. The type must inherit from <see cref="Logger" />.</param>
@@ -705,7 +735,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Currently this logfactory is disposing?
+        /// Currently this <see cref="LogFactory"/> is disposing?
         /// </summary>
         private bool _isDisposing;
 
@@ -815,7 +845,7 @@ namespace NLog
         /// <summary>
         /// Get file paths (including filename) for the possible NLog config files. 
         /// </summary>
-        /// <returns>The filepaths to the possible config file</returns>
+        /// <returns>The file paths to the possible config file</returns>
         public IEnumerable<string> GetCandidateConfigFilePaths()
         {
             if (_candidateConfigFilePaths != null)
@@ -829,7 +859,7 @@ namespace NLog
         /// <summary>
         /// Overwrite the paths (including filename) for the possible NLog config files.
         /// </summary>
-        /// <param name="filePaths">The filepaths to the possible config file</param>
+        /// <param name="filePaths">The file paths to the possible config file</param>
         public void SetCandidateConfigFilePaths(IEnumerable<string> filePaths)
         {
             _candidateConfigFilePaths = new List<string>();

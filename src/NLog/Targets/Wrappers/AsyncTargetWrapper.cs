@@ -181,7 +181,7 @@ namespace NLog.Targets.Wrappers
         
         /// <summary>
         /// Raises when event queue grow. 
-        /// Queue can grow when <see cref="OverflowAction"/> was setted to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
+        /// Queue can grow when <see cref="OverflowAction"/> was set to <see cref="AsyncTargetWrapperOverflowAction.Grow"/>
         /// </summary>
         public event EventHandler<LogEventQueueGrowEventArgs> EventQueueGrow
         {
@@ -308,6 +308,7 @@ namespace NLog.Targets.Wrappers
         protected override void CloseTarget()
         {
             StopLazyWriterThread();
+            
             if (Monitor.TryEnter(_writeLockObject, 500))
             {
                 try
@@ -319,6 +320,12 @@ namespace NLog.Targets.Wrappers
                     Monitor.Exit(_writeLockObject);
                 }
             }
+
+            if (OverflowAction == AsyncTargetWrapperOverflowAction.Block)
+            {
+                _requestQueue.Clear();  // Try to eject any threads, that are blocked in the RequestQueue
+            }
+
             base.CloseTarget();
         }
 
@@ -363,7 +370,7 @@ namespace NLog.Targets.Wrappers
                     {
                         if (_lazyWriterTimer != null)
                         {
-                            // Not optimal to shedule timer-worker-thread while holding lock,
+                            // Not optimal to schedule timer-worker-thread while holding lock,
                             // as the newly scheduled timer-worker-thread will hammer into the writeLockObject
                             _lazyWriterTimer.Change(0, Timeout.Infinite);
                             return true;

@@ -282,13 +282,16 @@ namespace NLog.Layouts
         internal void PerformObjectScanning()
         {
             var objectGraphScannerList = ObjectGraphScanner.FindReachableObjects<object>(true, this);
+            var objectGraphTypes = new HashSet<Type>(objectGraphScannerList.Select(o => o.GetType()));
+            objectGraphTypes.Remove(typeof(SimpleLayout));
+            objectGraphTypes.Remove(typeof(NLog.LayoutRenderers.LiteralLayoutRenderer));
 
             // determine whether the layout is thread-agnostic
             // layout is thread agnostic if it is thread-agnostic and 
             // all its nested objects are thread-agnostic.
-            ThreadAgnostic = objectGraphScannerList.All(item => item.GetType().IsDefined(typeof(ThreadAgnosticAttribute), true));
-            ThreadSafe = objectGraphScannerList.All(item => item.GetType().IsDefined(typeof(ThreadSafeAttribute), true));
-            MutableUnsafe = objectGraphScannerList.Any(item => item.GetType().IsDefined(typeof(MutableUnsafeAttribute), true));
+            ThreadAgnostic = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadAgnosticAttribute), true));
+            ThreadSafe = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadSafeAttribute), true));
+            MutableUnsafe = objectGraphTypes.Any(t => t.IsDefined(typeof(MutableUnsafeAttribute), true));
 
             // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
             StackTraceUsage = StackTraceUsage.None;    // In case this Layout should implement IUsesStackTrace

@@ -279,5 +279,19 @@ namespace NLog.Internal
             return type.Assembly;
 #endif
         }
+
+        public static bool IsValidPublicProperty(this PropertyInfo p)
+        {
+            return p.CanRead && p.GetIndexParameters().Length == 0 && p.GetGetMethod() != null;
+        }
+
+        public static object GetPropertyValue(this PropertyInfo p, object instance)
+        {
+#if NET45
+            return p.GetValue(instance);
+#else
+            return p.GetGetMethod().Invoke(instance, null);            
+#endif
+        }
     }
 }

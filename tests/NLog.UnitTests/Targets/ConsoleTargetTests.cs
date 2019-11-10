@@ -45,13 +45,25 @@ namespace NLog.UnitTests.Targets
     public class ConsoleTargetTests : NLogTestBase
     {
         [Fact]
-        public void ConsoleOutTest()
+        public void ConsoleOutWriteLineTest()
+        {
+            ConsoleOutTest(false);
+        }
+
+        [Fact]
+        public void ConsoleOutWriteBufferTest()
+        {
+            ConsoleOutTest(true);
+        }
+
+        private void ConsoleOutTest(bool writeBuffer)
         {
             var target = new ConsoleTarget()
             {
                 Header = "-- header --",
                 Layout = "${logger} ${message}",
                 Footer = "-- footer --",
+                WriteBuffer = writeBuffer,
             };
 
             var consoleOutWriter = new StringWriter();

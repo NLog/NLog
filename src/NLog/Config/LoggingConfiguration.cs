@@ -813,7 +813,7 @@ namespace NLog.Config
         }
 
         /// <summary>
-        /// Replace a simple variable with a value. The orginal value is removed and thus we cannot redo this in a later stage.
+        /// Replace a simple variable with a value. The original value is removed and thus we cannot redo this in a later stage.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>

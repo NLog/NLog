@@ -99,7 +99,7 @@ namespace NLog.Internal
                     || TryGetEnumValue(propertyType, value, out newValue, true)
                     || TrySpecialConversion(propertyType, value, out newValue)
                     || TryImplicitConversion(propertyType, value, out newValue)
-                    || TryFlatListConversion(propertyType, value, out newValue)
+                    || TryFlatListConversion(obj, propInfo, value, out newValue)
                     || TryTypeConverterConversion(propertyType, value, out newValue)))
                     newValue = Convert.ChangeType(value, propertyType, CultureInfo.InvariantCulture);
 
@@ -141,10 +141,10 @@ namespace NLog.Internal
         }
 
         /// <summary>
-        /// Get propertyinfo
+        /// Get property info
         /// </summary>
         /// <param name="obj">object which could have property <paramref name="propertyName"/></param>
-        /// <param name="propertyName">propertyname on <paramref name="obj"/></param>
+        /// <param name="propertyName">property name on <paramref name="obj"/></param>
         /// <param name="result">result when success.</param>
         /// <returns>success.</returns>
         internal static bool TryGetPropertyInfo(object obj, string propertyName, out PropertyInfo result)
@@ -314,6 +314,18 @@ namespace NLog.Internal
                 return true;
             }
 
+            if (type == typeof(LineEndingMode))
+            {
+                newValue = LineEndingMode.FromString(value);
+                return true;
+            }
+
+            if (type == typeof(Uri))
+            {
+                newValue = new Uri(value);
+                return true;
+            }
+
             newValue = null;
             return false;
         }
@@ -324,13 +336,9 @@ namespace NLog.Internal
         /// <remarks>
         /// If there is a comma in the value, then (single) quote the value. For single quotes, use the backslash as escape
         /// </remarks>
-        /// <param name="type"></param>
-        /// <param name="valueRaw"></param>
-        /// <param name="newValue"></param>
-        /// <returns></returns>
-        private static bool TryFlatListConversion(Type type, string valueRaw, out object newValue)
+        private static bool TryFlatListConversion(object obj, PropertyInfo propInfo, string valueRaw, out object newValue)
         {
-            if (type.IsGenericType() && TryCreateCollectionObject(type, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
+            if (propInfo.PropertyType.IsGenericType() && TryCreateCollectionObject(obj, propInfo, valueRaw, out var newList, out var collectionAddMethod, out var propertyType))
             {
                 var values = valueRaw.SplitQuoted(',', '\'', '\\');
                 foreach (var value in values)
@@ -354,8 +362,9 @@ namespace NLog.Internal
             return false;
         }
 
-        private static bool TryCreateCollectionObject(Type collectionType, string valueRaw, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
+        private static bool TryCreateCollectionObject(object obj, PropertyInfo propInfo, string valueRaw, out object collectionObject, out MethodInfo collectionAddMethod, out Type collectionItemType)
         {
+            var collectionType = propInfo.PropertyType;
             var typeDefinition = collectionType.GetGenericTypeDefinition();
 #if NET3_5
             var isSet = typeDefinition == typeof(HashSet<>);
@@ -365,20 +374,18 @@ namespace NLog.Internal
             //not checking "implements" interface as we are creating HashSet<T> or List<T> and also those checks are expensive
             if (isSet || typeDefinition == typeof(List<>) || typeDefinition == typeof(IList<>) || typeDefinition == typeof(IEnumerable<>)) //set or list/array etc
             {
+                object hashsetComparer = isSet ? ExtractHashSetComparer(obj, propInfo) : null;
+
                 //note: type.GenericTypeArguments is .NET 4.5+ 
                 collectionItemType = collectionType.GetGenericArguments()[0];
-
-                var listType = isSet ? typeof(HashSet<>) : typeof(List<>);
-                var genericArgs = collectionItemType;
-                var concreteType = listType.MakeGenericType(genericArgs);
-                collectionObject = Activator.CreateInstance(concreteType);
+                collectionObject = CreateCollectionObjectInstance(isSet ? typeof(HashSet<>) : typeof(List<>), collectionItemType, hashsetComparer);
                 //no support for array
                 if (collectionObject == null)
                 {
                     throw new NLogConfigurationException("Cannot create instance of {0} for value {1}", collectionType.ToString(), valueRaw);
                 }
 
-                collectionAddMethod = concreteType.GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
+                collectionAddMethod = collectionObject.GetType().GetMethod("Add", BindingFlags.Instance | BindingFlags.Public);
                 if (collectionAddMethod == null)
                 {
                     throw new NLogConfigurationException("Add method on type {0} for value {1} not found", collectionType.ToString(), valueRaw);
@@ -393,30 +400,58 @@ namespace NLog.Internal
             return false;
         }
 
+        private static object CreateCollectionObjectInstance(Type collectionType, Type collectionItemType, object hashSetComparer)
+        {
+            var concreteType = collectionType.MakeGenericType(collectionItemType);
+            if (hashSetComparer != null)
+            {
+                var constructor = concreteType.GetConstructor(new[] { hashSetComparer.GetType() });
+                if (constructor != null)
+                    return constructor.Invoke(new[] { hashSetComparer });
+            }
+            return Activator.CreateInstance(concreteType);
+        }
+
+        /// <summary>
+        /// Attempt to reuse the HashSet.Comparer from the original HashSet-object (Ex. StringComparer.OrdinalIgnoreCase)
+        /// </summary>
+        private static object ExtractHashSetComparer(object obj, PropertyInfo propInfo)
+        {
+            var exitingValue = propInfo.IsValidPublicProperty() ? propInfo.GetPropertyValue(obj) : null;
+            if (exitingValue != null)
+            {
+                // Found original HashSet-object. See if we can extract the Comparer
+                var comparerPropInfo = exitingValue.GetType().GetProperty("Comparer", BindingFlags.Instance | BindingFlags.Public);
+                if (comparerPropInfo.IsValidPublicProperty())
+                {
+                    return comparerPropInfo.GetPropertyValue(exitingValue);
+                }
+            }
+
+            return null;
+        }
+
         private static bool TryTypeConverterConversion(Type type, string value, out object newValue)
         {
+            try
+            {
 #if !SILVERLIGHT && !NETSTANDARD1_3
-            var converter = TypeDescriptor.GetConverter(type);
-            if (converter.CanConvertFrom(typeof(string)))
-            {
-                newValue = converter.ConvertFromInvariantString(value);
-                return true;
-            }
-#else
-            if (type == typeof(LineEndingMode))
-            {
-                newValue = LineEndingMode.FromString(value);
-                return true;
-            }
-            else if (type == typeof(Uri))
-            {
-                newValue = new Uri(value);
-                return true;
-            }
+                var converter = TypeDescriptor.GetConverter(type);
+                if (converter.CanConvertFrom(typeof(string)))
+                {
+                    newValue = converter.ConvertFromInvariantString(value);
+                    return true;
+                }
 #endif
-
-            newValue = null;
-            return false;
+                newValue = null;
+                return false;
+            }
+            catch (MissingMethodException ex)
+            {
+                InternalLogger.Error(ex, "Error in lookup of TypeDescriptor for type={0} to convert value '{1}'", type, value);
+                newValue = null;
+                return false;
+            }
         }
 
 

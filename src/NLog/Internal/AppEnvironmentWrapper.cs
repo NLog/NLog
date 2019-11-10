@@ -50,6 +50,7 @@ namespace NLog.Internal.Fakeables
         public string EntryAssemblyLocation => AssemblyHelpers.GetAssemblyFileLocation(System.Reflection.Assembly.GetEntryAssembly());
         /// <inheritdoc />
         public string EntryAssemblyFileName => Path.GetFileName(System.Reflection.Assembly.GetEntryAssembly().Location ?? string.Empty);
+        public string UserTempFilePath => Path.GetTempPath();
 #endif
         /// <inheritdoc />
         public IEnumerable<string> PrivateBinPath => LogFactory.CurrentAppDomain.PrivateBinPath;

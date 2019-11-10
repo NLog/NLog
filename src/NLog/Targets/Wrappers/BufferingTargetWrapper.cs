@@ -105,7 +105,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="wrappedTarget">The wrapped target.</param>
         /// <param name="bufferSize">Size of the buffer.</param>
         /// <param name="flushTimeout">The flush timeout.</param>
-        /// <param name="overflowAction">The aciton to take when the buffer overflows.</param>
+        /// <param name="overflowAction">The action to take when the buffer overflows.</param>
         public BufferingTargetWrapper(Target wrappedTarget, int bufferSize, int flushTimeout, BufferingTargetWrapperOverflowAction overflowAction)
         {
             WrappedTarget = wrappedTarget;

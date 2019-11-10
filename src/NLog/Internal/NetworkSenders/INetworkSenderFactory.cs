@@ -46,7 +46,7 @@ namespace NLog.Internal.NetworkSenders
         /// </summary>
         /// <param name="url">URL that determines the network sender to be created.</param>
         /// <param name="maxQueueSize">The maximum queue size.</param>
-        /// <param name="sslProtocols">SSL protcols for TCP</param>
+        /// <param name="sslProtocols">SSL protocols for TCP</param>
         /// <param name="keepAliveTime">KeepAliveTime for TCP</param>
         /// <returns>
         /// A newly created network sender.

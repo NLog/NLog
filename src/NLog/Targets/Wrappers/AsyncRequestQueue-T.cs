@@ -106,7 +106,7 @@ namespace NLog.Targets.Wrappers
                                 InternalLogger.Trace("Entered critical section.");
                             }
 
-                            InternalLogger.Trace("Limit ok.");
+                            InternalLogger.Trace("Async queue limit ok.");
                             break;
                     }
                 }
@@ -177,6 +177,12 @@ namespace NLog.Targets.Wrappers
             lock (_logEventInfoQueue)
             {
                 _logEventInfoQueue.Clear();
+
+                if (OnOverflow == AsyncTargetWrapperOverflowAction.Block)
+                {
+                    // Try to eject any threads, that are blocked in the RequestQueue
+                    System.Threading.Monitor.PulseAll(_logEventInfoQueue);
+                }
             }
         }
     }

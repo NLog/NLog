@@ -31,14 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Text;
-using NLog.Config;
-using NLog.LayoutRenderers;
-using NLog.Fluent;
-
 namespace NLog.UnitTests.Layouts
 {
+    using System;
+    using System.Text;
+    using NLog.Config;
+    using NLog.LayoutRenderers;
+    using NLog.Fluent;
     using Xunit;
 
     public class AllEventPropertiesTests : NLogTestBase
@@ -105,27 +104,19 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("Invalid format: [value] placeholder is missing.", ex.Message);
         }
 
-
-
         [Fact]
         public void AllEventWithFluent_without_callerInformation()
         {
-
             var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
                 <nlog throwExceptions='true' >
                     <targets>
                         <target type='Debug'
                                 name='m'
-                               layout='${all-event-properties}'
-                               >
-                           
-     
-                        </target>
+                                layout='${all-event-properties}'
+                                />
                     </targets>
                     <rules>
-                      <logger name='*' writeTo='m'>
-                       
-                      </logger>
+                      <logger name='*' writeTo='m' />
                     </rules>
                 </nlog>");
 
@@ -140,9 +131,7 @@ namespace NLog.UnitTests.Layouts
                 .Property("a", "not b")
                 .Write();
 
-
             AssertDebugLastMessage("m", "Test=InfoWrite, coolness=200%, a=not b");
-
         }
 
 #if NET3_5 || NET4_0
@@ -157,14 +146,11 @@ namespace NLog.UnitTests.Layouts
                     <targets>
                         <target type='Debug'
                                 name='m'
-                               layout='${all-event-properties:IncludeCallerInformation=true}'
-                               >
-                        </target>
+                                layout='${all-event-properties:IncludeCallerInformation=true}'
+                                />
                     </targets>
                     <rules>
-                      <logger name='*' writeTo='m'>
-                       
-                      </logger>
+                      <logger name='*' writeTo='m' />
                     </rules>
                 </nlog>");
 
@@ -182,6 +168,40 @@ namespace NLog.UnitTests.Layouts
             AssertDebugLastMessageContains("m", "CallerFilePath=");
             AssertDebugLastMessageContains("m", "CallerLineNumber=");
         }
+
+#if NET4_5
+        [Fact]
+        [Obsolete("Instead use the Exclude-property. Marked obsolete on NLog 4.6.8")]
+        public void IncludeCallerInformationEnableTest()
+        {
+            // Arrange
+            var renderer = new AllEventPropertiesLayoutRenderer();
+            Assert.False(renderer.IncludeCallerInformation);
+            Assert.Equal(3, renderer.Exclude.Count);
+
+            // Act
+            renderer.IncludeCallerInformation = true;
+
+            // Assert
+            Assert.Empty(renderer.Exclude);
+        }
+
+        [Fact]
+        [Obsolete("Instead use the Exclude-property. Marked obsolete on NLog 4.6.8")]
+        public void IncludeCallerInformationDisableTest()
+        {
+            // Arrange
+            var renderer = new AllEventPropertiesLayoutRenderer() { IncludeCallerInformation = true };
+            renderer.Exclude.Add("Test");
+            Assert.Single(renderer.Exclude);
+
+            // Act
+            renderer.IncludeCallerInformation = false;
+
+            // Assert
+            Assert.Equal(4, renderer.Exclude.Count);
+        }
+#endif
 
         [Theory]
         [InlineData(null, "a=1, hello=world, 17=100, notempty=0")]
@@ -208,9 +228,41 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal(expected, result);
         }
 
+        [Theory]
+        [InlineData("", "a=1, hello=world, 17=100")]
+        [InlineData("Wrong", "a=1, hello=world, 17=100")]
+        [InlineData("hello", "a=1, 17=100")]
+        [InlineData("Hello", "a=1, 17=100")]
+        [InlineData("Hello, 17", "a=1")]
+        public void ExcludeSingleProperty(string exclude, string result)
+        {
+            // Arrange
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                <nlog throwExceptions='true' >
+                    <targets>
+                        <target type='Debug'
+                                name='m'
+                                layout='${all-event-properties:Exclude=" + exclude + @"}'
+                                />
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='m' />
+                    </rules>
+                </nlog>");
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+
+            // Act
+            var ev = BuildLogEventWithProperties();
+            logger.Log(ev);
+
+            // Assert
+            AssertDebugLastMessageContains("m", result);
+        }
+
         private static LogEventInfo BuildLogEventWithProperties()
         {
-            var ev = new LogEventInfo();
+            var ev = new LogEventInfo() { Level = LogLevel.Info };
             ev.Properties["a"] = 1;
             ev.Properties["hello"] = "world";
             ev.Properties[17] = 100;

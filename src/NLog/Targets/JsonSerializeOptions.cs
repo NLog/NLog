@@ -48,7 +48,7 @@ namespace NLog.Targets
         public bool QuoteKeys { get; set; }
 
         /// <summary>
-        /// Formatprovider for value
+        /// Format provider for value
         /// </summary>
         public IFormatProvider FormatProvider { get; set; }
 
@@ -63,6 +63,12 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool EscapeUnicode { get; set; }
 
+        /// <summary>
+        /// Should forward slashes be escaped? If true, / will be converted to \/ 
+        /// </summary>
+        [DefaultValue(true)]
+        public bool EscapeForwardSlash { get; set; } = true; // todo NLog 5, default to false
+        
         /// <summary>
         /// Serialize enum as string value
         /// </summary>
