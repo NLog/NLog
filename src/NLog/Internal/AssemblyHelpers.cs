@@ -34,6 +34,7 @@ namespace NLog.Internal
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using NLog.Common;
 
@@ -102,9 +103,36 @@ using System.Windows;
             Assembly assembly = assemblyPart.Load(stream.Stream);
             return assembly;
 #else
-            Assembly assembly = Assembly.Load(assemblyName);
-            return assembly;
+            try
+            {
+                Assembly assembly = Assembly.Load(AssemblyName.GetAssemblyName(assemblyName));
+                return assembly;
+            }
+            catch (FileNotFoundException)
+            {
+                var name = new AssemblyName(assemblyName);
+                var loadedAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(domainAssembly => CheckAssembly(name, domainAssembly.GetName()));
+                if (loadedAssembly != null)
+                    return loadedAssembly;
+                else throw;
+            }
 #endif
+        }
+
+        static bool CheckAssembly(AssemblyName expected, AssemblyName actual)
+        {
+            if (expected.Name != actual.Name)
+                return false;
+            if (expected.Version != null && expected.Version != actual.Version)
+                return false;
+#if !NETSTANDARD1_3 && !NETSTANDARD1_5
+            if (expected.CultureInfo != null && expected.CultureInfo.Name != actual.CultureInfo.Name)
+                return false;
+#endif
+            var expectedKeyToken = expected.GetPublicKeyToken();
+            if (expectedKeyToken != null && !expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken()))
+                return false;
+            return true;
         }
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
