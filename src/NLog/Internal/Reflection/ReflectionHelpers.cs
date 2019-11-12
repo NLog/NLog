@@ -107,6 +107,8 @@ namespace NLog.Internal
         /// <returns></returns>
         public delegate object LateBoundMethod(object target, object[] arguments);
 
+        public delegate object LateBoundConstructor(object[] arguments);
+
         /// <summary>
         /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
         /// </summary>
@@ -116,24 +118,9 @@ namespace NLog.Internal
         {
             // parameters to execute
             var instanceParameter = Expression.Parameter(typeof(object), "instance");
-            var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
 
-            // build parameter list
-            var parameterExpressions = new List<Expression>();
-            var paramInfos = methodInfo.GetParameters();
-            for (int i = 0; i < paramInfos.Length; i++)
-            {
-                // (Ti)parameters[i]
-                var valueObj = Expression.ArrayIndex(parametersParameter, Expression.Constant(i));
 
-                Type parameterType = paramInfos[i].ParameterType;
-                if (parameterType.IsByRef)
-                    parameterType = parameterType.GetElementType();
-
-                var valueCast = Expression.Convert(valueObj, parameterType);
-
-                parameterExpressions.Add(valueCast);
-            }
+            var parametersParameter = BuildParametersParameterList(methodInfo, out var parameterExpressions);
 
             // non-instance for static method, or ((TInstance)instance)
             var instanceCast = methodInfo.IsStatic ? null :
@@ -163,6 +150,50 @@ namespace NLog.Internal
 
                 return lambda.Compile();
             }
+        }
+
+        private static ParameterExpression BuildParametersParameterList(MethodBase methodInfo, out List<Expression> parameterExpressions)
+        {
+            var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
+            parameterExpressions = new List<Expression>();
+            var paramInfos = methodInfo.GetParameters();
+            for (int i = 0; i < paramInfos.Length; i++)
+            {
+                // (Ti)parameters[i]
+                var valueObj = Expression.ArrayIndex(parametersParameter, Expression.Constant(i));
+
+                Type parameterType = paramInfos[i].ParameterType;
+                if (parameterType.IsByRef)
+                    parameterType = parameterType.GetElementType();
+
+                var valueCast = Expression.Convert(valueObj, parameterType);
+
+                parameterExpressions.Add(valueCast);
+            }
+
+            return parametersParameter;
+        }
+
+        /// <summary>
+        /// Creates an optimized delegate for calling the constructors using Expression-Trees
+        /// </summary>
+        /// <param name="constructor">Constructor to optimize</param>
+        /// <returns>Optimized delegate for invoking the constructor</returns>
+        public static LateBoundConstructor CreateLateBoundConstructor(ConstructorInfo constructor)
+        {
+            // parameters to execute
+            var parametersParameter = BuildParametersParameterList(constructor, out var parameterExpressions);
+
+            var ctorCall = Expression.New(constructor, parameterExpressions);
+
+            //var castMethodCall = Expression.Convert(ctorCall, typeof(object));
+            //var lambda = Expression.Lambda<LateBoundConstructor>(
+            //    castMethodCall, null, parametersParameter);
+
+            var lambda = Expression.Lambda<LateBoundConstructor>(
+                ctorCall, parametersParameter);
+
+            return lambda.Compile();
         }
 
         public static bool IsEnum(this Type type)

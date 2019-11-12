@@ -47,6 +47,8 @@ namespace NLog.Config
     internal sealed class ServiceRepository : IServiceRepository
     {
         private readonly Dictionary<Type, ConfigurationItemCreator> _creatorMap = new Dictionary<Type, ConfigurationItemCreator>();
+        private readonly Dictionary<Type, CompiledConstructor> _lateBoundMap = new Dictionary<Type, CompiledConstructor>();
+        private readonly object _lateBoundMapLock = new object();
         private ConfigurationItemFactory _localItemFactory;
         public event EventHandler<RepositoryUpdateEventArgs> TypeRegistered;
 
@@ -95,30 +97,70 @@ namespace NLog.Config
                 return objectResolver(itemType);
             }
 
-            try
+            if (_lateBoundMap.TryGetValue(itemType, out var compiledConstructor))
             {
-                //todo DI cache/find upfront
-                var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
-                if (defaultConstructor != null)
-                {
-                    InternalLogger.Trace("Found public default ctor");
-                    return defaultConstructor.Invoke(ArrayHelper.Empty<object>());
-                }
+                return CreateNewInstance(compiledConstructor, seenTypes);
+            }
 
-                seenTypes = seenTypes ?? new HashSet<Type>();
-                return CreateFromParameterizedConstructor(itemType, seenTypes);
-            }
-            catch (MissingMethodException exception)
+            //todo? lock (_lateBoundMapLock)
             {
-                throw new NLogResolveException("Is the required permission granted?", exception, itemType);
-            }
-            finally
-            {
-                InternalLogger.Trace("Resolve {0} done", itemType.FullName);
+                try
+                {
+                    //todo DI find upfront
+                    var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
+                    if (defaultConstructor != null)
+                    {
+                        InternalLogger.Trace("Found public default ctor");
+
+                        return CreateFromDefaultConstructor(itemType, defaultConstructor);
+                    }
+
+                    return CreateFromParameterizedConstructor(itemType, seenTypes);
+                }
+                catch (MissingMethodException exception)
+                {
+                    throw new NLogResolveException("Is the required permission granted?", exception, itemType);
+                }
+                finally
+                {
+                    InternalLogger.Trace("Resolve {0} done", itemType.FullName);
+                }
             }
         }
 
+        private object CreateNewInstance(CompiledConstructor compiledConstructor, HashSet<Type> seenTypes)
+        {
+            var constructorParameters = compiledConstructor.Parameters;
+            if (constructorParameters == null)
+            {
+                return compiledConstructor.Ctor(null);
+            }
+
+            seenTypes = seenTypes ?? new HashSet<Type>();
+            var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
+            return compiledConstructor.Ctor(parameterValues);
+        }
+
+        private object CreateFromDefaultConstructor(Type itemType, ConstructorInfo defaultConstructor)
+        {
+            var compiledCtor = ReflectionHelpers.CreateLateBoundConstructor(defaultConstructor);
+            _lateBoundMap.Add(itemType, new CompiledConstructor(compiledCtor));
+            return compiledCtor(null);
+        }
+
         private object CreateFromParameterizedConstructor(Type itemType, HashSet<Type> seenTypes)
+        {
+            seenTypes = seenTypes ?? new HashSet<Type>();
+
+            var ctor = GetParameterizedConstructor(itemType);
+            var constructorParameters = ctor.GetParameters();
+            var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
+            var compiledParameterizedCtor = ReflectionHelpers.CreateLateBoundConstructor(ctor);
+            _lateBoundMap.Add(itemType, new CompiledConstructor(compiledParameterizedCtor, constructorParameters));
+            return compiledParameterizedCtor.Invoke(parameterValues);
+        }
+
+        private static ConstructorInfo GetParameterizedConstructor(Type itemType)
         {
             var ctors = itemType.GetConstructors();
 
@@ -133,8 +175,7 @@ namespace NLog.Config
             }
 
             var ctor = ctors[0];
-            var parameterValues = CreateCtorParameterValues(ctor.GetParameters(), seenTypes);
-            return ctor.Invoke(parameterValues);
+            return ctor;
         }
 
         private object[] CreateCtorParameterValues(ParameterInfo[] parameterInfos, HashSet<Type> seenTypes)
@@ -167,5 +208,21 @@ namespace NLog.Config
         /// By overriding this property, one can enable dependency injection or interception for created objects.
         /// </remarks>
         public ConfigurationItemCreator CreateInstance { get; set; }
+
+        private class CompiledConstructor
+        {
+
+            [NotNull] public ReflectionHelpers.LateBoundConstructor Ctor { get; }
+            [CanBeNull] public ParameterInfo[] Parameters { get; }
+
+            public bool ParameterLess => Parameters == null || Parameters.Length == 0;
+
+
+            public CompiledConstructor([NotNull] ReflectionHelpers.LateBoundConstructor ctor, ParameterInfo[] parameters = null)
+            {
+                Ctor = ctor ?? throw new ArgumentNullException(nameof(ctor));
+                Parameters = parameters;
+            }
+        }
     }
 }
