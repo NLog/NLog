@@ -284,7 +284,7 @@ namespace NLog
         }
 
         /// <summary>
-        /// Repository of intefaces used by NLog to allow override for dependency injection
+        /// Repository of interfaces used by NLog to allow override for dependency injection
         /// </summary>
         public IServiceRepository ServiceRepository
         {
