@@ -125,8 +125,7 @@ namespace NLog.Internal
             var parametersParameter = BuildParametersParameterList(methodInfo, out var parameterExpressions);
 
             // non-instance for static method, or ((TInstance)instance)
-            var instanceCast = methodInfo.IsStatic ? null :
-                Expression.Convert(instanceParameter, methodInfo.DeclaringType);
+            var instanceCast = methodInfo.IsStatic ? null : Expression.Convert(instanceParameter, methodInfo.DeclaringType);
 
             // static invoke or ((TInstance)instance).Method
             var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
@@ -134,8 +133,7 @@ namespace NLog.Internal
             // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
             if (methodCall.Type == typeof(void))
             {
-                var lambda = Expression.Lambda<Action<object, object[]>>(
-                        methodCall, instanceParameter, parametersParameter);
+                var lambda = Expression.Lambda<Action<object, object[]>>(methodCall, instanceParameter, parametersParameter);
 
                 Action<object, object[]> execute = lambda.Compile();
                 return (instance, parameters) =>
@@ -147,8 +145,7 @@ namespace NLog.Internal
             else
             {
                 var castMethodCall = Expression.Convert(methodCall, typeof(object));
-                var lambda = Expression.Lambda<LateBoundMethod>(
-                    castMethodCall, instanceParameter, parametersParameter);
+                var lambda = Expression.Lambda<LateBoundMethod>(castMethodCall, instanceParameter, parametersParameter);
 
                 return lambda.Compile();
             }
@@ -165,8 +162,7 @@ namespace NLog.Internal
 
             var ctorCall = Expression.New(constructor, parameterExpressions);
 
-            var lambda = Expression.Lambda<LateBoundConstructor>(
-                ctorCall, parametersParameter);
+            var lambda = Expression.Lambda<LateBoundConstructor>(ctorCall, parametersParameter);
 
             return lambda.Compile();
         }
