@@ -152,28 +152,6 @@ namespace NLog.Internal
             }
         }
 
-        private static ParameterExpression BuildParametersParameterList(MethodBase methodInfo, out List<Expression> parameterExpressions)
-        {
-            var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
-            parameterExpressions = new List<Expression>();
-            var paramInfos = methodInfo.GetParameters();
-            for (int i = 0; i < paramInfos.Length; i++)
-            {
-                // (Ti)parameters[i]
-                var valueObj = Expression.ArrayIndex(parametersParameter, Expression.Constant(i));
-
-                Type parameterType = paramInfos[i].ParameterType;
-                if (parameterType.IsByRef)
-                    parameterType = parameterType.GetElementType();
-
-                var valueCast = Expression.Convert(valueObj, parameterType);
-
-                parameterExpressions.Add(valueCast);
-            }
-
-            return parametersParameter;
-        }
-
         /// <summary>
         /// Creates an optimized delegate for calling the constructors using Expression-Trees
         /// </summary>
@@ -194,6 +172,28 @@ namespace NLog.Internal
                 ctorCall, parametersParameter);
 
             return lambda.Compile();
+        }
+
+        private static ParameterExpression BuildParametersParameterList(MethodBase methodInfo, out List<Expression> parameterExpressions)
+        {
+            var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
+            parameterExpressions = new List<Expression>();
+            var paramInfos = methodInfo.GetParameters();
+            for (int i = 0; i < paramInfos.Length; i++)
+            {
+                // (Ti)parameters[i]
+                var valueObj = Expression.ArrayIndex(parametersParameter, Expression.Constant(i));
+
+                Type parameterType = paramInfos[i].ParameterType;
+                if (parameterType.IsByRef)
+                    parameterType = parameterType.GetElementType();
+
+                var valueCast = Expression.Convert(valueObj, parameterType);
+
+                parameterExpressions.Add(valueCast);
+            }
+
+            return parametersParameter;
         }
 
         public static bool IsEnum(this Type type)
