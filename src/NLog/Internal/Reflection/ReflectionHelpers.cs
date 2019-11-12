@@ -107,7 +107,12 @@ namespace NLog.Internal
         /// <returns></returns>
         public delegate object LateBoundMethod(object target, object[] arguments);
 
-        public delegate object LateBoundConstructor(object[] arguments);
+        /// <summary>
+        /// Optimized delegate for calling a constructor
+        /// </summary>
+        /// <param name="arguments">Complete list of parameters that matches the constructor, including optional/default parameters. Could be null for no parameters.</param>
+        /// <returns></returns>
+        public delegate object LateBoundConstructor([CanBeNull] object[] arguments);
 
         /// <summary>
         /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
