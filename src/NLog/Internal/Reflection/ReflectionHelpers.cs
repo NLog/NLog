@@ -121,10 +121,7 @@ namespace NLog.Internal
         /// <returns>Optimized delegate for invoking the MethodInfo</returns>
         public static LateBoundMethod CreateLateBoundMethod(MethodInfo methodInfo)
         {
-            // parameters to execute
             var instanceParameter = Expression.Parameter(typeof(object), "instance");
-
-
             var parametersParameter = BuildParametersParameterList(methodInfo, out var parameterExpressions);
 
             // non-instance for static method, or ((TInstance)instance)
@@ -164,14 +161,9 @@ namespace NLog.Internal
         /// <returns>Optimized delegate for invoking the constructor</returns>
         public static LateBoundConstructor CreateLateBoundConstructor(ConstructorInfo constructor)
         {
-            // parameters to execute
             var parametersParameter = BuildParametersParameterList(constructor, out var parameterExpressions);
 
             var ctorCall = Expression.New(constructor, parameterExpressions);
-
-            //var castMethodCall = Expression.Convert(ctorCall, typeof(object));
-            //var lambda = Expression.Lambda<LateBoundConstructor>(
-            //    castMethodCall, null, parametersParameter);
 
             var lambda = Expression.Lambda<LateBoundConstructor>(
                 ctorCall, parametersParameter);
