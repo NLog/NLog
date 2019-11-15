@@ -219,5 +219,31 @@ namespace NLog.UnitTests.LayoutRenderers
             logger.Debug(ex);
             AssertDebugLastMessage("debug", ex.ToString());
         }
+
+        [Fact]
+        public void SingleParameterException_OutputsSingleStackTrace()
+        {
+            // Arrange
+            var logFactory = new LogFactory();
+            var logConfig = new LoggingConfiguration(logFactory);
+            var logTarget = new NLog.Targets.DebugTarget("debug") { Layout = "${message}|${exception}" };
+            logConfig.AddRuleForAllLevels(logTarget);
+            logFactory.Configuration = logConfig;
+            var logger = logFactory.GetLogger("SingleParameterException");
+
+            // Act
+            try
+            {
+                logger.Info("Hello");
+                throw new ArgumentException("Holy Moly");
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+            }
+
+            // Assert
+            Assert.StartsWith("System.ArgumentException: Holy Moly|System.ArgumentException", logTarget.LastMessage);
+        }
     }
 }
