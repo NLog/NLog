@@ -104,28 +104,39 @@ namespace NLog.Config
 
             //todo? lock (_lateBoundMapLock)
             {
-                try
+                if (_lateBoundMap.TryGetValue(itemType, out var compiledConstructor1))
                 {
-                    //todo DI find upfront
-                    var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
-                    if (defaultConstructor != null)
-                    {
-                        InternalLogger.Trace("Found public default ctor");
+                    return CreateNewInstance(compiledConstructor1, seenTypes);
+                }
 
-                        return CreateFromDefaultConstructor(itemType, defaultConstructor);
-                    }
-
-                    return CreateFromParameterizedConstructor(itemType, seenTypes);
-                }
-                catch (MissingMethodException exception)
-                {
-                    throw new NLogResolveException("Is the required permission granted?", exception, itemType);
-                }
-                finally
-                {
-                    InternalLogger.Trace("Resolve {0} done", itemType.FullName);
-                }
+                return CreateFromConstructor(itemType, seenTypes);
             }
+        }
+
+        private object CreateFromConstructor(Type itemType, HashSet<Type> seenTypes)
+        {
+            try
+            {
+                //todo DI find upfront
+                var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
+                if (defaultConstructor != null)
+                {
+                    InternalLogger.Trace("Found public default ctor");
+
+                    return CreateFromDefaultConstructor(itemType, defaultConstructor);
+                }
+
+                return CreateFromParameterizedConstructor(itemType, seenTypes);
+            }
+            catch (MissingMethodException exception)
+            {
+                throw new NLogResolveException("Is the required permission granted?", exception, itemType);
+            }
+            finally
+            {
+                InternalLogger.Trace("Resolve {0} done", itemType.FullName);
+            }
+
         }
 
         private object CreateNewInstance(CompiledConstructor compiledConstructor, HashSet<Type> seenTypes)
