@@ -446,6 +446,7 @@ namespace NLog
                 logEvent.FormatProvider = formatProvider ?? logEvent.FormatProvider;
                 return logEvent;
             }
+            formatProvider = formatProvider ?? (exception != null ? ExceptionMessageFormatProvider.Instance : null);
             return new LogEventInfo(logLevel, loggerName, formatProvider, "{0}", new[] { message }, exception);
         }
 
