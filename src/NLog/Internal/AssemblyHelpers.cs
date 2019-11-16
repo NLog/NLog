@@ -105,7 +105,7 @@ using System.Windows;
 #else
             try
             {
-                Assembly assembly = Assembly.Load(AssemblyName.GetAssemblyName(assemblyName));
+                Assembly assembly = Assembly.Load(assemblyName);
                 return assembly;
             }
             catch (FileNotFoundException)
