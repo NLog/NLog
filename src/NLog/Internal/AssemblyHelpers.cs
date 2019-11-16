@@ -130,9 +130,8 @@ using System.Windows;
                 return false;
 #endif
             var expectedKeyToken = expected.GetPublicKeyToken();
-            if (expectedKeyToken != null && !expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken()))
-                return false;
-            return true;
+            var correctToken = expectedKeyToken == null || expectedKeyToken.SequenceEqual(actual.GetPublicKeyToken());
+            return correctToken;
         }
 
 #if !SILVERLIGHT && !NETSTANDARD1_3
