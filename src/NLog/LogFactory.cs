@@ -45,8 +45,8 @@ namespace NLog
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
-    using NLog.Targets;
     using NLog.Internal.Fakeables;
+    using NLog.Targets;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -336,6 +336,25 @@ namespace NLog
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Begins configuration of the LogFactory options using fluent interface
+        /// </summary>
+        public ISetupBuilder Setup()
+        {
+            return new SetupBuilder(this);
+        }
+
+        /// <summary>
+        /// Begins configuration of the LogFactory options using fluent interface
+        /// </summary>
+        public LogFactory Setup(Action<ISetupBuilder> setupBuilder)
+        {
+            if (setupBuilder == null)
+                throw new ArgumentNullException(nameof(setupBuilder));
+            setupBuilder(new SetupBuilder(this));
+            return this;
         }
 
         /// <summary>
