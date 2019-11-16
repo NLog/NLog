@@ -146,7 +146,7 @@ namespace NLog.UnitTests.Layouts
                     <targets>
                         <target type='Debug'
                                 name='m'
-                                layout='${all-event-properties:IncludeCallerInformation=true}'
+                                layout='${all-event-properties}${callsite}'
                                 />
                     </targets>
                     <rules>
@@ -164,44 +164,9 @@ namespace NLog.UnitTests.Layouts
                 .Property("a", "not b")
                 .Write();
 
-            AssertDebugLastMessageContains("m", "CallerMemberName=");
-            AssertDebugLastMessageContains("m", "CallerFilePath=");
-            AssertDebugLastMessageContains("m", "CallerLineNumber=");
+            AssertDebugLastMessageContains("m", nameof(AllEventWithFluent_with_callerInformation));
+            AssertDebugLastMessageContains("m", nameof(AllEventPropertiesTests));
         }
-
-#if NET4_5
-        [Fact]
-        [Obsolete("Instead use the Exclude-property. Marked obsolete on NLog 4.6.8")]
-        public void IncludeCallerInformationEnableTest()
-        {
-            // Arrange
-            var renderer = new AllEventPropertiesLayoutRenderer();
-            Assert.False(renderer.IncludeCallerInformation);
-            Assert.Equal(3, renderer.Exclude.Count);
-
-            // Act
-            renderer.IncludeCallerInformation = true;
-
-            // Assert
-            Assert.Empty(renderer.Exclude);
-        }
-
-        [Fact]
-        [Obsolete("Instead use the Exclude-property. Marked obsolete on NLog 4.6.8")]
-        public void IncludeCallerInformationDisableTest()
-        {
-            // Arrange
-            var renderer = new AllEventPropertiesLayoutRenderer() { IncludeCallerInformation = true };
-            renderer.Exclude.Add("Test");
-            Assert.Single(renderer.Exclude);
-
-            // Act
-            renderer.IncludeCallerInformation = false;
-
-            // Assert
-            Assert.Equal(4, renderer.Exclude.Count);
-        }
-#endif
 
         [Theory]
         [InlineData(null, "a=1, hello=world, 17=100, notempty=0")]

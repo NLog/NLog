@@ -572,11 +572,6 @@ namespace NLog.UnitTests.Fluent
 
             Assert.NotNull(_lastLogEventInfo.Properties);
 
-            // TODO NLog ver. 5 - Remove these properties
-            _lastLogEventInfo.Properties.Remove("CallerMemberName");
-            _lastLogEventInfo.Properties.Remove("CallerLineNumber");
-            _lastLogEventInfo.Properties.Remove("CallerFilePath");
-
             Assert.Equal(expected.Properties, _lastLogEventInfo.Properties);
             Assert.Equal(expected.LoggerName, _lastLogEventInfo.LoggerName);
             Assert.Equal(expected.Level, _lastLogEventInfo.Level);
