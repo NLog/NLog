@@ -62,11 +62,7 @@ namespace NLog.LayoutRenderers
             Separator = ", ";
             Format = "[key]=[value]";
             Exclude = new HashSet<string>(
-#if NET4_5
-                CallerInformationAttributeNames,
-#else
                 ArrayHelper.Empty<string>(),
-#endif
                 StringComparer.OrdinalIgnoreCase);
         }
 
@@ -92,42 +88,6 @@ namespace NLog.LayoutRenderers
         public HashSet<string> Exclude { get; set; }
 #else
         public ISet<string> Exclude { get; set; }
-#endif
-
-#if NET4_5
-        /// <summary>
-        /// Also render the caller information attributes? (<see cref="System.Runtime.CompilerServices.CallerMemberNameAttribute"/>,
-        /// <see cref="System.Runtime.CompilerServices.CallerFilePathAttribute"/>, <see cref="System.Runtime.CompilerServices.CallerLineNumberAttribute"/>). 
-        /// 
-        /// See https://msdn.microsoft.com/en-us/library/hh534540.aspx
-        /// </summary>
-        /// <docgen category='Rendering Options' order='10' />
-        [Obsolete("Instead use the Exclude-property. Marked obsolete on NLog 4.6.8")]
-        [DefaultValue(false)]
-        public bool IncludeCallerInformation
-        {
-            get => Exclude?.Contains(CallerInformationAttributeNames[0]) != true;
-            set
-            {
-                if (!value)
-                {
-                    if (Exclude == null)
-                    {
-                        Exclude = new HashSet<string>(CallerInformationAttributeNames, StringComparer.OrdinalIgnoreCase);
-                    }
-                    else
-                    {
-                        foreach (var item in CallerInformationAttributeNames)
-                            Exclude.Add(item);
-                    }
-                }
-                else if (Exclude?.Count > 0)
-                {
-                    foreach (var item in CallerInformationAttributeNames)
-                        Exclude.Remove(item);
-                }
-            }
-        }
 #endif
 
         /// <summary>
@@ -215,13 +175,6 @@ namespace NLog.LayoutRenderers
         private bool CheckForExclude(LogEventInfo logEvent)
         {
             bool checkForExclude = Exclude?.Count > 0;
-#if NET45
-            if (checkForExclude)
-            {
-                // Skip Exclude check when only to exclude CallSiteInformation, and there is none
-                checkForExclude = !(logEvent.CallSiteInformation == null && Exclude.Count == CallerInformationAttributeNames.Length && Exclude.Contains(CallerInformationAttributeNames[0]));
-            }
-#endif
             return checkForExclude && logEvent.HasProperties;
         }
 
@@ -234,19 +187,5 @@ namespace NLog.LayoutRenderers
 
             return value == null;
         }
-
-#if NET4_5
-        /// <summary>
-        /// The names of caller information attributes.
-        /// <see cref="System.Runtime.CompilerServices.CallerMemberNameAttribute"/>, <see cref="System.Runtime.CompilerServices.CallerFilePathAttribute"/>, <see cref="System.Runtime.CompilerServices.CallerLineNumberAttribute"/>). 
-        /// https://msdn.microsoft.com/en-us/library/hh534540.aspx
-        /// TODO NLog ver. 5 - Remove these properties
-        /// </summary>
-        private static string[] CallerInformationAttributeNames = {
-            "CallerMemberName",
-            "CallerFilePath",
-            "CallerLineNumber",
-        };
-#endif
     }
 }
