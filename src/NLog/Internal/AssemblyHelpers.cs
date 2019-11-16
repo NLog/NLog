@@ -111,10 +111,16 @@ using System.Windows;
             catch (FileNotFoundException)
             {
                 var name = new AssemblyName(assemblyName);
+                InternalLogger.Trace("Try find '{0}' in current domain", assemblyName);
                 var loadedAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(domainAssembly => IsAssemblyMatch(name, domainAssembly.GetName()));
                 if (loadedAssembly != null)
+                {
+                    InternalLogger.Trace("Found '{0}' in current domain", assemblyName);
                     return loadedAssembly;
-                else throw;
+                }
+
+                InternalLogger.Trace("Haven't found' '{0}' in current domain", assemblyName);
+                throw;
             }
 #endif
         }
