@@ -111,7 +111,7 @@ using System.Windows;
             catch (FileNotFoundException)
             {
                 var name = new AssemblyName(assemblyName);
-                var loadedAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(domainAssembly => CheckAssembly(name, domainAssembly.GetName()));
+                var loadedAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(domainAssembly => IsAssemblyMatch(name, domainAssembly.GetName()));
                 if (loadedAssembly != null)
                     return loadedAssembly;
                 else throw;
@@ -119,7 +119,7 @@ using System.Windows;
 #endif
         }
 
-        static bool CheckAssembly(AssemblyName expected, AssemblyName actual)
+        private static bool IsAssemblyMatch(AssemblyName expected, AssemblyName actual)
         {
             if (expected.Name != actual.Name)
                 return false;
