@@ -48,7 +48,7 @@ namespace NLog.Config
     {
         private readonly Dictionary<Type, ConfigurationItemCreator> _creatorMap = new Dictionary<Type, ConfigurationItemCreator>();
         private readonly Dictionary<Type, CompiledConstructor> _lateBoundMap = new Dictionary<Type, CompiledConstructor>();
-        private readonly object _lateBoundMapLock = new object();
+        private readonly object _lockObject = new object();
         private ConfigurationItemFactory _localItemFactory;
         public event EventHandler<RepositoryUpdateEventArgs> TypeRegistered;
 
@@ -67,7 +67,7 @@ namespace NLog.Config
                 ConfigurationItemFactory.Default = null;    //build new global factory
 
             this.RegisterDefaults();
-            CreateInstance = itemType => DefaultResolveInstance(itemType, null);
+            CreateInstance = DefaultResolveInstanceTop;
             // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
         }
 
@@ -85,7 +85,15 @@ namespace NLog.Config
                 return createInstance(itemType);
             }
 
-            return DefaultResolveInstance(itemType, null);
+            return DefaultResolveInstanceTop(itemType);
+        }
+
+        private object DefaultResolveInstanceTop(Type itemType)
+        {
+            lock (_lockObject)
+            {
+                return DefaultResolveInstance(itemType, null);
+            }
         }
 
         private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
