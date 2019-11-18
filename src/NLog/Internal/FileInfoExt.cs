@@ -55,7 +55,33 @@ namespace NLog.Internal
 #endif
         }
 
-       
+        public static DateTime? LookupValidFileCreationTimeUtc(this FileInfo fileInfo)
+        {
+            return LookupValidFileCreationTimeUtc(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc());
+        }
 
+        public static DateTime? LookupValidFileCreationTimeUtc(this FileInfo fileInfo, DateTime? fallbackTime)
+        {
+            if (fallbackTime > DateTime.MinValue)
+                return LookupValidFileCreationTimeUtc(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => fallbackTime.Value, (f) => f.GetLastWriteTimeUtc());
+            else
+                return LookupValidFileCreationTimeUtc(fileInfo);
+        }
+
+        public static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
+        {
+            DateTime? fileCreationTime = primary(fileInfo);
+
+            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980 && !PlatformDetector.IsWin32)
+            {
+                // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
+                fileCreationTime = fallback(fileInfo);
+                if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
+                {
+                    fileCreationTime = finalFallback(fileInfo);
+                }
+            }
+            return fileCreationTime;
+        }
     }
 }

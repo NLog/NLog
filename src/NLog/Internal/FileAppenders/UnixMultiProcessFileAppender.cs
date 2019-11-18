@@ -113,11 +113,11 @@ namespace NLog.Internal.FileAppenders
                 {
                     if (fileInfo != null)
                     {
-                        CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => File.GetCreationTimeUtc(f.FullName), (f) => { f.Refresh(); return f.LastStatusChangeTimeUtc; }, (f) => DateTime.UtcNow).Value;
+                        CreationTimeUtc = FileInfoExt.LookupValidFileCreationTimeUtc(fileInfo, (f) => File.GetCreationTimeUtc(f.FullName), (f) => { f.Refresh(); return f.LastStatusChangeTimeUtc; }, (f) => DateTime.UtcNow).Value;
                     }
                     else
                     {
-                        CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileName, (f) => File.GetCreationTimeUtc(f), (f) => DateTime.UtcNow).Value;
+                        CreationTimeUtc = FileInfoExt.LookupValidFileCreationTimeUtc(fileName, (f) => File.GetCreationTimeUtc(f), (f) => DateTime.UtcNow).Value;
                     }
                 }
                 else

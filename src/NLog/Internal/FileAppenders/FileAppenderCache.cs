@@ -432,7 +432,7 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                    result = FileCharacteristicsHelper.ValidateFileCreationTime(appender, (f) => f.GetFileCreationTimeUtc(), f => fallbackTimeSource);
+                    result = FileInfoExt.LookupValidFileCreationTimeUtc(appender, (f) => f.GetFileCreationTimeUtc(), f => fallbackTimeSource);
                     if (result.HasValue)
                     {
                         // Check if cached value is still valid, and update if not (Will automatically update CreationTimeSource)
@@ -455,7 +455,7 @@ namespace NLog.Internal.FileAppenders
             var fileInfo = new FileInfo(filePath);
             if (fileInfo.Exists)
             {
-                result = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => fallbackTimeSource, (f) => f.GetLastWriteTimeUtc()).Value;
+                result = fileInfo.LookupValidFileCreationTimeUtc(fallbackTimeSource).Value;
                 return Time.TimeSource.Current.FromSystemTime(result.Value);
             }
 
@@ -491,6 +491,12 @@ namespace NLog.Internal.FileAppenders
                     {
                         return result;
                     }
+                }
+                catch (IOException ex)
+                {
+                    InternalLogger.Error(ex, "Failed to get length for file '{0}'.", appender.FileName);
+                    InvalidateAppender(appender.FileName)?.Dispose();
+                    // Do not rethrow as failed archive-file-size check should not drop logevents
                 }
                 catch (Exception ex)
                 {

@@ -63,7 +63,6 @@ namespace NLog.Internal.FileAppenders
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         private FileStream _fileStream;
-        private readonly FileCharacteristicsHelper _fileCharacteristicsHelper;
         private Mutex _mutex;
 
         /// <summary>
@@ -77,7 +76,6 @@ namespace NLog.Internal.FileAppenders
             {
                 _mutex = CreateSharableMutex("FileLock");
                 _fileStream = CreateFileStream(true);
-                _fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
             }
             catch
             {
@@ -198,14 +196,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
-            var fileChars = GetFileCharacteristics();
-            return fileChars.FileLength;
-        }
-
-        private FileCharacteristics GetFileCharacteristics()
-        {
-            // TODO: It is not efficient to read all the whole FileCharacteristics and then using one property.
-            return _fileCharacteristicsHelper.GetFileCharacteristics(FileName, _fileStream);
+            return _fileStream?.Length;
         }
 
         /// <summary>
