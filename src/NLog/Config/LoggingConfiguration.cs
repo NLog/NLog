@@ -765,7 +765,14 @@ namespace NLog.Config
 
         internal void InitializeAll()
         {
+            bool firstInitializeAll = _configItems.Count == 0;
+
             ValidateConfig();
+
+            if (firstInitializeAll && _targets.Count > 0)
+            {
+                CheckUnusedTargets();
+            }
 
             var supportsInitializes = GetSupportsInitializes(true);
             foreach (ISupportsInitialize initialize in supportsInitializes)
@@ -846,12 +853,16 @@ namespace NLog.Config
         /// </summary>
         internal void CheckUnusedTargets()
         {
-            ReadOnlyCollection<Target> configuredNamedTargets = ConfiguredNamedTargets; //assign to variable because `ConfiguredNamedTargets` computes a new list every time.
+            if (!InternalLogger.IsWarnEnabled)
+                return;
+
+            var configuredNamedTargets = GetAllTargetsThreadSafe(); //assign to variable because `GetAllTargetsThreadSafe` computes a new list every time.
             InternalLogger.Debug("Unused target checking is started... Rule Count: {0}, Target Count: {1}", LoggingRules.Count, configuredNamedTargets.Count);
 
             var targetNamesAtRules = new HashSet<string>(GetLoggingRulesThreadSafe().SelectMany(r => r.Targets).Select(t => t.Name));
-            var wrappedTargets = configuredNamedTargets.OfType<WrapperTargetBase>().ToLookup(wt => wt.WrappedTarget, wt => wt);
-            var compoundTargets = configuredNamedTargets.OfType<CompoundTargetBase>().SelectMany(wt => wt.Targets.Select(t => new KeyValuePair<Target, Target>(t, wt))).ToLookup(p => p.Key, p => p.Value);
+            var allTargets = AllTargets;
+            var wrappedTargets = allTargets.OfType<WrapperTargetBase>().ToLookup(wt => wt.WrappedTarget, wt => wt);
+            var compoundTargets = allTargets.OfType<CompoundTargetBase>().SelectMany(wt => wt.Targets.Select(t => new KeyValuePair<Target, Target>(t, wt))).ToLookup(p => p.Key, p => p.Value);
 
             bool IsUnusedInList<T>(Target target1, ILookup<Target, T> targets)
             where T:Target

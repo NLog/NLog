@@ -335,7 +335,6 @@ namespace NLog.Config
                 }
                 InitializeSucceeded = true;
                 CheckParsingErrors(content);
-                base.CheckUnusedTargets();
             }
             catch (Exception exception)
             {
