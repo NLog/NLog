@@ -1918,21 +1918,14 @@ namespace NLog.Targets
                 _fileAppenderCache.FlushAppenders();    // Flush before double-checking
 
                 FileInfo fileInfo = new FileInfo(previousFileName);
-                if (fileInfo.Exists)
+                if (fileInfo.Exists && ShouldArchiveOnFileSize(fileInfo.Length, upcomingWriteSize))
                 {
-                    shouldArchive = ShouldArchiveOnFileSize(fileInfo.Length, upcomingWriteSize);
-                    if (shouldArchive)
-                    {
-                        return previousFileName;
-                    }
+                    return previousFileName;
+                }
 
-                    _fileAppenderCache.InvalidateAppender(previousFileName)?.Dispose(); // File changed behind our backs
-                }
-                else
-                {
-                    _fileAppenderCache.InvalidateAppender(previousFileName)?.Dispose(); // File deleted behind our backs
-                    _initializedFiles.Remove(previousFileName);
-                }
+                _fileAppenderCache.InvalidateAppender(previousFileName)?.Dispose(); // File changed behind our backs
+                if (!fileInfo.Exists)
+                    _initializedFiles.Remove(previousFileName);                     // File deleted behind our backs
             }
 
             return null;
@@ -1991,11 +1984,8 @@ namespace NLog.Targets
                     {
                         return fileName;
                     }
-                    else
-                    {
-                        _fileAppenderCache.InvalidateAppender(fileName)?.Dispose(); // File deleted behind our backs
-                        _initializedFiles.Remove(fileName);
-                    }
+                    _fileAppenderCache.InvalidateAppender(fileName)?.Dispose(); // File deleted behind our backs
+                    _initializedFiles.Remove(fileName);
                 }
             }
 
@@ -2007,29 +1997,30 @@ namespace NLog.Targets
             // Linux FileSystems doesn't always have file-birth-time, so NLog tries to provide a little help
             DateTime? fallbackTimeSourceLinux = (previousLogEventTimestamp != DateTime.MinValue && IsSimpleKeepFileOpen) ? previousLogEventTimestamp : (DateTime?)null;
             var creationTimeSource = _fileAppenderCache.GetFileCreationTimeSource(fileName, fallbackTimeSourceLinux);
-            var fileLength = creationTimeSource.HasValue ? _fileAppenderCache.GetFileLength(fileName) : null;   // Verifies file-handle by checking FileStream.Length
-            if (creationTimeSource.HasValue && fileLength.HasValue)
+            if (!creationTimeSource.HasValue)
+                return null;
+
+            var fileLength = _fileAppenderCache.GetFileLength(fileName);   // Verifies file-handle by checking FileStream.Length
+            if (!fileLength.HasValue)
+                return null;
+
+            if (previousLogEventTimestamp != DateTime.MinValue && previousLogEventTimestamp < creationTimeSource)
             {
-                if (previousLogEventTimestamp != DateTime.MinValue && previousLogEventTimestamp < creationTimeSource)
+                if (TruncateArchiveTime(previousLogEventTimestamp, FileArchivePeriod.Minute) < TruncateArchiveTime(creationTimeSource.Value, FileArchivePeriod.Minute) && PlatformDetector.IsUnix)
                 {
-                    if (TruncateArchiveTime(previousLogEventTimestamp, FileArchivePeriod.Minute) < TruncateArchiveTime(creationTimeSource.Value, FileArchivePeriod.Minute) && PlatformDetector.IsUnix)
+                    if (IsSimpleKeepFileOpen)
                     {
-                        if (IsSimpleKeepFileOpen)
-                        {
-                            InternalLogger.Debug("FileTarget(Name={0}): Adjusted file creation time from {1} to {2}. Linux FileSystem probably don't support file birthtime.", Name, creationTimeSource, previousLogEventTimestamp);
-                            creationTimeSource = previousLogEventTimestamp;
-                        }
-                        else
-                        {
-                            InternalLogger.Debug("FileTarget(Name={0}): File creation time {1} newer than previous file write time {2}. Linux FileSystem probably don't support file birthtime, unless multiple applications are writing to the same file. Configure FileTarget.KeepFileOpen=true AND FileTarget.ConcurrentWrites=false, so NLog can fix this.", Name, creationTimeSource, previousLogEventTimestamp);
-                        }
+                        InternalLogger.Debug("FileTarget(Name={0}): Adjusted file creation time from {1} to {2}. Linux FileSystem probably don't support file birthtime.", Name, creationTimeSource, previousLogEventTimestamp);
+                        creationTimeSource = previousLogEventTimestamp;
+                    }
+                    else
+                    {
+                        InternalLogger.Debug("FileTarget(Name={0}): File creation time {1} newer than previous file write time {2}. Linux FileSystem probably don't support file birthtime, unless multiple applications are writing to the same file. Configure FileTarget.KeepFileOpen=true AND FileTarget.ConcurrentWrites=false, so NLog can fix this.", Name, creationTimeSource, previousLogEventTimestamp);
                     }
                 }
-
-                return creationTimeSource;
             }
 
-            return null;
+            return creationTimeSource;
         }
 
         /// <summary>
