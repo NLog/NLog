@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -32,40 +32,25 @@
 // 
 
 using System;
-using System.IO;
 
 namespace NLog.Internal
 {
-    internal static class FileInfoExt
+    internal static class FileInfoHelper
     {
-        public static DateTime GetLastWriteTimeUtc(this FileInfo fileInfo)
+        internal static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
         {
-#if !SILVERLIGHT
-            return fileInfo.LastWriteTimeUtc;
-#else
-            return fileInfo.LastWriteTime;
-#endif
-        }
-        public static DateTime GetCreationTimeUtc(this FileInfo fileInfo)
-        {
-#if !SILVERLIGHT
-            return fileInfo.CreationTimeUtc;
-#else
-            return fileInfo.CreationTime;
-#endif
-        }
+            DateTime? fileCreationTime = primary(fileInfo);
 
-        public static DateTime? LookupValidFileCreationTimeUtc(this FileInfo fileInfo)
-        {
-            return FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc());
-        }
-
-        public static DateTime? LookupValidFileCreationTimeUtc(this FileInfo fileInfo, DateTime? fallbackTime)
-        {
-            if (fallbackTime > DateTime.MinValue)
-                return FileInfoHelper.LookupValidFileCreationTimeUtc(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => fallbackTime.Value, (f) => f.GetLastWriteTimeUtc());
-            else
-                return LookupValidFileCreationTimeUtc(fileInfo);
+            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980 && !PlatformDetector.IsWin32)
+            {
+                // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
+                fileCreationTime = fallback(fileInfo);
+                if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
+                {
+                    fileCreationTime = finalFallback(fileInfo);
+                }
+            }
+            return fileCreationTime;
         }
     }
 }

@@ -432,7 +432,7 @@ namespace NLog.Internal.FileAppenders
             {
                 try
                 {
-                    result = FileInfoExt.LookupValidFileCreationTimeUtc(appender, (f) => f.GetFileCreationTimeUtc(), f => fallbackTimeSource);
+                    result = FileInfoHelper.LookupValidFileCreationTimeUtc(appender, (f) => f.GetFileCreationTimeUtc(), f => fallbackTimeSource);
                     if (result.HasValue)
                     {
                         // Check if cached value is still valid, and update if not (Will automatically update CreationTimeSource)
