@@ -89,7 +89,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", GetType().ToString());
-#if NET45
+#if NET4_5
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
@@ -138,7 +138,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", GetType().ToString());
-#if NET45
+#if NET4_5
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
@@ -190,7 +190,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", GetType().ToString());
-#if NET45
+#if NET4_5
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
@@ -245,7 +245,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", "");
-#if NET45
+#if NET4_5
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
         }
@@ -289,7 +289,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", string.Format(ExceptionDataFormat, exceptionDataKey, exceptionDataValue));
             AssertDebugLastMessage("debug10", "");
-#if NET45
+#if NET4_5
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
         }
