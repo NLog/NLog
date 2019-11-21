@@ -250,6 +250,39 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
             return WsAddress.Substring(0, WsAddress.Length - 5) + (9000 + portOffset).ToString() + "/";
         }
 
+        [Fact]
+        public void WebserviceTest_renderVariable()
+        {
+            var expected = "https://someurl.com/";
+            var configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+                <nlog throwExceptions='true'>
+                    <variable name='myService' value='{expected}'/>
+                     <targets>
+                        <target type='WebService'
+                                name='ws'
+                                url='${{var:name=myService}}'
+                                protocol='HttpPost'
+                                encoding='UTF-8'
+                               >
+                            <parameter name='param1' type='System.String' layout='${{message}}'/> 
+                            <parameter name='param2' type='System.String' layout='${{level}}'/>
+     
+                        </target>
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='ws'>
+                       
+                      </logger>
+                    </rules>
+                </nlog>");
+
+
+            LogManager.Configuration = configuration;
+            var logger = LogManager.GetCurrentClassLogger();
+            var webserviceTarget = logger.Factory.Configuration.AllTargets.First() as WebServiceTarget;
+
+            Assert.Equal(expected,webserviceTarget._renderedUrl.AbsoluteUri);
+        }
         /// <summary>
         /// Test the Webservice with REST api - <see cref="WebServiceProtocol.HttpPost"/> (only checking for no exception)
         /// </summary>

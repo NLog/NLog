@@ -43,6 +43,7 @@ namespace NLog.Targets
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.Layouts;
 
     /// <summary>
     /// Calls the specified web service on each log message.
@@ -122,7 +123,20 @@ namespace NLog.Targets
         /// Gets or sets the web service URL.
         /// </summary>
         /// <docgen category='Web Service Options' order='10' />
-        public Uri Url { get; set; }
+        /// 
+        public Layout Url { get; set; }
+        internal Uri _renderedUrl
+        {
+            get
+            {
+                var uri = RenderLogEvent(Url, LogEventInfo.CreateNullEvent());
+                return new Uri(uri);
+            }
+            set
+            {
+                Url = value.AbsoluteUri;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the Web service method name. Only used with Soap.
@@ -483,7 +497,7 @@ namespace NLog.Targets
         {
             if (Protocol != WebServiceProtocol.HttpGet)
             {
-                return Url;
+                return _renderedUrl;
             }
 
             //if the protocol is HttpGet, we need to add the parameters to the query string of the url
@@ -496,7 +510,7 @@ namespace NLog.Targets
                 queryParameters = sb.ToString();
             }
 
-            var builder = new UriBuilder(Url);
+            var builder = new UriBuilder(_renderedUrl);
             //append our query string to the URL following 
             //the recommendations at https://msdn.microsoft.com/en-us/library/system.uribuilder.query.aspx
             if (builder.Query != null && builder.Query.Length > 1)
