@@ -1915,17 +1915,7 @@ namespace NLog.Targets
             var shouldArchive = ShouldArchiveOnFileSize(fileLength.Value, upcomingWriteSize);
             if (shouldArchive)
             {
-                _fileAppenderCache.FlushAppenders();    // Flush before double-checking
-
-                FileInfo fileInfo = new FileInfo(previousFileName);
-                if (fileInfo.Exists && ShouldArchiveOnFileSize(fileInfo.Length, upcomingWriteSize))
-                {
-                    return previousFileName;
-                }
-
-                _fileAppenderCache.InvalidateAppender(previousFileName)?.Dispose(); // File changed behind our backs
-                if (!fileInfo.Exists)
-                    _initializedFiles.Remove(previousFileName);                     // File deleted behind our backs
+                return previousFileName;    // Will re-check if archive is still necessary after flush/close file
             }
 
             return null;
@@ -1979,13 +1969,7 @@ namespace NLog.Targets
                 var shouldArchive = fileCreated != logEventRecorded;
                 if (shouldArchive)
                 {
-                    FileInfo fileInfo = new FileInfo(fileName);
-                    if (fileInfo.Exists)
-                    {
-                        return fileName;
-                    }
-                    _fileAppenderCache.InvalidateAppender(fileName)?.Dispose(); // File deleted behind our backs
-                    _initializedFiles.Remove(fileName);
+                    return fileName;    // Will re-check if archive is still necessary after flush/close file
                 }
             }
 
@@ -2002,7 +1986,11 @@ namespace NLog.Targets
 
             var fileLength = _fileAppenderCache.GetFileLength(fileName);   // Verifies file-handle by checking FileStream.Length
             if (!fileLength.HasValue)
+            {
+                InternalLogger.Debug("FileTarget(Name={0}): Cannot get length of file {1} with creation date {2}.", Name, fileName, creationTimeSource.Value);
+                _initializedFiles.Remove(fileName);
                 return null;
+            }
 
             if (previousLogEventTimestamp != DateTime.MinValue && previousLogEventTimestamp < creationTimeSource)
             {
