@@ -181,7 +181,7 @@ namespace NLog.Internal
                 int digitCount = CalculateDigitCount((uint)fraction);
                 if (max_digit_count > digitCount)
                     builder.Append('0', max_digit_count - digitCount);
-                AppendInvariant(builder, (uint)fraction);
+                ApppendValueWithDigitCount(builder, (uint)fraction, digitCount);
             }
             builder.Append('Z');
         }
