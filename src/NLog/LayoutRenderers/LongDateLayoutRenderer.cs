@@ -35,7 +35,6 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Text;
     using NLog.Config;
     using NLog.Internal;
@@ -46,7 +45,7 @@ namespace NLog.LayoutRenderers
     [LayoutRenderer("longdate")]
     [ThreadAgnostic]
     [ThreadSafe]
-    public class LongDateLayoutRenderer : LayoutRenderer
+    public class LongDateLayoutRenderer : LayoutRenderer, IRawValue
     {
         /// <summary>
         /// Gets or sets a value indicating whether to output UTC time instead of local time.
@@ -62,12 +61,8 @@ namespace NLog.LayoutRenderers
         /// <param name="logEvent">Logging event.</param>
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
-            DateTime dt = logEvent.TimeStamp;
-            if (UniversalTime)
-            {
-                dt = dt.ToUniversalTime();
-            }
-            
+            DateTime dt = GetValue(logEvent);
+
             //no culture according to specs
 
             builder.Append4DigitsZeroPadded(dt.Year);
@@ -83,6 +78,22 @@ namespace NLog.LayoutRenderers
             builder.Append2DigitsZeroPadded(dt.Second);
             builder.Append('.');
             builder.Append4DigitsZeroPadded((int)(dt.Ticks % 10000000) / 1000);
+        }
+
+        bool IRawValue.TryGetRawValue(LogEventInfo logEvent, out object value)
+        {
+            value = GetValue(logEvent);
+            return true;
+        }
+
+        private DateTime GetValue(LogEventInfo logEvent)
+        {
+            DateTime dt = logEvent.TimeStamp;
+            if (UniversalTime)
+            {
+                dt = dt.ToUniversalTime();
+            }
+            return dt;
         }
     }
 }
