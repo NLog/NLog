@@ -430,7 +430,7 @@ namespace NLog.Layouts
             if (objTypeCode != TypeCode.Object)
             {
                 string xmlValueString = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode, true);
-                AppendXmlPropertyValue(propName, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
+                AppendXmlPropertyStringValue(propName, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
             }
             else
             {
