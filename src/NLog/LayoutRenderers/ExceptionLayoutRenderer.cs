@@ -407,7 +407,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose HResult should be appended.</param>
         protected virtual void AppendHResult(StringBuilder sb, Exception ex)
         {
-#if NET45
+#if NET4_5
             const int S_OK = 0;     // Carries no information, so skip
             const int S_FALSE = 1;  // Carries no information, so skip
             if (ex.HResult != S_OK && ex.HResult != S_FALSE)
