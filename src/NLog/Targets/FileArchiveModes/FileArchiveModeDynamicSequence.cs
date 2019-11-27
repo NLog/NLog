@@ -232,7 +232,7 @@ namespace NLog.Targets.FileArchiveModes
 
             int sequenceNumber = ExtractArchiveNumberFromFileName(archiveFile.FullName);
             InternalLogger.Trace("FileTarget: extracted sequenceNumber: {0} from file '{1}'", sequenceNumber, archiveFile.FullName);
-            var creationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(archiveFile, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
+            var creationTimeUtc = archiveFile.LookupValidFileCreationTimeUtc().Value;
             return new DateAndSequenceArchive(archiveFile.FullName, creationTimeUtc, string.Empty, sequenceNumber > 0 ? sequenceNumber : 0);
         }
 

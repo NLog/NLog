@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -31,32 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.Internal
 {
-    using System.IO;
-
-    /// <summary>
-    /// Portable implementation of <see cref="FileCharacteristicsHelper"/>.
-    /// </summary>
-    internal class PortableFileCharacteristicsHelper : FileCharacteristicsHelper
+    internal static class FileInfoHelper
     {
-        /// <summary>
-        /// Gets the information about a file.
-        /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileStream">The file stream.</param>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics(string fileName, FileStream fileStream)
+        internal static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
         {
-            if (!string.IsNullOrEmpty(fileName))
+            DateTime? fileCreationTime = primary(fileInfo);
+
+            if (fileCreationTime.HasValue && fileCreationTime.Value.Year < 1980 && !PlatformDetector.IsWin32)
             {
-                var fileInfo = new FileInfo(fileName);
-                if (fileInfo.Exists)
+                // Non-Windows-FileSystems doesn't always provide correct CreationTime/BirthTime
+                fileCreationTime = fallback(fileInfo);
+                if (finalFallback != null && (!fileCreationTime.HasValue || fileCreationTime.Value.Year < 1980))
                 {
-                    return new FileCharacteristics(fileInfo.GetCreationTimeUtc(), fileInfo.GetLastWriteTimeUtc(), fileInfo.Length);
+                    fileCreationTime = finalFallback(fileInfo);
                 }
             }
-            return null;
+            return fileCreationTime;
         }
     }
 }

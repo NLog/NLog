@@ -142,8 +142,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
-            if (_file == null) { return null; }
-            return _file.Length;
+            return _file?.Length;
         }
 
         /// <summary>
