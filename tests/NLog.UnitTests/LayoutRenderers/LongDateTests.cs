@@ -36,7 +36,9 @@ using NLog.Config;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
+    using System;
     using NLog.LayoutRenderers;
+    using NLog.Layouts;
     using Xunit;
 
     public class LongDateTests : NLogTestBase
@@ -71,6 +73,25 @@ namespace NLog.UnitTests.LayoutRenderers
             
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
             Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
+        }
+
+
+        [Fact]
+        public void LongDateTryGetRawValue()
+        {
+            // Arrange
+            SimpleLayout l = "${longdate:UniversalTime=true}";
+            var timestamp = DateTime.Now;
+            var logEventInfo = LogEventInfo.CreateNullEvent();
+            logEventInfo.TimeStamp = timestamp;
+
+            // Act
+            var success = l.TryGetRawValue(logEventInfo, out var value);
+
+            // Assert
+            Assert.True(success, "success");
+            Assert.IsType<DateTime>(value);
+            Assert.Equal(timestamp.ToUniversalTime(), (DateTime)value);
         }
 
         [Fact]
