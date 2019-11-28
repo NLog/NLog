@@ -39,7 +39,7 @@ namespace NLog.LayoutRenderers
     public enum LevelFormat
     {
         /// <summary>
-        /// Render the full level name.
+        /// Render the LogLevel standard name.
         /// </summary>
         Name,
 
@@ -51,6 +51,11 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Render the ordinal (aka number) for the level.
         /// </summary>
-        Ordinal
+        Ordinal,
+
+        /// <summary>
+        /// Render the LogLevel full name, expanding Warn / Info abbreviations
+        /// </summary>
+        FullName,
     }
 }

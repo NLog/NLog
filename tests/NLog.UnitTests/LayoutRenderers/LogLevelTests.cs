@@ -116,6 +116,33 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug", "5 a");
         }
 
+
+        [Fact]
+        public void LogLevelFullNameTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog>
+                <targets><target name='debug' type='Debug' layout='${level:format=FullName} ${message}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Trace' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Trace("a");
+            AssertDebugLastMessage("debug", "Trace a");
+            logger.Debug("a");
+            AssertDebugLastMessage("debug", "Debug a");
+            logger.Info("a");
+            AssertDebugLastMessage("debug", "Information a");
+            logger.Warn("a");
+            AssertDebugLastMessage("debug", "Warning a");
+            logger.Error("a");
+            AssertDebugLastMessage("debug", "Error a");
+            logger.Fatal("a");
+            AssertDebugLastMessage("debug", "Fatal a");
+        }
+
         [Fact]
         public void LogLevelGetTypeCodeTest()
         {
