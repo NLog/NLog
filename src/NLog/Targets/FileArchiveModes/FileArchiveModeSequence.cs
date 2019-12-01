@@ -39,20 +39,22 @@ using System.IO;
 namespace NLog.Targets.FileArchiveModes
 {
     /// <summary>
-    /// Archives the log-files using a sequence style numbering. The most recent archive has the
-    /// highest number. When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete
-    /// archives are deleted.
+    /// Archives the log-files using a sequence style numbering. The most recent archive has the highest number.
+    /// 
+    /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
+    /// When the number of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
-    sealed class FileArchiveModeSequence : FileArchiveModeBase
+    internal sealed class FileArchiveModeSequence : FileArchiveModeBase
     {
         private readonly string _archiveDateFormat;
 
-        public FileArchiveModeSequence(string archiveDateFormat)
+        public FileArchiveModeSequence(string archiveDateFormat, bool isArchiveCleanupEnabled)
+            :base(isArchiveCleanupEnabled)
         {
             _archiveDateFormat = archiveDateFormat;
         }
 
-        public override bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
+        public override bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles, int maxArchiveDays)
         {
             return false;   // For historic reasons, then cleanup of sequence archives are not done on startup
         }
@@ -90,20 +92,6 @@ namespace NLog.Targets.FileArchiveModes
             archiveFilePath = Path.Combine(dirName, archiveFileNameTemplate.ReplacePattern("*").Replace("*", paddedSequence));
             archiveFilePath = Path.GetFullPath(archiveFilePath);    // Rebuild to fix non-standard path-format
             return new DateAndSequenceArchive(archiveFilePath, archiveDate, _archiveDateFormat, nextSequenceNumber);
-        }
-
-        public override IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles)
-        {
-            if (maxArchiveFiles <= 0 || existingArchiveFiles.Count == 0 || existingArchiveFiles.Count < maxArchiveFiles)
-                yield break;
-
-            int nextSequenceNumber = existingArchiveFiles[existingArchiveFiles.Count - 1].Sequence;
-            int minNumberToKeep = nextSequenceNumber - maxArchiveFiles + 1;
-            if (minNumberToKeep <= 0)
-                yield break;
-            foreach (var existingFile in existingArchiveFiles)
-                if (existingFile.Sequence < minNumberToKeep)
-                    yield return existingFile;
         }
     }
 }

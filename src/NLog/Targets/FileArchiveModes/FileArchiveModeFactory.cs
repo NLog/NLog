@@ -38,11 +38,11 @@ namespace NLog.Targets.FileArchiveModes
 {
     static class FileArchiveModeFactory
     {
-        public static IFileArchiveMode CreateArchiveStyle(string archiveFilePath, ArchiveNumberingMode archiveNumbering, string dateFormat, bool customArchiveFileName, int maxArchiveFiles)
+        public static IFileArchiveMode CreateArchiveStyle(string archiveFilePath, ArchiveNumberingMode archiveNumbering, string dateFormat, bool customArchiveFileName, bool archiveCleanupEnabled)
         {
             if (ContainsFileNamePattern(archiveFilePath))
             {
-                IFileArchiveMode archiveHelper = CreateStrictFileArchiveMode(archiveNumbering, dateFormat, maxArchiveFiles);
+                IFileArchiveMode archiveHelper = CreateStrictFileArchiveMode(archiveNumbering, dateFormat, archiveCleanupEnabled);
                 if (archiveHelper != null)
                     return archiveHelper;
             }
@@ -51,7 +51,7 @@ namespace NLog.Targets.FileArchiveModes
             {
                 if (!customArchiveFileName)
                 {
-                    IFileArchiveMode archiveHelper = CreateStrictFileArchiveMode(archiveNumbering, dateFormat, maxArchiveFiles);
+                    IFileArchiveMode archiveHelper = CreateStrictFileArchiveMode(archiveNumbering, dateFormat, archiveCleanupEnabled);
                     if (archiveHelper != null)
                         return new FileArchiveModeDynamicTemplate(archiveHelper);
                 }
@@ -61,17 +61,17 @@ namespace NLog.Targets.FileArchiveModes
                 }
             }
 
-            return new FileArchiveModeDynamicSequence(archiveNumbering, dateFormat, customArchiveFileName);
+            return new FileArchiveModeDynamicSequence(archiveNumbering, dateFormat, customArchiveFileName, archiveCleanupEnabled);
         }
 
-        private static IFileArchiveMode CreateStrictFileArchiveMode(ArchiveNumberingMode archiveNumbering, string dateFormat, int maxArchiveFiles)
+        private static IFileArchiveMode CreateStrictFileArchiveMode(ArchiveNumberingMode archiveNumbering, string dateFormat, bool archiveCleanupEnabled)
         {
             switch (archiveNumbering)
             {
                 case ArchiveNumberingMode.Rolling: return new FileArchiveModeRolling();
-                case ArchiveNumberingMode.Sequence: return new FileArchiveModeSequence(dateFormat);
-                case ArchiveNumberingMode.Date: return new FileArchiveModeDate(dateFormat, ShouldDeleteOldArchives(maxArchiveFiles));
-                case ArchiveNumberingMode.DateAndSequence: return new FileArchiveModeDateAndSequence(dateFormat);
+                case ArchiveNumberingMode.Sequence: return new FileArchiveModeSequence(dateFormat, archiveCleanupEnabled);
+                case ArchiveNumberingMode.Date: return new FileArchiveModeDate(dateFormat, archiveCleanupEnabled);
+                case ArchiveNumberingMode.DateAndSequence: return new FileArchiveModeDateAndSequence(dateFormat, archiveCleanupEnabled);
             }
 
             return null;
@@ -95,16 +95,6 @@ namespace NLog.Targets.FileArchiveModes
             int endingIndex = fileName.IndexOf("#}", StringComparison.Ordinal);
 
             return (startingIndex != -1 && endingIndex != -1 && startingIndex < endingIndex);
-        }
-
-        /// <summary>
-        /// Determine if old archive files should be deleted.
-        /// </summary>
-        /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept</param>
-        /// <returns><see langword="true"/> when old archives should be deleted; <see langword="false"/> otherwise.</returns>
-        public static bool ShouldDeleteOldArchives(int maxArchiveFiles)
-        {
-            return maxArchiveFiles > 0;
         }
     }
 }

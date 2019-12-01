@@ -49,16 +49,19 @@ namespace NLog.Targets.FileArchiveModes
     ///     Base Filename     trace.log
     ///     Next Filename     trace.0.log
     /// 
-    /// The most recent archive has the highest number. When the number of archive files
-    /// exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
+    /// The most recent archive has the highest number. 
+    /// 
+    /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
+    /// When the number of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
-    sealed class FileArchiveModeDynamicSequence : FileArchiveModeBase
+    internal sealed class FileArchiveModeDynamicSequence : FileArchiveModeBase
     {
         private readonly ArchiveNumberingMode _archiveNumbering;
         private readonly string _archiveDateFormat;
         private readonly bool _customArchiveFileName;
 
-        public FileArchiveModeDynamicSequence(ArchiveNumberingMode archiveNumbering, string archiveDateFormat, bool customArchiveFileName)
+        public FileArchiveModeDynamicSequence(ArchiveNumberingMode archiveNumbering, string archiveDateFormat, bool customArchiveFileName, bool archiveCleanupEnabled)
+            :base(archiveCleanupEnabled)
         {
             _archiveNumbering = archiveNumbering;
             _archiveDateFormat = archiveDateFormat;

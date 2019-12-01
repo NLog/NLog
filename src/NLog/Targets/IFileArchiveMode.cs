@@ -38,13 +38,16 @@ namespace NLog.Targets
 
     interface IFileArchiveMode
     {
+        bool IsArchiveCleanupEnabled { get; }
+
         /// <summary>
         /// Check if cleanup should be performed on initialize new file
         /// </summary>
         /// <param name="archiveFilePath">Base archive file pattern</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept</param>
+        /// <param name="maxArchiveDays">Maximum days of archive files that should be kept</param>
         /// <returns>True, when archive cleanup is needed</returns>
-        bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles);
+        bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles, int maxArchiveDays);
 
         /// <summary>
         /// Create a wildcard file-mask that allows one to find all files belonging to the same archive.
@@ -75,7 +78,7 @@ namespace NLog.Targets
         /// <param name="archiveFilePath">Base archive file pattern</param>
         /// <param name="existingArchiveFiles">Existing files in the same archive</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept</param>
-        /// <returns></returns>
-        IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles);
+        /// <param name="maxArchiveDays">Maximum days of archive files that should be kept</param>
+        IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles, int maxArchiveDays);
     };
 }
