@@ -57,7 +57,7 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="3.0.1" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.0" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
     <PackageReference Include="System.ServiceModel.Security" Version="4.4.0" />
 
     <ProjectReference Include="..\..\src\NLog.WindowsIdentity\NLog.WindowsIdentity.csproj">
