@@ -278,6 +278,17 @@ namespace NLog
             factory.ReconfigExistingLoggers();
         }
 
+        /// <summary>
+        /// Reload the configuration
+        /// </summary>
+        public static void Reload()
+        {
+            if (Configuration != null)
+            {
+                Configuration = Configuration.Reload();
+            }
+        }
+
 #if !SILVERLIGHT
         /// <summary>
         /// Flush any pending log messages (in case of asynchronous targets) with the default timeout of 15 seconds.
