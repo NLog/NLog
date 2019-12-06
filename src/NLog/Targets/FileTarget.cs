@@ -93,7 +93,7 @@ namespace NLog.Targets
 
         IFileArchiveMode GetFileArchiveHelper(string archiveFilePattern)
         {
-            return _fileArchiveHelper ?? (_fileArchiveHelper = FileArchiveModeFactory.CreateArchiveStyle(archiveFilePattern, ArchiveNumbering, GetArchiveDateFormatString(ArchiveDateFormat), ArchiveFileName != null, MaxArchiveFiles));
+            return _fileArchiveHelper ?? (_fileArchiveHelper = FileArchiveModeFactory.CreateArchiveStyle(archiveFilePattern, ArchiveNumbering, GetArchiveDateFormatString(ArchiveDateFormat), ArchiveFileName != null, MaxArchiveFiles > 0 || MaxArchiveDays > 0));
         }
         private IFileArchiveMode _fileArchiveHelper;
 
@@ -108,6 +108,11 @@ namespace NLog.Targets
         /// The maximum number of archive files that should be kept.
         /// </summary>
         private int _maxArchiveFiles;
+
+        /// <summary>
+        /// The maximum days of archive files that should be kept.
+        /// </summary>
+        private int _maxArchiveDays;
 
         /// <summary>
         /// The filename as target
@@ -150,6 +155,8 @@ namespace NLog.Targets
         {
             ArchiveNumbering = ArchiveNumberingMode.Sequence;
             _maxArchiveFiles = 0;
+            _maxArchiveDays = 0;
+
             ConcurrentWriteAttemptDelay = 1;
             ArchiveEvery = FileArchivePeriod.None;
             ArchiveAboveSize = ArchiveAboveSizeDisabled;
@@ -644,6 +651,24 @@ namespace NLog.Targets
                 {
                     _maxArchiveFiles = value;
                     ResetFileAppenders("MaxArchiveFiles Changed");  // Enforce archive cleanup
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum days of archive files that should be kept.
+        /// </summary>
+        /// <docgen category='Archival Options' order='10' />
+        [DefaultValue(0)]
+        public int MaxArchiveDays
+        {
+            get => _maxArchiveDays;
+            set
+            {
+                if (_maxArchiveDays != value)
+                {
+                    _maxArchiveDays = value;
+                    ResetFileAppenders("MaxArchiveDays Changed");  // Enforce archive cleanup
                 }
             }
         }
@@ -1653,25 +1678,28 @@ namespace NLog.Targets
                 FinalizeFile(fileName, isArchiving: true);
             }
 
-            if (string.Equals(Path.GetDirectoryName(archiveFileName.FileName), fileInfo.DirectoryName, StringComparison.OrdinalIgnoreCase))
+            if (fileArchiveStyle.IsArchiveCleanupEnabled)
             {
-                // Extra handling when archive-directory is the same as logging-directory
-                for (int i = 0; i < existingArchiveFiles.Count; ++i)
+                if (string.Equals(Path.GetDirectoryName(archiveFileName.FileName), fileInfo.DirectoryName, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (string.Equals(existingArchiveFiles[i].FileName, fileInfo.FullName, StringComparison.OrdinalIgnoreCase))
+                    // Extra handling when archive-directory is the same as logging-directory
+                    for (int i = 0; i < existingArchiveFiles.Count; ++i)
                     {
-                        existingArchiveFiles.RemoveAt(i);
-                        break;
+                        if (string.Equals(existingArchiveFiles[i].FileName, fileInfo.FullName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            existingArchiveFiles.RemoveAt(i);
+                            break;
+                        }
                     }
                 }
-            }
 
-            existingArchiveFiles.Add(archiveFileName);
+                existingArchiveFiles.Add(archiveFileName);
 
-            var cleanupArchiveFiles = fileArchiveStyle.CheckArchiveCleanup(archiveFilePattern, existingArchiveFiles, MaxArchiveFiles);
-            foreach (var oldArchiveFile in cleanupArchiveFiles)
-            {
-                DeleteOldArchiveFile(oldArchiveFile.FileName);
+                var cleanupArchiveFiles = fileArchiveStyle.CheckArchiveCleanup(archiveFilePattern, existingArchiveFiles, MaxArchiveFiles, MaxArchiveDays);
+                foreach (var oldArchiveFile in cleanupArchiveFiles)
+                {
+                    DeleteOldArchiveFile(oldArchiveFile.FileName);
+                }
             }
 
             return archiveFileName.FileName;
@@ -2281,13 +2309,13 @@ namespace NLog.Targets
             }
 
             string archiveFilePattern = GetArchiveFileNamePattern(fileName, logEvent);
-            if (!string.IsNullOrEmpty(archiveFilePattern) && FileArchiveModeFactory.ShouldDeleteOldArchives(MaxArchiveFiles))
+            if (!string.IsNullOrEmpty(archiveFilePattern))
             {
                 var fileArchiveStyle = GetFileArchiveHelper(archiveFilePattern);
-                if (fileArchiveStyle.AttemptCleanupOnInitializeFile(archiveFilePattern, MaxArchiveFiles))
+                if (fileArchiveStyle.AttemptCleanupOnInitializeFile(archiveFilePattern, MaxArchiveFiles, MaxArchiveDays))
                 {
                     var existingArchiveFiles = fileArchiveStyle.GetExistingArchiveFiles(archiveFilePattern);
-                    var cleanupArchiveFiles = fileArchiveStyle.CheckArchiveCleanup(archiveFilePattern, existingArchiveFiles, MaxArchiveFiles);
+                    var cleanupArchiveFiles = fileArchiveStyle.CheckArchiveCleanup(archiveFilePattern, existingArchiveFiles, MaxArchiveFiles, MaxArchiveDays);
                     foreach (var oldFile in cleanupArchiveFiles)
                     {
                         DeleteOldArchiveFile(oldFile.FileName);

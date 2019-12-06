@@ -37,9 +37,19 @@ using System.IO;
 
 namespace NLog.Targets.FileArchiveModes
 {
-    abstract class FileArchiveModeBase : IFileArchiveMode
+    internal abstract class FileArchiveModeBase : IFileArchiveMode
     {
+        static readonly DateTime MaxAgeArchiveFileDate = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
         private int _lastArchiveFileCount = short.MaxValue * 2;
+        private DateTime _oldestArchiveFileDate = MaxAgeArchiveFileDate;
+
+        public bool IsArchiveCleanupEnabled { get; }
+
+        protected FileArchiveModeBase(bool isArchiveCleanupEnabled)
+        {
+            IsArchiveCleanupEnabled = isArchiveCleanupEnabled;
+        }
 
         /// <summary>
         /// Check if cleanup should be performed on initialize new file
@@ -48,23 +58,33 @@ namespace NLog.Targets.FileArchiveModes
         /// </summary>
         /// <param name="archiveFilePath">Base archive file pattern</param>
         /// <param name="maxArchiveFiles">Maximum number of archive files that should be kept</param>
+        /// <param name="maxArchiveDays">Maximum days of archive files that should be kept</param>
         /// <returns>True, when archive cleanup is needed</returns>
-        public virtual bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
+        public virtual bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles, int maxArchiveDays)
         {
-            return _lastArchiveFileCount++ > maxArchiveFiles;
+            if (maxArchiveFiles > 0 && _lastArchiveFileCount++ > maxArchiveFiles)
+                return true;
+
+            if (maxArchiveDays > 0 && (NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime() - _oldestArchiveFileDate.Date).TotalDays > maxArchiveDays)
+                return true;
+
+            return false;
         }
 
         public string GenerateFileNameMask(string archiveFilePath)
         {
             int lastArchiveFileCount = _lastArchiveFileCount;
+            DateTime oldestArchiveFileDate = _oldestArchiveFileDate;
             var fileMask = GenerateFileNameMask(archiveFilePath, GenerateFileNameTemplate(archiveFilePath));
             _lastArchiveFileCount = lastArchiveFileCount;   // Restore if modified by "mistake"
+            _oldestArchiveFileDate = oldestArchiveFileDate;   // Restore if modified by "mistake"
             return fileMask;
         }
 
         public virtual List<DateAndSequenceArchive> GetExistingArchiveFiles(string archiveFilePath)
         {
             _lastArchiveFileCount = short.MaxValue * 2;
+            _oldestArchiveFileDate = MaxAgeArchiveFileDate;
 
             string archiveFolderPath = Path.GetDirectoryName(archiveFilePath);
             FileNameTemplate archiveFileNameTemplate = GenerateFileNameTemplate(archiveFilePath);
@@ -73,7 +93,7 @@ namespace NLog.Targets.FileArchiveModes
             var existingArchiveFiles = new List<DateAndSequenceArchive>();
             if (string.IsNullOrEmpty(archiveFileMask))
                 return existingArchiveFiles;
-       
+
             DirectoryInfo directoryInfo = new DirectoryInfo(archiveFolderPath);
             if (!directoryInfo.Exists)
                 return existingArchiveFiles;
@@ -92,8 +112,15 @@ namespace NLog.Targets.FileArchiveModes
 
             if (existingArchiveFiles.Count > 1)
                 existingArchiveFiles.Sort(FileSortOrderComparison);
-            _lastArchiveFileCount = existingArchiveFiles.Count;
+
+            UpdateMaxArchiveState(existingArchiveFiles);
             return existingArchiveFiles;
+        }
+
+        protected void UpdateMaxArchiveState(List<DateAndSequenceArchive> existingArchiveFiles)
+        {
+            _lastArchiveFileCount = existingArchiveFiles.Count;
+            _oldestArchiveFileDate = existingArchiveFiles.Count == 0 ? DateTime.UtcNow : existingArchiveFiles[0].Date.Date.ToUniversalTime();
         }
 
         private static int FileSortOrderComparison(DateAndSequenceArchive x, DateAndSequenceArchive y)
@@ -124,22 +151,48 @@ namespace NLog.Targets.FileArchiveModes
         protected abstract DateAndSequenceArchive GenerateArchiveFileInfo(FileInfo archiveFile, FileNameTemplate fileTemplate);
         public abstract DateAndSequenceArchive GenerateArchiveFileName(string archiveFilePath, DateTime archiveDate, List<DateAndSequenceArchive> existingArchiveFiles);
 
-        public virtual IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles)
+        public virtual IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles, int maxArchiveDays)
         {
-            if (maxArchiveFiles <= 0)
+            if (maxArchiveFiles <= 0 && maxArchiveDays <= 0)
                 yield break;
 
-            _lastArchiveFileCount = existingArchiveFiles.Count;
+            UpdateMaxArchiveState(existingArchiveFiles);
 
-            if (existingArchiveFiles.Count == 0 || existingArchiveFiles.Count < maxArchiveFiles)
+            if (existingArchiveFiles.Count == 0)
                 yield break;
 
-            for (int i = 0; i < existingArchiveFiles.Count - maxArchiveFiles; i++)
+            if (maxArchiveFiles > 0 && existingArchiveFiles.Count <= maxArchiveFiles && maxArchiveDays <= 0)
+                yield break;
+
+            for (int i = 0; i < existingArchiveFiles.Count; i++)
             {
-                if (_lastArchiveFileCount > 0)
-                    --_lastArchiveFileCount;
-                yield return existingArchiveFiles[i];
+                if (ShouldDeleteFile(existingArchiveFiles[i], existingArchiveFiles.Count - i, maxArchiveFiles, maxArchiveDays))
+                {
+                    if (_lastArchiveFileCount > 0)
+                        --_lastArchiveFileCount;
+                    yield return existingArchiveFiles[i];
+                }
+                else
+                {
+                    _oldestArchiveFileDate = existingArchiveFiles[i].Date.Date.ToUniversalTime();
+                    break;
+                }                
             }
+        }
+
+        private bool ShouldDeleteFile(DateAndSequenceArchive existingArchiveFile, int remainingFileCount, int maxArchiveFiles, int maxArchiveDays)
+        {
+            if (maxArchiveFiles > 0 && remainingFileCount > maxArchiveFiles)
+                return true;
+
+            if (maxArchiveDays > 0)
+            {
+                var fileDateUtc = existingArchiveFile.Date.Date.ToUniversalTime();
+                if (fileDateUtc > MaxAgeArchiveFileDate && (NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime() - fileDateUtc).TotalDays > maxArchiveDays)
+                    return true;
+            }
+                
+            return false;
         }
 
         internal sealed class FileNameTemplate
