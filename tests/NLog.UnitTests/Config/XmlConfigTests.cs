@@ -154,7 +154,7 @@ namespace NLog.UnitTests.Config
             {
                 // Arrange
                 InternalLogger.LogLevel = LogLevel.Error;
-                var xml = @"<nlog  internalLogLevel='none' >
+                var xml = @"<nlog  internalLogLevel='bogus' >
                     </nlog>";
 
                 // Act

@@ -145,6 +145,10 @@ namespace NLog.UnitTests
             Assert.Same(LogLevel.FromString("WARN"), LogLevel.Warn);
             Assert.Same(LogLevel.FromString("ERROR"), LogLevel.Error);
             Assert.Same(LogLevel.FromString("FATAL"), LogLevel.Fatal);
+
+            Assert.Same(LogLevel.FromString("NoNe"), LogLevel.Off);
+            Assert.Same(LogLevel.FromString("iNformaTION"), LogLevel.Info);
+            Assert.Same(LogLevel.FromString("WarNING"), LogLevel.Warn);
         }
 
         [Fact]
@@ -152,6 +156,7 @@ namespace NLog.UnitTests
         public void FromStringFailingTest()
         {
             Assert.Throws<ArgumentException>(() => LogLevel.FromString("zzz"));
+            Assert.Throws<ArgumentException>(() => LogLevel.FromString(string.Empty));
             Assert.Throws<ArgumentNullException>(() => LogLevel.FromString(null));
         }
 
