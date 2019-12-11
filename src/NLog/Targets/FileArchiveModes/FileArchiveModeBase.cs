@@ -34,6 +34,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using NLog.Common;
 
 namespace NLog.Targets.FileArchiveModes
 {
@@ -111,7 +112,7 @@ namespace NLog.Targets.FileArchiveModes
             }
 
             if (existingArchiveFiles.Count > 1)
-                existingArchiveFiles.Sort(FileSortOrderComparison);
+                existingArchiveFiles.Sort((x,y) => FileSortOrderComparison(x, y));
 
             UpdateMaxArchiveState(existingArchiveFiles);
             return existingArchiveFiles;
@@ -188,8 +189,16 @@ namespace NLog.Targets.FileArchiveModes
             if (maxArchiveDays > 0)
             {
                 var fileDateUtc = existingArchiveFile.Date.Date.ToUniversalTime();
-                if (fileDateUtc > MaxAgeArchiveFileDate && (NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime() - fileDateUtc).TotalDays > maxArchiveDays)
-                    return true;
+                if (fileDateUtc > MaxAgeArchiveFileDate)
+                {
+                    var currentDateUtc = NLog.Time.TimeSource.Current.Time.Date.ToUniversalTime();
+                    var fileAgeDays = (currentDateUtc - fileDateUtc).TotalDays;
+                    if (fileAgeDays > maxArchiveDays)
+                    {
+                        InternalLogger.Debug("FileTarget: Detected old file in archive. FileName={0}, FileDate={1}, FileDateUtc={2}, CurrentDateUtc={3}, Age={4} days", existingArchiveFile.FileName, existingArchiveFile.Date.ToString("u"), fileDateUtc.ToString("u"), currentDateUtc.ToString("u"), Math.Round(fileAgeDays, 1));
+                        return true;
+                    }
+                }
             }
                 
             return false;
