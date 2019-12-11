@@ -1075,7 +1075,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact(Skip = "this is not supported, because we cannot create multiple archive files with  ArchiveNumberingMode.Date (for one day)")]
+        [Fact]
         public void ArchiveAboveSizeWithArchiveNumberingModeDate_maxfiles_o()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "ArchiveEveryCombinedWithArchiveAboveSize_" + Guid.NewGuid().ToString());
