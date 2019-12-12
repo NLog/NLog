@@ -195,7 +195,7 @@ namespace NLog.Targets.FileArchiveModes
                     var fileAgeDays = (currentDateUtc - fileDateUtc).TotalDays;
                     if (fileAgeDays > maxArchiveDays)
                     {
-                        InternalLogger.Debug("FileTarget: Detected old file in archive. FileName={0}, FileDate={1}, FileDateUtc={2}, CurrentDateUtc={3}, Age={4} days", existingArchiveFile.FileName, existingArchiveFile.Date.ToString("u"), fileDateUtc.ToString("u"), currentDateUtc.ToString("u"), Math.Round(fileAgeDays, 1));
+                        InternalLogger.Debug("FileTarget: Detected old file in archive. FileName={0}, FileDate={1:u}, FileDateUtc={2:u}, CurrentDateUtc={3:u}, Age={4} days", existingArchiveFile.FileName, existingArchiveFile.Date, fileDateUtc, currentDateUtc, Math.Round(fileAgeDays, 1));
                         return true;
                     }
                 }
