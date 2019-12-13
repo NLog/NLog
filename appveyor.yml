@@ -15,7 +15,6 @@ skip_tags: true
 skip_branch_with_pr: true
 build_script:
   - ps: .\build.ps1
-  - ps: .\run-sonar.ps1
 
 test_script:
   - msbuild /t:rebuild .\tools\CheckSourceCode\src\ /p:Configuration=Release /verbosity:minimal
