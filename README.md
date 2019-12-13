@@ -24,6 +24,8 @@
 
 <!--[NLog is Looking for Developers!](https://nlog-project.org/2015/08/05/NLog-is-looking-for-developers.html)-->
 
+[![](https://img.shields.io/badge/Docs-GitHub%20wiki-brightgreen)](https://github.com/NLog/NLog/wiki)
+[![](https://img.shields.io/badge/Troubleshoot-Guide-orange)](https://github.com/nlog/nlog/wiki/Logging-troubleshooting)
 
 
 NLog is a free logging platform for .NET with rich log routing and management
@@ -52,7 +54,7 @@ Having troubles? Check the [troubleshooting guide](https://github.com/NLog/NLog/
 
 -----
 
- ℹ️ Looking for NLog 5? Just install NLog 4.5!
+ ℹ️ Looking for NLog 5? Just install NLog 4.5+! 
 
 NLog 4.5 implements the platforms added in NLog 5 (.NET Standard 1, .NET Standard 2, UWP, etc) and added structural logging, *without breaking changes*!
 
