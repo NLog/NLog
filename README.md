@@ -7,12 +7,13 @@
 <!--[![StackOverflow](https://img.shields.io/stackexchange/stackoverflow/t/nlog.svg?maxAge=2592000&label=stackoverflow)](https://stackoverflow.com/questions/tagged/nlog) -->
 
 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=ncloc&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=bugs&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=vulnerabilities&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=code_smells&branch=dev)](https://sonarcloud.io/project/issues?id=nlog&resolved=false&types=CODE_SMELL&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=duplicated_lines_density&branch=dev)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog&branch=dev) 
-[![](https://sonarcloud.io/api/project_badges/measure?project=nlog&metric=sqale_debt_ratio&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=ncloc&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog2&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=bugs&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog2&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=vulnerabilities&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog2&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=code_smells&branch=dev)](https://sonarcloud.io/project/issues?id=nlog2&resolved=false&types=CODE_SMELL&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=duplicated_lines_density&branch=dev)](https://sonarcloud.io/component_measures/domain/Duplications?id=nlog2&branch=dev) 
+[![](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=sqale_debt_ratio&branch=dev)](https://sonarcloud.io/dashboard/?id=nlog2&branch=dev) 
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nlog2&metric=coverage&branch=dev)](https://sonarcloud.io/dashboard?id=nlog2&branch=dev)
 
 
 <!--
