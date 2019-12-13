@@ -247,8 +247,8 @@ namespace NLog.Targets
         /// <param name="continuation">The continuation.</param>
         protected override void DoInvoke(object[] parameters, AsyncContinuation continuation)
         {
-            var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
-            DoInvoke(parameters, request, continuation);
+            var webRequest = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            DoInvoke(parameters, webRequest, continuation);
         }
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace NLog.Targets
         /// <param name="logEvent">The logging event.</param>
         protected override void DoInvoke(object[] parameters, AsyncLogEventInfo logEvent)
         {
-            var request = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
+            var webRequest = (HttpWebRequest)WebRequest.Create(BuildWebServiceUrl(parameters));
 
             if (Headers != null && Headers.Count > 0)
             {
@@ -268,17 +268,17 @@ namespace NLog.Targets
                     if (headerValue == null)
                         continue;
 
-                    request.Headers[Headers[i].Name] = headerValue;
+                    webRequest.Headers[Headers[i].Name] = headerValue;
                 }
             }
 
-            DoInvoke(parameters, request, logEvent.Continuation);
+            DoInvoke(parameters, webRequest, logEvent.Continuation);
         }
 
-        void DoInvoke(object[] parameters, HttpWebRequest request, AsyncContinuation continuation)
+        void DoInvoke(object[] parameters, HttpWebRequest webRequest, AsyncContinuation continuation)
         {
-            Func<AsyncCallback, IAsyncResult> begin = (r) => request.BeginGetRequestStream(r, null);
-            Func<IAsyncResult, Stream> getStream = request.EndGetRequestStream;
+            Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest = (request, result) => request.BeginGetRequestStream(result, null);
+            Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream = (request, result) => request.EndGetRequestStream(result);
 
 #if !SILVERLIGHT
             switch (ProxyType)
@@ -293,7 +293,7 @@ namespace NLog.Targets
                         proxy.Credentials = CredentialCache.DefaultCredentials;
                         _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(ProxyType, proxy);
                     }
-                    request.Proxy = _activeProxy.Value;
+                    webRequest.Proxy = _activeProxy.Value;
                     break;
                 case WebServiceProxyType.ProxyAddress:
                     if (!string.IsNullOrEmpty(ProxyAddress))
@@ -303,12 +303,12 @@ namespace NLog.Targets
                             IWebProxy proxy = new WebProxy(ProxyAddress, true);
                             _activeProxy = new KeyValuePair<WebServiceProxyType, IWebProxy>(ProxyType, proxy);
                         }
-                        request.Proxy = _activeProxy.Value;
+                        webRequest.Proxy = _activeProxy.Value;
                     }
                     break;
 #endif
                 default:
-                    request.Proxy = null;
+                    webRequest.Proxy = null;
                     break;
             }
 #endif
@@ -316,35 +316,35 @@ namespace NLog.Targets
 #if !SILVERLIGHT && !NETSTANDARD1_0
             if (PreAuthenticate || ProxyType == WebServiceProxyType.AutoProxy)
             {
-                request.PreAuthenticate = true;
+                webRequest.PreAuthenticate = true;
             }
 #endif
 
-            DoInvoke(parameters, continuation, request, begin, getStream);
+            DoInvoke(parameters, continuation, webRequest, beginGetRequest, getRequestStream);
         }
 
-        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest request, Func<AsyncCallback, IAsyncResult> beginFunc,
-            Func<IAsyncResult, Stream> getStreamFunc)
+        internal void DoInvoke(object[] parameters, AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest,
+            Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream)
         {
             Stream postPayload = null;
 
             if (Protocol == WebServiceProtocol.HttpGet)
             {
-                PrepareGetRequest(request);
+                PrepareGetRequest(webRequest);
             }
             else
             {
                 if (_activeProtocol.Value == null)
                     _activeProtocol = new KeyValuePair<WebServiceProtocol, HttpPostFormatterBase>(Protocol, _postFormatterFactories[Protocol](this));
-                postPayload = _activeProtocol.Value.PrepareRequest(request, parameters);
+                postPayload = _activeProtocol.Value.PrepareRequest(webRequest, parameters);
             }
 
-            var sendContinuation = CreateSendContinuation(continuation, request);
+            var sendContinuation = CreateSendContinuation(continuation, webRequest);
 
-            PostPayload(continuation, beginFunc, getStreamFunc, postPayload, sendContinuation);
+            PostPayload(continuation, webRequest, beginGetRequest, getRequestStream, postPayload, sendContinuation);
         }
 
-        private AsyncContinuation CreateSendContinuation(AsyncContinuation continuation, HttpWebRequest request)
+        private AsyncContinuation CreateSendContinuation(AsyncContinuation continuation, HttpWebRequest webRequest)
         {
             AsyncContinuation sendContinuation =
                 ex =>
@@ -357,12 +357,12 @@ namespace NLog.Targets
 
                     try
                     {
-                        request.BeginGetResponse(
+                        webRequest.BeginGetResponse(
                             r =>
                             {
                                 try
                                 {
-                                    using (var response = request.EndGetResponse(r))
+                                    using (var response = webRequest.EndGetResponse(r))
                                     {
                                         // Request successfully initialized
                                     }
@@ -396,7 +396,7 @@ namespace NLog.Targets
             return sendContinuation;
         }
 
-        private void PostPayload(AsyncContinuation continuation, Func<AsyncCallback, IAsyncResult> beginFunc, Func<IAsyncResult, Stream> getStreamFunc, Stream postPayload, AsyncContinuation sendContinuation)
+        private void PostPayload(AsyncContinuation continuation, HttpWebRequest webRequest, Func<HttpWebRequest, AsyncCallback, IAsyncResult> beginGetRequest, Func<HttpWebRequest, IAsyncResult, Stream> getRequestStream, Stream postPayload, AsyncContinuation sendContinuation)
         {
             if (postPayload != null && postPayload.Length > 0)
             {
@@ -405,12 +405,12 @@ namespace NLog.Targets
                 {
                     _pendingManualFlushList.BeginOperation();
 
-                    beginFunc(
+                    beginGetRequest(webRequest,
                         result =>
                         {
                             try
                             {
-                                using (Stream stream = getStreamFunc(result))
+                                using (Stream stream = getRequestStream(webRequest, result))
                                 {
                                     WriteStreamAndFixPreamble(postPayload, stream, IncludeBOM, Encoding);
 
@@ -528,9 +528,9 @@ namespace NLog.Targets
             }
         }
 
-        private void PrepareGetRequest(HttpWebRequest request)
+        private void PrepareGetRequest(HttpWebRequest webRequest)
         {
-            request.Method = "GET";
+            webRequest.Method = "GET";
         }
 
         /// <summary>
