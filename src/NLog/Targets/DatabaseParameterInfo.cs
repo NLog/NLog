@@ -184,7 +184,8 @@ namespace NLog.Targets
                     }
                     else
                     {
-                        if (ConversionHelpers.TryParse(dbTypeNames[dbTypeNames.Length - 1], out DbType dbType))
+                        dbTypeName = dbTypeNames[dbTypeNames.Length - 1];
+                        if (!string.IsNullOrEmpty(dbTypeName) && ConversionHelpers.TryParseEnum(dbTypeName, out DbType dbType))
                         {
                             _dbTypeValue = dbType;
                             ParameterType = TryLookupParameterType(dbType);
@@ -305,7 +306,7 @@ namespace NLog.Targets
                 bool IEnumTypeConverter.TryParseEnum(string value, out Enum enumValue)
                 {
                     TEnum enumValueT;
-                    if (ConversionHelpers.TryParse(value, out enumValueT))
+                    if (!string.IsNullOrEmpty(value) && ConversionHelpers.TryParseEnum(value, out enumValueT))
                     {
                         enumValue = enumValueT as Enum;
                         return enumValue != null;
