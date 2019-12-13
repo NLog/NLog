@@ -42,7 +42,7 @@ namespace NLog.Targets.FileArchiveModes
     /// Archives the log-files using a sequence style numbering. The most recent archive has the highest number.
     /// 
     /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
-    /// When the number of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
+    /// When the age of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
     internal sealed class FileArchiveModeSequence : FileArchiveModeBase
     {

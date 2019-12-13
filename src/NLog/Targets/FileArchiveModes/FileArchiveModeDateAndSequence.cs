@@ -45,7 +45,7 @@ namespace NLog.Targets.FileArchiveModes
     /// combination with the date).
     /// 
     /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
-    /// When the number of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
+    /// When the age of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
     internal sealed class FileArchiveModeDateAndSequence : FileArchiveModeBase
     {
