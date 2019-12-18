@@ -1,4 +1,4 @@
-// 
+﻿// 
 // Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
@@ -34,67 +34,22 @@
 namespace NLog.LayoutRenderers
 {
     using System;
-    using System.Text;
     using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
     /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
-    public class FuncLayoutRenderer : LayoutRenderer, IStringValueRenderer
+    [ThreadSafe]
+    class FuncThreadSafeLayoutRenderer : FuncLayoutRenderer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FuncLayoutRenderer"/> class.
+        /// Initializes a new instance of the <see cref="FuncThreadSafeLayoutRenderer"/> class.
         /// </summary>
         /// <param name="layoutRendererName">Name without ${}.</param>
         /// <param name="renderMethod">Method that renders the layout.</param>
-        public FuncLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
+        public FuncThreadSafeLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
+            : base(layoutRendererName, renderMethod)
         {
-            RenderMethod = renderMethod ?? throw new ArgumentNullException(nameof(renderMethod));
-            LayoutRendererName = layoutRendererName;
-        }
-
-        /// <summary>
-        /// Name used in config without ${}. E.g. "test" could be used as "${test}".
-        /// </summary>
-        public string LayoutRendererName { get; set; }
-
-        /// <summary>
-        /// Method that renders the layout. 
-        /// </summary>
-        public Func<LogEventInfo, LoggingConfiguration, object> RenderMethod { get; }
-
-        /// <summary>
-        /// Format string for conversion from object to string.
-        /// </summary>
-        /// <docgen category='Rendering Options' order='50' />
-        public string Format { get; set; }
-
-        /// <inheritdoc />
-        protected override void Append(StringBuilder builder, LogEventInfo logEvent)
-        {
-            var value = GetValue(logEvent);
-            var formatProvider = GetFormatProvider(logEvent, null);
-            builder.AppendFormattedValue(value, Format, formatProvider);
-        }
-
-        /// <inheritdoc/>
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => GetStringValue(logEvent);
-
-        private string GetStringValue(LogEventInfo logEvent)
-        {
-            if (Format != MessageTemplates.ValueFormatter.FormatAsJson)
-            {
-                object value = GetValue(logEvent);
-                string stringValue = FormatHelper.TryFormatToString(value, Format, GetFormatProvider(logEvent, null));
-                return stringValue;
-            }
-            return null;
-        }
-
-        private object GetValue(LogEventInfo logEvent)
-        {
-            return RenderMethod.Invoke(logEvent, LoggingConfiguration);
         }
     }
 }

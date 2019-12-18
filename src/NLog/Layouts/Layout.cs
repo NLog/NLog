@@ -115,6 +115,28 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Implicits converts the specific lambda method into a <see cref="SimpleLayout"/>.
+        /// </summary>
+        /// <param name="layoutMethod">Method that renders the layout.</param>
+        /// <param name="threadSafe">Tell if method is safe for concurrent threading.</param>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        public static Layout FromLayoutMethod(Func<LogEventInfo, object> layoutMethod, bool threadSafe = false)
+        {
+            if (layoutMethod == null)
+                throw new ArgumentNullException(nameof(layoutMethod));
+
+#if NETSTANDARD1_0
+            var name = $"{layoutMethod.Target?.ToString()}";
+#else
+            var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
+#endif
+            var layoutRenderer = threadSafe ?
+                new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, (l, c) => layoutMethod(l)) :
+                new LayoutRenderers.FuncLayoutRenderer(name, (l, c) => layoutMethod(l));
+            return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
+        }
+
+        /// <summary>
         /// Precalculates the layout for the specified log event and stores the result
         /// in per-log event cache.
         /// 
