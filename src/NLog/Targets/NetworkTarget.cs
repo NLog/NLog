@@ -415,37 +415,23 @@ namespace NLog.Targets
         {
             if (OptimizeBufferReuse)
             {
-                if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
-                {
-                    InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1}", Name, text);
-                    return Encoding.GetBytes(text.ToString());
-                }
-                else
-                {
-                    using (var localBuilder = ReusableLayoutBuilder.Allocate())
+                using (var localBuffer = _reusableEncodingBuffer.Allocate())
+                { 
+                    if (!NewLine && logEvent.TryGetCachedLayoutValue(Layout, out var text))
                     {
-                        Layout.RenderAppendBuilder(logEvent, localBuilder.Result, false);
-                        if (NewLine)
+                        return GetBytesFromString(localBuffer.Result, text?.ToString() ?? string.Empty);
+                    }
+                    else
+                    {
+                        using (var localBuilder = ReusableLayoutBuilder.Allocate())
                         {
-                            localBuilder.Result.Append(LineEnding.NewLineCharacters);
-                        }
-
-                        InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1} chars", Name, localBuilder.Result.Length);
-
-                        using (var localBuffer = _reusableEncodingBuffer.Allocate())
-                        {
-#if !SILVERLIGHT
-                            if (localBuilder.Result.Length <= localBuffer.Result.Length)
+                            Layout.RenderAppendBuilder(logEvent, localBuilder.Result, false);
+                            if (NewLine)
                             {
-                                localBuilder.Result.CopyTo(0, localBuffer.Result, 0, localBuilder.Result.Length);
-                                return Encoding.GetBytes(localBuffer.Result, 0, localBuilder.Result.Length);
+                                localBuilder.Result.Append(LineEnding.NewLineCharacters);
                             }
-                            else
-#endif
-                            {
-                                var rendered = localBuilder.Result.ToString();
-                                return Encoding.GetBytes(rendered);
-                            }
+
+                            return GetBytesFromStringBuilder(localBuffer.Result, localBuilder.Result);
                         }
                     }
                 }
@@ -460,6 +446,32 @@ namespace NLog.Targets
                 }
                 return Encoding.GetBytes(rendered);
             }
+        }
+
+        private byte[] GetBytesFromStringBuilder(char[] charBuffer, StringBuilder stringBuilder)
+        {
+            InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1} chars", Name, stringBuilder.Length);
+#if !SILVERLIGHT
+            if (stringBuilder.Length <= charBuffer.Length)
+            {
+                stringBuilder.CopyTo(0, charBuffer, 0, stringBuilder.Length);
+                return Encoding.GetBytes(charBuffer, 0, stringBuilder.Length);
+            }
+#endif
+            return Encoding.GetBytes(stringBuilder.ToString());
+        }
+
+        private byte[] GetBytesFromString(char[] charBuffer, string layoutMessage)
+        {
+            InternalLogger.Trace("NetworkTarget(Name={0}): Sending {1}", Name, layoutMessage);
+#if !SILVERLIGHT
+            if (layoutMessage.Length <= charBuffer.Length)
+            {
+                layoutMessage.CopyTo(0, charBuffer, 0, layoutMessage.Length);
+                return Encoding.GetBytes(charBuffer, 0, layoutMessage.Length);
+            }
+#endif
+            return Encoding.GetBytes(layoutMessage);
         }
 
         private LinkedListNode<NetworkSender> GetCachedNetworkSender(string address)
