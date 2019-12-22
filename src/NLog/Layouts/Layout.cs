@@ -90,14 +90,15 @@ namespace NLog.Layouts
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
         public static implicit operator Layout([Localizable(false)] string text)
         {
-            return FromString(text);
+            return CreateFromString(text);
         }
 
         /// <summary>
         /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutText">The layout string.</param>
-        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>'
+        [Obsolete("Use Layout.CreateFromString. Obsolete from NLog 4.7")]
         public static Layout FromString(string layoutText)
         {
             return FromString(layoutText, ConfigurationItemFactory.Default);
@@ -109,9 +110,20 @@ namespace NLog.Layouts
         /// <param name="layoutText">The layout string.</param>
         /// <param name="configurationItemFactory">The NLog factories to use when resolving layout renderers.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        [Obsolete("Use Layout.CreateFromString. Obsolete from NLog 4.7")]
         public static Layout FromString(string layoutText, ConfigurationItemFactory configurationItemFactory)
         {
             return new SimpleLayout(layoutText, configurationItemFactory);
+        }
+
+        /// <summary>
+        /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
+        /// </summary>
+        /// <param name="layoutText">The layout string.</param>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        public static Layout CreateFromString(string layoutText)
+        {
+            return new SimpleLayout(layoutText, ConfigurationItemFactory.Default);
         }
 
         /// <summary>
@@ -120,7 +132,7 @@ namespace NLog.Layouts
         /// <param name="layoutMethod">Method that renders the layout.</param>
         /// <param name="threadSafe">Tell if method is safe for concurrent threading.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout FromLayoutMethod(Func<LogEventInfo, object> layoutMethod, bool threadSafe = false)
+        public static Layout CreateFromMethod(Func<LogEventInfo, object> layoutMethod, bool threadSafe = false)
         {
             if (layoutMethod == null)
                 throw new ArgumentNullException(nameof(layoutMethod));
