@@ -40,17 +40,6 @@ namespace NLog.UnitTests.Config
 {
     public class LogFactorySetupTests
     {
-        [Fact]
-        public void SetupAutoShutdownWithAppDomainTest()
-        {
-            // Arrange
-            var logFactory = new LogFactory();
-            // Act
-            logFactory.Setup(b => b.AutoShutdownWithAppDomain(false));
-            // Assert
-            Assert.False(logFactory.AutoShutdown);
-        }
-
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -215,7 +204,7 @@ namespace NLog.UnitTests.Config
                 var logFactory = new LogFactory();
 
                 // Act
-                logFactory.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42"));
+                logFactory.Setup(b => b.SetupExtensions(ext => ext.RegisterLayoutRenderer("mylayout", (l) => "42")));
                 logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
                     <targets>
                         <target name='debug' type='Debug' layout='${mylayout}' />

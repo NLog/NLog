@@ -43,16 +43,6 @@ namespace NLog
     public static class SetupBuilderExtensions
     {
         /// <summary>
-        /// Forces NLog to unhook from AppDomain.Unload and AppDomain.ProcessExit
-        /// </summary>
-        /// <remarks>NLog will by default perform flush and shutdown when AppDomain closes. But when living under IHostBuilder it might not be wanted.</remarks>
-        public static ISetupBuilder AutoShutdownWithAppDomain(this ISetupBuilder configBuilder, bool enable)
-        {
-            configBuilder.LogFactory.AutoShutdown = enable;
-            return configBuilder;
-        }
-
-        /// <summary>
         /// Configures loading of NLog extensions for Targets and LayoutRenderers
         /// </summary>
         public static ISetupBuilder SetupExtensions(this ISetupBuilder configBuilder, Action<ISetupExtensionsBuilder> extensionsBuilder)
