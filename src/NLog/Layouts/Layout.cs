@@ -130,9 +130,9 @@ namespace NLog.Layouts
         /// Implicits converts the specific lambda method into a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutMethod">Method that renders the layout.</param>
-        /// <param name="threadSafe">Tell if method is safe for concurrent threading.</param>
+        /// <param name="options">Tell if method is safe for concurrent threading.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout CreateFromMethod(Func<LogEventInfo, object> layoutMethod, bool threadSafe = false)
+        public static Layout CreateFromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
         {
             if (layoutMethod == null)
                 throw new ArgumentNullException(nameof(layoutMethod));
@@ -142,7 +142,7 @@ namespace NLog.Layouts
 #else
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
 #endif
-            var layoutRenderer = threadSafe ?
+            var layoutRenderer = ((options & LayoutRenderOptions.ThreadSafe) != 0) ?
                 new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, (l, c) => layoutMethod(l)) :
                 new LayoutRenderers.FuncLayoutRenderer(name, (l, c) => layoutMethod(l));
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
