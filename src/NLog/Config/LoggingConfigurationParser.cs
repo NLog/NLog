@@ -502,6 +502,7 @@ namespace NLog.Config
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
             TimeSource.Current = newTimeSource;
         }
+
         [ContractAnnotation("value:notnull => true")]
         private static bool AssertNotNullValue(string value, string propertyName, string elementName, string sectionName)
         {
@@ -510,6 +511,7 @@ namespace NLog.Config
 
             return AssertNonEmptyValue(string.Empty, propertyName, elementName, sectionName);
         }
+
         [ContractAnnotation("value:null => false")]
         private static bool AssertNonEmptyValue(string value, string propertyName, string elementName, string sectionName)
         {
@@ -1338,10 +1340,9 @@ namespace NLog.Config
         {
             return string.IsNullOrEmpty(target.Name) ? target.GetType().Name : target.Name;
         }
-
     }
 
-    static class ILoggingConfigurationSectionExtensions
+    internal static class ILoggingConfigurationSectionExtensions
     {
         public static bool MatchesName(this ILoggingConfigurationElement section, string expectedName)
         {

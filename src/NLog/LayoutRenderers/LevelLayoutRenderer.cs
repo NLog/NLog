@@ -69,6 +69,14 @@ namespace NLog.LayoutRenderers
                 case LevelFormat.Ordinal:
                     builder.AppendInvariant(level.Ordinal);
                     break;
+                case LevelFormat.FullName:
+                    if (level == LogLevel.Info)
+                        builder.Append("Information");
+                    else if (level == LogLevel.Warn)
+                        builder.Append("Warning");
+                    else
+                        builder.Append(level.ToString());
+                    break;
             }
         }
 

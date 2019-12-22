@@ -139,21 +139,21 @@ Morbi Nulla justo Aenean orci Vestibulum ullamcorper tincidunt mollis et hendrer
 
             //async call with mockup stream
             WebRequest webRequest = WebRequest.Create("http://www.test.com");
-            var request = (HttpWebRequest)webRequest;
+            var httpWebRequest = (HttpWebRequest)webRequest;
             var streamMock = new StreamMock();
 
             //event for async testing
             var counterEvent = new ManualResetEvent(false);
 
             var parameterValues = new object[] { "", "336cec87129942eeabab3d8babceead7", "Debg", "2014-06-26 23:15:14.6348", "TestClient.Program", "Debug" };
-            target.DoInvoke(parameterValues, c => counterEvent.Set(), request,
-                callback =>
+            target.DoInvoke(parameterValues, c => counterEvent.Set(), httpWebRequest,
+                (request,callback) =>
                 {
                     var t = new Task(() => { });
                     callback(t);
                     return t;
                 },
-                result => streamMock);
+                (request,result) => streamMock);
 
             counterEvent.WaitOne(10000);
 

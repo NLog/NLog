@@ -134,15 +134,15 @@ namespace NLog.Internal
                     }
                     else
                     {
+                        List<object> elements = new List<object>(list.Count);
                         lock (list.SyncRoot)
                         {
-                            List<object> elements = new List<object>(list.Count);
                             for (int i = 0; i < list.Count; i++)
                             {
                                 elements.Add(list[i]);
                             }
-                            ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
                         }
+                        ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
                     }
                 }
             }

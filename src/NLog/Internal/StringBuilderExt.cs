@@ -103,6 +103,12 @@ namespace NLog.Internal
                 return;
             }
 
+            int digitCount = CalculateDigitCount(value);
+            ApppendValueWithDigitCount(builder, value, digitCount);
+        }
+
+        private static int CalculateDigitCount(uint value)
+        {
             // Calculate length of integer when written out
             int length = 0;
             uint length_calc = value;
@@ -113,14 +119,18 @@ namespace NLog.Internal
                 length++;
             }
             while (length_calc > 0);
+            return length;
+        }
 
+        private static void ApppendValueWithDigitCount(StringBuilder builder, uint value, int digitCount)
+        {
             // Pad out space for writing.
-            builder.Append('0', length);
+            builder.Append('0', digitCount);
 
             int strpos = builder.Length;
 
             // We're writing backwards, one character at a time.
-            while (length > 0)
+            while (digitCount > 0)
             {
                 strpos--;
 
@@ -128,10 +138,53 @@ namespace NLog.Internal
                 builder[strpos] = charToInt[value % 10];
 
                 value /= 10;
-                length--;
+                digitCount--;
             }
         }
+
         private static readonly char[] charToInt = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+        /// <summary>
+        /// Convert DateTime into UTC and format to yyyy-MM-ddTHH:mm:ss.fffffffZ - ISO 6801 date (Round-Trip-Time)
+        /// </summary>
+        public static void AppendXmlDateTimeRoundTrip(this StringBuilder builder, DateTime dateTime)
+        {
+            if (dateTime.Kind == DateTimeKind.Unspecified)
+                dateTime = new DateTime(dateTime.Ticks, DateTimeKind.Utc);
+            else
+                dateTime = dateTime.ToUniversalTime();
+            builder.Append4DigitsZeroPadded(dateTime.Year);
+            builder.Append('-');
+            builder.Append2DigitsZeroPadded(dateTime.Month);
+            builder.Append('-');
+            builder.Append2DigitsZeroPadded(dateTime.Day);
+            builder.Append('T');
+            builder.Append2DigitsZeroPadded(dateTime.Hour);
+            builder.Append(':');
+            builder.Append2DigitsZeroPadded(dateTime.Minute);
+            builder.Append(':');
+            builder.Append2DigitsZeroPadded(dateTime.Second);
+            int fraction = (int)(dateTime.Ticks % 10000000);
+            if (fraction > 0)
+            {
+                builder.Append('.');
+
+                // Remove trailing zeros
+                int max_digit_count = 7;
+                while (fraction % 10 == 0)
+                {
+                    --max_digit_count;
+                    fraction /= 10;
+                }
+
+                // Append the remaining fraction
+                int digitCount = CalculateDigitCount((uint)fraction);
+                if (max_digit_count > digitCount)
+                    builder.Append('0', max_digit_count - digitCount);
+                ApppendValueWithDigitCount(builder, (uint)fraction, digitCount);
+            }
+            builder.Append('Z');
+        }
 
         /// <summary>
         /// Clears the provider StringBuilder

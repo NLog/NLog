@@ -41,7 +41,6 @@ namespace NLog.Targets
     using Internal.Fakeables;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
     using NLog.Layouts;
 
     /// <summary>
@@ -286,37 +285,78 @@ namespace NLog.Targets
                 InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry failed to parse Category={1}", Name, renderCategory);
             }
 
+            var eventLogSource = RenderLogEvent(Source, logEvent);
+            if (string.IsNullOrEmpty(eventLogSource))
+            {
+                InternalLogger.Warn("EventLogTarget(Name={0}): WriteEntry discarded because Source rendered as empty string", Name);
+                return;
+            }
+
             // limitation of EventLog API
             if (message.Length > MaxMessageLength)
             {
                 if (OnOverflow == EventLogTargetOverflowAction.Truncate)
                 {
                     message = message.Substring(0, MaxMessageLength);
-                    WriteEntry(logEvent, message, entryType, eventId, category);
+                    WriteEntry(eventLogSource, message, entryType, eventId, category);
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Split)
                 {
                     for (int offset = 0; offset < message.Length; offset += MaxMessageLength)
                     {
                         string chunk = message.Substring(offset, Math.Min(MaxMessageLength, (message.Length - offset)));
-                        WriteEntry(logEvent, chunk, entryType, eventId, category);
+                        WriteEntry(eventLogSource, chunk, entryType, eventId, category);
                     }
                 }
                 else if (OnOverflow == EventLogTargetOverflowAction.Discard)
                 {
                     // message should not be written
+                    InternalLogger.Debug("EventLogTarget(Name={0}): WriteEntry discarded because too big message size: {1}", Name, message.Length);
                 }
             }
             else
             {
-                WriteEntry(logEvent, message, entryType, eventId, category);
+                WriteEntry(eventLogSource, message, entryType, eventId, category);
             }
         }
 
-        internal virtual void WriteEntry(LogEventInfo logEventInfo, string message, EventLogEntryType entryType, int eventId, short category)
+        private void WriteEntry(string eventLogSource, string message, EventLogEntryType entryType, int eventId, short category)
         {
-            IEventLogWrapper eventLog = GetEventLog(logEventInfo);
-            eventLog.WriteEntry(message, entryType, eventId, category);
+            var isCacheUpToDate = _eventLogWrapper.IsEventLogAssociated &&
+                                  _eventLogWrapper.Log == Log &&
+                                  _eventLogWrapper.MachineName == MachineName &&
+                                  _eventLogWrapper.Source == eventLogSource;
+
+            if (!isCacheUpToDate)
+            {
+                InternalLogger.Debug("EventLogTarget(Name={0}): Refresh EventLog Source {1} and Log {2}", Name, eventLogSource, Log);
+
+                _eventLogWrapper.AssociateNewEventLog(Log, MachineName, eventLogSource);
+                try
+                {
+                    if (!_eventLogWrapper.SourceExists(eventLogSource, MachineName))
+                    {
+                        InternalLogger.Warn("EventLogTarget(Name={0}): Source {1} does not exist", Name, eventLogSource);
+                    }
+                    else
+                    {
+                        var currentLogName = _eventLogWrapper.LogNameFromSourceName(eventLogSource, MachineName);
+                        if (!currentLogName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            InternalLogger.Debug("EventLogTarget(Name={0}): Source {1} should be mapped to Log {2}, but EventLog.LogNameFromSourceName returns {3}", Name, eventLogSource, Log, currentLogName);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (LogManager.ThrowExceptions)
+                        throw;
+
+                    InternalLogger.Warn(ex, "EventLogTarget(Name={0}): Exception thrown when checking if Source {1} and LogName {2} are valid", Name, eventLogSource, Log);
+                }
+            }
+
+            _eventLogWrapper.WriteEntry(message, entryType, eventId, category);
         }
 
         /// <summary>
@@ -365,28 +405,6 @@ namespace NLog.Targets
         }
 
         /// <summary>
-        /// Gets the <see cref="IEventLogWrapper"/> to write to.
-        /// </summary>
-        /// <param name="logEvent">Event if the source needs to be rendered.</param>
-        private IEventLogWrapper GetEventLog(LogEventInfo logEvent)
-        {
-            var renderedSource = RenderSource(logEvent);
-            var isCacheUpToDate = _eventLogWrapper.IsEventLogAssociated &&
-                                  _eventLogWrapper.Log == Log &&
-                                  _eventLogWrapper.MachineName == MachineName &&
-                                  _eventLogWrapper.Source == renderedSource;
-
-            if (!isCacheUpToDate)
-            {
-                _eventLogWrapper.AssociateNewEventLog(Log, MachineName, renderedSource);
-            }
-
-            return _eventLogWrapper;
-        }
-
-        internal string RenderSource(LogEventInfo logEvent) => RenderLogEvent(Source, logEvent);
-
-        /// <summary>
         /// (re-)create an event source, if it isn't there. Works only with fixed source names.
         /// </summary>
         /// <param name="fixedSource">The source name. If source is not fixed (see <see cref="SimpleLayout.IsFixedText"/>, then pass <c>null</c> or <see cref="string.Empty"/>.</param>
@@ -408,6 +426,8 @@ namespace NLog.Targets
                     string currentLogName = _eventLogWrapper.LogNameFromSourceName(fixedSource, MachineName);
                     if (!currentLogName.Equals(Log, StringComparison.CurrentCultureIgnoreCase))
                     {
+                        InternalLogger.Debug("EventLogTarget(Name={0}): Updating source {1} to use log {2}, instead of {3} (Computer restart is needed)", Name, fixedSource, Log, currentLogName);
+
                         // re-create the association between Log and Source
                         _eventLogWrapper.DeleteEventSource(fixedSource, MachineName);
 
@@ -420,6 +440,7 @@ namespace NLog.Targets
                 }
                 else
                 {
+                    InternalLogger.Debug("EventLogTarget(Name={0}): Creating source {1} to use log {2}", Name, fixedSource, Log);
                     var eventSourceCreationData = new EventSourceCreationData(fixedSource, Log)
                     {
                         MachineName = MachineName
@@ -427,14 +448,16 @@ namespace NLog.Targets
                     _eventLogWrapper.CreateEventSource(eventSourceCreationData);
                 }
 
-                if (MaxKilobytes.HasValue && GetEventLog(null).MaximumKilobytes < MaxKilobytes)
+                _eventLogWrapper.AssociateNewEventLog(Log, MachineName, fixedSource);
+
+                if (MaxKilobytes.HasValue && _eventLogWrapper.MaximumKilobytes < MaxKilobytes)
                 {
-                    GetEventLog(null).MaximumKilobytes = MaxKilobytes.Value;
+                    _eventLogWrapper.MaximumKilobytes = MaxKilobytes.Value;
                 }
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "EventLogTarget(Name={0}): Error when connecting to EventLog.", Name);
+                InternalLogger.Error(exception, "EventLogTarget(Name={0}): Error when connecting to EventLog. Source={1} in Log={2}", Name, fixedSource, Log);
                 if (alwaysThrowError || LogManager.ThrowExceptions)
                 {
                     throw;
@@ -452,17 +475,17 @@ namespace NLog.Targets
             /// <summary>
             /// A wrapper for the property <see cref="EventLog.Source"/>.
             /// </summary>
-            string Source { get; set; }
+            string Source { get; }
 
             /// <summary>
             /// A wrapper for the property <see cref="EventLog.Log"/>.
             /// </summary>
-            string Log { get; set; }
+            string Log { get; }
 
             /// <summary>
             /// A wrapper for the property <see cref="EventLog.MachineName"/>.
             /// </summary>
-            string MachineName { get; set; }
+            string MachineName { get; }
 
             /// <summary>
             /// A wrapper for the property <see cref="EventLog.MaximumKilobytes"/>.
@@ -521,25 +544,13 @@ namespace NLog.Targets
             #region Instance methods
 
             /// <inheritdoc />
-            public string Source
-            {
-                get => _windowsEventLog.Source;
-                set => _windowsEventLog.Source = value;
-            }
+            public string Source { get; private set; }
 
             /// <inheritdoc />
-            public string Log
-            {
-                get => _windowsEventLog.Log;
-                set => _windowsEventLog.Log = value;
-            }
+            public string Log { get; private set; }
 
             /// <inheritdoc />
-            public string MachineName
-            {
-                get => _windowsEventLog.MachineName;
-                set => _windowsEventLog.MachineName = value;
-            }
+            public string MachineName { get; private set; }
 
             /// <inheritdoc />
             public long MaximumKilobytes
@@ -563,8 +574,16 @@ namespace NLog.Targets
             /// <summary>
             /// Creates a new association with an instance of Windows <see cref="EventLog"/>.
             /// </summary>
-            public void AssociateNewEventLog(string logName, string machineName, string source) =>
+            public void AssociateNewEventLog(string logName, string machineName, string source)
+            {
+                var windowsEventLog = _windowsEventLog;
                 _windowsEventLog = new EventLog(logName, machineName, source);
+                Source = source;
+                Log = logName;
+                MachineName = machineName;
+                if (windowsEventLog != null)
+                    windowsEventLog.Dispose();
+            }
 
             /// <inheritdoc />
             public void DeleteEventSource(string source, string machineName) =>

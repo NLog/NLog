@@ -39,12 +39,16 @@ namespace NLog.Targets.FileArchiveModes
 {
     /// <summary>
     /// Archives the log-files using a rolling style numbering (the most recent is always #0 then
-    /// #1, ..., #N. When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives
+    /// #1, ..., #N. 
+    /// 
+    /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives
     /// are deleted.
     /// </summary>
-    sealed class FileArchiveModeRolling : IFileArchiveMode
+    internal sealed class FileArchiveModeRolling : IFileArchiveMode
     {
-        public bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
+        public bool IsArchiveCleanupEnabled => true; // Always to roll
+
+        public bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles, int maxArchiveDays)
         {
             return false;   // For historic reasons, then cleanup of rolling archives are not done on startup
         }
@@ -100,7 +104,7 @@ namespace NLog.Targets.FileArchiveModes
             return new DateAndSequenceArchive(newFileName, DateTime.MinValue, string.Empty, int.MinValue);
         }
 
-        public IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles)
+        public IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles, int maxArchiveDays)
         {
             if (existingArchiveFiles.Count <= 1)
                 yield break;
@@ -114,14 +118,14 @@ namespace NLog.Targets.FileArchiveModes
                     if (existingArchiveFiles[i].Sequence == int.MinValue || existingArchiveFiles[i].Sequence == int.MaxValue)
                         continue;
 
-                    if (i + 1 > maxArchiveFiles)
+                    if (i >= maxArchiveFiles)
                     {
                         yield return existingArchiveFiles[i];
                     }
                 }
             }
 
-            // After deleting the last, then roll the others forward
+            // After deleting the last/oldest, then roll the others forward
             if (existingArchiveFiles.Count > 1 && existingArchiveFiles[0].Sequence == int.MinValue)
             {
                 string newFileName = string.Empty;

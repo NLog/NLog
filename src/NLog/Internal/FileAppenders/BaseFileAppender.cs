@@ -304,7 +304,7 @@ namespace NLog.Internal.FileAppenders
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-                CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
+                CreationTimeUtc = fileInfo.LookupValidFileCreationTimeUtc().Value;
             }
             else
             {

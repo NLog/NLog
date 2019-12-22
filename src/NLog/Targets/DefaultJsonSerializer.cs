@@ -465,21 +465,35 @@ namespace NLog.Targets
                     bool includeQuotes = forceToString || objTypeCode == TypeCode.Object || !SkipQuotes(value, objTypeCode);
                     SerializeWithFormatProvider(formattable, includeQuotes, destination, options, hasFormat);
                 }
-                else if (IsNumericTypeCode(objTypeCode, false))
+                else
                 {
-                    SerializeSimpleNumericValue(value, objTypeCode, destination, options, forceToString);
+                    SerializeSimpleTypeCodeValueNoEscape(value, objTypeCode, destination, options, forceToString);
+                }
+            }
+        }
+
+        private void SerializeSimpleTypeCodeValueNoEscape(IConvertible value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, bool forceToString)
+        {
+            if (IsNumericTypeCode(objTypeCode, false))
+            {
+                SerializeSimpleNumericValue(value, objTypeCode, destination, options, forceToString);
+            }
+            else if (objTypeCode == TypeCode.DateTime)
+            {
+                destination.Append('"');
+                destination.AppendXmlDateTimeRoundTrip(value.ToDateTime(CultureInfo.InvariantCulture));
+                destination.Append('"');
+            }
+            else
+            {
+                string str = XmlHelper.XmlConvertToString(value, objTypeCode);
+                if (!forceToString && str != null && SkipQuotes(value, objTypeCode))
+                {
+                    destination.Append(str);
                 }
                 else
                 {
-                    string str = XmlHelper.XmlConvertToString(value, objTypeCode);
-                    if (!forceToString && str != null && SkipQuotes(value, objTypeCode))
-                    {
-                        destination.Append(str);
-                    }
-                    else
-                    {
-                        QuoteValue(destination, str);
-                    }
+                    QuoteValue(destination, str);
                 }
             }
         }
