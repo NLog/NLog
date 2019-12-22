@@ -76,7 +76,7 @@ namespace NLog.UnitTests
         void FuncLayoutRendererFluentMethod_ThreadSafe_Test()
         {
             // Arrange
-            var layout = Layout.FromLayoutMethod(l => "42", threadSafe: true);
+            var layout = Layout.CreateFromMethod(l => "42", threadSafe: true);
             // Act
             var result = layout.Render(LogEventInfo.CreateNullEvent());
             // Assert
@@ -88,7 +88,7 @@ namespace NLog.UnitTests
         void FuncLayoutRendererFluentMethod_ThreadUnsafe_Test()
         {
             // Arrange
-            var layout = Layout.FromLayoutMethod(l => "42", threadSafe: false);
+            var layout = Layout.CreateFromMethod(l => "42", threadSafe: false);
             // Act
             var result = layout.Render(LogEventInfo.CreateNullEvent());
             // Assert
@@ -100,7 +100,7 @@ namespace NLog.UnitTests
         void FuncLayoutRendererFluentMethod_NullThrows_Test()
         {
             // Arrange
-            Assert.Throws<ArgumentNullException>(() => Layout.FromLayoutMethod(null, threadSafe: true));
+            Assert.Throws<ArgumentNullException>(() => Layout.CreateFromMethod(null, threadSafe: true));
         }
 
         [Fact]
