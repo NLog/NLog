@@ -768,7 +768,7 @@ Dispose()
                         <ConnectionString>FooBar</ConnectionString>
                         <CommandText>INSERT INTO FooBar VALUES(@message,@level,@date)</CommandText>
                         <parameter name='@message' layout='${message}'/>
-                        <parameter name='@level' dbType='MockDbType.Int32' layout='${level:format=Ordinal}'/>
+                        <parameter name='@level' dbType=' MockDbType.int32  ' layout='${level:format=Ordinal}'/>
                         <parameter name='@date' dbType='MockDbType.DateTime' format='yyyy-MM-dd HH:mm:ss.fff' layout='${date:format=yyyy-MM-dd HH\:mm\:ss.fff}'/>
                     </target>
                 </targets>

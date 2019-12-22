@@ -236,8 +236,8 @@ namespace NLog.UnitTests.Targets
         [InlineData(5, EventLogEntryType.Error, "AtErrorLevel_WhenNLogLevelIsFatal", null)]
         [InlineData(3, EventLogEntryType.SuccessAudit, "AtSuccessAuditLevel_WhenEntryTypeLayoutSpecifiedAsSuccessAudit", "SuccessAudit")]
         [InlineData(3, EventLogEntryType.SuccessAudit, "AtSuccessAuditLevel_WhenEntryTypeLayoutSpecifiedAsSuccessAudit_Uppercase", "SUCCESSAUDIT")]
-        [InlineData(1, EventLogEntryType.FailureAudit, "AtFailureAuditLevel_WhenEntryTypeLayoutSpecifiedAsFailureAudit", "FailureAudit")]
-        [InlineData(1, EventLogEntryType.Error, "AtErrorLevel_WhenEntryTypeLayoutSpecifiedAsError", "error")]
+        [InlineData(1, EventLogEntryType.FailureAudit, "AtFailureAuditLevel_WhenEntryTypeLayoutSpecifiedAsFailureAudit_Space", "FailureAudit ")]
+        [InlineData(1, EventLogEntryType.Error, "AtErrorLevel_WhenEntryTypeLayoutSpecifiedAsErrorLowerCase", "error")]
         [InlineData(3, EventLogEntryType.Warning, "AtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSupplied", "fallback to auto determined")]
         public void TruncatedMessagesShouldBeWrittenAtCorrenpondingNLogLevel(int logLevelOrdinal, EventLogEntryType expectedEventLogEntryType, string expectedMessage, string layoutString)
         {
