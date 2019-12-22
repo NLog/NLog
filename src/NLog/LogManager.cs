@@ -146,6 +146,22 @@ namespace NLog
         }
 
         /// <summary>
+        /// Begins configuration of the LogFactory options using fluent interface
+        /// </summary>
+        public static ISetupBuilder Setup()
+        {
+            return LogFactory.Setup();
+        }
+
+        /// <summary>
+        /// Begins configuration of the LogFactory options using fluent interface
+        /// </summary>
+        public static LogFactory Setup(Action<ISetupBuilder> setupBuilder)
+        {
+            return LogFactory.Setup(setupBuilder);
+        }
+
+        /// <summary>
         /// Loads logging configuration from file (Currently only XML configuration files supported)
         /// </summary>
         /// <param name="configFile">Configuration file to be read</param>
