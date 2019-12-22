@@ -73,15 +73,46 @@ namespace NLog.UnitTests
         }
 
         [Fact]
+        void FuncLayoutRendererFluentMethod_ThreadSafe_Test()
+        {
+            // Arrange
+            var layout = Layout.CreateFromMethod(l => "42", LayoutRenderOptions.ThreadSafe);
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+            // Assert
+            Assert.Equal("42", result);
+            Assert.True(layout.ThreadSafe);
+        }
+
+        [Fact]
+        void FuncLayoutRendererFluentMethod_ThreadUnsafe_Test()
+        {
+            // Arrange
+            var layout = Layout.CreateFromMethod(l => "42", LayoutRenderOptions.None);
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+            // Assert
+            Assert.Equal("42", result);
+            Assert.False(layout.ThreadSafe);
+        }
+
+        [Fact]
+        void FuncLayoutRendererFluentMethod_NullThrows_Test()
+        {
+            // Arrange
+            Assert.Throws<ArgumentNullException>(() => Layout.CreateFromMethod(null));
+        }
+
+        [Fact]
         void FuncLayoutRendererRegisterTest1WithXML()
         {
-            LayoutRenderer.Register("the-answer", (info) => "42");
+            LayoutRenderer.Register("the-answer", (info) => 42);
 
             LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
 <nlog throwExceptions='true'>
             
                 <targets>
-                    <target name='debug' type='Debug' layout= '${the-answer}' /></targets>
+                    <target name='debug' type='Debug' layout= 'TheAnswer=${the-answer:Format=D3}' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeTo='debug' />
                 </rules>
@@ -89,7 +120,7 @@ namespace NLog.UnitTests
 
             var logger = LogManager.GetCurrentClassLogger();
             logger.Debug("test1");
-            AssertDebugLastMessage("debug", "42");
+            AssertDebugLastMessage("debug", "TheAnswer=042");
         }
 
         [Fact]
