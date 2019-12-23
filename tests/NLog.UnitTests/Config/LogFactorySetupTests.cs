@@ -32,6 +32,7 @@
 // 
 
 using System;
+using NLog.Common;
 using NLog.Config;
 using NLog.Targets;
 using Xunit;
@@ -282,6 +283,115 @@ namespace NLog.UnitTests.Config
             finally
             {
                 ConfigurationItemFactory.Default = null;    // Restore global default
+            }
+        }
+
+        [Theory]
+        [InlineData(nameof(LogLevel.Fatal))]
+        [InlineData(nameof(LogLevel.Off))]
+        public void SetupInternalLoggerSetLogLevelTest(string logLevelName)
+        {
+            try
+            {
+                // Arrange
+                var logLevel = LogLevel.FromString(logLevelName);
+                InternalLogger.Reset();
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup().SetupInternalLogger(b => b.SetMinimumLogLevel(logLevel));
+
+                // Assert
+                Assert.Equal(logLevel, InternalLogger.LogLevel);
+            }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
+
+        [Fact]
+        public void SetupInternalLoggerLogToFileTest()
+        {
+            try
+            {
+                // Arrange
+                var logFile = $"{nameof(SetupInternalLoggerLogToFileTest)}.txt";
+                InternalLogger.Reset();
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup().SetupInternalLogger(b => b.SetMinimumLogLevel(LogLevel.Fatal).LogToFile(logFile));
+
+                // Assert
+                Assert.Equal(logFile, InternalLogger.LogFile);
+            }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
+
+        [Fact]
+        public void SetupInternalLoggerLogToConsoleTest()
+        {
+            try
+            {
+                // Arrange
+                InternalLogger.Reset();
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup().SetupInternalLogger(b => b.SetMinimumLogLevel(LogLevel.Fatal).LogToConsole(true));
+
+                // Assert
+                Assert.True(InternalLogger.LogToConsole);
+            }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
+
+        [Fact]
+        public void SetupInternalLoggerLogToTraceTest()
+        {
+            try
+            {
+                // Arrange
+                InternalLogger.Reset();
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup().SetupInternalLogger(b => b.SetMinimumLogLevel(LogLevel.Fatal).LogToTrace(true));
+
+                // Assert
+                Assert.True(InternalLogger.LogToTrace);
+            }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
+
+        [Fact]
+        public void SetupInternalLoggerLogToWriterTest()
+        {
+            try
+            {
+                // Arrange
+                InternalLogger.Reset();
+                var logFactory = new LogFactory();
+
+                // Act
+                logFactory.Setup().SetupInternalLogger(b => b.SetMinimumLogLevel(LogLevel.Fatal).LogToWriter(Console.Out));
+
+                // Assert
+                Assert.Equal(Console.Out, InternalLogger.LogWriter);
+            }
+            finally
+            {
+                InternalLogger.Reset();
             }
         }
     }

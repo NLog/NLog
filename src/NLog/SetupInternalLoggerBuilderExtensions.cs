@@ -33,30 +33,59 @@
 
 namespace NLog
 {
-    using System;
+    using System.IO;
+    using NLog.Common;
     using NLog.Config;
-    using NLog.Internal;
 
     /// <summary>
-    /// Extension methods to setup LogFactory options
+    /// Extension methods to setup NLog <see cref="InternalLogger"/> options
     /// </summary>
-    public static class SetupBuilderExtensions
+    public static class SetupInternalLoggerBuilderExtensions
     {
         /// <summary>
-        /// Configures loading of NLog extensions for Targets and LayoutRenderers
+        /// Configures <see cref="InternalLogger.LogLevel"/>
         /// </summary>
-        public static ISetupBuilder SetupExtensions(this ISetupBuilder setupBuilder, Action<ISetupExtensionsBuilder> extensionsBuilder)
+        public static ISetupInternalLoggerBuilder SetMinimumLogLevel(this ISetupInternalLoggerBuilder setupBuilder, LogLevel logLevel)
         {
-            extensionsBuilder(new SetupExtensionsBuilder(setupBuilder.LogFactory));
+            InternalLogger.LogLevel = logLevel;
             return setupBuilder;
         }
 
         /// <summary>
-        /// Configures the output of NLog <see cref="Common.InternalLogger"/> for diagnostics / troubleshooting
+        /// Configures <see cref="InternalLogger.LogFile"/>
         /// </summary>
-        public static ISetupBuilder SetupInternalLogger(this ISetupBuilder setupBuilder, Action<ISetupInternalLoggerBuilder> internalLoggerBuilder)
+        public static ISetupInternalLoggerBuilder LogToFile(this ISetupInternalLoggerBuilder setupBuilder, string fileName)
         {
-            internalLoggerBuilder(new SetupInternalLoggerBuilder(setupBuilder.LogFactory));
+            InternalLogger.LogFile = fileName;
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Configures <see cref="InternalLogger.LogToConsole"/>
+        /// </summary>
+        public static ISetupInternalLoggerBuilder LogToConsole(this ISetupInternalLoggerBuilder setupBuilder, bool enabled)
+        {
+            InternalLogger.LogToConsole = enabled;
+            return setupBuilder;
+        }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
+        /// <summary>
+        /// Configures <see cref="InternalLogger.LogToTrace"/>
+        /// </summary>
+        public static ISetupInternalLoggerBuilder LogToTrace(this ISetupInternalLoggerBuilder setupBuilder, bool enabled)
+        {
+            InternalLogger.LogToTrace = enabled;
+            return setupBuilder;
+        }
+#endif
+
+        /// <summary>
+        /// Configures <see cref="InternalLogger.LogWriter"/>
+        /// </summary>
+        public static ISetupInternalLoggerBuilder LogToWriter(this ISetupInternalLoggerBuilder setupBuilder, TextWriter writer)
+        {
+            InternalLogger.LogWriter = writer;
             return setupBuilder;
         }
     }

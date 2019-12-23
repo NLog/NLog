@@ -31,33 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog
+namespace NLog.Config
 {
-    using System;
-    using NLog.Config;
-    using NLog.Internal;
-
     /// <summary>
-    /// Extension methods to setup LogFactory options
+    /// Interface for fluent setup of LogFactory options for enabling NLog <see cref="Common.InternalLogger"/>
     /// </summary>
-    public static class SetupBuilderExtensions
+    public interface ISetupInternalLoggerBuilder
     {
         /// <summary>
-        /// Configures loading of NLog extensions for Targets and LayoutRenderers
+        /// LogFactory under configuration
         /// </summary>
-        public static ISetupBuilder SetupExtensions(this ISetupBuilder setupBuilder, Action<ISetupExtensionsBuilder> extensionsBuilder)
-        {
-            extensionsBuilder(new SetupExtensionsBuilder(setupBuilder.LogFactory));
-            return setupBuilder;
-        }
-
-        /// <summary>
-        /// Configures the output of NLog <see cref="Common.InternalLogger"/> for diagnostics / troubleshooting
-        /// </summary>
-        public static ISetupBuilder SetupInternalLogger(this ISetupBuilder setupBuilder, Action<ISetupInternalLoggerBuilder> internalLoggerBuilder)
-        {
-            internalLoggerBuilder(new SetupInternalLoggerBuilder(setupBuilder.LogFactory));
-            return setupBuilder;
-        }
+        LogFactory LogFactory { get; }
     }
 }
