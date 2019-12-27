@@ -35,7 +35,7 @@ if (-Not $LastExitCode -eq 0)
 
 msbuild /t:Build /p:targetFramework=net452 .\tests\NLog.UnitTests\ /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=net35 /p:OutputPath=.\bin\release\net35 /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
+	{ exit $LastExitCode }a
 
 & ${env:xunit20}\xunit.console.x86.exe .\tests\NLog.UnitTests\bin\release\net35\NLog.UnitTests.dll -appveyor -noshadow
 if (-Not $LastExitCode -eq 0)
@@ -49,11 +49,7 @@ if (-Not $LastExitCode -eq 0)
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Build /p:targetFramework=net452 .\tests\NLog.UnitTests\ /p:Configuration=Release /p:DebugType=Full /p:TestTargetFramework=net45 /p:OutputPath=.\bin\release\net45 /verbosity:minimal
-if (-Not $LastExitCode -eq 0)
-	{ exit $LastExitCode }
-
-& ${env:xunit20}\xunit.console.x86.exe .\tests\NLog.UnitTests\bin\release\net45\NLog.UnitTests.dll -appveyor -noshadow
+& ${env:xunit20}\xunit.console.x86.exe .\tests\NLog.UnitTests\bin\debug\net452\NLog.UnitTests.dll -appveyor -noshadow
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
