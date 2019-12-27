@@ -49,10 +49,10 @@ if (-Not $LastExitCode -eq 0)
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-& ${env:xunit20}\xunit.console.x86.exe .\tests\NLog.UnitTests\bin\debug\net452\NLog.UnitTests.dll -appveyor -noshadow
+msbuild /t:Build /p:Configuration=Debug /p:DebugType=Full .\tests\NLog.UnitTests\ /verbosity:minimal
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
 
-msbuild /t:Build /p:Configuration=Debug /p:DebugType=Full .\tests\NLog.UnitTests\ /verbosity:minimal
+& ${env:xunit20}\xunit.console.x86.exe .\tests\NLog.UnitTests\bin\debug\net452\NLog.UnitTests.dll -appveyor -noshadow
 if (-Not $LastExitCode -eq 0)
 	{ exit $LastExitCode }
