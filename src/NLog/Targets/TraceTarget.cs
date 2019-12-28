@@ -65,9 +65,19 @@ namespace NLog.Targets
         /// <summary>
         /// Always use <see cref="Trace.WriteLine(string)"/> independent of <see cref="LogLevel"/>
         /// </summary>
-        /// <docgen category='Layout Options' order='100' />
+        /// <docgen category='Output Options' order='100' />
         [DefaultValue(false)]
         public bool RawWrite { get; set; }
+
+        /// <summary>
+        /// Forward <see cref="LogLevel.Fatal" /> to <see cref="Trace.Fail(string)" /> (Instead of <see cref="Trace.TraceError(string)" />)
+        /// </summary>
+        /// <remarks>
+        /// Trace.Fail can have special side-effects, and give fatal exceptions, message dialogs or Environment.FailFast
+        /// </remarks>
+        /// <docgen category='Output Options' order='100' />
+        [DefaultValue(false)]
+        public bool EnableTraceFail { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TraceTarget" /> class.
@@ -97,7 +107,7 @@ namespace NLog.Targets
         /// 
         /// Redirects the log message depending on <see cref="LogLevel"/> and  <see cref="RawWrite"/>. 
         /// When <see cref="RawWrite"/> is <c>false</c>:
-        ///  - <see cref="LogLevel.Fatal"/> writes to <see cref="Trace.Fail(string)" />
+        ///  - <see cref="LogLevel.Fatal"/> writes to <see cref="Trace.TraceError(string)" />
         ///  - <see cref="LogLevel.Error"/> writes to <see cref="Trace.TraceError(string)" />
         ///  - <see cref="LogLevel.Warn"/> writes to <see cref="Trace.TraceWarning(string)" />
         ///  - <see cref="LogLevel.Info"/> writes to <see cref="Trace.TraceInformation(string)" />
@@ -126,7 +136,10 @@ namespace NLog.Targets
             }
             else if (logEvent.Level >= LogLevel.Fatal)
             {
-                Trace.Fail(logMessage);
+                if (EnableTraceFail)
+                    Trace.Fail(logMessage); // Can throw exceptions, show message dialog or perform Environment.FailFast
+                else
+                    Trace.TraceError(logMessage);
             }
             else
             {
