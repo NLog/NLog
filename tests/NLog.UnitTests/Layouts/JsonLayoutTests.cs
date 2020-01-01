@@ -751,6 +751,33 @@ namespace NLog.UnitTests.Layouts
             AssertDebugLastMessage("debug", "{ \"DoubleNaN\": \"NaN\", \"DoubleInfPositive\": \"Infinity\", \"DoubleInfNegative\": \"-Infinity\", \"FloatNaN\": \"NaN\", \"FloatInfPositive\": \"Infinity\", \"FloatInfNegative\": \"-Infinity\" }");
         }
 
+        [Fact]
+        public void EscapeForwardSlashDefaultTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                  <layout type='JsonLayout' escapeForwardSlash='false'>
+                    <attribute name='myurl1' layout='${event-properties:myurl}' />
+                    <attribute name='myurl2' layout='${event-properties:myurl}' escapeForwardSlash='true' />
+                  </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo1 = new LogEventInfo();
+            logEventInfo1.Properties.Add("myurl", "http://hello.world.com/");
+            logger.Debug(logEventInfo1);
+
+            AssertDebugLastMessage("debug", "{ \"myurl1\": \"http://hello.world.com/\", \"myurl2\": \"http:\\/\\/hello.world.com\\/\" }");
+        }
+
         private static LogEventInfo CreateLogEventWithExcluded()
         {
             var logEventInfo = new LogEventInfo
