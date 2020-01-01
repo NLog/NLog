@@ -341,15 +341,69 @@ namespace NLog.UnitTests
             {
                 Trace.Listeners.Clear();
                 Trace.Listeners.Add(new TextWriterTraceListener(sw));
-                logger.Error("Quick brown fox");
+                foreach (var logLevel in LogLevel.AllLevels)
+                {
+                    if (logLevel == LogLevel.Off)
+                        continue;
+                    logger.Log(logLevel, "Quick brown fox");
+                    Trace.Flush();
+                    Assert.Equal($"MySource1 {logLevel} Quick brown fox" + Environment.NewLine, sw.GetStringBuilder().ToString());
+                    sw.GetStringBuilder().Length = 0;
+                }
+                
                 Trace.Flush();
             }
             finally
             {
                 Trace.Listeners.Clear();
             }
+        }
 
-            Assert.Equal("MySource1 Error Quick brown fox" + Environment.NewLine, sw.GetStringBuilder().ToString());
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void TraceTargetEnableTraceFailTest(bool enableTraceFail)
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+                <nlog>
+                    <targets>
+                        <target name='trace' type='Trace' layout='${{logger}} ${{level}} ${{message}}' enableTraceFail='{enableTraceFail}' />
+                    </targets>
+                    <rules>
+                        <logger name='*' minlevel='Trace' writeTo='trace' />
+                    </rules>
+                </nlog>");
+
+            var logger = LogManager.GetLogger(nameof(TraceTargetEnableTraceFailTest));
+            var sw = new System.IO.StringWriter();
+
+            try
+            {
+                Trace.Listeners.Clear();
+                Trace.Listeners.Add(new TextWriterTraceListener(sw));
+                foreach (var logLevel in LogLevel.AllLevels)
+                {
+                    if (logLevel == LogLevel.Off)
+                        continue;
+                    logger.Log(logLevel, "Quick brown fox");
+                    Trace.Flush();
+
+                    if (logLevel == LogLevel.Fatal)
+                    {
+                        if (enableTraceFail)
+                            Assert.Equal($"Fail: {logger.Name} Fatal Quick brown fox" + Environment.NewLine, sw.GetStringBuilder().ToString());
+                        else
+                            Assert.NotEqual($"Fail: {logger.Name} Fatal Quick brown fox" + Environment.NewLine, sw.GetStringBuilder().ToString());
+                    }
+                    
+                    Assert.Contains($"{logger.Name} {logLevel} Quick brown fox" + Environment.NewLine, sw.GetStringBuilder().ToString());
+                    sw.GetStringBuilder().Length = 0;
+                }
+            }
+            finally
+            {
+                Trace.Listeners.Clear();
+            }
         }
 
         private static TraceSource CreateTraceSource()
