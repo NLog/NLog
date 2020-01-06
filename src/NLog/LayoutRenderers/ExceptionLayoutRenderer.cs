@@ -130,7 +130,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 _format = value;
-                Formats = CompileFormat(value);
+                Formats = CompileFormat(value, nameof(Format));
             }
         }
 
@@ -147,7 +147,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 _innerFormat = value;
-                InnerFormats = CompileFormat(value);
+                InnerFormats = CompileFormat(value, nameof(InnerFormat));
             }
         }
 
@@ -473,9 +473,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Split the string and then compile into list of Rendering formats.
         /// </summary>
-        /// <param name="formatSpecifier"></param>
-        /// <returns></returns>
-        private static List<ExceptionRenderingFormat> CompileFormat(string formatSpecifier)
+        private static List<ExceptionRenderingFormat> CompileFormat(string formatSpecifier, string propertyName)
         {
             List<ExceptionRenderingFormat> formats = new List<ExceptionRenderingFormat>();
             string[] parts = formatSpecifier.SplitAndTrimTokens(',');
@@ -489,7 +487,7 @@ namespace NLog.LayoutRenderers
                 }
                 else
                 {
-                    InternalLogger.Warn("Unknown exception data target: {0}", s);
+                    InternalLogger.Warn("Exception-LayoutRenderer assigned unknown {0}: {1}", propertyName, s);  // TODO Delay parsing to Initialize and check ThrowConfigExceptions
                 }
             }
             return formats;
