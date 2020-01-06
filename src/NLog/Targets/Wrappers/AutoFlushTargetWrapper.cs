@@ -122,10 +122,23 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            if (!_asyncFlush.HasValue && WrappedTarget is BufferingTargetWrapper)
+            if (!_asyncFlush.HasValue && !TargetSupportsAsyncFlush(WrappedTarget))
             {
                 AsyncFlush = false; // Disable AsyncFlush, so the intended trigger works
             }
+        }
+
+        private static bool TargetSupportsAsyncFlush(Target wrappedTarget)
+        {
+            if (wrappedTarget is BufferingTargetWrapper)
+                return false;
+
+#if !NET3_5 && !SILVERLIGHT4
+            if (wrappedTarget is AsyncTaskTarget)
+                return false;
+#endif
+
+            return true;
         }
 
         /// <summary>

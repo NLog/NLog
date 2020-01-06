@@ -478,6 +478,29 @@ namespace NLog.UnitTests.Targets
             Assert.True(asyncTarget.Logs.Count > 25, $"{asyncTarget.Logs.Count} LogEvents are too few after {asyncTarget.WriteTasks} writes");
             Assert.True(asyncTarget.WriteTasks < 20, $"{asyncTarget.WriteTasks} writes are too many.");
         }
+
+        [Fact]
+        public void AsynTaskTarget_AutoFlushWrapper()
+        {
+            ILogger logger = LogManager.GetCurrentClassLogger();
+
+            var asyncTarget = new AsyncTaskBatchTestTarget
+            {
+                Layout = "${level}",
+                TaskDelayMilliseconds = 5000,
+                BatchSize = 10,
+            };
+            var autoFlush = new NLog.Targets.Wrappers.AutoFlushTargetWrapper("autoflush", asyncTarget);
+            autoFlush.Condition =  "level > LogLevel.Warn";
+
+            SimpleConfigurator.ConfigureForTargetLogging(autoFlush, LogLevel.Trace);
+
+            logger.Info("Hello World");
+            Assert.Empty(asyncTarget.Logs);
+            logger.Error("Goodbye World");
+            Assert.True(asyncTarget.WaitForWriteEvent());
+            Assert.NotEmpty(asyncTarget.Logs);
+        }
     }
 #endif
 }
