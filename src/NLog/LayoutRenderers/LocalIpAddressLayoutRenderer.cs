@@ -93,9 +93,10 @@ namespace NLog.LayoutRenderers
                     if (networkScore == 0)
                         continue;
 
-                    foreach (var networkAddress in networkInterface.GetIPProperties().UnicastAddresses)
+                    var ipProperties = networkInterface.GetIPProperties();
+                    foreach (var networkAddress in ipProperties.UnicastAddresses)
                     {
-                        int unicastScore = CalculateNetworkAddressScore(networkAddress);
+                        int unicastScore = CalculateNetworkAddressScore(networkAddress, ipProperties);
                         if (unicastScore == 0)
                             continue;
 
@@ -117,7 +118,7 @@ namespace NLog.LayoutRenderers
 
         private bool CheckOptimalNetworkScore(UnicastIPAddressInformation networkAddress, int networkScore, ref int currentNetworkScore, ref string currentIpAddress)
         {
-            const int greatNetworkScore = 16;   // 8 = Good Address Family + 4 = Good NetworkStatus + Extra Bonus Points
+            const int greatNetworkScore = 30;   // 16 = Good Address Family + 9 = Good NetworkStatus + 3 = Valid gateway + Extra Bonus Points
 
             if (networkScore > currentNetworkScore)
             {
@@ -143,11 +144,11 @@ namespace NLog.LayoutRenderers
             {
                 int currentScore = 1;
 
-                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet || networkInterface.NetworkInterfaceType == NetworkInterfaceType.GigabitEthernet)
                     currentScore += 1;
 
                 if (networkInterface.OperationalStatus == OperationalStatus.Up)
-                    currentScore += 5;  // Better to have Ipv6 that is Up, than Ipv4 that is Down
+                    currentScore += 9;  // Better to have Ipv6 that is Up, than Ipv4 that is Down
 
                 return currentScore;
             }
@@ -155,7 +156,7 @@ namespace NLog.LayoutRenderers
             return 0;
         }
 
-        private int CalculateNetworkAddressScore(UnicastIPAddressInformation networkAddress)
+        private int CalculateNetworkAddressScore(UnicastIPAddressInformation networkAddress, IPInterfaceProperties ipProperties)
         {
             var currentScore = CalculateIpAddressScore(networkAddress.Address);
             if (currentScore == 0)
@@ -167,42 +168,60 @@ namespace NLog.LayoutRenderers
             if (networkAddress.PrefixOrigin == PrefixOrigin.Dhcp)
                 currentScore += 1;
 
+            var gatewayAddresses = ipProperties.GatewayAddresses;
+            if (gatewayAddresses?.Count > 0)
+            {
+                foreach (var gateway in gatewayAddresses)
+                {
+                    if (!IsLoopbackAddressValue(gateway.Address))
+                    {
+                        currentScore += 3;
+                        break;
+                    }
+                }
+            }
+
             return currentScore;
         }
 
         private int CalculateIpAddressScore(IPAddress ipAddress)
         {
-            if (IPAddress.IsLoopback(ipAddress))
-                return 0;
-
             if (ipAddress.AddressFamily != AddressFamily.InterNetwork && ipAddress.AddressFamily != AddressFamily.InterNetworkV6 && ipAddress.AddressFamily != _addressFamily)
                 return 0;
 
-            var ipAddressValue = ipAddress.ToString();
-            if (string.IsNullOrEmpty(ipAddressValue))
+            if (IsLoopbackAddressValue(ipAddress))
                 return 0;
 
             int currentScore = 0;
-            if (ipAddressValue != "127.0.0.1" && ipAddressValue != "0.0.0.0" && ipAddressValue != "::1")
-                currentScore += 1;
-
             if (_addressFamily.HasValue)
             {
                 if (ipAddress.AddressFamily == _addressFamily.Value)
-                    currentScore += 8;
+                    currentScore += 16;
                 else
-                    currentScore += 2;
+                    currentScore += 4;
             }
             else if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
             {
-                currentScore += 8;
+                currentScore += 16;
             }
             else
             {
-                currentScore += 4;
+                currentScore += 8;
             }
 
             return currentScore;
+        }
+
+        private static bool IsLoopbackAddressValue(IPAddress ipAddress)
+        {
+            if (ipAddress == null)
+                return true;
+
+            if (IPAddress.IsLoopback(ipAddress))
+                return true;
+
+            var ipAddressValue = ipAddress.ToString();
+            return string.IsNullOrEmpty(ipAddressValue) || ipAddressValue == "127.0.0.1" || ipAddressValue == "0.0.0.0" || ipAddressValue == "::1" || ipAddressValue == "::";
         }
     }
 }
