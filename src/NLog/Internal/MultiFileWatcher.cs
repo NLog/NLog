@@ -135,6 +135,8 @@ namespace NLog.Internal
                 return;
             }
 
+            var fileFilter = Path.GetFileName(fileName);
+
             lock (_watcherMap)
             {
                 if (_watcherMap.ContainsKey(fileName))
@@ -147,7 +149,7 @@ namespace NLog.Internal
                     watcher = new FileSystemWatcher
                     {
                         Path = directory,
-                        Filter = Path.GetFileName(fileName),
+                        Filter = fileFilter,
                         NotifyFilter = NotifyFilters
                     };
 

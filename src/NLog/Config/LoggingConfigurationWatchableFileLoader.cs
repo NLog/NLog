@@ -48,6 +48,7 @@ namespace NLog.Config
     internal class LoggingConfigurationWatchableFileLoader : LoggingConfigurationFileLoader
     {
         private const int ReconfigAfterFileChangedTimeout = 1000;
+        private readonly object _lockObject = new object();
         private Timer _reloadTimer;
         private MultiFileWatcher _watcher;
         private bool _isDisposing;
@@ -133,23 +134,26 @@ namespace NLog.Config
             LoggingConfiguration oldConfig = (LoggingConfiguration)state;
 
             InternalLogger.Info("Reloading configuration...");
+            lock (_lockObject)
+            {
+                if (_isDisposing)
+                {
+                    return; //timer was disposed already. 
+                }
+
+                var currentTimer = _reloadTimer;
+                if (currentTimer != null)
+                {
+                    _reloadTimer = null;
+                    currentTimer.WaitForDispose(TimeSpan.Zero);
+                }
+            }
+
             lock (_logFactory._syncRoot)
             {
                 LoggingConfiguration newConfig;
                 try
                 {
-                    if (_isDisposing)
-                    {
-                        return; //timer was disposed already. 
-                    }
-
-                    var currentTimer = _reloadTimer;
-                    if (currentTimer != null)
-                    {
-                        _reloadTimer = null;
-                        currentTimer.WaitForDispose(TimeSpan.Zero);
-                    }
-
                     if (!ReferenceEquals(_logFactory._config, oldConfig))
                     {
                         InternalLogger.Warn("NLog Config changed in between. Not reloading.");
@@ -179,7 +183,7 @@ namespace NLog.Config
                     _logFactory.Configuration = newConfig;  // Triggers LogFactory to call Activated(...) that adds file-watch again
 
                     _logFactory?.NotifyConfigurationReloaded(new LoggingConfigurationReloadedEventArgs(true));
-                 }
+                }
                 catch (Exception exception)
                 {
                     if (exception.MustBeRethrownImmediately())
@@ -203,7 +207,7 @@ namespace NLog.Config
             //
             // The trick is to schedule the reload in one second after
             // the last change notification comes in.
-            lock (_logFactory._syncRoot)
+            lock (_lockObject)
             {
                 if (_isDisposing)
                 {
