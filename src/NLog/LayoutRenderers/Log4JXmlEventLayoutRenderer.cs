@@ -275,7 +275,7 @@ namespace NLog.LayoutRenderers
                     }
                 }
 
-                AppendNdc(xtw);
+                AppendNdc(xtw, logEvent);
 
                 if (includeNLogCallsite)
                 {
@@ -340,12 +340,13 @@ namespace NLog.LayoutRenderers
 #endif
         }
 
-        private void AppendNdc(XmlWriter xtw)
+        private void AppendNdc(XmlWriter xtw, LogEventInfo logEvent)
         {
             string ndcContent = null;
             if (IncludeNdc)
             {
-                ndcContent = string.Join(NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages());
+                var ndcRenderer = new NdcLayoutRenderer(){ Separator = NdcItemSeparator};
+                ndcContent = ndcRenderer.Render(logEvent);
             }
 
 #if !SILVERLIGHT
@@ -356,7 +357,8 @@ namespace NLog.LayoutRenderers
                     //extra separator
                     ndcContent += NdcItemSeparator;
                 }
-                ndcContent += string.Join(NdlcItemSeparator, NestedDiagnosticsLogicalContext.GetAllMessages());
+                var ndlcRenderer = new NdlcLayoutRenderer(){Separator = NdlcItemSeparator};
+                ndcContent += ndlcRenderer.Render(logEvent);
             }
 #endif
 

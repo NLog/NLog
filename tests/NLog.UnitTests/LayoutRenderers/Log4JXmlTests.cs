@@ -42,6 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers
     using System.Xml;
     using NLog.Config;
     using NLog.Internal;
+    using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
@@ -106,7 +107,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             using (XmlReader reader = XmlReader.Create(stringReader))
             {
-              
+
                 while (reader.Read())
                 {
                     var key = reader.LocalName;
@@ -144,7 +145,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
                             case "NDC":
                                 reader.Read();
-                                Assert.Equal("baz3::baz2::baz1::boo2 boo1", reader.Value);
+                                Assert.Equal("baz1::baz2::baz3::boo1 boo2", reader.Value);
                                 break;
 
                             case "locationInfo":
@@ -262,7 +263,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             var threadid = Environment.CurrentManagedThreadId;
             var machinename = Environment.MachineName;
-            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, world</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, {{0}}\" /><log4j:data name=\"log4japp\" value=\"MyApp\" /><log4j:data name=\"log4jmachinename\" value=\"{machinename}\" /></log4j:properties></log4j:event>", log4jLayout.Render(logEventInfo)); 
+            Assert.Equal($"<log4j:event logger=\"MyLOgger\" level=\"INFO\" timestamp=\"1262349296000\" thread=\"{threadid}\"><log4j:message>hello, world</log4j:message><log4j:properties><log4j:data name=\"mt\" value=\"hello, {{0}}\" /><log4j:data name=\"log4japp\" value=\"MyApp\" /><log4j:data name=\"log4jmachinename\" value=\"{machinename}\" /></log4j:properties></log4j:event>", log4jLayout.Render(logEventInfo));
         }
 
         [Fact]
@@ -332,6 +333,51 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.NotEqual(badString.Length, goodString.Length);
             Assert.Contains("abc", badString);
             Assert.Contains("abc", goodString);
+        }
+
+        [Fact]
+        public void NestedDiagnosticContextInformation_is_stored_in_the_same_sort_order_as_used_by_the_nested_diagnostic_layout_renderer()
+        {
+            var ndcSeparator = "::";
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+                <targets>
+                    <target name='debug' 
+                        type='Debug' 
+                        layout='${log4jxmlevent:includeCallSite=true:includeSourceInfo=true:includeNdlc=true:includeMdc=true:IncludeNdc=true:includeMdlc=true:IncludeAllProperties=true:ndcItemSeparator=\:\::includenlogdata=true:loggerName=${logger}}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            NestedDiagnosticsContext.Clear();
+
+            NestedDiagnosticsLogicalContext.Push("foo");
+            NestedDiagnosticsLogicalContext.Push("bar");
+
+            NestedDiagnosticsContext.Push("baz1");
+            NestedDiagnosticsContext.Push("baz2");
+            NestedDiagnosticsContext.Push("baz3");
+
+            // Act
+            ILogger logger = LogManager.GetLogger("A");
+            var logEventInfo = LogEventInfo.Create(LogLevel.Debug, logger.Name, null, null, "some message");
+            logger.Log(logEventInfo);
+
+            // Assert
+            var result = GetDebugLastMessage("debug");
+            result = $"<log4j:dummyRoot xmlns:log4j='http://log4j' xmlns:nlog='http://nlog'>{result}</log4j:dummyRoot>";
+            var doc = new XmlDocument();
+            doc.LoadXml(result);
+
+            var ndcLayoutRenderer = new NdcLayoutRenderer {Separator = ndcSeparator};
+            var ndlcLayoutRenderer = new NdlcLayoutRenderer {Separator = " "};
+            
+            var expected = $"{ndcLayoutRenderer.Render(logEventInfo)}{ndcSeparator}{ndlcLayoutRenderer.Render(logEventInfo)}";
+            var actual = doc.GetElementsByTagName("log4j:NDC")[0].InnerText;
+
+            Assert.Equal(expected, actual);
         }
     }
 }
