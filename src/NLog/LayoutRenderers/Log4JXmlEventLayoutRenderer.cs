@@ -63,6 +63,12 @@ namespace NLog.LayoutRenderers
         private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
         private static readonly string dummyNLogNamespaceRemover = " xmlns:nlog=\"" + dummyNLogNamespace + "\"";
 
+        private readonly NdcLayoutRenderer _ndcLayoutRenderer;
+
+#if !SILVERLIGHT
+        private readonly NdlcLayoutRenderer _ndlcLayoutRenderer;
+#endif
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
@@ -75,8 +81,11 @@ namespace NLog.LayoutRenderers
         /// </summary>
         public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
         {
+            _ndcLayoutRenderer = new NdcLayoutRenderer();
             NdcItemSeparator = " ";
+
 #if !SILVERLIGHT
+            _ndlcLayoutRenderer = new NdlcLayoutRenderer();
             NdlcItemSeparator = " ";
 #endif
 
@@ -189,7 +198,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        public string NdlcItemSeparator { get; set; }
+        public string NdlcItemSeparator {
+            get => _ndlcLayoutRenderer.Separator;
+            set => _ndlcLayoutRenderer.Separator = value;
+        }
 #endif
 
         /// <summary>
@@ -209,7 +221,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        public string NdcItemSeparator { get; set; }
+        public string NdcItemSeparator {
+            get => _ndcLayoutRenderer.Separator;
+            set => _ndcLayoutRenderer.Separator = value;
+        }
 
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
@@ -345,8 +360,7 @@ namespace NLog.LayoutRenderers
             string ndcContent = null;
             if (IncludeNdc)
             {
-                var ndcRenderer = new NdcLayoutRenderer(){ Separator = NdcItemSeparator};
-                ndcContent = ndcRenderer.Render(logEvent);
+                ndcContent = _ndcLayoutRenderer.Render(logEvent);
             }
 
 #if !SILVERLIGHT
@@ -357,8 +371,7 @@ namespace NLog.LayoutRenderers
                     //extra separator
                     ndcContent += NdcItemSeparator;
                 }
-                var ndlcRenderer = new NdlcLayoutRenderer(){Separator = NdlcItemSeparator};
-                ndcContent += ndlcRenderer.Render(logEvent);
+                ndcContent += _ndlcLayoutRenderer.Render(logEvent);
             }
 #endif
 
