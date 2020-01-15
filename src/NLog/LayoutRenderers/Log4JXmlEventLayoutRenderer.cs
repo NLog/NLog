@@ -63,10 +63,10 @@ namespace NLog.LayoutRenderers
         private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
         private static readonly string dummyNLogNamespaceRemover = " xmlns:nlog=\"" + dummyNLogNamespace + "\"";
 
-        private readonly NdcLayoutRenderer _ndcLayoutRenderer;
+        private readonly NdcLayoutRenderer _ndcLayoutRenderer = new NdcLayoutRenderer() { Separator = " " };
 
 #if !SILVERLIGHT
-        private readonly NdlcLayoutRenderer _ndlcLayoutRenderer;
+        private readonly NdlcLayoutRenderer _ndlcLayoutRenderer = new NdlcLayoutRenderer() { Separator = " " };
 #endif
 
         /// <summary>
@@ -75,19 +75,12 @@ namespace NLog.LayoutRenderers
         public Log4JXmlEventLayoutRenderer() : this(LogFactory.CurrentAppDomain)
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
         public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
         {
-            _ndcLayoutRenderer = new NdcLayoutRenderer();
-            NdcItemSeparator = " ";
-
-#if !SILVERLIGHT
-            _ndlcLayoutRenderer = new NdlcLayoutRenderer();
-            NdlcItemSeparator = " ";
-#endif
 
 #if SILVERLIGHT
             AppInfo = "Silverlight Application";
