@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// <summary>
     /// Wraps <see cref="AsyncContinuation"/> with a timeout.
     /// </summary>
-    internal class TimeoutContinuation : IDisposable
+    internal sealed class TimeoutContinuation : IDisposable
     {
         private AsyncContinuation _asyncContinuation;
         private Timer _timeoutTimer;

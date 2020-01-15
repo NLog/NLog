@@ -74,9 +74,7 @@ namespace NLog.Internal
                 if (ex.MustBeRethrown())
                 {
                     throw;
-                }
-
-                
+                }       
             }
         }
     }
