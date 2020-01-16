@@ -158,7 +158,7 @@ namespace NLog.UnitTests.LayoutRenderers
                 .WithInterface(NetworkInterfaceType.Ethernet, Mac1, OperationalStatus.Up)
                 .WithIp("10.0.1.2")
                 .WithInterface(NetworkInterfaceType.Ethernet, Mac1, OperationalStatus.Down)
-                .WithIp("10.0.1.3")
+                .WithIp("10.0.1.3", "10.0.1.0")
                 .Build();
 
             var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
@@ -168,6 +168,28 @@ namespace NLog.UnitTests.LayoutRenderers
 
             // Assert
             Assert.Equal("10.0.1.2", result);
+        }
+
+        [Fact]
+        public void LocalIpAddress_Multiple_TakesFirstWithGatewayUp()
+        {
+            // Arrange
+            var networkInterfaceRetrieverMock = new NetworkInterfaceRetrieverBuilder()
+                .WithInterface(NetworkInterfaceType.Ethernet, "F0-E0-D2-C3-B4-A5", OperationalStatus.Dormant)
+                .WithIp("10.0.1.1", "10.0.1.0")
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1, OperationalStatus.Up)
+                .WithIp("10.0.1.2")
+                .WithInterface(NetworkInterfaceType.Ethernet, Mac1, OperationalStatus.Up)
+                .WithIp("10.0.1.3", "10.0.1.0")
+                .Build();
+
+            var ipAddressRenderer = new LocalIpAddressLayoutRenderer(networkInterfaceRetrieverMock);
+
+            // Act
+            var result = ipAddressRenderer.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal("10.0.1.3", result);
         }
 
         [Fact]
@@ -232,7 +254,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
     internal class NetworkInterfaceRetrieverBuilder
     {
-        private readonly IDictionary<int, List<string>> _ips = new Dictionary<int, List<string>>();
+        private readonly IDictionary<int, List<KeyValuePair<string, string>>> _ips = new Dictionary<int, List<KeyValuePair<string, string>>>();
 
         private IList<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)> _networkInterfaces = new List<(NetworkInterfaceType networkInterfaceType, string mac, OperationalStatus status)>();
         private readonly INetworkInterfaceRetriever _networkInterfaceRetrieverMock;
@@ -252,7 +274,7 @@ namespace NLog.UnitTests.LayoutRenderers
         /// <summary>
         /// One or more ips for an interface added with <see cref="WithInterface"/>
         /// </summary>
-        public NetworkInterfaceRetrieverBuilder WithIp(string ip)
+        public NetworkInterfaceRetrieverBuilder WithIp(string ip, string gateway = null)
         {
             if (_networkInterfaces.Count == 0)
             {
@@ -262,12 +284,11 @@ namespace NLog.UnitTests.LayoutRenderers
             var key = _networkInterfaces.Count - 1;
             if (!_ips.ContainsKey(key))
             {
-                _ips.Add(key, new List<string>());
+                _ips.Add(key, new List<KeyValuePair<string,string>>());
             }
 
             var list = _ips[key];
-            list.Add(ip);
-
+            list.Add(new KeyValuePair<string, string>(ip, gateway));
             return this;
         }
 
@@ -294,7 +315,7 @@ namespace NLog.UnitTests.LayoutRenderers
             }
         }
 
-        private NetworkInterface BuildNetworkInterfaceMock(IEnumerable<string> ips, string mac, NetworkInterfaceType type, OperationalStatus status)
+        private NetworkInterface BuildNetworkInterfaceMock(IEnumerable<KeyValuePair<string, string>> ips, string mac, NetworkInterfaceType type, OperationalStatus status)
         {
             var networkInterfaceMock = Substitute.For<NetworkInterface>();
 
@@ -302,20 +323,26 @@ namespace NLog.UnitTests.LayoutRenderers
             networkInterfaceMock.OperationalStatus.Returns(status);
             networkInterfaceMock.GetPhysicalAddress().Returns(PhysicalAddress.Parse(mac));
 
-            var unicastIpAddressInformations = new List<UnicastIPAddressInformation>(BuildIpInfoMocks(ips));
+            var unicastIpAddressInformations = new List<UnicastIPAddressInformation>(BuildUnicastInfoMocks(ips.Select(p => p.Key)));
+            var gatewayIpAddressInformations = new List<GatewayIPAddressInformation>(BuildGatewayInfoMocks(ips.Select(p => p.Value)));
 
             var unicastIpAddressInformationCollection = Substitute.For<UnicastIPAddressInformationCollection>();
             unicastIpAddressInformationCollection.GetEnumerator().Returns(unicastIpAddressInformations.GetEnumerator());
             unicastIpAddressInformationCollection.Count.Returns(unicastIpAddressInformations.Count);
 
+            var gatewayIpAddressInformationCollection = Substitute.For<GatewayIPAddressInformationCollection>();
+            gatewayIpAddressInformationCollection.GetEnumerator().Returns(gatewayIpAddressInformations.GetEnumerator());
+            gatewayIpAddressInformationCollection.Count.Returns(gatewayIpAddressInformations.Count);
+
             var interfacePropertiesMock = Substitute.For<IPInterfaceProperties>();
             interfacePropertiesMock.UnicastAddresses.Returns(unicastIpAddressInformationCollection);
+            interfacePropertiesMock.GatewayAddresses.Returns(gatewayIpAddressInformationCollection);
 
             networkInterfaceMock.GetIPProperties().Returns(interfacePropertiesMock);
             return networkInterfaceMock;
         }
 
-        private static IEnumerable<UnicastIPAddressInformation> BuildIpInfoMocks(IEnumerable<string> ips)
+        private static IEnumerable<UnicastIPAddressInformation> BuildUnicastInfoMocks(IEnumerable<string> ips)
         {
             foreach (var ip in ips)
             {
@@ -324,5 +351,19 @@ namespace NLog.UnitTests.LayoutRenderers
                 yield return ipInfoMock;
             }
         }
+
+        private static IEnumerable<GatewayIPAddressInformation> BuildGatewayInfoMocks(IEnumerable<string> ips)
+        {
+            foreach (var ip in ips)
+            {
+                if (string.IsNullOrEmpty(ip))
+                    continue;
+
+                var ipInfoMock = Substitute.For<GatewayIPAddressInformation>();
+                ipInfoMock.Address.Returns(IPAddress.Parse(ip));
+                yield return ipInfoMock;
+            }
+        }
+
     }
 }
