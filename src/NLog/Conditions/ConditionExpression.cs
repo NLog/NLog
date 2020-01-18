@@ -44,6 +44,7 @@ namespace NLog.Conditions
     /// </summary>
     [NLogConfigurationItem]
     [ThreadAgnostic]
+    [ThreadSafe]
     public abstract class ConditionExpression
     {
         /// <summary>
