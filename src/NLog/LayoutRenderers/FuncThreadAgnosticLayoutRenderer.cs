@@ -31,27 +31,26 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Layouts
+namespace NLog.LayoutRenderers
 {
     using System;
+    using NLog.Config;
 
     /// <summary>
-    /// Options available for <see cref="Layout.CreateFromMethod"/>
+    /// A layout renderer which could have different behavior per instance by using a <see cref="Func{TResult}"/>.
     /// </summary>
-    [Flags]
-    public enum LayoutRenderOptions
+    [ThreadSafe]
+    [ThreadAgnostic]
+    internal class FuncThreadAgnosticLayoutRenderer : FuncLayoutRenderer
     {
         /// <summary>
-        /// Default options
+        /// Initializes a new instance of the <see cref="FuncThreadAgnosticLayoutRenderer"/> class.
         /// </summary>
-        None = 0,
-        /// <summary>
-        /// Layout renderer method can handle concurrent threads
-        /// </summary>
-        ThreadSafe = 1,
-        /// <summary>
-        /// Layout renderer method is agnostic to current thread context. This means it will render the same result indepdent of thread-context.
-        /// </summary>
-        ThreadAgnostic = 2 | ThreadSafe,
+        /// <param name="layoutRendererName">Name without ${}.</param>
+        /// <param name="renderMethod">Method that renders the layout.</param>
+        public FuncThreadAgnosticLayoutRenderer(string layoutRendererName, Func<LogEventInfo, LoggingConfiguration, object> renderMethod)
+            : base(layoutRendererName, renderMethod)
+        {
+        }
     }
 }

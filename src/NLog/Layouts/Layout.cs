@@ -142,10 +142,18 @@ namespace NLog.Layouts
 #else
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
 #endif
-            var layoutRenderer = ((options & LayoutRenderOptions.ThreadSafe) != 0) ?
-                new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, (l, c) => layoutMethod(l)) :
-                new LayoutRenderers.FuncLayoutRenderer(name, (l, c) => layoutMethod(l));
+            var layoutRenderer = CreateFunLayoutRenderer(layoutMethod, options, name);
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
+        }
+
+        private static LayoutRenderers.FuncLayoutRenderer CreateFunLayoutRenderer(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options, string name)
+        {
+            if ((options & LayoutRenderOptions.ThreadAgnostic) == LayoutRenderOptions.ThreadAgnostic)
+                return new LayoutRenderers.FuncThreadAgnosticLayoutRenderer(name, (l, c) => layoutMethod(l));
+            else if ((options & LayoutRenderOptions.ThreadSafe) != 0)
+                return new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, (l, c) => layoutMethod(l));
+            else
+                return new LayoutRenderers.FuncLayoutRenderer(name, (l, c) => layoutMethod(l));
         }
 
         /// <summary>
