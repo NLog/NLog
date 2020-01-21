@@ -272,6 +272,12 @@ namespace NLog.Targets
         [ArrayParameter(typeof(DatabaseParameterInfo), "parameter")]
         public IList<DatabaseParameterInfo> Parameters { get; } = new List<DatabaseParameterInfo>();
 
+        /// <summary>
+        /// Configures isolated transaction batch writing. If supported by the database, then it will improve insert performance.
+        /// </summary>
+        /// <docgen category='Performance Tuning Options' order='10' />
+        public System.Data.IsolationLevel? IsolationLevel { get; set; }
+
 #if !NETSTANDARD
         internal DbProviderFactory ProviderFactory { get; set; }
 
@@ -555,20 +561,7 @@ namespace NLog.Targets
         {
             try
             {
-                WriteEventToDatabase(logEvent, BuildConnectionString(logEvent));
-            }
-            catch (Exception exception)
-            {
-                InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error when writing to database.", Name);
-
-                if (exception.MustBeRethrownImmediately())
-                {
-                    throw;
-                }
-
-                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of error", Name);
-                CloseConnection();
-                throw;
+                WriteLogEventToDatabase(logEvent, BuildConnectionString(logEvent));
             }
             finally
             {
@@ -607,72 +600,173 @@ namespace NLog.Targets
 
             var buckets = logEvents.BucketSort(_buildConnectionStringDelegate);
 
-            try
+            foreach (var kvp in buckets)
             {
-                foreach (var kvp in buckets)
+                try
                 {
-                    for (int i = 0; i < kvp.Value.Count; i++)
+                    WriteLogEventsToDatabase(kvp.Value, kvp.Key);
+                }
+                finally
+                {
+                    if (!KeepConnection)
                     {
-                        AsyncLogEventInfo ev = kvp.Value[i];
+                        InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of KeepConnection=false", Name);
+                        CloseConnection();
+                    }
+                }
+            }
+        }
 
-                        try
+        private void WriteLogEventsToDatabase(IList<AsyncLogEventInfo> logEvents, string connectionString)
+        {
+            if (IsolationLevel.HasValue && logEvents.Count > 1)
+            {
+                WriteLogEventBatchToDatabase(logEvents, connectionString);
+            }
+            else
+            {
+                for (int i = 0; i < logEvents.Count; i++)
+                {
+                    try
+                    {
+                        WriteLogEventToDatabase(logEvents[i].LogEvent, connectionString);
+                        logEvents[i].Continuation(null);
+                    }
+                    catch (Exception exception)
+                    {
+                        if (exception.MustBeRethrownImmediately())
                         {
-                            WriteEventToDatabase(ev.LogEvent, kvp.Key);
-                            ev.Continuation(null);
+                            throw;
                         }
-                        catch (Exception exception)
+
+                        logEvents[i].Continuation(exception);
+
+                        if (exception.MustBeRethrown())
                         {
-                            // in case of exception, close the connection and report it
-                            InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error when writing to database.", Name);
-
-                            if (exception.MustBeRethrownImmediately())
-                            {
-                                throw;
-                            }
-                            InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of exception", Name);
-                            CloseConnection();
-                            ev.Continuation(exception);
-
-                            if (exception.MustBeRethrown())
-                            {
-                                throw;
-                            }
+                            throw;
                         }
                     }
                 }
             }
-            finally
+        }
+
+        private void WriteLogEventBatchToDatabase(IList<AsyncLogEventInfo> logEvents, string connectionString)
+        {
+            try
             {
-                if (!KeepConnection)
+                //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
+                using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of KeepConnection=false", Name);
-                    CloseConnection();
+                    EnsureConnectionOpen(connectionString);
+
+                    var dbTransaction = _activeConnection.BeginTransaction(IsolationLevel.Value);
+                    try
+                    {
+                        for (int i = 0; i < logEvents.Count; ++i)
+                        {
+                            ExecuteDbCommandWithParameters(logEvents[i].LogEvent, dbTransaction);
+                        }
+
+                        dbTransaction?.Commit();
+
+                        for (int i = 0; i < logEvents.Count; i++)
+                        {
+                            logEvents[i].Continuation(null);
+                        }
+
+                        dbTransaction?.Dispose();   // Can throw error on dispose, so no using
+
+                        transactionScope.Complete();    //not really needed as there is no transaction at all.
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            if (dbTransaction?.Connection != null)
+                            {
+                                dbTransaction?.Rollback();
+                            }
+                            dbTransaction?.Dispose();
+                        }
+                        catch (Exception exception)
+                        {
+                            InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error during rollback of batch writing {1} logevents to database.", Name, logEvents.Count);
+                            if (exception.MustBeRethrownImmediately())
+                            {
+                                throw;
+                            }
+                        }
+
+                        throw;
+                    }
                 }
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error when batch writing {1} logevents to database.", Name, logEvents.Count);
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                for (int i = 0; i < logEvents.Count; i++)
+                {
+                    logEvents[i].Continuation(exception);
+                }
+
+                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of error", Name);
+                CloseConnection();
+                if (exception.MustBeRethrown())
+                {
+                    throw;
+                }
+            }
+        }
+
+        private void WriteLogEventToDatabase(LogEventInfo logEvent, string connectionString)
+        {
+            try
+            {
+                //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
+                using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
+                {
+                    EnsureConnectionOpen(connectionString);
+
+                    ExecuteDbCommandWithParameters(logEvent, null);
+
+                    transactionScope.Complete();    //not really needed as there is no transaction at all.
+                }
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Error(exception, "DatabaseTarget(Name={0}): Error when writing to database.", Name);
+
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+
+                InternalLogger.Trace("DatabaseTarget(Name={0}): Close connection because of error", Name);
+                CloseConnection();
+                throw;
             }
         }
 
         /// <summary>
         /// Write logEvent to database
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities", Justification = "It's up to the user to ensure proper quoting.")]
-        private void WriteEventToDatabase(LogEventInfo logEvent, string connectionString)
+        private void ExecuteDbCommandWithParameters(LogEventInfo logEvent, IDbTransaction dbTransaction)
         {
             var commandText = RenderLogEvent(CommandText, logEvent);
             InternalLogger.Trace("DatabaseTarget(Name={0}): Executing {1}: {2}", Name, CommandType, commandText);
 
-            //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
-            using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
+            using (IDbCommand command = CreateDbCommandWithParameters(logEvent, CommandType, commandText, Parameters))
             {
-                EnsureConnectionOpen(connectionString);
+                if (dbTransaction != null)
+                    command.Transaction = dbTransaction;
 
-                using (IDbCommand command = CreateDbCommandWithParameters(logEvent, CommandType, commandText, Parameters))
-                {
-                    int result = command.ExecuteNonQuery();
-                    InternalLogger.Trace("DatabaseTarget(Name={0}): Finished execution, result = {1}", Name, result);
-                }
-
-                //not really needed as there is no transaction at all.
-                transactionScope.Complete();
+                int result = command.ExecuteNonQuery();
+                InternalLogger.Trace("DatabaseTarget(Name={0}): Finished execution, result = {1}", Name, result);
             }
         }
 

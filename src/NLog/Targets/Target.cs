@@ -758,10 +758,8 @@ namespace NLog.Targets
         {
             if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out var value2))
             {
-                {
-                    value = value2?.ToString() ?? string.Empty;
-                    return true;
-                }
+                value = value2?.ToString() ?? string.Empty;
+                return true;
             }
 
             value = null;

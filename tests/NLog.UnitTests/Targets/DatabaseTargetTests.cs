@@ -239,6 +239,56 @@ Dispose()
         }
 
         [Fact]
+        public void KeepConnectionOpenBatchedIsolationLevelTest()
+        {
+            MockDbConnection.ClearLog();
+            DatabaseTarget dt = new DatabaseTarget()
+            {
+                CommandText = "INSERT INTO FooBar VALUES('${message}')",
+                ConnectionString = "FooBar",
+                DBProvider = typeof(MockDbConnection).AssemblyQualifiedName,
+                KeepConnection = true,
+                IsolationLevel = IsolationLevel.ReadCommitted,
+            };
+
+            dt.Initialize(null);
+            Assert.Same(typeof(MockDbConnection), dt.ConnectionType);
+            var exceptions = new List<Exception>();
+
+            var events = new[]
+            {
+                new LogEventInfo(LogLevel.Info, "MyLogger", "msg1").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "MyLogger", "msg2").WithContinuation(exceptions.Add),
+                new LogEventInfo(LogLevel.Info, "MyLogger", "msg3").WithContinuation(exceptions.Add),
+            };
+
+            dt.WriteAsyncLogEvents(events);
+            foreach (var ex in exceptions)
+            {
+                Assert.Null(ex);
+            }
+
+            string expectedLog = @"Open('FooBar').
+DbTransaction.Begin(ReadCommitted)
+ExecuteNonQuery (DbTransaction=Active): INSERT INTO FooBar VALUES('msg1')
+ExecuteNonQuery (DbTransaction=Active): INSERT INTO FooBar VALUES('msg2')
+ExecuteNonQuery (DbTransaction=Active): INSERT INTO FooBar VALUES('msg3')
+DbTransaction.Commit()
+DbTransaction.Dispose()
+";
+
+            AssertLog(expectedLog);
+
+            MockDbConnection.ClearLog();
+            dt.Close();
+            expectedLog = @"Close()
+Dispose()
+";
+
+            AssertLog(expectedLog);
+        }
+
+        [Fact]
         public void KeepConnectionOpenTest2()
         {
             MockDbConnection.ClearLog();
@@ -907,6 +957,100 @@ Close()
 Dispose()
 Open('cannotexecute').
 ExecuteNonQuery: not important
+Close()
+Dispose()
+";
+            AssertLog(expectedLog);
+        }
+
+        [Fact]
+        public void DatabaseBatchExceptionTest()
+        {
+            MockDbConnection.ClearLog();
+            var exceptions = new List<Exception>();
+
+            using (new NoThrowNLogExceptions())
+            {
+                var db = new DatabaseTarget();
+                db.CommandText = "not important";
+                db.ConnectionString = "cannotexecute";
+                db.KeepConnection = true;
+                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+                db.Initialize(null);
+                var events = new[]
+                {
+                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                };
+
+                db.WriteAsyncLogEvents(events);
+                db.Close();
+            }
+
+            Assert.Equal(3, exceptions.Count);
+            Assert.NotNull(exceptions[0]);
+            Assert.NotNull(exceptions[1]);
+            Assert.NotNull(exceptions[2]);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[0].Message);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[1].Message);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[2].Message);
+
+            string expectedLog = @"Open('cannotexecute').
+ExecuteNonQuery: not important
+Close()
+Dispose()
+Open('cannotexecute').
+ExecuteNonQuery: not important
+Close()
+Dispose()
+Open('cannotexecute').
+ExecuteNonQuery: not important
+Close()
+Dispose()
+";
+            AssertLog(expectedLog);
+        }
+
+        [Fact]
+        public void DatabaseBatchIsolationLevelExceptionTest()
+        {
+            MockDbConnection.ClearLog();
+            var exceptions = new List<Exception>();
+
+            using (new NoThrowNLogExceptions())
+            {
+                var db = new DatabaseTarget();
+                db.CommandText = "not important";
+                db.ConnectionString = "cannotexecute";
+                db.KeepConnection = true;
+                db.IsolationLevel = IsolationLevel.Serializable;
+                db.DBProvider = typeof(MockDbConnection).AssemblyQualifiedName;
+                db.Initialize(null);
+                var events = new[]
+                {
+                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                    LogEventInfo.CreateNullEvent().WithContinuation(exceptions.Add),
+                };
+
+                db.WriteAsyncLogEvents(events);
+                db.Close();
+            }
+
+            Assert.Equal(3, exceptions.Count);
+            Assert.NotNull(exceptions[0]);
+            Assert.NotNull(exceptions[1]);
+            Assert.NotNull(exceptions[2]);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[0].Message);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[1].Message);
+            Assert.Equal("Failure during ExecuteNonQuery", exceptions[2].Message);
+
+            string expectedLog = @"Open('cannotexecute').
+DbTransaction.Begin(Serializable)
+ExecuteNonQuery (DbTransaction=Active): not important
+DbTransaction.Rollback()
+DbTransaction.Dispose()
 Close()
 Dispose()
 ";
@@ -1725,12 +1869,13 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             public IDbTransaction BeginTransaction(IsolationLevel il)
             {
-                throw new NotImplementedException();
+                AddToLog("DbTransaction.Begin({0})", il);
+                return new MockDbTransaction(this, il);
             }
 
             public IDbTransaction BeginTransaction()
             {
-                throw new NotImplementedException();
+                return BeginTransaction(IsolationLevel.ReadCommitted);
             }
 
             public void ChangeDatabase(string databaseName)
@@ -1818,6 +1963,8 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             public IDbConnection Connection { get; set; }
 
+            public IDbTransaction Transaction { get; set; }
+
             public IDbDataParameter CreateParameter()
             {
                 ((MockDbConnection)Connection).AddToLog("CreateParameter({0})", paramCount);
@@ -1826,7 +1973,10 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
 
             public int ExecuteNonQuery()
             {
-                ((MockDbConnection)Connection).AddToLog("ExecuteNonQuery: {0}", CommandText);
+                if (Transaction != null)
+                    ((MockDbConnection)Connection).AddToLog("ExecuteNonQuery (DbTransaction={0}): {1}", Transaction.Connection != null ? "Active" : "Disposed", CommandText);
+                else
+                    ((MockDbConnection)Connection).AddToLog("ExecuteNonQuery: {0}", CommandText);
                 if (Connection.ConnectionString == "cannotexecute")
                 {
                     throw new ApplicationException("Failure during ExecuteNonQuery");
@@ -1856,8 +2006,6 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             {
                 throw new NotImplementedException();
             }
-
-            public IDbTransaction Transaction { get; set; }
 
             public UpdateRowSource UpdatedRowSource
             {
@@ -2062,6 +2210,39 @@ INSERT INTO NLogSqlLiteTestAppNames(Id, Name) VALUES (1, @appName);"">
             {
                 get => throw new NotImplementedException();
                 set => throw new NotImplementedException();
+            }
+        }
+
+        public class MockDbTransaction : IDbTransaction
+        {
+            public IDbConnection Connection { get; private set; }
+
+            public IsolationLevel IsolationLevel { get; }
+
+            public MockDbTransaction(IDbConnection connection, IsolationLevel isolationLevel)
+            {
+                Connection = connection;
+                IsolationLevel = isolationLevel;
+            }
+
+            public void Commit()
+            {
+                if (Connection == null)
+                    throw new NotSupportedException();
+                ((MockDbConnection)Connection).AddToLog("DbTransaction.Commit()");
+            }
+
+            public void Dispose()
+            {
+                ((MockDbConnection)Connection).AddToLog("DbTransaction.Dispose()");
+                Connection = null;
+            }
+
+            public void Rollback()
+            {
+                if (Connection == null)
+                    throw new NotSupportedException();
+                ((MockDbConnection)Connection).AddToLog("DbTransaction.Rollback()");
             }
         }
 

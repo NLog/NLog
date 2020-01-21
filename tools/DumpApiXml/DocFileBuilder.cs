@@ -131,10 +131,7 @@
         {
             string simpleName;
 
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
-            {
-                type = type.GetGenericArguments()[0];
-            }
+            type = GetUnderlyingType(type);
 
             if (simpleTypeNames.TryGetValue(type.FullName, out simpleName))
             {
@@ -142,6 +139,16 @@
             }
 
             return type.FullName;
+        }
+
+        private static Type GetUnderlyingType(Type type)
+        {
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                type = type.GetGenericArguments()[0];
+            }
+
+            return type;
         }
 
         private static bool IsCollection(PropertyInfo prop, out Type elementType, out string elementName)
@@ -423,28 +430,6 @@
                     {
                         writer.WriteAttributeString("type", "Condition");
                     }
-                    else if (propInfo.PropertyType.IsEnum)
-                    {
-                        writer.WriteAttributeString("type", "Enum");
-                        writer.WriteAttributeString("enumType", GetTypeName(propInfo.PropertyType));
-                        foreach (FieldInfo fi in
-                            propInfo.PropertyType.GetFields(BindingFlags.Static | BindingFlags.Public))
-                        {
-                            writer.WriteStartElement("enum");
-                            writer.WriteAttributeString("name", fi.Name);
-                            if (
-                                this.TryGetMemberDoc(
-                                    "F:" + propInfo.PropertyType.FullName.Replace("+", ".") + "." + fi.Name,
-                                    out memberDoc))
-                            {
-                                writer.WriteStartElement("doc");
-                                memberDoc.WriteContentTo(writer);
-                                writer.WriteEndElement();
-                            }
-
-                            writer.WriteEndElement();
-                        }
-                    }
                     else if (IsCollection(propInfo, out elementType, out elementTag))
                     {
                         writer.WriteAttributeString("type", "Collection");
@@ -459,7 +444,34 @@
                     }
                     else
                     {
-                        writer.WriteAttributeString("type", GetTypeName(propInfo.PropertyType));
+                        var underlyingType = GetUnderlyingType(propInfo.PropertyType);
+                        var typeName = GetTypeName(underlyingType);
+                        if (underlyingType.IsEnum)
+                        {
+                            writer.WriteAttributeString("type", "Enum");
+                            writer.WriteAttributeString("enumType", typeName);
+                            foreach (FieldInfo fi in
+                                underlyingType.GetFields(BindingFlags.Static | BindingFlags.Public))
+                            {
+                                writer.WriteStartElement("enum");
+                                writer.WriteAttributeString("name", fi.Name);
+                                if (
+                                    this.TryGetMemberDoc(
+                                        "F:" + underlyingType.FullName.Replace("+", ".") + "." + fi.Name,
+                                        out memberDoc))
+                                {
+                                    writer.WriteStartElement("doc");
+                                    memberDoc.WriteContentTo(writer);
+                                    writer.WriteEndElement();
+                                }
+
+                                writer.WriteEndElement();
+                            }
+                        }
+                        else
+                        {
+                            writer.WriteAttributeString("type", typeName);
+                        }
                     }
 
                     if (this.TryGetMemberDoc("P:" + propInfo.DeclaringType.FullName + "." + propInfo.Name, out memberDoc))

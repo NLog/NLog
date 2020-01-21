@@ -315,7 +315,7 @@ namespace NLog.Layouts
 
                 if (!_scannedForObjects)
                 {
-                    InternalLogger.Debug("Initialized Layout done but not scanned for objects");
+                    InternalLogger.Debug("{0} Initialized Layout done but not scanned for objects", GetType());
                     PerformObjectScanning();
                 }
             }
@@ -334,6 +334,18 @@ namespace NLog.Layouts
             ThreadAgnostic = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadAgnosticAttribute), true));
             ThreadSafe = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadSafeAttribute), true));
             MutableUnsafe = objectGraphTypes.Any(t => t.IsDefined(typeof(MutableUnsafeAttribute), true));
+            if ((ThreadAgnostic || !MutableUnsafe) && objectGraphScannerList.Count > 1 && objectGraphTypes.Count > 0)
+            {
+                foreach (var nestedLayout in objectGraphScannerList.OfType<Layout>())
+                {
+                    if (!ReferenceEquals(nestedLayout, this))
+                    {
+                        nestedLayout.Initialize(LoggingConfiguration);
+                        ThreadAgnostic = nestedLayout.ThreadAgnostic && ThreadAgnostic;
+                        MutableUnsafe = nestedLayout.MutableUnsafe || MutableUnsafe;
+                    }
+                }
+            }
 
             // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
             StackTraceUsage = StackTraceUsage.None;    // In case this Layout should implement IUsesStackTrace
