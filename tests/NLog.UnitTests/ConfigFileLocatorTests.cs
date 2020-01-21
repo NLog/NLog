@@ -82,6 +82,20 @@ namespace NLog.UnitTests
             // Assert
             Assert.Equal("42", result);
             Assert.True(layout.ThreadSafe);
+            Assert.False(layout.ThreadAgnostic);
+        }
+
+        [Fact]
+        void FuncLayoutRendererFluentMethod_ThreadAgnostic_Test()
+        {
+            // Arrange
+            var layout = Layout.CreateFromMethod(l => "42", LayoutRenderOptions.ThreadAgnostic);
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+            // Assert
+            Assert.Equal("42", result);
+            Assert.True(layout.ThreadSafe);
+            Assert.True(layout.ThreadAgnostic);
         }
 
         [Fact]
@@ -94,6 +108,7 @@ namespace NLog.UnitTests
             // Assert
             Assert.Equal("42", result);
             Assert.False(layout.ThreadSafe);
+            Assert.False(layout.ThreadAgnostic);
         }
 
         [Fact]
