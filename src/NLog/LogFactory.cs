@@ -598,6 +598,7 @@ namespace NLog
         {
             var targets = loggingConfiguration.GetAllTargetsToFlush();
             var pendingTargets = new HashSet<Target>(targets, SingleItemOptimizedHashSet<Target>.ReferenceEqualityComparer.Default);
+
             AsynchronousAction<Target> flushAction = (target, cont) =>
             {
                 target.Flush(ex =>
@@ -625,6 +626,7 @@ namespace NLog
                     InternalLogger.Debug("Flush completed");
                 asyncContinuation(ex);
             };
+
             if (asyncTimeout.HasValue)
             {
                 flushContinuation = AsyncHelpers.WithTimeout(flushContinuation, asyncTimeout.Value);
@@ -633,6 +635,7 @@ namespace NLog
             {
                 flushContinuation = AsyncHelpers.PreventMultipleCalls(flushContinuation);
             }
+
             InternalLogger.Trace("Flushing all {0} targets...", targets.Count);
             AsyncHelpers.ForEachItemInParallel(targets, flushContinuation, flushAction);
             return flushContinuation;
@@ -655,7 +658,7 @@ namespace NLog
 
                 bool flushCompleted = flushCompletedEvent.WaitOne(timeout);
                 if (!flushCompleted)
-                    flushContinuation(new TimeoutException("Timeout."));
+                    flushContinuation(new TimeoutException($"Timeout when flushing all targets, after waiting {timeout.TotalSeconds} seconds."));
             }
             catch (Exception ex)
             {

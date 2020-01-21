@@ -61,16 +61,16 @@ namespace NLog.UnitTests
             Logger logger = LogManager.GetCurrentClassLogger();
             logger.Info("Prepare Timeout");
 
-            Exception timeout = null;
+            Exception timeoutException = null;
             ManualResetEvent manualResetEvent = new ManualResetEvent(false);
 
             // Act
             logger.Factory.Flush(TimeSpan.FromMilliseconds(1));
-            logger.Factory.Flush(ex => { timeout = ex; manualResetEvent.Set(); }, TimeSpan.FromMilliseconds(1));
+            logger.Factory.Flush(ex => { timeoutException = ex; manualResetEvent.Set(); }, TimeSpan.FromMilliseconds(1));
 
             // Assert
             Assert.True(manualResetEvent.WaitOne(1000));
-            Assert.NotNull(timeout);
+            Assert.NotNull(timeoutException);
         }
 
         [Fact]
