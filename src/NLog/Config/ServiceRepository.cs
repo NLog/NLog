@@ -47,6 +47,8 @@ namespace NLog.Config
     internal sealed class ServiceRepository : IServiceRepository
     {
         private readonly Dictionary<Type, ConfigurationItemCreator> _creatorMap = new Dictionary<Type, ConfigurationItemCreator>();
+        private readonly Dictionary<Type, CompiledConstructor> _lateBoundMap = new Dictionary<Type, CompiledConstructor>();
+        private readonly object _lockObject = new object();
         private ConfigurationItemFactory _localItemFactory;
         public event EventHandler<RepositoryUpdateEventArgs> TypeRegistered;
 
@@ -65,7 +67,7 @@ namespace NLog.Config
                 ConfigurationItemFactory.Default = null;    //build new global factory
 
             this.RegisterDefaults();
-            CreateInstance = itemType => DefaultResolveInstance(itemType, null);
+            CreateInstance = DefaultResolveInstanceTop;
             // Maybe also include active TimeSource ? Could also be done with LogFactory extension-methods
         }
 
@@ -83,7 +85,15 @@ namespace NLog.Config
                 return createInstance(itemType);
             }
 
-            return DefaultResolveInstance(itemType, null);
+            return DefaultResolveInstanceTop(itemType);
+        }
+
+        private object DefaultResolveInstanceTop(Type itemType)
+        {
+            lock (_lockObject)
+            {
+                return DefaultResolveInstance(itemType, null);
+            }
         }
 
         private object DefaultResolveInstance(Type itemType, HashSet<Type> seenTypes)
@@ -95,17 +105,35 @@ namespace NLog.Config
                 return objectResolver(itemType);
             }
 
+            if (_lateBoundMap.TryGetValue(itemType, out var compiledConstructor))
+            {
+                return CreateNewInstance(compiledConstructor, seenTypes);
+            }
+
+            //todo? lock (_lateBoundMapLock)
+            {
+                if (_lateBoundMap.TryGetValue(itemType, out var compiledConstructor1))
+                {
+                    return CreateNewInstance(compiledConstructor1, seenTypes);
+                }
+
+                return CreateFromConstructor(itemType, seenTypes);
+            }
+        }
+
+        private object CreateFromConstructor(Type itemType, HashSet<Type> seenTypes)
+        {
             try
             {
-                //todo DI cache/find upfront
+                //todo DI find upfront
                 var defaultConstructor = itemType.GetConstructor(Type.EmptyTypes);
                 if (defaultConstructor != null)
                 {
                     InternalLogger.Trace("Found public default ctor");
-                    return defaultConstructor.Invoke(ArrayHelper.Empty<object>());
+
+                    return CreateFromDefaultConstructor(itemType, defaultConstructor);
                 }
 
-                seenTypes = seenTypes ?? new HashSet<Type>();
                 return CreateFromParameterizedConstructor(itemType, seenTypes);
             }
             catch (MissingMethodException exception)
@@ -116,9 +144,42 @@ namespace NLog.Config
             {
                 InternalLogger.Trace("Resolve {0} done", itemType.FullName);
             }
+
+        }
+
+        private object CreateNewInstance(CompiledConstructor compiledConstructor, HashSet<Type> seenTypes)
+        {
+            var constructorParameters = compiledConstructor.Parameters;
+            if (constructorParameters == null)
+            {
+                return compiledConstructor.Ctor(null);
+            }
+
+            seenTypes = seenTypes ?? new HashSet<Type>();
+            var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
+            return compiledConstructor.Ctor(parameterValues);
+        }
+
+        private object CreateFromDefaultConstructor(Type itemType, ConstructorInfo defaultConstructor)
+        {
+            var compiledCtor = ReflectionHelpers.CreateLateBoundConstructor(defaultConstructor);
+            _lateBoundMap.Add(itemType, new CompiledConstructor(compiledCtor));
+            return compiledCtor(null);
         }
 
         private object CreateFromParameterizedConstructor(Type itemType, HashSet<Type> seenTypes)
+        {
+            seenTypes = seenTypes ?? new HashSet<Type>();
+
+            var ctor = GetParameterizedConstructor(itemType);
+            var constructorParameters = ctor.GetParameters();
+            var parameterValues = CreateCtorParameterValues(constructorParameters, seenTypes);
+            var compiledParameterizedCtor = ReflectionHelpers.CreateLateBoundConstructor(ctor);
+            _lateBoundMap.Add(itemType, new CompiledConstructor(compiledParameterizedCtor, constructorParameters));
+            return compiledParameterizedCtor.Invoke(parameterValues);
+        }
+
+        private static ConstructorInfo GetParameterizedConstructor(Type itemType)
         {
             var ctors = itemType.GetConstructors();
 
@@ -133,8 +194,7 @@ namespace NLog.Config
             }
 
             var ctor = ctors[0];
-            var parameterValues = CreateCtorParameterValues(ctor.GetParameters(), seenTypes);
-            return ctor.Invoke(parameterValues);
+            return ctor;
         }
 
         private object[] CreateCtorParameterValues(ParameterInfo[] parameterInfos, HashSet<Type> seenTypes)
@@ -167,5 +227,21 @@ namespace NLog.Config
         /// By overriding this property, one can enable dependency injection or interception for created objects.
         /// </remarks>
         public ConfigurationItemCreator CreateInstance { get; set; }
+
+        private class CompiledConstructor
+        {
+
+            [NotNull] public ReflectionHelpers.LateBoundConstructor Ctor { get; }
+            [CanBeNull] public ParameterInfo[] Parameters { get; }
+
+            public bool ParameterLess => Parameters == null || Parameters.Length == 0;
+
+
+            public CompiledConstructor([NotNull] ReflectionHelpers.LateBoundConstructor ctor, ParameterInfo[] parameters = null)
+            {
+                Ctor = ctor ?? throw new ArgumentNullException(nameof(ctor));
+                Parameters = parameters;
+            }
+        }
     }
 }

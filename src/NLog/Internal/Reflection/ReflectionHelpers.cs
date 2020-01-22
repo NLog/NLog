@@ -108,18 +108,69 @@ namespace NLog.Internal
         public delegate object LateBoundMethod(object target, object[] arguments);
 
         /// <summary>
+        /// Optimized delegate for calling a constructor
+        /// </summary>
+        /// <param name="arguments">Complete list of parameters that matches the constructor, including optional/default parameters. Could be null for no parameters.</param>
+        /// <returns></returns>
+        public delegate object LateBoundConstructor([CanBeNull] object[] arguments);
+
+        /// <summary>
         /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
         /// </summary>
         /// <param name="methodInfo">Method to optimize</param>
         /// <returns>Optimized delegate for invoking the MethodInfo</returns>
         public static LateBoundMethod CreateLateBoundMethod(MethodInfo methodInfo)
         {
-            // parameters to execute
             var instanceParameter = Expression.Parameter(typeof(object), "instance");
-            var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
+            var parametersParameter = BuildParametersParameterList(methodInfo, out var parameterExpressions);
 
-            // build parameter list
-            var parameterExpressions = new List<Expression>();
+            // non-instance for static method, or ((TInstance)instance)
+            var instanceCast = methodInfo.IsStatic ? null : Expression.Convert(instanceParameter, methodInfo.DeclaringType);
+
+            // static invoke or ((TInstance)instance).Method
+            var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
+
+            // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
+            if (methodCall.Type == typeof(void))
+            {
+                var lambda = Expression.Lambda<Action<object, object[]>>(methodCall, instanceParameter, parametersParameter);
+
+                Action<object, object[]> execute = lambda.Compile();
+                return (instance, parameters) =>
+                {
+                    execute(instance, parameters);
+                    return null;    // There is no return-type, so we return null-object
+                };
+            }
+            else
+            {
+                var castMethodCall = Expression.Convert(methodCall, typeof(object));
+                var lambda = Expression.Lambda<LateBoundMethod>(castMethodCall, instanceParameter, parametersParameter);
+
+                return lambda.Compile();
+            }
+        }
+
+        /// <summary>
+        /// Creates an optimized delegate for calling the constructors using Expression-Trees
+        /// </summary>
+        /// <param name="constructor">Constructor to optimize</param>
+        /// <returns>Optimized delegate for invoking the constructor</returns>
+        public static LateBoundConstructor CreateLateBoundConstructor(ConstructorInfo constructor)
+        {
+            var parametersParameter = BuildParametersParameterList(constructor, out var parameterExpressions);
+
+            var ctorCall = Expression.New(constructor, parameterExpressions);
+
+            var lambda = Expression.Lambda<LateBoundConstructor>(ctorCall, parametersParameter);
+
+            return lambda.Compile();
+        }
+
+        private static ParameterExpression BuildParametersParameterList(MethodBase methodInfo, out List<Expression> parameterExpressions)
+        {
+            var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
+            parameterExpressions = new List<Expression>();
             var paramInfos = methodInfo.GetParameters();
             for (int i = 0; i < paramInfos.Length; i++)
             {
@@ -135,34 +186,7 @@ namespace NLog.Internal
                 parameterExpressions.Add(valueCast);
             }
 
-            // non-instance for static method, or ((TInstance)instance)
-            var instanceCast = methodInfo.IsStatic ? null :
-                Expression.Convert(instanceParameter, methodInfo.DeclaringType);
-
-            // static invoke or ((TInstance)instance).Method
-            var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
-
-            // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
-            if (methodCall.Type == typeof(void))
-            {
-                var lambda = Expression.Lambda<Action<object, object[]>>(
-                        methodCall, instanceParameter, parametersParameter);
-
-                Action<object, object[]> execute = lambda.Compile();
-                return (instance, parameters) =>
-                {
-                    execute(instance, parameters);
-                    return null;    // There is no return-type, so we return null-object
-                };
-            }
-            else
-            {
-                var castMethodCall = Expression.Convert(methodCall, typeof(object));
-                var lambda = Expression.Lambda<LateBoundMethod>(
-                    castMethodCall, instanceParameter, parametersParameter);
-
-                return lambda.Compile();
-            }
+            return parametersParameter;
         }
 
         public static bool IsEnum(this Type type)
