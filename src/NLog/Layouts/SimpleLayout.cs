@@ -83,14 +83,26 @@ namespace NLog.Layouts
         /// <param name="txt">The layout string to parse.</param>
         /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
         public SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory)
+            :this(txt, configurationItemFactory, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleLayout"/> class.
+        /// </summary>
+        /// <param name="txt">The layout string to parse.</param>
+        /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
+        /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors.</param>
+        internal SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
         {
             _configurationItemFactory = configurationItemFactory;
-            Text = txt;
+            SetLayoutText(txt, throwConfigExceptions);
         }
 
         internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
         {
             _configurationItemFactory = configurationItemFactory;
+            OriginalText = text;
             SetRenderers(renderers, text);
         }
 
@@ -106,29 +118,31 @@ namespace NLog.Layouts
         public string Text
         {
             get => _layoutText;
+            set => SetLayoutText(value);
+        }
 
-            set
+        private void SetLayoutText(string value, bool? throwConfigExceptions = null)
+        {
+            OriginalText = value;
+
+            LayoutRenderer[] renderers;
+            string txt;
+            if (value == null)
             {
-                OriginalText = value;
-
-                LayoutRenderer[] renderers;
-                string txt;
-                if (value == null)
-                {
-                    renderers = ArrayHelper.Empty<LayoutRenderer>();
-                    txt = string.Empty;
-                }
-                else
-                {
-                    renderers = LayoutParser.CompileLayout(
-                       _configurationItemFactory,
-                       new SimpleStringReader(value),
-                       false,
-                       out txt);
-                }
-
-                SetRenderers(renderers, txt);
+                renderers = ArrayHelper.Empty<LayoutRenderer>();
+                txt = string.Empty;
             }
+            else
+            {
+                renderers = LayoutParser.CompileLayout(
+                   _configurationItemFactory,
+                    new SimpleStringReader(value),
+                    throwConfigExceptions,
+                    false,
+                    out txt);
+            }
+
+            SetRenderers(renderers, txt);
         }
 
         /// <summary>
