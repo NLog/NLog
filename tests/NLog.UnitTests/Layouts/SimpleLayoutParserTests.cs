@@ -694,15 +694,61 @@ namespace NLog.UnitTests.Layouts
         }
 
         [Fact]
-        void SimpleLayout_CreateFromString_ThrowConfigExceptions()
+        void SimpleLayout_FromString_ThrowConfigExceptions()
         {
             Assert.Throws<NLogConfigurationException>(() => Layout.FromString("${evil}", true));
         }
 
         [Fact]
-        void SimpleLayout_CreateFromString_NoThrowConfigExceptions()
+        void SimpleLayout_FromString_NoThrowConfigExceptions()
         {
             Assert.NotNull(Layout.FromString("${evil}", false));
+        }
+
+        [Theory]
+        [InlineData("", true)]
+        [InlineData(null, true)]
+        [InlineData("'a'", true)]
+        [InlineData("${gdc:a}", false)]
+        public void FromString_isFixedText(string input, bool expected)
+        {
+            // Act
+            var layout = (SimpleLayout)Layout.FromString(input);
+            layout.Initialize(null);
+
+            // Assert
+            Assert.Equal(expected, layout.IsFixedText);
+        }
+
+        [Theory]
+        [InlineData("", true)]
+        [InlineData(null, true)]
+        [InlineData("'a'", true)]
+        [InlineData("${gdc:a}", true)]
+        public void FromString_isThreadSafe(string input, bool expected)
+        {
+            // Act
+            var layout = (SimpleLayout)Layout.FromString(input);
+            layout.Initialize(null);
+
+            // Assert
+            Assert.Equal(expected, layout.ThreadSafe);
+        }
+
+        [Theory]
+        [InlineData("", "")]
+        [InlineData(null, "")]
+        [InlineData("'a'", "'a'")]
+        [InlineData("${gdc:a}", "")]
+        public void Render(string input, string expected)
+        {
+            var layout = (SimpleLayout)Layout.FromString(input);
+
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(expected, result);
         }
 
         private class LayoutRendererWithListParam : LayoutRenderer
