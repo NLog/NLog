@@ -127,6 +127,31 @@ namespace NLog.Layouts
         }
 
         /// <summary>
+        /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
+        /// </summary>
+        /// <param name="layoutText">The layout string.</param>
+        /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors (false = replace unrecognized tokens with a space).</param>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        public static Layout CreateFromString(string layoutText, bool throwConfigExceptions)
+        {
+            try
+            {
+                return new SimpleLayout(layoutText, ConfigurationItemFactory.Default, throwConfigExceptions);
+            }
+            catch (NLogConfigurationException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                if (!throwConfigExceptions || ex.MustBeRethrownImmediately())
+                    throw;
+
+                throw new NLogConfigurationException($"Invalid Layout: {layoutText}", ex);
+            }
+        }
+
+        /// <summary>
         /// Implicits converts the specific lambda method into a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutMethod">Method that renders the layout.</param>
