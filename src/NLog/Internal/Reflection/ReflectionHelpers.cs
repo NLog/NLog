@@ -104,10 +104,15 @@ namespace NLog.Internal
         /// </summary>
         /// <param name="target">Object instance, use null for static methods.</param>
         /// <param name="arguments">Complete list of parameters that matches the method, including optional/default parameters.</param>
-        /// <returns></returns>
         public delegate object LateBoundMethod(object target, object[] arguments);
 
         public delegate object LateBoundMethodSingle(object target, object argument);
+
+        /// <summary>
+        /// Optimized delegate for calling a constructor
+        /// </summary>
+        /// <param name="arguments">Complete list of parameters that matches the constructor, including optional/default parameters. Could be null for no parameters.</param>
+        public delegate object LateBoundConstructor([CanBeNull] object[] arguments);
 
         /// <summary>
         /// Creates an optimized delegate for calling the MethodInfo using Expression-Trees
@@ -116,12 +121,11 @@ namespace NLog.Internal
         /// <returns>Optimized delegate for invoking the MethodInfo</returns>
         public static LateBoundMethod CreateLateBoundMethod(MethodInfo methodInfo)
         {
-            // parameters to execute
             var instanceParameter = Expression.Parameter(typeof(object), "instance");
             var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
 
-            // build parameter list
-            var methodCall = BuildParameterList(methodInfo, instanceParameter, parametersParameter);
+            var parameterExpressions = BuildParameterList(methodInfo, parametersParameter);
+            var methodCall = BuildMethodCall(methodInfo, instanceParameter, parameterExpressions);
 
             // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
             if (methodCall.Type == typeof(void))
@@ -157,8 +161,8 @@ namespace NLog.Internal
             var instanceParameter = Expression.Parameter(typeof(object), "instance");
             var parametersParameter = Expression.Parameter(typeof(object), "parameters");
 
-            // build parameter list
-            var methodCall = BuildParameterListSingle(methodInfo, instanceParameter, parametersParameter);
+            var parameterExpressions = BuildParameterListSingle(methodInfo, parametersParameter);
+            var methodCall = BuildMethodCall(methodInfo, instanceParameter, parameterExpressions);
 
             // ((TInstance)instance).Method((T0)parameters[0], (T1)parameters[1], ...)
             if (methodCall.Type == typeof(void))
@@ -183,7 +187,26 @@ namespace NLog.Internal
             }
         }
 
-        private static MethodCallExpression BuildParameterList(MethodInfo methodInfo, ParameterExpression instanceParameter, ParameterExpression parametersParameter)
+        /// <summary>
+        /// Creates an optimized delegate for calling the constructors using Expression-Trees
+        /// </summary>
+        /// <param name="constructor">Constructor to optimize</param>
+        /// <returns>Optimized delegate for invoking the constructor</returns>
+        public static LateBoundConstructor CreateLateBoundConstructor(ConstructorInfo constructor)
+        {
+            var parametersParameter = Expression.Parameter(typeof(object[]), "parameters");
+
+            // build parameter list
+            var parameterExpressions = BuildParameterList(constructor, parametersParameter);
+
+            var ctorCall = Expression.New(constructor, parameterExpressions);
+
+            var lambda = Expression.Lambda<LateBoundConstructor>(ctorCall, parametersParameter);
+
+            return lambda.Compile();
+        }
+
+        private static IEnumerable<Expression> BuildParameterList(MethodBase methodInfo, ParameterExpression parametersParameter)
         {
             var parameterExpressions = new List<Expression>();
             var paramInfos = methodInfo.GetParameters();
@@ -196,10 +219,10 @@ namespace NLog.Internal
                 parameterExpressions.Add(valueCast);
             }
 
-            return CreateMethodCallExpression(methodInfo, instanceParameter, parameterExpressions);
+            return parameterExpressions;
         }
 
-        private static MethodCallExpression BuildParameterListSingle(MethodInfo methodInfo, ParameterExpression instanceParameter, ParameterExpression parameterParameter)
+        private static IEnumerable<Expression> BuildParameterListSingle(MethodInfo methodInfo, ParameterExpression parameterParameter)
         {
             var parameterExpressions = new List<Expression>();
             var paramInfos = methodInfo.GetParameters().Single();
@@ -208,11 +231,10 @@ namespace NLog.Internal
                 var parameterExpression = CreateParameterExpression(paramInfos, parameterParameter);
                 parameterExpressions.Add(parameterExpression);
             }
-
-            return CreateMethodCallExpression(methodInfo, instanceParameter, parameterExpressions);
+            return parameterExpressions;
         }
-        
-        private static MethodCallExpression CreateMethodCallExpression(MethodInfo methodInfo, ParameterExpression instanceParameter, IEnumerable<Expression> parameterExpressions)
+
+        private static MethodCallExpression BuildMethodCall(MethodInfo methodInfo, ParameterExpression instanceParameter, IEnumerable<Expression> parameterExpressions)
         {
             // non-instance for static method, or ((TInstance)instance)
             var instanceCast = methodInfo.IsStatic ? null : Expression.Convert(instanceParameter, methodInfo.DeclaringType);
@@ -221,7 +243,7 @@ namespace NLog.Internal
             var methodCall = Expression.Call(instanceCast, methodInfo, parameterExpressions);
             return methodCall;
         }
-    
+
         private static UnaryExpression CreateParameterExpression(ParameterInfo parameterInfo, Expression expression)
         {
             Type parameterType = parameterInfo.ParameterType;
