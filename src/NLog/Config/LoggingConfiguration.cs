@@ -709,14 +709,8 @@ namespace NLog.Config
             InternalLogger.Debug("--- End of NLog configuration dump ---");
         }
 
-        /// <summary>
-        /// Flushes any pending log messages on all appenders.
-        /// </summary>
-        /// <param name="asyncContinuation">The asynchronous continuation.</param>
-        internal void FlushAllTargets(AsyncContinuation asyncContinuation)
+        internal List<Target> GetAllTargetsToFlush()
         {
-            InternalLogger.Trace("Flushing all targets...");
-
             var uniqueTargets = new List<Target>();
             foreach (var rule in GetLoggingRulesThreadSafe())
             {
@@ -730,7 +724,7 @@ namespace NLog.Config
                 }
             }
 
-            AsyncHelpers.ForEachItemInParallel(uniqueTargets, asyncContinuation, (target, cont) => target.Flush(cont));
+            return uniqueTargets;
         }
 
         /// <summary>
