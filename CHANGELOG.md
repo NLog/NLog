@@ -4,6 +4,45 @@ Date format: (year/month/day)
 
 ## Change Log
 
+### V4.7 (2020/01/24)
+
+#### Bugfixes
+- [#3758](https://github.com/NLog/NLog/pull/3758) LogFactory - Fix deadlock issue with AutoReload (@snakefoot)
+- [#3766](https://github.com/NLog/NLog/pull/3766) JsonLayout - Fixed ThreadAgnostic to correctly capture context when using nested JsonLayout (@snakefoot)
+- [#3700](https://github.com/NLog/NLog/pull/3700) ExceptionLayoutRenderer - Fixed so Format option HResult also works for NetCore (@snakefoot)
+
+#### Features
+- [#3686](https://github.com/NLog/NLog/pull/3686) + [#3740](https://github.com/NLog/NLog/pull/3740) LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
+- [#3610](https://github.com/NLog/NLog/pull/3610) LogManager.Setup().SetupSerialization(s => s.RegisterObjectTransformation(...)) for overriding default property reflection (@snakefoot + @304NotModified + @Giorgi + @mmurrell)
+- [#3713](https://github.com/NLog/NLog/pull/3713) ${level:format=FullName} will expand Info + Warn to their full name (@snakefoot)
+- [#3714](https://github.com/NLog/NLog/pull/3714) + [#3734](https://github.com/NLog/NLog/pull/3734) FileTarget - Supports MaxArchiveDays for cleanup of old files based on their age (@snakefoot)
+- [#3737](https://github.com/NLog/NLog/pull/3737) + [#3769](https://github.com/NLog/NLog/pull/3769) Layout.CreateFromMethod to create Layout directly from a lambda method (@snakefoot)
+- [#3771](https://github.com/NLog/NLog/pull/3771) Layout.CreateFromString to create Layout directly from string along with optional parser validation (@snakefoot)
+
+#### Improvements
+- [#3521](https://github.com/NLog/NLog/pull/3521) XmlLoggingConfiguration - Marked legacy constructors with ignoreErrors parameter as obsolete (@snakefoot)
+- [#3689](https://github.com/NLog/NLog/pull/3689) LoggingConfiguration - Perform checking of unused targets during initialization for better validation (@snakefoot)
+- [#3704](https://github.com/NLog/NLog/pull/3704) EventLogTarget - Improve diagnostics logging when using dynamic EventLog source (@snakefoot)
+- [#3706](https://github.com/NLog/NLog/pull/3706) ${longdate} now also supports raw value for use as DatabaseTarget parameter with DbType (@snakefoot)
+- [#3728](https://github.com/NLog/NLog/pull/3728) SourceLink for GitHub for easy debugging into the NLog source code (@304NotModified)
+- [#3743](https://github.com/NLog/NLog/pull/3743) JsonLayout - EscapeForwardSlash now automatically applies to sub-attributes (@snakefoot)
+- [#3742](https://github.com/NLog/NLog/pull/3742) TraceTarget - Introduced EnableTraceFail=false to avoid Environment.FailFast (@snakefoot)
+- [#3750](https://github.com/NLog/NLog/pull/3750) ExceptionLayoutRenderer - Improved error message when Format-token parsing fails (@snakefoot)
+- [#3747](https://github.com/NLog/NLog/pull/3747) AutoFlushWrapper - Set AutoFlush=false for AsyncTaskTarget by default (@snakefoot)
+- [#3754](https://github.com/NLog/NLog/pull/3754) LocalIpAddressLayoutRenderer - Higher priority to network-addresses that has valid gateway adddress (@snakefoot)
+- [#3762](https://github.com/NLog/NLog/pull/3762) LogFactory - Flush reports to InternalLogger what targets produces timeouts (@snakefoot)
+
+#### Performance
+- [#3683](https://github.com/NLog/NLog/pull/3683) ObjectGraphScanner - Avoid holding list.SyncRoot lock while scanning (@snakefoot)
+- [#3691](https://github.com/NLog/NLog/pull/3691) FileTarget - ConcurrentWrites=true on NetCore now much faster when archive enabled (@snakefoot)
+- [#3694](https://github.com/NLog/NLog/pull/3694) + [#3705](https://github.com/NLog/NLog/pull/3705) JsonConverter - Write DateTime directly without string allocation (@snakefoot)
+- [#3692](https://github.com/NLog/NLog/pull/3692) XmlLayout - Removed unnecessary double conversion to string (@snakefoot)
+- [#3735](https://github.com/NLog/NLog/pull/3735) WebServiceTarget - Reduced memory allocations by removing unnecessary delegate capture (@snakefoot)
+- [#3739](https://github.com/NLog/NLog/pull/3739) NetworkTarget  - Reduced memory allocation for encoding into bytes without string allocation (@snakefoot)
+- [#3748](https://github.com/NLog/NLog/pull/3748) AsyncTaskTarget - Skip default AsyncWrapper since already having internal queue (@snakefoot)
+- [#3767](https://github.com/NLog/NLog/pull/3767) Mark Condition Expressions as ThreadSafe to improve concurrency in Layouts (@snakefoot)
+- [#3713](https://github.com/NLog/NLog/pull/3713) DatabaseTarget - Added IsolationLevel option that activates transactions for better batching performance (@snakefoot)
+
 ### V4.6.8 (2019/11/04)
 
 #### Bugfixes
