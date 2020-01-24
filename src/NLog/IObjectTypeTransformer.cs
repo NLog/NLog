@@ -33,40 +33,17 @@
 
 namespace NLog
 {
-    using System;
-    using NLog.Config;
-    using NLog.Internal;
-
     /// <summary>
-    /// Extension methods to setup LogFactory options
+    /// Interface for handling object transformation
     /// </summary>
-    public static class SetupBuilderExtensions
+    internal interface IObjectTypeTransformer
     {
         /// <summary>
-        /// Configures loading of NLog extensions for Targets and LayoutRenderers
+        /// Takes a dangerous (or massive) object and converts into a safe (or reduced) object
         /// </summary>
-        public static ISetupBuilder SetupExtensions(this ISetupBuilder setupBuilder, Action<ISetupExtensionsBuilder> extensionsBuilder)
-        {
-            extensionsBuilder(new SetupExtensionsBuilder(setupBuilder.LogFactory));
-            return setupBuilder;
-        }
-
-        /// <summary>
-        /// Configures the output of NLog <see cref="Common.InternalLogger"/> for diagnostics / troubleshooting
-        /// </summary>
-        public static ISetupBuilder SetupInternalLogger(this ISetupBuilder setupBuilder, Action<ISetupInternalLoggerBuilder> internalLoggerBuilder)
-        {
-            internalLoggerBuilder(new SetupInternalLoggerBuilder(setupBuilder.LogFactory));
-            return setupBuilder;
-        }
-
-        /// <summary>
-        /// Configures serialization and transformation of LogEvents
-        /// </summary>
-        public static ISetupBuilder SetupSerialization(this ISetupBuilder setupBuilder, Action<ISetupSerializationBuilder> serializationBuilder)
-        {
-            serializationBuilder(new SetupSerializationBuilder(setupBuilder.LogFactory));
-            return setupBuilder;
-        }
+        /// <returns>
+        /// Null if unknown object, or object cannot be handled
+        /// </returns>
+        object TryTransformObject(object obj);
     }
 }
