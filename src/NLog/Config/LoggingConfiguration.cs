@@ -761,6 +761,11 @@ namespace NLog.Config
         {
             bool firstInitializeAll = _configItems.Count == 0;
 
+            if (firstInitializeAll && (LogFactory.ThrowExceptions || LogManager.ThrowExceptions))
+            {
+                InternalLogger.Info("LogManager.ThrowExceptions = true will have severe side-effects. Use only for unit-testing and last resort troubleshooting.");
+            }
+
             ValidateConfig();
 
             if (firstInitializeAll && _targets.Count > 0)
