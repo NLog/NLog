@@ -60,6 +60,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <example>
         /// ${message:truncate=80}
         /// </example>
+        /// <docgen category="Transformation Options" order="10"/>
         public int Truncate { get => Length; set => Length = value; }
 
         /// <inheritdoc/>

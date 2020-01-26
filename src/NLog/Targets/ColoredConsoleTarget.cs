@@ -193,6 +193,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
+        /// <docgen category='Console Options' order='11' />
         [DefaultValue(false)]
         public bool AutoFlush { get; set; }
 

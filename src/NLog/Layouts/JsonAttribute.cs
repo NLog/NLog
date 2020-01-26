@@ -107,11 +107,12 @@ namespace NLog.Layouts
         {
             get => LayoutWrapper.EscapeUnicode;
             set => LayoutWrapper.EscapeUnicode = value;
-        }   
+        }
 
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
+        /// <docgen category='JSON Attribute Options' order='100' />
         [DefaultValue(true)] // TODO NLog 5 change to nullable (with default fallback to false)
         public bool EscapeForwardSlash 
         {

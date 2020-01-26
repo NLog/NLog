@@ -125,12 +125,14 @@ namespace NLog.Targets
         /// <remarks>
         /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
+        /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
         public bool AutoFlush { get; set; }
 
         /// <summary>
         /// Gets or sets whether to enable batch writing using char[]-buffers, instead of using <see cref="Console.WriteLine()"/>
         /// </summary>
+        /// <docgen category='Console Options' order='10' />
         [DefaultValue(false)]
         public bool WriteBuffer { get; set; } = false;
 

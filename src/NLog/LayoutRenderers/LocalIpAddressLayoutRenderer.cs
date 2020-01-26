@@ -60,6 +60,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Get or set whether to prioritize IPv6 or IPv4 (default)
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public AddressFamily AddressFamily { get => _addressFamily ?? AddressFamily.InterNetwork; set => _addressFamily = value; }
 
         /// <inheritdoc />

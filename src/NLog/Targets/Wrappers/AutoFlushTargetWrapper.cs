@@ -78,6 +78,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Only flush when LogEvent matches condition. Ignore explicit-flush, config-reload-flush and shutdown-flush
         /// </summary>
+        /// <docgen category='General Options' order='10' />
         public bool FlushOnConditionOnly { get; set; }
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
