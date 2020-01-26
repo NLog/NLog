@@ -67,6 +67,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Fallback to the base dir of current process, when AppDomain.BaseDirectory is Temp-Path (.NET Core 3 - Single File Publish)
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public bool FixTempDir { get; set; }
 
         /// <summary>

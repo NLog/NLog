@@ -217,6 +217,7 @@ namespace NLog.Targets
         /// <summary>
         /// The number of seconds a connection will remain idle before the first keep-alive probe is sent
         /// </summary>
+        /// <docgen category='Connection Options' order='10' />
         public int KeepAliveTimeSeconds { get; set; }
 #endif
 

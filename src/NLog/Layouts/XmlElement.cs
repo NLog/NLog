@@ -60,6 +60,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Name of the element
         /// </summary>
+        /// <docgen category='Element Options' order='10' />
         [DefaultValue(DefaultElementName)]
         public string Name
         {
@@ -70,6 +71,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Value inside the element
         /// </summary>
+        /// <docgen category='Element Options' order='10' />
         public Layout Value
         {
             get => base.ElementValueInternal;
@@ -79,6 +81,7 @@ namespace NLog.Layouts
         /// <summary>
         /// Determines whether or not this attribute will be Xml encoded.
         /// </summary>
+        /// <docgen category='Element Options' order='10' />
         [DefaultValue(true)]
         public bool Encode
         {

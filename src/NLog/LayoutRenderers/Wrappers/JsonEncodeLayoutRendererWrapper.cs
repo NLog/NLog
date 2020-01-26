@@ -74,6 +74,7 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
+        /// <docgen category="Transformation Options" order="10"/>
         [DefaultValue(true)] // TODO NLog 5 change to nullable (with default fallback to false)
         public bool EscapeForwardSlash
         {

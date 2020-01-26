@@ -81,6 +81,7 @@ namespace NLog.LayoutRenderers
         ///
         /// A value is empty when null or in case of a string, null or empty string.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(false)]
         public bool IncludeEmptyValues { get; set; } = false;
 
