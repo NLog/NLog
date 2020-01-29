@@ -81,7 +81,7 @@ namespace NLog.Config
         /// </summary>
         public LoggingConfiguration(LogFactory logFactory)
         {
-            LogFactory = logFactory;
+            LogFactory = logFactory ?? LogManager.LogFactory;
             LoggingRules = new List<LoggingRule>();
         }
 
@@ -495,10 +495,9 @@ namespace NLog.Config
                     return null;
                 }
 
-                var logFactory = LogFactory ?? LogManager.LogFactory;
-                if (logFactory.KeepVariablesOnReload)
+                if (LogFactory.KeepVariablesOnReload)
                 {
-                    var currentConfig = logFactory._config ?? this;
+                    var currentConfig = LogFactory._config ?? this;
                     if (!ReferenceEquals(newConfig, currentConfig))
                     {
                         newConfig.CopyVariables(currentConfig.Variables);
@@ -533,14 +532,7 @@ namespace NLog.Config
 
                 // Refresh active logger-objects, so they stop using the removed target
                 //  - Can be called even if no LoggingConfiguration is loaded (will not trigger a config load)
-                if (LogFactory != null)
-                {
-                    LogFactory.ReconfigExistingLoggers();
-                }
-                else
-                {
-                    LogManager.ReconfigExistingLoggers();
-                }
+                LogFactory.ReconfigExistingLoggers();
 
                 // Perform flush and close after having stopped logger-objects from using the target
                 ManualResetEvent flushCompleted = new ManualResetEvent(false);
@@ -761,9 +753,9 @@ namespace NLog.Config
         {
             bool firstInitializeAll = _configItems.Count == 0;
 
-            if (firstInitializeAll && (LogFactory.ThrowExceptions || LogManager.ThrowExceptions))
+            if (firstInitializeAll && (LogFactory.ThrowExceptions==true || LogManager.ThrowExceptions))
             {
-                InternalLogger.Info("LogManager.ThrowExceptions = true will have severe side-effects. Use only for unit-testing and last resort troubleshooting.");
+                InternalLogger.Info("LogManager.ThrowExceptions = true can crash the application! Use only for unit-testing and last resort troubleshooting.");
             }
 
             ValidateConfig();
