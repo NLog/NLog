@@ -622,7 +622,7 @@ namespace NLog.UnitTests.Layouts
         void FuncLayoutRendererFluentMethod_ThreadSafe_Test()
         {
             // Arrange
-            var layout = Layout.CreateFromMethod(l => "42", LayoutRenderOptions.ThreadSafe);
+            var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.ThreadSafe);
             // Act
             var result = layout.Render(LogEventInfo.CreateNullEvent());
             // Assert
@@ -635,7 +635,7 @@ namespace NLog.UnitTests.Layouts
         void FuncLayoutRendererFluentMethod_ThreadAgnostic_Test()
         {
             // Arrange
-            var layout = Layout.CreateFromMethod(l => "42", LayoutRenderOptions.ThreadAgnostic);
+            var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.ThreadAgnostic);
             // Act
             var result = layout.Render(LogEventInfo.CreateNullEvent());
             // Assert
@@ -648,7 +648,7 @@ namespace NLog.UnitTests.Layouts
         void FuncLayoutRendererFluentMethod_ThreadUnsafe_Test()
         {
             // Arrange
-            var layout = Layout.CreateFromMethod(l => "42", LayoutRenderOptions.None);
+            var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.None);
             // Act
             var result = layout.Render(LogEventInfo.CreateNullEvent());
             // Assert
@@ -661,7 +661,7 @@ namespace NLog.UnitTests.Layouts
         void FuncLayoutRendererFluentMethod_NullThrows_Test()
         {
             // Arrange
-            Assert.Throws<ArgumentNullException>(() => Layout.CreateFromMethod(null));
+            Assert.Throws<ArgumentNullException>(() => Layout.FromMethod(null));
         }
 
         [Fact]
@@ -696,13 +696,13 @@ namespace NLog.UnitTests.Layouts
         [Fact]
         void SimpleLayout_CreateFromString_ThrowConfigExceptions()
         {
-            Assert.Throws<NLogConfigurationException>(() => Layout.CreateFromString("${evil}", true));
+            Assert.Throws<NLogConfigurationException>(() => Layout.FromString("${evil}", true));
         }
 
         [Fact]
         void SimpleLayout_CreateFromString_NoThrowConfigExceptions()
         {
-            Assert.NotNull(Layout.CreateFromString("${evil}", false));
+            Assert.NotNull(Layout.FromString("${evil}", false));
         }
 
         private class LayoutRendererWithListParam : LayoutRenderer
