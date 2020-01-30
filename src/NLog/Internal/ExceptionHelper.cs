@@ -144,6 +144,10 @@ namespace NLog.Internal
             {
                 return true;
             }
+            if (exception is System.Net.WebException)
+            {
+                return false;   // Not a real InvalidOperationException
+            }
             if (exception is InvalidOperationException)
             {
                 return true;    // Ex. Collection was modified

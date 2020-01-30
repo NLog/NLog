@@ -103,9 +103,9 @@ namespace NLog.Internal.NetworkSenders
                     }
                     catch (Exception ex)
                     {
-                        if (ex.MustBeRethrown())
+                        if (ex.MustBeRethrownImmediately())
                         {
-                            throw;
+                            throw;  // Throwing exceptions here will crash the entire application (.NET 2.0 behavior)
                         }
 
                         base.EndRequest(_ => asyncContinuation(ex), null);    // pendingException = null to keep sender alive
