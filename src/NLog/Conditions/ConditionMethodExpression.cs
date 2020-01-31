@@ -38,7 +38,7 @@ namespace NLog.Conditions
     using System.Globalization;
     using System.Reflection;
     using System.Text;
-    using Common;
+    using NLog.Common;
 
     /// <summary>
     /// Condition method invocation expression (represented by <b>method(p1,p2,p3)</b> syntax).
@@ -185,10 +185,19 @@ namespace NLog.Conditions
         /// <returns>Expression result.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
+            object[] callParameters = GenerateCallParameters(context);
+            return _lateBoundMethod(null, callParameters);  // Static-method so object-instance = null
+        }
+
+        private object[] GenerateCallParameters(LogEventInfo context)
+        {
             int parameterOffset = _acceptsLogEvent ? 1 : 0;
             int parameterDefaults = _lateBoundMethodDefaultParameters?.Length ?? 0;
+            int callParametersCount = MethodParameters.Count + parameterOffset + parameterDefaults;
+            if (callParametersCount == 0)
+                return NLog.Internal.ArrayHelper.Empty<object>();
 
-            var callParameters = new object[MethodParameters.Count + parameterOffset + parameterDefaults];
+            var callParameters = new object[callParametersCount];
 
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
@@ -211,7 +220,7 @@ namespace NLog.Conditions
                 }
             }
 
-            return _lateBoundMethod(null, callParameters);  // Static-method so object-instance = null
+            return callParameters;
         }
     }
 }
