@@ -63,23 +63,25 @@ namespace NLog.LayoutRenderers
         private static readonly string dummyNLogNamespace = "http://nlog-project.org/dummynamespace/" + Guid.NewGuid();
         private static readonly string dummyNLogNamespaceRemover = " xmlns:nlog=\"" + dummyNLogNamespace + "\"";
 
+        private readonly NdcLayoutRenderer _ndcLayoutRenderer = new NdcLayoutRenderer() { Separator = " " };
+
+#if !SILVERLIGHT
+        private readonly NdlcLayoutRenderer _ndlcLayoutRenderer = new NdlcLayoutRenderer() { Separator = " " };
+#endif
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
         public Log4JXmlEventLayoutRenderer() : this(LogFactory.CurrentAppDomain)
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Log4JXmlEventLayoutRenderer" /> class.
         /// </summary>
         public Log4JXmlEventLayoutRenderer(IAppDomain appDomain)
         {
             IncludeNLogData = true; // TODO NLog ver. 5 - Disable this by default, as mostly duplicate data is added
-            NdcItemSeparator = " ";
-#if !SILVERLIGHT
-            NdlcItemSeparator = " ";
-#endif
 
 #if SILVERLIGHT
             AppInfo = "Silverlight Application";
@@ -187,7 +189,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        public string NdlcItemSeparator { get; set; }
+        public string NdlcItemSeparator {
+            get => _ndlcLayoutRenderer.Separator;
+            set => _ndlcLayoutRenderer.Separator = value;
+        }
 #endif
 
         /// <summary>
@@ -207,7 +212,10 @@ namespace NLog.LayoutRenderers
         /// </summary>
         /// <docgen category='Payload Options' order='10' />
         [DefaultValue(" ")]
-        public string NdcItemSeparator { get; set; }
+        public string NdcItemSeparator {
+            get => _ndcLayoutRenderer.Separator;
+            set => _ndcLayoutRenderer.Separator = value;
+        }
 
         /// <summary>
         /// Gets or sets the log4j:event logger-xml-attribute (Default ${logger})
@@ -271,7 +279,7 @@ namespace NLog.LayoutRenderers
                     xtw.WriteElementSafeString("log4j", "throwable", dummyNamespace, logEvent.Exception.ToString());
                 }
 
-                AppendNdc(xtw);
+                AppendNdc(xtw, logEvent);
 
                 AppendException(logEvent, xtw);
 
@@ -330,12 +338,12 @@ namespace NLog.LayoutRenderers
 #endif
         }
 
-        private void AppendNdc(XmlWriter xtw)
+        private void AppendNdc(XmlWriter xtw, LogEventInfo logEvent)
         {
             string ndcContent = null;
             if (IncludeNdc)
             {
-                ndcContent = string.Join(NdcItemSeparator, NestedDiagnosticsContext.GetAllMessages());
+                ndcContent = _ndcLayoutRenderer.Render(logEvent);
             }
 
 #if !SILVERLIGHT
@@ -346,7 +354,7 @@ namespace NLog.LayoutRenderers
                     //extra separator
                     ndcContent += NdcItemSeparator;
                 }
-                ndcContent += string.Join(NdlcItemSeparator, NestedDiagnosticsLogicalContext.GetAllMessages());
+                ndcContent += _ndlcLayoutRenderer.Render(logEvent);
             }
 #endif
 
