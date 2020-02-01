@@ -36,7 +36,6 @@
 namespace NLog.Internal
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using System.Reflection;
@@ -74,8 +73,7 @@ namespace NLog.Internal
             if (modifiers != null)
                 throw new ArgumentException("Not supported", nameof(modifiers));
 
-            var methods = type.GetMethods(BindingFlags.Public | BindingFlags.Static);
-            foreach (MethodInfo method in methods)
+            foreach (MethodInfo method in type.GetMethods(bindingAttr))
             {
                 if (method.Name != name)
                     continue;

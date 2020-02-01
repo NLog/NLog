@@ -134,7 +134,8 @@ namespace NLog.Conditions
             try
             {
                 var methodInfo = _configurationItemFactory.ConditionMethods.CreateInstance(functionName);
-                return new ConditionMethodExpression(functionName, methodInfo, par);
+                var methodDelegate = _configurationItemFactory.ConditionMethodDelegates.CreateInstance(functionName);
+                return new ConditionMethodExpression(functionName, methodInfo, methodDelegate, par);
             }
             catch (Exception exception)
             {

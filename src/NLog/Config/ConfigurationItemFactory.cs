@@ -56,12 +56,12 @@ namespace NLog.Config
     {
         private static ConfigurationItemFactory _defaultInstance;
 
-        private readonly IList<object> _allFactories;
+        private readonly IFactory[] _allFactories;
         private readonly Factory<Target, TargetAttribute> _targets;
         private readonly Factory<Filter, FilterAttribute> _filters;
         private readonly LayoutRendererFactory _layoutRenderers;
         private readonly Factory<Layout, LayoutAttribute> _layouts;
-        private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> _conditionMethods;
+        private readonly MethodFactory _conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> _ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> _timeSources;
 
@@ -84,10 +84,10 @@ namespace NLog.Config
             _filters = new Factory<Filter, FilterAttribute>(this);
             _layoutRenderers = new LayoutRendererFactory(this);
             _layouts = new Factory<Layout, LayoutAttribute>(this);
-            _conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
+            _conditionMethods = new MethodFactory(classType => MethodFactory.ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(classType));
             _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
             _timeSources = new Factory<TimeSource, TimeSourceAttribute>(this);
-            _allFactories = new List<object>
+            _allFactories = new IFactory[]
             {
                 _targets,
                 _filters,
@@ -248,6 +248,12 @@ namespace NLog.Config
         public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods => _conditionMethods;
 
         /// <summary>
+        /// Gets the condition method factory (precompiled)
+        /// </summary>
+        /// <value>The condition method factory.</value>
+        internal MethodFactory ConditionMethodDelegates => _conditionMethods;
+
+        /// <summary>
         /// Registers named items from the assembly.
         /// </summary>
         /// <param name="assembly">The assembly.</param>
@@ -318,8 +324,8 @@ namespace NLog.Config
             {
                 if (preloadMethod.IsStatic)
                 {
-
                     InternalLogger.Debug("NLogPackageLoader contains Preload method");
+
                     //only static, so first param null
                     try
                     {
