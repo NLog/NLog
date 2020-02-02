@@ -73,7 +73,10 @@ namespace NLog.Config
             {
                 try
                 {
-                    RegisterType(t, prefix);
+                    if (t.IsClass() || t.IsAbstract())
+                    {
+                        RegisterType(t, prefix);
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -83,8 +86,6 @@ namespace NLog.Config
                     {
                         throw;
                     }
-
-                    
                 }
             }
         }

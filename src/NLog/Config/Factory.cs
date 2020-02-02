@@ -70,7 +70,10 @@ namespace NLog.Config
             {
                 try
                 {
-                    RegisterType(t, prefix);
+                    if (t.IsClass())
+                    {
+                        RegisterType(t, prefix);
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -80,7 +83,6 @@ namespace NLog.Config
                     {
                         throw;
                     }
-
                 }
             }
         }
@@ -243,7 +245,6 @@ namespace NLog.Config
             _funcRenderers[name] = renderer;
         }
 
-
         /// <summary>
         /// Tries to create an item instance.
         /// </summary>
@@ -268,6 +269,5 @@ namespace NLog.Config
 
             return success;
         }
-
     }
 }
