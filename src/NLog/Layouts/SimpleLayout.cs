@@ -244,12 +244,15 @@ namespace NLog.Layouts
         {
             Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
 
-            //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
             _fixedText = null;
             _rawValueRenderer = null;
             _stringValueRenderer = null;
 
-            if (Renderers.Count == 1)
+            if (Renderers.Count == 0)
+            {
+                _fixedText = string.Empty;
+            }
+            else if (Renderers.Count == 1)
             {
                 if (Renderers[0] is LiteralLayoutRenderer renderer)
                 {
@@ -257,13 +260,13 @@ namespace NLog.Layouts
                 }
                 else
                 {
-                    if (Renderers[0] is IRawValue rawValueRendrer)
+                    if (Renderers[0] is IRawValue rawValueRenderer)
                     {
-                        _rawValueRenderer = rawValueRendrer;
+                        _rawValueRenderer = rawValueRenderer;
                     }
-                    if (Renderers[0] is IStringValueRenderer stringValueRendrer)
+                    if (Renderers[0] is IStringValueRenderer stringValueRenderer)
                     {
-                        _stringValueRenderer = stringValueRendrer;
+                        _stringValueRenderer = stringValueRenderer;
                     }
                 }
             }
