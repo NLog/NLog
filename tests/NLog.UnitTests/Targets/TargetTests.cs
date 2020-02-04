@@ -39,6 +39,8 @@ using NLog.LayoutRenderers;
 using NLog.Layouts;
 using NLog.Targets.Wrappers;
 using NLog.UnitTests.Targets.Wrappers;
+using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 
 namespace NLog.UnitTests.Targets
 {
@@ -81,7 +83,7 @@ namespace NLog.UnitTests.Targets
                     if (isWrapped)
                     {
                         neededCheckCount++;
-                      
+
                         var args = new List<object> { fileTarget };
 
                         //default ctor
@@ -94,7 +96,7 @@ namespace NLog.UnitTests.Targets
                         {
                             ConditionLoggerNameExpression cond = null;
                             args.Add(cond);
-                            var target = (FilteringTargetWrapper) defaultConstructedTarget;
+                            var target = (FilteringTargetWrapper)defaultConstructedTarget;
                             target.Condition = cond;
                         }
                         else if (targetType == typeof(RepeatingTargetWrapper))
@@ -123,7 +125,7 @@ namespace NLog.UnitTests.Targets
 
                         //ctor: target+name
                         var namedConstructedTarget = (WrapperTargetBase)Activator.CreateInstance(targetType, args.ToArray());
-                        
+
                         CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
 
                         CheckEquals(targetType, defaultConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
@@ -136,7 +138,7 @@ namespace NLog.UnitTests.Targets
                         var args = new List<object> { fileTarget, memoryTarget };
 
                         //specials cases
-                   
+
 
                         //default ctor
                         var defaultConstructedTarget = (CompoundTargetBase)Activator.CreateInstance(targetType);
@@ -169,7 +171,7 @@ namespace NLog.UnitTests.Targets
                         CheckEquals(targetType, targetConstructedTarget, namedConstructedTarget, ref lastPropertyName, ref checkCount);
                     }
 
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -182,7 +184,7 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(neededCheckCount, checkCount);
         }
 
-        private static void CheckEquals(Type targetType, Target defaultConstructedTarget, Target namedConstructedTarget, 
+        private static void CheckEquals(Type targetType, Target defaultConstructedTarget, Target namedConstructedTarget,
             ref string lastPropertyName, ref int @checked)
         {
             var checkedAtLeastOneProperty = false;
@@ -206,11 +208,11 @@ namespace NLog.UnitTests.Targets
                     {
                         if (value1 is IRenderable)
                         {
-                            Assert.Equal((IRenderable) value1, (IRenderable) value2, new RenderableEq());
+                            Assert.Equal((IRenderable)value1, (IRenderable)value2, new RenderableEq());
                         }
                         else if (value1 is AsyncRequestQueue)
                         {
-                            Assert.Equal((AsyncRequestQueue) value1, (AsyncRequestQueue) value2, new AsyncRequestQueueEq());
+                            Assert.Equal((AsyncRequestQueue)value1, (AsyncRequestQueue)value2, new AsyncRequestQueueEq());
                         }
                         else
                         {
@@ -302,6 +304,110 @@ namespace NLog.UnitTests.Targets
             // initialize was called once
             Assert.Equal(1, target.InitializeCount);
             Assert.Equal(1, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+        }
+
+        [Fact]
+        public void WriteAsyncLogEvent_InitializeThrowsException_LogContinuationCalledWithCorrectExceptions()
+        {
+            // Arrange
+            var target = new ThrowingInitializeTarget(true);
+            Exception retrievedException = null;
+            var logevent = LogEventInfo.CreateNullEvent().WithContinuation(ex => { retrievedException = ex; });
+            LogManager.ThrowExceptions = false;
+            target.Initialize(new LoggingConfiguration());
+            LogManager.ThrowExceptions = true;
+
+            // Act
+            target.WriteAsyncLogEvent(logevent);
+
+            // Assert
+            Assert.NotNull(retrievedException);
+            var runtimeException = Assert.IsType<NLogRuntimeException>(retrievedException);
+            var innerException = Assert.IsType<TestException>(runtimeException.InnerException);
+            Assert.Equal("Initialize says no", innerException.Message);
+        }
+
+        [Fact]
+        public void Flush_ThrowsException_LogContinuationCalledWithCorrectExceptions()
+        {
+            // Arrange
+            var target = new ThrowingInitializeTarget(false);
+            Exception retrievedException = null;
+            AsyncContinuation asyncContinuation = ex => { retrievedException = ex; };
+
+            target.Initialize(new LoggingConfiguration());
+            LogManager.ThrowExceptions = false;
+
+            // Act
+            target.Flush(asyncContinuation);
+
+            // Assert
+            Assert.NotNull(retrievedException);
+
+            //note: not wrapped in NLogRuntimeException, not sure if by design.
+            Assert.IsType<TestException>(retrievedException);
+        }
+
+        [Fact]
+        public void WriteAsyncLogEvent_WriteAsyncLogEventThrowsException_LogContinuationCalledWithCorrectExceptions()
+        {
+            // Arrange
+            var target = new ThrowingInitializeTarget(false);
+            Exception retrievedException = null;
+            var logevent = LogEventInfo.CreateNullEvent().WithContinuation(ex => { retrievedException = ex; });
+            target.Initialize(new LoggingConfiguration());
+            LogManager.ThrowExceptions = false;
+
+            // Act
+            target.WriteAsyncLogEvent(logevent);
+
+            // Assert
+            Assert.NotNull(retrievedException);
+            //note: not wrapped in NLogRuntimeException, not sure if by design.
+            Assert.IsType<TestException>(retrievedException);
+            Assert.Equal("Write oops", retrievedException.Message);
+        }
+
+        private class ThrowingInitializeTarget : Target
+        {
+            private readonly bool _throwsOnInit;
+
+            #region Overrides of Target
+
+            /// <inheritdoc />
+            public ThrowingInitializeTarget(bool throwsOnInit)
+            {
+                _throwsOnInit = throwsOnInit;
+            }
+
+            /// <inheritdoc />
+            protected override void InitializeTarget()
+            {
+                if (_throwsOnInit)
+                    throw new TestException("Initialize says no");
+            }
+
+            /// <inheritdoc />
+            protected override void FlushAsync(AsyncContinuation asyncContinuation)
+            {
+                throw new TestException("No flush");
+            }
+
+            /// <inheritdoc />
+            protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+            {
+                throw new TestException("Write oops");
+            }
+
+            #endregion
+        }
+
+        private class TestException : Exception
+        {
+            /// <inheritdoc />
+            public TestException(string message) : base(message)
+            {
+            }
         }
 
         [Fact]
