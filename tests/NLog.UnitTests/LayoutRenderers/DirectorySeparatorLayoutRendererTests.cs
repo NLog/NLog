@@ -51,8 +51,23 @@ namespace NLog.UnitTests.LayoutRenderers
             var result = renderer.Render(LogEventInfo.CreateNullEvent());
 
             // Assert
-          
-            Assert.Equal(expected,result);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void GetRawValueTest1()
+        {
+            // Arrange
+            var renderer = new DirectorySeparatorLayoutRenderer();
+            var expected = Path.DirectorySeparatorChar;
+
+            // Act
+            var returnResult = renderer.TryGetRawValue(LogEventInfo.CreateNullEvent(), out var result);
+
+            // Assert
+            Assert.True(returnResult);
+            Assert.Equal(expected, result);
         }
     }
 }
