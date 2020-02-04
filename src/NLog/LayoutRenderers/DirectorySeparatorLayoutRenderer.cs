@@ -45,15 +45,13 @@ namespace NLog.LayoutRenderers
     [ThreadAgnostic]
     [ThreadSafe]
     [AppDomainFixedOutput]
-    public class DirectorySeparatorLayoutRenderer : LayoutRenderer, IStringValueRenderer, IRawValue
+    public class DirectorySeparatorLayoutRenderer : LayoutRenderer, IRawValue
     {
         private static readonly char SeparatorChar;
-        private static readonly string Separator;
 
         static DirectorySeparatorLayoutRenderer()
         {
             SeparatorChar = Path.DirectorySeparatorChar;
-            Separator = SeparatorChar.ToString();
         }
 
         /// <inheritdoc/>
@@ -61,9 +59,6 @@ namespace NLog.LayoutRenderers
         {
             builder.Append(SeparatorChar);
         }
-
-        /// <inheritdoc/>
-        string IStringValueRenderer.GetFormattedString(LogEventInfo logEvent) => Separator;
 
         /// <inheritdoc />
         public bool TryGetRawValue(LogEventInfo logEvent, out object value)
