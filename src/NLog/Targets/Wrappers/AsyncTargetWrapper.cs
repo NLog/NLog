@@ -359,26 +359,37 @@ namespace NLog.Targets.Wrappers
         /// <returns>Returns true when scheduled a timer-worker-thread</returns>
         protected virtual bool StartInstantWriterTimer()
         {
+            return StartTimerUnlessWriterActive(true);
+        }
+
+        private bool StartTimerUnlessWriterActive(bool instant)
+        {
             bool lockTaken = false;
             try
             {
                 lockTaken = Monitor.TryEnter(_writeLockObject);
                 if (lockTaken)
                 {
-                    // Lock taken means no timer-worker-thread is active writing, schedule timer now
-                    lock (_timerLockObject)
+                    // Lock taken means no other timer-worker-thread is trying to write, schedule timer now
+                    if (instant)
                     {
-                        if (_lazyWriterTimer != null)
+                        lock (_timerLockObject)
                         {
-                            // Not optimal to schedule timer-worker-thread while holding lock,
-                            // as the newly scheduled timer-worker-thread will hammer into the writeLockObject
-                            _lazyWriterTimer.Change(0, Timeout.Infinite);
-                            return true;
+                            if (_lazyWriterTimer != null)
+                            {
+                                // Not optimal to schedule timer-worker-thread while holding lock,
+                                // as the newly scheduled timer-worker-thread will hammer into the writeLockObject
+                                _lazyWriterTimer.Change(0, Timeout.Infinite);
+                                return true;
+                            }
                         }
                     }
+                    else
+                    {
+                        StartLazyWriterTimer();
+                        return true;
+                    }
                 }
-
-                return false;
             }
             finally
             {
@@ -387,6 +398,8 @@ namespace NLog.Targets.Wrappers
                 if (lockTaken)
                     Monitor.Exit(_writeLockObject);
             }
+
+            return false;
         }
 
         /// <summary>
@@ -485,11 +498,8 @@ namespace NLog.Targets.Wrappers
                     if (!wroteFullBatchSize && !_requestQueue.IsEmpty)
                     {
                         // If queue was not empty, then more might have arrived while writing the first batch
-                        // Uses throttled timer here, so we can process in batches (faster)
-                        lock (_writeLockObject)
-                        {
-                            StartLazyWriterTimer();  // Queue was checked as empty, but now we have more
-                        }
+                        // Do not use instant timer, so we can process in larger batches (faster)
+                        StartTimerUnlessWriterActive(false);
                     }
                 }
                 else
@@ -510,8 +520,9 @@ namespace NLog.Targets.Wrappers
                     if (asyncContinuation != null)
                         base.FlushAsync(asyncContinuation);
                 }
+
                 if (TimeToSleepBetweenBatches <= 1 && !_requestQueue.IsEmpty)
-                    StartLazyWriterTimer();    // Queue was checked as empty, but now we have more
+                    StartTimerUnlessWriterActive(false);
             }
             catch (Exception exception)
             {
