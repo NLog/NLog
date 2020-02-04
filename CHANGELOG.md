@@ -16,8 +16,8 @@ Date format: (year/month/day)
 - [#3610](https://github.com/NLog/NLog/pull/3610) LogManager.Setup().SetupSerialization(s => s.RegisterObjectTransformation(...)) for overriding default property reflection (@snakefoot + @304NotModified + @Giorgi + @mmurrell)
 - [#3713](https://github.com/NLog/NLog/pull/3713) ${level:format=FullName} will expand Info + Warn to their full name (@snakefoot)
 - [#3714](https://github.com/NLog/NLog/pull/3714) + [#3734](https://github.com/NLog/NLog/pull/3734) FileTarget - Supports MaxArchiveDays for cleanup of old files based on their age (@snakefoot)
-- [#3737](https://github.com/NLog/NLog/pull/3737) + [#3769](https://github.com/NLog/NLog/pull/3769) Layout.CreateFromMethod to create Layout directly from a lambda method (@snakefoot)
-- [#3771](https://github.com/NLog/NLog/pull/3771) Layout.CreateFromString to create Layout directly from string along with optional parser validation (@snakefoot)
+- [#3737](https://github.com/NLog/NLog/pull/3737) + [#3769](https://github.com/NLog/NLog/pull/3769) Layout.FromMethod to create Layout directly from a lambda method (@snakefoot)
+- [#3771](https://github.com/NLog/NLog/pull/3771) Layout.FromString to create Layout directly from string along with optional parser validation (@snakefoot)
 
 #### Improvements
 - [#3521](https://github.com/NLog/NLog/pull/3521) XmlLoggingConfiguration - Marked legacy constructors with ignoreErrors parameter as obsolete (@snakefoot)
