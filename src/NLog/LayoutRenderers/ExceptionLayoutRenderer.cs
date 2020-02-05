@@ -96,7 +96,7 @@ namespace NLog.LayoutRenderers
             Separator = " ";
             ExceptionDataSeparator = ";";
             InnerExceptionSeparator = EnvironmentHelper.NewLine;
-            MaxInnerExceptionLevel = 0;
+            MaxInnerExceptionLevel = 10;
 
             _renderingfunctions = new Dictionary<ExceptionRenderingFormat, Action<StringBuilder, Exception>>()
                                                                                                     {
@@ -167,10 +167,9 @@ namespace NLog.LayoutRenderers
 
         /// <summary>
         /// Gets or sets the maximum number of inner exceptions to include in the output.
-        /// By default inner exceptions are not enabled for compatibility with NLog 1.0.
         /// </summary>
         /// <docgen category='Rendering Options' order='10' />
-        [DefaultValue(0)]
+        [DefaultValue(10)]
         public int MaxInnerExceptionLevel { get; set; }
 
         /// <summary>
