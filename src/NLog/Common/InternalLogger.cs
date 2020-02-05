@@ -258,7 +258,9 @@ namespace NLog.Common
                 return;
             }
 
-            if (!HasActiveLoggers())
+            var hasActiveLoggersWithLine = HasActiveLoggersWithLine();
+            var hasEventListeners = HasEventListeners();
+            if (!hasActiveLoggersWithLine && !hasEventListeners)
             {
                 return;
             }
@@ -266,21 +268,27 @@ namespace NLog.Common
             try
             {
                 var fullMessage = CreateFullMessage(message, args);
-                string line = CreateLogLine(ex, level, fullMessage);
 
-                WriteToLogFile(line);
-                WriteToTextWriter(line);
+                if (hasActiveLoggersWithLine)
+                {
+                    string line = CreateLogLine(ex, level, fullMessage);
+
+                    WriteToLogFile(line);
+                    WriteToTextWriter(line);
 
 #if !NETSTANDARD1_3
-                WriteToConsole(line);
-                WriteToErrorConsole(line);
+                    WriteToConsole(line);
+                    WriteToErrorConsole(line);
 #endif
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                WriteToTrace(line);
+                    WriteToTrace(line);
 #endif
+                }
 
                 ReceivedLogEvent?.Invoke(null, new ReceivedInternalLogEventArgs(fullMessage, level, ex));
+
+                ex?.MarkAsLoggedToInternalLogger();
             }
             catch (Exception exception)
             {
@@ -294,6 +302,13 @@ namespace NLog.Common
             }
         }
 
+        /// <summary>
+        /// Create log line with timestamp, exception message etc (if configured)
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="level"></param>
+        /// <param name="fullMessage"></param>
+        /// <returns></returns>
         private static string CreateLogLine([CanBeNull]Exception ex, LogLevel level, string fullMessage)
         {
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
@@ -314,7 +329,6 @@ namespace NLog.Common
 
             if (ex != null)
             {
-                ex.MarkAsLoggedToInternalLogger();
                 builder
                     .Append(fieldSeparator)
                     .Append("Exception: ")
@@ -357,14 +371,23 @@ namespace NLog.Common
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
         internal static bool HasActiveLoggers()
         {
+            return HasActiveLoggersWithLine() || HasEventListeners();
+        }
+
+        private static bool HasEventListeners()
+        {
+            return ReceivedLogEvent != null;
+        }
+
+        internal static bool HasActiveLoggersWithLine()
+        {
             return !string.IsNullOrEmpty(LogFile) ||
                    LogToConsole ||
                    LogToConsoleError ||
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                    LogToTrace ||
 #endif
-                   LogWriter != null ||
-                   ReceivedLogEvent != null;
+                   LogWriter != null;
         }
 
         /// <summary>
