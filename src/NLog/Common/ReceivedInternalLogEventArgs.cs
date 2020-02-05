@@ -64,6 +64,4 @@ namespace NLog.Common
             Exception = exception;
         }
     }
-
-   
 }
