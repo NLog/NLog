@@ -35,14 +35,17 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - LogFactory - Fix deadlock issue with AutoReload (@snakefoot)
 - JsonLayout - Fixed ThreadAgnostic to correctly capture context when using nested JsonLayout (@snakefoot)
 - ExceptionLayoutRenderer - Fixed so Format option HResult also works for NetCore (@snakefoot)
+- Log4JXml Layout - Render NDLC + NDC scopes in correct order (@adanek + @304NotModified)
 
 ## Features
 - LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
 - LogManager.Setup().SetupSerialization(s => s.RegisterObjectTransformation(...)) for overriding default property reflection (@snakefoot + @304NotModified + @Giorgi + @mmurrell)
+- LogManager.Setup().SetupSerialization(s => s.RegisterConditionMethod(...)) can use lambda methods and not just static methods (@snakefoot)
 - ${level:format=FullName} will expand Info + Warn to their full name (@snakefoot)
 - FileTarget - Supports MaxArchiveDays for cleanup of old files based on their age (@snakefoot)
-- Layout.CreateFromMethod to create Layout directly from a lambda method (@snakefoot)
-- Layout.CreateFromString to create Layout directly from string along with optional parser validation (@snakefoot)
+- Layout.FromMethod to create Layout directly from a lambda method (@snakefoot)
+- Layout.FromString to create Layout directly from string along with optional parser validation (@snakefoot)
+- ${dir-separator} for rendering platform specific directory path separator (@304NotModified)
 
 ## Improvements
 - XmlLoggingConfiguration - Marked legacy constructors with ignoreErrors parameter as obsolete (@snakefoot)
@@ -67,6 +70,8 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - AsyncTaskTarget - Skip default AsyncWrapper since already having internal queue (@snakefoot)
 - Mark Condition Expressions as ThreadSafe to improve concurrency in Layouts (@snakefoot)
 - DatabaseTarget - Added IsolationLevel option that activates transactions for better batching performance (@snakefoot)
+- SimpleLayout - Assignment of string-reference with null-value will translate into FixedText (@304NotModified)
+- AsyncWrapper - Less aggressive with scheduling timer events for background writing (@snakefoot)
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
