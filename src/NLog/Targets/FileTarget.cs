@@ -89,7 +89,7 @@ namespace NLog.Targets
         /// <summary>
         /// List of the associated file appenders with the <see cref="FileTarget"/> instance.
         /// </summary>
-        private FileAppenderCache _fileAppenderCache;
+        private IFileAppenderCache _fileAppenderCache;
 
         IFileArchiveMode GetFileArchiveHelper(string archiveFilePattern)
         {
@@ -151,7 +151,11 @@ namespace NLog.Targets
         /// <remarks>
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
         /// </remarks>
-        public FileTarget()
+        public FileTarget() : this(FileAppenderCache.Empty)
+        {
+        }
+        
+        internal FileTarget(IFileAppenderCache fileAppenderCache)
         {
             ArchiveNumbering = ArchiveNumberingMode.Sequence;
             _maxArchiveFiles = 0;
@@ -181,7 +185,7 @@ namespace NLog.Targets
             ForceManaged = false;
             ArchiveDateFormat = string.Empty;
 
-            _fileAppenderCache = FileAppenderCache.Empty;
+            _fileAppenderCache = fileAppenderCache;
             CleanupFileName = true;
 
             WriteFooterOnArchivingOnly = false;
@@ -504,6 +508,8 @@ namespace NLog.Targets
         [Advanced]
         public int ConcurrentWriteAttemptDelay { get; set; }
 
+        private bool? _archiveOldFileOnStartup;
+
         /// <summary>
         /// Gets or sets a value indicating whether to archive old log file on startup.
         /// </summary>
@@ -513,13 +519,17 @@ namespace NLog.Targets
         /// </remarks>
         /// <docgen category='Output Options' order='10' />
         [DefaultValue(false)]
-        public bool ArchiveOldFileOnStartup { get; set; }
+        public bool ArchiveOldFileOnStartup
+        {
+            get => _archiveOldFileOnStartup ?? false;
+            set => _archiveOldFileOnStartup = value;
+        }
 
         /// <summary>
         /// Gets or sets a value of the file size threshold to archive old log file on startup.
         /// </summary>
         /// <remarks>
-        /// This option works only when the "ArchiveOldFileOnStartup" parameter is enabled.
+        /// This option won't work if <see cref="ArchiveOldFileOnStartup"/> is set to <c>false</c>
         /// Default value is 0 which means that the file is archived as soon as archival on
         /// startup is enabled.
         /// </remarks>
@@ -2293,16 +2303,16 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="fileName">File name to be written.</param>
         /// <returns>Decision whether to archive or not.</returns>
-        private bool ShouldArchiveOldFileOnStartup(string fileName)
+        internal bool ShouldArchiveOldFileOnStartup(string fileName)
         {
-            if (!ArchiveOldFileOnStartup)
+            if (_archiveOldFileOnStartup.HasValue)
             {
-                return false;
+                return _archiveOldFileOnStartup.Value;
             }
             // No size threshold specified
             if (ArchiveOldFileOnStartupAboveSize <= 0)
             {
-                return true;
+                return false;
             }
             // Check whether size threshold exceeded
             var length = _fileAppenderCache.GetFileLength(fileName);

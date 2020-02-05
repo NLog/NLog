@@ -46,7 +46,7 @@ namespace NLog.Internal.FileAppenders
     /// <summary>
     /// Maintains a collection of file appenders usually associated with file targets.
     /// </summary>
-    internal sealed class FileAppenderCache : IDisposable
+    internal sealed class FileAppenderCache : IFileAppenderCache
     {
         private readonly BaseFileAppender[] _appenders;
         private Timer _autoClosingTimer;

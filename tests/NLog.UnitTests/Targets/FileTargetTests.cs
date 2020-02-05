@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal.FileAppenders;
+using NSubstitute;
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -214,7 +217,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SimpleFileWithSpecialCharsTest()
         {
-            var logFile  = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
+            var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
             SimpleFileWriteLogTest(logFile);
         }
 
@@ -4122,6 +4125,37 @@ namespace NLog.UnitTests.Targets
                 {
                 }
             }
+        }
+
+        [Theory]
+        [InlineData(true, 100, true)]
+        [InlineData(false, 100, false)]
+        [InlineData(null, 0, false)]
+        [InlineData(null, 99, true)] 
+        [InlineData(null, 100, true)] 
+        [InlineData(null, 101, false)]
+        public void ShouldArchiveOldFileOnStartupTest(bool? archiveOldFileOnStartup, long archiveOldFileOnStartupAboveSize, bool expected)
+        {
+            // Arrange
+            var fileAppenderCacheMock = Substitute.For<IFileAppenderCache>();
+
+            var filePath = "x:/somewhere/file.txt";
+            fileAppenderCacheMock.GetFileLength(filePath).Returns(101);
+
+            var target = new FileTarget(fileAppenderCacheMock)
+            {
+                ArchiveOldFileOnStartupAboveSize = archiveOldFileOnStartupAboveSize
+            };
+            if (archiveOldFileOnStartup.HasValue)
+            {
+                target.ArchiveOldFileOnStartup = archiveOldFileOnStartup.Value;
+            }
+
+            // Act
+            var result = target.ShouldArchiveOldFileOnStartup(filePath);
+            
+            // Assert
+            Assert.Equal(expected, result);
         }
     }
 
