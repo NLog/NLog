@@ -767,14 +767,13 @@ namespace NLog.UnitTests.Targets
             var logFile = Path.GetTempFileName();
             var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
             var archiveTempName = Path.Combine(tempArchiveFolder, "archive_size_threshold.txt");
-            FileTarget CreateTestTarget(bool doArchive, long threshold)
+            FileTarget CreateTestTarget(long threshold)
             {
                 return new FileTarget
                 {
                     FileName = SimpleLayout.Escape(logFile),
                     LineEnding = LineEndingMode.LF,
                     Layout = "${level} ${message}",
-                    ArchiveOldFileOnStartup = doArchive,
                     ArchiveOldFileOnStartupAboveSize = threshold,
                     ArchiveFileName = archiveTempName,
                     ArchiveNumbering = ArchiveNumberingMode.Sequence,
@@ -784,26 +783,19 @@ namespace NLog.UnitTests.Targets
             try
             {
                 // No archive on startup (ignoring threshold)
-                SimpleConfigurator.ConfigureForTargetLogging(WrapFileTarget(CreateTestTarget(false, 1000)));
+                SimpleConfigurator.ConfigureForTargetLogging(WrapFileTarget(CreateTestTarget(1000)));
                 logger.Info("aaa");
                 LogManager.Flush();
                 AssertFileContents(logFile, "Info aaa\n", Encoding.UTF8);
                 Assert.False(File.Exists(archiveTempName));
 
-                // Archive on startup with huge threshold -> Must not be archived
-                SimpleConfigurator.ConfigureForTargetLogging(WrapFileTarget(CreateTestTarget(true, 10000)));
-                logger.Info("bbb");
-                LogManager.Flush();
-                AssertFileContents(logFile, "Info aaa\nInfo bbb\n", Encoding.UTF8);
-                Assert.False(File.Exists(archiveTempName));
-
-                // Archive on startup with small threshold -> Must be archived
-                SimpleConfigurator.ConfigureForTargetLogging(CreateTestTarget(true, 3));
+               // Archive on startup with small threshold -> Must be archived
+                SimpleConfigurator.ConfigureForTargetLogging(CreateTestTarget(3));
                 logger.Info("ccc");
                 LogManager.Flush();
                 AssertFileContents(logFile, "Info ccc\n", Encoding.UTF8);
                 Assert.True(File.Exists(archiveTempName));
-                AssertFileContents(archiveTempName, "Info aaa\nInfo bbb\n", Encoding.UTF8);
+                AssertFileContents(archiveTempName, "Info aaa\n", Encoding.UTF8);
             }
             finally
             {
