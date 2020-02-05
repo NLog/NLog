@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -392,6 +392,44 @@ namespace NLog.UnitTests.Config
             finally
             {
                 InternalLogger.Reset();
+            }
+        }
+
+        [Fact]
+        public void SetupExtensionsRegisterConditionMethodTest()
+        {
+            try
+            {
+                // Arrange
+                var logFactory = new LogFactory();
+                logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("hasParameters", evt => evt.Parameters?.Length > 0));
+                logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("isProduction", () => false));
+                logFactory.Setup().SetupExtensions(s => s.RegisterConditionMethod("isValid", typeof(Conditions.ConditionEvaluatorTests.MyConditionMethods).GetMethod(nameof(Conditions.ConditionEvaluatorTests.MyConditionMethods.IsValid))));
+
+                // Act
+                logFactory.Configuration = new XmlLoggingConfiguration(@"<nlog throwExceptions='true'>
+                    <targets>
+                        <target name='debug' type='Debug' layout='${message}' />
+                    </targets>
+                    <rules>
+                      <logger name='*' writeTo='debug'>
+			            <filters>
+				            <when condition='hasParameters()' action='Ignore' />
+                            <when condition='isProduction()' action='Ignore' />
+                            <when condition='isValid()==false' action='Ignore' />
+			            </filters>
+                      </logger>
+                    </rules>
+                </nlog>", null, logFactory);
+                logFactory.GetLogger("Hello").Info("World");
+                logFactory.GetLogger("Hello").Info("{0}", "Earth");
+
+                // Assert
+                Assert.Equal("World", logFactory.Configuration.FindTargetByName<DebugTarget>("debug").LastMessage);
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default = null;    // Restore global default
             }
         }
     }

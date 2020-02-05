@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -79,7 +79,6 @@ namespace NLog
         /// <summary>
         /// Register a custom Target.
         /// </summary>
-        /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <typeparam name="T"> Type of the Target.</typeparam>
         /// <param name="name"> Name of the Target.</param>
@@ -92,7 +91,6 @@ namespace NLog
         /// <summary>
         /// Register a custom Target.
         /// </summary>
-        /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="targetType"> Type of the Target.</param>
         /// <param name="name"> Name of the Target.</param>
@@ -105,7 +103,6 @@ namespace NLog
         /// <summary>
         /// Register a custom layout renderer.
         /// </summary>
-        /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <typeparam name="T"> Type of the layout renderer.</typeparam>
         /// <param name="name"> Name of the layout renderer - without ${}.</param>
@@ -119,7 +116,6 @@ namespace NLog
         /// <summary>
         /// Register a custom layout renderer.
         /// </summary>
-        /// <remarks>Short-cut for registering to default <see cref="ConfigurationItemFactory"/></remarks>
         /// <param name="setupBuilder">Fluent interface parameter.</param>
         /// <param name="layoutRendererType"> Type of the layout renderer.</param>
         /// <param name="name"> Name of the layout renderer - without ${}.</param>
@@ -152,5 +148,58 @@ namespace NLog
             ConfigurationItemFactory.Default.GetLayoutRenderers().RegisterFuncLayout(name, layoutRenderer);
             return setupBuilder;
         }
+
+        /// <summary>
+        /// Register a custom condition method, that can use in condition filters
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="name">Name of the condition filter method</param>
+        /// <param name="conditionMethod">MethodInfo extracted by reflection - typeof(MyClass).GetMethod("MyFunc", BindingFlags.Static).</param>
+        public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod)
+        {
+            if (conditionMethod == null)
+                throw new ArgumentNullException(nameof(conditionMethod));
+            if (!conditionMethod.IsStatic)
+                throw new ArgumentException($"{conditionMethod.Name} must be static", nameof(conditionMethod));
+
+            ConfigurationItemFactory.Default.ConditionMethods.RegisterDefinition(name, conditionMethod);
+            return setupBuilder;
+        }
+
+#if !NETSTANDARD1_0
+        private static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, MethodInfo conditionMethod, ReflectionHelpers.LateBoundMethod lateBoundMethod)
+        {
+            ConfigurationItemFactory.Default.ConditionMethodDelegates.RegisterDefinition(name, conditionMethod, lateBoundMethod);
+            return setupBuilder;
+        }
+
+        /// <summary>
+        /// Register a custom condition method, that can use in condition filters
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="name">Name of the condition filter method</param>
+        /// <param name="conditionMethod">Lambda method.</param>
+        public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Func<LogEventInfo, object> conditionMethod)
+        {
+            if (conditionMethod == null)
+                throw new ArgumentNullException(nameof(conditionMethod));
+            ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod((LogEventInfo)args[0]);
+            return RegisterConditionMethod(setupBuilder, name, conditionMethod.Method, lateBound);
+        }
+
+        /// <summary>
+        /// Register a custom condition method, that can use in condition filters
+        /// </summary>
+        /// <param name="setupBuilder">Fluent interface parameter.</param>
+        /// <param name="name">Name of the condition filter method</param>
+        /// <param name="conditionMethod">Lambda method.</param>
+        public static ISetupExtensionsBuilder RegisterConditionMethod(this ISetupExtensionsBuilder setupBuilder, string name, Func<object> conditionMethod)
+        {
+            if (conditionMethod == null)
+                throw new ArgumentNullException(nameof(conditionMethod));
+            ReflectionHelpers.LateBoundMethod lateBound = (target, args) => conditionMethod();
+            return RegisterConditionMethod(setupBuilder, name, conditionMethod.Method, lateBound);
+        }
+#endif
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -80,7 +80,6 @@ namespace NLog.Config
                     {
                         throw;
                     }
-
                 }
             }
         }
@@ -243,7 +242,6 @@ namespace NLog.Config
             _funcRenderers[name] = renderer;
         }
 
-
         /// <summary>
         /// Tries to create an item instance.
         /// </summary>
@@ -268,6 +266,5 @@ namespace NLog.Config
 
             return success;
         }
-
     }
 }

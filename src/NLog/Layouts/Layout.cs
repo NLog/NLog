@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -90,7 +90,7 @@ namespace NLog.Layouts
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
         public static implicit operator Layout([Localizable(false)] string text)
         {
-            return CreateFromString(text);
+            return FromString(text, ConfigurationItemFactory.Default);
         }
 
         /// <summary>
@@ -98,7 +98,6 @@ namespace NLog.Layouts
         /// </summary>
         /// <param name="layoutText">The layout string.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>'
-        [Obsolete("Use Layout.CreateFromString. Obsolete from NLog 4.7")]
         public static Layout FromString(string layoutText)
         {
             return FromString(layoutText, ConfigurationItemFactory.Default);
@@ -110,7 +109,6 @@ namespace NLog.Layouts
         /// <param name="layoutText">The layout string.</param>
         /// <param name="configurationItemFactory">The NLog factories to use when resolving layout renderers.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        [Obsolete("Use Layout.CreateFromString. Obsolete from NLog 4.7")]
         public static Layout FromString(string layoutText, ConfigurationItemFactory configurationItemFactory)
         {
             return new SimpleLayout(layoutText, configurationItemFactory);
@@ -120,19 +118,9 @@ namespace NLog.Layouts
         /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutText">The layout string.</param>
-        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout CreateFromString(string layoutText)
-        {
-            return new SimpleLayout(layoutText, ConfigurationItemFactory.Default);
-        }
-
-        /// <summary>
-        /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
-        /// </summary>
-        /// <param name="layoutText">The layout string.</param>
         /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors (false = replace unrecognized tokens with a space).</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout CreateFromString(string layoutText, bool throwConfigExceptions)
+        public static Layout FromString(string layoutText, bool throwConfigExceptions)
         {
             try
             {
@@ -152,12 +140,12 @@ namespace NLog.Layouts
         }
 
         /// <summary>
-        /// Implicits converts the specific lambda method into a <see cref="SimpleLayout"/>.
+        /// Create a <see cref="SimpleLayout"/> from a lambda method.
         /// </summary>
         /// <param name="layoutMethod">Method that renders the layout.</param>
         /// <param name="options">Tell if method is safe for concurrent threading.</param>
         /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
-        public static Layout CreateFromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
+        public static Layout FromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
         {
             if (layoutMethod == null)
                 throw new ArgumentNullException(nameof(layoutMethod));
@@ -167,11 +155,11 @@ namespace NLog.Layouts
 #else
             var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
 #endif
-            var layoutRenderer = CreateFunLayoutRenderer(layoutMethod, options, name);
+            var layoutRenderer = CreateFuncLayoutRenderer(layoutMethod, options, name);
             return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
         }
 
-        private static LayoutRenderers.FuncLayoutRenderer CreateFunLayoutRenderer(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options, string name)
+        private static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options, string name)
         {
             if ((options & LayoutRenderOptions.ThreadAgnostic) == LayoutRenderOptions.ThreadAgnostic)
                 return new LayoutRenderers.FuncThreadAgnosticLayoutRenderer(name, (l, c) => layoutMethod(l));

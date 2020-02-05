@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,35 +38,41 @@ namespace NLog.Conditions
     using System.Globalization;
     using System.Reflection;
     using System.Text;
-    using Common;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Condition method invocation expression (represented by <b>method(p1,p2,p3)</b> syntax).
     /// </summary>
 	internal sealed class ConditionMethodExpression : ConditionExpression
     {
-        private readonly bool _acceptsLogEvent;
         private readonly string _conditionMethodName;
+        private readonly bool _acceptsLogEvent;
+        private readonly ConditionExpression[] _methodParameters;
+        private readonly ReflectionHelpers.LateBoundMethod _lateBoundMethod;
+        private readonly object[] _lateBoundMethodDefaultParameters;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConditionMethodExpression" /> class.
         /// </summary>
         /// <param name="conditionMethodName">Name of the condition method.</param>
         /// <param name="methodInfo"><see cref="MethodInfo"/> of the condition method.</param>
+        /// <param name="lateBoundMethod">Precompiled delegate of the condition method.</param>
         /// <param name="methodParameters">The method parameters.</param>
-        public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, IEnumerable<ConditionExpression> methodParameters)
+        public ConditionMethodExpression(string conditionMethodName, MethodInfo methodInfo, ReflectionHelpers.LateBoundMethod lateBoundMethod, IEnumerable<ConditionExpression> methodParameters)
         {
             MethodInfo = methodInfo;
+            _lateBoundMethod = lateBoundMethod;
             _conditionMethodName = conditionMethodName;
-            MethodParameters = new List<ConditionExpression>(methodParameters).AsReadOnly();
-
+            _methodParameters = new List<ConditionExpression>(methodParameters).ToArray();
             ParameterInfo[] formalParameters = MethodInfo.GetParameters();
             if (formalParameters.Length > 0 && formalParameters[0].ParameterType == typeof(LogEventInfo))
             {
                 _acceptsLogEvent = true;
             }
+            _lateBoundMethodDefaultParameters = CreateMethodDefaultParameters(formalParameters, _methodParameters, _acceptsLogEvent ? 1 : 0);
 
-            int actualParameterCount = MethodParameters.Count;
+            int actualParameterCount = _methodParameters.Length;
             if (_acceptsLogEvent)
             {
                 actualParameterCount++;
@@ -101,26 +107,27 @@ namespace NLog.Conditions
                 InternalLogger.Error(message);
                 throw new ConditionParseException(message);
             }
-
-            CreateBoundMethod(formalParameters);
         }
 
-        private void CreateBoundMethod(ParameterInfo[] formalParameters)
+        /// <summary>
+        /// Gets the method info.
+        /// </summary>
+        public MethodInfo MethodInfo { get; }
+
+        private static object[] CreateMethodDefaultParameters(ParameterInfo[] formalParameters, ConditionExpression[] methodParameters, int parameterOffset)
         {
-            _lateBoundMethod = Internal.ReflectionHelpers.CreateLateBoundMethod(MethodInfo);
-            if (formalParameters.Length > MethodParameters.Count)
+            var defaultParameterCount = formalParameters.Length - methodParameters.Length - parameterOffset;
+            if (defaultParameterCount <= 0)
+                return ArrayHelper.Empty<object>();
+
+            var extraDefaultParameters = new object[defaultParameterCount];
+            for (int i = methodParameters.Length + parameterOffset; i < formalParameters.Length; ++i)
             {
-                _lateBoundMethodDefaultParameters = new object[formalParameters.Length - MethodParameters.Count];
-                for (int i = MethodParameters.Count; i < formalParameters.Length; ++i)
-                {
-                    ParameterInfo param = formalParameters[i];
-                    _lateBoundMethodDefaultParameters[i - MethodParameters.Count] = param.DefaultValue;
-                }
+                ParameterInfo param = formalParameters[i];
+                extraDefaultParameters[i - methodParameters.Length + parameterOffset] = param.DefaultValue;
             }
-            else
-            {
-                _lateBoundMethodDefaultParameters = null;
-            }
+
+            return extraDefaultParameters;
         }
 
         private static void CountParmameters(ParameterInfo[] formalParameters, out int requiredParametersCount, out int optionalParametersCount)
@@ -138,19 +145,6 @@ namespace NLog.Conditions
         }
 
         /// <summary>
-        /// Gets the method info.
-        /// </summary>
-        public MethodInfo MethodInfo { get; private set; }
-        private Internal.ReflectionHelpers.LateBoundMethod _lateBoundMethod;
-        private object[] _lateBoundMethodDefaultParameters;
-
-        /// <summary>
-        /// Gets the method parameters.
-        /// </summary>
-        /// <value>The method parameters.</value>
-        public IList<ConditionExpression> MethodParameters { get; private set; }
-
-        /// <summary>
         /// Returns a string representation of the expression.
         /// </summary>
         /// <returns>
@@ -164,11 +158,8 @@ namespace NLog.Conditions
 
             string separator = string.Empty;
 
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < MethodParameters.Count; i++)
+            foreach (var expr in _methodParameters)
             {
-                ConditionExpression expr = MethodParameters[i];
                 sb.Append(separator);
                 sb.Append(expr);
                 separator = ", ";
@@ -185,25 +176,33 @@ namespace NLog.Conditions
         /// <returns>Expression result.</returns>
         protected override object EvaluateNode(LogEventInfo context)
         {
+            object[] callParameters = GenerateCallParameters(context);
+            return _lateBoundMethod(null, callParameters);  // Static-method so object-instance = null
+        }
+
+        private object[] GenerateCallParameters(LogEventInfo context)
+        {
             int parameterOffset = _acceptsLogEvent ? 1 : 0;
-            int parameterDefaults = _lateBoundMethodDefaultParameters?.Length ?? 0;
+            int callParametersCount = _methodParameters.Length + parameterOffset + _lateBoundMethodDefaultParameters.Length;
+            if (callParametersCount == 0)
+                return ArrayHelper.Empty<object>();
 
-            var callParameters = new object[MethodParameters.Count + parameterOffset + parameterDefaults];
-
-            //Memory profiling pointed out that using a foreach-loop was allocating
-            //an Enumerator. Switching to a for-loop avoids the memory allocation.
-            for (int i = 0; i < MethodParameters.Count; i++)
-            {
-                ConditionExpression ce = MethodParameters[i];
-                callParameters[i + parameterOffset] = ce.Evaluate(context);
-            }
+            var callParameters = new object[callParametersCount];
 
             if (_acceptsLogEvent)
             {
                 callParameters[0] = context;
             }
 
-            if (_lateBoundMethodDefaultParameters != null)
+            //Memory profiling pointed out that using a foreach-loop was allocating
+            //an Enumerator. Switching to a for-loop avoids the memory allocation.
+            for (int i = 0; i < _methodParameters.Length; i++)
+            {
+                ConditionExpression ce = _methodParameters[i];
+                callParameters[i + parameterOffset] = ce.Evaluate(context);
+            }
+
+            if (_lateBoundMethodDefaultParameters.Length > 0)
             {
                 for (int i = _lateBoundMethodDefaultParameters.Length - 1; i >= 0; --i)
                 {
@@ -211,7 +210,7 @@ namespace NLog.Conditions
                 }
             }
 
-            return _lateBoundMethod(null, callParameters);  // Static-method so object-instance = null
+            return callParameters;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿// 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,7 +36,7 @@ namespace NLog.Layouts
     using System;
 
     /// <summary>
-    /// Options available for <see cref="Layout.CreateFromMethod"/>
+    /// Options available for <see cref="Layout.FromMethod"/>
     /// </summary>
     [Flags]
     public enum LayoutRenderOptions
