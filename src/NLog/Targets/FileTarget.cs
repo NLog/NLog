@@ -154,7 +154,7 @@ namespace NLog.Targets
         public FileTarget() : this(FileAppenderCache.Empty)
         {
         }
-        
+
         internal FileTarget(IFileAppenderCache fileAppenderCache)
         {
             ArchiveNumbering = ArchiveNumberingMode.Sequence;
@@ -2305,14 +2305,16 @@ namespace NLog.Targets
         /// <returns>Decision whether to archive or not.</returns>
         internal bool ShouldArchiveOldFileOnStartup(string fileName)
         {
-            if (_archiveOldFileOnStartup.HasValue)
+            if (_archiveOldFileOnStartup == false)
             {
-                return _archiveOldFileOnStartup.Value;
+                // explicitly disabled
+                return false;
             }
-            // No size threshold specified
+
+            // No size threshold specified, use archiveOldFileOnStartup flag
             if (ArchiveOldFileOnStartupAboveSize <= 0)
             {
-                return false;
+                return _archiveOldFileOnStartup == true;
             }
             // Check whether size threshold exceeded
             var length = _fileAppenderCache.GetFileLength(fileName);

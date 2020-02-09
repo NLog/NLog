@@ -789,7 +789,7 @@ namespace NLog.UnitTests.Targets
                 AssertFileContents(logFile, "Info aaa\n", Encoding.UTF8);
                 Assert.False(File.Exists(archiveTempName));
 
-               // Archive on startup with small threshold -> Must be archived
+                // Archive on startup with small threshold -> Must be archived
                 SimpleConfigurator.ConfigureForTargetLogging(CreateTestTarget(3));
                 logger.Info("ccc");
                 LogManager.Flush();
@@ -4120,11 +4120,13 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData(true, 100, true)]
+        [InlineData(true, 100, true)] // archive, as size of file is 101
+        [InlineData(true, 101, false)] //equals is not above
+        [InlineData(true, 102, false)] // don;t archive, we didn't reach the aboveSize
         [InlineData(false, 100, false)]
         [InlineData(null, 0, false)]
-        [InlineData(null, 99, true)] 
-        [InlineData(null, 100, true)] 
+        [InlineData(null, 99, true)]
+        [InlineData(null, 100, true)]
         [InlineData(null, 101, false)]
         public void ShouldArchiveOldFileOnStartupTest(bool? archiveOldFileOnStartup, long archiveOldFileOnStartupAboveSize, bool expected)
         {
@@ -4145,7 +4147,7 @@ namespace NLog.UnitTests.Targets
 
             // Act
             var result = target.ShouldArchiveOldFileOnStartup(filePath);
-            
+
             // Assert
             Assert.Equal(expected, result);
         }
