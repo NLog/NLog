@@ -2307,18 +2307,20 @@ namespace NLog.Targets
         {
             if (_archiveOldFileOnStartup == false)
             {
-                // explicitly disabled
+                // explicitly disabled and not the default
                 return false;
+            }
+            
+            var aboveSizeSet = ArchiveOldFileOnStartupAboveSize > 0;
+            if (aboveSizeSet)
+            {
+                // Check whether size threshold exceeded
+                var length = _fileAppenderCache.GetFileLength(fileName);
+                return length.HasValue && length.Value > ArchiveOldFileOnStartupAboveSize;
             }
 
             // No size threshold specified, use archiveOldFileOnStartup flag
-            if (ArchiveOldFileOnStartupAboveSize <= 0)
-            {
-                return _archiveOldFileOnStartup == true;
-            }
-            // Check whether size threshold exceeded
-            var length = _fileAppenderCache.GetFileLength(fileName);
-            return length.HasValue && length.Value > ArchiveOldFileOnStartupAboveSize;
+            return _archiveOldFileOnStartup == true;
         }
 
         /// <summary>
