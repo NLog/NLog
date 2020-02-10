@@ -548,7 +548,7 @@ namespace NLog.UnitTests.Config
                 var nlogDirectory = new DirectoryInfo(ConfigurationItemFactory.GetAutoLoadingFileLocations().First().Key);
                 var configurationDirectory = nlogDirectory.Parent;
                 var testsDirectory = configurationDirectory.Parent.Parent.Parent;
-                var manuallyLoadedAssemblyPath = Path.Combine(testsDirectory.FullName, @"ManuallyLoadedExtension\bin", configurationDirectory.Name,
+                var manuallyLoadedAssemblyPath = Path.Combine(testsDirectory.FullName, "ManuallyLoadedExtension", "bin", configurationDirectory.Name,
 #if NETSTANDARD
                     "netstandard2.0",
 #else
