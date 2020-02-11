@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,6 +45,7 @@ namespace NLog.UnitTests.Targets
 
     public class AsyncTaskTargetTest : NLogTestBase
     {
+        [Target("AsyncTaskTest")]
         class AsyncTaskTestTarget : AsyncTaskTarget
         {
             private readonly AutoResetEvent _writeEvent = new AutoResetEvent(false);
@@ -138,6 +139,86 @@ namespace NLog.UnitTests.Targets
             }
 
             LogManager.Configuration = null;
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_SkipAsyncTargetWrapper()
+        {
+            try
+            {
+                ConfigurationItemFactory.Default.RegisterType(typeof(AsyncTaskTestTarget), null);
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+            <targets async='true'>
+                <target name='asyncDebug' type='AsyncTaskTest' />
+                <target name='debug' type='Debug' />
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+                Assert.NotNull(LogManager.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
+                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default = null;
+            }
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_SkipDefaultAsyncWrapper()
+        {
+            try
+            {
+                ConfigurationItemFactory.Default.RegisterType(typeof(AsyncTaskTestTarget), null);
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <default-wrapper type='AsyncWrapper' />
+                <target name='asyncDebug' type='AsyncTaskTest' />
+                <target name='debug' type='Debug' />
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+                Assert.NotNull(LogManager.Configuration.FindTargetByName<AsyncTaskTestTarget>("asyncDebug"));
+                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.AsyncTargetWrapper>("debug"));
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default = null;
+            }
+        }
+
+        [Fact]
+        public void AsyncTaskTarget_AllowDefaultBufferWrapper()
+        {
+            try
+            {
+                ConfigurationItemFactory.Default.RegisterType(typeof(AsyncTaskTestTarget), null);
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <default-wrapper type='BufferingWrapper' />
+                <target name='asyncDebug' type='AsyncTaskTest' />
+                <target name='debug' type='Debug' />
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("asyncDebug"));
+                Assert.NotNull(LogManager.Configuration.FindTargetByName<NLog.Targets.Wrappers.BufferingTargetWrapper>("debug"));
+            }
+            finally
+            {
+                ConfigurationItemFactory.Default = null;
+            }
         }
 
         [Fact]
@@ -396,6 +477,29 @@ namespace NLog.UnitTests.Targets
 
             Assert.True(asyncTarget.Logs.Count > 25, $"{asyncTarget.Logs.Count} LogEvents are too few after {asyncTarget.WriteTasks} writes");
             Assert.True(asyncTarget.WriteTasks < 20, $"{asyncTarget.WriteTasks} writes are too many.");
+        }
+
+        [Fact]
+        public void AsynTaskTarget_AutoFlushWrapper()
+        {
+            ILogger logger = LogManager.GetCurrentClassLogger();
+
+            var asyncTarget = new AsyncTaskBatchTestTarget
+            {
+                Layout = "${level}",
+                TaskDelayMilliseconds = 5000,
+                BatchSize = 10,
+            };
+            var autoFlush = new NLog.Targets.Wrappers.AutoFlushTargetWrapper("autoflush", asyncTarget);
+            autoFlush.Condition =  "level > LogLevel.Warn";
+
+            SimpleConfigurator.ConfigureForTargetLogging(autoFlush, LogLevel.Trace);
+
+            logger.Info("Hello World");
+            Assert.Empty(asyncTarget.Logs);
+            logger.Error("Goodbye World");
+            Assert.True(asyncTarget.WaitForWriteEvent());
+            Assert.NotEmpty(asyncTarget.Logs);
         }
     }
 #endif

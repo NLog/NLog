@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -45,8 +45,8 @@ namespace NLog
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
-    using NLog.Targets;
     using NLog.Internal.Fakeables;
+    using NLog.Targets;
 
     /// <summary>
     /// Creates and manages instances of <see cref="T:NLog.Logger" /> objects.
@@ -339,6 +339,25 @@ namespace NLog
         }
 
         /// <summary>
+        /// Begins configuration of the LogFactory options using fluent interface
+        /// </summary>
+        public ISetupBuilder Setup()
+        {
+            return new SetupBuilder(this);
+        }
+
+        /// <summary>
+        /// Begins configuration of the LogFactory options using fluent interface
+        /// </summary>
+        public LogFactory Setup(Action<ISetupBuilder> setupBuilder)
+        {
+            if (setupBuilder == null)
+                throw new ArgumentNullException(nameof(setupBuilder));
+            setupBuilder(new SetupBuilder(this));
+            return this;
+        }
+
+        /// <summary>
         /// Creates a logger that discards all log messages.
         /// </summary>
         /// <returns>Null logger instance.</returns>
@@ -485,18 +504,7 @@ namespace NLog
         /// will be discarded.</param>
         public void Flush(TimeSpan timeout)
         {
-            try
-            {
-                AsyncHelpers.RunSynchronously(cb => Flush(cb, timeout));
-            }
-            catch (Exception ex)
-            {
-                InternalLogger.Error(ex, "Error with flush.");
-                if (ex.MustBeRethrown())
-                {
-                    throw;
-                }
-            }
+            FlushInternal(timeout, null);
         }
 
         /// <summary>
@@ -536,21 +544,35 @@ namespace NLog
         /// <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
         public void Flush(AsyncContinuation asyncContinuation, TimeSpan timeout)
         {
+            FlushInternal(timeout, asyncContinuation ?? (ex => { }) );
+        }
+
+        private void FlushInternal(TimeSpan timeout, AsyncContinuation asyncContinuation)
+        {
             try
             {
-                InternalLogger.Trace("LogFactory.Flush({0})", timeout);
-                LoggingConfiguration loggingConfiguration;
+                InternalLogger.Debug("LogFactory Flush with timeout={0} secs", timeout.TotalSeconds);
+                LoggingConfiguration config;
                 lock (_syncRoot)
                 {
-                    loggingConfiguration = _config; // Flush should not attempt to auto-load Configuration
+                    config = _config; // Flush should not attempt to auto-load Configuration
                 }
-                if (loggingConfiguration != null)
+
+                if (config != null)
                 {
-                    loggingConfiguration.FlushAllTargets(AsyncHelpers.WithTimeout(asyncContinuation, timeout));
+                    if (asyncContinuation != null)
+                    {
+                        FlushAllTargetsAsync(config, asyncContinuation, timeout);
+                    }
+                    else
+                    {
+                        if (FlushAllTargetsSync(config, timeout, ThrowExceptions))
+                            return;
+                    }
                 }
                 else
                 {
-                    asyncContinuation(null);
+                    asyncContinuation?.Invoke(null);
                 }
             }
             catch (Exception ex)
@@ -561,7 +583,104 @@ namespace NLog
                 }
 
                 InternalLogger.Error(ex, "Error with flush.");
+                asyncContinuation?.Invoke(ex);
             }
+        }
+
+        /// <summary>
+        /// Flushes any pending log messages on all appenders.
+        /// </summary>
+        /// <param name="loggingConfiguration">Config containing Targets to Flush</param>
+        /// <param name="asyncContinuation">Flush completed notification (success / timeout)</param>
+        /// <param name="asyncTimeout">Optional timeout that guarantees that completed notication is called.</param>
+        /// <returns></returns>
+        private static AsyncContinuation FlushAllTargetsAsync(LoggingConfiguration loggingConfiguration, AsyncContinuation asyncContinuation, TimeSpan? asyncTimeout)
+        {
+            var targets = loggingConfiguration.GetAllTargetsToFlush();
+            var pendingTargets = new HashSet<Target>(targets, SingleItemOptimizedHashSet<Target>.ReferenceEqualityComparer.Default);
+
+            AsynchronousAction<Target> flushAction = (target, cont) =>
+            {
+                target.Flush(ex =>
+                {
+                    if (ex != null)
+                        InternalLogger.Warn(ex, "Flush failed for target {0}(Name={1})", target.GetType(), target.Name);
+                    lock (pendingTargets)
+                    {
+                        pendingTargets.Remove(target);
+                    }
+                    cont(ex);
+                });
+            };
+            AsyncContinuation flushContinuation = (ex) =>
+            {
+                lock (pendingTargets)
+                {
+                    foreach (var pendingTarget in pendingTargets)
+                        InternalLogger.Debug("Flush timeout for target {0}(Name={1})", pendingTarget.GetType(), pendingTarget.Name);
+                    pendingTargets.Clear();
+                }
+                if (ex != null)
+                    InternalLogger.Warn(ex, "Flush completed with errors");
+                else
+                    InternalLogger.Debug("Flush completed");
+                asyncContinuation(ex);
+            };
+
+            if (asyncTimeout.HasValue)
+            {
+                flushContinuation = AsyncHelpers.WithTimeout(flushContinuation, asyncTimeout.Value);
+            }
+            else
+            {
+                flushContinuation = AsyncHelpers.PreventMultipleCalls(flushContinuation);
+            }
+
+            InternalLogger.Trace("Flushing all {0} targets...", targets.Count);
+            AsyncHelpers.ForEachItemInParallel(targets, flushContinuation, flushAction);
+            return flushContinuation;
+        }
+
+        private static bool FlushAllTargetsSync(LoggingConfiguration oldConfig, TimeSpan timeout, bool throwExceptions)
+        {
+            Exception lastException = null;
+
+            try
+            {
+                ManualResetEvent flushCompletedEvent = new ManualResetEvent(false);
+
+                var flushContinuation = FlushAllTargetsAsync(oldConfig, (ex) =>
+                {
+                    if (ex != null)
+                        lastException = ex;
+                    flushCompletedEvent.Set();
+                }, null);
+
+                bool flushCompleted = flushCompletedEvent.WaitOne(timeout);
+                if (!flushCompleted)
+                    flushContinuation(new TimeoutException($"Timeout when flushing all targets, after waiting {timeout.TotalSeconds} seconds."));
+            }
+            catch (Exception ex)
+            {
+                if (ex.MustBeRethrownImmediately())
+                    throw;
+
+                if (throwExceptions)
+                    throw new NLogRuntimeException("Asynchronous exception has occurred.", ex);
+
+                InternalLogger.Error(ex, "Error with flush.");
+                return false;
+            }
+
+            if (lastException != null)
+            {
+                if (throwExceptions)
+                    throw new NLogRuntimeException("Asynchronous exception has occurred.", lastException);
+                else
+                    return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -823,9 +942,7 @@ namespace NLog
                 if (flushTimeout != TimeSpan.Zero && !PlatformDetector.IsMono && !PlatformDetector.IsUnix)
                 {
                     // MONO (and friends) have a hard time with spinning up flush threads/timers during shutdown
-                    ManualResetEvent flushCompleted = new ManualResetEvent(false);
-                    oldConfig.FlushAllTargets((ex) => flushCompleted.Set());
-                    attemptClose = flushCompleted.WaitOne(flushTimeout);
+                    attemptClose = FlushAllTargetsSync(oldConfig, flushTimeout, false);
                 }
 #endif
 

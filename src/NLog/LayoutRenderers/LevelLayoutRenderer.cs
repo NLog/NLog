@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -68,6 +68,14 @@ namespace NLog.LayoutRenderers
                     break;
                 case LevelFormat.Ordinal:
                     builder.AppendInvariant(level.Ordinal);
+                    break;
+                case LevelFormat.FullName:
+                    if (level == LogLevel.Info)
+                        builder.Append("Information");
+                    else if (level == LogLevel.Warn)
+                        builder.Append("Warning");
+                    else
+                        builder.Append(level.ToString());
                     break;
             }
         }

@@ -1,5 +1,5 @@
-// 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+﻿// 
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,42 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+
 namespace NLog.Internal
 {
-    using System;
-    using System.IO;
-
-    /// <summary>
-    /// Optimized routines to get the basic file characteristics of the specified file.
-    /// </summary>
-    internal abstract class FileCharacteristicsHelper
+    internal static class FileInfoHelper
     {
-        /// <summary>
-        /// Initializes static members of the FileCharacteristicsHelper class.
-        /// </summary>
-        public static FileCharacteristicsHelper CreateHelper(bool forcedManaged)
-        {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-            if (!forcedManaged && PlatformDetector.IsWin32 && !PlatformDetector.IsMono)
-            {
-                return new Win32FileCharacteristicsHelper();
-            }
-            else
-#endif
-            {
-                return new PortableFileCharacteristicsHelper();
-            }
-        }
-
-        /// <summary>
-        /// Gets the information about a file.
-        /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileStream">The file stream.</param>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public abstract FileCharacteristics GetFileCharacteristics(string fileName, FileStream fileStream);
-
-        public static DateTime? ValidateFileCreationTime<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
+        internal static DateTime? LookupValidFileCreationTimeUtc<T>(T fileInfo, Func<T, DateTime?> primary, Func<T, DateTime?> fallback, Func<T, DateTime?> finalFallback = null)
         {
             DateTime? fileCreationTime = primary(fileInfo);
 

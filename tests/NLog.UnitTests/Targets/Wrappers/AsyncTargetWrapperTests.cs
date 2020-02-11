@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -177,7 +177,7 @@ namespace NLog.UnitTests.Targets.Wrappers
 #if NET4_5
                 if (!IsAppVeyor())  // Skip timing test when running within OpenCover.Console.exe
 #endif
-                    Assert.InRange(elapsedMilliseconds, 0, 950);
+                    Assert.InRange(elapsedMilliseconds, 0, 975);
 
                 targetWrapper.Flush(flushHandler);
                 for (int i = 0; i < 2000 && flushCounter != 2; ++i)

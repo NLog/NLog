@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -90,14 +90,14 @@ namespace NLog.Layouts
         /// <returns><see cref="SimpleLayout"/> object represented by the text.</returns>
         public static implicit operator Layout([Localizable(false)] string text)
         {
-            return FromString(text);
+            return FromString(text, ConfigurationItemFactory.Default);
         }
 
         /// <summary>
         /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
         /// </summary>
         /// <param name="layoutText">The layout string.</param>
-        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>'
         public static Layout FromString(string layoutText)
         {
             return FromString(layoutText, ConfigurationItemFactory.Default);
@@ -112,6 +112,61 @@ namespace NLog.Layouts
         public static Layout FromString(string layoutText, ConfigurationItemFactory configurationItemFactory)
         {
             return new SimpleLayout(layoutText, configurationItemFactory);
+        }
+
+        /// <summary>
+        /// Implicitly converts the specified string to a <see cref="SimpleLayout"/>.
+        /// </summary>
+        /// <param name="layoutText">The layout string.</param>
+        /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors (false = replace unrecognized tokens with a space).</param>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        public static Layout FromString(string layoutText, bool throwConfigExceptions)
+        {
+            try
+            {
+                return new SimpleLayout(layoutText, ConfigurationItemFactory.Default, throwConfigExceptions);
+            }
+            catch (NLogConfigurationException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                if (!throwConfigExceptions || ex.MustBeRethrownImmediately())
+                    throw;
+
+                throw new NLogConfigurationException($"Invalid Layout: {layoutText}", ex);
+            }
+        }
+
+        /// <summary>
+        /// Create a <see cref="SimpleLayout"/> from a lambda method.
+        /// </summary>
+        /// <param name="layoutMethod">Method that renders the layout.</param>
+        /// <param name="options">Tell if method is safe for concurrent threading.</param>
+        /// <returns>Instance of <see cref="SimpleLayout"/>.</returns>
+        public static Layout FromMethod(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options = LayoutRenderOptions.None)
+        {
+            if (layoutMethod == null)
+                throw new ArgumentNullException(nameof(layoutMethod));
+
+#if NETSTANDARD1_0
+            var name = $"{layoutMethod.Target?.ToString()}";
+#else
+            var name = $"{layoutMethod.Method?.DeclaringType?.ToString()}.{layoutMethod.Method?.Name}";
+#endif
+            var layoutRenderer = CreateFuncLayoutRenderer(layoutMethod, options, name);
+            return new SimpleLayout(new[] { layoutRenderer }, layoutRenderer.LayoutRendererName, ConfigurationItemFactory.Default);
+        }
+
+        private static LayoutRenderers.FuncLayoutRenderer CreateFuncLayoutRenderer(Func<LogEventInfo, object> layoutMethod, LayoutRenderOptions options, string name)
+        {
+            if ((options & LayoutRenderOptions.ThreadAgnostic) == LayoutRenderOptions.ThreadAgnostic)
+                return new LayoutRenderers.FuncThreadAgnosticLayoutRenderer(name, (l, c) => layoutMethod(l));
+            else if ((options & LayoutRenderOptions.ThreadSafe) != 0)
+                return new LayoutRenderers.FuncThreadSafeLayoutRenderer(name, (l, c) => layoutMethod(l));
+            else
+                return new LayoutRenderers.FuncLayoutRenderer(name, (l, c) => layoutMethod(l));
         }
 
         /// <summary>
@@ -273,7 +328,7 @@ namespace NLog.Layouts
 
                 if (!_scannedForObjects)
                 {
-                    InternalLogger.Debug("Initialized Layout done but not scanned for objects");
+                    InternalLogger.Debug("{0} Initialized Layout done but not scanned for objects", GetType());
                     PerformObjectScanning();
                 }
             }
@@ -292,6 +347,18 @@ namespace NLog.Layouts
             ThreadAgnostic = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadAgnosticAttribute), true));
             ThreadSafe = objectGraphTypes.All(t => t.IsDefined(typeof(ThreadSafeAttribute), true));
             MutableUnsafe = objectGraphTypes.Any(t => t.IsDefined(typeof(MutableUnsafeAttribute), true));
+            if ((ThreadAgnostic || !MutableUnsafe) && objectGraphScannerList.Count > 1 && objectGraphTypes.Count > 0)
+            {
+                foreach (var nestedLayout in objectGraphScannerList.OfType<Layout>())
+                {
+                    if (!ReferenceEquals(nestedLayout, this))
+                    {
+                        nestedLayout.Initialize(LoggingConfiguration);
+                        ThreadAgnostic = nestedLayout.ThreadAgnostic && ThreadAgnostic;
+                        MutableUnsafe = nestedLayout.MutableUnsafe || MutableUnsafe;
+                    }
+                }
+            }
 
             // determine the max StackTraceUsage, to decide if Logger needs to capture callsite
             StackTraceUsage = StackTraceUsage.None;    // In case this Layout should implement IUsesStackTrace

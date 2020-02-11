@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -316,6 +316,21 @@ namespace NLog
             if (levelName.Equals("Off", StringComparison.OrdinalIgnoreCase))
             {
                 return Off;
+            }
+
+            if (levelName.Equals("None", StringComparison.OrdinalIgnoreCase))
+            {
+                return Off;     // .NET Core Microsoft Extension Logging
+            }
+
+            if (levelName.Equals("Information", StringComparison.OrdinalIgnoreCase))
+            {
+                return Info;    // .NET Core Microsoft Extension Logging
+            }
+
+            if (levelName.Equals("Warning", StringComparison.OrdinalIgnoreCase))
+            {
+                return Warn;    // .NET Core Microsoft Extension Logging
             }
 
             throw new ArgumentException($"Unknown log level: {levelName}");

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -130,7 +130,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 _format = value;
-                Formats = CompileFormat(value);
+                Formats = CompileFormat(value, nameof(Format));
             }
         }
 
@@ -147,7 +147,7 @@ namespace NLog.LayoutRenderers
             set
             {
                 _innerFormat = value;
-                InnerFormats = CompileFormat(value);
+                InnerFormats = CompileFormat(value, nameof(InnerFormat));
             }
         }
 
@@ -407,7 +407,7 @@ namespace NLog.LayoutRenderers
         /// <param name="ex">The Exception whose HResult should be appended.</param>
         protected virtual void AppendHResult(StringBuilder sb, Exception ex)
         {
-#if NET45
+#if NET4_5
             const int S_OK = 0;     // Carries no information, so skip
             const int S_FALSE = 1;  // Carries no information, so skip
             if (ex.HResult != S_OK && ex.HResult != S_FALSE)
@@ -473,9 +473,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Split the string and then compile into list of Rendering formats.
         /// </summary>
-        /// <param name="formatSpecifier"></param>
-        /// <returns></returns>
-        private static List<ExceptionRenderingFormat> CompileFormat(string formatSpecifier)
+        private static List<ExceptionRenderingFormat> CompileFormat(string formatSpecifier, string propertyName)
         {
             List<ExceptionRenderingFormat> formats = new List<ExceptionRenderingFormat>();
             string[] parts = formatSpecifier.SplitAndTrimTokens(',');
@@ -489,7 +487,7 @@ namespace NLog.LayoutRenderers
                 }
                 else
                 {
-                    InternalLogger.Warn("Unknown exception data target: {0}", s);
+                    InternalLogger.Warn("Exception-LayoutRenderer assigned unknown {0}: {1}", propertyName, s);  // TODO Delay parsing to Initialize and check ThrowConfigExceptions
                 }
             }
             return formats;

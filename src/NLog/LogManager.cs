@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -143,6 +143,22 @@ namespace NLog
         {
             get => factory.Configuration;
             set => factory.Configuration = value;
+        }
+
+        /// <summary>
+        /// Begins configuration of the LogFactory options using fluent interface
+        /// </summary>
+        public static ISetupBuilder Setup()
+        {
+            return LogFactory.Setup();
+        }
+
+        /// <summary>
+        /// Begins configuration of the LogFactory options using fluent interface
+        /// </summary>
+        public static LogFactory Setup(Action<ISetupBuilder> setupBuilder)
+        {
+            return LogFactory.Setup(setupBuilder);
         }
 
         /// <summary>

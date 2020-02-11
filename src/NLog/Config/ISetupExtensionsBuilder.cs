@@ -1,5 +1,5 @@
-// 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+﻿// 
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,39 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.Config
 {
-    using System;
-
     /// <summary>
-    /// An immutable object that stores basic file info.
+    /// Interface for fluent setup of LogFactory options for extension loading
     /// </summary>
-    internal class FileCharacteristics
+    public interface ISetupExtensionsBuilder
     {
         /// <summary>
-        /// Constructs a FileCharacteristics object.
+        /// LogFactory under configuration
         /// </summary>
-        /// <param name="creationTimeUtc">The time the file was created in UTC.</param>
-        /// <param name="lastWriteTimeUtc">The time the file was last written to in UTC.</param>
-        /// <param name="fileLength">The size of the file in bytes.</param>
-        public FileCharacteristics(DateTime creationTimeUtc, DateTime lastWriteTimeUtc, long fileLength)
-        {
-            CreationTimeUtc = creationTimeUtc;
-            LastWriteTimeUtc = lastWriteTimeUtc;
-            FileLength = fileLength;
-        }
-
-        /// <summary>
-        /// The time the file was created in UTC.
-        /// </summary>
-        public DateTime CreationTimeUtc { get; private set; }
-        /// <summary>
-        /// The time the file was last written to in UTC.
-        /// </summary>
-        public DateTime LastWriteTimeUtc { get; private set; }
-        /// <summary>
-        /// The size of the file in bytes.
-        /// </summary>
-        public long FileLength { get; private set; }
+        LogFactory LogFactory { get; }
     }
 }

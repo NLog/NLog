@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -502,6 +502,7 @@ namespace NLog.Config
             InternalLogger.Info("Selecting time source {0}", newTimeSource);
             TimeSource.Current = newTimeSource;
         }
+
         [ContractAnnotation("value:notnull => true")]
         private static bool AssertNotNullValue(string value, string propertyName, string elementName, string sectionName)
         {
@@ -510,6 +511,7 @@ namespace NLog.Config
 
             return AssertNonEmptyValue(string.Empty, propertyName, elementName, sectionName);
         }
+
         [ContractAnnotation("value:null => false")]
         private static bool AssertNonEmptyValue(string value, string propertyName, string elementName, string sectionName)
         {
@@ -1214,6 +1216,14 @@ namespace NLog.Config
             "CA2000:Dispose objects before losing scope", Justification = "Target is disposed elsewhere.")]
         private static Target WrapWithAsyncTargetWrapper(Target target)
         {
+#if !NET3_5 && !SILVERLIGHT4
+            if (target is AsyncTaskTarget)
+            {
+                InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);
+                return target;
+            }
+#endif
+
             var asyncTargetWrapper = new AsyncTargetWrapper();
             asyncTargetWrapper.WrappedTarget = target;
             asyncTargetWrapper.Name = target.Name;
@@ -1224,7 +1234,7 @@ namespace NLog.Config
             return target;
         }
 
-        private Target WrapWithDefaultWrapper(Target t, ILoggingConfigurationElement defaultParameters)
+        private Target WrapWithDefaultWrapper(Target target, ILoggingConfigurationElement defaultParameters)
         {
             string wrapperTypeName = GetConfigItemTypeAttribute(defaultParameters, "targets");
             Target wrapperTargetInstance = CreateTargetType(wrapperTypeName);
@@ -1245,12 +1255,20 @@ namespace NLog.Config
                 }
             }
 
-            wtb.WrappedTarget = t;
-            wrapperTargetInstance.Name = t.Name;
-            t.Name = t.Name + "_wrapped";
+#if !NET3_5 && !SILVERLIGHT4
+            if (target is AsyncTaskTarget && wrapperTargetInstance is AsyncTargetWrapper && ReferenceEquals(wrapperTargetInstance, wtb))
+            {
+                InternalLogger.Debug("Skip wrapping target '{0}' with AsyncTargetWrapper", target.Name);
+                return target;
+            }
+#endif
+
+            wtb.WrappedTarget = target;
+            wrapperTargetInstance.Name = target.Name;
+            target.Name = target.Name + "_wrapped";
 
             InternalLogger.Debug("Wrapping target '{0}' with '{1}' and renaming to '{2}", wrapperTargetInstance.Name,
-                wrapperTargetInstance.GetType().Name, t.Name);
+                wrapperTargetInstance.GetType().Name, target.Name);
             return wrapperTargetInstance;
         }
 
@@ -1338,10 +1356,9 @@ namespace NLog.Config
         {
             return string.IsNullOrEmpty(target.Name) ? target.GetType().Name : target.Name;
         }
-
     }
 
-    static class ILoggingConfigurationSectionExtensions
+    internal static class ILoggingConfigurationSectionExtensions
     {
         public static bool MatchesName(this ILoggingConfigurationElement section, string expectedName)
         {

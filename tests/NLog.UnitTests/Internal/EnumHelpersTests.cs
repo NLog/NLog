@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,125 +31,46 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using NLog.Common;
-using Xunit;
-
 namespace NLog.UnitTests.Internal
 {
+    using System;
+    using NLog.Common;
+    using Xunit;
+
     public class EnumHelpersTests : NLogTestBase
     {
-
         enum TestEnum
         {
             Foo,
             bar,
-
         }
-
-        #region tryparse - no ignorecase parameter
-
-        [Fact]
-        public void EnumParse1()
-        {
-            TestEnumParseCaseSentisive("Foo", TestEnum.Foo, true);
-        }
-        [Fact]
-        public void EnumParse2()
-        {
-            TestEnumParseCaseSentisive("foo", TestEnum.Foo, false);
-        }
-
-        [Fact]
-        public void EnumParseDefault()
-        {
-            TestEnumParseCaseSentisive("BAR", TestEnum.Foo, false);
-        }
-        [Fact]
-        public void EnumParseDefault2()
-        {
-            TestEnumParseCaseSentisive("x", TestEnum.Foo, false);
-        }
-        [Fact]
-        public void EnumParseBar()
-        {
-            TestEnumParseCaseSentisive("bar", TestEnum.bar, true);
-        }
-        [Fact]
-        public void EnumParseBar2()
-        {
-            TestEnumParseCaseSentisive(" bar ", TestEnum.bar, true);
-        }
-
-        [Fact]
-        public void EnumParseBar3()
-        {
-            TestEnumParseCaseSentisive(" \r\nbar ", TestEnum.bar, true);
-        }
-
-
-        [Fact]
-        public void EnumParse_null()
-        {
-            TestEnumParseCaseSentisive(null, TestEnum.Foo, false);
-        }
-
-        [Fact]
-        public void EnumParse_emptystring()
-        {
-            TestEnumParseCaseSentisive(string.Empty, TestEnum.Foo, false);
-        }
-
-        [Fact]
-        public void EnumParse_whitespace()
-        {
-            TestEnumParseCaseSentisive("   ", TestEnum.Foo, false);
-        }
-
-        [Fact]
-        public void EnumParse_ArgumentException()
-        {
-            double result;
-            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse("not enum", out result));
-        }
-
-        [Fact]
-        public void EnumParse_null_ArgumentException()
-        {
-            //even with null, first ArgumentException
-            double result;
-            Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse(null, out result));
-        }
-
-        #endregion
 
         #region tryparse - ignorecase parameter: false
-
-
-
 
         [Fact]
         public void EnumParse1_ignoreCaseFalse()
         {
             TestEnumParseCaseIgnoreCaseParam("Foo", false, TestEnum.Foo, true);
         }
+
         [Fact]
         public void EnumParse2_ignoreCaseFalse()
         {
             TestEnumParseCaseIgnoreCaseParam("foo", false, TestEnum.Foo, false);
         }
+
         [Fact]
         public void EnumParseDefault_ignoreCaseFalse()
         {
             TestEnumParseCaseIgnoreCaseParam("BAR", false, TestEnum.Foo, false);
         }
+
         [Fact]
         public void EnumParseDefault2_ignoreCaseFalse()
         {
             TestEnumParseCaseIgnoreCaseParam("x", false, TestEnum.Foo, false);
         }
+
         [Fact]
         public void EnumParseBar_ignoreCaseFalse()
         {
@@ -193,6 +114,7 @@ namespace NLog.UnitTests.Internal
             double result;
             Assert.Throws<ArgumentException>(() => ConversionHelpers.TryParse("not enum", false, out result));
         }
+
         [Fact]
         public void EnumParse_null_ArgumentException_ignoreCaseFalse()
         {
@@ -210,21 +132,25 @@ namespace NLog.UnitTests.Internal
         {
             TestEnumParseCaseIgnoreCaseParam("Foo", true, TestEnum.Foo, true);
         }
+
         [Fact]
         public void EnumParse2_ignoreCaseTrue()
         {
             TestEnumParseCaseIgnoreCaseParam("foo", true, TestEnum.Foo, true);
         }
+
         [Fact]
         public void EnumParseDefault_ignoreCaseTrue()
         {
             TestEnumParseCaseIgnoreCaseParam("BAR", true, TestEnum.bar, true);
         }
+
         [Fact]
         public void EnumParseDefault2_ignoreCaseTrue()
         {
             TestEnumParseCaseIgnoreCaseParam("x", true, TestEnum.Foo, false);
         }
+
         [Fact]
         public void EnumParseBar_ignoreCaseTrue()
         {
@@ -242,7 +168,6 @@ namespace NLog.UnitTests.Internal
         {
             TestEnumParseCaseIgnoreCaseParam(" \r\nbar ", true, TestEnum.bar, true);
         }
-
 
         [Fact]
         public void EnumParse_null_ignoreCaseTrue()
@@ -280,17 +205,6 @@ namespace NLog.UnitTests.Internal
         #endregion
 
         #region helpers
-
-
-        private static void TestEnumParseCaseSentisive(string value, TestEnum expected, bool expectedReturn)
-        {
-            TestEnum result;
-
-            var returnResult = ConversionHelpers.TryParse(value, out result);
-
-            Assert.Equal(expected, result);
-            Assert.Equal(expectedReturn, returnResult);
-        }
 
         private static void TestEnumParseCaseIgnoreCaseParam(string value, bool ignoreCase, TestEnum expected, bool expectedReturn)
         {

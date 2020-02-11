@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -43,11 +43,9 @@ namespace NLog.UnitTests
     using Microsoft.CSharp;
     using Xunit;
     using NLog.Config;
-    using NLog.Layouts;
-    using NLog.LayoutRenderers;
     using NLog.UnitTests.Mocks;
 
-    public class ConfigFileLocatorTests : NLogTestBase, IDisposable
+    public sealed class ConfigFileLocatorTests : NLogTestBase, IDisposable
     {
         private readonly string _tempDirectory;
 
@@ -61,45 +59,6 @@ namespace NLog.UnitTests
         {
             if (Directory.Exists(_tempDirectory))
                 Directory.Delete(_tempDirectory, true);
-        }
-
-        [Fact]
-        void FuncLayoutRendererRegisterTest1()
-        {
-            LayoutRenderer.Register("the-answer", (info) => "42");
-            Layout l = "${the-answer}";
-            var result = l.Render(LogEventInfo.CreateNullEvent());
-            Assert.Equal("42", result);
-        }
-
-        [Fact]
-        void FuncLayoutRendererRegisterTest1WithXML()
-        {
-            LayoutRenderer.Register("the-answer", (info) => "42");
-
-            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-<nlog throwExceptions='true'>
-            
-                <targets>
-                    <target name='debug' type='Debug' layout= '${the-answer}' /></targets>
-                <rules>
-                    <logger name='*' minlevel='Debug' writeTo='debug' />
-                </rules>
-            </nlog>");
-
-            var logger = LogManager.GetCurrentClassLogger();
-            logger.Debug("test1");
-            AssertDebugLastMessage("debug", "42");
-        }
-
-        [Fact]
-        void FuncLayoutRendererRegisterTest2()
-        {
-            LayoutRenderer.Register("message-length", (info) => info.Message.Length);
-            Layout l = "${message-length}";
-            var result = l.Render(LogEventInfo.Create(LogLevel.Error, "logger-adhoc", "1234567890"));
-            Assert.Equal("10", result);
-
         }
 
         [Fact]

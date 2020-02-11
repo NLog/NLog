@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -40,25 +40,24 @@ using NLog.Common;
 namespace NLog.Targets.FileArchiveModes
 {
     /// <summary>
-    /// <para>
     /// Archives the log-files using a date and sequence style numbering. Archives will be stamped
     /// with the prior period (Year, Month, Day) datetime. The most recent archive has the highest number (in
     /// combination with the date).
-    /// </para>
-    /// <para>
+    /// 
     /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
-    /// </para>
+    /// When the age of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
-    sealed class FileArchiveModeDateAndSequence : FileArchiveModeBase
+    internal sealed class FileArchiveModeDateAndSequence : FileArchiveModeBase
     {
         private readonly string _archiveDateFormat;
 
-        public FileArchiveModeDateAndSequence(string archiveDateFormat)
+        public FileArchiveModeDateAndSequence(string archiveDateFormat, bool archiveCleanupEnabled)
+            :base(archiveCleanupEnabled)
         {
             _archiveDateFormat = archiveDateFormat;
         }
 
-        public override bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
+        public override bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles, int maxArchiveDays)
         {
             return false;   // For historic reasons, then cleanup of sequence archives are not done on startup
         }
@@ -73,6 +72,7 @@ namespace NLog.Targets.FileArchiveModes
                 return null;
             }
 
+            date = DateTime.SpecifyKind(date, NLog.Time.TimeSource.Current.Time.Kind);
             return new DateAndSequenceArchive(archiveFile.FullName, date, _archiveDateFormat, sequence);
         }
 

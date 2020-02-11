@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -78,6 +78,7 @@ namespace NLog.Targets.Wrappers
         /// <summary>
         /// Only flush when LogEvent matches condition. Ignore explicit-flush, config-reload-flush and shutdown-flush
         /// </summary>
+        /// <docgen category='General Options' order='10' />
         public bool FlushOnConditionOnly { get; set; }
 
         private readonly AsyncOperationCounter _pendingManualFlushList = new AsyncOperationCounter();
@@ -122,10 +123,23 @@ namespace NLog.Targets.Wrappers
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
-            if (!_asyncFlush.HasValue && WrappedTarget is BufferingTargetWrapper)
+            if (!_asyncFlush.HasValue && !TargetSupportsAsyncFlush(WrappedTarget))
             {
                 AsyncFlush = false; // Disable AsyncFlush, so the intended trigger works
             }
+        }
+
+        private static bool TargetSupportsAsyncFlush(Target wrappedTarget)
+        {
+            if (wrappedTarget is BufferingTargetWrapper)
+                return false;
+
+#if !NET3_5 && !SILVERLIGHT4
+            if (wrappedTarget is AsyncTaskTarget)
+                return false;
+#endif
+
+            return true;
         }
 
         /// <summary>

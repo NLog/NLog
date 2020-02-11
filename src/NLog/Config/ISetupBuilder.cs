@@ -1,5 +1,5 @@
-// 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+﻿// 
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,32 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-namespace NLog.Internal
+namespace NLog.Config
 {
-    using System.IO;
-
     /// <summary>
-    /// Portable implementation of <see cref="FileCharacteristicsHelper"/>.
+    /// Interface for fluent setup of LogFactory options
     /// </summary>
-    internal class PortableFileCharacteristicsHelper : FileCharacteristicsHelper
+    public interface ISetupBuilder
     {
         /// <summary>
-        /// Gets the information about a file.
+        /// LogFactory under configuration
         /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileStream">The file stream.</param>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics(string fileName, FileStream fileStream)
-        {
-            if (!string.IsNullOrEmpty(fileName))
-            {
-                var fileInfo = new FileInfo(fileName);
-                if (fileInfo.Exists)
-                {
-                    return new FileCharacteristics(fileInfo.GetCreationTimeUtc(), fileInfo.GetLastWriteTimeUtc(), fileInfo.Length);
-                }
-            }
-            return null;
-        }
+        LogFactory LogFactory { get; }
     }
 }

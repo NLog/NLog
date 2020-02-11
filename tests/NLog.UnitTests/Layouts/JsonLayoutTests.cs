@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -568,6 +568,44 @@ namespace NLog.UnitTests.Layouts
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
         }
 
+        [Fact]
+        public void IncludeMdlcJsonNestedProperties()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='asyncDebug' type='AsyncWrapper' timeToSleepBetweenBatches='0'>
+                    <target name='debug' type='Debug'>
+                        <layout type='JsonLayout'>
+                            <attribute name='scope' encode='false' >
+                                <layout type='JsonLayout' includeMdlc='true' />
+                            </attribute>
+                        </layout>
+                    </target>
+                </target>
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo = CreateLogEventWithExcluded();
+
+            MappedDiagnosticsLogicalContext.Clear();
+            foreach (var prop in logEventInfo.Properties)
+                if (prop.Key.ToString() != "Excluded1" && prop.Key.ToString() != "Excluded2")
+                    MappedDiagnosticsLogicalContext.Set(prop.Key.ToString(), prop.Value);
+            logEventInfo.Properties.Clear();
+
+            logger.Debug(logEventInfo);
+
+            LogManager.Flush();
+
+            AssertDebugLastMessageContains("debug", ExpectedIncludeAllPropertiesWithExcludes);
+        }
+
         /// <summary>
         /// Test from XML, needed for the list (ExcludeProperties)
         /// </summary>
@@ -598,6 +636,75 @@ namespace NLog.UnitTests.Layouts
             AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
         }
 
+        [Fact]
+        public void IncludeAllJsonPropertiesMutableXml()
+        {
+            // Arrange
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+                <targets>
+                    <target name='asyncDebug' type='BufferingWrapper'>
+                        <target name='debug' type='Debug'>
+                            <layout type='JsonLayout' IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2' />
+                        </target>
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            // Act
+            var logEventInfo = CreateLogEventWithExcluded();
+            var stringPropBuilder = new System.Text.StringBuilder(logEventInfo.Properties["StringProp"].ToString());
+            logEventInfo.Properties["StringProp"] = stringPropBuilder;
+            logger.Debug(logEventInfo);
+            stringPropBuilder.Clear();
+
+            LogManager.Flush();
+
+            // Assert
+            AssertDebugLastMessage("debug", ExpectedIncludeAllPropertiesWithExcludes);
+        }
+
+        [Fact]
+        public void IncludeAllJsonPropertiesMutableNestedXml()
+        {
+            // Arrange
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+                <targets>
+                    <target name='asyncDebug' type='BufferingWrapper'>
+                        <target name='debug' type='Debug'>
+                            <layout type='JsonLayout'>
+                                <attribute name='properties' encode='false' >
+                                    <layout type='JsonLayout' IncludeAllProperties='true' ExcludeProperties='Excluded1,Excluded2' />
+                                </attribute>
+                            </layout>
+                        </target>
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='asyncDebug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            // Act
+            var logEventInfo = CreateLogEventWithExcluded();
+            var stringPropBuilder = new System.Text.StringBuilder(logEventInfo.Properties["StringProp"].ToString());
+            logEventInfo.Properties["StringProp"] = stringPropBuilder;
+            logger.Debug(logEventInfo);
+            stringPropBuilder.Clear();
+
+            LogManager.Flush();
+
+            // Assert
+            AssertDebugLastMessageContains("debug", ExpectedIncludeAllPropertiesWithExcludes);
+        }
 
         /// <summary>
         /// Serialize object deep
@@ -749,6 +856,33 @@ namespace NLog.UnitTests.Layouts
             logger.Debug(logEventInfo1);
 
             AssertDebugLastMessage("debug", "{ \"DoubleNaN\": \"NaN\", \"DoubleInfPositive\": \"Infinity\", \"DoubleInfNegative\": \"-Infinity\", \"FloatNaN\": \"NaN\", \"FloatInfPositive\": \"Infinity\", \"FloatInfNegative\": \"-Infinity\" }");
+        }
+
+        [Fact]
+        public void EscapeForwardSlashDefaultTest()
+        {
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+            <nlog throwExceptions='true'>
+            <targets>
+                <target name='debug' type='Debug'  >
+                  <layout type='JsonLayout' escapeForwardSlash='false'>
+                    <attribute name='myurl1' layout='${event-properties:myurl}' />
+                    <attribute name='myurl2' layout='${event-properties:myurl}' escapeForwardSlash='true' />
+                  </layout>
+                </target>
+            </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+
+            var logEventInfo1 = new LogEventInfo();
+            logEventInfo1.Properties.Add("myurl", "http://hello.world.com/");
+            logger.Debug(logEventInfo1);
+
+            AssertDebugLastMessage("debug", "{ \"myurl1\": \"http://hello.world.com/\", \"myurl2\": \"http:\\/\\/hello.world.com\\/\" }");
         }
 
         private static LogEventInfo CreateLogEventWithExcluded()

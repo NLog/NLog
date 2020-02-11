@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,15 +31,14 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.IO;
-using System.Linq;
-using NLog.Common;
-
 namespace NLog.Config
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
     using System.Reflection;
+    using NLog.Common;
     using NLog.Conditions;
     using NLog.Filters;
     using NLog.Internal;
@@ -57,16 +56,17 @@ namespace NLog.Config
     {
         private static ConfigurationItemFactory _defaultInstance;
 
-        private readonly IList<object> _allFactories;
+        private readonly IFactory[] _allFactories;
         private readonly Factory<Target, TargetAttribute> _targets;
         private readonly Factory<Filter, FilterAttribute> _filters;
         private readonly LayoutRendererFactory _layoutRenderers;
         private readonly Factory<Layout, LayoutAttribute> _layouts;
-        private readonly MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute> _conditionMethods;
+        private readonly MethodFactory _conditionMethods;
         private readonly Factory<LayoutRenderer, AmbientPropertyAttribute> _ambientProperties;
         private readonly Factory<TimeSource, TimeSourceAttribute> _timeSources;
 
         private IJsonConverter _jsonSerializer = DefaultJsonSerializer.Instance;
+        private IObjectTypeTransformer _objectTypeTransformer = ObjectReflectionCache.Instance;
 
         /// <summary>
         /// Called before the assembly will be loaded.
@@ -84,10 +84,10 @@ namespace NLog.Config
             _filters = new Factory<Filter, FilterAttribute>(this);
             _layoutRenderers = new LayoutRendererFactory(this);
             _layouts = new Factory<Layout, LayoutAttribute>(this);
-            _conditionMethods = new MethodFactory<ConditionMethodsAttribute, ConditionMethodAttribute>();
+            _conditionMethods = new MethodFactory(classType => MethodFactory.ExtractClassMethods<ConditionMethodsAttribute, ConditionMethodAttribute>(classType));
             _ambientProperties = new Factory<LayoutRenderer, AmbientPropertyAttribute>(this);
             _timeSources = new Factory<TimeSource, TimeSourceAttribute>(this);
-            _allFactories = new List<object>
+            _allFactories = new IFactory[]
             {
                 _targets,
                 _filters,
@@ -194,6 +194,15 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Gets or sets the custom object-type transformation for use in <see cref="JsonLayout"/>, <see cref="XmlLayout"/> or <see cref="NLog.LayoutRenderers.Wrappers.ObjectPathRendererWrapper"/>
+        /// </summary>
+        internal IObjectTypeTransformer ObjectTypeTransformer
+        {
+            get => _objectTypeTransformer;
+            set => _objectTypeTransformer = value ?? ObjectReflectionCache.Instance;
+        }
+
+        /// <summary>
         /// Gets or sets the parameter converter to use with <see cref="DatabaseTarget"/>, <see cref="WebServiceTarget"/> or <see cref="TargetWithContext"/>
         /// </summary>
         public IPropertyTypeConverter PropertyTypeConverter { get; set; } = new PropertyTypeConverter();
@@ -237,6 +246,12 @@ namespace NLog.Config
         /// </summary>
         /// <value>The condition method factory.</value>
         public INamedItemFactory<MethodInfo, MethodInfo> ConditionMethods => _conditionMethods;
+
+        /// <summary>
+        /// Gets the condition method factory (precompiled)
+        /// </summary>
+        /// <value>The condition method factory.</value>
+        internal MethodFactory ConditionMethodDelegates => _conditionMethods;
 
         /// <summary>
         /// Registers named items from the assembly.
@@ -309,8 +324,8 @@ namespace NLog.Config
             {
                 if (preloadMethod.IsStatic)
                 {
-
                     InternalLogger.Debug("NLogPackageLoader contains Preload method");
+
                     //only static, so first param null
                     try
                     {

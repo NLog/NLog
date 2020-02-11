@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -83,14 +83,26 @@ namespace NLog.Layouts
         /// <param name="txt">The layout string to parse.</param>
         /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
         public SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory)
+            :this(txt, configurationItemFactory, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleLayout"/> class.
+        /// </summary>
+        /// <param name="txt">The layout string to parse.</param>
+        /// <param name="configurationItemFactory">The NLog factories to use when creating references to layout renderers.</param>
+        /// <param name="throwConfigExceptions">Whether <see cref="NLogConfigurationException"/> should be thrown on parse errors.</param>
+        internal SimpleLayout(string txt, ConfigurationItemFactory configurationItemFactory, bool? throwConfigExceptions)
         {
             _configurationItemFactory = configurationItemFactory;
-            Text = txt;
+            SetLayoutText(txt, throwConfigExceptions);
         }
 
         internal SimpleLayout(LayoutRenderer[] renderers, string text, ConfigurationItemFactory configurationItemFactory)
         {
             _configurationItemFactory = configurationItemFactory;
+            OriginalText = text;
             SetRenderers(renderers, text);
         }
 
@@ -106,29 +118,31 @@ namespace NLog.Layouts
         public string Text
         {
             get => _layoutText;
+            set => SetLayoutText(value);
+        }
 
-            set
+        private void SetLayoutText(string value, bool? throwConfigExceptions = null)
+        {
+            OriginalText = value;
+
+            LayoutRenderer[] renderers;
+            string txt;
+            if (value == null)
             {
-                OriginalText = value;
-
-                LayoutRenderer[] renderers;
-                string txt;
-                if (value == null)
-                {
-                    renderers = ArrayHelper.Empty<LayoutRenderer>();
-                    txt = string.Empty;
-                }
-                else
-                {
-                    renderers = LayoutParser.CompileLayout(
-                       _configurationItemFactory,
-                       new SimpleStringReader(value),
-                       false,
-                       out txt);
-                }
-
-                SetRenderers(renderers, txt);
+                renderers = ArrayHelper.Empty<LayoutRenderer>();
+                txt = string.Empty;
             }
+            else
+            {
+                renderers = LayoutParser.CompileLayout(
+                   _configurationItemFactory,
+                    new SimpleStringReader(value),
+                    throwConfigExceptions,
+                    false,
+                    out txt);
+            }
+
+            SetRenderers(renderers, txt);
         }
 
         /// <summary>
@@ -230,12 +244,15 @@ namespace NLog.Layouts
         {
             Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
 
-            //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
             _fixedText = null;
             _rawValueRenderer = null;
             _stringValueRenderer = null;
 
-            if (Renderers.Count == 1)
+            if (Renderers.Count == 0)
+            {
+                _fixedText = string.Empty;
+            }
+            else if (Renderers.Count == 1)
             {
                 if (Renderers[0] is LiteralLayoutRenderer renderer)
                 {
@@ -243,13 +260,13 @@ namespace NLog.Layouts
                 }
                 else
                 {
-                    if (Renderers[0] is IRawValue rawValueRendrer)
+                    if (Renderers[0] is IRawValue rawValueRenderer)
                     {
-                        _rawValueRenderer = rawValueRendrer;
+                        _rawValueRenderer = rawValueRenderer;
                     }
-                    if (Renderers[0] is IStringValueRenderer stringValueRendrer)
+                    if (Renderers[0] is IStringValueRenderer stringValueRenderer)
                     {
-                        _stringValueRenderer = stringValueRendrer;
+                        _stringValueRenderer = stringValueRenderer;
                     }
                 }
             }
