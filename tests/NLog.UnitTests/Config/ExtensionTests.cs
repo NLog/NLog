@@ -555,7 +555,15 @@ namespace NLog.UnitTests.Config
                     nlogDirectory.Name,
 #endif
                     "ManuallyLoadedExtension.dll");
-                Assembly.LoadFrom(manuallyLoadedAssemblyPath);
+                try
+                {
+                    Assembly.LoadFrom(manuallyLoadedAssemblyPath);
+                }
+                catch (FileNotFoundException exc)
+                {
+                    Console.WriteLine("Unable to load from " + manuallyLoadedAssemblyPath + ".\n" + exc.ToString());
+                    throw;
+                }
 
                 InternalLogger.LogLevel = LogLevel.Trace;
                 var writer = new StringWriter();
