@@ -538,5 +538,54 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(target);
             Assert.Equal(123, target.Layout.X);
         }
+
+        [Fact]
+        public void LoadExtensionFromAppDomain()
+        {
+            try
+            {
+                // ...\NLog\tests\NLog.UnitTests\bin\Debug\netcoreapp2.0\nlog.dll
+                var nlogDirectory = new DirectoryInfo(ConfigurationItemFactory.GetAutoLoadingFileLocations().First().Key);
+                var configurationDirectory = nlogDirectory.Parent;
+                var testsDirectory = configurationDirectory.Parent.Parent.Parent;
+                var manuallyLoadedAssemblyPath = Path.Combine(testsDirectory.FullName, "ManuallyLoadedExtension", "bin", configurationDirectory.Name,
+#if NETSTANDARD
+                    "netstandard2.0",
+#else
+                    nlogDirectory.Name,
+#endif
+                    "ManuallyLoadedExtension.dll");
+                Assembly.LoadFrom(manuallyLoadedAssemblyPath);
+
+                InternalLogger.LogLevel = LogLevel.Trace;
+                var writer = new StringWriter();
+                InternalLogger.LogWriter = writer;
+
+                var configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+    <extensions>
+        <add assembly='ManuallyLoadedExtension' />
+    </extensions>
+
+    <targets>
+        <target name='t' type='ManuallyLoadedTarget' />
+    </targets>
+</nlog>");
+
+                // We get Exception for normal Assembly-Load only in net452.
+#if !NETSTANDARD && !MONO
+                var logs = writer.ToString();
+                Assert.Contains("Try find 'ManuallyLoadedExtension' in current domain", logs);
+#endif
+
+                // Was AssemblyLoad successful?
+                var autoLoadedTarget = configuration.FindTargetByName("t");
+                Assert.Equal("ManuallyLoadedExtension.ManuallyLoadedTarget", autoLoadedTarget.GetType().FullName);
+            }
+            finally
+            {
+                InternalLogger.Reset();
+            }
+        }
     }
 }
