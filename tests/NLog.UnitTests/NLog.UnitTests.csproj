@@ -128,6 +128,9 @@
     <ProjectReference Include="..\..\src\NLog\NLog.csproj">
       <Private>true</Private>
     </ProjectReference>
+    <ProjectReference Include="..\ManuallyLoadedExtension\ManuallyLoadedExtension.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\PackageLoaderTestAssembly\PackageLoaderTestAssembly.csproj" />
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.csproj">
       <Private>true</Private>
