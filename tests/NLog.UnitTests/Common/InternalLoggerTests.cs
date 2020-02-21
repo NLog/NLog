@@ -41,7 +41,6 @@ using NLog.Common;
 using System.Text;
 using NLog.Time;
 using Xunit.Extensions;
-using ReceivedInternalLogEventArgs = NLog.Common.ReceivedInternalLogEventArgs;
 
 namespace NLog.UnitTests.Common
 {
@@ -802,7 +801,7 @@ namespace NLog.UnitTests.Common
         public void TestReceivedLogEventText()
         {
             // Arrange
-            var receivedArgs = new List<ReceivedInternalLogEventArgs>();
+            var receivedArgs = new List<InternalLoggerLogEventArgs>();
             InternalLogger.ReceivedLogEvent += (sender, e) =>
             {
                 receivedArgs.Add(e);
@@ -821,7 +820,7 @@ namespace NLog.UnitTests.Common
             Assert.Equal("Hello it's me!", logEventArgs.Message);
         }
 
-        private void InternalLogger_ReceivedLogEvent(object sender, ReceivedInternalLogEventArgs e)
+        private void InternalLogger_ReceivedLogEvent(object sender, InternalLoggerLogEventArgs e)
         {
             throw new NotImplementedException();
         }

@@ -151,7 +151,7 @@ namespace NLog.Common
         /// Event written to the internal log.
         /// Please note that the event is not triggered when then event hasn't the minimal log level set by <see cref="LogLevel"/> 
         /// </summary>
-        public static event EventHandler<ReceivedInternalLogEventArgs> ReceivedLogEvent;
+        public static event EventHandler<InternalLoggerLogEventArgs> ReceivedLogEvent;
 
         /// <summary>
         /// Gets or sets a value indicating whether timestamp should be included in internal log output.
@@ -286,7 +286,7 @@ namespace NLog.Common
 #endif
                 }
 
-                ReceivedLogEvent?.Invoke(null, new ReceivedInternalLogEventArgs(fullMessage, level, ex));
+                ReceivedLogEvent?.Invoke(null, new InternalLoggerLogEventArgs(fullMessage, level, ex));
 
                 ex?.MarkAsLoggedToInternalLogger();
             }

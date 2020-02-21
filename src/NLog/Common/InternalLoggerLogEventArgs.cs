@@ -39,7 +39,7 @@ namespace NLog.Common
     /// <summary>
     /// Written to the internal logger
     /// </summary>
-    public class ReceivedInternalLogEventArgs : EventArgs
+    public class InternalLoggerLogEventArgs : EventArgs
     {
         /// <summary>
         /// The rendered message
@@ -57,7 +57,7 @@ namespace NLog.Common
         public Exception Exception { get; }
 
         /// <inheritdoc />
-        internal ReceivedInternalLogEventArgs(string message, LogLevel level, [CanBeNull] Exception exception)
+        internal InternalLoggerLogEventArgs(string message, LogLevel level, [CanBeNull] Exception exception)
         {
             Message = message;
             Level = level;
