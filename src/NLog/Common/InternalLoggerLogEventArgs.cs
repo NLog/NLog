@@ -39,7 +39,7 @@ namespace NLog.Common
     /// <summary>
     /// Written to the internal logger
     /// </summary>
-    public class InternalLoggerLogEventArgs : EventArgs
+    public sealed class InternalLoggerLogEventArgs : EventArgs
     {
         /// <summary>
         /// The rendered message
