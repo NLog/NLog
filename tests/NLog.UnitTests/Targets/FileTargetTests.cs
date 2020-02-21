@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal.FileAppenders;
+using NSubstitute;
+
 namespace NLog.UnitTests.Targets
 {
     using System;
@@ -214,7 +217,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SimpleFileWithSpecialCharsTest()
         {
-            var logFile  = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
+            var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
             SimpleFileWriteLogTest(logFile);
         }
 
@@ -751,6 +754,51 @@ namespace NLog.UnitTests.Targets
             {
                 if (customFileCompressor)
                     FileTarget.FileCompressor = fileCompressor;
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+                if (Directory.Exists(tempArchiveFolder))
+                    Directory.Delete(tempArchiveFolder, true);
+            }
+        }
+
+        [Fact]
+        public void ArchiveOldFileOnStartupAboveSize()
+        {
+            var logFile = Path.GetTempFileName();
+            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
+            var archiveTempName = Path.Combine(tempArchiveFolder, "archive_size_threshold.txt");
+            FileTarget CreateTestTarget(long threshold)
+            {
+                return new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    ArchiveOldFileOnStartupAboveSize = threshold,
+                    ArchiveFileName = archiveTempName,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    MaxArchiveFiles = 1
+                };
+            }
+            try
+            {
+                // No archive on startup (ignoring threshold)
+                SimpleConfigurator.ConfigureForTargetLogging(WrapFileTarget(CreateTestTarget(1000)));
+                logger.Info("aaa");
+                LogManager.Flush();
+                AssertFileContents(logFile, "Info aaa\n", Encoding.UTF8);
+                Assert.False(File.Exists(archiveTempName));
+
+                // Archive on startup with small threshold -> Must be archived
+                SimpleConfigurator.ConfigureForTargetLogging(CreateTestTarget(3));
+                logger.Info("ccc");
+                LogManager.Flush();
+                AssertFileContents(logFile, "Info ccc\n", Encoding.UTF8);
+                Assert.True(File.Exists(archiveTempName));
+                AssertFileContents(archiveTempName, "Info aaa\n", Encoding.UTF8);
+            }
+            finally
+            {
                 if (File.Exists(logFile))
                     File.Delete(logFile);
                 if (Directory.Exists(tempArchiveFolder))
@@ -4069,6 +4117,39 @@ namespace NLog.UnitTests.Targets
                 {
                 }
             }
+        }
+
+        [Theory]
+        [InlineData(true, 100, true)] // archive, as size of file is 101
+        [InlineData(true, 101, false)] //equals is not above
+        [InlineData(true, 102, false)] // don;t archive, we didn't reach the aboveSize
+        [InlineData(false, 100, false)]
+        [InlineData(null, 0, false)]
+        [InlineData(null, 99, true)]
+        [InlineData(null, 100, true)]
+        [InlineData(null, 101, false)]
+        public void ShouldArchiveOldFileOnStartupTest(bool? archiveOldFileOnStartup, long archiveOldFileOnStartupAboveSize, bool expected)
+        {
+            // Arrange
+            var fileAppenderCacheMock = Substitute.For<IFileAppenderCache>();
+
+            var filePath = "x:/somewhere/file.txt";
+            fileAppenderCacheMock.GetFileLength(filePath).Returns(101);
+
+            var target = new FileTarget(fileAppenderCacheMock)
+            {
+                ArchiveOldFileOnStartupAboveSize = archiveOldFileOnStartupAboveSize
+            };
+            if (archiveOldFileOnStartup.HasValue)
+            {
+                target.ArchiveOldFileOnStartup = archiveOldFileOnStartup.Value;
+            }
+
+            // Act
+            var result = target.ShouldArchiveOldFileOnStartup(filePath);
+
+            // Assert
+            Assert.Equal(expected, result);
         }
     }
 
