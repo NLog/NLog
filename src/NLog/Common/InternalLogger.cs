@@ -89,7 +89,7 @@ namespace NLog.Common
 #endif
             ExceptionThrowWhenWriting = false;
             LogWriter = null;
-            ReceivedLogEvent = null;
+            LogMessageReceived = null;
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace NLog.Common
         /// Event written to the internal log.
         /// Please note that the event is not triggered when then event hasn't the minimal log level set by <see cref="LogLevel"/> 
         /// </summary>
-        public static event EventHandler<InternalLoggerLogEventArgs> ReceivedLogEvent;
+        public static event EventHandler<InternalLoggerMessageEventArgs> LogMessageReceived;
 
         /// <summary>
         /// Gets or sets a value indicating whether timestamp should be included in internal log output.
@@ -286,7 +286,7 @@ namespace NLog.Common
 #endif
                 }
 
-                ReceivedLogEvent?.Invoke(null, new InternalLoggerLogEventArgs(fullMessage, level, ex));
+                LogMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(fullMessage, level, ex));
 
                 ex?.MarkAsLoggedToInternalLogger();
             }
@@ -376,7 +376,7 @@ namespace NLog.Common
 
         private static bool HasEventListeners()
         {
-            return ReceivedLogEvent != null;
+            return LogMessageReceived != null;
         }
 
         internal static bool HasActiveLoggersWithLine()

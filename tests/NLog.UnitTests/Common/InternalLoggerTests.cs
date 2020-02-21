@@ -801,8 +801,8 @@ namespace NLog.UnitTests.Common
         public void TestReceivedLogEventText()
         {
             // Arrange
-            var receivedArgs = new List<InternalLoggerLogEventArgs>();
-            InternalLogger.ReceivedLogEvent += (sender, e) =>
+            var receivedArgs = new List<InternalLoggerMessageEventArgs>();
+            InternalLogger.LogMessageReceived += (sender, e) =>
             {
                 receivedArgs.Add(e);
             };
@@ -820,7 +820,7 @@ namespace NLog.UnitTests.Common
             Assert.Equal("Hello it's me!", logEventArgs.Message);
         }
 
-        private void InternalLogger_ReceivedLogEvent(object sender, InternalLoggerLogEventArgs e)
+        private void InternalLogger_ReceivedLogEvent(object sender, InternalLoggerMessageEventArgs e)
         {
             throw new NotImplementedException();
         }
