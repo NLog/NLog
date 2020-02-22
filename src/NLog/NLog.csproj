@@ -46,6 +46,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - Layout.FromMethod to create Layout directly from a lambda method (@snakefoot)
 - Layout.FromString to create Layout directly from string along with optional parser validation (@snakefoot)
 - ${dir-separator} for rendering platform specific directory path separator (@304NotModified)
+- FileTarget - Supports ArchiveOldFileOnStartupAboveSize for cleanup of existing file when above size (@Sam13)
 
 ## Improvements
 - XmlLoggingConfiguration - Marked legacy constructors with ignoreErrors parameter as obsolete (@snakefoot)

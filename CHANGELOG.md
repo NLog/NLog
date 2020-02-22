@@ -21,6 +21,7 @@ Date format: (year/month/day)
 - [#3737](https://github.com/NLog/NLog/pull/3737) + [#3769](https://github.com/NLog/NLog/pull/3769) Layout.FromMethod to create Layout directly from a lambda method (@snakefoot)
 - [#3771](https://github.com/NLog/NLog/pull/3771) Layout.FromString to create Layout directly from string along with optional parser validation (@snakefoot)
 - [#3793](https://github.com/NLog/NLog/pull/3793) ${dir-separator} for rendering platform specific directory path separator (@304NotModified)
+- [#3755](https://github.com/NLog/NLog/pull/3755) FileTarget - Supports ArchiveOldFileOnStartupAboveSize for cleanup of existing file when above size (@Sam13)
 
 #### Improvements
 - [#3521](https://github.com/NLog/NLog/pull/3521) XmlLoggingConfiguration - Marked legacy constructors with ignoreErrors parameter as obsolete (@snakefoot)
