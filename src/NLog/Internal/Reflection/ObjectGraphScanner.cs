@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -134,15 +134,15 @@ namespace NLog.Internal
                     }
                     else
                     {
+                        List<object> elements = new List<object>(list.Count);
                         lock (list.SyncRoot)
                         {
-                            List<object> elements = new List<object>(list.Count);
                             for (int i = 0; i < list.Count; i++)
                             {
                                 elements.Add(list[i]);
                             }
-                            ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
                         }
+                        ScanPropertiesList(aggressiveSearch, result, elements, level + 1, visitedObjects);
                     }
                 }
             }

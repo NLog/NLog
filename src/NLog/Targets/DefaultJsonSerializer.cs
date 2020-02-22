@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -53,14 +53,12 @@ namespace NLog.Targets
 
         private const int MaxJsonLength = 512 * 1024;
 
-        private static readonly DefaultJsonSerializer instance = new DefaultJsonSerializer();
-
         private static readonly IEqualityComparer<object> _referenceEqualsComparer = SingleItemOptimizedHashSet<object>.ReferenceEqualityComparer.Default;
 
         /// <summary>
         /// Singleton instance of the serializer.
         /// </summary>
-        public static DefaultJsonSerializer Instance => instance;
+        public static DefaultJsonSerializer Instance { get; } = new DefaultJsonSerializer();
 
         static DefaultJsonSerializer()
         {
@@ -69,7 +67,7 @@ namespace NLog.Targets
         /// <summary>
         /// Private. Use <see cref="Instance"/>
         /// </summary>
-        private DefaultJsonSerializer()
+        internal DefaultJsonSerializer()
         { }
 
         /// <summary>
@@ -427,10 +425,10 @@ namespace NLog.Targets
                 var objectPropertyList = _objectReflectionCache.LookupObjectProperties(value);
                 if (!objectPropertyList.ConvertToString)
                 {
-                    if (ReferenceEquals(options, instance._serializeOptions) && value is Exception)
+                    if (ReferenceEquals(options, Instance._serializeOptions) && value is Exception)
                     {
                         // Exceptions are seldom under control, and can include random Data-Dictionary-keys, so we sanitize by default
-                        options = instance._exceptionSerializeOptions;
+                        options = Instance._exceptionSerializeOptions;
                     }
 
                     using (new SingleItemOptimizedHashSet<object>.SingleItemScopedInsert(value, ref objectsInPath, false, _referenceEqualsComparer))
@@ -463,21 +461,35 @@ namespace NLog.Targets
                     bool includeQuotes = forceToString || objTypeCode == TypeCode.Object || !SkipQuotes(value, objTypeCode);
                     SerializeWithFormatProvider(formattable, includeQuotes, destination, options, hasFormat);
                 }
-                else if (IsNumericTypeCode(objTypeCode, false))
+                else
                 {
-                    SerializeSimpleNumericValue(value, objTypeCode, destination, options, forceToString);
+                    SerializeSimpleTypeCodeValueNoEscape(value, objTypeCode, destination, options, forceToString);
+                }
+            }
+        }
+
+        private void SerializeSimpleTypeCodeValueNoEscape(IConvertible value, TypeCode objTypeCode, StringBuilder destination, JsonSerializeOptions options, bool forceToString)
+        {
+            if (IsNumericTypeCode(objTypeCode, false))
+            {
+                SerializeSimpleNumericValue(value, objTypeCode, destination, options, forceToString);
+            }
+            else if (objTypeCode == TypeCode.DateTime)
+            {
+                destination.Append('"');
+                destination.AppendXmlDateTimeRoundTrip(value.ToDateTime(CultureInfo.InvariantCulture));
+                destination.Append('"');
+            }
+            else
+            {
+                string str = XmlHelper.XmlConvertToString(value, objTypeCode);
+                if (!forceToString && str != null && SkipQuotes(value, objTypeCode))
+                {
+                    destination.Append(str);
                 }
                 else
                 {
-                    string str = XmlHelper.XmlConvertToString(value, objTypeCode);
-                    if (!forceToString && str != null && SkipQuotes(value, objTypeCode))
-                    {
-                        destination.Append(str);
-                    }
-                    else
-                    {
-                        QuoteValue(destination, str);
-                    }
+                    QuoteValue(destination, str);
                 }
             }
         }

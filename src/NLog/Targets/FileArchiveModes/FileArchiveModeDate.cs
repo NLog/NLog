@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -40,23 +40,24 @@ namespace NLog.Targets.FileArchiveModes
 {
     /// <summary>
     /// Archives the log-files using a date style numbering. Archives will be stamped with the
-    /// prior period (Year, Month, Day, Hour, Minute) datetime. When the number of archive files exceed <see
-    /// cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
+    /// prior period (Year, Month, Day, Hour, Minute) datetime.
+    /// 
+    /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
+    /// When the age of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
-    sealed class FileArchiveModeDate : FileArchiveModeBase
+    internal sealed class FileArchiveModeDate : FileArchiveModeBase
     {
         private readonly string _archiveDateFormat;
-        private readonly bool _archiveCleanupEnabled;
 
-        public FileArchiveModeDate(string archiveDateFormat, bool archiveCleanupEnabled)
+        public FileArchiveModeDate(string archiveDateFormat, bool isArchiveCleanupEnabled)
+            :base(isArchiveCleanupEnabled)
         {
             _archiveDateFormat = archiveDateFormat;
-            _archiveCleanupEnabled = archiveCleanupEnabled;
         }
 
         public override List<DateAndSequenceArchive> GetExistingArchiveFiles(string archiveFilePath)
         {
-            if (_archiveCleanupEnabled)
+            if (IsArchiveCleanupEnabled)
                 return base.GetExistingArchiveFiles(archiveFilePath);
             else
                 return new List<DateAndSequenceArchive>();
@@ -74,6 +75,7 @@ namespace NLog.Targets.FileArchiveModes
                 DateTime fileDate;
                 if (DateTime.TryParseExact(datePart, _archiveDateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out fileDate))
                 {
+                    fileDate = DateTime.SpecifyKind(fileDate, NLog.Time.TimeSource.Current.Time.Kind);
                     return new DateAndSequenceArchive(archiveFile.FullName, fileDate, _archiveDateFormat, -1);
                 }
             }

@@ -118,14 +118,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NLog.Wcf\NLog.Wcf.csproj" />
     <ProjectReference Include="..\..\tests\NLogAutoLoadExtension\NLogAutoLoadExtension.csproj">
       <Private>true</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NLog\NLog.csproj">
       <Private>true</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\NLog.Wcf\NLog.Wcf.csproj">
-      <Private>true</Private>
+    <ProjectReference Include="..\ManuallyLoadedExtension\ManuallyLoadedExtension.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\PackageLoaderTestAssembly\PackageLoaderTestAssembly.csproj" />
     <ProjectReference Include="..\SampleExtensions\SampleExtensions.csproj">

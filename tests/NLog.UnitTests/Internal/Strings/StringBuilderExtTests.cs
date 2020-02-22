@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,10 +31,11 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System;
+using System.Collections.Generic;
 using System.Text;
 using NLog.Internal;
 using Xunit;
-using Xunit.Extensions;
 
 namespace NLog.UnitTests.Internal
 {
@@ -73,6 +74,69 @@ namespace NLog.UnitTests.Internal
             sb.Length = 0;
             StringBuilderExt.AppendInvariant(sb, input);
             Assert.Equal(input.ToString(System.Globalization.CultureInfo.InvariantCulture), sb.ToString());
+        }
+
+        [Theory]
+        [MemberData(nameof(TestAppendXsdDateTimeRoundTripCases))]
+        void TestAppendXmlDateTimeRoundTripUndefined(DateTime input)
+        {
+            StringBuilder sb = new StringBuilder();
+            StringBuilderExt.AppendXmlDateTimeRoundTrip(sb, input);
+            Assert.Equal(System.Xml.XmlConvert.ToString(input, System.Xml.XmlDateTimeSerializationMode.Utc), sb.ToString());
+        }
+
+        [Theory]
+        [MemberData(nameof(TestAppendXsdDateTimeRoundTripCases))]
+        void TestAppendXmlDateTimeRoundTripLocal(DateTime input)
+        {
+            input = new DateTime(input.Ticks, DateTimeKind.Local);
+            StringBuilder sb = new StringBuilder();
+            StringBuilderExt.AppendXmlDateTimeRoundTrip(sb, input);
+            Assert.Equal(System.Xml.XmlConvert.ToString(input, System.Xml.XmlDateTimeSerializationMode.Utc), sb.ToString());
+        }
+
+        [Theory]
+        [MemberData(nameof(TestAppendXsdDateTimeRoundTripCases))]
+        void TestAppendXmlDateTimeRoundTripUtc(DateTime input)
+        {
+            input = new DateTime(input.Ticks, DateTimeKind.Utc);
+            StringBuilder sb = new StringBuilder();
+            StringBuilderExt.AppendXmlDateTimeRoundTrip(sb, input);
+            Assert.Equal(System.Xml.XmlConvert.ToString(input, System.Xml.XmlDateTimeSerializationMode.Utc), sb.ToString());
+        }
+
+        public static IEnumerable<object[]> TestAppendXsdDateTimeRoundTripCases()
+        {
+            yield return new object[] { DateTime.MinValue };
+            yield return new object[] { DateTime.MaxValue };
+            yield return new object[] { new DateTime(123, 1, 2) };
+            yield return new object[] { new DateTime(1234, 10, 20) };
+            yield return new object[] { new DateTime(1970, 01, 01, 01, 01, 01) };
+            yield return new object[] { new DateTime(1970, 10, 10, 10, 10, 10) };
+            yield return new object[] { new DateTime(1970, 01, 01, 01, 01, 01, 1) };
+            yield return new object[] { new DateTime(1970, 10, 10, 10, 10, 10, 10) };
+            yield return new object[] { new DateTime(1970, 11, 11, 11, 11, 11, 11) };
+            yield return new object[] { new DateTime(1970, 10, 10, 10, 10, 10, 100) };
+            yield return new object[] { new DateTime(1970, 12, 12, 12, 12, 12, 110) };
+            yield return new object[] { new DateTime(1970, 10, 11, 12, 13, 14, 999) };
+            yield return new object[] { new DateTime(1970, 11, 12, 13, 14, 15).AddTicks(1) };
+            yield return new object[] { new DateTime(1970, 12, 13, 14, 15, 16).AddTicks(10) };
+            yield return new object[] { new DateTime(1970, 01, 02, 03, 04, 05).AddTicks(12) };
+            yield return new object[] { new DateTime(1970, 02, 03, 04, 05, 06).AddTicks(120) };
+            yield return new object[] { new DateTime(1970, 03, 04, 05, 06, 07).AddTicks(123) };
+            yield return new object[] { new DateTime(1970, 04, 05, 06, 07, 08).AddTicks(1230) };
+            yield return new object[] { new DateTime(1970, 05, 06, 07, 08, 09).AddTicks(1234) };
+            yield return new object[] { new DateTime(1970, 06, 07, 08, 09, 10).AddTicks(12340) };
+            yield return new object[] { new DateTime(1970, 07, 08, 09, 10, 11).AddTicks(12345) };
+            yield return new object[] { new DateTime(1970, 08, 09, 10, 11, 12).AddTicks(123450) };
+            yield return new object[] { new DateTime(1970, 09, 10, 11, 12, 13).AddTicks(123456) };
+            yield return new object[] { new DateTime(1970, 10, 15, 20, 25, 30).AddTicks(1234560) };
+            yield return new object[] { new DateTime(1970, 05, 10, 15, 20, 25).AddTicks(1234567) };
+            yield return new object[] { new DateTime(1970, 10, 30, 10, 30, 10).AddTicks(1000000) };
+            yield return new object[] { new DateTime(1970, 01, 02, 03, 04, 05).AddTicks(100000) };
+            yield return new object[] { new DateTime(1970, 10, 20, 20, 40, 50).AddTicks(10000) };
+            yield return new object[] { new DateTime(1970, 01, 01, 23, 59, 59).AddTicks(1000) };
+            yield return new object[] { new DateTime(1970, 12, 31, 23, 59, 59).AddTicks(100) };
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -52,7 +52,6 @@ namespace NLog.Internal.FileAppenders
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
         private FileStream _fileStream;
-        private readonly FileCharacteristicsHelper _fileCharacteristicsHelper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WindowsMultiProcessFileAppender" /> class.
@@ -64,7 +63,6 @@ namespace NLog.Internal.FileAppenders
             try
             {
                 CreateAppendOnlyFile(fileName);
-                _fileCharacteristicsHelper = FileCharacteristicsHelper.CreateHelper(parameters.ForceManaged);
             }
             catch
             {
@@ -209,14 +207,7 @@ namespace NLog.Internal.FileAppenders
         /// <returns>A long value representing the length of the file in bytes.</returns>
         public override long? GetFileLength()
         {
-            var fileChars = GetFileCharacteristics();
-            return fileChars?.FileLength;
-        }
-
-        private FileCharacteristics GetFileCharacteristics()
-        {
-            //todo not efficient to read all the whole FileCharacteristics and then using one property
-            return _fileCharacteristicsHelper.GetFileCharacteristics(FileName, _fileStream);
+            return _fileStream?.Length;
         }
 
         /// <summary>

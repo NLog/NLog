@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,6 +35,7 @@ namespace NLog.Layouts
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Text;
     using NLog.Config;
 
@@ -101,52 +102,58 @@ namespace NLog.Layouts
         /// <summary>
         /// Gets the array of attributes' configurations.
         /// </summary>
-        /// <docgen category='JSON Options' order='10' />
+        /// <docgen category='JSON Output' order='10' />
         [ArrayParameter(typeof(JsonAttribute), "attribute")]
         public IList<JsonAttribute> Attributes { get; private set; }
 
         /// <summary>
         /// Gets or sets the option to suppress the extra spaces in the output json
         /// </summary>
-        /// <docgen category='JSON Options' order='10' />
+        /// <docgen category='JSON Formating' order='10' />
+        [DefaultValue(false)]
         public bool SuppressSpaces { get; set; }
 
         /// <summary>
         /// Gets or sets the option to render the empty object value {}
         /// </summary>
-        /// <docgen category='JSON Options' order='10' />
+        /// <docgen category='JSON Formating' order='10' />
+        [DefaultValue(true)]
         public bool RenderEmptyObject { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="GlobalDiagnosticsContext"/> dictionary.
         /// </summary>
-        /// <docgen category='JSON Options' order='10' />
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(false)]
         public bool IncludeGdc { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsContext"/> dictionary.
         /// </summary>
-        /// <docgen category='JSON Options' order='10' />
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(false)]
         public bool IncludeMdc { get; set; }
 
 #if !SILVERLIGHT
         /// <summary>
         /// Gets or sets a value indicating whether to include contents of the <see cref="MappedDiagnosticsLogicalContext"/> dictionary.
         /// </summary>
-        /// <docgen category='JSON Options' order='10' />
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(false)]
         public bool IncludeMdlc { get; set; }
 #endif
 
         /// <summary>
         /// Gets or sets the option to include all properties from the log event (as JSON)
         /// </summary>
-        /// <docgen category='JSON Options' order='10' />
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(false)]
         public bool IncludeAllProperties { get; set; }
 
         /// <summary>
         /// List of property names to exclude when <see cref="IncludeAllProperties"/> is true
         /// </summary>
-        /// <docgen category='JSON Options' order='10' />
+        /// <docgen category='JSON Output' order='10' />
 #if NET3_5
         public HashSet<string> ExcludeProperties { get; set; }
 #else
@@ -156,13 +163,21 @@ namespace NLog.Layouts
         /// <summary>
         /// How far should the JSON serializer follow object references before backing off
         /// </summary>
-        /// <docgen category='JSON Options' order='10' />
+        /// <docgen category='JSON Output' order='10' />
+        [DefaultValue(1)]
         public int MaxRecursionLimit { get; set; }
 
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
-        public bool EscapeForwardSlash { get; set; } = true; // todo NLog 5, default to false
+        /// <docgen category='JSON Formating' order='10' />
+        [DefaultValue(true)]    // TODO NLog 5 change to nullable (with default fallback to false)
+        public bool EscapeForwardSlash
+        {
+            get => _escapeForwardSlashInternal ?? true;
+            set => _escapeForwardSlashInternal = value;
+        }
+        private bool? _escapeForwardSlashInternal;
 
         /// <summary>
         /// Initializes the layout.
@@ -183,6 +198,17 @@ namespace NLog.Layouts
             if (IncludeAllProperties)
             {
                 MutableUnsafe = true;
+            }
+
+            if (_escapeForwardSlashInternal.HasValue && Attributes?.Count > 0)
+            {
+                foreach (var attribute in Attributes)
+                {
+                    if (!attribute.LayoutWrapper.EscapeForwardSlashInternal.HasValue)
+                    {
+                        attribute.LayoutWrapper.EscapeForwardSlashInternal = _escapeForwardSlashInternal.Value;
+                    }
+                }
             }
         }
 

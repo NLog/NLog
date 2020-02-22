@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -143,6 +143,10 @@ namespace NLog.Internal
             if (exception is OverflowException)
             {
                 return true;
+            }
+            if (exception is System.Net.WebException)
+            {
+                return false;   // Not a real InvalidOperationException
             }
             if (exception is InvalidOperationException)
             {

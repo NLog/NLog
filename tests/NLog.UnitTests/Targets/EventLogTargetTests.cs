@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,24 +31,19 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Globalization;
-using System.Reflection;
-using System.Security.Principal;
-
 #if  !MONO && !NETSTANDARD
 
 namespace NLog.UnitTests.Targets
 {
-    using System.Diagnostics;
-    using NLog.Config;
-    using NLog.Targets;
     using System;
-    using System.Linq;
-    using Xunit;
     using System.Collections.Generic;
     using System.Diagnostics.Eventing.Reader;
+    using System.Linq;
+    using System.Diagnostics;
+    using NLog.Config;
     using NLog.Layouts;
-    using Xunit.Extensions;
+    using NLog.Targets;
+    using Xunit;
 
     public class EventLogTargetTests : NLogTestBase
     {
@@ -241,8 +236,8 @@ namespace NLog.UnitTests.Targets
         [InlineData(5, EventLogEntryType.Error, "AtErrorLevel_WhenNLogLevelIsFatal", null)]
         [InlineData(3, EventLogEntryType.SuccessAudit, "AtSuccessAuditLevel_WhenEntryTypeLayoutSpecifiedAsSuccessAudit", "SuccessAudit")]
         [InlineData(3, EventLogEntryType.SuccessAudit, "AtSuccessAuditLevel_WhenEntryTypeLayoutSpecifiedAsSuccessAudit_Uppercase", "SUCCESSAUDIT")]
-        [InlineData(1, EventLogEntryType.FailureAudit, "AtFailureAuditLevel_WhenEntryTypeLayoutSpecifiedAsFailureAudit", "FailureAudit")]
-        [InlineData(1, EventLogEntryType.Error, "AtErrorLevel_WhenEntryTypeLayoutSpecifiedAsError", "error")]
+        [InlineData(1, EventLogEntryType.FailureAudit, "AtFailureAuditLevel_WhenEntryTypeLayoutSpecifiedAsFailureAudit_Space", "FailureAudit ")]
+        [InlineData(1, EventLogEntryType.Error, "AtErrorLevel_WhenEntryTypeLayoutSpecifiedAsErrorLowerCase", "error")]
         [InlineData(3, EventLogEntryType.Warning, "AtSpecifiedNLogLevel_WhenWrongEntryTypeLayoutSupplied", "fallback to auto determined")]
         public void TruncatedMessagesShouldBeWrittenAtCorrenpondingNLogLevel(int logLevelOrdinal, EventLogEntryType expectedEventLogEntryType, string expectedMessage, string layoutString)
         {
@@ -365,17 +360,107 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void WriteEventLogEntryLargerThanMaxMessageLengthWithOverflowDiscard_TheMessageIsNotWritten()
         {
-            using (new NoThrowNLogExceptions())
-            {
-                string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageLength));
-                string messagePart2 = "b";
-                string testMessage = messagePart1 + messagePart2;
-                bool wasWritten = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Discard).Any();
-
-                Assert.False(wasWritten);
-            }
+            string messagePart1 = string.Join("", Enumerable.Repeat("a", MaxMessageLength));
+            string messagePart2 = "b";
+            string testMessage = messagePart1 + messagePart2;
+            bool wasWritten = WriteWithMock(LogLevel.Info, EventLogEntryType.Information, testMessage, null, EventLogTargetOverflowAction.Discard).Any();
+            Assert.False(wasWritten);
         }
 
+        [Fact]
+        public void WriteEventLogEntry_WithoutSource_WillBeDiscarded()
+        {
+            // Arrange
+            var eventLogMock = new EventLogMock(
+                deleteEventSourceFunction: (source, machineName) => { },
+                sourceExistsFunction: (source, machineName) => true,
+                logNameFromSourceNameFunction: (source, machineName) => string.Empty,
+                createEventSourceFunction: (sourceData) => { });
+            var target = new EventLogTarget(eventLogMock, null);
+            target.Source = "${event-properties:item=DynamicSource}";
+
+            var logFactory = new LogFactory();
+            var logConfig = new LoggingConfiguration(logFactory);
+            logConfig.AddRuleForAllLevels(target);
+            logFactory.Configuration = logConfig;
+
+            // Act
+            var logger = logFactory.GetLogger("EventLogCorrectLog");
+            logger.Info("Hello");
+
+            // Assert
+            Assert.Empty(eventLogMock.WrittenEntries);
+        }
+
+        [Fact]
+        public void WriteEventLogEntry_WillRecreate_WhenWrongLogName()
+        {
+            // Arrange
+            string sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
+            string deletedSourceName = string.Empty;
+            string createdLogName = string.Empty;
+
+            var eventLogMock = new EventLogMock(
+                deleteEventSourceFunction: (source, machineName) => deletedSourceName = source,
+                sourceExistsFunction: (source, machineName) => true,
+                logNameFromSourceNameFunction: (source, machineName) => "FaultyLog",
+                createEventSourceFunction: (sourceData) => createdLogName = sourceData.LogName);
+            var target = new EventLogTarget(eventLogMock, null);
+            target.Log = "CorrectLog";
+            target.Source = sourceName;
+            target.Layout = "${message}";
+
+            var logFactory = new LogFactory();
+            var logConfig = new LoggingConfiguration(logFactory);
+            logConfig.AddRuleForAllLevels(target);
+            logFactory.Configuration = logConfig;
+
+            // Act
+            var logger = logFactory.GetLogger("EventLogCorrectLog");
+            logger.Info("Hello");
+
+            // Assert
+            Assert.Equal(sourceName, deletedSourceName);
+            Assert.Equal(target.Log, createdLogName);
+            Assert.Single(eventLogMock.WrittenEntries);
+            Assert.Equal(target.Log, eventLogMock.WrittenEntries[0].Log);
+            Assert.Equal(sourceName, eventLogMock.WrittenEntries[0].Source);
+            Assert.Equal("Hello", eventLogMock.WrittenEntries[0].Message);
+        }
+
+        [Fact]
+        public void WriteEventLogEntry_WillComplain_WhenWrongLogName()
+        {
+            // Arrange
+            string sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
+            string deletedSourceName = string.Empty;
+            string createdLogName = string.Empty;
+            var eventLogMock = new EventLogMock(
+                deleteEventSourceFunction: (source, machineName) => deletedSourceName = source,
+                sourceExistsFunction: (source, machineName) => true,
+                logNameFromSourceNameFunction: (source, machineName) => "FaultyLog",
+                createEventSourceFunction: (sourceData) => createdLogName = sourceData.LogName);
+            var target = new EventLogTarget(eventLogMock, null);
+            target.Log = "CorrectLog";
+            target.Source = "${event-properties:item=DynamicSource}";
+            target.Layout = "${message}";
+
+            var logFactory = new LogFactory();
+            var logConfig = new LoggingConfiguration(logFactory);
+            logConfig.AddRuleForAllLevels(target);
+            logFactory.Configuration = logConfig;
+
+            // Act
+            var logger = logFactory.GetLogger("EventLogCorrectLog");
+            logger.Info("Hello {DynamicSource:l}", sourceName);
+
+            // Assert
+            Assert.Equal(string.Empty, deletedSourceName);
+            Assert.Equal(string.Empty, createdLogName);
+            Assert.Equal(target.Log, eventLogMock.WrittenEntries[0].Log);
+            Assert.Equal(sourceName, eventLogMock.WrittenEntries[0].Source);
+            Assert.Equal($"Hello {sourceName}", eventLogMock.WrittenEntries[0].Message);
+        }
 
         [Fact]
         public void WriteEventLogEntryWithDynamicSource()
@@ -383,7 +468,7 @@ namespace NLog.UnitTests.Targets
             const int maxMessageLength = 10;
             string expectedMessage = string.Join("", Enumerable.Repeat("a", maxMessageLength));
 
-            var target = CreateEventLogTarget<EventLogTarget>("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Split, maxMessageLength);
+            var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Split, maxMessageLength);
             target.Layout = new SimpleLayout("${message}");
             target.Source = new SimpleLayout("${event-properties:item=DynamicSource}");
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
@@ -420,7 +505,7 @@ namespace NLog.UnitTests.Targets
             var rnd = new Random();
             int eventId = rnd.Next(1, short.MaxValue);
             int category = rnd.Next(1, short.MaxValue);
-            var target = CreateEventLogTarget<EventLogTarget>("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
+            var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
             target.EventId = new SimpleLayout(eventId.ToString());
             target.Category = new SimpleLayout(category.ToString());
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
@@ -445,7 +530,7 @@ namespace NLog.UnitTests.Targets
             var rnd = new Random();
             int eventId = rnd.Next(1, short.MaxValue);
             int category = rnd.Next(1, short.MaxValue);
-            var target = CreateEventLogTarget<EventLogTarget>("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
+            var target = CreateEventLogTarget("NLog.UnitTests" + Guid.NewGuid().ToString("N"), EventLogTargetOverflowAction.Truncate, 5000);
             target.EventId = new SimpleLayout("${event-properties:EventId}");
             target.Category = new SimpleLayout("${event-properties:Category}");
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
@@ -467,22 +552,31 @@ namespace NLog.UnitTests.Targets
             Assert.Equal(category, record.Task);
         }
 
-        private static IEnumerable<EventRecord> WriteWithMock(LogLevel logLevel, EventLogEntryType expectedEventLogEntryType,
+        private static IEnumerable<EventLogMock.EventRecord> WriteWithMock(LogLevel logLevel, EventLogEntryType expectedEventLogEntryType,
             string logMessage, Layout entryType = null, EventLogTargetOverflowAction overflowAction = EventLogTargetOverflowAction.Truncate, int maxMessageLength = MaxMessageLength)
         {
-            var target = CreateEventLogTarget<EventLogTargetMock>("NLog.UnitTests" + Guid.NewGuid().ToString("N"), overflowAction, maxMessageLength, entryType);
+            var sourceName = "NLog.UnitTests" + Guid.NewGuid().ToString("N");
+
+            var eventLogMock = new EventLogMock(
+                deleteEventSourceFunction: (source, machineName) => { },
+                sourceExistsFunction: (source, machineName) => false,
+                logNameFromSourceNameFunction: (source, machineName) => string.Empty,
+                createEventSourceFunction: (sourceData) => { });
+            var target = new EventLogTarget(eventLogMock, null);
+            InitializeEventLogTarget(target, sourceName, overflowAction, maxMessageLength, entryType);
+
             SimpleConfigurator.ConfigureForTargetLogging(target, LogLevel.Trace);
 
             var logger = LogManager.GetLogger("WriteEventLogEntry");
             logger.Log(logLevel, logMessage);
 
-            var entries = target.CapturedEvents;
+            var entries = eventLogMock.WrittenEntries;
 
             var expectedSource = target.GetFixedSource();
 
             var filteredEntries = entries.Where(entry =>
-                                            entry.ProviderName == expectedSource &&
-                                            HasEntryType(entry, expectedEventLogEntryType)
+                                            entry.Source == expectedSource &&
+                                            entry.EntryType == expectedEventLogEntryType
                                             );
             if (overflowAction == EventLogTargetOverflowAction.Discard && logMessage.Length > maxMessageLength)
             {
@@ -498,218 +592,31 @@ namespace NLog.UnitTests.Targets
             return filteredEntries;
         }
 
-        private class EventRecordMock : EventRecord
-        {
-            /// <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.Eventing.Reader.EventRecord" /> class.</summary>
-            public EventRecordMock(int id, string logName, string providerName, EventLogEntryType type, string message, short category)
-            {
-                Id = id;
-                LogName = logName;
-                ProviderName = providerName;
-
-                if (type == EventLogEntryType.FailureAudit)
-                {
-                    Keywords = (long)StandardEventKeywords.AuditFailure;
-                }
-                else if (type == EventLogEntryType.SuccessAudit)
-                {
-                    Keywords = (long)StandardEventKeywords.AuditSuccess;
-                }
-                else
-                {
-                    Keywords = (long)StandardEventKeywords.EventLogClassic;
-                    if (type == EventLogEntryType.Error)
-                        Level = (byte)StandardEventLevel.Error;
-                    else if (type == EventLogEntryType.Warning)
-                        Level = (byte)StandardEventLevel.Warning;
-                    else if (type == EventLogEntryType.Information)
-                        Level = (byte)StandardEventLevel.Informational;
-                }
-
-                var eventProperty = CreateEventProperty(message);
-                Properties = new List<EventProperty> { eventProperty };
-            }
-
-            /// <summary>
-            /// EventProperty ctor is internal
-            /// </summary>
-            /// <param name="message"></param>
-            /// <returns></returns>
-            private static EventProperty CreateEventProperty(string message)
-            {
-                BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
-                CultureInfo culture = null; // use InvariantCulture or other if you prefer
-                object instantiatedType =
-                    Activator.CreateInstance(typeof(EventProperty), flags, null, new object[] { message }, culture);
-
-                return (EventProperty)instantiatedType;
-            }
-
-            #region Overrides of EventRecord
-
-            /// <summary>Gets the event message in the current locale.</summary>
-            /// <returns>Returns a string that contains the event message in the current locale.</returns>
-            public override string FormatDescription()
-            {
-                throw new NotImplementedException();
-            }
-
-            /// <summary>Gets the event message, replacing variables in the message with the specified values.</summary>
-            /// <returns>Returns a string that contains the event message in the current locale.</returns>
-            /// <param name="values">The values used to replace variables in the event message. Variables are represented by %n, where n is a number.</param>
-            public override string FormatDescription(IEnumerable<object> values)
-            {
-                throw new NotImplementedException();
-            }
-
-            /// <summary>Gets the XML representation of the event. All of the event properties are represented in the event XML. The XML conforms to the event schema.</summary>
-            /// <returns>Returns a string that contains the XML representation of the event.</returns>
-            public override string ToXml()
-            {
-                throw new NotImplementedException();
-            }
-
-            /// <summary>Gets the identifier for this event. All events with this identifier value represent the same type of event.</summary>
-            /// <returns>Returns an integer value. This value can be null.</returns>
-            public override int Id { get; }
-
-            /// <summary>Gets the version number for the event.</summary>
-            /// <returns>Returns a byte value. This value can be null.</returns>
-            public override byte? Version { get; }
-
-            /// <summary>Gets the level of the event. The level signifies the severity of the event. For the name of the level, get the value of the <see cref="P:System.Diagnostics.Eventing.Reader.EventRecord.LevelDisplayName" /> property.</summary>
-            /// <returns>Returns a byte value. This value can be null.</returns>
-            public override byte? Level { get; }
-
-            /// <summary>Gets a task identifier for a portion of an application or a component that publishes an event. A task is a 16-bit value with 16 top values reserved. This type allows any value between 0x0000 and 0xffef to be used. To obtain the task name, get the value of the <see cref="P:System.Diagnostics.Eventing.Reader.EventRecord.TaskDisplayName" /> property.</summary>
-            /// <returns>Returns an integer value. This value can be null.</returns>
-            public override int? Task { get; }
-
-            /// <summary>Gets the opcode of the event. The opcode defines a numeric value that identifies the activity or a point within an activity that the application was performing when it raised the event. For the name of the opcode, get the value of the <see cref="P:System.Diagnostics.Eventing.Reader.EventRecord.OpcodeDisplayName" /> property.</summary>
-            /// <returns>Returns a short value. This value can be null.</returns>
-            public override short? Opcode { get; }
-
-            /// <summary>Gets the keyword mask of the event. Get the value of the <see cref="P:System.Diagnostics.Eventing.Reader.EventRecord.KeywordsDisplayNames" /> property to get the name of the keywords used in this mask.</summary>
-            /// <returns>Returns a long value. This value can be null.</returns>
-            public override long? Keywords { get; }
-
-            /// <summary>Gets the event record identifier of the event in the log.</summary>
-            /// <returns>Returns a long value. This value can be null.</returns>
-            public override long? RecordId { get; }
-
-            /// <summary>Gets the name of the event provider that published this event.</summary>
-            /// <returns>Returns a string that contains the name of the event provider that published this event.</returns>
-            public override string ProviderName { get; }
-
-            /// <summary>Gets the globally unique identifier (GUID) of the event provider that published this event.</summary>
-            /// <returns>Returns a GUID value. This value can be null.</returns>
-            public override Guid? ProviderId { get; }
-
-            /// <summary>Gets the name of the event log where this event is logged.</summary>
-            /// <returns>Returns a string that contains a name of the event log that contains this event.</returns>
-            public override string LogName { get; }
-
-            /// <summary>Gets the process identifier for the event provider that logged this event.</summary>
-            /// <returns>Returns an integer value. This value can be null.</returns>
-            public override int? ProcessId { get; }
-
-            /// <summary>Gets the thread identifier for the thread that the event provider is running in.</summary>
-            /// <returns>Returns an integer value. This value can be null.</returns>
-            public override int? ThreadId { get; }
-
-            /// <summary>Gets the name of the computer on which this event was logged.</summary>
-            /// <returns>Returns a string that contains the name of the computer on which this event was logged.</returns>
-            public override string MachineName { get; }
-
-            /// <summary>Gets the security descriptor of the user whose context is used to publish the event.</summary>
-            /// <returns>Returns a <see cref="T:System.Security.Principal.SecurityIdentifier" /> value.</returns>
-            public override SecurityIdentifier UserId { get; }
-
-            /// <summary>Gets the time, in <see cref="T:System.DateTime" /> format, that the event was created.</summary>
-            /// <returns>Returns a <see cref="T:System.DateTime" /> value. The value can be null.</returns>
-            public override DateTime? TimeCreated { get; }
-
-            /// <summary>Gets the globally unique identifier (GUID) for the activity in process for which the event is involved. This allows consumers to group related activities.</summary>
-            /// <returns>Returns a GUID value.</returns>
-            public override Guid? ActivityId { get; }
-
-            /// <summary>Gets a globally unique identifier (GUID) for a related activity in a process for which an event is involved.</summary>
-            /// <returns>Returns a GUID value. This value can be null.</returns>
-            public override Guid? RelatedActivityId { get; }
-
-            /// <summary>Gets qualifier numbers that are used for event identification.</summary>
-            /// <returns>Returns an integer value. This value can be null.</returns>
-            public override int? Qualifiers { get; }
-
-            /// <summary>Gets the display name of the level for this event.</summary>
-            /// <returns>Returns a string that contains the display name of the level for this event.</returns>
-            public override string LevelDisplayName { get; }
-
-            /// <summary>Gets the display name of the opcode for this event.</summary>
-            /// <returns>Returns a string that contains the display name of the opcode for this event.</returns>
-            public override string OpcodeDisplayName { get; }
-
-            /// <summary>Gets the display name of the task for the event.</summary>
-            /// <returns>Returns a string that contains the display name of the task for the event.</returns>
-            public override string TaskDisplayName { get; }
-
-            /// <summary>Gets the display names of the keywords used in the keyword mask for this event. </summary>
-            /// <returns>Returns an enumerable collection of strings that contain the display names of the keywords used in the keyword mask for this event.</returns>
-            public override IEnumerable<string> KeywordsDisplayNames { get; }
-
-            /// <summary>Gets a placeholder (bookmark) that corresponds to this event. This can be used as a placeholder in a stream of events.</summary>
-            /// <returns>Returns a <see cref="T:System.Diagnostics.Eventing.Reader.EventBookmark" /> object.</returns>
-            public override EventBookmark Bookmark { get; }
-
-            /// <summary>Gets the user-supplied properties of the event.</summary>
-            /// <returns>Returns a list of <see cref="T:System.Diagnostics.Eventing.Reader.EventProperty" /> objects.</returns>
-            public override IList<EventProperty> Properties { get; }
-
-            #endregion
-        }
-
-        private class EventLogTargetMock : EventLogTarget
-        {
-            public List<EventRecordMock> CapturedEvents { get; set; }
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
-            /// </summary>
-            public EventLogTargetMock()
-            {
-                CapturedEvents = new List<EventRecordMock>();
-            }
-
-            #region Overrides of EventLogTarget
-
-            internal override void WriteEntry(LogEventInfo logEventInfo, string message, EventLogEntryType entryType, int eventId, short category)
-            {
-                var source = RenderSource(logEventInfo);
-
-                CapturedEvents.Add(new EventRecordMock(eventId, Log, source, entryType, message, category));
-            }
-
-            #endregion
-        }
-
         private void AssertWrittenMessage(IEnumerable<EventRecord> eventLogs, string expectedMessage)
         {
             var messages = eventLogs.Where(entry => entry.Properties.Any(prop => Convert.ToString(prop.Value) == expectedMessage));
             Assert.True(messages.Any(), $"Event records has not the expected message: '{expectedMessage}'");
         }
 
-        private static TEventLogTarget CreateEventLogTarget<TEventLogTarget>(
-            string sourceName, EventLogTargetOverflowAction overflowAction, int maxMessageLength, Layout entryType = null)
-            where TEventLogTarget : EventLogTarget, new()
+        private void AssertWrittenMessage(IEnumerable<EventLogMock.EventRecord> eventLogs, string expectedMessage)
         {
-            var target = new TEventLogTarget
-            {
-                Log = "application", // The Log to write to is intentionally lower case!!
-                Source = sourceName, // set the source explicitly to prevent random AppDomain name being used as the source name
-                Layout = new SimpleLayout("${message}"), //Be able to check message length and content, the Layout is intentionally only ${message}.
-                OnOverflow = overflowAction,
-                MaxMessageLength = maxMessageLength,
-            };
+            var messages = eventLogs.Where(entry => entry.Message == expectedMessage);
+            Assert.True(messages.Any(), $"Event records has not the expected message: '{expectedMessage}'");
+        }
+
+        private static EventLogTarget CreateEventLogTarget(string sourceName, EventLogTargetOverflowAction overflowAction, int maxMessageLength, Layout entryType = null)
+        {
+            return InitializeEventLogTarget(new EventLogTarget(), sourceName, overflowAction, maxMessageLength, entryType);
+        }
+
+        private static EventLogTarget InitializeEventLogTarget(EventLogTarget target, string sourceName, EventLogTargetOverflowAction overflowAction, int maxMessageLength, Layout entryType)
+        {
+            target.Name = "eventlog";
+            target.Log = "application"; // The Log to write to is intentionally lower case!!
+            target.Source = sourceName; // set the source explicitly to prevent random AppDomain name being used as the source name
+            target.Layout = new SimpleLayout("${message}"); //Be able to check message length and content, the Layout is intentionally only ${message}.
+            target.OnOverflow = overflowAction;
+            target.MaxMessageLength = maxMessageLength;
 
             if (entryType != null)
             {
@@ -779,7 +686,18 @@ namespace NLog.UnitTests.Targets
             private Func<string, string, string> LogNameFromSourceNameFunction { get; }
             private Action<EventSourceCreationData> CreateEventSourceFunction { get; }
 
-            internal List<EventRecordMock> WrittenEntries { get; } = new List<EventRecordMock>();
+            public class EventRecord
+            {
+                public string Message { get; set; }
+                public EventLogEntryType EntryType { get; set; }
+                public string Log { get; set; }
+                public string Source { get; set; }
+                public string MachineName { get; set; }
+                public int EventId { get; set; }
+                public short Category { get; set; }
+            }
+
+            internal List<EventRecord> WrittenEntries { get; } = new List<EventRecord>();
 
             /// <inheritdoc />
             public string Source { get; set; }
@@ -794,8 +712,22 @@ namespace NLog.UnitTests.Targets
             public long MaximumKilobytes { get; set; } = EventLogDefaultMaxKilobytes;
 
             /// <inheritdoc />
-            public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category) =>
-                WrittenEntries.Add(new EventRecordMock(eventId, Log, Source, entryType, message, category));
+            public void WriteEntry(string message, EventLogEntryType entryType, int eventId, short category)
+            {
+                if (!IsEventLogAssociated)
+                    throw new InvalidOperationException("Missing initialization using AssociateNewEventLog");
+
+                WrittenEntries.Add(new EventRecord()
+                {
+                    Message = message,
+                    EntryType = entryType,
+                    EventId = eventId,
+                    Category = category,
+                    Source = Source,
+                    Log = Log,
+                    MachineName = MachineName,
+                });
+            }
 
             /// <inheritdoc />
             public bool IsEventLogAssociated { get; private set; }

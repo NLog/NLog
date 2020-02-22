@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -32,6 +32,7 @@
 // 
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -796,9 +797,38 @@ namespace NLog.UnitTests.Common
             }
         }
 
+        [Fact]
+        public void TestReceivedLogEventText()
+        {
+            // Arrange
+            var receivedArgs = new List<InternalLoggerMessageEventArgs>();
+            InternalLogger.LogMessageReceived += (sender, e) =>
+            {
+                receivedArgs.Add(e);
+            };
+            InternalLogger.LogLevel = LogLevel.Info;
+            var exception = new Exception();
+
+            // Act
+            InternalLogger.Info(exception, "Hello {0}", "it's me!");
+
+            // Assert
+            Assert.Single(receivedArgs);
+            var logEventArgs = receivedArgs.Single();
+            Assert.Equal(LogLevel.Info, logEventArgs.Level);
+            Assert.Equal(exception, logEventArgs.Exception);
+            Assert.Equal("Hello it's me!", logEventArgs.Message);
+        }
+
+        private void InternalLogger_ReceivedLogEvent(object sender, InternalLoggerMessageEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Dispose()
         {
             TimeSource.Current = new FastLocalTimeSource();
+            InternalLogger.Reset();
         }
     }
 }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -87,14 +87,20 @@ namespace NLog.Config
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         public XmlLoggingConfiguration([NotNull] string fileName, LogFactory logFactory)
-            : this(fileName, false, logFactory)
-        { }
+            : base(logFactory)
+        {
+            using (XmlReader reader = CreateFileReader(fileName))
+            {
+                Initialize(reader, fileName);
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
+        [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
         public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors)
             : this(fileName, ignoreErrors, LogManager.LogFactory)
         { }
@@ -105,6 +111,7 @@ namespace NLog.Config
         /// <param name="fileName">Configuration file to be read.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
         public XmlLoggingConfiguration([NotNull] string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {
@@ -122,31 +129,6 @@ namespace NLog.Config
             : this(reader, null) { }
 
         /// <summary>
-        /// Create XML reader for (xml config) file.
-        /// </summary>
-        /// <param name="fileName">filepath</param>
-        /// <returns>reader or <c>null</c> if filename is empty.</returns>
-        private static XmlReader CreateFileReader(string fileName)
-        {
-            if (!string.IsNullOrEmpty(fileName))
-            {
-                fileName = fileName.Trim();
-#if __ANDROID__
-                //support loading config from special assets folder in nlog.config
-                if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
-                {
-                    //remove prefix
-                    fileName = fileName.Substring(AssetsPrefix.Length);
-                    Stream stream = Android.App.Application.Context.Assets.Open(fileName);
-                    return XmlReader.Create(stream);
-                }
-#endif
-                return XmlReader.Create(fileName);
-            }
-            return null;
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
@@ -162,8 +144,10 @@ namespace NLog.Config
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
         public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, LogFactory logFactory)
-            : this(reader, fileName, false, logFactory)
-        { }
+            : base(logFactory)
+        {
+            Initialize(reader, fileName);
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlLoggingConfiguration" /> class.
@@ -171,6 +155,7 @@ namespace NLog.Config
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
+        [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
         public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors)
             : this(reader, fileName, ignoreErrors, LogManager.LogFactory)
         { }
@@ -182,6 +167,7 @@ namespace NLog.Config
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
         /// <param name="logFactory">The <see cref="LogFactory" /> to which to apply any applicable configuration values.</param>
+        [Obsolete("Constructor with parameter ignoreErrors has limited effect. Instead use LogManager.ThrowConfigExceptions. Marked obsolete in NLog 4.7")]
         public XmlLoggingConfiguration([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors, LogFactory logFactory)
             : base(logFactory)
         {
@@ -202,7 +188,7 @@ namespace NLog.Config
             {
                 using (XmlReader reader = XmlReader.Create(stringReader))
                 {
-                    Initialize(reader, fileName, false);
+                    Initialize(reader, fileName);
                 }
             }
         }
@@ -311,12 +297,37 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Create XML reader for (xml config) file.
+        /// </summary>
+        /// <param name="fileName">filepath</param>
+        /// <returns>reader or <c>null</c> if filename is empty.</returns>
+        private static XmlReader CreateFileReader(string fileName)
+        {
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                fileName = fileName.Trim();
+#if __ANDROID__
+                //support loading config from special assets folder in nlog.config
+                if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
+                {
+                    //remove prefix
+                    fileName = fileName.Substring(AssetsPrefix.Length);
+                    Stream stream = Android.App.Application.Context.Assets.Open(fileName);
+                    return XmlReader.Create(stream);
+                }
+#endif
+                return XmlReader.Create(fileName);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Initializes the configuration.
         /// </summary>
         /// <param name="reader"><see cref="XmlReader"/> containing the configuration section.</param>
         /// <param name="fileName">Name of the file that contains the element (to be used as a base for including other files). <c>null</c> is allowed.</param>
         /// <param name="ignoreErrors">Ignore any errors during configuration.</param>
-        private void Initialize([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors)
+        private void Initialize([NotNull] XmlReader reader, [CanBeNull] string fileName, bool ignoreErrors = false)
         {
             try
             {
@@ -333,7 +344,6 @@ namespace NLog.Config
                     ParseTopLevel(content, null, autoReloadDefault: false);
                 }
                 InitializeSucceeded = true;
-                base.CheckUnusedTargets();
             }
             catch (Exception exception)
             {

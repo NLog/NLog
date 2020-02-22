@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -37,8 +37,7 @@ namespace NLog.Internal
 {
     using System;
     using System.Runtime.InteropServices;
-
-    using Targets;
+    using NLog.Targets;
 
     internal static class Win32FileNativeMethods
     {
@@ -73,25 +72,6 @@ namespace NLog.Internal
             CreationDisposition dwCreationDisposition,
             Win32FileAttributes dwFlagsAndAttributes,
             IntPtr hTemplateFile);
-
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetFileInformationByHandle(IntPtr hFile, out BY_HANDLE_FILE_INFORMATION lpFileInformation);
-
-        [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct BY_HANDLE_FILE_INFORMATION
-        {
-            public uint dwFileAttributes;
-            public long ftCreationTime;
-            public long ftLastAccessTime;
-            public long ftLastWriteTime;
-            public uint dwVolumeSerialNumber;
-            public uint nFileSizeHigh;
-            public uint nFileSizeLow;
-            public uint nNumberOfLinks;
-            public uint nFileIndexHigh;
-            public uint nFileIndexLow;
-        }
     }
 }
 

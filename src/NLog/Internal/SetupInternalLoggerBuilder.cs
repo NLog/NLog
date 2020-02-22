@@ -1,5 +1,5 @@
-// 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+﻿// 
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -31,35 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD
-
 namespace NLog.Internal
 {
-    using System;
-    using System.IO;
+    using NLog.Config;
 
-    /// <summary>
-    /// Win32-optimized implementation of <see cref="FileCharacteristicsHelper"/>.
-    /// </summary>
-    internal class Win32FileCharacteristicsHelper : FileCharacteristicsHelper
+    internal class SetupInternalLoggerBuilder : ISetupInternalLoggerBuilder
     {
-        /// <summary>
-        /// Gets the information about a file.
-        /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="fileStream">The file stream.</param>
-        /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public override FileCharacteristics GetFileCharacteristics(string fileName, FileStream fileStream)
+        internal SetupInternalLoggerBuilder(LogFactory logFactory)
         {
-            if (fileStream != null)
-            {
-                Win32FileNativeMethods.BY_HANDLE_FILE_INFORMATION fileInfo;
-                if (Win32FileNativeMethods.GetFileInformationByHandle(fileStream.SafeFileHandle.DangerousGetHandle(), out fileInfo))
-                    return new FileCharacteristics(DateTime.FromFileTimeUtc(fileInfo.ftCreationTime), DateTime.FromFileTimeUtc(fileInfo.ftLastWriteTime), fileInfo.nFileSizeLow + (((long)fileInfo.nFileSizeHigh) << 32));
-            }
-            return null;
+            LogFactory = logFactory;
         }
+
+        public LogFactory LogFactory { get; }
     }
 }
-
-#endif

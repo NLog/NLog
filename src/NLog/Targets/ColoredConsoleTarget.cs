@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -193,6 +193,7 @@ namespace NLog.Targets
         /// <remarks>
         /// Normally not required as standard Console.Out will have <see cref="StreamWriter.AutoFlush"/> = true, but not when pipe to file
         /// </remarks>
+        /// <docgen category='Console Options' order='11' />
         [DefaultValue(false)]
         public bool AutoFlush { get; set; }
 
