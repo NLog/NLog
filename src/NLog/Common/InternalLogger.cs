@@ -89,6 +89,7 @@ namespace NLog.Common
 #endif
             ExceptionThrowWhenWriting = false;
             LogWriter = null;
+            LogMessageReceived = null;
         }
 
         /// <summary>
@@ -145,6 +146,12 @@ namespace NLog.Common
         /// Gets or sets the text writer that will receive internal logs.
         /// </summary>
         public static TextWriter LogWriter { get; set; }
+
+        /// <summary>
+        /// Event written to the internal log.
+        /// Please note that the event is not triggered when then event hasn't the minimal log level set by <see cref="LogLevel"/> 
+        /// </summary>
+        public static event EventHandler<InternalLoggerMessageEventArgs> LogMessageReceived;
 
         /// <summary>
         /// Gets or sets a value indicating whether timestamp should be included in internal log output.
@@ -251,26 +258,37 @@ namespace NLog.Common
                 return;
             }
 
-            if (!HasActiveLoggers())
+            var hasActiveLoggersWithLine = HasActiveLoggersWithLine();
+            var hasEventListeners = HasEventListeners();
+            if (!hasActiveLoggersWithLine && !hasEventListeners)
             {
                 return;
             }
 
             try
             {
-                string msg = FormatMessage(ex, level, message, args);
+                var fullMessage = CreateFullMessage(message, args);
 
-                WriteToLogFile(msg);
-                WriteToTextWriter(msg);
+                if (hasActiveLoggersWithLine)
+                {
+                    string line = CreateLogLine(ex, level, fullMessage);
+
+                    WriteToLogFile(line);
+                    WriteToTextWriter(line);
 
 #if !NETSTANDARD1_3
-                WriteToConsole(msg);
-                WriteToErrorConsole(msg);
+                    WriteToConsole(line);
+                    WriteToErrorConsole(line);
 #endif
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                WriteToTrace(msg);
+                    WriteToTrace(line);
 #endif
+                }
+
+                LogMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(fullMessage, level, ex));
+
+                ex?.MarkAsLoggedToInternalLogger();
             }
             catch (Exception exception)
             {
@@ -284,15 +302,19 @@ namespace NLog.Common
             }
         }
 
-        private static string FormatMessage([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
+        /// <summary>
+        /// Create log line with timestamp, exception message etc (if configured)
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="level"></param>
+        /// <param name="fullMessage"></param>
+        /// <returns></returns>
+        private static string CreateLogLine([CanBeNull]Exception ex, LogLevel level, string fullMessage)
         {
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";
 
-            var formattedMessage =
-                (args == null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
-
-            var builder = new StringBuilder(formattedMessage.Length + timeStampFormat.Length + (ex?.ToString().Length ?? 0) + 25);
+            var builder = new StringBuilder(fullMessage.Length + timeStampFormat.Length + (ex?.ToString().Length ?? 0) + 25);
             if (IncludeTimestamp)
             {
                 builder
@@ -303,11 +325,10 @@ namespace NLog.Common
             builder
                 .Append(level)
                 .Append(fieldSeparator)
-                .Append(formattedMessage);
+                .Append(fullMessage);
 
             if (ex != null)
             {
-                ex.MarkAsLoggedToInternalLogger();
                 builder
                     .Append(fieldSeparator)
                     .Append("Exception: ")
@@ -315,6 +336,13 @@ namespace NLog.Common
             }
 
             return builder.ToString();
+        }
+
+        private static string CreateFullMessage(string message, object[] args)
+        {
+            var formattedMessage =
+                (args == null) ? message : string.Format(CultureInfo.InvariantCulture, message, args);
+            return formattedMessage;
         }
 
         /// <summary>
@@ -342,6 +370,16 @@ namespace NLog.Common
         /// </summary>
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
         internal static bool HasActiveLoggers()
+        {
+            return HasActiveLoggersWithLine() || HasEventListeners();
+        }
+
+        private static bool HasEventListeners()
+        {
+            return LogMessageReceived != null;
+        }
+
+        internal static bool HasActiveLoggersWithLine()
         {
             return !string.IsNullOrEmpty(LogFile) ||
                    LogToConsole ||
