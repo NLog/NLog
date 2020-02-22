@@ -4,13 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### V4.7 (2020/02/08)
-
-#### Bugfixes
-- [#3758](https://github.com/NLog/NLog/pull/3758) LogFactory - Fix deadlock issue with AutoReload (@snakefoot)
-- [#3766](https://github.com/NLog/NLog/pull/3766) JsonLayout - Fixed ThreadAgnostic to correctly capture context when using nested JsonLayout (@snakefoot)
-- [#3700](https://github.com/NLog/NLog/pull/3700) ExceptionLayoutRenderer - Fixed so Format option HResult also works for NetCore (@snakefoot)
-- [#3761](https://github.com/NLog/NLog/pull/3761) + [#3784](https://github.com/NLog/NLog/pull/3784) Log4JXml Layout will render NDLC + NDC scopes in correct order (@adanek + @304NotModified)
+### V4.7 - upcomming
 
 #### Features
 - [#3686](https://github.com/NLog/NLog/pull/3686) + [#3740](https://github.com/NLog/NLog/pull/3740) LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
@@ -22,6 +16,8 @@ Date format: (year/month/day)
 - [#3771](https://github.com/NLog/NLog/pull/3771) Layout.FromString to create Layout directly from string along with optional parser validation (@snakefoot)
 - [#3793](https://github.com/NLog/NLog/pull/3793) ${dir-separator} for rendering platform specific directory path separator (@304NotModified)
 - [#3755](https://github.com/NLog/NLog/pull/3755) FileTarget - Supports ArchiveOldFileOnStartupAboveSize for cleanup of existing file when above size (@Sam13)
+- [#3796](https://github.com/NLog/NLog/pull/3796) InternalLogger: added LogMessageReceived event  (@304NotModified)
+
 
 #### Improvements
 - [#3521](https://github.com/NLog/NLog/pull/3521) XmlLoggingConfiguration - Marked legacy constructors with ignoreErrors parameter as obsolete (@snakefoot)
@@ -35,6 +31,12 @@ Date format: (year/month/day)
 - [#3747](https://github.com/NLog/NLog/pull/3747) AutoFlushWrapper - Set AutoFlush=false for AsyncTaskTarget by default (@snakefoot)
 - [#3754](https://github.com/NLog/NLog/pull/3754) LocalIpAddressLayoutRenderer - Higher priority to network-addresses that has valid gateway adddress (@snakefoot)
 - [#3762](https://github.com/NLog/NLog/pull/3762) LogFactory - Flush reports to InternalLogger what targets produces timeouts (@snakefoot)
+
+#### Bugfixes
+- [#3758](https://github.com/NLog/NLog/pull/3758) LogFactory - Fix deadlock issue with AutoReload (@snakefoot)
+- [#3766](https://github.com/NLog/NLog/pull/3766) JsonLayout - Fixed ThreadAgnostic to correctly capture context when using nested JsonLayout (@snakefoot)
+- [#3700](https://github.com/NLog/NLog/pull/3700) ExceptionLayoutRenderer - Fixed so Format option HResult also works for NetCore (@snakefoot)
+- [#3761](https://github.com/NLog/NLog/pull/3761) + [#3784](https://github.com/NLog/NLog/pull/3784) Log4JXml Layout will render NDLC + NDC scopes in correct order (@adanek + @304NotModified)
 
 #### Performance
 - [#3683](https://github.com/NLog/NLog/pull/3683) ObjectGraphScanner - Avoid holding list.SyncRoot lock while scanning (@snakefoot)
