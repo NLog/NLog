@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -41,9 +41,11 @@ namespace NLog.Targets.FileArchiveModes
     /// Dynamically converts a non-template archiveFilePath into a correct archiveFilePattern.
     /// Before called the original IFileArchiveMode, that has been wrapped by this
     /// </summary>
-    sealed class FileArchiveModeDynamicTemplate : IFileArchiveMode
+    internal sealed class FileArchiveModeDynamicTemplate : IFileArchiveMode
     {
         private readonly IFileArchiveMode _archiveHelper;
+
+        public bool IsArchiveCleanupEnabled => _archiveHelper.IsArchiveCleanupEnabled;
 
         private static string CreateDynamicTemplate(string archiveFilePath)
         {
@@ -56,14 +58,14 @@ namespace NLog.Targets.FileArchiveModes
             _archiveHelper = archiveHelper;
         }
 
-        public bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles)
+        public bool AttemptCleanupOnInitializeFile(string archiveFilePath, int maxArchiveFiles, int maxArchiveDays)
         {
-            return _archiveHelper.AttemptCleanupOnInitializeFile(archiveFilePath, maxArchiveFiles);
+            return _archiveHelper.AttemptCleanupOnInitializeFile(archiveFilePath, maxArchiveFiles, maxArchiveDays);
         }
 
-        public IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles)
+        public IEnumerable<DateAndSequenceArchive> CheckArchiveCleanup(string archiveFilePath, List<DateAndSequenceArchive> existingArchiveFiles, int maxArchiveFiles, int maxArchiveDays)
         {
-            return _archiveHelper.CheckArchiveCleanup(CreateDynamicTemplate(archiveFilePath), existingArchiveFiles, maxArchiveFiles);
+            return _archiveHelper.CheckArchiveCleanup(CreateDynamicTemplate(archiveFilePath), existingArchiveFiles, maxArchiveFiles, maxArchiveDays);
         }
 
         public DateAndSequenceArchive GenerateArchiveFileName(string archiveFilePath, DateTime archiveDate, List<DateAndSequenceArchive> existingArchiveFiles)

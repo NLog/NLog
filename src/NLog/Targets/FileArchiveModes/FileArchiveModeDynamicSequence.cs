@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -49,16 +49,19 @@ namespace NLog.Targets.FileArchiveModes
     ///     Base Filename     trace.log
     ///     Next Filename     trace.0.log
     /// 
-    /// The most recent archive has the highest number. When the number of archive files
-    /// exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
+    /// The most recent archive has the highest number. 
+    /// 
+    /// When the number of archive files exceed <see cref="P:MaxArchiveFiles"/> the obsolete archives are deleted.
+    /// When the age of archive files exceed <see cref="P:MaxArchiveDays"/> the obsolete archives are deleted.
     /// </summary>
-    sealed class FileArchiveModeDynamicSequence : FileArchiveModeBase
+    internal sealed class FileArchiveModeDynamicSequence : FileArchiveModeBase
     {
         private readonly ArchiveNumberingMode _archiveNumbering;
         private readonly string _archiveDateFormat;
         private readonly bool _customArchiveFileName;
 
-        public FileArchiveModeDynamicSequence(ArchiveNumberingMode archiveNumbering, string archiveDateFormat, bool customArchiveFileName)
+        public FileArchiveModeDynamicSequence(ArchiveNumberingMode archiveNumbering, string archiveDateFormat, bool customArchiveFileName, bool archiveCleanupEnabled)
+            :base(archiveCleanupEnabled)
         {
             _archiveNumbering = archiveNumbering;
             _archiveDateFormat = archiveDateFormat;
@@ -232,7 +235,7 @@ namespace NLog.Targets.FileArchiveModes
 
             int sequenceNumber = ExtractArchiveNumberFromFileName(archiveFile.FullName);
             InternalLogger.Trace("FileTarget: extracted sequenceNumber: {0} from file '{1}'", sequenceNumber, archiveFile.FullName);
-            var creationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(archiveFile, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
+            var creationTimeUtc = archiveFile.LookupValidFileCreationTimeUtc().Value;
             return new DateAndSequenceArchive(archiveFile.FullName, creationTimeUtc, string.Empty, sequenceNumber > 0 ? sequenceNumber : 0);
         }
 

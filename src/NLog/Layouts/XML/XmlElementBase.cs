@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -430,7 +430,7 @@ namespace NLog.Layouts
             if (objTypeCode != TypeCode.Object)
             {
                 string xmlValueString = XmlHelper.XmlConvertToString(convertibleValue, objTypeCode, true);
-                AppendXmlPropertyValue(propName, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
+                AppendXmlPropertyStringValue(propName, xmlValueString, sb, orgLength, false, ignorePropertiesElementName);
             }
             else
             {

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -452,7 +452,6 @@ namespace NLog.UnitTests.Config
             var logger = LogManager.GetLogger("logger1");
             logger.Warn("test 1");
             AssertDebugLastMessage("d1", "test 1");
-
         }
 
         [Fact]
@@ -490,7 +489,7 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                XmlLoggingConfiguration.CreateFromXmlString("<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
+                var config = XmlLoggingConfiguration.CreateFromXmlString("<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
                     <targets>
                         <target name='d1' type='Debug' />
                         <target name='d2' type='Debug' />
@@ -504,6 +503,9 @@ namespace NLog.UnitTests.Config
                            <logger name='*' level='Debug' writeTo='d1,d2,d3' />
                     </rules>
                 </nlog>");
+
+                var logFactory = new LogFactory();
+                logFactory.Configuration = config;
 
                 AssertFileContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d4", Encoding.UTF8);
 
@@ -526,11 +528,11 @@ namespace NLog.UnitTests.Config
 
             try
             {
-                XmlLoggingConfiguration.CreateFromXmlString("<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
+                var config = XmlLoggingConfiguration.CreateFromXmlString("<nlog internalLogFile='" + tempFileName + @"' internalLogLevel='Warn'>
                     <extensions>
                         <add assembly='NLog.UnitTests'/> 
                     </extensions>
-                    <targets>
+                    <targets async='true'>
                         <target name='d1' type='Debug' />
                         <target name='d2' type='MockWrapper'>
                             <target name='d3' type='Debug' />
@@ -545,6 +547,8 @@ namespace NLog.UnitTests.Config
                     </rules>
                 </nlog>");
 
+                var logFactory = new LogFactory();
+                logFactory.Configuration = config;
 
                 AssertFileNotContains(tempFileName, "Unused target detected. Add a rule for this target to the configuration. TargetName: d2", Encoding.UTF8);
 

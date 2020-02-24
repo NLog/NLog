@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -36,33 +36,30 @@ namespace NLog.Config
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using Common;
-    using Internal;
+    using NLog.Common;
+    using NLog.Internal;
 
     /// <summary>
     /// Factory for locating methods.
     /// </summary>
-    /// <typeparam name="TClassAttributeType">The type of the class marker attribute.</typeparam>
-    /// <typeparam name="TMethodAttributeType">The type of the method marker attribute.</typeparam>
-    internal class MethodFactory<TClassAttributeType, TMethodAttributeType> : INamedItemFactory<MethodInfo, MethodInfo>, IFactory
-        where TClassAttributeType : Attribute
-        where TMethodAttributeType : NameBaseAttribute
+    internal class MethodFactory : INamedItemFactory<MethodInfo, MethodInfo>, INamedItemFactory<ReflectionHelpers.LateBoundMethod, MethodInfo>, IFactory
     {
         private readonly Dictionary<string, MethodInfo> _nameToMethodInfo = new Dictionary<string, MethodInfo>();
+        private readonly Dictionary<string, ReflectionHelpers.LateBoundMethod> _nameToLateBoundMethod = new Dictionary<string, ReflectionHelpers.LateBoundMethod>();
+        private readonly Func<Type, IList<KeyValuePair<string, MethodInfo>>> _methodExtractor;
 
         /// <summary>
-        /// Gets a collection of all registered items in the factory.
+        /// Initializes a new instance of the <see cref="MethodFactory"/> class.
         /// </summary>
-        /// <returns>
-        /// Sequence of key/value pairs where each key represents the name
-        /// of the item and value is the <see cref="MethodInfo"/> of
-        /// the item.
-        /// </returns>
-        public IDictionary<string, MethodInfo> AllRegisteredItems => _nameToMethodInfo;
+        /// <param name="methodExtractor">Helper method to extract relevant methods from type</param>
+        public MethodFactory(Func<Type, IList<KeyValuePair<string, MethodInfo>>> methodExtractor)
+        {
+            _methodExtractor = methodExtractor;
+        }
 
         /// <summary>
-        /// Scans the assembly for classes marked with <typeparamref name="TClassAttributeType"/>
-        /// and methods marked with <typeparamref name="TMethodAttributeType"/> and adds them 
+        /// Scans the assembly for classes marked with expected class <see cref="Attribute"/>
+        /// and methods marked with expected <see cref="NameBaseAttribute"/> and adds them 
         /// to the factory.
         /// </summary>
         /// <param name="types">The types to scan.</param>
@@ -73,7 +70,10 @@ namespace NLog.Config
             {
                 try
                 {
-                    RegisterType(t, prefix);
+                    if (t.IsClass() || t.IsAbstract())
+                    {
+                        RegisterType(t, prefix);
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -83,8 +83,6 @@ namespace NLog.Config
                     {
                         throw;
                     }
-
-                    
                 }
             }
         }
@@ -96,17 +94,41 @@ namespace NLog.Config
         /// <param name="itemNamePrefix">The item name prefix.</param>
         public void RegisterType(Type type, string itemNamePrefix)
         {
-            if (type.IsDefined(typeof(TClassAttributeType), false))
+            var extractedMethods = _methodExtractor(type);
+            if (extractedMethods?.Count > 0)
             {
-                foreach (MethodInfo mi in type.GetMethods())
+                for (int i = 0; i < extractedMethods.Count; ++i)
                 {
-                    var methodAttributes = (TMethodAttributeType[])mi.GetCustomAttributes(typeof(TMethodAttributeType), false);
-                    foreach (TMethodAttributeType attr in methodAttributes)
-                    {
-                        RegisterDefinition(itemNamePrefix + attr.Name, mi);
-                    }
+                    RegisterDefinition(itemNamePrefix + extractedMethods[i].Key, extractedMethods[i].Value);
                 }
             }
+        }
+
+        /// <summary>
+        /// Scans a type for relevant methods with their symbolic names
+        /// </summary>
+        /// <typeparam name="TClassAttributeType">Include types that are marked with this attribute</typeparam>
+        /// <typeparam name="TMethodAttributeType">Include methods that are marked with this attribute</typeparam>
+        /// <param name="type">Class Type to scan</param>
+        /// <returns>Collection of methods with their symbolic names</returns>
+        public static IList<KeyValuePair<string, MethodInfo>> ExtractClassMethods<TClassAttributeType, TMethodAttributeType>(Type type) 
+            where TClassAttributeType : Attribute
+            where TMethodAttributeType : NameBaseAttribute
+        {
+            if (!type.IsDefined(typeof(TClassAttributeType), false))
+                return ArrayHelper.Empty<KeyValuePair<string, MethodInfo>>();
+
+            var conditionMethods = new List<KeyValuePair<string, MethodInfo>>();
+            foreach (MethodInfo mi in type.GetMethods())
+            {
+                var methodAttributes = (TMethodAttributeType[])mi.GetCustomAttributes(typeof(TMethodAttributeType), false);
+                foreach (var attr in methodAttributes)
+                {
+                    conditionMethods.Add(new KeyValuePair<string, MethodInfo>(attr.Name, mi));
+                }
+            }
+
+            return conditionMethods;
         }
 
         /// <summary>
@@ -115,6 +137,8 @@ namespace NLog.Config
         public void Clear()
         {
             _nameToMethodInfo.Clear();
+            lock (_nameToLateBoundMethod)
+                _nameToLateBoundMethod.Clear();
         }
 
         /// <summary>
@@ -125,6 +149,21 @@ namespace NLog.Config
         public void RegisterDefinition(string itemName, MethodInfo itemDefinition)
         {
             _nameToMethodInfo[itemName] = itemDefinition;
+            lock (_nameToLateBoundMethod)
+                _nameToLateBoundMethod.Remove(itemName);
+        }
+
+        /// <summary>
+        /// Registers the definition of a single method.
+        /// </summary>
+        /// <param name="itemName">The method name.</param>
+        /// <param name="itemDefinition">The method info.</param>
+        /// <param name="lateBoundMethod">The precompiled method delegate.</param>
+        internal void RegisterDefinition(string itemName, MethodInfo itemDefinition, ReflectionHelpers.LateBoundMethod lateBoundMethod)
+        {
+            _nameToMethodInfo[itemName] = itemDefinition;
+            lock (_nameToLateBoundMethod)
+                _nameToLateBoundMethod[itemName] = lateBoundMethod;
         }
 
         /// <summary>
@@ -139,15 +178,55 @@ namespace NLog.Config
         }
 
         /// <summary>
+        /// Tries to retrieve method-delegate by name.
+        /// </summary>
+        /// <param name="itemName">The method name.</param>
+        /// <param name="result">The result.</param>
+        /// <returns>A value of <c>true</c> if the method was found, <c>false</c> otherwise.</returns>
+        public bool TryCreateInstance(string itemName, out ReflectionHelpers.LateBoundMethod result)
+        {
+            lock (_nameToLateBoundMethod)
+            {
+                if (_nameToLateBoundMethod.TryGetValue(itemName, out result))
+                {
+                    return true;
+                }
+            }
+
+            if (_nameToMethodInfo.TryGetValue(itemName, out var methodInfo))
+            {
+                result = ReflectionHelpers.CreateLateBoundMethod(methodInfo);
+                lock (_nameToLateBoundMethod)
+                    _nameToLateBoundMethod[itemName] = result;
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Retrieves method by name.
         /// </summary>
         /// <param name="itemName">Method name.</param>
         /// <returns>MethodInfo object.</returns>
-        public MethodInfo CreateInstance(string itemName)
+        MethodInfo INamedItemFactory<MethodInfo, MethodInfo>.CreateInstance(string itemName)
         {
-            MethodInfo result;
+            if (TryCreateInstance(itemName, out MethodInfo result))
+            {
+                return result;
+            }
 
-            if (TryCreateInstance(itemName, out result))
+            throw new NLogConfigurationException($"Unknown function: '{itemName}'");
+        }
+
+        /// <summary>
+        /// Retrieves method by name.
+        /// </summary>
+        /// <param name="itemName">Method name.</param>
+        /// <returns>Method delegate object.</returns>
+        public ReflectionHelpers.LateBoundMethod CreateInstance(string itemName)
+        {
+            if (TryCreateInstance(itemName, out ReflectionHelpers.LateBoundMethod result))
             {
                 return result;
             }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -134,7 +134,8 @@ namespace NLog.Conditions
             try
             {
                 var methodInfo = _configurationItemFactory.ConditionMethods.CreateInstance(functionName);
-                return new ConditionMethodExpression(functionName, methodInfo, par);
+                var methodDelegate = _configurationItemFactory.ConditionMethodDelegates.CreateInstance(functionName);
+                return new ConditionMethodExpression(functionName, methodInfo, methodDelegate, par);
             }
             catch (Exception exception)
             {
@@ -177,7 +178,7 @@ namespace NLog.Conditions
 
             if (_tokenizer.TokenType == ConditionTokenType.String)
             {
-                ConditionExpression e = new ConditionLayoutExpression(Layout.FromString(_tokenizer.StringTokenValue, _configurationItemFactory));
+                ConditionExpression e = new ConditionLayoutExpression(new SimpleLayout(_tokenizer.StringTokenValue, _configurationItemFactory));
                 _tokenizer.GetNextToken();
                 return e;
             }

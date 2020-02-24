@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -67,6 +67,7 @@ namespace NLog.LayoutRenderers
         /// <summary>
         /// Fallback to the base dir of current process, when AppDomain.BaseDirectory is Temp-Path (.NET Core 3 - Single File Publish)
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         public bool FixTempDir { get; set; }
 
         /// <summary>

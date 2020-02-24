@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -40,7 +40,7 @@ namespace NLog.Internal
     /// <summary>
     /// Wraps <see cref="AsyncContinuation"/> with a timeout.
     /// </summary>
-    internal class TimeoutContinuation : IDisposable
+    internal sealed class TimeoutContinuation : IDisposable
     {
         private AsyncContinuation _asyncContinuation;
         private Timer _timeoutTimer;

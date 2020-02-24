@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -50,7 +50,7 @@ namespace NLog.Layouts
     /// </summary>
     internal static class LayoutParser
     {
-        internal static LayoutRenderer[] CompileLayout(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr, bool isNested, out string text)
+        internal static LayoutRenderer[] CompileLayout(ConfigurationItemFactory configurationItemFactory, SimpleStringReader sr, bool? throwConfigExceptions, bool isNested, out string text)
         {
             var result = new List<LayoutRenderer>();
             var literalBuf = new StringBuilder();
@@ -101,7 +101,7 @@ namespace NLog.Layouts
                     //stash already found layout-renderer.
                     AddLiteral(literalBuf, result);
 
-                    LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(configurationItemFactory, sr);
+                    LayoutRenderer newLayoutRenderer = ParseLayoutRenderer(configurationItemFactory, sr, throwConfigExceptions);
                     if (CanBeConvertedToLiteral(newLayoutRenderer))
                     {
                         newLayoutRenderer = ConvertToLiteral(newLayoutRenderer);
@@ -335,13 +335,13 @@ namespace NLog.Layouts
             return (char)code;
         }
 
-        private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, SimpleStringReader stringReader)
+        private static LayoutRenderer ParseLayoutRenderer(ConfigurationItemFactory configurationItemFactory, SimpleStringReader stringReader, bool? throwConfigExceptions)
         {
             int ch = stringReader.Read();
             Debug.Assert(ch == '{', "'{' expected in layout specification");
 
             string name = ParseLayoutRendererName(stringReader);
-            var layoutRenderer = GetLayoutRenderer(configurationItemFactory, name);
+            var layoutRenderer = GetLayoutRenderer(configurationItemFactory, name, throwConfigExceptions);
 
             var wrappers = new Dictionary<Type, LayoutRenderer>();
             var orderedWrappers = new List<LayoutRenderer>();
@@ -392,7 +392,7 @@ namespace NLog.Layouts
                         {
                             var nestedLayout = new SimpleLayout();
                             string txt;
-                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, true, out txt);
+                            LayoutRenderer[] renderers = CompileLayout(configurationItemFactory, stringReader, throwConfigExceptions, true, out txt);
 
                             nestedLayout.SetRenderers(renderers, txt);
                             propertyInfo.SetValue(parameterTarget, nestedLayout, null);
@@ -422,7 +422,7 @@ namespace NLog.Layouts
             return layoutRenderer;
         }
 
-        private static LayoutRenderer GetLayoutRenderer(ConfigurationItemFactory configurationItemFactory, string name)
+        private static LayoutRenderer GetLayoutRenderer(ConfigurationItemFactory configurationItemFactory, string name, bool? throwConfigExceptions)
         {
             LayoutRenderer layoutRenderer;
             try
@@ -431,9 +431,9 @@ namespace NLog.Layouts
             }
             catch (Exception ex)
             {
-                if (LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
+                if (throwConfigExceptions ?? LogManager.ThrowConfigExceptions ?? LogManager.ThrowExceptions)
                 {
-                    throw;
+                    throw;  // TODO NLog 5.0 throw NLogConfigurationException. Maybe also include entire input layout-string (if not too long)
                 }
                 InternalLogger.Error(ex, "Error parsing layout {0} will be ignored.", name);
                 // replace with empty values

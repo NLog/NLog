@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -74,8 +74,14 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <summary>
         /// Should forward slashes be escaped? If true, / will be converted to \/ 
         /// </summary>
-        [DefaultValue(true)] // todo NLog 5, default to false
-        public bool EscapeForwardSlash { get; set; } = true;
+        /// <docgen category="Transformation Options" order="10"/>
+        [DefaultValue(true)] // TODO NLog 5 change to nullable (with default fallback to false)
+        public bool EscapeForwardSlash
+        {
+            get => EscapeForwardSlashInternal ?? true;
+            set => EscapeForwardSlashInternal = value;
+        }
+        internal bool? EscapeForwardSlashInternal;
 
         /// <inheritdoc/>
         protected override void RenderInnerAndTransform(LogEventInfo logEvent, StringBuilder builder, int orgLength)

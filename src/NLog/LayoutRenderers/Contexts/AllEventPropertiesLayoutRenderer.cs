@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -77,6 +77,7 @@ namespace NLog.LayoutRenderers
         ///
         /// A value is empty when null or in case of a string, null or empty string.
         /// </summary>
+        /// <docgen category='Rendering Options' order='10' />
         [DefaultValue(false)]
         public bool IncludeEmptyValues { get; set; } = false;
 

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -42,7 +42,7 @@ namespace NLog.Common
     public static class ConversionHelpers
     {
         /// <summary>
-        /// Converts input string value into <see cref="System.Enum"/>
+        /// Converts input string value into <see cref="System.Enum"/>. Parsing is case-insensitive.
         /// </summary>
         /// <param name="inputValue">Input value</param>
         /// <param name="resultValue">Output value</param>
@@ -62,19 +62,6 @@ namespace NLog.Common
                 return false;
             }
             return true;
-        }
-
-        /// <summary>
-        /// Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object. A parameter specifies whether the operation is case-sensitive. The return value indicates whether the conversion succeeded.
-        /// </summary>
-        /// <typeparam name="TEnum">The enumeration type to which to convert value.</typeparam>
-        /// <param name="value">The string representation of the enumeration name or underlying value to convert.</param>
-        /// <param name="result">When this method returns, result contains an object of type TEnum whose value is represented by value if the parse operation succeeds. If the parse operation fails, result contains the default value of the underlying type of TEnum. Note that this value need not be a member of the TEnum enumeration. This parameter is passed uninitialized.</param>
-        /// <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
-        /// <remarks>Wrapper because Enum.TryParse is not present in .net 3.5</remarks>
-        internal static bool TryParse<TEnum>(string value, out TEnum result) where TEnum : struct
-        {
-            return TryParse(value, false, out result);
         }
 
         /// <summary>

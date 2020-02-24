@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -38,7 +38,6 @@ namespace NLog.UnitTests
     using System.IO;
     using System.Threading;
     using NLog.Config;
-    using NLog.UnitTests.Mocks;
     using Xunit;
 
     public class LogFactoryTests : NLogTestBase
@@ -46,21 +45,32 @@ namespace NLog.UnitTests
         [Fact]
         public void Flush_DoNotThrowExceptionsAndTimeout_DoesNotThrow()
         {
-            using (new NoThrowNLogExceptions())
-            {
-                LogManager.ThrowExceptions = true;
+            // Arrange
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
+            <nlog throwExceptions='false'>
+                <targets>
+                    <target type='BufferingWrapper' name='test'>
+                        <target type='MethodCall' name='test_wrapped' methodName='{nameof(TestClass.GenerateTimeout)}' className='{typeof(TestClass).AssemblyQualifiedName}' />
+                    </target>
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeto='test'></logger>
+                </rules>
+            </nlog>");
 
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
-                <nlog throwExceptions='false'>
-                    <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
-                    <rules>
-                        <logger name='*' minlevel='Debug' writeto='test'></logger>
-                    </rules>
-                </nlog>");
+            Logger logger = LogManager.GetCurrentClassLogger();
+            logger.Info("Prepare Timeout");
 
-                ILogger logger = LogManager.GetCurrentClassLogger();
-                logger.Factory.Flush(_ => { }, TimeSpan.FromMilliseconds(1));
-            }
+            Exception timeoutException = null;
+            ManualResetEvent manualResetEvent = new ManualResetEvent(false);
+
+            // Act
+            logger.Factory.Flush(TimeSpan.FromMilliseconds(1));
+            logger.Factory.Flush(ex => { timeoutException = ex; manualResetEvent.Set(); }, TimeSpan.FromMilliseconds(1));
+
+            // Assert
+            Assert.True(manualResetEvent.WaitOne(1000));
+            Assert.NotNull(timeoutException);
         }
 
         [Fact]
@@ -68,9 +78,9 @@ namespace NLog.UnitTests
         {
             using (new NoThrowNLogExceptions())
             {
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
-                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
+                <targets><target type='Debug' name='test' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
@@ -86,9 +96,9 @@ namespace NLog.UnitTests
             {
                 LogManager.ThrowExceptions = true;
 
-                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+                LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString($@"
             <nlog internalLogIncludeTimestamp='IamNotBooleanValue'>
-                <targets><target type='MethodCall' name='test' methodName='Throws' className='NLog.UnitTests.LogFactoryTests, NLog.UnitTests.netfx40' /></targets>
+                <targets><target type='Debug' name='test' /></targets>
                 <rules>
                     <logger name='*' minlevel='Debug' writeto='test'></logger>
                 </rules>
@@ -356,6 +366,14 @@ namespace NLog.UnitTests
         {
             LogFactory factory = new LogFactory();
             Assert.Throws<ArgumentNullException>(() => factory.GetLogger(null));
+        }
+
+        private class TestClass
+        {
+            public static void GenerateTimeout()
+            {
+                Thread.Sleep(5000);
+            }
         }
     }
 }

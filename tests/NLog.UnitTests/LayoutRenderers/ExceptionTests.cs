@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -86,7 +86,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug5", ex.ToString());
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug10", GetType().ToString());
-#if NET45
+#if NET4_5
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
@@ -141,7 +141,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug6", exceptionMessage);
             AssertDebugLastMessage("debug9", dataText);
             AssertDebugLastMessage("debug10", GetType().ToString());
-#if NET45
+#if NET4_5
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
 
@@ -193,7 +193,7 @@ namespace NLog.UnitTests.LayoutRenderers
             AssertDebugLastMessage("debug8", "Test exception*" + typeof(CustomArgumentException).Name);
             AssertDebugLastMessage("debug9", dataText);
             AssertDebugLastMessage("debug10", "");
-#if NET45
+#if NET4_5
             AssertDebugLastMessage("debug11", $"0x{E_FAIL:X8}");
 #endif
         }

@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -30,6 +30,9 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
+
+using NLog.Internal.FileAppenders;
+using NSubstitute;
 
 namespace NLog.UnitTests.Targets
 {
@@ -216,7 +219,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void SimpleFileWithSpecialCharsTest()
         {
-            var logFile  = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
+            var logFile = Path.Combine(Path.GetTempPath(), "nlog_" + Guid.NewGuid() + "!@#$%^&()_-=+ .log");
             SimpleFileWriteLogTest(logFile);
         }
 
@@ -760,6 +763,51 @@ namespace NLog.UnitTests.Targets
             }
         }
 
+        [Fact]
+        public void ArchiveOldFileOnStartupAboveSize()
+        {
+            var logFile = Path.GetTempFileName();
+            var tempArchiveFolder = Path.Combine(Path.GetTempPath(), "Archive");
+            var archiveTempName = Path.Combine(tempArchiveFolder, "archive_size_threshold.txt");
+            FileTarget CreateTestTarget(long threshold)
+            {
+                return new FileTarget
+                {
+                    FileName = SimpleLayout.Escape(logFile),
+                    LineEnding = LineEndingMode.LF,
+                    Layout = "${level} ${message}",
+                    ArchiveOldFileOnStartupAboveSize = threshold,
+                    ArchiveFileName = archiveTempName,
+                    ArchiveNumbering = ArchiveNumberingMode.Sequence,
+                    MaxArchiveFiles = 1
+                };
+            }
+            try
+            {
+                // No archive on startup (ignoring threshold)
+                SimpleConfigurator.ConfigureForTargetLogging(WrapFileTarget(CreateTestTarget(1000)));
+                logger.Info("aaa");
+                LogManager.Flush();
+                AssertFileContents(logFile, "Info aaa\n", Encoding.UTF8);
+                Assert.False(File.Exists(archiveTempName));
+
+                // Archive on startup with small threshold -> Must be archived
+                SimpleConfigurator.ConfigureForTargetLogging(CreateTestTarget(3));
+                logger.Info("ccc");
+                LogManager.Flush();
+                AssertFileContents(logFile, "Info ccc\n", Encoding.UTF8);
+                Assert.True(File.Exists(archiveTempName));
+                AssertFileContents(archiveTempName, "Info aaa\n", Encoding.UTF8);
+            }
+            finally
+            {
+                if (File.Exists(logFile))
+                    File.Delete(logFile);
+                if (Directory.Exists(tempArchiveFolder))
+                    Directory.Delete(tempArchiveFolder, true);
+            }
+        }
+
         public static IEnumerable<object[]> ReplaceFileContentsOnEachWriteTest_TestParameters
         {
             get
@@ -1077,7 +1125,7 @@ namespace NLog.UnitTests.Targets
             }
         }
 
-        [Fact(Skip = "this is not supported, because we cannot create multiple archive files with  ArchiveNumberingMode.Date (for one day)")]
+        [Fact]
         public void ArchiveAboveSizeWithArchiveNumberingModeDate_maxfiles_o()
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "ArchiveEveryCombinedWithArchiveAboveSize_" + Guid.NewGuid().ToString());
@@ -1282,6 +1330,7 @@ namespace NLog.UnitTests.Targets
         {
             get
             {
+                var maxArchiveDays = false;
                 var booleanValues = new[] { true, false };
                 var timeKindValues = new[] { DateTimeKind.Utc, DateTimeKind.Local };
                 return
@@ -1294,13 +1343,13 @@ namespace NLog.UnitTests.Targets
                     where UniqueBaseAppender(concurrentWrites, keepFileOpen, networkWrites, forceMutexConcurrentWrites)
                     from includeSequenceInArchive in booleanValues
                     from forceManaged in booleanValues
-                    select new object[] { timeKind, includeDateInLogFilePath, concurrentWrites, keepFileOpen, networkWrites, includeSequenceInArchive, forceManaged, forceMutexConcurrentWrites };
+                    select new object[] { timeKind, includeDateInLogFilePath, concurrentWrites, keepFileOpen, networkWrites, includeSequenceInArchive, forceManaged, forceMutexConcurrentWrites, maxArchiveDays };
             }
         }
 
         [Theory]
         [MemberData(nameof(DateArchive_UsesDateFromCurrentTimeSource_TestParameters))]
-        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites)
+        public void DateArchive_UsesDateFromCurrentTimeSource(DateTimeKind timeKind, bool includeDateInLogFilePath, bool concurrentWrites, bool keepFileOpen, bool networkWrites, bool includeSequenceInArchive, bool forceManaged, bool forceMutexConcurrentWrites, bool maxArhiveDays)
         {
 #if NETSTANDARD
             if (IsTravis())
@@ -1333,7 +1382,8 @@ namespace NLog.UnitTests.Targets
                     ArchiveEvery = FileArchivePeriod.Day,
                     ArchiveDateFormat = archiveDateFormat,
                     Layout = "${date:format=O}|${message}",
-                    MaxArchiveFiles = maxArchiveFiles,
+                    MaxArchiveFiles = maxArhiveDays ? 0 : maxArchiveFiles,
+                    MaxArchiveDays = maxArhiveDays ? maxArchiveFiles : 0,
                     ConcurrentWrites = concurrentWrites,
                     KeepFileOpen = keepFileOpen,
                     NetworkWrites = networkWrites,
@@ -1417,6 +1467,21 @@ namespace NLog.UnitTests.Targets
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
             }
+        }
+
+        [Theory]
+        [InlineData(DateTimeKind.Utc, false, false)]
+        [InlineData(DateTimeKind.Local, false, false)]
+        [InlineData(DateTimeKind.Utc, true, false)]
+        [InlineData(DateTimeKind.Local, true, false)]
+        [InlineData(DateTimeKind.Utc, false, true)]
+        [InlineData(DateTimeKind.Local, false, true)]
+        [InlineData(DateTimeKind.Utc, true, true)]
+        [InlineData(DateTimeKind.Local, true, true)]
+        public void DateArchive_UsesDateFromCurrentTimeSource_MaxArchiveDays(DateTimeKind timeKind, bool includeDateInLogFilePath, bool includeSequenceInArchive)
+        {
+            const bool MaxArchiveDays = true;
+            DateArchive_UsesDateFromCurrentTimeSource(timeKind, includeDateInLogFilePath, false, false, false, includeSequenceInArchive, false, false, MaxArchiveDays);
         }
 
         public static IEnumerable<object[]> DateArchive_ArchiveOnceOnly_TestParameters
@@ -3307,59 +3372,27 @@ namespace NLog.UnitTests.Targets
         }
 
         [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MaxArchiveFilesWithDate(bool changeCreationAndWriteTime)
+        [InlineData("yyyyMMdd-HHmm")]
+        [InlineData("yyyyMMdd")]
+        [InlineData("yyyy-MM-dd")]
+        public void MaxArchiveFilesWithDateFormatTest(string archiveDateFormat)
         {
-            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string archivePath = Path.Combine(logdir, "archive");
-            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
+            TestMaxArchiveFilesWithDate(2, 2, archiveDateFormat, true);
+            TestMaxArchiveFilesWithDate(2, 2, archiveDateFormat, false);
         }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MaxArchiveFilesWithDate_only_date(bool changeCreationAndWriteTime)
-        {
-            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string archivePath = Path.Combine(logdir, "archive");
-            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd", changeCreationAndWriteTime);
-        }
-
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MaxArchiveFilesWithDate_only_date2(bool changeCreationAndWriteTime)
-        {
-            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string archivePath = Path.Combine(logdir, "archive");
-            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyy-MM-dd", changeCreationAndWriteTime);
-        }
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MaxArchiveFilesWithDate_in_sameDir(bool changeCreationAndWriteTime)
-        {
-            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string archivePath = Path.Combine(logdir, "archive");
-            TestMaxArchiveFilesWithDate(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
-        }
-
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="archivePath">path to dir of archived files</param>
-        /// <param name="logdir">path to dir of logged files</param>
         /// <param name="maxArchiveFilesConfig">max count of archived files</param>
         /// <param name="expectedArchiveFiles">expected count of archived files</param>
         /// <param name="dateFormat">date format</param>
         /// <param name="changeCreationAndWriteTime">change file creation/last write date</param>
-        private void TestMaxArchiveFilesWithDate(string archivePath, string logdir,
-            int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
+        private void TestMaxArchiveFilesWithDate(int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
+
             var archiveDir = new DirectoryInfo(archivePath);
             try
             {
@@ -3414,6 +3447,8 @@ namespace NLog.UnitTests.Targets
             {
                 //cleanup
                 archiveDir.Delete(true);
+                if (Directory.Exists(logdir))
+                    Directory.Delete(logdir, true);
             }
         }
 
@@ -3430,9 +3465,7 @@ namespace NLog.UnitTests.Targets
         [InlineData(false)]
         public void HandleArchiveFilesMultipleContextMultipleTargetTest(bool changeCreationAndWriteTime)
         {
-            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string archivePath = Path.Combine(logdir, "archive");
-            HandleArchiveFilesMultipleContextMultipleTargetsTest(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
+            HandleArchiveFilesMultipleContextMultipleTargetsTest(2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
 
         [Theory]
@@ -3440,24 +3473,22 @@ namespace NLog.UnitTests.Targets
         [InlineData(false)]
         public void HandleArchiveFilesMultipleContextSingleTargetTest_ascii(bool changeCreationAndWriteTime)
         {
-            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string archivePath = Path.Combine(logdir, "archive");
-            HandleArchiveFilesMultipleContextSingleTargetsTest(archivePath, logdir, 2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
+            HandleArchiveFilesMultipleContextSingleTargetsTest(2, 2, "yyyyMMdd-HHmm", changeCreationAndWriteTime);
         }
 
         /// <summary>
         /// Test the case when multiple applications are archiving to the same directory and using multiple targets.
         /// Only the archives for this application instance should be deleted per the target archive rules.
         /// </summary>
-        /// <param name="archivePath">Base path to the archive directory</param>
-        /// <param name="logdir">Base path the log file</param>
         /// <param name="maxArchiveFilesConfig"># to use for maxArchiveFiles in NLog configuration.</param>
         /// <param name="expectedArchiveFiles">Expected number of archive files after archiving has occured.</param>
         /// <param name="dateFormat">string to be used for formatting log file names</param>
         /// <param name="changeCreationAndWriteTime"></param>
-        private void HandleArchiveFilesMultipleContextMultipleTargetsTest(string archivePath, string logdir,
+        private void HandleArchiveFilesMultipleContextMultipleTargetsTest(
             int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
             var archiveDir = new DirectoryInfo(archivePath);
             try
             {
@@ -3584,6 +3615,8 @@ namespace NLog.UnitTests.Targets
                 //cleanup
                 LogManager.Configuration = null;
                 archiveDir.Delete(true);
+                if (Directory.Exists(logdir))
+                    Directory.Delete(logdir, true);
             }
         }
 
@@ -3591,15 +3624,15 @@ namespace NLog.UnitTests.Targets
         /// Test the case when multiple applications are archiving to the same directory.
         /// Only the archives for this application instance should be deleted per the target archive rules.
         /// </summary>
-        /// <param name="archivePath">Base path to the archive directory</param>
-        /// <param name="logdir">Base path the log file</param>
         /// <param name="maxArchiveFilesConfig"># to use for maxArchiveFiles in NLog configuration.</param>
         /// <param name="expectedArchiveFiles">Expected number of archive files after archiving has occured.</param>
         /// <param name="dateFormat">string to be used for formatting log file names</param>
         /// <param name="changeCreationAndWriteTime"></param>
-        private void HandleArchiveFilesMultipleContextSingleTargetsTest(string archivePath, string logdir,
+        private void HandleArchiveFilesMultipleContextSingleTargetsTest(
             int maxArchiveFilesConfig, int expectedArchiveFiles, string dateFormat, bool changeCreationAndWriteTime)
         {
+            string logdir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string archivePath = Path.Combine(logdir, "archive");
             var archiveDir = new DirectoryInfo(archivePath);
             try
             {
@@ -3696,6 +3729,8 @@ namespace NLog.UnitTests.Targets
                 //cleanup
                 LogManager.Configuration = null;
                 archiveDir.Delete(true);
+                if (Directory.Exists(logdir))
+                    Directory.Delete(logdir, true);
             }
         }
         /// <summary>
@@ -4084,6 +4119,39 @@ namespace NLog.UnitTests.Targets
                 {
                 }
             }
+        }
+
+        [Theory]
+        [InlineData(true, 100, true)] // archive, as size of file is 101
+        [InlineData(true, 101, false)] //equals is not above
+        [InlineData(true, 102, false)] // don;t archive, we didn't reach the aboveSize
+        [InlineData(false, 100, false)]
+        [InlineData(null, 0, false)]
+        [InlineData(null, 99, true)]
+        [InlineData(null, 100, true)]
+        [InlineData(null, 101, false)]
+        public void ShouldArchiveOldFileOnStartupTest(bool? archiveOldFileOnStartup, long archiveOldFileOnStartupAboveSize, bool expected)
+        {
+            // Arrange
+            var fileAppenderCacheMock = Substitute.For<IFileAppenderCache>();
+
+            var filePath = "x:/somewhere/file.txt";
+            fileAppenderCacheMock.GetFileLength(filePath).Returns(101);
+
+            var target = new FileTarget(fileAppenderCacheMock)
+            {
+                ArchiveOldFileOnStartupAboveSize = archiveOldFileOnStartupAboveSize
+            };
+            if (archiveOldFileOnStartup.HasValue)
+            {
+                target.ArchiveOldFileOnStartup = archiveOldFileOnStartup.Value;
+            }
+
+            // Act
+            var result = target.ShouldArchiveOldFileOnStartup(filePath);
+
+            // Assert
+            Assert.Equal(expected, result);
         }
     }
 

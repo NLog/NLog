@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -304,7 +304,7 @@ namespace NLog.Internal.FileAppenders
             FileInfo fileInfo = new FileInfo(FileName);
             if (fileInfo.Exists)
             {
-                CreationTimeUtc = FileCharacteristicsHelper.ValidateFileCreationTime(fileInfo, (f) => f.GetCreationTimeUtc(), (f) => f.GetLastWriteTimeUtc()).Value;
+                CreationTimeUtc = fileInfo.LookupValidFileCreationTimeUtc().Value;
             }
             else
             {

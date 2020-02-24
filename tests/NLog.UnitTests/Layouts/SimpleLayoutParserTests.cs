@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -35,11 +35,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using NLog.Config;
 using NLog.Filters;
-using Xunit.Extensions;
 
 namespace NLog.UnitTests.Layouts
 {
@@ -598,7 +596,6 @@ namespace NLog.UnitTests.Layouts
             });
         }
 
-
         [Theory]
         [InlineData(@"                                    ${literal:text={0\} {1\}}")]
         [InlineData(@"                           ${cached:${literal:text={0\} {1\}}}")]
@@ -612,7 +609,147 @@ namespace NLog.UnitTests.Layouts
             Assert.Equal("{0} {1}", result);
         }
 
+        [Fact]
+        void FuncLayoutRendererRegisterTest1()
+        {
+            LayoutRenderer.Register("the-answer", (info) => "42");
+            Layout l = "${the-answer}";
+            var result = l.Render(LogEventInfo.CreateNullEvent());
+            Assert.Equal("42", result);
+        }
 
+        [Fact]
+        void FuncLayoutRendererFluentMethod_ThreadSafe_Test()
+        {
+            // Arrange
+            var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.ThreadSafe);
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+            // Assert
+            Assert.Equal("42", result);
+            Assert.True(layout.ThreadSafe);
+            Assert.False(layout.ThreadAgnostic);
+        }
+
+        [Fact]
+        void FuncLayoutRendererFluentMethod_ThreadAgnostic_Test()
+        {
+            // Arrange
+            var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.ThreadAgnostic);
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+            // Assert
+            Assert.Equal("42", result);
+            Assert.True(layout.ThreadSafe);
+            Assert.True(layout.ThreadAgnostic);
+        }
+
+        [Fact]
+        void FuncLayoutRendererFluentMethod_ThreadUnsafe_Test()
+        {
+            // Arrange
+            var layout = Layout.FromMethod(l => "42", LayoutRenderOptions.None);
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+            // Assert
+            Assert.Equal("42", result);
+            Assert.False(layout.ThreadSafe);
+            Assert.False(layout.ThreadAgnostic);
+        }
+
+        [Fact]
+        void FuncLayoutRendererFluentMethod_NullThrows_Test()
+        {
+            // Arrange
+            Assert.Throws<ArgumentNullException>(() => Layout.FromMethod(null));
+        }
+
+        [Fact]
+        void FuncLayoutRendererRegisterTest1WithXML()
+        {
+            LayoutRenderer.Register("the-answer", (info) => 42);
+
+            LogManager.Configuration = XmlLoggingConfiguration.CreateFromXmlString(@"
+<nlog throwExceptions='true'>
+            
+                <targets>
+                    <target name='debug' type='Debug' layout= 'TheAnswer=${the-answer:Format=D3}' /></targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("test1");
+            AssertDebugLastMessage("debug", "TheAnswer=042");
+        }
+
+        [Fact]
+        void FuncLayoutRendererRegisterTest2()
+        {
+            LayoutRenderer.Register("message-length", (info) => info.Message.Length);
+            Layout l = "${message-length}";
+            var result = l.Render(LogEventInfo.Create(LogLevel.Error, "logger-adhoc", "1234567890"));
+            Assert.Equal("10", result);
+        }
+
+        [Fact]
+        void SimpleLayout_FromString_ThrowConfigExceptions()
+        {
+            Assert.Throws<NLogConfigurationException>(() => Layout.FromString("${evil}", true));
+        }
+
+        [Fact]
+        void SimpleLayout_FromString_NoThrowConfigExceptions()
+        {
+            Assert.NotNull(Layout.FromString("${evil}", false));
+        }
+
+        [Theory]
+        [InlineData("", true)]
+        [InlineData(null, true)]
+        [InlineData("'a'", true)]
+        [InlineData("${gdc:a}", false)]
+        public void FromString_isFixedText(string input, bool expected)
+        {
+            // Act
+            var layout = (SimpleLayout)Layout.FromString(input);
+            layout.Initialize(null);
+
+            // Assert
+            Assert.Equal(expected, layout.IsFixedText);
+        }
+
+        [Theory]
+        [InlineData("", true)]
+        [InlineData(null, true)]
+        [InlineData("'a'", true)]
+        [InlineData("${gdc:a}", true)]
+        public void FromString_isThreadSafe(string input, bool expected)
+        {
+            // Act
+            var layout = (SimpleLayout)Layout.FromString(input);
+            layout.Initialize(null);
+
+            // Assert
+            Assert.Equal(expected, layout.ThreadSafe);
+        }
+
+        [Theory]
+        [InlineData("", "")]
+        [InlineData(null, "")]
+        [InlineData("'a'", "'a'")]
+        [InlineData("${gdc:a}", "")]
+        public void Render(string input, string expected)
+        {
+            var layout = (SimpleLayout)Layout.FromString(input);
+
+            // Act
+            var result = layout.Render(LogEventInfo.CreateNullEvent());
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
 
         private class LayoutRendererWithListParam : LayoutRenderer
         {

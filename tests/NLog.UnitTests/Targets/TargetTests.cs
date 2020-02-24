@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2019 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
+// Copyright (c) 2004-2020 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -39,6 +39,8 @@ using NLog.LayoutRenderers;
 using NLog.Layouts;
 using NLog.Targets.Wrappers;
 using NLog.UnitTests.Targets.Wrappers;
+using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 
 namespace NLog.UnitTests.Targets
 {
@@ -302,6 +304,110 @@ namespace NLog.UnitTests.Targets
             // initialize was called once
             Assert.Equal(1, target.InitializeCount);
             Assert.Equal(1, target.InitializeCount + target.FlushCount + target.CloseCount + target.WriteCount + target.WriteCount2 + target.WriteCount3);
+        }
+
+        [Fact]
+        public void WriteAsyncLogEvent_InitializeThrowsException_LogContinuationCalledWithCorrectExceptions()
+        {
+            // Arrange
+            var target = new ThrowingInitializeTarget(true);
+            Exception retrievedException = null;
+            var logevent = LogEventInfo.CreateNullEvent().WithContinuation(ex => { retrievedException = ex; });
+            LogManager.ThrowExceptions = false;
+            target.Initialize(new LoggingConfiguration());
+            LogManager.ThrowExceptions = true;
+
+            // Act
+            target.WriteAsyncLogEvent(logevent);
+
+            // Assert
+            Assert.NotNull(retrievedException);
+            var runtimeException = Assert.IsType<NLogRuntimeException>(retrievedException);
+            var innerException = Assert.IsType<TestException>(runtimeException.InnerException);
+            Assert.Equal("Initialize says no", innerException.Message);
+        }
+
+        [Fact]
+        public void Flush_ThrowsException_LogContinuationCalledWithCorrectExceptions()
+        {
+            // Arrange
+            var target = new ThrowingInitializeTarget(false);
+            Exception retrievedException = null;
+            AsyncContinuation asyncContinuation = ex => { retrievedException = ex; };
+
+            target.Initialize(new LoggingConfiguration());
+            LogManager.ThrowExceptions = false;
+
+            // Act
+            target.Flush(asyncContinuation);
+
+            // Assert
+            Assert.NotNull(retrievedException);
+
+            //note: not wrapped in NLogRuntimeException, not sure if by design.
+            Assert.IsType<TestException>(retrievedException);
+        }
+
+        [Fact]
+        public void WriteAsyncLogEvent_WriteAsyncLogEventThrowsException_LogContinuationCalledWithCorrectExceptions()
+        {
+            // Arrange
+            var target = new ThrowingInitializeTarget(false);
+            Exception retrievedException = null;
+            var logevent = LogEventInfo.CreateNullEvent().WithContinuation(ex => { retrievedException = ex; });
+            target.Initialize(new LoggingConfiguration());
+            LogManager.ThrowExceptions = false;
+
+            // Act
+            target.WriteAsyncLogEvent(logevent);
+
+            // Assert
+            Assert.NotNull(retrievedException);
+            //note: not wrapped in NLogRuntimeException, not sure if by design.
+            Assert.IsType<TestException>(retrievedException);
+            Assert.Equal("Write oops", retrievedException.Message);
+        }
+
+        private class ThrowingInitializeTarget : Target
+        {
+            private readonly bool _throwsOnInit;
+
+            #region Overrides of Target
+
+            /// <inheritdoc />
+            public ThrowingInitializeTarget(bool throwsOnInit)
+            {
+                _throwsOnInit = throwsOnInit;
+            }
+
+            /// <inheritdoc />
+            protected override void InitializeTarget()
+            {
+                if (_throwsOnInit)
+                    throw new TestException("Initialize says no");
+            }
+
+            /// <inheritdoc />
+            protected override void FlushAsync(AsyncContinuation asyncContinuation)
+            {
+                throw new TestException("No flush");
+            }
+
+            /// <inheritdoc />
+            protected override void WriteAsyncThreadSafe(AsyncLogEventInfo logEvent)
+            {
+                throw new TestException("Write oops");
+            }
+
+            #endregion
+        }
+
+        private class TestException : Exception
+        {
+            /// <inheritdoc />
+            public TestException(string message) : base(message)
+            {
+            }
         }
 
         [Fact]
