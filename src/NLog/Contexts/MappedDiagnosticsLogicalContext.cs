@@ -54,7 +54,7 @@ namespace NLog
         private sealed class ItemRemover : IDisposable
         {
             private readonly string _item1;
-#if NET4_5
+#if NET4_5 || NET4_6
             // Optimized for HostingLogScope with 3 properties
             private readonly string _item2;
             private readonly string _item3;
@@ -70,7 +70,7 @@ namespace NLog
                 _wasEmpty = wasEmpty;
             }
 
-#if NET4_5
+#if NET4_5 || NET4_6
             public ItemRemover(IReadOnlyList<KeyValuePair<string,object>> items, bool wasEmpty)
             {
                 int itemCount = items.Count;
@@ -110,7 +110,7 @@ namespace NLog
 
                     var dictionary = GetLogicalThreadDictionary(true);
                     dictionary.Remove(_item1);
-#if NET4_5
+#if NET4_5 || NET4_6
                     if (_item2 != null)
                     {
                         dictionary.Remove(_item2);
@@ -131,7 +131,7 @@ namespace NLog
 
             private bool RemoveScopeWillClearContext()
             {
-#if NET4_5
+#if NET4_5 || NET4_6
                 if (_itemArray == null)
                 {
                     var immutableDict = GetLogicalThreadDictionary(false);
@@ -268,7 +268,7 @@ namespace NLog
             return new ItemRemover(item, wasEmpty);
         }
 
-#if NET4_5
+#if NET4_5 || NET4_6
         /// <summary>
         /// Updates the current logical context with multiple items in single operation
         /// </summary>

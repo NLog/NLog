@@ -241,7 +241,7 @@ namespace NLog.Targets
                 ConsoleTargetHelper.SetConsoleOutputEncoding(_encoding, true, _pauseLogging);
 #endif
 
-#if NET4_5
+#if NET4_5 || NET4_6
             if (DetectOutputRedirected)
             {
                 try

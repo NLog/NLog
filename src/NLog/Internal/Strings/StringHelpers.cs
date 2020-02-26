@@ -157,7 +157,7 @@ namespace NLog.Internal
         /// <paramref name="values" /> is <see langword="null" />. </exception>
         internal static string Join(string separator, IEnumerable<string> values)
         {
-#if NETSTANDARD || NET4_5 || NET4_0
+#if NETSTANDARD || NET4_5 || NET4_6 || NET4_0
             return string.Join(separator, values);
 #else
             return string.Join(separator, values.ToArray());

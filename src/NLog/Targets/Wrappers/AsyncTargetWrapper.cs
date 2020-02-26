@@ -284,7 +284,7 @@ namespace NLog.Targets.Wrappers
                 ForceLockingQueue = true;   // ConcurrentQueue does not perform well if constantly hitting QueueLimit
             }
 
-#if NET4_5 || NET4_0
+#if NET4_5 || NET4_6 || NET4_0
             if (_forceLockingQueue.HasValue && _forceLockingQueue.Value != (_requestQueue is AsyncRequestQueue))
             {
                 _requestQueue = ForceLockingQueue ? (AsyncRequestQueueBase)new AsyncRequestQueue(QueueLimit, OverflowAction) : new ConcurrentRequestQueue(QueueLimit, OverflowAction);

@@ -164,7 +164,7 @@ namespace NLog
         /// <param name="firstUserStackFrame">Starting point for skipping async MoveNext-frames</param>
         internal static int SkipToUserStackFrameLegacy(StackFrame[] stackFrames, int firstUserStackFrame)
         {
-#if NET4_5
+#if NET4_5 || NET4_6
             for (int i = firstUserStackFrame; i < stackFrames.Length; ++i)
             {
                 var stackFrame = stackFrames[i];

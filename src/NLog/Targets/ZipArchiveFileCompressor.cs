@@ -33,7 +33,7 @@
 
 namespace NLog.Targets
 {
-#if NET4_5
+#if NET4_5 || NET4_6
 using System.IO;
 using System.IO.Compression;
 

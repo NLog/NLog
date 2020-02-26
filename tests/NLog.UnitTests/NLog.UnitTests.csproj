@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net452;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;net452;netcoreapp2.0</TargetFrameworks>
 
     <AssemblyOriginatorKeyFile>NLogTests.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
@@ -18,10 +18,10 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 
-    <DebugType Condition=" '$(TargetFramework)' == 'net452' ">Full</DebugType>
+    <DebugType Condition=" '$(TargetFramework)' == 'net452' or '$(TargetFramework)' == 'net46' ">Full</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == '' ">
+  <PropertyGroup Condition=" ('$(TargetFramework)' == 'net452' OR '$(TargetFramework)' == 'net46') AND '$(TestTargetFramework)' == '' ">
     <DefineConstants>$(DefineConstants);NET4_5;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
 
@@ -41,7 +41,7 @@
     <DefineConstants>$(DefineConstants);MONO</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU' OR '$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net46|AnyCPU'">
     <NoWarn>1701;1702;1705</NoWarn>
   </PropertyGroup>
 
@@ -65,7 +65,7 @@
     </ProjectReference>
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' OR '$(TargetFramework)' == 'net46' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -86,11 +86,11 @@
     <PackageReference Include="DotNetZip.Reduced" Version="1.9.1.8" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' == '' ">
+  <ItemGroup Condition=" ('$(TargetFramework)' == 'net452' OR '$(TargetFramework)' == 'net46') AND '$(TestTargetFramework)' == '' ">
     <ProjectReference Include="..\..\src\NLog.MSMQ\NLog.MSMQ.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' AND '$(TestTargetFramework)' != '' ">
+  <ItemGroup Condition=" ('$(TargetFramework)' == 'net452' OR '$(TargetFramework)' == 'net46') AND '$(TestTargetFramework)' != '' ">
     <Reference Include="NLog">
       <HintPath>..\..\src\NLog\bin\$(Configuration)\$(TestTargetFramework)\NLog.dll</HintPath>
       <Private>True</Private>

@@ -189,7 +189,7 @@ namespace NLog.Targets
             OptimizeBufferReuse = GetType() == typeof(FileTarget);    // Class not sealed, reduce breaking changes
         }
 
-#if NET4_5
+#if NET4_5 || NET4_6
         static FileTarget()
         {
             FileCompressor = new ZipArchiveFileCompressor();

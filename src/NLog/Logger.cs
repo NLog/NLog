@@ -36,7 +36,7 @@ namespace NLog
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-#if NET4_5
+#if NET4_5 || NET4_6
     using System.Threading.Tasks;
 #endif
     using JetBrains.Annotations;
@@ -499,7 +499,7 @@ namespace NLog
             }
         }
 
-#if NET4_5
+#if NET4_5 || NET4_6
         /// <summary>
         /// Logs an exception is logged at <c>Error</c> level if the provided task does not run to completion.
         /// </summary>

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 
-    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net45;net40-client;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(TargetFrameworks)' == '' ">net46;net45;net40-client;net35;netstandard1.3;netstandard1.5;netstandard2.0</TargetFrameworks>
 
     <Title>NLog for .NET Framework and .NET Standard</Title>
     <Company>NLog</Company>
@@ -92,7 +92,14 @@ For all config options and platform support, check https://nlog-project.org/conf
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TreatWarningsAsErrors Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'netstandard2.0' ">true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'netstandard2.0' ">true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Title>NLog for .NET Framework 4.6</Title>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
+    <DefineConstants>$(DefineConstants);NET4_6;DYNAMIC_OBJECT</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
@@ -203,7 +210,7 @@ For all config options and platform support, check https://nlog-project.org/conf
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'net46' ">
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />

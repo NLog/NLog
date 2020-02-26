@@ -285,7 +285,7 @@ namespace NLog.Fluent
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
-#if NET4_5
+#if NET4_5 || NET4_6
         public void Write(
             [CallerMemberName]string callerMemberName = null,
             [CallerFilePath]string callerFilePath = null,
@@ -315,7 +315,7 @@ namespace NLog.Fluent
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
-#if NET4_5
+#if NET4_5 || NET4_6
         public void WriteIf(
             Func<bool> condition,
             [CallerMemberName]string callerMemberName = null,
@@ -350,7 +350,7 @@ namespace NLog.Fluent
         /// <param name="callerMemberName">The method or property name of the caller to the method. This is set at by the compiler.</param>
         /// <param name="callerFilePath">The full path of the source file that contains the caller. This is set at by the compiler.</param>
         /// <param name="callerLineNumber">The line number in the source file at which the method is called. This is set at by the compiler.</param>
-#if NET4_5
+#if NET4_5 || NET4_6
         public void WriteIf(
             bool condition,
             [CallerMemberName]string callerMemberName = null,

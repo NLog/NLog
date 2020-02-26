@@ -566,7 +566,7 @@ namespace NLog.Config
         private void RegisterExternalItems()
         {
 
-#if NET4_5 || NETSTANDARD
+#if NET4_5 || NET4_6 || NETSTANDARD
             _layoutRenderers.RegisterNamedType("configsetting", "NLog.Extensions.Logging.ConfigSettingLayoutRenderer, NLog.Extensions.Logging");
 #endif
         }

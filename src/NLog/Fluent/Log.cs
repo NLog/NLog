@@ -38,7 +38,7 @@ using NLog.Internal;
 
 namespace NLog.Fluent
 {
-#if NET4_5
+#if NET4_5 || NET4_6
     /// <summary>
     /// A global logging class using caller info to find the logger.
     /// </summary>
