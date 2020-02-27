@@ -4,7 +4,7 @@ Date format: (year/month/day)
 
 ## Change Log
 
-### V4.7 - to be released
+### V4.7 (2019/03/17)
 
 #### Features
 - [#3686](https://github.com/NLog/NLog/pull/3686) + [#3740](https://github.com/NLog/NLog/pull/3740) LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
@@ -16,8 +16,10 @@ Date format: (year/month/day)
 - [#3771](https://github.com/NLog/NLog/pull/3771) Layout.FromString to create Layout directly from string along with optional parser validation (@snakefoot)
 - [#3793](https://github.com/NLog/NLog/pull/3793) ${dir-separator} for rendering platform specific directory path separator (@304NotModified)
 - [#3755](https://github.com/NLog/NLog/pull/3755) FileTarget - Supports ArchiveOldFileOnStartupAboveSize for cleanup of existing file when above size (@Sam13)
-- [#3796](https://github.com/NLog/NLog/pull/3796) InternalLogger: added LogMessageReceived event  (@304NotModified)
-
+- [#3796](https://github.com/NLog/NLog/pull/3796) + [#3823](https://github.com/NLog/NLog/pull/3823) InternalLogger - Added LogMessageReceived event (@304NotModified + (@snakefoot)
+- [#3829](https://github.com/NLog/NLog/pull/3829) DatabaseTarget - Assign connection properties like SqlConnection.AccessToken (@304NotModified + @snakefoot)
+- [#3839](https://github.com/NLog/NLog/pull/3839) DatabaseTarget - Assign command properties like SqlCommand.CommandTimeout (@snakefoot)
+- [#3833](https://github.com/NLog/NLog/pull/3833) ${onHasProperties} for only rendering when logevent includes properties from structured logging (@snakefoot)
 
 #### Improvements
 - [#3521](https://github.com/NLog/NLog/pull/3521) XmlLoggingConfiguration - Marked legacy constructors with ignoreErrors parameter as obsolete (@snakefoot)
@@ -37,6 +39,8 @@ Date format: (year/month/day)
 - [#3766](https://github.com/NLog/NLog/pull/3766) JsonLayout - Fixed ThreadAgnostic to correctly capture context when using nested JsonLayout (@snakefoot)
 - [#3700](https://github.com/NLog/NLog/pull/3700) ExceptionLayoutRenderer - Fixed so Format option HResult also works for NetCore (@snakefoot)
 - [#3761](https://github.com/NLog/NLog/pull/3761) + [#3784](https://github.com/NLog/NLog/pull/3784) Log4JXml Layout will render NDLC + NDC scopes in correct order (@adanek + @304NotModified)
+- [#3821](https://github.com/NLog/NLog/pull/3821) Logger - Added exception handler for CallSite capture for platform that fails to capture StackTrace (@snakefoot)
+- [#3835](https://github.com/NLog/NLog/pull/3835) StringSplitter - Fixed quote handling when reading elements for config list-properties (@snakefoot)
 
 #### Performance
 - [#3683](https://github.com/NLog/NLog/pull/3683) ObjectGraphScanner - Avoid holding list.SyncRoot lock while scanning (@snakefoot)
@@ -47,9 +51,11 @@ Date format: (year/month/day)
 - [#3739](https://github.com/NLog/NLog/pull/3739) NetworkTarget  - Reduced memory allocation for encoding into bytes without string allocation (@snakefoot)
 - [#3748](https://github.com/NLog/NLog/pull/3748) AsyncTaskTarget - Skip default AsyncWrapper since already having internal queue (@snakefoot)
 - [#3767](https://github.com/NLog/NLog/pull/3767) Mark Condition Expressions as ThreadSafe to improve concurrency in Layouts (@snakefoot)
-- [#3713](https://github.com/NLog/NLog/pull/3713) DatabaseTarget - Added IsolationLevel option that activates transactions for better batching performance (@snakefoot)
+- [#3764](https://github.com/NLog/NLog/pull/3764) DatabaseTarget - Added IsolationLevel option that activates transactions for better batching performance (@snakefoot)
 - [#3779](https://github.com/NLog/NLog/pull/3779) SimpleLayout - Assignment of string-reference with null-value will translate into FixedText (@304NotModified)
 - [#3790](https://github.com/NLog/NLog/pull/3790) AsyncWrapper - Less aggressive with scheduling timer events for background writing (@snakefoot)
+- [#3830](https://github.com/NLog/NLog/pull/3830) Faster assignment of properties accessed through reflection (@304NotModified)
+- [#3832](https://github.com/NLog/NLog/pull/3832) ${replace} - Faster search and replace when not explicitly have requested regex support (@snakefoot)
 
 ### V4.6.8 (2019/11/04)
 

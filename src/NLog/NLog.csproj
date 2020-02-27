@@ -36,17 +36,23 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - JsonLayout - Fixed ThreadAgnostic to correctly capture context when using nested JsonLayout (@snakefoot)
 - ExceptionLayoutRenderer - Fixed so Format option HResult also works for NetCore (@snakefoot)
 - Log4JXml Layout - Render NDLC + NDC scopes in correct order (@adanek + @304NotModified)
+- Logger - Added exception handler for CallSite capture for platform that fails to capture StackTrace (@snakefoot)
+- StringSplitter - Fixed quote handling when reading elements for config list-properties (@snakefoot)
 
 ## Features
 - LogManager.Setup() allows fluent configuration of LogFactory options (@snakefoot + @304NotModified)
-- LogManager.Setup().SetupSerialization(s => s.RegisterObjectTransformation(...)) for overriding default property reflection (@snakefoot + @304NotModified + @Giorgi + @mmurrell)
-- LogManager.Setup().SetupSerialization(s => s.RegisterConditionMethod(...)) can use lambda methods and not just static methods (@snakefoot)
+- LogManager.Setup().SetupSerialization(s =&gt; s.RegisterObjectTransformation(...)) for overriding default property reflection (@snakefoot + @304NotModified + @Giorgi + @mmurrell)
+- LogManager.Setup().SetupSerialization(s =&gt; s.RegisterConditionMethod(...)) can use lambda methods and not just static methods (@snakefoot)
 - ${level:format=FullName} will expand Info + Warn to their full name (@snakefoot)
 - FileTarget - Supports MaxArchiveDays for cleanup of old files based on their age (@snakefoot)
 - Layout.FromMethod to create Layout directly from a lambda method (@snakefoot)
 - Layout.FromString to create Layout directly from string along with optional parser validation (@snakefoot)
 - ${dir-separator} for rendering platform specific directory path separator (@304NotModified)
 - FileTarget - Supports ArchiveOldFileOnStartupAboveSize for cleanup of existing file when above size (@Sam13)
+- InternalLogger - Added LogMessageReceived event (@304NotModified)
+- DatabaseTarget - Assign connection properties like SqlConnection.AccessToken (@304NotModified + @snakefoot)
+- DatabaseTarget - Assign command properties like SqlCommand.CommandTimeout (@snakefoot)
+- ${onHasProperties} for only rendering when logevent includes properties from structured logging (@snakefoot)
 
 ## Improvements
 - XmlLoggingConfiguration - Marked legacy constructors with ignoreErrors parameter as obsolete (@snakefoot)
@@ -59,7 +65,7 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - ExceptionLayoutRenderer - Improved error message when Format-token parsing fails (@snakefoot)
 - AutoFlushWrapper - Set AutoFlush=false for AsyncTaskTarget by default (@snakefoot)
 - LocalIpAddressLayoutRenderer - Higher priority to network-addresses that has valid gateway adddress (@snakefoot)
-- LogFactory - LogFactory - Flush reports to InternalLogger what targets produces timeouts (@snakefoot)  
+- LogFactory - Flush reports to InternalLogger what targets produces timeouts (@snakefoot)  
 
 ## Performance
 - ObjectGraphScanner - Avoid holding list.SyncRoot lock while scanning (@snakefoot)
@@ -73,6 +79,9 @@ For ASP.NET Core, check: https://www.nuget.org/packages/NLog.Web.AspNetCore
 - DatabaseTarget - Added IsolationLevel option that activates transactions for better batching performance (@snakefoot)
 - SimpleLayout - Assignment of string-reference with null-value will translate into FixedText (@304NotModified)
 - AsyncWrapper - Less aggressive with scheduling timer events for background writing (@snakefoot)
+- Faster assignment of properties accessed through reflection (@304NotModified)
+- ${replace} - Faster search and replace when not explicitly have requested regex support (@snakefoot)
+
 
 Full changelog: https://github.com/NLog/NLog/blob/master/CHANGELOG.md
 
@@ -200,7 +209,7 @@ For all config options and platform support, check https://nlog-project.org/conf
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
