@@ -46,6 +46,9 @@ namespace NLog.UnitTests.Contexts
         public MappedDiagnosticsLogicalContextTests()
         {
             MappedDiagnosticsLogicalContext.Clear();
+
+            // Run also with the following setting to check compatibility of stacked MDLC with classic MDLC:
+            //MappedDiagnosticsLogicalContext.UseStackedStore = true;
         }
 
         [Fact]
