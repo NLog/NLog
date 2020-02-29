@@ -57,17 +57,7 @@ namespace NLog
             StackTraceUsage stu = targetsForLevel.GetStackTraceUsage();
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
-#if NETSTANDARD1_5
-                var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
-#elif !SILVERLIGHT
-                var stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
-#else
-                var stackTrace = new StackTrace();
-#endif
-                var stackFrames = stackTrace.GetFrames();
-                int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
-                int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
-                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
+                CaptureCallSiteInfo(factory, loggerType, logEvent, stu);
             }
 #endif
 
@@ -103,6 +93,31 @@ namespace NLog
 
                 prevFilterResult = result;  // Cache the result, and reuse it for the next target, if it comes from the same logging-rule
                 prevFilterChain = t.FilterChain;
+            }
+        }
+
+        private static void CaptureCallSiteInfo(LogFactory factory, Type loggerType, LogEventInfo logEvent, StackTraceUsage stackTraceUsage)
+        {
+            try
+            {
+#if NETSTANDARD1_5
+                var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stackTraceUsage == StackTraceUsage.WithSource });
+#elif !SILVERLIGHT
+                var stackTrace = new StackTrace(StackTraceSkipMethods, stackTraceUsage == StackTraceUsage.WithSource);
+#else
+                var stackTrace = new StackTrace();
+#endif
+                var stackFrames = stackTrace.GetFrames();
+                int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
+                int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
+                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
+            }
+            catch (Exception ex)
+            {
+                if (factory.ThrowExceptions || ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Error(ex, "Failed to capture CallSite for Logger {0}. Platform might not support ${callsite}", logEvent.LoggerName);
             }
         }
 
