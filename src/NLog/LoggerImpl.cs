@@ -31,6 +31,10 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+#if !NETSTANDARD1_0 || NETSTANDARD1_5
+#define CaptureCallSiteInfo
+#endif
+
 namespace NLog
 {
     using System;
@@ -53,21 +57,11 @@ namespace NLog
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", Justification = "Using 'NLog' in message.")]
         internal static void Write([NotNull] Type loggerType, [NotNull] TargetWithFilterChain targetsForLevel, LogEventInfo logEvent, LogFactory factory)
         {
-#if !NETSTANDARD1_0 || NETSTANDARD1_5
+#if CaptureCallSiteInfo
             StackTraceUsage stu = targetsForLevel.GetStackTraceUsage();
             if (stu != StackTraceUsage.None && !logEvent.HasStackTrace)
             {
-#if NETSTANDARD1_5
-                var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stu == StackTraceUsage.WithSource });
-#elif !SILVERLIGHT
-                var stackTrace = new StackTrace(StackTraceSkipMethods, stu == StackTraceUsage.WithSource);
-#else
-                var stackTrace = new StackTrace();
-#endif
-                var stackFrames = stackTrace.GetFrames();
-                int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
-                int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
-                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
+                CaptureCallSiteInfo(factory, loggerType, logEvent, stu);
             }
 #endif
 
@@ -105,6 +99,33 @@ namespace NLog
                 prevFilterChain = t.FilterChain;
             }
         }
+
+#if CaptureCallSiteInfo
+        private static void CaptureCallSiteInfo(LogFactory factory, Type loggerType, LogEventInfo logEvent, StackTraceUsage stackTraceUsage)
+        {
+            try
+            {
+#if NETSTANDARD1_5
+                var stackTrace = (StackTrace)Activator.CreateInstance(typeof(StackTrace), new object[] { stackTraceUsage == StackTraceUsage.WithSource });
+#elif !SILVERLIGHT
+                var stackTrace = new StackTrace(StackTraceSkipMethods, stackTraceUsage == StackTraceUsage.WithSource);
+#else
+                var stackTrace = new StackTrace();
+#endif
+                var stackFrames = stackTrace.GetFrames();
+                int? firstUserFrame = FindCallingMethodOnStackTrace(stackFrames, loggerType);
+                int? firstLegacyUserFrame = firstUserFrame.HasValue ? SkipToUserStackFrameLegacy(stackFrames, firstUserFrame.Value) : (int?)null;
+                logEvent.GetCallSiteInformationInternal().SetStackTrace(stackTrace, firstUserFrame ?? 0, firstLegacyUserFrame);
+            }
+            catch (Exception ex)
+            {
+                if (factory.ThrowExceptions || ex.MustBeRethrownImmediately())
+                    throw;
+
+                InternalLogger.Error(ex, "Failed to capture CallSite for Logger {0}. Platform might not support ${{callsite}}", logEvent.LoggerName);
+            }
+        }
+#endif
 
         /// <summary>
         ///  Finds first user stack frame in a stack trace
@@ -232,7 +253,7 @@ namespace NLog
         /// <returns>The result of the filter.</returns>
         private static FilterResult GetFilterResult(IList<Filter> filterChain, LogEventInfo logEvent, FilterResult defaultFilterResult)
         {
-            FilterResult result = defaultFilterResult; 
+            FilterResult result = defaultFilterResult;
 
             if (filterChain == null || filterChain.Count == 0)
                 return result;
