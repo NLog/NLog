@@ -117,7 +117,7 @@ namespace NLog
                 if (factory.ThrowExceptions || ex.MustBeRethrownImmediately())
                     throw;
 
-                InternalLogger.Error(ex, "Failed to capture CallSite for Logger {0}. Platform might not support ${callsite}", logEvent.LoggerName);
+                InternalLogger.Error(ex, "Failed to capture CallSite for Logger {0}. Platform might not support ${{callsite}}", logEvent.LoggerName);
             }
         }
 
