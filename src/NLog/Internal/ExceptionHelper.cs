@@ -36,7 +36,6 @@ namespace NLog.Internal
     using System;
     using System.Threading;
     using NLog.Common;
-    using NLog.Targets;
 
     /// <summary>
     /// Helper class for dealing with exceptions.

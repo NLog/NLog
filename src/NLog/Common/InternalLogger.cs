@@ -338,17 +338,23 @@ namespace NLog.Common
 
             if (IncludeTimestamp)
             {
-                if (ex != null)
-                    return $"{TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture)}{fieldSeparator}{level.ToString()}{fieldSeparator}{fullMessage}{fieldSeparator}Exception: {ex.ToString()}";
-                else
-                    return $"{TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture)}{fieldSeparator}{level.ToString()}{fieldSeparator}{fullMessage}";
+                return string.Concat(
+                    TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture),
+                    fieldSeparator,
+                    level.ToString(),
+                    fieldSeparator,
+                    fullMessage,
+                    ex != null ? " Exception: " : "",
+                    ex?.ToString() ?? "");
             }
             else
             {
-                if (ex != null)
-                    return $"{level.ToString()}{fieldSeparator}{fullMessage}{fieldSeparator}Exception: {ex.ToString()}";
-                else
-                    return $"{level.ToString()}{fieldSeparator}{fullMessage}";
+                return string.Concat(
+                    level.ToString(),
+                    fieldSeparator,
+                    fullMessage,
+                    ex != null ? " Exception: " : "",
+                    ex?.ToString() ?? "");
             }
         }
 
