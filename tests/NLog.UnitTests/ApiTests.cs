@@ -74,7 +74,7 @@ namespace NLog.UnitTests
 
             // ignore checks on these:
             typeUsageCount[typeof(IInstallable)] = 1;
-            typeUsageCount[typeof(IToValue<>)] = 1;
+            typeUsageCount[typeof(IRenderable<>)] = 1;
 
             foreach (Type type in allTypes)
             {

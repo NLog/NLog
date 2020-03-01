@@ -31,18 +31,44 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Common;
+
 namespace NLog.Layouts
 {
     /// <summary>
-    /// ToValue
+    /// Extensions
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface IToValue<out T>
+    public static class RenderableExtensions
     {
         /// <summary>
-        /// Render to value
+        /// Get the value, or if <paramref name="l"/>is <c>null</c>, the <paramref name="defaultValue"/>
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="l">The item to render the value from</param>
+        /// <param name="logEvent">Log event needed for rendering</param>
+        /// <param name="defaultValue">The default value when <paramref name="l"/>is <c>null</c></param>
         /// <returns></returns>
-        T ToValue(LogEventInfo logEvent);
+        public static T RenderableToValue<T>(this IRenderable<T> l, AsyncLogEventInfo logEvent, T defaultValue = default(T))
+        {
+            return RenderableToValue(l, logEvent.LogEvent, defaultValue);
+        }
+
+        /// <summary>
+        /// Get the value, or if <paramref name="l"/>is <c>null</c>, the <paramref name="defaultValue"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="l">The item to render the value from</param>
+        /// <param name="logEvent">Log event needed for rendering</param>
+        /// <param name="defaultValue">The default value when <paramref name="l"/>is <c>null</c></param>
+        /// <returns></returns>
+        public static T RenderableToValue<T>(this IRenderable<T> l, LogEventInfo logEvent, T defaultValue = default(T))
+        {
+            if (l == null)
+            {
+                return defaultValue;
+            }
+
+            return l.RenderToValue(logEvent);
+        }
     }
 }

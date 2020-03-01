@@ -43,7 +43,7 @@ namespace NLog.Layouts
     /// <summary>
     /// Layout rendering of <typeparam name="T"></typeparam>
     /// </summary>
-    public abstract class TypedLayoutBase<T> : Layout, IToValue<T>
+    public abstract class TypedLayoutBase<T> : Layout, IRenderable<T>
     {
         private readonly Layout _layout;
         private readonly T _value;
@@ -114,7 +114,7 @@ namespace NLog.Layouts
         /// Render to value
         /// </summary>
         /// <returns></returns>
-        T IToValue<T>.ToValue(LogEventInfo logEvent)
+        T IRenderable<T>.RenderToValue(LogEventInfo logEvent)
         {
             if (_fixedValue)
             {
