@@ -823,7 +823,33 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
-        public void TestReceivedLogEventExceptionContextTest()
+        public void TestReceivedLogEventThrowingTest()
+        {
+            using (var loggerScope = new InternalLoggerScope())
+            {
+                // Arrange
+                var receivedArgs = new List<InternalLoggerMessageEventArgs>();
+                InternalLogger.LogMessageReceived += (sender, e) =>
+                {
+                    receivedArgs.Add(e);
+                    throw new ApplicationException("I'm a bad programmer");
+                };
+                var exception = new Exception();
+
+                // Act
+                InternalLogger.Info(exception, "Hello {0}", "it's me!");
+
+                // Assert
+                Assert.Single(receivedArgs);
+                var logEventArgs = receivedArgs.Single();
+                Assert.Equal(LogLevel.Info, logEventArgs.Level);
+                Assert.Equal(exception, logEventArgs.Exception);
+                Assert.Equal("Hello it's me!", logEventArgs.Message);
+            }
+        }
+
+        [Fact]
+        public void TestReceivedLogEventContextTest()
         {
             using (var loggerScope = new InternalLoggerScope())
             {
