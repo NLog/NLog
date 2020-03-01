@@ -41,6 +41,7 @@ namespace NLog.UnitTests.Targets
 #endif
     using System.Data;
     using System.Data.Common;
+    using System.Data.SqlClient;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -49,7 +50,6 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets;
     using Xunit;
     using Xunit.Extensions;
-    using System.Data.SqlClient;
 
 #if MONO 
     using Mono.Data.Sqlite;
@@ -1155,7 +1155,7 @@ Dispose()
             dt.CommandText = "Notimportant";
             dt.Initialize(null);
             Assert.Same(MockDbFactory.Instance, dt.ProviderFactory);
-            dt.OpenConnection("myConnectionString");
+            dt.OpenConnection("myConnectionString", null);
             Assert.Equal(1, MockDbConnection2.OpenCount);
             Assert.Equal("myConnectionString", MockDbConnection2.LastOpenConnectionString);
         }
@@ -1175,11 +1175,7 @@ Dispose()
                 };
 
                 dt.Initialize(null);
-#if !NETSTANDARD
                 Assert.Equal(typeof(SqlConnection), dt.ConnectionType);
-#else
-                Assert.NotNull(dt.ConnectionType);
-#endif
             }
         }
 

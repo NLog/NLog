@@ -41,6 +41,9 @@ namespace NLog.Targets
 
     using System.Data;
     using System.Data.Common;
+#if NETSTANDARD2_0
+    using System.Data.SqlClient;
+#endif
 #if NETSTANDARD
     using System.Reflection;
 #endif
@@ -57,6 +60,7 @@ namespace NLog.Targets
 #if !NETSTANDARD
     using System.Configuration;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
+    using System.Data.SqlClient;
 #endif
 
     /// <summary>
@@ -224,6 +228,14 @@ namespace NLog.Targets
         /// <docgen category='Connection Options' order='10' />
         public Layout DBDatabase { get; set; }
 
+#if NETSTANDARD2_0
+        /// <summary>
+        /// Gets or sets the access token used to connect to the database.
+        /// </summary>
+        /// <docgen category='Connection Options' order='10' />
+        public Layout DBAccessToken { get; set; }
+#endif
+
         /// <summary>
         /// Gets or sets the text of the SQL command to be run on each log level.
         /// </summary>
@@ -314,7 +326,7 @@ namespace NLog.Targets
             return null;
         }
 
-        internal IDbConnection OpenConnection(string connectionString)
+        internal IDbConnection OpenConnection(string connectionString, string accessToken)
         {
             IDbConnection connection;
 
@@ -333,6 +345,14 @@ namespace NLog.Targets
             {
                 throw new NLogRuntimeException("Creation of connection failed");
             }
+
+#if NETSTANDARD2_0
+            var sqlConnection = connection as SqlConnection;
+            if (null != sqlConnection && !string.IsNullOrEmpty(accessToken))
+            {
+                sqlConnection.AccessToken = accessToken;
+            }
+#endif
 
             connection.ConnectionString = connectionString;
             connection.Open();
@@ -623,7 +643,8 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString);
+                    string accessToken = GetAccessToken(logEvents[0].LogEvent);
+                    EnsureConnectionOpen(connectionString, accessToken);
 
                     var dbTransaction = _activeConnection.BeginTransaction(IsolationLevel.Value);
                     try
@@ -696,7 +717,8 @@ namespace NLog.Targets
                 //Always suppress transaction so that the caller does not rollback logging if they are rolling back their transaction.
                 using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
-                    EnsureConnectionOpen(connectionString);
+                    string accessToken = GetAccessToken(logEvent);
+                    EnsureConnectionOpen(connectionString, accessToken);
 
                     ExecuteDbCommandWithParameters(logEvent, null);
 
@@ -842,7 +864,7 @@ namespace NLog.Targets
             return value;
         }
 
-        private void EnsureConnectionOpen(string connectionString)
+        private void EnsureConnectionOpen(string connectionString, string accessToken)
         {
             if (_activeConnection != null && _activeConnectionString != connectionString)
             {
@@ -856,7 +878,7 @@ namespace NLog.Targets
             }
 
             InternalLogger.Trace("DatabaseTarget(Name={0}): Open connection.", Name);
-            _activeConnection = OpenConnection(connectionString);
+            _activeConnection = OpenConnection(connectionString, accessToken);
             _activeConnectionString = connectionString;
         }
 
@@ -883,6 +905,7 @@ namespace NLog.Targets
                 foreach (var commandInfo in commands)
                 {
                     var connectionString = GetConnectionStringFromCommand(commandInfo, logEvent);
+                    string accessToken = GetAccessToken(logEvent);
 
                     // Set ConnectionType if it has not been initialized already
                     if (ConnectionType == null)
@@ -890,7 +913,7 @@ namespace NLog.Targets
                         SetConnectionType();
                     }
 
-                    EnsureConnectionOpen(connectionString);
+                    EnsureConnectionOpen(connectionString, accessToken);
 
                     string commandText = RenderLogEvent(commandInfo.Text, logEvent);
 
@@ -950,6 +973,19 @@ namespace NLog.Targets
             }
 
             return connectionString;
+        }
+
+        private string GetAccessToken(LogEventInfo logEvent)
+        {
+#if !NETSTANDARD2_0
+            return null;
+#else
+            if (null == DBAccessToken)
+                return null;
+
+            string accessToken = RenderLogEvent(DBAccessToken, logEvent);
+            return accessToken;
+#endif
         }
 
         /// <summary>

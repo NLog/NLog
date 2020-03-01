@@ -304,6 +304,10 @@ For all config options and platform support, check https://nlog-project.org/conf
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.1.0" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.0.1" />
   </ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+	</ItemGroup>
   
   <ItemGroup Condition=" '$(monobuild)' != '' ">
     <Reference Include="Mono.Posix" />
