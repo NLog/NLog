@@ -36,7 +36,6 @@ namespace NLog.Common
     using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
-    using NLog.Targets;
 	
     public static partial class InternalLogger
     {
@@ -115,28 +114,6 @@ namespace NLog.Common
         }
 
         /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Trace level.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="message">Log message.</param>
-        public static void Trace(Exception ex, [Localizable(false)] string message)
-        {
-            Write(ex, LogLevel.Trace, message, null);
-        }
-		
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Trace level.
-        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Trace.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Trace(Exception ex, [Localizable(false)] Func<string> messageFunc)
-        {
-            if (IsTraceEnabled)
-                Write(ex, LogLevel.Trace, messageFunc(), null);
-        }
-
-        /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
@@ -182,6 +159,28 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Trace level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Trace(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Trace, message, null);
+        }
+		
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Trace level.
+        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Trace.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="messageFunc">Function that returns the log message.</param>
+        public static void Trace(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        {
+            if (IsTraceEnabled)
+                Write(ex, LogLevel.Trace, messageFunc(), null);
+        }
+
+        /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Debug level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
@@ -222,28 +221,6 @@ namespace NLog.Common
         public static void Debug(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Debug, message, args);
-        }
-
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Debug level.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="message">Log message.</param>
-        public static void Debug(Exception ex, [Localizable(false)] string message)
-        {
-            Write(ex, LogLevel.Debug, message, null);
-        }
-		
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Debug level.
-        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Debug.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Debug(Exception ex, [Localizable(false)] Func<string> messageFunc)
-        {
-            if (IsDebugEnabled)
-                Write(ex, LogLevel.Debug, messageFunc(), null);
         }
 
         /// <summary>
@@ -292,6 +269,28 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Debug level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Debug(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Debug, message, null);
+        }
+		
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Debug level.
+        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Debug.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="messageFunc">Function that returns the log message.</param>
+        public static void Debug(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        {
+            if (IsDebugEnabled)
+                Write(ex, LogLevel.Debug, messageFunc(), null);
+        }
+
+        /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Info level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
@@ -332,28 +331,6 @@ namespace NLog.Common
         public static void Info(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Info, message, args);
-        }
-
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Info level.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="message">Log message.</param>
-        public static void Info(Exception ex, [Localizable(false)] string message)
-        {
-            Write(ex, LogLevel.Info, message, null);
-        }
-		
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Info level.
-        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Info.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Info(Exception ex, [Localizable(false)] Func<string> messageFunc)
-        {
-            if (IsInfoEnabled)
-                Write(ex, LogLevel.Info, messageFunc(), null);
         }
 
         /// <summary>
@@ -402,6 +379,28 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Info level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Info(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Info, message, null);
+        }
+		
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Info level.
+        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Info.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="messageFunc">Function that returns the log message.</param>
+        public static void Info(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        {
+            if (IsInfoEnabled)
+                Write(ex, LogLevel.Info, messageFunc(), null);
+        }
+
+        /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Warn level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
@@ -442,28 +441,6 @@ namespace NLog.Common
         public static void Warn(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Warn, message, args);
-        }
-
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Warn level.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="message">Log message.</param>
-        public static void Warn(Exception ex, [Localizable(false)] string message)
-        {
-            Write(ex, LogLevel.Warn, message, null);
-        }
-		
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Warn level.
-        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Warn.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Warn(Exception ex, [Localizable(false)] Func<string> messageFunc)
-        {
-            if (IsWarnEnabled)
-                Write(ex, LogLevel.Warn, messageFunc(), null);
         }
 
         /// <summary>
@@ -512,6 +489,28 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Warn level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Warn(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Warn, message, null);
+        }
+		
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Warn level.
+        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Warn.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="messageFunc">Function that returns the log message.</param>
+        public static void Warn(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        {
+            if (IsWarnEnabled)
+                Write(ex, LogLevel.Warn, messageFunc(), null);
+        }
+
+        /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Error level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
@@ -552,28 +551,6 @@ namespace NLog.Common
         public static void Error(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Error, message, args);
-        }
-
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Error level.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="message">Log message.</param>
-        public static void Error(Exception ex, [Localizable(false)] string message)
-        {
-            Write(ex, LogLevel.Error, message, null);
-        }
-		
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Error level.
-        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Error.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Error(Exception ex, [Localizable(false)] Func<string> messageFunc)
-        {
-            if (IsErrorEnabled)
-                Write(ex, LogLevel.Error, messageFunc(), null);
         }
 
         /// <summary>
@@ -622,6 +599,28 @@ namespace NLog.Common
         }
 
         /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Error level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Error(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Error, message, null);
+        }
+		
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Error level.
+        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Error.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="messageFunc">Function that returns the log message.</param>
+        public static void Error(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        {
+            if (IsErrorEnabled)
+                Write(ex, LogLevel.Error, messageFunc(), null);
+        }
+
+        /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Fatal level.
         /// </summary>
         /// <param name="message">Message which may include positional parameters.</param>
@@ -662,28 +661,6 @@ namespace NLog.Common
         public static void Fatal(Exception ex, [Localizable(false)] string message, params object[] args)
         {
             Write(ex, LogLevel.Fatal, message, args);
-        }
-
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Fatal level.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="message">Log message.</param>
-        public static void Fatal(Exception ex, [Localizable(false)] string message)
-        {
-            Write(ex, LogLevel.Fatal, message, null);
-        }
-		
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the Fatal level.
-        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Fatal.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void Fatal(Exception ex, [Localizable(false)] Func<string> messageFunc)
-        {
-            if (IsFatalEnabled)
-                Write(ex, LogLevel.Fatal, messageFunc(), null);
         }
 
         /// <summary>
@@ -729,6 +706,28 @@ namespace NLog.Common
         {
             if (IsFatalEnabled)
                 Log(null, LogLevel.Fatal, message, arg0, arg1, arg2);
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Fatal level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void Fatal(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.Fatal, message, null);
+        }
+		
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the Fatal level.
+        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  Fatal.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="messageFunc">Function that returns the log message.</param>
+        public static void Fatal(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        {
+            if (IsFatalEnabled)
+                Write(ex, LogLevel.Fatal, messageFunc(), null);
         }
      
     }

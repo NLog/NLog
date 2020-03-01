@@ -36,7 +36,6 @@ namespace NLog.Common
     using JetBrains.Annotations;
     using System;
     using System.ComponentModel;
-    using NLog.Targets;
 	
     public static partial class InternalLogger
     {
@@ -101,28 +100,6 @@ namespace NLog.Common
         }
 
         /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="message">Log message.</param>
-        public static void <#=level#>(Exception ex, [Localizable(false)] string message)
-        {
-            Write(ex, LogLevel.<#=level#>, message, null);
-        }
-		
-        /// <summary>
-        /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
-        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  <#=level#>.
-        /// </summary>
-        /// <param name="ex">Exception to be logged.</param>
-        /// <param name="messageFunc">Function that returns the log message.</param>
-        public static void <#=level#>(Exception ex, [Localizable(false)] Func<string> messageFunc)
-        {
-            if (Is<#=level#>Enabled)
-                Write(ex, LogLevel.<#=level#>, messageFunc(), null);
-        }
-
-        /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the Trace level.
         /// </summary>
         /// <typeparam name="TArgument1">The type of the first argument.</typeparam>
@@ -165,6 +142,28 @@ namespace NLog.Common
         {
             if (Is<#=level#>Enabled)
                 Log(null, LogLevel.<#=level#>, message, arg0, arg1, arg2);
+        }
+
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="message">Log message.</param>
+        public static void <#=level#>(Exception ex, [Localizable(false)] string message)
+        {
+            Write(ex, LogLevel.<#=level#>, message, null);
+        }
+		
+        /// <summary>
+        /// Logs the specified message with an <see cref="Exception"/> at the <#=level#> level.
+        /// <paramref name="messageFunc"/> will be only called when logging is enabled for level  <#=level#>.
+        /// </summary>
+        /// <param name="ex">Exception to be logged.</param>
+        /// <param name="messageFunc">Function that returns the log message.</param>
+        public static void <#=level#>(Exception ex, [Localizable(false)] Func<string> messageFunc)
+        {
+            if (Is<#=level#>Enabled)
+                Write(ex, LogLevel.<#=level#>, messageFunc(), null);
         }
 <#
 	}
