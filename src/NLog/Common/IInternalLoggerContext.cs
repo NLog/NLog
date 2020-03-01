@@ -31,52 +31,16 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System;
-using JetBrains.Annotations;
-
 namespace NLog.Common
 {
     /// <summary>
-    /// Written to the internal logger
+    /// Enables <see cref="InternalLogger"/> to extract extra context details for <see cref="InternalLogger.LogMessageReceived"/>
     /// </summary>
-    public sealed class InternalLoggerMessageEventArgs : EventArgs
+    internal interface IInternalLoggerContext
     {
         /// <summary>
-        /// The rendered message
+        /// Name of context
         /// </summary>
-        public string Message { get; }
-
-        /// <summary>
-        /// The loglevel
-        /// </summary>
-        public LogLevel Level { get; }
-
-        /// <summary>
-        /// Optional, the exception
-        /// </summary>
-        [CanBeNull]
-        public Exception Exception { get; }
-
-        /// <summary>
-        /// Optional, the context-type. Ex. Target-Type
-        /// </summary>
-        [CanBeNull]
-        public Type ContextType { get; }
-
-        /// <summary>
-        /// Optional, the context-name. Ex. Target-Name
-        /// </summary>
-        [CanBeNull]
-        public string ContextName { get; }
-
-        /// <inheritdoc />
-        internal InternalLoggerMessageEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type contextType, [CanBeNull] string contextName)
-        {
-            Message = message;
-            Level = level;
-            Exception = exception;
-            ContextType = contextType;
-            ContextName = contextName;
-        }
+        string Name { get; }
     }
 }

@@ -39,9 +39,9 @@ namespace NLog.Common
     using System.Globalization;
     using System.IO;
     using System.Reflection;
-    using System.Text;
     using NLog.Internal;
     using NLog.Time;
+    using NLog.Targets;
 
     /// <summary>
     /// NLog internal logger.
@@ -193,7 +193,7 @@ namespace NLog.Common
         /// <param name="messageFunc">Function that returns the log message.</param>
         public static void Log(LogLevel level, [Localizable(false)] Func<string> messageFunc)
         {
-            if (!IsLogLevelDisabled(level))
+            if (IsLogLevelEnabled(level))
             {
                 Write(null, level, messageFunc(), null);
             }
@@ -208,7 +208,7 @@ namespace NLog.Common
         /// <param name="messageFunc">Function that returns the log message.</param>
         public static void Log(Exception ex, LogLevel level, [Localizable(false)] Func<string> messageFunc)
         {
-            if (!IsLogLevelDisabled(level))
+            if (IsLogLevelEnabled(level))
             {
                 Write(ex, level, messageFunc(), null);
             }
@@ -247,7 +247,7 @@ namespace NLog.Common
         /// <param name="args">optional args for <paramref name="message"/></param>
         private static void Write([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
         {
-            if (IsLogLevelDisabled(level))
+            if (!IsLogLevelEnabled(level))
             {
                 return;
             }
@@ -271,28 +271,54 @@ namespace NLog.Common
 
                 if (hasActiveLoggersWithLine)
                 {
-                    string line = CreateLogLine(ex, level, fullMessage);
+                    WriteLogLine(ex, level, fullMessage);
+                }
 
-                    WriteToLogFile(line);
-                    WriteToTextWriter(line);
+                if (hasEventListeners)
+                {
+                    var targetContext = args?.Length > 0 ? args[0] as IInternalLoggerContext : null;
+                    LogMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(fullMessage, level, ex, targetContext?.GetType(), targetContext?.Name));
+
+                    ex?.MarkAsLoggedToInternalLogger();
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionThrowWhenWriting = true;
+
+                // no log looping.
+                // we have no place to log the message to so we ignore it
+                if (exception.MustBeRethrownImmediately())
+                {
+                    throw;
+                }
+            }
+        }
+
+        private static void WriteLogLine(Exception ex, LogLevel level, string message)
+        {
+            try
+            {
+                string line = CreateLogLine(ex, level, message);
+
+                WriteToLogFile(line);
+                WriteToTextWriter(line);
 
 #if !NETSTANDARD1_3
-                    WriteToConsole(line);
-                    WriteToErrorConsole(line);
+                WriteToConsole(line);
+                WriteToErrorConsole(line);
 #endif
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__ && !NETSTANDARD1_3
-                    WriteToTrace(line);
+                WriteToTrace(line);
 #endif
-                }
-
-                LogMessageReceived?.Invoke(null, new InternalLoggerMessageEventArgs(fullMessage, level, ex));
 
                 ex?.MarkAsLoggedToInternalLogger();
             }
             catch (Exception exception)
             {
                 ExceptionThrowWhenWriting = true;
+
                 // no log looping.
                 // we have no place to log the message to so we ignore it
                 if (exception.MustBeRethrownImmediately())
@@ -305,37 +331,25 @@ namespace NLog.Common
         /// <summary>
         /// Create log line with timestamp, exception message etc (if configured)
         /// </summary>
-        /// <param name="ex"></param>
-        /// <param name="level"></param>
-        /// <param name="fullMessage"></param>
-        /// <returns></returns>
         private static string CreateLogLine([CanBeNull]Exception ex, LogLevel level, string fullMessage)
         {
             const string timeStampFormat = "yyyy-MM-dd HH:mm:ss.ffff";
             const string fieldSeparator = " ";
 
-            var builder = new StringBuilder(fullMessage.Length + timeStampFormat.Length + (ex?.ToString().Length ?? 0) + 25);
             if (IncludeTimestamp)
             {
-                builder
-                    .Append(TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture))
-                    .Append(fieldSeparator);
+                if (ex != null)
+                    return $"{TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture)}{fieldSeparator}{level.ToString()}{fieldSeparator}{fullMessage}{fieldSeparator}Exception: {ex.ToString()}";
+                else
+                    return $"{TimeSource.Current.Time.ToString(timeStampFormat, CultureInfo.InvariantCulture)}{fieldSeparator}{level.ToString()}{fieldSeparator}{fullMessage}";
             }
-
-            builder
-                .Append(level)
-                .Append(fieldSeparator)
-                .Append(fullMessage);
-
-            if (ex != null)
+            else
             {
-                builder
-                    .Append(fieldSeparator)
-                    .Append("Exception: ")
-                    .Append(ex);
+                if (ex != null)
+                    return $"{level.ToString()}{fieldSeparator}{fullMessage}{fieldSeparator}Exception: {ex.ToString()}";
+                else
+                    return $"{level.ToString()}{fieldSeparator}{fullMessage}";
             }
-
-            return builder.ToString();
         }
 
         private static string CreateFullMessage(string message, object[] args)
@@ -360,9 +374,9 @@ namespace NLog.Common
         /// </summary>
         /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
         /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
-        private static bool IsLogLevelDisabled(LogLevel logLevel)
+        private static bool IsLogLevelEnabled(LogLevel logLevel)
         {
-            return ReferenceEquals(_logLevel, LogLevel.Off) || logLevel < _logLevel;
+            return !ReferenceEquals(_logLevel, LogLevel.Off) && logLevel >= _logLevel;
         }
 
         /// <summary>

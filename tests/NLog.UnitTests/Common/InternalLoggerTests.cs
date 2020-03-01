@@ -798,31 +798,54 @@ namespace NLog.UnitTests.Common
         }
 
         [Fact]
-        public void TestReceivedLogEventText()
+        public void TestReceivedLogEventTest()
         {
-            // Arrange
-            var receivedArgs = new List<InternalLoggerMessageEventArgs>();
-            InternalLogger.LogMessageReceived += (sender, e) =>
+            using (var loggerScope = new InternalLoggerScope())
             {
-                receivedArgs.Add(e);
-            };
-            InternalLogger.LogLevel = LogLevel.Info;
-            var exception = new Exception();
+                // Arrange
+                var receivedArgs = new List<InternalLoggerMessageEventArgs>();
+                InternalLogger.LogMessageReceived += (sender, e) =>
+                {
+                    receivedArgs.Add(e);
+                };
+                var exception = new Exception();
 
-            // Act
-            InternalLogger.Info(exception, "Hello {0}", "it's me!");
+                // Act
+                InternalLogger.Info(exception, "Hello {0}", "it's me!");
 
-            // Assert
-            Assert.Single(receivedArgs);
-            var logEventArgs = receivedArgs.Single();
-            Assert.Equal(LogLevel.Info, logEventArgs.Level);
-            Assert.Equal(exception, logEventArgs.Exception);
-            Assert.Equal("Hello it's me!", logEventArgs.Message);
+                // Assert
+                Assert.Single(receivedArgs);
+                var logEventArgs = receivedArgs.Single();
+                Assert.Equal(LogLevel.Info, logEventArgs.Level);
+                Assert.Equal(exception, logEventArgs.Exception);
+                Assert.Equal("Hello it's me!", logEventArgs.Message);
+            }
         }
 
-        private void InternalLogger_ReceivedLogEvent(object sender, InternalLoggerMessageEventArgs e)
+        [Fact]
+        public void TestReceivedLogEventExceptionContextTest()
         {
-            throw new NotImplementedException();
+            using (var loggerScope = new InternalLoggerScope())
+            {
+                // Arrange
+                var targetContext = new NLog.Targets.DebugTarget() { Name = "Ugly" };
+                var receivedArgs = new List<InternalLoggerMessageEventArgs>();
+                InternalLogger.LogMessageReceived += (sender, e) =>
+                {
+                    receivedArgs.Add(e);
+                };
+                var exception = new Exception();
+
+                // Act
+                NLog.Internal.ExceptionHelper.MustBeRethrown(exception, targetContext);
+
+                // Assert
+                Assert.Single(receivedArgs);
+                var logEventArgs = receivedArgs.Single();
+                Assert.Equal(LogLevel.Error, logEventArgs.Level);
+                Assert.Equal(exception, logEventArgs.Exception);
+                Assert.Equal(targetContext.GetType(), logEventArgs.ContextType);
+            }
         }
 
         public void Dispose()
