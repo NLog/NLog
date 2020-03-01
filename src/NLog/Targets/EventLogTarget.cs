@@ -271,7 +271,7 @@ namespace NLog.Targets
 
             EventLogEntryType entryType = GetEntryType(logEvent);
 
-            var eventId = EventId.RenderableToValue(logEvent);
+            var eventId = RenderLogEvent(EventId, logEvent);
             short category = 0;
             string renderCategory = RenderLogEvent(Category, logEvent);
             if (!string.IsNullOrEmpty(renderCategory) && !short.TryParse(renderCategory, out category))

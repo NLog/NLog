@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using JetBrains.Annotations;
+
 namespace NLog.Targets
 {
     using System;
@@ -688,7 +690,7 @@ namespace NLog.Targets
         /// <param name="layout">The layout.</param>
         /// <param name="logEvent">The event info.</param>
         /// <returns>String representing log event.</returns>
-        protected string RenderLogEvent(Layout layout, LogEventInfo logEvent)
+        protected string RenderLogEvent([CanBeNull] Layout layout, [CanBeNull] LogEventInfo logEvent)
         {
             if (layout == null || logEvent == null)
                 return null;    // Signal that input was wrong
@@ -722,6 +724,42 @@ namespace NLog.Targets
             }
         }
 
+        /// <summary>
+        /// Renders the event info in layout.
+        /// </summary>
+        /// <param name="layout">The layout.</param>
+        /// <param name="logEvent">The event info.</param>
+        /// <param name="defaultValue">The default value when <paramref name="layout"/> and/or <paramref name="logEvent"/> is <c>null</c></param>
+        /// <returns>Value representing log event.</returns>
+        protected T RenderLogEvent<T>([CanBeNull] Layout<T> layout, [CanBeNull] LogEventInfo logEvent, T defaultValue = default(T))
+        {
+            if (layout == null || logEvent == null)
+                return defaultValue;
+
+            if (OptimizeBufferReuse)
+            {
+                if (layout.IsFixed)
+                {
+                    return layout.RenderableToValue(logEvent, defaultValue);
+                }
+
+                if (TryGetCachedValue(layout, logEvent, out var value))
+                {
+                    return value;
+                }
+
+                return layout.RenderableToValue(logEvent, defaultValue); //todo
+                //using (var localTarget = ReusableLayoutBuilder.Allocate())
+                //{
+                //    return layout.RenderAllocateBuilder(logEvent, localTarget.Result);
+                //}
+            }
+            else
+            {
+                return layout.RenderableToValue(logEvent, defaultValue);
+            }
+        }
+
         private static bool TryGetCachedValue(Layout layout, LogEventInfo logEvent, out string value)
         {
             if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out var value2))
@@ -731,6 +769,18 @@ namespace NLog.Targets
             }
 
             value = null;
+            return false;
+        }
+
+        private static bool TryGetCachedValue<T>(Layout<T> layout, LogEventInfo logEvent, out T value)
+        {
+            if ((!layout.ThreadAgnostic || layout.MutableUnsafe) && logEvent.TryGetCachedLayoutValue(layout, out var value2))
+            {
+                value = (T)value2;
+                return true;
+            }
+
+            value = default(T);
             return false;
         }
 
