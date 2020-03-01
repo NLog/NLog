@@ -314,7 +314,7 @@ namespace MakeNLogXSD
             switch (apiTypeName)
             {
                 case "Layout":
-                    return attribute ? "SimpleLayoutAttribute" : "Layout";
+                    return GetLayoutType(attribute);
 
                 case "NLog.Filters.Filter":
                     return attribute ? null : "Filter";
@@ -371,8 +371,19 @@ namespace MakeNLogXSD
                         return "xs:string";
                     }
 
+                    if (apiTypeName.StartsWith("NLog.Layouts.Layout`1"))
+                    {
+                        // Layout<T>
+                        return GetLayoutType(attribute);
+                    }
+
                     throw new NotSupportedException("Unknown API type '" + apiTypeName + "'.");
             }
+        }
+
+        private static string GetLayoutType(bool attribute)
+        {
+            return attribute ? "SimpleLayoutAttribute" : "Layout";
         }
     }
 }
