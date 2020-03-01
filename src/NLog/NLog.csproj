@@ -279,10 +279,6 @@ For all config options and platform support, check https://nlog-project.org/conf
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InternalLogger-generated.cs</LastGenOutput>
     </None>
-    <None Update="Internal\LayoutHelpers-generated.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LayoutHelpers-generated.cs</LastGenOutput>
-    </None>
     <None Update="Logger-generated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Logger-generated.cs</LastGenOutput>
@@ -298,11 +294,6 @@ For all config options and platform support, check https://nlog-project.org/conf
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>InternalLogger-generated.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Internal\LayoutHelpers-generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LayoutHelpers-generated.tt</DependentUpon>
     </Compile>
     <Compile Update="Logger-generated.cs">
       <DesignTime>True</DesignTime>
