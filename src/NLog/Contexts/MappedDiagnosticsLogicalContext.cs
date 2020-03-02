@@ -91,6 +91,7 @@ namespace NLog
 #if NET4_5
             public ItemRemover(IReadOnlyList<KeyValuePair<string,object>> items, bool wasEmpty)
             {
+                _restorePreviousValuesOnDispose = false;
                 int itemCount = items.Count;
                 if (itemCount > 2)
                 {
@@ -117,6 +118,7 @@ namespace NLog
 
             public ItemRemover(IReadOnlyList<KeyValuePair<string, object>> itemsWithPreviousValues, bool wasEmpty, bool restorePreviousValues)
             {
+                _restorePreviousValuesOnDispose = true;
                 int itemCount = itemsWithPreviousValues.Count;
                 if (itemCount > 2)
                 {

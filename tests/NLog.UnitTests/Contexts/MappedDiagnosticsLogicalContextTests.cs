@@ -378,6 +378,39 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        public void disposable_multiple_items_with_restore()
+        {
+            const string itemNotRemovedKey = "itemNotRemovedKey";
+            const string item1Key = "item1Key";
+            const string item2Key = "item2Key";
+            const string item3Key = "item3Key";
+            const string item4Key = "item4Key";
+
+            MappedDiagnosticsLogicalContext.Clear();
+            MappedDiagnosticsLogicalContext.Set(itemNotRemovedKey, "itemNotRemoved");
+            using (MappedDiagnosticsLogicalContext.SetScoped(new[] { new KeyValuePair<string, object>(item1Key, "1"), new KeyValuePair<string, object>(item2Key, "2") }))
+            {
+                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, item1Key, item2Key });
+            }
+
+            Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
+
+            using (MappedDiagnosticsLogicalContext.SetScoped(new[] { new KeyValuePair<string, object>(item1Key, "1"), new KeyValuePair<string, object>(item2Key, "2"), new KeyValuePair<string, object>(item3Key, "3"), new KeyValuePair<string, object>(item4Key, "4") }))
+            {
+                using (var itemRemover = MappedDiagnosticsLogicalContext.SetScoped(new[] { new KeyValuePair<string, object>(item1Key, "111") }, true))
+                {
+                    Assert.Equal("111", MappedDiagnosticsLogicalContext.Get(item1Key));
+                }
+
+                Assert.Equal("1", MappedDiagnosticsLogicalContext.Get(item1Key));
+
+                Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey, item1Key, item2Key, item3Key, item4Key });
+            }
+
+            Assert.Equal(MappedDiagnosticsLogicalContext.GetNames(), new[] { itemNotRemovedKey });
+        }
+
+        [Fact]
         public void disposable_fast_clear_multiple_items()
         {
             const string item1Key = "item1Key";
