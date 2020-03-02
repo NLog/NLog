@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Linq;
+
 #if !SILVERLIGHT
 
 namespace NLog
@@ -53,12 +55,18 @@ namespace NLog
     {
         private sealed class ItemRemover : IDisposable
         {
+            private readonly bool _restorePreviousValuesOnDispose;
+
             private readonly string _item1;
+            private readonly object _item1PreviousValue;
 #if NET4_5
             // Optimized for HostingLogScope with 3 properties
             private readonly string _item2;
+            private readonly object _item2PreviousValue;
             private readonly string _item3;
+            private readonly object _item3PreviousValue;
             private readonly string[] _itemArray;
+            private readonly object[] _itemPreviousValuesArray;
 #endif
             //boolean as int to allow the use of Interlocked.Exchange
             private int _disposed;
@@ -68,6 +76,16 @@ namespace NLog
             {
                 _item1 = item;
                 _wasEmpty = wasEmpty;
+                _restorePreviousValuesOnDispose = false;
+                _item1PreviousValue = null;
+            }
+
+            public ItemRemover(string item, bool wasEmpty, object previousValue)
+            {
+                _item1 = item;
+                _wasEmpty = wasEmpty;
+                _restorePreviousValuesOnDispose = true;
+                _item1PreviousValue = previousValue;
             }
 
 #if NET4_5
@@ -79,9 +97,9 @@ namespace NLog
                     _item1 = items[0].Key;
                     _item2 = items[1].Key;
                     _item3 = items[2].Key;
+                    _itemArray = _itemArray ?? new string[itemCount - 3];
                     for (int i = 3; i < itemCount; ++i)
                     {
-                        _itemArray = _itemArray ?? new string[itemCount - 3];
                         _itemArray[i - 3] = items[i].Key;
                     }
                 }
@@ -93,6 +111,41 @@ namespace NLog
                 else
                 {
                     _item1 = items[0].Key;
+                }
+                _wasEmpty = wasEmpty;
+            }
+
+            public ItemRemover(IReadOnlyList<KeyValuePair<string, object>> itemsWithPreviousValues, bool wasEmpty, bool restorePreviousValues)
+            {
+                int itemCount = itemsWithPreviousValues.Count;
+                if (itemCount > 2)
+                {
+                    _item1 = itemsWithPreviousValues[0].Key;
+                    _item1PreviousValue = itemsWithPreviousValues[0].Value;
+                    _item2 = itemsWithPreviousValues[1].Key;
+                    _item2PreviousValue = itemsWithPreviousValues[1].Value;
+                    _item3 = itemsWithPreviousValues[2].Key;
+                    _item3PreviousValue = itemsWithPreviousValues[2].Value;
+
+                    _itemArray = _itemArray ?? new string[itemCount - 3];
+                    _itemPreviousValuesArray = _itemPreviousValuesArray ?? new object[itemCount - 3];
+                    for (int i = 3; i < itemCount; ++i)
+                    {
+                        _itemArray[i - 3] = itemsWithPreviousValues[i].Key;
+                        _itemPreviousValuesArray[i - 3] = itemsWithPreviousValues[i].Value;
+                    }
+                }
+                else if (itemCount > 1)
+                {
+                    _item1 = itemsWithPreviousValues[0].Key;
+                    _item1PreviousValue = itemsWithPreviousValues[0].Value;
+                    _item2 = itemsWithPreviousValues[1].Key;
+                    _item2PreviousValue = itemsWithPreviousValues[1].Value;
+                }
+                else
+                {
+                    _item1 = itemsWithPreviousValues[0].Key;
+                    _item1PreviousValue = itemsWithPreviousValues[0].Value;
                 }
                 _wasEmpty = wasEmpty;
             }
@@ -109,19 +162,34 @@ namespace NLog
                     }
 
                     var dictionary = GetLogicalThreadDictionary(true);
-                    dictionary.Remove(_item1);
+                    if (_restorePreviousValuesOnDispose)
+                        SetItemValue(_item1, _item1PreviousValue, dictionary);
+                    else
+                        dictionary.Remove(_item1);
+
 #if NET4_5
                     if (_item2 != null)
                     {
-                        dictionary.Remove(_item2);
+                        if (_restorePreviousValuesOnDispose)
+                            SetItemValue(_item2, _item2PreviousValue, dictionary);
+                        else
+                            dictionary.Remove(_item2);
+
                         if (_item3 != null)
-                            dictionary.Remove(_item3);
+                            if (_restorePreviousValuesOnDispose)
+                                SetItemValue(_item3, _item3PreviousValue, dictionary);
+                            else
+                                dictionary.Remove(_item3);
+
                         if (_itemArray != null)
                         {
                             for (int i = 0; i < _itemArray.Length; ++i)
                             {
                                 if (_itemArray[i] != null)
-                                    dictionary.Remove(_itemArray[i]);
+                                    if (_restorePreviousValuesOnDispose)
+                                        SetItemValue(_itemArray[i], _itemPreviousValuesArray[i], dictionary);
+                                    else
+                                        dictionary.Remove(_itemArray[i]);
                             }
                         }
                     }
@@ -233,14 +301,25 @@ namespace NLog
         }
 
         /// <summary>
-        /// Sets the current logical context item to the specified value.
+        /// Gets the current logical context named item, as <see cref="object"/>.
         /// </summary>
         /// <param name="item">Item name.</param>
-        /// <param name="value">Item value.</param>
-        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
-        public static IDisposable SetScoped(string item, string value)
+        /// <param name="logicalContext">Given logical context store.</param>
+        /// <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
+        private static object GetObject(string item, IDictionary<string, object> logicalContext)
         {
-            return SetScoped<string>(item, value);
+            if (logicalContext == null || !logicalContext.TryGetValue(item, out var value))
+                return null;
+
+#if NET4_6 || NETSTANDARD
+            return value;
+#else
+            if (value is ObjectHandleSerializer objectHandle)
+            {
+                return objectHandle.Unwrap();
+            }
+            return value;
+#endif
         }
 
         /// <summary>
@@ -248,10 +327,11 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
+        /// <param name="restorePreviousValueOnDispose">If true then previous value for given key is restored when object is Disposed.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
-        public static IDisposable SetScoped(string item, object value)
+        public static IDisposable SetScoped(string item, string value, bool restorePreviousValueOnDispose = false)
         {
-            return SetScoped<object>(item, value);
+            return SetScoped<string>(item, value, restorePreviousValueOnDispose);
         }
 
         /// <summary>
@@ -259,13 +339,35 @@ namespace NLog
         /// </summary>
         /// <param name="item">Item name.</param>
         /// <param name="value">Item value.</param>
+        /// <param name="restorePreviousValueOnDispose">If true then previous value for given key is restored when object is Disposed.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
-        public static IDisposable SetScoped<T>(string item, T value)
+        public static IDisposable SetScoped(string item, object value, bool restorePreviousValueOnDispose = false)
+        {
+            return SetScoped<object>(item, value, restorePreviousValueOnDispose);
+        }
+
+        /// <summary>
+        /// Sets the current logical context item to the specified value.
+        /// </summary>
+        /// <param name="item">Item name.</param>
+        /// <param name="value">Item value.</param>
+        /// <param name="restorePreviousValueOnDispose">If true then previous value for given key is restored when object is Disposed.</param>
+        /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context.</returns>
+        public static IDisposable SetScoped<T>(string item, T value, bool restorePreviousValueOnDispose = false)
         {
             var logicalContext = GetLogicalThreadDictionary(true, 1);
             bool wasEmpty = logicalContext.Count == 0;
-            SetItemValue(item, value, logicalContext);
-            return new ItemRemover(item, wasEmpty);
+            if (restorePreviousValueOnDispose)
+            {
+                var previousValue = GetObject(item, logicalContext);
+                SetItemValue(item, value, logicalContext);
+                return new ItemRemover(item, wasEmpty, previousValue);
+            }
+            else
+            {
+                SetItemValue(item, value, logicalContext);
+                return new ItemRemover(item, wasEmpty);
+            }
         }
 
 #if NET4_5
@@ -273,18 +375,30 @@ namespace NLog
         /// Updates the current logical context with multiple items in single operation
         /// </summary>
         /// <param name="items">.</param>
+        /// <param name="restorePreviousValueOnDispose">If true then previous value for given key is restored when object is Disposed.</param>
         /// <returns>>An <see cref="IDisposable"/> that can be used to remove the item from the current logical context (null if no items).</returns>
-        public static IDisposable SetScoped(IReadOnlyList<KeyValuePair<string,object>> items)
+        public static IDisposable SetScoped(IReadOnlyList<KeyValuePair<string,object>> items, bool restorePreviousValueOnDispose = false)
         {
             if (items?.Count > 0)
             {
                 var logicalContext = GetLogicalThreadDictionary(true, items.Count);
                 bool wasEmpty = logicalContext.Count == 0;
+                
+                IReadOnlyList<KeyValuePair<string, object>> itemsWithPreviousValues = null;
+                if (restorePreviousValueOnDispose)
+                {
+                    itemsWithPreviousValues = items.Select(x => new KeyValuePair<string, object>(x.Key, GetObject(x.Key, logicalContext))).ToArray();
+                }
+
                 for (int i = 0; i < items.Count; ++i)
                 {
                     SetItemValue(items[i].Key, items[i].Value, logicalContext);
                 }
-                return new ItemRemover(items, wasEmpty);
+
+                return restorePreviousValueOnDispose
+                    ? new ItemRemover(itemsWithPreviousValues, wasEmpty, true)
+                    : new ItemRemover(items, wasEmpty);
+
             }
 
             return null;
