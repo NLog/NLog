@@ -32,6 +32,8 @@
 // 
 
 using System.Linq;
+using System.Reflection;
+using JetBrains.Annotations;
 
 #if !SILVERLIGHT && !__IOS__ && !__ANDROID__
 
@@ -43,9 +45,6 @@ namespace NLog.Targets
 
     using System.Data;
     using System.Data.Common;
-#if NETSTANDARD2_0
-    using System.Data.SqlClient;
-#endif
 #if NETSTANDARD
     using System.Reflection;
 #endif
@@ -62,7 +61,6 @@ namespace NLog.Targets
 #if !NETSTANDARD
     using System.Configuration;
     using ConfigurationManager = System.Configuration.ConfigurationManager;
-    using System.Data.SqlClient;
 #endif
 
     /// <summary>
@@ -241,8 +239,19 @@ namespace NLog.Targets
         /// Note: only supported for .NET 4.6 and .NET standard 2.0+
         /// </summary>
         /// <docgen category='Connection Options' order='10' />
-        public Layout DBAccessToken { get; set; }
+        public Layout DBAccessToken
+        {
+            get => _dbAccessToken;
+            set
+            {
+                _dbAccessToken = value;
+                TryCreateAccessTokenSetter();
+            }
+        }
+        private Layout _dbAccessToken;
 
+        private AccessTokenSetter _accessTokenSetter;
+        
         /// <summary>
         /// Gets or sets the database name. If the ConnectionString is not provided
         /// this value will be used to construct the "Database=" part of the
@@ -293,13 +302,31 @@ namespace NLog.Targets
         public System.Data.IsolationLevel? IsolationLevel { get; set; }
 
 #if !NETSTANDARD
-        internal DbProviderFactory ProviderFactory { get; set; }
+        internal DbProviderFactory ProviderFactory
+        {
+            get => _providerFactory;
+            set
+            {
+                _providerFactory = value;
+                TryCreateAccessTokenSetter();
+            }
+        }
+        private DbProviderFactory _providerFactory;
 
         // this is so we can mock the connection string without creating sub-processes
         internal ConnectionStringSettingsCollection ConnectionStringsSettings { get; set; }
 #endif
 
-        internal Type ConnectionType { get; set; }
+        internal Type ConnectionType
+        {
+            get => _connectionType;
+            set
+            {
+                _connectionType = value;
+                TryCreateAccessTokenSetter();
+            }
+        }
+        private Type _connectionType;
 
         private IPropertyTypeConverter PropertyTypeConverter
         {
@@ -350,15 +377,9 @@ namespace NLog.Targets
                 throw new NLogRuntimeException("Creation of connection failed");
             }
 
-
-
             if (!string.IsNullOrEmpty(accessToken))
             {
-                var accessTokenProperty = connection.GetType().GetProperty("AccessToken");
-                if (accessTokenProperty != null && accessTokenProperty.CanWrite)
-                {
-                    accessTokenProperty.SetValue(connection, accessToken);
-                }
+                _accessTokenSetter?.SetToken(connection, accessToken);
             }
 
             connection.ConnectionString = connectionString;
@@ -1215,6 +1236,62 @@ namespace NLog.Targets
             Suppress,
         }
 #endif
+
+        private void TryCreateAccessTokenSetter()
+        {
+            if (DBAccessToken != null)
+            {
+                _accessTokenSetter = null;
+            }
+
+            if (DBAccessToken is SimpleLayout s && s.IsFixedText && string.IsNullOrEmpty(s.FixedText))
+            {
+                _accessTokenSetter = null;
+            }
+
+            var connection = CreateConnection();
+            if (connection != null)
+            {
+                _accessTokenSetter = AccessTokenSetter.TryCreate(connection, Name);
+            }
+            else
+            {
+                _accessTokenSetter = null;
+            }
+        }
+
+        private class AccessTokenSetter
+        {
+            private readonly PropertyInfo _accessTokenProperty;
+
+            private AccessTokenSetter([NotNull] PropertyInfo accessTokenProperty)
+            {
+                _accessTokenProperty = accessTokenProperty ?? throw new ArgumentNullException(nameof(accessTokenProperty));
+            }
+
+            public static AccessTokenSetter TryCreate(IDbConnection connection, string targetName)
+            {
+                var type = connection.GetType();
+                var accessTokenProperty = type.GetProperty("AccessToken");
+                if (accessTokenProperty == null)
+                {
+                    InternalLogger.Warn("DatabaseTarget(Name={0}), Cannot set AccessToken on type {1}, property not found", targetName, type.FullName);
+                    return null;
+                }
+                if (!accessTokenProperty.CanWrite)
+                {
+                    InternalLogger.Warn("DatabaseTarget(Name={0}), Cannot set AccessToken on type {1}, property not settable", targetName, type.FullName);
+                    return null;
+                }
+
+                return new AccessTokenSetter(accessTokenProperty);
+            }
+
+            public void SetToken(IDbConnection connection, string accessToken)
+            {
+                _accessTokenProperty.SetValue(connection, accessToken);
+            }
+        }
     }
 }
 
