@@ -870,7 +870,7 @@ namespace NLog.UnitTests.Common
                 var logEventArgs = receivedArgs.Single();
                 Assert.Equal(LogLevel.Error, logEventArgs.Level);
                 Assert.Equal(exception, logEventArgs.Exception);
-                Assert.Equal(targetContext.GetType(), logEventArgs.ContextType);
+                Assert.Equal(targetContext.GetType(), logEventArgs.SenderType);
             }
         }
 

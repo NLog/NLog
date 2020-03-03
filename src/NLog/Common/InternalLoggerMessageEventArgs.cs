@@ -62,23 +62,23 @@ namespace NLog.Common
         /// This property is not always populated. 
         /// </summary>
         [CanBeNull]
-        public Type ContextType { get; }
+        public Type SenderType { get; }
 
         /// <summary>
         /// The context name that triggered this internal log event, for example the name of the Target. 
         /// This property is not always populated. 
         /// </summary>
         [CanBeNull]
-        public string ContextName { get; }
+        public string SenderName { get; }
 
         /// <inheritdoc />
-        internal InternalLoggerMessageEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type contextType, [CanBeNull] string contextName)
+        internal InternalLoggerMessageEventArgs(string message, LogLevel level, [CanBeNull] Exception exception, [CanBeNull] Type senderType, [CanBeNull] string senderName)
         {
             Message = message;
             Level = level;
             Exception = exception;
-            ContextType = contextType;
-            ContextName = contextName;
+            SenderType = senderType;
+            SenderName = senderName;
         }
     }
 }
