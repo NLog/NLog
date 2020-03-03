@@ -488,7 +488,11 @@ namespace NLog.Targets
                     if (dbConnectionStringBuilder.TryGetValue("provider", out var providerValue))
                     {
                         // Provider was overriden by ConnectionString
+                        // ReSharper disable ConstantConditionalAccessQualifier
+                        // ReSharper disable ConstantNullCoalescingCondition
                         providerName = providerValue.ToString()?.Trim() ?? string.Empty;
+                        // ReSharper restore ConstantNullCoalescingCondition
+                        // ReSharper restore ConstantConditionalAccessQualifier
                     }
 
                     // ConnectionString was overriden by ConnectionString :)
@@ -511,19 +515,16 @@ namespace NLog.Targets
 #if !NETSTANDARD
         private bool InitProviderFactory(string providerName)
         {
-            bool foundProvider;
             try
             {
                 ProviderFactory = DbProviderFactories.GetFactory(providerName);
-                foundProvider = true;
+                return true;
             }
             catch (Exception ex)
             {
                 InternalLogger.Error(ex, "DatabaseTarget(Name={0}): DbProviderFactories failed to get factory from ProviderName={1}", Name, providerName);
                 throw;
             }
-
-            return foundProvider;
         }
 
         private string GetProviderNameFromDbProviderFactories(string providerName)
@@ -673,7 +674,7 @@ namespace NLog.Targets
         {
             if (IsolationLevel.HasValue && logEvents.Count > 1)
             {
-                WriteLogEventBatchToDatabase(logEvents, connectionString);
+                WriteLogEventBatchToDatabase(logEvents, connectionString, IsolationLevel.Value);
             }
             else
             {
@@ -702,7 +703,7 @@ namespace NLog.Targets
             }
         }
 
-        private void WriteLogEventBatchToDatabase(IList<AsyncLogEventInfo> logEvents, string connectionString)
+        private void WriteLogEventBatchToDatabase(IList<AsyncLogEventInfo> logEvents, string connectionString, System.Data.IsolationLevel isolationLevel)
         {
             try
             {
@@ -712,7 +713,7 @@ namespace NLog.Targets
                     string accessToken = GetAccessToken(logEvents.FirstOrDefault().LogEvent);
                     EnsureConnectionOpen(connectionString, accessToken);
 
-                    var dbTransaction = _activeConnection.BeginTransaction(IsolationLevel.Value);
+                    var dbTransaction = _activeConnection.BeginTransaction(isolationLevel);
                     try
                     {
                         for (int i = 0; i < logEvents.Count; ++i)
@@ -737,7 +738,7 @@ namespace NLog.Targets
                         {
                             if (dbTransaction?.Connection != null)
                             {
-                                dbTransaction?.Rollback();
+                                dbTransaction.Rollback();
                             }
                             dbTransaction?.Dispose();
                         }
