@@ -241,8 +241,12 @@ namespace NLog.Targets
             get => _dbAccessToken;
             set
             {
+                var changed = _dbAccessToken != value;
                 _dbAccessToken = value;
-                TryCreateAccessTokenSetter();
+                if (changed)
+                {
+                    TryCreateAccessTokenSetter();
+                }
             }
         }
         private Layout _dbAccessToken;
@@ -304,8 +308,12 @@ namespace NLog.Targets
             get => _providerFactory;
             set
             {
+                var changed = _providerFactory != value;
                 _providerFactory = value;
-                TryCreateAccessTokenSetter();
+                if (changed)
+                {
+                    TryCreateAccessTokenSetter();
+                }
             }
         }
         private DbProviderFactory _providerFactory;
@@ -319,8 +327,12 @@ namespace NLog.Targets
             get => _connectionType;
             set
             {
+                var changed = _connectionType != value;
                 _connectionType = value;
-                TryCreateAccessTokenSetter();
+                if (changed)
+                {
+                    TryCreateAccessTokenSetter();
+                }
             }
         }
         private Type _connectionType;
@@ -392,7 +404,7 @@ namespace NLog.Targets
             {
                 connection = ProviderFactory.CreateConnection();
             }
-            else 
+            else
 #endif
             if (ConnectionType != null)
             {
@@ -504,7 +516,7 @@ namespace NLog.Targets
                     InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse '{1}' ConnectionString", Name, ConnectionStringName);
                 else
 #endif
-                InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
+                    InternalLogger.Warn(ex, "DatabaseTarget(Name={0}): DbConnectionStringBuilder failed to parse ConnectionString", Name);
             }
 
             return providerName;
