@@ -40,10 +40,15 @@ namespace NLog.Internal
 {
     internal class PropertySetter<T>
     {
-        private ReflectionHelpers.LateBoundMethod _propertySetter;
+        private readonly ReflectionHelpers.LateBoundMethod _propertySetter;
 
         private PropertySetter([NotNull] PropertyInfo property)
         {
+            if (property == null)
+            {
+                throw new ArgumentNullException(nameof(property));
+            }
+
             _propertySetter = ReflectionHelpers.CreateLateBoundMethod(property.GetSetMethod());
         }
 
