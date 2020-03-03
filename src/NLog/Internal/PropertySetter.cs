@@ -40,11 +40,11 @@ namespace NLog.Internal
 {
     internal class PropertySetter<T>
     {
-        private readonly PropertyInfo _property;
+        private ReflectionHelpers.LateBoundMethod _propertySetter;
 
         private PropertySetter([NotNull] PropertyInfo property)
         {
-            _property = property ?? throw new ArgumentNullException(nameof(property));
+            _propertySetter = ReflectionHelpers.CreateLateBoundMethod(property.GetSetMethod());
         }
 
         public static PropertySetter<T> TryCreate([NotNull] T obj, [NotNull] string propertyName, 
@@ -83,7 +83,7 @@ namespace NLog.Internal
                 throw new ArgumentNullException(nameof(obj));
             }
 
-            _property.SetValue(obj, value, null);
+            _propertySetter.Invoke(obj, new []{value});
         }
     }
 }
